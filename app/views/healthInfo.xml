@@ -1,0 +1,14 @@
+<Alloy>
+	<Window title="Health Info" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main">
+			<TableView id="infoList">
+				<TableViewRow title="News" />
+				<TableViewRow title="Videos" />
+				<TableViewRow title="BMI Calculator" />
+				<TableViewRow title="Calorie Calculator" />
+				<TableViewRow title="Malaysia Food Calorie Guide" />
+				<TableViewRow title="Meal Plan" />
+			</TableView>
+		</View>
+	</Window>
+</Alloy>

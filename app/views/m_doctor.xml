@@ -1,0 +1,7 @@
+<Alloy>
+	<Window title="Ask Doctor" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main">
+			<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
+		</View>
+	</Window>
+</Alloy>

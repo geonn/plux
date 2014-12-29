@@ -1,0 +1,29 @@
+<Alloy>
+	<NavigationWindow id="navMenu" platform="ios">
+		<Window id="root" title="" navBarHidden="true" class="container">
+			<View id="main">
+				<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
+				<ScrollView id="scrollboard" bottom="0" width="Titanium.UI.FILL" height="308" bottom="0" layout="vertical">
+					<View layout="horizontal">
+						<ImageView onClick="navWindow" mod="m_eCard" left="15" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
+						<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
+						<ImageView onClick="navWindow" mod="m_myClaim" left="15" top="15" width="139" image="/btn/btn_my_claim_detail.png"/>
+						<ImageView onClick="navWindow" mod="clinicLocator" left="15" top="15" width="139" image="/btn/btn_clinic_location.png"/>
+						<ImageView onClick="navWindow" mod="m_myMedical" left="15" top="15" width="139" image="/btn/btn_myMedical.png"/>
+						<ImageView onClick="navWindow" mod="m_appointment" left="15" top="15" width="139" image="/btn/btn_appointment.png"/>
+						<ImageView onClick="navWindow" mod="m_workout" left="15" top="15" width="139" image="/btn/btn_workout.png"/>
+						<ImageView onClick="navWindow" mod="healthInfo" left="15" top="15" width="139" image="/btn/btn_healthInfo.png"/>
+						<ImageView onClick="navWindow" mod="m_rx" left="15" top="15" width="139" image="/btn/btn_rx.png"/>
+						<ImageView onClick="navWindow" mod="m_doctor" left="15" top="15" width="139" image="/btn/btn_doctor.png"/>
+						</View>
+				</ScrollView>
+				<!--
+				<ImageView onClick="navWindow" mod="m_eCard" bottom="169" left="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
+				<ImageView onClick="navWindow" mod="m_myHealth" bottom="169" right="15"width="139" image="/btn/btn_my_health.png"/>
+				<ImageView onClick="navWindow" mod="m_myClaim" bottom="15" left="15" width="139" image="/btn/btn_my_claim_detail.png"/>
+				<ImageView onClick="navWindow" mod="clinicLocator" bottom="15" right="15" width="139" image="/btn/btn_clinic_location.png"/>
+				-->
+			</View>
+		</Window>
+	</NavigationWindow>
+</Alloy>
