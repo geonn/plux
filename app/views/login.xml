@@ -1,0 +1,17 @@
+<Alloy>
+	<Window id="root" title="" navBarHidden="true" class="container">
+        <View height="95%">
+			<View id="main" layout="vertical" height="95%">
+				<ScrollView layout="vertical" showVerticalScrollIndicator="true" id="loginScrollView" showHorizontalScrollIndicator="true" height="260" width="100%">
+					<TextField id="username" hintText="Enter Username" />
+					<TextField id="password" hintText="Enter Password" />
+				</ScrollView>
+				<!--<Label class="ftText" onTouchend="doForgotPassword" left="15">Forgot your password?</Label>-->
+				<Button id="loginAccountButton" borderRadius="3" backgroundColor="#ffffff" onTouchend="doLogin" title="Sign In"  width="90%" top="20" height="40" color="#807C7C" />
+	           
+	            <!--<Button id="createAccountButton" onTouchend="goCreateAccount" title="Create an account" width="90%" height="50" color="#ffffff" />
+	          -->
+			</View>
+		</View>
+	</Window>
+</Alloy>

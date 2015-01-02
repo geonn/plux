@@ -34,13 +34,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId20 = Ti.UI.createImageView({
+    $.__views.__alloyId16 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId20"
+        id: "__alloyId16"
     });
-    $.__views.main.add($.__views.__alloyId20);
+    $.__views.main.add($.__views.__alloyId16);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -67,7 +67,7 @@ function Controller() {
         win.open();
     });
     $.link_member.addEventListener("click", function() {
-        var win = Alloy.createController("home").getView();
+        var win = Alloy.createController("login").getView();
         win.open();
     });
     _.extend($, exports);

@@ -10,6 +10,6 @@ $.link_visitor.addEventListener('click', function(e){
 });
 
 $.link_member.addEventListener('click', function(e){
-	var win = Alloy.createController("home").getView(); 
+	var win = Alloy.createController("login").getView(); 
 	win.open();
 });
