@@ -13,3 +13,5 @@ $.link_member.addEventListener('click', function(e){
 	var win = Alloy.createController("login").getView(); 
 	win.open();
 });
+
+API.loadPanelList();

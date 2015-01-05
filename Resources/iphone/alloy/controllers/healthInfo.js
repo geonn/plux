@@ -43,39 +43,39 @@ function Controller() {
         id: "main"
     });
     $.__views.healthInfo.add($.__views.main);
-    var __alloyId1 = [];
-    $.__views.__alloyId2 = Ti.UI.createTableViewRow({
-        title: "News",
-        id: "__alloyId2"
-    });
-    __alloyId1.push($.__views.__alloyId2);
-    $.__views.__alloyId3 = Ti.UI.createTableViewRow({
-        title: "Videos",
-        id: "__alloyId3"
-    });
-    __alloyId1.push($.__views.__alloyId3);
+    var __alloyId3 = [];
     $.__views.__alloyId4 = Ti.UI.createTableViewRow({
-        title: "BMI Calculator",
+        title: "News",
         id: "__alloyId4"
     });
-    __alloyId1.push($.__views.__alloyId4);
+    __alloyId3.push($.__views.__alloyId4);
     $.__views.__alloyId5 = Ti.UI.createTableViewRow({
-        title: "Calorie Calculator",
+        title: "Videos",
         id: "__alloyId5"
     });
-    __alloyId1.push($.__views.__alloyId5);
+    __alloyId3.push($.__views.__alloyId5);
     $.__views.__alloyId6 = Ti.UI.createTableViewRow({
-        title: "Malaysia Food Calorie Guide",
+        title: "BMI Calculator",
         id: "__alloyId6"
     });
-    __alloyId1.push($.__views.__alloyId6);
+    __alloyId3.push($.__views.__alloyId6);
     $.__views.__alloyId7 = Ti.UI.createTableViewRow({
-        title: "Meal Plan",
+        title: "Calorie Calculator",
         id: "__alloyId7"
     });
-    __alloyId1.push($.__views.__alloyId7);
+    __alloyId3.push($.__views.__alloyId7);
+    $.__views.__alloyId8 = Ti.UI.createTableViewRow({
+        title: "Malaysia Food Calorie Guide",
+        id: "__alloyId8"
+    });
+    __alloyId3.push($.__views.__alloyId8);
+    $.__views.__alloyId9 = Ti.UI.createTableViewRow({
+        title: "Meal Plan",
+        id: "__alloyId9"
+    });
+    __alloyId3.push($.__views.__alloyId9);
     $.__views.infoList = Ti.UI.createTableView({
-        data: __alloyId1,
+        data: __alloyId3,
         id: "infoList"
     });
     $.__views.main.add($.__views.infoList);

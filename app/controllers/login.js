@@ -9,8 +9,7 @@ var isKeyboardFocus = 0;
 function doLogin() {
 	/** include required file**/
 	var lib_login = require('login');
-	var common = require('common');
-
+	
 	var username = $.username.value;
 	var password = $.password.value;
 	

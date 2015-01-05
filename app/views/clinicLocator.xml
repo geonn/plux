@@ -3,5 +3,13 @@
 		<View id="main">
 			<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
 		</View>
+		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15" top="100" backgroundColor="#2E2E2E" >
+        	<ActivityIndicator  id="activityIndicator" />
+        	<Label top="5" text="Loading" color="#ffffff" />
+        </View>
+		<View layout="vertical" class="nearbyView">
+		 	<ScrollView id="panelListTbl" layout="horizontal" height="100%" width="100%" >
+			</ScrollView>
+		</View>
 	</Window>
 </Alloy>

@@ -10,7 +10,6 @@ function __processArg(obj, key) {
 function Controller() {
     function doLogin() {
         var lib_login = require("login");
-        var common = require("common");
         var username = $.username.value;
         var password = $.password.value;
         if ("" == username || "" == password) {
@@ -45,17 +44,17 @@ function Controller() {
         navBarHidden: "true"
     });
     $.__views.root && $.addTopLevelView($.__views.root);
-    $.__views.__alloyId17 = Ti.UI.createView({
+    $.__views.__alloyId19 = Ti.UI.createView({
         height: "95%",
-        id: "__alloyId17"
+        id: "__alloyId19"
     });
-    $.__views.root.add($.__views.__alloyId17);
+    $.__views.root.add($.__views.__alloyId19);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical",
         height: "95%"
     });
-    $.__views.__alloyId17.add($.__views.main);
+    $.__views.__alloyId19.add($.__views.main);
     $.__views.loginScrollView = Ti.UI.createScrollView({
         layout: "vertical",
         showVerticalScrollIndicator: "true",
