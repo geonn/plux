@@ -1,15 +1,5 @@
 var common = require('common');
 
-exports.goCreateAccount = function(){
-	var page = Alloy.createController('register').getView();
-  	page.open();
-  	page.animate({
-		curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-		opacity: 1,
-		duration: 300
-	});
-};
-
 exports.doLogin = function(username, password) {
 	/** include required file**/
 	

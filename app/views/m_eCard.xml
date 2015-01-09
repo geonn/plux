@@ -1,7 +1,6 @@
 <Alloy>
-	<Window title="ASP eCARD" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View id="main">
-			<ImageView width="100%" height="100%" image="/dummy/dummy-eCard.jpg"/>
-		</View>
+	<Window title="ASP eCARD" backButtonTitle="" layout="vertical" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View height="200dp" id="card"></View>
+		<Label>Click here to flip</Label>
 	</Window>
 </Alloy>
