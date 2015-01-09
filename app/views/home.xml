@@ -12,7 +12,7 @@
 						<ImageView onClick="navWindow" mod="clinicLocator" left="15" top="15" width="139" image="/btn/btn_clinic_location.png"/>
 						
 						<ImageView onClick="navWindow" mod="healthInfo" left="15" top="15" width="139" image="/btn/btn_healthInfo.png"/>
-						<ImageView onClick="navWindow" mod="healthInfo" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
+						<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
 						<!--
 						<ImageView onClick="navWindow" mod="m_myMedical" left="15" top="15" width="139" image="/btn/btn_myMedical.png"/>
 						<ImageView onClick="navWindow" mod="m_appointment" left="15" top="15" width="139" image="/btn/btn_appointment.png"/>

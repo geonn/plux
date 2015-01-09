@@ -1,0 +1,44 @@
+<Alloy>
+	<Window title="Health Leaflet" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="brochureView" class="container" backgroundImage="/images/wood_background.jpg">
+			<View layout="vertical">
+			 
+			<ScrollView top="15" id="scrollview" layout="vertical" >
+				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="100%"> 
+					 
+		   			<View textAlign="center" bottom="0" layout="vertical" height=220 width="100%">
+		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" bottom= 0 left= "5%" right="5%">
+		   					<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_Calcium_plus.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_fish_oil.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_Nato_ALA.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+		   					<ImageView image='/images/wood_rack.png' top=0  width="100%"  right=5, left=5 />
+		   				</View>
+		   			</View>
+					
+					<View textAlign="center" bottom="0" layout="vertical" height=220 width="100%">
+		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" bottom= 0 left= "5%" right="5%">
+		   					<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_Surbex_Protect.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_Vidaylin_minibear.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">
+								<ImageView image="/images/default_cover.jpg" onClick="readLeaflet" mod="Leaflet_Vidaylin_Omega_kid.pdf" backgroundImage="/images/default_cover.jpg" bottom=0  width=90 />
+							</View>
+		   					<ImageView image='/images/wood_rack.png' top=0  width="100%"  right=5, left=5 />
+		   				</View>
+		   			</View>
+				</View>
+			</ScrollView>
+			</View>
+		     
+		</View> 
+	</Window>
+</Alloy>
