@@ -36,23 +36,12 @@ function Controller() {
         height: "200dp",
         id: "card"
     });
-<<<<<<< Updated upstream
-    $.__views.m_eCard.add($.__views.main);
-    $.__views.__alloyId22 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-eCard.jpg",
+    $.__views.eCard.add($.__views.card);
+    $.__views.__alloyId22 = Ti.UI.createLabel({
+        text: "Click here to flip",
         id: "__alloyId22"
     });
-    $.__views.main.add($.__views.__alloyId22);
-=======
-    $.__views.eCard.add($.__views.card);
-    $.__views.__alloyId20 = Ti.UI.createLabel({
-        text: "Click here to flip",
-        id: "__alloyId20"
-    });
-    $.__views.eCard.add($.__views.__alloyId20);
->>>>>>> Stashed changes
+    $.__views.eCard.add($.__views.__alloyId22);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
