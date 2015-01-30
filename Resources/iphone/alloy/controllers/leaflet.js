@@ -83,7 +83,7 @@ function Controller() {
     $.__views.__alloyId21.add($.__views.__alloyId22);
     $.__views.__alloyId23 = Ti.UI.createImageView({
         image: "/images/default_cover.jpg",
-        mod: "Leaflet_Calcium_plus.pdf",
+        mod: "Leaflet_Vidaylin_minibear.pdf",
         backgroundImage: "/images/default_cover.jpg",
         bottom: "0",
         width: "90",
@@ -101,7 +101,7 @@ function Controller() {
     $.__views.__alloyId21.add($.__views.__alloyId24);
     $.__views.__alloyId25 = Ti.UI.createImageView({
         image: "/images/default_cover.jpg",
-        mod: "Leaflet_fish_oil.pdf",
+        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
         backgroundImage: "/images/default_cover.jpg",
         bottom: "0",
         width: "90",
@@ -119,7 +119,7 @@ function Controller() {
     $.__views.__alloyId21.add($.__views.__alloyId26);
     $.__views.__alloyId27 = Ti.UI.createImageView({
         image: "/images/default_cover.jpg",
-        mod: "Leaflet_Nato_ALA.pdf",
+        mod: "Leaflet_Vidaylin_minibear.pdf",
         backgroundImage: "/images/default_cover.jpg",
         bottom: "0",
         width: "90",
@@ -165,7 +165,7 @@ function Controller() {
     $.__views.__alloyId30.add($.__views.__alloyId31);
     $.__views.__alloyId32 = Ti.UI.createImageView({
         image: "/images/default_cover.jpg",
-        mod: "Leaflet_Surbex_Protect.pdf",
+        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
         backgroundImage: "/images/default_cover.jpg",
         bottom: "0",
         width: "90",
