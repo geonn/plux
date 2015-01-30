@@ -1,0 +1,51 @@
+<Alloy>
+	<Window title="My Claim Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main" layout="vertical">
+			<Label id="date"></Label><!--
+			<View id="balance_view">
+				<Label id="cb_text">Current Balance</Label>
+				<Label id="vs_text">Visitation</Label>
+				<View id="rm_view">
+					<Label id="rm_text" right="0">RM</Label>
+					<Label id="rm_value">0.00</Label>
+					<Label id="vs_value">24</Label>
+				</View>
+			</View>
+			<View top="10dp" left="10dp" right="10dp" height="Ti.UI.SIZE" bottom="10dp" layout="vertical">
+				<View width="Ti.UI.FILL" height="Ti.UI.SIZE">
+					<Label left="0" bottom="5dp">Claim Limit</Label>
+					<Label right="0" bottom="5dp" id="claim_limit_value">0.00</Label>
+				</View>
+				<View width="Ti.UI.FILL" height="Ti.UI.SIZE">
+					<Label left="0" bottom="10dp">Limit per visit</Label>
+					<Label right="0" bottom="10dp" id="maxperclaim_value">300</Label>
+				</View>
+				<View width="Ti.UI.FILL" height="1px" bottom="0" backgroundColor="#ff0000"></View>
+			</View>
+			-->
+			<View id="balance_view">
+				<Label id="cb2_text">Current Balance :</Label>
+				<Label id="entitlement_text">Entitlement</Label>
+				<Label id="vs2_text">Visitation</Label>
+				<View id="rm2_view">
+					<Label id="rm_value">0.00</Label>
+					<Label id="vs2_value">24</Label>
+				</View>
+			</View>
+			<View top="10dp" left="10dp" right="10dp" height="Ti.UI.SIZE" bottom="10dp" layout="vertical">
+				<View width="Ti.UI.FILL" height="Ti.UI.SIZE">
+					<Label left="0" bottom="5dp">Claim Limit</Label>
+					<Label right="0" bottom="5dp" id="claim_limit_value">0.00</Label>
+				</View>
+				<View width="Ti.UI.FILL" height="Ti.UI.SIZE">
+					<Label left="0" bottom="10dp">Limit per visit</Label>
+					<Label right="0" bottom="10dp" id="maxperclaim_value">300</Label>
+				</View>
+				<View width="Ti.UI.FILL" height="1px" bottom="0" backgroundColor="#ff0000"></View>
+			</View>
+			<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
+				<ListSection id="balance"></ListSection>
+			</ListView>
+		</View>
+	</Window>
+</Alloy>
