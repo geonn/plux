@@ -1,7 +1,0 @@
-<Alloy>
-	<Window title="My Claim Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View id="main">
-			<ImageView width="100%" height="100%" image="/dummy/dummy-myClaim.jpg"/>
-		</View>
-	</Window>
-</Alloy>

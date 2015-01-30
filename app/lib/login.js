@@ -1,9 +1,18 @@
 var common = require('common');
 
-exports.doLogin = function(username, password) {
+exports.checkLogin = function(){
+	var memno = Ti.App.Properties.getString('memno');
+	console.log('should have'+memno);
+	if(typeof memno === undefined || memno == null){
+		return false;
+	}else{
+		return true;
+	}
+};
+
+exports.doLogin = function(username, password, $, target) {
 	/** include required file**/
 	
-	var API_DOMAIN = "https://www.asp-medical-clinic.com/aida/";
 	var url_doLogin		= API_DOMAIN+"login.aspx";
 	var url = url_doLogin+"?LOGINID="+username+"&PASSWORD="+password;
 	
@@ -11,20 +20,20 @@ exports.doLogin = function(username, password) {
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
-	       var dummy = '{"memno":"AGIL00005","icno":"AGIL00005","name":"KHAIRIL AZMY BIN MOHD AMINUDDIN","relation":"PRINCIPLE","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""}';
-	       //var res = JSON.parse(this.responseText);
-	       var res = JSON.parse(dummy);
-			console.log(res);
-	       if(res.code !== undefined){
-	       		ret['status'] = "error";
-	       		ret['results'] = res;
+	       console.log(this.responseText);
+	       var res = JSON.parse(this.responseText);
+	       res = res[0];
+	       console.log(res.message);
+	       if(typeof res.message !== undefined && res.message != null){
 	       		common.createAlert(res.message);
-	       		
 	       }else{
-	       		ret['status'] = "success";
-	       		ret['results'] = res;
-	       		common.createAlert(res.name);
-	       		
+	       		console.log('yes'+res.memno);
+	       		Ti.App.Properties.setString('memno', res.memno);
+	       		Ti.App.Properties.setString('empno', res.empno);
+	       		Ti.App.Properties.setString('corpcode', res.corpcode);
+	       		var nav = require('navigation');
+				nav.closeWindow($.login);
+				nav.navigationWindow(target);
 	       }
 	     },
 	     // function called when an error occurs, including a timeout

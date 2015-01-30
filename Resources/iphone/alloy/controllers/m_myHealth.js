@@ -34,13 +34,47 @@ function Controller() {
         id: "main"
     });
     $.__views.m_myHealth.add($.__views.main);
-    $.__views.__alloyId43 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-myHealth.jpg",
-        id: "__alloyId43"
+    var __alloyId173 = [];
+    $.__views.__alloyId174 = {
+        properties: {
+            title: "Body Measurements",
+            mod: "Body Measurements",
+            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
+            id: "__alloyId174"
+        }
+    };
+    __alloyId173.push($.__views.__alloyId174);
+    $.__views.__alloyId175 = {
+        properties: {
+            title: "Me",
+            mod: "Me",
+            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
+            id: "__alloyId175"
+        }
+    };
+    __alloyId173.push($.__views.__alloyId175);
+    $.__views.__alloyId176 = {
+        properties: {
+            title: "Vitals",
+            mod: "Vitals",
+            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
+            id: "__alloyId176"
+        }
+    };
+    __alloyId173.push($.__views.__alloyId176);
+    $.__views.__alloyId171 = Ti.UI.createListSection({
+        title: "Health Data",
+        id: "__alloyId171"
     });
-    $.__views.main.add($.__views.__alloyId43);
+    $.__views.__alloyId171.items = __alloyId173;
+    var __alloyId177 = [];
+    __alloyId177.push($.__views.__alloyId171);
+    $.__views.__alloyId170 = Ti.UI.createListView({
+        sections: __alloyId177,
+        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS,
+        id: "__alloyId170"
+    });
+    $.__views.main.add($.__views.__alloyId170);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

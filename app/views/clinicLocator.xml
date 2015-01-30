@@ -7,9 +7,10 @@
         	<ActivityIndicator  id="activityIndicator" />
         	<Label top="5" text="Loading" color="#ffffff" />
         </View>
-		<View layout="vertical" class="nearbyView">
+        <View id="mapview" ns="Alloy.Globals.Map" onClick="report" />
+		<!--<View layout="vertical" class="nearbyView">
 		 	<ScrollView id="panelListTbl" layout="horizontal" height="100%" width="100%" >
 			</ScrollView>
-		</View>
+	</View>-->
 	</Window>
 </Alloy>

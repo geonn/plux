@@ -1,5 +1,4 @@
 var args = arguments[0] || {};
-
 var nav = Alloy.Globals.navMenu;
 
 
@@ -18,7 +17,7 @@ function doLogin() {
 		return;
 	}
 	
-	lib_login.doLogin(username, password);
+	lib_login.doLogin(username, password, $, args.target);
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/

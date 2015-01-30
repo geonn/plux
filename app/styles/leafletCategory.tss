@@ -1,0 +1,34 @@
+
+"#main" : {
+  	backgroundColor: "#4A4A4A",
+  	height: Titanium.UI.FILL,
+  	width: Titanium.UI.FILL,
+},
+".cat_list":{
+	height: Titanium.UI.FILL,
+  	width: Titanium.UI.FILL,
+  	contentHeight: "auto",
+  	layout: "horizontal",
+  	contentWidth: Titanium.UI.FILL,
+},
+".cat" :{
+	height: Titanium.UI.SIZE,
+	width: "50%",
+	backgroundColor: "#ffffff"	
+},
+".cat_title":{
+	top: "5dp",
+	left: "5dp",
+	color: "#ffffff",
+	height: Titanium.UI.SIZE,
+  	width: Titanium.UI.FILL,
+  	font:{
+  		fontSize: "14dp"
+  	},
+  	zIndex: "2"
+},
+".cat_image":{
+	width: Titanium.UI.FILL,
+	height: "auto",
+	zIndex: "1"
+}

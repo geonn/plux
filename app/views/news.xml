@@ -1,7 +1,69 @@
 <Alloy>
-	<Window title="MEDICAL NEWS" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="Bone Health for Life" backButtonTitle="" id="news" class="container" navTintColor="#CE1D1C" platform="ios">
 		<View id="main">
-			<ImageView width="100%" height="100%" image="/dummy/dummy-news.jpg"/>
+			<ScrollableView showPagingControl="true">
+				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<Label class="image_caption">here is image caption</Label>
+					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
+						
+There are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.</Label>
+					<Label class="news_subtitle">Why Does Bone Health Matter?</Label>
+					<Label class="news_paragraph">But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.
+						
+But the good news is that it is never too late to take care of your bones.</Label>
+				</ScrollView>
+				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<Label class="image_caption">here is image caption</Label>
+					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
+						
+There are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.</Label>
+					<Label class="news_subtitle">Why Does Bone Health Matter?</Label>
+					<Label class="news_paragraph">But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.
+						
+But the good news is that it is never too late to take care of your bones.</Label>
+				</ScrollView>
+				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<Label class="image_caption">here is image caption</Label>
+					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
+						
+There are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.</Label>
+					<Label class="news_subtitle">Why Does Bone Health Matter?</Label>
+					<Label class="news_paragraph">But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.
+						
+But the good news is that it is never too late to take care of your bones.</Label>
+				</ScrollView>
+				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<Label class="image_caption">here is image caption</Label>
+					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
+						
+There are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.</Label>
+					<Label class="news_subtitle">Why Does Bone Health Matter?</Label>
+					<Label class="news_paragraph">But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.
+						
+But the good news is that it is never too late to take care of your bones.</Label>
+				</ScrollView>
+				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<Label class="image_caption">here is image caption</Label>
+					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
+						
+There are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.</Label>
+					<Label class="news_subtitle">Why Does Bone Health Matter?</Label>
+					<Label class="news_paragraph">But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.
+						
+But the good news is that it is never too late to take care of your bones.</Label>
+				</ScrollView>
+			</ScrollableView>
+			
 		</View>
 	</Window>
 </Alloy>

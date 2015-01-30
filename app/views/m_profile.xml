@@ -1,0 +1,10 @@
+<Alloy>
+	<Window title="My Claim Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main">
+			<ListView style="Titanium.UI.iPhone.ListViewStyle.GROUPED" defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE">
+				<ListSection id="info" headerTitle="Member Info"></ListSection>
+				<ListSection id="balance" headerTitle="Balance"></ListSection>
+			</ListView>
+		</View>
+	</Window>
+</Alloy>

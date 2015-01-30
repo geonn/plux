@@ -11,7 +11,7 @@ function Controller() {
     function navWindow(e) {
         var target = e.source.mod;
         var nav = require("navigation");
-        nav.navigationWindow(target);
+        "m_eCard" == e.source.mod || "m_myClaim" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
@@ -38,87 +38,92 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId10 = Ti.UI.createImageView({
+    $.__views.__alloyId98 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId10"
+        id: "__alloyId98"
     });
-    $.__views.main.add($.__views.__alloyId10);
+    $.__views.main.add($.__views.__alloyId98);
+    $.__views.__alloyId99 = Ti.UI.createImageView({
+        width: "100",
+        height: "100",
+        top: "10",
+        left: "10",
+        image: "/appicon-60@3x.png",
+        id: "__alloyId99"
+    });
+    $.__views.main.add($.__views.__alloyId99);
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
-        bottom: "0",
+        top: "40%",
         width: Titanium.UI.FILL,
-        height: "100%",
-        top: "0",
-        layout: "vertical"
+        height: Ti.UI.FILL
     });
     $.__views.main.add($.__views.scrollboard);
-    $.__views.__alloyId11 = Ti.UI.createView({
+    $.__views.__alloyId100 = Ti.UI.createView({
         layout: "horizontal",
-        id: "__alloyId11"
+        width: "293",
+        id: "__alloyId100"
     });
-    $.__views.scrollboard.add($.__views.__alloyId11);
-    $.__views.__alloyId12 = Ti.UI.createImageView({
+    $.__views.scrollboard.add($.__views.__alloyId100);
+    $.__views.__alloyId101 = Ti.UI.createImageView({
         mod: "m_eCard",
-        left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_asp_e_card_pass.png",
-        id: "__alloyId12"
+        id: "__alloyId101"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId12);
-    navWindow ? $.__views.__alloyId12.addEventListener("click", navWindow) : __defers["$.__views.__alloyId12!click!navWindow"] = true;
-    $.__views.__alloyId13 = Ti.UI.createImageView({
+    $.__views.__alloyId100.add($.__views.__alloyId101);
+    navWindow ? $.__views.__alloyId101.addEventListener("click", navWindow) : __defers["$.__views.__alloyId101!click!navWindow"] = true;
+    $.__views.__alloyId102 = Ti.UI.createImageView({
         mod: "m_myHealth",
         left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_my_health.png",
-        id: "__alloyId13"
+        id: "__alloyId102"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId13);
-    navWindow ? $.__views.__alloyId13.addEventListener("click", navWindow) : __defers["$.__views.__alloyId13!click!navWindow"] = true;
-    $.__views.__alloyId14 = Ti.UI.createImageView({
+    $.__views.__alloyId100.add($.__views.__alloyId102);
+    navWindow ? $.__views.__alloyId102.addEventListener("click", navWindow) : __defers["$.__views.__alloyId102!click!navWindow"] = true;
+    $.__views.__alloyId103 = Ti.UI.createImageView({
         mod: "m_myClaim",
-        left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_my_claim_detail.png",
-        id: "__alloyId14"
+        id: "__alloyId103"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId14);
-    navWindow ? $.__views.__alloyId14.addEventListener("click", navWindow) : __defers["$.__views.__alloyId14!click!navWindow"] = true;
-    $.__views.__alloyId15 = Ti.UI.createImageView({
+    $.__views.__alloyId100.add($.__views.__alloyId103);
+    navWindow ? $.__views.__alloyId103.addEventListener("click", navWindow) : __defers["$.__views.__alloyId103!click!navWindow"] = true;
+    $.__views.__alloyId104 = Ti.UI.createImageView({
         mod: "clinicLocator",
         left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_clinic_location.png",
-        id: "__alloyId15"
+        id: "__alloyId104"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId15);
-    navWindow ? $.__views.__alloyId15.addEventListener("click", navWindow) : __defers["$.__views.__alloyId15!click!navWindow"] = true;
-    $.__views.__alloyId16 = Ti.UI.createImageView({
+    $.__views.__alloyId100.add($.__views.__alloyId104);
+    navWindow ? $.__views.__alloyId104.addEventListener("click", navWindow) : __defers["$.__views.__alloyId104!click!navWindow"] = true;
+    $.__views.__alloyId105 = Ti.UI.createImageView({
         mod: "healthInfo",
-        left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_healthInfo.png",
-        id: "__alloyId16"
+        id: "__alloyId105"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId16);
-    navWindow ? $.__views.__alloyId16.addEventListener("click", navWindow) : __defers["$.__views.__alloyId16!click!navWindow"] = true;
-    $.__views.__alloyId17 = Ti.UI.createImageView({
-        mod: "leaflet",
+    $.__views.__alloyId100.add($.__views.__alloyId105);
+    navWindow ? $.__views.__alloyId105.addEventListener("click", navWindow) : __defers["$.__views.__alloyId105!click!navWindow"] = true;
+    $.__views.__alloyId106 = Ti.UI.createImageView({
+        mod: "leafletCategory",
         left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_leaflet.png",
-        id: "__alloyId17"
+        id: "__alloyId106"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId17);
-    navWindow ? $.__views.__alloyId17.addEventListener("click", navWindow) : __defers["$.__views.__alloyId17!click!navWindow"] = true;
+    $.__views.__alloyId100.add($.__views.__alloyId106);
+    navWindow ? $.__views.__alloyId106.addEventListener("click", navWindow) : __defers["$.__views.__alloyId106!click!navWindow"] = true;
     $.__views.navMenu = Ti.UI.iOS.createNavigationWindow({
         window: $.__views.root,
         id: "navMenu"
@@ -127,32 +132,17 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var expandmode = false;
+    API.loadPanelList();
     Alloy.Globals.navMenu = $.navMenu;
     $.scrollboard.addEventListener("scroll", function(e) {
-        var o = e.source.contentOffset;
-        if (o.y <= 0) $.scrollboard.animate({
-            top: "45%",
-            duration: 500
-        }, function() {
-            expandmode = false;
-        }); else {
-            if (expandmode) return;
-            $.scrollboard.animate({
-                top: 0,
-                height: "100%",
-                duration: 500
-            }, function() {
-                expandmode = true;
-            });
-        }
+        e.source.contentOffset;
     });
-    __defers["$.__views.__alloyId12!click!navWindow"] && $.__views.__alloyId12.addEventListener("click", navWindow);
-    __defers["$.__views.__alloyId13!click!navWindow"] && $.__views.__alloyId13.addEventListener("click", navWindow);
-    __defers["$.__views.__alloyId14!click!navWindow"] && $.__views.__alloyId14.addEventListener("click", navWindow);
-    __defers["$.__views.__alloyId15!click!navWindow"] && $.__views.__alloyId15.addEventListener("click", navWindow);
-    __defers["$.__views.__alloyId16!click!navWindow"] && $.__views.__alloyId16.addEventListener("click", navWindow);
-    __defers["$.__views.__alloyId17!click!navWindow"] && $.__views.__alloyId17.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId101!click!navWindow"] && $.__views.__alloyId101.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId102!click!navWindow"] && $.__views.__alloyId102.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId103!click!navWindow"] && $.__views.__alloyId103.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId104!click!navWindow"] && $.__views.__alloyId104.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId105!click!navWindow"] && $.__views.__alloyId105.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId106!click!navWindow"] && $.__views.__alloyId106.addEventListener("click", navWindow);
     _.extend($, exports);
 }
 

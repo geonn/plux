@@ -8,6 +8,9 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function report(evt) {
+        Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinicLocator";
     if (arguments[0]) {
@@ -23,6 +26,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.clinicLocator = Ti.UI.createWindow({
         title: "Clinic Locator",
         backButtonTitle: "",
@@ -66,33 +70,59 @@ function Controller() {
         id: "__alloyId1"
     });
     $.__views.loadingBar.add($.__views.__alloyId1);
-    $.__views.__alloyId2 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId2"
+    $.__views.mapview = Alloy.Globals.Map.createView({
+        id: "mapview"
     });
-    $.__views.clinicLocator.add($.__views.__alloyId2);
-    $.__views.panelListTbl = Ti.UI.createScrollView({
-        id: "panelListTbl",
-        layout: "horizontal",
-        height: "100%",
-        width: "100%"
-    });
-    $.__views.__alloyId2.add($.__views.panelListTbl);
+    $.__views.clinicLocator.add($.__views.mapview);
+    report ? $.__views.mapview.addEventListener("click", report) : __defers["$.__views.mapview!click!report"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelList();
+    var showCurLoc = false;
     $.activityIndicator.show();
+    var saveCurLoc = function(e) {
+        if (e.error) ; else {
+            showCurLoc = true;
+            Ti.App.Properties.setString("latitude", e.coords.latitude);
+            Ti.App.Properties.setString("longitude", e.coords.longitude);
+        }
+    };
+    if (Ti.Geolocation.locationServicesEnabled) {
+        Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
+        Ti.Geolocation.addEventListener("location", saveCurLoc);
+    } else alert("Please enable location services");
+    if (true == showCurLoc) {
+        var currenLocation = Alloy.Globals.Map.createAnnotation({
+            latitude: Ti.App.Properties.getString("latitude"),
+            longitude: Ti.App.Properties.getString("longitude"),
+            title: "Current Location",
+            subtitle: "",
+            pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
+            myid: 99
+        });
+        $.mapview.addAnnotation(currenLocation);
+    }
+    if (true == showCurLoc) {
+        var currenLocation = Alloy.Globals.Map.createAnnotation({
+            latitude: Ti.App.Properties.getString("latitude"),
+            longitude: Ti.App.Properties.getString("longitude"),
+            title: "Current Location",
+            subtitle: "",
+            pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
+            myid: 99
+        });
+        $.mapview.addAnnotation(currenLocation);
+    }
     setTimeout(function() {
         panelListResult(details);
     }, 800);
     var panelListResult = function(details) {
-        var TheTable = Titanium.UI.createTableView({
+        Titanium.UI.createTableView({
             width: "100%",
             separatorColor: "#ffffff"
         });
-        var data = [];
         $.loadingBar.height = "0";
         $.loadingBar.top = "0";
         var arr = details;
@@ -109,79 +139,25 @@ function Controller() {
                 width: Ti.UI.SIZE
             });
             $.panelListTbl.add(noRecord);
-        } else {
-            arr.forEach(function(entry) {
-                var row = Titanium.UI.createTableViewRow({
-                    touchEnabled: true,
-                    height: 70,
-                    source: entry.m_id,
-                    selectedBackgroundColor: "#FFE1E1",
-                    backgroundGradient: {
-                        type: "linear",
-                        colors: [ "#FEFEFB", "#F7F7F6" ],
-                        startPoint: {
-                            x: 0,
-                            y: 0
-                        },
-                        endPoint: {
-                            x: 0,
-                            y: 70
-                        },
-                        backFillStart: false
-                    }
-                });
-                var popUpTitle = Titanium.UI.createLabel({
-                    text: entry.clinicName,
-                    font: {
-                        fontSize: 16
-                    },
-                    source: entry.id,
-                    color: "#848484",
-                    width: "65%",
-                    textAlign: "left",
-                    top: 8,
-                    left: 20,
-                    height: 25
-                });
-                var address = Titanium.UI.createLabel({
-                    text: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    width: "85%",
-                    bottom: 23,
-                    left: 20,
-                    height: 12
-                });
-                var tel = Titanium.UI.createLabel({
-                    text: entry.tel,
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    bottom: 5,
-                    left: 20,
-                    height: 12
-                });
-                row.addEventListener("touchend", function() {});
-                row.add(popUpTitle);
-                row.add(address);
-                row.add(tel);
-                data.push(row);
+        } else arr.forEach(function(entry) {
+            var merchantLoc = Alloy.Globals.Map.createAnnotation({
+                latitude: entry.latitude,
+                longitude: entry.longitude,
+                title: entry.clinicname,
+                subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+                pincolor: Alloy.Globals.Map.ANNOTATION_RED,
+                myid: entry.id
             });
-            TheTable.setData(data);
-            $.panelListTbl.add(TheTable);
-        }
+            $.mapview.region = {
+                latitude: entry.latitude,
+                longitude: entry.longitude,
+                latitudeDelta: .01,
+                longitudeDelta: .01
+            };
+            $.mapview.addAnnotation(merchantLoc);
+        });
     };
+    __defers["$.__views.mapview!click!report"] && $.__views.mapview.addEventListener("click", report);
     _.extend($, exports);
 }
 

@@ -1,21 +1,23 @@
 ".container": {
-	backgroundColor:"#CC2228",
-	layout: 'vertical',
+	backgroundColor:"#ffffff",
 	width: Ti.UI.FILL,
 	fullscreen: true,
+	height: Titanium.UI.FILL
 },
 "#username" : {
 	 font:{
 		fontSize: '14dp'
 	},
 	 color: '#000000',
-	 backgroundColor: '#CE1D1C',
+	 backgroundColor: '#fff',
+	 borderColor: "#cccccc",
 	 width:'90%',
-	 height: '35dp',
-	 bottom:5,
+	 height: '50dp',
+	 paddingLeft: "20dp",
+	 paddingRight: "20dp",
+	 bottom: "5dp",
 	 keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-     returnKeyType: Titanium.UI.RETURNKEY_NEXT ,
-	 borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+     returnKeyType: Titanium.UI.RETURNKEY_NEXT 
 },
 "#password" : {
 	 passwordMask:true,
@@ -23,10 +25,24 @@
 		fontSize: '14dp'
 	},
 	color: '#000000',
-	backgroundColor: '#CE1D1C',
+	backgroundColor: '#fff',
+	borderColor: "#cccccc",
 	 width:'90%',
-	 height: '35dp',
+	 height: '50dp',
+	 paddingLeft: "20dp",
+	 paddingRight: "20dp",
 	 keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-     returnKeyType: Titanium.UI.RETURNKEY_DONE  ,
-	 borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+     returnKeyType: Titanium.UI.RETURNKEY_DONE
+},
+"#footer" : {
+	bottom: 0,
+	left: "10dp",
+	height: Titanium.UI.SIZE,
+},
+".ftText" :{
+	font:{
+		fontSize: '11dp'
+	},
+	height: Titanium.UI.SIZE,
+	color: "#808080",
 }

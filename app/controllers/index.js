@@ -1,7 +1,9 @@
 var args = {};
-
-//Alloy.Globals.navMenu = $.navMenu;
-
+var win = Alloy.createController("home").getView();
+var api = require("api");
+api.loadPanelList();
+win.open();
+/*
 $.root.open({fullscreen:true});
 
 $.link_visitor.addEventListener('click', function(e){
@@ -14,4 +16,5 @@ $.link_member.addEventListener('click', function(e){
 	win.open();
 });
 
-API.loadPanelList();
+
+*/

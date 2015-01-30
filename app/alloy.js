@@ -11,6 +11,9 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 var common = require('common');
 var API = require('api');
+Alloy.Globals.Map = require('ti.map');
+//constant variable
+var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 //define platform
 if (Ti.Platform.osname == 'android') {

@@ -1,10 +1,12 @@
 var args = arguments[0] || {};
 var expandmode = false;
-Alloy.Globals.navMenu = $.navMenu;
 
+API.loadPanelList();
+
+Alloy.Globals.navMenu = $.navMenu;
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;
-	
+	/*
 	if(o.y <= 0){
 		$.scrollboard.animate({
 	        top: "45%",
@@ -18,12 +20,15 @@ $.scrollboard.addEventListener("scroll", function(e){
 	        height: '100%',
 	        duration: 500
 	    }, function(){expandmode = true;});
-	}
+	}*/
 });
 
 function navWindow(e){
 	var target = e.source.mod;
 	var nav = require('navigation');
-	
-	nav.navigationWindow(target);
+	if(e.source.mod == "m_eCard" || e.source.mod == "m_myClaim"){
+		nav.navigationWindow(target, 1);
+	}else{
+		nav.navigationWindow(target);
+	}	
 }

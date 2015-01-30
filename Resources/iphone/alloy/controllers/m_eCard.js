@@ -36,44 +36,71 @@ function Controller() {
         height: "200dp",
         id: "card"
     });
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-    $.__views.m_eCard.add($.__views.main);
-    $.__views.__alloyId41 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-eCard.jpg",
-        id: "__alloyId41"
-    });
-<<<<<<< HEAD
-    $.__views.main.add($.__views.__alloyId41);
-=======
-    $.__views.main.add($.__views.__alloyId22);
-=======
->>>>>>> FETCH_HEAD
     $.__views.eCard.add($.__views.card);
-    $.__views.__alloyId22 = Ti.UI.createLabel({
+    $.__views.__alloyId160 = Ti.UI.createLabel({
         text: "Click here to flip",
-        id: "__alloyId22"
+        id: "__alloyId160"
     });
-<<<<<<< HEAD
-    $.__views.eCard.add($.__views.__alloyId22);
-=======
-    $.__views.eCard.add($.__views.__alloyId20);
->>>>>>> Stashed changes
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
+    $.__views.eCard.add($.__views.__alloyId160);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var frontbackcounter = 0;
-    var front = Ti.UI.createImageView({
+    var front = Ti.UI.createView({
+        name: "front",
+        width: "100%",
+        currentAngle: 10
+    });
+    var memno_text = Ti.UI.createLabel({
+        text: "6000 2010 0011 3572",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "90dp",
+        left: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#ffffff"
+    });
+    var name_text = Ti.UI.createLabel({
+        text: "CHEONG SHY YNG",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "107dp",
+        left: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#ffffff"
+    });
+    var ic_text = Ti.UI.createLabel({
+        text: "858512102934",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "124dp",
+        left: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#ffffff"
+    });
+    var front_bg = Ti.UI.createImageView({
         name: "front",
         width: "100%",
         image: "/eCard-front.png",
-        currentAngle: 10
+        currentAngle: 10,
+        font: {
+            fontSize: "11dp"
+        },
+        zIndex: 11
     });
+    front.add(front_bg);
+    front.add(name_text);
+    front.add(ic_text);
+    front.add(memno_text);
     var back = Ti.UI.createImageView({
         name: "back",
         width: "100%",

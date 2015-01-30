@@ -1,0 +1,40 @@
+<Alloy>
+	<Window title="Leaflet" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main">
+			<ScrollView class="cat_list">
+				<View class="cat" onClick="navWindow" mod="Bone Health">
+					<Label class="cat_title" mod="Bone Health">Bone Health</Label>
+					<ImageView mod="Bone Health" right="1dp" bottom="2dp" class="cat_image" image="/images/bone-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Women Health">
+					<Label mod="Women Health" class="cat_title">Women Health</Label>
+					<ImageView mod="Women Health" class="cat_image" left="1dp" bottom="2dp"  image="/images/women-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Man Health">
+					<Label mod="Man Health" class="cat_title">Man Health</Label>
+					<ImageView mod="Man Health" right="1dp" bottom="2dp"  class="cat_image" image="/images/men-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Children Health">
+					<Label mod="Children Health" class="cat_title">Children Health</Label>
+					<ImageView mod="Children Health" class="cat_image" left="1dp"  bottom="2dp"  image="/images/children-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Man Health">
+					<Label mod="Man Health" class="cat_title">Man Health</Label>
+					<ImageView mod="Man Health" right="1dp" bottom="2dp"  class="cat_image" image="/images/men-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Children Health">
+					<Label mod="Children Health" class="cat_title">Children Health</Label>
+					<ImageView mod="Children Health" class="cat_image" left="1dp"  bottom="2dp"  image="/images/children-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Man Health">
+					<Label mod="Man Health" class="cat_title">Man Health</Label>
+					<ImageView mod="Man Health" right="1dp" bottom="2dp"  class="cat_image" image="/images/men-health-category.png"></ImageView>
+				</View>
+				<View class="cat" onClick="navWindow" mod="Children Health">
+					<Label mod="Children Health" class="cat_title">Children Health</Label>
+					<ImageView mod="Children Health" class="cat_image" left="1dp" bottom="2dp"  image="/images/children-health-category.png"></ImageView>
+				</View>
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

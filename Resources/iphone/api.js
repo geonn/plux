@@ -36,8 +36,7 @@ exports.doLogin = function() {
 };
 
 exports.loadPanelList = function() {
-    var url = "http://54.169.180.5/eqsport/jsonList.php";
-    console.log(url);
+    var url = "https://www.asp-medical-clinic.com.my/aida/panellist.aspx?CORPCODE=ASP";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);

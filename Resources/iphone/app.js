@@ -34,6 +34,10 @@ var common = require("common");
 
 var API = require("api");
 
+Alloy.Globals.Map = require("ti.map");
+
+var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
+
 "android" == Ti.Platform.osname ? Alloy.Globals.loadingStyle = "Ti.UI.ActivityIndicatorStyle.BIG" : "iphone" == Ti.Platform.osname && (Alloy.Globals.topbarTop = "Ti.UI.iPhone.ActivityIndicatorStyle.BIG");
 
 Alloy.createController("index");
