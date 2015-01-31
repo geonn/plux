@@ -34,22 +34,31 @@ function Controller() {
     });
     $.__views.eCard && $.addTopLevelView($.__views.eCard);
     $.__views.card = Ti.UI.createView({
-        height: "200dp",
+        height: "204",
+        width: "320",
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
+<<<<<<< HEAD
     $.__views.__alloyId173 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId160 = Ti.UI.createLabel({
+>>>>>>> FETCH_HEAD
         text: "Click here to flip",
         id: "__alloyId173"
     });
+<<<<<<< HEAD
     $.__views.eCard.add($.__views.__alloyId173);
+=======
+    $.__views.eCard.add($.__views.__alloyId160);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var frontbackcounter = 0;
     var front = Ti.UI.createView({
         name: "front",
-        width: "100%",
+        width: Ti.UI.FILL,
         currentAngle: 10
     });
     var memno_text = Ti.UI.createLabel({
@@ -89,8 +98,7 @@ function Controller() {
         color: "#ffffff"
     });
     var front_bg = Ti.UI.createImageView({
-        name: "front",
-        width: "100%",
+        width: Ti.UI.FILL,
         image: "/eCard-front.png",
         currentAngle: 10,
         font: {
@@ -104,7 +112,7 @@ function Controller() {
     front.add(memno_text);
     var back = Ti.UI.createImageView({
         name: "back",
-        width: "100%",
+        width: Ti.UI.FILL,
         image: "/eCard-back.png",
         currentAngle: 10
     });

@@ -81,8 +81,13 @@ function Controller() {
         right: "5",
         id: "__alloyId124"
     });
+<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId124);
     $.__views.__alloyId125 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId110.add($.__views.__alloyId111);
+    $.__views.__alloyId112 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         mod: "Leaflet_Calcium_plus.pdf",
         backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
@@ -99,8 +104,13 @@ function Controller() {
         right: "5",
         id: "__alloyId126"
     });
+<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId126);
     $.__views.__alloyId127 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId110.add($.__views.__alloyId113);
+    $.__views.__alloyId114 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Fish_Oil_cover.png",
         mod: "Leaflet_fish_oil.pdf",
         backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
@@ -117,8 +127,13 @@ function Controller() {
         right: "5",
         id: "__alloyId128"
     });
+<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId128);
     $.__views.__alloyId129 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId110.add($.__views.__alloyId115);
+    $.__views.__alloyId116 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Nato_ALA_cover.png",
         mod: "Leaflet_Nato_ALA.pdf",
         backgroundImage: "/images/cover/Leaflet_Nato_ALA_cover.png",
@@ -163,8 +178,13 @@ function Controller() {
         right: "5",
         id: "__alloyId133"
     });
+<<<<<<< HEAD
     $.__views.__alloyId132.add($.__views.__alloyId133);
     $.__views.__alloyId134 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId119.add($.__views.__alloyId120);
+    $.__views.__alloyId121 = Ti.UI.createImageView({
+>>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
         mod: "Leaflet_Surbex_Protect.pdf",
         backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",

@@ -6,21 +6,21 @@ API.loadPanelList();
 Alloy.Globals.navMenu = $.navMenu;
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;
-	/*
-	if(o.y <= 0){
-		$.scrollboard.animate({
-	        top: "45%",
+	
+	if(o.y >= 139 && expandmode){
+		$.logo.animate({
+	        top: -100,
 	        duration: 500
 	    }, function(){expandmode = false;});
-	}else if(expandmode){
-		return ;
-	}else{
-		$.scrollboard.animate({
-			top: 0,
-	        height: '100%',
+	}else if(o.y < 139 && !expandmode){
+		$.logo.animate({
+	        top: 10,
 	        duration: 500
 	    }, function(){expandmode = true;});
-	}*/
+	}else if(o.y < 139){
+		$.logo.setTop(o.y+10);
+		return ;
+	}
 });
 
 function navWindow(e){
