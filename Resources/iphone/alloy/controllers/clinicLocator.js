@@ -28,6 +28,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.clinicLocator = Ti.UI.createWindow({
+        fullscreen: true,
         title: "Clinic Locator",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",

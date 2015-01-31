@@ -1,1 +1,1 @@
-module.exports = [{"isId":true,"priority":100000.0001,"key":"activityIndicator","style":{style:Alloy.Globals.topbarTop,top:30,left:30,width:60,}}];
+module.exports = [{"isApi":true,"priority":1000.0001,"key":"Window","style":{fullscreen:true,}},{"isId":true,"priority":100000.0002,"key":"activityIndicator","style":{style:Alloy.Globals.topbarTop,top:30,left:30,width:60,}}];

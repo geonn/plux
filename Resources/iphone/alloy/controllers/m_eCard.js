@@ -24,6 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.eCard = Ti.UI.createWindow({
+        fullscreen: true,
         title: "ASP eCARD",
         backButtonTitle: "",
         layout: "vertical",
@@ -37,19 +38,11 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-<<<<<<< HEAD
-    $.__views.__alloyId160 = Ti.UI.createLabel({
+    $.__views.__alloyId173 = Ti.UI.createLabel({
         text: "Click here to flip",
-        id: "__alloyId160"
+        id: "__alloyId173"
     });
-    $.__views.eCard.add($.__views.__alloyId160);
-=======
-    $.__views.__alloyId41 = Ti.UI.createLabel({
-        text: "Click here to flip",
-        id: "__alloyId41"
-    });
-    $.__views.eCard.add($.__views.__alloyId41);
->>>>>>> FETCH_HEAD
+    $.__views.eCard.add($.__views.__alloyId173);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

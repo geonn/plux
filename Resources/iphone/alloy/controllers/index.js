@@ -24,23 +24,23 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.root = Ti.UI.createWindow({
+        fullscreen: true,
         backgroundColor: "white",
         id: "root",
-        title: "",
-        navBarHidden: "true"
+        title: ""
     });
     $.__views.root && $.addTopLevelView($.__views.root);
     $.__views.main = Ti.UI.createView({
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId107 = Ti.UI.createImageView({
+    $.__views.__alloyId120 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId107"
+        id: "__alloyId120"
     });
-    $.__views.main.add($.__views.__alloyId107);
+    $.__views.main.add($.__views.__alloyId120);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",

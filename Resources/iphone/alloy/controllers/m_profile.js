@@ -112,6 +112,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.m_profile = Ti.UI.createWindow({
+        fullscreen: true,
         title: "My Claim Details",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
@@ -126,20 +127,20 @@ function Controller() {
         id: "info",
         headerTitle: "Member Info"
     });
-    var __alloyId181 = [];
-    __alloyId181.push($.__views.info);
+    var __alloyId190 = [];
+    __alloyId190.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-    __alloyId181.push($.__views.balance);
-    $.__views.__alloyId179 = Ti.UI.createListView({
-        sections: __alloyId181,
+    __alloyId190.push($.__views.balance);
+    $.__views.__alloyId188 = Ti.UI.createListView({
+        sections: __alloyId190,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId179"
+        id: "__alloyId188"
     });
-    $.__views.main.add($.__views.__alloyId179);
+    $.__views.main.add($.__views.__alloyId188);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

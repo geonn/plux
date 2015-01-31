@@ -1,13 +1,29 @@
 <Alloy>
 	<Window title="MY HEALTH RECORD" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View id="main">
-			<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
+		<View id="main" layout="vertical" backgroundColor="#ffffff">
+			
+			<!--<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
 				<ListSection title="Health Data">
 					 <ListItem title="Body Measurements" mod="Body Measurements" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
 					 <ListItem title="Me" mod="Me" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE"/>
 					 <ListItem title="Vitals" mod="Vitals" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
 				</ListSection>
 			</ListView>
+		-->
+			<ScrollView id="graphScrollView" layout="vertical" height="100%" width="100%" >
+				<View id="bmiView" height="40%" width="100%" backgroundColor="#FFE2E2">
+					<WebView width="90%" backgroundColor="#FFE2E2" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
+				</View>
+				<View id="bloodPressureView" height="40%" width="100%" backgroundColor="#EBEBEB">
+					<WebView width="90%" backgroundColor="#EBEBEB" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+				</View>
+				<View id="heartRateView" height="40%" width="100%" backgroundColor="#FFE2E2">
+					<WebView  width="90%" backgroundColor="#FFE2E2" url="/html/heartRate.html" disableBounce='true' touchEnabled="false" ></WebView>
+				</View>
+				<View id="bodyTemperatureView" height="40%" width="100%" backgroundColor="#EBEBEB">
+					<WebView  width="90%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+				</View>
+			</ScrollView>
 		</View>
 	</Window>
 </Alloy>
