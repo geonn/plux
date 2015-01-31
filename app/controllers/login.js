@@ -1,12 +1,13 @@
 var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
-
+var singleton = true;
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
 function doLogin() {
 	/** include required file**/
+	
 	var lib_login = require('login');
 	
 	var username = $.username.value;
@@ -16,8 +17,10 @@ function doLogin() {
 		common.createAlert('Authentication warning','Please fill in username and password');
 		return;
 	}
-	
-	lib_login.doLogin(username, password, $, args.target);
+	if(singleton){
+		singleton = false;
+		lib_login.doLogin(username, password, $, args.target);
+	}
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/

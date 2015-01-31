@@ -23,7 +23,7 @@ exports.doLogin = function(username, password, $, target) {
 	       console.log(this.responseText);
 	       var res = JSON.parse(this.responseText);
 	       res = res[0];
-	       console.log(res.message);
+	      
 	       if(typeof res.message !== undefined && res.message != null){
 	       		common.createAlert(res.message);
 	       }else{
@@ -33,6 +33,7 @@ exports.doLogin = function(username, password, $, target) {
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
 	       		var nav = require('navigation');
 				nav.closeWindow($.login);
+				 console.log("success login"+target);
 				nav.navigationWindow(target);
 	       }
 	     },

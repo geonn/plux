@@ -8,10 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function callNav() {
+    function callNav(e) {
         var nav = require("navigation");
         nav.navigateWithArgs("news", {
-            title: ""
+            title: e.source.mod
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -38,7 +38,7 @@ function Controller() {
     });
     $.__views.healthInfo && $.addTopLevelView($.__views.healthInfo);
     $.__views.main = Ti.UI.createView({
-        backgroundColor: "#4A4A4A",
+        backgroundColor: "#ffffff",
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
         id: "main"
@@ -70,7 +70,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        color: "#ffffff",
+        color: "#E4001D",
         left: "0",
         bottom: "5dp",
         top: "5dp",
@@ -93,6 +93,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId7"
     });
     $.__views.__alloyId6.add($.__views.__alloyId7);
@@ -100,7 +101,8 @@ function Controller() {
     $.__views.__alloyId8 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId8"
     });
     $.__views.__alloyId7.add($.__views.__alloyId8);
@@ -114,6 +116,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Bone Health For Life",
+        mod: "Bone Health",
         id: "__alloyId9"
     });
     $.__views.__alloyId7.add($.__views.__alloyId9);
@@ -124,6 +127,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId10"
     });
     $.__views.__alloyId6.add($.__views.__alloyId10);
@@ -131,7 +135,8 @@ function Controller() {
     $.__views.__alloyId11 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId11"
     });
     $.__views.__alloyId10.add($.__views.__alloyId11);
@@ -145,6 +150,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "11 Foods for Healthy Bones",
+        mod: "Bone Health",
         id: "__alloyId12"
     });
     $.__views.__alloyId10.add($.__views.__alloyId12);
@@ -155,6 +161,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId13"
     });
     $.__views.__alloyId6.add($.__views.__alloyId13);
@@ -162,7 +169,8 @@ function Controller() {
     $.__views.__alloyId14 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId14"
     });
     $.__views.__alloyId13.add($.__views.__alloyId14);
@@ -176,6 +184,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "10 Ways to Build Healthy Bones",
+        mod: "Bone Health",
         id: "__alloyId15"
     });
     $.__views.__alloyId13.add($.__views.__alloyId15);
@@ -186,6 +195,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId16"
     });
     $.__views.__alloyId6.add($.__views.__alloyId16);
@@ -193,7 +203,8 @@ function Controller() {
     $.__views.__alloyId17 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId17"
     });
     $.__views.__alloyId16.add($.__views.__alloyId17);
@@ -207,6 +218,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Bone Health For Life",
+        mod: "Bone Health",
         id: "__alloyId18"
     });
     $.__views.__alloyId16.add($.__views.__alloyId18);
@@ -217,6 +229,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId19"
     });
     $.__views.__alloyId6.add($.__views.__alloyId19);
@@ -224,7 +237,8 @@ function Controller() {
     $.__views.__alloyId20 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId20"
     });
     $.__views.__alloyId19.add($.__views.__alloyId20);
@@ -238,6 +252,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "11 Foods for Healthy Bones",
+        mod: "Bone Health",
         id: "__alloyId21"
     });
     $.__views.__alloyId19.add($.__views.__alloyId21);
@@ -248,6 +263,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Bone Health",
         id: "__alloyId22"
     });
     $.__views.__alloyId6.add($.__views.__alloyId22);
@@ -255,7 +271,8 @@ function Controller() {
     $.__views.__alloyId23 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Bone Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId23"
     });
     $.__views.__alloyId22.add($.__views.__alloyId23);
@@ -269,6 +286,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "10 Ways to Build Healthy Bones",
+        mod: "Bone Health",
         id: "__alloyId24"
     });
     $.__views.__alloyId22.add($.__views.__alloyId24);
@@ -290,7 +308,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        color: "#ffffff",
+        color: "#E4001D",
         left: "0",
         bottom: "5dp",
         top: "5dp",
@@ -313,6 +331,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Hearth Health",
         id: "__alloyId29"
     });
     $.__views.__alloyId28.add($.__views.__alloyId29);
@@ -320,7 +339,8 @@ function Controller() {
     $.__views.__alloyId30 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Hearth Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId30"
     });
     $.__views.__alloyId29.add($.__views.__alloyId30);
@@ -334,6 +354,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "18 Superfoods For Your Heart",
+        mod: "Hearth Health",
         id: "__alloyId31"
     });
     $.__views.__alloyId29.add($.__views.__alloyId31);
@@ -344,6 +365,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Hearth Health",
         id: "__alloyId32"
     });
     $.__views.__alloyId28.add($.__views.__alloyId32);
@@ -351,7 +373,8 @@ function Controller() {
     $.__views.__alloyId33 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Hearth Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId33"
     });
     $.__views.__alloyId32.add($.__views.__alloyId33);
@@ -365,6 +388,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Top Heart-Healthy Foods",
+        mod: "Hearth Health",
         id: "__alloyId34"
     });
     $.__views.__alloyId32.add($.__views.__alloyId34);
@@ -375,6 +399,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Hearth Health",
         id: "__alloyId35"
     });
     $.__views.__alloyId28.add($.__views.__alloyId35);
@@ -382,7 +407,8 @@ function Controller() {
     $.__views.__alloyId36 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Hearth Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId36"
     });
     $.__views.__alloyId35.add($.__views.__alloyId36);
@@ -396,6 +422,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "WebMD Heart Health Center",
+        mod: "Hearth Health",
         id: "__alloyId37"
     });
     $.__views.__alloyId35.add($.__views.__alloyId37);
@@ -406,6 +433,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Hearth Health",
         id: "__alloyId38"
     });
     $.__views.__alloyId28.add($.__views.__alloyId38);
@@ -413,7 +441,8 @@ function Controller() {
     $.__views.__alloyId39 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Hearth Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId39"
     });
     $.__views.__alloyId38.add($.__views.__alloyId39);
@@ -427,6 +456,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "18 Superfoods For Your Heart",
+        mod: "Hearth Health",
         id: "__alloyId40"
     });
     $.__views.__alloyId38.add($.__views.__alloyId40);
@@ -437,6 +467,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Hearth Health",
         id: "__alloyId41"
     });
     $.__views.__alloyId28.add($.__views.__alloyId41);
@@ -444,7 +475,8 @@ function Controller() {
     $.__views.__alloyId42 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Hearth Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId42"
     });
     $.__views.__alloyId41.add($.__views.__alloyId42);
@@ -458,6 +490,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Top Heart-Healthy Foods",
+        mod: "Hearth Health",
         id: "__alloyId43"
     });
     $.__views.__alloyId41.add($.__views.__alloyId43);
@@ -479,7 +512,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        color: "#ffffff",
+        color: "#E4001D",
         left: "0",
         bottom: "5dp",
         top: "5dp",
@@ -502,6 +535,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Children Health",
         id: "__alloyId48"
     });
     $.__views.__alloyId47.add($.__views.__alloyId48);
@@ -509,7 +543,8 @@ function Controller() {
     $.__views.__alloyId49 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Children Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId49"
     });
     $.__views.__alloyId48.add($.__views.__alloyId49);
@@ -523,6 +558,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee children's health",
+        mod: "Children Health",
         id: "__alloyId50"
     });
     $.__views.__alloyId48.add($.__views.__alloyId50);
@@ -533,6 +569,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Children Health",
         id: "__alloyId51"
     });
     $.__views.__alloyId47.add($.__views.__alloyId51);
@@ -540,7 +577,8 @@ function Controller() {
     $.__views.__alloyId52 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Children Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId52"
     });
     $.__views.__alloyId51.add($.__views.__alloyId52);
@@ -554,6 +592,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee children's health",
+        mod: "Children Health",
         id: "__alloyId53"
     });
     $.__views.__alloyId51.add($.__views.__alloyId53);
@@ -564,6 +603,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Children Health",
         id: "__alloyId54"
     });
     $.__views.__alloyId47.add($.__views.__alloyId54);
@@ -571,7 +611,8 @@ function Controller() {
     $.__views.__alloyId55 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Children Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId55"
     });
     $.__views.__alloyId54.add($.__views.__alloyId55);
@@ -585,6 +626,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee children's health",
+        mod: "Children Health",
         id: "__alloyId56"
     });
     $.__views.__alloyId54.add($.__views.__alloyId56);
@@ -595,6 +637,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Children Health",
         id: "__alloyId57"
     });
     $.__views.__alloyId47.add($.__views.__alloyId57);
@@ -602,7 +645,8 @@ function Controller() {
     $.__views.__alloyId58 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Children Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId58"
     });
     $.__views.__alloyId57.add($.__views.__alloyId58);
@@ -616,6 +660,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee children's health",
+        mod: "Children Health",
         id: "__alloyId59"
     });
     $.__views.__alloyId57.add($.__views.__alloyId59);
@@ -626,6 +671,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Children Health",
         id: "__alloyId60"
     });
     $.__views.__alloyId47.add($.__views.__alloyId60);
@@ -633,7 +679,8 @@ function Controller() {
     $.__views.__alloyId61 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Children Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId61"
     });
     $.__views.__alloyId60.add($.__views.__alloyId61);
@@ -647,6 +694,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee children's health",
+        mod: "Children Health",
         id: "__alloyId62"
     });
     $.__views.__alloyId60.add($.__views.__alloyId62);
@@ -668,7 +716,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        color: "#ffffff",
+        color: "#E4001D",
         left: "0",
         bottom: "5dp",
         top: "5dp",
@@ -691,6 +739,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Men Health",
         id: "__alloyId67"
     });
     $.__views.__alloyId66.add($.__views.__alloyId67);
@@ -698,7 +747,8 @@ function Controller() {
     $.__views.__alloyId68 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Men Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId68"
     });
     $.__views.__alloyId67.add($.__views.__alloyId68);
@@ -712,6 +762,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Men's health",
+        mod: "Men Health",
         id: "__alloyId69"
     });
     $.__views.__alloyId67.add($.__views.__alloyId69);
@@ -722,6 +773,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Men Health",
         id: "__alloyId70"
     });
     $.__views.__alloyId66.add($.__views.__alloyId70);
@@ -729,7 +781,8 @@ function Controller() {
     $.__views.__alloyId71 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Men Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId71"
     });
     $.__views.__alloyId70.add($.__views.__alloyId71);
@@ -743,6 +796,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Men's health",
+        mod: "Men Health",
         id: "__alloyId72"
     });
     $.__views.__alloyId70.add($.__views.__alloyId72);
@@ -753,6 +807,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Men Health",
         id: "__alloyId73"
     });
     $.__views.__alloyId66.add($.__views.__alloyId73);
@@ -760,7 +815,8 @@ function Controller() {
     $.__views.__alloyId74 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Men Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId74"
     });
     $.__views.__alloyId73.add($.__views.__alloyId74);
@@ -774,6 +830,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Men's health",
+        mod: "Men Health",
         id: "__alloyId75"
     });
     $.__views.__alloyId73.add($.__views.__alloyId75);
@@ -795,7 +852,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        color: "#ffffff",
+        color: "#E4001D",
         left: "0",
         bottom: "5dp",
         top: "5dp",
@@ -818,6 +875,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId80"
     });
     $.__views.__alloyId79.add($.__views.__alloyId80);
@@ -825,8 +883,8 @@ function Controller() {
     $.__views.__alloyId81 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        mod: "Courts guarantee Women's health",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId81"
     });
     $.__views.__alloyId80.add($.__views.__alloyId81);
@@ -840,7 +898,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
-        mod: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId82"
     });
     $.__views.__alloyId80.add($.__views.__alloyId82);
@@ -851,6 +909,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId83"
     });
     $.__views.__alloyId79.add($.__views.__alloyId83);
@@ -858,7 +917,8 @@ function Controller() {
     $.__views.__alloyId84 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId84"
     });
     $.__views.__alloyId83.add($.__views.__alloyId84);
@@ -872,6 +932,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId85"
     });
     $.__views.__alloyId83.add($.__views.__alloyId85);
@@ -882,6 +943,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId86"
     });
     $.__views.__alloyId79.add($.__views.__alloyId86);
@@ -889,7 +951,8 @@ function Controller() {
     $.__views.__alloyId87 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId87"
     });
     $.__views.__alloyId86.add($.__views.__alloyId87);
@@ -903,6 +966,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId88"
     });
     $.__views.__alloyId86.add($.__views.__alloyId88);
@@ -913,6 +977,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId89"
     });
     $.__views.__alloyId79.add($.__views.__alloyId89);
@@ -920,7 +985,8 @@ function Controller() {
     $.__views.__alloyId90 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId90"
     });
     $.__views.__alloyId89.add($.__views.__alloyId90);
@@ -934,6 +1000,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId91"
     });
     $.__views.__alloyId89.add($.__views.__alloyId91);
@@ -944,6 +1011,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId92"
     });
     $.__views.__alloyId79.add($.__views.__alloyId92);
@@ -951,7 +1019,8 @@ function Controller() {
     $.__views.__alloyId93 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId93"
     });
     $.__views.__alloyId92.add($.__views.__alloyId93);
@@ -965,6 +1034,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId94"
     });
     $.__views.__alloyId92.add($.__views.__alloyId94);
@@ -975,6 +1045,7 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         layout: "vertical",
+        mod: "Women Health",
         id: "__alloyId95"
     });
     $.__views.__alloyId79.add($.__views.__alloyId95);
@@ -982,7 +1053,8 @@ function Controller() {
     $.__views.__alloyId96 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/news-default-thumb.jpg",
+        mod: "Women Health",
+        image: "/images/bone-health-thumb.png",
         id: "__alloyId96"
     });
     $.__views.__alloyId95.add($.__views.__alloyId96);
@@ -996,6 +1068,7 @@ function Controller() {
             fontSize: "11dp"
         },
         text: "Courts guarantee Women's health",
+        mod: "Women Health",
         id: "__alloyId97"
     });
     $.__views.__alloyId95.add($.__views.__alloyId97);

@@ -1,6 +1,6 @@
 
 "#main" : {
-  	backgroundColor: "#4A4A4A",
+  	backgroundColor: "#ffffff",
   	height: Titanium.UI.FILL,
   	width: Titanium.UI.FILL,
 },
@@ -21,7 +21,7 @@
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#ffffff",
+	color: "#E4001D",
 	left: "0",
 	bottom: "5dp",
 	top: "5dp"

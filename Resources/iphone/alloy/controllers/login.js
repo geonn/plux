@@ -16,7 +16,10 @@ function Controller() {
             common.createAlert("Authentication warning", "Please fill in username and password");
             return;
         }
-        lib_login.doLogin(username, password, $, args.target);
+        if (singleton) {
+            singleton = false;
+            lib_login.doLogin(username, password, $, args.target);
+        }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
@@ -169,6 +172,7 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     Alloy.Globals.navMenu;
+    var singleton = true;
     var isKeyboardFocus = 0;
     $.username.addEventListener("touchend", function() {
         $.username.focus();
