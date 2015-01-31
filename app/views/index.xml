@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="root" title="" navBarHidden="true" class="container">
+	<Window id="root" title="" class="container">
 		<View id="main">
 			<ImageView width="100%" height="100%" image="/dummy/dummy-introduce.jpg" />
 			<ImageView id="link_visitor" width="130" top="210" left="30" image="/btn/btn-visitor.jpg" />

@@ -47,3 +47,31 @@ function mysql_real_escape_string (str) {
         }
     });
 }
+
+
+function currentDateTime(){
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; 
+	var yyyy = today.getFullYear();
+	
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	var sec = today.getSeconds();
+	if (minutes < 10){
+		minutes = "0" + minutes;
+	} 
+	if (sec < 10){
+		sec = "0" + sec;
+	} 
+	if(dd<10) {
+	    dd='0'+dd;
+	} 
+	
+	if(mm<10) {
+	    mm='0'+mm;
+	} 
+	
+	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
+	return datetime ;
+}

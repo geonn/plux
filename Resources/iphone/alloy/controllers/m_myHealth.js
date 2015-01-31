@@ -24,6 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.m_myHealth = Ti.UI.createWindow({
+        fullscreen: true,
         title: "MY HEALTH RECORD",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
@@ -31,53 +32,106 @@ function Controller() {
     });
     $.__views.m_myHealth && $.addTopLevelView($.__views.m_myHealth);
     $.__views.main = Ti.UI.createView({
-        id: "main"
+        id: "main",
+        layout: "vertical",
+        backgroundColor: "#ffffff"
     });
     $.__views.m_myHealth.add($.__views.main);
-    var __alloyId173 = [];
-    $.__views.__alloyId174 = {
-        properties: {
-            title: "Body Measurements",
-            mod: "Body Measurements",
-            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
-            id: "__alloyId174"
-        }
-    };
-    __alloyId173.push($.__views.__alloyId174);
-    $.__views.__alloyId175 = {
-        properties: {
-            title: "Me",
-            mod: "Me",
-            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
-            id: "__alloyId175"
-        }
-    };
-    __alloyId173.push($.__views.__alloyId175);
-    $.__views.__alloyId176 = {
-        properties: {
-            title: "Vitals",
-            mod: "Vitals",
-            accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE,
-            id: "__alloyId176"
-        }
-    };
-    __alloyId173.push($.__views.__alloyId176);
-    $.__views.__alloyId171 = Ti.UI.createListSection({
-        title: "Health Data",
-        id: "__alloyId171"
+    $.__views.graphScrollView = Ti.UI.createScrollView({
+        id: "graphScrollView",
+        layout: "vertical",
+        height: "100%",
+        width: "100%"
     });
-    $.__views.__alloyId171.items = __alloyId173;
-    var __alloyId177 = [];
-    __alloyId177.push($.__views.__alloyId171);
-    $.__views.__alloyId170 = Ti.UI.createListView({
-        sections: __alloyId177,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS,
-        id: "__alloyId170"
+    $.__views.main.add($.__views.graphScrollView);
+    $.__views.bmiView = Ti.UI.createView({
+        id: "bmiView",
+        height: "40%",
+        width: "100%",
+        backgroundColor: "#FFE2E2"
     });
-    $.__views.main.add($.__views.__alloyId170);
+    $.__views.graphScrollView.add($.__views.bmiView);
+    $.__views.__alloyId183 = Ti.UI.createWebView({
+        touchEnabled: false,
+        width: "90%",
+        backgroundColor: "#FFE2E2",
+        url: "/html/bmi.html",
+        disableBounce: "true",
+        id: "__alloyId183"
+    });
+    $.__views.bmiView.add($.__views.__alloyId183);
+    $.__views.bloodPressureView = Ti.UI.createView({
+        id: "bloodPressureView",
+        height: "40%",
+        width: "100%",
+        backgroundColor: "#EBEBEB"
+    });
+    $.__views.graphScrollView.add($.__views.bloodPressureView);
+    $.__views.__alloyId184 = Ti.UI.createWebView({
+        touchEnabled: false,
+        width: "90%",
+        backgroundColor: "#EBEBEB",
+        url: "/html/bloodPressure.html",
+        disableBounce: "true",
+        id: "__alloyId184"
+    });
+    $.__views.bloodPressureView.add($.__views.__alloyId184);
+    $.__views.heartRateView = Ti.UI.createView({
+        id: "heartRateView",
+        height: "40%",
+        width: "100%",
+        backgroundColor: "#FFE2E2"
+    });
+    $.__views.graphScrollView.add($.__views.heartRateView);
+    $.__views.__alloyId185 = Ti.UI.createWebView({
+        touchEnabled: false,
+        width: "90%",
+        backgroundColor: "#FFE2E2",
+        url: "/html/heartRate.html",
+        disableBounce: "true",
+        id: "__alloyId185"
+    });
+    $.__views.heartRateView.add($.__views.__alloyId185);
+    $.__views.bodyTemperatureView = Ti.UI.createView({
+        id: "bodyTemperatureView",
+        height: "40%",
+        width: "100%",
+        backgroundColor: "#EBEBEB"
+    });
+    $.__views.graphScrollView.add($.__views.bodyTemperatureView);
+    $.__views.__alloyId186 = Ti.UI.createWebView({
+        touchEnabled: false,
+        width: "90%",
+        backgroundColor: "#EBEBEB",
+        url: "/html/bodyTemperature.html",
+        disableBounce: "true",
+        id: "__alloyId186"
+    });
+    $.__views.bodyTemperatureView.add($.__views.__alloyId186);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var nav = require("navigation");
+    $.bmiView.addEventListener("click", function() {
+        nav.navigationWindow("healthData", "", "", {
+            formType: 1
+        });
+    });
+    $.bloodPressureView.addEventListener("click", function() {
+        nav.navigationWindow("healthData", "", "", {
+            formType: 2
+        });
+    });
+    $.heartRateView.addEventListener("click", function() {
+        nav.navigationWindow("healthData", "", "", {
+            formType: 3
+        });
+    });
+    $.bodyTemperatureView.addEventListener("click", function() {
+        nav.navigationWindow("healthData", "", "", {
+            formType: 4
+        });
+    });
     _.extend($, exports);
 }
 

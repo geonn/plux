@@ -1,0 +1,48 @@
+<Alloy>
+	<Window title="Add Data" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<RightNavButton>
+	        <View>
+	         	<Button id="saveButton" onTouchend="doSaveRecords" color="#ADADAD" title="Save" right="0" touchEnabled="false"  />
+	        </View>
+        </RightNavButton>
+		<View id="main" layout="" backgroundColor="#F6F6F6" height="100%" >
+			<View  layout="vertical" height="30" top=15  >
+	        	<Label text="Please fill in your information below" color="#878686" id="description"  />
+	        </View>
+			<TableView id="table" height="135" top="45" scrollable="false">
+				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showDatePicker">
+					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
+						<Label text="Date" top=12 class="title_Label"  />
+						<Label text="" top=12 color="#707070" id="date_value" textAlign="right" width="80%"   />
+					</View>
+				</TableViewRow>
+				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showTimePicker">
+					<View  layout="horizontal" height="45" width="100%"  >
+						<Label text="Time"  top=12 class="title_Label" />
+						<Label text=""  top=12 color="#707070" id="time_value" textAlign="right" width="80%"    />
+					</View>
+				</TableViewRow>
+				<TableViewRow selectedBackgroundColor="#ffffff">
+					<View  layout="horizontal" height="45" width="100%" >
+						<Label text="Amount" top=12 class="title_Label"  />
+						<TextField id="amountTF" right="0" top=12 textAlign="right" top="5"  backgroundColor="#FFFCFC" borderColor="#ffffff" width="72%" height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+					</View>
+				</TableViewRow>
+			</TableView>
+				
+			<View height="Ti.UI.SIZE" id="selectorView" bottom="0" >
+				<Picker id="datePicker"
+				          onChange="changeDate" 
+				          type="Ti.UI.PICKER_TYPE_DATE" 
+				           visible="false">
+				 </Picker>
+				 <Picker id="timePicker"
+				          onChange="changeTime" 
+				          type="Ti.UI.PICKER_TYPE_TIME" 
+				          visible="false">
+				 </Picker>
+			</View>	 
+			
+		</View>
+	</Window>
+</Alloy>

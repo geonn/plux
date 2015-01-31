@@ -1,3 +1,7 @@
+"Window":{
+	 
+	fullscreen : true	
+},
 "#activityIndicator" : {
 	 style: Alloy.Globals.topbarTop,
 	 top:30,

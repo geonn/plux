@@ -28,6 +28,22 @@ function mysql_real_escape_string(str) {
     });
 }
 
+function currentDateTime() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    var sec = today.getSeconds();
+    10 > minutes && (minutes = "0" + minutes);
+    10 > sec && (sec = "0" + sec);
+    10 > dd && (dd = "0" + dd);
+    10 > mm && (mm = "0" + mm);
+    datetime = yyyy + "-" + mm + "-" + dd + " " + hours + ":" + minutes + ":" + sec;
+    return datetime;
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 var common = require("common");
