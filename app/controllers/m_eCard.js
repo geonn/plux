@@ -5,7 +5,7 @@ var frontbackcounter = 0;
 
 var front = Ti.UI.createView({
     name:"front",
-    width:"100%",
+    width: Ti.UI.FILL,
     currentAngle: 10
 });
 
@@ -47,8 +47,7 @@ var ic_text = Ti.UI.createLabel({
 });
 
 var front_bg = Ti.UI.createImageView({
-    name:"front",
-    width:"100%",
+    width: Ti.UI.FILL,
     image:"/eCard-front.png",
     currentAngle: 10,
     font:{
@@ -64,7 +63,7 @@ front.add(memno_text);
 
 var back = Ti.UI.createImageView({
     name:"back",
-    width:"100%",
+    width: Ti.UI.FILL,
     image:"/eCard-back.png",
     currentAngle: 10
 });
@@ -77,10 +76,24 @@ $.eCard.addEventListener('click', function() {
     console.log(frontbackcounter%2);
     if (frontbackcounter%2 == 0) {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
-        $.card.animate({view:back,transition:t});
+        $.card.animate({view:back, transition:t});
     } else {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT;
-        $.card.animate({view:front,transition:t});
+        $.card.animate({view:front, transition:t});
     }
     frontbackcounter++;
 });
+
+/*
+Ti.Gesture.addEventListener('orientationchange', function(e){
+    if (e.orientation === Ti.UI.LANDSCAPE_RIGHT || e.orientation === Ti.UI.LANDSCAPE_LEFT){ 
+        // do something 
+        console.log('landscape');
+        $.card.width = "480";
+        $.card.height = "306";
+    }else{
+    	 console.log('portrait');
+    	$.card.width = "320";
+    	$.card.height = "204";
+    }
+});*/

@@ -80,19 +80,11 @@ function Controller() {
         right: "5",
         id: "__alloyId111"
     });
-<<<<<<< HEAD
     $.__views.__alloyId110.add($.__views.__alloyId111);
     $.__views.__alloyId112 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         mod: "Leaflet_Calcium_plus.pdf",
         backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
-=======
-    $.__views.__alloyId21.add($.__views.__alloyId22);
-    $.__views.__alloyId23 = Ti.UI.createImageView({
-        image: "/images/default_cover.jpg",
-        mod: "Leaflet_Vidaylin_minibear.pdf",
-        backgroundImage: "/images/default_cover.jpg",
->>>>>>> FETCH_HEAD
         bottom: "0",
         width: "90",
         id: "__alloyId112"
@@ -106,19 +98,11 @@ function Controller() {
         right: "5",
         id: "__alloyId113"
     });
-<<<<<<< HEAD
     $.__views.__alloyId110.add($.__views.__alloyId113);
     $.__views.__alloyId114 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Fish_Oil_cover.png",
         mod: "Leaflet_fish_oil.pdf",
         backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
-=======
-    $.__views.__alloyId21.add($.__views.__alloyId24);
-    $.__views.__alloyId25 = Ti.UI.createImageView({
-        image: "/images/default_cover.jpg",
-        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
-        backgroundImage: "/images/default_cover.jpg",
->>>>>>> FETCH_HEAD
         bottom: "0",
         width: "90",
         id: "__alloyId114"
@@ -132,19 +116,11 @@ function Controller() {
         right: "5",
         id: "__alloyId115"
     });
-<<<<<<< HEAD
     $.__views.__alloyId110.add($.__views.__alloyId115);
     $.__views.__alloyId116 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Nato_ALA_cover.png",
         mod: "Leaflet_Nato_ALA.pdf",
         backgroundImage: "/images/cover/Leaflet_Nato_ALA_cover.png",
-=======
-    $.__views.__alloyId21.add($.__views.__alloyId26);
-    $.__views.__alloyId27 = Ti.UI.createImageView({
-        image: "/images/default_cover.jpg",
-        mod: "Leaflet_Vidaylin_minibear.pdf",
-        backgroundImage: "/images/default_cover.jpg",
->>>>>>> FETCH_HEAD
         bottom: "0",
         width: "90",
         id: "__alloyId116"
@@ -186,19 +162,11 @@ function Controller() {
         right: "5",
         id: "__alloyId120"
     });
-<<<<<<< HEAD
     $.__views.__alloyId119.add($.__views.__alloyId120);
     $.__views.__alloyId121 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
         mod: "Leaflet_Surbex_Protect.pdf",
         backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
-=======
-    $.__views.__alloyId30.add($.__views.__alloyId31);
-    $.__views.__alloyId32 = Ti.UI.createImageView({
-        image: "/images/default_cover.jpg",
-        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
-        backgroundImage: "/images/default_cover.jpg",
->>>>>>> FETCH_HEAD
         bottom: "0",
         width: "90",
         id: "__alloyId121"

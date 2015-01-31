@@ -45,25 +45,30 @@ function Controller() {
         id: "__alloyId98"
     });
     $.__views.main.add($.__views.__alloyId98);
-    $.__views.__alloyId99 = Ti.UI.createImageView({
-        width: "100",
-        height: "100",
-        top: "10",
-        left: "10",
-        image: "/appicon-60@3x.png",
+    $.__views.__alloyId99 = Ti.UI.createView({
+        layout: "vertical",
         id: "__alloyId99"
     });
     $.__views.main.add($.__views.__alloyId99);
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
-        top: "40%",
         width: Titanium.UI.FILL,
         height: Ti.UI.FILL
     });
-    $.__views.main.add($.__views.scrollboard);
+    $.__views.__alloyId99.add($.__views.scrollboard);
+    $.__views.logo = Ti.UI.createImageView({
+        id: "logo",
+        width: "100",
+        height: "100",
+        top: "10",
+        left: "10",
+        image: "/appicon-60@3x.png"
+    });
+    $.__views.scrollboard.add($.__views.logo);
     $.__views.__alloyId100 = Ti.UI.createView({
         layout: "horizontal",
         width: "293",
+        top: "239",
         id: "__alloyId100"
     });
     $.__views.scrollboard.add($.__views.__alloyId100);
@@ -132,10 +137,25 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var expandmode = false;
     API.loadPanelList();
     Alloy.Globals.navMenu = $.navMenu;
     $.scrollboard.addEventListener("scroll", function(e) {
-        e.source.contentOffset;
+        var o = e.source.contentOffset;
+        if (o.y >= 139 && expandmode) $.logo.animate({
+            top: -100,
+            duration: 500
+        }, function() {
+            expandmode = false;
+        }); else if (o.y < 139 && !expandmode) $.logo.animate({
+            top: 10,
+            duration: 500
+        }, function() {
+            expandmode = true;
+        }); else if (o.y < 139) {
+            $.logo.setTop(o.y + 10);
+            return;
+        }
     });
     __defers["$.__views.__alloyId101!click!navWindow"] && $.__views.__alloyId101.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId102!click!navWindow"] && $.__views.__alloyId102.addEventListener("click", navWindow);
