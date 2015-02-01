@@ -17,7 +17,7 @@ var memno_text = Ti.UI.createLabel({
     left: "20dp",
     zIndex: 12,
     font:{
-    	fontSize: "11dp"
+    	fontSize: "24dp"
     },
     color: "#ffffff"
 });
@@ -25,7 +25,7 @@ var name_text = Ti.UI.createLabel({
     text:"CHEONG SHY YNG",
     width: Ti.UI.SIZE,
     height: Ti.UI.SIZE,
-    top: "107dp",
+    top: "125dp",
     left: "20dp",
     zIndex: 12,
     font:{
@@ -34,11 +34,11 @@ var name_text = Ti.UI.createLabel({
     color: "#ffffff"
 });
 var ic_text = Ti.UI.createLabel({
-    text:"858512102934",
+    text: "858512102934",
     width: Ti.UI.SIZE,
     height: Ti.UI.SIZE,
-    top: "124dp",
-    left: "20dp",
+    top: "125dp",
+    right: "20dp",
     zIndex: 12,
     font:{
     	fontSize: "11dp"

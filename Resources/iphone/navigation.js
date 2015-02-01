@@ -36,8 +36,7 @@ exports.navigationWindow = function(target, checkAuth, callback, param) {
         Alloy.Globals.navMenu.openWindow(win, {
             animated: true
         });
-    }
-    if (void 0 !== typeof param && null !== param) {
+    } else if (void 0 !== typeof param && null !== param) {
         console.log(target + " my card no auth with param");
         var win = Alloy.createController(target, param).getView();
         Alloy.Globals.navMenu.openWindow(win, {

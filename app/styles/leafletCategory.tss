@@ -13,7 +13,7 @@
 },
 ".cat" :{
 	height: Titanium.UI.SIZE,
-	width: "50%",
+	width: "49.5%",
 	backgroundColor: "#ffffff"	
 },
 ".cat_title":{

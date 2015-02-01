@@ -57,7 +57,7 @@ function Controller() {
     $.__views.main.add($.__views.__alloyId138);
     $.__views.__alloyId139 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Bone Health",
         id: "__alloyId139"
@@ -92,7 +92,7 @@ function Controller() {
     $.__views.__alloyId139.add($.__views.__alloyId141);
     $.__views.__alloyId142 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Women Health",
         id: "__alloyId142"
@@ -127,7 +127,7 @@ function Controller() {
     $.__views.__alloyId142.add($.__views.__alloyId144);
     $.__views.__alloyId145 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
         id: "__alloyId145"
@@ -162,7 +162,7 @@ function Controller() {
     $.__views.__alloyId145.add($.__views.__alloyId147);
     $.__views.__alloyId148 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
         id: "__alloyId148"
@@ -197,7 +197,7 @@ function Controller() {
     $.__views.__alloyId148.add($.__views.__alloyId150);
     $.__views.__alloyId151 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
         id: "__alloyId151"
@@ -232,7 +232,7 @@ function Controller() {
     $.__views.__alloyId151.add($.__views.__alloyId153);
     $.__views.__alloyId154 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
         id: "__alloyId154"
@@ -267,7 +267,7 @@ function Controller() {
     $.__views.__alloyId154.add($.__views.__alloyId156);
     $.__views.__alloyId157 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
         id: "__alloyId157"
@@ -302,7 +302,7 @@ function Controller() {
     $.__views.__alloyId157.add($.__views.__alloyId159);
     $.__views.__alloyId160 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
-        width: "50%",
+        width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
         id: "__alloyId160"

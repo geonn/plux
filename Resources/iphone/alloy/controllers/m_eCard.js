@@ -39,19 +39,11 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-<<<<<<< HEAD
     $.__views.__alloyId171 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId173 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         text: "Click here to flip",
         id: "__alloyId171"
     });
-<<<<<<< HEAD
     $.__views.eCard.add($.__views.__alloyId171);
-=======
-    $.__views.eCard.add($.__views.__alloyId173);
->>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -69,7 +61,7 @@ function Controller() {
         left: "20dp",
         zIndex: 12,
         font: {
-            fontSize: "11dp"
+            fontSize: "24dp"
         },
         color: "#ffffff"
     });
@@ -77,7 +69,7 @@ function Controller() {
         text: "CHEONG SHY YNG",
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        top: "107dp",
+        top: "125dp",
         left: "20dp",
         zIndex: 12,
         font: {
@@ -89,8 +81,8 @@ function Controller() {
         text: "858512102934",
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        top: "124dp",
-        left: "20dp",
+        top: "125dp",
+        right: "20dp",
         zIndex: 12,
         font: {
             fontSize: "11dp"

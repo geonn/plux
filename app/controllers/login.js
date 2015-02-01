@@ -19,6 +19,7 @@ function doLogin() {
 	}
 	if(singleton){
 		singleton = false;
+		console.log('login action');
 		lib_login.doLogin(username, password, $, args.target);
 	}
 }

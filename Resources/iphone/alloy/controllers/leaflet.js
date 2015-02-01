@@ -118,15 +118,9 @@ function Controller() {
     });
     $.__views.__alloyId123.add($.__views.__alloyId128);
     $.__views.__alloyId129 = Ti.UI.createImageView({
-<<<<<<< HEAD
         image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
         mod: "Leaflet_Vidaylin_Omega_kid.pdf",
         backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-=======
-        image: "/images/cover/Leaflet_Nato_ALA_cover.png",
-        mod: "Leaflet_Nato_ALA.pdf",
-        backgroundImage: "/images/cover/Leaflet_Nato_ALA_cover.png",
->>>>>>> FETCH_HEAD
         bottom: "0",
         width: "90",
         id: "__alloyId129"
