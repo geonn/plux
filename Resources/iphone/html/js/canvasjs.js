@@ -777,7 +777,7 @@
         en: {}
     };
     var colorSets = {
-        colorSet1: [ "#369EAD", "#C24642", "#7F6084", "#86B402", "#A2D1CF", "#C8B631", "#6DBCEB", "#52514E", "#4F81BC", "#A064A1", "#F79647" ],
+        colorSet1: [ "#FC7474", "#C24642", "#7F6084", "#86B402", "#A2D1CF", "#C8B631", "#6DBCEB", "#52514E", "#4F81BC", "#A064A1", "#F79647" ],
         colorSet2: [ "#4F81BC", "#C0504E", "#9BBB58", "#23BFAA", "#8064A1", "#4AACC5", "#F79647", "#33558B" ],
         colorSet3: [ "#8CA1BC", "#36845C", "#017E82", "#8CB9D0", "#708C98", "#94838D", "#F08891", "#0366A7", "#008276", "#EE7757", "#E5BA3A", "#F2990B", "#03557B", "#782970" ]
     };
@@ -873,7 +873,7 @@
             },
             Axis: {
                 titleFontSize: 22,
-                titleFontColor: "rgb(98,98,98)",
+                titleFontColor: "#ff0000",
                 titleFontFamily: isCanvasSupported ? "Verdana, Geneva, Calibri, sans-serif" : "calibri",
                 labelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
                 labelFontSize: 18,

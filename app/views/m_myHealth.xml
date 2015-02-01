@@ -11,17 +11,17 @@
 			</ListView>
 		-->
 			<ScrollView id="graphScrollView" layout="vertical" height="100%" width="100%" >
-				<View id="bmiView" height="40%" width="100%" backgroundColor="#FFE2E2">
-					<WebView id="bmiWebView" width="90%" backgroundColor="#FFE2E2" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
+				<View id="bmiView" height="40%" width="100%" backgroundColor="#EBEBEB">
+					<WebView id="bmiWebView" width="98%" backgroundColor="#EBEBEB" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
 				</View>
 				<View id="bloodPressureView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView width="90%" backgroundColor="#EBEBEB" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+					<WebView width="98%" backgroundColor="#EBEBEB" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
 				</View>
-				<View id="heartRateView" height="40%" width="100%" backgroundColor="#FFE2E2">
-					<WebView  width="90%" backgroundColor="#FFE2E2" url="/html/heartRate.html" disableBounce='true' touchEnabled="false" ></WebView>
+				<View id="heartRateView" height="40%" width="100%" backgroundColor="#EBEBEB">
+					<WebView  width="98%" backgroundColor="#EBEBEB" url="/html/heartRate.html" disableBounce='true' touchEnabled="false" ></WebView>
 				</View>
 				<View id="bodyTemperatureView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView  width="90%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+					<WebView  width="98%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
 				</View>
 			</ScrollView>
 		</View>

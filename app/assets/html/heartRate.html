@@ -5,16 +5,16 @@
 window.onload = function () {
 	
 	var chart = new CanvasJS.Chart("chartContainer", {
-		theme: "theme2",//theme1
+		theme: "theme1",//theme1
 		title:{
 			text: "Heart Rate"              
 		},
-		backgroundColor : "#FFE2E2",
+		backgroundColor : "#EBEBEB",
 		animationEnabled: true,   // change to true
 		data: [              
 		{
 			// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
-			type: "column",
+			type: "splineArea",
 			dataPoints: [
 				{ label: "apple",  y: 10  },
 				{ label: "orange", y: 15  },

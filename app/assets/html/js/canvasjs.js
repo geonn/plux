@@ -280,7 +280,7 @@
     var colorSets = {
 
         "colorSet1": [
-			"#369EAD",
+			"#FC7474",
 			"#C24642",
 			"#7F6084",
 			//"#96C412",
@@ -485,7 +485,7 @@
 		        },
 		        Axis: {
 		            titleFontSize: 22,
-		            titleFontColor: "rgb(98,98,98)",
+		            titleFontColor: "#ff0000",
 		            //titleFontFamily: "arial black",
 		            titleFontFamily: isCanvasSupported ? "Verdana, Geneva, Calibri, sans-serif" : "calibri",
 		            //titleFontWeight: "bold",
