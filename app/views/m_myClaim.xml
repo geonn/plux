@@ -25,8 +25,8 @@
 			-->
 			<View id="balance_view">
 				<Label id="cb2_text">Current Balance :</Label>
-				<Label id="entitlement_text">Entitlement</Label>
-				<Label id="vs2_text">Visitation</Label>
+				<Label id="entitlement_text">Entitlement (RM)</Label>
+				<Label id="vs2_text">Visitation (Times)</Label>
 				<View id="rm2_view">
 					<Label id="rm_value">0.00</Label>
 					<Label id="vs2_value">24</Label>
