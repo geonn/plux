@@ -81,7 +81,7 @@ $.eCard.addEventListener('click', function() {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT;
         $.card.animate({view:front, transition:t});
     }
-    frontbackcounter++;
+    frontbackcounter++; 
 });
 
 /*

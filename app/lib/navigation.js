@@ -1,33 +1,39 @@
 
 exports.navigationWindow = function(target, checkAuth, callback, param){
-	if(checkAuth){
+	console.log(checkAuth+" check auth");
+	if(checkAuth == 1){
 		var auth = require("login");
 		if(!auth.checkLogin()){
 			var nav = require("navigation");
-			console.log('login page');
-			nav.navigationWindow("login", 0, target);
+			console.log('login page'+target);
+			var win = Alloy.createController("login", {target: target}).getView(); 
+			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else if(target =="m_eCard"){
-			var win = Alloy.createController(target, {target: callback}).getView(); 
+			console.log(target+" my card no auth");
+			var win = Alloy.createController(target).getView(); 
 			win.orientationModes = [Titanium.UI.PORTRAIT,
 		    Titanium.UI.LANDSCAPE_LEFT,
 		    Titanium.UI.LANDSCAPE_RIGHT,];
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else{
+			console.log('no need login'+target);
 			var win = Alloy.createController(target).getView(); 
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}
 		return;
-	}
-	if(target == "login"){
-		var win = Alloy.createController(target, {target: callback}).getView(); 
-		Alloy.Globals.navMenu.openWindow(win,{animated:true});
-	}else if(typeof param !== undefined){
-		console.log(typeof param);
-		var win = Alloy.createController(target, param).getView(); 
-		Alloy.Globals.navMenu.openWindow(win,{animated:true});
 	}else{
-		var win = Alloy.createController(target).getView(); 
-		Alloy.Globals.navMenu.openWindow(win,{animated:true});
+		if(target =="m_eCard"){
+			console.log(target+" my card no auth");
+			var win = Alloy.createController(target).getView(); 
+			win.orientationModes = [Titanium.UI.PORTRAIT,
+		    Titanium.UI.LANDSCAPE_LEFT,
+		    Titanium.UI.LANDSCAPE_RIGHT,];
+			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+		}else{
+			console.log(target+"no auth");
+			var win = Alloy.createController(target).getView(); 
+			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+		}
 	}
 };
 

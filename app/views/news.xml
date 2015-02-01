@@ -4,7 +4,7 @@
 			<ScrollableView showPagingControl="true">
 				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
 					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
-					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<ImageView id="pic" class="news_image" image="/images/bone-health-thumb.png"></ImageView>
 					<Label class="image_caption">here is image caption</Label>
 					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
 						
@@ -16,7 +16,7 @@ But the good news is that it is never too late to take care of your bones.</Labe
 				</ScrollView>
 				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
 					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
-					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<ImageView class="news_image" image="/images/bone-health-thumb.png"></ImageView>
 					<Label class="image_caption">here is image caption</Label>
 					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
 						
@@ -28,7 +28,7 @@ But the good news is that it is never too late to take care of your bones.</Labe
 				</ScrollView>
 				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
 					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
-					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<ImageView class="news_image" image="/images/bone-health-thumb.png"></ImageView>
 					<Label class="image_caption">here is image caption</Label>
 					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
 						
@@ -40,7 +40,7 @@ But the good news is that it is never too late to take care of your bones.</Labe
 				</ScrollView>
 				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
 					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
-					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<ImageView class="news_image" image="/images/bone-health-thumb.png"></ImageView>
 					<Label class="image_caption">here is image caption</Label>
 					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
 						
@@ -52,7 +52,7 @@ But the good news is that it is never too late to take care of your bones.</Labe
 				</ScrollView>
 				<ScrollView class="news_item" contentHeight="auto" contentWidth="Ti.UI.FILL">
 					<Label class="news_title">Bone Health for Life: Health Information Basics for You and Your Family</Label>
-					<ImageView class="news_image" image="/images/news-default-thumb.jpg"></ImageView>
+					<ImageView class="news_image" image="/images/bone-health-thumb.png"></ImageView>
 					<Label class="image_caption">here is image caption</Label>
 					<Label class="news_paragraph">Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.
 						

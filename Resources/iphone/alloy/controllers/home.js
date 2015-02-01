@@ -139,6 +139,7 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var expandmode = false;
+    Ti.App.Properties.setString("memno", null);
     API.loadPanelList();
     Alloy.Globals.navMenu = $.navMenu;
     $.scrollboard.addEventListener("scroll", function(e) {

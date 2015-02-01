@@ -1,40 +1,43 @@
-exports.navigationWindow = function(target, checkAuth, callback, param) {
-    if (checkAuth) {
+exports.navigationWindow = function(target, checkAuth) {
+    console.log(checkAuth + " check auth");
+    if (1 == checkAuth) {
         var auth = require("login");
         if (auth.checkLogin()) if ("m_eCard" == target) {
-            var win = Alloy.createController(target, {
-                target: callback
-            }).getView();
+            console.log(target + " my card no auth");
+            var win = Alloy.createController(target).getView();
             win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];
             Alloy.Globals.navMenu.openWindow(win, {
                 animated: true
             });
         } else {
+            console.log("no need login" + target);
             var win = Alloy.createController(target).getView();
             Alloy.Globals.navMenu.openWindow(win, {
                 animated: true
             });
         } else {
-            var nav = require("navigation");
-            console.log("login page");
-            nav.navigationWindow("login", 0, target);
+            {
+                require("navigation");
+            }
+            console.log("login page" + target);
+            var win = Alloy.createController("login", {
+                target: target
+            }).getView();
+            Alloy.Globals.navMenu.openWindow(win, {
+                animated: true
+            });
         }
         return;
     }
-    if ("login" == target) {
-        var win = Alloy.createController(target, {
-            target: callback
-        }).getView();
-        Alloy.Globals.navMenu.openWindow(win, {
-            animated: true
-        });
-    } else if (void 0 !== typeof param) {
-        console.log(typeof param);
-        var win = Alloy.createController(target, param).getView();
+    if ("m_eCard" == target) {
+        console.log(target + " my card no auth");
+        var win = Alloy.createController(target).getView();
+        win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];
         Alloy.Globals.navMenu.openWindow(win, {
             animated: true
         });
     } else {
+        console.log(target + "no auth");
         var win = Alloy.createController(target).getView();
         Alloy.Globals.navMenu.openWindow(win, {
             animated: true

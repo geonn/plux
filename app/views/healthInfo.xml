@@ -8,29 +8,29 @@
 						<Label class="cat_title">Bone Health</Label>
 					</View>
 					<ScrollView class="news_container" layout="horizontal" contentWidth="auto">
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Bone Health For Life</Label>
+						<View class="news" onClick="callNav" mod="Bone Health">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">Bone Health For Life</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">11 Foods for Healthy Bones</Label>
+						<View class="news" mod="Bone Health" onClick="callNav">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">11 Foods for Healthy Bones</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">10 Ways to Build Healthy Bones</Label>
+						<View class="news" mod="Bone Health" onClick="callNav">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">10 Ways to Build Healthy Bones</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Bone Health For Life</Label>
+						<View class="news" mod="Bone Health" onClick="callNav">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">Bone Health For Life</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">11 Foods for Healthy Bones</Label>
+						<View class="news" mod="Bone Health" onClick="callNav">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">11 Foods for Healthy Bones</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">10 Ways to Build Healthy Bones</Label>
+						<View class="news" mod="Bone Health" onClick="callNav">
+							<ImageView mod="Bone Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Bone Health" class="news_desc">10 Ways to Build Healthy Bones</Label>
 						</View>
 					</ScrollView>
 				</View>
@@ -39,25 +39,25 @@
 						<Label class="cat_title">Hearth Health</Label>
 					</View>
 					<ScrollView class="news_container" layout="horizontal" contentWidth="auto">
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">18 Superfoods For Your Heart</Label>
+						<View class="news" mod="Hearth Health" onClick="callNav">
+							<ImageView mod="Hearth Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Hearth Health" class="news_desc">18 Superfoods For Your Heart</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Top Heart-Healthy Foods</Label>
+						<View class="news" mod="Hearth Health" onClick="callNav">
+							<ImageView mod="Hearth Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Hearth Health" class="news_desc">Top Heart-Healthy Foods</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">WebMD Heart Health Center</Label>
+						<View class="news" mod="Hearth Health" onClick="callNav">
+							<ImageView mod="Hearth Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Hearth Health" class="news_desc">WebMD Heart Health Center</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">18 Superfoods For Your Heart</Label>
+						<View class="news" mod="Hearth Health" onClick="callNav">
+							<ImageView mod="Hearth Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Hearth Health" class="news_desc">18 Superfoods For Your Heart</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Top Heart-Healthy Foods</Label>
+						<View class="news" mod="Hearth Health" onClick="callNav">
+							<ImageView mod="Hearth Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Hearth Health" class="news_desc">Top Heart-Healthy Foods</Label>
 						</View>
 					</ScrollView>
 				</View>
@@ -66,25 +66,25 @@
 						<Label class="cat_title">Children Health</Label>
 					</View>
 					<ScrollView class="news_container" layout="horizontal" contentWidth="auto">
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee children's health</Label>
+						<View class="news" mod="Children Health" onClick="callNav">
+							<ImageView mod="Children Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Children Health" class="news_desc">Courts guarantee children's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee children's health</Label>
+						<View class="news" mod="Children Health" onClick="callNav">
+							<ImageView mod="Children Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Children Health" class="news_desc">Courts guarantee children's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee children's health</Label>
+						<View class="news" mod="Children Health" onClick="callNav">
+							<ImageView mod="Children Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Children Health" class="news_desc">Courts guarantee children's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee children's health</Label>
+						<View class="news" mod="Children Health" onClick="callNav">
+							<ImageView mod="Children Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Children Health" class="news_desc">Courts guarantee children's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee children's health</Label>
+						<View class="news" mod="Children Health" onClick="callNav">
+							<ImageView mod="Children Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Children Health" class="news_desc">Courts guarantee children's health</Label>
 						</View>
 					</ScrollView>
 				</View>
@@ -93,17 +93,17 @@
 						<Label class="cat_title">Men Health</Label>
 					</View>
 					<ScrollView class="news_container" layout="horizontal" contentWidth="auto">
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Men's health</Label>
+						<View class="news" mod="Men Health" onClick="callNav">
+							<ImageView mod="Men Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Men Health" class="news_desc">Courts guarantee Men's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Men's health</Label>
+						<View class="news" mod="Men Health" onClick="callNav">
+							<ImageView mod="Men Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Men Health" class="news_desc">Courts guarantee Men's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Men's health</Label>
+						<View class="news" mod="Men Health" onClick="callNav">
+							<ImageView mod="Men Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Men Health" class="news_desc">Courts guarantee Men's health</Label>
 						</View>
 						
 					</ScrollView>
@@ -113,29 +113,29 @@
 						<Label class="cat_title">Women Health</Label>
 					</View>
 					<ScrollView class="news_container" layout="horizontal" contentWidth="auto">
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" mod="Courts guarantee Women's health" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label mod="Courts guarantee Women's health" class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
-						<View class="news" onClick="callNav">
-							<ImageView class="news_thumbnail" image="/images/news-default-thumb.jpg"></ImageView>
-							<Label class="news_desc">Courts guarantee Women's health</Label>
+						<View class="news" mod="Women Health" onClick="callNav">
+							<ImageView mod="Women Health" class="news_thumbnail" image="/images/bone-health-thumb.png"></ImageView>
+							<Label mod="Women Health" class="news_desc">Courts guarantee Women's health</Label>
 						</View>
 					</ScrollView>
 				</View>
