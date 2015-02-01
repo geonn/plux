@@ -1,38 +1,33 @@
 <Alloy>
 	<Window title="Health Leaflet" backButtonTitle="" class="container" id="win" navTintColor="#CE1D1C" platform="ios">
-		<View id="brochureView" class="container" backgroundImage="/images/wood_background.jpg">
+		<View id="brochureView" class="container" backgroundColor="#828282">
 			<View layout="vertical">
 			 
 			<ScrollView top="15" id="scrollview" layout="vertical" >
-				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="100%"> 
-					 
+				<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="100%">
 		   			<View textAlign="center" bottom="0" layout="vertical" height=220 width="100%">
-		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" bottom= 0 left= "5%" right="5%">
-		   					<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
+		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" left= "5%" right="5%">
+		   					<View bottom="0"  height="200" width="30%" right="5" >
 								<ImageView image="/images/cover/Leaflet_Calcium_Plus_cover.png" onClick="readLeaflet" mod="Leaflet_Calcium_plus.pdf" backgroundImage="/images/cover/Leaflet_Calcium_Plus_cover.png" bottom=0  width=90 />
 							</View>
-							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
+							<View bottom="0"  height="200" width="30%" right="5" >
 								<ImageView image="/images/cover/Leaflet_Fish_Oil_cover.png" onClick="readLeaflet" mod="Leaflet_fish_oil.pdf" backgroundImage="/images/cover/Leaflet_Fish_Oil_cover.png" bottom=0  width=90 />
 							</View>
-							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5" >
-								<ImageView image="/images/cover/Leaflet_Nato_ALA_cover.png" onClick="readLeaflet" mod="Leaflet_Nato_ALA.pdf" backgroundImage="/images/cover/Leaflet_Nato_ALA_cover.png" bottom=0  width=90 />
-							</View>
-		   					<ImageView image='/images/wood_rack.png' top=0  width="100%"  right=5, left=5 />
-		   				</View>
-		   			</View>
-					
-					<View textAlign="center" bottom="0" layout="vertical" height=220 width="100%">
-		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" bottom= 0 left= "5%" right="5%">
-		   					<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">			<ImageView image="/images/cover/Leaflet_Surbex_Protect_cover.png" onClick="readLeaflet" mod="Leaflet_Surbex_Protect.pdf" backgroundImage="/images/cover/Leaflet_Surbex_Protect_cover.png" bottom=0  width=90 />
-							</View>
-							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">
-								<ImageView image="/images/cover/Leaflet_Vidaylin_MiniBear_cover.png" onClick="readLeaflet" mod="Leaflet_Vidaylin_minibear.pdf" backgroundImage="/images/cover/Leaflet_Vidaylin_MiniBear_cover.png" bottom=0  width=90 />
-							</View>
-							<View bottom="0"  height=Ti.UI.SIZE width="30%" right="5">
+							<View bottom="0"  height="200" width="30%" right="5">
 								<ImageView image="/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png" onClick="readLeaflet" mod="Leaflet_Vidaylin_Omega_kid.pdf" backgroundImage="/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png" bottom=0  width=90 />
 							</View>
-		   					<ImageView image='/images/wood_rack.png' top=0  width="100%"  right=5, left=5 />
 		   				</View>
+						<ImageView image='/images/div.png' width="100%"/>
+		   			</View>
+					<View textAlign="center" bottom="0" layout="vertical" height=220 width="100%">
+		   				<View layout="horizontal" height=Ti.UI.SIZE width="100%" left= "5%" right="5%">
+		   					<View bottom="0"  height="200" width="30%" right="5">			<ImageView image="/images/cover/Leaflet_Surbex_Protect_cover.png" onClick="readLeaflet" mod="Leaflet_Surbex_Protect.pdf" backgroundImage="/images/cover/Leaflet_Surbex_Protect_cover.png" bottom=0  width=90 />
+							</View>
+							<View bottom="0" height="200" width="30%" right="5">
+								<ImageView image="/images/cover/Leaflet_Vidaylin_MiniBear_cover.png" onClick="readLeaflet" mod="Leaflet_Vidaylin_minibear.pdf" backgroundImage="/images/cover/Leaflet_Vidaylin_MiniBear_cover.png" bottom=0  width=90 />
+							</View>
+		   				</View>
+		   				<ImageView image='/images/div.png' width="100%"/>
 		   			</View>
 				</View>
 			</ScrollView>

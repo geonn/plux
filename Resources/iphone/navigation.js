@@ -1,4 +1,4 @@
-exports.navigationWindow = function(target, checkAuth) {
+exports.navigationWindow = function(target, checkAuth, callback, param) {
     console.log(checkAuth + " check auth");
     if (1 == checkAuth) {
         var auth = require("login");
@@ -33,6 +33,13 @@ exports.navigationWindow = function(target, checkAuth) {
         console.log(target + " my card no auth");
         var win = Alloy.createController(target).getView();
         win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];
+        Alloy.Globals.navMenu.openWindow(win, {
+            animated: true
+        });
+    }
+    if (void 0 !== typeof param && null !== param) {
+        console.log(target + " my card no auth with param");
+        var win = Alloy.createController(target, param).getView();
         Alloy.Globals.navMenu.openWindow(win, {
             animated: true
         });

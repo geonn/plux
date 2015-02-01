@@ -34,7 +34,7 @@ function Controller() {
     $.__views.win && $.addTopLevelView($.__views.win);
     $.__views.brochureView = Ti.UI.createView({
         id: "brochureView",
-        backgroundImage: "/images/wood_background.jpg"
+        backgroundColor: "#828282"
     });
     $.__views.win.add($.__views.brochureView);
     $.__views.__alloyId121 = Ti.UI.createView({
@@ -68,7 +68,6 @@ function Controller() {
         layout: "horizontal",
         height: Ti.UI.SIZE,
         width: "100%",
-        bottom: "0",
         left: "5%",
         right: "5%",
         id: "__alloyId123"
@@ -76,18 +75,13 @@ function Controller() {
     $.__views.__alloyId122.add($.__views.__alloyId123);
     $.__views.__alloyId124 = Ti.UI.createView({
         bottom: "0",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: "30%",
         right: "5",
         id: "__alloyId124"
     });
-<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId124);
     $.__views.__alloyId125 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId110.add($.__views.__alloyId111);
-    $.__views.__alloyId112 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         mod: "Leaflet_Calcium_plus.pdf",
         backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
@@ -99,18 +93,13 @@ function Controller() {
     readLeaflet ? $.__views.__alloyId125.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId125!click!readLeaflet"] = true;
     $.__views.__alloyId126 = Ti.UI.createView({
         bottom: "0",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: "30%",
         right: "5",
         id: "__alloyId126"
     });
-<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId126);
     $.__views.__alloyId127 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId110.add($.__views.__alloyId113);
-    $.__views.__alloyId114 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Fish_Oil_cover.png",
         mod: "Leaflet_fish_oil.pdf",
         backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
@@ -122,21 +111,16 @@ function Controller() {
     readLeaflet ? $.__views.__alloyId127.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId127!click!readLeaflet"] = true;
     $.__views.__alloyId128 = Ti.UI.createView({
         bottom: "0",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: "30%",
         right: "5",
         id: "__alloyId128"
     });
-<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId128);
     $.__views.__alloyId129 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId110.add($.__views.__alloyId115);
-    $.__views.__alloyId116 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
-        image: "/images/cover/Leaflet_Nato_ALA_cover.png",
-        mod: "Leaflet_Nato_ALA.pdf",
-        backgroundImage: "/images/cover/Leaflet_Nato_ALA_cover.png",
+        image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
+        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
+        backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
         bottom: "0",
         width: "90",
         id: "__alloyId129"
@@ -144,14 +128,11 @@ function Controller() {
     $.__views.__alloyId128.add($.__views.__alloyId129);
     readLeaflet ? $.__views.__alloyId129.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId129!click!readLeaflet"] = true;
     $.__views.__alloyId130 = Ti.UI.createImageView({
-        image: "/images/wood_rack.png",
-        top: "0",
+        image: "/images/div.png",
         width: "100%",
-        right: "5,",
-        left: "5",
         id: "__alloyId130"
     });
-    $.__views.__alloyId123.add($.__views.__alloyId130);
+    $.__views.__alloyId122.add($.__views.__alloyId130);
     $.__views.__alloyId131 = Ti.UI.createView({
         textAlign: "center",
         bottom: "0",
@@ -165,7 +146,6 @@ function Controller() {
         layout: "horizontal",
         height: Ti.UI.SIZE,
         width: "100%",
-        bottom: "0",
         left: "5%",
         right: "5%",
         id: "__alloyId132"
@@ -173,18 +153,13 @@ function Controller() {
     $.__views.__alloyId131.add($.__views.__alloyId132);
     $.__views.__alloyId133 = Ti.UI.createView({
         bottom: "0",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: "30%",
         right: "5",
         id: "__alloyId133"
     });
-<<<<<<< HEAD
     $.__views.__alloyId132.add($.__views.__alloyId133);
     $.__views.__alloyId134 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId119.add($.__views.__alloyId120);
-    $.__views.__alloyId121 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
         image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
         mod: "Leaflet_Surbex_Protect.pdf",
         backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
@@ -196,7 +171,7 @@ function Controller() {
     readLeaflet ? $.__views.__alloyId134.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId134!click!readLeaflet"] = true;
     $.__views.__alloyId135 = Ti.UI.createView({
         bottom: "0",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: "30%",
         right: "5",
         id: "__alloyId135"
@@ -212,33 +187,12 @@ function Controller() {
     });
     $.__views.__alloyId135.add($.__views.__alloyId136);
     readLeaflet ? $.__views.__alloyId136.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId136!click!readLeaflet"] = true;
-    $.__views.__alloyId137 = Ti.UI.createView({
-        bottom: "0",
-        height: Ti.UI.SIZE,
-        width: "30%",
-        right: "5",
+    $.__views.__alloyId137 = Ti.UI.createImageView({
+        image: "/images/div.png",
+        width: "100%",
         id: "__alloyId137"
     });
-    $.__views.__alloyId132.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
-        backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId138"
-    });
-    $.__views.__alloyId137.add($.__views.__alloyId138);
-    readLeaflet ? $.__views.__alloyId138.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId138!click!readLeaflet"] = true;
-    $.__views.__alloyId139 = Ti.UI.createImageView({
-        image: "/images/wood_rack.png",
-        top: "0",
-        width: "100%",
-        right: "5,",
-        left: "5",
-        id: "__alloyId139"
-    });
-    $.__views.__alloyId132.add($.__views.__alloyId139);
+    $.__views.__alloyId131.add($.__views.__alloyId137);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -255,7 +209,6 @@ function Controller() {
     __defers["$.__views.__alloyId129!click!readLeaflet"] && $.__views.__alloyId129.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId134!click!readLeaflet"] && $.__views.__alloyId134.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId136!click!readLeaflet"] && $.__views.__alloyId136.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId138!click!readLeaflet"] && $.__views.__alloyId138.addEventListener("click", readLeaflet);
     _.extend($, exports);
 }
 

@@ -29,6 +29,10 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 		    Titanium.UI.LANDSCAPE_LEFT,
 		    Titanium.UI.LANDSCAPE_RIGHT,];
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+		}if(typeof param !== undefined && param !== null){
+			console.log(target+" my card no auth with param");
+			var win = Alloy.createController(target, param).getView();
+			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else{
 			console.log(target+"no auth");
 			var win = Alloy.createController(target).getView(); 
