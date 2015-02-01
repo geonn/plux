@@ -9,19 +9,23 @@ var lib_health = Alloy.createCollection('health');
 	bmi_details.forEach(function(entry) {
 		var rec = {};
 		rec['label'] = entry.date;
-		rec['y'] = entry.amount;
+		rec['y'] = parseFloat(entry.amount);
 		
 		bmi.push(rec);
 	}); 
 	
 	
 //}
-Ti.App.fireEvent("test");
-$.bmiWebView.addEventListener('load', function(data) { 
-	Ti.App.fireEvent("bmiInfo",{
-		info: bmi
+
+setTimeout(function(){
+	
+	//Ti.App.fireEvent('app:fromTitanium', { message: 'event fired from Titanium, handled in WebView' });
+	Ti.App.fireEvent('app:bmiInfo',{
+		message:  bmi
 	});
-}); 
+},2000);
+
+ 
 
 			 
 $.bmiView.addEventListener('click',function(e){
