@@ -21,25 +21,19 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
-            getHealthList: function() {
+            getHealthListByType: function() {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
                 var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
                     listArr[count] = {
-                        id: res.fieldByName("id"),
-                        clinicName: res.fieldByName("clinicName"),
-                        add1: res.fieldByName("add1"),
-                        add2: res.fieldByName("add2"),
-                        city: res.fieldByName("city"),
-                        postcode: res.fieldByName("postcode"),
-                        state: res.fieldByName("state"),
-                        tel: res.fieldByName("tel"),
-                        latitude: res.fieldByName("latitude"),
-                        longitude: res.fieldByName("longitude")
+                        date: res.fieldByName("date"),
+                        time: res.fieldByName("time"),
+                        type: res.fieldByName("type"),
+                        amount: res.fieldByName("amount")
                     };
                     res.next();
                     count++;
@@ -55,9 +49,9 @@ exports.definition = {
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
-                db.execute("BEGIN");
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET amount='" + mysql_real_escape_string(entry.amount) + "' WHERE date='" + mysql_real_escape_string(entry.date) + "' AND time='" + mysql_real_escape_string(entry.time) + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, amount,created) VALUES ('" + mysql_real_escape_string(entry.date) + "', '" + mysql_real_escape_string(entry.time) + "','" + entry.type + "' ,'" + mysql_real_escape_string(entry.amount) + "', '" + currentDateTime() + "')";
-                db.execute("COMMIT");
+                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET amount='" + mysql_real_escape_string(entry.amount) + "' WHERE date='" + mysql_real_escape_string(entry.date) + "' AND time='" + mysql_real_escape_string(entry.time) + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, type, amount,created) VALUES ('" + mysql_real_escape_string(entry.date) + "', '" + mysql_real_escape_string(entry.time) + "','" + entry.type + "' ,'" + mysql_real_escape_string(entry.amount) + "', '" + currentDateTime() + "')";
+                console.log(sql_query);
+                db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");
             }

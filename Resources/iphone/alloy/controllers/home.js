@@ -45,21 +45,10 @@ function Controller() {
         image: "/dummy/dummy-home.jpg",
         id: "__alloyId111"
     });
-<<<<<<< HEAD
     $.__views.main.add($.__views.__alloyId111);
-    $.__views.__alloyId112 = Ti.UI.createImageView({
-        width: "100",
-        height: "100",
-        top: "10",
-        left: "10",
-        image: "/appicon-60@3x.png",
-        id: "__alloyId112"
-=======
-    $.__views.main.add($.__views.__alloyId98);
-    $.__views.__alloyId99 = Ti.UI.createView({
+    $.__views.__alloyId112 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId99"
->>>>>>> FETCH_HEAD
+        id: "__alloyId112"
     });
     $.__views.main.add($.__views.__alloyId112);
     $.__views.scrollboard = Ti.UI.createScrollView({
@@ -67,14 +56,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Ti.UI.FILL
     });
-<<<<<<< HEAD
-    $.__views.main.add($.__views.scrollboard);
-    $.__views.__alloyId113 = Ti.UI.createView({
-        layout: "horizontal",
-        width: "293",
-        id: "__alloyId113"
-=======
-    $.__views.__alloyId99.add($.__views.scrollboard);
+    $.__views.__alloyId112.add($.__views.scrollboard);
     $.__views.logo = Ti.UI.createImageView({
         id: "logo",
         width: "100",
@@ -84,12 +66,11 @@ function Controller() {
         image: "/appicon-60@3x.png"
     });
     $.__views.scrollboard.add($.__views.logo);
-    $.__views.__alloyId100 = Ti.UI.createView({
+    $.__views.__alloyId113 = Ti.UI.createView({
         layout: "horizontal",
         width: "293",
         top: "239",
-        id: "__alloyId100"
->>>>>>> FETCH_HEAD
+        id: "__alloyId113"
     });
     $.__views.scrollboard.add($.__views.__alloyId113);
     $.__views.__alloyId114 = Ti.UI.createImageView({

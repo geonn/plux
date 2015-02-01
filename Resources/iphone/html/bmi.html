@@ -2,8 +2,24 @@
 <html>
 <head>
 <script type="text/javascript">
+ // $(function() { 
+  	Ti.App.addEventListener("bmiInfo",extractInfo);
+  	Ti.App.addEventListener("test",function(e){
+  		alert("hello");
+  	});
+  //});
+
+function extractInfo(e){
+	 alert("hihi");
+	console.log(e.info);
+	console.log("YES");
+	 
+}
 window.onload = function () {
-	
+	// Ti.App.addEventListener("bmiInfo",function(e){
+		// console.log(e.info);
+		// console.log("YES");
+	// });
 	var chart = new CanvasJS.Chart("chartContainer", {
 		theme: "theme2",//theme1
 		title:{
