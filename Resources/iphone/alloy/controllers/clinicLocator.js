@@ -35,17 +35,18 @@ function Controller() {
         id: "clinicLocator"
     });
     $.__views.clinicLocator && $.addTopLevelView($.__views.clinicLocator);
+    $.__views.clinicLocator.rightNavButton = void 0;
     $.__views.main = Ti.UI.createView({
         id: "main"
     });
     $.__views.clinicLocator.add($.__views.main);
-    $.__views.__alloyId0 = Ti.UI.createImageView({
+    $.__views.__alloyId1 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId0"
+        id: "__alloyId1"
     });
-    $.__views.main.add($.__views.__alloyId0);
+    $.__views.main.add($.__views.__alloyId1);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -64,13 +65,13 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId1 = Ti.UI.createLabel({
+    $.__views.__alloyId2 = Ti.UI.createLabel({
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId1"
+        id: "__alloyId2"
     });
-    $.__views.loadingBar.add($.__views.__alloyId1);
+    $.__views.loadingBar.add($.__views.__alloyId2);
     $.__views.mapview = Alloy.Globals.Map.createView({
         id: "mapview"
     });

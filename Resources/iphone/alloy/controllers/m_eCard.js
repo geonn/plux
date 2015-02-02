@@ -39,11 +39,19 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
+<<<<<<< HEAD
     $.__views.__alloyId210 = Ti.UI.createLabel({
         text: "Click here to flip",
         id: "__alloyId210"
     });
     $.__views.eCard.add($.__views.__alloyId210);
+=======
+    $.__views.__alloyId172 = Ti.UI.createLabel({
+        text: "Click here to flip",
+        id: "__alloyId172"
+    });
+    $.__views.eCard.add($.__views.__alloyId172);
+>>>>>>> FETCH_HEAD
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

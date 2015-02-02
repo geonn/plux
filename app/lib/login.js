@@ -25,7 +25,7 @@ exports.doLogin = function(username, password, $, target) {
 	       res = res[0];
 	      
 	       if(typeof res.message !== undefined && res.message != null){
-	       		common.createAlert(res.message);
+	       		//common.createAlert(res.message);
 	       		Ti.App.Properties.setString('memno', "temp");
 	       		var nav = require('navigation');
 				nav.closeWindow($.login);

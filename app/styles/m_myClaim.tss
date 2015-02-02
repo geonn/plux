@@ -18,7 +18,7 @@
 },
 "#cb_text" :{
 	left: "10dp",
-	top: "10dp",
+	top: "20dp",
 	width: "120dp",
 	height: Titanium.UI.SIZE,
 	wordWrap: true,
@@ -28,7 +28,7 @@
 },
 "#cb2_text" :{
 	left: "10dp",
-	top: "10dp",
+	top: "20dp",
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
 	wordWrap: true,
@@ -38,7 +38,7 @@
 },
 "#vs_text":{
 	left: "10dp",
-	top: "43dp",
+	top: "53dp",
 	width: "120dp",
 	height: Titanium.UI.SIZE,
 	wordWrap: true,
@@ -48,8 +48,9 @@
 },
 "#vs2_text":{
 	left: "10dp",
-	top: "68dp",
-	width: "120dp",
+	top: "78dp",
+	bottom: "20dp",
+	width: "140dp",
 	height: Titanium.UI.SIZE,
 	wordWrap: true,
 	font:{
@@ -58,7 +59,7 @@
 },
 "#entitlement_text":{
 	left: "10dp",
-	top: "43dp",
+	top: "53dp",
 	bottom: "5dp",
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
@@ -74,7 +75,7 @@
 	layout: "vertical"
 },"#rm2_view" :{
 	right: "10dp",
-	top: "38dp",
+	top: "48dp",
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 	layout: "vertical"
