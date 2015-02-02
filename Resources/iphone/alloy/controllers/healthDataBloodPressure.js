@@ -8,80 +8,52 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function todayDate() {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1;
-        var yyyy = today.getFullYear();
-        var hh = today.getHours();
-        var min = today.getMinutes();
-        10 > dd && (dd = "0" + dd);
-        10 > mm && (mm = "0" + mm);
-        10 > hh && (hh = "0" + hh);
-        10 > min && (min = "0" + min);
-        today = dd + "/" + mm + "/" + yyyy;
-        var ampm = hh >= 12 ? "PM" : "AM";
-        hh > 12 && (hh -= 12);
-        $.date_value.text = today;
-        $.time_value.text = hh + ":" + min + " " + ampm;
+    function hideKeyboard() {
+        $.field1.blur();
+        $.field2.blur();
     }
     function showDatePicker() {
-        $.datePicker.visible = "true";
-        $.timePicker.visible = "false";
-        $.amountTF.blur();
+        hd.showDatePicker({
+            date: $.datePicker,
+            time: $.timePicker
+        });
+        hideKeyboard();
     }
     function showTimePicker() {
-        $.timePicker.visible = "true";
-        $.datePicker.visible = "false";
-        $.amountTF.blur();
+        hd.showTimePicker({
+            date: $.datePicker,
+            time: $.timePicker
+        });
+        hideKeyboard();
     }
     function changeDate(e) {
-        var pickerdate = e.value;
-        var day = pickerdate.getDate();
-        day = day.toString();
-        day.length < 2 && (day = "0" + day);
-        var month = pickerdate.getMonth();
-        month += 1;
-        month = month.toString();
-        month.length < 2 && (month = "0" + month);
-        var year = pickerdate.getFullYear();
-        selDate = day + "/" + month + "/" + year;
-        $.date_value.text = selDate;
+        hd.changeDate({
+            date: e.value
+        });
     }
     function changeTime(e) {
-        var pickerdate = e.value;
-        pickerdate.getDate();
-        var hour = pickerdate.getHours();
-        hour = hour.toString();
-        hour.length < 2 && (hour = "0" + hour);
-        var ampm = hour >= 12 ? "PM" : "AM";
-        hour > 12 && (hour -= 12);
-        var minute = pickerdate.getMinutes();
-        selTime = hour + ":" + minute + " " + ampm;
-        $.time_value.text = selTime;
+        hd.changeTime({
+            time: e.value
+        });
     }
     function doSaveRecords() {
         var date = $.date_value.text;
         var time = $.time_value.text;
-        var amount = $.amountTF.value;
+        var field1 = $.field1.value;
+        var field2 = $.field2.value;
         var s_date = date.split("/");
-        var newDate = s_date[2] + "-" + s_date[1] + "-" + s_date[0];
+        s_date[2] + "-" + s_date[1] + "-" + s_date[0];
+        var amount = (2 * parseInt(field2) + parseInt(field1)) / 3;
         var s_time = time.split(" ");
         var newTime = s_time[0];
         if ("PM" == s_time[1]) {
             hm = newTime.split(":");
             newTime = parseInt(hm[0]) + 12 + ":" + hm[1];
         }
-        lib_health.addHealthData({
-            date: newDate,
-            time: newTime,
-            amount: amount,
-            type: formType
-        });
-        nav.navigationWindow("m_myHealth");
+        alert(amount);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "healthData";
+    this.__controllerPath = "healthDataBloodPressure";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -96,14 +68,14 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.healthData = Ti.UI.createWindow({
+    $.__views.healthDataBloodPressure = Ti.UI.createWindow({
         fullscreen: true,
         title: "Add Data",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
-        id: "healthData"
+        id: "healthDataBloodPressure"
     });
-    $.__views.healthData && $.addTopLevelView($.__views.healthData);
+    $.__views.healthDataBloodPressure && $.addTopLevelView($.__views.healthDataBloodPressure);
     $.__views.__alloyId3 = Ti.UI.createView({
         id: "__alloyId3"
     });
@@ -116,18 +88,18 @@ function Controller() {
     });
     $.__views.__alloyId3.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-    $.__views.healthData.rightNavButton = $.__views.__alloyId3;
+    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId3;
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
-    $.__views.healthData.add($.__views.main);
+    $.__views.healthDataBloodPressure.add($.__views.main);
     $.__views.__alloyId4 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
-        top: "15",
+        top: "10",
         id: "__alloyId4"
     });
     $.__views.main.add($.__views.__alloyId4);
@@ -205,47 +177,85 @@ function Controller() {
         width: "80%"
     });
     $.__views.__alloyId10.add($.__views.time_value);
-    $.__views.__alloyId12 = Ti.UI.createTableViewRow({
-        selectedBackgroundColor: "#ffffff",
-        id: "__alloyId12"
+    $.__views.tvrField1 = Ti.UI.createTableViewRow({
+        id: "tvrField1",
+        selectedBackgroundColor: "#ffffff"
     });
-    __alloyId5.push($.__views.__alloyId12);
-    $.__views.__alloyId13 = Ti.UI.createView({
+    __alloyId5.push($.__views.tvrField1);
+    $.__views.__alloyId12 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
         width: "100%",
-        id: "__alloyId13"
+        id: "__alloyId12"
     });
-    $.__views.__alloyId12.add($.__views.__alloyId13);
-    $.__views.__alloyId14 = Ti.UI.createLabel({
+    $.__views.tvrField1.add($.__views.__alloyId12);
+    $.__views.__alloyId13 = Ti.UI.createLabel({
         left: 20,
         color: "#A8A8A8",
         font: {
             fontSize: "16dp"
         },
-        text: "Amount",
+        text: "Systolic (mm Hg)",
+        width: "48%",
         top: "12",
-        id: "__alloyId14"
+        id: "__alloyId13"
     });
-    $.__views.__alloyId13.add($.__views.__alloyId14);
-    $.__views.amountTF = Ti.UI.createTextField({
-        id: "amountTF",
+    $.__views.__alloyId12.add($.__views.__alloyId13);
+    $.__views.field1 = Ti.UI.createTextField({
+        id: "field1",
+        width: "40%",
         right: "0",
         top: "5",
         textAlign: "right",
-        backgroundColor: "#FFFCFC",
+        backgroundColor: "#ffffff",
         borderColor: "#ffffff",
-        width: "72%",
         height: "30",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-    $.__views.__alloyId13.add($.__views.amountTF);
+    $.__views.__alloyId12.add($.__views.field1);
+    $.__views.tvrField2 = Ti.UI.createTableViewRow({
+        id: "tvrField2",
+        selectedBackgroundColor: "#ffffff"
+    });
+    __alloyId5.push($.__views.tvrField2);
+    $.__views.__alloyId14 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "45",
+        width: "100%",
+        id: "__alloyId14"
+    });
+    $.__views.tvrField2.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createLabel({
+        left: 20,
+        color: "#A8A8A8",
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Diastolic (mm Hg)",
+        width: "48%",
+        top: "12",
+        id: "__alloyId15"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId15);
+    $.__views.field2 = Ti.UI.createTextField({
+        id: "field2",
+        width: "40%",
+        right: "0",
+        top: "5",
+        textAlign: "right",
+        backgroundColor: "#ffffff",
+        borderColor: "#ffffff",
+        height: "30",
+        value: "",
+        keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
+    });
+    $.__views.__alloyId14.add($.__views.field2);
     $.__views.table = Ti.UI.createTableView({
         data: __alloyId5,
         id: "table",
-        height: "135",
-        top: "45",
+        height: "180",
+        top: "40",
         scrollable: "false"
     });
     $.__views.main.add($.__views.table);
@@ -275,19 +285,24 @@ function Controller() {
     changeTime ? $.__views.timePicker.addEventListener("change", changeTime) : __defers["$.__views.timePicker!change!changeTime"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0] || {};
-    var formType = args.formType || 1;
-    var lib_health = Alloy.createCollection("health");
-    var nav = require("navigation");
-    todayDate();
-    $.amountTF.addEventListener("change", function(e) {
-        if ("" != e.value) {
-            $.saveButton.color = "#CE1D1C";
-            $.saveButton.touchEnabled = "true";
-        } else {
-            $.saveButton.color = "#ADADAD";
-            $.saveButton.touchEnabled = "false";
-        }
+    arguments[0] || {};
+    Alloy.createCollection("health");
+    var hd = require("healthData");
+    hd.construct($);
+    hd.todayDate();
+    $.field2.addEventListener("change", function(e) {
+        var field2 = $.field2.value;
+        "" != e.value && "" != field2 ? hd.enableSaveButton() : hd.disableSaveButton();
+    });
+    $.field1.addEventListener("change", function(e) {
+        var field1 = $.field1.value;
+        "" != e.value && "" != field1 ? hd.enableSaveButton() : hd.disableSaveButton();
+    });
+    $.tvrField1.addEventListener("click", function() {
+        $.field1.focus();
+    });
+    $.tvrField2.addEventListener("click", function() {
+        $.field2.focus();
     });
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
     __defers["$.__views.__alloyId6!click!showDatePicker"] && $.__views.__alloyId6.addEventListener("click", showDatePicker);

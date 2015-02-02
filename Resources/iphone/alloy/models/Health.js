@@ -7,6 +7,8 @@ exports.definition = {
             date: "TEXT",
             time: "TEXT",
             type: "TEXT",
+            field1: "TEXT",
+            field2: "TEXT",
             amount: "TEXT",
             created: "TEXT"
         },
@@ -21,10 +23,10 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
-            getHealthListByType: function() {
+            getHealthListByType: function(type) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' ORDER BY date,time ASC LIMIT 6";
                 var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;
@@ -33,6 +35,8 @@ exports.definition = {
                         date: res.fieldByName("date"),
                         time: res.fieldByName("time"),
                         type: res.fieldByName("type"),
+                        field1: res.fieldByName("field1"),
+                        field2: res.fieldByName("field2"),
                         amount: res.fieldByName("amount")
                     };
                     res.next();
@@ -49,7 +53,7 @@ exports.definition = {
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET amount='" + mysql_real_escape_string(entry.amount) + "' WHERE date='" + mysql_real_escape_string(entry.date) + "' AND time='" + mysql_real_escape_string(entry.time) + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, type, amount,created) VALUES ('" + mysql_real_escape_string(entry.date) + "', '" + mysql_real_escape_string(entry.time) + "','" + entry.type + "' ,'" + mysql_real_escape_string(entry.amount) + "', '" + currentDateTime() + "')";
+                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET field1='" + entry.field1 + "' , field2='" + entry.field2 + "' , amount='" + mysql_real_escape_string(entry.amount) + "' WHERE date='" + mysql_real_escape_string(entry.date) + "' AND time='" + mysql_real_escape_string(entry.time) + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created) VALUES ('" + mysql_real_escape_string(entry.date) + "', '" + mysql_real_escape_string(entry.time) + "','" + entry.type + "','" + entry.field1 + "','" + entry.field2 + "' ,'" + mysql_real_escape_string(entry.amount) + "', '" + currentDateTime() + "')";
                 console.log(sql_query);
                 db.execute(sql_query);
                 db.close();

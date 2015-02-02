@@ -597,7 +597,7 @@
             animationDuration: 1200,
             colorSet: "colorSet1",
             culture: "en",
-            creditText: "CanvasJS.com",
+            creditText: "",
             interactivityEnabled: true,
             exportEnabled: false,
             exportFileName: "Chart"
@@ -608,9 +608,9 @@
             verticalAlign: "top",
             horizontalAlign: "center",
             fontSize: 20,
-            fontFamily: "Calibri",
+            fontFamily: "Arial",
             fontWeight: "normal",
-            fontColor: "black",
+            fontColor: "#CE1D1C",
             fontStyle: "normal",
             borderThickness: 0,
             borderColor: "black",
@@ -787,9 +787,9 @@
                 colorSet: "colorSet1"
             },
             Title: {
-                fontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+                fontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
                 fontSize: 33,
-                fontColor: "#3A3A3A",
+                fontColor: "#787878",
                 fontWeight: "bold",
                 verticalAlign: "top",
                 margin: 10
@@ -798,24 +798,24 @@
                 titleFontSize: 26,
                 titleFontColor: "#666666",
                 titleFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
-                labelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+                labelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
                 labelFontSize: 18,
-                labelFontColor: "grey",
+                labelFontColor: "#CE1D1C",
                 tickColor: "#BBBBBB",
-                tickThickness: 2,
-                gridThickness: 2,
+                tickThickness: 1,
+                gridThickness: 1,
                 gridColor: "#BBBBBB",
-                lineThickness: 2,
-                lineColor: "#BBBBBB"
+                lineThickness: 1,
+                lineColor: "transparent"
             },
             Legend: {
                 verticalAlign: "bottom",
                 horizontalAlign: "center",
-                fontFamily: isCanvasSupported ? "monospace, sans-serif,arial black" : "calibri"
+                fontFamily: isCanvasSupported ? "arial,monospace, sans-serif,arial black" : "arial"
             },
             DataSeries: {
                 indexLabelFontColor: "grey",
-                indexLabelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+                indexLabelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
                 indexLabelFontSize: 18,
                 indexLabelLineThickness: 1
             }
@@ -864,7 +864,7 @@
                 colorSet: "colorSet1"
             },
             Title: {
-                fontFamily: isCanvasSupported ? "Candara, Optima, Trebuchet MS, Helvetica Neue, Helvetica, Trebuchet MS, serif" : "calibri",
+                fontFamily: isCanvasSupported ? "Arial,Candara, Optima, Trebuchet MS, Helvetica Neue, Helvetica, Trebuchet MS, serif" : "arial",
                 fontSize: 32,
                 fontColor: "#3A3A3A",
                 fontWeight: "bold",
@@ -874,8 +874,8 @@
             Axis: {
                 titleFontSize: 22,
                 titleFontColor: "#ff0000",
-                titleFontFamily: isCanvasSupported ? "Verdana, Geneva, Calibri, sans-serif" : "calibri",
-                labelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+                titleFontFamily: isCanvasSupported ? "Arial,Verdana, Geneva, Calibri, sans-serif" : "arial",
+                labelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
                 labelFontSize: 18,
                 labelFontColor: "grey",
                 tickColor: "grey",
@@ -888,12 +888,12 @@
             Legend: {
                 verticalAlign: "bottom",
                 horizontalAlign: "center",
-                fontFamily: isCanvasSupported ? "monospace, sans-serif,arial black" : "calibri"
+                fontFamily: isCanvasSupported ? "Arial,monospace, sans-serif,arial black" : "arial"
             },
             DataSeries: {
                 bevelEnabled: true,
                 indexLabelFontColor: "grey",
-                indexLabelFontFamily: isCanvasSupported ? "Candara, Optima, Calibri, Verdana, Geneva, sans-serif" : "calibri",
+                indexLabelFontFamily: isCanvasSupported ? "Arial,Candara, Optima, Calibri, Verdana, Geneva, sans-serif" : "arial",
                 indexLabelFontSize: 18,
                 indexLabelLineColor: "lightgrey",
                 indexLabelLineThickness: 2
@@ -7352,7 +7352,7 @@
             toolTipHtml += "line-height: 20px;";
             toolTipHtml += "margin: 0px 0px 0px 0px;";
             toolTipHtml += "padding: 5px;";
-            toolTipHtml += "font-family: Calibri, Arial, Georgia, serif;";
+            toolTipHtml += "font-family:  Arial,Calibri, Georgia, serif;";
             toolTipHtml += "font-weight: 400;";
             toolTipHtml += "font-style: " + (isCanvasSupported ? "italic;" : "normal;");
             toolTipHtml += "font-size: 14px;";

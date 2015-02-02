@@ -11,6 +11,7 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 var common = require('common');
 var API = require('api');
+var nav = require('navigation');
 Alloy.Globals.Map = require('ti.map');
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
