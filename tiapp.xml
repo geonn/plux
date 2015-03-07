@@ -3,10 +3,10 @@
     <id>com.geonn.plux</id>
     <name>plux</name>
     <version>1.0</version>
-    <publisher>HatsuneMiku</publisher>
+    <publisher>Freejini</publisher>
     <url>http://</url>
-    <description>not specified</description>
-    <copyright>2014 by HatsuneMiku</copyright>
+    <description>ASP PLUX</description>
+    <copyright>2015 by Freejini</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
@@ -59,7 +59,7 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.4.0.GA</sdk-version>
+    <sdk-version>3.5.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

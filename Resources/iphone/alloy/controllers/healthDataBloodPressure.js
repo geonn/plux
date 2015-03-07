@@ -75,15 +75,9 @@ function Controller() {
         navTintColor: "#CE1D1C",
         id: "healthDataBloodPressure"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
     $.__views.healthDataBloodPressure && $.addTopLevelView($.__views.healthDataBloodPressure);
-    $.__views.__alloyId3 = Ti.UI.createView({
-        id: "__alloyId3"
-=======
-    $.__views.healthData && $.addTopLevelView($.__views.healthData);
     $.__views.__alloyId4 = Ti.UI.createView({
         id: "__alloyId4"
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
     });
     $.__views.saveButton = Ti.UI.createButton({
         touchEnabled: false,
@@ -94,32 +88,19 @@ function Controller() {
     });
     $.__views.__alloyId4.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId3;
-=======
-    $.__views.healthData.rightNavButton = $.__views.__alloyId4;
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
+    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId4;
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
     $.__views.healthDataBloodPressure.add($.__views.main);
-    $.__views.__alloyId4 = Ti.UI.createView({
-        layout: "vertical",
-        height: "30",
-        top: "10",
-        id: "__alloyId4"
-=======
-    $.__views.healthData.add($.__views.main);
     $.__views.__alloyId5 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
-        top: "15",
+        top: "10",
         id: "__alloyId5"
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
     });
     $.__views.main.add($.__views.__alloyId5);
     $.__views.description = Ti.UI.createLabel({
@@ -195,21 +176,20 @@ function Controller() {
         textAlign: "right",
         width: "80%"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.__alloyId10.add($.__views.time_value);
+    $.__views.__alloyId11.add($.__views.time_value);
     $.__views.tvrField1 = Ti.UI.createTableViewRow({
         id: "tvrField1",
         selectedBackgroundColor: "#ffffff"
     });
-    __alloyId5.push($.__views.tvrField1);
-    $.__views.__alloyId12 = Ti.UI.createView({
+    __alloyId6.push($.__views.tvrField1);
+    $.__views.__alloyId13 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
         width: "100%",
-        id: "__alloyId12"
+        id: "__alloyId13"
     });
-    $.__views.tvrField1.add($.__views.__alloyId12);
-    $.__views.__alloyId13 = Ti.UI.createLabel({
+    $.__views.tvrField1.add($.__views.__alloyId13);
+    $.__views.__alloyId14 = Ti.UI.createLabel({
         left: 20,
         color: "#A8A8A8",
         font: {
@@ -218,9 +198,9 @@ function Controller() {
         text: "Systolic (mm Hg)",
         width: "48%",
         top: "12",
-        id: "__alloyId13"
+        id: "__alloyId14"
     });
-    $.__views.__alloyId12.add($.__views.__alloyId13);
+    $.__views.__alloyId13.add($.__views.__alloyId14);
     $.__views.field1 = Ti.UI.createTextField({
         id: "field1",
         width: "40%",
@@ -233,35 +213,20 @@ function Controller() {
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-    $.__views.__alloyId12.add($.__views.field1);
+    $.__views.__alloyId13.add($.__views.field1);
     $.__views.tvrField2 = Ti.UI.createTableViewRow({
         id: "tvrField2",
         selectedBackgroundColor: "#ffffff"
     });
-    __alloyId5.push($.__views.tvrField2);
-    $.__views.__alloyId14 = Ti.UI.createView({
+    __alloyId6.push($.__views.tvrField2);
+    $.__views.__alloyId15 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
         width: "100%",
-        id: "__alloyId14"
+        id: "__alloyId15"
     });
-    $.__views.tvrField2.add($.__views.__alloyId14);
-=======
-    $.__views.__alloyId11.add($.__views.time_value);
-    $.__views.__alloyId13 = Ti.UI.createTableViewRow({
-        selectedBackgroundColor: "#ffffff",
-        id: "__alloyId13"
-    });
-    __alloyId6.push($.__views.__alloyId13);
-    $.__views.__alloyId14 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "45",
-        width: "100%",
-        id: "__alloyId14"
-    });
-    $.__views.__alloyId13.add($.__views.__alloyId14);
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.__alloyId15 = Ti.UI.createLabel({
+    $.__views.tvrField2.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createLabel({
         left: 20,
         color: "#A8A8A8",
         font: {
@@ -270,17 +235,12 @@ function Controller() {
         text: "Diastolic (mm Hg)",
         width: "48%",
         top: "12",
-        id: "__alloyId15"
+        id: "__alloyId16"
     });
-    $.__views.__alloyId14.add($.__views.__alloyId15);
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
+    $.__views.__alloyId15.add($.__views.__alloyId16);
     $.__views.field2 = Ti.UI.createTextField({
         id: "field2",
         width: "40%",
-=======
-    $.__views.amountTF = Ti.UI.createTextField({
-        id: "amountTF",
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
         right: "0",
         top: "5",
         textAlign: "right",
@@ -290,11 +250,7 @@ function Controller() {
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.__alloyId14.add($.__views.field2);
-=======
-    $.__views.__alloyId14.add($.__views.amountTF);
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
+    $.__views.__alloyId15.add($.__views.field2);
     $.__views.table = Ti.UI.createTableView({
         data: __alloyId6,
         id: "table",

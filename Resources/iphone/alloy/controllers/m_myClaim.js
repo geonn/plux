@@ -170,137 +170,75 @@ function Controller() {
         id: "vs2_value"
     });
     $.__views.rm2_view.add($.__views.vs2_value);
-<<<<<<< HEAD
-    $.__views.__alloyId211 = Ti.UI.createView({
-=======
-    $.__views.__alloyId173 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId212 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         height: Ti.UI.SIZE,
         bottom: "10dp",
         layout: "vertical",
-<<<<<<< HEAD
-        id: "__alloyId211"
-    });
-    $.__views.main.add($.__views.__alloyId211);
-    $.__views.__alloyId212 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
         id: "__alloyId212"
     });
-    $.__views.__alloyId211.add($.__views.__alloyId212);
-    $.__views.__alloyId213 = Ti.UI.createLabel({
-        text: "Claim Limit",
-        left: "0",
-        bottom: "5dp",
+    $.__views.main.add($.__views.__alloyId212);
+    $.__views.__alloyId213 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         id: "__alloyId213"
     });
     $.__views.__alloyId212.add($.__views.__alloyId213);
-=======
-        id: "__alloyId173"
-    });
-    $.__views.main.add($.__views.__alloyId173);
-    $.__views.__alloyId174 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        id: "__alloyId174"
-    });
-    $.__views.__alloyId173.add($.__views.__alloyId174);
-    $.__views.__alloyId175 = Ti.UI.createLabel({
+    $.__views.__alloyId214 = Ti.UI.createLabel({
         text: "Claim Limit",
         left: "0",
         bottom: "5dp",
-        id: "__alloyId175"
+        id: "__alloyId214"
     });
-    $.__views.__alloyId174.add($.__views.__alloyId175);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId213.add($.__views.__alloyId214);
     $.__views.claim_limit_value = Ti.UI.createLabel({
         text: "0.00",
         right: "0",
         bottom: "5dp",
         id: "claim_limit_value"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId212.add($.__views.claim_limit_value);
-    $.__views.__alloyId214 = Ti.UI.createView({
+    $.__views.__alloyId213.add($.__views.claim_limit_value);
+    $.__views.__alloyId215 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId214"
-    });
-    $.__views.__alloyId211.add($.__views.__alloyId214);
-    $.__views.__alloyId215 = Ti.UI.createLabel({
-        text: "Limit per visit",
-        left: "0",
-        bottom: "10dp",
         id: "__alloyId215"
     });
-    $.__views.__alloyId214.add($.__views.__alloyId215);
-=======
-    $.__views.__alloyId174.add($.__views.claim_limit_value);
-    $.__views.__alloyId176 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        id: "__alloyId176"
-    });
-    $.__views.__alloyId173.add($.__views.__alloyId176);
-    $.__views.__alloyId177 = Ti.UI.createLabel({
+    $.__views.__alloyId212.add($.__views.__alloyId215);
+    $.__views.__alloyId216 = Ti.UI.createLabel({
         text: "Limit per visit",
         left: "0",
         bottom: "10dp",
-        id: "__alloyId177"
+        id: "__alloyId216"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId177);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId215.add($.__views.__alloyId216);
     $.__views.maxperclaim_value = Ti.UI.createLabel({
         text: "300",
         right: "0",
         bottom: "10dp",
         id: "maxperclaim_value"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId214.add($.__views.maxperclaim_value);
-    $.__views.__alloyId216 = Ti.UI.createView({
-=======
-    $.__views.__alloyId176.add($.__views.maxperclaim_value);
-    $.__views.__alloyId178 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId215.add($.__views.maxperclaim_value);
+    $.__views.__alloyId217 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: "1px",
         bottom: "0",
         backgroundColor: "#ff0000",
-<<<<<<< HEAD
-        id: "__alloyId216"
-    });
-    $.__views.__alloyId211.add($.__views.__alloyId216);
-    $.__views.balance = Ti.UI.createListSection({
-        id: "balance"
-    });
-    var __alloyId219 = [];
-    __alloyId219.push($.__views.balance);
-    $.__views.__alloyId217 = Ti.UI.createListView({
-        sections: __alloyId219,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS,
         id: "__alloyId217"
     });
-    $.__views.main.add($.__views.__alloyId217);
-=======
-        id: "__alloyId178"
-    });
-    $.__views.__alloyId173.add($.__views.__alloyId178);
+    $.__views.__alloyId212.add($.__views.__alloyId217);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance"
     });
-    var __alloyId181 = [];
-    __alloyId181.push($.__views.balance);
-    $.__views.__alloyId179 = Ti.UI.createListView({
-        sections: __alloyId181,
+    var __alloyId220 = [];
+    __alloyId220.push($.__views.balance);
+    $.__views.__alloyId218 = Ti.UI.createListView({
+        sections: __alloyId220,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS,
-        id: "__alloyId179"
+        id: "__alloyId218"
     });
-    $.__views.main.add($.__views.__alloyId179);
->>>>>>> FETCH_HEAD
+    $.__views.main.add($.__views.__alloyId218);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

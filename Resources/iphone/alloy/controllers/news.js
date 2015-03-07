@@ -38,29 +38,17 @@ function Controller() {
         id: "main"
     });
     $.__views.news.add($.__views.main);
-<<<<<<< HEAD
-    var __alloyId234 = [];
-    $.__views.__alloyId235 = Ti.UI.createScrollView({
-=======
-    var __alloyId193 = [];
-    $.__views.__alloyId194 = Ti.UI.createScrollView({
->>>>>>> FETCH_HEAD
+    var __alloyId235 = [];
+    $.__views.__alloyId236 = Ti.UI.createScrollView({
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
         layout: "vertical",
         contentHeight: "auto",
         contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
-        id: "__alloyId235"
+        id: "__alloyId236"
     });
-    __alloyId234.push($.__views.__alloyId235);
-    $.__views.__alloyId236 = Ti.UI.createLabel({
-=======
-        id: "__alloyId194"
-    });
-    __alloyId193.push($.__views.__alloyId194);
-    $.__views.__alloyId195 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    __alloyId235.push($.__views.__alloyId236);
+    $.__views.__alloyId237 = Ti.UI.createLabel({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.SIZE,
         wordWrap: true,
@@ -73,28 +61,17 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         text: "Bone Health for Life: Health Information Basics for You and Your Family",
-<<<<<<< HEAD
-        id: "__alloyId236"
+        id: "__alloyId237"
     });
-    $.__views.__alloyId235.add($.__views.__alloyId236);
-=======
-        id: "__alloyId195"
-    });
-    $.__views.__alloyId194.add($.__views.__alloyId195);
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId236.add($.__views.__alloyId237);
     $.__views.pic = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
         id: "pic",
         image: "/images/bone-health-thumb.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId235.add($.__views.pic);
-    $.__views.__alloyId237 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId194.add($.__views.pic);
-    $.__views.__alloyId196 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId236.add($.__views.pic);
+    $.__views.__alloyId238 = Ti.UI.createLabel({
         font: {
             fontSize: "10dp"
         },
@@ -104,512 +81,241 @@ function Controller() {
         left: "5dp",
         top: "5dp",
         text: "here is image caption",
-<<<<<<< HEAD
-        id: "__alloyId237"
-    });
-    $.__views.__alloyId235.add($.__views.__alloyId237);
-    $.__views.__alloyId238 = Ti.UI.createLabel({
-=======
-        id: "__alloyId196"
-    });
-    $.__views.__alloyId194.add($.__views.__alloyId196);
-    $.__views.__alloyId197 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
-<<<<<<< HEAD
         id: "__alloyId238"
     });
-    $.__views.__alloyId235.add($.__views.__alloyId238);
+    $.__views.__alloyId236.add($.__views.__alloyId238);
     $.__views.__alloyId239 = Ti.UI.createLabel({
-=======
-        id: "__alloyId197"
-    });
-    $.__views.__alloyId194.add($.__views.__alloyId197);
-    $.__views.__alloyId198 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "16dp"
-        },
+        color: "#4A4A4A",
         left: "10dp",
         right: "10dp",
+        bottom: "10dp",
         top: "10dp",
-        text: "Why Does Bone Health Matter?",
-<<<<<<< HEAD
+        font: {
+            fontSize: "12dp"
+        },
+        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
         id: "__alloyId239"
     });
-    $.__views.__alloyId235.add($.__views.__alloyId239);
+    $.__views.__alloyId236.add($.__views.__alloyId239);
     $.__views.__alloyId240 = Ti.UI.createLabel({
-=======
-        id: "__alloyId198"
-    });
-    $.__views.__alloyId194.add($.__views.__alloyId198);
-    $.__views.__alloyId199 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
+        color: "#1C1C1C",
+        font: {
+            fontSize: "16dp"
+        },
         left: "10dp",
         right: "10dp",
-        bottom: "10dp",
         top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
-<<<<<<< HEAD
+        text: "Why Does Bone Health Matter?",
         id: "__alloyId240"
     });
-    $.__views.__alloyId235.add($.__views.__alloyId240);
-    $.__views.__alloyId241 = Ti.UI.createScrollView({
-=======
-        id: "__alloyId199"
-    });
-    $.__views.__alloyId194.add($.__views.__alloyId199);
-    $.__views.__alloyId200 = Ti.UI.createScrollView({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.FILL,
+    $.__views.__alloyId236.add($.__views.__alloyId240);
+    $.__views.__alloyId241 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
-        layout: "vertical",
-        contentHeight: "auto",
-        contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
+        height: Titanium.UI.SIZE,
+        color: "#4A4A4A",
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        font: {
+            fontSize: "12dp"
+        },
+        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
         id: "__alloyId241"
     });
-    __alloyId234.push($.__views.__alloyId241);
-    $.__views.__alloyId242 = Ti.UI.createLabel({
-=======
-        id: "__alloyId200"
-    });
-    __alloyId193.push($.__views.__alloyId200);
-    $.__views.__alloyId201 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.SIZE,
-        wordWrap: true,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "20dp"
-        },
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        text: "Bone Health for Life: Health Information Basics for You and Your Family",
-<<<<<<< HEAD
+    $.__views.__alloyId236.add($.__views.__alloyId241);
+    $.__views.__alloyId242 = Ti.UI.createScrollView({
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        layout: "vertical",
+        contentHeight: "auto",
+        contentWidth: Ti.UI.FILL,
         id: "__alloyId242"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId242);
-    $.__views.__alloyId243 = Ti.UI.createImageView({
-        width: Titanium.UI.FILL,
-        height: "auto",
-        image: "/images/bone-health-thumb.png",
+    __alloyId235.push($.__views.__alloyId242);
+    $.__views.__alloyId243 = Ti.UI.createLabel({
+        height: Titanium.UI.SIZE,
+        width: Titanium.UI.SIZE,
+        wordWrap: true,
+        color: "#1C1C1C",
+        font: {
+            fontSize: "20dp"
+        },
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        text: "Bone Health for Life: Health Information Basics for You and Your Family",
         id: "__alloyId243"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId243);
-    $.__views.__alloyId244 = Ti.UI.createLabel({
-=======
-        id: "__alloyId201"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId201);
-    $.__views.__alloyId202 = Ti.UI.createImageView({
+    $.__views.__alloyId242.add($.__views.__alloyId243);
+    $.__views.__alloyId244 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
         image: "/images/bone-health-thumb.png",
-        id: "__alloyId202"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId202);
-    $.__views.__alloyId203 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        font: {
-            fontSize: "10dp"
-        },
-        color: "#9E9E9E",
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        left: "5dp",
-        top: "5dp",
-        text: "here is image caption",
-<<<<<<< HEAD
         id: "__alloyId244"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId244);
+    $.__views.__alloyId242.add($.__views.__alloyId244);
     $.__views.__alloyId245 = Ti.UI.createLabel({
-=======
-        id: "__alloyId203"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId203);
-    $.__views.__alloyId204 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
         font: {
-            fontSize: "12dp"
+            fontSize: "10dp"
         },
-        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
-<<<<<<< HEAD
+        color: "#9E9E9E",
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        left: "5dp",
+        top: "5dp",
+        text: "here is image caption",
         id: "__alloyId245"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId245);
+    $.__views.__alloyId242.add($.__views.__alloyId245);
     $.__views.__alloyId246 = Ti.UI.createLabel({
-=======
-        id: "__alloyId204"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId204);
-    $.__views.__alloyId205 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "16dp"
-        },
+        color: "#4A4A4A",
         left: "10dp",
         right: "10dp",
+        bottom: "10dp",
         top: "10dp",
-        text: "Why Does Bone Health Matter?",
-<<<<<<< HEAD
+        font: {
+            fontSize: "12dp"
+        },
+        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
         id: "__alloyId246"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId246);
+    $.__views.__alloyId242.add($.__views.__alloyId246);
     $.__views.__alloyId247 = Ti.UI.createLabel({
-=======
-        id: "__alloyId205"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId205);
-    $.__views.__alloyId206 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
+        color: "#1C1C1C",
+        font: {
+            fontSize: "16dp"
+        },
         left: "10dp",
         right: "10dp",
-        bottom: "10dp",
         top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
-<<<<<<< HEAD
+        text: "Why Does Bone Health Matter?",
         id: "__alloyId247"
     });
-    $.__views.__alloyId241.add($.__views.__alloyId247);
-    $.__views.__alloyId248 = Ti.UI.createScrollView({
-=======
-        id: "__alloyId206"
-    });
-    $.__views.__alloyId200.add($.__views.__alloyId206);
-    $.__views.__alloyId207 = Ti.UI.createScrollView({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.FILL,
+    $.__views.__alloyId242.add($.__views.__alloyId247);
+    $.__views.__alloyId248 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
-        layout: "vertical",
-        contentHeight: "auto",
-        contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
+        height: Titanium.UI.SIZE,
+        color: "#4A4A4A",
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        font: {
+            fontSize: "12dp"
+        },
+        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
         id: "__alloyId248"
     });
-    __alloyId234.push($.__views.__alloyId248);
-    $.__views.__alloyId249 = Ti.UI.createLabel({
-=======
-        id: "__alloyId207"
-    });
-    __alloyId193.push($.__views.__alloyId207);
-    $.__views.__alloyId208 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.SIZE,
-        wordWrap: true,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "20dp"
-        },
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        text: "Bone Health for Life: Health Information Basics for You and Your Family",
-<<<<<<< HEAD
+    $.__views.__alloyId242.add($.__views.__alloyId248);
+    $.__views.__alloyId249 = Ti.UI.createScrollView({
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        layout: "vertical",
+        contentHeight: "auto",
+        contentWidth: Ti.UI.FILL,
         id: "__alloyId249"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId249);
-    $.__views.__alloyId250 = Ti.UI.createImageView({
-        width: Titanium.UI.FILL,
-        height: "auto",
-        image: "/images/bone-health-thumb.png",
+    __alloyId235.push($.__views.__alloyId249);
+    $.__views.__alloyId250 = Ti.UI.createLabel({
+        height: Titanium.UI.SIZE,
+        width: Titanium.UI.SIZE,
+        wordWrap: true,
+        color: "#1C1C1C",
+        font: {
+            fontSize: "20dp"
+        },
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        text: "Bone Health for Life: Health Information Basics for You and Your Family",
         id: "__alloyId250"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId250);
-    $.__views.__alloyId251 = Ti.UI.createLabel({
-=======
-        id: "__alloyId208"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId208);
-    $.__views.__alloyId209 = Ti.UI.createImageView({
+    $.__views.__alloyId249.add($.__views.__alloyId250);
+    $.__views.__alloyId251 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
         image: "/images/bone-health-thumb.png",
-        id: "__alloyId209"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId209);
-    $.__views.__alloyId210 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        font: {
-            fontSize: "10dp"
-        },
-        color: "#9E9E9E",
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        left: "5dp",
-        top: "5dp",
-        text: "here is image caption",
-<<<<<<< HEAD
         id: "__alloyId251"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId251);
+    $.__views.__alloyId249.add($.__views.__alloyId251);
     $.__views.__alloyId252 = Ti.UI.createLabel({
-=======
-        id: "__alloyId210"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId210);
-    $.__views.__alloyId211 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
         font: {
-            fontSize: "12dp"
+            fontSize: "10dp"
         },
-        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
-<<<<<<< HEAD
+        color: "#9E9E9E",
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        left: "5dp",
+        top: "5dp",
+        text: "here is image caption",
         id: "__alloyId252"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId252);
+    $.__views.__alloyId249.add($.__views.__alloyId252);
     $.__views.__alloyId253 = Ti.UI.createLabel({
-=======
-        id: "__alloyId211"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId211);
-    $.__views.__alloyId212 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "16dp"
-        },
+        color: "#4A4A4A",
         left: "10dp",
         right: "10dp",
+        bottom: "10dp",
         top: "10dp",
-        text: "Why Does Bone Health Matter?",
-<<<<<<< HEAD
+        font: {
+            fontSize: "12dp"
+        },
+        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
         id: "__alloyId253"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId253);
+    $.__views.__alloyId249.add($.__views.__alloyId253);
     $.__views.__alloyId254 = Ti.UI.createLabel({
-=======
-        id: "__alloyId212"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId212);
-    $.__views.__alloyId213 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
+        color: "#1C1C1C",
+        font: {
+            fontSize: "16dp"
+        },
         left: "10dp",
         right: "10dp",
-        bottom: "10dp",
         top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
-<<<<<<< HEAD
+        text: "Why Does Bone Health Matter?",
         id: "__alloyId254"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId254);
-    $.__views.__alloyId255 = Ti.UI.createScrollView({
-=======
-        id: "__alloyId213"
-    });
-    $.__views.__alloyId207.add($.__views.__alloyId213);
-    $.__views.__alloyId214 = Ti.UI.createScrollView({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.FILL,
+    $.__views.__alloyId249.add($.__views.__alloyId254);
+    $.__views.__alloyId255 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
-        layout: "vertical",
-        contentHeight: "auto",
-        contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
+        height: Titanium.UI.SIZE,
+        color: "#4A4A4A",
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        font: {
+            fontSize: "12dp"
+        },
+        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
         id: "__alloyId255"
     });
-    __alloyId234.push($.__views.__alloyId255);
-    $.__views.__alloyId256 = Ti.UI.createLabel({
-=======
-        id: "__alloyId214"
-    });
-    __alloyId193.push($.__views.__alloyId214);
-    $.__views.__alloyId215 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.SIZE,
-        wordWrap: true,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "20dp"
-        },
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        text: "Bone Health for Life: Health Information Basics for You and Your Family",
-<<<<<<< HEAD
-        id: "__alloyId256"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId256);
-    $.__views.__alloyId257 = Ti.UI.createImageView({
-        width: Titanium.UI.FILL,
-        height: "auto",
-        image: "/images/bone-health-thumb.png",
-        id: "__alloyId257"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId257);
-    $.__views.__alloyId258 = Ti.UI.createLabel({
-=======
-        id: "__alloyId215"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId215);
-    $.__views.__alloyId216 = Ti.UI.createImageView({
-        width: Titanium.UI.FILL,
-        height: "auto",
-        image: "/images/bone-health-thumb.png",
-        id: "__alloyId216"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId216);
-    $.__views.__alloyId217 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        font: {
-            fontSize: "10dp"
-        },
-        color: "#9E9E9E",
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        left: "5dp",
-        top: "5dp",
-        text: "here is image caption",
-<<<<<<< HEAD
-        id: "__alloyId258"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId258);
-    $.__views.__alloyId259 = Ti.UI.createLabel({
-=======
-        id: "__alloyId217"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId217);
-    $.__views.__alloyId218 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
-<<<<<<< HEAD
-        id: "__alloyId259"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId259);
-    $.__views.__alloyId260 = Ti.UI.createLabel({
-=======
-        id: "__alloyId218"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId218);
-    $.__views.__alloyId219 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#1C1C1C",
-        font: {
-            fontSize: "16dp"
-        },
-        left: "10dp",
-        right: "10dp",
-        top: "10dp",
-        text: "Why Does Bone Health Matter?",
-<<<<<<< HEAD
-        id: "__alloyId260"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId260);
-    $.__views.__alloyId261 = Ti.UI.createLabel({
-=======
-        id: "__alloyId219"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId219);
-    $.__views.__alloyId220 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        color: "#4A4A4A",
-        left: "10dp",
-        right: "10dp",
-        bottom: "10dp",
-        top: "10dp",
-        font: {
-            fontSize: "12dp"
-        },
-        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
-<<<<<<< HEAD
-        id: "__alloyId261"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId261);
-    $.__views.__alloyId262 = Ti.UI.createScrollView({
-=======
-        id: "__alloyId220"
-    });
-    $.__views.__alloyId214.add($.__views.__alloyId220);
-    $.__views.__alloyId221 = Ti.UI.createScrollView({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId249.add($.__views.__alloyId255);
+    $.__views.__alloyId256 = Ti.UI.createScrollView({
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
         layout: "vertical",
         contentHeight: "auto",
         contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
-        id: "__alloyId262"
+        id: "__alloyId256"
     });
-    __alloyId234.push($.__views.__alloyId262);
-    $.__views.__alloyId263 = Ti.UI.createLabel({
-=======
-        id: "__alloyId221"
-    });
-    __alloyId193.push($.__views.__alloyId221);
-    $.__views.__alloyId222 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    __alloyId235.push($.__views.__alloyId256);
+    $.__views.__alloyId257 = Ti.UI.createLabel({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.SIZE,
         wordWrap: true,
@@ -622,31 +328,17 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         text: "Bone Health for Life: Health Information Basics for You and Your Family",
-<<<<<<< HEAD
-        id: "__alloyId263"
+        id: "__alloyId257"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId263);
-    $.__views.__alloyId264 = Ti.UI.createImageView({
+    $.__views.__alloyId256.add($.__views.__alloyId257);
+    $.__views.__alloyId258 = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
         image: "/images/bone-health-thumb.png",
-        id: "__alloyId264"
+        id: "__alloyId258"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId264);
-    $.__views.__alloyId265 = Ti.UI.createLabel({
-=======
-        id: "__alloyId222"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId222);
-    $.__views.__alloyId223 = Ti.UI.createImageView({
-        width: Titanium.UI.FILL,
-        height: "auto",
-        image: "/images/bone-health-thumb.png",
-        id: "__alloyId223"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId223);
-    $.__views.__alloyId224 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId256.add($.__views.__alloyId258);
+    $.__views.__alloyId259 = Ti.UI.createLabel({
         font: {
             fontSize: "10dp"
         },
@@ -656,17 +348,10 @@ function Controller() {
         left: "5dp",
         top: "5dp",
         text: "here is image caption",
-<<<<<<< HEAD
-        id: "__alloyId265"
+        id: "__alloyId259"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId265);
-    $.__views.__alloyId266 = Ti.UI.createLabel({
-=======
-        id: "__alloyId224"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId224);
-    $.__views.__alloyId225 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId256.add($.__views.__alloyId259);
+    $.__views.__alloyId260 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#4A4A4A",
@@ -678,17 +363,10 @@ function Controller() {
             fontSize: "12dp"
         },
         text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
-<<<<<<< HEAD
-        id: "__alloyId266"
+        id: "__alloyId260"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId266);
-    $.__views.__alloyId267 = Ti.UI.createLabel({
-=======
-        id: "__alloyId225"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId225);
-    $.__views.__alloyId226 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId256.add($.__views.__alloyId260);
+    $.__views.__alloyId261 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#1C1C1C",
@@ -699,17 +377,10 @@ function Controller() {
         right: "10dp",
         top: "10dp",
         text: "Why Does Bone Health Matter?",
-<<<<<<< HEAD
-        id: "__alloyId267"
+        id: "__alloyId261"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId267);
-    $.__views.__alloyId268 = Ti.UI.createLabel({
-=======
-        id: "__alloyId226"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId226);
-    $.__views.__alloyId227 = Ti.UI.createLabel({
->>>>>>> FETCH_HEAD
+    $.__views.__alloyId256.add($.__views.__alloyId261);
+    $.__views.__alloyId262 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#4A4A4A",
@@ -721,27 +392,104 @@ function Controller() {
             fontSize: "12dp"
         },
         text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
-<<<<<<< HEAD
+        id: "__alloyId262"
+    });
+    $.__views.__alloyId256.add($.__views.__alloyId262);
+    $.__views.__alloyId263 = Ti.UI.createScrollView({
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        layout: "vertical",
+        contentHeight: "auto",
+        contentWidth: Ti.UI.FILL,
+        id: "__alloyId263"
+    });
+    __alloyId235.push($.__views.__alloyId263);
+    $.__views.__alloyId264 = Ti.UI.createLabel({
+        height: Titanium.UI.SIZE,
+        width: Titanium.UI.SIZE,
+        wordWrap: true,
+        color: "#1C1C1C",
+        font: {
+            fontSize: "20dp"
+        },
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        text: "Bone Health for Life: Health Information Basics for You and Your Family",
+        id: "__alloyId264"
+    });
+    $.__views.__alloyId263.add($.__views.__alloyId264);
+    $.__views.__alloyId265 = Ti.UI.createImageView({
+        width: Titanium.UI.FILL,
+        height: "auto",
+        image: "/images/bone-health-thumb.png",
+        id: "__alloyId265"
+    });
+    $.__views.__alloyId263.add($.__views.__alloyId265);
+    $.__views.__alloyId266 = Ti.UI.createLabel({
+        font: {
+            fontSize: "10dp"
+        },
+        color: "#9E9E9E",
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        left: "5dp",
+        top: "5dp",
+        text: "here is image caption",
+        id: "__alloyId266"
+    });
+    $.__views.__alloyId263.add($.__views.__alloyId266);
+    $.__views.__alloyId267 = Ti.UI.createLabel({
+        width: Titanium.UI.FILL,
+        height: Titanium.UI.SIZE,
+        color: "#4A4A4A",
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        font: {
+            fontSize: "12dp"
+        },
+        text: "Our bones support us and allow us to move. They protect our brain, heart, and other organs from injury. Our bones also store minerals such as calcium and phosphorous, which help keep our bones strong, and release them into the body when we need them for other uses.\n						\nThere are many things we can do to keep our bones healthy and strong. Eating foods rich in calcium and vitamin D, getting plenty of exercise, and having good health habits help keep our bones healthy.",
+        id: "__alloyId267"
+    });
+    $.__views.__alloyId263.add($.__views.__alloyId267);
+    $.__views.__alloyId268 = Ti.UI.createLabel({
+        width: Titanium.UI.FILL,
+        height: Titanium.UI.SIZE,
+        color: "#1C1C1C",
+        font: {
+            fontSize: "16dp"
+        },
+        left: "10dp",
+        right: "10dp",
+        top: "10dp",
+        text: "Why Does Bone Health Matter?",
         id: "__alloyId268"
     });
-    $.__views.__alloyId262.add($.__views.__alloyId268);
-    $.__views.__alloyId233 = Ti.UI.createScrollableView({
-        views: __alloyId234,
+    $.__views.__alloyId263.add($.__views.__alloyId268);
+    $.__views.__alloyId269 = Ti.UI.createLabel({
+        width: Titanium.UI.FILL,
+        height: Titanium.UI.SIZE,
+        color: "#4A4A4A",
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        font: {
+            fontSize: "12dp"
+        },
+        text: "But if we don’t eat right and don’t get enough of the right kinds of exercise, our bones can become weak and even break. Broken bones (called fractures) can be painful and sometimes need surgery to heal. They can also cause long-lasting health problems.\n						\nBut the good news is that it is never too late to take care of your bones.",
+        id: "__alloyId269"
+    });
+    $.__views.__alloyId263.add($.__views.__alloyId269);
+    $.__views.__alloyId234 = Ti.UI.createScrollableView({
+        views: __alloyId235,
         showPagingControl: "true",
-        id: "__alloyId233"
+        id: "__alloyId234"
     });
-    $.__views.main.add($.__views.__alloyId233);
-=======
-        id: "__alloyId227"
-    });
-    $.__views.__alloyId221.add($.__views.__alloyId227);
-    $.__views.__alloyId192 = Ti.UI.createScrollableView({
-        views: __alloyId193,
-        showPagingControl: "true",
-        id: "__alloyId192"
-    });
-    $.__views.main.add($.__views.__alloyId192);
->>>>>>> FETCH_HEAD
+    $.__views.main.add($.__views.__alloyId234);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
