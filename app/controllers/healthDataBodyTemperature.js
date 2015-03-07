@@ -48,7 +48,7 @@ function doSaveRecords(){
 	var s_date  = date.split('/');
 	var newDate = s_date[2] + "-"+s_date[1]+"-"+s_date[0];
 	
-	/**BMI formula**/
+	/**Body Temperature formula**/
 	var amount = field1;
 	var s_time = time.split(' ');
 	var newTime = s_time[0] ;

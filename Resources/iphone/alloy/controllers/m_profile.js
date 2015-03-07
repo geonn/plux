@@ -127,66 +127,20 @@ function Controller() {
         id: "info",
         headerTitle: "Member Info"
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var __alloyId202 = [];
-    __alloyId202.push($.__views.info);
-=======
-<<<<<<< HEAD
-    var __alloyId229 = [];
-    __alloyId229.push($.__views.info);
-=======
-    var __alloyId188 = [];
-    __alloyId188.push($.__views.info);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    var __alloyId230 = [];
-    __alloyId230.push($.__views.info);
->>>>>>> origin/master
+    var __alloyId244 = [];
+    __alloyId244.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-    __alloyId202.push($.__views.balance);
-    $.__views.__alloyId200 = Ti.UI.createListView({
-        sections: __alloyId202,
-=======
-<<<<<<< HEAD
-    __alloyId229.push($.__views.balance);
-    $.__views.__alloyId227 = Ti.UI.createListView({
-        sections: __alloyId229,
-=======
-    __alloyId230.push($.__views.balance);
-    $.__views.__alloyId228 = Ti.UI.createListView({
-        sections: __alloyId230,
->>>>>>> origin/master
+    __alloyId244.push($.__views.balance);
+    $.__views.__alloyId242 = Ti.UI.createListView({
+        sections: __alloyId244,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId228"
+        id: "__alloyId242"
     });
-<<<<<<< HEAD
-    $.__views.main.add($.__views.__alloyId227);
-=======
-    __alloyId188.push($.__views.balance);
-    $.__views.__alloyId186 = Ti.UI.createListView({
-        sections: __alloyId188,
->>>>>>> origin/master
-        style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId200"
-    });
-<<<<<<< HEAD
-    $.__views.main.add($.__views.__alloyId200);
-=======
-    $.__views.main.add($.__views.__alloyId186);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.main.add($.__views.__alloyId228);
->>>>>>> origin/master
+    $.__views.main.add($.__views.__alloyId242);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

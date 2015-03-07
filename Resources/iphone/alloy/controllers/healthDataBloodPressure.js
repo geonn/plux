@@ -76,23 +76,8 @@ function Controller() {
         id: "healthDataBloodPressure"
     });
     $.__views.healthDataBloodPressure && $.addTopLevelView($.__views.healthDataBloodPressure);
-<<<<<<< HEAD
-    $.__views.__alloyId3 = Ti.UI.createView({
-        id: "__alloyId3"
-=======
-    $.__views.healthData && $.addTopLevelView($.__views.healthData);
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
     $.__views.__alloyId5 = Ti.UI.createView({
         id: "__alloyId5"
-=======
-    $.__views.__alloyId4 = Ti.UI.createView({
-        id: "__alloyId4"
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-=======
-    $.__views.__alloyId4 = Ti.UI.createView({
-        id: "__alloyId4"
->>>>>>> origin/master
     });
     $.__views.saveButton = Ti.UI.createButton({
         touchEnabled: false,
@@ -103,19 +88,7 @@ function Controller() {
     });
     $.__views.__alloyId5.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-<<<<<<< HEAD
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.healthData.rightNavButton = $.__views.__alloyId5;
-=======
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId3;
-=======
-    $.__views.healthData.rightNavButton = $.__views.__alloyId4;
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-=======
-    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId4;
->>>>>>> origin/master
+    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId5;
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
@@ -123,31 +96,11 @@ function Controller() {
         height: "100%"
     });
     $.__views.healthDataBloodPressure.add($.__views.main);
-<<<<<<< HEAD
-    $.__views.__alloyId4 = Ti.UI.createView({
-        layout: "vertical",
-        height: "30",
-        top: "10",
-        id: "__alloyId4"
-=======
-    $.__views.healthData.add($.__views.main);
     $.__views.__alloyId6 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
-        top: "15",
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
-        id: "__alloyId6"
-=======
-        id: "__alloyId5"
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-=======
-    $.__views.__alloyId5 = Ti.UI.createView({
-        layout: "vertical",
-        height: "30",
         top: "10",
-        id: "__alloyId5"
->>>>>>> origin/master
+        id: "__alloyId6"
     });
     $.__views.main.add($.__views.__alloyId6);
     $.__views.description = Ti.UI.createLabel({
@@ -231,40 +184,32 @@ function Controller() {
         id: "time_value",
         textAlign: "right"
     });
-<<<<<<< HEAD
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
     $.__views.__alloyId12.add($.__views.time_value);
-    $.__views.__alloyId14 = Ti.UI.createTableViewRow({
-=======
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.__alloyId10.add($.__views.time_value);
-=======
-    $.__views.__alloyId11.add($.__views.time_value);
->>>>>>> origin/master
     $.__views.tvrField1 = Ti.UI.createTableViewRow({
         id: "tvrField1",
         selectedBackgroundColor: "#ffffff"
     });
-    __alloyId6.push($.__views.tvrField1);
-    $.__views.__alloyId13 = Ti.UI.createView({
+    __alloyId7.push($.__views.tvrField1);
+    $.__views.__alloyId14 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
         width: "100%",
-        id: "__alloyId13"
+        id: "__alloyId14"
     });
-    $.__views.tvrField1.add($.__views.__alloyId13);
-    $.__views.__alloyId14 = Ti.UI.createLabel({
+    $.__views.tvrField1.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createLabel({
+        width: "48%",
+        height: Titanium.UI.SIZE,
         left: 20,
         color: "#A8A8A8",
         font: {
             fontSize: "16dp"
         },
         text: "Systolic (mm Hg)",
-        width: "48%",
         top: "12",
-        id: "__alloyId14"
+        id: "__alloyId15"
     });
-    $.__views.__alloyId13.add($.__views.__alloyId14);
+    $.__views.__alloyId14.add($.__views.__alloyId15);
     $.__views.field1 = Ti.UI.createTextField({
         id: "field1",
         width: "40%",
@@ -277,80 +222,35 @@ function Controller() {
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-    $.__views.__alloyId13.add($.__views.field1);
+    $.__views.__alloyId14.add($.__views.field1);
     $.__views.tvrField2 = Ti.UI.createTableViewRow({
         id: "tvrField2",
         selectedBackgroundColor: "#ffffff"
     });
-    __alloyId6.push($.__views.tvrField2);
-    $.__views.__alloyId15 = Ti.UI.createView({
+    __alloyId7.push($.__views.tvrField2);
+    $.__views.__alloyId16 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
         width: "100%",
-<<<<<<< HEAD
-        id: "__alloyId14"
+        id: "__alloyId16"
     });
-    $.__views.tvrField2.add($.__views.__alloyId14);
-=======
-    $.__views.__alloyId11.add($.__views.time_value);
-    $.__views.__alloyId13 = Ti.UI.createTableViewRow({
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-        selectedBackgroundColor: "#ffffff",
-        id: "__alloyId14"
-    });
-    __alloyId7.push($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "45",
-        width: "100%",
-        id: "__alloyId15"
-    });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.__alloyId14.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
+    $.__views.tvrField2.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Ti.UI.createLabel({
+        width: "48%",
         height: Titanium.UI.SIZE,
-=======
-    $.__views.__alloyId13.add($.__views.__alloyId14);
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.__alloyId15 = Ti.UI.createLabel({
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-=======
-        id: "__alloyId15"
-    });
-    $.__views.tvrField2.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Ti.UI.createLabel({
->>>>>>> origin/master
         left: 20,
         color: "#A8A8A8",
         font: {
             fontSize: "16dp"
         },
         text: "Diastolic (mm Hg)",
-        width: "48%",
         top: "12",
-        id: "__alloyId16"
+        id: "__alloyId17"
     });
-<<<<<<< HEAD
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.__alloyId15.add($.__views.__alloyId16);
-=======
-    $.__views.__alloyId14.add($.__views.__alloyId15);
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
+    $.__views.__alloyId16.add($.__views.__alloyId17);
     $.__views.field2 = Ti.UI.createTextField({
         id: "field2",
         width: "40%",
-=======
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.amountTF = Ti.UI.createTextField({
-        id: "amountTF",
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
-=======
-    $.__views.__alloyId15.add($.__views.__alloyId16);
-    $.__views.field2 = Ti.UI.createTextField({
-        id: "field2",
-        width: "40%",
->>>>>>> origin/master
         right: "0",
         top: "5",
         textAlign: "right",
@@ -360,19 +260,7 @@ function Controller() {
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-<<<<<<< HEAD
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthData.js
-    $.__views.__alloyId15.add($.__views.amountTF);
-=======
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-    $.__views.__alloyId14.add($.__views.field2);
-=======
-    $.__views.__alloyId14.add($.__views.amountTF);
->>>>>>> FETCH_HEAD:Resources/iphone/alloy/controllers/healthData.js
->>>>>>> origin/master:Resources/iphone/alloy/controllers/healthDataBloodPressure.js
-=======
-    $.__views.__alloyId15.add($.__views.field2);
->>>>>>> origin/master
+    $.__views.__alloyId16.add($.__views.field2);
     $.__views.table = Ti.UI.createTableView({
         data: __alloyId7,
         id: "table",

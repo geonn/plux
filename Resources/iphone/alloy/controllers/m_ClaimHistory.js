@@ -36,28 +36,28 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.m_ClaimHistory.add($.__views.main);
-    var __alloyId172 = [];
-    $.__views.__alloyId173 = Ti.UI.createTableViewRow({
+    var __alloyId211 = [];
+    $.__views.__alloyId212 = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
-        id: "__alloyId173"
+        id: "__alloyId212"
     });
-    __alloyId172.push($.__views.__alloyId173);
-    $.__views.__alloyId174 = Ti.UI.createView({
+    __alloyId211.push($.__views.__alloyId212);
+    $.__views.__alloyId213 = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
         top: "10",
         left: "10",
         right: "10",
         bottom: "10",
-        id: "__alloyId174"
+        id: "__alloyId213"
     });
-    $.__views.__alloyId173.add($.__views.__alloyId174);
-    $.__views.__alloyId175 = Ti.UI.createView({
+    $.__views.__alloyId212.add($.__views.__alloyId213);
+    $.__views.__alloyId214 = Ti.UI.createView({
         height: Ti.UI.SIZE,
-        id: "__alloyId175"
+        id: "__alloyId214"
     });
-    $.__views.__alloyId174.add($.__views.__alloyId175);
-    $.__views.__alloyId176 = Ti.UI.createLabel({
+    $.__views.__alloyId213.add($.__views.__alloyId214);
+    $.__views.__alloyId215 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         right: 80,
@@ -66,10 +66,10 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "KLINIK SINGAPORE (RELAU)",
-        id: "__alloyId176"
+        id: "__alloyId215"
     });
-    $.__views.__alloyId175.add($.__views.__alloyId176);
-    $.__views.__alloyId177 = Ti.UI.createLabel({
+    $.__views.__alloyId214.add($.__views.__alloyId215);
+    $.__views.__alloyId216 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         right: 10,
@@ -81,10 +81,10 @@ function Controller() {
         color: "#ff0000",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "RM 55.00",
-        id: "__alloyId177"
+        id: "__alloyId216"
     });
-    $.__views.__alloyId175.add($.__views.__alloyId177);
-    $.__views.__alloyId178 = Ti.UI.createLabel({
+    $.__views.__alloyId214.add($.__views.__alloyId216);
+    $.__views.__alloyId217 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -93,10 +93,10 @@ function Controller() {
         color: "#ccc",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "8/27/2014, 12:00:00",
-        id: "__alloyId178"
+        id: "__alloyId217"
     });
-    $.__views.__alloyId174.add($.__views.__alloyId178);
-    $.__views.__alloyId179 = Ti.UI.createLabel({
+    $.__views.__alloyId213.add($.__views.__alloyId217);
+    $.__views.__alloyId218 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -104,10 +104,10 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "Category: GP",
-        id: "__alloyId179"
+        id: "__alloyId218"
     });
-    $.__views.__alloyId174.add($.__views.__alloyId179);
-    $.__views.__alloyId180 = Ti.UI.createLabel({
+    $.__views.__alloyId213.add($.__views.__alloyId218);
+    $.__views.__alloyId219 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -115,30 +115,30 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "MC Days: 1",
-        id: "__alloyId180"
+        id: "__alloyId219"
     });
-    $.__views.__alloyId174.add($.__views.__alloyId180);
-    $.__views.__alloyId181 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId213.add($.__views.__alloyId219);
+    $.__views.__alloyId220 = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
-        id: "__alloyId181"
+        id: "__alloyId220"
     });
-    __alloyId172.push($.__views.__alloyId181);
-    $.__views.__alloyId182 = Ti.UI.createView({
+    __alloyId211.push($.__views.__alloyId220);
+    $.__views.__alloyId221 = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
         top: "10",
         left: "10",
         right: "10",
         bottom: "10",
-        id: "__alloyId182"
+        id: "__alloyId221"
     });
-    $.__views.__alloyId181.add($.__views.__alloyId182);
-    $.__views.__alloyId183 = Ti.UI.createView({
+    $.__views.__alloyId220.add($.__views.__alloyId221);
+    $.__views.__alloyId222 = Ti.UI.createView({
         height: Ti.UI.SIZE,
-        id: "__alloyId183"
+        id: "__alloyId222"
     });
-    $.__views.__alloyId182.add($.__views.__alloyId183);
-    $.__views.__alloyId184 = Ti.UI.createLabel({
+    $.__views.__alloyId221.add($.__views.__alloyId222);
+    $.__views.__alloyId223 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         right: 80,
@@ -147,10 +147,10 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "KLINIK SINGAPORE (RELAU)",
-        id: "__alloyId184"
+        id: "__alloyId223"
     });
-    $.__views.__alloyId183.add($.__views.__alloyId184);
-    $.__views.__alloyId185 = Ti.UI.createLabel({
+    $.__views.__alloyId222.add($.__views.__alloyId223);
+    $.__views.__alloyId224 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         right: 10,
@@ -162,10 +162,10 @@ function Controller() {
         color: "#ff0000",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "RM 30.00",
-        id: "__alloyId185"
+        id: "__alloyId224"
     });
-    $.__views.__alloyId183.add($.__views.__alloyId185);
-    $.__views.__alloyId186 = Ti.UI.createLabel({
+    $.__views.__alloyId222.add($.__views.__alloyId224);
+    $.__views.__alloyId225 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -174,10 +174,10 @@ function Controller() {
         color: "#ccc",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "8/28/2014, 12:00:00",
-        id: "__alloyId186"
+        id: "__alloyId225"
     });
-    $.__views.__alloyId182.add($.__views.__alloyId186);
-    $.__views.__alloyId187 = Ti.UI.createLabel({
+    $.__views.__alloyId221.add($.__views.__alloyId225);
+    $.__views.__alloyId226 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -185,10 +185,10 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "Category: GP",
-        id: "__alloyId187"
+        id: "__alloyId226"
     });
-    $.__views.__alloyId182.add($.__views.__alloyId187);
-    $.__views.__alloyId188 = Ti.UI.createLabel({
+    $.__views.__alloyId221.add($.__views.__alloyId226);
+    $.__views.__alloyId227 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -196,14 +196,14 @@ function Controller() {
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "MC Days: 1",
-        id: "__alloyId188"
+        id: "__alloyId227"
     });
-    $.__views.__alloyId182.add($.__views.__alloyId188);
-    $.__views.__alloyId171 = Ti.UI.createTableView({
-        data: __alloyId172,
-        id: "__alloyId171"
+    $.__views.__alloyId221.add($.__views.__alloyId227);
+    $.__views.__alloyId210 = Ti.UI.createTableView({
+        data: __alloyId211,
+        id: "__alloyId210"
     });
-    $.__views.main.add($.__views.__alloyId171);
+    $.__views.main.add($.__views.__alloyId210);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -37,53 +37,17 @@ function Controller() {
         backgroundColor: "#828282"
     });
     $.__views.win.add($.__views.brochureView);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId123 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId160 = Ti.UI.createView({
+    $.__views.__alloyId162 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId160"
+        id: "__alloyId162"
     });
-    $.__views.brochureView.add($.__views.__alloyId160);
-=======
-    $.__views.__alloyId122 = Ti.UI.createView({
->>>>>>> origin/master
-        layout: "vertical",
-        id: "__alloyId123"
-    });
-<<<<<<< HEAD
-    $.__views.brochureView.add($.__views.__alloyId123);
-=======
-    $.__views.brochureView.add($.__views.__alloyId122);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId161 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId161"
-    });
-    $.__views.brochureView.add($.__views.__alloyId161);
->>>>>>> origin/master
+    $.__views.brochureView.add($.__views.__alloyId162);
     $.__views.scrollview = Ti.UI.createScrollView({
         top: "15",
         id: "scrollview",
         layout: "vertical"
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId123.add($.__views.scrollview);
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId160.add($.__views.scrollview);
-=======
-    $.__views.__alloyId122.add($.__views.scrollview);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId161.add($.__views.scrollview);
->>>>>>> origin/master
+    $.__views.__alloyId162.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -91,488 +55,144 @@ function Controller() {
         width: "100%"
     });
     $.__views.scrollview.add($.__views.mainView);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId124 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId161 = Ti.UI.createView({
-=======
-    $.__views.__alloyId123 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId162 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId163 = Ti.UI.createView({
         textAlign: "center",
         bottom: "0",
         layout: "vertical",
         height: "220",
         width: "100%",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId124"
+        id: "__alloyId163"
     });
-    $.__views.mainView.add($.__views.__alloyId124);
-    $.__views.__alloyId125 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId161"
-    });
-    $.__views.mainView.add($.__views.__alloyId161);
-    $.__views.__alloyId162 = Ti.UI.createView({
-=======
-        id: "__alloyId123"
-    });
-    $.__views.mainView.add($.__views.__alloyId123);
-    $.__views.__alloyId124 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId162"
-    });
-    $.__views.mainView.add($.__views.__alloyId162);
-    $.__views.__alloyId163 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.mainView.add($.__views.__alloyId163);
+    $.__views.__alloyId164 = Ti.UI.createView({
         layout: "horizontal",
         height: Ti.UI.SIZE,
         width: "100%",
         left: "5%",
         right: "5%",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId125"
+        id: "__alloyId164"
     });
-    $.__views.__alloyId124.add($.__views.__alloyId125);
-    $.__views.__alloyId126 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId162"
-    });
-    $.__views.__alloyId161.add($.__views.__alloyId162);
-    $.__views.__alloyId163 = Ti.UI.createView({
-=======
-        id: "__alloyId124"
-    });
-    $.__views.__alloyId123.add($.__views.__alloyId124);
-    $.__views.__alloyId125 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId163"
-    });
-    $.__views.__alloyId162.add($.__views.__alloyId163);
-    $.__views.__alloyId164 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId163.add($.__views.__alloyId164);
+    $.__views.__alloyId165 = Ti.UI.createView({
         bottom: "0",
         height: "200",
         width: "30%",
         right: "5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId126"
+        id: "__alloyId165"
     });
-    $.__views.__alloyId125.add($.__views.__alloyId126);
-    $.__views.__alloyId127 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId163"
-    });
-    $.__views.__alloyId162.add($.__views.__alloyId163);
-    $.__views.__alloyId164 = Ti.UI.createImageView({
-=======
-        id: "__alloyId125"
-    });
-    $.__views.__alloyId124.add($.__views.__alloyId125);
-    $.__views.__alloyId126 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId164"
-    });
-    $.__views.__alloyId163.add($.__views.__alloyId164);
-    $.__views.__alloyId165 = Ti.UI.createImageView({
->>>>>>> origin/master
+    $.__views.__alloyId164.add($.__views.__alloyId165);
+    $.__views.__alloyId166 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         mod: "Leaflet_Calcium_plus.pdf",
         backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         bottom: "0",
         width: "90",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId127"
-    });
-    $.__views.__alloyId126.add($.__views.__alloyId127);
-    readLeaflet ? $.__views.__alloyId127.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId127!click!readLeaflet"] = true;
-    $.__views.__alloyId128 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId164"
-    });
-    $.__views.__alloyId163.add($.__views.__alloyId164);
-    readLeaflet ? $.__views.__alloyId164.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId164!click!readLeaflet"] = true;
-    $.__views.__alloyId165 = Ti.UI.createView({
-=======
-        id: "__alloyId126"
-    });
-    $.__views.__alloyId125.add($.__views.__alloyId126);
-    readLeaflet ? $.__views.__alloyId126.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId126!click!readLeaflet"] = true;
-    $.__views.__alloyId127 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId165"
-    });
-    $.__views.__alloyId164.add($.__views.__alloyId165);
-    readLeaflet ? $.__views.__alloyId165.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId165!click!readLeaflet"] = true;
-    $.__views.__alloyId166 = Ti.UI.createView({
->>>>>>> origin/master
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId128"
-    });
-    $.__views.__alloyId125.add($.__views.__alloyId128);
-    $.__views.__alloyId129 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId165"
-    });
-    $.__views.__alloyId162.add($.__views.__alloyId165);
-    $.__views.__alloyId166 = Ti.UI.createImageView({
-=======
-        id: "__alloyId127"
-    });
-    $.__views.__alloyId124.add($.__views.__alloyId127);
-    $.__views.__alloyId128 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId166"
-    });
-    $.__views.__alloyId163.add($.__views.__alloyId166);
-    $.__views.__alloyId167 = Ti.UI.createImageView({
->>>>>>> origin/master
-        image: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        mod: "Leaflet_fish_oil.pdf",
-        backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        bottom: "0",
-        width: "90",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId129"
-    });
-    $.__views.__alloyId128.add($.__views.__alloyId129);
-    readLeaflet ? $.__views.__alloyId129.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId129!click!readLeaflet"] = true;
-    $.__views.__alloyId130 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
         id: "__alloyId166"
     });
     $.__views.__alloyId165.add($.__views.__alloyId166);
     readLeaflet ? $.__views.__alloyId166.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId166!click!readLeaflet"] = true;
     $.__views.__alloyId167 = Ti.UI.createView({
-=======
-        id: "__alloyId128"
-    });
-    $.__views.__alloyId127.add($.__views.__alloyId128);
-    readLeaflet ? $.__views.__alloyId128.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId128!click!readLeaflet"] = true;
-    $.__views.__alloyId129 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId167"
-    });
-    $.__views.__alloyId166.add($.__views.__alloyId167);
-    readLeaflet ? $.__views.__alloyId167.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId167!click!readLeaflet"] = true;
-    $.__views.__alloyId168 = Ti.UI.createView({
->>>>>>> origin/master
         bottom: "0",
         height: "200",
         width: "30%",
         right: "5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId130"
-    });
-    $.__views.__alloyId125.add($.__views.__alloyId130);
-    $.__views.__alloyId131 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
         id: "__alloyId167"
     });
-    $.__views.__alloyId162.add($.__views.__alloyId167);
+    $.__views.__alloyId164.add($.__views.__alloyId167);
     $.__views.__alloyId168 = Ti.UI.createImageView({
-=======
-        id: "__alloyId129"
-    });
-    $.__views.__alloyId124.add($.__views.__alloyId129);
-    $.__views.__alloyId130 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
+        image: "/images/cover/Leaflet_Fish_Oil_cover.png",
+        mod: "Leaflet_fish_oil.pdf",
+        backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
+        bottom: "0",
+        width: "90",
         id: "__alloyId168"
     });
-    $.__views.__alloyId163.add($.__views.__alloyId168);
-    $.__views.__alloyId169 = Ti.UI.createImageView({
->>>>>>> origin/master
+    $.__views.__alloyId167.add($.__views.__alloyId168);
+    readLeaflet ? $.__views.__alloyId168.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId168!click!readLeaflet"] = true;
+    $.__views.__alloyId169 = Ti.UI.createView({
+        bottom: "0",
+        height: "200",
+        width: "30%",
+        right: "5",
+        id: "__alloyId169"
+    });
+    $.__views.__alloyId164.add($.__views.__alloyId169);
+    $.__views.__alloyId170 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
         mod: "Leaflet_Vidaylin_Omega_kid.pdf",
         backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
         bottom: "0",
         width: "90",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId131"
-=======
-<<<<<<< HEAD
-        id: "__alloyId168"
-    });
-    $.__views.__alloyId167.add($.__views.__alloyId168);
-    readLeaflet ? $.__views.__alloyId168.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId168!click!readLeaflet"] = true;
-    $.__views.__alloyId169 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId169"
-    });
-    $.__views.__alloyId161.add($.__views.__alloyId169);
-    $.__views.__alloyId170 = Ti.UI.createView({
-=======
-        id: "__alloyId130"
->>>>>>> origin/master
-    });
-    $.__views.__alloyId130.add($.__views.__alloyId131);
-    readLeaflet ? $.__views.__alloyId131.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId131!click!readLeaflet"] = true;
-    $.__views.__alloyId132 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId132"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId124.add($.__views.__alloyId132);
-    $.__views.__alloyId133 = Ti.UI.createView({
-=======
-    $.__views.__alloyId123.add($.__views.__alloyId131);
-    $.__views.__alloyId132 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId169"
-    });
-    $.__views.__alloyId168.add($.__views.__alloyId169);
-    readLeaflet ? $.__views.__alloyId169.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId169!click!readLeaflet"] = true;
-    $.__views.__alloyId170 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
         id: "__alloyId170"
     });
-    $.__views.__alloyId162.add($.__views.__alloyId170);
-    $.__views.__alloyId171 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId169.add($.__views.__alloyId170);
+    readLeaflet ? $.__views.__alloyId170.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId170!click!readLeaflet"] = true;
+    $.__views.__alloyId171 = Ti.UI.createImageView({
+        image: "/images/div.png",
+        width: "100%",
+        id: "__alloyId171"
+    });
+    $.__views.__alloyId163.add($.__views.__alloyId171);
+    $.__views.__alloyId172 = Ti.UI.createView({
         textAlign: "center",
         bottom: "0",
         layout: "vertical",
         height: "220",
         width: "100%",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId133"
+        id: "__alloyId172"
     });
-    $.__views.mainView.add($.__views.__alloyId133);
-    $.__views.__alloyId134 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId170"
-    });
-    $.__views.mainView.add($.__views.__alloyId170);
-    $.__views.__alloyId171 = Ti.UI.createView({
-=======
-        id: "__alloyId132"
-    });
-    $.__views.mainView.add($.__views.__alloyId132);
-    $.__views.__alloyId133 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId171"
-    });
-    $.__views.mainView.add($.__views.__alloyId171);
-    $.__views.__alloyId172 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.mainView.add($.__views.__alloyId172);
+    $.__views.__alloyId173 = Ti.UI.createView({
         layout: "horizontal",
         height: Ti.UI.SIZE,
         width: "100%",
         left: "5%",
         right: "5%",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId134"
+        id: "__alloyId173"
     });
-    $.__views.__alloyId133.add($.__views.__alloyId134);
-    $.__views.__alloyId135 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId171"
-    });
-    $.__views.__alloyId170.add($.__views.__alloyId171);
-    $.__views.__alloyId172 = Ti.UI.createView({
-=======
-        id: "__alloyId133"
-    });
-    $.__views.__alloyId132.add($.__views.__alloyId133);
-    $.__views.__alloyId134 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId172"
-    });
-    $.__views.__alloyId171.add($.__views.__alloyId172);
-    $.__views.__alloyId173 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId172.add($.__views.__alloyId173);
+    $.__views.__alloyId174 = Ti.UI.createView({
         bottom: "0",
         height: "200",
         width: "30%",
         right: "5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId135"
+        id: "__alloyId174"
     });
-    $.__views.__alloyId134.add($.__views.__alloyId135);
-    $.__views.__alloyId136 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId172"
-    });
-    $.__views.__alloyId171.add($.__views.__alloyId172);
-    $.__views.__alloyId173 = Ti.UI.createImageView({
-=======
-        id: "__alloyId134"
-    });
-    $.__views.__alloyId133.add($.__views.__alloyId134);
-    $.__views.__alloyId135 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId173"
-    });
-    $.__views.__alloyId172.add($.__views.__alloyId173);
-    $.__views.__alloyId174 = Ti.UI.createImageView({
->>>>>>> origin/master
+    $.__views.__alloyId173.add($.__views.__alloyId174);
+    $.__views.__alloyId175 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
         mod: "Leaflet_Surbex_Protect.pdf",
         backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
         bottom: "0",
         width: "90",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId136"
+        id: "__alloyId175"
     });
-    $.__views.__alloyId135.add($.__views.__alloyId136);
-    readLeaflet ? $.__views.__alloyId136.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId136!click!readLeaflet"] = true;
-    $.__views.__alloyId137 = Ti.UI.createView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId173"
-    });
-    $.__views.__alloyId172.add($.__views.__alloyId173);
-    readLeaflet ? $.__views.__alloyId173.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId173!click!readLeaflet"] = true;
-    $.__views.__alloyId174 = Ti.UI.createView({
-=======
-        id: "__alloyId135"
-    });
-    $.__views.__alloyId134.add($.__views.__alloyId135);
-    readLeaflet ? $.__views.__alloyId135.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId135!click!readLeaflet"] = true;
-    $.__views.__alloyId136 = Ti.UI.createView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId174"
-    });
-    $.__views.__alloyId173.add($.__views.__alloyId174);
-    readLeaflet ? $.__views.__alloyId174.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId174!click!readLeaflet"] = true;
-    $.__views.__alloyId175 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId174.add($.__views.__alloyId175);
+    readLeaflet ? $.__views.__alloyId175.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId175!click!readLeaflet"] = true;
+    $.__views.__alloyId176 = Ti.UI.createView({
         bottom: "0",
         height: "200",
         width: "30%",
         right: "5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId137"
+        id: "__alloyId176"
     });
-    $.__views.__alloyId134.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Ti.UI.createImageView({
-=======
-<<<<<<< HEAD
-        id: "__alloyId174"
-    });
-    $.__views.__alloyId171.add($.__views.__alloyId174);
-    $.__views.__alloyId175 = Ti.UI.createImageView({
-=======
-        id: "__alloyId136"
-    });
-    $.__views.__alloyId133.add($.__views.__alloyId136);
-    $.__views.__alloyId137 = Ti.UI.createImageView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId175"
-    });
-    $.__views.__alloyId172.add($.__views.__alloyId175);
-    $.__views.__alloyId176 = Ti.UI.createImageView({
->>>>>>> origin/master
+    $.__views.__alloyId173.add($.__views.__alloyId176);
+    $.__views.__alloyId177 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
         mod: "Leaflet_Vidaylin_minibear.pdf",
         backgroundImage: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
         bottom: "0",
         width: "90",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId138"
-=======
-<<<<<<< HEAD
-        id: "__alloyId175"
-    });
-    $.__views.__alloyId174.add($.__views.__alloyId175);
-    readLeaflet ? $.__views.__alloyId175.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId175!click!readLeaflet"] = true;
-    $.__views.__alloyId176 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId176"
-    });
-    $.__views.__alloyId170.add($.__views.__alloyId176);
-=======
-        id: "__alloyId137"
->>>>>>> origin/master
-    });
-    $.__views.__alloyId137.add($.__views.__alloyId138);
-    readLeaflet ? $.__views.__alloyId138.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId138!click!readLeaflet"] = true;
-    $.__views.__alloyId139 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId139"
-    });
-<<<<<<< HEAD
-    $.__views.__alloyId133.add($.__views.__alloyId139);
-=======
-    $.__views.__alloyId132.add($.__views.__alloyId138);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId176"
-    });
-    $.__views.__alloyId175.add($.__views.__alloyId176);
-    readLeaflet ? $.__views.__alloyId176.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId176!click!readLeaflet"] = true;
-    $.__views.__alloyId177 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
         id: "__alloyId177"
     });
-    $.__views.__alloyId171.add($.__views.__alloyId177);
->>>>>>> origin/master
+    $.__views.__alloyId176.add($.__views.__alloyId177);
+    readLeaflet ? $.__views.__alloyId177.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId177!click!readLeaflet"] = true;
+    $.__views.__alloyId178 = Ti.UI.createImageView({
+        image: "/images/div.png",
+        width: "100%",
+        id: "__alloyId178"
+    });
+    $.__views.__alloyId172.add($.__views.__alloyId178);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -584,35 +204,11 @@ function Controller() {
         });
         docViewer.show();
     };
-<<<<<<< HEAD
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId127!click!readLeaflet"] && $.__views.__alloyId127.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId129!click!readLeaflet"] && $.__views.__alloyId129.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId131!click!readLeaflet"] && $.__views.__alloyId131.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId136!click!readLeaflet"] && $.__views.__alloyId136.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId138!click!readLeaflet"] && $.__views.__alloyId138.addEventListener("click", readLeaflet);
-=======
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId164!click!readLeaflet"] && $.__views.__alloyId164.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId166!click!readLeaflet"] && $.__views.__alloyId166.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId168!click!readLeaflet"] && $.__views.__alloyId168.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId173!click!readLeaflet"] && $.__views.__alloyId173.addEventListener("click", readLeaflet);
+    __defers["$.__views.__alloyId170!click!readLeaflet"] && $.__views.__alloyId170.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId175!click!readLeaflet"] && $.__views.__alloyId175.addEventListener("click", readLeaflet);
-=======
-    __defers["$.__views.__alloyId126!click!readLeaflet"] && $.__views.__alloyId126.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId128!click!readLeaflet"] && $.__views.__alloyId128.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId130!click!readLeaflet"] && $.__views.__alloyId130.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId135!click!readLeaflet"] && $.__views.__alloyId135.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId137!click!readLeaflet"] && $.__views.__alloyId137.addEventListener("click", readLeaflet);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    __defers["$.__views.__alloyId165!click!readLeaflet"] && $.__views.__alloyId165.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId167!click!readLeaflet"] && $.__views.__alloyId167.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId169!click!readLeaflet"] && $.__views.__alloyId169.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId174!click!readLeaflet"] && $.__views.__alloyId174.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId176!click!readLeaflet"] && $.__views.__alloyId176.addEventListener("click", readLeaflet);
->>>>>>> origin/master
+    __defers["$.__views.__alloyId177!click!readLeaflet"] && $.__views.__alloyId177.addEventListener("click", readLeaflet);
     _.extend($, exports);
 }
 
