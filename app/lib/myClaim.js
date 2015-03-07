@@ -11,13 +11,9 @@ exports.API_ClaimInfo = function(MEMNO, CORPCODE) {
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       res = res[0];
-	       console.log(res);
-	       if(typeof res.message !== undefined && res.message != null){
-	       		ret['status'] = "error";
-	       		ret['results'] = res;
-	       		common.createAlert(res.message);
-	       		
+	       console.log(res[0].message);
+	       if(typeof res[0].message !== undefined && res[0].message != null){
+	       		common.createAlert(res[0].message);
 	       }else{
 	       		Ti.UI.fireEvent("data_loaded", {data: res});
 	       }

@@ -7,7 +7,6 @@ Alloy.Globals.navMenu = $.navMenu;
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;
 	
-	
 	if(o.y >= 139 && expandmode){
 		$.logo.animate({
 	        top: -100,

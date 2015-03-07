@@ -8,3 +8,12 @@
 	 left:30,
 	 width:60,
 },
+".line":{
+	width: Titanium.UI.FILL,
+	height: 1,
+	backgroundColor: "#000",
+},
+"Label":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+}

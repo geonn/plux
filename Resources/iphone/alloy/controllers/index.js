@@ -34,13 +34,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId121 = Ti.UI.createImageView({
+    $.__views.__alloyId122 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId121"
+        id: "__alloyId122"
     });
-    $.__views.main.add($.__views.__alloyId121);
+    $.__views.main.add($.__views.__alloyId122);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",

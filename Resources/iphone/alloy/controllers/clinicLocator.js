@@ -40,13 +40,13 @@ function Controller() {
         id: "main"
     });
     $.__views.clinicLocator.add($.__views.main);
-    $.__views.__alloyId1 = Ti.UI.createImageView({
+    $.__views.__alloyId2 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId1"
+        id: "__alloyId2"
     });
-    $.__views.main.add($.__views.__alloyId1);
+    $.__views.main.add($.__views.__alloyId2);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -65,13 +65,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId2 = Ti.UI.createLabel({
+    $.__views.__alloyId3 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId2"
+        id: "__alloyId3"
     });
-    $.__views.loadingBar.add($.__views.__alloyId2);
+    $.__views.loadingBar.add($.__views.__alloyId3);
     $.__views.mapview = Alloy.Globals.Map.createView({
         id: "mapview"
     });

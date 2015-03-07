@@ -1,6 +1,11 @@
 <Alloy>
 	<Window title="My Claim Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View id="main" layout="vertical">
+		<RightNavButton>
+	        <View>
+	         	<ImageView right='0' id="setting" width='30' image="/images/icon_setting.png" />
+	        </View>
+        </RightNavButton>
+		<ScrollView id="main" layout="vertical">
 			<Label id="date"></Label><!--
 			<View id="balance_view">
 				<Label id="cb_text">Current Balance</Label>
@@ -22,7 +27,7 @@
 				</View>
 				<View width="Ti.UI.FILL" height="1px" bottom="0" backgroundColor="#ff0000"></View>
 			</View>
-			-->
+			
 			<View id="balance_view">
 				<Label id="cb2_text">Current Balance :</Label>
 				<Label id="entitlement_text">Entitlement (RM)</Label>
@@ -32,6 +37,54 @@
 					<Label id="vs2_value">24</Label>
 				</View>
 			</View>
+			
+			<View id="balance_view" layout="vertical">
+				<View layout="vertical" height="Ti.UI.SIZE" left="10" top="10" right="10" bottom="10">
+					<View class="claim_info">
+						<Label class="claim_title">Entitlement</Label>
+						<Label class="info_value" font="fontSize:10px" color="#000">(RM)</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text">Individual Balance</Label>
+						<Label class="info_value">115</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Individual Claim</Label>
+						<Label class="info_value">200</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Share Balance</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Share Claim</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+					<View class="line" top="10" bottom="10"></View>
+					<View class="claim_info">
+						<Label class="claim_title">Visitation</Label>
+						<Label class="info_value" font="fontSize:10px" color="#000">(TIMES)</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text">Individual Balance</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Individual Claim</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Share Balance</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+					<View class="claim_info">
+						<Label class="info_text" >Share Claim</Label>
+						<Label class="info_value">Unlimited</Label>
+					</View>
+				</View>
+			</View>
+			-->
+			<!--
 			<View top="10dp" left="10dp" right="10dp" height="Ti.UI.SIZE" bottom="10dp" layout="vertical">
 				<View width="Ti.UI.FILL" height="Ti.UI.SIZE">
 					<Label left="0" bottom="5dp">Claim Limit</Label>
@@ -43,9 +96,11 @@
 				</View>
 				<View width="Ti.UI.FILL" height="1px" bottom="0" backgroundColor="#ff0000"></View>
 			</View>
-			<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
+			
+			<ListView id="other_info" defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
 				<ListSection id="balance"></ListSection>
 			</ListView>
-		</View>
+			-->
+		</ScrollView>
 	</Window>
 </Alloy>

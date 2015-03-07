@@ -2,7 +2,7 @@ var args = arguments[0] || {};
 var auth = require("login");
 var method = require("myClaim");
 
-method.API_ClaimInfo("910128035500", "ASP");
+method.API_ClaimInfo("AGIL00005", "C001");
 
 Ti.UI.addEventListener("data_loaded", init);
 
@@ -11,44 +11,26 @@ function init(e){
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 	$.date.text = d.getDate()+" "+month[d.getMonth()]+" "+d.getFullYear();
-	console.log(e);
-	var balanceData = [];
-	var val = e.data;
-	var principle_val = val.entidv;
-	var balance = val.entidvbal;
-	var claim_limit = balance + principle_val;
-		balanceData = [
-			{
-				 properties : {
-				 	title: "Principle",
-				 	subtitle: String(principle_val.toFixed(2)),
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "Optical",
-				 	subtitle: "0.00",
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "Dental",
-				 	subtitle: "0.00",
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "GP",
-				 	subtitle: "0.00",
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 }
-			}
-		];
-	$.balance.setItems(balanceData);
-	$.rm_value.text = balance.toFixed(2);
-	$.claim_limit_value.text = claim_limit.toFixed(2);
+
+	console.log(e.data.length);
+	var groups = {};
+	
+	for(var i=0; i < e.data.length; i++){
+		var val = e.data[i];
+		groups[val.name] = groups[val.name] || [];
+   	    groups[val.name].push( val );
+	}
+	Object.keys(groups).map( function( group )
+	  {
+	    console.log(groups[group]); 
+	    console.log(group+'next');
+	    var personal_claim_view = Alloy.createController("_person_claim_view", {claim_data: groups[group], name: group}).getView(); 
+	    $.main.add(personal_claim_view);
+	  });
 	Ti.UI.removeEventListener("data_loaded", init);
 }
+
+$.setting.addEventListener("click", function(){
+	var nav = require('navigation');
+	nav.navigationWindow("m_ClaimHistory");
+});

@@ -43,6 +43,33 @@ exports.doLogin = function(LOGINID, PASSWORD){
 	 client.send(); 
 };
 
+exports.loadNewsFeed = function (ex){
+	var url = 'http://plux.freejini.com.my/api/grab_newsfeed?user=freejini&key=06b53047cf294f7207789ff5293ad2dc&date=01-01-2015';//url_panelList+"?CORPCODE="+ex;
+
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	    
+	     	var res = JSON.parse(this.responseText);
+		 	/**reset current category**/
+		 	var library = Alloy.createCollection('health_news_feed'); 
+			library.resetPanel();
+					
+			/**load new set of category from API**/ 
+			library.addNews(res); 
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
+
 exports.loadPanelList = function (ex){
 	var url = 'https://www.asp-medical-clinic.com.my/aida/panellist.aspx?CORPCODE=ASP';//url_panelList+"?CORPCODE="+ex;
 

@@ -1,0 +1,30 @@
+<Alloy>
+	<Window title="My Claim History" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main" layout="vertical">
+			<TableView>
+				<TableViewRow>
+			        <View layout="vertical" height="Ti.UI.SIZE" top="10" left="10" right="10" bottom="10">
+			        	<View height="Ti.UI.SIZE">
+			        		<Label class="clinic_name">KLINIK SINGAPORE (RELAU)</Label>
+			        		<Label class="amount">RM 55.00</Label>
+			        	</View>
+			        	<Label class="date">8/27/2014, 12:00:00</Label>
+			        	<Label class="category">Category: GP</Label> 
+			        	<Label class="mc">MC Days: 1</Label>
+			        </View>
+			    </TableViewRow>
+			    <TableViewRow>
+			        <View layout="vertical" height="Ti.UI.SIZE" top="10" left="10" right="10" bottom="10">
+			        	<View height="Ti.UI.SIZE">
+				        	<Label class="clinic_name">KLINIK SINGAPORE (RELAU)</Label>
+				        	<Label class="amount">RM 30.00</Label>
+			        	</View>
+			        	<Label class="date">8/28/2014, 12:00:00</Label>
+			        	<Label class="category">Category: GP</Label> 
+			        	<Label class="mc">MC Days: 1</Label>
+			        </View>
+			    </TableViewRow>
+		    </TableView>
+		</View>
+	</Window>
+</Alloy>

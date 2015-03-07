@@ -6,15 +6,9 @@ exports.API_ClaimInfo = function(MEMNO, CORPCODE) {
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var ret = [];
             var res = JSON.parse(this.responseText);
-            res = res[0];
-            console.log(res);
-            if (void 0 !== typeof res.message && null != res.message) {
-                ret["status"] = "error";
-                ret["results"] = res;
-                common.createAlert(res.message);
-            } else Ti.UI.fireEvent("data_loaded", {
+            console.log(res[0].message);
+            void 0 !== typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : Ti.UI.fireEvent("data_loaded", {
                 data: res
             });
         },
