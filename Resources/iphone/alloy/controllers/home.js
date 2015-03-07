@@ -40,21 +40,21 @@ function Controller() {
     });
     $.__views.root.add($.__views.main);
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.__views.__alloyId113 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
     $.__views.__alloyId150 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId151 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId150"
-    });
-    $.__views.main.add($.__views.__alloyId150);
-    $.__views.__alloyId151 = Ti.UI.createView({
-        layout: "vertical",
         id: "__alloyId151"
     });
     $.__views.main.add($.__views.__alloyId151);
+<<<<<<< HEAD
 =======
     $.__views.__alloyId112 = Ti.UI.createImageView({
 >>>>>>> origin/master
@@ -73,11 +73,19 @@ function Controller() {
 =======
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+    $.__views.__alloyId152 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId152"
+    });
+    $.__views.main.add($.__views.__alloyId152);
+>>>>>>> origin/master
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
         width: Titanium.UI.FILL,
         height: Ti.UI.FILL
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
     $.__views.__alloyId114.add($.__views.scrollboard);
 =======
@@ -86,6 +94,9 @@ function Controller() {
 =======
     $.__views.__alloyId113.add($.__views.scrollboard);
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    $.__views.__alloyId152.add($.__views.scrollboard);
 >>>>>>> origin/master
     $.__views.logo = Ti.UI.createImageView({
         id: "logo",
@@ -96,6 +107,7 @@ function Controller() {
         image: "/appicon-60@3x.png"
     });
     $.__views.scrollboard.add($.__views.logo);
+<<<<<<< HEAD
 <<<<<<< HEAD
     $.__views.__alloyId115 = Ti.UI.createView({
 =======
@@ -136,11 +148,17 @@ function Controller() {
     $.__views.__alloyId117 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
+=======
+    $.__views.__alloyId153 = Ti.UI.createView({
+        layout: "horizontal",
+        width: "293",
+        top: "239",
+>>>>>>> origin/master
         id: "__alloyId153"
     });
-    $.__views.__alloyId152.add($.__views.__alloyId153);
-    navWindow ? $.__views.__alloyId153.addEventListener("click", navWindow) : __defers["$.__views.__alloyId153!click!navWindow"] = true;
+    $.__views.scrollboard.add($.__views.__alloyId153);
     $.__views.__alloyId154 = Ti.UI.createImageView({
+<<<<<<< HEAD
 =======
         id: "__alloyId115"
     });
@@ -162,11 +180,18 @@ function Controller() {
     $.__views.__alloyId118 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
+=======
+        mod: "m_eCard",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_asp_e_card_pass.png",
+>>>>>>> origin/master
         id: "__alloyId154"
     });
-    $.__views.__alloyId152.add($.__views.__alloyId154);
+    $.__views.__alloyId153.add($.__views.__alloyId154);
     navWindow ? $.__views.__alloyId154.addEventListener("click", navWindow) : __defers["$.__views.__alloyId154!click!navWindow"] = true;
     $.__views.__alloyId155 = Ti.UI.createImageView({
+<<<<<<< HEAD
 =======
         id: "__alloyId116"
     });
@@ -187,11 +212,19 @@ function Controller() {
     $.__views.__alloyId119 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
+=======
+        mod: "m_myHealth",
+        left: "15",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_my_health.png",
+>>>>>>> origin/master
         id: "__alloyId155"
     });
-    $.__views.__alloyId152.add($.__views.__alloyId155);
+    $.__views.__alloyId153.add($.__views.__alloyId155);
     navWindow ? $.__views.__alloyId155.addEventListener("click", navWindow) : __defers["$.__views.__alloyId155!click!navWindow"] = true;
     $.__views.__alloyId156 = Ti.UI.createImageView({
+<<<<<<< HEAD
 =======
         id: "__alloyId117"
     });
@@ -213,11 +246,18 @@ function Controller() {
     $.__views.__alloyId120 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
+=======
+        mod: "m_myClaim",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_my_claim_detail.png",
+>>>>>>> origin/master
         id: "__alloyId156"
     });
-    $.__views.__alloyId152.add($.__views.__alloyId156);
+    $.__views.__alloyId153.add($.__views.__alloyId156);
     navWindow ? $.__views.__alloyId156.addEventListener("click", navWindow) : __defers["$.__views.__alloyId156!click!navWindow"] = true;
     $.__views.__alloyId157 = Ti.UI.createImageView({
+<<<<<<< HEAD
 =======
         id: "__alloyId118"
     });
@@ -238,24 +278,41 @@ function Controller() {
     $.__views.__alloyId121 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
+=======
+        mod: "clinicLocator",
+        left: "15",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_clinic_location.png",
+>>>>>>> origin/master
         id: "__alloyId157"
     });
-    $.__views.__alloyId152.add($.__views.__alloyId157);
+    $.__views.__alloyId153.add($.__views.__alloyId157);
     navWindow ? $.__views.__alloyId157.addEventListener("click", navWindow) : __defers["$.__views.__alloyId157!click!navWindow"] = true;
     $.__views.__alloyId158 = Ti.UI.createImageView({
-=======
-        id: "__alloyId119"
+        mod: "healthInfo",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_healthInfo.png",
+        id: "__alloyId158"
     });
+<<<<<<< HEAD
     $.__views.__alloyId114.add($.__views.__alloyId119);
     navWindow ? $.__views.__alloyId119.addEventListener("click", navWindow) : __defers["$.__views.__alloyId119!click!navWindow"] = true;
     $.__views.__alloyId120 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    $.__views.__alloyId153.add($.__views.__alloyId158);
+    navWindow ? $.__views.__alloyId158.addEventListener("click", navWindow) : __defers["$.__views.__alloyId158!click!navWindow"] = true;
+    $.__views.__alloyId159 = Ti.UI.createImageView({
 >>>>>>> origin/master
         mod: "leafletCategory",
         left: "15",
         top: "15",
         width: "139",
         image: "/btn/btn_leaflet.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId121"
     });
@@ -273,6 +330,12 @@ function Controller() {
     $.__views.__alloyId114.add($.__views.__alloyId120);
     navWindow ? $.__views.__alloyId120.addEventListener("click", navWindow) : __defers["$.__views.__alloyId120!click!navWindow"] = true;
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+        id: "__alloyId159"
+    });
+    $.__views.__alloyId153.add($.__views.__alloyId159);
+    navWindow ? $.__views.__alloyId159.addEventListener("click", navWindow) : __defers["$.__views.__alloyId159!click!navWindow"] = true;
 >>>>>>> origin/master
     $.__views.navMenu = Ti.UI.iOS.createNavigationWindow({
         window: $.__views.root,
@@ -304,14 +367,18 @@ function Controller() {
         }
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     __defers["$.__views.__alloyId153!click!navWindow"] && $.__views.__alloyId153.addEventListener("click", navWindow);
+=======
+>>>>>>> origin/master
     __defers["$.__views.__alloyId154!click!navWindow"] && $.__views.__alloyId154.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId155!click!navWindow"] && $.__views.__alloyId155.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId156!click!navWindow"] && $.__views.__alloyId156.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId157!click!navWindow"] && $.__views.__alloyId157.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId158!click!navWindow"] && $.__views.__alloyId158.addEventListener("click", navWindow);
+<<<<<<< HEAD
 =======
     __defers["$.__views.__alloyId115!click!navWindow"] && $.__views.__alloyId115.addEventListener("click", navWindow);
 >>>>>>> origin/master
@@ -324,6 +391,9 @@ function Controller() {
     __defers["$.__views.__alloyId121!click!navWindow"] && $.__views.__alloyId121.addEventListener("click", navWindow);
 =======
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    __defers["$.__views.__alloyId159!click!navWindow"] && $.__views.__alloyId159.addEventListener("click", navWindow);
 >>>>>>> origin/master
     _.extend($, exports);
 }

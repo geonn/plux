@@ -40,15 +40,20 @@ function Controller() {
     });
     $.__views.eCard.add($.__views.card);
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.__views.__alloyId191 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
 =======
 <<<<<<< HEAD
     $.__views.__alloyId210 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId211 = Ti.UI.createLabel({
+>>>>>>> origin/master
         text: "Click here to flip",
-        id: "__alloyId210"
+        id: "__alloyId211"
     });
+<<<<<<< HEAD
     $.__views.eCard.add($.__views.__alloyId210);
 =======
     $.__views.__alloyId172 = Ti.UI.createLabel({
@@ -61,6 +66,9 @@ function Controller() {
 =======
     $.__views.eCard.add($.__views.__alloyId172);
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    $.__views.eCard.add($.__views.__alloyId211);
 >>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);

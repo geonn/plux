@@ -36,15 +36,20 @@ function Controller() {
     });
     $.__views.m_myMedical.add($.__views.main);
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.__views.__alloyId199 = Ti.UI.createImageView({
 =======
 <<<<<<< HEAD
     $.__views.__alloyId226 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId227 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId226"
+        id: "__alloyId227"
     });
+<<<<<<< HEAD
     $.__views.main.add($.__views.__alloyId226);
 =======
     $.__views.__alloyId185 = Ti.UI.createImageView({
@@ -59,6 +64,9 @@ function Controller() {
 =======
     $.__views.main.add($.__views.__alloyId185);
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    $.__views.main.add($.__views.__alloyId227);
 >>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);

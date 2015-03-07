@@ -128,6 +128,7 @@ function Controller() {
         headerTitle: "Member Info"
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
     var __alloyId202 = [];
     __alloyId202.push($.__views.info);
 =======
@@ -139,10 +140,15 @@ function Controller() {
     __alloyId188.push($.__views.info);
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+    var __alloyId230 = [];
+    __alloyId230.push($.__views.info);
+>>>>>>> origin/master
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
     __alloyId202.push($.__views.balance);
     $.__views.__alloyId200 = Ti.UI.createListView({
@@ -152,10 +158,16 @@ function Controller() {
     __alloyId229.push($.__views.balance);
     $.__views.__alloyId227 = Ti.UI.createListView({
         sections: __alloyId229,
+=======
+    __alloyId230.push($.__views.balance);
+    $.__views.__alloyId228 = Ti.UI.createListView({
+        sections: __alloyId230,
+>>>>>>> origin/master
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId227"
+        id: "__alloyId228"
     });
+<<<<<<< HEAD
     $.__views.main.add($.__views.__alloyId227);
 =======
     __alloyId188.push($.__views.balance);
@@ -171,6 +183,9 @@ function Controller() {
 =======
     $.__views.main.add($.__views.__alloyId186);
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+    $.__views.main.add($.__views.__alloyId228);
 >>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);

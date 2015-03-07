@@ -47,6 +47,7 @@ function Controller() {
     });
     $.__views.leafletCategory.add($.__views.main);
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.__views.__alloyId140 = Ti.UI.createScrollView({
 =======
 <<<<<<< HEAD
@@ -55,11 +56,15 @@ function Controller() {
     $.__views.__alloyId139 = Ti.UI.createScrollView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+    $.__views.__alloyId178 = Ti.UI.createScrollView({
+>>>>>>> origin/master
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
         contentHeight: "auto",
         layout: "horizontal",
         contentWidth: Titanium.UI.FILL,
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId140"
     });
@@ -78,10 +83,17 @@ function Controller() {
     $.__views.__alloyId140 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId178"
+    });
+    $.__views.main.add($.__views.__alloyId178);
+    $.__views.__alloyId179 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Bone Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId141"
     });
@@ -105,6 +117,13 @@ function Controller() {
     $.__views.__alloyId141 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId179"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId179);
+    navWindow ? $.__views.__alloyId179.addEventListener("click", navWindow) : __defers["$.__views.__alloyId179!click!navWindow"] = true;
+    $.__views.__alloyId180 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -114,6 +133,7 @@ function Controller() {
         zIndex: "2",
         text: "Bone Health",
         mod: "Bone Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId142"
     });
@@ -132,6 +152,12 @@ function Controller() {
     $.__views.__alloyId142 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId180"
+    });
+    $.__views.__alloyId179.add($.__views.__alloyId180);
+    $.__views.__alloyId181 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -139,6 +165,7 @@ function Controller() {
         right: "1dp",
         bottom: "2dp",
         image: "/images/bone-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId143"
     });
@@ -157,10 +184,17 @@ function Controller() {
     $.__views.__alloyId143 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId181"
+    });
+    $.__views.__alloyId179.add($.__views.__alloyId181);
+    $.__views.__alloyId182 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Women Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId144"
     });
@@ -184,6 +218,13 @@ function Controller() {
     $.__views.__alloyId144 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId182"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId182);
+    navWindow ? $.__views.__alloyId182.addEventListener("click", navWindow) : __defers["$.__views.__alloyId182!click!navWindow"] = true;
+    $.__views.__alloyId183 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -193,6 +234,7 @@ function Controller() {
         zIndex: "2",
         text: "Women Health",
         mod: "Women Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId145"
     });
@@ -211,6 +253,12 @@ function Controller() {
     $.__views.__alloyId145 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId183"
+    });
+    $.__views.__alloyId182.add($.__views.__alloyId183);
+    $.__views.__alloyId184 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -218,6 +266,7 @@ function Controller() {
         left: "1dp",
         bottom: "2dp",
         image: "/images/women-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId146"
     });
@@ -236,10 +285,17 @@ function Controller() {
     $.__views.__alloyId146 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId184"
+    });
+    $.__views.__alloyId182.add($.__views.__alloyId184);
+    $.__views.__alloyId185 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId147"
     });
@@ -263,6 +319,13 @@ function Controller() {
     $.__views.__alloyId147 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId185"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId185);
+    navWindow ? $.__views.__alloyId185.addEventListener("click", navWindow) : __defers["$.__views.__alloyId185!click!navWindow"] = true;
+    $.__views.__alloyId186 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -272,6 +335,7 @@ function Controller() {
         zIndex: "2",
         text: "Man Health",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId148"
     });
@@ -290,6 +354,12 @@ function Controller() {
     $.__views.__alloyId148 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId186"
+    });
+    $.__views.__alloyId185.add($.__views.__alloyId186);
+    $.__views.__alloyId187 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -297,6 +367,7 @@ function Controller() {
         right: "1dp",
         bottom: "2dp",
         image: "/images/men-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId149"
     });
@@ -315,10 +386,17 @@ function Controller() {
     $.__views.__alloyId149 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId187"
+    });
+    $.__views.__alloyId185.add($.__views.__alloyId187);
+    $.__views.__alloyId188 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId150"
     });
@@ -342,6 +420,13 @@ function Controller() {
     $.__views.__alloyId150 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId188"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId188);
+    navWindow ? $.__views.__alloyId188.addEventListener("click", navWindow) : __defers["$.__views.__alloyId188!click!navWindow"] = true;
+    $.__views.__alloyId189 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -351,6 +436,7 @@ function Controller() {
         zIndex: "2",
         text: "Children Health",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId151"
     });
@@ -369,6 +455,12 @@ function Controller() {
     $.__views.__alloyId151 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId189"
+    });
+    $.__views.__alloyId188.add($.__views.__alloyId189);
+    $.__views.__alloyId190 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -376,6 +468,7 @@ function Controller() {
         left: "1dp",
         bottom: "2dp",
         image: "/images/children-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId152"
     });
@@ -394,10 +487,17 @@ function Controller() {
     $.__views.__alloyId152 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId190"
+    });
+    $.__views.__alloyId188.add($.__views.__alloyId190);
+    $.__views.__alloyId191 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId153"
     });
@@ -421,6 +521,13 @@ function Controller() {
     $.__views.__alloyId153 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId191"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId191);
+    navWindow ? $.__views.__alloyId191.addEventListener("click", navWindow) : __defers["$.__views.__alloyId191!click!navWindow"] = true;
+    $.__views.__alloyId192 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -430,6 +537,7 @@ function Controller() {
         zIndex: "2",
         text: "Man Health",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId154"
     });
@@ -448,6 +556,12 @@ function Controller() {
     $.__views.__alloyId154 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId192"
+    });
+    $.__views.__alloyId191.add($.__views.__alloyId192);
+    $.__views.__alloyId193 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -455,6 +569,7 @@ function Controller() {
         right: "1dp",
         bottom: "2dp",
         image: "/images/men-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId155"
     });
@@ -473,10 +588,17 @@ function Controller() {
     $.__views.__alloyId155 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId193"
+    });
+    $.__views.__alloyId191.add($.__views.__alloyId193);
+    $.__views.__alloyId194 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId156"
     });
@@ -500,6 +622,13 @@ function Controller() {
     $.__views.__alloyId156 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId194"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId194);
+    navWindow ? $.__views.__alloyId194.addEventListener("click", navWindow) : __defers["$.__views.__alloyId194!click!navWindow"] = true;
+    $.__views.__alloyId195 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -509,6 +638,7 @@ function Controller() {
         zIndex: "2",
         text: "Children Health",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId157"
     });
@@ -527,6 +657,12 @@ function Controller() {
     $.__views.__alloyId157 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId195"
+    });
+    $.__views.__alloyId194.add($.__views.__alloyId195);
+    $.__views.__alloyId196 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -534,6 +670,7 @@ function Controller() {
         left: "1dp",
         bottom: "2dp",
         image: "/images/children-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId158"
     });
@@ -552,10 +689,17 @@ function Controller() {
     $.__views.__alloyId158 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId196"
+    });
+    $.__views.__alloyId194.add($.__views.__alloyId196);
+    $.__views.__alloyId197 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId159"
     });
@@ -579,6 +723,13 @@ function Controller() {
     $.__views.__alloyId159 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId197"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId197);
+    navWindow ? $.__views.__alloyId197.addEventListener("click", navWindow) : __defers["$.__views.__alloyId197!click!navWindow"] = true;
+    $.__views.__alloyId198 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -588,6 +739,7 @@ function Controller() {
         zIndex: "2",
         text: "Man Health",
         mod: "Man Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId160"
     });
@@ -606,6 +758,12 @@ function Controller() {
     $.__views.__alloyId160 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId198"
+    });
+    $.__views.__alloyId197.add($.__views.__alloyId198);
+    $.__views.__alloyId199 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -613,6 +771,7 @@ function Controller() {
         right: "1dp",
         bottom: "2dp",
         image: "/images/men-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId161"
     });
@@ -631,10 +790,17 @@ function Controller() {
     $.__views.__alloyId161 = Ti.UI.createView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId199"
+    });
+    $.__views.__alloyId197.add($.__views.__alloyId199);
+    $.__views.__alloyId200 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Titanium.UI.SIZE,
         width: "49.5%",
         backgroundColor: "#ffffff",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId162"
     });
@@ -658,6 +824,13 @@ function Controller() {
     $.__views.__alloyId162 = Ti.UI.createLabel({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId200"
+    });
+    $.__views.__alloyId178.add($.__views.__alloyId200);
+    navWindow ? $.__views.__alloyId200.addEventListener("click", navWindow) : __defers["$.__views.__alloyId200!click!navWindow"] = true;
+    $.__views.__alloyId201 = Ti.UI.createLabel({
+>>>>>>> origin/master
         top: "5dp",
         left: "5dp",
         color: "#ffffff",
@@ -667,6 +840,7 @@ function Controller() {
         zIndex: "2",
         text: "Children Health",
         mod: "Children Health",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId163"
     });
@@ -685,6 +859,12 @@ function Controller() {
     $.__views.__alloyId163 = Ti.UI.createImageView({
 >>>>>>> FETCH_HEAD
 >>>>>>> origin/master
+=======
+        id: "__alloyId201"
+    });
+    $.__views.__alloyId200.add($.__views.__alloyId201);
+    $.__views.__alloyId202 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: "auto",
         zIndex: "1",
@@ -692,6 +872,7 @@ function Controller() {
         left: "1dp",
         bottom: "2dp",
         image: "/images/children-health-category.png",
+<<<<<<< HEAD
 <<<<<<< HEAD
         id: "__alloyId164"
 =======
@@ -737,6 +918,22 @@ function Controller() {
     __defers["$.__views.__alloyId158!click!navWindow"] && $.__views.__alloyId158.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId161!click!navWindow"] && $.__views.__alloyId161.addEventListener("click", navWindow);
 >>>>>>> FETCH_HEAD
+>>>>>>> origin/master
+=======
+        id: "__alloyId202"
+    });
+    $.__views.__alloyId200.add($.__views.__alloyId202);
+    exports.destroy = function() {};
+    _.extend($, $.__views);
+    arguments[0] || {};
+    __defers["$.__views.__alloyId179!click!navWindow"] && $.__views.__alloyId179.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId182!click!navWindow"] && $.__views.__alloyId182.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId185!click!navWindow"] && $.__views.__alloyId185.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId188!click!navWindow"] && $.__views.__alloyId188.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId191!click!navWindow"] && $.__views.__alloyId191.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId194!click!navWindow"] && $.__views.__alloyId194.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId197!click!navWindow"] && $.__views.__alloyId197.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId200!click!navWindow"] && $.__views.__alloyId200.addEventListener("click", navWindow);
 >>>>>>> origin/master
     _.extend($, exports);
 }
