@@ -39,7 +39,7 @@
             animationDuration: 1200,
             colorSet: "colorSet1",
             culture: "en",
-            creditText: "CanvasJS.com",
+            creditText: "",
             interactivityEnabled: true,
             exportEnabled: false,
             exportFileName: "Chart"
@@ -51,9 +51,9 @@
             verticalAlign: "top",//top, center, bottom
             horizontalAlign: "center",//left, center, right
             fontSize: 20,//in pixels
-            fontFamily: "Calibri",
+            fontFamily: "Arial",
             fontWeight: "normal", //normal, bold, bolder, lighter,
-            fontColor: "black",
+            fontColor: "#CE1D1C",
             fontStyle: "normal", // normal, italic, oblique
 
             borderThickness: 0,
@@ -367,9 +367,9 @@
 					    colorSet: "colorSet1"
 					},
 		        Title: {
-		            fontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+		            fontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
 		            fontSize: 33,
-		            fontColor: "#3A3A3A",
+		            fontColor: "#787878",
 		            fontWeight: "bold",
 		            verticalAlign: "top",
 		            margin: 10
@@ -384,28 +384,28 @@
 		            //titleFontWeight: "bold",
 
 		            //labelFontFamily: "Times New Roman, Times, serif",
-		            labelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+		            labelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
 		            //labelFontFamily: "Helvetica Neue, Helvetica",
 		            labelFontSize: 18,
-		            labelFontColor: "grey",
+		            labelFontColor: "#CE1D1C",
 		            //labelFontWeight: "bold",
 		            tickColor: "#BBBBBB",
-		            tickThickness: 2,
-		            gridThickness: 2,
+		            tickThickness: 1,
+		            gridThickness: 1,
 		            gridColor: "#BBBBBB",
-		            lineThickness: 2,
-		            lineColor: "#BBBBBB"
+		            lineThickness: 1,
+		            lineColor: "transparent"
 		        },
 		        Legend: {
 		            verticalAlign: "bottom",
 		            horizontalAlign: "center",
-		            fontFamily: isCanvasSupported ? "monospace, sans-serif,arial black" : "calibri"
+		            fontFamily: isCanvasSupported ? "arial,monospace, sans-serif,arial black" : "arial"
 		        },
 		        DataSeries: {
 		            //bevelEnabled: true,
 		            indexLabelFontColor: "grey",
 		            //indexLabelFontFamily: "Trebuchet MS, monospace, Courier New, Courier",
-		            indexLabelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+		            indexLabelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
 		            //indexLabelFontWeight: "bold",
 		            indexLabelFontSize: 18,
 		            //indexLabelLineColor: "lightgrey",
@@ -473,7 +473,7 @@
 		            //fontFamily: "impact, charcoal, arial black, sans-serif", fontSize: 30,//fontColor: "rgb(58,58,58)",
 		            //fontFamily: "arial black", fontSize: 30,//fontColor: "rgb(58,58,58)",
 		            //fontFamily: "arial black",
-		            fontFamily: isCanvasSupported ? "Candara, Optima, Trebuchet MS, Helvetica Neue, Helvetica, Trebuchet MS, serif" : "calibri",
+		            fontFamily: isCanvasSupported ? "Arial,Candara, Optima, Trebuchet MS, Helvetica Neue, Helvetica, Trebuchet MS, serif" : "arial",
 		            fontSize: 32,
 		            //fontFamily: "Palatino Linotype, Book Antiqua, Palatino, serif", fontSize: 30,
 		            //fontFamily: "Lucida Sans Unicode, Lucida Grande, Trebuchet MS, sans-serif", fontSize: 30,
@@ -487,11 +487,11 @@
 		            titleFontSize: 22,
 		            titleFontColor: "#ff0000",
 		            //titleFontFamily: "arial black",
-		            titleFontFamily: isCanvasSupported ? "Verdana, Geneva, Calibri, sans-serif" : "calibri",
+		            titleFontFamily: isCanvasSupported ? "Arial,Verdana, Geneva, Calibri, sans-serif" : "arial",
 		            //titleFontWeight: "bold",
 
 		            //labelFontFamily: "Times New Roman, Times, serif",
-		            labelFontFamily: isCanvasSupported ? "Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "calibri",
+		            labelFontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
 		            //labelFontFamily: "Helvetica Neue, Helvetica",
 		            labelFontSize: 18,
 		            labelFontColor: "grey",
@@ -506,13 +506,13 @@
 		        Legend: {
 		            verticalAlign: "bottom",
 		            horizontalAlign: "center",
-		            fontFamily: isCanvasSupported ? "monospace, sans-serif,arial black" : "calibri"
+		            fontFamily: isCanvasSupported ? "Arial,monospace, sans-serif,arial black" : "arial"
 		        },
 		        DataSeries: {
 		            bevelEnabled: true,
 		            indexLabelFontColor: "grey",
 		            //indexLabelFontFamily: "Trebuchet MS, monospace, Courier New, Courier",
-		            indexLabelFontFamily: isCanvasSupported ? "Candara, Optima, Calibri, Verdana, Geneva, sans-serif" : "calibri",
+		            indexLabelFontFamily: isCanvasSupported ? "Arial,Candara, Optima, Calibri, Verdana, Geneva, sans-serif" : "arial",
 		            //indexLabelFontWeight: "bold",
 		            indexLabelFontSize: 18,
 		            indexLabelLineColor: "lightgrey",
@@ -11945,7 +11945,7 @@
             toolTipHtml += "line-height: 20px;";
             toolTipHtml += "margin: 0px 0px 0px 0px;";
             toolTipHtml += "padding: 5px;";
-            toolTipHtml += "font-family: Calibri, Arial, Georgia, serif;";
+            toolTipHtml += "font-family:  Arial,Calibri, Georgia, serif;";
             toolTipHtml += "font-weight: 400;";
             toolTipHtml += "font-style: " + (isCanvasSupported ? "italic;" : "normal;");
             toolTipHtml += "font-size: 14px;";

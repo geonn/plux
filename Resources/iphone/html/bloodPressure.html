@@ -1,11 +1,36 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" />
+	<script type="text/javascript" src="js/canvasjs.js"></script>
+ <script type="text/javascript" src="js/jquery.min.js"></script>
+ 	<style>
+ 		p {
+ 			font-size:18px;
+ 			font-family: "arial";
+ 			font-weight:bold; 
+ 			text-align:center;
+ 			color: #787878;
+ 		}
+ 	</style>
+	<script>
+            
+            Ti.App.addEventListener("app:bloodPressureInfo",function(e) {
+              if(e.message != ""){
+              	loadChart(e.message);
+              }else{
+              	loadNoData();
+              }
+               
+            });
+        </script>
+        
 <script type="text/javascript">
-window.onload = function () {
-	
+ 
+function loadChart(data){
+	//Ti.API.info(data);
 	var chart = new CanvasJS.Chart("chartContainer", {
-		theme: "theme2",//theme1
+		theme: "theme1",//theme1
 		title:{
 			text: "Blood Pressure"              
 		},
@@ -14,24 +39,22 @@ window.onload = function () {
 		data: [              
 		{
 			// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
-			type: "splineArea",
-			dataPoints: [
-				{ label: "apple",  y: 10  },
-				{ label: "orange", y: 15  },
-				{ label: "banana", y: 25  },
-				{ label: "mango",  y: 30  },
-				{ label: "grape",  y: 28  }
-			]
+			type: "spline",
+			dataPoints: data
 		}
 		]
 	});
 	chart.render();
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
-};
+}
+
+function loadNoData(){
+	$("#chartContainer").append('<p>Blood Pressure</p>');
+	$("#chartContainer").append('<img src="images/nodata.png" style="width:100%;">'); 
+} 
 </script>
- <script type="text/javascript" src="js/canvasjs.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ 
 </head>
 <body>
 <div id="chartContainer" style="height: 200px; width: 100%;"></div>

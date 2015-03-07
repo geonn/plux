@@ -35,13 +35,31 @@ function Controller() {
         id: "main"
     });
     $.__views.m_workout.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId205 = Ti.UI.createImageView({
+=======
+<<<<<<< HEAD
+    $.__views.__alloyId232 = Ti.UI.createImageView({
+        width: "100%",
+        height: "100%",
+        image: "/dummy/dummy-home.jpg",
+        id: "__alloyId232"
+    });
+    $.__views.main.add($.__views.__alloyId232);
+=======
+    $.__views.__alloyId191 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
         id: "__alloyId205"
     });
+<<<<<<< HEAD
     $.__views.main.add($.__views.__alloyId205);
+=======
+    $.__views.main.add($.__views.__alloyId191);
+>>>>>>> FETCH_HEAD
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

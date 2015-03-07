@@ -4,13 +4,23 @@
 	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" />
 	<script type="text/javascript" src="js/canvasjs.js"></script>
  <script type="text/javascript" src="js/jquery.min.js"></script>
+ <style>
+ 		p {
+ 			font-size:18px;
+ 			font-family: "arial";
+ 			font-weight:bold; 
+ 			text-align:center;
+ 			color: #787878;
+ 		}
+ 	</style>
 	<script>
-            // Ti.App.addEventListener("app:fromTitanium", function(e) {
-                // alert(e.message);
-            // });
+       
             Ti.App.addEventListener("app:bmiInfo",function(e) {
-              
-               loadChart(e.message);
+              if(e.message != ""){
+              	loadChart(e.message);
+              }else{
+              	loadNoData();
+              }
             });
         </script>
         
@@ -28,7 +38,7 @@ function loadChart(data){
 		data: [              
 		{
 			// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
-			type: "splineArea",
+			type: "spline",
 			dataPoints: data
 		}
 		]
@@ -37,10 +47,10 @@ function loadChart(data){
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
 }
-window.onload = function () {
-	loadChart();
-	
-};
+function loadNoData(){
+	$("#chartContainer").append('<p>BMI</p>');
+	$("#chartContainer").append('<img src="images/nodata.png" style="width:100%;">'); 
+}
 </script>
  
 </head>
