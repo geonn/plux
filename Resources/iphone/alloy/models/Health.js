@@ -26,7 +26,7 @@ exports.definition = {
             getHealthListByType: function(type) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' ORDER BY date,time ASC LIMIT 6";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' GROUP BY date ORDER BY date,time ASC LIMIT 6";
                 var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;

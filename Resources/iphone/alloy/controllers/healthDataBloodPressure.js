@@ -42,7 +42,7 @@ function Controller() {
         var field1 = $.field1.value;
         var field2 = $.field2.value;
         var s_date = date.split("/");
-        s_date[2] + "-" + s_date[1] + "-" + s_date[0];
+        var newDate = s_date[2] + "-" + s_date[1] + "-" + s_date[0];
         var amount = (2 * parseInt(field2) + parseInt(field1)) / 3;
         var s_time = time.split(" ");
         var newTime = s_time[0];
@@ -50,7 +50,16 @@ function Controller() {
             hm = newTime.split(":");
             newTime = parseInt(hm[0]) + 12 + ":" + hm[1];
         }
-        alert(amount);
+        lib_health.addHealthData({
+            date: newDate,
+            time: newTime,
+            field1: field1,
+            field2: field2,
+            amount: amount.toFixed(2),
+            type: formType
+        });
+        hd.populateData();
+        nav.closeWindow($.healthDBPWin);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "healthDataBloodPressure";
@@ -68,14 +77,14 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.healthDataBloodPressure = Ti.UI.createWindow({
+    $.__views.healthDBPWin = Ti.UI.createWindow({
         fullscreen: true,
         title: "Add Data",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "healthDataBloodPressure"
+        id: "healthDBPWin",
+        navTintColor: "#CE1D1C"
     });
-    $.__views.healthDataBloodPressure && $.addTopLevelView($.__views.healthDataBloodPressure);
+    $.__views.healthDBPWin && $.addTopLevelView($.__views.healthDBPWin);
     $.__views.__alloyId5 = Ti.UI.createView({
         id: "__alloyId5"
     });
@@ -88,14 +97,14 @@ function Controller() {
     });
     $.__views.__alloyId5.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-    $.__views.healthDataBloodPressure.rightNavButton = $.__views.__alloyId5;
+    $.__views.healthDBPWin.rightNavButton = $.__views.__alloyId5;
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
-    $.__views.healthDataBloodPressure.add($.__views.main);
+    $.__views.healthDBPWin.add($.__views.main);
     $.__views.__alloyId6 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
@@ -296,7 +305,8 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    Alloy.createCollection("health");
+    var formType = 2;
+    var lib_health = Alloy.createCollection("health");
     var hd = require("healthData");
     hd.construct($);
     hd.todayDate();

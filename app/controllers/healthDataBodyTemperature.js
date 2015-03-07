@@ -61,8 +61,10 @@ function doSaveRecords(){
 		date : newDate,
 		time : newTime,
 		field1 : field1, 
-		amount : amount.toFixed(2),
+		amount : field1,
 		type : formType
 	});  
 	// nav.navigationWindow("m_myHealth" );
+	hd.populateData();
+	nav.closeWindow($.healthDBPWin);
 }

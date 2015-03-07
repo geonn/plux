@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Add Data" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="Add Data" backButtonTitle="" id="healthBmiWin" class="container" navTintColor="#CE1D1C" platform="ios">
 		<RightNavButton>
 	        <View>
 	         	<Button id="saveButton" onTouchend="doSaveRecords" color="#ADADAD" title="Save" right="0" touchEnabled="false"  />

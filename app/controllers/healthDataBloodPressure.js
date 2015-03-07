@@ -71,14 +71,15 @@ function doSaveRecords(){
 		hm = newTime.split(':');  
 		newTime = (parseInt(hm[0]) + 12) + ":"+hm[1];
 	} 
-alert(amount);
-	// lib_health.addHealthData({
-		// date : newDate,
-		// time : newTime,
-		// field1 : field1,
-		// field2 : field2,
-		// amount : amount.toFixed(2),
-		// type : formType
-	// });  
-	// nav.navigationWindow("m_myHealth" );
+ 
+	lib_health.addHealthData({
+		date : newDate,
+		time : newTime,
+		field1 : field1,
+		field2 : field2,
+		amount : amount.toFixed(2),
+		type : formType
+	});  
+	hd.populateData(); 
+	nav.closeWindow($.healthDBPWin); 
 }

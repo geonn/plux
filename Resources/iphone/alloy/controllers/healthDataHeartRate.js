@@ -51,9 +51,11 @@ function Controller() {
             date: newDate,
             time: newTime,
             field1: field1,
-            amount: amount.toFixed(2),
+            amount: field1,
             type: formType
         });
+        hd.populateData();
+        nav.closeWindow($.healthDHWin);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "healthDataHeartRate";
@@ -71,14 +73,14 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.healthDataHeartRate = Ti.UI.createWindow({
+    $.__views.healthDHWin = Ti.UI.createWindow({
         fullscreen: true,
         title: "Add Data",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "healthDataHeartRate"
+        id: "healthDHWin",
+        navTintColor: "#CE1D1C"
     });
-    $.__views.healthDataHeartRate && $.addTopLevelView($.__views.healthDataHeartRate);
+    $.__views.healthDHWin && $.addTopLevelView($.__views.healthDHWin);
     $.__views.__alloyId45 = Ti.UI.createView({
         id: "__alloyId45"
     });
@@ -91,14 +93,14 @@ function Controller() {
     });
     $.__views.__alloyId45.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-    $.__views.healthDataHeartRate.rightNavButton = $.__views.__alloyId45;
+    $.__views.healthDHWin.rightNavButton = $.__views.__alloyId45;
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
-    $.__views.healthDataHeartRate.add($.__views.main);
+    $.__views.healthDHWin.add($.__views.main);
     $.__views.__alloyId46 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
