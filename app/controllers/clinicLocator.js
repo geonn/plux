@@ -1,7 +1,8 @@
 var args = arguments[0] || {};
-
+console.log(args.id);
 var library = Alloy.createCollection('panelList');
 var details = library.getPanelList();
+var clinic = library.getPanelListById(args.id);
 var showCurLoc = false;
 
 $.activityIndicator.show();
@@ -13,12 +14,16 @@ var saveCurLoc = function(e) {
     } else {
     	//console.log(e);
     	showCurLoc = true;
-    	Ti.App.Properties.setString('latitude', e.coords.latitude);
-    	Ti.App.Properties.setString('longitude', e.coords.longitude);
+    	console.log(clinic.latitude);
+    	console.log(clinic.longitude);
+    	Ti.App.Properties.setString('latitude', clinic.latitude);
+    	Ti.App.Properties.setString('longitude', clinic.longitude);
+    	//Ti.App.Properties.setString('latitude', e.coords.latitude);
+    	//Ti.App.Properties.setString('longitude', e.coords.longitude);
        //console.log(Ti.App.Properties.getString('latitude') + "=="+ Ti.App.Properties.getString('longitude'));
     }
 };
-    
+
 if (Ti.Geolocation.locationServicesEnabled) {
 	
     Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
@@ -28,24 +33,12 @@ if (Ti.Geolocation.locationServicesEnabled) {
     alert('Please enable location services');
 }
 
-// API calls to the map module need to use the Alloy.Globals.Map reference
-if(showCurLoc == true){
-	 var currenLocation = Alloy.Globals.Map.createAnnotation({
-	    latitude:Ti.App.Properties.getString('latitude'),
-	    longitude:Ti.App.Properties.getString('longitude'),
-	    title:"Current Location",
-	    subtitle:"",
-	    pincolor:Alloy.Globals.Map.ANNOTATION_GREEN,
-	    myid:99 // Custom property to uniquely identify this annotation.
-	}); 
-	$.mapview.addAnnotation(currenLocation);    
-}
 		
 // API calls to the map module need to use the Alloy.Globals.Map reference
 if(showCurLoc == true){
 	 var currenLocation = Alloy.Globals.Map.createAnnotation({
-	    latitude:Ti.App.Properties.getString('latitude'),
-	    longitude:Ti.App.Properties.getString('longitude'),
+	    latitude: clinic.latitude,
+	    longitude: clinic.longitude,
 	    title:"Current Location",
 	    subtitle:"",
 	    pincolor:Alloy.Globals.Map.ANNOTATION_GREEN,
@@ -207,7 +200,7 @@ var panelListResult = function(details){
 				    pincolor:Alloy.Globals.Map.ANNOTATION_RED,
 				    myid:entry.id // Custom property to uniquely identify this annotation.
 				});
-				$.mapview.region = {latitude: entry.latitude, longitude:entry.longitude,
+				$.mapview.region = {latitude: clinic.latitude, longitude:clinic.longitude,
 				                    latitudeDelta:0.01, longitudeDelta:0.01};
 				//console.log(name[i] + " :"+latitude[i]+", "+ longitude[i]);               
 				$.mapview.addAnnotation(merchantLoc); 

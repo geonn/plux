@@ -53,6 +53,34 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
+            getPanelListById: function(id) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = " + id;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr;
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr = {
+                        id: res.fieldByName("id"),
+                        clinicName: res.fieldByName("clinicName"),
+                        add1: res.fieldByName("add1"),
+                        add2: res.fieldByName("add2"),
+                        city: res.fieldByName("city"),
+                        postcode: res.fieldByName("postcode"),
+                        state: res.fieldByName("state"),
+                        tel: res.fieldByName("tel"),
+                        latitude: res.fieldByName("latitude"),
+                        longitude: res.fieldByName("longitude")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             addPanel: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);

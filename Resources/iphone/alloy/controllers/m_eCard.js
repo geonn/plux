@@ -39,37 +39,13 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId191 = Ti.UI.createLabel({
+    $.__views.__alloyId230 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId210 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId211 = Ti.UI.createLabel({
->>>>>>> origin/master
         text: "Click here to flip",
-        id: "__alloyId211"
+        id: "__alloyId230"
     });
-<<<<<<< HEAD
-    $.__views.eCard.add($.__views.__alloyId210);
-=======
-    $.__views.__alloyId172 = Ti.UI.createLabel({
->>>>>>> origin/master
-        text: "Click here to flip",
-        id: "__alloyId191"
-    });
-<<<<<<< HEAD
-    $.__views.eCard.add($.__views.__alloyId191);
-=======
-    $.__views.eCard.add($.__views.__alloyId172);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.eCard.add($.__views.__alloyId211);
->>>>>>> origin/master
+    $.__views.eCard.add($.__views.__alloyId230);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

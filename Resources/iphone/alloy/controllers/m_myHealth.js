@@ -60,13 +60,13 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bmiView.add($.__views.bmiWebView);
-    $.__views.__alloyId221 = Ti.UI.createView({
+    $.__views.__alloyId235 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#FC7474",
         width: "100%",
-        id: "__alloyId221"
+        id: "__alloyId235"
     });
-    $.__views.graphScrollView.add($.__views.__alloyId221);
+    $.__views.graphScrollView.add($.__views.__alloyId235);
     $.__views.bloodPressureView = Ti.UI.createView({
         id: "bloodPressureView",
         height: "40%",
@@ -74,50 +74,22 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.graphScrollView.add($.__views.bloodPressureView);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId196 = Ti.UI.createWebView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId221 = Ti.UI.createWebView({
-=======
-    $.__views.__alloyId182 = Ti.UI.createWebView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId222 = Ti.UI.createWebView({
->>>>>>> origin/master
+    $.__views.__alloyId236 = Ti.UI.createWebView({
         touchEnabled: false,
         width: "100%",
         backgroundColor: "#EBEBEB",
         url: "/html/bloodPressure.html",
         disableBounce: "true",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId196"
+        id: "__alloyId236"
     });
-    $.__views.bloodPressureView.add($.__views.__alloyId196);
-=======
-<<<<<<< HEAD
-        id: "__alloyId221"
-=======
-        id: "__alloyId222"
->>>>>>> origin/master
-    });
-    $.__views.bloodPressureView.add($.__views.__alloyId222);
-    $.__views.__alloyId223 = Ti.UI.createView({
+    $.__views.bloodPressureView.add($.__views.__alloyId236);
+    $.__views.__alloyId237 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#FC7474",
         width: "100%",
-        id: "__alloyId223"
+        id: "__alloyId237"
     });
-<<<<<<< HEAD
-    $.__views.bloodPressureView.add($.__views.__alloyId182);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.graphScrollView.add($.__views.__alloyId223);
->>>>>>> origin/master
+    $.__views.graphScrollView.add($.__views.__alloyId237);
     $.__views.heartRateView = Ti.UI.createView({
         id: "heartRateView",
         height: "40%",
@@ -125,50 +97,22 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.graphScrollView.add($.__views.heartRateView);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId197 = Ti.UI.createWebView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId223 = Ti.UI.createWebView({
-=======
-    $.__views.__alloyId183 = Ti.UI.createWebView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId224 = Ti.UI.createWebView({
->>>>>>> origin/master
+    $.__views.__alloyId238 = Ti.UI.createWebView({
         touchEnabled: false,
         width: "100%",
         backgroundColor: "#EBEBEB",
         url: "/html/heartRate.html",
         disableBounce: "true",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId197"
+        id: "__alloyId238"
     });
-    $.__views.heartRateView.add($.__views.__alloyId197);
-=======
-<<<<<<< HEAD
-        id: "__alloyId223"
-=======
-        id: "__alloyId224"
->>>>>>> origin/master
-    });
-    $.__views.heartRateView.add($.__views.__alloyId224);
-    $.__views.__alloyId225 = Ti.UI.createView({
+    $.__views.heartRateView.add($.__views.__alloyId238);
+    $.__views.__alloyId239 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#FC7474",
         width: "100%",
-        id: "__alloyId225"
+        id: "__alloyId239"
     });
-<<<<<<< HEAD
-    $.__views.heartRateView.add($.__views.__alloyId183);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.graphScrollView.add($.__views.__alloyId225);
->>>>>>> origin/master
+    $.__views.graphScrollView.add($.__views.__alloyId239);
     $.__views.bodyTemperatureView = Ti.UI.createView({
         id: "bodyTemperatureView",
         height: "40%",
@@ -176,45 +120,15 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.graphScrollView.add($.__views.bodyTemperatureView);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $.__views.__alloyId198 = Ti.UI.createWebView({
-=======
-<<<<<<< HEAD
-    $.__views.__alloyId225 = Ti.UI.createWebView({
-=======
-    $.__views.__alloyId184 = Ti.UI.createWebView({
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-    $.__views.__alloyId226 = Ti.UI.createWebView({
->>>>>>> origin/master
+    $.__views.__alloyId240 = Ti.UI.createWebView({
         touchEnabled: false,
         width: "100%",
         backgroundColor: "#EBEBEB",
         url: "/html/bodyTemperature.html",
         disableBounce: "true",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        id: "__alloyId198"
+        id: "__alloyId240"
     });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId198);
-=======
-<<<<<<< HEAD
-        id: "__alloyId225"
-    });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId225);
-=======
-        id: "__alloyId184"
-    });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId184);
->>>>>>> FETCH_HEAD
->>>>>>> origin/master
-=======
-        id: "__alloyId226"
-    });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId226);
->>>>>>> origin/master
+    $.__views.bodyTemperatureView.add($.__views.__alloyId240);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -81,16 +81,20 @@ function Controller() {
     report ? $.__views.mapview.addEventListener("click", report) : __defers["$.__views.mapview!click!report"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
+    var args = arguments[0] || {};
+    console.log(args.id);
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelList();
+    var clinic = library.getPanelListById(args.id);
     var showCurLoc = false;
     $.activityIndicator.show();
     var saveCurLoc = function(e) {
         if (e.error) ; else {
             showCurLoc = true;
-            Ti.App.Properties.setString("latitude", e.coords.latitude);
-            Ti.App.Properties.setString("longitude", e.coords.longitude);
+            console.log(clinic.latitude);
+            console.log(clinic.longitude);
+            Ti.App.Properties.setString("latitude", clinic.latitude);
+            Ti.App.Properties.setString("longitude", clinic.longitude);
         }
     };
     if (Ti.Geolocation.locationServicesEnabled) {
@@ -99,19 +103,8 @@ function Controller() {
     } else alert("Please enable location services");
     if (true == showCurLoc) {
         var currenLocation = Alloy.Globals.Map.createAnnotation({
-            latitude: Ti.App.Properties.getString("latitude"),
-            longitude: Ti.App.Properties.getString("longitude"),
-            title: "Current Location",
-            subtitle: "",
-            pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
-            myid: 99
-        });
-        $.mapview.addAnnotation(currenLocation);
-    }
-    if (true == showCurLoc) {
-        var currenLocation = Alloy.Globals.Map.createAnnotation({
-            latitude: Ti.App.Properties.getString("latitude"),
-            longitude: Ti.App.Properties.getString("longitude"),
+            latitude: clinic.latitude,
+            longitude: clinic.longitude,
             title: "Current Location",
             subtitle: "",
             pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
@@ -153,8 +146,8 @@ function Controller() {
                 myid: entry.id
             });
             $.mapview.region = {
-                latitude: entry.latitude,
-                longitude: entry.longitude,
+                latitude: clinic.latitude,
+                longitude: clinic.longitude,
                 latitudeDelta: .01,
                 longitudeDelta: .01
             };
