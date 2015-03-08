@@ -102,11 +102,7 @@ function Controller() {
     $.__views.__alloyId154.add($.__views.__alloyId157);
     navWindow ? $.__views.__alloyId157.addEventListener("click", navWindow) : __defers["$.__views.__alloyId157!click!navWindow"] = true;
     $.__views.__alloyId158 = Ti.UI.createImageView({
-<<<<<<< HEAD
         mod: "clinicListing",
-=======
-        mod: "clinicLocator",
->>>>>>> origin/master
         left: "15",
         top: "15",
         width: "139",

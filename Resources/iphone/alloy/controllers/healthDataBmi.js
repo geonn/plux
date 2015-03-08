@@ -84,11 +84,7 @@ function Controller() {
         id: "healthBmiWin",
         navTintColor: "#CE1D1C"
     });
-<<<<<<< HEAD
-    $.__views.healthDataBmi && $.addTopLevelView($.__views.healthDataBmi);
-=======
     $.__views.healthBmiWin && $.addTopLevelView($.__views.healthBmiWin);
->>>>>>> origin/master
     $.__views.__alloyId19 = Ti.UI.createView({
         id: "__alloyId19"
     });
@@ -101,22 +97,14 @@ function Controller() {
     });
     $.__views.__alloyId19.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-<<<<<<< HEAD
-    $.__views.healthDataBmi.rightNavButton = $.__views.__alloyId19;
-=======
     $.__views.healthBmiWin.rightNavButton = $.__views.__alloyId19;
->>>>>>> origin/master
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
-<<<<<<< HEAD
-    $.__views.healthDataBmi.add($.__views.main);
-=======
     $.__views.healthBmiWin.add($.__views.main);
->>>>>>> origin/master
     $.__views.__alloyId20 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
