@@ -33,7 +33,7 @@ exports.populateData = function(e){
 	for(var i =1; i <= 4; i++){
 	 	var info_details = lib_health.getHealthListByType(i); 
 		var info = [];
-		
+		 
 		info_details.forEach(function(entry) {
 			var rec = {};
 			var convert = (entry.date).split('-'); 

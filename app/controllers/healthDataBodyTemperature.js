@@ -48,7 +48,7 @@ function doSaveRecords(){
 	var s_date  = date.split('/');
 	var newDate = s_date[2] + "-"+s_date[1]+"-"+s_date[0];
 	
-	/**BMI formula**/
+	/**Body Temperature formula**/
 	var amount = field1;
 	var s_time = time.split(' ');
 	var newTime = s_time[0] ;
@@ -61,8 +61,10 @@ function doSaveRecords(){
 		date : newDate,
 		time : newTime,
 		field1 : field1, 
-		amount : amount.toFixed(2),
+		amount : field1,
 		type : formType
 	});  
 	// nav.navigationWindow("m_myHealth" );
+	hd.populateData();
+	nav.closeWindow($.healthDBPWin);
 }

@@ -63,7 +63,7 @@ function doSaveRecords(){
 	var s_date  = date.split('/');
 	var newDate = s_date[2] + "-"+s_date[1]+"-"+s_date[0];
 	
-	/**BMI formula**/
+	/**Blood Pressure formula**/
 	var amount = ((2 * parseInt(field2)) + parseInt(field1)) / 3;
 	var s_time = time.split(' ');
 	var newTime = s_time[0] ;
@@ -71,14 +71,15 @@ function doSaveRecords(){
 		hm = newTime.split(':');  
 		newTime = (parseInt(hm[0]) + 12) + ":"+hm[1];
 	} 
-alert(amount);
-	// lib_health.addHealthData({
-		// date : newDate,
-		// time : newTime,
-		// field1 : field1,
-		// field2 : field2,
-		// amount : amount.toFixed(2),
-		// type : formType
-	// });  
-	// nav.navigationWindow("m_myHealth" );
+ 
+	lib_health.addHealthData({
+		date : newDate,
+		time : newTime,
+		field1 : field1,
+		field2 : field2,
+		amount : amount.toFixed(2),
+		type : formType
+	});  
+	hd.populateData(); 
+	nav.closeWindow($.healthDBPWin); 
 }
