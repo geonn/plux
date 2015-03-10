@@ -40,13 +40,13 @@ function Controller() {
         id: "main"
     });
     $.__views.clinicLocator.add($.__views.main);
-    $.__views.__alloyId2 = Ti.UI.createImageView({
+    $.__views.__alloyId4 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId2"
+        id: "__alloyId4"
     });
-    $.__views.main.add($.__views.__alloyId2);
+    $.__views.main.add($.__views.__alloyId4);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -65,15 +65,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId3 = Ti.UI.createLabel({
+    $.__views.__alloyId5 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId3"
+        id: "__alloyId5"
     });
-    $.__views.loadingBar.add($.__views.__alloyId3);
+    $.__views.loadingBar.add($.__views.__alloyId5);
     $.__views.mapview = Alloy.Globals.Map.createView({
         id: "mapview"
     });
@@ -85,33 +85,20 @@ function Controller() {
     console.log(args.id);
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelList();
-    var clinic = library.getPanelListById(args.id);
+    if (args.id) var clinic = library.getPanelListById(args.id);
     var showCurLoc = false;
     $.activityIndicator.show();
     var saveCurLoc = function(e) {
         if (e.error) ; else {
             showCurLoc = true;
-            console.log(clinic.latitude);
-            console.log(clinic.longitude);
-            Ti.App.Properties.setString("latitude", clinic.latitude);
-            Ti.App.Properties.setString("longitude", clinic.longitude);
+            Ti.App.Properties.setString("latitude", e.coords.latitude);
+            Ti.App.Properties.setString("longitude", e.coords.longitude);
         }
     };
     if (Ti.Geolocation.locationServicesEnabled) {
         Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
         Ti.Geolocation.addEventListener("location", saveCurLoc);
     } else alert("Please enable location services");
-    if (true == showCurLoc) {
-        var currenLocation = Alloy.Globals.Map.createAnnotation({
-            latitude: clinic.latitude,
-            longitude: clinic.longitude,
-            title: "Current Location",
-            subtitle: "",
-            pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
-            myid: 99
-        });
-        $.mapview.addAnnotation(currenLocation);
-    }
     setTimeout(function() {
         panelListResult(details);
     }, 800);
@@ -145,14 +132,36 @@ function Controller() {
                 pincolor: Alloy.Globals.Map.ANNOTATION_RED,
                 myid: entry.id
             });
-            $.mapview.region = {
-                latitude: clinic.latitude,
-                longitude: clinic.longitude,
-                latitudeDelta: .01,
-                longitudeDelta: .01
-            };
             $.mapview.addAnnotation(merchantLoc);
         });
+        if (args.id) $.mapview.region = {
+            latitude: clinic.latitude,
+            longitude: clinic.longitude,
+            latitudeDelta: .01,
+            longitudeDelta: .01
+        }; else {
+            console.log(showCurLoc);
+            if (true == showCurLoc && !args.id) {
+                var lat = Ti.App.Properties.getString("latitude");
+                var lgt = Ti.App.Properties.getString("longitude");
+                {
+                    Alloy.Globals.Map.createAnnotation({
+                        latitude: lat,
+                        longitude: lgt,
+                        title: "Current Location",
+                        subtitle: "",
+                        pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
+                        myid: 99
+                    });
+                }
+                $.mapview.region = {
+                    latitude: lat,
+                    longitude: lgt,
+                    latitudeDelta: .01,
+                    longitudeDelta: .01
+                };
+            }
+        }
     };
     __defers["$.__views.mapview!click!report"] && $.__views.mapview.addEventListener("click", report);
     _.extend($, exports);

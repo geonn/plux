@@ -60,29 +60,6 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bmiView.add($.__views.bmiWebView);
-    $.__views.__alloyId235 = Ti.UI.createView({
-        height: "1",
-        backgroundColor: "#FC7474",
-        width: "100%",
-        id: "__alloyId235"
-    });
-    $.__views.graphScrollView.add($.__views.__alloyId235);
-    $.__views.bloodPressureView = Ti.UI.createView({
-        id: "bloodPressureView",
-        height: "40%",
-        width: "100%",
-        backgroundColor: "#EBEBEB"
-    });
-    $.__views.graphScrollView.add($.__views.bloodPressureView);
-    $.__views.__alloyId236 = Ti.UI.createWebView({
-        touchEnabled: false,
-        width: "100%",
-        backgroundColor: "#EBEBEB",
-        url: "/html/bloodPressure.html",
-        disableBounce: "true",
-        id: "__alloyId236"
-    });
-    $.__views.bloodPressureView.add($.__views.__alloyId236);
     $.__views.__alloyId237 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#FC7474",
@@ -90,22 +67,22 @@ function Controller() {
         id: "__alloyId237"
     });
     $.__views.graphScrollView.add($.__views.__alloyId237);
-    $.__views.heartRateView = Ti.UI.createView({
-        id: "heartRateView",
+    $.__views.bloodPressureView = Ti.UI.createView({
+        id: "bloodPressureView",
         height: "40%",
         width: "100%",
         backgroundColor: "#EBEBEB"
     });
-    $.__views.graphScrollView.add($.__views.heartRateView);
+    $.__views.graphScrollView.add($.__views.bloodPressureView);
     $.__views.__alloyId238 = Ti.UI.createWebView({
         touchEnabled: false,
         width: "100%",
         backgroundColor: "#EBEBEB",
-        url: "/html/heartRate.html",
+        url: "/html/bloodPressure.html",
         disableBounce: "true",
         id: "__alloyId238"
     });
-    $.__views.heartRateView.add($.__views.__alloyId238);
+    $.__views.bloodPressureView.add($.__views.__alloyId238);
     $.__views.__alloyId239 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#FC7474",
@@ -113,6 +90,29 @@ function Controller() {
         id: "__alloyId239"
     });
     $.__views.graphScrollView.add($.__views.__alloyId239);
+    $.__views.heartRateView = Ti.UI.createView({
+        id: "heartRateView",
+        height: "40%",
+        width: "100%",
+        backgroundColor: "#EBEBEB"
+    });
+    $.__views.graphScrollView.add($.__views.heartRateView);
+    $.__views.__alloyId240 = Ti.UI.createWebView({
+        touchEnabled: false,
+        width: "100%",
+        backgroundColor: "#EBEBEB",
+        url: "/html/heartRate.html",
+        disableBounce: "true",
+        id: "__alloyId240"
+    });
+    $.__views.heartRateView.add($.__views.__alloyId240);
+    $.__views.__alloyId241 = Ti.UI.createView({
+        height: "1",
+        backgroundColor: "#FC7474",
+        width: "100%",
+        id: "__alloyId241"
+    });
+    $.__views.graphScrollView.add($.__views.__alloyId241);
     $.__views.bodyTemperatureView = Ti.UI.createView({
         id: "bodyTemperatureView",
         height: "40%",
@@ -120,15 +120,15 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.graphScrollView.add($.__views.bodyTemperatureView);
-    $.__views.__alloyId240 = Ti.UI.createWebView({
+    $.__views.__alloyId242 = Ti.UI.createWebView({
         touchEnabled: false,
         width: "100%",
         backgroundColor: "#EBEBEB",
         url: "/html/bodyTemperature.html",
         disableBounce: "true",
-        id: "__alloyId240"
+        id: "__alloyId242"
     });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId240);
+    $.__views.bodyTemperatureView.add($.__views.__alloyId242);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

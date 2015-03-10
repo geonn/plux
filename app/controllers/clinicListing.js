@@ -4,6 +4,11 @@ var library = Alloy.createCollection('panelList');
 var details = library.getPanelList();
 listing();
 
+$.setting.addEventListener("click", function(){
+	var nav = require('navigation');
+	nav.navigationWindow("clinicLocator");
+});
+
 function listing(){
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',

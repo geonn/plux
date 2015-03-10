@@ -2,7 +2,9 @@ var args = arguments[0] || {};
 console.log(args.id);
 var library = Alloy.createCollection('panelList');
 var details = library.getPanelList();
-var clinic = library.getPanelListById(args.id);
+if(args.id){
+	var clinic = library.getPanelListById(args.id);
+}
 var showCurLoc = false;
 
 $.activityIndicator.show();
@@ -14,12 +16,11 @@ var saveCurLoc = function(e) {
     } else {
     	//console.log(e);
     	showCurLoc = true;
-    	console.log(clinic.latitude);
-    	console.log(clinic.longitude);
-    	Ti.App.Properties.setString('latitude', clinic.latitude);
-    	Ti.App.Properties.setString('longitude', clinic.longitude);
-    	//Ti.App.Properties.setString('latitude', e.coords.latitude);
-    	//Ti.App.Properties.setString('longitude', e.coords.longitude);
+    	console.log("set current loc"+e.coords);
+    	//Ti.App.Properties.setString('latitude', clinic.latitude);
+    	//Ti.App.Properties.setString('longitude', clinic.longitude);
+    	Ti.App.Properties.setString('latitude', e.coords.latitude);
+    	Ti.App.Properties.setString('longitude', e.coords.longitude);
        //console.log(Ti.App.Properties.getString('latitude') + "=="+ Ti.App.Properties.getString('longitude'));
     }
 };
@@ -33,19 +34,6 @@ if (Ti.Geolocation.locationServicesEnabled) {
     alert('Please enable location services');
 }
 
-		
-// API calls to the map module need to use the Alloy.Globals.Map reference
-if(showCurLoc == true){
-	 var currenLocation = Alloy.Globals.Map.createAnnotation({
-	    latitude: clinic.latitude,
-	    longitude: clinic.longitude,
-	    title:"Current Location",
-	    subtitle:"",
-	    pincolor:Alloy.Globals.Map.ANNOTATION_GREEN,
-	    myid:99 // Custom property to uniquely identify this annotation.
-	}); 
-	$.mapview.addAnnotation(currenLocation);    
-}
 
 setTimeout(function(){ 
 	panelListResult(details);
@@ -200,8 +188,7 @@ var panelListResult = function(details){
 				    pincolor:Alloy.Globals.Map.ANNOTATION_RED,
 				    myid:entry.id // Custom property to uniquely identify this annotation.
 				});
-				$.mapview.region = {latitude: clinic.latitude, longitude:clinic.longitude,
-				                    latitudeDelta:0.01, longitudeDelta:0.01};
+				
 				//console.log(name[i] + " :"+latitude[i]+", "+ longitude[i]);               
 				$.mapview.addAnnotation(merchantLoc); 
 				});
@@ -281,6 +268,29 @@ var panelListResult = function(details){
 	   		
 	   		TheTable.setData(data);
 			$.panelListTbl.add(TheTable);*/
+		}
+		
+		if(!args.id){
+			// API calls to the map module need to use the Alloy.Globals.Map reference
+			console.log(showCurLoc);
+			if(showCurLoc == true && !args.id){
+				var lat = Ti.App.Properties.getString('latitude');
+			    var lgt = Ti.App.Properties.getString('longitude');
+				 var currenLocation = Alloy.Globals.Map.createAnnotation({
+				    latitude: lat,
+				    longitude: lgt,
+				    title:"Current Location",
+				    subtitle:"",
+				    pincolor:Alloy.Globals.Map.ANNOTATION_GREEN,
+				    myid:99 // Custom property to uniquely identify this annotation.
+				}); 
+				//$.mapview.addAnnotation(currenLocation);   
+				$.mapview.region = {latitude: lat, longitude:lgt,
+							                    latitudeDelta:0.01, longitudeDelta:0.01}; 
+			}
+		}else{
+			$.mapview.region = {latitude: clinic.latitude, longitude:clinic.longitude,
+				                    latitudeDelta:0.01, longitudeDelta:0.01};
 		}
    	
 };

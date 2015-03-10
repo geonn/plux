@@ -53,8 +53,8 @@ function Controller() {
         id: "m_myClaim"
     });
     $.__views.m_myClaim && $.addTopLevelView($.__views.m_myClaim);
-    $.__views.__alloyId232 = Ti.UI.createView({
-        id: "__alloyId232"
+    $.__views.__alloyId234 = Ti.UI.createView({
+        id: "__alloyId234"
     });
     $.__views.setting = Ti.UI.createImageView({
         right: "0",
@@ -62,8 +62,8 @@ function Controller() {
         width: "30",
         image: "/images/icon_setting.png"
     });
-    $.__views.__alloyId232.add($.__views.setting);
-    $.__views.m_myClaim.rightNavButton = $.__views.__alloyId232;
+    $.__views.__alloyId234.add($.__views.setting);
+    $.__views.m_myClaim.rightNavButton = $.__views.__alloyId234;
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "#ffffff",
         id: "main",
