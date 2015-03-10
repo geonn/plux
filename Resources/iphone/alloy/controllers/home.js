@@ -99,9 +99,15 @@ function Controller() {
         image: "/btn/btn_my_claim_detail.png",
         id: "__alloyId159"
     });
+<<<<<<< HEAD
     $.__views.__alloyId156.add($.__views.__alloyId159);
     navWindow ? $.__views.__alloyId159.addEventListener("click", navWindow) : __defers["$.__views.__alloyId159!click!navWindow"] = true;
     $.__views.__alloyId160 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId154.add($.__views.__alloyId157);
+    navWindow ? $.__views.__alloyId157.addEventListener("click", navWindow) : __defers["$.__views.__alloyId157!click!navWindow"] = true;
+    $.__views.__alloyId158 = Ti.UI.createImageView({
+>>>>>>> origin/master
         mod: "clinicListing",
         left: "15",
         top: "15",

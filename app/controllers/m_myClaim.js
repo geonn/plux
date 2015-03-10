@@ -7,10 +7,10 @@ method.API_ClaimInfo("AGIL00005", "C001");
 Ti.UI.addEventListener("data_loaded", init);
 
 function init(e){
-	var d = new Date();
+	//var d = new Date();
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-	$.date.text = d.getDate()+" "+month[d.getMonth()]+" "+d.getFullYear();
+	$.date.text = timeFormat(currentDateTime());
 
 	console.log(e.data.length);
 	var groups = {};

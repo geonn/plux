@@ -9,9 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init(e) {
-        var d = new Date();
-        var month = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-        $.date.text = d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear();
+        $.date.text = timeFormat(currentDateTime());
         console.log(e.data.length);
         var groups = {};
         for (var i = 0; i < e.data.length; i++) {
