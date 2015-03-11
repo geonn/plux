@@ -85,13 +85,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthDBPWin && $.addTopLevelView($.__views.healthDBPWin);
-<<<<<<< HEAD
     $.__views.__alloyId7 = Ti.UI.createView({
         id: "__alloyId7"
-=======
-    $.__views.__alloyId5 = Ti.UI.createView({
-        id: "__alloyId5"
->>>>>>> origin/master
     });
     $.__views.saveButton = Ti.UI.createButton({
         touchEnabled: false,
@@ -102,11 +97,7 @@ function Controller() {
     });
     $.__views.__alloyId7.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-<<<<<<< HEAD
     $.__views.healthDBPWin.rightNavButton = $.__views.__alloyId7;
-=======
-    $.__views.healthDBPWin.rightNavButton = $.__views.__alloyId5;
->>>>>>> origin/master
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "",
@@ -114,11 +105,7 @@ function Controller() {
         height: "100%"
     });
     $.__views.healthDBPWin.add($.__views.main);
-<<<<<<< HEAD
     $.__views.__alloyId8 = Ti.UI.createView({
-=======
-    $.__views.__alloyId6 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "vertical",
         height: "30",
         top: "10",

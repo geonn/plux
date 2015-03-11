@@ -1,12 +1,12 @@
 "#name" :{
-	height: Titanium.UI.SIZE,
+	height: 30,
 	width: Titanium.UI.FILL,
 }
 "Label":{
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 	font:{
-		fontSize: 12
+		fontSize: 16
 	}
 }
 ".padding":{
@@ -29,7 +29,7 @@
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 	font:{
-		fontSize: 14
+		fontSize: 16
 	}
 }
 ".container" : {

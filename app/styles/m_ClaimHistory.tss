@@ -7,7 +7,7 @@
 	width: Titanium.UI.FILL,
 	right: 80,
 	font:{
-		fontSize: 14
+		fontSize: 16
 	},
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
 },
@@ -26,14 +26,14 @@
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.FILL,
 	font:{
-		fontSize: 11
+		fontSize: 14
 	},
 	color: "#ccc",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
 },
 ".category":{
 	font:{
-		fontSize: 12
+		fontSize: 14
 	},
 	width: Titanium.UI.FILL,
 	height: Titanium.UI.SIZE,
@@ -41,7 +41,7 @@
 },
 ".mc":{
 	font:{
-		fontSize: 12
+		fontSize: 14
 	},
 	width: Titanium.UI.FILL,
 	height: Titanium.UI.SIZE,

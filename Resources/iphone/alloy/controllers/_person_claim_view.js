@@ -19,7 +19,8 @@ function Controller() {
         });
         var entidv_val_label = $.UI.create("Label", {
             text: key,
-            right: 0
+            right: 0,
+            color: "#ff0000"
         });
         view.add(entidv_label);
         view.add(entidv_val_label);
@@ -57,16 +58,18 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        height: Titanium.UI.SIZE,
+        height: 30,
         width: Titanium.UI.FILL,
         font: {
-            fontSize: 12
+            fontSize: 16
         },
         top: 10,
         left: 10,
         right: 10,
         bottom: 10,
-        id: "name"
+        id: "name",
+        wordWrap: "false",
+        ellipsize: "true"
     });
     $.__views.__alloyId0.add($.__views.name);
     exports.destroy = function() {};

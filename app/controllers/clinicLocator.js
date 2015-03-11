@@ -184,6 +184,7 @@ var panelListResult = function(details){
 				    latitude:entry.latitude,
 				    longitude:entry.longitude,
 				    title: entry.clinicname,
+				    image: '/images/marker.png',
 				    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
 				    pincolor:Alloy.Globals.Map.ANNOTATION_RED,
 				    myid:entry.id // Custom property to uniquely identify this annotation.
@@ -192,82 +193,7 @@ var panelListResult = function(details){
 				//console.log(name[i] + " :"+latitude[i]+", "+ longitude[i]);               
 				$.mapview.addAnnotation(merchantLoc); 
 				});
-				/*
-	   			var row = Titanium.UI.createTableViewRow({
-			    touchEnabled: true,
-			    height: 70,
-			    source: entry.m_id,
-			    selectedBackgroundColor: "#FFE1E1",
-				backgroundGradient: {
-			      type: 'linear',
-			      colors: ['#FEFEFB','#F7F7F6'],
-			      startPoint: {x:0,y:0},
-			      endPoint:{x:0,y:70},
-			      backFillStart:false},
-			   });
-			
-				 
-		 
-				var popUpTitle = Titanium.UI.createLabel({
-					text:entry.clinicName,
-					font:{fontSize:16},
-					source: entry.id,
-					color: "#848484",
-					width:'65%',
-					textAlign:'left',
-					top:8,
-					left:20,
-					height:25
-				});
 				
-				var address =  Titanium.UI.createLabel({
-					text:entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-					source: entry.id,
-					font:{fontSize:12,fontWeight:'bold'},
-					width:'auto',
-					color: "#848484",
-					textAlign:'left',
-					width:'85%',
-					bottom:23,
-					left:20,
-					height:12
-				});
-				
-				var tel =  Titanium.UI.createLabel({
-					text:entry.tel,
-					source: entry.id,
-					font:{fontSize:12,fontWeight:'bold'},
-					width:'auto',
-					color: "#848484",
-					textAlign:'left',
-					bottom:5,
-					left:20,
-					height:12
-				});
-				
-				/**
-				var rightForwardBtn =  Titanium.UI.createImageView({
-					image:"/images/btn-forward.png",
-					source: entry.m_id,
-					width:15,
-					right:20 
-				});		
-				**/
-				/*
-				row.addEventListener('touchend', function(e) {
-				 //	goAd(e);
-				});
-			 
-				 
-				row.add(popUpTitle);
-				row.add(address);
-			 	row.add(tel);
-			 	//row.add(rightForwardBtn);
-				data.push(row);
-	   		});
-	   		
-	   		TheTable.setData(data);
-			$.panelListTbl.add(TheTable);*/
 		}
 		
 		if(!args.id){
@@ -295,4 +221,7 @@ var panelListResult = function(details){
    	
 };
 
+$.mapview.addEventListener('click', function(evt) {
+   console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+});
  

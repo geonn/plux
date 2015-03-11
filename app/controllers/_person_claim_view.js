@@ -80,6 +80,7 @@ function create_field(key, title){
 	var entidv_val_label = $.UI.create("Label", {
 		text: key,
 		right: 0,
+		color: "#ff0000"
 	});
 	view.add(entidv_label);
 	view.add(entidv_val_label);

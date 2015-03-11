@@ -71,10 +71,10 @@ function Controller() {
     $.__views.date = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
-        color: "#ff0000",
         font: {
             fontSize: "16dp"
         },
+        color: "#ff0000",
         top: "10dp",
         id: "date"
     });

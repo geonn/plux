@@ -6,22 +6,8 @@
 	height: Titanium.UI.SIZE,
 	top: "10dp",
 },
-"#balance_view":{
-	borderColor: "#cccccc",
-	height: Titanium.UI.SIZE,
-	top: "10dp",
-	left: "10dp",
-	right: "10dp",
-},
 "#main" :{
 	backgroundColor:"#ffffff"
-},
-".claim_title":{
-	width: "200",
-	height: Titanium.UI.SIZE,
-	font:{
-		fontSize: "20dp"
-	},
 },
 ".claim_info":{
 	width: Titanium.UI.FILL,
@@ -30,17 +16,7 @@
 },
 "Label":{
 	height: Titanium.UI.SIZE,
-},
-".info_text":{
-	height: Titanium.UI.SIZE,
-	width: 200,
 	font:{
-		fontSize: "14dp"
+		fontSize: "16dp"
 	},
 },
-".info_value":{
-	width: Titanium.UI.FILL,
-	height: Titanium.UI.SIZE,
-	color: "#ff0000",
-	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-}

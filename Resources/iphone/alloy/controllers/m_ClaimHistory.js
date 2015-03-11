@@ -62,7 +62,7 @@ function Controller() {
         height: Titanium.UI.SIZE,
         right: 80,
         font: {
-            fontSize: 14
+            fontSize: 16
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "KLINIK SINGAPORE (RELAU)",
@@ -88,7 +88,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 11
+            fontSize: 14
         },
         color: "#ccc",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
@@ -100,7 +100,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 12
+            fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "Category: GP",
@@ -111,7 +111,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 12
+            fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "MC Days: 1",
@@ -143,7 +143,7 @@ function Controller() {
         height: Titanium.UI.SIZE,
         right: 80,
         font: {
-            fontSize: 14
+            fontSize: 16
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "KLINIK SINGAPORE (RELAU)",
@@ -169,7 +169,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 11
+            fontSize: 14
         },
         color: "#ccc",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
@@ -181,7 +181,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 12
+            fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "Category: GP",
@@ -192,7 +192,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: 12
+            fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         text: "MC Days: 1",

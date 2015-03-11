@@ -91,6 +91,7 @@ function Controller() {
     var saveCurLoc = function(e) {
         if (e.error) ; else {
             showCurLoc = true;
+            console.log("set current loc" + e.coords);
             Ti.App.Properties.setString("latitude", e.coords.latitude);
             Ti.App.Properties.setString("longitude", e.coords.longitude);
         }
@@ -128,6 +129,7 @@ function Controller() {
                 latitude: entry.latitude,
                 longitude: entry.longitude,
                 title: entry.clinicname,
+                image: "/images/marker.png",
                 subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                 pincolor: Alloy.Globals.Map.ANNOTATION_RED,
                 myid: entry.id
@@ -163,6 +165,9 @@ function Controller() {
             }
         }
     };
+    $.mapview.addEventListener("click", function(evt) {
+        console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+    });
     __defers["$.__views.mapview!click!report"] && $.__views.mapview.addEventListener("click", report);
     _.extend($, exports);
 }
