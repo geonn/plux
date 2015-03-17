@@ -20,3 +20,27 @@
 		fontSize: "16dp"
 	},
 },
+".title":{
+	 height:Titanium.UI.SIZE,
+	 width:Titanium.UI.FILL,
+	 textAlign:Titanium.UI.TEXT_ALIGNMENT_LEFT,
+	 top: 10,
+	 left: 10,
+	 right: 10,
+	 bottom: 10,
+	  font: { fontSize:20},
+},
+".subtitle":{
+	height:Titanium.UI.SIZE,
+	width: "60%",
+	 top: 10,
+	 left: 10,
+},
+".subvalue":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
+	 top: 10,
+	 color: "#ff0000",
+	 right: 10,
+}
