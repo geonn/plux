@@ -1,23 +1,33 @@
 var common = require("common");
 
-exports.doLogin = function(username, password) {
-    var API_DOMAIN = "https://www.asp-medical-clinic.com/aida/";
+exports.checkLogin = function() {
+    var memno = Ti.App.Properties.getString("memno");
+    console.log("should have" + memno);
+    return void 0 === typeof memno || null == memno ? false : true;
+};
+
+exports.doLogin = function(username, password, $, target) {
     var url_doLogin = API_DOMAIN + "login.aspx";
     var url = url_doLogin + "?LOGINID=" + username + "&PASSWORD=" + password;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var ret = [];
-            var dummy = '{"memno":"AGIL00005","icno":"AGIL00005","name":"KHAIRIL AZMY BIN MOHD AMINUDDIN","relation":"PRINCIPLE","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""}';
-            var res = JSON.parse(dummy);
-            console.log(res);
-            if (void 0 !== res.code) {
-                ret["status"] = "error";
-                ret["results"] = res;
-                common.createAlert(res.message);
+            console.log(this.responseText);
+            var res = JSON.parse(this.responseText);
+            res = res[0];
+            if (void 0 !== typeof res.message && null != res.message) {
+                Ti.App.Properties.setString("memno", "temp");
+                var nav = require("navigation");
+                nav.closeWindow($.login);
+                nav.navigationWindow(target);
             } else {
-                ret["status"] = "success";
-                ret["results"] = res;
-                common.createAlert(res.name);
+                console.log("yes" + res.memno);
+                Ti.App.Properties.setString("memno", res.memno);
+                Ti.App.Properties.setString("empno", res.empno);
+                Ti.App.Properties.setString("corpcode", res.corpcode);
+                var nav = require("navigation");
+                nav.closeWindow($.login);
+                console.log("success login" + target);
+                nav.navigationWindow(target);
             }
         },
         onerror: function() {

@@ -1,7 +1,8 @@
 var args = arguments[0] || {};
-
+var state = args.state || "";
 var library = Alloy.createCollection('panelList');
-var details = library.getPanelList();
+var details = library.getPanelByState(state);
+console.log(details);
 listing();
 
 $.setting.addEventListener("click", function(){
@@ -84,16 +85,15 @@ function listing(){
 					left:20,
 					height:12
 				});
-				
-				/**
+				 
 				var rightForwardBtn =  Titanium.UI.createImageView({
 					image:"/images/btn-forward.png",
 					source: entry.m_id,
 					width:15,
 					right:20 
 				});		
-				**/
-				/*
+				
+				/**
 				row.addEventListener('touchend', function(e) {
 				 //	goAd(e);
 				});
@@ -102,7 +102,7 @@ function listing(){
 				row.add(popUpTitle);
 				row.add(address);
 			 	row.add(tel);
-			 	//row.add(rightForwardBtn);
+			 	row.add(rightForwardBtn);
 				data.push(row);
 	   		});
 	   		

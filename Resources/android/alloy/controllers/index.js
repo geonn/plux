@@ -24,23 +24,23 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.root = Ti.UI.createWindow({
+        fullscreen: true,
         backgroundColor: "white",
         id: "root",
-        title: "",
-        navBarHidden: "true"
+        title: ""
     });
     $.__views.root && $.addTopLevelView($.__views.root);
     $.__views.main = Ti.UI.createView({
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId0 = Ti.UI.createImageView({
+    $.__views.__alloyId1 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId0"
+        id: "__alloyId1"
     });
-    $.__views.main.add($.__views.__alloyId0);
+    $.__views.main.add($.__views.__alloyId1);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -59,17 +59,10 @@ function Controller() {
     $.__views.main.add($.__views.link_member);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    $.root.open({
-        fullscreen: true
-    });
-    $.link_visitor.addEventListener("click", function() {
-        var win = Alloy.createController("home").getView();
-        win.open();
-    });
-    $.link_member.addEventListener("click", function() {
-        var win = Alloy.createController("login").getView();
-        win.open();
-    });
+    var win = Alloy.createController("home").getView();
+    var api = require("api");
+    api.loadPanelList();
+    win.open();
     _.extend($, exports);
 }
 

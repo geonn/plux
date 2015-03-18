@@ -1,0 +1,9 @@
+<Alloy>
+	<Window title="Clinic By State" id="panelClinicTbl" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<RightNavButton>
+	        <View>
+	         	<ImageView right='0' id="setting" width='30' image="/images/icon_setting.png" />
+	        </View>
+        </RightNavButton>
+	</Window>
+</Alloy>

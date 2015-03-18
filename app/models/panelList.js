@@ -56,6 +56,56 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
+			getPanelByState : function(state){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE state='"+state+"' ";
+                console.log(sql);
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    clinicName: res.fieldByName('clinicName'),
+					    add1: res.fieldByName('add1'),
+					    add2: res.fieldByName('add2'),
+					    city: res.fieldByName('city'),
+					    postcode: res.fieldByName('postcode'),
+					    state: res.fieldByName('state'),
+					    tel : res.fieldByName('tel'),
+					    latitude: res.fieldByName('latitude'),
+					    longitude: res.fieldByName('longitude')
+					};
+					res.next();
+					count++;
+				} 
+				console.log(listArr);
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
+			getPanelListByState : function(){
+				var collection = this;
+                var sql = "SELECT DISTINCT(state) FROM " + collection.config.adapter.collection_name + " GROUP BY state" ;
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var arr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					arr[count] = { 
+					    state: res.fieldByName('state') 
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
 			getPanelListById : function(id){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = "+id ;
@@ -92,7 +142,7 @@ exports.definition = {
 	            db.execute("BEGIN");
 				arr.forEach(function(entry) {
 					console.log(entry.latitude+" "+entry.longitude);
-		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( clinicName, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+mysql_real_escape_string(entry.clinicname)+"', '"+mysql_real_escape_string(entry.add1) +"', '"+mysql_real_escape_string(entry.add2)+"', '"+ entry.city +"', '"+entry.state+"', '"+entry.postcode+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
+		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( clinicName, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+mysql_real_escape_string(entry.clinicname)+"', '"+mysql_real_escape_string(entry.add1) +"', '"+mysql_real_escape_string(entry.add2)+"', '"+ entry.city +"', '"+entry.postcode+"', '"+entry.state+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
 					 
 				    db.execute(sql_query);
 				});

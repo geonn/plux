@@ -25,7 +25,9 @@ function Controller() {
     var exports = {};
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
+    var args = arguments[0] || {};
+    var title = args.title;
+    $.news.title = title;
     _.extend($, exports);
 }
 

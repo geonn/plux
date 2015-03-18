@@ -27,15 +27,63 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var frontbackcounter = 0;
-    var front = Ti.UI.createImageView({
+    var front = Ti.UI.createView({
         name: "front",
-        width: "100%",
-        image: "/eCard-front.png",
+        width: Ti.UI.FILL,
         currentAngle: 10
     });
+    var memno_text = Ti.UI.createLabel({
+        text: "6000 2010 0011 3572",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "90dp",
+        left: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "24dp"
+        },
+        color: "#ffffff"
+    });
+    var name_text = Ti.UI.createLabel({
+        text: "CHEONG SHY YNG",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "125dp",
+        left: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#ffffff"
+    });
+    var ic_text = Ti.UI.createLabel({
+        text: "858512102934",
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        top: "125dp",
+        right: "20dp",
+        zIndex: 12,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#ffffff"
+    });
+    var front_bg = Ti.UI.createImageView({
+        width: Ti.UI.FILL,
+        image: "/eCard-front.png",
+        currentAngle: 10,
+        font: {
+            fontSize: "11dp"
+        },
+        zIndex: 11
+    });
+    front.add(front_bg);
+    front.add(name_text);
+    front.add(ic_text);
+    front.add(memno_text);
     var back = Ti.UI.createImageView({
         name: "back",
-        width: "100%",
+        width: Ti.UI.FILL,
         image: "/eCard-back.png",
         currentAngle: 10
     });

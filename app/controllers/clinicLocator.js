@@ -151,8 +151,7 @@ function listing(){
 		}
 }
 
-var panelListResult = function(details){
-	 
+var panelListResult = function(details){ 
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
 		separatorColor: '#ffffff'

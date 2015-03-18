@@ -26,6 +26,23 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var nav = require("navigation");
+    var hd = require("healthData");
+    setTimeout(function() {
+        hd.populateData();
+    }, 2e3);
+    $.bmiView.addEventListener("click", function() {
+        nav.navigationWindow("healthDataBmi");
+    });
+    $.bloodPressureView.addEventListener("click", function() {
+        nav.navigationWindow("healthDataBloodPressure");
+    });
+    $.heartRateView.addEventListener("click", function() {
+        nav.navigationWindow("healthDataHeartRate");
+    });
+    $.bodyTemperatureView.addEventListener("click", function() {
+        nav.navigationWindow("healthDataBodyTemperature");
+    });
     _.extend($, exports);
 }
 
