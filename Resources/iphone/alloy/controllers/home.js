@@ -130,6 +130,15 @@ function Controller() {
     });
     $.__views.__alloyId158.add($.__views.__alloyId164);
     navWindow ? $.__views.__alloyId164.addEventListener("click", navWindow) : __defers["$.__views.__alloyId164!click!navWindow"] = true;
+    $.__views.__alloyId165 = Ti.UI.createImageView({
+        mod: "survey",
+        top: "15",
+        width: "139",
+        image: "/btn/btn_healthInfo.png",
+        id: "__alloyId165"
+    });
+    $.__views.__alloyId158.add($.__views.__alloyId165);
+    navWindow ? $.__views.__alloyId165.addEventListener("click", navWindow) : __defers["$.__views.__alloyId165!click!navWindow"] = true;
     $.__views.navMenu = Ti.UI.iOS.createNavigationWindow({
         window: $.__views.root,
         id: "navMenu"
@@ -165,6 +174,7 @@ function Controller() {
     __defers["$.__views.__alloyId162!click!navWindow"] && $.__views.__alloyId162.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId163!click!navWindow"] && $.__views.__alloyId163.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId164!click!navWindow"] && $.__views.__alloyId164.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId165!click!navWindow"] && $.__views.__alloyId165.addEventListener("click", navWindow);
     _.extend($, exports);
 }
 

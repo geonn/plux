@@ -64,6 +64,8 @@ var common = require("common");
 
 var API = require("api");
 
+var PUSH = require("push");
+
 var nav = require("navigation");
 
 Alloy.Globals.Map = require("ti.map");
@@ -71,5 +73,9 @@ Alloy.Globals.Map = require("ti.map");
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 "android" == Ti.Platform.osname ? Alloy.Globals.loadingStyle = "Ti.UI.ActivityIndicatorStyle.BIG" : "iphone" == Ti.Platform.osname && (Alloy.Globals.topbarTop = "Ti.UI.iPhone.ActivityIndicatorStyle.BIG");
+
+Titanium.UI.iPhone.setAppBadge("0");
+
+PUSH.registerPush();
 
 Alloy.createController("index");

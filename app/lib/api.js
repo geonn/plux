@@ -16,7 +16,7 @@ exports.doLogin = function(LOGINID, PASSWORD){
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
-	       console.log(this.responseText);
+	      // console.log(this.responseText);
 	       var res = JSON.parse(this.responseText);
 			
 	       if(res.code !== undefined){

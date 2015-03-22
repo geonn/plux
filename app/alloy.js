@@ -11,10 +11,13 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 var common = require('common');
 var API = require('api');
+var PUSH = require('push');
 var nav = require('navigation');
 Alloy.Globals.Map = require('ti.map');
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
+
+
 
 //define platform
 if (Ti.Platform.osname == 'android') {
@@ -90,3 +93,6 @@ function currentDateTime(){
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
 	return datetime ;
 }
+
+Titanium.UI.iPhone.setAppBadge("0");
+PUSH.registerPush();

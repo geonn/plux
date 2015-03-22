@@ -13,7 +13,6 @@ exports.doLogin = function() {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var ret = [];
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             if (void 0 !== res.code) {
                 ret["status"] = "error";
