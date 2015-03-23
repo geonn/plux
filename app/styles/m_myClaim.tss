@@ -33,14 +33,25 @@
 ".subtitle":{
 	height:Titanium.UI.SIZE,
 	width: "60%",
-	 top: 10,
+	 bottom: 5,
+	 top: 5,
 	 left: 10,
 },
 ".subvalue":{
 	width: Titanium.UI.FILL,
 	height: Titanium.UI.SIZE,
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-	 top: 10,
+	 bottom: 5,
+	 top:5,
 	 color: "#ff0000",
 	 right: 10,
+},
+".padding":{
+	left: 10,
+	right: 10,	
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+	font:{
+		fontSize: "12dp"
+	}
 }

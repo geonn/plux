@@ -40,7 +40,7 @@ setTimeout(function(){
 }, 800);
 
 function report(evt) {
-    Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+    console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
 }
 
 function listing(){
@@ -191,7 +191,7 @@ var panelListResult = function(details){
 				
 				//console.log(name[i] + " :"+latitude[i]+", "+ longitude[i]);               
 				$.mapview.addAnnotation(merchantLoc); 
-				});
+			});
 				
 		}
 		
@@ -217,10 +217,12 @@ var panelListResult = function(details){
 			$.mapview.region = {latitude: clinic.latitude, longitude:clinic.longitude,
 				                    latitudeDelta:0.01, longitudeDelta:0.01};
 		}
+	$.mapview.addEventListener('click', function(evt) {
+	   var annotation = evt.source;
+	   console.log("Annotation "+annotation+" " + evt.title + " clicked, id: " + evt.annotation.myid);
+	});
    	
 };
 
-$.mapview.addEventListener('click', function(evt) {
-   console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-});
+
  

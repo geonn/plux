@@ -8,9 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function report(evt) {
-        Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinicLocator";
     if (arguments[0]) {
@@ -26,7 +23,6 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.clinicLocator = Ti.UI.createWindow({
         fullscreen: true,
         title: "Clinic Locator",
@@ -78,7 +74,6 @@ function Controller() {
         id: "mapview"
     });
     $.__views.clinicLocator.add($.__views.mapview);
-    report ? $.__views.mapview.addEventListener("click", report) : __defers["$.__views.mapview!click!report"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -164,11 +159,11 @@ function Controller() {
                 };
             }
         }
+        $.mapview.addEventListener("click", function(evt) {
+            var annotation = evt.source;
+            console.log("Annotation " + annotation + " " + evt.title + " clicked, id: " + evt.annotation.myid);
+        });
     };
-    $.mapview.addEventListener("click", function(evt) {
-        console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-    });
-    __defers["$.__views.mapview!click!report"] && $.__views.mapview.addEventListener("click", report);
     _.extend($, exports);
 }
 

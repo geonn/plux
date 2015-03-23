@@ -27,7 +27,7 @@ for(var a = 0; data.length > a; a++){
 	
 	if(data[a]['entidvbal'] != 99999){
 		var view = create_field("RM"+data[a]['entidvbal'], "Entitlement Balance");
-		$.main.add(view);
+		//$.main.add(view);
 	}
 	
 	if(data[a]['entsha'] != 99999){
@@ -37,7 +37,7 @@ for(var a = 0; data.length > a; a++){
 	
 	if(data[a]['entshabal'] != 99999){
 		var view = create_field("RM"+data[a]['entshabal'], "Entitlement Shared Balance");
-		$.main.add(view);
+		//$.main.add(view);
 	}
 	
 	if(data[a]['maxperclaim'] != 99999){
@@ -52,7 +52,7 @@ for(var a = 0; data.length > a; a++){
 	
 	if(data[a]['vstidvbal'] != 99999){
 		var view = create_field(data[a]['vstidvbal'], "Visitation Balance");
-		$.main.add(view);
+		//$.main.add(view);
 	}
 	
 	if(data[a]['vstsha'] != 99999){
@@ -62,7 +62,7 @@ for(var a = 0; data.length > a; a++){
 	
 	if(data[a]['vstshabal'] != 99999){
 		var view = create_field(data[a]['vstshabal'], "Visitation Shared Balance");
-		$.main.add(view);
+		//$.main.add(view);
 	}
 }
 
