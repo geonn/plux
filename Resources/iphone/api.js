@@ -3,17 +3,28 @@ function onErrorCallback(e) {
     common.createAlert("Error", e);
 }
 
-var API_DOMAIN = "https://www.asp-medical-clinic.com/aida/";
+var API_DOMAIN = "www.asp-medical-clinic.com.my/aida";
+
+var FREEJINI_DOMAIN = "plux.freejini.com.my";
 
 var url_doLogin = API_DOMAIN + "login.aspx";
 
 var url_panelList = API_DOMAIN + "panellist.aspx";
 
+var USER = "freejini";
+
+var KEY = "06b53047cf294f7207789ff5293ad2dc";
+
+var updateToken = "http://" + FREEJINI_DOMAIN + "/api/updateToken?user=" + USER + "&key=" + KEY;
+
+var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER + "&key=" + KEY;
+
+var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
+
 exports.doLogin = function() {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var ret = [];
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             if (void 0 !== res.code) {
                 ret["status"] = "error";
@@ -35,8 +46,27 @@ exports.doLogin = function() {
     client.send();
 };
 
+exports.updateNotificationToken = function() {
+    var deviceToken = Ti.App.Properties.getString("deviceToken");
+    var memno = Ti.App.Properties.getString("memno");
+    if ("" != deviceToken) {
+        var url = updateToken + "&token=" + deviceToken + "&member_no=" + memno;
+        console.log(url);
+        var client = Ti.Network.createHTTPClient({
+            onload: function() {
+                var res = JSON.parse(this.responseText);
+                "success" == res.status;
+            },
+            onerror: function() {},
+            timeout: 5e4
+        });
+        client.open("GET", url);
+        client.send();
+    }
+};
+
 exports.loadNewsFeed = function() {
-    var url = "http://plux.freejini.com.my/api/grab_newsfeed?user=freejini&key=06b53047cf294f7207789ff5293ad2dc&date=01-01-2015";
+    var url = newsfeed + "&date=01-01-2015";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -52,7 +82,7 @@ exports.loadNewsFeed = function() {
 };
 
 exports.loadPanelList = function() {
-    var url = "https://www.asp-medical-clinic.com.my/aida/panellist.aspx?CORPCODE=ASP";
+    var url = panelList;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
