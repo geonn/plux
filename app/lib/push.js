@@ -1,14 +1,14 @@
 var Cloud = require('ti.cloud'); 
 
 // Process incoming push notifications
-function receivePush(e) {
-	 
+function receivePush(e) { 
 	nav.navigateWithArgs("survey", {
 		url: e.data.target
 	});
  
 	return false;
 }
+
 function deviceTokenSuccess(ex) {
     deviceToken = ex.deviceToken;
     Cloud.Users.login({
@@ -20,22 +20,17 @@ function deviceTokenSuccess(ex) {
 			    channel: 'survey',
 			    type:'ios', 
 			    device_token: deviceToken
-			}, function (e) {
-				 
-			    if (e.success  ) {
-			    	
+			}, function (e) { 
+			    if (e.success  ) { 
 			    	/** User device token**/
-	         		Ti.App.Properties.setString('deviceToken', deviceToken);
-			     	//	alert("success get token");
-					//API.updateNotificationToken();
+	         		Ti.App.Properties.setString('deviceToken', deviceToken); 
+					API.updateNotificationToken();
 			    } else {
-			    	 alert(' Error: ' + deviceToken);
-			     //   registerPush();
+			    	registerPush();
 			    }
 			});
 	    } else {
-	    	// alert('B Error: ' + JSON.stringify(e));
-	      //  alert("Error :"+e.message);
+	    	 
 	    }
 	});
 

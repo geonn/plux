@@ -15,9 +15,7 @@ var PUSH = require('push');
 var nav = require('navigation');
 Alloy.Globals.Map = require('ti.map');
 //constant variable
-var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
-
-
+var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
 
 //define platform
 if (Ti.Platform.osname == 'android') {

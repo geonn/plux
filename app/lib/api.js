@@ -1,10 +1,19 @@
 /*********************
 *** SETTING / API ***
 **********************/
-var API_DOMAIN = "https://www.asp-medical-clinic.com/aida/";
-
+var API_DOMAIN = "www.asp-medical-clinic.com.my/aida";
+var FREEJINI_DOMAIN =  "plux.freejini.com.my";
 var url_doLogin		= API_DOMAIN+"login.aspx";
 var url_panelList   = API_DOMAIN+"panellist.aspx";
+
+// APP authenticate user and key
+var USER  = 'freejini';
+var KEY   = '06b53047cf294f7207789ff5293ad2dc';
+
+var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
+var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
+var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
+
 /*********************
 **** API FUNCTION*****
 **********************/
@@ -43,8 +52,38 @@ exports.doLogin = function(LOGINID, PASSWORD){
 	 client.send(); 
 };
 
+// update user device token
+exports.updateNotificationToken = function(e){
+	var deviceToken = Ti.App.Properties.getString('deviceToken');
+	var memno = Ti.App.Properties.getString('memno'); 
+	if(deviceToken != ""){ 
+		var url = updateToken+"&token="+deviceToken+"&member_no="+memno;
+		console.log(url);
+		var client = Ti.Network.createHTTPClient({
+		     // function called when the response data is available
+		     onload : function(e) {
+		    
+		       var res = JSON.parse(this.responseText);
+	
+		       if(res.status == "success"){
+		       	
+		       }
+		     },
+		     // function called when an error occurs, including a timeout
+		     onerror : function(e) {
+		     },
+		     timeout : 50000  // in milliseconds
+		 });
+		 // Prepare the connection.
+		 client.open("GET", url);
+		 // Send the request.
+		 client.send(); 
+	}
+	
+};
+
 exports.loadNewsFeed = function (ex){
-	var url = 'http://plux.freejini.com.my/api/grab_newsfeed?user=freejini&key=06b53047cf294f7207789ff5293ad2dc&date=01-01-2015';//url_panelList+"?CORPCODE="+ex;
+	var url = newsfeed+'&date=01-01-2015'; 
 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
@@ -71,12 +110,10 @@ exports.loadNewsFeed = function (ex){
 
 
 exports.loadPanelList = function (ex){
-	var url = 'https://www.asp-medical-clinic.com.my/aida/panellist.aspx?CORPCODE=ASP';//url_panelList+"?CORPCODE="+ex;
+	var url =  panelList;
 
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) {
-	    
+	var client = Ti.Network.createHTTPClient({ 
+	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
 		 	/**reset current category**/
 		 	var library = Alloy.createCollection('panelList'); 
@@ -84,10 +121,8 @@ exports.loadPanelList = function (ex){
 					
 			/**load new set of category from API**/ 
 			library.addPanel(res); 
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
+	     }, 
+	     onerror : function(e) { },
 	     timeout : 50000  // in milliseconds
 	 });
 	 // Prepare the connection.

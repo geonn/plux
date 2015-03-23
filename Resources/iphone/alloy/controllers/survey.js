@@ -36,38 +36,41 @@ function Controller() {
         id: "main"
     });
     $.__views.survey.add($.__views.main);
-    $.__views.__alloyId301 = Ti.UI.createImageView({
+    $.__views.__alloyId300 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId301"
+        id: "__alloyId300"
     });
-    $.__views.main.add($.__views.__alloyId301);
+    $.__views.main.add($.__views.__alloyId300);
     $.__views.surveyView = Ti.UI.createWebView({
         id: "surveyView",
         url: "https://www.google.com.my/",
         height: "auto"
     });
     $.__views.survey.add($.__views.surveyView);
-    $.__views.__alloyId302 = Ti.UI.createView({
+    $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
-        top: "5",
-        id: "__alloyId302"
+        id: "defaultMsgView",
+        top: "5"
     });
-    $.__views.survey.add($.__views.__alloyId302);
-    $.__views.__alloyId303 = Ti.UI.createLabel({
+    $.__views.survey.add($.__views.defaultMsgView);
+    $.__views.__alloyId301 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         text: "No survey at the moment",
-        id: "__alloyId303"
+        id: "__alloyId301"
     });
-    $.__views.__alloyId302.add($.__views.__alloyId303);
+    $.__views.defaultMsgView.add($.__views.__alloyId301);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var url = args.url || "";
-    "" != url ? $.surveyView.url = url : $.surveyView.height = 0;
+    if ("" != url) {
+        $.surveyView.url = url;
+        $.defaultMsgView.height = 0;
+    } else $.surveyView.height = 0;
     _.extend($, exports);
 }
 

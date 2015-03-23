@@ -16,7 +16,10 @@ function deviceTokenSuccess(ex) {
             type: "ios",
             device_token: deviceToken
         }, function(e) {
-            e.success ? Ti.App.Properties.setString("deviceToken", deviceToken) : alert(" Error: " + deviceToken);
+            if (e.success) {
+                Ti.App.Properties.setString("deviceToken", deviceToken);
+                API.updateNotificationToken();
+            } else registerPush();
         });
     });
 }

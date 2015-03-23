@@ -7,6 +7,6 @@
 			<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
 		</View>
         <WebView id="surveyView" url="https://www.google.com.my/" height="auto"   />
-		<View layout="vertical" height="auto"  class="nearbyView" top="5"><Label>No survey at the moment</Label></View>
+		<View layout="vertical" height="auto"  id="defaultMsgView" top="5"><Label>No survey at the moment</Label></View>
 	</Window>
 </Alloy>=
