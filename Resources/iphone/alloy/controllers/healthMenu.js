@@ -10,7 +10,9 @@ function __processArg(obj, key) {
 function Controller() {
     function navByType(evt) {
         hideWin = 0;
-        "profile" == evt.source.source && nav.navigationWindow("healthProfile");
+        "profile" == evt.source.source ? nav.navigationWindow("healthProfile") : Ti.App.fireEvent("filterList", {
+            category: evt.source.source
+        });
         $.typeWindowPopUp.close({
             curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
             opacity: 0,
@@ -86,11 +88,11 @@ function Controller() {
     }, {
         image: "images/measurement.png",
         title: "Body Measurement",
-        source: "m_myHealth"
+        source: "measurement"
     }, {
         image: "images/vitals.png",
         title: "Vitals",
-        source: "m_myHealth"
+        source: "vitals"
     } ];
     var data = [];
     for (var i = 0; i < CustomData.length; i++) {
