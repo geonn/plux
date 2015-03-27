@@ -125,17 +125,9 @@ function Controller() {
         id: "__alloyId168"
     });
     $.__views.scrollboard.add($.__views.__alloyId168);
-    $.__views.logo = Ti.UI.createImageView({
-        id: "logo",
-        width: "100",
-        height: "100",
-        top: "10",
-        left: "10",
-        image: "/appicon-60@3x.png"
-    });
-    $.__views.__alloyId168.add($.__views.logo);
     $.__views.myInfo = Ti.UI.createView({
         layout: "vertical",
+        left: "120",
         right: "0",
         width: "60%",
         height: Ti.UI.SIZE,
