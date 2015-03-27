@@ -47,16 +47,10 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId166);
     $.__views.__alloyId167 = Ti.UI.createView({
-        layout: "vertical",
+        layout: "",
         id: "__alloyId167"
     });
     $.__views.main.add($.__views.__alloyId167);
-    $.__views.scrollboard = Ti.UI.createScrollView({
-        id: "scrollboard",
-        width: Titanium.UI.FILL,
-        height: Ti.UI.FILL
-    });
-    $.__views.__alloyId167.add($.__views.scrollboard);
     $.__views.logo = Ti.UI.createImageView({
         id: "logo",
         width: "100",
@@ -65,7 +59,13 @@ function Controller() {
         left: "10",
         image: "/appicon-60@3x.png"
     });
-    $.__views.scrollboard.add($.__views.logo);
+    $.__views.__alloyId167.add($.__views.logo);
+    $.__views.scrollboard = Ti.UI.createScrollView({
+        id: "scrollboard",
+        width: Titanium.UI.FILL,
+        height: Ti.UI.FILL
+    });
+    $.__views.__alloyId167.add($.__views.scrollboard);
     $.__views.__alloyId168 = Ti.UI.createView({
         layout: "horizontal",
         width: "293",
@@ -138,24 +138,18 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var expandmode = false;
     Alloy.Globals.navMenu = $.navMenu;
     $.scrollboard.addEventListener("scroll", function(e) {
         var o = e.source.contentOffset;
-        if (o.y >= 139 && expandmode) $.logo.animate({
-            top: -100,
-            duration: 500
-        }, function() {
-            expandmode = false;
-        }); else if (o.y < 139 && !expandmode) $.logo.animate({
-            top: 10,
-            duration: 500
-        }, function() {
-            expandmode = true;
-        }); else if (o.y < 139) {
-            $.logo.setTop(o.y + 10);
+        var ract = $.logo.rect;
+        if (o.y > 139) {
+            $.logo.setTop(ract.top - (o.y - 139));
             return;
         }
+        o.y < 139 && o.y > 0 && $.logo.animate({
+            top: 10,
+            duration: 500
+        }, function() {});
     });
     __defers["$.__views.__alloyId169!click!navWindow"] && $.__views.__alloyId169.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId170!click!navWindow"] && $.__views.__alloyId170.addEventListener("click", navWindow);

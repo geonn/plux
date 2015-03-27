@@ -3,9 +3,9 @@
 		<Window id="root" title="" navBarHidden="true" class="container">
 			<View id="main">
 				<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
-				<View layout="vertical">
+				<View layout="">
+					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png"/>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL">
-						<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png"/>
 						<View layout="horizontal" width="293" top="239">
 							<ImageView onClick="navWindow" mod="m_eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
