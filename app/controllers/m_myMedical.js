@@ -63,7 +63,7 @@ function displayRecords(){
 					source: entry.id,
 					font:{fontSize:12,fontWeight:'bold'}, 
 					color: "#848484",
-					textAlign:'left',
+					textAlign:'left', 
 					width:'100%', 
 					left:20,
 					height:15

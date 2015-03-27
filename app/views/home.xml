@@ -5,6 +5,9 @@
 				<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
 				<View layout="">
 					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png"/>
+					<View id="myinfo_view" layout="horizontal" height="50" top="20" backgroundColor="rgba(0,0,0,0.5)"> 
+						<View layout="horizontal" left="110" width="auto" height="Ti.UI.SIZE" id="myInfo" />
+					</View>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL">
 
 						<View layout="horizontal" width="293" top="239">
@@ -16,6 +19,7 @@
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 							<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
 							<!--<ImageView onClick="navWindow" mod="survey" top="15" width="139" image="/btn/btn_healthInfo.png"/>-->
+							<ImageView onClick="navWindow" mod="m_myMedical" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 						</View>
 					</ScrollView>
 				</View>
