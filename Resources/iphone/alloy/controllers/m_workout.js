@@ -24,6 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.m_workout = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Workout Record",
         backButtonTitle: "",
@@ -35,13 +36,13 @@ function Controller() {
         id: "main"
     });
     $.__views.m_workout.add($.__views.main);
-    $.__views.__alloyId301 = Ti.UI.createImageView({
+    $.__views.__alloyId303 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId301"
+        id: "__alloyId303"
     });
-    $.__views.main.add($.__views.__alloyId301);
+    $.__views.main.add($.__views.__alloyId303);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

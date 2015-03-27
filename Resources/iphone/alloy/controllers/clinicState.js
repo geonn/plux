@@ -98,6 +98,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.panelClinicTbl = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic By State",
         id: "panelClinicTbl",

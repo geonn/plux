@@ -1,5 +1,5 @@
 "Window":{
-	 
+	 backgroundColor: "#ffffff",
 	fullscreen : true	
 },
 "#activityIndicator" : {

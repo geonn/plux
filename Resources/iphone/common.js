@@ -11,6 +11,7 @@ exports.deconstruct = function() {
 exports.createAlert = function(tt, msg) {
     var box = Titanium.UI.createAlertDialog({
         title: tt,
+        ok: "OK",
         message: msg
     });
     box.show();
@@ -21,6 +22,33 @@ exports.hideLoading = function() {
     mainView.loadingBar.opacity = "0";
     mainView.loadingBar.height = "0";
     mainView.loadingBar.top = "0";
+};
+
+exports.noRecord = function() {
+    var data = [];
+    var row = Titanium.UI.createTableViewRow({
+        touchEnabled: false,
+        backgroundColor: "transparent"
+    });
+    var tblView = Ti.UI.createView({
+        height: "auto"
+    });
+    var noRecord = Ti.UI.createLabel({
+        text: "No record found",
+        color: "#375540",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        font: {
+            fontSize: 14,
+            fontStyle: "italic"
+        },
+        top: 15,
+        bottom: 15,
+        width: "100%"
+    });
+    tblView.add(noRecord);
+    row.add(tblView);
+    data.push(row);
+    return data;
 };
 
 exports.showLoading = function() {

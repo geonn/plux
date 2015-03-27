@@ -24,6 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.m_doctor = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Ask Doctor",
         backButtonTitle: "",
@@ -35,13 +36,13 @@ function Controller() {
         id: "main"
     });
     $.__views.m_doctor.add($.__views.main);
-    $.__views.__alloyId244 = Ti.UI.createImageView({
+    $.__views.__alloyId245 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId244"
+        id: "__alloyId245"
     });
-    $.__views.main.add($.__views.__alloyId244);
+    $.__views.main.add($.__views.__alloyId245);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

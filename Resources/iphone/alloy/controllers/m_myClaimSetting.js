@@ -24,6 +24,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.m_myClaimSetting = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "More",
         backButtonTitle: "",
@@ -31,15 +32,15 @@ function Controller() {
         id: "m_myClaimSetting"
     });
     $.__views.m_myClaimSetting && $.addTopLevelView($.__views.m_myClaimSetting);
-    var __alloyId283 = [];
-    $.__views.__alloyId284 = Ti.UI.createTableViewRow({
+    var __alloyId284 = [];
+    $.__views.__alloyId285 = Ti.UI.createTableViewRow({
         hasChild: "true",
         title: "Claim History",
-        id: "__alloyId284"
+        id: "__alloyId285"
     });
-    __alloyId283.push($.__views.__alloyId284);
+    __alloyId284.push($.__views.__alloyId285);
     $.__views.menu = Ti.UI.createTableView({
-        data: __alloyId283,
+        data: __alloyId284,
         id: "menu"
     });
     $.__views.m_myClaimSetting.add($.__views.menu);

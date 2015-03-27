@@ -35,8 +35,8 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.typeWindowPopUp = Ti.UI.createWindow({
-        fullscreen: true,
         backgroundColor: "tranparent",
+        fullscreen: true,
         navBarHidden: true,
         opacity: 0,
         id: "typeWindowPopUp"
