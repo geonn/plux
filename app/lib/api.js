@@ -73,7 +73,7 @@ exports.claimInfo = function(e) {
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
+	     onerror : function(ex) {
 	     	API.claimInfo({memno : e.memno, corpcode : e.corpcode});
 	     },
 	     timeout : 5000  // in milliseconds
