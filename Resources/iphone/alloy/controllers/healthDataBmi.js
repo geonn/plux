@@ -43,7 +43,7 @@ function Controller() {
         var field2 = $.field2.value;
         var s_date = date.split("/");
         var newDate = s_date[2] + "-" + s_date[1] + "-" + s_date[0];
-        var amount = field1 / (field2 * field2);
+        var amount = field1 / (field2 / 100 * (field2 / 100));
         var s_time = time.split(" ");
         var newTime = s_time[0];
         if ("PM" == s_time[1]) {
@@ -54,7 +54,7 @@ function Controller() {
             date: newDate,
             time: newTime,
             field1: field1,
-            field2: field2,
+            field2: field2 / 100,
             amount: amount.toFixed(2),
             type: formType
         });
@@ -252,7 +252,7 @@ function Controller() {
         font: {
             fontSize: "16dp"
         },
-        text: "Height(m)",
+        text: "Height(cm)",
         top: "12",
         id: "__alloyId35"
     });

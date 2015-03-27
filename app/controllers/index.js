@@ -1,7 +1,6 @@
 var args = {};
 var win = Alloy.createController("home").getView();
-var api = require("api");
-api.loadPanelList();
+API.loadPanelList();
 win.open();
 /*
 $.root.open({fullscreen:true});

@@ -1,8 +1,6 @@
 var args = arguments[0] || {};
 var expandmode = false;
-Ti.App.Properties.setString('memno', null);
-API.loadPanelList();
-
+ 
 Alloy.Globals.navMenu = $.navMenu;
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;

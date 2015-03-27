@@ -21,26 +21,55 @@ var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER +
 
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
 
-exports.doLogin = function() {
+var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
+
+var checkBalanceUrl = "https://" + API_DOMAIN + "/balchk.aspx";
+
+exports.doLogin = function(username, password, mainView, target) {
+    var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var ret = [];
-            var res = JSON.parse(this.responseText);
-            if (void 0 !== res.code) {
-                ret["status"] = "error";
-                ret["results"] = res;
-                return ret;
+            var result = JSON.parse(this.responseText);
+            res = result[0];
+            if (void 0 !== typeof res.message && null != res.message) common.createAlert("Error", res.message); else {
+                var usersModel = Alloy.createCollection("users");
+                Ti.App.Properties.setString("memno", res.memno);
+                Ti.App.Properties.setString("empno", res.empno);
+                Ti.App.Properties.setString("corpcode", res.corpcode);
+                usersModel.addUserData(result);
+                var nav = require("navigation");
+                nav.closeWindow(mainView.login);
+                nav.navigationWindow(target);
             }
-            ret["status"] = "success";
-            ret["results"] = res;
-            return ret;
         },
         onerror: function() {
-            ret["status"] = "error";
-            ret["results"] = "";
-            return ret;
+            common.createAlert("Login Fail", "unexpected error");
         },
-        timeout: 5e4
+        timeout: 1e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.claimInfo = function(e) {
+    var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            console.log(res[0].message);
+            void 0 !== typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : Ti.UI.fireEvent("data_loaded", {
+                data: res
+            });
+        },
+        onerror: function(e) {
+            API.claimInfo({
+                memno: e.memno,
+                corpcode: e.corpcode
+            });
+        },
+        timeout: 5e3
     });
     client.open("GET", url);
     client.send();

@@ -1,22 +1,20 @@
 
 exports.navigationWindow = function(target, checkAuth, callback, param){
-	console.log(checkAuth+" check auth");
+	 
 	if(checkAuth == 1){
 		var auth = require("login");
-		if(!auth.checkLogin()){
-			var nav = require("navigation");
-			console.log('login page'+target);
+		if(!auth.checkLogin()){ 
 			var win = Alloy.createController("login", {target: target}).getView(); 
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else if(target =="m_eCard"){
-			console.log(target+" my card no auth");
+			 
 			var win = Alloy.createController(target).getView(); 
 			win.orientationModes = [Titanium.UI.PORTRAIT,
 		    Titanium.UI.LANDSCAPE_LEFT,
 		    Titanium.UI.LANDSCAPE_RIGHT,];
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else{
-			console.log('no need login'+target);
+			 
 			var win = Alloy.createController(target).getView(); 
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}

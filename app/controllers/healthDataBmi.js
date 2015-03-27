@@ -64,7 +64,7 @@ function doSaveRecords(){
 	var newDate = s_date[2] + "-"+s_date[1]+"-"+s_date[0];
 	
 	/**BMI formula**/
-	var amount = field1 / (field2 * field2);
+	var amount = field1 / ((field2/100) * (field2/100));
 	var s_time = time.split(' ');
 	var newTime = s_time[0] ;
 	if(s_time[1] == "PM"){
@@ -76,7 +76,7 @@ function doSaveRecords(){
 		date : newDate,
 		time : newTime,
 		field1 : field1,
-		field2 : field2,
+		field2 : field2/100,
 		amount : amount.toFixed(2),
 		type : formType
 	});  

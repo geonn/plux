@@ -1,3 +1,12 @@
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    (0 > m || 0 === m && today.getDate() < birthDate.getDate()) && age--;
+    return age;
+}
+
 var mainView = null;
 
 var lib_health = Alloy.createCollection("health");
@@ -16,6 +25,24 @@ exports.showDatePicker = function(e) {
 exports.showTimePicker = function(e) {
     e.date.visible = "false";
     e.time.visible = "true";
+};
+
+exports.showBirthDatePicker = function(e) {
+    e.date.visible = "true";
+    e.gender.visible = "false";
+    e.bloodType.visible = "false";
+};
+
+exports.showGenderPicker = function(e) {
+    e.gender.visible = "true";
+    e.bloodType.visible = "false";
+    e.date.visible = "false";
+};
+
+exports.showBloodTypePicker = function(e) {
+    e.bloodType.visible = "true";
+    e.gender.visible = "false";
+    e.date.visible = "false";
 };
 
 exports.disableSaveButton = function() {
@@ -74,6 +101,10 @@ exports.todayDate = function() {
     mainView.time_value.text = hh + ":" + min + " " + ampm;
 };
 
+exports.getAge = function(bday) {
+    return getAge(bday);
+};
+
 exports.changeDate = function(e) {
     var pickerdate = e.date;
     var day = pickerdate.getDate();
@@ -85,7 +116,16 @@ exports.changeDate = function(e) {
     month.length < 2 && (month = "0" + month);
     var year = pickerdate.getFullYear();
     selDate = day + "/" + month + "/" + year;
-    mainView.date_value.text = selDate;
+    var age = getAge(year + "-" + month + "-" + day);
+    mainView.date_value.text = selDate + "(" + age + ")";
+};
+
+exports.changeGender = function(e) {
+    mainView.gender_value.text = e.gender;
+};
+
+exports.changeBloodType = function(e) {
+    mainView.bloodType_value.text = e.bloodType;
 };
 
 exports.changeTime = function(e) {

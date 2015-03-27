@@ -30,7 +30,7 @@
 				</TableViewRow>
 				<TableViewRow id="tvrField2" selectedBackgroundColor="#ffffff">
 					<View  layout="horizontal" height="45" width="100%" >
-						<Label text="Height(m)" width="30%" top=12 class="title_Label" />
+						<Label text="Height(cm)" width="30%" top=12 class="title_Label" />
 						<TextField id="field2" width="62%" right="0" top=12 textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
 				</TableViewRow>

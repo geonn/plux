@@ -1,0 +1,8 @@
+<Alloy>
+	<Window class="container" id="typeWindowPopUp">
+		<View layout="vertical" class="popupView">
+		 	<View id="popup_view" layout="horizontal"  width="100%" >
+			</View>
+		</View>
+	</Window>
+</Alloy>

@@ -5,7 +5,6 @@ var hd = require('healthData');
 setTimeout(function(){	 
 	hd.populateData();
 },2000); 
-
 			 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigationWindow("healthDataBmi");
@@ -21,4 +20,14 @@ $.heartRateView.addEventListener('click',function(e){
 
 $.bodyTemperatureView.addEventListener('click',function(e){
 	nav.navigationWindow("healthDataBodyTemperature");
+});
+
+$.moreHealth.addEventListener('click', function(e){
+	var page = Alloy.createController('healthMenu').getView();
+	page.open();
+	page.animate({
+		curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+		opacity: 1,
+		duration: 200
+	});
 });

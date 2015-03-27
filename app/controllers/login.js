@@ -5,11 +5,7 @@ var singleton = true;
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
-function doLogin() {
-	/** include required file**/
-	
-	var lib_login = require('login');
-	
+function doLogin() { 
 	var username = $.username.value;
 	var password = $.password.value;
 	
@@ -19,8 +15,7 @@ function doLogin() {
 	}
 	if(singleton){
 		singleton = false;
-		console.log('login action');
-		lib_login.doLogin(username, password, $, args.target);
+		API.doLogin(username, password, $, args.target);
 	}
 }
 

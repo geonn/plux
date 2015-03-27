@@ -1,5 +1,11 @@
 <Alloy>
 	<Window title="MY HEALTH RECORD" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<RightNavButton>
+	        <View>
+	         	<ImageView right='0' id="moreHealth" width='30' image="/images/health_love.png" />
+	        </View>
+        </RightNavButton>
+        
 		<View id="main" layout="vertical" backgroundColor="#ffffff">
 			
 			<!--<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">

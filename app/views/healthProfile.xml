@@ -1,0 +1,46 @@
+<Alloy>
+	<Window title="Me" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
+		  
+		<RightNavButton>
+	        <View>
+	         	<Button id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
+	         	<Button id="saveButton" onTouchend="doSaveRecords"  title="Save" right="0" touchEnabled="true" visible="false"  />
+	        </View>
+        </RightNavButton>
+		<View id="main" layout="" backgroundColor="#F6F6F6" height="100%" >
+			
+			<TableView id="table" height="135" top="30" scrollable="false">
+				<TableViewRow id="tvrFieldDate" selectedBackgroundColor="#ffffff"  onClick="showDatePicker">
+					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
+						<Label text="Birthdate" top=12 width="40%" class="title_Label"  />
+						<Label text="" top=12 color="#707070" id="date_value" textAlign="right" width="50%"  />
+					</View>
+				</TableViewRow>
+				 
+				<TableViewRow id="tvrFieldGender" selectedBackgroundColor="#ffffff"   onClick="showGenderPicker">
+					<View  layout="horizontal" height="45" width="100%" >
+						<Label text="Gender" width="40%" top=12 class="title_Label"  />
+						<Label text="" top=12 color="#707070" id="gender_value" textAlign="right" width="50%"   />
+					</View>
+				</TableViewRow>
+				<TableViewRow id="tvrFieldBloodType" selectedBackgroundColor="#ffffff"  onClick="showBloodTypePicker">
+					<View  layout="horizontal" height="45" width="100%" >
+						<Label text="BloodType" width="40%" top=12 class="title_Label" />
+						<Label text="" top=12 color="#707070" id="bloodType_value" textAlign="right" width="50%"  />
+					</View>
+				</TableViewRow>
+			</TableView>
+				
+			<View height="Ti.UI.SIZE" id="selectorView" bottom="0" >
+				 <Picker id="genderPicker" onChange="changeGender"  visible="false" />  
+				 <Picker id="bloodTypePicker" onChange="changeBloodType"  visible="false" /> 
+				 <Picker id="datePicker"
+				          onChange="changeDate" 
+				          type="Ti.UI.PICKER_TYPE_DATE" 
+				           visible="false">
+				 </Picker>
+			</View>	 
+			
+		</View>
+	</Window>
+</Alloy>
