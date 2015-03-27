@@ -8,8 +8,9 @@ function refreshHeaderInfo(){
 	if(!auth.checkLogin()){ 
 		var loginBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-login.png",
-			top: 10,
-			right: 10
+			width: "40",
+			left: 5,
+			right: 5,
 		});
 		
 		loginBtn.addEventListener('click', function(){ 
@@ -20,14 +21,22 @@ function refreshHeaderInfo(){
 			classes :['welcome_text']
 		});
 		
+		var line = $.UI.create("view", {
+			height: "auto",
+			width: 1,
+			backgroundColor: "#ccc",
+		});
+		
 		$.myInfo.add(loginBtn);
+		$.myInfo.add(line);
 		$.myInfo.add(welcomeTitle);
 	}else{
 		var me = usersModel.getUserByMemno();
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",
-			top: 10,
-			right: 0
+			width: "40",
+			left: 5,
+			right: 5,
 		});
 		logoutBtn.addEventListener('click', function(){
 			var dialog = Ti.UI.createAlertDialog({
@@ -50,7 +59,15 @@ function refreshHeaderInfo(){
 			text: "Welcome, "+me.name,
 			classes :['welcome_text']
 		});
+		
+		var line = $.UI.create("view", {
+			height: "auto",
+			width: 1,
+			backgroundColor: "#ccc",
+		});
+		
 		$.myInfo.add(logoutBtn);
+		$.myInfo.add(line);
 		$.myInfo.add(welcomeTitle);
 	}
 }	 
@@ -73,11 +90,18 @@ $.scrollboard.addEventListener("scroll", function(e){
 	}else*/ 
 	
 	if(o.y > 139){
-		$.logo.setTop(ract.top - (o.y - 139));
+		var pos = ract.top - (o.y - 139);
+		$.logo.setTop(pos);
+		$.myinfo_view.setTop(pos+10);
 		return ;
 	}else if(o.y < 139 && o.y > 0){
 		$.logo.animate({
 	        top: 10,
+	        duration: 500
+	    }, function(){});
+	    
+	    $.myinfo_view.animate({
+	        top: 20,
 	        duration: 500
 	    }, function(){});
 	}

@@ -6,11 +6,7 @@
 				<View layout="">
 					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png"/>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL">
- 
-						<View layout="horizontal" height="Ti.UI.SIZE" top=0> 
-							<View layout="vertical" left="120" right="0" width="60%" height="Ti.UI.SIZE" id="myInfo" />
-						</View>
- 
+
 						<View layout="horizontal" width="293" top="239">
 							<ImageView onClick="navWindow" mod="m_eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
@@ -20,7 +16,6 @@
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 							<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
 							<!--<ImageView onClick="navWindow" mod="survey" top="15" width="139" image="/btn/btn_healthInfo.png"/>-->
-							<ImageView onClick="navWindow" mod="m_myMedical" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 						</View>
 					</ScrollView>
 				</View>
