@@ -61,6 +61,33 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
+			getUserByMemno : function(){
+				var collection = this; 
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE memno='"+Ti.App.Properties.getString('memno')+"' ";
+               
+                var res = db.execute(sql);
+                var arr = []; 
+               
+                if (res.isValidRow()){
+					arr = {
+					    id: res.fieldByName('id'),
+					    name: res.fieldByName('name'),
+					    memno: res.fieldByName('memno'),
+					    icno: res.fieldByName('icno'),
+					    relation: res.fieldByName('relation'), 
+					    empno: res.fieldByName('empno'),
+					    corpcode: res.fieldByName('corpcode'),
+					    corpname: res.fieldByName('corpname'),
+					    costcenter: res.fieldByName('costcenter'),
+					    dept: res.fieldByName('dept')
+					  };
+				}  
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
 			getOwnerData : function(){
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);

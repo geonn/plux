@@ -25,7 +25,7 @@ var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 
 var checkBalanceUrl = "https://" + API_DOMAIN + "/balchk.aspx";
 
-exports.doLogin = function(username, password, mainView, target) {
+exports.doLogin = function(username, password, mainView) {
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
     console.log(url);
     var client = Ti.Network.createHTTPClient({
@@ -40,7 +40,7 @@ exports.doLogin = function(username, password, mainView, target) {
                 usersModel.addUserData(result);
                 var nav = require("navigation");
                 nav.closeWindow(mainView.login);
-                nav.navigationWindow(target);
+                Ti.App.fireEvent("updateHeader");
             }
         },
         onerror: function() {

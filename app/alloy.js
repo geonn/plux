@@ -16,13 +16,7 @@ var nav = require('navigation');
 Alloy.Globals.Map = require('ti.map');
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
-
-//define platform
-if (Ti.Platform.osname == 'android') {
-    Alloy.Globals.loadingStyle = "Ti.UI.ActivityIndicatorStyle.BIG";
-} else if (Ti.Platform.osname == 'iphone') {
-    Alloy.Globals.topbarTop = "Ti.UI.iPhone.ActivityIndicatorStyle.BIG";
-}
+ 
 
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
@@ -90,6 +84,15 @@ function currentDateTime(){
 	
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
 	return datetime ;
+}
+
+function removeAllChildren(viewObject){
+    //copy array of child object references because view's "children" property is live collection of child object references
+    var children = viewObject.children.slice(0);
+ 
+    for (var i = 0; i < children.length; ++i) {
+        viewObject.remove(children[i]);
+    }
 }
 
 Titanium.UI.iPhone.setAppBadge("0");

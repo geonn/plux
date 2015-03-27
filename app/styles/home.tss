@@ -1,4 +1,12 @@
 
 ".container" : {
   
+},
+".welcome_text" :{
+	font:{
+		fontSize: 14,
+		fontWeight: 'bold'
+	},
+	left:15,
+	color: "#7F7F7F"
 }

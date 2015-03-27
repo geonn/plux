@@ -41,7 +41,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		usersModel.addUserData(result);
 	       		var nav = require('navigation');
 				nav.closeWindow(mainView.login); 
-				nav.navigationWindow(target);
+				Ti.App.fireEvent('updateHeader');
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
