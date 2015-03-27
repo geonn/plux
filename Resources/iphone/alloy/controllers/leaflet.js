@@ -195,9 +195,8 @@ function Controller() {
     $.__views.__alloyId186.add($.__views.__alloyId192);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0] || {};
+    arguments[0] || {};
     require("pdf");
-    $.win.title = args.title;
     var readLeaflet = function(e) {
         docViewer = Ti.UI.iOS.createDocumentViewer({
             url: "/pdf/" + e.source.mod

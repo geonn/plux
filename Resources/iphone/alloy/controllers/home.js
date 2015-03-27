@@ -121,7 +121,7 @@ function Controller() {
     $.__views.__alloyId168.add($.__views.__alloyId173);
     navWindow ? $.__views.__alloyId173.addEventListener("click", navWindow) : __defers["$.__views.__alloyId173!click!navWindow"] = true;
     $.__views.__alloyId174 = Ti.UI.createImageView({
-        mod: "leafletCategory",
+        mod: "leaflet",
         left: "15",
         top: "15",
         width: "139",

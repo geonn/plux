@@ -64,8 +64,7 @@ exports.claimInfo = function(e) {
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
-	       var res = JSON.parse(this.responseText);
-	       console.log(res[0].message);
+	       var res = JSON.parse(this.responseText); 
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		common.createAlert(res[0].message);
 	       }else{
