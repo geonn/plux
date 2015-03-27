@@ -4,13 +4,11 @@
 			<View id="main">
 				<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
 				<View layout="">
-					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png"/>
+					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png" zIndex="5" />
+					<View id="myinfo_view" layout="horizontal" height="50" top="20" backgroundColor="rgba(0,0,0,0.5)"> 
+						<View layout="horizontal" left="110" width="auto" height="Ti.UI.SIZE" id="myInfo" />
+					</View>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL">
- 
-						<View layout="horizontal" height="Ti.UI.SIZE" top=0> 
-							<View layout="vertical" left="120" right="0" width="60%" height="Ti.UI.SIZE" id="myInfo" />
-						</View>
- 
 						<View layout="horizontal" width="293" top="239">
 							<ImageView onClick="navWindow" mod="m_eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
