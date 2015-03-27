@@ -5,34 +5,42 @@
 	         	<ImageView right='0' id="moreHealth" width='30' image="/images/health_love.png" />
 	        </View>
         </RightNavButton>
-        
-		<View id="main" layout="vertical" backgroundColor="#ffffff">
-			
-			<!--<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
-				<ListSection title="Health Data">
-					 <ListItem title="Body Measurements" mod="Body Measurements" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
-					 <ListItem title="Me" mod="Me" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE"/>
-					 <ListItem title="Vitals" mod="Vitals" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
-				</ListSection>
-			</ListView>
-		-->
-			<ScrollView id="graphScrollView" layout="vertical" height="100%" width="100%" >
-				<View id="bmiView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView id="bmiWebView" width="100%" backgroundColor="#EBEBEB" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
-				</View>
-				<View height="1" backgroundColor="#FC7474" width="100%" />
-				<View id="bloodPressureView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView width="100%" backgroundColor="#EBEBEB" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
-				</View>
-				<View height="1" backgroundColor="#FC7474" width="100%" />
-				<View id="heartRateView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/heartRate.html" disableBounce='true' touchEnabled="false" ></WebView>
-				</View>
-				<View height="1" backgroundColor="#FC7474" width="100%" />
-				<View id="bodyTemperatureView" height="40%" width="100%" backgroundColor="#EBEBEB">
-					<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
-				</View>
-			</ScrollView>
+        <View>
+        	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		        <ActivityIndicator  id="activityIndicator" />
+		    	<Label top="5" text="Loading" color="#ffffff" />
+		    </View>
+			<View id="main" layout="vertical" backgroundColor="#ffffff">
+				
+				<!--<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
+					<ListSection title="Health Data">
+						 <ListItem title="Body Measurements" mod="Body Measurements" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
+						 <ListItem title="Me" mod="Me" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE"/>
+						 <ListItem title="Vitals" mod="Vitals" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
+					</ListSection>
+				</ListView>
+			-->
+				<ScrollView id="graphScrollView" layout="vertical" height="100%" width="100%" >
+					<View id="bmiView" height="0"   width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView id="bmiWebView" width="100%" backgroundColor="#EBEBEB" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
+						<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					</View>
+					
+					<View id="bloodPressureView"  height="0" width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView width="100%" backgroundColor="#EBEBEB" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					</View>
+					
+					<View id="heartRateView" height="0"  width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/heartRate.html" disableBounce='true' touchEnabled="false" ></WebView>
+						<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					</View>
+					
+					<View id="bodyTemperatureView" height="0"  width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+					</View>
+				</ScrollView>
+			</View>
 		</View>
 	</Window>
 </Alloy>

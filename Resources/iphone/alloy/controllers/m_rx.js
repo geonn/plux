@@ -35,6 +35,7 @@ function Controller() {
         id: "main"
     });
     $.__views.m_rx.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId297 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
@@ -42,6 +43,15 @@ function Controller() {
         id: "__alloyId297"
     });
     $.__views.main.add($.__views.__alloyId297);
+=======
+    $.__views.__alloyId300 = Ti.UI.createImageView({
+        width: "100%",
+        height: "100%",
+        image: "/dummy/dummy-home.jpg",
+        id: "__alloyId300"
+    });
+    $.__views.main.add($.__views.__alloyId300);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
