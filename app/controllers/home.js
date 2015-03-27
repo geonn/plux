@@ -58,20 +58,28 @@ function refreshHeaderInfo(){
 Alloy.Globals.navMenu = $.navMenu;
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;
-	
-	if(o.y >= 139 && expandmode){
+	var ract = $.logo.rect;
+	/*if(o.y >= 139 && expandmode){
 		$.logo.animate({
 	        top: -100,
 	        duration: 500
 	    }, function(){expandmode = false;});
-	}else if(o.y < 139 && !expandmode){
+	}
+	else if(o.y < 139 && !expandmode){
 		$.logo.animate({
 	        top: 10,
 	        duration: 500
 	    }, function(){expandmode = true;});
-	}else if(o.y < 139){
-		$.logo.setTop(o.y+10);
+	}else*/ 
+	
+	if(o.y > 139){
+		$.logo.setTop(ract.top - (o.y - 139));
 		return ;
+	}else if(o.y < 139 && o.y > 0){
+		$.logo.animate({
+	        top: 10,
+	        duration: 500
+	    }, function(){});
 	}
 });
 
