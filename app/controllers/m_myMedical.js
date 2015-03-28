@@ -1,10 +1,15 @@
 var args = arguments[0] || {};
-common.construct($); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
-displayRecords(); 
+var MRECORDS = require('medicalRecords');
+MRECORDS.construct($); 
+common.construct($); 
+displayRecords(""); 
 
-function displayRecords(){
-	var listing = medicalRecordsModel.getRecordsList(); 
+function displayRecords(listing){ 
+	if(listing == "" || listing.type == "displayRecords"){
+		listing = medicalRecordsModel.getRecordsList();  
+	} 
+ 
 	var data=[];  
    		var counter = 0; 
    		if(listing.length < 1){ 
@@ -103,21 +108,54 @@ function displayRecords(){
 	   		});
 	   		
 	   		$.recordTable.setData(data);  
+	   		$.recordTable.setHeight(Ti.UI.SIZE);
 		} 
+	common.hideLoading();
 };
 
 
 function viewDetails(rec_id){  
-	var res_rec = medicalRecordsModel.getRecordById(rec_id);
-	 
-	console.log(res_rec);
-	var title = res_rec.title;
-	title = title.replace(/&quot;/g,"'");
-				
-	var message = res_rec.message;
+	nav.navigateWithArgs("editMedical",{id: rec_id}); 
 }
 
 Ti.App.addEventListener('displayRecords',displayRecords);
 $.newRecord.addEventListener('click',function(){
 	nav.navigationWindow("newMedical");
+});
+
+
+/***SEARCH PRODUCTS***/
+$.searchItem.addEventListener('focus', function(e){
+	$.searchItem.showCancel =  true; 
+	$.recordView.opacity = 1;
+	$.recordView.height = "auto";
+});
+
+$.searchItem.addEventListener('blur', function(e){
+	$.searchItem.showCancel =  false;
+});
+
+$.searchItem.addEventListener('cancel', function(e){
+	$.searchItem.blur();  
+	var str = $.searchItem.getValue();
+	if(str == ""){
+		$.recordTable.data = [];
+		displayRecords("");	
+	}
+		
+});
+
+var searchResult = function(){
+	common.showLoading();
+	$.searchItem.blur();
+	var str = $.searchItem.getValue();
+	 
+	var searchResult = medicalRecordsModel.searchRecord(str); 
+	$.recordTable.data = [];
+	displayRecords(searchResult);		
+};
+$.searchItem.addEventListener("return", searchResult);
+
+$.aView	.addEventListener('touchend', function(e){
+    $.searchItem.blur(); 
 });

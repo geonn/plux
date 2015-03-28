@@ -1,5 +1,6 @@
 var args = arguments[0] || {};
-
+var MRECORDS = require('medicalRecords');
+MRECORDS.construct($); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
 function saveRecord(){
 	var title      = $.titleRecord.value; 
@@ -19,4 +20,8 @@ function saveRecord(){
 	nav.closeWindow($.newRecWin);
 	
 }
+function hideKeyboard(){
+	MRECORDS.hideKeyboard();
+}
+
 $.saveRecord.addEventListener('click', saveRecord);

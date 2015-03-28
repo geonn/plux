@@ -8,8 +8,8 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function displayRecords() {
-        var listing = medicalRecordsModel.getRecordsList();
+    function displayRecords(listing) {
+        ("" == listing || "displayRecords" == listing.type) && (listing = medicalRecordsModel.getRecordsList());
         var data = [];
         if (listing.length < 1) $.recordTable.setData(common.noRecord()); else {
             listing.forEach(function(entry) {
@@ -110,14 +110,14 @@ function Controller() {
                 data.push(row);
             });
             $.recordTable.setData(data);
+            $.recordTable.setHeight(Ti.UI.SIZE);
         }
+        common.hideLoading();
     }
     function viewDetails(rec_id) {
-        var res_rec = medicalRecordsModel.getRecordById(rec_id);
-        console.log(res_rec);
-        var title = res_rec.title;
-        title = title.replace(/&quot;/g, "'");
-        res_rec.message;
+        nav.navigateWithArgs("editMedical", {
+            id: rec_id
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "m_myMedical";
@@ -143,23 +143,64 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
+<<<<<<< HEAD
     $.__views.__alloyId295 = Ti.UI.createView({
         id: "__alloyId295"
+=======
+    $.__views.__alloyId308 = Ti.UI.createView({
+        id: "__alloyId308"
+>>>>>>> origin/master
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
+<<<<<<< HEAD
     $.__views.__alloyId295.add($.__views.newRecord);
     $.__views.m_myMedical.rightNavButton = $.__views.__alloyId295;
+=======
+    $.__views.__alloyId308.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId308;
+    $.__views.__alloyId309 = Ti.UI.createView({
+        id: "__alloyId309"
+    });
+    $.__views.m_myMedical.add($.__views.__alloyId309);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.__alloyId309.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        style: Alloy.Globals.topbarTop,
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.loading = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        id: "loading",
+        top: "5",
+        text: "Loading",
+        color: "#ffffff"
+    });
+    $.__views.loadingBar.add($.__views.loading);
+>>>>>>> origin/master
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         layout: "vertical"
     });
-    $.__views.m_myMedical.add($.__views.aView);
+    $.__views.__alloyId309.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
+        showCancel: "true",
         text: "",
         top: "0",
         height: "50",
@@ -176,7 +217,6 @@ function Controller() {
     $.__views.recordTable = Ti.UI.createTableView({
         width: "100%",
         id: "recordTable",
-        height: Ti.UI.SIZE,
         top: "0",
         separatorColor: "#375540"
     });
@@ -184,12 +224,42 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    common.construct($);
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    displayRecords();
+    var MRECORDS = require("medicalRecords");
+    MRECORDS.construct($);
+    common.construct($);
+    displayRecords("");
     Ti.App.addEventListener("displayRecords", displayRecords);
     $.newRecord.addEventListener("click", function() {
         nav.navigationWindow("newMedical");
+    });
+    $.searchItem.addEventListener("focus", function() {
+        $.searchItem.showCancel = true;
+        $.recordView.opacity = 1;
+        $.recordView.height = "auto";
+    });
+    $.searchItem.addEventListener("blur", function() {
+        $.searchItem.showCancel = false;
+    });
+    $.searchItem.addEventListener("cancel", function() {
+        $.searchItem.blur();
+        var str = $.searchItem.getValue();
+        if ("" == str) {
+            $.recordTable.data = [];
+            displayRecords("");
+        }
+    });
+    var searchResult = function() {
+        common.showLoading();
+        $.searchItem.blur();
+        var str = $.searchItem.getValue();
+        var searchResult = medicalRecordsModel.searchRecord(str);
+        $.recordTable.data = [];
+        displayRecords(searchResult);
+    };
+    $.searchItem.addEventListener("return", searchResult);
+    $.aView.addEventListener("touchend", function() {
+        $.searchItem.blur();
     });
     _.extend($, exports);
 }

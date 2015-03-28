@@ -9,7 +9,16 @@
 		<ScrollView id="aView" height="Ti.UI.SIZE"  layout="vertical"> 
 			<TextField top=5 bottom=5 id="titleRecord" height="25" hintText="Records title..." width="95%"/> 
 			<View height="1" width="100%" backgroundColor="#000000" top=5 bottom=5 />
-		 	<TextArea id="recordsTextArea"  color="#888" textAlign="left" value="" width="95%" height="100%" suppressReturn="false" />
+		 	<TextArea id="recordsTextArea"  color="#888" textAlign="left" value="" width="95%" height="100%" suppressReturn="false" >
+		 		<KeyboardToolbar>
+					<Toolbar>
+						<Items> 
+							<FlexSpace/>
+							<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+						</Items>
+					</Toolbar>
+				</KeyboardToolbar>
+			</TextArea>
 		</ScrollView> 
 	</Window>
 </Alloy>

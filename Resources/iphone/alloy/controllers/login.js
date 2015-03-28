@@ -52,16 +52,16 @@ function Controller() {
         height: "95%"
     });
     $.__views.login.add($.__views.main);
-    $.__views.__alloyId219 = Ti.UI.createImageView({
+    $.__views.__alloyId231 = Ti.UI.createImageView({
         width: "50%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
         image: "appicon-76@2x.png",
-        id: "__alloyId219"
+        id: "__alloyId231"
     });
-    $.__views.main.add($.__views.__alloyId219);
+    $.__views.main.add($.__views.__alloyId231);
     $.__views.username = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
@@ -120,7 +120,7 @@ function Controller() {
         layout: "horizontal"
     });
     $.__views.login.add($.__views.footer);
-    $.__views.__alloyId220 = Ti.UI.createLabel({
+    $.__views.__alloyId232 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -128,10 +128,10 @@ function Controller() {
         },
         color: "#808080",
         text: "ASPplux",
-        id: "__alloyId220"
+        id: "__alloyId232"
     });
-    $.__views.footer.add($.__views.__alloyId220);
-    $.__views.__alloyId221 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId232);
+    $.__views.__alloyId233 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -139,10 +139,10 @@ function Controller() {
         },
         color: "#808080",
         text: "|",
-        id: "__alloyId221"
+        id: "__alloyId233"
     });
-    $.__views.footer.add($.__views.__alloyId221);
-    $.__views.__alloyId222 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId233);
+    $.__views.__alloyId234 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -150,10 +150,10 @@ function Controller() {
         },
         color: "#808080",
         text: "Privacy & Terms",
-        id: "__alloyId222"
+        id: "__alloyId234"
     });
-    $.__views.footer.add($.__views.__alloyId222);
-    $.__views.__alloyId223 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId234);
+    $.__views.__alloyId235 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -161,10 +161,10 @@ function Controller() {
         },
         color: "#808080",
         text: "|",
-        id: "__alloyId223"
+        id: "__alloyId235"
     });
-    $.__views.footer.add($.__views.__alloyId223);
-    $.__views.__alloyId224 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId235);
+    $.__views.__alloyId236 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -172,9 +172,9 @@ function Controller() {
         },
         color: "#808080",
         text: "Help",
-        id: "__alloyId224"
+        id: "__alloyId236"
     });
-    $.__views.footer.add($.__views.__alloyId224);
+    $.__views.footer.add($.__views.__alloyId236);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
