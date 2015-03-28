@@ -36,23 +36,13 @@ function Controller() {
         id: "main"
     });
     $.__views.survey.add($.__views.main);
-<<<<<<< HEAD
-    $.__views.__alloyId336 = Ti.UI.createImageView({
+    $.__views.__alloyId338 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId336"
+        id: "__alloyId338"
     });
-    $.__views.main.add($.__views.__alloyId336);
-=======
-    $.__views.__alloyId339 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId339"
-    });
-    $.__views.main.add($.__views.__alloyId339);
->>>>>>> origin/master
+    $.__views.main.add($.__views.__alloyId338);
     $.__views.surveyView = Ti.UI.createWebView({
         id: "surveyView",
         url: "https://www.google.com.my/",
@@ -66,23 +56,13 @@ function Controller() {
         top: "5"
     });
     $.__views.survey.add($.__views.defaultMsgView);
-<<<<<<< HEAD
-    $.__views.__alloyId337 = Ti.UI.createLabel({
+    $.__views.__alloyId339 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         text: "No survey at the moment",
-        id: "__alloyId337"
+        id: "__alloyId339"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId337);
-=======
-    $.__views.__alloyId340 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        text: "No survey at the moment",
-        id: "__alloyId340"
-    });
-    $.__views.defaultMsgView.add($.__views.__alloyId340);
->>>>>>> origin/master
+    $.__views.defaultMsgView.add($.__views.__alloyId339);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
