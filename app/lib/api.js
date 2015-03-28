@@ -39,14 +39,18 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
 	       		
 	       		usersModel.addUserData(result);
+	       		common.hideLoading();
 	       		var nav = require('navigation');
-				nav.closeWindow(mainView.login); 
+				nav.closeWindow(mainView.loginWin); 
 				Ti.App.fireEvent('updateHeader');
 	       }
+	       
+	       
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
 	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.hideLoading();
        		
 	     },
 	     timeout : 10000  // in milliseconds

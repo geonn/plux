@@ -40,22 +40,12 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-<<<<<<< HEAD
     $.__views.card_event = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         id: "card_event"
     });
     $.__views.eCard.add($.__views.card_event);
-=======
-    $.__views.__alloyId257 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        text: "Click here to flip",
-        id: "__alloyId257"
-    });
-    $.__views.eCard.add($.__views.__alloyId257);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

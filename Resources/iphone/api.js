@@ -38,13 +38,15 @@ exports.doLogin = function(username, password, mainView) {
                 Ti.App.Properties.setString("empno", res.empno);
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 usersModel.addUserData(result);
+                common.hideLoading();
                 var nav = require("navigation");
-                nav.closeWindow(mainView.login);
+                nav.closeWindow(mainView.loginWin);
                 Ti.App.fireEvent("updateHeader");
             }
         },
         onerror: function() {
             common.createAlert("Login Fail", "unexpected error");
+            common.hideLoading();
         },
         timeout: 1e4
     });
