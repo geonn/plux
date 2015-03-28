@@ -77,7 +77,8 @@ function Controller() {
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "username",
-        hintText: "Enter Username"
+        hintText: "Enter Username",
+        value: "wongmy@demo.com"
     });
     $.__views.main.add($.__views.username);
     $.__views.password = Ti.UI.createTextField({
@@ -95,7 +96,8 @@ function Controller() {
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
-        hintText: "Enter Password"
+        hintText: "Enter Password",
+        value: "pass1234"
     });
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({

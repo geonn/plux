@@ -11,6 +11,7 @@ function refreshHeaderInfo(){
 			width: "40",
 			left: 5,
 			right: 5,
+			zIndex: 20,
 		});
 		
 		loginBtn.addEventListener('click', function(){ 
@@ -21,14 +22,7 @@ function refreshHeaderInfo(){
 			classes :['welcome_text']
 		});
 		
-		var line = $.UI.create("view", {
-			height: "auto",
-			width: 1,
-			backgroundColor: "#ccc",
-		});
-		
 		$.myInfo.add(loginBtn);
-		$.myInfo.add(line);
 		$.myInfo.add(welcomeTitle);
 	}else{
 		var me = usersModel.getUserByMemno();
@@ -37,6 +31,7 @@ function refreshHeaderInfo(){
 			width: "40",
 			left: 5,
 			right: 5,
+			zIndex: 20,
 		});
 		logoutBtn.addEventListener('click', function(){
 			var dialog = Ti.UI.createAlertDialog({
@@ -60,14 +55,7 @@ function refreshHeaderInfo(){
 			classes :['welcome_text']
 		});
 		
-		var line = $.UI.create("view", {
-			height: "auto",
-			width: 1,
-			backgroundColor: "#ccc",
-		});
-		
 		$.myInfo.add(logoutBtn);
-		$.myInfo.add(line);
 		$.myInfo.add(welcomeTitle);
 	}
 }	 

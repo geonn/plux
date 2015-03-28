@@ -17,7 +17,8 @@ function Controller() {
                 backgroundImage: "/images/btn-logout.png",
                 width: "40",
                 left: 5,
-                right: 5
+                right: 5,
+                zIndex: 20
             });
             logoutBtn.addEventListener("click", function() {
                 var dialog = Ti.UI.createAlertDialog({
@@ -36,20 +37,15 @@ function Controller() {
                 text: "Welcome, " + me.name,
                 classes: [ "welcome_text" ]
             });
-            var line = $.UI.create("view", {
-                height: "auto",
-                width: 1,
-                backgroundColor: "#ccc"
-            });
             $.myInfo.add(logoutBtn);
-            $.myInfo.add(line);
             $.myInfo.add(welcomeTitle);
         } else {
             var loginBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-login.png",
                 width: "40",
                 left: 5,
-                right: 5
+                right: 5,
+                zIndex: 20
             });
             loginBtn.addEventListener("click", function() {
                 nav.navigateWithArgs("login", {
@@ -60,13 +56,7 @@ function Controller() {
                 text: "Welcome guest",
                 classes: [ "welcome_text" ]
             });
-            var line = $.UI.create("view", {
-                height: "auto",
-                width: 1,
-                backgroundColor: "#ccc"
-            });
             $.myInfo.add(loginBtn);
-            $.myInfo.add(line);
             $.myInfo.add(welcomeTitle);
         }
     }
@@ -128,9 +118,10 @@ function Controller() {
     });
     $.__views.__alloyId179.add($.__views.logo);
     $.__views.myinfo_view = Ti.UI.createView({
+        zIndex: "4",
         id: "myinfo_view",
         layout: "horizontal",
-        height: "50",
+        height: Ti.UI.SIZE,
         top: "20",
         backgroundColor: "rgba(0,0,0,0.5)"
     });
@@ -139,6 +130,8 @@ function Controller() {
         layout: "horizontal",
         left: "110",
         width: "auto",
+        top: "10",
+        bottom: "10",
         height: Ti.UI.SIZE,
         id: "myInfo"
     });
@@ -146,7 +139,8 @@ function Controller() {
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
         width: Titanium.UI.FILL,
-        height: Ti.UI.FILL
+        height: Ti.UI.FILL,
+        zIndex: "3"
     });
     $.__views.__alloyId179.add($.__views.scrollboard);
     $.__views.__alloyId180 = Ti.UI.createView({
