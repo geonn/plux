@@ -18,6 +18,7 @@
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 							<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
 							<!--<ImageView onClick="navWindow" mod="survey" top="15" width="139" image="/btn/btn_healthInfo.png"/>-->
+							<ImageView onClick="navWindow" mod="m_myMedical" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 						</View>
 					</ScrollView>
 				</View>

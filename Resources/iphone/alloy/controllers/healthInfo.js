@@ -31,6 +31,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.healthInfo = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Health Info",
         backButtonTitle: "",

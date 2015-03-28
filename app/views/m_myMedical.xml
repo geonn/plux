@@ -1,7 +1,16 @@
 <Alloy>
 	<Window title="MY Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View id="main">
-			<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
-		</View>
+		<RightNavButton>
+	        <View>
+	         	<Button id="newRecord" title="Add" />
+	        </View>
+        </RightNavButton>
+	 
+		<View id="aView"  layout="vertical"> 
+			<SearchBar tintColor="#CE1D1C"  id="searchItem" text="" top="0" height="50" hintText="Search medical data..." /> 
+		 	<ScrollView id="recordView" layout="horizontal" height="Ti.UI.SIZE" width="100%" >
+		 		<TableView width="100%"  id="recordTable" height="Ti.UI.SIZE" top=0  separatorColor="#375540" />
+		 	</ScrollView>
+		</View> 
 	</Window>
 </Alloy>

@@ -78,6 +78,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.healthDBPWin = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Add Data",
         backButtonTitle: "",

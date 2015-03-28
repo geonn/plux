@@ -24,11 +24,11 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.eCard = Ti.UI.createWindow({
+        backgroundColor: "#fff",
         fullscreen: true,
         title: "ASP eCARD",
         backButtonTitle: "",
         layout: "vertical",
-        backgroundColor: "#fff",
         id: "eCard",
         navTintColor: "#CE1D1C"
     });
@@ -39,13 +39,13 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-    $.__views.__alloyId244 = Ti.UI.createLabel({
+    $.__views.__alloyId245 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         text: "Click here to flip",
-        id: "__alloyId244"
+        id: "__alloyId245"
     });
-    $.__views.eCard.add($.__views.__alloyId244);
+    $.__views.eCard.add($.__views.__alloyId245);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

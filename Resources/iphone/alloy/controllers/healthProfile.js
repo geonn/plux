@@ -167,6 +167,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.healthProfileWin = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Me",
         backButtonTitle: "",
