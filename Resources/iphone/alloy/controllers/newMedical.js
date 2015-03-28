@@ -45,15 +45,15 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.newRecWin && $.addTopLevelView($.__views.newRecWin);
-    $.__views.__alloyId304 = Ti.UI.createView({
-        id: "__alloyId304"
+    $.__views.__alloyId303 = Ti.UI.createView({
+        id: "__alloyId303"
     });
     $.__views.saveRecord = Ti.UI.createButton({
         id: "saveRecord",
         title: "Save"
     });
-    $.__views.__alloyId304.add($.__views.saveRecord);
-    $.__views.newRecWin.rightNavButton = $.__views.__alloyId304;
+    $.__views.__alloyId303.add($.__views.saveRecord);
+    $.__views.newRecWin.rightNavButton = $.__views.__alloyId303;
     $.__views.aView = Ti.UI.createScrollView({
         id: "aView",
         height: Ti.UI.SIZE,
@@ -69,15 +69,15 @@ function Controller() {
         width: "95%"
     });
     $.__views.aView.add($.__views.titleRecord);
-    $.__views.__alloyId305 = Ti.UI.createView({
+    $.__views.__alloyId304 = Ti.UI.createView({
         height: "1",
         width: "100%",
         backgroundColor: "#000000",
         top: "5",
         bottom: "5",
-        id: "__alloyId305"
+        id: "__alloyId304"
     });
-    $.__views.aView.add($.__views.__alloyId305);
+    $.__views.aView.add($.__views.__alloyId304);
     $.__views.recordsTextArea = Ti.UI.createTextArea({
         id: "recordsTextArea",
         color: "#888",

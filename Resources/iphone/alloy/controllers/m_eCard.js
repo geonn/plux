@@ -28,24 +28,24 @@ function Controller() {
         fullscreen: true,
         title: "ASP eCARD",
         backButtonTitle: "",
-        layout: "vertical",
+        layout: "",
         id: "eCard",
         navTintColor: "#CE1D1C"
     });
     $.__views.eCard && $.addTopLevelView($.__views.eCard);
     $.__views.card = Ti.UI.createView({
-        height: "204",
-        width: "320",
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        top: "0",
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-    $.__views.__alloyId245 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        text: "Click here to flip",
-        id: "__alloyId245"
+    $.__views.card_event = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        id: "card_event"
     });
-    $.__views.eCard.add($.__views.__alloyId245);
+    $.__views.eCard.add($.__views.card_event);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -53,6 +53,8 @@ function Controller() {
     var front = Ti.UI.createView({
         name: "front",
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        top: 0,
         currentAngle: 10
     });
     var memno_text = Ti.UI.createLabel({
@@ -93,12 +95,14 @@ function Controller() {
     });
     var front_bg = Ti.UI.createImageView({
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         image: "/eCard-front.png",
         currentAngle: 10,
         font: {
             fontSize: "11dp"
         },
-        zIndex: 11
+        zIndex: 11,
+        top: 0
     });
     front.add(front_bg);
     front.add(name_text);
@@ -107,12 +111,14 @@ function Controller() {
     var back = Ti.UI.createImageView({
         name: "back",
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         image: "/eCard-back.png",
-        currentAngle: 10
+        currentAngle: 10,
+        top: 0
     });
     $.card.add(back);
     $.card.add(front);
-    $.eCard.addEventListener("click", function() {
+    $.card_event.addEventListener("click", function() {
         var t;
         console.log(frontbackcounter % 2);
         if (frontbackcounter % 2 == 0) {
@@ -122,7 +128,7 @@ function Controller() {
                 transition: t
             });
         } else {
-            t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT;
+            t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
             $.card.animate({
                 view: front,
                 transition: t

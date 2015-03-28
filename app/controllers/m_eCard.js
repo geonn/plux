@@ -6,7 +6,9 @@ var frontbackcounter = 0;
 var front = Ti.UI.createView({
     name:"front",
     width: Ti.UI.FILL,
-    currentAngle: 10
+    height: Ti.UI.SIZE,
+    top: 0,
+    currentAngle: 10,
 });
 
 var memno_text = Ti.UI.createLabel({
@@ -48,12 +50,14 @@ var ic_text = Ti.UI.createLabel({
 
 var front_bg = Ti.UI.createImageView({
     width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
     image:"/eCard-front.png",
     currentAngle: 10,
     font:{
     	fontSize: "11dp"
     },
-    zIndex: 11
+    zIndex: 11,
+    top: 0
 });
 
 front.add(front_bg);
@@ -64,21 +68,24 @@ front.add(memno_text);
 var back = Ti.UI.createImageView({
     name:"back",
     width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
     image:"/eCard-back.png",
-    currentAngle: 10
+    currentAngle: 10,
+    top: 0,
 });
 
 $.card.add(back);
 $.card.add(front);
 
-$.eCard.addEventListener('click', function() {
+$.card_event.addEventListener('click', function() {
     var t;
     console.log(frontbackcounter%2);
+
     if (frontbackcounter%2 == 0) {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
         $.card.animate({view:back, transition:t});
     } else {
-        t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT;
+        t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
         $.card.animate({view:front, transition:t});
     }
     frontbackcounter++; 

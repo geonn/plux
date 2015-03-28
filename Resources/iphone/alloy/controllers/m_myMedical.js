@@ -143,25 +143,15 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
-    $.__views.__alloyId296 = Ti.UI.createView({
-        id: "__alloyId296"
+    $.__views.__alloyId295 = Ti.UI.createView({
+        id: "__alloyId295"
     });
-<<<<<<< HEAD
-    $.__views.m_myMedical.add($.__views.main);
-    $.__views.__alloyId294 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId294"
-    });
-    $.__views.main.add($.__views.__alloyId294);
-=======
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-    $.__views.__alloyId296.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId296;
+    $.__views.__alloyId295.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId295;
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         layout: "vertical"
@@ -191,7 +181,6 @@ function Controller() {
         separatorColor: "#375540"
     });
     $.__views.recordView.add($.__views.recordTable);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

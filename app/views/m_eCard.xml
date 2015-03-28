@@ -1,6 +1,6 @@
 <Alloy>
-	<Window title="ASP eCARD" backButtonTitle="" layout="vertical" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View height="204" width="320" id="card"></View>
-		<Label>Click here to flip</Label>
+	<Window title="ASP eCARD" backButtonTitle="" layout="" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View height="Ti.UI.FILL" width="Ti.UI.FILL" top="0" id="card"></View>
+		<View height="Ti.UI.FILL" width="Ti.UI.FILL" id="card_event"></View>
 	</Window>
 </Alloy>

@@ -114,7 +114,8 @@ function Controller() {
         height: "100",
         top: "10",
         left: "10",
-        image: "/appicon-60@3x.png"
+        image: "/appicon-60@3x.png",
+        zIndex: "5"
     });
     $.__views.__alloyId167.add($.__views.logo);
     $.__views.myinfo_view = Ti.UI.createView({
