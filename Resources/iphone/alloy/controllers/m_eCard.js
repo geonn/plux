@@ -40,26 +40,18 @@ function Controller() {
         id: "card"
     });
     $.__views.eCard.add($.__views.card);
-<<<<<<< HEAD
     $.__views.card_event = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         id: "card_event"
     });
     $.__views.eCard.add($.__views.card_event);
-=======
-    $.__views.__alloyId257 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        text: "Click here to flip",
-        id: "__alloyId257"
-    });
-    $.__views.eCard.add($.__views.__alloyId257);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var frontbackcounter = 0;
+    var usersModel = Alloy.createCollection("users");
+    var user = usersModel.getOwnerData();
     var front = Ti.UI.createView({
         name: "front",
         width: Ti.UI.FILL,
@@ -68,7 +60,7 @@ function Controller() {
         currentAngle: 10
     });
     var memno_text = Ti.UI.createLabel({
-        text: "6000 2010 0011 3572",
+        text: user.memno,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "90dp",
@@ -80,7 +72,7 @@ function Controller() {
         color: "#ffffff"
     });
     var name_text = Ti.UI.createLabel({
-        text: "CHEONG SHY YNG",
+        text: user.name,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "125dp",
@@ -92,7 +84,7 @@ function Controller() {
         color: "#ffffff"
     });
     var ic_text = Ti.UI.createLabel({
-        text: "858512102934",
+        text: user.ic,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "125dp",

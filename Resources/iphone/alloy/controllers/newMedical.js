@@ -49,25 +49,15 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.newRecWin && $.addTopLevelView($.__views.newRecWin);
-<<<<<<< HEAD
-    $.__views.__alloyId303 = Ti.UI.createView({
-        id: "__alloyId303"
-=======
-    $.__views.__alloyId317 = Ti.UI.createView({
-        id: "__alloyId317"
->>>>>>> origin/master
+    $.__views.__alloyId316 = Ti.UI.createView({
+        id: "__alloyId316"
     });
     $.__views.saveRecord = Ti.UI.createButton({
         id: "saveRecord",
         title: "Save"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId303.add($.__views.saveRecord);
-    $.__views.newRecWin.rightNavButton = $.__views.__alloyId303;
-=======
-    $.__views.__alloyId317.add($.__views.saveRecord);
-    $.__views.newRecWin.rightNavButton = $.__views.__alloyId317;
->>>>>>> origin/master
+    $.__views.__alloyId316.add($.__views.saveRecord);
+    $.__views.newRecWin.rightNavButton = $.__views.__alloyId316;
     $.__views.aView = Ti.UI.createScrollView({
         id: "aView",
         height: Ti.UI.SIZE,
@@ -83,46 +73,36 @@ function Controller() {
         width: "95%"
     });
     $.__views.aView.add($.__views.titleRecord);
-<<<<<<< HEAD
-    $.__views.__alloyId304 = Ti.UI.createView({
-=======
-    $.__views.__alloyId318 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId317 = Ti.UI.createView({
         height: "1",
         width: "100%",
         backgroundColor: "#000000",
         top: "5",
         bottom: "5",
-<<<<<<< HEAD
-        id: "__alloyId304"
+        id: "__alloyId317"
     });
-    $.__views.aView.add($.__views.__alloyId304);
-=======
-        id: "__alloyId318"
-    });
-    $.__views.aView.add($.__views.__alloyId318);
-    var __alloyId322 = [];
-    $.__views.__alloyId323 = Ti.UI.createButton({
+    $.__views.aView.add($.__views.__alloyId317);
+    var __alloyId321 = [];
+    $.__views.__alloyId322 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
-    __alloyId322.push($.__views.__alloyId323);
-    $.__views.__alloyId324 = Ti.UI.createButton({
+    __alloyId321.push($.__views.__alloyId322);
+    $.__views.__alloyId323 = Ti.UI.createButton({
         backgroundImage: "/images/btn-down.png",
         textAlign: "right",
         right: "5",
         width: "20",
         height: "20",
-        id: "__alloyId324"
+        id: "__alloyId323"
     });
-    __alloyId322.push($.__views.__alloyId324);
-    hideKeyboard ? $.__views.__alloyId324.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId324!click!hideKeyboard"] = true;
-    $.__views.__alloyId320 = Ti.UI.iOS.createToolbar({
-        items: __alloyId322,
-        id: "__alloyId320"
+    __alloyId321.push($.__views.__alloyId323);
+    hideKeyboard ? $.__views.__alloyId323.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId323!click!hideKeyboard"] = true;
+    $.__views.__alloyId319 = Ti.UI.iOS.createToolbar({
+        items: __alloyId321,
+        id: "__alloyId319"
     });
->>>>>>> origin/master
     $.__views.recordsTextArea = Ti.UI.createTextArea({
-        keyboardToolbar: $.__views.__alloyId320,
+        keyboardToolbar: $.__views.__alloyId319,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -132,8 +112,8 @@ function Controller() {
         suppressReturn: "false"
     });
     $.__views.aView.add($.__views.recordsTextArea);
-    $.__views.__alloyId320 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId320,
+    $.__views.__alloyId319 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId319,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -149,7 +129,7 @@ function Controller() {
     MRECORDS.construct($);
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
     $.saveRecord.addEventListener("click", saveRecord);
-    __defers["$.__views.__alloyId324!click!hideKeyboard"] && $.__views.__alloyId324.addEventListener("click", hideKeyboard);
+    __defers["$.__views.__alloyId323!click!hideKeyboard"] && $.__views.__alloyId323.addEventListener("click", hideKeyboard);
     _.extend($, exports);
 }
 

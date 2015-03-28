@@ -143,28 +143,19 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
-<<<<<<< HEAD
-    $.__views.__alloyId295 = Ti.UI.createView({
-        id: "__alloyId295"
-=======
-    $.__views.__alloyId308 = Ti.UI.createView({
-        id: "__alloyId308"
->>>>>>> origin/master
+    $.__views.__alloyId307 = Ti.UI.createView({
+        id: "__alloyId307"
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId295.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId295;
-=======
-    $.__views.__alloyId308.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId308;
-    $.__views.__alloyId309 = Ti.UI.createView({
-        id: "__alloyId309"
+    $.__views.__alloyId307.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId307;
+    $.__views.__alloyId308 = Ti.UI.createView({
+        id: "__alloyId308"
     });
-    $.__views.m_myMedical.add($.__views.__alloyId309);
+    $.__views.m_myMedical.add($.__views.__alloyId308);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -173,7 +164,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId309.add($.__views.loadingBar);
+    $.__views.__alloyId308.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -191,12 +182,11 @@ function Controller() {
         color: "#ffffff"
     });
     $.__views.loadingBar.add($.__views.loading);
->>>>>>> origin/master
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         layout: "vertical"
     });
-    $.__views.__alloyId309.add($.__views.aView);
+    $.__views.__alloyId308.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
