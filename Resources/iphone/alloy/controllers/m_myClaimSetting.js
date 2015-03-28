@@ -32,15 +32,15 @@ function Controller() {
         id: "m_myClaimSetting"
     });
     $.__views.m_myClaimSetting && $.addTopLevelView($.__views.m_myClaimSetting);
-    var __alloyId283 = [];
-    $.__views.__alloyId284 = Ti.UI.createTableViewRow({
+    var __alloyId295 = [];
+    $.__views.__alloyId296 = Ti.UI.createTableViewRow({
         hasChild: "true",
         title: "Claim History",
-        id: "__alloyId284"
+        id: "__alloyId296"
     });
-    __alloyId283.push($.__views.__alloyId284);
+    __alloyId295.push($.__views.__alloyId296);
     $.__views.menu = Ti.UI.createTableView({
-        data: __alloyId283,
+        data: __alloyId295,
         id: "menu"
     });
     $.__views.m_myClaimSetting.add($.__views.menu);

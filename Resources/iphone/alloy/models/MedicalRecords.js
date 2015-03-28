@@ -63,7 +63,7 @@ exports.definition = {
                 collection.trigger("sync");
                 return arr;
             },
-            removeRecordById: function() {
+            removeRecordById: function(id) {
                 var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "'";
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -95,6 +95,19 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return listArr;
+            },
+            updateRecord: function(entry) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
+                var title = entry.title;
+                title = title.replace(/["']/g, "&quot;");
+                var message = entry.message;
+                message = message.replace(/["']/g, "&quot;");
+                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',  message='" + entry.message + "' WHERE id='" + entry.id + "' ";
+                db.execute(sql_query);
+                db.close();
+                collection.trigger("sync");
             },
             addRecord: function(entry) {
                 var collection = this;

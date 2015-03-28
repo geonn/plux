@@ -1,0 +1,30 @@
+<Alloy>
+	<Window id="editRecWin" title="Edit Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<RightNavButton>
+	        <View>
+	         	<Button id="saveRecord" title="Save" />
+	        </View>
+        </RightNavButton>
+	 
+	 	<View >
+			<ScrollView id="aView" height="Ti.UI.SIZE"  layout="vertical" bottom=5> 
+				<TextField top=5 bottom=5 id="titleRecord" height="25" hintText="Records title..." width="95%"/> 
+				<View height="1" width="100%" backgroundColor="#000000" top=5 bottom=5 />
+			 	<TextArea id="recordsTextArea"  color="#888" textAlign="left" value="" width="95%" height="100%" suppressReturn="false" >
+			 		<KeyboardToolbar>
+						<Toolbar>
+							<Items> 
+								<FlexSpace/>
+								<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+							</Items>
+						</Toolbar>
+					</KeyboardToolbar>
+			 	</TextArea>
+			 	
+			</ScrollView> 
+			<View height="40" bottom=0 width="100%" backgroundColor="#EEEEEE">
+					<Button onClick="deleteRecord" backgroundImage="/images/btn-down.png" textAlign="left" left="5" width="20" height="20"  />
+			</View>
+		</View>
+	</Window>
+</Alloy>
