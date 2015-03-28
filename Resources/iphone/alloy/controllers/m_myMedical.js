@@ -146,16 +146,6 @@ function Controller() {
     $.__views.__alloyId308 = Ti.UI.createView({
         id: "__alloyId308"
     });
-<<<<<<< HEAD
-    $.__views.m_myMedical.add($.__views.main);
-    $.__views.__alloyId294 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId294"
-    });
-    $.__views.main.add($.__views.__alloyId294);
-=======
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
@@ -221,7 +211,6 @@ function Controller() {
         separatorColor: "#375540"
     });
     $.__views.recordView.add($.__views.recordTable);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

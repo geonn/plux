@@ -23,7 +23,7 @@
 			 	
 			</ScrollView> 
 			<View height="40" bottom=0 width="100%" backgroundColor="#EEEEEE">
-					<Button onClick="deleteRecord" backgroundImage="/images/btn-down.png" textAlign="left" left="5" width="20" height="20"  />
+					<Button onClick="deleteRecord" backgroundImage="/images/btn-remove.png" textAlign="left" left="15" width="30" height="30"  />
 			</View>
 		</View>
 	</Window>

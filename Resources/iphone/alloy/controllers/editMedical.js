@@ -153,11 +153,11 @@ function Controller() {
     });
     $.__views.__alloyId10.add($.__views.__alloyId18);
     $.__views.__alloyId19 = Ti.UI.createButton({
-        backgroundImage: "/images/btn-down.png",
+        backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
-        left: "5",
-        width: "20",
-        height: "20",
+        left: "15",
+        width: "30",
+        height: "30",
         id: "__alloyId19"
     });
     $.__views.__alloyId18.add($.__views.__alloyId19);
