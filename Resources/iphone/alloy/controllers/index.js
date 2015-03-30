@@ -34,6 +34,7 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId186 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
@@ -41,6 +42,15 @@ function Controller() {
         id: "__alloyId186"
     });
     $.__views.main.add($.__views.__alloyId186);
+=======
+    $.__views.__alloyId92 = Ti.UI.createImageView({
+        width: "100%",
+        height: "100%",
+        image: "/dummy/dummy-introduce.jpg",
+        id: "__alloyId92"
+    });
+    $.__views.main.add($.__views.__alloyId92);
+>>>>>>> origin/master
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -61,6 +71,7 @@ function Controller() {
     _.extend($, $.__views);
     var win = Alloy.createController("home").getView();
     API.loadPanelList();
+    API.loadCategoryList();
     win.open();
     _.extend($, exports);
 }

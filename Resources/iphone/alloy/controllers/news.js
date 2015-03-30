@@ -26,7 +26,7 @@ function Controller() {
     $.__views.news = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "Bone Health for Life",
+        title: "",
         backButtonTitle: "",
         id: "news",
         navTintColor: "#CE1D1C"
@@ -39,12 +39,19 @@ function Controller() {
         id: "main"
     });
     $.__views.news.add($.__views.main);
+<<<<<<< HEAD
     var __alloyId325 = [];
     $.__views.__alloyId326 = Ti.UI.createScrollView({
+=======
+    var __alloyId231 = [];
+    $.__views.myContentView = Ti.UI.createScrollView({
+>>>>>>> origin/master
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
         layout: "vertical",
+        id: "myContentView",
         contentHeight: "auto",
+<<<<<<< HEAD
         contentWidth: Ti.UI.FILL,
         id: "__alloyId326"
     });
@@ -406,6 +413,12 @@ function Controller() {
     });
     __alloyId325.push($.__views.__alloyId353);
     $.__views.__alloyId354 = Ti.UI.createLabel({
+=======
+        contentWidth: Ti.UI.FILL
+    });
+    __alloyId231.push($.__views.myContentView);
+    $.__views.newsTitle = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         wordWrap: true,
@@ -418,17 +431,26 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         text: "Bone Health for Life: Health Information Basics for You and Your Family",
+<<<<<<< HEAD
         id: "__alloyId354"
+=======
+        id: "newsTitle"
+>>>>>>> origin/master
     });
-    $.__views.__alloyId353.add($.__views.__alloyId354);
-    $.__views.__alloyId355 = Ti.UI.createImageView({
+    $.__views.myContentView.add($.__views.newsTitle);
+    $.__views.newsImage = Ti.UI.createImageView({
         width: Titanium.UI.FILL,
         height: "auto",
-        image: "/images/bone-health-thumb.png",
-        id: "__alloyId355"
+        id: "newsImage",
+        image: ""
     });
+<<<<<<< HEAD
     $.__views.__alloyId353.add($.__views.__alloyId355);
     $.__views.__alloyId356 = Ti.UI.createLabel({
+=======
+    $.__views.myContentView.add($.__views.newsImage);
+    $.__views.newsDate = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -437,6 +459,7 @@ function Controller() {
         color: "#9E9E9E",
         left: "5dp",
         top: "5dp",
+<<<<<<< HEAD
         text: "here is image caption",
         id: "__alloyId356"
     });
@@ -491,11 +514,61 @@ function Controller() {
         id: "__alloyId324"
     });
     $.__views.main.add($.__views.__alloyId324);
+=======
+        text: "",
+        id: "newsDate"
+    });
+    $.__views.myContentView.add($.__views.newsDate);
+    $.__views.__alloyId230 = Ti.UI.createScrollableView({
+        views: __alloyId231,
+        showPagingControl: "false",
+        id: "__alloyId230"
+    });
+    $.__views.main.add($.__views.__alloyId230);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    var title = args.title;
-    $.news.title = title;
+    var news_id = args.news_id;
+    var newsFeedModel = Alloy.createCollection("health_news_feed");
+    var newsElementModel = Alloy.createCollection("news_element");
+    var news = newsFeedModel.getRecordsById(news_id);
+    var details = newsElementModel.getListByNews(news_id);
+    $.newsTitle.setText(news.title);
+    $.newsImage.setImage(news.images);
+    $.newsDate.setText(timeFormat(news.updated));
+    console.log(details);
+    details.forEach(function(entry) {
+        if ("1" == entry.type) {
+            var dynaLabel = $.UI.create("Label", {
+                text: entry.content,
+                classes: [ "news_subtitle" ]
+            });
+            $.myContentView.add(dynaLabel);
+        }
+        if ("2" == entry.type) {
+            var msg = entry.content;
+            msg = msg.replace(/<br\/>/g, "\r\n");
+            var dynaLabel = $.UI.create("Label", {
+                text: msg,
+                classes: [ "news_paragraph" ]
+            });
+            $.myContentView.add(dynaLabel);
+        }
+        if ("3" == entry.type) {
+            var dynaImage = Ti.UI.createImageView({
+                image: entry.images
+            });
+            $.myContentView.add(dynaImage);
+            var msg = entry.content;
+            msg = msg.replace(/<br\/>/g, "\r\n");
+            var dynaLabel = $.UI.create("Label", {
+                text: msg,
+                classes: [ "image_caption" ]
+            });
+            $.myContentView.add(dynaLabel);
+        }
+    });
     _.extend($, exports);
 }
 
