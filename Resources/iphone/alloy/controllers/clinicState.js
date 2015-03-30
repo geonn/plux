@@ -106,8 +106,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelClinicTbl && $.addTopLevelView($.__views.panelClinicTbl);
-    $.__views.__alloyId7 = Ti.UI.createView({
-        id: "__alloyId7"
+    $.__views.__alloyId5 = Ti.UI.createView({
+        id: "__alloyId5"
     });
     $.__views.setting = Ti.UI.createImageView({
         right: "0",
@@ -115,8 +115,8 @@ function Controller() {
         width: "30",
         image: "/images/icon_setting.png"
     });
-    $.__views.__alloyId7.add($.__views.setting);
-    $.__views.panelClinicTbl.rightNavButton = $.__views.__alloyId7;
+    $.__views.__alloyId5.add($.__views.setting);
+    $.__views.panelClinicTbl.rightNavButton = $.__views.__alloyId5;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

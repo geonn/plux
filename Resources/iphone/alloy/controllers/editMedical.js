@@ -66,26 +66,26 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.editRecWin && $.addTopLevelView($.__views.editRecWin);
-    $.__views.__alloyId9 = Ti.UI.createView({
-        id: "__alloyId9"
+    $.__views.__alloyId7 = Ti.UI.createView({
+        id: "__alloyId7"
     });
     $.__views.saveRecord = Ti.UI.createButton({
         id: "saveRecord",
         title: "Save"
     });
-    $.__views.__alloyId9.add($.__views.saveRecord);
-    $.__views.editRecWin.rightNavButton = $.__views.__alloyId9;
-    $.__views.__alloyId10 = Ti.UI.createView({
-        id: "__alloyId10"
+    $.__views.__alloyId7.add($.__views.saveRecord);
+    $.__views.editRecWin.rightNavButton = $.__views.__alloyId7;
+    $.__views.__alloyId8 = Ti.UI.createView({
+        id: "__alloyId8"
     });
-    $.__views.editRecWin.add($.__views.__alloyId10);
+    $.__views.editRecWin.add($.__views.__alloyId8);
     $.__views.aView = Ti.UI.createScrollView({
         id: "aView",
         height: Ti.UI.SIZE,
         layout: "vertical",
         bottom: "5"
     });
-    $.__views.__alloyId10.add($.__views.aView);
+    $.__views.__alloyId8.add($.__views.aView);
     $.__views.titleRecord = Ti.UI.createTextField({
         top: "5",
         bottom: "5",
@@ -95,36 +95,36 @@ function Controller() {
         width: "95%"
     });
     $.__views.aView.add($.__views.titleRecord);
-    $.__views.__alloyId11 = Ti.UI.createView({
+    $.__views.__alloyId9 = Ti.UI.createView({
         height: "1",
         width: "100%",
         backgroundColor: "#000000",
         top: "5",
         bottom: "5",
-        id: "__alloyId11"
+        id: "__alloyId9"
     });
-    $.__views.aView.add($.__views.__alloyId11);
-    var __alloyId15 = [];
-    $.__views.__alloyId16 = Ti.UI.createButton({
+    $.__views.aView.add($.__views.__alloyId9);
+    var __alloyId13 = [];
+    $.__views.__alloyId14 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
-    __alloyId15.push($.__views.__alloyId16);
-    $.__views.__alloyId17 = Ti.UI.createButton({
+    __alloyId13.push($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createButton({
         backgroundImage: "/images/btn-down.png",
         textAlign: "right",
         right: "5",
         width: "20",
         height: "20",
-        id: "__alloyId17"
+        id: "__alloyId15"
     });
-    __alloyId15.push($.__views.__alloyId17);
-    hideKeyboard ? $.__views.__alloyId17.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId17!click!hideKeyboard"] = true;
-    $.__views.__alloyId13 = Ti.UI.iOS.createToolbar({
-        items: __alloyId15,
-        id: "__alloyId13"
+    __alloyId13.push($.__views.__alloyId15);
+    hideKeyboard ? $.__views.__alloyId15.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId15!click!hideKeyboard"] = true;
+    $.__views.__alloyId11 = Ti.UI.iOS.createToolbar({
+        items: __alloyId13,
+        id: "__alloyId11"
     });
     $.__views.recordsTextArea = Ti.UI.createTextArea({
-        keyboardToolbar: $.__views.__alloyId13,
+        keyboardToolbar: $.__views.__alloyId11,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -134,8 +134,8 @@ function Controller() {
         suppressReturn: "false"
     });
     $.__views.aView.add($.__views.recordsTextArea);
-    $.__views.__alloyId13 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId13,
+    $.__views.__alloyId11 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId11,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -144,24 +144,24 @@ function Controller() {
         height: "100%",
         suppressReturn: "false"
     });
-    $.__views.__alloyId18 = Ti.UI.createView({
+    $.__views.__alloyId16 = Ti.UI.createView({
         height: "40",
         bottom: "0",
         width: "100%",
         backgroundColor: "#EEEEEE",
-        id: "__alloyId18"
+        id: "__alloyId16"
     });
-    $.__views.__alloyId10.add($.__views.__alloyId18);
-    $.__views.__alloyId19 = Ti.UI.createButton({
+    $.__views.__alloyId8.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Ti.UI.createButton({
         backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
         left: "15",
         width: "30",
         height: "30",
-        id: "__alloyId19"
+        id: "__alloyId17"
     });
-    $.__views.__alloyId18.add($.__views.__alloyId19);
-    deleteRecord ? $.__views.__alloyId19.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId19!click!deleteRecord"] = true;
+    $.__views.__alloyId16.add($.__views.__alloyId17);
+    deleteRecord ? $.__views.__alloyId17.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId17!click!deleteRecord"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -176,8 +176,8 @@ function Controller() {
     $.titleRecord.value = title;
     $.recordsTextArea.value = message;
     $.saveRecord.addEventListener("click", saveRecord);
-    __defers["$.__views.__alloyId17!click!hideKeyboard"] && $.__views.__alloyId17.addEventListener("click", hideKeyboard);
-    __defers["$.__views.__alloyId19!click!deleteRecord"] && $.__views.__alloyId19.addEventListener("click", deleteRecord);
+    __defers["$.__views.__alloyId15!click!hideKeyboard"] && $.__views.__alloyId15.addEventListener("click", hideKeyboard);
+    __defers["$.__views.__alloyId17!click!deleteRecord"] && $.__views.__alloyId17.addEventListener("click", deleteRecord);
     _.extend($, exports);
 }
 

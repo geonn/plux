@@ -23,148 +23,68 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.clinicLocator = Ti.UI.createWindow({
+    $.__views.win_map = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Locator",
+        id: "win_map",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "clinicLocator"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.clinicLocator && $.addTopLevelView($.__views.clinicLocator);
-    $.__views.clinicLocator.rightNavButton = void 0;
-    $.__views.main = Ti.UI.createView({
-        id: "main"
-    });
-    $.__views.clinicLocator.add($.__views.main);
-    $.__views.__alloyId4 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId4"
-    });
-    $.__views.main.add($.__views.__alloyId4);
-    $.__views.loadingBar = Ti.UI.createView({
-        layout: "vertical",
-        id: "loadingBar",
-        height: "120",
-        width: "120",
-        borderRadius: "15",
-        top: "100",
-        backgroundColor: "#2E2E2E"
-    });
-    $.__views.clinicLocator.add($.__views.loadingBar);
-    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        style: Alloy.Globals.topbarTop,
-        top: 30,
-        left: 30,
-        width: 60,
-        id: "activityIndicator"
-    });
-    $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId5 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        top: "5",
-        text: "Loading",
-        color: "#ffffff",
-        id: "__alloyId5"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId5);
-    $.__views.mapview = Alloy.Globals.Map.createView({
-        id: "mapview"
-    });
-    $.__views.clinicLocator.add($.__views.mapview);
+    $.__views.win_map && $.addTopLevelView($.__views.win_map);
+    $.__views.win_map.rightNavButton = void 0;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    console.log(args.id);
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelList();
     if (args.id) var clinic = library.getPanelListById(args.id);
-    var showCurLoc = false;
-    $.activityIndicator.show();
-    var saveCurLoc = function(e) {
-        if (e.error) ; else {
-            showCurLoc = true;
-            console.log("set current loc" + e.coords);
-            Ti.App.Properties.setString("latitude", e.coords.latitude);
-            Ti.App.Properties.setString("longitude", e.coords.longitude);
-        }
-    };
-    if (Ti.Geolocation.locationServicesEnabled) {
-        Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-        Ti.Geolocation.addEventListener("location", saveCurLoc);
-    } else alert("Please enable location services");
-    setTimeout(function() {
-        panelListResult(details);
-    }, 800);
-    var panelListResult = function(details) {
-        Titanium.UI.createTableView({
-            width: "100%",
-            separatorColor: "#ffffff"
-        });
-        $.loadingBar.height = "0";
-        $.loadingBar.top = "0";
-        var arr = details;
-        if (arr.length < 1) {
-            var noRecord = Ti.UI.createLabel({
-                text: "No record found",
-                color: "#CE1D1C",
-                textAlign: "center",
-                font: {
-                    fontSize: 14,
-                    fontStyle: "italic"
-                },
-                top: 15,
-                width: Ti.UI.SIZE
-            });
-            $.panelListTbl.add(noRecord);
-        } else arr.forEach(function(entry) {
-            var merchantLoc = Alloy.Globals.Map.createAnnotation({
-                latitude: entry.latitude,
-                longitude: entry.longitude,
-                title: entry.clinicname,
-                image: "/images/marker.png",
-                subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-                pincolor: Alloy.Globals.Map.ANNOTATION_RED,
-                myid: entry.id
-            });
-            $.mapview.addAnnotation(merchantLoc);
-        });
-        if (args.id) $.mapview.region = {
+    var Map = require("ti.map");
+    Map.createAnnotation({
+        latitude: 37.390749,
+        longitude: -122.081651,
+        title: "Appcelerator Headquarters",
+        subtitle: "Mountain View, CA",
+        pincolor: Map.ANNOTATION_RED,
+        myid: 1
+    });
+    var mapview = Map.createView({
+        mapType: Map.NORMAL_TYPE,
+        region: {
             latitude: clinic.latitude,
             longitude: clinic.longitude,
             latitudeDelta: .01,
             longitudeDelta: .01
-        }; else {
-            console.log(showCurLoc);
-            if (true == showCurLoc && !args.id) {
-                var lat = Ti.App.Properties.getString("latitude");
-                var lgt = Ti.App.Properties.getString("longitude");
-                {
-                    Alloy.Globals.Map.createAnnotation({
-                        latitude: lat,
-                        longitude: lgt,
-                        title: "Current Location",
-                        subtitle: "",
-                        pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
-                        myid: 99
-                    });
-                }
-                $.mapview.region = {
-                    latitude: lat,
-                    longitude: lgt,
-                    latitudeDelta: .01,
-                    longitudeDelta: .01
-                };
-            }
-        }
-        $.mapview.addEventListener("click", function(evt) {
-            var annotation = evt.source;
-            console.log("Annotation " + annotation + " " + evt.title + " clicked, id: " + evt.annotation.myid);
+        },
+        animate: true,
+        regionFit: true,
+        userLocation: true
+    });
+    details.forEach(function(entry) {
+        Map.createAnnotation({
+            latitude: entry.latitude,
+            longitude: entry.longitude,
+            title: entry.clinicname,
+            animate: true,
+            subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+            pincolor: Alloy.Globals.Map.ANNOTATION_RED,
+            myid: entry.id
         });
-    };
+        var mountainView = Map.createAnnotation({
+            latitude: entry.latitude,
+            longitude: entry.longitude,
+            title: entry.clinicName,
+            image: "/images/marker.png",
+            subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+            pincolor: Map.ANNOTATION_RED,
+            myid: entry.id
+        });
+        mapview.addAnnotation(mountainView);
+    });
+    $.win_map.add(mapview);
+    mapview.addEventListener("click", function(evt) {
+        Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+    });
     _.extend($, exports);
 }
 
