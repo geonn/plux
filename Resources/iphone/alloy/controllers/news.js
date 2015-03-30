@@ -532,12 +532,14 @@ function Controller() {
     var news_id = args.news_id;
     var newsFeedModel = Alloy.createCollection("health_news_feed");
     var newsElementModel = Alloy.createCollection("news_element");
+    var categoryModel = Alloy.createCollection("category");
     var news = newsFeedModel.getRecordsById(news_id);
     var details = newsElementModel.getListByNews(news_id);
+    var pageCate = categoryModel.getCategoryById(news.category);
+    $.news.title = pageCate.category;
     $.newsTitle.setText(news.title);
     $.newsImage.setImage(news.images);
     $.newsDate.setText(timeFormat(news.updated));
-    console.log(details);
     details.forEach(function(entry) {
         if ("1" == entry.type) {
             var dynaLabel = $.UI.create("Label", {

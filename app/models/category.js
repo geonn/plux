@@ -45,7 +45,29 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			 
+			getCategoryById: function(id){ 
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id ='"+id+"' ";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                var res = db.execute(sql);
+                var arr = []; 
+               
+                if (res.isValidRow()){
+					arr = {
+					    id: res.fieldByName('id'),
+						category: res.fieldByName('category')
+					};
+					
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			}, 
 			resetCategory : function(id){
 				var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name ;
