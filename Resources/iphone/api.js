@@ -19,6 +19,8 @@ var updateToken = "http://" + FREEJINI_DOMAIN + "/api/updateToken?user=" + USER 
 
 var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER + "&key=" + KEY;
 
+var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + USER + "&key=" + KEY;
+
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
@@ -99,10 +101,51 @@ exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
+            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             var library = Alloy.createCollection("health_news_feed");
-            library.resetPanel();
-            library.addNews(res);
+            var newElementModel = Alloy.createCollection("news_element");
+            library.resetNews();
+            newElementModel.resetNewsElement();
+            library.addNews(res.data);
+            var newsFe = res.data;
+            newsFe.forEach(function(nf) {
+                var elements = nf.element;
+                elements.forEach(function(entry) {
+                    var eleModel = Alloy.createModel("news_element", {
+                        id: entry.id,
+                        news_id: nf.id,
+                        content: entry.content,
+                        type: entry.type,
+                        images: entry.media,
+                        position: entry.position
+                    });
+                    eleModel.save();
+                });
+            });
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.loadCategoryList = function() {
+    var url = categoryUrl;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            var library = Alloy.createCollection("category");
+            library.resetCategory();
+            var arr = res.data;
+            arr.forEach(function(entry) {
+                var category = Alloy.createModel("category", {
+                    id: entry.key,
+                    category: entry.value
+                });
+                category.save();
+            });
         },
         onerror: function() {},
         timeout: 5e4

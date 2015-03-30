@@ -12,9 +12,11 @@ var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
 var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
+var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
+
 /*********************
 **** API FUNCTION*****
 **********************/
@@ -123,14 +125,33 @@ exports.loadNewsFeed = function (ex){
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	    
+	     console.log(this.responseText);
 	     	var res = JSON.parse(this.responseText);
 		 	/**reset current category**/
 		 	var library = Alloy.createCollection('health_news_feed'); 
-			library.resetPanel();
-					
+		 	var newElementModel = Alloy.createCollection('news_element'); 
+			library.resetNews();
+			newElementModel.resetNewsElement();		
 			/**load new set of category from API**/ 
-			library.addNews(res); 
+			
+			library.addNews(res.data); 
+			var newsFe = res.data;
+			newsFe.forEach(function(nf) { 
+				var elements = nf.element;
+				elements.forEach(function(entry) {  
+					var eleModel = Alloy.createModel('news_element', {
+					        id         : entry.id, 
+							news_id		: nf.id,
+							content		: entry.content ,
+							type		: entry.type ,
+							images		: entry.media ,
+							position	: entry.position ,
+							
+					});
+					eleModel.save(); 
+				});
+				
+			});
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
@@ -143,6 +164,38 @@ exports.loadNewsFeed = function (ex){
 	 client.send(); 
 };
 
+exports.loadCategoryList = function (ex){
+	var url = categoryUrl; 
+
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	    
+	     	var res = JSON.parse(this.responseText);
+		 	/**reset current category**/
+		 	var library = Alloy.createCollection('category'); 
+			library.resetCategory();
+					
+			/**load new set of category from API**/ 
+			var arr = res.data;  
+	       	arr.forEach(function(entry) { 
+				var category = Alloy.createModel('category', {
+				        id         : entry.key,
+				        category   : entry.value
+				});
+				category.save(); 
+			});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
 
 exports.loadPanelList = function (ex){
 	var url =  panelList;
