@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "m_doctor";
+    this.__controllerPath = "clinicMap";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -23,29 +23,26 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.m_doctor = Ti.UI.createWindow({
+    $.__views.panelMapWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "Ask Doctor",
+        title: "Panel Map",
+        id: "panelMapWin",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "m_doctor"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.m_doctor && $.addTopLevelView($.__views.m_doctor);
-    $.__views.main = Ti.UI.createView({
-        id: "main"
-    });
-    $.__views.m_doctor.add($.__views.main);
-    $.__views.__alloyId174 = Ti.UI.createImageView({
-        width: "100%",
+    $.__views.panelMapWin && $.addTopLevelView($.__views.panelMapWin);
+    $.__views.panelMap = Ti.UI.createWebView({
+        id: "panelMap",
+        layout: "vertical",
         height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId174"
+        width: "100%"
     });
-    $.__views.main.add($.__views.__alloyId174);
+    $.__views.panelMapWin.add($.__views.panelMap);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
+    var args = arguments[0] || {};
+    $.panelMap.url = args.url;
     _.extend($, exports);
 }
 

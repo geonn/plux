@@ -18,6 +18,22 @@ function Controller() {
             e.success ? performAddressBookFunction() : addressBookDisallowed();
         }) : addressBookDisallowed());
     }
+    function direction2here() {
+        var locationCallback = function(e) {
+            if (!e.success || e.error) {
+                Ti.API.info("error:" + JSON.stringify(e.error));
+                return;
+            }
+            var longitude = e.coords.longitude;
+            var latitude = e.coords.latitude;
+            console.log("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + details.latitude + "," + details.longitude);
+            nav.navigateWithArgs("clinicMap", {
+                url: "http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr=" + latitude + "," + longitude + "&daddr=" + details.latitude + "," + details.longitude
+            });
+            Titanium.Geolocation.removeEventListener("location", locationCallback);
+        };
+        Titanium.Geolocation.addEventListener("location", locationCallback);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinicDetails";
     if (arguments[0]) {
@@ -160,11 +176,20 @@ function Controller() {
         height: Titanium.UI.SIZE,
         selectedBackgroundColor: "#FFE1E1",
         color: "#5E5E5E",
-        title: "Call",
+        title: "Direction To Here",
         id: "__alloyId4"
     });
     __alloyId3.push($.__views.__alloyId4);
-    clickToCall ? $.__views.__alloyId4.addEventListener("click", clickToCall) : __defers["$.__views.__alloyId4!click!clickToCall"] = true;
+    direction2here ? $.__views.__alloyId4.addEventListener("click", direction2here) : __defers["$.__views.__alloyId4!click!direction2here"] = true;
+    $.__views.__alloyId5 = Ti.UI.createTableViewRow({
+        height: Titanium.UI.SIZE,
+        selectedBackgroundColor: "#FFE1E1",
+        color: "#5E5E5E",
+        title: "Call",
+        id: "__alloyId5"
+    });
+    __alloyId3.push($.__views.__alloyId5);
+    clickToCall ? $.__views.__alloyId5.addEventListener("click", clickToCall) : __defers["$.__views.__alloyId5!click!clickToCall"] = true;
     $.__views.add2contact = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
         id: "add2contact",
@@ -205,7 +230,7 @@ function Controller() {
         $.clinicAddress2.text = details.add2;
         $.clinicPostcode.text = details.postcode + ", " + details.city;
         $.clinicState.text = details.state;
-        $.clinicLocation.text = details.latitude + ", " + details.longitude;
+        $.clinicLocation.text = "COORDINATE : " + details.latitude + ", " + details.longitude;
         $.clinicTel.text = "TEL : " + details.tel;
         phoneArr.push(details.tel);
     }
@@ -236,7 +261,8 @@ function Controller() {
     var addressBookDisallowed = function() {
         common.createAlert("Cannot Access Contact Book", "You need allow APLUX to access your contact book.");
     };
-    __defers["$.__views.__alloyId4!click!clickToCall"] && $.__views.__alloyId4.addEventListener("click", clickToCall);
+    __defers["$.__views.__alloyId4!click!direction2here"] && $.__views.__alloyId4.addEventListener("click", direction2here);
+    __defers["$.__views.__alloyId5!click!clickToCall"] && $.__views.__alloyId5.addEventListener("click", clickToCall);
     __defers["$.__views.add2contact!click!addToContact"] && $.__views.add2contact.addEventListener("click", addToContact);
     _.extend($, exports);
 }

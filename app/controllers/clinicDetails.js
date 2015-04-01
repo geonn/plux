@@ -23,7 +23,7 @@ if(details != ""){
 	$.clinicAddress2.text = details.add2;
 	$.clinicPostcode.text = details.postcode +", " + details.city;
 	$.clinicState.text = details.state;
-	$.clinicLocation.text = details.latitude +", "+ details.longitude;
+	$.clinicLocation.text = "COORDINATE : " +details.latitude +", "+ details.longitude;
 	$.clinicTel.text = "TEL : " +details.tel  ; 
 	phoneArr.push(details.tel);
 }
@@ -82,3 +82,21 @@ function addToContact(){
 		}
 	}
 }
+ 
+function direction2here(){
+	 
+	var locationCallback = function(e) {
+	    if(!e.success || e.error) {
+	        Ti.API.info('error:' + JSON.stringify(e.error));
+	        return;
+	    } 
+	    var longitude = e.coords.longitude;
+	    var latitude = e.coords.latitude; 
+	 	console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+	    nav.navigateWithArgs("clinicMap", {url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
+	   	 
+	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 
+	};
+	Titanium.Geolocation.addEventListener('location', locationCallback); 
+}
+ 

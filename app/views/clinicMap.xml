@@ -1,0 +1,5 @@
+<Alloy>
+	<Window title="Panel Map" id="panelMapWin" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		 <WebView id="panelMap" layout="vertical" height="100%" width="100%" />
+	</Window>
+</Alloy>
