@@ -1,0 +1,25 @@
+
+".container" : {
+  
+},
+"#lastUpdated" : {
+	color: "#888",
+	font:{
+		fontSize: "12dp"
+	}
+},
+"#addLbl" : {
+	font:{
+		fontSize: "20dp"
+	}
+},
+"#titleRecord" :{
+	font:{
+		fontSize: "20dp"
+	}
+},
+"#recordsTextArea" :{
+	font:{
+		fontSize: "16dp"
+	}
+}
