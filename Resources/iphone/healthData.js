@@ -7,6 +7,34 @@ function getAge(dateString) {
     return age;
 }
 
+function loadInfo(gType) {
+    var info = [];
+    var info_details = lib_health.getHealthListByType(gType);
+    info_details.reverse();
+    info_details.forEach(function(entry) {
+        var rec = {};
+        var convert = entry.date.split("-");
+        var month = parseInt(convert[1]) - 1;
+        var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
+        rec["label"] = newDate;
+        rec["y"] = parseFloat(entry.amount);
+        info.push(rec);
+    });
+    1 == gType && Ti.App.fireEvent("app:bmiInfo", {
+        message: info
+    });
+    2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
+        message: info
+    });
+    3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
+        message: info
+    });
+    4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
+        message: info
+    });
+    return info;
+}
+
 var mainView = null;
 
 var lib_health = Alloy.createCollection("health");
@@ -57,30 +85,12 @@ exports.enableSaveButton = function() {
 
 exports.populateData = function() {
     for (var i = 1; 4 >= i; i++) {
-        var info_details = lib_health.getHealthListByType(i);
-        var info = [];
-        info_details.forEach(function(entry) {
-            var rec = {};
-            var convert = entry.date.split("-");
-            var month = parseInt(convert[1]) - 1;
-            var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
-            rec["label"] = newDate;
-            rec["y"] = parseFloat(entry.amount);
-            info.push(rec);
-        });
-        1 == i && Ti.App.fireEvent("app:bmiInfo", {
-            message: info
-        });
-        2 == i && Ti.App.fireEvent("app:bloodPressureInfo", {
-            message: info
-        });
-        3 == i && Ti.App.fireEvent("app:heartRateInfo", {
-            message: info
-        });
-        4 == i && Ti.App.fireEvent("app:bodyTemperatureInfo", {
-            message: info
-        });
+        loadInfo(i);
     }
+};
+
+exports.loadGraphByType = function(gType) {
+    loadInfo(gType);
 };
 
 exports.todayDate = function() {
@@ -116,8 +126,9 @@ exports.changeDate = function(e) {
     month.length < 2 && (month = "0" + month);
     var year = pickerdate.getFullYear();
     selDate = day + "/" + month + "/" + year;
-    var age = getAge(year + "-" + month + "-" + day);
-    mainView.date_value.text = selDate + "(" + age + ")";
+    var age = "";
+    "1" == e.age && (age = "(" + getAge(year + "-" + month + "-" + day) + ")");
+    mainView.date_value.text = selDate + age;
 };
 
 exports.changeGender = function(e) {

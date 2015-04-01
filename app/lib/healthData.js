@@ -62,33 +62,42 @@ exports.enableSaveButton = function(e){
 
 exports.populateData = function(e){
 	for(var i =1; i <= 4; i++){
-	 	var info_details = lib_health.getHealthListByType(i); 
-		var info = [];
-		 
-		info_details.forEach(function(entry) {
-			var rec = {};
-			var convert = (entry.date).split('-'); 
-			var month = parseInt(convert[1]) - 1;
-			var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
-			rec['label'] = newDate;
-			rec['y'] = parseFloat(entry.amount);
-				
-			info.push(rec);
-		});  
-		if(i == 1){
-			Ti.App.fireEvent('app:bmiInfo',{ message:  info });
-		}
-		if(i == 2){
-			Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info });
-		}
-		if(i == 3){
-			Ti.App.fireEvent('app:heartRateInfo',{ message:  info });
-		}
-		if(i == 4){
-			Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info });
-		}
-		
+	 	var info = loadInfo(i);
 	}
+};
+
+function loadInfo(gType){
+	var info = [];
+	var info_details = lib_health.getHealthListByType(gType); 
+	info_details.reverse();	 
+	info_details.forEach(function(entry) {
+		var rec = {};
+		var convert = (entry.date).split('-'); 
+		var month = parseInt(convert[1]) - 1;
+		var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
+		rec['label'] = newDate;
+		rec['y'] = parseFloat(entry.amount);
+				
+		info.push(rec);
+	});  
+	
+	if(gType == 1){
+		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
+	}
+	if(gType == 2){
+		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info });
+	}
+	if(gType == 3){
+		Ti.App.fireEvent('app:heartRateInfo',{ message:  info });
+	}
+	if(gType == 4){
+		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info });
+	}
+	return info;
+}
+
+exports.loadGraphByType = function(gType){
+	var info = loadInfo(gType); 
 };
 
 exports.todayDate = function(){
@@ -148,8 +157,13 @@ exports.changeDate= function(e){
  
     var year = pickerdate.getFullYear(); 
     selDate = day + "/" + month + "/" + year; 
-	var age = getAge(year+"-"+month+"-"+day);
-	mainView.date_value.text = selDate +"("+age+")"; 
+    
+    var age = "";
+    if(e.age == "1"){
+    	age = "("+getAge(year+"-"+month+"-"+day)+")";  
+    }
+	
+	mainView.date_value.text = selDate + age; 
 };
 
 exports.changeGender = function(e){ 

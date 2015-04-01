@@ -137,17 +137,6 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
-    $.__views.__alloyId2 = Ti.UI.createView({
-        id: "__alloyId2"
-    });
-    $.__views.setting = Ti.UI.createImageView({
-        right: "0",
-        id: "setting",
-        width: "30",
-        image: "/images/icon_setting.png"
-    });
-    $.__views.__alloyId2.add($.__views.setting);
-    $.__views.panelListTbl.rightNavButton = $.__views.__alloyId2;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -156,10 +145,6 @@ function Controller() {
     var details = library.getPanelByState(state);
     console.log(details);
     listing();
-    $.setting.addEventListener("click", function() {
-        var nav = require("navigation");
-        nav.navigationWindow("clinicLocator");
-    });
     _.extend($, exports);
 }
 

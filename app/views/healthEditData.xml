@@ -1,0 +1,20 @@
+<Alloy>
+	<Window title="All Recorded Data" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+        <RightNavButton>
+	        <View>
+	         	<Button id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
+	         	 
+	         	<Button id="doneButton" onTouchend="doDone"  title="Done" right="0" touchEnabled="true" visible="false"  />
+	        </View>
+        </RightNavButton>
+        <View>
+        	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		        <ActivityIndicator  id="activityIndicator" />
+		    	<Label top="5" text="Loading" color="#ffffff" />
+		    </View>
+			<ScrollView id="main" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" top="0">
+				 <TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" />
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

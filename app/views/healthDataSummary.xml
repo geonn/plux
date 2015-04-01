@@ -1,0 +1,20 @@
+<Alloy>
+	<Window title="Dashboard" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+        <View>
+        	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		        <ActivityIndicator  id="activityIndicator" />
+		    	<Label top="5" text="Loading" color="#ffffff" />
+		    </View>
+			<View id="main" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" top="0">
+				<View id="bmiView" height="60%"  width="100%" backgroundColor="#EBEBEB" >
+					<WebView id="graphWebView" width="100%"  height="Ti.UI.FILL" backgroundColor="#EBEBEB" />
+					<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+				</View> 
+				<TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" >
+					<TableViewRow onClick="addData" title="Add Data Point" hasChild="true" />
+	            	<TableViewRow onClick="editData" title="Show All Data" hasChild="true" />
+				</TableView>
+			</View>
+		</View>
+	</Window>
+</Alloy>

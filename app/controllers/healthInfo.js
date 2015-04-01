@@ -6,8 +6,7 @@ displayHealthInfo();
 API.loadNewsFeed();
 
 function displayHealthInfo(){  
-	var tableData = [];
-	console.log(cateList);
+	var tableData = []; 
 	for(var i=0; i < cateList.length ; i++){  
 		var newsList = newsFeedModel.getRecordsListByCategory(cateList[i].id);
 		

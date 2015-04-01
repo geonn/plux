@@ -91,7 +91,7 @@ function showBloodTypePicker(e){
 
 function changeDate(e){ 
 	//console.log
-	hd.changeDate({date: e.value});
+	hd.changeDate({date: e.value, age : 1});
 }
 
 function changeGender(e){ 

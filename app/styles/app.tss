@@ -15,5 +15,5 @@
 },
 "Label":{
 	width: Titanium.UI.SIZE,
-	height: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE 
 }

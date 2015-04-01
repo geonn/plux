@@ -46,20 +46,21 @@ setTimeout(function(){
 	common.hideLoading();
 },900); 
 filterList({category: "all"}); 
+
 $.bmiView.addEventListener('click',function(e){
-	nav.navigationWindow("healthDataBmi");
+	nav.navigateWithArgs("healthDataSummary",{gType: 1});
 });
 
 $.bloodPressureView.addEventListener('click',function(e){
-	nav.navigationWindow("healthDataBloodPressure");
+	nav.navigateWithArgs("healthDataSummary",{gType: 2});
 });
 
 $.heartRateView.addEventListener('click',function(e){
-	nav.navigationWindow("healthDataHeartRate");
+	nav.navigateWithArgs("healthDataSummary",{gType: 3});
 });
 
 $.bodyTemperatureView.addEventListener('click',function(e){
-	nav.navigationWindow("healthDataBodyTemperature");
+	nav.navigateWithArgs("healthDataSummary",{gType: 4});
 });
 
 $.moreHealth.addEventListener('click', function(e){

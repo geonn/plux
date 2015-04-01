@@ -32,7 +32,6 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win_map && $.addTopLevelView($.__views.win_map);
-    $.__views.win_map.rightNavButton = void 0;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
