@@ -56,10 +56,10 @@ function Controller() {
         title: "Login"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId145 = Ti.UI.createView({
-        id: "__alloyId145"
+    $.__views.__alloyId146 = Ti.UI.createView({
+        id: "__alloyId146"
     });
-    $.__views.loginWin.add($.__views.__alloyId145);
+    $.__views.loginWin.add($.__views.__alloyId146);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -68,7 +68,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId145.add($.__views.loadingBar);
+    $.__views.__alloyId146.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -77,31 +77,31 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId146 = Ti.UI.createLabel({
+    $.__views.__alloyId147 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId146"
+        id: "__alloyId147"
     });
-    $.__views.loadingBar.add($.__views.__alloyId146);
+    $.__views.loadingBar.add($.__views.__alloyId147);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "95%"
     });
-    $.__views.__alloyId145.add($.__views.main);
-    $.__views.__alloyId147 = Ti.UI.createImageView({
+    $.__views.__alloyId146.add($.__views.main);
+    $.__views.__alloyId148 = Ti.UI.createImageView({
         width: "50%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
         image: "appicon-76@2x.png",
-        id: "__alloyId147"
+        id: "__alloyId148"
     });
-    $.__views.main.add($.__views.__alloyId147);
+    $.__views.main.add($.__views.__alloyId148);
     $.__views.username = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
@@ -160,17 +160,6 @@ function Controller() {
         layout: "horizontal"
     });
     $.__views.loginWin.add($.__views.footer);
-    $.__views.__alloyId148 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "ASPplux",
-        id: "__alloyId148"
-    });
-    $.__views.footer.add($.__views.__alloyId148);
     $.__views.__alloyId149 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -178,7 +167,7 @@ function Controller() {
             fontSize: "11dp"
         },
         color: "#808080",
-        text: "|",
+        text: "ASPplux",
         id: "__alloyId149"
     });
     $.__views.footer.add($.__views.__alloyId149);
@@ -189,7 +178,7 @@ function Controller() {
             fontSize: "11dp"
         },
         color: "#808080",
-        text: "Privacy & Terms",
+        text: "|",
         id: "__alloyId150"
     });
     $.__views.footer.add($.__views.__alloyId150);
@@ -200,7 +189,7 @@ function Controller() {
             fontSize: "11dp"
         },
         color: "#808080",
-        text: "|",
+        text: "Privacy & Terms",
         id: "__alloyId151"
     });
     $.__views.footer.add($.__views.__alloyId151);
@@ -211,10 +200,21 @@ function Controller() {
             fontSize: "11dp"
         },
         color: "#808080",
-        text: "Help",
+        text: "|",
         id: "__alloyId152"
     });
     $.__views.footer.add($.__views.__alloyId152);
+    $.__views.__alloyId153 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        font: {
+            fontSize: "11dp"
+        },
+        color: "#808080",
+        text: "Help",
+        id: "__alloyId153"
+    });
+    $.__views.footer.add($.__views.__alloyId153);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

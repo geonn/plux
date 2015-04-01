@@ -39,14 +39,6 @@ function Controller() {
     var details = library.getPanelList();
     if (args.id) var clinic = library.getPanelListById(args.id);
     var Map = require("ti.map");
-    Map.createAnnotation({
-        latitude: 37.390749,
-        longitude: -122.081651,
-        title: "Appcelerator Headquarters",
-        subtitle: "Mountain View, CA",
-        pincolor: Map.ANNOTATION_RED,
-        myid: 1
-    });
     var mapview = Map.createView({
         mapType: Map.NORMAL_TYPE,
         region: {
@@ -60,30 +52,33 @@ function Controller() {
         userLocation: true
     });
     details.forEach(function(entry) {
-        Map.createAnnotation({
-            latitude: entry.latitude,
-            longitude: entry.longitude,
-            title: entry.clinicname,
-            animate: true,
-            subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-            pincolor: Alloy.Globals.Map.ANNOTATION_RED,
-            myid: entry.id
+        var detBtn = Ti.UI.createButton({
+            backgroundImage: "/images/btn-forward.png",
+            color: "red",
+            height: 20,
+            width: 20,
+            panel_id: entry.id
         });
-        var mountainView = Map.createAnnotation({
+        detBtn.addEventListener("click", function(ex) {
+            nav.navigateWithArgs("clinicDetails", {
+                panel_id: ex.source.panel_id
+            });
+        });
+        var merchantLoc = Map.createAnnotation({
             latitude: entry.latitude,
             longitude: entry.longitude,
             title: entry.clinicName,
             image: "/images/marker.png",
+            animate: true,
             subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
             pincolor: Map.ANNOTATION_RED,
+            rightView: detBtn,
             myid: entry.id
         });
-        mapview.addAnnotation(mountainView);
+        mapview.addAnnotation(merchantLoc);
     });
     $.win_map.add(mapview);
-    mapview.addEventListener("click", function(evt) {
-        Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-    });
+    mapview.addEventListener("click", function() {});
     _.extend($, exports);
 }
 

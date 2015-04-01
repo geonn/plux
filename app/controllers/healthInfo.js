@@ -8,8 +8,7 @@ function displayHealthInfo(){
 	var tableData = []; 
 	for(var i=0; i < cateList.length ; i++){  
 		var newsList = newsFeedModel.getRecordsListByCategory(cateList[i].id);
-		
-		
+		 
 		if(newsList.length > 0){
 			var sectionNews = Ti.UI.createTableViewSection({ headerTitle: cateList[i].category });
 			var data=[]; 
@@ -18,7 +17,7 @@ function displayHealthInfo(){
 				var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
 			    source: newsList[j].id, 
-			    backgroundSelectedColor: "#ECFFF9",
+			    backgroundSelectedColor: "#FFE1E1",
 				backgroundGradient: {
 				      type: 'linear',
 				      colors: ['#fff','#F7F7F6'],

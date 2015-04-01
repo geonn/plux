@@ -11,8 +11,8 @@
 					<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
 				</View> 
 				<TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" >
-					<TableViewRow onClick="addData" title="Add Data Point" hasChild="true" />
-	            	<TableViewRow onClick="editData" title="Show All Data" hasChild="true" />
+					<TableViewRow selectedBackgroundColor="#FFE1E1" onClick="addData" title="Add Data Point" hasChild="true" />
+	            	<TableViewRow selectedBackgroundColor="#FFE1E1" onClick="editData" title="Show All Data" hasChild="true" />
 				</TableView>
 			</View>
 		</View>

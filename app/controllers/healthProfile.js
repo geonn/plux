@@ -8,12 +8,7 @@ function hideKeyboard(){
 	//$.field1.blur();
 	//$.field2.blur();
 }
-
-var leftBack  = Ti.UI.createButton({ 
-		backgroundImage : "/images/btn-back.png", 
-		height:30,
-		left: 0
-});
+ 
 var leftCancel  = Ti.UI.createButton({
 		title : "Cancel",
 		left: 0
@@ -23,17 +18,14 @@ var cancelEdit = function(){
 	resetTextColor(); 
 	$.tvrFieldDate.setTouchEnabled(false);
 	$.tvrFieldGender.setTouchEnabled(false);
-	$.tvrFieldBloodType.setTouchEnabled(false);
-	leftBack.addEventListener('click',function(){
-		nav.closeWindow($.healthProfileWin);
-	});
+	$.tvrFieldBloodType.setTouchEnabled(false); 
 	$.editButton.visible ="true";
 	$.saveButton.visible ="false";
 	$.datePicker.hide();
 	$.genderPicker.hide();
 	$.bloodTypePicker.hide();
 	leftNavView.removeEventListener('click',cancelEdit);	 
-	$.healthProfileWin.leftNavButton = leftBack; 
+	$.healthProfileWin.leftNavButton = null; 
 };
 
 function doEditRecords(e){

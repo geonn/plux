@@ -21,7 +21,7 @@ function displayRecords(listing){
 			    height: 70,
 			    source: entry.id, 
 			   // layout: "vertical",
-			    selectedBackgroundColor: "#ECFFF9",
+			    selectedBackgroundColor: "#FFE1E1",
 				backgroundGradient: {
 			      type: 'linear',
 			      colors: ['#FEFEFB','#F7F7F6'],

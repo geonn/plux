@@ -21,7 +21,7 @@ function Controller() {
                     var row = Titanium.UI.createTableViewRow({
                         touchEnabled: true,
                         source: newsList[j].id,
-                        backgroundSelectedColor: "#ECFFF9",
+                        backgroundSelectedColor: "#FFE1E1",
                         backgroundGradient: {
                             type: "linear",
                             colors: [ "#fff", "#F7F7F6" ],

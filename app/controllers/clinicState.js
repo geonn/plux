@@ -6,7 +6,8 @@ listing();
 function listing(){
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
-		separatorColor: '#ffffff'
+		height: 'auto'
+		//separatorColor: '#ffffff'
 	});
 	
 	var data=[];
@@ -30,7 +31,7 @@ function listing(){
 	   			
 	   			var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
-			    height: 40,
+			    height: 50,
 			    source: entry.state,
 			    selectedBackgroundColor: "#FFE1E1",
 				backgroundGradient: {
@@ -41,20 +42,18 @@ function listing(){
 			      backFillStart:false},
 			   });
 				 
-		 
 				var stateLbl = Titanium.UI.createLabel({
 					text:entry.state,
-					font:{fontSize:16},
+					font:{fontSize:18},
 					source: entry.state,
 					color: "#848484",
 					width:'65%',
 					textAlign:'left',
-					top:8,
+					top:12,
 					left:20,
 					height:25
-				});
-				 
-				 
+				}); 
+				
 				var rightForwardBtn =  Titanium.UI.createImageView({
 					image:"/images/btn-forward.png",
 					source: entry.state,
@@ -77,9 +76,7 @@ function listing(){
 			$.panelClinicTbl.add(TheTable);
 		}
 		
-		TheTable.addEventListener('click', function(e)
-		{
-			var nav = require('navigation');
+		TheTable.addEventListener('click', function(e) { 
 			nav.navigateWithArgs("clinicListing", {state:e.rowData.source});
 		});
 }

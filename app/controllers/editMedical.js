@@ -96,7 +96,7 @@ function backAndSave(){
 	}   
 	
 	Ti.App.fireEvent('displayRecords');
-	nav.closeWindow($.editRecWin);
+	//nav.closeWindow($.editRecWin);
 }
 
 function attachedPhoto(image,position){
@@ -238,6 +238,8 @@ $.recordsTextArea.addEventListener('focus', function(){
 	$.recordsTextArea.setHeight("70%");
 });
  
-
+$.editRecWin.addEventListener('close',function(){
+	backAndSave();
+});
 Ti.App.addEventListener('refreshAttachment',loadImage );
 $.saveRecord.addEventListener('click', saveRecord);
