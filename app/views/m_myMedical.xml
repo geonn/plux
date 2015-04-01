@@ -10,7 +10,7 @@
 	        	<ActivityIndicator  id="activityIndicator" />
 	        	<Label id="loading" top="5" text="Loading" color="#ffffff" />
 	        </View>
-			<View id="aView"  layout="vertical"> 
+			<View id="aView" height="Ti.UI.SIZE" top="0" layout="vertical"> 
 				<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." /> 
 			 	<ScrollView id="recordView" layout="horizontal" height="Ti.UI.SIZE" width="100%" >
 			 		<TableView width="100%"  id="recordTable"  top=0  separatorColor="#375540" />

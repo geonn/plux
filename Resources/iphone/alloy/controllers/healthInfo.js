@@ -166,7 +166,6 @@ function Controller() {
     var categoryModel = Alloy.createCollection("category");
     var cateList = categoryModel.getCategoryList();
     displayHealthInfo();
-    API.loadNewsFeed();
     _.extend($, exports);
 }
 

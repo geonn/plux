@@ -48,9 +48,9 @@ function Controller() {
                     width: "auto"
                 });
                 var title = entry.title;
-                title = title.replace(/&quot;/g, "'");
+                "" != title && (title = title.replace(/["']/g, "&quot;"));
                 var message = entry.message;
-                message = message.replace(/&quot;/g, "'");
+                "" != message && (message = message.replace(/["']/g, "&quot;"));
                 var recTitle = Titanium.UI.createLabel({
                     text: title,
                     font: {
@@ -143,19 +143,19 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
-    $.__views.__alloyId216 = Ti.UI.createView({
-        id: "__alloyId216"
+    $.__views.__alloyId223 = Ti.UI.createView({
+        id: "__alloyId223"
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-    $.__views.__alloyId216.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId216;
-    $.__views.__alloyId217 = Ti.UI.createView({
-        id: "__alloyId217"
+    $.__views.__alloyId223.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId223;
+    $.__views.__alloyId224 = Ti.UI.createView({
+        id: "__alloyId224"
     });
-    $.__views.m_myMedical.add($.__views.__alloyId217);
+    $.__views.m_myMedical.add($.__views.__alloyId224);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -164,7 +164,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId217.add($.__views.loadingBar);
+    $.__views.__alloyId224.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -184,9 +184,11 @@ function Controller() {
     $.__views.loadingBar.add($.__views.loading);
     $.__views.aView = Ti.UI.createView({
         id: "aView",
+        height: Ti.UI.SIZE,
+        top: "0",
         layout: "vertical"
     });
-    $.__views.__alloyId217.add($.__views.aView);
+    $.__views.__alloyId224.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
@@ -221,7 +223,16 @@ function Controller() {
     displayRecords("");
     Ti.App.addEventListener("displayRecords", displayRecords);
     $.newRecord.addEventListener("click", function() {
-        nav.navigationWindow("newMedical");
+        medicalRecordsModel.addRecord({
+            title: "",
+            message: "",
+            created: currentDateTime(),
+            updated: currentDateTime()
+        });
+        var lastRec = medicalRecordsModel.getLastId();
+        nav.navigateWithArgs("editMedical", {
+            id: lastRec.id
+        });
     });
     $.searchItem.addEventListener("focus", function() {
         $.searchItem.showCancel = true;

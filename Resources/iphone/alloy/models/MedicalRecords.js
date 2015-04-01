@@ -101,9 +101,9 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var title = entry.title;
-                title = title.replace(/["']/g, "&quot;");
+                "" != title && (title = title.replace(/["']/g, "&quot;"));
                 var message = entry.message;
-                message = message.replace(/["']/g, "&quot;");
+                "" != message && (message = message.replace(/["']/g, "&quot;"));
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',  message='" + entry.message + "' WHERE id='" + entry.id + "' ";
                 db.execute(sql_query);
                 db.close();
@@ -114,13 +114,27 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var title = entry.title;
-                title = title.replace(/["']/g, "&quot;");
+                "" != title && (title = title.replace(/["']/g, "&quot;"));
                 var message = entry.message;
-                message = message.replace(/["']/g, "&quot;");
+                "" != message && (message = message.replace(/["']/g, "&quot;"));
                 sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( title,message, created, updated ) VALUES ( '" + title + "', '" + message + "', '" + entry.created + "', '" + entry.updated + "')";
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");
+            },
+            getLastId: function() {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
+                sql_query = "SELECT * FROM " + collection.config.adapter.collection_name + " ORDER BY id DESC LIMIT 1";
+                var res = db.execute(sql_query);
+                var arr = [];
+                res.isValidRow() && (arr = {
+                    id: res.fieldByName("id")
+                });
+                res.close();
+                collection.trigger("sync");
+                return arr;
             }
         });
         return Collection;

@@ -1,8 +1,8 @@
 var args = {};
 var win = Alloy.createController("home").getView();
 API.loadPanelList();
-API.loadCategoryList();
-
+API.loadCategoryList(); 
+API.loadNewsFeed();
 win.open();
 /*
 $.root.open({fullscreen:true});

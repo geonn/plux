@@ -8,6 +8,27 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadMedicalInfo() {
+        loadImage();
+        var title = details.title;
+        "" != title && (title = title.replace(/&quot;/g, "'"));
+        var message = details.message;
+        $.titleRecord.value = title;
+        $.recordsTextArea.value = message;
+        $.lastUpdated.text = "Last updated: " + timeFormat(details.updated);
+    }
+    function loadImage() {
+        var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
+        var counter = 0;
+        if (recAttachment.length > 0) {
+            removeAllChildren($.attachment);
+            recAttachment.forEach(function(att) {
+                var myImage = Ti.Utils.base64decode(att.blob);
+                $.attachment.add(attachedPhoto(myImage, counter));
+                counter++;
+            });
+        }
+    }
     function saveRecord() {
         var title = $.titleRecord.value;
         var message = $.recordsTextArea.value;
@@ -32,6 +53,7 @@ function Controller() {
             e.index === e.source.cancel;
             if (1 === e.index) {
                 medicalRecordsModel.removeRecordById(rec_id);
+                medicalAttachmentModel.removeRecordByRec(rec_id);
                 Ti.App.fireEvent("displayRecords");
                 nav.closeWindow($.editRecWin);
             }
@@ -40,6 +62,114 @@ function Controller() {
     }
     function hideKeyboard() {
         MRECORDS.hideKeyboard();
+    }
+    function backAndSave() {
+        var title = $.titleRecord.value;
+        var message = $.recordsTextArea.value;
+        if ("" == title.trim() && "" == message.trim()) {
+            var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
+            0 == recAttachment.length && medicalRecordsModel.removeRecordById(rec_id);
+        } else saveRecord();
+        Ti.App.fireEvent("displayRecords");
+        nav.closeWindow($.editRecWin);
+    }
+    function attachedPhoto(image, position) {
+        var iView = Ti.UI.createView({
+            backgroundColor: "#D5D5D5",
+            height: 50,
+            position: position,
+            width: 50,
+            left: 5,
+            right: 5
+        });
+        var iImage = Ti.UI.createImageView({
+            image: image,
+            position: position
+        });
+        iView.add(iImage);
+        iView.addEventListener("click", function() {
+            var currentTime = new Date();
+            if (1e3 > currentTime - clickTime) return;
+            clickTime = currentTime;
+            console.log("position : " + position);
+            var page = Alloy.createController("attachmentDetails", {
+                rec_id: rec_id,
+                position: position
+            }).getView();
+            page.open();
+            page.animate({
+                curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+                opacity: 1,
+                duration: 300
+            });
+        });
+        return iView;
+    }
+    function takePhoto() {
+        var dialog = Titanium.UI.createOptionDialog({
+            title: "Choose an image source...",
+            options: [ "Camera", "Photo Gallery", "Cancel" ],
+            cancel: 2
+        });
+        dialog.addEventListener("click", function(e) {
+            0 == e.index ? Titanium.Media.showCamera({
+                success: function(event) {
+                    var image = event.media;
+                    if (image.width > image.height) {
+                        var newWidth = 320;
+                        var ratio = 320 / image.width;
+                        var newHeight = image.height * ratio;
+                    } else {
+                        var newHeight = 320;
+                        var ratio = 320 / image.height;
+                        var newWidth = image.width * ratio;
+                    }
+                    image = image.imageAsResized(newWidth, newHeight);
+                    if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+                        blobContainer = image;
+                        medicalAttachmentModel.addAttachment({
+                            medical_id: rec_id,
+                            blob: Ti.Utils.base64encode(image)
+                        });
+                        loadImage();
+                    }
+                },
+                cancel: function() {},
+                error: function(error) {
+                    var a = Titanium.UI.createAlertDialog({
+                        title: "Camera"
+                    });
+                    a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Device does not have camera" : "Unexpected error: " + error.code);
+                    a.show();
+                },
+                allowImageEditing: true,
+                mediaTypes: [ Ti.Media.MEDIA_TYPE_PHOTO ],
+                saveToPhotoGallery: true
+            }) : 1 == e.index && Titanium.Media.openPhotoGallery({
+                success: function(event) {
+                    var image = event.media;
+                    if (image.width > image.height) {
+                        var newWidth = 320;
+                        var ratio = 320 / image.width;
+                        var newHeight = image.height * ratio;
+                    } else {
+                        var newHeight = 320;
+                        var ratio = 320 / image.height;
+                        var newWidth = image.width * ratio;
+                    }
+                    image = image.imageAsResized(newWidth, newHeight);
+                    blobContainer = image;
+                    medicalAttachmentModel.addAttachment({
+                        medical_id: rec_id,
+                        blob: Ti.Utils.base64encode(image)
+                    });
+                    loadImage();
+                },
+                cancel: function() {},
+                mediaTypes: [ Ti.Media.MEDIA_TYPE_PHOTO ]
+            });
+        });
+        dialog.show();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "editMedical";
@@ -61,70 +191,89 @@ function Controller() {
         backgroundColor: "#ffffff",
         fullscreen: true,
         id: "editRecWin",
-        title: "Edit Medical Record",
+        title: "My Medical Record",
         backButtonTitle: "",
         navTintColor: "#CE1D1C"
     });
     $.__views.editRecWin && $.addTopLevelView($.__views.editRecWin);
     $.__views.__alloyId2 = Ti.UI.createView({
+        left: "0",
+        height: Ti.UI.SIZE,
         id: "__alloyId2"
+    });
+    $.__views.__alloyId3 = Ti.UI.createButton({
+        height: "28",
+        left: "0",
+        backgroundImage: "/images/btn-back.png",
+        id: "__alloyId3"
+    });
+    $.__views.__alloyId2.add($.__views.__alloyId3);
+    backAndSave ? $.__views.__alloyId3.addEventListener("click", backAndSave) : __defers["$.__views.__alloyId3!click!backAndSave"] = true;
+    $.__views.editRecWin.leftNavButton = $.__views.__alloyId2;
+    $.__views.__alloyId5 = Ti.UI.createView({
+        id: "__alloyId5"
     });
     $.__views.saveRecord = Ti.UI.createButton({
         id: "saveRecord",
-        title: "Save"
+        title: "Done"
     });
-    $.__views.__alloyId2.add($.__views.saveRecord);
-    $.__views.editRecWin.rightNavButton = $.__views.__alloyId2;
-    $.__views.__alloyId3 = Ti.UI.createView({
-        id: "__alloyId3"
+    $.__views.__alloyId5.add($.__views.saveRecord);
+    $.__views.editRecWin.rightNavButton = $.__views.__alloyId5;
+    $.__views.__alloyId6 = Ti.UI.createView({
+        id: "__alloyId6"
     });
-    $.__views.editRecWin.add($.__views.__alloyId3);
-    $.__views.aView = Ti.UI.createScrollView({
-        id: "aView",
-        height: Ti.UI.SIZE,
-        layout: "vertical",
-        bottom: "5"
-    });
-    $.__views.__alloyId3.add($.__views.aView);
+    $.__views.editRecWin.add($.__views.__alloyId6);
     $.__views.titleRecord = Ti.UI.createTextField({
-        top: "5",
-        bottom: "5",
+        font: {
+            fontSize: "20dp"
+        },
+        top: "0",
         id: "titleRecord",
-        height: "25",
+        height: "40",
         hintText: "Records title...",
         width: "95%"
     });
-    $.__views.aView.add($.__views.titleRecord);
-    $.__views.__alloyId4 = Ti.UI.createView({
+    $.__views.__alloyId6.add($.__views.titleRecord);
+    $.__views.__alloyId7 = Ti.UI.createView({
         height: "1",
         width: "100%",
-        backgroundColor: "#000000",
-        top: "5",
-        bottom: "5",
-        id: "__alloyId4"
+        backgroundColor: "#CE1D1C",
+        top: "40",
+        id: "__alloyId7"
     });
-    $.__views.aView.add($.__views.__alloyId4);
-    var __alloyId8 = [];
-    $.__views.__alloyId9 = Ti.UI.createButton({
+    $.__views.__alloyId6.add($.__views.__alloyId7);
+    $.__views.aView = Ti.UI.createScrollView({
+        id: "aView",
+        top: "42",
+        height: Ti.UI.SIZE,
+        layout: "vertical",
+        bottom: "90"
+    });
+    $.__views.__alloyId6.add($.__views.aView);
+    var __alloyId11 = [];
+    $.__views.__alloyId12 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
-    __alloyId8.push($.__views.__alloyId9);
-    $.__views.__alloyId10 = Ti.UI.createButton({
+    __alloyId11.push($.__views.__alloyId12);
+    $.__views.__alloyId13 = Ti.UI.createButton({
         backgroundImage: "/images/btn-down.png",
         textAlign: "right",
         right: "5",
         width: "20",
         height: "20",
-        id: "__alloyId10"
+        id: "__alloyId13"
     });
-    __alloyId8.push($.__views.__alloyId10);
-    hideKeyboard ? $.__views.__alloyId10.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId10!click!hideKeyboard"] = true;
-    $.__views.__alloyId6 = Ti.UI.iOS.createToolbar({
-        items: __alloyId8,
-        id: "__alloyId6"
+    __alloyId11.push($.__views.__alloyId13);
+    hideKeyboard ? $.__views.__alloyId13.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId13!click!hideKeyboard"] = true;
+    $.__views.__alloyId9 = Ti.UI.iOS.createToolbar({
+        items: __alloyId11,
+        id: "__alloyId9"
     });
     $.__views.recordsTextArea = Ti.UI.createTextArea({
-        keyboardToolbar: $.__views.__alloyId6,
+        font: {
+            fontSize: "16dp"
+        },
+        keyboardToolbar: $.__views.__alloyId9,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -134,8 +283,8 @@ function Controller() {
         suppressReturn: "false"
     });
     $.__views.aView.add($.__views.recordsTextArea);
-    $.__views.__alloyId6 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId6,
+    $.__views.__alloyId9 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId9,
         id: "recordsTextArea",
         color: "#888",
         textAlign: "left",
@@ -144,40 +293,105 @@ function Controller() {
         height: "100%",
         suppressReturn: "false"
     });
-    $.__views.__alloyId11 = Ti.UI.createView({
+    $.__views.__alloyId14 = Ti.UI.createView({
+        bottom: "40",
+        height: Ti.UI.SIZE,
+        layout: "horizontal",
+        width: "100%",
+        id: "__alloyId14"
+    });
+    $.__views.__alloyId6.add($.__views.__alloyId14);
+    $.__views.attachment = Ti.UI.createScrollView({
+        id: "attachment",
+        scrollType: "horizontal",
+        layout: "horizontal",
+        height: Ti.UI.SIZE,
+        width: "80%"
+    });
+    $.__views.__alloyId14.add($.__views.attachment);
+    $.__views.__alloyId15 = Ti.UI.createView({
+        width: "auto",
+        height: Ti.UI.SIZE,
+        id: "__alloyId15"
+    });
+    $.__views.__alloyId14.add($.__views.__alloyId15);
+    takePhoto ? $.__views.__alloyId15.addEventListener("click", takePhoto) : __defers["$.__views.__alloyId15!click!takePhoto"] = true;
+    $.__views.__alloyId16 = Ti.UI.createView({
+        backgroundColor: "#CE1D1C",
+        height: "50",
+        width: Ti.UI.FILL,
+        right: "0",
+        id: "__alloyId16"
+    });
+    $.__views.__alloyId15.add($.__views.__alloyId16);
+    $.__views.addLbl = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        font: {
+            fontSize: "20dp"
+        },
+        id: "addLbl",
+        color: "#ffffff",
+        text: "+"
+    });
+    $.__views.__alloyId16.add($.__views.addLbl);
+    $.__views.__alloyId17 = Ti.UI.createView({
         height: "40",
+        layout: "horizontal",
         bottom: "0",
         width: "100%",
         backgroundColor: "#EEEEEE",
-        id: "__alloyId11"
+        id: "__alloyId17"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId11);
-    $.__views.__alloyId12 = Ti.UI.createButton({
+    $.__views.__alloyId6.add($.__views.__alloyId17);
+    $.__views.__alloyId18 = Ti.UI.createButton({
         backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
         left: "15",
         width: "30",
         height: "30",
-        id: "__alloyId12"
+        id: "__alloyId18"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId12);
-    deleteRecord ? $.__views.__alloyId12.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId12!click!deleteRecord"] = true;
+    $.__views.__alloyId17.add($.__views.__alloyId18);
+    deleteRecord ? $.__views.__alloyId18.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId18!click!deleteRecord"] = true;
+    $.__views.__alloyId19 = Ti.UI.createView({
+        width: "auto",
+        height: Ti.UI.FILL,
+        id: "__alloyId19"
+    });
+    $.__views.__alloyId17.add($.__views.__alloyId19);
+    $.__views.lastUpdated = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        color: "#888",
+        font: {
+            fontSize: "12dp"
+        },
+        id: "lastUpdated",
+        textAlign: "right",
+        right: "10"
+    });
+    $.__views.__alloyId19.add($.__views.lastUpdated);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var rec_id = args.id || "";
     var MRECORDS = require("medicalRecords");
     MRECORDS.construct($);
+    var clickTime = null;
+    var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
     var details = medicalRecordsModel.getRecordById(rec_id);
-    var title = details.title;
-    title = title.replace(/&quot;/g, "'");
-    var message = details.message;
-    $.titleRecord.value = title;
-    $.recordsTextArea.value = message;
+    loadMedicalInfo();
+    $.recordsTextArea.addEventListener("focus", function() {
+        $.recordsTextArea.setHeight("70%");
+    });
+    Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
-    __defers["$.__views.__alloyId10!click!hideKeyboard"] && $.__views.__alloyId10.addEventListener("click", hideKeyboard);
-    __defers["$.__views.__alloyId12!click!deleteRecord"] && $.__views.__alloyId12.addEventListener("click", deleteRecord);
+    __defers["$.__views.__alloyId3!click!backAndSave"] && $.__views.__alloyId3.addEventListener("click", backAndSave);
+    __defers["$.__views.__alloyId13!click!hideKeyboard"] && $.__views.__alloyId13.addEventListener("click", hideKeyboard);
+    __defers["$.__views.__alloyId15!click!takePhoto"] && $.__views.__alloyId15.addEventListener("click", takePhoto);
+    __defers["$.__views.__alloyId18!click!deleteRecord"] && $.__views.__alloyId18.addEventListener("click", deleteRecord);
     _.extend($, exports);
 }
 

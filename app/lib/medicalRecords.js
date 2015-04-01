@@ -6,4 +6,5 @@ exports.construct = function(mv){
 
 exports.hideKeyboard = function(){ 
 	mainView.recordsTextArea.blur(); 
+	mainView.recordsTextArea.setHeight("100%");
 };

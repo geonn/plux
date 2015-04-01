@@ -45,11 +45,16 @@ function displayRecords(listing){
 					height:"70",
 					width:"auto" 
 				}); 
+				
 				var title = entry.title;
-				title = title.replace(/&quot;/g,"'");
-				//title = title.slice(0,40);
+                if(title != ""){ 
+                	title = title.replace(/["']/g, "&quot;");
+                }
+				
 				var message = entry.message;
-				message = message.replace(/&quot;/g,"'");
+				if(message != ""){ 
+					message = message.replace(/["']/g, "&quot;");
+				}  
 				
 				var recTitle = Titanium.UI.createLabel({
 					text: title,
@@ -120,7 +125,9 @@ function viewDetails(rec_id){
 
 Ti.App.addEventListener('displayRecords',displayRecords);
 $.newRecord.addEventListener('click',function(){
-	nav.navigationWindow("newMedical");
+	medicalRecordsModel.addRecord({title: "", message: "",created : currentDateTime(), updated: currentDateTime()});
+	var lastRec = medicalRecordsModel.getLastId(); 
+	nav.navigateWithArgs("editMedical",{id: lastRec.id});
 });
 
 

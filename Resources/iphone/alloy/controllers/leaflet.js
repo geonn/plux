@@ -38,17 +38,17 @@ function Controller() {
         backgroundColor: "#828282"
     });
     $.__views.win.add($.__views.brochureView);
-    $.__views.__alloyId96 = Ti.UI.createView({
+    $.__views.__alloyId103 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId96"
+        id: "__alloyId103"
     });
-    $.__views.brochureView.add($.__views.__alloyId96);
+    $.__views.brochureView.add($.__views.__alloyId103);
     $.__views.scrollview = Ti.UI.createScrollView({
         top: "15",
         id: "scrollview",
         layout: "vertical"
     });
-    $.__views.__alloyId96.add($.__views.scrollview);
+    $.__views.__alloyId103.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",
@@ -56,102 +56,42 @@ function Controller() {
         width: "100%"
     });
     $.__views.scrollview.add($.__views.mainView);
-    $.__views.__alloyId97 = Ti.UI.createView({
+    $.__views.__alloyId104 = Ti.UI.createView({
         textAlign: "center",
         bottom: "0",
         layout: "vertical",
         height: "220",
         width: "100%",
-        id: "__alloyId97"
+        id: "__alloyId104"
     });
-    $.__views.mainView.add($.__views.__alloyId97);
-    $.__views.__alloyId98 = Ti.UI.createView({
+    $.__views.mainView.add($.__views.__alloyId104);
+    $.__views.__alloyId105 = Ti.UI.createView({
         layout: "horizontal",
         height: Ti.UI.SIZE,
         width: "100%",
         left: "5%",
         right: "5%",
-        id: "__alloyId98"
+        id: "__alloyId105"
     });
-    $.__views.__alloyId97.add($.__views.__alloyId98);
-    $.__views.__alloyId99 = Ti.UI.createView({
+    $.__views.__alloyId104.add($.__views.__alloyId105);
+    $.__views.__alloyId106 = Ti.UI.createView({
         bottom: "0",
         height: "200",
         width: "30%",
         right: "5",
-        id: "__alloyId99"
+        id: "__alloyId106"
     });
-    $.__views.__alloyId98.add($.__views.__alloyId99);
-    $.__views.__alloyId100 = Ti.UI.createImageView({
+    $.__views.__alloyId105.add($.__views.__alloyId106);
+    $.__views.__alloyId107 = Ti.UI.createImageView({
         image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         mod: "Leaflet_Calcium_plus.pdf",
         backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
         bottom: "0",
         width: "90",
-        id: "__alloyId100"
-    });
-    $.__views.__alloyId99.add($.__views.__alloyId100);
-    readLeaflet ? $.__views.__alloyId100.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId100!click!readLeaflet"] = true;
-    $.__views.__alloyId101 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId101"
-    });
-    $.__views.__alloyId98.add($.__views.__alloyId101);
-    $.__views.__alloyId102 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        mod: "Leaflet_fish_oil.pdf",
-        backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId102"
-    });
-    $.__views.__alloyId101.add($.__views.__alloyId102);
-    readLeaflet ? $.__views.__alloyId102.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId102!click!readLeaflet"] = true;
-    $.__views.__alloyId103 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId103"
-    });
-    $.__views.__alloyId98.add($.__views.__alloyId103);
-    $.__views.__alloyId104 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
-        backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId104"
-    });
-    $.__views.__alloyId103.add($.__views.__alloyId104);
-    readLeaflet ? $.__views.__alloyId104.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId104!click!readLeaflet"] = true;
-    $.__views.__alloyId105 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId105"
-    });
-    $.__views.__alloyId97.add($.__views.__alloyId105);
-    $.__views.__alloyId106 = Ti.UI.createView({
-        textAlign: "center",
-        bottom: "0",
-        layout: "vertical",
-        height: "220",
-        width: "100%",
-        id: "__alloyId106"
-    });
-    $.__views.mainView.add($.__views.__alloyId106);
-    $.__views.__alloyId107 = Ti.UI.createView({
-        layout: "horizontal",
-        height: Ti.UI.SIZE,
-        width: "100%",
-        left: "5%",
-        right: "5%",
         id: "__alloyId107"
     });
     $.__views.__alloyId106.add($.__views.__alloyId107);
+    readLeaflet ? $.__views.__alloyId107.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId107!click!readLeaflet"] = true;
     $.__views.__alloyId108 = Ti.UI.createView({
         bottom: "0",
         height: "200",
@@ -159,11 +99,11 @@ function Controller() {
         right: "5",
         id: "__alloyId108"
     });
-    $.__views.__alloyId107.add($.__views.__alloyId108);
+    $.__views.__alloyId105.add($.__views.__alloyId108);
     $.__views.__alloyId109 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
-        mod: "Leaflet_Surbex_Protect.pdf",
-        backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
+        image: "/images/cover/Leaflet_Fish_Oil_cover.png",
+        mod: "Leaflet_fish_oil.pdf",
+        backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
         bottom: "0",
         width: "90",
         id: "__alloyId109"
@@ -177,11 +117,11 @@ function Controller() {
         right: "5",
         id: "__alloyId110"
     });
-    $.__views.__alloyId107.add($.__views.__alloyId110);
+    $.__views.__alloyId105.add($.__views.__alloyId110);
     $.__views.__alloyId111 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
-        mod: "Leaflet_Vidaylin_minibear.pdf",
-        backgroundImage: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
+        image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
+        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
+        backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
         bottom: "0",
         width: "90",
         id: "__alloyId111"
@@ -193,7 +133,67 @@ function Controller() {
         width: "100%",
         id: "__alloyId112"
     });
-    $.__views.__alloyId106.add($.__views.__alloyId112);
+    $.__views.__alloyId104.add($.__views.__alloyId112);
+    $.__views.__alloyId113 = Ti.UI.createView({
+        textAlign: "center",
+        bottom: "0",
+        layout: "vertical",
+        height: "220",
+        width: "100%",
+        id: "__alloyId113"
+    });
+    $.__views.mainView.add($.__views.__alloyId113);
+    $.__views.__alloyId114 = Ti.UI.createView({
+        layout: "horizontal",
+        height: Ti.UI.SIZE,
+        width: "100%",
+        left: "5%",
+        right: "5%",
+        id: "__alloyId114"
+    });
+    $.__views.__alloyId113.add($.__views.__alloyId114);
+    $.__views.__alloyId115 = Ti.UI.createView({
+        bottom: "0",
+        height: "200",
+        width: "30%",
+        right: "5",
+        id: "__alloyId115"
+    });
+    $.__views.__alloyId114.add($.__views.__alloyId115);
+    $.__views.__alloyId116 = Ti.UI.createImageView({
+        image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
+        mod: "Leaflet_Surbex_Protect.pdf",
+        backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
+        bottom: "0",
+        width: "90",
+        id: "__alloyId116"
+    });
+    $.__views.__alloyId115.add($.__views.__alloyId116);
+    readLeaflet ? $.__views.__alloyId116.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId116!click!readLeaflet"] = true;
+    $.__views.__alloyId117 = Ti.UI.createView({
+        bottom: "0",
+        height: "200",
+        width: "30%",
+        right: "5",
+        id: "__alloyId117"
+    });
+    $.__views.__alloyId114.add($.__views.__alloyId117);
+    $.__views.__alloyId118 = Ti.UI.createImageView({
+        image: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
+        mod: "Leaflet_Vidaylin_minibear.pdf",
+        backgroundImage: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
+        bottom: "0",
+        width: "90",
+        id: "__alloyId118"
+    });
+    $.__views.__alloyId117.add($.__views.__alloyId118);
+    readLeaflet ? $.__views.__alloyId118.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId118!click!readLeaflet"] = true;
+    $.__views.__alloyId119 = Ti.UI.createImageView({
+        image: "/images/div.png",
+        width: "100%",
+        id: "__alloyId119"
+    });
+    $.__views.__alloyId113.add($.__views.__alloyId119);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -204,11 +204,11 @@ function Controller() {
         });
         docViewer.show();
     };
-    __defers["$.__views.__alloyId100!click!readLeaflet"] && $.__views.__alloyId100.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId102!click!readLeaflet"] && $.__views.__alloyId102.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId104!click!readLeaflet"] && $.__views.__alloyId104.addEventListener("click", readLeaflet);
+    __defers["$.__views.__alloyId107!click!readLeaflet"] && $.__views.__alloyId107.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId109!click!readLeaflet"] && $.__views.__alloyId109.addEventListener("click", readLeaflet);
     __defers["$.__views.__alloyId111!click!readLeaflet"] && $.__views.__alloyId111.addEventListener("click", readLeaflet);
+    __defers["$.__views.__alloyId116!click!readLeaflet"] && $.__views.__alloyId116.addEventListener("click", readLeaflet);
+    __defers["$.__views.__alloyId118!click!readLeaflet"] && $.__views.__alloyId118.addEventListener("click", readLeaflet);
     _.extend($, exports);
 }
 

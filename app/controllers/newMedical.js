@@ -18,8 +18,8 @@ function saveRecord(){
 	// nav.navigationWindow("m_myHealth" );
 	Ti.App.fireEvent('displayRecords');
 	nav.closeWindow($.newRecWin);
-	
 }
+
 function hideKeyboard(){
 	MRECORDS.hideKeyboard();
 }

@@ -3,7 +3,6 @@ var newsFeedModel = Alloy.createCollection('health_news_feed');
 var categoryModel = Alloy.createCollection('category'); 
 var cateList = categoryModel.getCategoryList();
 displayHealthInfo();
-API.loadNewsFeed();
 
 function displayHealthInfo(){  
 	var tableData = []; 
