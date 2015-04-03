@@ -93,16 +93,24 @@ $.card_event.addEventListener('click', function() {
     frontbackcounter++; 
 });
 
-/*
+/**/
 Ti.Gesture.addEventListener('orientationchange', function(e){
-    if (e.orientation === Ti.UI.LANDSCAPE_RIGHT || e.orientation === Ti.UI.LANDSCAPE_LEFT){ 
+	Ti.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);
+Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
+    if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight){ 
         // do something 
-        console.log('landscape');
-        $.card.width = "480";
-        $.card.height = "306";
+        name_text.top  = "160dp";
+        name_text.left = "80dp";
+        memno_text.top     = "125dp";
+   		memno_text.left   = "80dp";
+        // $.card.width = "480";
+        // $.card.height = "306";
     }else{
-    	 console.log('portrait');
-    	$.card.width = "320";
-    	$.card.height = "204";
+    	name_text.top = "125dp" ;
+   		name_text.left= "20dp" ;
+   		memno_text.top     = "90dp";
+   		memno_text.left   = "20dp";
     }
-});*/
+     
+    
+});
