@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="All Recorded Data" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="All Recorded Data" id="healthEditWindow" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
         <RightNavButton>
 	        <View>
 	         	<Button id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />

@@ -8,6 +8,187 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadLeafLetList() {
+        if (leaflist.length > 0) for (var i = 0; i < leaflist.length; i++) {
+            var leafView = Ti.UI.createView({
+                bottom: 0,
+                right: 5,
+                height: 200,
+                width: "30%"
+            });
+            var leafImage = Ti.UI.createImageView({
+                id: leaflist[i].id,
+                image: leaflist[i].cover,
+                backgroundImage: leaflist[i].cover,
+                leafLet: leaflist[i].attachment,
+                url: leaflist[i].url,
+                downloaded: leaflist[i].isDownloaded,
+                bottom: 0,
+                width: 90
+            });
+            leafImage.addEventListener("click", function(ex) {
+                downloadBrochure(leafImage, ex.source.id, ex.source.leafLet, ex.source.url, ex.source.downloaded);
+            });
+            leafView.add(leafImage);
+            if (i % 3 == 0) {
+                var containerView = Ti.UI.createView({
+                    bottom: 0,
+                    layout: "vertical",
+                    height: 220,
+                    width: "100%"
+                });
+                var innerView = Ti.UI.createView({
+                    layout: "horizontal",
+                    height: Ti.UI.SIZE,
+                    width: "100%",
+                    left: "5%",
+                    right: "5%"
+                });
+                innerView.add(leafView);
+                containerView.add(innerView);
+                $.mainView.add(containerView);
+            } else {
+                innerView.add(leafView);
+                if ((i + 1) % 3 == 0) {
+                    var lineImg = Ti.UI.createImageView({
+                        image: "/images/div.png",
+                        width: "100%"
+                    });
+                    innerView.add(lineImg);
+                }
+            }
+        }
+    }
+    function downloadBrochure(adImage, id, content, targetUrl, downloaded) {
+        var ind = Titanium.UI.createProgressBar({
+            width: "90%",
+            height: "40%",
+            min: 0,
+            max: 1,
+            value: 0,
+            top: 25,
+            message: "",
+            font: {
+                fontSize: 12
+            },
+            color: "#CE1D1C"
+        });
+        ind.show();
+        var imageHeight = adImage.size.height;
+        var imageWidth = adImage.size.width;
+        var gray = Titanium.UI.createView({
+            height: imageHeight,
+            width: imageWidth,
+            backgroundColor: "#A5A5A5",
+            opacity: .5,
+            bottom: 0
+        });
+        var label = Ti.UI.createLabel({
+            color: "#ffffff",
+            font: {
+                fontSize: 14,
+                fontWeight: "bold"
+            },
+            text: "",
+            top: 15,
+            width: "100%",
+            textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+        });
+        var bigView = Titanium.UI.createView({
+            height: "15%",
+            width: "80%",
+            backgroundColor: "#525151",
+            opacity: .8,
+            zIndex: 99
+        });
+        if ("1" == downloaded) {
+            bigView.remove(gray);
+            bigView.remove(ind);
+            bigView.remove(label);
+            $.brochureView.remove(bigView);
+        } else {
+            bigView.add(gray);
+            bigView.add(ind);
+            bigView.add(label);
+            $.brochureView.add(bigView);
+        }
+        PDF.createPdf(content, true, ind, label, function(err, file) {
+            if (err) alert(err); else {
+                leafletModel.updateDownloadedBrochure(id);
+                bigView.remove(gray);
+                bigView.remove(ind);
+                bigView.remove(label);
+                $.brochureView.remove(bigView);
+                var myModal = Ti.UI.createWindow({
+                    title: "Read PDF",
+                    backgroundColor: "transparent",
+                    fullscreen: true
+                });
+                var leftBtn = Ti.UI.createButton({
+                    title: "Close",
+                    color: "#CE1D1C",
+                    left: 15
+                });
+                var wrapperView = Ti.UI.createView({
+                    layout: "vertical",
+                    height: Ti.UI.SIZE
+                });
+                var topView = Ti.UI.createView({
+                    backgroundColor: "#EEEEEE",
+                    top: 0,
+                    height: 40
+                });
+                var containerView = Ti.UI.createView({
+                    height: Ti.UI.SIZE,
+                    backgroundColor: "transparent"
+                });
+                var webview = Ti.UI.createWebView({
+                    data: file.read(),
+                    height: "auto",
+                    backgroundColor: "#ffffff"
+                });
+                if ("" != targetUrl) {
+                    var rightBtn = Ti.UI.createButton({
+                        title: "Details",
+                        color: "#CE1D1C",
+                        right: 15
+                    });
+                    rightBtn.addEventListener("click", function() {
+                        var BackBtn = Ti.UI.createButton({
+                            title: "Back",
+                            color: "#CE1D1C",
+                            right: 15
+                        });
+                        BackBtn.addEventListener("click", function() {
+                            BackBtn.setVisible(false);
+                            rightBtn.setVisible(true);
+                            webview.setData(file.read());
+                            console.log("back trigger");
+                        });
+                        topView.add(BackBtn);
+                        rightBtn.setVisible(false);
+                        BackBtn.setVisible(true);
+                        webview.setUrl(targetUrl);
+                        console.log("details trigger");
+                    });
+                    topView.add(rightBtn);
+                }
+                containerView.add(webview);
+                topView.add(leftBtn);
+                wrapperView.add(topView);
+                wrapperView.add(containerView);
+                myModal.add(wrapperView);
+                myModal.open({
+                    modal: true
+                });
+                leftBtn.addEventListener("click", function() {
+                    myModal.close({
+                        animated: true
+                    });
+                });
+            }
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "leaflet";
     if (arguments[0]) {
@@ -23,21 +204,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    var __defers = {};
-    $.__views.win = Ti.UI.createWindow({
+    $.__views.leaftletWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Health Leaflet",
         backButtonTitle: "",
-        id: "win",
+        id: "leaftletWin",
         navTintColor: "#CE1D1C"
     });
-    $.__views.win && $.addTopLevelView($.__views.win);
+    $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
     $.__views.brochureView = Ti.UI.createView({
         id: "brochureView",
         backgroundColor: "#828282"
     });
-    $.__views.win.add($.__views.brochureView);
+    $.__views.leaftletWin.add($.__views.brochureView);
     $.__views.__alloyId105 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId105"
@@ -56,159 +236,14 @@ function Controller() {
         width: "100%"
     });
     $.__views.scrollview.add($.__views.mainView);
-    $.__views.__alloyId106 = Ti.UI.createView({
-        textAlign: "center",
-        bottom: "0",
-        layout: "vertical",
-        height: "220",
-        width: "100%",
-        id: "__alloyId106"
-    });
-    $.__views.mainView.add($.__views.__alloyId106);
-    $.__views.__alloyId107 = Ti.UI.createView({
-        layout: "horizontal",
-        height: Ti.UI.SIZE,
-        width: "100%",
-        left: "5%",
-        right: "5%",
-        id: "__alloyId107"
-    });
-    $.__views.__alloyId106.add($.__views.__alloyId107);
-    $.__views.__alloyId108 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId108"
-    });
-    $.__views.__alloyId107.add($.__views.__alloyId108);
-    $.__views.__alloyId109 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Calcium_Plus_cover.png",
-        mod: "Leaflet_Calcium_plus.pdf",
-        backgroundImage: "/images/cover/Leaflet_Calcium_Plus_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId109"
-    });
-    $.__views.__alloyId108.add($.__views.__alloyId109);
-    readLeaflet ? $.__views.__alloyId109.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId109!click!readLeaflet"] = true;
-    $.__views.__alloyId110 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId110"
-    });
-    $.__views.__alloyId107.add($.__views.__alloyId110);
-    $.__views.__alloyId111 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        mod: "Leaflet_fish_oil.pdf",
-        backgroundImage: "/images/cover/Leaflet_Fish_Oil_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId111"
-    });
-    $.__views.__alloyId110.add($.__views.__alloyId111);
-    readLeaflet ? $.__views.__alloyId111.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId111!click!readLeaflet"] = true;
-    $.__views.__alloyId112 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId112"
-    });
-    $.__views.__alloyId107.add($.__views.__alloyId112);
-    $.__views.__alloyId113 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        mod: "Leaflet_Vidaylin_Omega_kid.pdf",
-        backgroundImage: "/images/cover/Leaflet_Vidaylin_Omega_Kid_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId113"
-    });
-    $.__views.__alloyId112.add($.__views.__alloyId113);
-    readLeaflet ? $.__views.__alloyId113.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId113!click!readLeaflet"] = true;
-    $.__views.__alloyId114 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId114"
-    });
-    $.__views.__alloyId106.add($.__views.__alloyId114);
-    $.__views.__alloyId115 = Ti.UI.createView({
-        textAlign: "center",
-        bottom: "0",
-        layout: "vertical",
-        height: "220",
-        width: "100%",
-        id: "__alloyId115"
-    });
-    $.__views.mainView.add($.__views.__alloyId115);
-    $.__views.__alloyId116 = Ti.UI.createView({
-        layout: "horizontal",
-        height: Ti.UI.SIZE,
-        width: "100%",
-        left: "5%",
-        right: "5%",
-        id: "__alloyId116"
-    });
-    $.__views.__alloyId115.add($.__views.__alloyId116);
-    $.__views.__alloyId117 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId117"
-    });
-    $.__views.__alloyId116.add($.__views.__alloyId117);
-    $.__views.__alloyId118 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Surbex_Protect_cover.png",
-        mod: "Leaflet_Surbex_Protect.pdf",
-        backgroundImage: "/images/cover/Leaflet_Surbex_Protect_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId118"
-    });
-    $.__views.__alloyId117.add($.__views.__alloyId118);
-    readLeaflet ? $.__views.__alloyId118.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId118!click!readLeaflet"] = true;
-    $.__views.__alloyId119 = Ti.UI.createView({
-        bottom: "0",
-        height: "200",
-        width: "30%",
-        right: "5",
-        id: "__alloyId119"
-    });
-    $.__views.__alloyId116.add($.__views.__alloyId119);
-    $.__views.__alloyId120 = Ti.UI.createImageView({
-        image: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
-        mod: "Leaflet_Vidaylin_minibear.pdf",
-        backgroundImage: "/images/cover/Leaflet_Vidaylin_MiniBear_cover.png",
-        bottom: "0",
-        width: "90",
-        id: "__alloyId120"
-    });
-    $.__views.__alloyId119.add($.__views.__alloyId120);
-    readLeaflet ? $.__views.__alloyId120.addEventListener("click", readLeaflet) : __defers["$.__views.__alloyId120!click!readLeaflet"] = true;
-    $.__views.__alloyId121 = Ti.UI.createImageView({
-        image: "/images/div.png",
-        width: "100%",
-        id: "__alloyId121"
-    });
-    $.__views.__alloyId115.add($.__views.__alloyId121);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    require("pdf");
-    var readLeaflet = function(e) {
-        docViewer = Ti.UI.iOS.createDocumentViewer({
-            url: "/pdf/" + e.source.mod
-        });
-        docViewer.show();
-    };
-    __defers["$.__views.__alloyId109!click!readLeaflet"] && $.__views.__alloyId109.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId111!click!readLeaflet"] && $.__views.__alloyId111.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId113!click!readLeaflet"] && $.__views.__alloyId113.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId118!click!readLeaflet"] && $.__views.__alloyId118.addEventListener("click", readLeaflet);
-    __defers["$.__views.__alloyId120!click!readLeaflet"] && $.__views.__alloyId120.addEventListener("click", readLeaflet);
+    var PDF = require("pdf");
+    var leafletModel = Alloy.createCollection("leaflet");
+    var leaflist = leafletModel.getLeaftletList();
+    PDF.construct($);
+    loadLeafLetList();
     _.extend($, exports);
 }
 

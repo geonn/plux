@@ -26,18 +26,7 @@ function loadGraph(){
 }
 	
 function addData(){
-	if(gType == "1"){
-		nav.navigationWindow("healthDataBmi");
-	}
-	if(gType == "2"){
-		nav.navigationWindow("healthDataBloodPressure");
-	}
-	if(gType == "3"){
-		nav.navigationWindow("healthDataHeartRate");
-	}
-	if(gType == "4"){
-		nav.navigationWindow("healthDataBodyTemperature");
-	}
+	hd.navigateGraph(gType);
 }
 	
 function editData(){ 

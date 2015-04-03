@@ -12,10 +12,7 @@ function Controller() {
         hd.loadGraphByType(gType);
     }
     function addData() {
-        "1" == gType && nav.navigationWindow("healthDataBmi");
-        "2" == gType && nav.navigationWindow("healthDataBloodPressure");
-        "3" == gType && nav.navigationWindow("healthDataHeartRate");
-        "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
+        hd.navigateGraph(gType);
     }
     function editData() {
         nav.navigateWithArgs("healthEditData", {

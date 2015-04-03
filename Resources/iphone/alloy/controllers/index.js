@@ -63,6 +63,7 @@ function Controller() {
     API.loadPanelList();
     API.loadCategoryList();
     API.loadNewsFeed();
+    API.loadLeaflet();
     win.open();
     _.extend($, exports);
 }

@@ -13,6 +13,7 @@ var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
 var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
+var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
@@ -119,13 +120,48 @@ exports.updateNotificationToken = function(e){
 	
 };
 
+exports.loadLeaflet = function(ex){
+	var url = leafletUrl;
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);
+		 	/**reset current category**/
+		 	var leafletModel = Alloy.createCollection('leaflet');  
+			leafletModel.resetBrouchure();  
+			var leaf = res.data; 
+			leaf.forEach(function(entry) {  
+				var lfModel = Alloy.createModel('leaflet', {
+					id      	: entry.b_id, 
+					title		: entry.b_title,
+					url			: entry.b_url,
+					status		: entry.b_status,
+					position	: entry.b_position,
+					attachment	: entry.attachment,
+				 	cover		: entry.cover,
+		   			created		: entry.b_created,
+		   			updated		: entry.b_updated 
+				});
+				lfModel.save();  
+			});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
 exports.loadNewsFeed = function (ex){
 	var url = newsfeed+'&date=01-01-2015'; 
 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) {
-	     console.log(this.responseText);
+	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
 		 	/**reset current category**/
 		 	var library = Alloy.createCollection('health_news_feed'); 

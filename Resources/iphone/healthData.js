@@ -139,6 +139,13 @@ exports.changeBloodType = function(e) {
     mainView.bloodType_value.text = e.bloodType;
 };
 
+exports.navigateGraph = function(gType) {
+    "1" == gType && nav.navigationWindow("healthDataBmi");
+    "2" == gType && nav.navigationWindow("healthDataBloodPressure");
+    "3" == gType && nav.navigationWindow("healthDataHeartRate");
+    "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
+};
+
 exports.changeTime = function(e) {
     var pickerdate = e.time;
     pickerdate.getDate();

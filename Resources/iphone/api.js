@@ -21,6 +21,8 @@ var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER +
 
 var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + USER + "&key=" + KEY;
 
+var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
+
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
@@ -97,11 +99,40 @@ exports.updateNotificationToken = function() {
     }
 };
 
+exports.loadLeaflet = function() {
+    var url = leafletUrl;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            var leafletModel = Alloy.createCollection("leaflet");
+            leafletModel.resetBrouchure();
+            var leaf = res.data;
+            leaf.forEach(function(entry) {
+                var lfModel = Alloy.createModel("leaflet", {
+                    id: entry.b_id,
+                    title: entry.b_title,
+                    url: entry.b_url,
+                    status: entry.b_status,
+                    position: entry.b_position,
+                    attachment: entry.attachment,
+                    cover: entry.cover,
+                    created: entry.b_created,
+                    updated: entry.b_updated
+                });
+                lfModel.save();
+            });
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
 exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");

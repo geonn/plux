@@ -42,9 +42,7 @@
                 <key>UIStatusBarStyle</key>
                 <string>UIStatusBarStyleDefault</string>
                 <key>NSLocationWhenInUseUsageDescription</key>
-				<string>Test NSLocationWhenInUseUsageDescription</string>
-				<key>NSLocationAlwaysUsageDescription</key>
-				<string>Test NSLocationAlwaysUsageDescription</string>
+				<string>Location services needed in order to route panel location</string> 
             </dict>
         </plist>
     </ios>

@@ -44,32 +44,29 @@ function download(url, cookies, done) {
     return client;
 }
 
-function copyToTemp(srcFile, base, url) {
-    var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
+function copyToTemp(srcFile, base, myurl) {
+    var myFileDir = Ti.Filesystem.applicationDataDirectory;
+    Ti.Filesystem.isExternalStoragePresent() && (myFileDir = Ti.Filesystem.externalStorageDirectory);
+    var tempdir = Ti.Filesystem.getFile(myFileDir, base);
     tempdir.createDirectory();
-    var filename = url.split("/");
+    if (void 0 === typeof myurl || null == myurl || "" == myurl) {
+        console.log("masuk");
+        return false;
+    }
+    var filename = myurl.split("/");
     filename = filename[filename.length - 1];
-    var tempFile = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base, filename);
+    var tempFile = Ti.Filesystem.getFile(myFileDir, base, filename);
     tempFile.write(srcFile.read());
     return tempFile;
 }
 
-function launch(file) {
-    var intent = Ti.Android.createIntent({
-        action: Ti.Android.ACTION_VIEW,
-        data: file.getNativePath(),
-        type: "application/pdf"
-    });
-    Ti.Android.currentActivity.startActivity(intent);
-}
-
-function pdf(url, cookies, done) {
-    if (!Ti.Filesystem.isExternalStoragePresent()) return done(new Error("external"));
+function pdf(url, cookies, inds, labels, done) {
+    ind = inds;
+    label = labels;
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
         var tempFile = copyToTemp(file, base, url);
-        launch(tempFile);
-        done();
+        false === tempFile ? copyToTemp(file, base, url) : done(err, file, base, url);
     });
 }
 
@@ -77,4 +74,12 @@ var ind = "";
 
 var label = "";
 
-module.exports = pdf;
+var mainView = null;
+
+exports.construct = function(mv) {
+    mainView = mv;
+};
+
+exports.createPdf = function(url, cookies, inds, labels, done) {
+    pdf(url, cookies, inds, labels, done);
+};

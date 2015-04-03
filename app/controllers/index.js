@@ -3,6 +3,7 @@ var win = Alloy.createController("home").getView();
 API.loadPanelList();
 API.loadCategoryList(); 
 API.loadNewsFeed();
+API.loadLeaflet();
 win.open();
 /*
 $.root.open({fullscreen:true});

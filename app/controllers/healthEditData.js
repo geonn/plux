@@ -11,6 +11,48 @@ loadList("1");
 function loadList(showDelete){
 	var data=[];
 	var info_details = lib_health.getHealthAllListByType(gType); 
+	if(info_details < 1){
+		var row = Titanium.UI.createTableViewRow({
+			touchEnabled: false,
+			height: 100,  
+			bottom: 20, 
+			top:20,
+			selectedBackgroundColor: "#ffffff", 
+		});
+		var noDataView = Titanium.UI.createView({ 
+			height:Ti.UI.SIZE,
+			width:Ti.UI.SIZE,
+			layout: "vertical",
+			bottom: 20 
+		});	
+		var noDataLbl = $.UI.create('Label',{ 
+			text : "No records found", 
+			classes : ['noData']
+		});	
+		var addDataView = Titanium.UI.createButton({ 
+			title : "Add Data",
+			height:40,
+			width:80,
+			backgroundColor : "#CE1D1C",
+			color: "#ffffff",
+			top:30,
+			borderRadius: 5
+		});	
+		
+		noDataView.addEventListener('click', function(){
+			hd.navigateGraph(gType);
+			nav.closeWindow($.healthEditWindow);
+		});
+		noDataView.add(noDataLbl);
+		noDataView.add(addDataView);
+		row.add(noDataView);
+		data.push(row);
+		$.editButton.setVisible(false);
+		$.healthTableData.setData(data);
+		common.hideLoading();
+		return false;
+	}
+	
 	info_details.forEach(function(entry) {
 		 
 		var row = Titanium.UI.createTableViewRow({

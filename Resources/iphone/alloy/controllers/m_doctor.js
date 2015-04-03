@@ -36,13 +36,13 @@ function Controller() {
         id: "main"
     });
     $.__views.m_doctor.add($.__views.main);
-    $.__views.__alloyId174 = Ti.UI.createImageView({
+    $.__views.__alloyId159 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-home.jpg",
-        id: "__alloyId174"
+        id: "__alloyId159"
     });
-    $.__views.main.add($.__views.__alloyId174);
+    $.__views.main.add($.__views.__alloyId159);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

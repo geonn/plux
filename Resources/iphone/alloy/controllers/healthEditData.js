@@ -11,6 +11,46 @@ function Controller() {
     function loadList(showDelete) {
         var data = [];
         var info_details = lib_health.getHealthAllListByType(gType);
+        if (1 > info_details) {
+            var row = Titanium.UI.createTableViewRow({
+                touchEnabled: false,
+                height: 100,
+                bottom: 20,
+                top: 20,
+                selectedBackgroundColor: "#ffffff"
+            });
+            var noDataView = Titanium.UI.createView({
+                height: Ti.UI.SIZE,
+                width: Ti.UI.SIZE,
+                layout: "vertical",
+                bottom: 20
+            });
+            var noDataLbl = $.UI.create("Label", {
+                text: "No records found",
+                classes: [ "noData" ]
+            });
+            var addDataView = Titanium.UI.createButton({
+                title: "Add Data",
+                height: 40,
+                width: 80,
+                backgroundColor: "#CE1D1C",
+                color: "#ffffff",
+                top: 30,
+                borderRadius: 5
+            });
+            noDataView.addEventListener("click", function() {
+                hd.navigateGraph(gType);
+                nav.closeWindow($.healthEditWindow);
+            });
+            noDataView.add(noDataLbl);
+            noDataView.add(addDataView);
+            row.add(noDataView);
+            data.push(row);
+            $.editButton.setVisible(false);
+            $.healthTableData.setData(data);
+            common.hideLoading();
+            return false;
+        }
         info_details.forEach(function(entry) {
             var row = Titanium.UI.createTableViewRow({
                 touchEnabled: true,
@@ -95,15 +135,15 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.healthEditData = Ti.UI.createWindow({
+    $.__views.healthEditWindow = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "All Recorded Data",
+        id: "healthEditWindow",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "healthEditData"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.healthEditData && $.addTopLevelView($.__views.healthEditData);
+    $.__views.healthEditWindow && $.addTopLevelView($.__views.healthEditWindow);
     $.__views.__alloyId81 = Ti.UI.createView({
         id: "__alloyId81"
     });
@@ -125,11 +165,11 @@ function Controller() {
     });
     $.__views.__alloyId81.add($.__views.doneButton);
     doDone ? $.__views.doneButton.addEventListener("touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
-    $.__views.healthEditData.rightNavButton = $.__views.__alloyId81;
+    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId81;
     $.__views.__alloyId82 = Ti.UI.createView({
         id: "__alloyId82"
     });
-    $.__views.healthEditData.add($.__views.__alloyId82);
+    $.__views.healthEditWindow.add($.__views.__alloyId82);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
