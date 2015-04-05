@@ -60,9 +60,10 @@ function copyToTemp(srcFile, base, myurl) {
     return tempFile;
 }
 
-function pdf(url, cookies, inds, labels, done) {
+function pdf(url, cookies, inds, labels, indView, done) {
     ind = inds;
     label = labels;
+    indV = indView;
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
         var tempFile = copyToTemp(file, base, url);
@@ -74,12 +75,14 @@ var ind = "";
 
 var label = "";
 
+var indV;
+
 var mainView = null;
 
 exports.construct = function(mv) {
     mainView = mv;
 };
 
-exports.createPdf = function(url, cookies, inds, labels, done) {
-    pdf(url, cookies, inds, labels, done);
+exports.createPdf = function(url, cookies, inds, labels, indView, done) {
+    pdf(url, cookies, inds, labels, indView, done);
 };

@@ -61,14 +61,18 @@ exports.enableSaveButton = function(e){
 };
 
 exports.populateData = function(e){
-	for(var i =1; i <= 4; i++){
+	for(var i =1; i <= 6; i++){
 	 	var info = loadInfo(i);
 	}
 };
 
 function loadInfo(gType){
 	var info = [];
-	var info_details = lib_health.getHealthListByType(gType); 
+	var loadType= gType;
+	if(loadType == "5" || loadType == "6"){
+		loadType = "1";
+	}
+	var info_details = lib_health.getHealthListByType(loadType); 
 	info_details.reverse();	 
 	info_details.forEach(function(entry) {
 		var rec = {};
@@ -76,11 +80,17 @@ function loadInfo(gType){
 		var month = parseInt(convert[1]) - 1;
 		var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
 		rec['label'] = newDate;
-		rec['y'] = parseFloat(entry.amount);
-				
+		
+		if(gType == "6"){
+			rec['y'] = parseFloat(entry.field1);
+		}else if(gType == "5"){
+			rec['y'] = parseFloat(entry.field2 ) * 100;
+		}else{
+			rec['y'] = parseFloat(entry.amount);
+		}
 		info.push(rec);
 	});  
-	
+ 
 	if(gType == 1){
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
 	}
@@ -92,6 +102,12 @@ function loadInfo(gType){
 	}
 	if(gType == 4){
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info });
+	}
+	if(gType == 5){
+		Ti.App.fireEvent('app:height',{ message:  info });
+	}
+	if(gType == 6){
+		Ti.App.fireEvent('app:weight',{ message:  info });
 	}
 	return info;
 }
@@ -186,6 +202,12 @@ exports.navigateGraph = function(gType){
 	}
 	if(gType == "4"){
 		nav.navigationWindow("healthDataBodyTemperature");
+	}
+	if(gType == "5"){
+		nav.navigationWindow("healthDataBmi");
+	}
+	if(gType == "6"){
+		nav.navigationWindow("healthDataBmi");
 	}
 };
 

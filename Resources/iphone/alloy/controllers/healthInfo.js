@@ -55,16 +55,25 @@ function Controller() {
                         source: newsList[j].id,
                         width: 112
                     });
-                    if ("" == newsList[j].images) var leftImage = Ti.UI.createImageView({
-                        image: "/images/noImage.png",
-                        source: newsList[j].id,
-                        width: "80%"
-                    }); else var leftImage = Ti.UI.createImageView({
-                        image: newsList[j].images,
-                        source: newsList[j].id,
-                        width: "80%"
-                    });
-                    imageContainer.add(leftImage);
+                    if ("" == newsList[j].images) {
+                        var leftImage = Ti.UI.createImageView({
+                            image: "/images/warm-grey-bg.png",
+                            source: newsList[j].id,
+                            width: "100%"
+                        });
+                        imageContainer.add(leftImage);
+                    } else {
+                        var leftImage = Ti.UI.createImageView({
+                            image: newsList[j].images,
+                            source: newsList[j].id,
+                            defaultImage: "/images/warm-grey-bg.png",
+                            width: "90%"
+                        });
+                        var activityIndicator = common.showImageIndicator();
+                        imageContainer.add(leftImage);
+                        imageContainer.add(activityIndicator);
+                        common.imageIndicatorEvent(leftImage, activityIndicator);
+                    }
                     var popUpTitle = Titanium.UI.createLabel({
                         text: newsList[j].title,
                         font: {

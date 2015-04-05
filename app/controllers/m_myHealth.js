@@ -10,10 +10,14 @@ function resetGraph(){
 	$.bloodPressureView.setHeight("0");
 	$.heartRateView.setHeight("0");
 	$.bodyTemperatureView.setHeight("0");
+	$.heightView.setHeight("0");
+	$.weightView.setHeight("0");
 	$.bmiView.hide();
 	$.bloodPressureView.hide();
 	$.heartRateView.hide();
 	$.bodyTemperatureView.hide();
+	$.heightView.hide();
+	$.weightView.hide();
 }
 function filterList(e){
 	 
@@ -21,6 +25,10 @@ function filterList(e){
 		resetGraph();
 		$.bmiView.setHeight("40%"); 
 		$.bmiView.show(); 
+		$.heightView.setHeight("40%"); 
+		$.heightView.show(); 
+		$.weightView.setHeight("40%"); 
+		$.weightView.show(); 
 	}else if(e.category == "vitals"){
 		resetGraph();
 		$.heartRateView.setHeight("40%");
@@ -34,6 +42,10 @@ function filterList(e){
 		$.bloodPressureView.setHeight("40%");
 		$.heartRateView.setHeight("40%");
 		$.bodyTemperatureView.setHeight("40%");
+		$.heightView.setHeight("40%");  
+		$.weightView.setHeight("40%"); 
+		$.weightView.show(); 
+		$.heightView.show(); 
 		$.bmiView.show();
 		$.bloodPressureView.show();
 		$.heartRateView.show();
@@ -63,6 +75,12 @@ $.bodyTemperatureView.addEventListener('click',function(e){
 	nav.navigateWithArgs("healthDataSummary",{gType: 4});
 });
 
+$.heightView.addEventListener('click',function(e){
+	nav.navigateWithArgs("healthDataSummary",{gType: 5});
+});
+$.weightView.addEventListener('click',function(e){
+	nav.navigateWithArgs("healthDataSummary",{gType: 6});
+});
 $.moreHealth.addEventListener('click', function(e){
 	var page = Alloy.createController('healthMenu').getView();
 	page.open();

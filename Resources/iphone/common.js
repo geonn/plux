@@ -17,11 +17,23 @@ exports.createAlert = function(tt, msg) {
     box.show();
 };
 
-exports.hideLoading = function() {
-    mainView.activityIndicator.hide();
-    mainView.loadingBar.opacity = "0";
-    mainView.loadingBar.height = "0";
-    mainView.loadingBar.top = "0";
+exports.showImageIndicator = function() {
+    var ind = Ti.UI.createActivityIndicator({
+        style: Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
+        bottom: 10,
+        right: 20,
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE,
+        zIndex: 11
+    });
+    ind.show();
+    return ind;
+};
+
+exports.imageIndicatorEvent = function(theImage, activityIndicator) {
+    theImage.addEventListener("load", function() {
+        activityIndicator.hide();
+    });
 };
 
 exports.noRecord = function() {
@@ -63,6 +75,13 @@ exports.showLoading = function() {
         mainView.loadingBar.top = Ti.Platform.displayCaps.platformHeight / 2 - 80;
         mainView.activityIndicator.style = Ti.UI.iPhone.ActivityIndicatorStyle.BIG;
     }
+};
+
+exports.hideLoading = function() {
+    mainView.activityIndicator.hide();
+    mainView.loadingBar.opacity = "0";
+    mainView.loadingBar.height = "0";
+    mainView.loadingBar.top = "0";
 };
 
 exports.createCustomAlert = function(win, title, msg) {

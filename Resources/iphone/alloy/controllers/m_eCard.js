@@ -142,13 +142,11 @@ function Controller() {
         Ti.API.info("Ti.Platform.displayCaps.platformHeight: " + Ti.Platform.displayCaps.platformHeight);
         Ti.API.info("Ti.Platform.displayCaps.platformWidth: " + Ti.Platform.displayCaps.platformWidth);
         if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight) {
-            console.log("landscape");
             name_text.top = "160dp";
             name_text.left = "80dp";
             memno_text.top = "125dp";
             memno_text.left = "80dp";
         } else {
-            console.log("portrait");
             name_text.top = "125dp";
             name_text.left = "20dp";
             memno_text.top = "90dp";

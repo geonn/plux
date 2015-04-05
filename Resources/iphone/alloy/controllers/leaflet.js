@@ -21,15 +21,18 @@ function Controller() {
                 image: leaflist[i].cover,
                 backgroundImage: leaflist[i].cover,
                 leafLet: leaflist[i].attachment,
+                name: leaflist[i].title,
                 url: leaflist[i].url,
                 downloaded: leaflist[i].isDownloaded,
+                defaultImage: "/images/warm-grey-bg.png",
                 bottom: 0,
                 width: 90
             });
-            leafImage.addEventListener("click", function(ex) {
-                downloadBrochure(leafImage, ex.source.id, ex.source.leafLet, ex.source.url, ex.source.downloaded);
-            });
+            var activityIndicator = common.showImageIndicator();
+            downloadBrochure(leafImage, leaflist[i]);
             leafView.add(leafImage);
+            leafView.add(activityIndicator);
+            common.imageIndicatorEvent(leafImage, activityIndicator);
             if (i % 3 == 0) {
                 var containerView = Ti.UI.createView({
                     bottom: 0,
@@ -59,134 +62,149 @@ function Controller() {
             }
         }
     }
-    function downloadBrochure(adImage, id, content, targetUrl, downloaded) {
-        var ind = Titanium.UI.createProgressBar({
-            width: "90%",
-            height: "40%",
-            min: 0,
-            max: 1,
-            value: 0,
-            top: 25,
-            message: "",
-            font: {
-                fontSize: 12
-            },
-            color: "#CE1D1C"
-        });
-        ind.show();
-        var imageHeight = adImage.size.height;
-        var imageWidth = adImage.size.width;
-        var gray = Titanium.UI.createView({
-            height: imageHeight,
-            width: imageWidth,
-            backgroundColor: "#A5A5A5",
-            opacity: .5,
-            bottom: 0
-        });
-        var label = Ti.UI.createLabel({
-            color: "#ffffff",
-            font: {
-                fontSize: 14,
-                fontWeight: "bold"
-            },
-            text: "",
-            top: 15,
-            width: "100%",
-            textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-        });
-        var bigView = Titanium.UI.createView({
-            height: "15%",
-            width: "80%",
-            backgroundColor: "#525151",
-            opacity: .8,
-            zIndex: 99
-        });
-        if ("1" == downloaded) {
-            bigView.remove(gray);
-            bigView.remove(ind);
-            bigView.remove(label);
-            $.brochureView.remove(bigView);
-        } else {
-            bigView.add(gray);
-            bigView.add(ind);
-            bigView.add(label);
-            $.brochureView.add(bigView);
-        }
-        PDF.createPdf(content, true, ind, label, function(err, file) {
-            if (err) alert(err); else {
-                leafletModel.updateDownloadedBrochure(id);
-                bigView.remove(gray);
-                bigView.remove(ind);
-                bigView.remove(label);
-                $.brochureView.remove(bigView);
-                var myModal = Ti.UI.createWindow({
-                    title: "Read PDF",
-                    backgroundColor: "transparent",
-                    fullscreen: true
-                });
-                var leftBtn = Ti.UI.createButton({
-                    title: "Close",
+    function downloadBrochure(adImage, content) {
+        adImage.addEventListener("click", function() {
+            var indView = Ti.UI.createView({
+                height: 100,
+                layout: "vertical",
+                backgroundColor: "#ffffff",
+                bottom: 5,
+                width: Ti.UI.SIZE
+            });
+            if ("1" == isDownloading) {
+                var label = Ti.UI.createLabel({
                     color: "#CE1D1C",
-                    left: 15
+                    font: {
+                        fontSize: 10,
+                        fontWeight: "bold"
+                    },
+                    text: "Please wait until current downloading is done.",
+                    bottom: 10,
+                    width: "100%",
+                    height: 10,
+                    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
                 });
-                var wrapperView = Ti.UI.createView({
-                    layout: "vertical",
-                    height: Ti.UI.SIZE
-                });
-                var topView = Ti.UI.createView({
-                    backgroundColor: "#EEEEEE",
-                    top: 0,
-                    height: 40
-                });
-                var containerView = Ti.UI.createView({
-                    height: Ti.UI.SIZE,
-                    backgroundColor: "transparent"
-                });
-                var webview = Ti.UI.createWebView({
-                    data: file.read(),
-                    height: "auto",
-                    backgroundColor: "#ffffff"
-                });
-                if ("" != targetUrl) {
-                    var rightBtn = Ti.UI.createButton({
-                        title: "Details",
-                        color: "#CE1D1C",
-                        right: 15
+                if ("0" == isDownloadLbl) {
+                    $.bigView.add(label);
+                    setTimeout(function() {
+                        isDownloadLbl = "0";
+                        $.bigView.remove(label);
+                    }, 3e3);
+                }
+                isDownloadLbl = "1";
+                return false;
+            }
+            isDownloading = "1";
+            var ind = Titanium.UI.createProgressBar({
+                width: "90%",
+                height: 50,
+                min: 0,
+                max: 1,
+                value: 0,
+                top: 5,
+                message: "Downloading " + content.title + "...",
+                font: {
+                    fontSize: 12
+                },
+                color: "#CE1D1C"
+            });
+            var label = Ti.UI.createLabel({
+                color: "#CE1D1C",
+                font: {
+                    fontSize: 14,
+                    fontWeight: "bold"
+                },
+                text: "0%",
+                top: 0,
+                width: "100%",
+                height: 30,
+                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+            });
+            if ("1" == content.isDownloaded) {
+                indView.remove(ind);
+                indView.remove(label);
+                $.bigView.setVisible(false);
+            } else {
+                ind.show();
+                indView.add(ind);
+                indView.add(label);
+                $.bigView.add(indView);
+                $.bigView.setVisible(true);
+            }
+            PDF.createPdf(content.attachment, true, ind, label, indView, function(err, file) {
+                if (err) alert(err); else {
+                    isDownloading = "0";
+                    leafletModel.updateDownloadedBrochure(content.id);
+                    indView.hide();
+                    $.bigView.remove(indView);
+                    var myModal = Ti.UI.createWindow({
+                        title: "Read PDF",
+                        backgroundColor: "transparent",
+                        fullscreen: true
                     });
-                    rightBtn.addEventListener("click", function() {
-                        var BackBtn = Ti.UI.createButton({
-                            title: "Back",
+                    var leftBtn = Ti.UI.createButton({
+                        title: "Close",
+                        color: "#CE1D1C",
+                        left: 15
+                    });
+                    var wrapperView = Ti.UI.createView({
+                        layout: "vertical",
+                        height: Ti.UI.SIZE
+                    });
+                    var topView = Ti.UI.createView({
+                        backgroundColor: "#EEEEEE",
+                        top: 0,
+                        height: 40
+                    });
+                    var containerView = Ti.UI.createView({
+                        height: Ti.UI.SIZE,
+                        backgroundColor: "transparent"
+                    });
+                    var webview = Ti.UI.createWebView({
+                        data: file.read(),
+                        height: "auto",
+                        backgroundColor: "#ffffff",
+                        bottom: 10
+                    });
+                    if ("" != content.url) {
+                        var rightBtn = Ti.UI.createButton({
+                            title: "Details",
                             color: "#CE1D1C",
                             right: 15
                         });
-                        BackBtn.addEventListener("click", function() {
-                            BackBtn.setVisible(false);
-                            rightBtn.setVisible(true);
-                            webview.setData(file.read());
-                            console.log("back trigger");
+                        rightBtn.addEventListener("click", function() {
+                            var BackBtn = Ti.UI.createButton({
+                                title: "Back",
+                                color: "#CE1D1C",
+                                right: 15
+                            });
+                            BackBtn.addEventListener("click", function() {
+                                BackBtn.setVisible(false);
+                                rightBtn.setVisible(true);
+                                webview.setData(file.read());
+                            });
+                            topView.add(BackBtn);
+                            rightBtn.setVisible(false);
+                            BackBtn.setVisible(true);
+                            webview.setUrl(targetUrl);
                         });
-                        topView.add(BackBtn);
-                        rightBtn.setVisible(false);
-                        BackBtn.setVisible(true);
-                        webview.setUrl(targetUrl);
-                        console.log("details trigger");
+                        topView.add(rightBtn);
+                    }
+                    containerView.add(webview);
+                    topView.add(leftBtn);
+                    wrapperView.add(topView);
+                    wrapperView.add(containerView);
+                    myModal.add(wrapperView);
+                    myModal.open({
+                        modal: true
                     });
-                    topView.add(rightBtn);
+                    leftBtn.addEventListener("click", function() {
+                        myModal.close({
+                            animated: true
+                        });
+                    });
                 }
-                containerView.add(webview);
-                topView.add(leftBtn);
-                wrapperView.add(topView);
-                wrapperView.add(containerView);
-                myModal.add(wrapperView);
-                myModal.open({
-                    modal: true
-                });
-                leftBtn.addEventListener("click", function() {
-                    myModal.close({
-                        animated: true
-                    });
-                });
-            }
+            });
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -218,6 +236,18 @@ function Controller() {
         backgroundColor: "#828282"
     });
     $.__views.leaftletWin.add($.__views.brochureView);
+    $.__views.bigView = Ti.UI.createScrollView({
+        id: "bigView",
+        zIndex: "99",
+        height: Ti.UI.SIZE,
+        layout: "vertical",
+        backgroundColor: "#ffffff",
+        opacity: "0.8",
+        bottom: "0",
+        width: "80%",
+        visible: "false"
+    });
+    $.__views.brochureView.add($.__views.bigView);
     $.__views.__alloyId105 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId105"
@@ -244,6 +274,8 @@ function Controller() {
     var leaflist = leafletModel.getLeaftletList();
     PDF.construct($);
     loadLeafLetList();
+    var isDownloading = "0";
+    var isDownloadLbl = "0";
     _.extend($, exports);
 }
 

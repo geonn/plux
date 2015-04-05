@@ -51,19 +51,23 @@ function displayHealthInfo(){
 				
 				if(newsList[j].images == ""){
 					var leftImage = Ti.UI.createImageView({
-						image: "/images/noImage.png", 
+						image: "/images/warm-grey-bg.png", 
 						source: newsList[j].id, 
-						width:"80%"
+						width:"100%"
 					});
+					imageContainer.add(leftImage);
 				}else{
 					var leftImage = Ti.UI.createImageView({
 						image: newsList[j].images, 
 						source: newsList[j].id, 
-						width:"80%"
+						defaultImage: "/images/warm-grey-bg.png",
+						width:"90%"
 					});
-				}
-				
-				imageContainer.add(leftImage);
+					var activityIndicator = common.showImageIndicator(); 
+					imageContainer.add(leftImage);
+					imageContainer.add(activityIndicator);
+					common.imageIndicatorEvent(leftImage,activityIndicator);
+				} 
 				  
 				var popUpTitle = Titanium.UI.createLabel({
 					text:newsList[j].title,
@@ -116,8 +120,7 @@ function displayHealthInfo(){
 	}
 	 
 	$.infoTable.setData(tableData); 
-}
-
+} 
 function viewDetails(e){
 	var nav = require('navigation');
 	nav.navigateWithArgs("news", {

@@ -2,15 +2,19 @@ var args = arguments[0] || {};
 var gType = args.gType || 1; 
 var hd = require('healthData');  
 var lib_health = Alloy.createCollection('health'); 
-
-
+ 
 common.construct($);
 common.showLoading();
 loadList("1");
  
 function loadList(showDelete){
 	var data=[];
-	var info_details = lib_health.getHealthAllListByType(gType); 
+	var theAmount;
+	var loadType= gType;
+	if(loadType == "5" || loadType == "6"){
+		loadType = "1";
+	}
+	var info_details = lib_health.getHealthAllListByType(loadType); 
 	if(info_details < 1){
 		var row = Titanium.UI.createTableViewRow({
 			touchEnabled: false,
@@ -90,9 +94,16 @@ function loadList(showDelete){
 			left:heartLeft 
 		});		
 		
+		if(gType == "6"){
+			theAmount = parseFloat(entry.field1) + " kg";
+		}else if(gType == "5"){
+			theAmount = parseFloat(entry.field2 ) * 100 + " cm";
+		}else{
+			theAmount = entry.amount;
+		}
 		var bmiLeft = heartLeft +40;
 		var bmiLbl = Titanium.UI.createLabel({
-			text:  entry.amount,
+			text:  theAmount,
 			source: entry.id,
 			left: bmiLeft,
 			color: "#929292",

@@ -9,7 +9,9 @@ function getAge(dateString) {
 
 function loadInfo(gType) {
     var info = [];
-    var info_details = lib_health.getHealthListByType(gType);
+    var loadType = gType;
+    ("5" == loadType || "6" == loadType) && (loadType = "1");
+    var info_details = lib_health.getHealthListByType(loadType);
     info_details.reverse();
     info_details.forEach(function(entry) {
         var rec = {};
@@ -17,7 +19,7 @@ function loadInfo(gType) {
         var month = parseInt(convert[1]) - 1;
         var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
         rec["label"] = newDate;
-        rec["y"] = parseFloat(entry.amount);
+        rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
         info.push(rec);
     });
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
@@ -30,6 +32,12 @@ function loadInfo(gType) {
         message: info
     });
     4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
+        message: info
+    });
+    5 == gType && Ti.App.fireEvent("app:height", {
+        message: info
+    });
+    6 == gType && Ti.App.fireEvent("app:weight", {
         message: info
     });
     return info;
@@ -84,7 +92,7 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 4 >= i; i++) {
+    for (var i = 1; 6 >= i; i++) {
         loadInfo(i);
     }
 };
@@ -144,6 +152,8 @@ exports.navigateGraph = function(gType) {
     "2" == gType && nav.navigationWindow("healthDataBloodPressure");
     "3" == gType && nav.navigationWindow("healthDataHeartRate");
     "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
+    "5" == gType && nav.navigationWindow("healthDataBmi");
+    "6" == gType && nav.navigationWindow("healthDataBmi");
 };
 
 exports.changeTime = function(e) {

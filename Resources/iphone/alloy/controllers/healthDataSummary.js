@@ -140,6 +140,8 @@ function Controller() {
     "2" == gType && $.graphWebView.setUrl("/html/bloodPressure.html");
     "3" == gType && $.graphWebView.setUrl("/html/heartRate.html");
     "4" == gType && $.graphWebView.setUrl("/html/bodyTemperature.html");
+    "5" == gType && $.graphWebView.setUrl("/html/height.html");
+    "6" == gType && $.graphWebView.setUrl("/html/weight.html");
     setTimeout(function() {
         loadGraph();
         common.hideLoading();

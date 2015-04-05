@@ -38,6 +38,16 @@
 					
 					<View id="bodyTemperatureView" height="0"  width="100%" backgroundColor="#EBEBEB" visible="false">
 						<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					</View>
+					
+					<View id="heightView" height="0"  width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/height.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					</View>
+					
+					<View id="weightView" height="0"  width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView  width="100%" backgroundColor="#EBEBEB" url="/html/weight.html" disableBounce='true' touchEnabled="false"></WebView>
 					</View>
 				</ScrollView>
 			</View>

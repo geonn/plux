@@ -10,7 +10,10 @@ function __processArg(obj, key) {
 function Controller() {
     function loadList(showDelete) {
         var data = [];
-        var info_details = lib_health.getHealthAllListByType(gType);
+        var theAmount;
+        var loadType = gType;
+        ("5" == loadType || "6" == loadType) && (loadType = "1");
+        var info_details = lib_health.getHealthAllListByType(loadType);
         if (1 > info_details) {
             var row = Titanium.UI.createTableViewRow({
                 touchEnabled: false,
@@ -82,9 +85,10 @@ function Controller() {
                 width: 15,
                 left: heartLeft
             });
+            theAmount = "6" == gType ? parseFloat(entry.field1) + " kg" : "5" == gType ? 100 * parseFloat(entry.field2) + " cm" : entry.amount;
             var bmiLeft = heartLeft + 40;
             var bmiLbl = Titanium.UI.createLabel({
-                text: entry.amount,
+                text: theAmount,
                 source: entry.id,
                 left: bmiLeft,
                 color: "#929292",
