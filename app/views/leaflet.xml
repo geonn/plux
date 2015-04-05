@@ -1,0 +1,15 @@
+<Alloy>
+	<Window title="Health Leaflet" backButtonTitle="" class="container" id="leaftletWin" navTintColor="#CE1D1C" platform="ios">
+		<View id="brochureView" class="container" backgroundColor="#828282"> 
+ 
+			<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false">
+				
+			</ScrollView>
+			<View layout="vertical">
+				<ScrollView top="15" id="scrollview" layout="vertical" >
+					<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="100%" /> 
+				</ScrollView>
+			</View> 
+		</View> 
+	</Window>
+</Alloy>
