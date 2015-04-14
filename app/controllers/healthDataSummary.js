@@ -22,14 +22,23 @@ if(gType == "6"){
 	$.graphWebView.setUrl("/html/weight.html");
 }
 
-	
+function loadBarData(e){ 
+	if(e.index == "0"){
+		loadGraph("month"); 
+	}else{
+		loadGraph("year"); 
+	}  
+} 
+
+$.buttonbarData.addEventListener('click', loadBarData);  
+
 setTimeout(function(){	
-	loadGraph(); 
+	loadGraph("month");  
 	common.hideLoading();
 },900); 
 
-function loadGraph(){
-	hd.loadGraphByType(gType); 
+function loadGraph(dataPeriod){
+	hd.loadGraphByType(gType,dataPeriod); 
 }
 	
 function addData(){

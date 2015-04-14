@@ -8,8 +8,11 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function loadGraph() {
-        hd.loadGraphByType(gType);
+    function loadBarData(e) {
+        loadGraph("0" == e.index ? "month" : "year");
+    }
+    function loadGraph(dataPeriod) {
+        hd.loadGraphByType(gType, dataPeriod);
     }
     function addData() {
         hd.navigateGraph(gType);
@@ -82,6 +85,26 @@ function Controller() {
         top: "0"
     });
     $.__views.__alloyId74.add($.__views.main);
+    var __alloyId76 = [];
+    var __alloyId79 = {
+        title: "Month"
+    };
+    __alloyId76.push(__alloyId79);
+    var __alloyId80 = {
+        title: "Year"
+    };
+    __alloyId76.push(__alloyId80);
+    $.__views.buttonbarData = Ti.UI.iOS.createTabbedBar({
+        labels: __alloyId76,
+        id: "buttonbarData",
+        backgroundColor: "#CE1D1C",
+        index: "0",
+        color: "#ffffff",
+        borderColor: "#CE1D1C",
+        height: "25",
+        width: Ti.UI.FILL
+    });
+    $.__views.main.add($.__views.buttonbarData);
     $.__views.bmiView = Ti.UI.createView({
         id: "bmiView",
         height: "60%",
@@ -96,33 +119,33 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.bmiView.add($.__views.graphWebView);
-    $.__views.__alloyId76 = Ti.UI.createView({
+    $.__views.__alloyId81 = Ti.UI.createView({
         height: "1",
         bottom: "0",
         backgroundColor: "#FC7474",
         width: "100%",
-        id: "__alloyId76"
+        id: "__alloyId81"
     });
-    $.__views.bmiView.add($.__views.__alloyId76);
-    var __alloyId77 = [];
-    $.__views.__alloyId78 = Ti.UI.createTableViewRow({
+    $.__views.bmiView.add($.__views.__alloyId81);
+    var __alloyId82 = [];
+    $.__views.__alloyId83 = Ti.UI.createTableViewRow({
         selectedBackgroundColor: "#FFE1E1",
         title: "Add Data Point",
         hasChild: "true",
-        id: "__alloyId78"
+        id: "__alloyId83"
     });
-    __alloyId77.push($.__views.__alloyId78);
-    addData ? $.__views.__alloyId78.addEventListener("click", addData) : __defers["$.__views.__alloyId78!click!addData"] = true;
-    $.__views.__alloyId79 = Ti.UI.createTableViewRow({
+    __alloyId82.push($.__views.__alloyId83);
+    addData ? $.__views.__alloyId83.addEventListener("click", addData) : __defers["$.__views.__alloyId83!click!addData"] = true;
+    $.__views.__alloyId84 = Ti.UI.createTableViewRow({
         selectedBackgroundColor: "#FFE1E1",
         title: "Show All Data",
         hasChild: "true",
-        id: "__alloyId79"
+        id: "__alloyId84"
     });
-    __alloyId77.push($.__views.__alloyId79);
-    editData ? $.__views.__alloyId79.addEventListener("click", editData) : __defers["$.__views.__alloyId79!click!editData"] = true;
+    __alloyId82.push($.__views.__alloyId84);
+    editData ? $.__views.__alloyId84.addEventListener("click", editData) : __defers["$.__views.__alloyId84!click!editData"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
-        data: __alloyId77,
+        data: __alloyId82,
         id: "healthTableData",
         height: Ti.UI.SIZE,
         width: "100%",
@@ -142,12 +165,13 @@ function Controller() {
     "4" == gType && $.graphWebView.setUrl("/html/bodyTemperature.html");
     "5" == gType && $.graphWebView.setUrl("/html/height.html");
     "6" == gType && $.graphWebView.setUrl("/html/weight.html");
+    $.buttonbarData.addEventListener("click", loadBarData);
     setTimeout(function() {
-        loadGraph();
+        loadGraph("month");
         common.hideLoading();
     }, 900);
-    __defers["$.__views.__alloyId78!click!addData"] && $.__views.__alloyId78.addEventListener("click", addData);
-    __defers["$.__views.__alloyId79!click!editData"] && $.__views.__alloyId79.addEventListener("click", editData);
+    __defers["$.__views.__alloyId83!click!addData"] && $.__views.__alloyId83.addEventListener("click", addData);
+    __defers["$.__views.__alloyId84!click!editData"] && $.__views.__alloyId84.addEventListener("click", editData);
     _.extend($, exports);
 }
 

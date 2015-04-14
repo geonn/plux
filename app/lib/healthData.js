@@ -66,38 +66,69 @@ exports.populateData = function(e){
 	}
 };
 
-function loadInfo(gType){
+function loadInfo(gType,dataPeriod){
 	var info = [];
 	var info2 = [];
 	var loadType= gType;
 	if(loadType == "5" || loadType == "6"){
 		loadType = "1";
 	}
-	var info_details = lib_health.getHealthListByType(loadType); 
-	info_details.reverse();	 
-	info_details.forEach(function(entry) {
-		var rec = {};
-		var convert = (entry.date).split('-'); 
-		var month = parseInt(convert[1]) - 1;
-		var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
-		rec['label'] = newDate;
+	if(dataPeriod == "year"){
 		
-		if(gType == "2"){
-			rec['y'] = parseFloat(entry.field1); 
-			// For second records
-			var rec2 = {};
-			rec2['label'] = newDate;
-			rec2['y'] = parseFloat(entry.field2);
-			info2.push(rec2);
-		}else if(gType == "6"){
-			rec['y'] = parseFloat(entry.field1);
-		}else if(gType == "5"){
-			rec['y'] = parseFloat(entry.field2 ) * 100;
-		}else{
-			rec['y'] = parseFloat(entry.amount);
-		}
-		info.push(rec);
-	});  
+		var info_details = lib_health.getHealthListByTypeInYear(loadType,gType); 
+		console.log(info_details);
+		info_details.forEach(function(entry) {
+			var rec = {};
+			var convert = (entry.date).split('-'); 
+			var month = parseInt(convert[1]) - 1;
+			var newDate = m_names[month]+""+convert[0].substring(2, 4);
+			rec['label'] = newDate;
+			
+			if(gType == "2"){
+				rec['y'] = parseFloat(entry.value); 
+				// For second records
+				var rec2 = {};
+				rec2['label'] = newDate;
+				rec2['y'] = parseFloat(entry.value2);
+				info2.push(rec2);
+			}else if(gType == "6"){
+				rec['y'] = parseFloat(entry.value);
+			}else if(gType == "5"){
+				rec['y'] = parseFloat(entry.value ) * 100;
+			}else{
+				rec['y'] = parseFloat(entry.value);
+			}
+			info.push(rec);
+		});
+	}else{ 
+		var info_details = lib_health.getHealthListByType(loadType);  
+		info_details.reverse();	 
+		info_details.forEach(function(entry) {
+			var rec = {};
+			var convert = (entry.date).split('-'); 
+			var month = parseInt(convert[1]) - 1;
+			var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
+			rec['label'] = newDate;
+			
+			if(gType == "2"){
+				rec['y'] = parseFloat(entry.field1); 
+				// For second records
+				var rec2 = {};
+				rec2['label'] = newDate;
+				rec2['y'] = parseFloat(entry.field2);
+				info2.push(rec2);
+			}else if(gType == "6"){
+				rec['y'] = parseFloat(entry.field1);
+			}else if(gType == "5"){
+				rec['y'] = parseFloat(entry.field2 ) * 100;
+			}else{
+				rec['y'] = parseFloat(entry.amount);
+			}
+			info.push(rec);
+		});  
+	}
+	
+	
  
 	if(gType == 1){
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
@@ -120,8 +151,8 @@ function loadInfo(gType){
 	return info;
 }
 
-exports.loadGraphByType = function(gType){
-	var info = loadInfo(gType); 
+exports.loadGraphByType = function(gType,dataPeriod){
+	var info = loadInfo(gType,dataPeriod); 
 };
 
 exports.todayDate = function(){

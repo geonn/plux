@@ -7,28 +7,48 @@ function getAge(dateString) {
     return age;
 }
 
-function loadInfo(gType) {
+function loadInfo(gType, dataPeriod) {
     var info = [];
     var info2 = [];
     var loadType = gType;
     ("5" == loadType || "6" == loadType) && (loadType = "1");
-    var info_details = lib_health.getHealthListByType(loadType);
-    info_details.reverse();
-    info_details.forEach(function(entry) {
-        var rec = {};
-        var convert = entry.date.split("-");
-        var month = parseInt(convert[1]) - 1;
-        var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
-        rec["label"] = newDate;
-        if ("2" == gType) {
-            rec["y"] = parseFloat(entry.field1);
-            var rec2 = {};
-            rec2["label"] = newDate;
-            rec2["y"] = parseFloat(entry.field2);
-            info2.push(rec2);
-        } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
-        info.push(rec);
-    });
+    if ("year" == dataPeriod) {
+        var info_details = lib_health.getHealthListByTypeInYear(loadType, gType);
+        console.log(info_details);
+        info_details.forEach(function(entry) {
+            var rec = {};
+            var convert = entry.date.split("-");
+            var month = parseInt(convert[1]) - 1;
+            var newDate = m_names[month] + "" + convert[0].substring(2, 4);
+            rec["label"] = newDate;
+            if ("2" == gType) {
+                rec["y"] = parseFloat(entry.value);
+                var rec2 = {};
+                rec2["label"] = newDate;
+                rec2["y"] = parseFloat(entry.value2);
+                info2.push(rec2);
+            } else rec["y"] = "6" == gType ? parseFloat(entry.value) : "5" == gType ? 100 * parseFloat(entry.value) : parseFloat(entry.value);
+            info.push(rec);
+        });
+    } else {
+        var info_details = lib_health.getHealthListByType(loadType);
+        info_details.reverse();
+        info_details.forEach(function(entry) {
+            var rec = {};
+            var convert = entry.date.split("-");
+            var month = parseInt(convert[1]) - 1;
+            var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
+            rec["label"] = newDate;
+            if ("2" == gType) {
+                rec["y"] = parseFloat(entry.field1);
+                var rec2 = {};
+                rec2["label"] = newDate;
+                rec2["y"] = parseFloat(entry.field2);
+                info2.push(rec2);
+            } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
+            info.push(rec);
+        });
+    }
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
         message: info
     });
@@ -105,8 +125,8 @@ exports.populateData = function() {
     }
 };
 
-exports.loadGraphByType = function(gType) {
-    loadInfo(gType);
+exports.loadGraphByType = function(gType, dataPeriod) {
+    loadInfo(gType, dataPeriod);
 };
 
 exports.todayDate = function() {

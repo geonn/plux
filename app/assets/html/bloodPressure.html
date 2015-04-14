@@ -36,15 +36,25 @@ function loadChart(data,data2){
 		},
 		backgroundColor : "#EBEBEB",
 		animationEnabled: true,   // change to true
+		legend :{
+			fontSize: 12,
+			fontColor: "#6E6E6E",
+		}, 
 		data: [              
 			{
 				// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
 				type: "spline",
+				name: "Systolic",
+				showInLegend: true,
+				color : "#31B404",
 				dataPoints: data
 			},
 			{
 				// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
 				type: "spline",
+				name: "Diastolic",
+				showInLegend: true,
+				color: "#B45F04",
 				dataPoints: data2
 			}
 		]

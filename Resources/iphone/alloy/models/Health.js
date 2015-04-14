@@ -4,13 +4,13 @@ exports.definition = {
     config: {
         columns: {
             id: "INTEGER PRIMARY KEY AUTOINCREMENT",
-            date: "TEXT",
+            date: "DATE",
             time: "TEXT",
             type: "TEXT",
             field1: "TEXT",
             field2: "TEXT",
             amount: "TEXT",
-            created: "TEXT"
+            created: "DATETIME"
         },
         adapter: {
             type: "sql",
@@ -39,6 +39,43 @@ exports.definition = {
                         field1: res.fieldByName("field1"),
                         field2: res.fieldByName("field2"),
                         amount: res.fieldByName("amount")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
+            getHealthListByTypeInYear: function(type, gType) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var theField = "amount";
+                ("6" == gType || "2" == gType) && (theField = "field1");
+                "5" == gType && (theField = "field2");
+                if ("2" == gType) {
+                    var value2 = 0;
+                    var sql2 = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(field2) as value2 FROM ' + collection.config.adapter.collection_name + " WHERE type='" + type + '\' GROUP BY strftime("%Y-%m", date) ORDER BY date  LIMIT 6';
+                    var res2 = db.execute(sql2);
+                    res2.isValidRow() && (value2 = res2.fieldByName("value2"));
+                }
+                var sql = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(' + theField + ") as value FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + '\' GROUP BY strftime("%Y-%m", date) ORDER BY date  LIMIT 6';
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                if ("2" == gType) while (res.isValidRow()) {
+                    listArr[count] = {
+                        date: res.fieldByName("datemonth"),
+                        value: res.fieldByName("value"),
+                        value2: value2
+                    };
+                    res.next();
+                    count++;
+                } else while (res.isValidRow()) {
+                    listArr[count] = {
+                        date: res.fieldByName("datemonth"),
+                        value: res.fieldByName("value")
                     };
                     res.next();
                     count++;
