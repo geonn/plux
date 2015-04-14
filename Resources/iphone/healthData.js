@@ -32,14 +32,10 @@ function loadInfo(gType) {
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
         message: info
     });
-    if (2 == gType) {
-        console.log(info);
-        console.log(info2);
-        Ti.App.fireEvent("app:bloodPressureInfo", {
-            message: info,
-            message2: info2
-        });
-    }
+    2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
+        message: info,
+        message2: info2
+    });
     3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
         message: info
     });

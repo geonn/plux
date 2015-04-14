@@ -83,8 +83,7 @@ function loadInfo(gType){
 		rec['label'] = newDate;
 		
 		if(gType == "2"){
-			rec['y'] = parseFloat(entry.field1);
-			
+			rec['y'] = parseFloat(entry.field1); 
 			// For second records
 			var rec2 = {};
 			rec2['label'] = newDate;
@@ -103,9 +102,7 @@ function loadInfo(gType){
 	if(gType == 1){
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
 	}
-	if(gType == 2){
-		console.log(info);
-		console.log(info2);
+	if(gType == 2){ 
 		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2 });
 	}
 	if(gType == 3){

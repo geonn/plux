@@ -286,7 +286,7 @@ function Controller() {
     setTimeout(function() {
         hd.populateData();
         common.hideLoading();
-    }, 900);
+    }, 500);
     filterList({
         category: "all"
     });
