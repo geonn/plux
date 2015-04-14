@@ -1,0 +1,6 @@
+<Alloy>
+	<Window title="Profile" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
+	<ScrollableView id="main">
+	</ScrollableView>
+	</Window>
+</Alloy>

@@ -35,6 +35,7 @@ exports.doLogin = function(username, password, mainView, target) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
+            console.log(result);
             if (void 0 !== typeof res.message && null != res.message) common.createAlert("Error", res.message); else {
                 var usersModel = Alloy.createCollection("users");
                 Ti.App.Properties.setString("memno", res.memno);

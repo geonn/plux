@@ -16,4 +16,12 @@
 "Label":{
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE 
+},
+".padding":{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,	
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
 }

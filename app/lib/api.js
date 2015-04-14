@@ -31,7 +31,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       var result = JSON.parse(this.responseText);
 	       //console.log(result);
 	       res = result[0];
-	      
+	      console.log(result);
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 

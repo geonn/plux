@@ -2,7 +2,7 @@
 	<NavigationWindow id="navMenu" platform="ios">
 		<Window id="root" title="" navBarHidden="true" class="container">
 			<View id="main">
-				<ImageView width="100%" height="100%" image="/dummy/dummy-home.jpg"/>
+				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL"></View>
 				<View layout="">
 					<ImageView id="logo" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png" zIndex="5" />
 					<View zIndex="4" id="myinfo_view" layout="horizontal" height="Ti.UI.SIZE" top="20" backgroundColor="rgba(0,0,0,0.5)"> 
@@ -13,12 +13,14 @@
 							<ImageView onClick="navWindow" mod="m_eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
 							<ImageView onClick="navWindow" mod="m_myClaim" top="15" width="139" image="/btn/btn_my_claim_detail.png"/>
-							<ImageView onClick="navWindow" mod="clinicState" left="15" top="15" width="139" image="/btn/btn_clinic_location.png"/>
+							<ImageView onClick="navWindow" mod="profile" top="15" left="15" width="139" image="/btn/btn_profile.png"/>
 							
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/btn/btn_healthInfo.png"/>
 							<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/btn/btn_leaflet.png"/>
 							<!--<ImageView onClick="navWindow" mod="survey" top="15" width="139" image="/btn/btn_healthInfo.png"/>-->
 							<ImageView onClick="navWindow" mod="m_myMedical" top="15" width="139" image="/btn/btn_my_medical_record.png"/>
+							<ImageView onClick="navWindow" mod="clinicState" left="15" top="15" width="139" image="/btn/btn_clinic_location.png"/>
+							
 						</View>
 					</ScrollView>
 				</View>

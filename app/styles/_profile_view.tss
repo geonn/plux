@@ -1,0 +1,10 @@
+".header" : {
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.FILL,
+	backgroundColor: "#ff0000",
+},
+".header_label":{
+	color: "#ffffff",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	width: Titanium.UI.FILL
+}
