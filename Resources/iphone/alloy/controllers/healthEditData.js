@@ -85,13 +85,16 @@ function Controller() {
                 width: 15,
                 left: heartLeft
             });
-            theAmount = "6" == gType ? parseFloat(entry.field1) + " kg" : "5" == gType ? 100 * parseFloat(entry.field2) + " cm" : entry.amount;
+            theAmount = "2" == gType ? "Systolic : " + parseFloat(entry.field1) + "\r\nDiastolic : " + parseFloat(entry.field2) : "6" == gType ? parseFloat(entry.field1) + " kg" : "5" == gType ? 100 * parseFloat(entry.field2) + " cm" : entry.amount;
             var bmiLeft = heartLeft + 40;
             var bmiLbl = Titanium.UI.createLabel({
                 text: theAmount,
                 source: entry.id,
                 left: bmiLeft,
                 color: "#929292",
+                font: {
+                    fontSize: 14
+                },
                 selectedBackgroundColor: "#FFE1E1"
             });
             var datetimeLbl = Titanium.UI.createLabel({

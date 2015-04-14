@@ -9,6 +9,7 @@ function getAge(dateString) {
 
 function loadInfo(gType) {
     var info = [];
+    var info2 = [];
     var loadType = gType;
     ("5" == loadType || "6" == loadType) && (loadType = "1");
     var info_details = lib_health.getHealthListByType(loadType);
@@ -19,15 +20,26 @@ function loadInfo(gType) {
         var month = parseInt(convert[1]) - 1;
         var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
         rec["label"] = newDate;
-        rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
+        if ("2" == gType) {
+            rec["y"] = parseFloat(entry.field1);
+            var rec2 = {};
+            rec2["label"] = newDate;
+            rec2["y"] = parseFloat(entry.field2);
+            info2.push(rec2);
+        } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
         info.push(rec);
     });
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
         message: info
     });
-    2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
-        message: info
-    });
+    if (2 == gType) {
+        console.log(info);
+        console.log(info2);
+        Ti.App.fireEvent("app:bloodPressureInfo", {
+            message: info,
+            message2: info2
+        });
+    }
     3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
         message: info
     });

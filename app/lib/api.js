@@ -29,6 +29,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     onload : function(e) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText);
+	       console.log(result);
 	       res = result[0];
 	      
 	       if(typeof res.message !== undefined && res.message != null){

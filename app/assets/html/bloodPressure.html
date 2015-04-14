@@ -17,7 +17,7 @@
             
             Ti.App.addEventListener("app:bloodPressureInfo",function(e) {
               if(e.message != ""){
-              	loadChart(e.message);
+              	loadChart(e.message,e.message2);
               }else{
               	loadNoData();
               }
@@ -27,7 +27,7 @@
         
 <script type="text/javascript">
  
-function loadChart(data){
+function loadChart(data,data2){
 	//Ti.API.info(data);
 	var chart = new CanvasJS.Chart("chartContainer", {
 		theme: "theme1",//theme1
@@ -37,11 +37,16 @@ function loadChart(data){
 		backgroundColor : "#EBEBEB",
 		animationEnabled: true,   // change to true
 		data: [              
-		{
-			// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
-			type: "spline",
-			dataPoints: data
-		}
+			{
+				// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
+				type: "spline",
+				dataPoints: data
+			},
+			{
+				// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
+				type: "spline",
+				dataPoints: data2
+			}
 		]
 	});
 	chart.render();
