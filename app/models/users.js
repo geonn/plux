@@ -51,6 +51,7 @@ exports.definition = {
 					    costcenter: res.fieldByName('costcenter'),
 					    dept: res.fieldByName('dept'),
 					    allergy: res.fieldByName('allergy')
+			 
 					};
 					res.next();
 					count++;

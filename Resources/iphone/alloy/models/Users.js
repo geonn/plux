@@ -12,8 +12,13 @@ exports.definition = {
             corpcode: "TEXT",
             corpname: "TEXT",
             costcenter: "TEXT",
+<<<<<<< HEAD
             dept: "TEXT",
             allergy: "TEXT"
+=======
+            allergy: "TEXT",
+            dept: "TEXT"
+>>>>>>> origin/master
         },
         adapter: {
             type: "sql",
@@ -139,7 +144,11 @@ exports.definition = {
                     var sql_query = "";
                     db = Ti.Database.open(collection.config.adapter.db_name);
                     var res = db.execute(sql);
+<<<<<<< HEAD
                     sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "',  icno='" + entry.icno + "' , relation='" + entry.relation + "', empno='" + entry.empno + "', corpcode='" + entry.corpcode + "', corpname='" + entry.corpname + "', costcenter='" + entry.costcenter + "', dept='" + entry.dept + "', allergy='" + entry.allergy + "' WHERE memno='" + entry.memno + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy) VALUES ('" + entry.name + "', '" + entry.memno + "','" + entry.icno + "','" + entry.relation + "', '" + entry.empno + "',  '" + entry.corpcode + "',  '" + entry.corpname + "',  '" + entry.costcenter + "',  '" + entry.dept + "', '" + entry.allergy + "')";
+=======
+                    sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "',  icno='" + entry.icno + "' , relation='" + entry.relation + "', empno='" + entry.empno + "', corpcode='" + entry.corpcode + "', corpname='" + entry.corpname + "', costcenter='" + entry.costcenter + "', dept='" + entry.dept + "', allergy='" + entry.allergy + "' WHERE memno='" + entry.memno + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept,allergy) VALUES ('" + entry.name + "', '" + entry.memno + "','" + entry.icno + "','" + entry.relation + "', '" + entry.empno + "',  '" + entry.corpcode + "',  '" + entry.corpname + "',  '" + entry.costcenter + "',  '" + entry.dept + "',  '" + entry.allergy + "')";
+>>>>>>> origin/master
                     db.execute(sql_query);
                     db.close();
                     collection.trigger("sync");

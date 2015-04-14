@@ -94,7 +94,9 @@ function loadList(showDelete){
 			left:heartLeft 
 		});		
 		
-		if(gType == "6"){
+		if(gType == "2"){
+			theAmount = "Systolic : "+ parseFloat(entry.field1) + "\r\nDiastolic : "+ parseFloat(entry.field2);
+		}else if(gType == "6"){
 			theAmount = parseFloat(entry.field1) + " kg";
 		}else if(gType == "5"){
 			theAmount = parseFloat(entry.field2 ) * 100 + " cm";
@@ -107,6 +109,9 @@ function loadList(showDelete){
 			source: entry.id,
 			left: bmiLeft,
 			color: "#929292",
+			font:{
+				fontSize: 14
+			},
 			selectedBackgroundColor: "#FFE1E1"
 		});
 		var datetimeLbl = Titanium.UI.createLabel({

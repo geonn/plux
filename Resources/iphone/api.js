@@ -34,6 +34,7 @@ exports.doLogin = function(username, password, mainView, target) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
+            console.log(result);
             res = result[0];
             console.log(result);
             if (void 0 !== typeof res.message && null != res.message) common.createAlert("Error", res.message); else {

@@ -68,6 +68,7 @@ exports.populateData = function(e){
 
 function loadInfo(gType){
 	var info = [];
+	var info2 = [];
 	var loadType= gType;
 	if(loadType == "5" || loadType == "6"){
 		loadType = "1";
@@ -81,7 +82,14 @@ function loadInfo(gType){
 		var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
 		rec['label'] = newDate;
 		
-		if(gType == "6"){
+		if(gType == "2"){
+			rec['y'] = parseFloat(entry.field1); 
+			// For second records
+			var rec2 = {};
+			rec2['label'] = newDate;
+			rec2['y'] = parseFloat(entry.field2);
+			info2.push(rec2);
+		}else if(gType == "6"){
 			rec['y'] = parseFloat(entry.field1);
 		}else if(gType == "5"){
 			rec['y'] = parseFloat(entry.field2 ) * 100;
@@ -94,8 +102,8 @@ function loadInfo(gType){
 	if(gType == 1){
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
 	}
-	if(gType == 2){
-		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info });
+	if(gType == 2){ 
+		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2 });
 	}
 	if(gType == 3){
 		Ti.App.fireEvent('app:heartRateInfo',{ message:  info });

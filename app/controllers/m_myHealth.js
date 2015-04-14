@@ -56,7 +56,7 @@ Ti.App.addEventListener('filterList',filterList);
 setTimeout(function(){	  
 	hd.populateData();
 	common.hideLoading();
-},900); 
+},500); 
 filterList({category: "all"}); 
 
 $.bmiView.addEventListener('click',function(e){
