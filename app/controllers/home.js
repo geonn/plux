@@ -2,6 +2,25 @@ var args = arguments[0] || {};
 var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
 refreshHeaderInfo(); 
+
+/**********				init				*************/
+var initBackground = [
+	{img_path: "/dummy/dummy-home.jpg", time: 0},
+	{img_path: "/dummy/dummy-home-pm.jpg", time: 12},
+];
+
+var initBackgroundData = Ti.App.Properties.getString('initBackgroundData');
+
+if(initBackgroundData != "1"){
+	Ti.App.Properties.setString('initBackgroundData',"1");
+	for (var i=0; i < initBackground.length; i++) {
+	    var model = Alloy.createModel('home_background', {img_path: initBackground[i].img_path, time: initBackground[i].time});
+		model.save();
+	};
+}
+
+setBackground();
+
 function refreshHeaderInfo(){
 	var auth = require("login");
 	removeAllChildren($.myInfo); 
@@ -98,7 +117,7 @@ $.scrollboard.addEventListener("scroll", function(e){
 function navWindow(e){
 	var target = e.source.mod;
 	var nav = require('navigation');
-	if(e.source.mod == "m_eCard" || e.source.mod == "m_myClaim"){
+	if(e.source.mod == "m_eCard" || e.source.mod == "m_myClaim" || e.source.mod == "profile"){
 		nav.navigationWindow(target, 1);
 	}else{
 		nav.navigationWindow(target);
@@ -108,6 +127,15 @@ function navWindow(e){
 function logoutUser(){
 	Ti.App.Properties.setString('memno','');
 	refreshHeaderInfo();
+}
+
+function setBackground(){
+	var home_background = Alloy.createCollection('home_background');
+	var today = new Date();
+	var hours = today.getHours();
+	var bg = home_background.getCategoryByTime(hours);
+	
+	$.daily_background.setBackgroundImage(bg.img_path);
 }
 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo);

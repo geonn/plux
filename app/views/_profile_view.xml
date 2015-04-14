@@ -1,0 +1,18 @@
+<Alloy>
+	<ScrollView class="container" id="main" layout="vertical">
+		<View backgroundColor="#ddd" height="Ti.UI.SIZE" layout="vertical">
+			<View class="header">
+				<Label class="padding header_label">Personal Information</Label>
+			</View>
+			<View id="profile_data" layout="vertical" top="10" bottom="10" height="Ti.UI.SIZE"></View>
+			<View class="header">
+				<Label class="padding header_label">My Health Records</Label>
+			</View>
+			<View id="my_health_records" top="10" bottom="10"  height="Ti.UI.SIZE"></View>
+			<View class="header">
+				<Label class="padding header_label">My Health</Label>
+			</View>
+			<View id="my_health" top="10" bottom="10"  height="Ti.UI.SIZE"></View>
+		</View>
+	</ScrollView>
+</Alloy>

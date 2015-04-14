@@ -143,19 +143,19 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
-    $.__views.__alloyId209 = Ti.UI.createView({
-        id: "__alloyId209"
+    $.__views.__alloyId216 = Ti.UI.createView({
+        id: "__alloyId216"
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-    $.__views.__alloyId209.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId209;
-    $.__views.__alloyId210 = Ti.UI.createView({
-        id: "__alloyId210"
+    $.__views.__alloyId216.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId216;
+    $.__views.__alloyId217 = Ti.UI.createView({
+        id: "__alloyId217"
     });
-    $.__views.m_myMedical.add($.__views.__alloyId210);
+    $.__views.m_myMedical.add($.__views.__alloyId217);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -164,7 +164,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId210.add($.__views.loadingBar);
+    $.__views.__alloyId217.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -188,7 +188,7 @@ function Controller() {
         top: "0",
         layout: "vertical"
     });
-    $.__views.__alloyId210.add($.__views.aView);
+    $.__views.__alloyId217.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
