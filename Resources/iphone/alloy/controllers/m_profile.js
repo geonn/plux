@@ -128,36 +128,20 @@ function Controller() {
         id: "info",
         headerTitle: "Member Info"
     });
-<<<<<<< HEAD
-    var __alloyId218 = [];
-    __alloyId218.push($.__views.info);
-=======
-    var __alloyId220 = [];
-    __alloyId220.push($.__views.info);
->>>>>>> origin/master
+    var __alloyId225 = [];
+    __alloyId225.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-<<<<<<< HEAD
-    __alloyId218.push($.__views.balance);
-    $.__views.__alloyId216 = Ti.UI.createListView({
-        sections: __alloyId218,
+    __alloyId225.push($.__views.balance);
+    $.__views.__alloyId223 = Ti.UI.createListView({
+        sections: __alloyId225,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId216"
+        id: "__alloyId223"
     });
-    $.__views.main.add($.__views.__alloyId216);
-=======
-    __alloyId220.push($.__views.balance);
-    $.__views.__alloyId218 = Ti.UI.createListView({
-        sections: __alloyId220,
-        style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId218"
-    });
-    $.__views.main.add($.__views.__alloyId218);
->>>>>>> origin/master
+    $.__views.main.add($.__views.__alloyId223);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

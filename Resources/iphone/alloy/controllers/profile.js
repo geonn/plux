@@ -32,9 +32,9 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
-    var __alloyId226 = [];
+    var __alloyId231 = [];
     $.__views.main = Ti.UI.createScrollableView({
-        views: __alloyId226,
+        views: __alloyId231,
         id: "main"
     });
     $.__views.healthProfileWin.add($.__views.main);
@@ -43,8 +43,9 @@ function Controller() {
     arguments[0] || {};
     var usersModel = Alloy.createCollection("users");
     var data = usersModel.getUserByEmpNo();
-    console.log(data);
-    console.log(data.length);
+    var healthModel = Alloy.createCollection("personalInfo");
+    var personal_healt_data = healthModel.getOwnerData();
+    console.log(personal_healt_data.bloodType);
     for (var i = 0; i < data.length; i++) {
         var profile_view = Alloy.createController("_profile_view", {
             profile_data: data[i]

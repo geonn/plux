@@ -143,33 +143,19 @@ function Controller() {
         id: "m_myMedical"
     });
     $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
-<<<<<<< HEAD
-    $.__views.__alloyId214 = Ti.UI.createView({
-        id: "__alloyId214"
-=======
-    $.__views.__alloyId216 = Ti.UI.createView({
-        id: "__alloyId216"
->>>>>>> origin/master
+    $.__views.__alloyId221 = Ti.UI.createView({
+        id: "__alloyId221"
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId214.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId214;
-    $.__views.__alloyId215 = Ti.UI.createView({
-        id: "__alloyId215"
+    $.__views.__alloyId221.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId221;
+    $.__views.__alloyId222 = Ti.UI.createView({
+        id: "__alloyId222"
     });
-    $.__views.m_myMedical.add($.__views.__alloyId215);
-=======
-    $.__views.__alloyId216.add($.__views.newRecord);
-    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId216;
-    $.__views.__alloyId217 = Ti.UI.createView({
-        id: "__alloyId217"
-    });
-    $.__views.m_myMedical.add($.__views.__alloyId217);
->>>>>>> origin/master
+    $.__views.m_myMedical.add($.__views.__alloyId222);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -178,11 +164,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId215.add($.__views.loadingBar);
-=======
-    $.__views.__alloyId217.add($.__views.loadingBar);
->>>>>>> origin/master
+    $.__views.__alloyId222.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -206,11 +188,7 @@ function Controller() {
         top: "0",
         layout: "vertical"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId215.add($.__views.aView);
-=======
-    $.__views.__alloyId217.add($.__views.aView);
->>>>>>> origin/master
+    $.__views.__alloyId222.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
