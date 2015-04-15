@@ -1,3 +1,56 @@
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    (0 > m || 0 === m && today.getDate() < birthDate.getDate()) && age--;
+    return age;
+}
+
+function loadInfo(gType) {
+    var info = [];
+    var info2 = [];
+    var loadType = gType;
+    ("5" == loadType || "6" == loadType) && (loadType = "1");
+    var info_details = lib_health.getHealthListByType(loadType);
+    info_details.reverse();
+    info_details.forEach(function(entry) {
+        var rec = {};
+        var convert = entry.date.split("-");
+        var month = parseInt(convert[1]) - 1;
+        var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
+        rec["label"] = newDate;
+        if ("2" == gType) {
+            rec["y"] = parseFloat(entry.field1);
+            var rec2 = {};
+            rec2["label"] = newDate;
+            rec2["y"] = parseFloat(entry.field2);
+            info2.push(rec2);
+        } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
+        info.push(rec);
+    });
+    1 == gType && Ti.App.fireEvent("app:bmiInfo", {
+        message: info
+    });
+    2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
+        message: info,
+        message2: info2
+    });
+    3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
+        message: info
+    });
+    4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
+        message: info
+    });
+    5 == gType && Ti.App.fireEvent("app:height", {
+        message: info
+    });
+    6 == gType && Ti.App.fireEvent("app:weight", {
+        message: info
+    });
+    return info;
+}
+
 var mainView = null;
 
 var lib_health = Alloy.createCollection("health");
@@ -18,6 +71,24 @@ exports.showTimePicker = function(e) {
     e.time.visible = "true";
 };
 
+exports.showBirthDatePicker = function(e) {
+    e.date.visible = "true";
+    e.gender.visible = "false";
+    e.bloodType.visible = "false";
+};
+
+exports.showGenderPicker = function(e) {
+    e.gender.visible = "true";
+    e.bloodType.visible = "false";
+    e.date.visible = "false";
+};
+
+exports.showBloodTypePicker = function(e) {
+    e.bloodType.visible = "true";
+    e.gender.visible = "false";
+    e.date.visible = "false";
+};
+
 exports.disableSaveButton = function() {
     mainView.saveButton.color = "#ADADAD";
     mainView.saveButton.touchEnabled = "false";
@@ -29,31 +100,13 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 4 >= i; i++) {
-        var info_details = lib_health.getHealthListByType(i);
-        var info = [];
-        info_details.forEach(function(entry) {
-            var rec = {};
-            var convert = entry.date.split("-");
-            var month = parseInt(convert[1]) - 1;
-            var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
-            rec["label"] = newDate;
-            rec["y"] = parseFloat(entry.amount);
-            info.push(rec);
-        });
-        1 == i && Ti.App.fireEvent("app:bmiInfo", {
-            message: info
-        });
-        2 == i && Ti.App.fireEvent("app:bloodPressureInfo", {
-            message: info
-        });
-        3 == i && Ti.App.fireEvent("app:heartRateInfo", {
-            message: info
-        });
-        4 == i && Ti.App.fireEvent("app:bodyTemperatureInfo", {
-            message: info
-        });
+    for (var i = 1; 6 >= i; i++) {
+        loadInfo(i);
     }
+};
+
+exports.loadGraphByType = function(gType) {
+    loadInfo(gType);
 };
 
 exports.todayDate = function() {
@@ -74,6 +127,10 @@ exports.todayDate = function() {
     mainView.time_value.text = hh + ":" + min + " " + ampm;
 };
 
+exports.getAge = function(bday) {
+    return getAge(bday);
+};
+
 exports.changeDate = function(e) {
     var pickerdate = e.date;
     var day = pickerdate.getDate();
@@ -85,7 +142,26 @@ exports.changeDate = function(e) {
     month.length < 2 && (month = "0" + month);
     var year = pickerdate.getFullYear();
     selDate = day + "/" + month + "/" + year;
-    mainView.date_value.text = selDate;
+    var age = "";
+    "1" == e.age && (age = "(" + getAge(year + "-" + month + "-" + day) + ")");
+    mainView.date_value.text = selDate + age;
+};
+
+exports.changeGender = function(e) {
+    mainView.gender_value.text = e.gender;
+};
+
+exports.changeBloodType = function(e) {
+    mainView.bloodType_value.text = e.bloodType;
+};
+
+exports.navigateGraph = function(gType) {
+    "1" == gType && nav.navigationWindow("healthDataBmi");
+    "2" == gType && nav.navigationWindow("healthDataBloodPressure");
+    "3" == gType && nav.navigationWindow("healthDataHeartRate");
+    "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
+    "5" == gType && nav.navigationWindow("healthDataBmi");
+    "6" == gType && nav.navigationWindow("healthDataBmi");
 };
 
 exports.changeTime = function(e) {

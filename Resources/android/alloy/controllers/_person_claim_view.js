@@ -98,18 +98,12 @@ function Controller() {
             var view = create_field("RM" + data[a]["entidv"], "Entitlement");
             $.main.add(view);
         }
-        if (99999 != data[a]["entidvbal"]) {
-            var view = create_field("RM" + data[a]["entidvbal"], "Entitlement Balance");
-            $.main.add(view);
-        }
+        if (99999 != data[a]["entidvbal"]) var view = create_field("RM" + data[a]["entidvbal"], "Entitlement Balance");
         if (99999 != data[a]["entsha"]) {
             var view = create_field("RM" + data[a]["entsha"], "Entitlement Shared");
             $.main.add(view);
         }
-        if (99999 != data[a]["entshabal"]) {
-            var view = create_field("RM" + data[a]["entshabal"], "Entitlement Shared Balance");
-            $.main.add(view);
-        }
+        if (99999 != data[a]["entshabal"]) var view = create_field("RM" + data[a]["entshabal"], "Entitlement Shared Balance");
         if (99999 != data[a]["maxperclaim"]) {
             var view = create_field("RM" + data[a]["maxperclaim"], "Max per Claim");
             $.main.add(view);
@@ -118,18 +112,12 @@ function Controller() {
             var view = create_field(data[a]["vstidv"], "Visitation");
             $.main.add(view);
         }
-        if (99999 != data[a]["vstidvbal"]) {
-            var view = create_field(data[a]["vstidvbal"], "Visitation Balance");
-            $.main.add(view);
-        }
+        if (99999 != data[a]["vstidvbal"]) var view = create_field(data[a]["vstidvbal"], "Visitation Balance");
         if (99999 != data[a]["vstsha"]) {
             var view = create_field(data[a]["vstsha"], "Visitation Shared");
             $.main.add(view);
         }
-        if (99999 != data[a]["vstshabal"]) {
-            var view = create_field(data[a]["vstshabal"], "Visitation Shared Balance");
-            $.main.add(view);
-        }
+        if (99999 != data[a]["vstshabal"]) var view = create_field(data[a]["vstshabal"], "Visitation Shared Balance");
     }
     _.extend($, exports);
 }

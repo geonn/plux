@@ -9,17 +9,25 @@ function __processArg(obj, key) {
 
 function Controller() {
     function doLogin() {
-        var lib_login = require("login");
+        common.showLoading();
         var username = $.username.value;
         var password = $.password.value;
         if ("" == username || "" == password) {
             common.createAlert("Authentication warning", "Please fill in username and password");
+            common.hideLoading();
             return;
         }
         if (singleton) {
             singleton = false;
-            console.log("login action");
-            lib_login.doLogin(username, password, $, args.target);
+            API.doLogin(username, password, $, args.target);
+        }
+    }
+    function hideProductFormKeyboard(e) {
+        if ("TextField" != e.source.id) {
+            if ("username" == e.source.id) return false;
+            if ("password" == e.source.id) return false;
+            $.username.blur();
+            $.password.blur();
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -38,31 +46,62 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.login = Ti.UI.createWindow({
-        fullscreen: true,
+    $.__views.loginWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
+        fullscreen: true,
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
-        id: "login",
+        navTintColor: "#CE1D1C",
+        id: "loginWin",
         title: "Login"
     });
-    $.__views.login && $.addTopLevelView($.__views.login);
-    $.__views.main = Ti.UI.createView({
+    $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
+    $.__views.__alloyId10 = Ti.UI.createView({
+        id: "__alloyId10"
+    });
+    $.__views.loginWin.add($.__views.__alloyId10);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "0",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.__alloyId10.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        style: Alloy.Globals.topbarTop,
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId11 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId11"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId11);
+    $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "95%"
     });
-    $.__views.login.add($.__views.main);
-    $.__views.__alloyId2 = Ti.UI.createImageView({
+    $.__views.__alloyId10.add($.__views.main);
+    $.__views.__alloyId12 = Ti.UI.createImageView({
         width: "50%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
         image: "appicon-76@2x.png",
-        id: "__alloyId2"
+        id: "__alloyId12"
     });
-    $.__views.main.add($.__views.__alloyId2);
+    $.__views.main.add($.__views.__alloyId12);
     $.__views.username = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
@@ -78,7 +117,8 @@ function Controller() {
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "username",
-        hintText: "Enter Username"
+        hintText: "Enter Username",
+        value: "wongmy@demo.com"
     });
     $.__views.main.add($.__views.username);
     $.__views.password = Ti.UI.createTextField({
@@ -96,7 +136,8 @@ function Controller() {
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
-        hintText: "Enter Password"
+        hintText: "Enter Password",
+        value: "pass1234"
     });
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({
@@ -118,8 +159,8 @@ function Controller() {
         id: "footer",
         layout: "horizontal"
     });
-    $.__views.login.add($.__views.footer);
-    $.__views.__alloyId3 = Ti.UI.createLabel({
+    $.__views.loginWin.add($.__views.footer);
+    $.__views.__alloyId13 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -127,10 +168,10 @@ function Controller() {
         },
         color: "#808080",
         text: "ASPplux",
-        id: "__alloyId3"
+        id: "__alloyId13"
     });
-    $.__views.footer.add($.__views.__alloyId3);
-    $.__views.__alloyId4 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId13);
+    $.__views.__alloyId14 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -138,10 +179,10 @@ function Controller() {
         },
         color: "#808080",
         text: "|",
-        id: "__alloyId4"
+        id: "__alloyId14"
     });
-    $.__views.footer.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -149,10 +190,10 @@ function Controller() {
         },
         color: "#808080",
         text: "Privacy & Terms",
-        id: "__alloyId5"
+        id: "__alloyId15"
     });
-    $.__views.footer.add($.__views.__alloyId5);
-    $.__views.__alloyId6 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -160,10 +201,10 @@ function Controller() {
         },
         color: "#808080",
         text: "|",
-        id: "__alloyId6"
+        id: "__alloyId16"
     });
-    $.__views.footer.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createLabel({
+    $.__views.footer.add($.__views.__alloyId16);
+    $.__views.__alloyId17 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -171,15 +212,17 @@ function Controller() {
         },
         color: "#808080",
         text: "Help",
-        id: "__alloyId7"
+        id: "__alloyId17"
     });
-    $.__views.footer.add($.__views.__alloyId7);
+    $.__views.footer.add($.__views.__alloyId17);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     Alloy.Globals.navMenu;
     var singleton = true;
+    common.construct($);
     var isKeyboardFocus = 0;
+    $.loginWin.addEventListener("click", hideProductFormKeyboard);
     $.username.addEventListener("touchend", function() {
         $.username.focus();
         isKeyboardFocus = 1;

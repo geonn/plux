@@ -23,20 +23,66 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
-            addPanel: function(arr) {
+            getRecordsListByCategory: function(category) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE category ='" + category + "' ORDER by id DESC";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        title: res.fieldByName("title"),
+                        long_title: res.fieldByName("long_title"),
+                        category: res.fieldByName("category"),
+                        created: res.fieldByName("created_date"),
+                        updated: res.fieldByName("modified_date"),
+                        images: res.fieldByName("images")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
+            getRecordsById: function(id) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var arr = [];
+                res.isValidRow() && (arr = {
+                    id: res.fieldByName("id"),
+                    title: res.fieldByName("title"),
+                    long_title: res.fieldByName("long_title"),
+                    category: res.fieldByName("category"),
+                    created: res.fieldByName("created_date"),
+                    updated: res.fieldByName("modified_date"),
+                    images: res.fieldByName("images")
+                });
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return arr;
+            },
+            addNews: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     console.log(entry.latitude + " " + entry.longitude);
-                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES (" + entry.id + "'" + mysql_real_escape_string(entry.title) + "', '" + mysql_real_escape_string(entry.long_title) + "', '" + mysql_real_escape_string(entry.category) + "', '" + entry.caption + "', '" + entry.created_date + "', '" + entry.modified_date + "', '" + entry.images + "')";
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES (" + entry.id + ", '" + mysql_real_escape_string(entry.title) + "', '" + mysql_real_escape_string(entry.long_title) + "', '" + mysql_real_escape_string(entry.category) + "', '" + entry.caption + "', '" + entry.created_date + "', '" + entry.modified_date + "', '" + entry.images + "')";
                     db.execute(sql_query);
                 });
+                console.log("GEOMILANO HERE");
                 db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             },
-            resetPanel: function() {
+            resetNews: function() {
                 var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name;
                 db = Ti.Database.open(collection.config.adapter.db_name);

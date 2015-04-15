@@ -63,7 +63,7 @@ function Controller() {
     function navWindow(e) {
         var target = e.source.mod;
         var nav = require("navigation");
-        "m_eCard" == e.source.mod || "m_myClaim" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
+        "m_eCard" == e.source.mod || "m_myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");
