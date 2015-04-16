@@ -39,11 +39,7 @@ function Controller() {
         id: "main"
     });
     $.__views.news.add($.__views.main);
-<<<<<<< HEAD
-    var __alloyId223 = [];
-=======
-    var __alloyId225 = [];
->>>>>>> origin/master
+    var __alloyId230 = [];
     $.__views.myContentView = Ti.UI.createScrollView({
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
@@ -52,11 +48,7 @@ function Controller() {
         contentHeight: "auto",
         contentWidth: Ti.UI.FILL
     });
-<<<<<<< HEAD
-    __alloyId223.push($.__views.myContentView);
-=======
-    __alloyId225.push($.__views.myContentView);
->>>>>>> origin/master
+    __alloyId230.push($.__views.myContentView);
     $.__views.newsTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -93,21 +85,12 @@ function Controller() {
         id: "newsDate"
     });
     $.__views.myContentView.add($.__views.newsDate);
-<<<<<<< HEAD
-    $.__views.__alloyId222 = Ti.UI.createScrollableView({
-        views: __alloyId223,
+    $.__views.__alloyId229 = Ti.UI.createScrollableView({
+        views: __alloyId230,
         showPagingControl: "false",
-        id: "__alloyId222"
+        id: "__alloyId229"
     });
-    $.__views.main.add($.__views.__alloyId222);
-=======
-    $.__views.__alloyId224 = Ti.UI.createScrollableView({
-        views: __alloyId225,
-        showPagingControl: "false",
-        id: "__alloyId224"
-    });
-    $.__views.main.add($.__views.__alloyId224);
->>>>>>> origin/master
+    $.__views.main.add($.__views.__alloyId229);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

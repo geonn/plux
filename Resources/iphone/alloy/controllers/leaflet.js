@@ -248,29 +248,17 @@ function Controller() {
         visible: "false"
     });
     $.__views.brochureView.add($.__views.bigView);
-<<<<<<< HEAD
-    $.__views.__alloyId110 = Ti.UI.createView({
+    $.__views.__alloyId117 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId110"
+        id: "__alloyId117"
     });
-    $.__views.brochureView.add($.__views.__alloyId110);
-=======
-    $.__views.__alloyId112 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId112"
-    });
-    $.__views.brochureView.add($.__views.__alloyId112);
->>>>>>> origin/master
+    $.__views.brochureView.add($.__views.__alloyId117);
     $.__views.scrollview = Ti.UI.createScrollView({
         top: "15",
         id: "scrollview",
         layout: "vertical"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId110.add($.__views.scrollview);
-=======
-    $.__views.__alloyId112.add($.__views.scrollview);
->>>>>>> origin/master
+    $.__views.__alloyId117.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",

@@ -32,9 +32,9 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
-    var __alloyId226 = [];
+    var __alloyId231 = [];
     $.__views.main = Ti.UI.createScrollableView({
-        views: __alloyId226,
+        views: __alloyId231,
         id: "main"
     });
     $.__views.healthProfileWin.add($.__views.main);
