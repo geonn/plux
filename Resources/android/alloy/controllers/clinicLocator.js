@@ -26,92 +26,50 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    console.log(args.id);
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelList();
     if (args.id) var clinic = library.getPanelListById(args.id);
-    var showCurLoc = false;
-    $.activityIndicator.show();
-    var saveCurLoc = function(e) {
-        if (e.error) ; else {
-            showCurLoc = true;
-            console.log("set current loc" + e.coords);
-            Ti.App.Properties.setString("latitude", e.coords.latitude);
-            Ti.App.Properties.setString("longitude", e.coords.longitude);
-        }
-    };
-    if (Ti.Geolocation.locationServicesEnabled) {
-        Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-        Ti.Geolocation.addEventListener("location", saveCurLoc);
-    } else alert("Please enable location services");
-    setTimeout(function() {
-        panelListResult(details);
-    }, 800);
-    var panelListResult = function(details) {
-        Titanium.UI.createTableView({
-            width: "100%",
-            separatorColor: "#ffffff"
-        });
-        $.loadingBar.height = "0";
-        $.loadingBar.top = "0";
-        var arr = details;
-        if (arr.length < 1) {
-            var noRecord = Ti.UI.createLabel({
-                text: "No record found",
-                color: "#CE1D1C",
-                textAlign: "center",
-                font: {
-                    fontSize: 14,
-                    fontStyle: "italic"
-                },
-                top: 15,
-                width: Ti.UI.SIZE
-            });
-            $.panelListTbl.add(noRecord);
-        } else arr.forEach(function(entry) {
-            var merchantLoc = Alloy.Globals.Map.createAnnotation({
-                latitude: entry.latitude,
-                longitude: entry.longitude,
-                title: entry.clinicname,
-                image: "/images/marker.png",
-                subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-                pincolor: Alloy.Globals.Map.ANNOTATION_RED,
-                myid: entry.id
-            });
-            $.mapview.addAnnotation(merchantLoc);
-        });
-        if (args.id) $.mapview.region = {
+    var Map = require("ti.map");
+    var mapview = Map.createView({
+        mapType: Map.NORMAL_TYPE,
+        region: {
             latitude: clinic.latitude,
             longitude: clinic.longitude,
             latitudeDelta: .01,
             longitudeDelta: .01
-        }; else {
-            console.log(showCurLoc);
-            if (true == showCurLoc && !args.id) {
-                var lat = Ti.App.Properties.getString("latitude");
-                var lgt = Ti.App.Properties.getString("longitude");
-                {
-                    Alloy.Globals.Map.createAnnotation({
-                        latitude: lat,
-                        longitude: lgt,
-                        title: "Current Location",
-                        subtitle: "",
-                        pincolor: Alloy.Globals.Map.ANNOTATION_GREEN,
-                        myid: 99
-                    });
-                }
-                $.mapview.region = {
-                    latitude: lat,
-                    longitude: lgt,
-                    latitudeDelta: .01,
-                    longitudeDelta: .01
-                };
-            }
-        }
-    };
-    $.mapview.addEventListener("click", function(evt) {
-        console.log("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
+        },
+        animate: true,
+        regionFit: true,
+        userLocation: true
     });
+    details.forEach(function(entry) {
+        var detBtn = Ti.UI.createButton({
+            backgroundImage: "/images/btn-forward.png",
+            color: "red",
+            height: 20,
+            width: 20,
+            panel_id: entry.id
+        });
+        detBtn.addEventListener("click", function(ex) {
+            nav.navigateWithArgs("clinicDetails", {
+                panel_id: ex.source.panel_id
+            });
+        });
+        var merchantLoc = Map.createAnnotation({
+            latitude: entry.latitude,
+            longitude: entry.longitude,
+            title: entry.clinicName,
+            image: "/images/marker.png",
+            animate: true,
+            subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+            pincolor: Map.ANNOTATION_RED,
+            rightView: detBtn,
+            myid: entry.id
+        });
+        mapview.addAnnotation(merchantLoc);
+    });
+    $.win_map.add(mapview);
+    mapview.addEventListener("click", function() {});
     _.extend($, exports);
 }
 

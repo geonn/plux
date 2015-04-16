@@ -134,12 +134,7 @@ function Controller() {
     var state = args.state || "";
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelByState(state);
-    console.log(details);
     listing();
-    $.setting.addEventListener("click", function() {
-        var nav = require("navigation");
-        nav.navigationWindow("clinicLocator");
-    });
     _.extend($, exports);
 }
 

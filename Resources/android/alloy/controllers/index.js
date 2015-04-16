@@ -24,8 +24,8 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.root = Ti.UI.createWindow({
-        fullscreen: true,
         backgroundColor: "white",
+        fullscreen: true,
         id: "root",
         title: ""
     });
@@ -34,13 +34,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId1 = Ti.UI.createImageView({
+    $.__views.__alloyId9 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId1"
+        id: "__alloyId9"
     });
-    $.__views.main.add($.__views.__alloyId1);
+    $.__views.main.add($.__views.__alloyId9);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -60,8 +60,10 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var win = Alloy.createController("home").getView();
-    var api = require("api");
-    api.loadPanelList();
+    API.loadPanelList();
+    API.loadCategoryList();
+    API.loadNewsFeed();
+    API.loadLeaflet();
     win.open();
     _.extend($, exports);
 }

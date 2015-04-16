@@ -27,13 +27,17 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var frontbackcounter = 0;
+    var usersModel = Alloy.createCollection("users");
+    var user = usersModel.getOwnerData();
     var front = Ti.UI.createView({
         name: "front",
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        top: 0,
         currentAngle: 10
     });
     var memno_text = Ti.UI.createLabel({
-        text: "6000 2010 0011 3572",
+        text: user.memno,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "90dp",
@@ -45,7 +49,7 @@ function Controller() {
         color: "#ffffff"
     });
     var name_text = Ti.UI.createLabel({
-        text: "CHEONG SHY YNG",
+        text: user.name,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "125dp",
@@ -57,7 +61,7 @@ function Controller() {
         color: "#ffffff"
     });
     var ic_text = Ti.UI.createLabel({
-        text: "858512102934",
+        text: user.ic,
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         top: "125dp",
@@ -70,12 +74,14 @@ function Controller() {
     });
     var front_bg = Ti.UI.createImageView({
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         image: "/eCard-front.png",
         currentAngle: 10,
         font: {
             fontSize: "11dp"
         },
-        zIndex: 11
+        zIndex: 11,
+        top: 0
     });
     front.add(front_bg);
     front.add(name_text);
@@ -84,12 +90,14 @@ function Controller() {
     var back = Ti.UI.createImageView({
         name: "back",
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         image: "/eCard-back.png",
-        currentAngle: 10
+        currentAngle: 10,
+        top: 0
     });
     $.card.add(back);
     $.card.add(front);
-    $.eCard.addEventListener("click", function() {
+    $.card_event.addEventListener("click", function() {
         var t;
         console.log(frontbackcounter % 2);
         if (frontbackcounter % 2 == 0) {
@@ -99,13 +107,28 @@ function Controller() {
                 transition: t
             });
         } else {
-            t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT;
+            t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
             $.card.animate({
                 view: front,
                 transition: t
             });
         }
         frontbackcounter++;
+    });
+    Ti.Gesture.addEventListener("orientationchange", function() {
+        Ti.API.info("Ti.Platform.displayCaps.platformHeight: " + Ti.Platform.displayCaps.platformHeight);
+        Ti.API.info("Ti.Platform.displayCaps.platformWidth: " + Ti.Platform.displayCaps.platformWidth);
+        if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight) {
+            name_text.top = "160dp";
+            name_text.left = "80dp";
+            memno_text.top = "125dp";
+            memno_text.left = "80dp";
+        } else {
+            name_text.top = "125dp";
+            name_text.left = "20dp";
+            memno_text.top = "90dp";
+            memno_text.left = "20dp";
+        }
     });
     _.extend($, exports);
 }

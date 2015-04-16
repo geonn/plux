@@ -58,11 +58,18 @@ function currentDateTime() {
     return datetime;
 }
 
+function removeAllChildren(viewObject) {
+    var children = viewObject.children.slice(0);
+    for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 var common = require("common");
 
 var API = require("api");
+
+var PUSH = require("push");
 
 var nav = require("navigation");
 
@@ -70,6 +77,8 @@ Alloy.Globals.Map = require("ti.map");
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
-Alloy.Globals.loadingStyle = "Ti.UI.ActivityIndicatorStyle.BIG";
+Titanium.UI.iPhone.setAppBadge("0");
+
+PUSH.registerPush();
 
 Alloy.createController("index");

@@ -1,9 +1,82 @@
+var mainView = null;
+
+exports.construct = function(mv) {
+    mainView = mv;
+};
+
+exports.deconstruct = function() {
+    mainView = null;
+};
+
 exports.createAlert = function(tt, msg) {
     var box = Titanium.UI.createAlertDialog({
         title: tt,
+        ok: "OK",
         message: msg
     });
     box.show();
+};
+
+exports.showImageIndicator = function() {
+    var ind = Ti.UI.createActivityIndicator({
+        style: Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
+        bottom: 10,
+        right: 20,
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE,
+        zIndex: 11
+    });
+    ind.show();
+    return ind;
+};
+
+exports.imageIndicatorEvent = function(theImage, activityIndicator) {
+    theImage.addEventListener("load", function() {
+        activityIndicator.hide();
+    });
+};
+
+exports.noRecord = function() {
+    var data = [];
+    var row = Titanium.UI.createTableViewRow({
+        touchEnabled: false,
+        backgroundColor: "transparent"
+    });
+    var tblView = Ti.UI.createView({
+        height: "auto"
+    });
+    var noRecord = Ti.UI.createLabel({
+        text: "No record found",
+        color: "#375540",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+        font: {
+            fontSize: 14,
+            fontStyle: "italic"
+        },
+        top: 15,
+        bottom: 15,
+        width: "100%"
+    });
+    tblView.add(noRecord);
+    row.add(tblView);
+    data.push(row);
+    return data;
+};
+
+exports.showLoading = function() {
+    mainView.activityIndicator.show();
+    mainView.loadingBar.opacity = "1";
+    mainView.loadingBar.zIndex = "100";
+    mainView.loadingBar.height = "120";
+    mainView.loadingBar.top = DPUnitsToPixels(Ti.Platform.displayCaps.platformHeight) / 2 - 50;
+    mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
+};
+
+exports.hideLoading = function() {
+    mainView.activityIndicator.hide();
+    mainView.loadingBar.opacity = "0";
+    mainView.loadingBar.height = "0";
+    mainView.loadingBar.top = "0";
 };
 
 exports.createCustomAlert = function(win, title, msg) {
