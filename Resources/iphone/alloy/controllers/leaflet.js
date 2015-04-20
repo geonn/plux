@@ -186,7 +186,7 @@ function Controller() {
                             topView.add(BackBtn);
                             rightBtn.setVisible(false);
                             BackBtn.setVisible(true);
-                            webview.setUrl(targetUrl);
+                            webview.setUrl(content.url);
                         });
                         topView.add(rightBtn);
                     }

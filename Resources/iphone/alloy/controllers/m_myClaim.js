@@ -57,11 +57,7 @@ function Controller() {
         right: "0",
         id: "setting",
         width: "30",
-<<<<<<< HEAD
-        image: "/images/icon_setting.png"
-=======
         image: "/btn/btn_history_icon.png"
->>>>>>> origin/master
     });
     $.__views.__alloyId172.add($.__views.setting);
     $.__views.m_myClaim.rightNavButton = $.__views.__alloyId172;
