@@ -97,7 +97,8 @@ function Controller() {
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "#ffffff",
         id: "main",
-        layout: "vertical"
+        layout: "vertical",
+        scrollType: "vertical"
     });
     $.__views.__alloyId173.add($.__views.main);
     $.__views.date = Ti.UI.createLabel({
@@ -159,7 +160,7 @@ function Controller() {
         id: "__alloyId179"
     });
     $.__views.__alloyId176.add($.__views.__alloyId179);
-    $.__views.__alloyId180 = Ti.UI.createLabel({
+    $.__views.principleName = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -171,18 +172,18 @@ function Controller() {
         bottom: 10,
         text: "KHAIRIL AZMY BIN MOHD AMINUDDIN",
         wordWrap: "false",
-        ellipsize: "true",
-        id: "__alloyId180"
+        id: "principleName",
+        ellipsize: "true"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId180);
-    $.__views.__alloyId181 = Ti.UI.createView({
+    $.__views.__alloyId176.add($.__views.principleName);
+    $.__views.__alloyId180 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "horizontal",
-        id: "__alloyId181"
+        id: "__alloyId180"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId181);
-    $.__views.__alloyId182 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId180);
+    $.__views.__alloyId181 = Ti.UI.createLabel({
         width: "60%",
         height: Titanium.UI.SIZE,
         font: {
@@ -192,10 +193,10 @@ function Controller() {
         top: 5,
         left: 10,
         text: "GP/OUT-PATIENT",
-        id: "__alloyId182"
+        id: "__alloyId181"
     });
-    $.__views.__alloyId181.add($.__views.__alloyId182);
-    $.__views.__alloyId183 = Ti.UI.createLabel({
+    $.__views.__alloyId180.add($.__views.__alloyId181);
+    $.__views.__alloyId182 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -207,17 +208,17 @@ function Controller() {
         color: "#ff0000",
         right: 10,
         text: "RM1000",
-        id: "__alloyId183"
+        id: "__alloyId182"
     });
-    $.__views.__alloyId181.add($.__views.__alloyId183);
-    $.__views.__alloyId184 = Ti.UI.createView({
+    $.__views.__alloyId180.add($.__views.__alloyId182);
+    $.__views.__alloyId183 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "horizontal",
-        id: "__alloyId184"
+        id: "__alloyId183"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId184);
-    $.__views.__alloyId185 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId183);
+    $.__views.__alloyId184 = Ti.UI.createLabel({
         width: "60%",
         height: Titanium.UI.SIZE,
         font: {
@@ -227,10 +228,10 @@ function Controller() {
         top: 5,
         left: 10,
         text: "DENTAL",
-        id: "__alloyId185"
+        id: "__alloyId184"
     });
-    $.__views.__alloyId184.add($.__views.__alloyId185);
-    $.__views.__alloyId186 = Ti.UI.createLabel({
+    $.__views.__alloyId183.add($.__views.__alloyId184);
+    $.__views.__alloyId185 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -242,17 +243,17 @@ function Controller() {
         color: "#ff0000",
         right: 10,
         text: "RM500",
-        id: "__alloyId186"
+        id: "__alloyId185"
     });
-    $.__views.__alloyId184.add($.__views.__alloyId186);
-    $.__views.__alloyId187 = Ti.UI.createView({
+    $.__views.__alloyId183.add($.__views.__alloyId185);
+    $.__views.__alloyId186 = Ti.UI.createView({
         backgroundColor: "#CE1D1C",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        id: "__alloyId187"
+        id: "__alloyId186"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId187);
-    $.__views.__alloyId188 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId186);
+    $.__views.__alloyId187 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -265,17 +266,17 @@ function Controller() {
         bottom: 10,
         text: "Claims Shared Balance",
         color: "#ffffff",
-        id: "__alloyId188"
+        id: "__alloyId187"
     });
-    $.__views.__alloyId187.add($.__views.__alloyId188);
-    $.__views.__alloyId189 = Ti.UI.createView({
+    $.__views.__alloyId186.add($.__views.__alloyId187);
+    $.__views.__alloyId188 = Ti.UI.createView({
         width: Titanium.UI.FILL,
         height: 1,
         backgroundColor: "#000",
-        id: "__alloyId189"
+        id: "__alloyId188"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId189);
-    $.__views.__alloyId190 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId188);
+    $.__views.__alloyId189 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -288,17 +289,17 @@ function Controller() {
         text: "ELEESYA SOFE",
         wordWrap: "false",
         ellipsize: "true",
-        id: "__alloyId190"
+        id: "__alloyId189"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId190);
-    $.__views.__alloyId191 = Ti.UI.createView({
+    $.__views.__alloyId176.add($.__views.__alloyId189);
+    $.__views.__alloyId190 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "horizontal",
-        id: "__alloyId191"
+        id: "__alloyId190"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId191);
-    $.__views.__alloyId192 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId190);
+    $.__views.__alloyId191 = Ti.UI.createLabel({
         width: "60%",
         height: Titanium.UI.SIZE,
         font: {
@@ -308,10 +309,10 @@ function Controller() {
         top: 5,
         left: 10,
         text: "GP/OUT-PATIENT",
-        id: "__alloyId192"
+        id: "__alloyId191"
     });
-    $.__views.__alloyId191.add($.__views.__alloyId192);
-    $.__views.__alloyId193 = Ti.UI.createLabel({
+    $.__views.__alloyId190.add($.__views.__alloyId191);
+    $.__views.__alloyId192 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -323,17 +324,17 @@ function Controller() {
         color: "#ff0000",
         right: 10,
         text: "RM500",
-        id: "__alloyId193"
+        id: "__alloyId192"
     });
-    $.__views.__alloyId191.add($.__views.__alloyId193);
-    $.__views.__alloyId194 = Ti.UI.createView({
+    $.__views.__alloyId190.add($.__views.__alloyId192);
+    $.__views.__alloyId193 = Ti.UI.createView({
         width: Titanium.UI.FILL,
         height: 1,
         backgroundColor: "#000",
-        id: "__alloyId194"
+        id: "__alloyId193"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId194);
-    $.__views.__alloyId195 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId193);
+    $.__views.__alloyId194 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -346,17 +347,17 @@ function Controller() {
         text: "MUHAMMAD IMRAN",
         wordWrap: "false",
         ellipsize: "true",
-        id: "__alloyId195"
+        id: "__alloyId194"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId195);
-    $.__views.__alloyId196 = Ti.UI.createView({
+    $.__views.__alloyId176.add($.__views.__alloyId194);
+    $.__views.__alloyId195 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "horizontal",
-        id: "__alloyId196"
+        id: "__alloyId195"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId196);
-    $.__views.__alloyId197 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId195);
+    $.__views.__alloyId196 = Ti.UI.createLabel({
         width: "60%",
         height: Titanium.UI.SIZE,
         font: {
@@ -366,10 +367,10 @@ function Controller() {
         top: 5,
         left: 10,
         text: "GP/OUT-PATIENT",
-        id: "__alloyId197"
+        id: "__alloyId196"
     });
-    $.__views.__alloyId196.add($.__views.__alloyId197);
-    $.__views.__alloyId198 = Ti.UI.createLabel({
+    $.__views.__alloyId195.add($.__views.__alloyId196);
+    $.__views.__alloyId197 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -381,17 +382,17 @@ function Controller() {
         color: "#ff0000",
         right: 10,
         text: "RM500",
-        id: "__alloyId198"
+        id: "__alloyId197"
     });
-    $.__views.__alloyId196.add($.__views.__alloyId198);
-    $.__views.__alloyId199 = Ti.UI.createView({
+    $.__views.__alloyId195.add($.__views.__alloyId197);
+    $.__views.__alloyId198 = Ti.UI.createView({
         width: Titanium.UI.FILL,
         height: 1,
         backgroundColor: "#000",
-        id: "__alloyId199"
+        id: "__alloyId198"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId199);
-    $.__views.__alloyId200 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId198);
+    $.__views.__alloyId199 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -404,17 +405,17 @@ function Controller() {
         text: "ZETI AZRI ZAMBAHARI",
         wordWrap: "false",
         ellipsize: "true",
-        id: "__alloyId200"
+        id: "__alloyId199"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId200);
-    $.__views.__alloyId201 = Ti.UI.createView({
+    $.__views.__alloyId176.add($.__views.__alloyId199);
+    $.__views.__alloyId200 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "horizontal",
-        id: "__alloyId201"
+        id: "__alloyId200"
     });
-    $.__views.__alloyId176.add($.__views.__alloyId201);
-    $.__views.__alloyId202 = Ti.UI.createLabel({
+    $.__views.__alloyId176.add($.__views.__alloyId200);
+    $.__views.__alloyId201 = Ti.UI.createLabel({
         width: "60%",
         height: Titanium.UI.SIZE,
         font: {
@@ -424,10 +425,10 @@ function Controller() {
         top: 5,
         left: 10,
         text: "GP/OUT-PATIENT",
-        id: "__alloyId202"
+        id: "__alloyId201"
     });
-    $.__views.__alloyId201.add($.__views.__alloyId202);
-    $.__views.__alloyId203 = Ti.UI.createLabel({
+    $.__views.__alloyId200.add($.__views.__alloyId201);
+    $.__views.__alloyId202 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         font: {
@@ -439,9 +440,9 @@ function Controller() {
         color: "#ff0000",
         right: 10,
         text: "RM500",
-        id: "__alloyId203"
+        id: "__alloyId202"
     });
-    $.__views.__alloyId201.add($.__views.__alloyId203);
+    $.__views.__alloyId200.add($.__views.__alloyId202);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -39,7 +39,7 @@ function Controller() {
         id: "main"
     });
     $.__views.news.add($.__views.main);
-    var __alloyId230 = [];
+    var __alloyId229 = [];
     $.__views.myContentView = Ti.UI.createScrollView({
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
@@ -48,7 +48,7 @@ function Controller() {
         contentHeight: "auto",
         contentWidth: Ti.UI.FILL
     });
-    __alloyId230.push($.__views.myContentView);
+    __alloyId229.push($.__views.myContentView);
     $.__views.newsTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -85,12 +85,12 @@ function Controller() {
         id: "newsDate"
     });
     $.__views.myContentView.add($.__views.newsDate);
-    $.__views.__alloyId229 = Ti.UI.createScrollableView({
-        views: __alloyId230,
+    $.__views.__alloyId228 = Ti.UI.createScrollableView({
+        views: __alloyId229,
         showPagingControl: "false",
-        id: "__alloyId229"
+        id: "__alloyId228"
     });
-    $.__views.main.add($.__views.__alloyId229);
+    $.__views.main.add($.__views.__alloyId228);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
