@@ -58,8 +58,8 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
         height: 30,
+        width: Titanium.UI.FILL,
         font: {
             fontSize: 16
         },

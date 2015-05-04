@@ -62,7 +62,6 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        var nav = require("navigation");
         "m_eCard" == e.source.mod || "m_myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
@@ -243,6 +242,7 @@ function Controller() {
     arguments[0] || {};
     var usersModel = Alloy.createCollection("users");
     refreshHeaderInfo();
+    Alloy.Globals.navMenu = $.navMenu;
     var initBackground = [ {
         img_path: "/dummy/dummy-home.jpg",
         time: 0
@@ -262,7 +262,6 @@ function Controller() {
         }
     }
     setBackground();
-    Alloy.Globals.navMenu = $.navMenu;
     $.scrollboard.addEventListener("scroll", function(e) {
         var o = e.source.contentOffset;
         var ract = $.logo.rect;

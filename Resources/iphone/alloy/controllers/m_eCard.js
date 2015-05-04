@@ -52,6 +52,7 @@ function Controller() {
     var frontbackcounter = 0;
     var usersModel = Alloy.createCollection("users");
     var user = usersModel.getOwnerData();
+    alert("chelsea is champion!");
     var front = Ti.UI.createView({
         name: "front",
         width: Ti.UI.FILL,
