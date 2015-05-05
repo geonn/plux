@@ -4,13 +4,13 @@ exports.definition = {
     config: {
         columns: {
             id: "INTEGER PRIMARY KEY AUTOINCREMENT",
-            date: "DATE",
+            date: "TEXT",
             time: "TEXT",
             type: "TEXT",
             field1: "TEXT",
             field2: "TEXT",
             amount: "TEXT",
-            created: "DATETIME"
+            created: "TEXT"
         },
         adapter: {
             type: "sql",

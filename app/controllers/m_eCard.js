@@ -3,8 +3,7 @@ var noThumbColors   = ['#555555','#cccccc'];
 var noThumbColors2  = ['#ff0000','#000'];
 var frontbackcounter = 0;
 var usersModel = Alloy.createCollection('users'); 
-var user = usersModel.getOwnerData();
-
+var user = usersModel.getOwnerData(); 
 var front = Ti.UI.createView({
     name:"front",
     width: Ti.UI.FILL,

@@ -3,12 +3,12 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 exports.definition = {
     config: {
         columns: {
-            id: "int",
-            news_id: "int",
-            content: "string",
-            type: "string",
-            images: "string",
-            position: "string"
+            id: "INTEGER",
+            news_id: "INTEGER",
+            content: "TEXT",
+            type: "TEXT",
+            images: "TEXT",
+            position: "TEXT"
         },
         adapter: {
             type: "sql",

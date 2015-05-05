@@ -2,7 +2,7 @@ var args = arguments[0] || {};
 var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
 refreshHeaderInfo(); 
-
+Alloy.Globals.navMenu = $.navMenu;
 /**********				init				*************/
 var initBackground = [
 	{img_path: "images/background1.jpg", time: 0},
@@ -83,7 +83,7 @@ function refreshHeaderInfo(){
 	}
 }	 
 
-Alloy.Globals.navMenu = $.navMenu;
+
 $.scrollboard.addEventListener("scroll", function(e){
 	var o = e.source.contentOffset;
 	var ract = $.logo.rect;
@@ -119,8 +119,8 @@ $.scrollboard.addEventListener("scroll", function(e){
 });
 
 function navWindow(e){
-	var target = e.source.mod;
-	var nav = require('navigation');
+	var target = e.source.mod; 
+	
 	if(e.source.mod == "m_eCard" || e.source.mod == "m_myClaim" || e.source.mod == "profile"){
 		nav.navigationWindow(target, 1);
 	}else{

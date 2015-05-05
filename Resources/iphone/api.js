@@ -39,7 +39,6 @@ exports.doLogin = function(username, password, mainView, target) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-            console.log(result);
             if (void 0 !== typeof res.message && null != res.message) common.createAlert("Error", res.message); else {
                 var usersModel = Alloy.createCollection("users");
                 Ti.App.Properties.setString("memno", res.memno);
@@ -47,10 +46,9 @@ exports.doLogin = function(username, password, mainView, target) {
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 usersModel.addUserData(result);
                 common.hideLoading();
-                var nav = require("navigation");
                 nav.closeWindow(mainView.loginWin);
                 Ti.App.fireEvent("updateHeader");
-                "" != target && nav.navigationWindow(target);
+                "" != target && "home" != target && nav.navigationWindow(target);
             }
         },
         onerror: function() {

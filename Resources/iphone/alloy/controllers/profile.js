@@ -44,8 +44,12 @@ function Controller() {
     var usersModel = Alloy.createCollection("users");
     var data = usersModel.getUserByEmpNo();
     var healthModel = Alloy.createCollection("personalInfo");
+<<<<<<< HEAD
     var personal_health_data = healthModel.getOwnerData();
     data[0]["personal_health"] = personal_health_data;
+=======
+    healthModel.getOwnerData();
+>>>>>>> origin/master
     for (var i = 0; i < data.length; i++) {
         var profile_view = Alloy.createController("_profile_view", {
             profile_data: data[i]
