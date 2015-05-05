@@ -122,6 +122,7 @@ function Controller() {
         id: "my_health_records",
         top: "10",
         bottom: "10",
+        layout: "vertical",
         height: Ti.UI.SIZE
     });
     $.__views.__alloyId1.add($.__views.my_health_records);
@@ -149,6 +150,7 @@ function Controller() {
         id: "my_health",
         top: "10",
         bottom: "10",
+        layout: "vertical",
         height: Ti.UI.SIZE
     });
     $.__views.__alloyId1.add($.__views.my_health);
@@ -156,13 +158,18 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var profile = args.profile_data;
-    console.log(profile);
+    var personal_health = profile.personal_health;
     addField("Corporate Name", profile.corpname, $.profile_data);
     addField("Name", profile.name, $.profile_data);
     addField("Member No", profile.memno, $.profile_data);
     addField("IC", profile.icno, $.profile_data);
     addField("Relation", profile.relation, $.profile_data);
     addField("Allergies", profile.allergy, $.my_health_records);
+    if ("undefined" != typeof profile.personal_health) {
+        addField("Birthday", personal_health["birthDate"], $.my_health);
+        addField("BloodType", personal_health["bloodType"], $.my_health);
+        addField("Gender", personal_health["gender"], $.my_health);
+    }
     _.extend($, exports);
 }
 

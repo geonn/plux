@@ -70,7 +70,7 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			}, 
-			resetCategory : function(id){
+			resetCategory : function(){
 				var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name ;
                 db = Ti.Database.open(collection.config.adapter.db_name);

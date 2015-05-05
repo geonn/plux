@@ -5,15 +5,19 @@ refreshHeaderInfo();
 
 /**********				init				*************/
 var initBackground = [
-	{img_path: "/dummy/dummy-home.jpg", time: 0},
-	{img_path: "/dummy/dummy-home-pm.jpg", time: 12},
+	{img_path: "images/background1.jpg", time: 0},
+	{img_path: "images/background2.jpg", time: 10},
+	{img_path: "images/background3.jpg", time: 18},
 ];
 
 var initBackgroundData = Ti.App.Properties.getString('initBackgroundData');
-
+initBackgroundData = 0;
 if(initBackgroundData != "1"){
 	Ti.App.Properties.setString('initBackgroundData',"1");
+	var homebgModel = Alloy.createCollection('home_background'); 
+	homebgModel.resetCategory();
 	for (var i=0; i < initBackground.length; i++) {
+		
 	    var model = Alloy.createModel('home_background', {img_path: initBackground[i].img_path, time: initBackground[i].time});
 		model.save();
 	};

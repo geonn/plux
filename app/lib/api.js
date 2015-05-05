@@ -17,6 +17,10 @@ var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
+var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
+
+//configuration 
+var defaultRetryTimes = 3;
 
 /*********************
 **** API FUNCTION*****
@@ -67,9 +71,50 @@ exports.doLogin = function(username, password, mainView, target) {
 	 client.send(); 
 }; 
 
+exports.getClaimDetail = function(e){
+	
+	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
+	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
+	console.log(url);
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+	     onload : function(e) {
+	       var ret = [];
+	       var res = JSON.parse(this.responseText);
+	       console.log("onload");
+	       if(typeof res[0].message !== undefined && res[0].message != null){
+	       		console.log('got error message');
+	       		common.createAlert(res[0].message);
+	       }else{
+       			res.forEach(function(entry) {
+       				 var claim_detail_model = Alloy.createCollection('claim_detail');
+       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, entry.clinicname);
+       			});
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(ex) {
+	     	console.log('error');
+	     	retryTimes --;
+	     	
+	     	if(retryTimes !== 0){
+	     		API.getClaimDetail({empno : e.empno, corpcode : e.corpcode, retryTimes: retryTimes});
+	     	}else{
+	     		Ti.UI.fireEvent("data_loaded");
+	     	}
+	     },
+	     timeout : 10000  // in milliseconds
+	});
+	
+	// Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
 exports.claimInfo = function(e) { 
 	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
-	console.log(url);
+	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -78,12 +123,20 @@ exports.claimInfo = function(e) {
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		common.createAlert(res[0].message);
 	       }else{
-	       		Ti.UI.fireEvent("data_loaded", {data: res});
+	       		Ti.App.Properties.setString('balchk', this.responseText);
+	       		Ti.App.Properties.setString('balchkUpdatedDate', currentDateTime());
+	       		Ti.UI.fireEvent("data_loaded");
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
-	     	API.claimInfo({memno : e.memno, corpcode : e.corpcode});
+	     	retryTimes --;
+	     	
+	     	if(retryTimes !== 0){
+	     		API.claimInfo({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
+	     	}else{
+	     		Ti.UI.fireEvent("data_loaded");
+	     	}
 	     },
 	     timeout : 5000  // in milliseconds
 	 });

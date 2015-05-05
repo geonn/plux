@@ -58,8 +58,8 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
         height: 30,
+        width: Titanium.UI.FILL,
         font: {
             fontSize: 16
         },
@@ -78,6 +78,7 @@ function Controller() {
     var data = args.claim_data;
     var name = args.name;
     $.name.text = name;
+    console.log(data);
     for (var a = 0; data.length > a; a++) {
         console.log(data[a]["benefittype"]);
         var benefit_view = $.UI.create("View", {

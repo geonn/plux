@@ -29,6 +29,10 @@ var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 
 var checkBalanceUrl = "https://" + API_DOMAIN + "/balchk.aspx";
 
+var getClaimDetailUrl = "https://" + API_DOMAIN + "/claim.aspx";
+
+var defaultRetryTimes = 3;
+
 exports.doLogin = function(username, password, mainView, target) {
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
     var client = Ti.Network.createHTTPClient({
@@ -59,21 +63,56 @@ exports.doLogin = function(username, password, mainView, target) {
     client.send();
 };
 
-exports.claimInfo = function(e) {
-    var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
+exports.getClaimDetail = function(e) {
+    var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
+    var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            void 0 !== typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : Ti.UI.fireEvent("data_loaded", {
-                data: res
+            console.log("onload");
+            if (void 0 !== typeof res[0].message && null != res[0].message) {
+                console.log("got error message");
+                common.createAlert(res[0].message);
+            } else res.forEach(function(entry) {
+                var claim_detail_model = Alloy.createCollection("claim_detail");
+                claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, entry.clinicname);
             });
         },
         onerror: function() {
-            API.claimInfo({
+            console.log("error");
+            retryTimes--;
+            0 !== retryTimes ? API.getClaimDetail({
+                empno: e.empno,
+                corpcode: e.corpcode,
+                retryTimes: retryTimes
+            }) : Ti.UI.fireEvent("data_loaded");
+        },
+        timeout: 1e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.claimInfo = function(e) {
+    var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
+    var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            if (void 0 !== typeof res[0].message && null != res[0].message) common.createAlert(res[0].message); else {
+                Ti.App.Properties.setString("balchk", this.responseText);
+                Ti.App.Properties.setString("balchkUpdatedDate", currentDateTime());
+                Ti.UI.fireEvent("data_loaded");
+            }
+        },
+        onerror: function() {
+            retryTimes--;
+            0 !== retryTimes ? API.claimInfo({
                 memno: e.memno,
-                corpcode: e.corpcode
-            });
+                corpcode: e.corpcode,
+                retryTimes: retryTimes
+            }) : Ti.UI.fireEvent("data_loaded");
         },
         timeout: 5e3
     });

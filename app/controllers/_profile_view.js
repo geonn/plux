@@ -1,7 +1,8 @@
 var args = arguments[0] || {};
 var profile = args.profile_data;
 
-console.log(profile);
+var personal_health = profile.personal_health;
+
 addField("Corporate Name", profile.corpname, $.profile_data);
 addField("Name", profile.name, $.profile_data);
 addField("Member No", profile.memno, $.profile_data);
@@ -9,7 +10,11 @@ addField("IC", profile.icno, $.profile_data);
 addField("Relation", profile.relation, $.profile_data);
 
 addField("Allergies", profile.allergy, $.my_health_records);
-
+if(typeof profile.personal_health != "undefined"){
+	addField("Birthday", personal_health['birthDate'], $.my_health);
+	addField("BloodType", personal_health['bloodType'], $.my_health);
+	addField("Gender", personal_health['gender'], $.my_health);
+}
 function addField(title_text, value_text, view){
 	if(typeof value_text === 'undefined' || value_text == ""){
 		return;
