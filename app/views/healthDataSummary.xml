@@ -7,18 +7,15 @@
 		    </View>
 			<View id="main" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" top="0">
 				<TabbedBar id="buttonbarData" platform="ios" backgroundColor="#CE1D1C" index="0" color="#ffffff" borderColor="#CE1D1C" height="25" width="Ti.UI.FILL">
-		            <!-- The Labels tag sets the ButtonBar.labels property -->
-		            <Labels id="labels">
-		                <!-- Specify text with node text or the title attribute. -->
-		                <!-- Can also specify the enabled, image and width attributes. -->
+		             
+		            <Labels id="labels"> 
 		                <Label>Month</Label>
 		                <Label>Year</Label> 
-		            </Labels>
-		            <!-- Place additional views for the ButtonBar here. -->
+		            </Labels> 
 		        </TabbedBar>
 				<View id="bmiView" height="60%"  width="100%" backgroundColor="#EBEBEB" >
 					<WebView id="graphWebView" width="100%"  height="Ti.UI.FILL" backgroundColor="#EBEBEB" />
-					<View height="1" bottom=0 backgroundColor="#FC7474" width="100%" />
+					<View height="1" bottom="0" backgroundColor="#FC7474" width="100%" />
 				</View> 
 				<TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" >
 					<TableViewRow selectedBackgroundColor="#FFE1E1" onClick="addData" title="Add Data Point" hasChild="true" />

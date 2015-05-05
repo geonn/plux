@@ -75,11 +75,9 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    console.log(entry.latitude + " " + entry.longitude);
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES (" + entry.id + ", '" + mysql_real_escape_string(entry.title) + "', '" + mysql_real_escape_string(entry.long_title) + "', '" + mysql_real_escape_string(entry.category) + "', '" + entry.caption + "', '" + entry.created_date + "', '" + entry.modified_date + "', '" + entry.images + "')";
                     db.execute(sql_query);
                 });
-                console.log("GEOMILANO HERE");
                 db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");

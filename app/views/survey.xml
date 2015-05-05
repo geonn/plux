@@ -1,6 +1,6 @@
 <Alloy>
 	<Window title="Survey" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios" >
-		<RightNavButton platform=ios>
+		<RightNavButton platform="ios">
             <!--<Button title="List" onClick="listing" />-->
         </RightNavButton>
 		<View id="main">

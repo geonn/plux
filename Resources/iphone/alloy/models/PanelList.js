@@ -56,7 +56,6 @@ exports.definition = {
             getPanelByState: function(state) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state='" + state + "' ";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -77,7 +76,6 @@ exports.definition = {
                     res.next();
                     count++;
                 }
-                console.log(listArr);
                 res.close();
                 db.close();
                 collection.trigger("sync");
@@ -135,7 +133,6 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    console.log(entry.latitude + " " + entry.longitude);
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( clinicName, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('" + mysql_real_escape_string(entry.clinicname) + "', '" + mysql_real_escape_string(entry.add1) + "', '" + mysql_real_escape_string(entry.add2) + "', '" + entry.city + "', '" + entry.postcode + "', '" + entry.state + "', '" + entry.tel + "', '" + entry.latitude + "', '" + entry.longitude + "')";
                     db.execute(sql_query);
                 });

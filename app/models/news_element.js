@@ -63,7 +63,7 @@ exports.definition = {
 					 
 				    db.execute(sql_query);
 				});
-				console.log("GEOMILANO HERE");
+				 
                 db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');

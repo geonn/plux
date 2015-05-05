@@ -1,14 +1,14 @@
 <Alloy>
 	<Window title="Panel Details" id="panelDetails" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		 <View layout="vertical" height="Ti.UI.SIZE" width="100%"top="0">
+		 <View layout="vertical" height="Ti.UI.SIZE" width="100%" top="0">
 		 	
-		 	<Label id="clinicName" class="clinic_name" top=5 bottom=10/>
+		 	<Label id="clinicName" class="clinic_name" top="5" bottom="10"/>
 		 	<Label id="clinicAddress1" class="clinic_address" />
 		 	<Label id="clinicAddress2" class="clinic_address" />
 		 	<Label id="clinicPostcode" class="clinic_address" />
 		 	<Label id="clinicState" class="clinic_address" />
-		 	<Label id="clinicLocation" class="clinic_address" top=10 bottom=10 />
-		 	<Label id="clinicTel" class="clinic_address" top=10 bottom=10  />
+		 	<Label id="clinicLocation" class="clinic_address" top="10" bottom="10" />
+		 	<Label id="clinicTel" class="clinic_address" top="10" bottom="10"  />
 		 	<View height="1" backgroundColor="#CE1D1C" width="98%" top="10" />
 		 	<TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" >
 		 		<TableViewRow selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="direction2here" title="Direction To Here"   />

@@ -1,5 +1,5 @@
 <Alloy>
 	<Window class="container" id="attachment_Details" title="Attachment" navTintColor="#CE1D1C">
-		<View id="albumView" height="Ti.UI.SIZE"  bottom=40 />
+		<View id="albumView" height="Ti.UI.SIZE"  bottom="40" />
 	</Window>
 </Alloy>

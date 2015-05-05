@@ -6,32 +6,32 @@
 	        </View>
         </RightNavButton>
 		<View id="main" layout="" backgroundColor="#F6F6F6" height="100%" >
-			<View  layout="vertical" height="30" top=10  >
+			<View  layout="vertical" height="30" top="10"  >
 	        	<Label text="Please fill in your information below" color="#878686" id="description"  />
 	        </View>
 			<TableView id="table" height="180" top="40" scrollable="false">
 				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showDatePicker">
 					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
-						<Label text="Date" top=12 class="title_Label"  />
-						<Label text="" top=12 color="#707070" id="date_value" textAlign="right" width="80%"  />
+						<Label text="Date" top="12" class="title_Label"  />
+						<Label text="" top="12" color="#707070" id="date_value" textAlign="right" width="80%"  />
 					</View>
 				</TableViewRow>
 				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showTimePicker">
 					<View  layout="horizontal" height="45" width="100%"  >
-						<Label text="Time"  top=12 class="title_Label" />
-						<Label text=""  top=12 color="#707070" id="time_value" textAlign="right" width="80%"  />
+						<Label text="Time"  top="12" class="title_Label" />
+						<Label text=""  top="12" color="#707070" id="time_value" textAlign="right" width="80%"  />
 					</View>
 				</TableViewRow>
 				<TableViewRow id="tvrField1" selectedBackgroundColor="#ffffff">
 					<View  layout="horizontal" height="45" width="100%" >
-						<Label text="Systolic (mm Hg)" width="48%" top=12 class="title_Label"  />
-						<TextField id="field1" width="40%" right="0" top=12 textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+						<Label text="Systolic (mm Hg)" width="48%" top="12" class="title_Label"  />
+						<TextField id="field1" width="40%" right="0" top="12" textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
 				</TableViewRow>
 				<TableViewRow id="tvrField2" selectedBackgroundColor="#ffffff">
 					<View  layout="horizontal" height="45" width="100%" >
-						<Label text="Diastolic (mm Hg)" width="48%" top=12 class="title_Label" />
-						<TextField id="field2" width="40%" right="0" top=12 textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+						<Label text="Diastolic (mm Hg)" width="48%" top="12" class="title_Label" />
+						<TextField id="field2" width="40%" right="0" top="12" textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
 				</TableViewRow>
 			</TableView>

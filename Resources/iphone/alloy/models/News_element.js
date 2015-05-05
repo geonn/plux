@@ -54,7 +54,6 @@ exports.definition = {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, news_id, content, type, images,position) VALUES (" + entry.id + ", '" + entry.news_id + "', '" + mysql_real_escape_string(entry.content) + "', '" + entry.type + "', '" + entry.images + "', '" + entry.position + "')";
                     db.execute(sql_query);
                 });
-                console.log("GEOMILANO HERE");
                 db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
