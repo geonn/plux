@@ -2,9 +2,8 @@ var args = arguments[0] || {};
 var data = args.claim_data;
 var name = args.name;
 $.name.text = name;
-console.log(data);
+
 for(var a = 0; data.length > a; a++){
-	console.log(data[a]['benefittype']);
 	var benefit_view = $.UI.create("View", {
 		classes: ["padding"],
 		bottom: 0,

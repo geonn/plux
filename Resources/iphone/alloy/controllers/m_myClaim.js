@@ -13,11 +13,29 @@ function Controller() {
         var updated_date = Ti.App.Properties.getString("balchkUpdatedDate");
         $.date.text = timeFormat(updated_date);
         var groups = {};
+        var balance_groups = {};
         for (var i = 0; i < e.length; i++) {
             var val = e[i];
+            if (val.entidvbal < 99999) {
+                balance_groups["entidvbal"] = balance_groups["entidvbal"] || [];
+                balance_groups["entidvbal"].push(val);
+            }
+            if (val.entshabal < 99999) {
+                balance_groups["entshabal"] = balance_groups["entshabal"] || [];
+                balance_groups["entshabal"].push(val);
+            }
+            if (val.vstidvbal < 99999) {
+                balance_groups["vstidvbal"] = balance_groups["vstidvbal"] || [];
+                balance_groups["vstidvbal"].push(val);
+            }
+            if (val.vstshabal < 99999) {
+                balance_groups["vstshabal"] = balance_groups["vstshabal"] || [];
+                balance_groups["vstshabal"].push(val);
+            }
             groups[val.name] = groups[val.name] || [];
             groups[val.name].push(val);
         }
+        GenerateClaimBalanceTable(balance_groups);
         Object.keys(groups).map(function(group) {
             var personal_claim_view = Alloy.createController("_person_claim_view", {
                 claim_data: groups[group],
@@ -27,6 +45,64 @@ function Controller() {
         });
         Ti.UI.removeEventListener("data_loaded", init);
         common.hideLoading();
+    }
+    function GenerateClaimBalanceTable(balance_groups) {
+        var claim_balance_name = {
+            entidvbal: "Claim Balance",
+            entshabal: "Claim Shared Balance",
+            vstidvbal: "Visitation Balance",
+            vstshabal: "Visitation Shared Balance"
+        };
+        Object.keys(balance_groups).map(function(group) {
+            var view_title = $.UI.create("View", {
+                backgroundColor: "#CE1D1C",
+                height: Ti.UI.SIZE,
+                width: Ti.UI.FILL
+            });
+            var label_title = $.UI.create("Label", {
+                classes: [ "title" ],
+                color: "#ffffff",
+                text: claim_balance_name[group]
+            });
+            view_title.add(label_title);
+            $.view_balance.add(view_title);
+            var tmp_group = {};
+            for (var a = 0; balance_groups[group].length > a; a++) {
+                tmp_group[balance_groups[group][a]["name"]] = tmp_group[balance_groups[group][a]["name"]] || [];
+                tmp_group[balance_groups[group][a]["name"]].push(balance_groups[group][a]);
+            }
+            Object.keys(tmp_group).map(function(b) {
+                var view_line = $.UI.create("View", {
+                    classes: [ "line" ]
+                });
+                var label_name = $.UI.create("Label", {
+                    classes: [ "padding" ],
+                    wordWrap: false,
+                    ellipsize: true,
+                    text: b
+                });
+                $.view_balance.add(view_line);
+                $.view_balance.add(label_name);
+                for (var c = 0; tmp_group[b].length > c; c++) {
+                    var view_category = $.UI.create("View", {
+                        width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE,
+                        layout: "horizontal"
+                    });
+                    var label_category = $.UI.create("Label", {
+                        classes: [ "subtitle" ],
+                        text: tmp_group[b][c]["benefittype"]
+                    });
+                    var label_amount = $.UI.create("Label", {
+                        classes: [ "subvalue" ],
+                        text: "RM " + tmp_group[b][c][group]
+                    });
+                    view_category.add(label_category);
+                    view_category.add(label_amount);
+                    $.view_balance.add(view_category);
+                }
+            });
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "m_myClaim";
@@ -124,327 +200,14 @@ function Controller() {
         id: "__alloyId157"
     });
     $.__views.main.add($.__views.__alloyId157);
-    $.__views.__alloyId158 = Ti.UI.createView({
+    $.__views.view_balance = Ti.UI.createView({
         borderColor: "#000000",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId158"
+        id: "view_balance"
     });
-    $.__views.__alloyId157.add($.__views.__alloyId158);
-    $.__views.__alloyId159 = Ti.UI.createView({
-        backgroundColor: "#CE1D1C",
-        height: Ti.UI.SIZE,
-        width: Ti.UI.FILL,
-        id: "__alloyId159"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId159);
-    $.__views.__alloyId160 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: 20
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "Claims Balance",
-        color: "#ffffff",
-        id: "__alloyId160"
-    });
-    $.__views.__alloyId159.add($.__views.__alloyId160);
-    $.__views.__alloyId161 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#000",
-        id: "__alloyId161"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId161);
-    $.__views.principleName = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "12dp"
-        },
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "KHAIRIL AZMY BIN MOHD AMINUDDIN",
-        wordWrap: "false",
-        id: "principleName",
-        ellipsize: "true"
-    });
-    $.__views.__alloyId158.add($.__views.principleName);
-    $.__views.__alloyId162 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "horizontal",
-        id: "__alloyId162"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId162);
-    $.__views.__alloyId163 = Ti.UI.createLabel({
-        width: "60%",
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        bottom: 5,
-        top: 5,
-        left: 10,
-        text: "GP/OUT-PATIENT",
-        id: "__alloyId163"
-    });
-    $.__views.__alloyId162.add($.__views.__alloyId163);
-    $.__views.__alloyId164 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-        bottom: 5,
-        top: 5,
-        color: "#ff0000",
-        right: 10,
-        text: "RM1000",
-        id: "__alloyId164"
-    });
-    $.__views.__alloyId162.add($.__views.__alloyId164);
-    $.__views.__alloyId165 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "horizontal",
-        id: "__alloyId165"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId165);
-    $.__views.__alloyId166 = Ti.UI.createLabel({
-        width: "60%",
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        bottom: 5,
-        top: 5,
-        left: 10,
-        text: "DENTAL",
-        id: "__alloyId166"
-    });
-    $.__views.__alloyId165.add($.__views.__alloyId166);
-    $.__views.__alloyId167 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-        bottom: 5,
-        top: 5,
-        color: "#ff0000",
-        right: 10,
-        text: "RM500",
-        id: "__alloyId167"
-    });
-    $.__views.__alloyId165.add($.__views.__alloyId167);
-    $.__views.__alloyId168 = Ti.UI.createView({
-        backgroundColor: "#CE1D1C",
-        height: Ti.UI.SIZE,
-        width: Ti.UI.FILL,
-        id: "__alloyId168"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId168);
-    $.__views.__alloyId169 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: 20
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "Claims Shared Balance",
-        color: "#ffffff",
-        id: "__alloyId169"
-    });
-    $.__views.__alloyId168.add($.__views.__alloyId169);
-    $.__views.__alloyId170 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#000",
-        id: "__alloyId170"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId170);
-    $.__views.__alloyId171 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "12dp"
-        },
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "ELEESYA SOFE",
-        wordWrap: "false",
-        ellipsize: "true",
-        id: "__alloyId171"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId171);
-    $.__views.__alloyId172 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "horizontal",
-        id: "__alloyId172"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId172);
-    $.__views.__alloyId173 = Ti.UI.createLabel({
-        width: "60%",
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        bottom: 5,
-        top: 5,
-        left: 10,
-        text: "GP/OUT-PATIENT",
-        id: "__alloyId173"
-    });
-    $.__views.__alloyId172.add($.__views.__alloyId173);
-    $.__views.__alloyId174 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-        bottom: 5,
-        top: 5,
-        color: "#ff0000",
-        right: 10,
-        text: "RM500",
-        id: "__alloyId174"
-    });
-    $.__views.__alloyId172.add($.__views.__alloyId174);
-    $.__views.__alloyId175 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#000",
-        id: "__alloyId175"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId175);
-    $.__views.__alloyId176 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "12dp"
-        },
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "MUHAMMAD IMRAN",
-        wordWrap: "false",
-        ellipsize: "true",
-        id: "__alloyId176"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId176);
-    $.__views.__alloyId177 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "horizontal",
-        id: "__alloyId177"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId177);
-    $.__views.__alloyId178 = Ti.UI.createLabel({
-        width: "60%",
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        bottom: 5,
-        top: 5,
-        left: 10,
-        text: "GP/OUT-PATIENT",
-        id: "__alloyId178"
-    });
-    $.__views.__alloyId177.add($.__views.__alloyId178);
-    $.__views.__alloyId179 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-        bottom: 5,
-        top: 5,
-        color: "#ff0000",
-        right: 10,
-        text: "RM500",
-        id: "__alloyId179"
-    });
-    $.__views.__alloyId177.add($.__views.__alloyId179);
-    $.__views.__alloyId180 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#000",
-        id: "__alloyId180"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId180);
-    $.__views.__alloyId181 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "12dp"
-        },
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        text: "ZETI AZRI ZAMBAHARI",
-        wordWrap: "false",
-        ellipsize: "true",
-        id: "__alloyId181"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId181);
-    $.__views.__alloyId182 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "horizontal",
-        id: "__alloyId182"
-    });
-    $.__views.__alloyId158.add($.__views.__alloyId182);
-    $.__views.__alloyId183 = Ti.UI.createLabel({
-        width: "60%",
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        bottom: 5,
-        top: 5,
-        left: 10,
-        text: "GP/OUT-PATIENT",
-        id: "__alloyId183"
-    });
-    $.__views.__alloyId182.add($.__views.__alloyId183);
-    $.__views.__alloyId184 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
-        bottom: 5,
-        top: 5,
-        color: "#ff0000",
-        right: 10,
-        text: "RM500",
-        id: "__alloyId184"
-    });
-    $.__views.__alloyId182.add($.__views.__alloyId184);
+    $.__views.__alloyId157.add($.__views.view_balance);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
