@@ -3,11 +3,14 @@
 <head>
 	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" />
 	<script type="text/javascript" src="js/canvasjs.js"></script>
- <script type="text/javascript" src="js/jquery.min.js"></script>
+ 	<script type="text/javascript" src="js/jquery.min.js"></script>
+ 	<script type="text/javascript" src="js/common.js"></script>
  <style>
+ 		body {
+		 	font-family: "arial";
+		 }
  		p {
- 			font-size:18px;
- 			font-family: "arial";
+ 			font-size:18px; 
  			font-weight:bold; 
  			text-align:center;
  			color: #787878;
@@ -19,7 +22,7 @@
               if(e.message != ""){
               	loadChart(e.message);
               }else{
-              	loadNoData();
+              	loadNoData(e.dataPeriod);
               }
             });
         </script>
@@ -47,9 +50,20 @@ function loadChart(data){
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
 }
-function loadNoData(){
+function loadNoData(dataPeriod){
+	var dateNow = currentDate(0); 
+	var dayBefore = currentDate(-15); 
+	var dayNext = currentDate(15); 
+	if(dataPeriod == "year"){
+		dateNow = currentMonthYear(0);
+		dayBefore = currentMonthYear(-5); 
+		dayNext = currentMonthYear(10); 
+	} 
+	
+	$("#chartContainer").html('');
 	$("#chartContainer").append('<p>Height</p>');
-	$("#chartContainer").append('<img src="images/nodata.png" style="width:100%;">'); 
+	$("#chartContainer").append('<div style="text-align:center;"><img src="images/nodata.png" style="width:85%;"></div>'); 
+	$("#chartContainer").append('<div style="text-align:center;color:#CE1D1C;padding-left:20px;font-size:10px;display:inline-block;width:90%"><div style="float:left;width:33%;">'+dayBefore+'</div><div style="float:left;width:33%;">'+dateNow+'</div><div style="float:left;width:33%;">'+dayNext+'</div></div>');
 }
 </script>
  

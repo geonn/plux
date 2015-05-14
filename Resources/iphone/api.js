@@ -64,11 +64,9 @@ exports.doLogin = function(username, password, mainView, target) {
 exports.getClaimDetail = function(e) {
     var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            console.log("onload");
             if (void 0 !== typeof res[0].message && null != res[0].message) {
                 console.log("got error message");
                 common.createAlert(res[0].message);
@@ -78,7 +76,6 @@ exports.getClaimDetail = function(e) {
             });
         },
         onerror: function() {
-            console.log("error");
             retryTimes--;
             0 !== retryTimes ? API.getClaimDetail({
                 empno: e.empno,

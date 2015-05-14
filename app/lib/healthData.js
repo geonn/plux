@@ -126,27 +126,25 @@ function loadInfo(gType,dataPeriod){
 			}
 			info.push(rec);
 		});  
-	}
-	
-	
+	} 
  
-	if(gType == 1){
-		Ti.App.fireEvent('app:bmiInfo',{ message:  info });
+	if(gType == 1){ 
+		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod });
 	}
 	if(gType == 2){ 
-		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2 });
+		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
 	}
 	if(gType == 3){
-		Ti.App.fireEvent('app:heartRateInfo',{ message:  info });
+		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
 	}
 	if(gType == 4){
-		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info });
+		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
 	}
 	if(gType == 5){
-		Ti.App.fireEvent('app:height',{ message:  info });
+		Ti.App.fireEvent('app:height',{ message:  info, dataPeriod:dataPeriod });
 	}
 	if(gType == 6){
-		Ti.App.fireEvent('app:weight',{ message:  info });
+		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
 	}
 	return info;
 }

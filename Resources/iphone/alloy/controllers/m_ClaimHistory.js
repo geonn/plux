@@ -44,7 +44,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    console.log(args);
     var arg_category = "undefined" != typeof args.category ? args.category : "%";
     var usersModel = Alloy.createCollection("claim_detail");
     var data = usersModel.getClaimDetail({
@@ -52,7 +51,6 @@ function Controller() {
         category: arg_category
     });
     data.forEach(function(entry) {
-        console.log(entry);
         var row = $.UI.create("TableViewRow");
         var view_container = $.UI.create("View", {
             layout: "vertical",
@@ -71,7 +69,7 @@ function Controller() {
         });
         var label_amount = $.UI.create("Label", {
             classes: [ "amount" ],
-            text: "RM " + entry.amount
+            text: "RM " + entry.amount.toFixed(2)
         });
         var label_date = $.UI.create("Label", {
             classes: [ "date" ],
