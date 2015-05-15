@@ -261,11 +261,10 @@ exports.navigateGraph = function(gType){
 
 exports.stepsMotion = function(e){
 	var info_details = lib_health.getHealthListByType(10);  
-	console.log(info_details);
-	
+	 
 	var gCurH = Ti.App.Properties.getString('curH') || "";
     var gStep = Ti.App.Properties.getString('step') || 0;
-    console.log(gCurH+" == "+gStep);
+    //console.log(gCurH+" == "+gStep);
 };
 
 exports.changeTime = function(e){

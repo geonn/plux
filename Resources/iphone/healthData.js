@@ -193,11 +193,9 @@ exports.navigateGraph = function(gType) {
 };
 
 exports.stepsMotion = function() {
-    var info_details = lib_health.getHealthListByType(10);
-    console.log(info_details);
-    var gCurH = Ti.App.Properties.getString("curH") || "";
-    var gStep = Ti.App.Properties.getString("step") || 0;
-    console.log(gCurH + " == " + gStep);
+    lib_health.getHealthListByType(10);
+    Ti.App.Properties.getString("curH") || "";
+    Ti.App.Properties.getString("step") || 0;
 };
 
 exports.changeTime = function(e) {

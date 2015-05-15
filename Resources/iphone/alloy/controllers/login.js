@@ -146,7 +146,7 @@ function Controller() {
         title: "Login",
         width: "90%",
         top: "20",
-        height: "50",
+        height: "60",
         color: "#ffffff"
     });
     $.__views.main.add($.__views.loginAccountButton);
