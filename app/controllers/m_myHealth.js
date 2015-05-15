@@ -4,14 +4,16 @@ var nav = require('navigation');
 var hd = require('healthData');  
 common.construct($);
 common.showLoading();
-
+hd.stepsMotion();
 function resetGraph(){
+	$.stepsView.setHeight("0");
 	$.bmiView.setHeight("0");
 	$.bloodPressureView.setHeight("0");
 	$.heartRateView.setHeight("0");
 	$.bodyTemperatureView.setHeight("0");
 	$.heightView.setHeight("0");
 	$.weightView.setHeight("0");
+	$.stepsView.hide();
 	$.bmiView.hide();
 	$.bloodPressureView.hide();
 	$.heartRateView.hide();
@@ -38,12 +40,14 @@ function filterList(e){
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
 	}else{
+		$.stepsView.setHeight("40%");
 		$.bmiView.setHeight("40%");
 		$.bloodPressureView.setHeight("40%");
 		$.heartRateView.setHeight("40%");
 		$.bodyTemperatureView.setHeight("40%");
 		$.heightView.setHeight("40%");  
 		$.weightView.setHeight("40%"); 
+		$.stepsView.show();
 		$.weightView.show(); 
 		$.heightView.show(); 
 		$.bmiView.show();
@@ -58,6 +62,10 @@ setTimeout(function(){
 	common.hideLoading();
 },800); 
 filterList({category: "all"}); 
+
+$.stepsView.addEventListener('click',function(e){
+	nav.navigateWithArgs("healthDataSummary",{gType: 10});
+});
 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("healthDataSummary",{gType: 1});

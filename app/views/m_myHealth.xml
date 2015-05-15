@@ -21,6 +21,11 @@
 				</ListView>
 			-->
 				<ScrollView id="graphScrollView" layout="vertical" height="100%" width="100%" >
+					<View id="stepsView" height="0"   width="100%" backgroundColor="#EBEBEB" visible="false">
+						<WebView id="stepsWebView" width="100%" backgroundColor="#EBEBEB" url="/html/steps.html" disableBounce='true' touchEnabled="false"  ></WebView>
+						<View height="1" bottom="0" backgroundColor="#FC7474" width="100%" />
+					</View>
+					
 					<View id="bmiView" height="0"   width="100%" backgroundColor="#EBEBEB" visible="false">
 						<WebView id="bmiWebView" width="100%" backgroundColor="#EBEBEB" url="/html/bmi.html" disableBounce='true' touchEnabled="false"  ></WebView>
 						<View height="1" bottom="0" backgroundColor="#FC7474" width="100%" />

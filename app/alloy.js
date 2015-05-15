@@ -13,10 +13,61 @@ var common = require('common');
 var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
+var CoreMotion = require('ti.coremotion'); 
 Alloy.Globals.Map = require('ti.map');
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
- 
+
+if (CoreMotion.isStepCountingAvailable()) { 
+    CoreMotion.startStepCountingUpdates({stepCounts: 1}, function(e){setInterval(function(){ countStep(); }, 1000); });
+} else {
+    Ti.API.warn('This device does not support counting steps.');
+} 
+   
+function countStep(){ 
+	var starts = new Date(new Date().getTime() - 1*1000);
+	var ends  =new Date();
+	CoreMotion.queryStepCount({
+        start: starts, 
+        end: ends
+    }, function (e) { 
+    	var gCurH = Ti.App.Properties.getString('curH') || "";
+    	var gStep = Ti.App.Properties.getString('step') || 0;
+    	gStep = parseInt(gStep);
+    	var myCur =  currentDateTime();
+		var d = myCur.split(":");  
+		var h = d[0].split(" ");  
+		if(gCurH != d[1] || gCurH == ""){
+			if(gStep > 0){
+				var stepDateTime = Ti.App.Properties.getString('stepDateTime' ); 
+				if(stepDateTime != "" ){
+					var splitDT = stepDateTime.split(" ");  
+					var splitTT = splitDT[1].split(":");
+					var lib_health = Alloy.createCollection('health'); 
+					lib_health.addHealthData({
+						date : splitDT[0],
+						time : splitTT[0]+":"+splitTT[1]+":00",
+						field1 : "",
+						field2 : "",
+						amount : gStep,
+						type : 10
+					});
+				}
+			}
+			Ti.App.Properties.setString('step',"0" );  
+			//Ti.App.Properties.setString('stepDateTime',"" ); 
+			Ti.App.Properties.setString('curH', d[1] );
+		} 
+		
+		if(e.numberOfSteps > 0){
+			gStep += e.numberOfSteps;
+			Ti.App.Properties.setString('stepDateTime',myCur ); 
+			Ti.App.Properties.setString('curH', d[1] );
+			Ti.App.Properties.setString('step',gStep );  
+		}
+    	 
+    });
+} 
 
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
@@ -84,7 +135,7 @@ function currentDateTime(){
 	
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
 	return datetime ;
-}
+} 
 
 function removeAllChildren(viewObject){
     //copy array of child object references because view's "children" property is live collection of child object references

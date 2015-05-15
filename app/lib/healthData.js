@@ -64,6 +64,9 @@ exports.populateData = function(e){
 	for(var i =1; i <= 6; i++){
 	 	var info = loadInfo(i);
 	}
+	
+	//steps
+	info = loadInfo(10);
 };
 
 function loadInfo(gType,dataPeriod){
@@ -76,7 +79,7 @@ function loadInfo(gType,dataPeriod){
 	if(dataPeriod == "year"){
 		
 		var info_details = lib_health.getHealthListByTypeInYear(loadType,gType); 
-		console.log(info_details);
+		 
 		info_details.forEach(function(entry) {
 			var rec = {};
 			var convert = (entry.date).split('-'); 
@@ -101,7 +104,12 @@ function loadInfo(gType,dataPeriod){
 			info.push(rec);
 		});
 	}else{ 
-		var info_details = lib_health.getHealthListByType(loadType);  
+		if(gType == "10"){
+			var info_details = lib_health.getSteps();  
+		}else{
+			var info_details = lib_health.getHealthListByType(loadType);  
+		}
+		
 		info_details.reverse();	 
 		info_details.forEach(function(entry) {
 			var rec = {};
@@ -145,6 +153,9 @@ function loadInfo(gType,dataPeriod){
 	}
 	if(gType == 6){
 		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
+	}
+	if(gType == 10){
+		Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
 	}
 	return info;
 }
@@ -246,6 +257,15 @@ exports.navigateGraph = function(gType){
 	if(gType == "6"){
 		nav.navigationWindow("healthDataBmi");
 	}
+};
+
+exports.stepsMotion = function(e){
+	var info_details = lib_health.getHealthListByType(10);  
+	console.log(info_details);
+	
+	var gCurH = Ti.App.Properties.getString('curH') || "";
+    var gStep = Ti.App.Properties.getString('step') || 0;
+    console.log(gCurH+" == "+gStep);
 };
 
 exports.changeTime = function(e){

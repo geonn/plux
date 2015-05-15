@@ -20,6 +20,8 @@ function navByType(evt){
 	//evt.source.source
 	if(evt.source.source == "profile"){
 		nav.navigationWindow("healthProfile");
+	}else if(evt.source.source == "motion"){
+		nav.navigationWindow("m_workout");
 	}else{
 		//nav.navigateWithArgs("m_myHealth",{category: evt.source.source}); 
 		Ti.App.fireEvent('filterList',{category: evt.source.source});
@@ -49,7 +51,8 @@ var TheTable = Titanium.UI.createTableView({
 var CustomData = [
 { image:'images/me.png', title:"Me", source:'profile' },
 { image:'images/measurement.png', title:"Body Measurement", source:'measurement' }, 
-{ image:'images/vitals.png', title:"Vitals",  source:'vitals'}
+{ image:'images/vitals.png', title:"Vitals",  source:'vitals'},
+{ image:'images/vitals.png', title:"Core Motion",  source:'motion'}
 ];
  
 var data=[];

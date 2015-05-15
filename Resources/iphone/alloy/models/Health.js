@@ -60,7 +60,7 @@ exports.definition = {
                     var res2 = db.execute(sql2);
                     res2.isValidRow() && (value2 = res2.fieldByName("value2"));
                 }
-                var sql = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(' + theField + ") as value FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + '\' GROUP BY strftime("%Y-%m", date) ORDER BY date  LIMIT 6';
+                if ("10" == gType) var sql = 'SELECT strftime("%Y-%m", date) as datemonth, SUM(' + theField + ") as value FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + '\' GROUP BY strftime("%Y-%m", date) ORDER BY date  LIMIT 6'; else var sql = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(' + theField + ") as value FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + '\' GROUP BY strftime("%Y-%m", date) ORDER BY date  LIMIT 6';
                 var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;
@@ -76,6 +76,26 @@ exports.definition = {
                     listArr[count] = {
                         date: res.fieldByName("datemonth"),
                         value: res.fieldByName("value")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
+            getSteps: function() {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT date , SUM(amount) as amount FROM " + collection.config.adapter.collection_name + " WHERE type=10 GROUP BY date ORDER BY date DESC  LIMIT 6";
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        date: res.fieldByName("date"),
+                        amount: res.fieldByName("amount")
                     };
                     res.next();
                     count++;
@@ -116,7 +136,7 @@ exports.definition = {
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET field1='" + entry.field1 + "' , field2='" + entry.field2 + "' , amount='" + mysql_real_escape_string(entry.amount) + "' WHERE date='" + mysql_real_escape_string(entry.date) + "' AND time='" + mysql_real_escape_string(entry.time) + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created) VALUES ('" + mysql_real_escape_string(entry.date) + "', '" + mysql_real_escape_string(entry.time) + "','" + entry.type + "','" + entry.field1 + "','" + entry.field2 + "' ,'" + mysql_real_escape_string(entry.amount) + "', '" + currentDateTime() + "')";
+                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET field1='" + entry.field1 + "' , field2='" + entry.field2 + "' , amount='" + entry.amount + "' WHERE date='" + entry.date + "' AND time='" + entry.time + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created) VALUES ('" + entry.date + "', '" + entry.time + "','" + entry.type + "','" + entry.field1 + "','" + entry.field2 + "' ,'" + entry.amount + "', '" + currentDateTime() + "')";
                 console.log(sql_query);
                 db.execute(sql_query);
                 db.close();

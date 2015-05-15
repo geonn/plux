@@ -14,7 +14,6 @@ function loadInfo(gType, dataPeriod) {
     ("5" == loadType || "6" == loadType) && (loadType = "1");
     if ("year" == dataPeriod) {
         var info_details = lib_health.getHealthListByTypeInYear(loadType, gType);
-        console.log(info_details);
         info_details.forEach(function(entry) {
             var rec = {};
             var convert = entry.date.split("-");
@@ -31,7 +30,7 @@ function loadInfo(gType, dataPeriod) {
             info.push(rec);
         });
     } else {
-        var info_details = lib_health.getHealthListByType(loadType);
+        if ("10" == gType) var info_details = lib_health.getSteps(); else var info_details = lib_health.getHealthListByType(loadType);
         info_details.reverse();
         info_details.forEach(function(entry) {
             var rec = {};
@@ -71,6 +70,10 @@ function loadInfo(gType, dataPeriod) {
         dataPeriod: dataPeriod
     });
     6 == gType && Ti.App.fireEvent("app:weight", {
+        message: info,
+        dataPeriod: dataPeriod
+    });
+    10 == gType && Ti.App.fireEvent("app:steps", {
         message: info,
         dataPeriod: dataPeriod
     });
@@ -126,9 +129,8 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 6 >= i; i++) {
-        loadInfo(i);
-    }
+    for (var i = 1; 6 >= i; i++) var info = loadInfo(i);
+    info = loadInfo(10);
 };
 
 exports.loadGraphByType = function(gType, dataPeriod) {
@@ -188,6 +190,14 @@ exports.navigateGraph = function(gType) {
     "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
     "5" == gType && nav.navigationWindow("healthDataBmi");
     "6" == gType && nav.navigationWindow("healthDataBmi");
+};
+
+exports.stepsMotion = function() {
+    var info_details = lib_health.getHealthListByType(10);
+    console.log(info_details);
+    var gCurH = Ti.App.Properties.getString("curH") || "";
+    var gStep = Ti.App.Properties.getString("step") || 0;
+    console.log(gCurH + " == " + gStep);
 };
 
 exports.changeTime = function(e) {

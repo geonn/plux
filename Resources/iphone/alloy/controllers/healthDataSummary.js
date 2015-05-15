@@ -165,6 +165,7 @@ function Controller() {
     "4" == gType && $.graphWebView.setUrl("/html/bodyTemperature.html");
     "5" == gType && $.graphWebView.setUrl("/html/height.html");
     "6" == gType && $.graphWebView.setUrl("/html/weight.html");
+    "10" == gType && $.graphWebView.setUrl("/html/steps.html");
     $.buttonbarData.addEventListener("click", loadBarData);
     setTimeout(function() {
         loadGraph("month");
