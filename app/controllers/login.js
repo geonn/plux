@@ -17,9 +17,13 @@ function doLogin() {
 		return;
 	}
 	if(singleton){
-		singleton = false;
+		//singleton = false;
 		API.doLogin(username, password, $, args.target);
 	}
+}
+
+function doRegister(){
+	
 }
 
 function hideProductFormKeyboard(e){

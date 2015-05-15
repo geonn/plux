@@ -10,20 +10,9 @@
 	 	<View >
 	 		<TextField top="0"  id="titleRecord" height="40" hintText="Medical Problem" width="95%"/> 
 			<View height="1" width="100%" backgroundColor="#CE1D1C" top="40" />
-			<ScrollView id="aView" top="42" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" layout="vertical" bottom="90" > 
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Proceduce</Label>
-			 	<TextArea id="proceduceTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Proceduce" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
-			 		<KeyboardToolbar>
-						<Toolbar>
-							<Items> 
-								<FlexSpace/>
-								<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
-							</Items>
-						</Toolbar>
-					</KeyboardToolbar>
-			 	</TextArea>
-			 	<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
-			 	<TextArea id="treatmentTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Treatment" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
+			<ScrollView id="aView" top="42" height="Ti.UI.SIZE"  layout="vertical" bottom="90" > 
+				
+			 	<TextArea id="recordsTextArea"  color="#888" textAlign="left" hintText="Proceduce" value="" width="95%" height="100%" suppressReturn="false" >
 			 		<KeyboardToolbar>
 						<Toolbar>
 							<Items> 
@@ -37,7 +26,7 @@
 			</ScrollView> 
 			<View bottom="40" height="Ti.UI.SIZE"  layout="horizontal" width="100%"  >
 				<ScrollView id="attachment" scrollType="horizontal" layout="horizontal" height="Ti.UI.SIZE" width="80%" /> 
-				<View width="auto" height="Ti.UI.SIZE" onClick="showCategory" >
+				<View width="auto" height="Ti.UI.SIZE" onClick="takePhoto" >
 					<View backgroundColor="#CE1D1C" height="50" width="Ti.UI.FILL" right="0" ><Label id="addLbl" color="#ffffff" text="+" /></View>
 				</View> 
 			</View>

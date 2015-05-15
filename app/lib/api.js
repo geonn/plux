@@ -39,7 +39,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       //console.log(result);
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
-	       		 
+	       		 common.hideLoading();
 	       }else{
 	       		var usersModel = Alloy.createCollection('users'); 
 	       		Ti.App.Properties.setString('memno', res.memno);
@@ -65,7 +65,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     	common.hideLoading();
        		
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 6000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);

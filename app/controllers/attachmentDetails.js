@@ -16,24 +16,32 @@ var getAttImages = function(){
 		var myImage = Ti.Utils.base64decode(items[i].blob);
 		adImage = Ti.UI.createImageView({
 			image: myImage,
-			width:"100%"
+			width:"100%",
+			top: 40,
 		});
 		
 		var scrollView = Ti.UI.createScrollView({
 			contentWidth: 'auto',
-		  	contentHeight: 'auto',
+		  	contentHeight: Ti.UI.SIZE,
 		   	maxZoomScale: 30,
 		    minZoomScale: 1,
 		    zoomScale: 1,
-		  	height: Ti.UI.SIZE,
+		  	height: Ti.UI.FILL,
 		  	width: '100%'
+		});
+		
+		var img_caption = Ti.UI.createLabel({
+			text: items[i].category,
+			height: 40,
+			top: 0,
+			color: "#ffffff"
 		});
 	
 		row = $.UI.create('View', {classes: ["row"], id:"view"+counter});
 		
-		$.attachment_Details.title=items[i].caption;
+		$.attachment_Details.title=items[i].category;
 		row.add(adImage);
-		//row.add(img_caption);
+		row.add(img_caption);
 		scrollView.add(row);
 		the_view.push(scrollView); 
 		

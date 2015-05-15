@@ -20,6 +20,7 @@
 							<!--<ImageView onClick="navWindow" mod="survey" top="15" width="139" image="/btn/btn_healthInfo.png"/>-->
 							<ImageView onClick="navWindow" mod="m_myMedical" top="15" width="139" image="/btn/btn_my_medical_record.png"/>
 							<ImageView onClick="navWindow" mod="clinicState" left="15" top="15" width="139" image="/btn/btn_clinic_location.png"/>
+							<ImageView onClick="navWindow" mod="hra" top="15" width="139" image="/btn/btn_hra.png"/>
 							
 						</View>
 					</ScrollView>
