@@ -39,6 +39,12 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 	}
 };
 
+exports.navigationWebview = function(webview, title){
+	var win = Titanium.UI.createWindow({title: title});
+    win.add(webview);
+	Alloy.Globals.navMenu.openWindow(win,{animated:true});
+};
+
 exports.navigateWithArgs = function(target, args){
 	var win = Alloy.createController(target, args).getView(); 
 	Alloy.Globals.navMenu.openWindow(win,{animated:true});

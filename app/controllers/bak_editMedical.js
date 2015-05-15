@@ -4,7 +4,6 @@ var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 var clickTime = null;
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');
-medicalAttachmentModel.addColumn("category", "TEXT");
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');
 var details = medicalRecordsModel.getRecordById(rec_id); 
  
@@ -17,10 +16,8 @@ function loadMedicalInfo(){
 		title = title.replace(/&quot;/g,"'");
 	} 
 	var message = details.message;
-	var treatment = details.treatment;
 	$.titleRecord.value= title;
-	$.proceduceTextArea.value= message ;
-	$.treatmentTextArea.value= treatment ;
+	$.recordsTextArea.value= message ;
 	$.lastUpdated.text = "Last updated: " +timeFormat(details.updated);
 } 
 
@@ -39,17 +36,15 @@ function loadImage(){
 
 function saveRecord(){
 	var title      = $.titleRecord.value; 
-	var message   = $.proceduceTextArea.value;
-	var treatment = $.treatmentTextArea.value;
-
+	var message   = $.recordsTextArea.value;
+	
 	if(title.trim() == ""){
 		title = "Untitled - "+ currentDateTime();
 	}  
 	medicalRecordsModel.updateRecord({ 
 		id : rec_id,
 		title : title,
-		message : message,
-		treatment : treatment,  
+		message : message,  
 		updated : currentDateTime()
 	});  
 	// nav.navigationWindow("m_myHealth" );
@@ -87,7 +82,7 @@ function hideKeyboard(){
 
 function backAndSave(){
 	var title      = $.titleRecord.value; 
-	var message   = $.proceduceTextArea.value;
+	var message   = $.recordsTextArea.value;
 	
 	if(title.trim() == "" && message.trim() == ""){
 		var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
@@ -141,32 +136,6 @@ function attachedPhoto(image,position){
 	
 	return iView;	            
 }
-var categoryType = "Blood Test";
-
-function showCategory(){
-	var dialog = Titanium.UI.createOptionDialog({ 
-	    title: 'Choose a test category...', 
-	    options: ['Blood Test','X Ray', 'ECG/Stress test','Urine test','etc', 'Cancel'], 
-	    cancel: 5 //index of cancel button
-	});
-
-	dialog.addEventListener('click', function(e) { 
-		if(e.index == 0) {
-			categoryType = "Blood Test";
-		}else if(e.index == 1){
-			categoryType = "X Ray";
-		}else if(e.index == 1){
-			categoryType = "ECG/Stress test";
-		}else if(e.index == 1){
-			categoryType = "Urine test";
-		}else if(e.index == 1){
-			categoryType = "etc";
-		}
-		takePhoto();
-	});
-	
-	dialog.show();
-}
 
 function takePhoto(){ 
 	var dialog = Titanium.UI.createOptionDialog({ 
@@ -199,7 +168,6 @@ function takePhoto(){
 			            blobContainer = image; 
 			            medicalAttachmentModel.addAttachment({
 							medical_id : rec_id,
-							category: categoryType,
 							blob : Ti.Utils.base64encode(image)
 						});
 			            loadImage(); 
@@ -247,7 +215,6 @@ function takePhoto(){
 		            blobContainer = image; 
 		            medicalAttachmentModel.addAttachment({
 						medical_id : rec_id,
-						category: categoryType,
 						blob : Ti.Utils.base64encode(image)
 					}); 
 		            loadImage(); 
@@ -267,8 +234,8 @@ function takePhoto(){
 	dialog.show();
 
 }
-$.proceduceTextArea.addEventListener('focus', function(){
-	//$.proceduceTextArea.setHeight("70%");
+$.recordsTextArea.addEventListener('focus', function(){
+	$.recordsTextArea.setHeight("70%");
 });
  
 $.editRecWin.addEventListener('close',function(){

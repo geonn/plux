@@ -128,20 +128,20 @@ function Controller() {
         id: "info",
         headerTitle: "Member Info"
     });
-    var __alloyId179 = [];
-    __alloyId179.push($.__views.info);
+    var __alloyId209 = [];
+    __alloyId209.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-    __alloyId179.push($.__views.balance);
-    $.__views.__alloyId177 = Ti.UI.createListView({
-        sections: __alloyId179,
+    __alloyId209.push($.__views.balance);
+    $.__views.__alloyId207 = Ti.UI.createListView({
+        sections: __alloyId209,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId177"
+        id: "__alloyId207"
     });
-    $.__views.main.add($.__views.__alloyId177);
+    $.__views.main.add($.__views.__alloyId207);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -39,7 +39,10 @@ exports.doLogin = function(username, password, mainView, target) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-            if (void 0 !== typeof res.message && null != res.message) common.createAlert("Error", res.message); else {
+            if (void 0 !== typeof res.message && null != res.message) {
+                common.createAlert("Error", res.message);
+                common.hideLoading();
+            } else {
                 var usersModel = Alloy.createCollection("users");
                 Ti.App.Properties.setString("memno", res.memno);
                 Ti.App.Properties.setString("empno", res.empno);
@@ -55,7 +58,7 @@ exports.doLogin = function(username, password, mainView, target) {
             common.createAlert("Login Fail", "unexpected error");
             common.hideLoading();
         },
-        timeout: 1e4
+        timeout: 6e3
     });
     client.open("GET", url);
     client.send();

@@ -1,5 +1,6 @@
 var args = arguments[0] || {};
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
+medicalRecordsModel.addColumn("treatment", "TEXT");
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 common.construct($); 
