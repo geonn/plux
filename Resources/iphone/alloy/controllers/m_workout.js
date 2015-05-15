@@ -33,9 +33,23 @@ function Controller() {
     });
     $.__views.m_workout && $.addTopLevelView($.__views.m_workout);
     $.__views.main = Ti.UI.createView({
-        id: "main"
+        id: "main",
+        width: Ti.UI.FILL
     });
     $.__views.m_workout.add($.__views.main);
+<<<<<<< HEAD
+    $.__views.myText = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        id: "myText"
+    });
+    $.__views.main.add($.__views.myText);
+    $.__views.button = Ti.UI.createView({
+        id: "button",
+        width: Ti.UI.SIZE
+    });
+    $.__views.main.add($.__views.button);
+=======
     $.__views.__alloyId212 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
@@ -43,9 +57,12 @@ function Controller() {
         id: "__alloyId212"
     });
     $.__views.main.add($.__views.__alloyId212);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var gStep = Ti.App.Properties.getString("step") || 0;
+    $.myText.text = "You walked " + gStep + " by far .";
     _.extend($, exports);
 }
 

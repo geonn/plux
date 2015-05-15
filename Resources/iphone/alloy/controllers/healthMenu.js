@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function navByType(evt) {
         hideWin = 0;
-        "profile" == evt.source.source ? nav.navigationWindow("healthProfile") : Ti.App.fireEvent("filterList", {
+        "profile" == evt.source.source ? nav.navigationWindow("healthProfile") : "motion" == evt.source.source ? nav.navigationWindow("m_workout") : Ti.App.fireEvent("filterList", {
             category: evt.source.source
         });
         $.typeWindowPopUp.close({
@@ -46,7 +46,7 @@ function Controller() {
         right: 3,
         top: 48,
         width: "70%",
-        height: 135,
+        height: 180,
         borderRadius: 5,
         borderColor: "#FC7474",
         borderWidth: 1,
@@ -93,6 +93,10 @@ function Controller() {
         image: "images/vitals.png",
         title: "Vitals",
         source: "vitals"
+    }, {
+        image: "images/vitals.png",
+        title: "Core Motion",
+        source: "motion"
     } ];
     var data = [];
     for (var i = 0; i < CustomData.length; i++) {

@@ -1,79 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
-  xmlns:ti="http://ti.appcelerator.org">
-  <id>com.geonn.plux</id>
-  <name>plux</name>
-  <version>1.0.1</version>
-  <publisher>ASP Ehealth Sdn Bhd</publisher>
-  <url>http://</url>
-  <description>ASP PLUX</description>
-  <copyright>2015 by ASP Ehealth Sdn Bhd</copyright>
-  <icon>appicon.png</icon>
-  <fullscreen>false</fullscreen>
-  <navbar-hidden>false</navbar-hidden>
-  <analytics>true</analytics>
-  <guid>b98d676c-afda-43e7-9999-a1908c83672a</guid>
-  <property name="acs-oauth-secret-development" type="string">5EQbnzq1Ec0FyPh7ftnnYqlH5x7zjSzU</property>
-  <property name="acs-oauth-key-development" type="string">ywzZEIPgxSpYB3jR3AyzwtGzhFh88ha8</property>
-  <property name="acs-api-key-development" type="string">Mavow9cvBi4O7ipIO8h6f4kLIDXT9j87</property>
-  <property name="acs-oauth-secret-production" type="string">mzPkxoAWLqfVmczmahPCDJxFLWDU5xGW</property>
-  <property name="acs-oauth-key-production" type="string">fJ1GWhZRRotgpeVEVz78eVekK1Mgy0Mi</property>
-  <property name="acs-api-key-production" type="string">DrP0nZI2F9I4gWxjbRXuM3mPsPK68og0</property>
-  <property name="ti.ui.defaultunit" type="string">dp</property>
-  <ios>
-    <plist>
-      <dict>
-        <key>UISupportedInterfaceOrientations~iphone</key>
-        <array>
-          <string>UIInterfaceOrientationPortrait</string>
-        </array>
-        <key>UISupportedInterfaceOrientations~ipad</key>
-        <array>
-          <string>UIInterfaceOrientationPortrait</string>
-          <string>UIInterfaceOrientationPortraitUpsideDown</string>
-          <string>UIInterfaceOrientationLandscapeLeft</string>
-          <string>UIInterfaceOrientationLandscapeRight</string>
-        </array>
-        <key>UIRequiresPersistentWiFi</key>
-        <false/>
-        <key>UIPrerenderedIcon</key>
-        <false/>
-        <key>UIStatusBarHidden</key>
-        <false/>
-        <key>UIStatusBarStyle</key>
-        <string>UIStatusBarStyleDefault</string>
-        <key>NSLocationWhenInUseUsageDescription</key>
-        <string>Location services needed in order to route panel location</string>
-      </dict>
-    </plist>
-  </ios>
-  <android 
-    xmlns:android="http://schemas.android.com/apk/res/android"/>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>com.geonn.plux</id>
+    <name>plux</name>
+    <version>1.0.1</version>
+    <publisher>ASP Ehealth Sdn Bhd</publisher>
+    <url>http://</url>
+    <description>ASP PLUX</description>
+    <copyright>2015 by ASP Ehealth Sdn Bhd</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>b98d676c-afda-43e7-9999-a1908c83672a</guid>
+    <property name="acs-oauth-secret-development" type="string">5EQbnzq1Ec0FyPh7ftnnYqlH5x7zjSzU</property>
+    <property name="acs-oauth-key-development" type="string">ywzZEIPgxSpYB3jR3AyzwtGzhFh88ha8</property>
+    <property name="acs-api-key-development" type="string">Mavow9cvBi4O7ipIO8h6f4kLIDXT9j87</property>
+    <property name="acs-oauth-secret-production" type="string">mzPkxoAWLqfVmczmahPCDJxFLWDU5xGW</property>
+    <property name="acs-oauth-key-production" type="string">fJ1GWhZRRotgpeVEVz78eVekK1Mgy0Mi</property>
+    <property name="acs-api-key-production" type="string">DrP0nZI2F9I4gWxjbRXuM3mPsPK68og0</property>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <ios>
+        <plist>
+            <dict>
+                <key>UIBackgroundModes</key>
+                <array>
+                    <string>fetch</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+                <key>NSLocationWhenInUseUsageDescription</key>
+                <string>Location services needed in order to route panel location</string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <mobileweb>
-      <precache/>
-      <splash>
-        <enabled>true</enabled>
-        <inline-css-images>true</inline-css-images>
-      </splash>
-      <theme>default</theme>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
     </mobileweb>
     <modules>
-      <module platform="commonjs">ti.cloud</module>
-      <module platform="android">ti.map</module>
-      <module platform="iphone">ti.map</module>
-      <module platform="android">ti.cloudpush</module>
+        <module platform="commonjs">ti.cloud</module>
+        <module platform="android">ti.map</module>
+        <module platform="iphone">ti.map</module>
+        <module platform="android">ti.cloudpush</module>
+        <module platform="iphone">ti.coremotion</module>
+        <module platform="iphone">com.appcelerator.urlSession</module>
     </modules>
     <deployment-targets>
-      <target device="android">true</target>
-      <target device="blackberry">false</target>
-      <target device="ipad">true</target>
-      <target device="iphone">true</target>
-      <target device="mobileweb">true</target>
-      <target device="tizen">false</target>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">true</target>
+        <target device="tizen">false</target>
     </deployment-targets>
     <sdk-version>3.5.0.GA</sdk-version>
     <plugins>
-      <plugin version="1.0">ti.alloy</plugin>
+        <plugin version="1.0">ti.alloy</plugin>
     </plugins>
     <property name="appc-app-id" type="string">5549b0672284ff862dbcfe3f</property>
     <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
@@ -86,4 +90,4 @@
     <property name="acs-password-production" type="string">FcNECtSodL6edrvOYF</property>
     <property name="appc-org-id" type="number">100016072</property>
     <property name="appc-creator-user-id" type="string">974ebc0c-0865-4ea6-b748-9098dc431587</property>
-  </ti:app>
+</ti:app>

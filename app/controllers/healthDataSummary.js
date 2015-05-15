@@ -21,7 +21,9 @@ if(gType == "5"){
 if(gType == "6"){
 	$.graphWebView.setUrl("/html/weight.html");
 }
-
+if(gType == "10"){
+	$.graphWebView.setUrl("/html/steps.html");
+}
 function loadBarData(e){ 
 	if(e.index == "0"){
 		loadGraph("month"); 
