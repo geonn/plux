@@ -28,7 +28,7 @@
 	font:{
 		fontSize: 14
 	},
-	color: "#cccccc",
+	color: "#959494",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
 },
 ".category":{

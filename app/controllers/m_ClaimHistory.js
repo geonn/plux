@@ -1,12 +1,10 @@
-var args = arguments[0] || {};
-console.log(args);
+var args = arguments[0] || {}; 
 var arg_category = (typeof args.category != "undefined")?args.category:"%";
 
 var usersModel = Alloy.createCollection('claim_detail'); 
 var data = usersModel.getClaimDetail({memno: args.memno, category: arg_category});
 
-data.forEach(function(entry){
-	console.log(entry);
+data.forEach(function(entry){ 
 	var row = $.UI.create("TableViewRow");
 	var view_container = $.UI.create("View",{
 		layout: "vertical",
@@ -28,7 +26,7 @@ data.forEach(function(entry){
 	
 	var label_amount = $.UI.create("Label",{
 		classes: ['amount'],
-		text: "RM "+entry.amount
+		text: "RM "+ (entry.amount).toFixed(2)
 	});
 	
 	var label_date = $.UI.create("Label",{

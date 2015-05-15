@@ -77,13 +77,13 @@ exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       console.log("onload");
+	       //console.log("onload");
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		console.log('got error message');
 	       		common.createAlert(res[0].message);
@@ -96,7 +96,7 @@ exports.getClaimDetail = function(e){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
-	     	console.log('error');
+	     	//console.log('error');
 	     	retryTimes --;
 	     	
 	     	if(retryTimes !== 0){

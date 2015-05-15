@@ -50,23 +50,29 @@ function loadInfo(gType, dataPeriod) {
         });
     }
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
         message: info,
-        message2: info2
+        message2: info2,
+        dataPeriod: dataPeriod
     });
     3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     5 == gType && Ti.App.fireEvent("app:height", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     6 == gType && Ti.App.fireEvent("app:weight", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     return info;
 }
