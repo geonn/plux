@@ -14,6 +14,7 @@ var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&
 var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
+var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
@@ -25,6 +26,36 @@ var defaultRetryTimes = 3;
 /*********************
 **** API FUNCTION*****
 **********************/
+exports.updateUserFromFB = function(e, mainView){ 
+	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender;
+	console.log(url);
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) {
+			var res = JSON.parse(this.responseText);
+	
+		    if(res.status == "success"){ 
+		        
+	         	/** User session**/
+	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
+	         	Ti.App.Properties.setString('facebooklogin', 1);
+	         	 
+	         	//API.updateNotificationToken(); 
+				 
+				common.hideLoading();
+				 
+		    }
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+		},
+		timeout : 7000  // in milliseconds
+	});
+	// Prepare the connection.
+	client.open("GET", url);
+	 // Send the request.
+	client.send();  
+};
 
 exports.doLogin = function(username, password, mainView, target) { 
 	 

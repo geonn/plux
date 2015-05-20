@@ -38,6 +38,10 @@ function countStep() {
             Ti.App.Properties.setString("step", gStep);
         }
     });
+    if (isCountStepEventExists) {
+        Ti.App.removeEventListener("countStep", countStep);
+        isCountStepEventExists = false;
+    }
 }
 
 function mysql_real_escape_string(str) {
@@ -119,6 +123,14 @@ var CoreMotion = require("ti.coremotion");
 
 Alloy.Globals.Map = require("ti.map");
 
+var FACEBOOK = require("facebook");
+
+FACEBOOK.appid = "684687638302896";
+
+FACEBOOK.permissions = [ "public_profile", "email", "user_friends" ];
+
+FACEBOOK.forceDialogAuth = true;
+
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 CoreMotion.isStepCountingAvailable() ? CoreMotion.startStepCountingUpdates({
@@ -128,6 +140,14 @@ CoreMotion.isStepCountingAvailable() ? CoreMotion.startStepCountingUpdates({
         countStep();
     }, 1e3);
 }) : Ti.API.warn("This device does not support counting steps.");
+
+var isCountStepEventExists = true;
+
+Ti.App.addEventListener("countStep", countStep);
+
+Ti.App.iOS.registerBackgroundService({
+    url: "services.js"
+});
 
 Titanium.UI.iPhone.setAppBadge("0");
 
