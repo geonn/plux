@@ -26,7 +26,7 @@ details.forEach(function(entry) {
 		panel_id: entry.id
 	});
 	detBtn.addEventListener('click', function(ex){ 
-		nav.navigateWithArgs("clinicDetails", {panel_id:ex.source.panel_id});
+		nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
 	});       
 	var merchantLoc = Map.createAnnotation({
 	    latitude:entry.latitude,

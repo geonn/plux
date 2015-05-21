@@ -147,6 +147,7 @@ function Controller() {
     arguments[0] || {};
     require("login");
     var method = require("myClaim");
+    console.log(method);
     method.API_ClaimInfo("910128035500", "ASP");
     Ti.UI.addEventListener("data_loaded", init);
     _.extend($, exports);

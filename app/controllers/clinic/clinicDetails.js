@@ -93,7 +93,7 @@ function direction2here(){
 	    var longitude = e.coords.longitude;
 	    var latitude = e.coords.latitude; 
 	 	console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
-	    nav.navigateWithArgs("clinicMap", {url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
+	    nav.navigateWithArgs("clinic/clinicMap", {url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
 	   	 
 	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 
 	};

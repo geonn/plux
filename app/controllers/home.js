@@ -124,7 +124,8 @@ function navWindow(e){
 	
 	if(e.source.mod == "eCard" || e.source.mod == "myClaim" || e.source.mod == "profile"){ 
 		nav.navigationWindow("asp/"+target, 1); 
-		
+	}else if(e.source.mod == "state"){
+		nav.navigationWindow("clinic/"+target, 1); 
 	}else{
 		nav.navigationWindow(target);
 	}	

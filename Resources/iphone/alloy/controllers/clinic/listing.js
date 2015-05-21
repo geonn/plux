@@ -11,7 +11,7 @@ function Controller() {
     function listing() {
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
-            height: "auto"
+            separatorColor: "#ffffff"
         });
         var data = [];
         var arr = details;
@@ -32,8 +32,8 @@ function Controller() {
             arr.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
-                    height: 50,
-                    source: entry.state,
+                    height: 70,
+                    id: entry.id,
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundGradient: {
                         type: "linear",
@@ -49,40 +49,72 @@ function Controller() {
                         backFillStart: false
                     }
                 });
-                var stateLbl = Titanium.UI.createLabel({
-                    text: entry.state,
+                var popUpTitle = Titanium.UI.createLabel({
+                    text: entry.clinicName,
                     font: {
-                        fontSize: 18
+                        fontSize: 16
                     },
-                    source: entry.state,
+                    source: entry.id,
                     color: "#848484",
                     width: "65%",
                     textAlign: "left",
-                    top: 12,
+                    top: 8,
                     left: 20,
                     height: 25
                 });
+                var address = Titanium.UI.createLabel({
+                    text: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+                    source: entry.id,
+                    font: {
+                        fontSize: 12,
+                        fontWeight: "bold"
+                    },
+                    width: "auto",
+                    color: "#848484",
+                    textAlign: "left",
+                    width: "85%",
+                    bottom: 23,
+                    left: 20,
+                    height: 12
+                });
+                var tel = Titanium.UI.createLabel({
+                    text: entry.tel,
+                    source: entry.id,
+                    font: {
+                        fontSize: 12,
+                        fontWeight: "bold"
+                    },
+                    width: "auto",
+                    color: "#848484",
+                    textAlign: "left",
+                    bottom: 5,
+                    left: 20,
+                    height: 12
+                });
                 var rightForwardBtn = Titanium.UI.createImageView({
                     image: "/images/btn-forward.png",
-                    source: entry.state,
+                    source: entry.m_id,
                     width: 15,
                     right: 20
                 });
-                row.add(stateLbl);
+                row.add(popUpTitle);
+                row.add(address);
+                row.add(tel);
                 row.add(rightForwardBtn);
                 data.push(row);
             });
             TheTable.setData(data);
-            $.panelClinicTbl.add(TheTable);
+            $.panelListTbl.add(TheTable);
         }
         TheTable.addEventListener("click", function(e) {
-            nav.navigateWithArgs("clinicListing", {
-                state: e.rowData.source
+            var nav = require("navigation");
+            nav.navigateWithArgs("clinic/locator", {
+                id: e.rowData.id
             });
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "clinicState";
+    this.__controllerPath = "clinic/listing";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -96,23 +128,22 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.panelClinicTbl = Ti.UI.createWindow({
+    $.__views.panelListTbl = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "ASP Panel",
-        id: "panelClinicTbl",
+        title: "Clinic Locator",
+        id: "panelListTbl",
         backButtonTitle: "",
         navTintColor: "#CE1D1C"
     });
-    $.__views.panelClinicTbl && $.addTopLevelView($.__views.panelClinicTbl);
+    $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
+    var args = arguments[0] || {};
+    var state = args.state || "";
     var library = Alloy.createCollection("panelList");
-    var details = library.getPanelListByState();
-    console.log(details);
+    var details = library.getPanelByState(state);
     listing();
-    API.loadPanelList();
     _.extend($, exports);
 }
 

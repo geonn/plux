@@ -1,13 +1,15 @@
 var args = arguments[0] || {};
-var state = args.state || "";
 var library = Alloy.createCollection('panelList');
-var details = library.getPanelByState(state); 
-listing(); 
+var details = library.getPanelListByState();
+console.log(details);
+listing();
+API.loadPanelList();
 
 function listing(){
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
-		separatorColor: '#ffffff'
+		height: 'auto'
+		//separatorColor: '#ffffff'
 	});
 	
 	var data=[];
@@ -31,8 +33,8 @@ function listing(){
 	   			
 	   			var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
-			    height: 70,
-			    id: entry.id,
+			    height: 50,
+			    source: entry.state,
 			    selectedBackgroundColor: "#FFE1E1",
 				backgroundGradient: {
 			      type: 'linear',
@@ -42,71 +44,41 @@ function listing(){
 			      backFillStart:false},
 			   });
 				 
-		 
-				var popUpTitle = Titanium.UI.createLabel({
-					text:entry.clinicName,
-					font:{fontSize:16},
-					source: entry.id,
+				var stateLbl = Titanium.UI.createLabel({
+					text:entry.state,
+					font:{fontSize:18},
+					source: entry.state,
 					color: "#848484",
 					width:'65%',
 					textAlign:'left',
-					top:8,
+					top:12,
 					left:20,
 					height:25
-				});
+				}); 
 				
-				var address =  Titanium.UI.createLabel({
-					text:entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-					source: entry.id,
-					font:{fontSize:12,fontWeight:'bold'},
-					width:'auto',
-					color: "#848484",
-					textAlign:'left',
-					width:'85%',
-					bottom:23,
-					left:20,
-					height:12
-				});
-				
-				var tel =  Titanium.UI.createLabel({
-					text:entry.tel,
-					source: entry.id,
-					font:{fontSize:12,fontWeight:'bold'},
-					width:'auto',
-					color: "#848484",
-					textAlign:'left',
-					bottom:5,
-					left:20,
-					height:12
-				});
-				 
 				var rightForwardBtn =  Titanium.UI.createImageView({
 					image:"/images/btn-forward.png",
-					source: entry.m_id,
+					source: entry.state,
 					width:15,
 					right:20 
 				});		
-				
-				/**
+				 
+				/*
 				row.addEventListener('touchend', function(e) {
 				 //	goAd(e);
 				});
 			 */
 				 
-				row.add(popUpTitle);
-				row.add(address);
-			 	row.add(tel);
-			 	row.add(rightForwardBtn);
+				row.add(stateLbl);
+				row.add(rightForwardBtn); 
 				data.push(row);
 	   		});
 	   		
 	   		TheTable.setData(data);
-			$.panelListTbl.add(TheTable);
+			$.panelClinicTbl.add(TheTable);
 		}
 		
-		TheTable.addEventListener('click', function(e)
-		{
-			var nav = require('navigation');
-			nav.navigateWithArgs("clinicLocator", {id:e.rowData.id});
+		TheTable.addEventListener('click', function(e) { 
+			nav.navigateWithArgs("clinic/listing", {state:e.rowData.source});
 		});
 }
