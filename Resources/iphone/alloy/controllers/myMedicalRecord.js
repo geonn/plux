@@ -142,20 +142,35 @@ function Controller() {
         navTintColor: "#CE1D1C",
         id: "myMedicalRecord"
     });
+<<<<<<< HEAD:Resources/iphone/alloy/controllers/myMedicalRecord.js
     $.__views.myMedicalRecord && $.addTopLevelView($.__views.myMedicalRecord);
     $.__views.__alloyId184 = Ti.UI.createView({
         id: "__alloyId184"
+=======
+    $.__views.m_myMedical && $.addTopLevelView($.__views.m_myMedical);
+    $.__views.__alloyId200 = Ti.UI.createView({
+        id: "__alloyId200"
+>>>>>>> origin/master:Resources/iphone/alloy/controllers/m_myMedical.js
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
+<<<<<<< HEAD:Resources/iphone/alloy/controllers/myMedicalRecord.js
     $.__views.__alloyId184.add($.__views.newRecord);
     $.__views.myMedicalRecord.rightNavButton = $.__views.__alloyId184;
     $.__views.__alloyId185 = Ti.UI.createView({
         id: "__alloyId185"
     });
     $.__views.myMedicalRecord.add($.__views.__alloyId185);
+=======
+    $.__views.__alloyId200.add($.__views.newRecord);
+    $.__views.m_myMedical.rightNavButton = $.__views.__alloyId200;
+    $.__views.__alloyId201 = Ti.UI.createView({
+        id: "__alloyId201"
+    });
+    $.__views.m_myMedical.add($.__views.__alloyId201);
+>>>>>>> origin/master:Resources/iphone/alloy/controllers/m_myMedical.js
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -164,7 +179,11 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD:Resources/iphone/alloy/controllers/myMedicalRecord.js
     $.__views.__alloyId185.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId201.add($.__views.loadingBar);
+>>>>>>> origin/master:Resources/iphone/alloy/controllers/m_myMedical.js
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -188,7 +207,11 @@ function Controller() {
         top: "0",
         layout: "vertical"
     });
+<<<<<<< HEAD:Resources/iphone/alloy/controllers/myMedicalRecord.js
     $.__views.__alloyId185.add($.__views.aView);
+=======
+    $.__views.__alloyId201.add($.__views.aView);
+>>>>>>> origin/master:Resources/iphone/alloy/controllers/m_myMedical.js
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",

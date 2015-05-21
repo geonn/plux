@@ -119,5 +119,5 @@ function GenerateClaimBalanceTable(balance_groups){
 
 $.setting.addEventListener("click", function(){
 	var nav = require('navigation');
-	nav.navigateWithArgs("m_ClaimHistory", {memno: user.icno});
+	nav.navigateWithArgs("asp/claimHistory", {memno: user.icno});
 });

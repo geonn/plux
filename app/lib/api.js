@@ -156,8 +156,9 @@ exports.getClaimDetail = function(e){
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       //console.log("onload");
-	       if(typeof res[0].message !== undefined && res[0].message != null){
+	       if(res.length == 0){
+	       	
+	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
 	       		console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{

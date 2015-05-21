@@ -122,8 +122,9 @@ $.scrollboard.addEventListener("scroll", function(e){
 function navWindow(e){
 	var target = e.source.mod; 
 	
-	if(e.source.mod == "m_eCard" || e.source.mod == "m_myClaim" || e.source.mod == "profile"){
-		nav.navigationWindow(target, 1);
+	if(e.source.mod == "eCard" || e.source.mod == "myClaim" || e.source.mod == "profile"){ 
+		nav.navigationWindow("asp/"+target, 1); 
+		
 	}else{
 		nav.navigationWindow(target);
 	}	

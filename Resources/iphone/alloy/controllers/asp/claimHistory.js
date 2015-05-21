@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "m_ClaimHistory";
+    this.__controllerPath = "asp/claimHistory";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -23,20 +23,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.m_ClaimHistory = Ti.UI.createWindow({
+    $.__views.claimHistory = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "My Claim History",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
-        id: "m_ClaimHistory"
+        id: "claimHistory"
     });
-    $.__views.m_ClaimHistory && $.addTopLevelView($.__views.m_ClaimHistory);
+    $.__views.claimHistory && $.addTopLevelView($.__views.claimHistory);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"
     });
-    $.__views.m_ClaimHistory.add($.__views.main);
+    $.__views.claimHistory.add($.__views.main);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });

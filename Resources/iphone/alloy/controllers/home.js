@@ -62,7 +62,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "m_eCard" == e.source.mod || "m_myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");
@@ -206,9 +206,15 @@ function Controller() {
         top: "239",
         id: "__alloyId123"
     });
+<<<<<<< HEAD
     $.__views.scrollboard.add($.__views.__alloyId123);
     $.__views.__alloyId124 = Ti.UI.createImageView({
         mod: "m_eCard",
+=======
+    $.__views.scrollboard.add($.__views.__alloyId132);
+    $.__views.__alloyId133 = Ti.UI.createImageView({
+        mod: "eCard",
+>>>>>>> origin/master
         top: "15",
         width: "139",
         image: "/btn/btn_asp_e_card_pass.png",
@@ -224,10 +230,17 @@ function Controller() {
         image: "/btn/btn_my_health.png",
         id: "__alloyId125"
     });
+<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.__alloyId125);
     navWindow ? $.__views.__alloyId125.addEventListener("click", navWindow) : __defers["$.__views.__alloyId125!click!navWindow"] = true;
     $.__views.__alloyId126 = Ti.UI.createImageView({
         mod: "m_myClaim",
+=======
+    $.__views.__alloyId132.add($.__views.__alloyId134);
+    navWindow ? $.__views.__alloyId134.addEventListener("click", navWindow) : __defers["$.__views.__alloyId134!click!navWindow"] = true;
+    $.__views.__alloyId135 = Ti.UI.createImageView({
+        mod: "myClaim",
+>>>>>>> origin/master
         top: "15",
         width: "139",
         image: "/btn/btn_my_claim_detail.png",
