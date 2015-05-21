@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "clinic/locator";
+    this.__controllerPath = "clinic/clinicLocator";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -60,7 +60,7 @@ function Controller() {
             panel_id: entry.id
         });
         detBtn.addEventListener("click", function(ex) {
-            nav.navigateWithArgs("clinicDetails", {
+            nav.navigateWithArgs("clinic/clinicDetails", {
                 panel_id: ex.source.panel_id
             });
         });

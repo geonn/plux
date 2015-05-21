@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "clinicMap";
+    this.__controllerPath = "clinic/clinicMap";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");

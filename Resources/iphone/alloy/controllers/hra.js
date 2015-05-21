@@ -32,55 +32,55 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hra && $.addTopLevelView($.__views.hra);
-    var __alloyId67 = [];
-    $.__views.__alloyId68 = {
+    var __alloyId62 = [];
+    $.__views.__alloyId63 = {
         properties: {
             mod: "bmi",
             title: "BMI Calculator",
-            id: "__alloyId68"
+            id: "__alloyId63"
         }
     };
-    __alloyId67.push($.__views.__alloyId68);
-    $.__views.__alloyId69 = {
+    __alloyId62.push($.__views.__alloyId63);
+    $.__views.__alloyId64 = {
         properties: {
             mod: "whratio",
             title: "Waist-To-Hips Ratio Calculator",
-            id: "__alloyId69"
+            id: "__alloyId64"
         }
     };
-    __alloyId67.push($.__views.__alloyId69);
-    $.__views.__alloyId70 = {
+    __alloyId62.push($.__views.__alloyId64);
+    $.__views.__alloyId65 = {
         properties: {
             mod: "nutritional_profile",
             title: "Nutritional Profile",
-            id: "__alloyId70"
+            id: "__alloyId65"
         }
     };
-    __alloyId67.push($.__views.__alloyId70);
-    $.__views.__alloyId71 = {
+    __alloyId62.push($.__views.__alloyId65);
+    $.__views.__alloyId66 = {
         properties: {
             mod: "smokecost",
             title: "Smoking Cost Calculator",
-            id: "__alloyId71"
+            id: "__alloyId66"
         }
     };
-    __alloyId67.push($.__views.__alloyId71);
-    $.__views.__alloyId72 = {
+    __alloyId62.push($.__views.__alloyId66);
+    $.__views.__alloyId67 = {
         properties: {
             mod: "diabetes",
             title: "Diabetes Risk Calculator",
-            id: "__alloyId72"
+            id: "__alloyId67"
         }
     };
-    __alloyId67.push($.__views.__alloyId72);
-    $.__views.__alloyId65 = Ti.UI.createListSection({
-        id: "__alloyId65"
+    __alloyId62.push($.__views.__alloyId67);
+    $.__views.__alloyId60 = Ti.UI.createListSection({
+        id: "__alloyId60"
     });
-    $.__views.__alloyId65.items = __alloyId67;
-    var __alloyId73 = [];
-    __alloyId73.push($.__views.__alloyId65);
+    $.__views.__alloyId60.items = __alloyId62;
+    var __alloyId68 = [];
+    __alloyId68.push($.__views.__alloyId60);
     $.__views.menu = Ti.UI.createListView({
-        sections: __alloyId73,
+        sections: __alloyId68,
         id: "menu"
     });
     $.__views.hra.add($.__views.menu);

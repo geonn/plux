@@ -32,16 +32,15 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
-    var __alloyId88 = [];
+    var __alloyId83 = [];
     $.__views.main = Ti.UI.createScrollableView({
-        views: __alloyId88,
+        views: __alloyId83,
         id: "main"
     });
     $.__views.healthProfileWin.add($.__views.main);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-<<<<<<< HEAD
     var usersModel = Alloy.createCollection("users");
     var data = usersModel.getUserByEmpNo();
     var healthModel = Alloy.createCollection("personalInfo");
@@ -53,13 +52,6 @@ function Controller() {
         }).getView();
         $.main.addView(profile_view);
     }
-=======
-    require("login");
-    var method = require("myClaim");
-    console.log(method);
-    method.API_ClaimInfo("910128035500", "ASP");
-    Ti.UI.addEventListener("data_loaded", init);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

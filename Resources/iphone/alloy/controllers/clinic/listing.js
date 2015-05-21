@@ -108,7 +108,7 @@ function Controller() {
         }
         TheTable.addEventListener("click", function(e) {
             var nav = require("navigation");
-            nav.navigateWithArgs("clinic/locator", {
+            nav.navigateWithArgs("clinic/clinicLocator", {
                 id: e.rowData.id
             });
         });
