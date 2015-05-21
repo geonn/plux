@@ -7,7 +7,7 @@
             	<ListItem mod="nutritional_profile" title="Nutritional Profile"></ListItem>
             	<ListItem mod="smokecost" title="Smoking Cost Calculator"></ListItem>
             	<ListItem mod="diabetes" title="Diabetes Risk Calculator"></ListItem>
-            	<ListItem mod="chd" title="Coronary Heart Disease Risk Calculator"></ListItem>
+            	<!--<ListItem mod="chd" title="Coronary Heart Disease Risk Calculator"></ListItem>-->
         	</ListSection>
 		</ListView>
 	</Window>
