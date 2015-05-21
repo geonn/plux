@@ -27,6 +27,8 @@ var updateUserFromFB = "http://" + FREEJINI_DOMAIN + "/api/updateUserFromFB?user
 
 var healthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/syncHealthData?user=" + USER + "&key=" + KEY;
 
+var removeHealthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/removeHealthData?user=" + USER + "&key=" + KEY;
+
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
@@ -73,6 +75,20 @@ exports.syncHealthData = function(e) {
     client.send({
         list: JSON.stringify(records)
     });
+};
+
+exports.removeHealthDataById = function(id) {
+    var u_id = Ti.App.Properties.getString("u_id") || "";
+    if ("" == u_id) return false;
+    var url = removeHealthDataUrl + "&u_id=" + u_id + "&h_id=" + id;
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {},
+        onerror: function() {},
+        timeout: 7e3
+    });
+    client.open("GET", url);
+    client.send();
 };
 
 exports.doLogin = function(username, password, mainView, target) {

@@ -16,6 +16,7 @@ var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USE
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
+var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
@@ -65,13 +66,10 @@ exports.syncHealthData = function(e){
 	var url = healthDataUrl + "&u_id="+e.u_id; 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) {
-	       
-	       
+	     onload : function(e) { 
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {  
-       		
+	     onerror : function(e) {   
 	     },
 	     timeout : 6000  // in milliseconds
 	 });
@@ -79,6 +77,26 @@ exports.syncHealthData = function(e){
 	 client.open("POST", url);
 	 // Send the request.
 	 client.send({list: JSON.stringify(records)});
+};
+
+exports.removeHealthDataById = function(id){
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
+		return false;
+	}
+	var url = removeHealthDataUrl+"&u_id="+u_id+"&h_id="+id;
+	console.log(url);
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) { 
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+		},
+		timeout : 7000  // in milliseconds
+	}); 
+	client.open("GET", url); 
+	client.send(); 
 };
 
 exports.doLogin = function(username, password, mainView, target) { 

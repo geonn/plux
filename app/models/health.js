@@ -226,6 +226,7 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute(sql);
                 db.close();
+                API.removeHealthDataById(id);
                 collection.trigger('sync');
             } 
 		});
