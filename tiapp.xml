@@ -64,18 +64,22 @@
         <module platform="android">ti.map</module>
         <module platform="iphone">ti.map</module>
         <module platform="android">ti.cloudpush</module>
-        <module platform="iphone">ti.coremotion</module>
         <module platform="iphone">com.appcelerator.urlSession</module>
+        <module platform="android">com.appcelerator.apm</module>
+        <module platform="iphone">com.appcelerator.apm</module>
+        <module platform="iphone">ti.coremotion</module>
+        <module platform="android">facebook</module>
+        <module platform="iphone">facebook</module>
     </modules>
     <deployment-targets>
-        <target device="android">true</target>
         <target device="blackberry">false</target>
+        <target device="android">true</target>
         <target device="ipad">true</target>
         <target device="iphone">true</target>
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.5.0.GA</sdk-version>
+    <sdk-version>3.5.1.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

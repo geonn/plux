@@ -15,6 +15,13 @@ var PUSH = require('push');
 var nav = require('navigation');
 var CoreMotion = require('ti.coremotion'); 
 Alloy.Globals.Map = require('ti.map');
+
+/***Facebook Library***/
+var FACEBOOK = require('facebook');
+FACEBOOK.appid = "684687638302896";
+FACEBOOK.permissions = ['public_profile','email','user_friends']; // Permissions your app needs
+FACEBOOK.forceDialogAuth = true;
+
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
 
@@ -23,9 +30,13 @@ if (CoreMotion.isStepCountingAvailable()) {
 } else {
     Ti.API.warn('This device does not support counting steps.');
 } 
-   
+var isCountStepEventExists = true;
+Ti.App.addEventListener('countStep',countStep );
+Ti.App.iOS.registerBackgroundService({url:'services.js'});   
 function countStep(){ 
+	
 	var starts = new Date(new Date().getTime() - 1*1000);
+	//console.log('start: '+starts);
 	var ends  =new Date();
 	CoreMotion.queryStepCount({
         start: starts, 
@@ -67,6 +78,12 @@ function countStep(){
 		}
     	 
     });
+    
+    if(isCountStepEventExists){ 
+    	Ti.App.removeEventListener('countStep',countStep );
+    	isCountStepEventExists =false;
+    }
+    
 } 
 
 //MYSQL ESCAPE STRING

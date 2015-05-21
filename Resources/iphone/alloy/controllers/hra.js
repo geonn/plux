@@ -32,63 +32,63 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hra && $.addTopLevelView($.__views.hra);
-    var __alloyId143 = [];
-    $.__views.__alloyId144 = {
+    var __alloyId144 = [];
+    $.__views.__alloyId145 = {
         properties: {
             mod: "bmi",
             title: "BMI Calculator",
-            id: "__alloyId144"
-        }
-    };
-    __alloyId143.push($.__views.__alloyId144);
-    $.__views.__alloyId145 = {
-        properties: {
-            mod: "whratio",
-            title: "Waist-To-Hips Ratio Calculator",
             id: "__alloyId145"
         }
     };
-    __alloyId143.push($.__views.__alloyId145);
+    __alloyId144.push($.__views.__alloyId145);
     $.__views.__alloyId146 = {
         properties: {
-            mod: "nutritional_profile",
-            title: "Nutritional Profile",
+            mod: "whratio",
+            title: "Waist-To-Hips Ratio Calculator",
             id: "__alloyId146"
         }
     };
-    __alloyId143.push($.__views.__alloyId146);
+    __alloyId144.push($.__views.__alloyId146);
     $.__views.__alloyId147 = {
         properties: {
-            mod: "smokecost",
-            title: "Smoking Cost Calculator",
+            mod: "nutritional_profile",
+            title: "Nutritional Profile",
             id: "__alloyId147"
         }
     };
-    __alloyId143.push($.__views.__alloyId147);
+    __alloyId144.push($.__views.__alloyId147);
     $.__views.__alloyId148 = {
         properties: {
-            mod: "diabetes",
-            title: "Diabetes Risk Calculator",
+            mod: "smokecost",
+            title: "Smoking Cost Calculator",
             id: "__alloyId148"
         }
     };
-    __alloyId143.push($.__views.__alloyId148);
+    __alloyId144.push($.__views.__alloyId148);
     $.__views.__alloyId149 = {
         properties: {
-            mod: "chd",
-            title: "Coronary Heart Disease Risk Calculator",
+            mod: "diabetes",
+            title: "Diabetes Risk Calculator",
             id: "__alloyId149"
         }
     };
-    __alloyId143.push($.__views.__alloyId149);
-    $.__views.__alloyId141 = Ti.UI.createListSection({
-        id: "__alloyId141"
+    __alloyId144.push($.__views.__alloyId149);
+    $.__views.__alloyId150 = {
+        properties: {
+            mod: "chd",
+            title: "Coronary Heart Disease Risk Calculator",
+            id: "__alloyId150"
+        }
+    };
+    __alloyId144.push($.__views.__alloyId150);
+    $.__views.__alloyId142 = Ti.UI.createListSection({
+        id: "__alloyId142"
     });
-    $.__views.__alloyId141.items = __alloyId143;
-    var __alloyId150 = [];
-    __alloyId150.push($.__views.__alloyId141);
+    $.__views.__alloyId142.items = __alloyId144;
+    var __alloyId151 = [];
+    __alloyId151.push($.__views.__alloyId142);
     $.__views.menu = Ti.UI.createListView({
-        sections: __alloyId150,
+        sections: __alloyId151,
         id: "menu"
     });
     $.__views.hra.add($.__views.menu);

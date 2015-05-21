@@ -23,6 +23,32 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
+            getHealthList: function() {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        date: res.fieldByName("date"),
+                        time: res.fieldByName("time"),
+                        type: res.fieldByName("type"),
+                        field1: res.fieldByName("field1"),
+                        field2: res.fieldByName("field2"),
+                        amount: res.fieldByName("amount"),
+                        created: res.fieldByName("created")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             getHealthAllListByType: function(type) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);

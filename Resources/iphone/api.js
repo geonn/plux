@@ -23,7 +23,15 @@ var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + U
 
 var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
 
+<<<<<<< HEAD
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx";
+=======
+var updateUserFromFB = "http://" + FREEJINI_DOMAIN + "/api/updateUserFromFB?user=" + USER + "&key=" + KEY;
+
+var healthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/syncHealthData?user=" + USER + "&key=" + KEY;
+
+var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
+>>>>>>> origin/master
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 
@@ -32,6 +40,44 @@ var checkBalanceUrl = "https://" + API_DOMAIN + "/balchk.aspx";
 var getClaimDetailUrl = "https://" + API_DOMAIN + "/claim.aspx";
 
 var defaultRetryTimes = 3;
+
+exports.updateUserFromFB = function(e) {
+    var url = updateUserFromFB + "&email=" + e.email + "&fbid=" + e.fbid + "&link=" + e.link + "&name=" + e.name + "&gender=" + e.gender;
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            if ("success" == res.status) {
+                API.syncHealthData({
+                    u_id: res.data.u_id
+                });
+                Ti.App.Properties.setString("u_id", res.data.u_id);
+                Ti.App.Properties.setString("facebooklogin", 1);
+                common.hideLoading();
+            }
+        },
+        onerror: function() {},
+        timeout: 7e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.syncHealthData = function(e) {
+    var healthModel = Alloy.createCollection("health");
+    var records = healthModel.getHealthList();
+    var url = healthDataUrl + "&u_id=" + e.u_id;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {},
+        onerror: function() {},
+        timeout: 6e3
+    });
+    client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    client.open("POST", url);
+    client.send({
+        list: JSON.stringify(records)
+    });
+};
 
 exports.doLogin = function(username, password, mainView, target) {
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
