@@ -73,22 +73,14 @@ function Controller() {
         }
     };
     __alloyId144.push($.__views.__alloyId149);
-    $.__views.__alloyId150 = {
-        properties: {
-            mod: "chd",
-            title: "Coronary Heart Disease Risk Calculator",
-            id: "__alloyId150"
-        }
-    };
-    __alloyId144.push($.__views.__alloyId150);
     $.__views.__alloyId142 = Ti.UI.createListSection({
         id: "__alloyId142"
     });
     $.__views.__alloyId142.items = __alloyId144;
-    var __alloyId151 = [];
-    __alloyId151.push($.__views.__alloyId142);
+    var __alloyId150 = [];
+    __alloyId150.push($.__views.__alloyId142);
     $.__views.menu = Ti.UI.createListView({
-        sections: __alloyId151,
+        sections: __alloyId150,
         id: "menu"
     });
     $.__views.hra.add($.__views.menu);
@@ -97,7 +89,6 @@ function Controller() {
     arguments[0] || {};
     $.menu.addEventListener("itemclick", function(e) {
         var item = e.section.getItemAt(e.itemIndex);
-        console.log(item.properties.mod);
         nav.navigateWithArgs("hraDetail", {
             mod: item.properties.mod
         });

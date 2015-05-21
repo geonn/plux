@@ -192,10 +192,7 @@ function addForm(text, type, options){
 		label_picker_value.addEventListener("click", function(e){
 			var index = e.source.counter;
 			$.picker.add(form[index]);
-			console.log(form[index]);
-			console.log($.picker.getChildren());
-			console.log("outside");
-			console.log(form[index].getSelectedRow(0));
+			 
 			form[index].addEventListener("change", formEvent);
 		});
 		
@@ -204,8 +201,7 @@ function addForm(text, type, options){
 			$.picker.removeAllChildren();
 			ex.source.removeEventListener("change", formEvent);
 			form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
-			form[ex.source.counter].row_value = ex.rowIndex;
-			console.log(form[ex.source.counter].row_value);
+			form[ex.source.counter].row_value = ex.rowIndex; 
 		}
 		
 		for(var a = 0; a < options.length; a++){
@@ -235,9 +231,7 @@ function addForm(text, type, options){
 }
 
 function formular(){
-	var total_score = 0;
-	console.log(form[0]);
-	console.log(form[0].row_value);
+	var total_score = 0; 
 	switch(form[0].row_value){
 		case 0: 
 			total_score += 0;
@@ -287,8 +281,7 @@ function formular(){
 		case 2:
 			total_score += 20;
 			break;
-	}
-	console.log(total_score);	
+	} 
 	if(total_score <= 30){
 		resultPopUp("RESULT", "You have a Low Risk for diabetes. Stay fit and healthy by doing regularly exercise of moderate intensity like swimming, gardening or brisk walking. Follow a well balanced diet with low fat content. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.");
 	}else if(total_score <= 60){
@@ -353,8 +346,7 @@ function resultPopUp(title, msg){
 	content.add(content_text);
 	content.add(okButton);
 	box.add(header);
-	box.add(content);
-	console.log('yes');
+	box.add(content); 
 	$.win.add(box);
 	$.win.add(mask);
 	okButton.addEventListener("click", function(){

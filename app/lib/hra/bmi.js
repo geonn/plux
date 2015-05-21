@@ -96,9 +96,9 @@ exports.input_box = function(){
 	view_container.add(view_inputbox);
 	
 	button_submit.addEventListener("click", function(e){
-		for(a = 0; a < form.length; a++){
-			console.log(form[a].value);
-		}
+		// for(a = 0; a < form.length; a++){
+			// console.log(form[a].value);
+		// }
 		formular();
 	});
 	
@@ -238,8 +238,7 @@ function resultPopUp(title, msg){
 	content.add(content_text);
 	content.add(okButton);
 	box.add(header);
-	box.add(content);
-	console.log('yes');
+	box.add(content); 
 	$.win.add(box);
 	$.win.add(mask);
 	okButton.addEventListener("click", function(){

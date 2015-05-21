@@ -23,17 +23,13 @@ var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + U
 
 var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
 
-<<<<<<< HEAD
-var panelList = "https://" + API_DOMAIN + "/panellist.aspx";
-=======
 var updateUserFromFB = "http://" + FREEJINI_DOMAIN + "/api/updateUserFromFB?user=" + USER + "&key=" + KEY;
 
 var healthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/syncHealthData?user=" + USER + "&key=" + KEY;
 
 var removeHealthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/removeHealthData?user=" + USER + "&key=" + KEY;
 
-var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
->>>>>>> origin/master
+var panelList = "https://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 

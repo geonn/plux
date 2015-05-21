@@ -5,7 +5,6 @@ function addForm(text, type, options) {
         ex.source.removeEventListener("change", formEvent);
         form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
         form[ex.source.counter].row_value = ex.rowIndex;
-        console.log(form[ex.source.counter].row_value);
     }
     if ("TextField" == type) {
         var label_textfield = $.UI.create("Label", {
@@ -88,10 +87,6 @@ function addForm(text, type, options) {
         label_picker_value.addEventListener("click", function(e) {
             var index = e.source.counter;
             $.picker.add(form[index]);
-            console.log(form[index]);
-            console.log($.picker.getChildren());
-            console.log("outside");
-            console.log(form[index].getSelectedRow(0));
             form[index].addEventListener("change", formEvent);
         });
         for (var a = 0; a < options.length; a++) {
@@ -121,8 +116,6 @@ function addForm(text, type, options) {
 
 function formular() {
     var total_score = 0;
-    console.log(form[0]);
-    console.log(form[0].row_value);
     switch (form[0].row_value) {
       case 0:
         total_score += 0;
@@ -175,7 +168,6 @@ function formular() {
       case 2:
         total_score += 20;
     }
-    console.log(total_score);
     30 >= total_score ? resultPopUp("RESULT", "You have a Low Risk for diabetes. Stay fit and healthy by doing regularly exercise of moderate intensity like swimming, gardening or brisk walking. Follow a well balanced diet with low fat content. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.") : 60 >= total_score ? resultPopUp("RESULT", "You have a Moderate Risk for diabetes. Walk briskly for half an hour daily to reduce your risk by 30%. Cut down the intake of sugary drinks as they drastically increase your risk. Choose a diet rich in whole grains to protect your body against diabetes. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.") : resultPopUp("RESULT", "You have a High Risk for diabetes.\nWe recommend the following preventive measures:\n-   Consult your physician to plan an exercise regime\n- Choose a diet rich in whole grains and low in calories\n- We advice you to take the Oral Glucose Tolerance Test (OGTT) at one of the recommended diagnostic centres or hospitals\n- It is recommended that you check your glucose levels more frequently (once in 4 to 6 months)");
 }
 
@@ -235,7 +227,6 @@ function resultPopUp(title, msg) {
     content.add(okButton);
     box.add(header);
     box.add(content);
-    console.log("yes");
     $.win.add(box);
     $.win.add(mask);
     okButton.addEventListener("click", function() {

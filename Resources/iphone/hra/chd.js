@@ -176,7 +176,6 @@ function resultPopUp(title, msg) {
     content.add(okButton);
     box.add(header);
     box.add(content);
-    console.log("yes");
     $.win.add(box);
     $.win.add(mask);
     okButton.addEventListener("click", function() {
@@ -273,7 +272,6 @@ exports.input_box = function() {
     });
     view_container.add(view_inputbox);
     button_submit.addEventListener("click", function() {
-        for (a = 0; a < form.length; a++) console.log(form[a].value);
         formular();
     });
     return view_container;

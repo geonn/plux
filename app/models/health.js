@@ -215,10 +215,11 @@ exports.definition = {
                 }else{
                 	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created) VALUES ('"+entry.date+"', '"+entry.time +"','"+entry.type+"','"+entry.field1+"','"+entry.field2+"' ,'"+entry.amount+"', '"+ currentDateTime() +"')";
 				}
-				console.log(sql_query);
+				
                 db.execute(sql_query);
 	            db.close();
 	            collection.trigger('sync');
+	            API.syncHealthData({u_id:Ti.App.Properties.getString('u_id')});
             },
             removeHealthDataById : function(id) {
             	var collection = this;
