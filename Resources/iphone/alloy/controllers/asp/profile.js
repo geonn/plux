@@ -128,36 +128,20 @@ function Controller() {
         id: "info",
         headerTitle: "Member Info"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_profile.js
-    var __alloyId157 = [];
-    __alloyId157.push($.__views.info);
-=======
-    var __alloyId216 = [];
-    __alloyId216.push($.__views.info);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/profile.js
+    var __alloyId182 = [];
+    __alloyId182.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_profile.js
-    __alloyId157.push($.__views.balance);
-    $.__views.__alloyId155 = Ti.UI.createListView({
-        sections: __alloyId157,
+    __alloyId182.push($.__views.balance);
+    $.__views.__alloyId180 = Ti.UI.createListView({
+        sections: __alloyId182,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId155"
+        id: "__alloyId180"
     });
-    $.__views.main.add($.__views.__alloyId155);
-=======
-    __alloyId216.push($.__views.balance);
-    $.__views.__alloyId214 = Ti.UI.createListView({
-        sections: __alloyId216,
-        style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId214"
-    });
-    $.__views.main.add($.__views.__alloyId214);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/profile.js
+    $.__views.main.add($.__views.__alloyId180);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -127,15 +127,9 @@ function Controller() {
         navTintColor: "#CE1D1C",
         id: "myClaim"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.m_myClaim && $.addTopLevelView($.__views.m_myClaim);
-    $.__views.__alloyId149 = Ti.UI.createView({
-        id: "__alloyId149"
-=======
     $.__views.myClaim && $.addTopLevelView($.__views.myClaim);
-    $.__views.__alloyId210 = Ti.UI.createView({
-        id: "__alloyId210"
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId176 = Ti.UI.createView({
+        id: "__alloyId176"
     });
     $.__views.setting = Ti.UI.createImageView({
         right: "0",
@@ -143,21 +137,12 @@ function Controller() {
         width: "30",
         image: "/btn/btn_history_icon.png"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId149.add($.__views.setting);
-    $.__views.m_myClaim.rightNavButton = $.__views.__alloyId149;
-    $.__views.__alloyId150 = Ti.UI.createView({
-        id: "__alloyId150"
+    $.__views.__alloyId176.add($.__views.setting);
+    $.__views.myClaim.rightNavButton = $.__views.__alloyId176;
+    $.__views.__alloyId177 = Ti.UI.createView({
+        id: "__alloyId177"
     });
-    $.__views.m_myClaim.add($.__views.__alloyId150);
-=======
-    $.__views.__alloyId210.add($.__views.setting);
-    $.__views.myClaim.rightNavButton = $.__views.__alloyId210;
-    $.__views.__alloyId211 = Ti.UI.createView({
-        id: "__alloyId211"
-    });
-    $.__views.myClaim.add($.__views.__alloyId211);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.myClaim.add($.__views.__alloyId177);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -166,11 +151,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId150.add($.__views.loadingBar);
-=======
-    $.__views.__alloyId211.add($.__views.loadingBar);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId177.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -179,11 +160,7 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId151 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId212 = Ti.UI.createLabel({
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId178 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
@@ -192,26 +169,16 @@ function Controller() {
         top: "5",
         text: "Loading",
         color: "#ffffff",
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-        id: "__alloyId151"
+        id: "__alloyId178"
     });
-    $.__views.loadingBar.add($.__views.__alloyId151);
-=======
-        id: "__alloyId212"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId212);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.loadingBar.add($.__views.__alloyId178);
     $.__views.main = Ti.UI.createScrollView({
         backgroundColor: "#ffffff",
         id: "main",
         layout: "vertical",
         scrollType: "vertical"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId150.add($.__views.main);
-=======
-    $.__views.__alloyId211.add($.__views.main);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId177.add($.__views.main);
     $.__views.date = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -223,26 +190,16 @@ function Controller() {
         id: "date"
     });
     $.__views.main.add($.__views.date);
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId152 = Ti.UI.createView({
-=======
-    $.__views.__alloyId213 = Ti.UI.createView({
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId179 = Ti.UI.createView({
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-        id: "__alloyId152"
+        id: "__alloyId179"
     });
-    $.__views.main.add($.__views.__alloyId152);
-=======
-        id: "__alloyId213"
-    });
-    $.__views.main.add($.__views.__alloyId213);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.main.add($.__views.__alloyId179);
     $.__views.view_balance = Ti.UI.createView({
         borderColor: "#000000",
         width: Ti.UI.FILL,
@@ -250,11 +207,7 @@ function Controller() {
         layout: "vertical",
         id: "view_balance"
     });
-<<<<<<< HEAD:Resources/iphone/alloy/controllers/m_myClaim.js
-    $.__views.__alloyId152.add($.__views.view_balance);
-=======
-    $.__views.__alloyId213.add($.__views.view_balance);
->>>>>>> origin/master:Resources/iphone/alloy/controllers/asp/myClaim.js
+    $.__views.__alloyId179.add($.__views.view_balance);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

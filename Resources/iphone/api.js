@@ -128,7 +128,6 @@ exports.getClaimDetail = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            console.log(res);
             if (0 == res.length) ; else if ("undefined" != typeof res[0].message && null != res[0].message) {
                 console.log("got error message");
                 common.createAlert(res[0].message);
