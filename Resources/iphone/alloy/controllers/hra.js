@@ -32,55 +32,55 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hra && $.addTopLevelView($.__views.hra);
-    var __alloyId135 = [];
-    $.__views.__alloyId136 = {
+    var __alloyId67 = [];
+    $.__views.__alloyId68 = {
         properties: {
             mod: "bmi",
             title: "BMI Calculator",
-            id: "__alloyId136"
+            id: "__alloyId68"
         }
     };
-    __alloyId135.push($.__views.__alloyId136);
-    $.__views.__alloyId137 = {
+    __alloyId67.push($.__views.__alloyId68);
+    $.__views.__alloyId69 = {
         properties: {
             mod: "whratio",
             title: "Waist-To-Hips Ratio Calculator",
-            id: "__alloyId137"
+            id: "__alloyId69"
         }
     };
-    __alloyId135.push($.__views.__alloyId137);
-    $.__views.__alloyId138 = {
+    __alloyId67.push($.__views.__alloyId69);
+    $.__views.__alloyId70 = {
         properties: {
             mod: "nutritional_profile",
             title: "Nutritional Profile",
-            id: "__alloyId138"
+            id: "__alloyId70"
         }
     };
-    __alloyId135.push($.__views.__alloyId138);
-    $.__views.__alloyId139 = {
+    __alloyId67.push($.__views.__alloyId70);
+    $.__views.__alloyId71 = {
         properties: {
             mod: "smokecost",
             title: "Smoking Cost Calculator",
-            id: "__alloyId139"
+            id: "__alloyId71"
         }
     };
-    __alloyId135.push($.__views.__alloyId139);
-    $.__views.__alloyId140 = {
+    __alloyId67.push($.__views.__alloyId71);
+    $.__views.__alloyId72 = {
         properties: {
             mod: "diabetes",
             title: "Diabetes Risk Calculator",
-            id: "__alloyId140"
+            id: "__alloyId72"
         }
     };
-    __alloyId135.push($.__views.__alloyId140);
-    $.__views.__alloyId133 = Ti.UI.createListSection({
-        id: "__alloyId133"
+    __alloyId67.push($.__views.__alloyId72);
+    $.__views.__alloyId65 = Ti.UI.createListSection({
+        id: "__alloyId65"
     });
-    $.__views.__alloyId133.items = __alloyId135;
-    var __alloyId141 = [];
-    __alloyId141.push($.__views.__alloyId133);
+    $.__views.__alloyId65.items = __alloyId67;
+    var __alloyId73 = [];
+    __alloyId73.push($.__views.__alloyId65);
     $.__views.menu = Ti.UI.createListView({
-        sections: __alloyId141,
+        sections: __alloyId73,
         id: "menu"
     });
     $.__views.hra.add($.__views.menu);

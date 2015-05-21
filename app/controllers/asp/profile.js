@@ -1,112 +1,12 @@
 var args = arguments[0] || {};
-var auth = require("login");
-var method = require("myClaim");
+var usersModel = Alloy.createCollection('users');
+var data = usersModel.getUserByEmpNo();
+var healthModel = Alloy.createCollection('personalInfo');
+var personal_health_data = healthModel.getOwnerData();
+//var tmp_data = '[{"memno":"AGIL00005","icno":"AGIL00005","name":"KHAIRIL AZMY BIN MOHD AMINUDDIN","relation":"PRINCIPLE","allergy":"Peanut Allergy, Skin","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""},{"memno":"AGIL00005W","icno":"","name":"ZETI AZRI ZAMBAHARI","relation":"WIFE","allergy":"","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""},{"memno":"AGIL00005C1","icno":"","name":"ELEESYA SOFEA","relation":"CHILD","allergy":"","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""},{"memno":"AGIL00005C2","icno":"","name":"MUHAMMAD IMRAN","relation":"CHILD","allergy":"Peanut Allergy, Skin","empno":"00005","corpcode":"C001","corpname":"COMPANY DEMO (M) SDN BHD","costcenter":"","dept":""}]';
 
-method.API_ClaimInfo("910128035500", "ASP");
-
-Ti.UI.addEventListener("data_loaded", init);
-
-function init(e){
-	var tableData = [];
-	var balanceData = [];
-	val = e.data;
-		tableData = [
-			{
-				 properties : {
-				 	title: "Member Name",
-				 	subtitle: String(val.name)
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Member Number",
-				 	subtitle: String(val.memno)
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Benefit Type",
-				 	subtitle: String(val.benefittype)
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Relation",
-				 	subtitle: String(val.relation)
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Maximum amount per claim",
-				 	subtitle: String(val.maxperclaim),
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-		];
-		
-		balanceData = [
-			{
-				 properties : {
-				 	title: "Entitlement (Individual) Balance",
-				 	subtitle: String(val.entidvbal),
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Entitlement (Individual)",
-				 	subtitle: String(val.entidv),
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "Entitlement (Shared) Balance",
-				 	subtitle: String(val.entshabal),
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Entitlement (Shared)",
-				 	subtitle: String(val.entsha),
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "Visitation Entitlment (Individual) Balance",
-				 	subtitle: String(val.vstidvbal),
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Visitation Entitlment (Individual)",
-				 	subtitle: String(val.vstidv),
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			},
-			{
-				 properties : {
-				 	title: "Visitation Entitlment (Shared) Balance",
-				 	subtitle: String(val.vstshabal),
-				 },
-				 template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-			},
-			{
-				 properties : {
-				 	title: "Visitation Entitlment (Shared)",
-				 	subtitle: String(val.vstsha),
-				 	accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-				 },
-			}
-		];
-	$.info.setItems(tableData);
-	$.balance.setItems(balanceData);
-	Ti.UI.removeEventListener("data_loaded", init);
-}
+data[0]['personal_health'] = personal_health_data;
+for (var i=0; i < data.length; i++) {
+  	var profile_view = Alloy.createController("_profile_view", {profile_data: data[i]}).getView(); 	
+  	$.main.addView(profile_view);
+};

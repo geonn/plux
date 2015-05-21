@@ -8,94 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function init(e) {
-        var tableData = [];
-        var balanceData = [];
-        val = e.data;
-        tableData = [ {
-            properties: {
-                title: "Member Name",
-                subtitle: String(val.name)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Member Number",
-                subtitle: String(val.memno)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Benefit Type",
-                subtitle: String(val.benefittype)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Relation",
-                subtitle: String(val.relation)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Maximum amount per claim",
-                subtitle: String(val.maxperclaim)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        } ];
-        balanceData = [ {
-            properties: {
-                title: "Entitlement (Individual) Balance",
-                subtitle: String(val.entidvbal)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Entitlement (Individual)",
-                subtitle: String(val.entidv),
-                accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-            }
-        }, {
-            properties: {
-                title: "Entitlement (Shared) Balance",
-                subtitle: String(val.entshabal)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Entitlement (Shared)",
-                subtitle: String(val.entsha),
-                accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-            }
-        }, {
-            properties: {
-                title: "Visitation Entitlment (Individual) Balance",
-                subtitle: String(val.vstidvbal)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Visitation Entitlment (Individual)",
-                subtitle: String(val.vstidv),
-                accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-            }
-        }, {
-            properties: {
-                title: "Visitation Entitlment (Shared) Balance",
-                subtitle: String(val.vstshabal)
-            },
-            template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
-        }, {
-            properties: {
-                title: "Visitation Entitlment (Shared)",
-                subtitle: String(val.vstsha),
-                accessoryType: Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
-            }
-        } ];
-        $.info.setItems(tableData);
-        $.balance.setItems(balanceData);
-        Ti.UI.removeEventListener("data_loaded", init);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/profile";
     if (arguments[0]) {
@@ -111,44 +23,43 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.profile = Ti.UI.createWindow({
+    $.__views.healthProfileWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "My Claim Details",
+        title: "Profile",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "profile"
+        id: "healthProfileWin",
+        navTintColor: "#CE1D1C"
     });
-    $.__views.profile && $.addTopLevelView($.__views.profile);
-    $.__views.main = Ti.UI.createView({
+    $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
+    var __alloyId88 = [];
+    $.__views.main = Ti.UI.createScrollableView({
+        views: __alloyId88,
         id: "main"
     });
-    $.__views.profile.add($.__views.main);
-    $.__views.info = Ti.UI.createListSection({
-        id: "info",
-        headerTitle: "Member Info"
-    });
-    var __alloyId182 = [];
-    __alloyId182.push($.__views.info);
-    $.__views.balance = Ti.UI.createListSection({
-        id: "balance",
-        headerTitle: "Balance"
-    });
-    __alloyId182.push($.__views.balance);
-    $.__views.__alloyId180 = Ti.UI.createListView({
-        sections: __alloyId182,
-        style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
-        defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId180"
-    });
-    $.__views.main.add($.__views.__alloyId180);
+    $.__views.healthProfileWin.add($.__views.main);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+<<<<<<< HEAD
+    var usersModel = Alloy.createCollection("users");
+    var data = usersModel.getUserByEmpNo();
+    var healthModel = Alloy.createCollection("personalInfo");
+    var personal_health_data = healthModel.getOwnerData();
+    data[0]["personal_health"] = personal_health_data;
+    for (var i = 0; i < data.length; i++) {
+        var profile_view = Alloy.createController("_profile_view", {
+            profile_data: data[i]
+        }).getView();
+        $.main.addView(profile_view);
+    }
+=======
     require("login");
     var method = require("myClaim");
+    console.log(method);
     method.API_ClaimInfo("910128035500", "ASP");
     Ti.UI.addEventListener("data_loaded", init);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

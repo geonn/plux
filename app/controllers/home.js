@@ -123,8 +123,12 @@ function navWindow(e){
 	var target = e.source.mod; 
 	
 	if(e.source.mod == "eCard" || e.source.mod == "myClaim" || e.source.mod == "profile"){ 
-		nav.navigationWindow("asp/"+target, 1); 
-		
+		nav.navigationWindow("asp/"+target, 1);  
+	}else if(e.source.mod == "myHealth"){
+		nav.navigationWindow(target+"/main"); 
+	}else if(e.source.mod == "state"){
+		nav.navigationWindow("clinic/"+target, 1); 
+ 
 	}else{
 		nav.navigationWindow(target);
 	}	
