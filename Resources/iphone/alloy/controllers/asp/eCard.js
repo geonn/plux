@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "m_eCard";
+    this.__controllerPath = "asp/eCard";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");

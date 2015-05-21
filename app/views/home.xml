@@ -15,9 +15,9 @@
 				    </View>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
 						<View layout="horizontal" width="293" top="239">
-							<ImageView onClick="navWindow" mod="m_eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
+							<ImageView onClick="navWindow" mod="eCard" top="15" width="139" image="/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="m_myHealth" left="15" top="15" width="139" image="/btn/btn_my_health.png"/>
-							<ImageView onClick="navWindow" mod="m_myClaim" top="15" width="139" image="/btn/btn_my_claim_detail.png"/>
+							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/btn/btn_my_claim_detail.png"/>
 							<ImageView onClick="navWindow" mod="profile" top="15" left="15" width="139" image="/btn/btn_profile.png"/>
 							
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/btn/btn_healthInfo.png"/>

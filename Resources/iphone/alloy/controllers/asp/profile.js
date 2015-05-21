@@ -97,7 +97,7 @@ function Controller() {
         Ti.UI.removeEventListener("data_loaded", init);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "m_profile";
+    this.__controllerPath = "asp/profile";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -111,37 +111,37 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.m_profile = Ti.UI.createWindow({
+    $.__views.profile = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "My Claim Details",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
-        id: "m_profile"
+        id: "profile"
     });
-    $.__views.m_profile && $.addTopLevelView($.__views.m_profile);
+    $.__views.profile && $.addTopLevelView($.__views.profile);
     $.__views.main = Ti.UI.createView({
         id: "main"
     });
-    $.__views.m_profile.add($.__views.main);
+    $.__views.profile.add($.__views.main);
     $.__views.info = Ti.UI.createListSection({
         id: "info",
         headerTitle: "Member Info"
     });
-    var __alloyId211 = [];
-    __alloyId211.push($.__views.info);
+    var __alloyId216 = [];
+    __alloyId216.push($.__views.info);
     $.__views.balance = Ti.UI.createListSection({
         id: "balance",
         headerTitle: "Balance"
     });
-    __alloyId211.push($.__views.balance);
-    $.__views.__alloyId209 = Ti.UI.createListView({
-        sections: __alloyId211,
+    __alloyId216.push($.__views.balance);
+    $.__views.__alloyId214 = Ti.UI.createListView({
+        sections: __alloyId216,
         style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
         defaultItemTemplate: Titanium.UI.LIST_ITEM_TEMPLATE_SUBTITLE,
-        id: "__alloyId209"
+        id: "__alloyId214"
     });
-    $.__views.main.add($.__views.__alloyId209);
+    $.__views.main.add($.__views.__alloyId214);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
