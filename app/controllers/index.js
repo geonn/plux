@@ -1,8 +1,6 @@
 var args = {};
 var win = Alloy.createController("home").getView();
- 
 
-API.loadPanelList();
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();

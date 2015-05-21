@@ -60,7 +60,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var win = Alloy.createController("home").getView();
-    API.loadPanelList();
     API.loadCategoryList();
     API.loadNewsFeed();
     API.loadLeaflet();

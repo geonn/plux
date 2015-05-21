@@ -16,8 +16,12 @@ var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USE
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
+<<<<<<< HEAD
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
+=======
+var panelList       = "https://"+API_DOMAIN+"/panellist.aspx";
+>>>>>>> origin/master
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
 var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
@@ -365,7 +369,8 @@ exports.loadCategoryList = function (ex){
 };
 
 exports.loadPanelList = function (ex){
-	var url =  panelList;
+	var corp = Ti.App.Properties.getString('corpcode');
+	var url =  panelList+"?CORPCODE="+corp;
 
 	var client = Ti.Network.createHTTPClient({ 
 	     onload : function(e) { 

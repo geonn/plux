@@ -2,12 +2,12 @@
 	<Window title="Health Risk Assessment" id="hra" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
 		<ListView id="menu">
 			<ListSection>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_BMI.aspx" title="BMI Calculator"></ListItem>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_WHRatio.aspx" title="Waist-To-Hips Ratio Calculator"></ListItem>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_NutritionalProfile.aspx" title="Nutritional Profile"></ListItem>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_Smoking.aspx" title="Smoking Cost Calculator"></ListItem>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_Diabetes.aspx" title="Diabetes Risk Calculator"></ListItem>
-            	<ListItem link="https://www.asp-medical-clinic.com.my/Employee/HRA/Form_CHD.aspx" title="Coronary Heart Disease Risk Calculator"></ListItem>
+            	<ListItem mod="bmi" title="BMI Calculator"></ListItem>
+            	<ListItem mod="whratio" title="Waist-To-Hips Ratio Calculator"></ListItem>
+            	<ListItem mod="nutritional_profile" title="Nutritional Profile"></ListItem>
+            	<ListItem mod="smokecost" title="Smoking Cost Calculator"></ListItem>
+            	<ListItem mod="diabetes" title="Diabetes Risk Calculator"></ListItem>
+            	<!--<ListItem mod="chd" title="Coronary Heart Disease Risk Calculator"></ListItem>-->
         	</ListSection>
 		</ListView>
 	</Window>

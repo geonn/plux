@@ -1,0 +1,9 @@
+<Alloy>
+	<Window title="" backButtonTitle="" id="win" class="container" navTintColor="#CE1D1C" platform="ios">
+		<ScrollView height="Ti.UI.FILL" width="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" layout="vertical" >
+			<View id="description" height="Ti.UI.SIZE"></View>
+			<View id="input_box" height="Ti.UI.SIZE"></View>
+		</ScrollView>
+		<View bottom="0" height="Ti.UI.SIZE" width="Ti.UI.FILL" id="picker"></View>
+	</Window>
+</Alloy>
