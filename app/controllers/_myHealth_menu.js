@@ -19,11 +19,11 @@ function navByType(evt){
 	hideWin =0;
 	//evt.source.source
 	if(evt.source.source == "profile"){
-		nav.navigationWindow("healthProfile");
+		nav.navigationWindow("myHealth_profile");
 	}else if(evt.source.source == "motion"){
-		nav.navigationWindow("m_workout");
+		nav.navigationWindow("myHealth_workout");
 	}else{
-		//nav.navigateWithArgs("m_myHealth",{category: evt.source.source}); 
+		//nav.navigateWithArgs("myHealth",{category: evt.source.source}); 
 		Ti.App.fireEvent('filterList',{category: evt.source.source});
 	}
 	

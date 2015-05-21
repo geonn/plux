@@ -90,7 +90,7 @@ $.weightView.addEventListener('click',function(e){
 	nav.navigateWithArgs("healthDataSummary",{gType: 6});
 });
 $.moreHealth.addEventListener('click', function(e){
-	var page = Alloy.createController('healthMenu').getView();
+	var page = Alloy.createController('_myHealth_menu').getView();
 	page.open();
 	page.animate({
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN,

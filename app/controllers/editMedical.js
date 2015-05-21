@@ -52,7 +52,7 @@ function saveRecord(){
 		treatment : treatment,  
 		updated : currentDateTime()
 	});  
-	// nav.navigationWindow("m_myHealth" );
+	// nav.navigationWindow("myHealth" );
 	Ti.App.fireEvent('displayRecords');
 	nav.closeWindow($.editRecWin);
 	 

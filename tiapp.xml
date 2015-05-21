@@ -65,8 +65,6 @@
         <module platform="iphone">ti.map</module>
         <module platform="android">ti.cloudpush</module>
         <module platform="iphone">com.appcelerator.urlSession</module>
-        <module platform="android">com.appcelerator.apm</module>
-        <module platform="iphone">com.appcelerator.apm</module>
         <module platform="iphone">ti.coremotion</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>

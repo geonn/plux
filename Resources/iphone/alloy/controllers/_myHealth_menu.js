@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function navByType(evt) {
         hideWin = 0;
-        "profile" == evt.source.source ? nav.navigationWindow("healthProfile") : "motion" == evt.source.source ? nav.navigationWindow("m_workout") : Ti.App.fireEvent("filterList", {
+        "profile" == evt.source.source ? nav.navigationWindow("myHealth_profile") : "motion" == evt.source.source ? nav.navigationWindow("myHealth_workout") : Ti.App.fireEvent("filterList", {
             category: evt.source.source
         });
         $.typeWindowPopUp.close({
@@ -20,7 +20,7 @@ function Controller() {
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "healthMenu";
+    this.__controllerPath = "_myHealth_menu";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -42,7 +42,7 @@ function Controller() {
         id: "typeWindowPopUp"
     });
     $.__views.typeWindowPopUp && $.addTopLevelView($.__views.typeWindowPopUp);
-    $.__views.__alloyId120 = Ti.UI.createView({
+    $.__views.__alloyId0 = Ti.UI.createView({
         right: 3,
         top: 48,
         width: "70%",
@@ -51,15 +51,15 @@ function Controller() {
         borderColor: "#FC7474",
         borderWidth: 1,
         layout: "vertical",
-        id: "__alloyId120"
+        id: "__alloyId0"
     });
-    $.__views.typeWindowPopUp.add($.__views.__alloyId120);
+    $.__views.typeWindowPopUp.add($.__views.__alloyId0);
     $.__views.popup_view = Ti.UI.createView({
         id: "popup_view",
         layout: "horizontal",
         width: "100%"
     });
-    $.__views.__alloyId120.add($.__views.popup_view);
+    $.__views.__alloyId0.add($.__views.popup_view);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

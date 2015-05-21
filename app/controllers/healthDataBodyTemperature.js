@@ -64,7 +64,7 @@ function doSaveRecords(){
 		amount : field1,
 		type : formType
 	});  
-	// nav.navigationWindow("m_myHealth" );
+	// nav.navigationWindow("myHealth" );
 	hd.populateData();
 	nav.closeWindow($.healthDBPWin);
 }

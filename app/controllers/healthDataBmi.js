@@ -80,7 +80,7 @@ function doSaveRecords(){
 		amount : amount.toFixed(2),
 		type : formType
 	});  
-	// nav.navigationWindow("m_myHealth" );
+	// nav.navigationWindow("myHealth" );
 	hd.populateData();
 	nav.closeWindow($.healthBmiWin);
 }

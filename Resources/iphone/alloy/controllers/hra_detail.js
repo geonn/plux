@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "hraDetail";
+    this.__controllerPath = "hra_detail";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -32,25 +32,25 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId151 = Ti.UI.createScrollView({
+    $.__views.__alloyId142 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId151"
+        id: "__alloyId142"
     });
-    $.__views.win.add($.__views.__alloyId151);
+    $.__views.win.add($.__views.__alloyId142);
     $.__views.description = Ti.UI.createView({
         id: "description",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId151.add($.__views.description);
+    $.__views.__alloyId142.add($.__views.description);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId151.add($.__views.input_box);
+    $.__views.__alloyId142.add($.__views.input_box);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,

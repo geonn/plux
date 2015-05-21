@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "m_rx";
+    this.__controllerPath = "myHealth_workout";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -23,29 +23,36 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.m_rx = Ti.UI.createWindow({
+    $.__views.myHealth_workout = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "RX",
+        title: "Workout Record",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
-        id: "m_rx"
+        id: "myHealth_workout"
     });
-    $.__views.m_rx && $.addTopLevelView($.__views.m_rx);
+    $.__views.myHealth_workout && $.addTopLevelView($.__views.myHealth_workout);
     $.__views.main = Ti.UI.createView({
-        id: "main"
+        id: "main",
+        width: Ti.UI.FILL
     });
-    $.__views.m_rx.add($.__views.main);
-    $.__views.__alloyId213 = Ti.UI.createImageView({
-        width: "100%",
-        height: "100%",
-        image: "/dummy/dummy-home.jpg",
-        id: "__alloyId213"
+    $.__views.myHealth_workout.add($.__views.main);
+    $.__views.myText = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        id: "myText"
     });
-    $.__views.main.add($.__views.__alloyId213);
+    $.__views.main.add($.__views.myText);
+    $.__views.button = Ti.UI.createView({
+        id: "button",
+        width: Ti.UI.SIZE
+    });
+    $.__views.main.add($.__views.button);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var gStep = Ti.App.Properties.getString("step") || 0;
+    $.myText.text = "You walked " + gStep + " by far .";
     _.extend($, exports);
 }
 

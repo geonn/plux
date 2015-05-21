@@ -113,7 +113,7 @@ function doSaveRecords(){
 		birthDate : newDate,
 		 
 	});  
-	// nav.navigationWindow("m_myHealth" );
+	// nav.navigationWindow("myHealth" );
 	common.createAlert('Updates Profile', 'Your personal information are saved!');
 	cancelEdit(); 
 	//nav.closeWindow($.healthBmiWin);
