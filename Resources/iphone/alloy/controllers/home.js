@@ -63,7 +63,11 @@ function Controller() {
     function navWindow(e) {
         var target = e.source.mod;
 <<<<<<< HEAD
+<<<<<<< HEAD
         "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : nav.navigationWindow("myHealth" == e.source.mod ? target + "/main" : target);
+=======
+        "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "state" == e.source.mod ? nav.navigationWindow("clinic/" + target, 1) : nav.navigationWindow(target);
+>>>>>>> origin/master
 =======
         "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "state" == e.source.mod ? nav.navigationWindow("clinic/" + target, 1) : nav.navigationWindow(target);
 >>>>>>> origin/master
@@ -285,6 +289,9 @@ function Controller() {
     navWindow ? $.__views.__alloyId130.addEventListener("click", navWindow) : __defers["$.__views.__alloyId130!click!navWindow"] = true;
     $.__views.__alloyId131 = Ti.UI.createImageView({
         mod: "state",
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         left: "15",
         top: "15",
