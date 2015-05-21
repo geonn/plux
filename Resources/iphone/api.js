@@ -23,7 +23,7 @@ var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + U
 
 var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
 
-var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
+var panelList = "https://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 
@@ -224,7 +224,8 @@ exports.loadCategoryList = function() {
 };
 
 exports.loadPanelList = function() {
-    var url = panelList;
+    var corp = Ti.App.Properties.getString("corpcode");
+    var url = panelList + "?CORPCODE=" + corp;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);

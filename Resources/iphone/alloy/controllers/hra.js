@@ -35,7 +35,7 @@ function Controller() {
     var __alloyId143 = [];
     $.__views.__alloyId144 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_BMI.aspx",
+            mod: "bmi",
             title: "BMI Calculator",
             id: "__alloyId144"
         }
@@ -43,7 +43,7 @@ function Controller() {
     __alloyId143.push($.__views.__alloyId144);
     $.__views.__alloyId145 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_WHRatio.aspx",
+            mod: "whratio",
             title: "Waist-To-Hips Ratio Calculator",
             id: "__alloyId145"
         }
@@ -51,7 +51,7 @@ function Controller() {
     __alloyId143.push($.__views.__alloyId145);
     $.__views.__alloyId146 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_NutritionalProfile.aspx",
+            mod: "nutritional_profile",
             title: "Nutritional Profile",
             id: "__alloyId146"
         }
@@ -59,7 +59,7 @@ function Controller() {
     __alloyId143.push($.__views.__alloyId146);
     $.__views.__alloyId147 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_Smoking.aspx",
+            mod: "smokecost",
             title: "Smoking Cost Calculator",
             id: "__alloyId147"
         }
@@ -67,7 +67,7 @@ function Controller() {
     __alloyId143.push($.__views.__alloyId147);
     $.__views.__alloyId148 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_Diabetes.aspx",
+            mod: "diabetes",
             title: "Diabetes Risk Calculator",
             id: "__alloyId148"
         }
@@ -75,7 +75,7 @@ function Controller() {
     __alloyId143.push($.__views.__alloyId148);
     $.__views.__alloyId149 = {
         properties: {
-            link: "https://www.asp-medical-clinic.com.my/Employee/HRA/Form_CHD.aspx",
+            mod: "chd",
             title: "Coronary Heart Disease Risk Calculator",
             id: "__alloyId149"
         }
@@ -97,10 +97,10 @@ function Controller() {
     arguments[0] || {};
     $.menu.addEventListener("itemclick", function(e) {
         var item = e.section.getItemAt(e.itemIndex);
-        var webview = Titanium.UI.createWebView({
-            url: item.properties.link
+        console.log(item.properties.mod);
+        nav.navigateWithArgs("hraDetail", {
+            mod: item.properties.mod
         });
-        nav.navigationWebview(webview, item.properties.title);
     });
     _.extend($, exports);
 }

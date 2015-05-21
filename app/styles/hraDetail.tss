@@ -1,0 +1,40 @@
+
+".title" : {
+  width: Titanium.UI.FILL,
+  height: Titanium.UI.SIZE,
+  font: {
+  	fontSize: 14,
+  },
+  textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
+},
+
+".paragraph" : {
+  width: Titanium.UI.FILL,
+  height: Titanium.UI.SIZE,
+  font: {
+  	fontSize: 12,
+  },
+  textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
+}
+
+"TextField" : {
+	paddingLeft: 10,
+	paddingRight: 10,
+	keyboardType: Titanium.UI.KEYBOARD_DECIMAL_PAD,
+}
+
+".header_view" : {
+  width: Titanium.UI.FILL,
+  height: Titanium.UI.SIZE,
+  backgroundColor: "#ff0000"
+}
+
+".header_text" : {
+  width: Titanium.UI.FILL,
+  height: Titanium.UI.SIZE,
+  left: 10,
+  right: 10,
+  top: 10,
+  bottom: 10,
+  color: "#ffffff"
+}
