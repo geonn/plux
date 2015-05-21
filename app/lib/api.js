@@ -15,6 +15,7 @@ var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
+var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx?CORPCODE=ASP"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
@@ -35,7 +36,7 @@ exports.updateUserFromFB = function(e, mainView){
 			var res = JSON.parse(this.responseText);
 	
 		    if(res.status == "success"){ 
-		        
+		        API.syncHealthData({u_id:res.data.u_id});
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
@@ -55,6 +56,29 @@ exports.updateUserFromFB = function(e, mainView){
 	client.open("GET", url);
 	 // Send the request.
 	client.send();  
+};
+
+exports.syncHealthData = function(e){
+	var healthModel = Alloy.createCollection('health'); 
+	var records = healthModel.getHealthList();
+	  
+	var url = healthDataUrl + "&u_id="+e.u_id; 
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       
+	       
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {  
+       		
+	     },
+	     timeout : 6000  // in milliseconds
+	 });
+	 client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 client.open("POST", url);
+	 // Send the request.
+	 client.send({list: JSON.stringify(records)});
 };
 
 exports.doLogin = function(username, password, mainView, target) { 

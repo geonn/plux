@@ -25,6 +25,8 @@ var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER +
 
 var updateUserFromFB = "http://" + FREEJINI_DOMAIN + "/api/updateUserFromFB?user=" + USER + "&key=" + KEY;
 
+var healthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/syncHealthData?user=" + USER + "&key=" + KEY;
+
 var panelList = "https://" + API_DOMAIN + "/panellist.aspx?CORPCODE=ASP";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
@@ -42,6 +44,9 @@ exports.updateUserFromFB = function(e) {
         onload: function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status) {
+                API.syncHealthData({
+                    u_id: res.data.u_id
+                });
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
                 common.hideLoading();
@@ -52,6 +57,22 @@ exports.updateUserFromFB = function(e) {
     });
     client.open("GET", url);
     client.send();
+};
+
+exports.syncHealthData = function(e) {
+    var healthModel = Alloy.createCollection("health");
+    var records = healthModel.getHealthList();
+    var url = healthDataUrl + "&u_id=" + e.u_id;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {},
+        onerror: function() {},
+        timeout: 6e3
+    });
+    client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    client.open("POST", url);
+    client.send({
+        list: JSON.stringify(records)
+    });
 };
 
 exports.doLogin = function(username, password, mainView, target) {
