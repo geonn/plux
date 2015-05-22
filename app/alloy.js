@@ -20,6 +20,7 @@ Alloy.Globals.Map = require('ti.map');
 var FACEBOOK = require('facebook');
 FACEBOOK.appid = "684687638302896";
 FACEBOOK.permissions = ['public_profile','email','user_friends']; // Permissions your app needs
+FACEBOOK.initialize(1000);
 FACEBOOK.forceDialogAuth = true;
 
 //constant variable

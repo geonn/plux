@@ -129,6 +129,8 @@ FACEBOOK.appid = "684687638302896";
 
 FACEBOOK.permissions = [ "public_profile", "email", "user_friends" ];
 
+FACEBOOK.initialize(1e3);
+
 FACEBOOK.forceDialogAuth = true;
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";

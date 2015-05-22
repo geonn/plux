@@ -28,6 +28,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "_person_claim_view";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -58,8 +59,8 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
         height: 30,
+        width: Titanium.UI.FILL,
         font: {
             fontSize: 16
         },

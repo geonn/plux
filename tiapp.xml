@@ -47,6 +47,25 @@
                 <string>UIStatusBarStyleDefault</string>
                 <key>NSLocationWhenInUseUsageDescription</key>
                 <string>Location services needed in order to route panel location</string>
+                <key>CFBundleURLTypes</key>
+                    <array>
+                        <dict>
+                            <key>CFBundleURLName</key>
+                            <!-- Application ID same as the id value in the tiapp.xml file -->
+                            <string>com.geonn.plux</string>
+                            <key>CFBundleURLSchemes</key>
+                            <array>
+                                <!-- Prefix the Facebook App ID with 'fb' -->
+                                <string>684687638302896</string>
+                            </array>
+                        </dict>
+                    </array>
+                    <key>FacebookAppID</key>
+                    <!-- Facebook App ID -->
+                    <string>684687638302896</string>
+                    <key>FacebookDisplayName</key>
+                    <!-- Facebook App Name from developer.facebook.com -->
+                    <string>ASP PLUX</string>
             </dict>
         </plist>
     </ios>
@@ -68,6 +87,10 @@
         <module platform="iphone">ti.coremotion</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>
+        <module platform="android">com.appcelerator.apm</module>
+        <module platform="iphone">com.appcelerator.apm</module>
+        <module platform="android">analytics.google</module>
+        <module platform="iphone">analytics.google</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>
@@ -77,7 +100,7 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.5.1.GA</sdk-version>
+    <sdk-version>4.0.0.RC4</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
