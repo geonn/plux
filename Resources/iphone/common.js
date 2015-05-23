@@ -146,3 +146,66 @@ exports.createCustomAlert = function(win, title, msg) {
         win.remove(mask);
     });
 };
+
+exports.CheckboxwithText = function(text, checkboxspecs) {
+    var checkbox = this.createCheckbox({}, checkboxspecs);
+    var label_sms = Titanium.UI.createLabel({
+        text: text,
+        width: "auto",
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: 12
+        }
+    });
+    var view_sms_box = Titanium.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        layout: "horizontal"
+    });
+    view_sms_box.add(checkbox);
+    view_sms_box.add(label_sms);
+    return view_sms_box;
+};
+
+exports.createCheckbox = function(specs, checkboxspecs, image) {
+    function togglecheck() {
+        if (viw.checked) {
+            viw.checked = false;
+            imageView.opacity = 0;
+            console.log(viw.name);
+        } else {
+            viw.checked = true;
+            imageView.opacity = 1;
+            console.log(viw.name);
+        }
+    }
+    "object" != typeof checkboxspecs && (checkboxspecs = {});
+    checkboxspecs.width = checkboxspecs.width || 25;
+    checkboxspecs.backgroundColor = checkboxspecs.unCheckedColor || "white";
+    checkboxspecs.height = checkboxspecs.height || 25;
+    checkboxspecs.border = checkboxspecs.border || 1;
+    checkboxspecs.borderColor = checkboxspecs.borderColor || "silver";
+    var imageView = Ti.UI.createImageView({
+        image: image || "images/checkbox.gif",
+        height: 1.5 * checkboxspecs.height,
+        bottom: 3 + .5 * checkboxspecs.height,
+        left: 3 + .5 * checkboxspecs.width,
+        opacity: 0
+    });
+    var viw = Ti.UI.createView(checkboxspecs);
+    specs.width = 1.5 * checkboxspecs.width;
+    specs.height = 1.5 * checkboxspecs.height;
+    var outerview = Ti.UI.createView({
+        width: 1.5 * specs.width,
+        height: 1.5 * specs.height
+    });
+    var clickview = Ti.UI.createView({
+        width: checkboxspecs.width,
+        height: checkboxspecs.height
+    });
+    outerview.add(viw);
+    outerview.add(imageView);
+    outerview.add(clickview);
+    clickview.addEventListener("click", togglecheck);
+    return outerview;
+};

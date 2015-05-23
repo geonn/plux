@@ -4,7 +4,7 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 	if(checkAuth == 1){
 		var auth = require("login");
 		if(!auth.checkLogin()){ 
-			var win = Alloy.createController("login", {target: target}).getView(); 
+			var win = Alloy.createController("asp/login", {target: target}).getView(); 
 			Alloy.Globals.navMenu.openWindow(win,{animated:true});
 		}else if(target =="m_eCard"){
 			 

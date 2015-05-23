@@ -39,7 +39,7 @@ function refreshHeaderInfo(){
 		});
 		
 		loginBtn.addEventListener('click', function(){ 
-			nav.navigateWithArgs("login",{target : "home"});
+			nav.navigateWithArgs("asp/login",{target : "home"});
 		});
 		var welcomeTitle = $.UI.create('Label',{
 			text: "Welcome guest",

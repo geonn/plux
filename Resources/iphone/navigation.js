@@ -13,7 +13,7 @@ exports.navigationWindow = function(target, checkAuth, callback, param) {
                 animated: true
             });
         } else {
-            var win = Alloy.createController("login", {
+            var win = Alloy.createController("asp/login", {
                 target: target
             }).getView();
             Alloy.Globals.navMenu.openWindow(win, {

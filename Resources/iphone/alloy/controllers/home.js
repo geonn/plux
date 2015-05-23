@@ -48,7 +48,7 @@ function Controller() {
                 zIndex: 20
             });
             loginBtn.addEventListener("click", function() {
-                nav.navigateWithArgs("login", {
+                nav.navigateWithArgs("asp/login", {
                     target: "home"
                 });
             });

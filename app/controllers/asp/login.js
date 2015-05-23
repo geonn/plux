@@ -40,6 +40,12 @@ function hideProductFormKeyboard(e){
 		$.password.blur(); 
 	}
 }; 
+
+$.doSignup.addEventListener("click", function(){
+	var nav = require('navigation');
+	nav.navigationWindow("asp/signup", 0);
+});
+
 /** To fixed keyboard hide/show when textfield is activate**/
 $.loginWin.addEventListener('click',hideProductFormKeyboard);
 
