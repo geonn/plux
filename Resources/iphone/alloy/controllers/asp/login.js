@@ -28,7 +28,12 @@ function Controller() {
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+<<<<<<< HEAD:Resources/iphone/alloy/controllers/asp/login.js
     this.__controllerPath = "asp/login";
+=======
+    this.__controllerPath = "login";
+    this.args = arguments[0] || {};
+>>>>>>> origin/master:Resources/iphone/alloy/controllers/login.js
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
