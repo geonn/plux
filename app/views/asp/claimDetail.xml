@@ -1,0 +1,8 @@
+<Alloy>
+	<Window title="Claim Detail" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main" layout="vertical">
+			<TableView id="tv">
+		    </TableView>
+		</View>
+	</Window>
+</Alloy>

@@ -148,12 +148,12 @@ function setBackground(){
 	
 	$.daily_background.setBackgroundImage(bg.img_path);
 }
-/*** Facebook login***/ 
+/*** Facebook login**
 $.fbloginView.add(FACEBOOK.createLoginButton({
 	    top : 10,
 	    style : FACEBOOK.BUTTON_STYLE_WIDE
 }));  
-
+*/ 
 function loginFacebook(e){
 	if (e.success) { 
 		common.showLoading();
