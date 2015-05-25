@@ -94,15 +94,15 @@ function Controller() {
         $.main.add(benefit_view);
         $.main.add(line);
         if (99999 != data[a]["entidv"]) {
-            var view = create_field("RM" + data[a]["entidv"], "Entitlement");
+            var view = create_field("RM" + data[a]["entidv"], "Personal");
             $.main.add(view);
         }
-        if (99999 != data[a]["entidvbal"]) var view = create_field("RM" + data[a]["entidvbal"], "Entitlement Balance");
+        if (99999 != data[a]["entidvbal"]) var view = create_field("RM" + data[a]["entidvbal"], "Personal Balance");
         if (99999 != data[a]["entsha"]) {
-            var view = create_field("RM" + data[a]["entsha"], "Entitlement Shared");
+            var view = create_field("RM" + data[a]["entsha"], "Shared");
             $.main.add(view);
         }
-        if (99999 != data[a]["entshabal"]) var view = create_field("RM" + data[a]["entshabal"], "Entitlement Shared Balance");
+        if (99999 != data[a]["entshabal"]) var view = create_field("RM" + data[a]["entshabal"], "Shared Balance");
         if (99999 != data[a]["maxperclaim"]) {
             var view = create_field("RM" + data[a]["maxperclaim"], "Max per Claim");
             $.main.add(view);

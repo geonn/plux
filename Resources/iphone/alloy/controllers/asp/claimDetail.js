@@ -84,7 +84,7 @@ function Controller() {
     $.__views.claimDetail = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "My Claim History",
+        title: "Claim Detail",
         backButtonTitle: "",
         navTintColor: "#CE1D1C",
         id: "claimDetail"

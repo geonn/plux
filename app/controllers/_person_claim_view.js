@@ -20,22 +20,22 @@ for(var a = 0; data.length > a; a++){
 	$.main.add(line);
 	
 	if(data[a]['entidv'] != 99999){
-		var view = create_field("RM"+data[a]['entidv'], "Entitlement");
+		var view = create_field("RM"+data[a]['entidv'], "Personal");
 		$.main.add(view);
 	}
 	
 	if(data[a]['entidvbal'] != 99999){
-		var view = create_field("RM"+data[a]['entidvbal'], "Entitlement Balance");
+		var view = create_field("RM"+data[a]['entidvbal'], "Personal Balance");
 		//$.main.add(view);
 	}
 	
 	if(data[a]['entsha'] != 99999){
-		var view = create_field("RM"+data[a]['entsha'], "Entitlement Shared");
+		var view = create_field("RM"+data[a]['entsha'], "Shared");
 		$.main.add(view);
 	}
 	
 	if(data[a]['entshabal'] != 99999){
-		var view = create_field("RM"+data[a]['entshabal'], "Entitlement Shared Balance");
+		var view = create_field("RM"+data[a]['entshabal'], "Shared Balance");
 		//$.main.add(view);
 	}
 	

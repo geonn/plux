@@ -1,0 +1,24 @@
+<Alloy>
+	<Window navTintColor="#CE1D1C" id="login" title="Login" id="loginWin" class="container" layout="vertical">
+		<View>
+        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		        <ActivityIndicator  id="activityIndicator" />
+		    	<Label top="5" text="Loading" color="#ffffff" />
+		    </View>
+			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
+				<ImageView width="50%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="appicon-76@2x.png"></ImageView>
+				<TextField id="username" hintText="Enter Email" value="asplux@corpdemo.com" /><!--asplux@corpdemo.com -->
+				<TextField id="password" hintText="Enter Password" value="asplux123" /><!--asplux123 -->
+				<Button id="loginAccountButton" borderRadius="15" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="90%" top="20" height="60" color="#ffffff" />
+				<Label height="Ti.UI.SIZE" id="doSignup" top="10">Register</Label>
+			</ScrollView>
+		</View><!--
+		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
+			 <Label class="ftText">ASPplux</Label>
+			 <Label class="ftText">|</Label>
+			 <Label class="ftText">Privacy & Terms</Label>
+			 <Label class="ftText">|</Label>
+			 <Label class="ftText">Help</Label>
+		</View>-->
+	</Window>
+</Alloy>
