@@ -1,9 +1,9 @@
 eclipse.preferences.version=1
-iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_MINIFY=false
 iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=plux
 iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.geonn.plux
 iosLaunchConfigurationAttributes/certificate=Freejini Sdn Bhd (MB2GQ323RN)
-iosLaunchConfigurationAttributes/keychain=
+iosLaunchConfigurationAttributes/keychain=/Users/geomilano/Library/Keychains/login.keychain
 iosLaunchConfigurationAttributes/sdk_version=8.3
-iosLaunchConfigurationAttributes/uuid=8dcb6b46-51a4-4cdd-a5a5-ced1d5402756
+iosLaunchConfigurationAttributes/uuid=2dc1ed29-d77a-48e7-96b7-69143a3635a6

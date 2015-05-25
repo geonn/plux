@@ -4,7 +4,7 @@
     <name>plux</name>
     <version>1.0.2</version>
     <publisher>ASP Ehealth Sdn Bhd</publisher>
-    <url>http://</url>
+    <url>http://www.asp-medical-clinic.com.my</url>
     <description>ASP PLUX</description>
     <copyright>2015 by ASP Ehealth Sdn Bhd</copyright>
     <icon>appicon.png</icon>
@@ -56,7 +56,8 @@
                         <key>CFBundleURLSchemes</key>
                         <array>
                             <!-- Prefix the Facebook App ID with 'fb' -->
-                            <string>684687638302896</string>
+                            <string>plux</string>
+                            <string>fb684687638302896</string>
                         </array>
                     </dict>
                 </array>
@@ -85,10 +86,13 @@
         <module platform="android">ti.cloudpush</module>
         <module platform="iphone">com.appcelerator.urlSession</module>
         <module platform="iphone">ti.coremotion</module>
-        <module platform="android">facebook</module>
-        <module platform="iphone">facebook</module>
         <module platform="android">analytics.google</module>
         <module platform="iphone">analytics.google</module>
+        <module platform="android">com.appcelerator.apm</module>
+        <module platform="iphone">com.appcelerator.apm</module>
+        <module platform="android">facebook</module>
+        <module platform="iphone">facebook</module>
+        <module platform="iphone">dk.napp.social</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>
@@ -98,7 +102,7 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>4.0.0.RC4</sdk-version>
+    <sdk-version>4.0.0.RC3</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
