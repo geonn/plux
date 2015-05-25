@@ -2,7 +2,7 @@
 	<Window title="My Claim Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
 		<RightNavButton>
 	        <View>
-	         	<ImageView right='0' id="setting" width='30' image="/btn/btn_history_icon.png" />
+	         	<!--<ImageView right='0' id="setting" width='30' image="/btn/btn_history_icon.png" />-->
 	        </View>
         </RightNavButton>
         <View>

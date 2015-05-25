@@ -117,7 +117,7 @@ function GenerateClaimBalanceTable(balance_groups){
 	});
 }
 
-$.setting.addEventListener("click", function(){
+$.view_balance.addEventListener("click", function(){
 	var nav = require('navigation');
 	nav.navigateWithArgs("asp/claimHistory", {memno: user.icno});
 });

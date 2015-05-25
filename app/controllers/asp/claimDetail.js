@@ -14,24 +14,26 @@ function init(){
 	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
 	$.tv.appendRow(createTableViewRow("Category", data.category));
 	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
-	$.tv.appendRow(createTableViewRow("Amount", data.amount));
 	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
-	$.tv.appendRow(createTableViewRow("Consultation", data.consultation_amt));
-	$.tv.appendRow(createTableViewRow("Medication", data.medication_amt));
-	$.tv.appendRow(createTableViewRow("Injection", data.injection_amt));
-	$.tv.appendRow(createTableViewRow("Labtest", data.labtest_amt));
-	$.tv.appendRow(createTableViewRow("X-Ray", data.xray_amt));
-	$.tv.appendRow(createTableViewRow("Surgical", data.surgical_amt));
-	$.tv.appendRow(createTableViewRow("Extraction", data.extraction_amt));
-	$.tv.appendRow(createTableViewRow("Fillings", data.fillings_amt));
-	$.tv.appendRow(createTableViewRow("Scaling", data.scaling_amt));
-	$.tv.appendRow(createTableViewRow("Others", data.others_amt));
-	$.tv.appendRow(createTableViewRow("Bps", data.bps));
-	$.tv.appendRow(createTableViewRow("Bpd", data.bpd));
-	$.tv.appendRow(createTableViewRow("Pulse", data.pulse));
+	var section = Ti.UI.createTableViewSection({headerTitle: "Amount"});
+	section.add(createTableViewRow("Total Amount", "RM"+(data.amount).toFixed(2)));
+	section.add(createTableViewRow("Consultation", "RM"+(data.consultation_amt).toFixed(2)));
+	section.add(createTableViewRow("Medication", "RM"+(data.medication_amt).toFixed(2), data.medication));
+	section.add(createTableViewRow("Injection", "RM"+(data.injection_amt).toFixed(2), data.injection));
+	section.add(createTableViewRow("Lab Test", "RM"+(data.labtest_amt).toFixed(2), data.labtest));
+	section.add(createTableViewRow("X-Ray", "RM"+(data.xray_amt).toFixed(2), data.xray));
+	section.add(createTableViewRow("Surgical", "RM"+(data.surgical_amt).toFixed(2), data.surgical));
+	section.add(createTableViewRow("Extraction", "RM"+(data.extraction_amt).toFixed(2)));
+	section.add(createTableViewRow("Fillings", "RM"+(data.fillings_amt).toFixed(2)));
+	section.add(createTableViewRow("Scaling", "RM"+(data.scaling_amt).toFixed(2)));
+	section.add(createTableViewRow("Others", "RM"+(data.others_amt).toFixed(2)));
+	section.add(createTableViewRow("Bps", data.bps));
+	section.add(createTableViewRow("Bpd", data.bpd));
+	section.add(createTableViewRow("Pulse", data.pulse));
+	$.tv.appendSection(section);
 }
 
-function createTableViewRow(text, value){
+function createTableViewRow(text, value, dialog){
 	value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
 	text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
 	
@@ -66,5 +68,16 @@ function createTableViewRow(text, value){
 	view.add(label_text);
 	view.add(label_value);
 	row.add(view);
+	if(dialog){
+		row.addEventListener("click", function(e){
+			var dialogs = Ti.UI.createAlertDialog({
+				message: dialog,
+				ok: 'Ok',
+				title: text
+			});
+			dialogs.show();
+		});
+	}
+	
 	return row;
 }

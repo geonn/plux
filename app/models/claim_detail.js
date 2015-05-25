@@ -105,13 +105,13 @@ exports.definition = {
 			},
 			getClaimDetail: function(e){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE name like ?";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, e.name);
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){ 

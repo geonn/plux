@@ -1,8 +1,10 @@
 var args = arguments[0] || {}; 
-var arg_category = (typeof args.category != "undefined")?args.category:"%";
+var arg_name = (typeof args.name != "undefined")?args.name:"%";
+var title = (arg_name == "%")?"All Claim Records":arg_name;
+$.claim_history.title = title;
 
-var usersModel = Alloy.createCollection('claim_detail'); 
-var data = usersModel.getClaimDetail({memno: args.memno, category: arg_category});
+var claimDetailModel = Alloy.createCollection('claim_detail'); 
+var data = claimDetailModel.getClaimDetail({memno: args.memno, name: arg_name});
 
 data.forEach(function(entry){ 
 	console.log(entry);

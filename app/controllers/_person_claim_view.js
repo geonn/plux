@@ -86,3 +86,8 @@ function create_field(key, title){
 	
 	return view;
 }
+
+$.main.addEventListener("click", function(e){
+	var nav = require('navigation');
+	nav.navigateWithArgs("asp/claimHistory", {name: name});
+});

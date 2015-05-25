@@ -24,20 +24,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.claimHistory = Ti.UI.createWindow({
+    $.__views.claim_history = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "My Claim History",
+        id: "claim_history",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "claimHistory"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.claimHistory && $.addTopLevelView($.__views.claimHistory);
+    $.__views.claim_history && $.addTopLevelView($.__views.claim_history);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"
     });
-    $.__views.claimHistory.add($.__views.main);
+    $.__views.claim_history.add($.__views.main);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -45,11 +45,13 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    var arg_category = "undefined" != typeof args.category ? args.category : "%";
-    var usersModel = Alloy.createCollection("claim_detail");
-    var data = usersModel.getClaimDetail({
+    var arg_name = "undefined" != typeof args.name ? args.name : "%";
+    var title = "%" == arg_name ? "All Claim Records" : arg_name;
+    $.claim_history.title = title;
+    var claimDetailModel = Alloy.createCollection("claim_detail");
+    var data = claimDetailModel.getClaimDetail({
         memno: args.memno,
-        category: arg_category
+        name: arg_name
     });
     data.forEach(function(entry) {
         console.log(entry);

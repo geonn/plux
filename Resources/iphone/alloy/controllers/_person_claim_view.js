@@ -119,6 +119,12 @@ function Controller() {
         }
         if (99999 != data[a]["vstshabal"]) var view = create_field(data[a]["vstshabal"], "Visitation Shared Balance");
     }
+    $.main.addEventListener("click", function() {
+        var nav = require("navigation");
+        nav.navigateWithArgs("asp/claimHistory", {
+            name: name
+        });
+    });
     _.extend($, exports);
 }
 
