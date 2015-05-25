@@ -59,14 +59,14 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelDetails && $.addTopLevelView($.__views.panelDetails);
-    $.__views.__alloyId87 = Ti.UI.createView({
+    $.__views.__alloyId93 = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
         width: "100%",
         top: "0",
-        id: "__alloyId87"
+        id: "__alloyId93"
     });
-    $.__views.panelDetails.add($.__views.__alloyId87);
+    $.__views.panelDetails.add($.__views.__alloyId93);
     $.__views.clinicName = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -80,7 +80,7 @@ function Controller() {
         top: "5",
         bottom: "10"
     });
-    $.__views.__alloyId87.add($.__views.clinicName);
+    $.__views.__alloyId93.add($.__views.clinicName);
     $.__views.clinicAddress1 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -93,7 +93,7 @@ function Controller() {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         id: "clinicAddress1"
     });
-    $.__views.__alloyId87.add($.__views.clinicAddress1);
+    $.__views.__alloyId93.add($.__views.clinicAddress1);
     $.__views.clinicAddress2 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -106,7 +106,7 @@ function Controller() {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         id: "clinicAddress2"
     });
-    $.__views.__alloyId87.add($.__views.clinicAddress2);
+    $.__views.__alloyId93.add($.__views.clinicAddress2);
     $.__views.clinicPostcode = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -119,7 +119,7 @@ function Controller() {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         id: "clinicPostcode"
     });
-    $.__views.__alloyId87.add($.__views.clinicPostcode);
+    $.__views.__alloyId93.add($.__views.clinicPostcode);
     $.__views.clinicState = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -132,7 +132,7 @@ function Controller() {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
         id: "clinicState"
     });
-    $.__views.__alloyId87.add($.__views.clinicState);
+    $.__views.__alloyId93.add($.__views.clinicState);
     $.__views.clinicLocation = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -147,7 +147,7 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId87.add($.__views.clinicLocation);
+    $.__views.__alloyId93.add($.__views.clinicLocation);
     $.__views.clinicTel = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -162,34 +162,34 @@ function Controller() {
         top: "10",
         bottom: "10"
     });
-    $.__views.__alloyId87.add($.__views.clinicTel);
-    $.__views.__alloyId88 = Ti.UI.createView({
+    $.__views.__alloyId93.add($.__views.clinicTel);
+    $.__views.__alloyId94 = Ti.UI.createView({
         height: "1",
         backgroundColor: "#CE1D1C",
         width: "98%",
         top: "10",
-        id: "__alloyId88"
+        id: "__alloyId94"
     });
-    $.__views.__alloyId87.add($.__views.__alloyId88);
-    var __alloyId89 = [];
-    $.__views.__alloyId90 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId93.add($.__views.__alloyId94);
+    var __alloyId95 = [];
+    $.__views.__alloyId96 = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
         selectedBackgroundColor: "#FFE1E1",
         color: "#5E5E5E",
         title: "Direction To Here",
-        id: "__alloyId90"
+        id: "__alloyId96"
     });
-    __alloyId89.push($.__views.__alloyId90);
-    direction2here ? $.__views.__alloyId90.addEventListener("click", direction2here) : __defers["$.__views.__alloyId90!click!direction2here"] = true;
-    $.__views.__alloyId91 = Ti.UI.createTableViewRow({
+    __alloyId95.push($.__views.__alloyId96);
+    direction2here ? $.__views.__alloyId96.addEventListener("click", direction2here) : __defers["$.__views.__alloyId96!click!direction2here"] = true;
+    $.__views.__alloyId97 = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
         selectedBackgroundColor: "#FFE1E1",
         color: "#5E5E5E",
         title: "Call",
-        id: "__alloyId91"
+        id: "__alloyId97"
     });
-    __alloyId89.push($.__views.__alloyId91);
-    clickToCall ? $.__views.__alloyId91.addEventListener("click", clickToCall) : __defers["$.__views.__alloyId91!click!clickToCall"] = true;
+    __alloyId95.push($.__views.__alloyId97);
+    clickToCall ? $.__views.__alloyId97.addEventListener("click", clickToCall) : __defers["$.__views.__alloyId97!click!clickToCall"] = true;
     $.__views.add2contact = Ti.UI.createTableViewRow({
         height: Titanium.UI.SIZE,
         id: "add2contact",
@@ -197,16 +197,16 @@ function Controller() {
         color: "#5E5E5E",
         title: "Add To Contact"
     });
-    __alloyId89.push($.__views.add2contact);
+    __alloyId95.push($.__views.add2contact);
     addToContact ? $.__views.add2contact.addEventListener("click", addToContact) : __defers["$.__views.add2contact!click!addToContact"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
-        data: __alloyId89,
+        data: __alloyId95,
         id: "healthTableData",
         height: Ti.UI.SIZE,
         width: "100%",
         scrollable: "false"
     });
-    $.__views.__alloyId87.add($.__views.healthTableData);
+    $.__views.__alloyId93.add($.__views.healthTableData);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -261,8 +261,8 @@ function Controller() {
     var addressBookDisallowed = function() {
         common.createAlert("Cannot Access Contact Book", "You need allow APLUX to access your contact book.");
     };
-    __defers["$.__views.__alloyId90!click!direction2here"] && $.__views.__alloyId90.addEventListener("click", direction2here);
-    __defers["$.__views.__alloyId91!click!clickToCall"] && $.__views.__alloyId91.addEventListener("click", clickToCall);
+    __defers["$.__views.__alloyId96!click!direction2here"] && $.__views.__alloyId96.addEventListener("click", direction2here);
+    __defers["$.__views.__alloyId97!click!clickToCall"] && $.__views.__alloyId97.addEventListener("click", clickToCall);
     __defers["$.__views.add2contact!click!addToContact"] && $.__views.add2contact.addEventListener("click", addToContact);
     _.extend($, exports);
 }

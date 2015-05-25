@@ -95,6 +95,8 @@ exports.removeHealthDataById = function(id) {
     client.send();
 };
 
+exports.do_signup = function() {};
+
 exports.do_asp_signup = function(data) {
     var url = aspSignupUrl + "?EMAIL=" + data.email + "&PASSWORD=" + data.password + "&NAME=" + data.name + "&MEMNO=" + data.memno + "&EMPNO=" + data.empono + "&MOBILENO=" + data.password + "&SMSME=" + data.smsme + "&AGREETS=" + data.agreets + "&EMAIL2=";
     var client = Ti.Network.createHTTPClient({

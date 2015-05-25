@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="My Claim History" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="My Claim History" id="claim_history" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
 		<View id="main" layout="vertical">
 			<TableView id="tv">
 		    </TableView>

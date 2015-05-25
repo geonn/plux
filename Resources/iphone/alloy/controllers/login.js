@@ -28,7 +28,7 @@ function Controller() {
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "asp/login";
+    this.__controllerPath = "login";
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -54,10 +54,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId81 = Ti.UI.createView({
-        id: "__alloyId81"
+    $.__views.__alloyId72 = Ti.UI.createView({
+        id: "__alloyId72"
     });
-    $.__views.loginWin.add($.__views.__alloyId81);
+    $.__views.loginWin.add($.__views.__alloyId72);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -66,7 +66,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId81.add($.__views.loadingBar);
+    $.__views.__alloyId72.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -75,32 +75,32 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId82 = Ti.UI.createLabel({
+    $.__views.__alloyId73 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId82"
+        id: "__alloyId73"
     });
-    $.__views.loadingBar.add($.__views.__alloyId82);
+    $.__views.loadingBar.add($.__views.__alloyId73);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId81.add($.__views.main);
-    $.__views.__alloyId83 = Ti.UI.createImageView({
+    $.__views.__alloyId72.add($.__views.main);
+    $.__views.__alloyId74 = Ti.UI.createImageView({
         width: "50%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
         image: "appicon-76@2x.png",
-        id: "__alloyId83"
+        id: "__alloyId74"
     });
-    $.__views.main.add($.__views.__alloyId83);
+    $.__views.main.add($.__views.__alloyId74);
     $.__views.username = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
@@ -116,7 +116,7 @@ function Controller() {
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "username",
-        hintText: "Enter Username",
+        hintText: "Enter Email",
         value: "asplux@corpdemo.com"
     });
     $.__views.main.add($.__views.username);
@@ -154,7 +154,7 @@ function Controller() {
     $.__views.doSignup = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
-        text: "First-Time Login",
+        text: "Register",
         id: "doSignup",
         top: "10"
     });
@@ -168,7 +168,7 @@ function Controller() {
     var isKeyboardFocus = 0;
     $.doSignup.addEventListener("click", function() {
         var nav = require("navigation");
-        nav.navigationWindow("asp/signup", 0);
+        nav.navigationWindow("signup", 0);
     });
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
     $.username.addEventListener("touchend", function() {
