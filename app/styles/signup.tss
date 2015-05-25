@@ -35,6 +35,22 @@
 	 keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
      returnKeyType: Titanium.UI.RETURNKEY_DONE
 },
+"#confirm" : {
+	 passwordMask:true,
+	 font:{
+		fontSize: '14dp'
+	},
+	color: '#000000',
+	backgroundColor: '#fff',
+	borderColor: "#cccccc",
+	 width:'90%',
+	 height: '50dp',
+	 bottom: "5dp",
+	 paddingLeft: "20dp",
+	 paddingRight: "20dp",
+	 keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
+     returnKeyType: Titanium.UI.RETURNKEY_DONE
+},
 "#footer" : {
 	bottom: 0,
 	left: "10dp",

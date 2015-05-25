@@ -25,6 +25,10 @@ var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER +
 
 var updateUserFromFB = "http://" + FREEJINI_DOMAIN + "/api/updateUserFromFB?user=" + USER + "&key=" + KEY;
 
+var pluxLoginUrl = "http://" + FREEJINI_DOMAIN + "/api/pluxLogin?user=" + USER + "&key=" + KEY;
+
+var pluxSignUpUrl = "http://" + FREEJINI_DOMAIN + "/api/pluxSignUp?user=" + USER + "&key=" + KEY;
+
 var healthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/syncHealthData?user=" + USER + "&key=" + KEY;
 
 var removeHealthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/removeHealthData?user=" + USER + "&key=" + KEY;
@@ -43,19 +47,30 @@ var getclaimDetailBySeriesUrl = "https://" + API_DOMAIN + "/claimdetails.aspx";
 
 var defaultRetryTimes = 3;
 
-exports.updateUserFromFB = function(e) {
+exports.updateUserFromFB = function(e, mainView) {
     var url = updateUserFromFB + "&email=" + e.email + "&fbid=" + e.fbid + "&link=" + e.link + "&name=" + e.name + "&gender=" + e.gender;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
+            common.hideLoading();
             if ("success" == res.status) {
                 API.syncHealthData({
                     u_id: res.data.u_id
                 });
+                var usersPluxModel = Alloy.createCollection("users_plux");
+                usersPluxModel.addUserData({
+                    u_id: res.data.u_id,
+                    fullname: res.data.fullname,
+                    email: res.data.email,
+                    status: res.data.status,
+                    facebook_id: res.data.facebook_id,
+                    facebook_url: res.data.facebook_url,
+                    last_login: currentDateTime()
+                });
+                Ti.App.fireEvent("updateHeader");
+                nav.closeWindow(mainView.loginWin);
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
-                common.hideLoading();
             }
         },
         onerror: function() {},
@@ -88,6 +103,57 @@ exports.removeHealthDataById = function(id) {
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {},
+        onerror: function() {},
+        timeout: 7e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.do_pluxLogin = function(data, mainView) {
+    var url = pluxLoginUrl + "&email=" + data.email + "&password=" + data.password;
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            common.hideLoading();
+            if ("error" == result.status) {
+                common.createAlert("Error", result.data);
+                return false;
+            }
+            var usersPluxModel = Alloy.createCollection("users_plux");
+            usersPluxModel.addUserData({
+                u_id: result.data.u_id,
+                fullname: result.data.fullname,
+                email: result.data.email,
+                status: result.data.status,
+                facebook_id: result.data.facebook_id,
+                facebook_url: result.data.facebook_url,
+                last_login: currentDateTime()
+            });
+            Ti.App.Properties.setString("u_id", result.data.u_id);
+            Ti.App.fireEvent("updateHeader");
+            nav.closeWindow(mainView.loginWin);
+        },
+        onerror: function() {},
+        timeout: 7e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.do_signup = function(data, mainView) {
+    var url = pluxSignUpUrl + "&fullname=" + data.fullname + "&email=" + data.email + "&password=" + data.password + "&password2=" + data.password;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            common.hideLoading();
+            if ("error" == result.status) {
+                common.createAlert("Error", result.data);
+                return false;
+            }
+            nav.closeWindow(mainView.signUpWin);
+        },
         onerror: function() {},
         timeout: 7e3
     });

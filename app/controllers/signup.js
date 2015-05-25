@@ -7,17 +7,41 @@ $.tc_area.add(view_agreement_box);
 var isKeyboardFocus = 0;
 
 function doSignup(){
+	var fullname = $.fullname.value;
 	var email = $.email.value;
 	var password = $.password.value;
+	var confirm =  $.confirm.value;
 	var view_agreement = view_agreement_box.children[0].children[0].checked;
 	
+	if(fullname.trim() == ""){
+		common.createAlert("Error", "Please fill in your full name");
+		return false;
+	}
+	
+	if(email.trim() == ""){
+		common.createAlert("Error", "Please fill in your email");
+		return false;
+	}
+	
+	if(password.trim() == ""){
+		common.createAlert("Error", "Please fill in your password");
+		return false;
+	}
+	
+	if(confirm.trim() != password.trim()){
+		common.createAlert("Error", "Your password are not match");
+		return false;
+	}
+	
+	common.showLoading();
 	var params = {
+		fullname: fullname,
 		email: email,
 		password: password,
 		agreets: view_agreement
 	};
-	console.log(params);
-	API.do_signup(params);
+	 
+	API.do_signup(params, $);
 }
 
 function hideProductFormKeyboard(e){
@@ -37,4 +61,4 @@ function hideProductFormKeyboard(e){
 });*/
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.loginWin.addEventListener('click',hideProductFormKeyboard);
+$.signUpWin.addEventListener('click',hideProductFormKeyboard);

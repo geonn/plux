@@ -1,5 +1,4 @@
-var args = arguments[0] || {};
-var nav = Alloy.Globals.navMenu;
+var args = arguments[0] || {}; 
 var singleton = true;
 common.construct($);
 
@@ -8,45 +7,48 @@ var isKeyboardFocus = 0;
 
 function doLogin() { 
 	common.showLoading();
-	var username = $.username.value;
+	var email = $.email.value;
 	var password = $.password.value;
 	
-	if(username == "" || password == ""){
-		common.createAlert('Authentication warning','Please fill in username and password');
+	if(email == "" || password == ""){
+		common.createAlert('Authentication warning','Please fill in email and password');
 		common.hideLoading();
 		return;
 	}
 	if(singleton){
 		//singleton = false;
-		API.doLogin(username, password, $, args.target);
+		var params = { 
+			email: email,
+			password: password 
+		};
+		API.do_pluxLogin(params, $ );
 	}
 }
 
 function hideProductFormKeyboard(e){
 	if (e.source.id != 'TextField'  ) {
     	 
-    	if(e.source.id == 'username'){
+    	if(e.source.id == 'email'){
 			return false;
 		}
 		if(e.source.id == 'password'){
 			return false;
 		} 
 		 
-		$.username.blur();
+		$.email.blur();
 		$.password.blur(); 
 	}
 }; 
 
-$.doSignup.addEventListener("click", function(){
-	var nav = require('navigation');
+$.doSignup.addEventListener("click", function(){ 
 	nav.navigationWindow("signup", 0);
 });
 
 /** To fixed keyboard hide/show when textfield is activate**/
 $.loginWin.addEventListener('click',hideProductFormKeyboard);
 
-$.username.addEventListener('touchend', function(e){
-    $.username.focus();
+$.email.addEventListener('touchend', function(e){
+    $.email.focus();
     isKeyboardFocus = 1;
 });
 $.password.addEventListener('touchend', function(e){
@@ -54,10 +56,45 @@ $.password.addEventListener('touchend', function(e){
     isKeyboardFocus = 1;
 });
 
-$.username.addEventListener("return", function(){
+$.email.addEventListener("return", function(){
 	$.password.focus();
 });
 
 $.password.addEventListener("return", function(){
 	doLogin();
+});
+
+/*** Facebook login***/ 
+$.fbloginView.add(FACEBOOK.createLoginButton({
+	    top : 10,
+	    style : FACEBOOK.BUTTON_STYLE_WIDE
+}));  
+
+function loginFacebook(e){
+	if (e.success) { 
+		common.showLoading();
+	    FACEBOOK.requestWithGraphPath('me', {}, 'GET', function(e) {
+		    if (e.success) { 
+		    	var fbRes = JSON.parse(e.result);
+		     	API.updateUserFromFB({
+			       	email: fbRes.email,
+			       	fbid: fbRes.id,
+			       	link: fbRes.link,
+			       	name: fbRes.name,
+			       	gender:fbRes.gender,
+			    }, $);
+			   
+		    }
+		}); 
+		FACEBOOK.removeEventListener('login', loginFacebook); 
+	}  else if (e.error) {
+		       
+	} else if (e.cancelled) {
+		        
+	}  	 
+} 
+	 
+FACEBOOK.addEventListener('login', loginFacebook); 
+FACEBOOK.addEventListener('logout', function(e) {
+    //alert('Logged out');
 });

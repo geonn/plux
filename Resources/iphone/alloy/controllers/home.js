@@ -11,6 +11,7 @@ function Controller() {
     function refreshHeaderInfo() {
         var auth = require("login");
         removeAllChildren($.myInfo);
+        var u_id = Ti.App.Properties.getString("u_id");
         if (auth.checkLogin()) {
             var me = usersModel.getUserByMemno();
             var logoutBtn = Ti.UI.createButton({
@@ -40,23 +41,33 @@ function Controller() {
             $.myInfo.add(logoutBtn);
             $.myInfo.add(welcomeTitle);
         } else {
-            var loginBtn = Ti.UI.createButton({
-                backgroundImage: "/images/btn-login.png",
+            var plux_user = usersPluxModel.getUserById(u_id);
+            console.log(plux_user);
+            var logoutBtn = Ti.UI.createButton({
+                backgroundImage: "/images/btn-logout.png",
                 width: "40",
                 left: 5,
                 right: 5,
                 zIndex: 20
             });
-            loginBtn.addEventListener("click", function() {
-                nav.navigateWithArgs("asp/login", {
-                    target: "home"
+            logoutBtn.addEventListener("click", function() {
+                var dialog = Ti.UI.createAlertDialog({
+                    cancel: 1,
+                    buttonNames: [ "Cancel", "Confirm" ],
+                    message: "Would you like to logout?",
+                    title: "Logout PLUX"
                 });
+                dialog.addEventListener("click", function(e) {
+                    e.index === e.source.cancel;
+                    1 === e.index && logoutUser();
+                });
+                dialog.show();
             });
             var welcomeTitle = $.UI.create("Label", {
-                text: "Welcome guest",
+                text: "Welcome " + plux_user.fullname,
                 classes: [ "welcome_text" ]
             });
-            $.myInfo.add(loginBtn);
+            $.myInfo.add(logoutBtn);
             $.myInfo.add(welcomeTitle);
         }
     }
@@ -66,7 +77,12 @@ function Controller() {
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");
+        Ti.App.Properties.setString("empno", "");
+        Ti.App.Properties.setString("corpcode", "");
+        Ti.App.Properties.setString("u_id", "");
         refreshHeaderInfo();
+        FACEBOOK.logout();
+        nav.navigateWithArgs("login", {});
     }
     function setBackground() {
         var home_background = Alloy.createCollection("home_background");
@@ -74,24 +90,6 @@ function Controller() {
         var hours = today.getHours();
         var bg = home_background.getCategoryByTime(hours);
         $.daily_background.setBackgroundImage(bg.img_path);
-    }
-    function loginFacebook(e) {
-        if (e.success) {
-            common.showLoading();
-            FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {
-                if (e.success) {
-                    var fbRes = JSON.parse(e.result);
-                    API.updateUserFromFB({
-                        email: fbRes.email,
-                        fbid: fbRes.id,
-                        link: fbRes.link,
-                        name: fbRes.name,
-                        gender: fbRes.gender
-                    }, $);
-                }
-            });
-            FACEBOOK.removeEventListener("login", loginFacebook);
-        } else e.error || e.cancelled;
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
@@ -297,6 +295,7 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var usersModel = Alloy.createCollection("users");
+    var usersPluxModel = Alloy.createCollection("users_plux");
     refreshHeaderInfo();
     common.construct($);
     Alloy.Globals.navMenu = $.navMenu;
@@ -345,8 +344,6 @@ function Controller() {
             }, function() {});
         }
     });
-    FACEBOOK.addEventListener("login", loginFacebook);
-    FACEBOOK.addEventListener("logout", function() {});
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
     __defers["$.__views.__alloyId51!click!navWindow"] && $.__views.__alloyId51.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId52!click!navWindow"] && $.__views.__alloyId52.addEventListener("click", navWindow);

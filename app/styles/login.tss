@@ -4,7 +4,7 @@
 	fullscreen: true,
 	height: Titanium.UI.FILL
 },
-"#username" : {
+"#email" : {
 	 font:{
 		fontSize: '14dp'
 	},

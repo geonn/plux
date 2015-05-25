@@ -60,11 +60,14 @@ function Controller() {
     $.__views.main.add($.__views.link_member);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var u_id = Ti.App.Properties.getString("u_id") || "";
     var win = Alloy.createController("home").getView();
     API.loadCategoryList();
     API.loadNewsFeed();
     API.loadLeaflet();
     win.open();
+    Ti.App.Properties.setString("u_id", "");
+    "" == u_id && nav.navigateWithArgs("login", {});
     _.extend($, exports);
 }
 

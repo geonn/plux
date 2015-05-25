@@ -1,15 +1,21 @@
 <Alloy>
 	<Window navTintColor="#CE1D1C" id="login" title="Login" id="loginWin" class="container" layout="vertical">
+		<LeftNavButton>
+	        <View left="0">
+	          
+	        </View>
+        </LeftNavButton>
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="50%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="appicon-76@2x.png"></ImageView>
-				<TextField id="username" hintText="Enter Email" value="asplux@corpdemo.com" /><!--asplux@corpdemo.com -->
-				<TextField id="password" hintText="Enter Password" value="asplux123" /><!--asplux123 -->
-				<Button id="loginAccountButton" borderRadius="15" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="90%" top="20" height="60" color="#ffffff" />
+				<ImageView width="40%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="appicon-76@2x.png"></ImageView>
+				<TextField id="email" hintText="Enter Email" value="wongbh@live.com" /><!--asplux@corpdemo.com -->
+				<TextField id="password" hintText="Enter Password" value="12345678" /><!--asplux123 -->
+				<Button id="loginAccountButton" borderRadius="15" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="60%" top="20" height="60" color="#ffffff" />
+				<View height="60" id="fbloginView" width="60%" />
 				<Label height="Ti.UI.SIZE" id="doSignup" top="10">Register</Label>
 			</ScrollView>
 		</View><!--

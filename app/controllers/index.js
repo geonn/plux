@@ -1,10 +1,16 @@
 var args = {};
+var u_id = Ti.App.Properties.getString('u_id') || "";
 var win = Alloy.createController("home").getView();
 
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
 win.open();
+Ti.App.Properties.setString('u_id','');
+if(u_id == ""){
+	nav.navigateWithArgs("login", {});  
+}
+
 /*
 $.root.open({fullscreen:true});
 

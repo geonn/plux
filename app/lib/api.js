@@ -15,6 +15,8 @@ var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
+var pluxLoginUrl    = "http://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
+var pluxSignUpUrl   = "http://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
@@ -36,16 +38,28 @@ exports.updateUserFromFB = function(e, mainView){
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
-	
+			common.hideLoading();
 		    if(res.status == "success"){ 
 		        API.syncHealthData({u_id:res.data.u_id});
+		        
+		        var usersPluxModel = Alloy.createCollection('users_plux'); 
+				usersPluxModel.addUserData({
+					u_id: res.data.u_id,
+					fullname: res.data.fullname,
+					email: res.data.email,
+					status: res.data.status,
+					facebook_id: res.data.facebook_id,
+					facebook_url: res.data.facebook_url,
+					last_login: currentDateTime()
+				}); 
+				Ti.App.fireEvent('updateHeader');
+				nav.closeWindow(mainView.loginWin); 
+				
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
 	         	 
-	         	//API.updateNotificationToken(); 
-				 
-				common.hideLoading();
+	         	//API.updateNotificationToken();  
 				 
 		    }
 		},
@@ -100,8 +114,65 @@ exports.removeHealthDataById = function(id){
 	client.send(); 
 };
 
-exports.do_signup = function(data){
-	
+exports.do_pluxLogin = function(data,mainView){
+	var url = pluxLoginUrl +"&email="+data.email+"&password="+data.password;
+ console.log(url);
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) { 
+			var result = JSON.parse(this.responseText);
+			common.hideLoading(); 
+			if(result.status == "error"){
+				common.createAlert("Error", result.data);
+				return false;
+			}else{  
+				var usersPluxModel = Alloy.createCollection('users_plux'); 
+				usersPluxModel.addUserData({
+					u_id: result.data.u_id,
+					fullname: result.data.fullname,
+					email: result.data.email,
+					status: result.data.status,
+					facebook_id: result.data.facebook_id,
+					facebook_url: result.data.facebook_url,
+					last_login: currentDateTime()
+				});
+				Ti.App.Properties.setString('u_id', result.data.u_id); 
+				Ti.App.fireEvent('updateHeader');
+				nav.closeWindow(mainView.loginWin); 
+			}
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+		},
+		timeout : 7000  // in milliseconds
+	}); 
+	client.open("GET", url); 
+	client.send(); 
+};
+
+exports.do_signup = function(data,mainView){
+	 
+	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
+ 
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) { 
+			var result = JSON.parse(this.responseText);
+			common.hideLoading(); 
+			if(result.status == "error"){
+				common.createAlert("Error", result.data);
+				return false;
+			}else{
+				nav.closeWindow(mainView.signUpWin); 
+			}
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+		},
+		timeout : 7000  // in milliseconds
+	}); 
+	client.open("GET", url); 
+	client.send();  
 };
 
 exports.do_asp_signup = function(data){
