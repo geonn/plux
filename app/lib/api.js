@@ -31,8 +31,7 @@ var defaultRetryTimes = 3;
 **** API FUNCTION*****
 **********************/
 exports.updateUserFromFB = function(e, mainView){ 
-	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender;
-	console.log(url);
+	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {

@@ -180,7 +180,7 @@ function loginFacebook(e){
 	 
 FACEBOOK.addEventListener('login', loginFacebook); 
 FACEBOOK.addEventListener('logout', function(e) {
-    alert('Logged out');
+    //alert('Logged out');
 });
 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo);
