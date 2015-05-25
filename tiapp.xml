@@ -48,24 +48,24 @@
                 <key>NSLocationWhenInUseUsageDescription</key>
                 <string>Location services needed in order to route panel location</string>
                 <key>CFBundleURLTypes</key>
-                    <array>
-                        <dict>
-                            <key>CFBundleURLName</key>
-                            <!-- Application ID same as the id value in the tiapp.xml file -->
-                            <string>com.geonn.plux</string>
-                            <key>CFBundleURLSchemes</key>
-                            <array>
-                                <!-- Prefix the Facebook App ID with 'fb' -->
-                                <string>684687638302896</string>
-                            </array>
-                        </dict>
-                    </array>
-                    <key>FacebookAppID</key>
-                    <!-- Facebook App ID -->
-                    <string>684687638302896</string>
-                    <key>FacebookDisplayName</key>
-                    <!-- Facebook App Name from developer.facebook.com -->
-                    <string>ASP PLUX</string>
+                <array>
+                    <dict>
+                        <key>CFBundleURLName</key>
+                        <!-- Application ID same as the id value in the tiapp.xml file -->
+                        <string>com.geonn.plux</string>
+                        <key>CFBundleURLSchemes</key>
+                        <array>
+                            <!-- Prefix the Facebook App ID with 'fb' -->
+                            <string>684687638302896</string>
+                        </array>
+                    </dict>
+                </array>
+                <key>FacebookAppID</key>
+                <!-- Facebook App ID -->
+                <string>684687638302896</string>
+                <key>FacebookDisplayName</key>
+                <!-- Facebook App Name from developer.facebook.com -->
+                <string>ASP PLUX</string>
             </dict>
         </plist>
     </ios>

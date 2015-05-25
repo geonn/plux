@@ -23,6 +23,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/signup";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -220,7 +221,7 @@ function Controller() {
         id: "loginAccountButton",
         borderRadius: "15",
         backgroundColor: "#CC2228",
-        title: "Login",
+        title: "Sign Up",
         width: "90%",
         top: "20",
         height: "60",
