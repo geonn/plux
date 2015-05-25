@@ -10,6 +10,30 @@ $.tc_area.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
+function doAspSignup(){
+	var email = $.email.value;
+	var password = $.password.value;
+	var name = $.email.value;
+	var memno = $.memno.value;
+	var empno = $.empno.value;
+	var mobileno = $.mobileno.value;
+	var view_sms = view_sms_box.children[0].children[0].checked;
+	var view_agreement = view_agreement_box.children[0].children[0].checked;
+	
+	var params = {
+		email: email,
+		password: password,
+		name: name,
+		memno: memno,
+		empno: empno,
+		mobileno: mobileno,
+		smsme: view_sms,
+		agreets: view_agreement
+	};
+	console.log(params);
+	API.do_asp_signup(params);
+}
+
 function hideProductFormKeyboard(e){
 	var exception = ["email", "password", "name", "memno", "empno", "mobileno"];
 
@@ -32,12 +56,3 @@ function hideProductFormKeyboard(e){
 
 /** To fixed keyboard hide/show when textfield is activate**/
 $.loginWin.addEventListener('click',hideProductFormKeyboard);
-
-$.password.addEventListener('touchend', function(e){
-    $.password.focus();
-    isKeyboardFocus = 1;
-});
-
-$.password.addEventListener("return", function(){
-	doLogin();
-});

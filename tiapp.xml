@@ -87,8 +87,6 @@
         <module platform="iphone">ti.coremotion</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>
-        <module platform="android">com.appcelerator.apm</module>
-        <module platform="iphone">com.appcelerator.apm</module>
         <module platform="android">analytics.google</module>
         <module platform="iphone">analytics.google</module>
     </modules>

@@ -95,7 +95,6 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
-    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -151,11 +150,6 @@ function Controller() {
         backgroundColor: "rgba(0,0,0,0.5)"
     });
     $.__views.__alloyId48.add($.__views.myinfo_view);
-    $.__views.fbloginView = Ti.UI.createView({
-        height: "40",
-        id: "fbloginView"
-    });
-    $.__views.myinfo_view.add($.__views.fbloginView);
     $.__views.myInfo = Ti.UI.createView({
         layout: "horizontal",
         left: "110",
@@ -350,10 +344,6 @@ function Controller() {
             }, function() {});
         }
     });
-    $.fbloginView.add(FACEBOOK.createLoginButton({
-        top: 10,
-        style: FACEBOOK.BUTTON_STYLE_WIDE
-    }));
     FACEBOOK.addEventListener("login", loginFacebook);
     FACEBOOK.addEventListener("logout", function() {
         alert("Logged out");

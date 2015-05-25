@@ -8,6 +8,28 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function doAspSignup() {
+        var email = $.email.value;
+        var password = $.password.value;
+        var name = $.email.value;
+        var memno = $.memno.value;
+        var empno = $.empno.value;
+        var mobileno = $.mobileno.value;
+        var view_sms = view_sms_box.children[0].children[0].checked;
+        var view_agreement = view_agreement_box.children[0].children[0].checked;
+        var params = {
+            email: email,
+            password: password,
+            name: name,
+            memno: memno,
+            empno: empno,
+            mobileno: mobileno,
+            smsme: view_sms,
+            agreets: view_agreement
+        };
+        console.log(params);
+        API.do_asp_signup(params);
+    }
     function hideProductFormKeyboard(e) {
         var exception = [ "email", "password", "name", "memno", "empno", "mobileno" ];
         if (exception.indexOf(e.source.id) >= 0) {
@@ -37,6 +59,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.loginWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
@@ -111,7 +134,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "email",
         hintText: "Enter Email",
-        value: ""
+        value: "wongbh@live.com"
     });
     $.__views.main.add($.__views.email);
     $.__views.password = Ti.UI.createTextField({
@@ -131,7 +154,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
         hintText: "Enter Password",
-        value: ""
+        value: "12345678"
     });
     $.__views.main.add($.__views.password);
     $.__views.name = Ti.UI.createTextField({
@@ -150,7 +173,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "name",
         hintText: "Enter Name",
-        value: ""
+        value: "Wong Bee Heap"
     });
     $.__views.main.add($.__views.name);
     $.__views.memno = Ti.UI.createTextField({
@@ -169,7 +192,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "memno",
         hintText: "Enter Member Number",
-        value: ""
+        value: "AGIL00012"
     });
     $.__views.main.add($.__views.memno);
     $.__views.empno = Ti.UI.createTextField({
@@ -188,7 +211,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "empno",
         hintText: "Enter Employee Number",
-        value: ""
+        value: "00012"
     });
     $.__views.main.add($.__views.empno);
     $.__views.mobileno = Ti.UI.createTextField({
@@ -207,7 +230,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "mobileno",
         hintText: "Enter Mobile Number",
-        value: ""
+        value: "01298765431"
     });
     $.__views.main.add($.__views.mobileno);
     $.__views.tc_area = Ti.UI.createView({
@@ -217,8 +240,8 @@ function Controller() {
         width: Ti.UI.FILL
     });
     $.__views.main.add($.__views.tc_area);
-    $.__views.loginAccountButton = Ti.UI.createButton({
-        id: "loginAccountButton",
+    $.__views.asp_sign_btn = Ti.UI.createButton({
+        id: "asp_sign_btn",
         borderRadius: "15",
         backgroundColor: "#CC2228",
         title: "Sign Up",
@@ -228,7 +251,8 @@ function Controller() {
         bottom: "20",
         color: "#ffffff"
     });
-    $.__views.main.add($.__views.loginAccountButton);
+    $.__views.main.add($.__views.asp_sign_btn);
+    doAspSignup ? $.__views.asp_sign_btn.addEventListener("click", doAspSignup) : __defers["$.__views.asp_sign_btn!click!doAspSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -244,15 +268,8 @@ function Controller() {
     console.log(view_agreement_box.children[0].children[0].name);
     $.tc_area.add(view_sms_box);
     $.tc_area.add(view_agreement_box);
-    var isKeyboardFocus = 0;
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
-    $.password.addEventListener("touchend", function() {
-        $.password.focus();
-        isKeyboardFocus = 1;
-    });
-    $.password.addEventListener("return", function() {
-        doLogin();
-    });
+    __defers["$.__views.asp_sign_btn!click!doAspSignup"] && $.__views.asp_sign_btn.addEventListener("click", doAspSignup);
     _.extend($, exports);
 }
 

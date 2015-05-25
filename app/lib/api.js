@@ -21,6 +21,8 @@ var panelList       = "https://"+API_DOMAIN+"/panellist.aspx";
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
 var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
+var aspSignupUrl = "https://"+API_DOMAIN+"/signup.aspx";
+var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx";
 
 //configuration 
 var defaultRetryTimes = 3;
@@ -99,6 +101,49 @@ exports.removeHealthDataById = function(id){
 	client.send(); 
 };
 
+exports.do_asp_signup = function(data){
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empono+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets+"&EMAIL2="; 
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var ret = []; 
+	       var result = JSON.parse(this.responseText);
+	       res = result[0];
+	       console.log(res);
+	       if(typeof res.message !== undefined && res.message != null){
+	       		 common.createAlert("Error",res.message);
+	       		 common.hideLoading();
+	       }else{ 
+	       		var usersModel = Alloy.createCollection('users'); 
+	       		Ti.App.Properties.setString('memno', res.memno);
+	       		Ti.App.Properties.setString('empno', res.empno);
+	       		Ti.App.Properties.setString('corpcode', res.corpcode);
+	       		
+	       		usersModel.addUserData(result);
+	       		common.hideLoading();
+	       		 
+				nav.closeWindow(mainView.loginWin); 
+				Ti.App.fireEvent('updateHeader');
+				//console.log("["+target+"]");
+				if(target != "" && target != "home"){
+					nav.navigationWindow(target);
+				}
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) { 
+	     	common.createAlert("Sign Up Fail", "unexpected error");
+	     	common.hideLoading();
+       		
+	     },
+	     timeout : 6000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send();
+};
+
 exports.doLogin = function(username, password, mainView, target) { 
 	 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
@@ -146,9 +191,52 @@ exports.doLogin = function(username, password, mainView, target) {
 	 client.send(); 
 }; 
 
+exports.claimDetailBySeries = function(e){
+	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
+	var retryTimes = defaultRetryTimes;
+	console.log(url);
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+	     onload : function(e) {
+	       var ret = [];
+	       var res = JSON.parse(this.responseText);
+	       if(res.length == 0){
+	       	
+	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
+	       		console.log('got error message');
+	       		common.createAlert(res[0].message);
+	       }else{
+       			res.forEach(function(entry) {
+       				 var claim_detail_model = Alloy.createCollection('claim_detail');
+       				 claim_detail_model.save_claim_extra_detail(entry.serial,entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
+       			});
+	       }
+	       Ti.UI.fireEvent("load_claim_detail");
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(ex) {
+	     	//console.log('error');
+	     	retryTimes --;
+	     	
+	     	if(retryTimes !== 0){
+	     		API.claimDetailBySeries({serial : serial});
+	     	}else{
+	     		Ti.UI.fireEvent("load_claim_detail");
+	     	}
+	     },
+	     timeout : 10000  // in milliseconds
+	});
+	
+	// Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
+	console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -164,7 +252,9 @@ exports.getClaimDetail = function(e){
 	       }else{
        			res.forEach(function(entry) {
        				 var claim_detail_model = Alloy.createCollection('claim_detail');
-       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, entry.clinicname);
+       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname);
+       				 /* API update - removed the details portion to increase the Apps Response time
+       				  * entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, */
        			});
 	       }
 	     },
@@ -190,12 +280,13 @@ exports.getClaimDetail = function(e){
 
 exports.claimInfo = function(e) { 
 	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
+	console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
-	       var res = JSON.parse(this.responseText); 
+	       var res = JSON.parse(this.responseText);
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		common.createAlert(res[0].message);
 	       }else{
