@@ -13,6 +13,7 @@ function Controller() {
         removeAllChildren($.myInfo);
         var u_id = Ti.App.Properties.getString("u_id");
         if (auth.checkLogin()) {
+            $.logo.image = "/asp_logo.png";
             var me = usersModel.getUserByMemno();
             var logoutBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-logout.png",
@@ -41,8 +42,8 @@ function Controller() {
             $.myInfo.add(logoutBtn);
             $.myInfo.add(welcomeTitle);
         } else {
+            $.logo.image = "/appicon-60@3x.png";
             var plux_user = usersPluxModel.getUserById(u_id);
-            console.log(plux_user);
             var logoutBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-logout.png",
                 width: "40",

@@ -34,8 +34,8 @@ function refreshHeaderInfo(){
 	//
 	//if(!auth.checkLogin()){  
 	if(!auth.checkLogin()){  
-		var plux_user = usersPluxModel.getUserById(u_id); 
-		console.log(plux_user);
+		$.logo.image = "/appicon-60@3x.png";
+		var plux_user = usersPluxModel.getUserById(u_id);  
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",
 			width: "40",
@@ -68,6 +68,7 @@ function refreshHeaderInfo(){
 		$.myInfo.add(logoutBtn);
 		$.myInfo.add(welcomeTitle);
 	}else{
+		$.logo.image = "/asp_logo.png";
 		var me = usersModel.getUserByMemno();
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",

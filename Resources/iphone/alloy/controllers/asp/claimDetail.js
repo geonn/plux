@@ -29,7 +29,7 @@ function Controller() {
         section.add(createTableViewRow("Lab Test", "RM" + data.labtest_amt.toFixed(2), data.labtest));
         section.add(createTableViewRow("X-Ray", "RM" + data.xray_amt.toFixed(2), data.xray));
         section.add(createTableViewRow("Surgical", "RM" + data.surgical_amt.toFixed(2), data.surgical));
-        section.add(createTableViewRow("Extraction", "RM" + data.extraction_amt.toFixed(2), "asdasdasdas"));
+        section.add(createTableViewRow("Extraction", "RM" + data.extraction_amt.toFixed(2)));
         section.add(createTableViewRow("Fillings", "RM" + data.fillings_amt.toFixed(2)));
         section.add(createTableViewRow("Scaling", "RM" + data.scaling_amt.toFixed(2)));
         section.add(createTableViewRow("Others", "RM" + data.others_amt.toFixed(2)));
@@ -68,18 +68,14 @@ function Controller() {
         view.add(label_text);
         view.add(label_value);
         row.add(view);
-        if (dialog) {
-            console.log("a");
-            row.addEventListener("click", function() {
-                alert(dialog);
-                var dialogs = Ti.UI.createAlertDialog({
-                    message: dialog,
-                    ok: "Ok",
-                    title: text
-                });
-                dialogs.show();
+        dialog && row.addEventListener("click", function() {
+            var dialogs = Ti.UI.createAlertDialog({
+                message: dialog,
+                ok: "Ok",
+                title: text
             });
-        }
+            dialogs.show();
+        });
         return row;
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));

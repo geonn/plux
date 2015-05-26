@@ -45,6 +45,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/signup";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -70,17 +71,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-<<<<<<< HEAD
     $.__views.__alloyId92 = Ti.UI.createView({
         id: "__alloyId92"
     });
     $.__views.loginWin.add($.__views.__alloyId92);
-=======
-    $.__views.__alloyId90 = Ti.UI.createView({
-        id: "__alloyId90"
-    });
-    $.__views.loginWin.add($.__views.__alloyId90);
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -89,11 +83,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-<<<<<<< HEAD
     $.__views.__alloyId92.add($.__views.loadingBar);
-=======
-    $.__views.__alloyId90.add($.__views.loadingBar);
->>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         style: Alloy.Globals.topbarTop,
         top: 30,
@@ -102,53 +92,32 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
     $.__views.__alloyId93 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId91 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-<<<<<<< HEAD
         id: "__alloyId93"
     });
     $.__views.loadingBar.add($.__views.__alloyId93);
-=======
-        id: "__alloyId91"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId91);
->>>>>>> origin/master
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-<<<<<<< HEAD
     $.__views.__alloyId92.add($.__views.main);
     $.__views.__alloyId94 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId90.add($.__views.main);
-    $.__views.__alloyId92 = Ti.UI.createImageView({
->>>>>>> origin/master
         width: "50%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "20dp",
         top: "20dp",
-        image: "appicon-76@2x.png",
-<<<<<<< HEAD
+        image: "asp_logo.png",
         id: "__alloyId94"
     });
     $.__views.main.add($.__views.__alloyId94);
-=======
-        id: "__alloyId92"
-    });
-    $.__views.main.add($.__views.__alloyId92);
->>>>>>> origin/master
     $.__views.email = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
