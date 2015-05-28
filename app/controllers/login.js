@@ -3,6 +3,7 @@ var singleton = true;
 common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
+
 $.email.value = preset_email;
 
 /** To check if keyboard onfocus or onblur**/

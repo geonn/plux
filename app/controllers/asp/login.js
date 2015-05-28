@@ -2,11 +2,21 @@ var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
 var singleton = true;
 common.construct($);
-
+autoLogin();
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
-function doLogin() { 
+function autoLogin(){
+	var asp_email = Ti.App.Properties.getString('asp_email');
+	var asp_password = Ti.App.Properties.getString('asp_password');	
+	console.log(asp_email);
+	if(asp_email){
+		common.showLoading();
+		API.doLogin(asp_email, asp_password, $, args.target);
+	}
+}
+
+function doLogin(asp_email, asp_password) { 
 	common.showLoading();
 	var username = $.username.value;
 	var password = $.password.value;

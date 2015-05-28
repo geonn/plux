@@ -28,7 +28,7 @@ function Controller() {
             agreets: view_agreement
         };
         console.log(params);
-        API.do_asp_signup(params);
+        API.do_asp_signup(params, $);
     }
     function hideProductFormKeyboard(e) {
         var exception = [ "email", "password", "name", "memno", "empno", "mobileno" ];
@@ -154,7 +154,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
         hintText: "Enter Password",
-        value: "12345678"
+        value: ""
     });
     $.__views.main.add($.__views.password);
     $.__views.name = Ti.UI.createTextField({
@@ -264,8 +264,10 @@ function Controller() {
     var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {
         name: "agreets"
     });
-    console.log(view_sms_box.children[0].children[0].name);
-    console.log(view_agreement_box.children[0].children[0].name);
+    var preset_email = Ti.App.Properties.getString("plux_email") || "";
+    var preset_password = Ti.App.Properties.getString("plux_password") || "";
+    $.email.value = preset_email;
+    $.email.password = preset_password;
     $.tc_area.add(view_sms_box);
     $.tc_area.add(view_agreement_box);
     $.loginWin.addEventListener("click", hideProductFormKeyboard);

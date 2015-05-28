@@ -3,8 +3,12 @@ var nav = Alloy.Globals.navMenu;
 common.construct($);
 var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
 var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {name: "agreets"});
-console.log(view_sms_box.children[0].children[0].name);
-console.log(view_agreement_box.children[0].children[0].name);
+
+var preset_email = Ti.App.Properties.getString('plux_email') || "";
+var preset_password = Ti.App.Properties.getString('plux_password') || "";
+$.email.value = preset_email;
+$.email.password = preset_password;
+
 $.tc_area.add(view_sms_box);
 $.tc_area.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
@@ -31,7 +35,7 @@ function doAspSignup(){
 		agreets: view_agreement
 	};
 	console.log(params);
-	API.do_asp_signup(params);
+	API.do_asp_signup(params, $);
 }
 
 function hideProductFormKeyboard(e){

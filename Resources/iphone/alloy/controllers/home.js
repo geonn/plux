@@ -81,6 +81,8 @@ function Controller() {
         Ti.App.Properties.setString("empno", "");
         Ti.App.Properties.setString("corpcode", "");
         Ti.App.Properties.setString("u_id", "");
+        Ti.App.Properties.removeProperty("asp_email");
+        Ti.App.Properties.removeProperty("asp_password");
         refreshHeaderInfo();
         FACEBOOK.logout();
         nav.navigateWithArgs("login", {});

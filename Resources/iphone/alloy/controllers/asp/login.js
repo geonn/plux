@@ -8,6 +8,15 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function autoLogin() {
+        var asp_email = Ti.App.Properties.getString("asp_email");
+        var asp_password = Ti.App.Properties.getString("asp_password");
+        console.log(asp_email);
+        if (asp_email) {
+            common.showLoading();
+            API.doLogin(asp_email, asp_password, $, args.target);
+        }
+    }
     function doLogin() {
         common.showLoading();
         var username = $.username.value;
@@ -166,6 +175,7 @@ function Controller() {
     Alloy.Globals.navMenu;
     var singleton = true;
     common.construct($);
+    autoLogin();
     var isKeyboardFocus = 0;
     $.doSignup.addEventListener("click", function() {
         var nav = require("navigation");

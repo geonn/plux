@@ -10,6 +10,7 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
+var updateUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
 var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
@@ -34,10 +35,12 @@ var defaultRetryTimes = 3;
 **********************/
 exports.updateUserFromFB = function(e, mainView){ 
 	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
+
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
+			console.log(res);
 			common.hideLoading();
 		    if(res.status == "success"){ 
 		        API.syncHealthData({u_id:res.data.u_id});
@@ -54,7 +57,13 @@ exports.updateUserFromFB = function(e, mainView){
 				}); 
 				Ti.App.fireEvent('updateHeader');
 				nav.closeWindow(mainView.loginWin); 
-				
+				for (var i=0; i < res.data.user_service.length; i++) {
+					console.log(res.data.user_service[i]);
+				  if(res.data.user_service[i].service_id == 1){
+				  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
+	       			Ti.App.Properties.setString('asp_password', res.data.user_service[i].password);
+				  }
+				};
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
@@ -138,6 +147,16 @@ exports.do_pluxLogin = function(data,mainView){
 				});
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
+				
+				for (var i=0; i < result.data.user_service.length; i++) {
+					console.log(result.data.user_service[i]);
+				  if(result.data.user_service[i].service_id == 1){
+				  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
+	       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
+				  }
+				};
+	       		
+	       		
 				Ti.App.fireEvent('updateHeader');
 				nav.closeWindow(mainView.loginWin); 
 			}
@@ -176,8 +195,10 @@ exports.do_signup = function(data,mainView){
 	client.send();  
 };
 
-exports.do_asp_signup = function(data){
-	var url = aspSignupUrl+"?EMAIL="+data.email+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empono+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets+"&EMAIL2="; 
+exports.do_asp_signup = function(data, mainView){
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets+"&EMAIL2="; 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -193,23 +214,22 @@ exports.do_asp_signup = function(data){
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
+	       		Ti.App.Properties.setString('asp_email', data.email);
+	       		Ti.App.Properties.setString('asp_password', data.password);
 	       		
+	       		updateUserService(u_id, 1, data.email, data.password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
 	       		 
-				nav.closeWindow(mainView.loginWin); 
+				nav.closeWindow(mainView.login); 
 				Ti.App.fireEvent('updateHeader');
-				//console.log("["+target+"]");
-				if(target != "" && target != "home"){
-					nav.navigationWindow(target);
-				}
+				nav.navigationWindow("home");
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
 	     	common.createAlert("Sign Up Fail", "unexpected error");
 	     	common.hideLoading();
-       		
 	     },
 	     timeout : 6000  // in milliseconds
 	 });
@@ -222,6 +242,7 @@ exports.do_asp_signup = function(data){
 exports.doLogin = function(username, password, mainView, target) { 
 	 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -554,7 +575,24 @@ exports.loadPanelList = function (ex){
 	 client.send(); 
 };
 
+function updateUserService(u_id, service_id, email, password){
+	var url =  updateUserServiceUrl+"&u_id="+u_id+"&service_id="+service_id+"&email="+email+"&password="+password;
 
+	var client = Ti.Network.createHTTPClient({ 
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);
+	     	if(res.status == "success"){
+	     		console.log("service id synced to server");
+	     	}
+	     }, 
+	     onerror : function(e) { },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+}
 
 function onErrorCallback(e) {
 	var common = require('common');
