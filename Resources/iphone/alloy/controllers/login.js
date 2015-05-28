@@ -34,7 +34,6 @@ function Controller() {
         }
     }
     function loginFacebook(e) {
-        console.log(e);
         if (e.success) {
             common.showLoading();
             FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {

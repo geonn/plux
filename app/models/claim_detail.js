@@ -201,7 +201,7 @@ exports.definition = {
                 		db.execute(sql_query, memno,name,relation,cliniccode,visitdate,amount,category,mcdays, clinicname, serial);
                 	}
                }else{
-            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             		
             		db.execute(sql_query, serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname);
             	}
