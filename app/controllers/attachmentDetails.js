@@ -100,6 +100,11 @@ var getAttImages = function(){
 				medicalAttachmentModel.removeRecordById(items[my_page].id);
 				getAttImages();
 				Ti.App.fireEvent('refreshAttachment'); 
+				$.attachment_Details.close({
+					curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+					opacity: 0,
+					duration: 200
+				});
 			}
 		});
 		dialog.show(); 
@@ -110,10 +115,10 @@ var getAttImages = function(){
 
 $.albumView.addEventListener('click', function(){
 		$.attachment_Details.close({
-				curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-				opacity: 0,
-				duration: 200
-			});
+			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+			opacity: 0,
+			duration: 200
+		});
 	});
 /************************
 *******APP RUNNING*******

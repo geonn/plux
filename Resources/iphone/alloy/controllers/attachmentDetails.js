@@ -123,6 +123,11 @@ function Controller() {
                     medicalAttachmentModel.removeRecordById(items[my_page].id);
                     getAttImages();
                     Ti.App.fireEvent("refreshAttachment");
+                    $.attachment_Details.close({
+                        curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+                        opacity: 0,
+                        duration: 200
+                    });
                 }
             });
             dialog.show();
