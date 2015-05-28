@@ -48,5 +48,5 @@ function addData(){
 }
 	
 function editData(){ 
-	nav.navigateWithArgs("healthEditData",{gType: gType});
+	nav.navigateWithArgs("myHealth/healthEditData",{gType: gType});
 }	 

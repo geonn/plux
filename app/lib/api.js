@@ -11,6 +11,7 @@ var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
 var updateUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
+var getUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
 var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
 var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
@@ -55,8 +56,7 @@ exports.updateUserFromFB = function(e, mainView){
 					facebook_url: res.data.facebook_url,
 					last_login: currentDateTime()
 				}); 
-				Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.loginWin); 
+				
 				for (var i=0; i < res.data.user_service.length; i++) {
 					console.log(res.data.user_service[i]);
 				  if(res.data.user_service[i].service_id == 1){
@@ -67,9 +67,10 @@ exports.updateUserFromFB = function(e, mainView){
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
-	         	 
-	         	//API.updateNotificationToken();  
-				 
+	         	
+	         	Ti.App.fireEvent('updateHeader');
+				nav.closeWindow(mainView.loginWin); 
+	         	//API.updateNotificationToken();   
 		    }
 		},
 		// function called when an error occurs, including a timeout
@@ -81,6 +82,31 @@ exports.updateUserFromFB = function(e, mainView){
 	client.open("GET", url);
 	 // Send the request.
 	client.send();  
+};
+
+exports.getUserService = function(e){
+	 
+	var url = getUserServiceUrl + "&u_id="+e.u_id; 
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);
+	     	for (var i=0; i < res.data.length; i++) {
+				 
+				if(res.data[i].service_id == 1){
+				  	Ti.App.Properties.setString('asp_email', res.data[i].email);
+	       			Ti.App.Properties.setString('asp_password', res.data[i].password);
+				 }
+			}
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {   
+	     },
+	     timeout : 6000  // in milliseconds
+	 });
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send();
 };
 
 exports.syncHealthData = function(e){
@@ -217,7 +243,7 @@ exports.do_asp_signup = function(data, mainView){
 	       		Ti.App.Properties.setString('asp_email', data.email);
 	       		Ti.App.Properties.setString('asp_password', data.password);
 	       		
-	       		updateUserService(u_id, 1, data.email, data.password);
+	       		API.updateUserService(u_id, 1, data.email, data.password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
 	       		 

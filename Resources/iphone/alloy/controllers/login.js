@@ -243,10 +243,13 @@ function Controller() {
         var email = $.email.value;
         var userData = usersPluxModel.getUserByEmail(email);
         if (userData && "" != email) {
+            Ti.App.removeEventListener("touchLogin", touchLogin);
+            API.getUserService({
+                u_id: userData.id
+            });
             Ti.App.Properties.setString("u_id", userData.id);
             Ti.App.Properties.setString("plux_email", userData.email);
             Ti.App.fireEvent("updateHeader");
-            Ti.App.removeEventListener("touchLogin", touchLogin);
             nav.closeWindow($.loginWin);
         }
     };

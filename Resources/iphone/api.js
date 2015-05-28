@@ -31,6 +31,8 @@ var KEY = "06b53047cf294f7207789ff5293ad2dc";
 
 var updateUserServiceUrl = "http://" + FREEJINI_DOMAIN + "/api/updateUserService?user=" + USER + "&key=" + KEY;
 
+var getUserServiceUrl = "http://" + FREEJINI_DOMAIN + "/api/getUserService?user=" + USER + "&key=" + KEY;
+
 var updateToken = "http://" + FREEJINI_DOMAIN + "/api/updateToken?user=" + USER + "&key=" + KEY;
 
 var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER + "&key=" + KEY;
@@ -84,8 +86,6 @@ exports.updateUserFromFB = function(e, mainView) {
                     facebook_url: res.data.facebook_url,
                     last_login: currentDateTime()
                 });
-                Ti.App.fireEvent("updateHeader");
-                nav.closeWindow(mainView.loginWin);
                 for (var i = 0; i < res.data.user_service.length; i++) {
                     console.log(res.data.user_service[i]);
                     if (1 == res.data.user_service[i].service_id) {
@@ -95,10 +95,29 @@ exports.updateUserFromFB = function(e, mainView) {
                 }
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
+                Ti.App.fireEvent("updateHeader");
+                nav.closeWindow(mainView.loginWin);
             }
         },
         onerror: function() {},
         timeout: 7e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.getUserService = function(e) {
+    var url = getUserServiceUrl + "&u_id=" + e.u_id;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            for (var i = 0; i < res.data.length; i++) if (1 == res.data[i].service_id) {
+                Ti.App.Properties.setString("asp_email", res.data[i].email);
+                Ti.App.Properties.setString("asp_password", res.data[i].password);
+            }
+        },
+        onerror: function() {},
+        timeout: 6e3
     });
     client.open("GET", url);
     client.send();
@@ -210,7 +229,7 @@ exports.do_asp_signup = function(data, mainView) {
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 Ti.App.Properties.setString("asp_email", data.email);
                 Ti.App.Properties.setString("asp_password", data.password);
-                updateUserService(u_id, 1, data.email, data.password);
+                API.updateUserService(u_id, 1, data.email, data.password);
                 usersModel.addUserData(result);
                 common.hideLoading();
                 nav.closeWindow(mainView.login);

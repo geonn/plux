@@ -18,7 +18,7 @@ function Controller() {
         hd.navigateGraph(gType);
     }
     function editData() {
-        nav.navigateWithArgs("healthEditData", {
+        nav.navigateWithArgs("myHealth/healthEditData", {
             gType: gType
         });
     }
