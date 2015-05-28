@@ -74,8 +74,7 @@ $.fbloginView.add(FACEBOOK.createLoginButton({
 	    style : FACEBOOK.BUTTON_STYLE_WIDE
 }));  
   
-function loginFacebook(e){
-	 
+function loginFacebook(e){ 
 	if (e.success) { 
 		common.showLoading();
 	    FACEBOOK.requestWithGraphPath('me', { }, 'GET', function(e) {
@@ -102,9 +101,6 @@ function loginFacebook(e){
 } 
 	 
 FACEBOOK.addEventListener('login', loginFacebook); 
-FACEBOOK.addEventListener('logout', function(e) {
-    //alert('Logged out');
-});
  
 TouchId.authenticate({
     reason: "Please place finger print to login PLUX",
@@ -113,7 +109,13 @@ TouchId.authenticate({
 
 function authCB(e){ 
 	if(e.success == "1"){
-		Ti.App.fireEvent('touchLogin');
+		var email = $.email.value;
+		if(email.trim() == ""){
+		 	alert( "Email or user not found. Please login manually."); 
+		}else{
+			Ti.App.fireEvent('touchLogin');
+		}
+		
 	}
 }
 
@@ -126,8 +128,6 @@ var touchLogin =  function(){
 		Ti.App.fireEvent('updateHeader');
 		Ti.App.removeEventListener('touchLogin', touchLogin);
 		nav.closeWindow($.loginWin);  
-	}else{
-		common.createAlert("Error", "Email or user not found. Please login manually.");
 	}
 };
 

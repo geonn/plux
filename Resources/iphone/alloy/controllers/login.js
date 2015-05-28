@@ -34,6 +34,7 @@ function Controller() {
         }
     }
     function loginFacebook(e) {
+        console.log(e);
         if (e.success) {
             common.showLoading();
             FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {
@@ -53,7 +54,10 @@ function Controller() {
         } else e.error || e.cancelled;
     }
     function authCB(e) {
-        "1" == e.success && Ti.App.fireEvent("touchLogin");
+        if ("1" == e.success) {
+            var email = $.email.value;
+            "" == email.trim() ? alert("Email or user not found. Please login manually.") : Ti.App.fireEvent("touchLogin");
+        }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
@@ -232,7 +236,6 @@ function Controller() {
         style: FACEBOOK.BUTTON_STYLE_WIDE
     }));
     FACEBOOK.addEventListener("login", loginFacebook);
-    FACEBOOK.addEventListener("logout", function() {});
     TouchId.authenticate({
         reason: "Please place finger print to login PLUX",
         callback: authCB
@@ -246,7 +249,7 @@ function Controller() {
             Ti.App.fireEvent("updateHeader");
             Ti.App.removeEventListener("touchLogin", touchLogin);
             nav.closeWindow($.loginWin);
-        } else common.createAlert("Error", "Email or user not found. Please login manually.");
+        }
     };
     Ti.App.addEventListener("touchLogin", touchLogin);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
