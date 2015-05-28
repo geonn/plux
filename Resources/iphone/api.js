@@ -112,7 +112,6 @@ exports.removeHealthDataById = function(id) {
 
 exports.do_pluxLogin = function(data, mainView) {
     var url = pluxLoginUrl + "&email=" + data.email + "&password=" + data.password;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -132,6 +131,7 @@ exports.do_pluxLogin = function(data, mainView) {
                 last_login: currentDateTime()
             });
             Ti.App.Properties.setString("u_id", result.data.u_id);
+            Ti.App.Properties.setString("plux_email", result.data.email);
             Ti.App.fireEvent("updateHeader");
             nav.closeWindow(mainView.loginWin);
         },

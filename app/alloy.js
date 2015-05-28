@@ -14,13 +14,14 @@ var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
 var CoreMotion = require('ti.coremotion'); 
+var TouchId = require("ti.touchid");
 Alloy.Globals.Map = require('ti.map');
 
 /***Facebook Library***/
 var FACEBOOK = require('facebook');
 FACEBOOK.appid = "684687638302896";
-FACEBOOK.permissions = ['public_profile','email','user_friends']; // Permissions your app needs
-FACEBOOK.initialize(1000);
+FACEBOOK.permissions = ['email','public_profile','user_friends']; // Permissions your app needs
+FACEBOOK.initialize(1000); 
 FACEBOOK.forceDialogAuth = true;
 
 //constant variable

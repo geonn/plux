@@ -1,6 +1,9 @@
 var args = arguments[0] || {}; 
 var singleton = true;
 common.construct($);
+var usersPluxModel = Alloy.createCollection('users_plux'); 
+var preset_email = Ti.App.Properties.getString('plux_email') || "";
+$.email.value = preset_email;
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
@@ -67,15 +70,19 @@ $.password.addEventListener("return", function(){
 /*** Facebook login***/ 
 $.fbloginView.add(FACEBOOK.createLoginButton({
 	    top : 10,
+	   	readPermissions: ['email','public_profile','user_friends'],
 	    style : FACEBOOK.BUTTON_STYLE_WIDE
 }));  
-
+  
 function loginFacebook(e){
+	 
 	if (e.success) { 
 		common.showLoading();
-	    FACEBOOK.requestWithGraphPath('me', {}, 'GET', function(e) {
+	    FACEBOOK.requestWithGraphPath('me', { }, 'GET', function(e) {
+	    	 
 		    if (e.success) { 
 		    	var fbRes = JSON.parse(e.result);
+		     	Ti.App.Properties.setString('plux_email',fbRes.email);
 		     	API.updateUserFromFB({
 			       	email: fbRes.email,
 			       	fbid: fbRes.id,
@@ -98,3 +105,30 @@ FACEBOOK.addEventListener('login', loginFacebook);
 FACEBOOK.addEventListener('logout', function(e) {
     //alert('Logged out');
 });
+ 
+TouchId.authenticate({
+    reason: "Please place finger print to login PLUX",
+    callback: authCB
+});
+
+function authCB(e){ 
+	if(e.success == "1"){
+		Ti.App.fireEvent('touchLogin');
+	}
+}
+
+var touchLogin =  function(){
+	var email = $.email.value;
+	var userData = usersPluxModel.getUserByEmail(email);
+	if(userData && email != ""){ 
+		Ti.App.Properties.setString('u_id', userData.id); 
+		Ti.App.Properties.setString('plux_email',userData.email);
+		Ti.App.fireEvent('updateHeader');
+		Ti.App.removeEventListener('touchLogin', touchLogin);
+		nav.closeWindow($.loginWin);  
+	}else{
+		common.createAlert("Error", "Email or user not found. Please login manually.");
+	}
+};
+
+Ti.App.addEventListener('touchLogin', touchLogin);

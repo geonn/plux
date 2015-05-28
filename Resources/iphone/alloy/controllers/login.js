@@ -39,6 +39,7 @@ function Controller() {
             FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {
                 if (e.success) {
                     var fbRes = JSON.parse(e.result);
+                    Ti.App.Properties.setString("plux_email", fbRes.email);
                     API.updateUserFromFB({
                         email: fbRes.email,
                         fbid: fbRes.id,
@@ -50,6 +51,9 @@ function Controller() {
             });
             FACEBOOK.removeEventListener("login", loginFacebook);
         } else e.error || e.cancelled;
+    }
+    function authCB(e) {
+        "1" == e.success && Ti.App.fireEvent("touchLogin");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
@@ -200,6 +204,9 @@ function Controller() {
     arguments[0] || {};
     var singleton = true;
     common.construct($);
+    var usersPluxModel = Alloy.createCollection("users_plux");
+    var preset_email = Ti.App.Properties.getString("plux_email") || "";
+    $.email.value = preset_email;
     var isKeyboardFocus = 0;
     $.doSignup.addEventListener("click", function() {
         nav.navigationWindow("signup", 0);
@@ -221,10 +228,27 @@ function Controller() {
     });
     $.fbloginView.add(FACEBOOK.createLoginButton({
         top: 10,
+        readPermissions: [ "email", "public_profile", "user_friends" ],
         style: FACEBOOK.BUTTON_STYLE_WIDE
     }));
     FACEBOOK.addEventListener("login", loginFacebook);
     FACEBOOK.addEventListener("logout", function() {});
+    TouchId.authenticate({
+        reason: "Please place finger print to login PLUX",
+        callback: authCB
+    });
+    var touchLogin = function() {
+        var email = $.email.value;
+        var userData = usersPluxModel.getUserByEmail(email);
+        if (userData && "" != email) {
+            Ti.App.Properties.setString("u_id", userData.id);
+            Ti.App.Properties.setString("plux_email", userData.email);
+            Ti.App.fireEvent("updateHeader");
+            Ti.App.removeEventListener("touchLogin", touchLogin);
+            nav.closeWindow($.loginWin);
+        } else common.createAlert("Error", "Email or user not found. Please login manually.");
+    };
+    Ti.App.addEventListener("touchLogin", touchLogin);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
     _.extend($, exports);
 }

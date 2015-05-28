@@ -35,7 +35,8 @@ function refreshHeaderInfo(){
 	//if(!auth.checkLogin()){  
 	if(!auth.checkLogin()){  
 		$.logo.image = "/appicon-60@3x.png";
-		var plux_user = usersPluxModel.getUserById(u_id);  
+		var plux_user = usersPluxModel.getUserById(u_id); 
+		 
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",
 			width: "40",

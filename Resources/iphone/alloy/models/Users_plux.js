@@ -45,6 +45,28 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
+            getUserByEmail: function(email) {
+                var collection = this;
+                var db1 = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email='" + email + "' ");
+                var listArr = [];
+                while (res.isValidRow()) {
+                    listArr = {
+                        id: res.fieldByName("id"),
+                        fullname: res.fieldByName("fullname"),
+                        email: res.fieldByName("email"),
+                        status: res.fieldByName("status"),
+                        facebook_id: res.fieldByName("facebook_id"),
+                        facebook_url: res.fieldByName("facebook_url"),
+                        last_login: res.fieldByName("last_login")
+                    };
+                    res.next();
+                }
+                res.close();
+                db1.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             addUserData: function(entry) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + entry.id + "' ";

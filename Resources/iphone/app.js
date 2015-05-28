@@ -121,13 +121,15 @@ var nav = require("navigation");
 
 var CoreMotion = require("ti.coremotion");
 
+var TouchId = require("ti.touchid");
+
 Alloy.Globals.Map = require("ti.map");
 
 var FACEBOOK = require("facebook");
 
 FACEBOOK.appid = "684687638302896";
 
-FACEBOOK.permissions = [ "public_profile", "email", "user_friends" ];
+FACEBOOK.permissions = [ "email", "public_profile", "user_friends" ];
 
 FACEBOOK.initialize(1e3);
 

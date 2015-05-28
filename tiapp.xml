@@ -92,6 +92,7 @@
         <module platform="iphone">com.appcelerator.apm</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>
+        <module platform="iphone">ti.touchid</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>
