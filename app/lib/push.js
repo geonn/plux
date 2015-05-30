@@ -2,7 +2,7 @@ var Cloud = require('ti.cloud');
 
 // Process incoming push notifications
 function receivePush(e) { 
-	nav.navigateWithArgs("survey", {
+	nav.navigateWithArgs("webview", {
 		url: e.data.target
 	});
  

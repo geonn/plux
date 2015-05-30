@@ -1,0 +1,6 @@
+".container": {
+	backgroundColor:"#ffffff",
+	width: Ti.UI.FILL,
+	fullscreen: true,
+	height: Titanium.UI.FILL
+},

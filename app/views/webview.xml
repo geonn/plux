@@ -1,0 +1,10 @@
+
+<Alloy>
+	<Window title="Survey" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios" >
+		<RightNavButton platform="ios">
+            <!--<Button title="List" onClick="listing" />-->
+        </RightNavButton>
+        <WebView id="surveyView" url="https://www.google.com.my/" height="auto"   />
+		<View layout="vertical" height="auto"  id="defaultMsgView" top="5"><Label>Page not found.</Label></View>
+	</Window>
+</Alloy>
