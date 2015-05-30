@@ -133,8 +133,8 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( clinicName, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('" + mysql_real_escape_string(entry.clinicname) + "', '" + mysql_real_escape_string(entry.add1) + "', '" + mysql_real_escape_string(entry.add2) + "', '" + entry.city + "', '" + entry.postcode + "', '" + entry.state + "', '" + entry.tel + "', '" + entry.latitude + "', '" + entry.longitude + "')";
-                    db.execute(sql_query);
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( clinicName, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    db.execute(sql_query, entry.clinicname, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
                 });
                 db.execute("COMMIT");
                 db.close();

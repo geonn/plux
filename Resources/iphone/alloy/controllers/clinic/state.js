@@ -27,7 +27,7 @@ function Controller() {
                 top: 15,
                 width: Ti.UI.SIZE
             });
-            $.panelListTbl.add(noRecord);
+            $.panelClinicTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({

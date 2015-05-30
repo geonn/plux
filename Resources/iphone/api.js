@@ -232,7 +232,7 @@ exports.do_asp_signup = function(data, mainView) {
                 updateUserService(u_id, 1, data.email, data.password);
                 usersModel.addUserData(result);
                 common.hideLoading();
-                nav.closeWindow(mainView.login);
+                nav.closeWindow(mainView.loginWin);
                 Ti.App.fireEvent("updateHeader");
                 nav.navigationWindow("home");
             }

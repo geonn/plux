@@ -26,7 +26,7 @@ function listing(){
 			    top: 15,
 			    width: Ti.UI.SIZE 
 			 });
-			$.panelListTbl.add(noRecord);
+			$.panelClinicTbl.add(noRecord);
 		}else{
 
 	   		arr.forEach(function(entry) {
@@ -64,10 +64,10 @@ function listing(){
 				});		
 				 
 				/*
-				row.addEventListener('touchend', function(e) {
-				 //	goAd(e);
-				});
-			 */
+					row.addEventListener('touchend', function(e) {
+					 //	goAd(e);
+					});
+				 */
 				 
 				row.add(stateLbl);
 				row.add(rightForwardBtn); 

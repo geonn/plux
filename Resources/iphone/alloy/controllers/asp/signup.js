@@ -66,8 +66,8 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
-        id: "loginWin",
         title: "ASP Signup",
+        id: "loginWin",
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
