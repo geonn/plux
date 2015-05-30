@@ -176,13 +176,15 @@ exports.do_pluxLogin = function(data,mainView){
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				
-				for (var i=0; i < result.data.user_service.length; i++) {
-					console.log(result.data.user_service[i]);
-				  if(result.data.user_service[i].service_id == 1){
-				  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
-	       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
-				  }
-				};
+				if(typeof res.data.user_service != "undefined"){
+					for (var i=0; i < result.data.user_service.length; i++) {
+						console.log(result.data.user_service[i]);
+					  if(result.data.user_service[i].service_id == 1){
+					  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
+		       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
+					  }
+					};
+				}
 	       		
 	       		
 				Ti.App.fireEvent('updateHeader');
