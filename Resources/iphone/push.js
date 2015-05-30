@@ -1,5 +1,5 @@
 function receivePush(e) {
-    nav.navigateWithArgs("survey", {
+    nav.navigateWithArgs("webview", {
         url: e.data.target
     });
     return false;
