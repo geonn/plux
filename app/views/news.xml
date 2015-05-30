@@ -1,0 +1,16 @@
+<Alloy>
+	<Window title="" backButtonTitle="" id="news" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View id="main">
+			<ScrollableView showPagingControl="false">
+				<ScrollView class="news_item" id="myContentView" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title" id="newsTitle">Bone Health for Life: Health Information Basics for You and Your Family</Label>
+					<ImageView id="newsImage" class="news_image" image=""></ImageView>
+					<Label class="image_caption" id="newsDate"> </Label>
+					 
+				</ScrollView> 
+				
+			</ScrollableView>
+			
+		</View>
+	</Window>
+</Alloy>

@@ -49,13 +49,13 @@ function Controller() {
         top: "5"
     });
     $.__views.webview.add($.__views.defaultMsgView);
-    $.__views.__alloyId84 = Ti.UI.createLabel({
+    $.__views.__alloyId86 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         text: "Page not found.",
-        id: "__alloyId84"
+        id: "__alloyId86"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId84);
+    $.__views.defaultMsgView.add($.__views.__alloyId86);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

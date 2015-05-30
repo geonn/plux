@@ -1,0 +1,65 @@
+
+"#main" : {
+  	backgroundColor: "#ffffff",
+  	height: Titanium.UI.FILL,
+  	width: Titanium.UI.FILL,
+},
+
+".news_item" :{
+  	height: Titanium.UI.FILL,
+  	width: Titanium.UI.FILL,
+  	layout: "vertical"
+}
+
+".news_title" :{
+	height: Titanium.UI.SIZE,
+  	width: Titanium.UI.SIZE,
+  	wordWrap: true,
+  	color: "#1C1C1C",
+  	font:{
+  		fontSize: "20dp",
+  	},
+  	left: "10dp",
+  	right: "10dp",
+  	bottom: "10dp", 
+  	top: "10dp", 
+},
+
+".news_image" :{
+	width: Titanium.UI.FILL,
+	height: "auto",
+},
+".image_caption":{
+	font:{
+		fontSize: "10dp"
+	},
+	color: "#9E9E9E",
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	left: "8dp",
+	top: "8dp"
+},
+".news_paragraph" :{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	color: "#4A4A4A",
+	left: "10dp",
+  	right: "10dp",
+  	bottom: "10dp", 
+  	top: "10dp", 
+  	font:{
+  		fontSize: "15dp",
+  	}
+},
+".news_subtitle" :{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	color: "#1C1C1C",
+	font:{
+		fontSize: "18dp",
+		fontWeight: 'bold'
+	},
+	left: "10dp",
+  	right: "10dp", 
+  	top: "10dp", 
+}

@@ -184,12 +184,12 @@ exports.changeBloodType = function(e) {
 };
 
 exports.navigateGraph = function(gType) {
-    "1" == gType && nav.navigationWindow("healthDataBmi");
-    "2" == gType && nav.navigationWindow("healthDataBloodPressure");
-    "3" == gType && nav.navigationWindow("healthDataHeartRate");
-    "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
-    "5" == gType && nav.navigationWindow("healthDataBmi");
-    "6" == gType && nav.navigationWindow("healthDataBmi");
+    "1" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+    "2" == gType && nav.navigationWindow("myHealth/healthDataBloodPressure");
+    "3" == gType && nav.navigationWindow("myHealth/healthDataHeartRate");
+    "4" == gType && nav.navigationWindow("myHealth/healthDataBodyTemperature");
+    "5" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+    "6" == gType && nav.navigationWindow("myHealth/healthDataBmi");
 };
 
 exports.stepsMotion = function() {

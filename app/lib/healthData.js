@@ -240,22 +240,22 @@ exports.changeBloodType = function(e){
 
 exports.navigateGraph = function(gType){
 	if(gType == "1"){
-		nav.navigationWindow("healthDataBmi");
+		nav.navigationWindow("myHealth/healthDataBmi");
 	}
 	if(gType == "2"){
-		nav.navigationWindow("healthDataBloodPressure");
+		nav.navigationWindow("myHealth/healthDataBloodPressure");
 	}
 	if(gType == "3"){
-		nav.navigationWindow("healthDataHeartRate");
+		nav.navigationWindow("myHealth/healthDataHeartRate");
 	}
 	if(gType == "4"){
-		nav.navigationWindow("healthDataBodyTemperature");
+		nav.navigationWindow("myHealth/healthDataBodyTemperature");
 	}
 	if(gType == "5"){
-		nav.navigationWindow("healthDataBmi");
+		nav.navigationWindow("myHealth/healthDataBmi");
 	}
 	if(gType == "6"){
-		nav.navigationWindow("healthDataBmi");
+		nav.navigationWindow("myHealth/healthDataBmi");
 	}
 };
 
