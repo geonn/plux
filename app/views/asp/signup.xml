@@ -1,5 +1,5 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" id="login" title="ASP Signup" id="loginWin" class="container" layout="vertical">
+	<Window navTintColor="#CE1D1C" title="ASP Signup" id="loginWin" class="container" layout="vertical">
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 		        <ActivityIndicator id="activityIndicator" />

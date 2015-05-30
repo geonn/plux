@@ -229,7 +229,7 @@ exports.do_asp_signup = function(data, mainView) {
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 Ti.App.Properties.setString("asp_email", data.email);
                 Ti.App.Properties.setString("asp_password", data.password);
-                API.updateUserService(u_id, 1, data.email, data.password);
+                updateUserService(u_id, 1, data.email, data.password);
                 usersModel.addUserData(result);
                 common.hideLoading();
                 nav.closeWindow(mainView.login);
