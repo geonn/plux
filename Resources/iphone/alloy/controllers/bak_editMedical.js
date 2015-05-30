@@ -20,6 +20,7 @@ function Controller() {
     function loadImage() {
         var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
         var counter = 0;
+        console.log(recAttachment);
         if (recAttachment.length > 0) {
             removeAllChildren($.attachment);
             recAttachment.forEach(function(att) {
@@ -115,15 +116,16 @@ function Controller() {
                 success: function(event) {
                     var image = event.media;
                     if (image.width > image.height) {
-                        var newWidth = 320;
                         var ratio = 320 / image.width;
-                        var newHeight = image.height * ratio;
+                        {
+                            image.height * ratio;
+                        }
                     } else {
-                        var newHeight = 320;
                         var ratio = 320 / image.height;
-                        var newWidth = image.width * ratio;
+                        {
+                            image.width * ratio;
+                        }
                     }
-                    image = image.imageAsResized(newWidth, newHeight);
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         blobContainer = image;
                         medicalAttachmentModel.addAttachment({

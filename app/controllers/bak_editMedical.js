@@ -24,6 +24,7 @@ function loadMedicalInfo(){
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
 	var counter = 0;
+	console.log(recAttachment);
 	if(recAttachment.length > 0){
 		removeAllChildren($.attachment);
 	 	recAttachment.forEach(function(att){ 
@@ -162,7 +163,7 @@ function takePhoto(){
 	        			var newWidth = image.width * ratio;
 	        		}
 	        		
-					image = image.imageAsResized(newWidth, newHeight); 
+				//	image = image.imageAsResized(newWidth, newHeight); 
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                   //var nativePath = event.media.nativePath;  
 			            blobContainer = image; 

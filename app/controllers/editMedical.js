@@ -16,8 +16,12 @@ function loadMedicalInfo(){
 	if(title != ""){
 		title = title.replace(/&quot;/g,"'");
 	} 
-	var message = details.message;
 	var treatment = details.treatment;
+	if(treatment == "undefined"){
+		treatment= "";
+	}
+	var message = details.message;
+	var treatment = treatment;
 	$.titleRecord.value= title;
 	$.proceduceTextArea.value= message ;
 	$.treatmentTextArea.value= treatment ;
@@ -27,8 +31,9 @@ function loadMedicalInfo(){
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
 	var counter = 0;
-	if(recAttachment.length > 0){
-		removeAllChildren($.attachment);
+	 
+	removeAllChildren($.attachment);
+	if(recAttachment.length > 0){ 
 	 	recAttachment.forEach(function(att){ 
 	 		var myImage = Ti.Utils.base64decode(att.blob);
 	 		$.attachment.add(attachedPhoto(myImage, counter));
@@ -87,9 +92,9 @@ function hideKeyboard(){
 
 function backAndSave(){
 	var title      = $.titleRecord.value; 
-	var message   = $.proceduceTextArea.value;
-	
-	if(title.trim() == "" && message.trim() == ""){
+	var message    = $.proceduceTextArea.value;
+	var treatment  = $.treatmentTextArea.value;
+	if(title.trim() == "" && message.trim() == "" && treatment.trim() == ""){
 		var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
 		 
 		if(recAttachment.length == 0){

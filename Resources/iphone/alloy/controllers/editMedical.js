@@ -12,8 +12,10 @@ function Controller() {
         loadImage();
         var title = details.title;
         "" != title && (title = title.replace(/&quot;/g, "'"));
-        var message = details.message;
         var treatment = details.treatment;
+        "undefined" == treatment && (treatment = "");
+        var message = details.message;
+        var treatment = treatment;
         $.titleRecord.value = title;
         $.proceduceTextArea.value = message;
         $.treatmentTextArea.value = treatment;
@@ -22,14 +24,12 @@ function Controller() {
     function loadImage() {
         var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
         var counter = 0;
-        if (recAttachment.length > 0) {
-            removeAllChildren($.attachment);
-            recAttachment.forEach(function(att) {
-                var myImage = Ti.Utils.base64decode(att.blob);
-                $.attachment.add(attachedPhoto(myImage, counter));
-                counter++;
-            });
-        }
+        removeAllChildren($.attachment);
+        recAttachment.length > 0 && recAttachment.forEach(function(att) {
+            var myImage = Ti.Utils.base64decode(att.blob);
+            $.attachment.add(attachedPhoto(myImage, counter));
+            counter++;
+        });
     }
     function saveRecord() {
         var title = $.titleRecord.value;
@@ -70,7 +70,8 @@ function Controller() {
     function backAndSave() {
         var title = $.titleRecord.value;
         var message = $.proceduceTextArea.value;
-        if ("" == title.trim() && "" == message.trim()) {
+        var treatment = $.treatmentTextArea.value;
+        if ("" == title.trim() && "" == message.trim() && "" == treatment.trim()) {
             var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
             0 == recAttachment.length && medicalRecordsModel.removeRecordById(rec_id);
         } else saveRecord();
