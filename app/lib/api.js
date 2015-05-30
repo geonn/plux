@@ -57,13 +57,15 @@ exports.updateUserFromFB = function(e, mainView){
 					last_login: currentDateTime()
 				}); 
 				
-				for (var i=0; i < res.data.user_service.length; i++) {
-					console.log(res.data.user_service[i]);
-				  if(res.data.user_service[i].service_id == 1){
-				  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
-	       			Ti.App.Properties.setString('asp_password', res.data.user_service[i].password);
-				  }
-				};
+				if(typeof res.data.user_service != "undefined"){
+					for (var i=0; i < res.data.user_service.length; i++) {
+						console.log(res.data.user_service[i]);
+					  if(res.data.user_service[i].service_id == 1){
+					  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
+		       			Ti.App.Properties.setString('asp_password', res.data.user_service[i].password);
+					  }
+					};
+				}
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);

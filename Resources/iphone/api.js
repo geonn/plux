@@ -86,7 +86,7 @@ exports.updateUserFromFB = function(e, mainView) {
                     facebook_url: res.data.facebook_url,
                     last_login: currentDateTime()
                 });
-                for (var i = 0; i < res.data.user_service.length; i++) {
+                if ("undefined" != typeof res.data.user_service) for (var i = 0; i < res.data.user_service.length; i++) {
                     console.log(res.data.user_service[i]);
                     if (1 == res.data.user_service[i].service_id) {
                         Ti.App.Properties.setString("asp_email", res.data.user_service[i].email);
