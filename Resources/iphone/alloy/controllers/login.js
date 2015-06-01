@@ -33,6 +33,9 @@ function Controller() {
             $.password.blur();
         }
     }
+    function doSignup() {
+        nav.navigationWindow("signup", 0);
+    }
     function loginFacebook(e) {
         if (e.success) {
             common.showLoading();
@@ -178,12 +181,12 @@ function Controller() {
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({
         id: "loginAccountButton",
-        borderRadius: "15",
+        borderRadius: "5",
         backgroundColor: "#CC2228",
         title: "Login",
-        width: "60%",
+        width: "70%",
         top: "20",
-        height: "60",
+        height: "40",
         color: "#ffffff"
     });
     $.__views.main.add($.__views.loginAccountButton);
@@ -194,14 +197,18 @@ function Controller() {
         width: "70%"
     });
     $.__views.main.add($.__views.fbloginView);
-    $.__views.doSignup = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        text: "Register",
-        id: "doSignup",
-        top: "10"
+    $.__views.registerAccountButton = Ti.UI.createButton({
+        id: "registerAccountButton",
+        borderRadius: "5",
+        backgroundColor: "#9A5705",
+        title: "Register",
+        width: "70%",
+        top: "5",
+        height: "40",
+        color: "#ffffff"
     });
-    $.__views.main.add($.__views.doSignup);
+    $.__views.main.add($.__views.registerAccountButton);
+    doSignup ? $.__views.registerAccountButton.addEventListener("touchend", doSignup) : __defers["$.__views.registerAccountButton!touchend!doSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -211,9 +218,6 @@ function Controller() {
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
     $.email.value = preset_email;
     var isKeyboardFocus = 0;
-    $.doSignup.addEventListener("click", function() {
-        nav.navigationWindow("signup", 0);
-    });
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
     $.email.addEventListener("touchend", function() {
         $.email.focus();
@@ -255,6 +259,7 @@ function Controller() {
     };
     Ti.App.addEventListener("touchLogin", touchLogin);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
+    __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
     _.extend($, exports);
 }
 

@@ -210,12 +210,12 @@ function Controller() {
     $.__views.main.add($.__views.tc_area);
     $.__views.sign_btn = Ti.UI.createButton({
         id: "sign_btn",
-        borderRadius: "15",
-        backgroundColor: "#CC2228",
+        borderRadius: "5",
+        backgroundColor: "#9A5705",
         title: "Sign Up",
         width: "60%",
         top: "20",
-        height: "60",
+        height: "40",
         bottom: "20",
         color: "#ffffff"
     });

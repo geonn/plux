@@ -24,8 +24,9 @@ function addForm(text, type) {
         var textField = $.UI.create("TextField", {
             width: Ti.UI.FILL,
             height: 40,
-            borderColor: "#cccccc",
-            keyboardToolbar: keyboardToolbarButtons
+            keyboardToolbar: keyboardToolbarButtons,
+            backgroundColor: "#ffffff",
+            borderRadius: 5
         });
         var view_textfield = $.UI.create("View", {
             width: Ti.UI.FILL,
@@ -77,6 +78,7 @@ function resultPopUp(title, msg) {
         left: "20dp",
         right: "20dp",
         bottom: "20dp",
+        color: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });
@@ -96,15 +98,35 @@ function resultPopUp(title, msg) {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });
+    var btnView = Titanium.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        backgroundColor: "#fff",
+        textAlign: "center",
+        layout: "horizontal"
+    });
     var okButton = Ti.UI.createButton({
+        left: 40,
         title: "OK",
         width: "100dp",
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
+        color: "#ffffff",
         height: "40dp",
         bottom: "20dp"
     });
+    var saveButton = Ti.UI.createButton({
+        title: "Save BMI",
+        width: "100dp",
+        left: 10,
+        backgroundColor: "#CE1D1C",
+        color: "#ffffff",
+        height: "40dp",
+        bottom: "20dp"
+    });
+    btnView.add(okButton);
+    btnView.add(saveButton);
     content.add(content_text);
-    content.add(okButton);
+    content.add(btnView);
     box.add(header);
     box.add(content);
     $.win.add(box);
@@ -112,6 +134,25 @@ function resultPopUp(title, msg) {
     okButton.addEventListener("click", function() {
         $.win.remove(box);
         $.win.remove(mask);
+    });
+    saveButton.addEventListener("click", function() {
+        var weight = form[0].value;
+        var height = form[1].value;
+        var result = weight / (height / 100 * (height / 100));
+        var result = result.toFixed(2);
+        var currentDT = currentDateTime();
+        var datetime = currentDT.split(" ");
+        var lib_health = Alloy.createCollection("health");
+        lib_health.addHealthData({
+            date: datetime[0],
+            time: datetime[1],
+            field1: weight,
+            field2: height / 100,
+            amount: result,
+            type: 1
+        });
+        saveButton.hide();
+        common.createAlert("BMI", "BMI's record saved");
     });
 }
 

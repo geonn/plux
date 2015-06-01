@@ -42,16 +42,16 @@ function Controller() {
         id: "__alloyId69"
     });
     $.__views.win.add($.__views.__alloyId69);
-    $.__views.description = Ti.UI.createView({
-        id: "description",
-        height: Ti.UI.SIZE
-    });
-    $.__views.__alloyId69.add($.__views.description);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
     $.__views.__alloyId69.add($.__views.input_box);
+    $.__views.description = Ti.UI.createView({
+        id: "description",
+        height: Ti.UI.SIZE
+    });
+    $.__views.__alloyId69.add($.__views.description);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,

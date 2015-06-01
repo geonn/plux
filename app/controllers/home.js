@@ -106,39 +106,7 @@ function refreshHeaderInfo(){
 }	 
 
 
-$.scrollboard.addEventListener("scroll", function(e){
-	var o = e.source.contentOffset;
-	var ract = $.logo.rect;
-	/*if(o.y >= 139 && expandmode){
-		$.logo.animate({
-	        top: -100,
-	        duration: 500
-	    }, function(){expandmode = false;});
-	}
-	else if(o.y < 139 && !expandmode){
-		$.logo.animate({
-	        top: 10,
-	        duration: 500
-	    }, function(){expandmode = true;});
-	}else*/ 
-	
-	if(o.y > 139){
-		var pos = ract.top - (o.y - 139);
-		$.logo.setTop(pos);
-		$.myinfo_view.setTop(pos+10);
-		return ;
-	}else if(o.y < 139 && o.y > 0){
-		$.logo.animate({
-	        top: 10,
-	        duration: 500
-	    }, function(){});
-	    
-	    $.myinfo_view.animate({
-	        top: 20,
-	        duration: 500
-	    }, function(){});
-	}
-});
+
 
 function navWindow(e){
 	var target = e.source.mod; 

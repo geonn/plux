@@ -1,11 +1,4 @@
 function addForm(text, type, options) {
-    function formEvent(ex) {
-        form_label[ex.source.counter].text = ex.row.title;
-        $.picker.removeAllChildren();
-        ex.source.removeEventListener("change", formEvent);
-        form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
-        form[ex.source.counter].row_value = ex.rowIndex;
-    }
     if ("TextField" == type) {
         var label_textfield = $.UI.create("Label", {
             text: text,
@@ -31,8 +24,9 @@ function addForm(text, type, options) {
         var textField = $.UI.create("TextField", {
             width: Ti.UI.FILL,
             height: 40,
-            borderColor: "#cccccc",
-            keyboardToolbar: keyboardToolbarButtons
+            keyboardToolbar: keyboardToolbarButtons,
+            backgroundColor: "#ffffff",
+            borderRadius: 5
         });
         var view_textfield = $.UI.create("View", {
             width: Ti.UI.FILL,
@@ -50,52 +44,25 @@ function addForm(text, type, options) {
         form_label.push([]);
         return view_textfield;
     }
-    if ("Picker" == type) {
-        var data = [];
-        var label_picker = $.UI.create("Label", {
+    if ("ButtonBar" == type) {
+        var label_buttonbar = $.UI.create("Label", {
             text: text,
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-        var picker = $.UI.create("Picker", {
+        var buttonbar = $.UI.create("TabbedBar", {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
             counter: count,
             row_value: 0,
-            bottom: 0
+            labels: options,
+            backgroundColor: "#CE1D1C",
+            borderColor: "#CE1D1C"
         });
-        var label_picker_value = $.UI.create("Label", {
-            text: options[0],
-            counter: count,
-            mod: 0,
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-            left: 10,
-            right: 10,
-            top: 10,
-            bottom: 10
-        });
-        var view_border_pv = $.UI.create("View", {
-            backgroundColor: "#ffffff",
-            borderCorder: "#dddddd",
-            borderRadius: 10,
-            text: options[0],
-            counter: count,
-            height: Ti.UI.SIZE
-        });
-        view_border_pv.add(label_picker_value);
-        label_picker_value.addEventListener("click", function(e) {
+        buttonbar.addEventListener("click", function(e) {
             var index = e.source.counter;
-            $.picker.add(form[index]);
-            form[index].addEventListener("change", formEvent);
+            form_data[index] = "0" == e.index ? 1 : 0;
         });
-        for (var a = 0; a < options.length; a++) {
-            var row = Ti.UI.createPickerRow({
-                title: options[a]
-            });
-            data.push(row);
-        }
-        picker.add(data);
         var view_picker = $.UI.create("View", {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
@@ -105,10 +72,8 @@ function addForm(text, type, options) {
             bottom: 10,
             layout: "vertical"
         });
-        form.push(picker);
-        form_label.push(label_picker_value);
-        view_picker.add(label_picker);
-        view_picker.add(view_border_pv);
+        view_picker.add(label_buttonbar);
+        view_picker.add(buttonbar);
         count++;
         return view_picker;
     }
@@ -116,7 +81,7 @@ function addForm(text, type, options) {
 
 function formular() {
     var total_score = 0;
-    for (a = 0; a < form.length; a++) form[a].row_value || total_score++;
+    for (a = 0; a < form_data.length; a++) "1" == form_data[a] && total_score++;
     3 >= total_score ? resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ") : 6 >= total_score ? resultPopUp("RESULT", "Not bad! You are halfway there. You still have a way to go. Look at your 'No' answers to help you decide which areas of your diet need to be improved, or whether your physical activity level should be increased.") : 8 >= total_score && resultPopUp("RESULT", "Good for you! You are living smart! Keep up the good habits, and keep looking for ways to improve.");
 }
 
@@ -146,6 +111,7 @@ function resultPopUp(title, msg) {
         left: "20dp",
         right: "20dp",
         bottom: "20dp",
+        color: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });
@@ -168,7 +134,8 @@ function resultPopUp(title, msg) {
     var okButton = Ti.UI.createButton({
         title: "OK",
         width: "100dp",
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
+        color: "#ffffff",
         height: "40dp",
         bottom: "20dp"
     });
@@ -188,6 +155,8 @@ var $ = null;
 
 var form = null;
 
+var form_data = null;
+
 var form_label = null;
 
 var count = null;
@@ -198,6 +167,7 @@ exports.construct = function(mv) {
     $ = mv;
     form = [];
     form_label = [];
+    form_data = [];
     count = 0;
 };
 
@@ -241,14 +211,14 @@ exports.input_box = function() {
     });
     var yes_no_options = [ "Yes", "No" ];
     view_inputbox.add(view_header);
-    view_inputbox.add(addForm("I eat at least 2½ cups of vegetables and fruits every day.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I eat whole-grain bread, pasta, and cereal instead of refined grain products.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I try to choose foods low in calories and fat.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I rarely eat red meat or processed meat like bacon, hot dogs, and sausage.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I take it easy on high-calorie, baked goods such as cakes, cookies and doughnuts.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I rarely add butter, margarine, oil or mayonnaise to foods when I’m cooking or at the table.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I rarely (less than twice a week) eat fried foods.", "Picker", yes_no_options));
-    view_inputbox.add(addForm("I never, or only occasionally, drink alcohol.", "Picker", yes_no_options));
+    view_inputbox.add(addForm("I eat at least 2½ cups of vegetables and fruits every day.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I eat whole-grain bread, pasta, and cereal instead of refined grain products.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I try to choose foods low in calories and fat.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I rarely eat red meat or processed meat like bacon, hot dogs, and sausage.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I take it easy on high-calorie, baked goods such as cakes, cookies and doughnuts.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I rarely add butter, margarine, oil or mayonnaise to foods when I’m cooking or at the table.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I rarely (less than twice a week) eat fried foods.", "ButtonBar", yes_no_options));
+    view_inputbox.add(addForm("I never, or only occasionally, drink alcohol.", "ButtonBar", yes_no_options));
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,

@@ -2,8 +2,7 @@ function updateUserService(u_id, service_id, email, password) {
     var url = updateUserServiceUrl + "&u_id=" + u_id + "&service_id=" + service_id + "&email=" + email + "&password=" + password;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var res = JSON.parse(this.responseText);
-            "success" == res.status && console.log("service id synced to server");
+            JSON.parse(this.responseText);
         },
         onerror: function() {},
         timeout: 5e4
@@ -70,7 +69,6 @@ exports.updateUserFromFB = function(e, mainView) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            console.log(res);
             common.hideLoading();
             if ("success" == res.status) {
                 API.syncHealthData({
@@ -86,12 +84,9 @@ exports.updateUserFromFB = function(e, mainView) {
                     facebook_url: res.data.facebook_url,
                     last_login: currentDateTime()
                 });
-                if ("undefined" != typeof res.data.user_service) for (var i = 0; i < res.data.user_service.length; i++) {
-                    console.log(res.data.user_service[i]);
-                    if (1 == res.data.user_service[i].service_id) {
-                        Ti.App.Properties.setString("asp_email", res.data.user_service[i].email);
-                        Ti.App.Properties.setString("asp_password", res.data.user_service[i].password);
-                    }
+                if ("undefined" != typeof res.data.user_service) for (var i = 0; i < res.data.user_service.length; i++) if (1 == res.data.user_service[i].service_id) {
+                    Ti.App.Properties.setString("asp_email", res.data.user_service[i].email);
+                    Ti.App.Properties.setString("asp_password", res.data.user_service[i].password);
                 }
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
@@ -143,7 +138,6 @@ exports.removeHealthDataById = function(id) {
     var u_id = Ti.App.Properties.getString("u_id") || "";
     if ("" == u_id) return false;
     var url = removeHealthDataUrl + "&u_id=" + u_id + "&h_id=" + id;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {},
         onerror: function() {},
@@ -175,12 +169,9 @@ exports.do_pluxLogin = function(data, mainView) {
             });
             Ti.App.Properties.setString("u_id", result.data.u_id);
             Ti.App.Properties.setString("plux_email", result.data.email);
-            if ("undefined" != typeof res.data.user_service) for (var i = 0; i < result.data.user_service.length; i++) {
-                console.log(result.data.user_service[i]);
-                if (1 == result.data.user_service[i].service_id) {
-                    Ti.App.Properties.setString("asp_email", result.data.user_service[i].email);
-                    Ti.App.Properties.setString("asp_password", result.data.user_service[i].password);
-                }
+            if ("undefined" != typeof res.data.user_service) for (var i = 0; i < result.data.user_service.length; i++) if (1 == result.data.user_service[i].service_id) {
+                Ti.App.Properties.setString("asp_email", result.data.user_service[i].email);
+                Ti.App.Properties.setString("asp_password", result.data.user_service[i].password);
             }
             Ti.App.fireEvent("updateHeader");
             nav.closeWindow(mainView.loginWin);
@@ -218,7 +209,6 @@ exports.do_asp_signup = function(data, mainView) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-            console.log(res);
             if (void 0 !== typeof res.message && null != res.message) {
                 common.createAlert("Error", res.message);
                 common.hideLoading();
@@ -249,7 +239,6 @@ exports.do_asp_signup = function(data, mainView) {
 
 exports.doLogin = function(username, password, mainView, target) {
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -283,17 +272,13 @@ exports.doLogin = function(username, password, mainView, target) {
 exports.claimDetailBySeries = function(e) {
     var url = getclaimDetailBySeriesUrl + "?SERIAL=" + e.serial;
     var retryTimes = defaultRetryTimes;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            if (0 == res.length) ; else if ("undefined" != typeof res[0].message && null != res[0].message) {
-                console.log("got error message");
-                common.createAlert(res[0].message);
-            } else res.forEach(function(entry) {
+            0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_extra_detail(entry.serial, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
-            });
+            }));
             Ti.UI.fireEvent("load_claim_detail");
         },
         onerror: function() {
@@ -310,18 +295,14 @@ exports.claimDetailBySeries = function(e) {
 
 exports.getClaimDetail = function(e) {
     var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
-    console.log(url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            if (0 == res.length) ; else if ("undefined" != typeof res[0].message && null != res[0].message) {
-                console.log("got error message");
-                common.createAlert(res[0].message);
-            } else res.forEach(function(entry) {
+            0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname);
-            });
+            }));
         },
         onerror: function() {
             retryTimes--;
@@ -339,7 +320,6 @@ exports.getClaimDetail = function(e) {
 
 exports.claimInfo = function(e) {
     var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
-    console.log(url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -369,7 +349,6 @@ exports.updateNotificationToken = function() {
     var memno = Ti.App.Properties.getString("memno");
     if ("" != deviceToken) {
         var url = updateToken + "&token=" + deviceToken + "&member_no=" + memno;
-        console.log(url);
         var client = Ti.Network.createHTTPClient({
             onload: function() {
                 var res = JSON.parse(this.responseText);

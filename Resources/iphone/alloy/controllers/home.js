@@ -327,26 +327,6 @@ function Controller() {
         }
     }
     setBackground();
-    $.scrollboard.addEventListener("scroll", function(e) {
-        var o = e.source.contentOffset;
-        var ract = $.logo.rect;
-        if (o.y > 139) {
-            var pos = ract.top - (o.y - 139);
-            $.logo.setTop(pos);
-            $.myinfo_view.setTop(pos + 10);
-            return;
-        }
-        if (o.y < 139 && o.y > 0) {
-            $.logo.animate({
-                top: 10,
-                duration: 500
-            }, function() {});
-            $.myinfo_view.animate({
-                top: 20,
-                duration: 500
-            }, function() {});
-        }
-    });
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
     __defers["$.__views.__alloyId51!click!navWindow"] && $.__views.__alloyId51.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId52!click!navWindow"] && $.__views.__alloyId52.addEventListener("click", navWindow);

@@ -12,7 +12,7 @@
 				<TextField id="password" hintText="Enter Password" value="" />
 				<TextField id="confirm" hintText="Enter Confirm Password" value="" /><!--12345678 -->
 				<View id="tc_area" layout="vertical" height="Ti.UI.SIZE" width="Ti.UI.FILL"></View>
-				<Button id="sign_btn" onClick="doSignup" borderRadius="15" backgroundColor="#CC2228" title="Sign Up"  width="60%" top="20" height="60" bottom="20" color="#ffffff" />
+				<Button id="sign_btn" onClick="doSignup" borderRadius="5" backgroundColor="#9A5705" title="Sign Up"  width="60%" top="20" height="40" bottom="20" color="#ffffff" />
 			</ScrollView>
 		</View><!--
 		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">

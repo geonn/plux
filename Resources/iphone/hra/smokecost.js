@@ -24,8 +24,9 @@ function addForm(text, type) {
         var textField = $.UI.create("TextField", {
             width: Ti.UI.FILL,
             height: 40,
-            borderColor: "#cccccc",
-            keyboardToolbar: keyboardToolbarButtons
+            keyboardToolbar: keyboardToolbarButtons,
+            backgroundColor: "#ffffff",
+            borderRadius: 5
         });
         var view_textfield = $.UI.create("View", {
             width: Ti.UI.FILL,
@@ -81,6 +82,7 @@ function resultPopUp(title, msg) {
         left: "20dp",
         right: "20dp",
         bottom: "20dp",
+        color: "#ffffff",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });
@@ -103,7 +105,8 @@ function resultPopUp(title, msg) {
     var okButton = Ti.UI.createButton({
         title: "OK",
         width: "100dp",
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
+        color: "#ffffff",
         height: "40dp",
         bottom: "20dp"
     });

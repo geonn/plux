@@ -41,7 +41,7 @@ exports.updateUserFromFB = function(e, mainView){
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
-			console.log(res);
+			//console.log(res);
 			common.hideLoading();
 		    if(res.status == "success"){ 
 		        API.syncHealthData({u_id:res.data.u_id});
@@ -59,7 +59,7 @@ exports.updateUserFromFB = function(e, mainView){
 				
 				if(typeof res.data.user_service != "undefined"){
 					for (var i=0; i < res.data.user_service.length; i++) {
-						console.log(res.data.user_service[i]);
+					//console.log(res.data.user_service[i]);
 					  if(res.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
 		       			Ti.App.Properties.setString('asp_password', res.data.user_service[i].password);
@@ -137,7 +137,7 @@ exports.removeHealthDataById = function(id){
 		return false;
 	}
 	var url = removeHealthDataUrl+"&u_id="+u_id+"&h_id="+id;
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
@@ -178,7 +178,7 @@ exports.do_pluxLogin = function(data,mainView){
 				
 				if(typeof res.data.user_service != "undefined"){
 					for (var i=0; i < result.data.user_service.length; i++) {
-						console.log(result.data.user_service[i]);
+					//	console.log(result.data.user_service[i]);
 					  if(result.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
 		       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
@@ -235,7 +235,7 @@ exports.do_asp_signup = function(data, mainView){
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
-	       console.log(res);
+	       //console.log(res);
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
@@ -272,7 +272,7 @@ exports.do_asp_signup = function(data, mainView){
 exports.doLogin = function(username, password, mainView, target) { 
 	 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -321,7 +321,7 @@ exports.doLogin = function(username, password, mainView, target) {
 exports.claimDetailBySeries = function(e){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
 	var retryTimes = defaultRetryTimes;
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
@@ -330,7 +330,7 @@ exports.claimDetailBySeries = function(e){
 	       if(res.length == 0){
 	       	
 	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
-	       		console.log('got error message');
+	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{
        			res.forEach(function(entry) {
@@ -363,7 +363,7 @@ exports.claimDetailBySeries = function(e){
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
-	console.log(url);
+	//console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -374,7 +374,7 @@ exports.getClaimDetail = function(e){
 	       if(res.length == 0){
 	       	
 	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
-	       		console.log('got error message');
+	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{
        			res.forEach(function(entry) {
@@ -407,7 +407,7 @@ exports.getClaimDetail = function(e){
 
 exports.claimInfo = function(e) { 
 	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
-	console.log(url);
+	//console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
@@ -446,7 +446,7 @@ exports.updateNotificationToken = function(e){
 	var memno = Ti.App.Properties.getString('memno'); 
 	if(deviceToken != ""){ 
 		var url = updateToken+"&token="+deviceToken+"&member_no="+memno;
-		console.log(url);
+		//console.log(url);
 		var client = Ti.Network.createHTTPClient({
 		     // function called when the response data is available
 		     onload : function(e) {
@@ -612,9 +612,7 @@ function updateUserService(u_id, service_id, email, password){
 	var client = Ti.Network.createHTTPClient({ 
 	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
-	     	if(res.status == "success"){
-	     		console.log("service id synced to server");
-	     	}
+	     	 
 	     }, 
 	     onerror : function(e) { },
 	     timeout : 50000  // in milliseconds
