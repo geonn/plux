@@ -36,6 +36,10 @@ function Controller() {
             $.password.blur();
         }
     }
+    function doSignup() {
+        var nav = require("navigation");
+        nav.navigationWindow("asp/signup", 0);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/login";
     this.args = arguments[0] || {};
@@ -151,24 +155,28 @@ function Controller() {
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({
         id: "loginAccountButton",
-        borderRadius: "15",
+        borderRadius: "5",
         backgroundColor: "#CC2228",
         title: "Login",
-        width: "90%",
+        width: "70%",
         top: "20",
-        height: "60",
+        height: "40",
         color: "#ffffff"
     });
     $.__views.main.add($.__views.loginAccountButton);
     doLogin ? $.__views.loginAccountButton.addEventListener("touchend", doLogin) : __defers["$.__views.loginAccountButton!touchend!doLogin"] = true;
-    $.__views.doSignup = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        text: "First-Time Login",
-        id: "doSignup",
-        top: "10"
+    $.__views.registerAccountButton = Ti.UI.createButton({
+        id: "registerAccountButton",
+        borderRadius: "5",
+        backgroundColor: "#7B7B7B",
+        title: "First-Time Login",
+        width: "70%",
+        top: "5",
+        height: "40",
+        color: "#ffffff"
     });
-    $.__views.main.add($.__views.doSignup);
+    $.__views.main.add($.__views.registerAccountButton);
+    doSignup ? $.__views.registerAccountButton.addEventListener("touchend", doSignup) : __defers["$.__views.registerAccountButton!touchend!doSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -177,10 +185,6 @@ function Controller() {
     common.construct($);
     autoLogin();
     var isKeyboardFocus = 0;
-    $.doSignup.addEventListener("click", function() {
-        var nav = require("navigation");
-        nav.navigationWindow("asp/signup", 0);
-    });
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
     $.username.addEventListener("touchend", function() {
         $.username.focus();
@@ -197,6 +201,7 @@ function Controller() {
         doLogin();
     });
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
+    __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
     _.extend($, exports);
 }
 

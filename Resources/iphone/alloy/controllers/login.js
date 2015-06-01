@@ -200,7 +200,7 @@ function Controller() {
     $.__views.registerAccountButton = Ti.UI.createButton({
         id: "registerAccountButton",
         borderRadius: "5",
-        backgroundColor: "#9A5705",
+        backgroundColor: "#7B7B7B",
         title: "Register",
         width: "70%",
         top: "5",

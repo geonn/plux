@@ -109,7 +109,7 @@ function Controller() {
     });
     $.__views.__alloyId96.add($.__views.main);
     $.__views.__alloyId98 = Ti.UI.createImageView({
-        width: "50%",
+        width: "40%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "20dp",
@@ -242,12 +242,12 @@ function Controller() {
     $.__views.main.add($.__views.tc_area);
     $.__views.asp_sign_btn = Ti.UI.createButton({
         id: "asp_sign_btn",
-        borderRadius: "15",
+        borderRadius: "5",
         backgroundColor: "#CC2228",
         title: "Sign Up",
-        width: "90%",
+        width: "70%",
         top: "20",
-        height: "60",
+        height: "40",
         bottom: "20",
         color: "#ffffff"
     });

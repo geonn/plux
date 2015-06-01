@@ -16,7 +16,7 @@
 				<TextField id="password" hintText="Enter Password" value="" /><!--asplux123 -->
 				<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />
 				<View height="60" id="fbloginView" width="70%" />
-				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#9A5705" onTouchend="doSignup" title="Register"  width="70%" top="5" height="40" color="#ffffff" />
+				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doSignup" title="Register"  width="70%" top="5" height="40" color="#ffffff" />
 				
 			</ScrollView>
 		</View><!--

@@ -211,7 +211,7 @@ function Controller() {
     $.__views.sign_btn = Ti.UI.createButton({
         id: "sign_btn",
         borderRadius: "5",
-        backgroundColor: "#9A5705",
+        backgroundColor: "#CC2228",
         title: "Sign Up",
         width: "60%",
         top: "20",

@@ -6,7 +6,7 @@
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="50%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="asp_logo.png"></ImageView>
+				<ImageView width="40%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="asp_logo.png"></ImageView>
 				<TextField class="text_input" id="email" hintText="Enter Email" value="wongbh@live.com" /><!-- wongbh@live.com -->
 				<TextField id="password" hintText="Enter Password" value="" /><!--12345678 -->
 				<TextField class="text_input" id="name" hintText="Enter Name" value="Wong Bee Heap" /><!-- Wong Bee Heap -->
@@ -14,7 +14,7 @@
 				<TextField class="text_input" id="empno" hintText="Enter Employee Number" value="00012" /><!-- 00012 -->
 				<TextField class="text_input" id="mobileno" hintText="Enter Mobile Number" value="01298765431" /><!-- 01298765431 -->
 				<View id="tc_area" layout="vertical" height="Ti.UI.SIZE" width="Ti.UI.FILL"></View>
-				<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="15" backgroundColor="#CC2228" title="Sign Up"  width="90%" top="20" height="60" bottom="20" color="#ffffff" />
+				<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
 			</ScrollView>
 		</View><!--
 		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
