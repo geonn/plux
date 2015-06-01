@@ -148,7 +148,7 @@ function navWindow(e){
 		nav.navigationWindow("asp/"+target, 1);  
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
-	}else if(e.source.mod == "state"){
+	}else if(e.source.mod == "clinicLocator"){
 		nav.navigationWindow("clinic/"+target, 1);  
   
 	}else{

@@ -74,7 +74,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "state" == e.source.mod ? nav.navigationWindow("clinic/" + target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "myClaim" == e.source.mod || "profile" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigationWindow("clinic/" + target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");
@@ -271,7 +271,7 @@ function Controller() {
     $.__views.__alloyId50.add($.__views.__alloyId57);
     navWindow ? $.__views.__alloyId57.addEventListener("click", navWindow) : __defers["$.__views.__alloyId57!click!navWindow"] = true;
     $.__views.__alloyId58 = Ti.UI.createImageView({
-        mod: "state",
+        mod: "clinicLocator",
         left: "15",
         top: "15",
         width: "139",

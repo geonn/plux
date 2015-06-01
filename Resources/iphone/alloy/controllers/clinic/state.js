@@ -113,7 +113,6 @@ function Controller() {
     var details = library.getPanelListByState();
     console.log(details);
     listing();
-    API.loadPanelList();
     _.extend($, exports);
 }
 

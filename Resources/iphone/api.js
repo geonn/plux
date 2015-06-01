@@ -175,7 +175,7 @@ exports.do_pluxLogin = function(data, mainView) {
             });
             Ti.App.Properties.setString("u_id", result.data.u_id);
             Ti.App.Properties.setString("plux_email", result.data.email);
-            for (var i = 0; i < result.data.user_service.length; i++) {
+            if ("undefined" != typeof res.data.user_service) for (var i = 0; i < result.data.user_service.length; i++) {
                 console.log(result.data.user_service[i]);
                 if (1 == result.data.user_service[i].service_id) {
                     Ti.App.Properties.setString("asp_email", result.data.user_service[i].email);
@@ -267,6 +267,7 @@ exports.doLogin = function(username, password, mainView, target) {
                 nav.closeWindow(mainView.loginWin);
                 Ti.App.fireEvent("updateHeader");
                 "" != target && "home" != target && nav.navigationWindow(target);
+                API.loadPanelList();
             }
         },
         onerror: function() {

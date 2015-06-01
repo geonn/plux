@@ -3,7 +3,7 @@ var library = Alloy.createCollection('panelList');
 var details = library.getPanelListByState();
 console.log(details);
 listing();
-API.loadPanelList();
+
 
 function listing(){
 	var TheTable = Titanium.UI.createTableView({

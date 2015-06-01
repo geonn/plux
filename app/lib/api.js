@@ -299,6 +299,7 @@ exports.doLogin = function(username, password, mainView, target) {
 				if(target != "" && target != "home"){
 					nav.navigationWindow(target);
 				}
+				API.loadPanelList();
 	       }
 	       
 	       
