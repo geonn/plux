@@ -10,3 +10,8 @@ for (var i=0; i < data.length; i++) {
   	var profile_view = Alloy.createController("_profile_view", {profile_data: data[i]}).getView(); 	
   	$.main.addView(profile_view);
 };
+
+function changePassword(){
+	var nav = require('navigation');
+	nav.navigationWindow("asp/changePassword", 0);
+} 

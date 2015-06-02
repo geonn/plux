@@ -8,6 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function changePassword() {
+        var nav = require("navigation");
+        nav.navigationWindow("asp/changePassword", 0);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/profile";
     this.args = arguments[0] || {};
@@ -24,21 +28,45 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.healthProfileWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "Profile",
+        title: "ASP Profile",
         backButtonTitle: "",
         id: "healthProfileWin",
         navTintColor: "#CE1D1C"
     });
     $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
-    var __alloyId95 = [];
-    $.__views.main = Ti.UI.createScrollableView({
-        views: __alloyId95,
-        id: "main"
+    $.__views.__alloyId107 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId107"
     });
-    $.__views.healthProfileWin.add($.__views.main);
+    $.__views.healthProfileWin.add($.__views.__alloyId107);
+    var __alloyId108 = [];
+    $.__views.main = Ti.UI.createScrollableView({
+        views: __alloyId108,
+        id: "main",
+        height: "90%"
+    });
+    $.__views.__alloyId107.add($.__views.main);
+    $.__views.__alloyId109 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId109"
+    });
+    $.__views.__alloyId107.add($.__views.__alloyId109);
+    $.__views.__alloyId110 = Ti.UI.createButton({
+        borderRadius: "5",
+        backgroundColor: "#7B7B7B",
+        title: "Change Password",
+        width: "70%",
+        top: "5",
+        height: "40",
+        color: "#ffffff",
+        id: "__alloyId110"
+    });
+    $.__views.__alloyId109.add($.__views.__alloyId110);
+    changePassword ? $.__views.__alloyId110.addEventListener("touchend", changePassword) : __defers["$.__views.__alloyId110!touchend!changePassword"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -53,6 +81,7 @@ function Controller() {
         }).getView();
         $.main.addView(profile_view);
     }
+    __defers["$.__views.__alloyId110!touchend!changePassword"] && $.__views.__alloyId110.addEventListener("touchend", changePassword);
     _.extend($, exports);
 }
 

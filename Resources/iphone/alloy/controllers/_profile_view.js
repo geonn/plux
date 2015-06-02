@@ -64,21 +64,21 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-    $.__views.__alloyId1 = Ti.UI.createView({
+    $.__views.__alloyId6 = Ti.UI.createView({
         backgroundColor: "#ddd",
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId1"
+        id: "__alloyId6"
     });
-    $.__views.main.add($.__views.__alloyId1);
-    $.__views.__alloyId2 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId6);
+    $.__views.__alloyId7 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
         backgroundColor: "#ff0000",
-        id: "__alloyId2"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId1.add($.__views.__alloyId2);
-    $.__views.__alloyId3 = Ti.UI.createLabel({
+    $.__views.__alloyId6.add($.__views.__alloyId7);
+    $.__views.__alloyId8 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         top: 10,
@@ -88,9 +88,9 @@ function Controller() {
         color: "#ffffff",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "Personal Information",
-        id: "__alloyId3"
+        id: "__alloyId8"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId3);
+    $.__views.__alloyId7.add($.__views.__alloyId8);
     $.__views.profile_data = Ti.UI.createView({
         id: "profile_data",
         layout: "vertical",
@@ -98,15 +98,15 @@ function Controller() {
         bottom: "10",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId1.add($.__views.profile_data);
-    $.__views.__alloyId4 = Ti.UI.createView({
+    $.__views.__alloyId6.add($.__views.profile_data);
+    $.__views.__alloyId9 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
         backgroundColor: "#ff0000",
-        id: "__alloyId4"
+        id: "__alloyId9"
     });
-    $.__views.__alloyId1.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createLabel({
+    $.__views.__alloyId6.add($.__views.__alloyId9);
+    $.__views.__alloyId10 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         top: 10,
@@ -116,9 +116,9 @@ function Controller() {
         color: "#ffffff",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "My Health Records",
-        id: "__alloyId5"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId4.add($.__views.__alloyId5);
+    $.__views.__alloyId9.add($.__views.__alloyId10);
     $.__views.my_health_records = Ti.UI.createView({
         id: "my_health_records",
         top: "10",
@@ -126,51 +126,18 @@ function Controller() {
         layout: "vertical",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId1.add($.__views.my_health_records);
-    $.__views.__alloyId6 = Ti.UI.createView({
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.FILL,
-        backgroundColor: "#ff0000",
-        id: "__alloyId6"
-    });
-    $.__views.__alloyId1.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createLabel({
-        width: Titanium.UI.FILL,
-        height: Titanium.UI.SIZE,
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        color: "#ffffff",
-        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-        text: "My Health",
-        id: "__alloyId7"
-    });
-    $.__views.__alloyId6.add($.__views.__alloyId7);
-    $.__views.my_health = Ti.UI.createView({
-        id: "my_health",
-        top: "10",
-        bottom: "10",
-        layout: "vertical",
-        height: Ti.UI.SIZE
-    });
-    $.__views.__alloyId1.add($.__views.my_health);
+    $.__views.__alloyId6.add($.__views.my_health_records);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var profile = args.profile_data;
-    var personal_health = profile.personal_health;
-    addField("Corporate Name", profile.corpname, $.profile_data);
-    addField("Name", profile.name, $.profile_data);
-    addField("Member No", profile.memno, $.profile_data);
-    addField("IC", profile.icno, $.profile_data);
-    addField("Relation", profile.relation, $.profile_data);
-    addField("Allergies", profile.allergy, $.my_health_records);
-    if ("undefined" != typeof profile.personal_health) {
-        addField("Birthday", personal_health["birthDate"], $.my_health);
-        addField("BloodType", personal_health["bloodType"], $.my_health);
-        addField("Gender", personal_health["gender"], $.my_health);
-    }
+    profile.personal_health;
+    addField("Corporate Name : ", profile.corpname, $.profile_data);
+    addField("Name : ", profile.name, $.profile_data);
+    addField("Member No : ", profile.memno, $.profile_data);
+    addField("IC : ", profile.icno, $.profile_data);
+    addField("Relation : ", profile.relation, $.profile_data);
+    addField("Allergies : ", profile.allergy, $.my_health_records);
     _.extend($, exports);
 }
 

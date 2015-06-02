@@ -1,0 +1,7 @@
+<Alloy>
+	<Window title="PLUX Profile" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View layout="vertical">
+			<ScrollView id="profileData" height="90%"/>
+		</View>
+	</Window>
+</Alloy>

@@ -5,8 +5,7 @@ var win = Alloy.createController("home").getView();
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
-win.open();
-Ti.App.Properties.setString('u_id','');
+win.open(); 
 if(u_id == ""){
 	nav.navigateWithArgs("login", {});  
 }

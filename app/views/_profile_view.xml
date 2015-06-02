@@ -9,10 +9,7 @@
 				<Label class="padding header_label">My Health Records</Label>
 			</View>
 			<View id="my_health_records" top="10" bottom="10" layout="vertical" height="Ti.UI.SIZE"></View>
-			<View class="header">
-				<Label class="padding header_label">My Health</Label>
-			</View>
-			<View id="my_health" top="10" bottom="10" layout="vertical" height="Ti.UI.SIZE"></View>
+			 
 		</View>
 	</ScrollView>
 </Alloy>

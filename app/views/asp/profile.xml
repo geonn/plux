@@ -1,6 +1,8 @@
 <Alloy>
-	<Window title="Profile" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
-	<ScrollableView id="main">
-	</ScrollableView>
+	<Window title="ASP Profile" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
+		<View layout="vertical">
+			<ScrollableView id="main" height="90%"/>
+	 		<View layout="vertical"><Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="changePassword" title="Change Password"  width="70%" top="5" height="40" color="#ffffff" /></View>
+		</View>
 	</Window>
 </Alloy>

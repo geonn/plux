@@ -6,7 +6,7 @@
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="50%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="asp_logo.png"></ImageView>
+				<ImageView width="50%"  borderRadius="10" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="asp_logo.png"></ImageView>
 				<TextField id="username" hintText="Enter Username" value="asplux@corpdemo.com" /><!--asplux@corpdemo.com -->
 				<TextField id="password" hintText="Enter Password" value="asplux123" /><!--asplux123 -->
 				<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />

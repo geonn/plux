@@ -16,11 +16,11 @@ var memno_text = Ti.UI.createLabel({
     text: user.memno,
     width: Ti.UI.SIZE,
     height: Ti.UI.SIZE,
-    top: "90dp",
+    bottom: "10dp",
     left: "20dp",
     zIndex: 12,
     font:{
-    	fontSize: "24dp"
+    	fontSize: "14dp"
     },
     color: "#ffffff"
 });

@@ -54,6 +54,8 @@ var panelList = "https://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "https://" + API_DOMAIN + "/login.aspx";
 
+var changePasswordUrl = "https://" + API_DOMAIN + "/chgpwd.aspx";
+
 var checkBalanceUrl = "https://" + API_DOMAIN + "/balchk.aspx";
 
 var getClaimDetailUrl = "https://" + API_DOMAIN + "/claim.aspx";
@@ -251,6 +253,7 @@ exports.doLogin = function(username, password, mainView, target) {
                 Ti.App.Properties.setString("memno", res.memno);
                 Ti.App.Properties.setString("empno", res.empno);
                 Ti.App.Properties.setString("corpcode", res.corpcode);
+                Ti.App.Properties.setString("asp_email", username);
                 usersModel.addUserData(result);
                 common.hideLoading();
                 nav.closeWindow(mainView.loginWin);
@@ -258,6 +261,30 @@ exports.doLogin = function(username, password, mainView, target) {
                 "" != target && "home" != target && nav.navigationWindow(target);
                 API.loadPanelList();
             }
+        },
+        onerror: function() {
+            common.createAlert("Login Fail", "unexpected error");
+            common.hideLoading();
+        },
+        timeout: 6e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.doChangePassword = function(e, mainView) {
+    var url = changePasswordUrl + "?LOGINID=" + e.username + "&NEW_PASSWORD=" + e.password;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            res = result[0];
+            console.log(res);
+            if ("99" != res.code) {
+                common.createAlert("Error", res.message);
+                return false;
+            }
+            common.createAlert("Done", res.message);
+            nav.closeWindow(mainView.changePasswordWin);
         },
         onerror: function() {
             common.createAlert("Login Fail", "unexpected error");

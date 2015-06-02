@@ -23,6 +23,7 @@ var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
+var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
 var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
 var aspSignupUrl = "https://"+API_DOMAIN+"/signup.aspx";
@@ -277,10 +278,8 @@ exports.doLogin = function(username, password, mainView, target) {
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = []; 
-	       var result = JSON.parse(this.responseText);
-	       //console.log(result);
-	       res = result[0];
-	       //console.log(result);
+	       var result = JSON.parse(this.responseText); 
+	       res = result[0]; 
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
@@ -288,8 +287,8 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		var usersModel = Alloy.createCollection('users'); 
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
-	       		Ti.App.Properties.setString('corpcode', res.corpcode);
-	       		
+	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
+	       		Ti.App.Properties.setString('asp_email', username);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
 	       		 
@@ -303,6 +302,41 @@ exports.doLogin = function(username, password, mainView, target) {
 	       }
 	       
 	       
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) { 
+	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.hideLoading();
+       		
+	     },
+	     timeout : 6000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+}; 
+
+exports.doChangePassword = function(e, mainView) { 
+	 
+	var url = changePasswordUrl+"?LOGINID="+e.username+"&NEW_PASSWORD="+e.password; 
+	//console.log(url);
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var ret = []; 
+	       var result = JSON.parse(this.responseText); 
+	       res = result[0]; 
+	        //GEO TO EDIT
+	        console.log(res);
+	        if(res.code == "99"){ //success
+	        	common.createAlert("Done", res.message);
+	        	nav.closeWindow(mainView.changePasswordWin); 
+	        }else{
+	        	common.createAlert("Error", res.message);
+	        	return false;
+	        }
+	       	
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 

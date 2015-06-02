@@ -43,11 +43,6 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.main = Ti.UI.createScrollView({
-        borderColor: "#cccccc",
-        height: Titanium.UI.SIZE,
-        top: "10dp",
-        left: "10dp",
-        right: "10dp",
         id: "main",
         layout: "vertical"
     });
@@ -59,11 +54,8 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        height: 30,
-        width: Titanium.UI.FILL,
-        font: {
-            fontSize: 16
-        },
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
         top: 10,
         left: 10,
         right: 10,

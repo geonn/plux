@@ -6,7 +6,7 @@
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="40%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="asp_logo.png"></ImageView>
+				<ImageView width="40%"  borderRadius="10" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="asp_logo.png"></ImageView>
 				<TextField class="text_input" id="email" hintText="Enter Email" value="wongbh@live.com" /><!-- wongbh@live.com -->
 				<TextField id="password" hintText="Enter Password" value="" /><!--12345678 -->
 				<TextField class="text_input" id="name" hintText="Enter Name" value="Wong Bee Heap" /><!-- Wong Bee Heap -->

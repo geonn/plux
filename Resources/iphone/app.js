@@ -79,12 +79,14 @@ function timeFormat(datetime) {
     var newFormat;
     var ampm = "am";
     var date = timeStamp[0].split("-");
-    var time = timeStamp[1].split(":");
-    if (time[0] > 12) {
-        ampm = "pm";
-        time[0] = time[0] - 12;
+    if (1 == timeStamp.length) newFormat = date[2] + "/" + date[1] + "/" + date[0]; else {
+        var time = timeStamp[1].split(":");
+        if (time[0] > 12) {
+            ampm = "pm";
+            time[0] = time[0] - 12;
+        }
+        newFormat = date[2] + "/" + date[1] + "/" + date[0] + " " + time[0] + ":" + time[1] + " " + ampm;
     }
-    newFormat = date[2] + "/" + date[1] + "/" + date[0] + " " + time[0] + ":" + time[1] + " " + ampm;
     return newFormat;
 }
 
