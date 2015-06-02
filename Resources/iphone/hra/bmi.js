@@ -47,6 +47,10 @@ function addForm(text, type) {
 function formular() {
     var weight = form[0].value;
     var height = form[1].value;
+    if ("" == weight || "" == height) {
+        common.createAlert("Error", "You must key in both weight and height");
+        return false;
+    }
     var result = weight / (height / 100 * (height / 100));
     var result = result.toFixed(2);
     18.5 >= result ? resultPopUp("RESULT", "Your BMI " + result + " \n\nUNDERWEIGHT\n\nYou are under weight for your height. It's important to aim to keep within your healthy weight range. Being in the healthy weight range will improve your body's ability to fight off infection or illness.") : 23 >= result ? resultPopUp("RESULT", "Your BMI " + result + " \n\nHEALTHY RANGE\n\nYou are a healthy range for your height. Aim to keep within the ideal weight range by eating a healthy, well-balanced diet and exercising regularly. Most adults should be active for 30 minutes on most days. ") : 27.5 >= result ? resultPopUp("RESULT", "Your BMI " + result + " \n\nOVERWEIGHT\n\nBeing overweight increases your risk of developing coronary heart disease, as well as other health conditions such as diabetes. Keeping to a healthy weight will help you control your blood pressure and cholesterol levels. You lose weight if the amount of energy coming into your body is less than what is being used up by your body. Aim to exercise more and eat a healthy balanced diet. ") : resultPopUp("RESULT", "Your BMI " + result + " \n\nOBESE\n\nBeing obese increases your risk of developing coronary heart disease, as well as other health conditions such as diabetes. Keeping to a healthy weight will help you control your blood pressure and cholesterol levels. You lose weight if the amount of energy coming into your body is less than what is being used up by your body. Aim to exercise more and eat a healthy balanced diet. ");

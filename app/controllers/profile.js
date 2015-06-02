@@ -7,7 +7,7 @@ function navProfile(e){
 	if(target == "asp"){
 		nav.navigationWindow(target+"/profile", 1);  
 	}else{
-		nav.navigationWindow("plux_profile", 1);  
+		nav.navigateWithArgs("plux_profile",{});  
 	}
 }
 		

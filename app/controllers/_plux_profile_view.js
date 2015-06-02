@@ -7,8 +7,11 @@ addField("Full Name : ", profile.fullname, $.profile_data);
 addField("Email : ", profile.email, $.profile_data);
 addField("Last Login : ", timeFormat(profile.last_login), $.profile_data); 
  
-if(typeof profile.personal_health != "undefined"){
-	addField("Birthday : ", timeFormat(personal_health['birthDate']), $.my_health);
+if(typeof profile.personal_health != "undefined"){ 
+	if(personal_health['birthDate'] != "Not Set"){
+		personal_health['birthDate'] =timeFormat(personal_health['birthDate']);
+	}
+	addField("Birthday : ", personal_health['birthDate'], $.my_health);
 	addField("BloodType : ", personal_health['bloodType'], $.my_health);
 	addField("Gender : ", personal_health['gender'], $.my_health);
 }

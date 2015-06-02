@@ -240,6 +240,7 @@ exports.do_asp_signup = function(data, mainView) {
 };
 
 exports.doLogin = function(username, password, mainView, target) {
+    var u_id = Ti.App.Properties.getString("u_id") || "";
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -254,6 +255,8 @@ exports.doLogin = function(username, password, mainView, target) {
                 Ti.App.Properties.setString("empno", res.empno);
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 Ti.App.Properties.setString("asp_email", username);
+                Ti.App.Properties.setString("asp_password", password);
+                updateUserService(u_id, 1, username, password);
                 usersModel.addUserData(result);
                 common.hideLoading();
                 nav.closeWindow(mainView.loginWin);

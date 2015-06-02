@@ -132,7 +132,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "username",
         hintText: "Enter Username",
-        value: "asplux@corpdemo.com"
+        value: ""
     });
     $.__views.main.add($.__views.username);
     $.__views.password = Ti.UI.createTextField({
@@ -151,7 +151,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
         hintText: "Enter Password",
-        value: "asplux123"
+        value: ""
     });
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({
@@ -184,6 +184,8 @@ function Controller() {
     Alloy.Globals.navMenu;
     var singleton = true;
     common.construct($);
+    $.username.value = Ti.App.Properties.getString("asp_email") || "";
+    $.password.value = Ti.App.Properties.getString("asp_password") || "";
     autoLogin();
     var isKeyboardFocus = 0;
     $.loginWin.addEventListener("click", hideProductFormKeyboard);

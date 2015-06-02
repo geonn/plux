@@ -169,6 +169,12 @@ function formular(){
 	var weight = form[0].value;
 	var height = form[1].value;
 	
+	if(weight == "" || height==""){
+		common.createAlert("Error","You must key in both weight and height");
+		return false;
+	}
+	
+	 
 	var result = weight / ((height/100) * (height/100));
 	var result = result.toFixed(2);
 	

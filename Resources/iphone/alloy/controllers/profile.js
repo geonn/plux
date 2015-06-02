@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function navProfile(e) {
         var target = e.source.mod;
-        "asp" == target ? nav.navigationWindow(target + "/profile", 1) : nav.navigationWindow("plux_profile", 1);
+        "asp" == target ? nav.navigationWindow(target + "/profile", 1) : nav.navigateWithArgs("plux_profile", {});
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "profile";

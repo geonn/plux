@@ -136,7 +136,8 @@ function Controller() {
     addField("Email : ", profile.email, $.profile_data);
     addField("Last Login : ", timeFormat(profile.last_login), $.profile_data);
     if ("undefined" != typeof profile.personal_health) {
-        addField("Birthday : ", timeFormat(personal_health["birthDate"]), $.my_health);
+        "Not Set" != personal_health["birthDate"] && (personal_health["birthDate"] = timeFormat(personal_health["birthDate"]));
+        addField("Birthday : ", personal_health["birthDate"], $.my_health);
         addField("BloodType : ", personal_health["bloodType"], $.my_health);
         addField("Gender : ", personal_health["gender"], $.my_health);
     }

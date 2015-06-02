@@ -2,6 +2,9 @@ var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
 var singleton = true;
 common.construct($);
+
+$.username.value = Ti.App.Properties.getString('asp_email') || "";
+$.password.value = Ti.App.Properties.getString('asp_password') || "";
 autoLogin();
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
