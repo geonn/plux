@@ -169,7 +169,7 @@ exports.do_pluxLogin = function(data, mainView) {
             });
             Ti.App.Properties.setString("u_id", result.data.u_id);
             Ti.App.Properties.setString("plux_email", result.data.email);
-            if ("undefined" != typeof res.data.user_service) for (var i = 0; i < result.data.user_service.length; i++) if (1 == result.data.user_service[i].service_id) {
+            if ("undefined" != typeof result.data.user_service) for (var i = 0; i < result.data.user_service.length; i++) if (1 == result.data.user_service[i].service_id) {
                 Ti.App.Properties.setString("asp_email", result.data.user_service[i].email);
                 Ti.App.Properties.setString("asp_password", result.data.user_service[i].password);
             }

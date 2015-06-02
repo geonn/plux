@@ -176,7 +176,7 @@ exports.do_pluxLogin = function(data,mainView){
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				
-				if(typeof res.data.user_service != "undefined"){
+				if(typeof result.data.user_service != "undefined"){
 					for (var i=0; i < result.data.user_service.length; i++) {
 					//	console.log(result.data.user_service[i]);
 					  if(result.data.user_service[i].service_id == 1){
