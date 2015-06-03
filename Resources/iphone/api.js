@@ -62,6 +62,8 @@ var getClaimDetailUrl = "https://" + API_DOMAIN + "/claim.aspx";
 
 var aspSignupUrl = "https://" + API_DOMAIN + "/signup.aspx";
 
+var resendVerifUrl = "https://" + API_DOMAIN + "/sendveriemail.aspx";
+
 var getclaimDetailBySeriesUrl = "https://" + API_DOMAIN + "/claimdetails.aspx";
 
 var defaultRetryTimes = 3;
@@ -205,8 +207,9 @@ exports.do_signup = function(data, mainView) {
 };
 
 exports.do_asp_signup = function(data, mainView) {
-    var url = aspSignupUrl + "?EMAIL=" + data.email + "&PASSWORD=" + data.password + "&NAME=" + data.name + "&MEMNO=" + data.memno + "&EMPNO=" + data.empno + "&MOBILENO=" + data.password + "&SMSME=" + data.smsme + "&AGREETS=" + data.agreets + "&EMAIL2=";
+    var url = aspSignupUrl + "?EMAIL=" + data.email + "&EMAIL2=" + data.email2 + "&PASSWORD=" + data.password + "&NAME=" + data.name + "&MEMNO=" + data.memno + "&EMPNO=" + data.empno + "&MOBILENO=" + data.password + "&SMSME=" + data.smsme + "&AGREETS=" + data.agreets;
     var u_id = Ti.App.Properties.getString("u_id") || "";
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -234,6 +237,23 @@ exports.do_asp_signup = function(data, mainView) {
             common.hideLoading();
         },
         timeout: 6e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.resendVerificationEmail = function() {
+    var url = resendVerifUrl + "?LOGINID=" + Ti.App.Properties.getString("asp_email");
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            common.createAlert("Success", "Verification email sent!");
+        },
+        onerror: function() {
+            common.createAlert("Login Fail", "unexpected error");
+            common.hideLoading();
+        },
+        timeout: 13e4
     });
     client.open("GET", url);
     client.send();
@@ -269,7 +289,7 @@ exports.doLogin = function(username, password, mainView, target) {
             common.createAlert("Login Fail", "unexpected error");
             common.hideLoading();
         },
-        timeout: 6e3
+        timeout: 13e4
     });
     client.open("GET", url);
     client.send();
@@ -325,6 +345,7 @@ exports.claimDetailBySeries = function(e) {
 
 exports.getClaimDetail = function(e) {
     var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
+    console.log(url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -342,7 +363,7 @@ exports.getClaimDetail = function(e) {
                 retryTimes: retryTimes
             }) : Ti.UI.fireEvent("data_loaded");
         },
-        timeout: 1e4
+        timeout: 12e4
     });
     client.open("GET", url);
     client.send();

@@ -15,7 +15,9 @@ $.tc_area.add(view_agreement_box);
 var isKeyboardFocus = 0;
 
 function doAspSignup(){
+	common.showLoading();
 	var email = $.email.value;
+	var email2 = $.email2.value;
 	var password = $.password.value;
 	var name = $.email.value;
 	var memno = $.memno.value;
@@ -26,6 +28,7 @@ function doAspSignup(){
 	
 	var params = {
 		email: email,
+		email2: email2,
 		password: password,
 		name: name,
 		memno: memno,
@@ -34,7 +37,7 @@ function doAspSignup(){
 		smsme: view_sms,
 		agreets: view_agreement
 	};
-	console.log(params);
+	 
 	API.do_asp_signup(params, $);
 }
 

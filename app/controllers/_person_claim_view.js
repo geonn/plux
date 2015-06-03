@@ -6,10 +6,12 @@ $.name.text = name;
 for(var a = 0; data.length > a; a++){
 	var benefit_view = $.UI.create("View", {
 		classes: ["padding"],
+		height: Titanium.UI.SIZE ,
 		bottom: 0,
 	});
 	var benefit_label = $.UI.create("Label", {
 		classes: ["benefit_label"],
+		height: Titanium.UI.SIZE ,
 		text: data[a]['benefittype']
 	});
 	benefit_view.add(benefit_label);
@@ -68,17 +70,20 @@ for(var a = 0; data.length > a; a++){
 function create_field(key, title){
 	var view = $.UI.create("View",{
 		classes: ["small_padding"],
+		height: Titanium.UI.SIZE ,
 		width: Ti.UI.FILL,
 	});
 	
 	var entidv_label = $.UI.create("Label", {
 		text: title,
+		height: Titanium.UI.SIZE ,
 		left: 0,
 	});
 	
 	var entidv_val_label = $.UI.create("Label", {
 		text: key,
 		right: 0,
+		height: Titanium.UI.SIZE ,
 		color: "#ff0000"
 	});
 	view.add(entidv_label);

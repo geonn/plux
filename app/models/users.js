@@ -11,7 +11,7 @@ exports.definition = {
 		    "corpname" : "TEXT",
 		    "costcenter" : "TEXT",
 		    "dept" : "TEXT",
-		    "allergy" : "TEXT"
+		    "allergy" : "TEXT" 
 		},
 		adapter: {
 			type: "sql",
@@ -28,6 +28,25 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
+			addColumn : function( newFieldName, colSpec) {
+				var collection = this;
+				var db = Ti.Database.open(collection.config.adapter.db_name);
+				if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+				var fieldExists = false;
+				resultSet = db.execute('PRAGMA TABLE_INFO(' + collection.config.adapter.collection_name + ')');
+				while (resultSet.isValidRow()) {
+					if(resultSet.field(1)==newFieldName) {
+						fieldExists = true;
+					}
+					resultSet.next();
+				}  
+			 	if(!fieldExists) { 
+					db.execute('ALTER TABLE ' + collection.config.adapter.collection_name + ' ADD COLUMN '+newFieldName + ' ' + colSpec);
+				}
+				db.close();
+			},
 			getUserList : function(){
 				var collection = this;
                 
@@ -50,7 +69,9 @@ exports.definition = {
 					    corpname: res.fieldByName('corpname'),
 					    costcenter: res.fieldByName('costcenter'),
 					    dept: res.fieldByName('dept'),
-					    allergy: res.fieldByName('allergy')
+					    allergy: res.fieldByName('allergy'),
+					    isver: res.fieldByName('isver'),
+					    verno: res.fieldByName('verno')
 			 
 					};
 					res.next();
@@ -81,7 +102,9 @@ exports.definition = {
 					    corpname: res.fieldByName('corpname'),
 					    costcenter: res.fieldByName('costcenter'),
 					    dept: res.fieldByName('dept'),
-					    allergy: res.fieldByName('allergy')
+					    allergy: res.fieldByName('allergy'),
+					    isver: res.fieldByName('isver'),
+					    verno: res.fieldByName('verno')
 					  };
 				}  
 				res.close();
@@ -110,7 +133,9 @@ exports.definition = {
 					    corpname: res.fieldByName('corpname'),
 					    costcenter: res.fieldByName('costcenter'),
 					    dept: res.fieldByName('dept'),
-					    allergy: res.fieldByName('allergy')
+					    allergy: res.fieldByName('allergy'),
+					    isver: res.fieldByName('isver'),
+					    verno: res.fieldByName('verno')
 					  };
 					res.next();
 					count++;
@@ -140,7 +165,9 @@ exports.definition = {
 					    corpname: res.fieldByName('corpname'),
 					    costcenter: res.fieldByName('costcenter'),
 					    dept: res.fieldByName('dept'),
-					    allergy: res.fieldByName('allergy')
+					    allergy: res.fieldByName('allergy'),
+					    isver: res.fieldByName('isver'),
+					    verno: res.fieldByName('verno')
 					  };
 				}  
 				res.close();
@@ -157,11 +184,11 @@ exports.definition = {
 	                var res = db.execute(sql);
 	             	//console.log(entry.memno);
 	                if (res.isValidRow()){
-	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name='"+entry.name+"',  icno='"+entry.icno+"' , relation='"+entry.relation+"', empno='"+entry.empno+"', corpcode='"+entry.corpcode+"', corpname='"+entry.corpname+"', costcenter='"+entry.costcenter+"', dept='"+entry.dept+"', allergy='"+entry.allergy+"' WHERE memno='" +entry.memno+"' ";
+	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name='"+entry.name+"',  icno='"+entry.icno+"' , relation='"+entry.relation+"', empno='"+entry.empno+"', corpcode='"+entry.corpcode+"', corpname='"+entry.corpname+"', costcenter='"+entry.costcenter+"', dept='"+entry.dept+"', allergy='"+entry.allergy+"', isver='"+entry.isver+"', verno='"+entry.verno+"' WHERE memno='" +entry.memno+"' ";
 	                }else{
-	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy) VALUES ('"+entry.name+"', '"+entry.memno +"','"+entry.icno+"','"+entry.relation+"', '"+ entry.empno +"',  '"+ entry.corpcode +"',  '"+ entry.corpname +"',  '"+ entry.costcenter +"',  '"+ entry.dept +"', '"+ entry.allergy +"')";
+	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES ('"+entry.name+"', '"+entry.memno +"','"+entry.icno+"','"+entry.relation+"', '"+ entry.empno +"',  '"+ entry.corpcode +"',  '"+ entry.corpname +"',  '"+ entry.costcenter +"',  '"+ entry.dept +"', '"+ entry.allergy +"', '"+ entry.isver +"', '"+ entry.verno +"')";
 					}
-					//console.log(sql_query);
+					console.log(sql_query);
 	                db.execute(sql_query);
 	                db.close();
 	           		collection.trigger('sync');

@@ -9,7 +9,9 @@ function __processArg(obj, key) {
 
 function Controller() {
     function doAspSignup() {
+        common.showLoading();
         var email = $.email.value;
+        var email2 = $.email2.value;
         var password = $.password.value;
         var name = $.email.value;
         var memno = $.memno.value;
@@ -19,6 +21,7 @@ function Controller() {
         var view_agreement = view_agreement_box.children[0].children[0].checked;
         var params = {
             email: email,
+            email2: email2,
             password: password,
             name: name,
             memno: memno,
@@ -27,7 +30,6 @@ function Controller() {
             smsme: view_sms,
             agreets: view_agreement
         };
-        console.log(params);
         API.do_asp_signup(params, $);
     }
     function hideProductFormKeyboard(e) {
@@ -135,9 +137,28 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "email",
         hintText: "Enter Email",
-        value: "wongbh@live.com"
+        value: ""
     });
     $.__views.main.add($.__views.email);
+    $.__views.email2 = Ti.UI.createTextField({
+        font: {
+            fontSize: "14dp"
+        },
+        color: "#000000",
+        backgroundColor: "#fff",
+        borderColor: "#cccccc",
+        width: "90%",
+        height: "50dp",
+        paddingLeft: "20dp",
+        paddingRight: "20dp",
+        bottom: "5dp",
+        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
+        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
+        id: "email2",
+        hintText: "Secondary Email (Optional)",
+        value: ""
+    });
+    $.__views.main.add($.__views.email2);
     $.__views.password = Ti.UI.createTextField({
         passwordMask: true,
         font: {
@@ -174,7 +195,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "name",
         hintText: "Enter Name",
-        value: "Wong Bee Heap"
+        value: "Tan Ah Kow"
     });
     $.__views.main.add($.__views.name);
     $.__views.memno = Ti.UI.createTextField({
@@ -193,7 +214,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "memno",
         hintText: "Enter Member Number",
-        value: "AGIL00012"
+        value: "801015085917"
     });
     $.__views.main.add($.__views.memno);
     $.__views.empno = Ti.UI.createTextField({
@@ -212,7 +233,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "empno",
         hintText: "Enter Employee Number",
-        value: "00012"
+        value: "801015085917"
     });
     $.__views.main.add($.__views.empno);
     $.__views.mobileno = Ti.UI.createTextField({
@@ -231,7 +252,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "mobileno",
         hintText: "Enter Mobile Number",
-        value: "01298765431"
+        value: "123213213213"
     });
     $.__views.main.add($.__views.mobileno);
     $.__views.tc_area = Ti.UI.createView({

@@ -60,6 +60,9 @@ function Controller() {
     $.__views.main.add($.__views.link_member);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var users = Alloy.createCollection("users");
+    users.addColumn("isver", "TEXT");
+    users.addColumn("verno", "TEXT");
     var u_id = Ti.App.Properties.getString("u_id") || "";
     var win = Alloy.createController("home").getView();
     API.loadCategoryList();

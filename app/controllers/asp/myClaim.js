@@ -68,6 +68,7 @@ function GenerateClaimBalanceTable(balance_groups){
 		var label_title = $.UI.create("Label",{
 			classes: ['title'],
 			color: "#ffffff",
+			height: Titanium.UI.SIZE ,
 			text: claim_balance_name[group],
 		});
 		

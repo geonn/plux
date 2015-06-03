@@ -26,6 +26,19 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
+            addColumn: function(newFieldName, colSpec) {
+                var collection = this;
+                var db = Ti.Database.open(collection.config.adapter.db_name);
+                "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
+                var fieldExists = false;
+                resultSet = db.execute("PRAGMA TABLE_INFO(" + collection.config.adapter.collection_name + ")");
+                while (resultSet.isValidRow()) {
+                    resultSet.field(1) == newFieldName && (fieldExists = true);
+                    resultSet.next();
+                }
+                fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
+                db.close();
+            },
             getUserList: function() {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -45,7 +58,9 @@ exports.definition = {
                         corpname: res.fieldByName("corpname"),
                         costcenter: res.fieldByName("costcenter"),
                         dept: res.fieldByName("dept"),
-                        allergy: res.fieldByName("allergy")
+                        allergy: res.fieldByName("allergy"),
+                        isver: res.fieldByName("isver"),
+                        verno: res.fieldByName("verno")
                     };
                     res.next();
                     count++;
@@ -72,7 +87,9 @@ exports.definition = {
                     corpname: res.fieldByName("corpname"),
                     costcenter: res.fieldByName("costcenter"),
                     dept: res.fieldByName("dept"),
-                    allergy: res.fieldByName("allergy")
+                    allergy: res.fieldByName("allergy"),
+                    isver: res.fieldByName("isver"),
+                    verno: res.fieldByName("verno")
                 });
                 res.close();
                 db.close();
@@ -98,7 +115,9 @@ exports.definition = {
                         corpname: res.fieldByName("corpname"),
                         costcenter: res.fieldByName("costcenter"),
                         dept: res.fieldByName("dept"),
-                        allergy: res.fieldByName("allergy")
+                        allergy: res.fieldByName("allergy"),
+                        isver: res.fieldByName("isver"),
+                        verno: res.fieldByName("verno")
                     };
                     res.next();
                     count++;
@@ -125,7 +144,9 @@ exports.definition = {
                     corpname: res.fieldByName("corpname"),
                     costcenter: res.fieldByName("costcenter"),
                     dept: res.fieldByName("dept"),
-                    allergy: res.fieldByName("allergy")
+                    allergy: res.fieldByName("allergy"),
+                    isver: res.fieldByName("isver"),
+                    verno: res.fieldByName("verno")
                 });
                 res.close();
                 db.close();
@@ -139,7 +160,8 @@ exports.definition = {
                     var sql_query = "";
                     db = Ti.Database.open(collection.config.adapter.db_name);
                     var res = db.execute(sql);
-                    sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "',  icno='" + entry.icno + "' , relation='" + entry.relation + "', empno='" + entry.empno + "', corpcode='" + entry.corpcode + "', corpname='" + entry.corpname + "', costcenter='" + entry.costcenter + "', dept='" + entry.dept + "', allergy='" + entry.allergy + "' WHERE memno='" + entry.memno + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy) VALUES ('" + entry.name + "', '" + entry.memno + "','" + entry.icno + "','" + entry.relation + "', '" + entry.empno + "',  '" + entry.corpcode + "',  '" + entry.corpname + "',  '" + entry.costcenter + "',  '" + entry.dept + "', '" + entry.allergy + "')";
+                    sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "',  icno='" + entry.icno + "' , relation='" + entry.relation + "', empno='" + entry.empno + "', corpcode='" + entry.corpcode + "', corpname='" + entry.corpname + "', costcenter='" + entry.costcenter + "', dept='" + entry.dept + "', allergy='" + entry.allergy + "', isver='" + entry.isver + "', verno='" + entry.verno + "' WHERE memno='" + entry.memno + "' " : "INSERT INTO " + collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES ('" + entry.name + "', '" + entry.memno + "','" + entry.icno + "','" + entry.relation + "', '" + entry.empno + "',  '" + entry.corpcode + "',  '" + entry.corpname + "',  '" + entry.costcenter + "',  '" + entry.dept + "', '" + entry.allergy + "', '" + entry.isver + "', '" + entry.verno + "')";
+                    console.log(sql_query);
                     db.execute(sql_query);
                     db.close();
                     collection.trigger("sync");

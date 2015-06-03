@@ -62,6 +62,7 @@ function Controller() {
             var label_title = $.UI.create("Label", {
                 classes: [ "title" ],
                 color: "#ffffff",
+                height: Titanium.UI.SIZE,
                 text: claim_balance_name[group]
             });
             view_title.add(label_title);

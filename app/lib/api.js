@@ -26,9 +26,9 @@ var loginUrl        = "https://"+API_DOMAIN+"/login.aspx";
 var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx"; 
 var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
 var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
-var aspSignupUrl = "https://"+API_DOMAIN+"/signup.aspx";
-var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx";
-
+var aspSignupUrl 	= "https://"+API_DOMAIN+"/signup.aspx";
+var resendVerifUrl  = "https://"+API_DOMAIN+"/sendveriemail.aspx";
+var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx"; 
 //configuration 
 var defaultRetryTimes = 3;
 
@@ -227,9 +227,9 @@ exports.do_signup = function(data,mainView){
 };
 
 exports.do_asp_signup = function(data, mainView){
-	var url = aspSignupUrl+"?EMAIL="+data.email+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets+"&EMAIL2="; 
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -270,10 +270,32 @@ exports.do_asp_signup = function(data, mainView){
 	 client.send();
 };
 
+exports.resendVerificationEmail = function(){
+	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('asp_email'); 
+	 console.log(url);
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	       common.createAlert("Success", "Verification email sent!");
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) { 
+	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.hideLoading();
+       		
+	     },
+	     timeout : 130000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
 exports.doLogin = function(username, password, mainView, target) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	//console.log(url);
+	 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -311,7 +333,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     	common.hideLoading();
        		
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 130000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -399,7 +421,7 @@ exports.claimDetailBySeries = function(e){
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
-	//console.log(url);
+	console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -432,7 +454,7 @@ exports.getClaimDetail = function(e){
 	     		Ti.UI.fireEvent("data_loaded");
 	     	}
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 120000  // in milliseconds
 	});
 	
 	// Prepare the connection.

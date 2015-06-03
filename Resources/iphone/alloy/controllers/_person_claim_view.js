@@ -11,15 +11,18 @@ function Controller() {
     function create_field(key, title) {
         var view = $.UI.create("View", {
             classes: [ "small_padding" ],
+            height: Titanium.UI.SIZE,
             width: Ti.UI.FILL
         });
         var entidv_label = $.UI.create("Label", {
             text: title,
+            height: Titanium.UI.SIZE,
             left: 0
         });
         var entidv_val_label = $.UI.create("Label", {
             text: key,
             right: 0,
+            height: Titanium.UI.SIZE,
             color: "#ff0000"
         });
         view.add(entidv_label);
@@ -43,6 +46,11 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.main = Ti.UI.createScrollView({
+        borderColor: "#cccccc",
+        height: Titanium.UI.SIZE,
+        top: "10dp",
+        left: "10dp",
+        right: "10dp",
         id: "main",
         layout: "vertical"
     });
@@ -54,8 +62,11 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId0);
     $.__views.name = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
+        height: 30,
+        width: Titanium.UI.FILL,
+        font: {
+            fontSize: 16
+        },
         top: 10,
         left: 10,
         right: 10,
@@ -74,10 +85,12 @@ function Controller() {
     for (var a = 0; data.length > a; a++) {
         var benefit_view = $.UI.create("View", {
             classes: [ "padding" ],
+            height: Titanium.UI.SIZE,
             bottom: 0
         });
         var benefit_label = $.UI.create("Label", {
             classes: [ "benefit_label" ],
+            height: Titanium.UI.SIZE,
             text: data[a]["benefittype"]
         });
         benefit_view.add(benefit_label);
