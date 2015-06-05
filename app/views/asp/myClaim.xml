@@ -5,7 +5,7 @@
 	         	<!--<ImageView right='0' id="setting" width='30' image="/btn/btn_history_icon.png" />-->
 	        </View>
         </RightNavButton>
-        <View>
+        <View id="claimContainer" visible="false">
         	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
 		    	<Label top="5" text="Loading" color="#ffffff" />
@@ -18,6 +18,12 @@
 					</View>
 				</View>
 			</ScrollView>
+		</View>
+		<View id="verifyContainer" visible="false" layout="vertical">
+			<ImageView width="40%" borderRadius="10" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="asp_logo.png"></ImageView>
+			<Label id="description" class="label"   />
+			<Button borderRadius="5" backgroundColor="#CE1D1C" onTouchend="resendVerificationEmail" title="Resend Verification"  width="70%" top="10" height="40" color="#ffffff" />
+			<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="checkStatus" title="Refresh"  width="70%" top="10" height="40" color="#ffffff" />
 		</View>
 	</Window>
 </Alloy>

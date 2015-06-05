@@ -1,13 +1,36 @@
 var args = arguments[0] || {};  
-var usersModel = Alloy.createCollection('users'); 
-var user = usersModel.getOwnerData(); 
+var usersModel = Alloy.createCollection('users');  
+common.construct($); 
+loadPage();
 
-API.claimInfo({memno : user.icno, corpcode : user.corpcode});
-API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
-
-common.construct($);
-common.showLoading();
-
+function loadPage(){
+	var user = usersModel.getOwnerData(); 
+ 
+	if(user.isver == "true"){
+		common.showLoading();
+		$.verifyContainer.hide();
+		$.claimContainer.show();
+		API.claimInfo({memno : user.icno, corpcode : user.corpcode});
+		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
+	} else{ 
+		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
+		$.verifyContainer.show();
+		$.claimContainer.hide();
+	} 
+	Ti.App.removeEventListener('loadPage',loadPage);
+	 
+}
+  
+function checkStatus(){
+	var asp_email = Ti.App.Properties.getString('asp_email');
+	var asp_password = Ti.App.Properties.getString('asp_password');	 
+	if(asp_email){
+		Ti.App.addEventListener('loadPage', loadPage);
+		common.showLoading();
+		API.doLogin(asp_email, asp_password, $, "refresh" );
+	}
+} 
+		
 Ti.UI.addEventListener("data_loaded", init);
 
 function init(){
@@ -117,6 +140,7 @@ function GenerateClaimBalanceTable(balance_groups){
 		});
 	});
 }
+ 
 
 $.view_balance.addEventListener("click", function(){
 	var nav = require('navigation');

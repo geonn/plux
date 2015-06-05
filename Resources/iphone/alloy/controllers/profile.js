@@ -10,23 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function navProfile(e) {
         var target = e.source.mod;
-        if ("asp" == target) {
-            var usersModel = Alloy.createCollection("users");
-            var data = usersModel.getOwnerData();
-            if ("false" == data.isver) {
-                var dialog = Ti.UI.createAlertDialog({
-                    cancel: 1,
-                    buttonNames: [ "Cancel", "Confirm" ],
-                    message: "Your account is not verified yet. Would you like to resend verification to " + Ti.App.Properties.getString("asp_email") + "?",
-                    title: "Account Unverified"
-                });
-                dialog.addEventListener("click", function(e) {
-                    e.index === e.source.cancel;
-                    1 === e.index && API.resendVerificationEmail();
-                });
-                dialog.show();
-            } else nav.navigationWindow(target + "/profile", 1);
-        } else nav.navigateWithArgs("plux_profile", {});
+        "asp" == target ? nav.navigationWindow(target + "/profile", 1) : nav.navigateWithArgs("plux_profile", {});
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "profile";

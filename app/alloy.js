@@ -161,6 +161,10 @@ function currentDateTime(){
 	return datetime ;
 } 
 
+function resendVerificationEmail(){
+	API.resendVerificationEmail();
+}
+ 
 function removeAllChildren(viewObject){
     //copy array of child object references because view's "children" property is live collection of child object references
     var children = viewObject.children.slice(0);

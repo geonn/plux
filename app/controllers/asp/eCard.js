@@ -2,8 +2,41 @@ var args = arguments[0] || {};
 var noThumbColors   = ['#555555','#cccccc'];
 var noThumbColors2  = ['#ff0000','#000'];
 var frontbackcounter = 0;
+common.construct($); 
 var usersModel = Alloy.createCollection('users'); 
 var user = usersModel.getOwnerData(); 
+loadPage(); 
+function loadPage(){
+	var user = usersModel.getOwnerData(); 
+	if(user.isver == "true"){ 
+	 
+		$.unverified.hide();
+		$.card.opacity = "1";
+		
+	}else{
+		var t1 = Ti.UI.create2DMatrix({ 
+		    rotate: 335
+		});
+		var a1 = Ti.UI.createAnimation();
+		a1.transform = t1;
+		 
+		$.unveriLbl.animate(a1);
+		$.unverified.show();
+		$.card.opacity = "0.1";
+	}   
+}
+
+
+function checkStatus(){
+	var asp_email = Ti.App.Properties.getString('asp_email');
+	var asp_password = Ti.App.Properties.getString('asp_password');	 
+	if(asp_email){
+		Ti.App.addEventListener('loadPage', loadPage);
+		common.showLoading();
+		API.doLogin(asp_email, asp_password, $, "refresh" );
+	}
+} 
+
 var front = Ti.UI.createView({
     name:"front",
     width: Ti.UI.FILL,
@@ -78,10 +111,18 @@ var back = Ti.UI.createImageView({
 $.card.add(back);
 $.card.add(front);
 
-$.card_event.addEventListener('click', function() {
-    var t;
-    console.log(frontbackcounter%2);
+var cover = Ti.UI.createView({ 
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    backgroundColor:"#ffffff", 
+    opacity: "0.5",
+    zIndex: 100,
+    top: 0,
+});
+$.mainContainer.add(cover);
 
+$.card_event.addEventListener('click', function() {
+    var t; 
     if (frontbackcounter%2 == 0) {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
         $.card.animate({view:back, transition:t});

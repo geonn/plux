@@ -302,6 +302,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText); 
 	       res = result[0]; 
+	       //console.log(res);
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
@@ -315,14 +316,19 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
-	       		 
-				nav.closeWindow(mainView.loginWin); 
-				Ti.App.fireEvent('updateHeader');
-				//console.log("["+target+"]");
-				if(target != "" && target != "home"){
-					nav.navigationWindow(target);
-				}
-				API.loadPanelList();
+	       		
+	       		if(target != 'refresh'){
+	       			nav.closeWindow(mainView.loginWin); 
+					Ti.App.fireEvent('updateHeader');
+					//console.log("["+target+"]");
+					if(target != "" && target != "home"){
+						nav.navigationWindow(target);
+					}
+					API.loadPanelList();
+	       		}else{
+	       			Ti.App.fireEvent('loadPage');
+	       		}
+				
 	       }
 	       
 	       

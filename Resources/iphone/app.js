@@ -106,6 +106,10 @@ function currentDateTime() {
     return datetime;
 }
 
+function resendVerificationEmail() {
+    API.resendVerificationEmail();
+}
+
 function removeAllChildren(viewObject) {
     var children = viewObject.children.slice(0);
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
