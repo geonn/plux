@@ -1,23 +1,46 @@
 var args = arguments[0] || {};
 var library = Alloy.createCollection('panelList');
-var details = library.getPanelList();
+var corp = Ti.App.Properties.getString('corpcode');
+var details;
+
+if(corp == ""){
+	details = library.getPanelList(); 
+	triggerPosition();
+}else{
+	API.loadPanelList();
+}
+
+function loadClinic(e){
+	
+	details = e.returnData; 
+	if(details){
+		triggerPosition(); 
+	}
+	
+	Ti.App.removeEventListener('aspClinic',loadClinic);
+}
+
+function triggerPosition(){
+	if (Ti.Geolocation.locationServicesEnabled) {
+	    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
+	    //Ti.Geolocation.addEventListener('location', setCurLoc);
+	    Ti.Geolocation.getCurrentPosition(init);
+	} else {
+	    alert('Please enable location services');
+	} 
+}
+
 var curLat = 37.390749;
 var curLot = -122.081651;
 var showCurLoc = false;
-
+ 
 if(args.id){
 	var clinic = library.getPanelListById(args.id);
 }
  
-if (Ti.Geolocation.locationServicesEnabled) {
-    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-    //Ti.Geolocation.addEventListener('location', setCurLoc);
-    Ti.Geolocation.getCurrentPosition(init);
-} else {
-    alert('Please enable location services');
-} 
 
-function init(e){
+
+function init(e){ 
 	var longitude = e.coords.longitude;
     var latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -35,6 +58,10 @@ function init(e){
         regionFit:true,
         userLocation:true
     });
+    
+    if(details == ""){
+    	return false;
+    }
     
 	details.forEach(function(entry) {
 		var detBtn =Ti.UI.createButton({
@@ -58,8 +85,7 @@ function init(e){
 		    rightView: detBtn,
 		    myid: entry.id// Custom property to uniquely identify this annotation.
 		});
-		 
-		//console.log(name[i] + " :"+latitude[i]+", "+ longitude[i]);               
+		              
 		mapview.addAnnotation(merchantLoc); 
 	});
 	
@@ -80,3 +106,5 @@ function setCurLoc(e){
     };
     mapview.setLocation(region);
 } 
+
+Ti.App.addEventListener('aspClinic',loadClinic);

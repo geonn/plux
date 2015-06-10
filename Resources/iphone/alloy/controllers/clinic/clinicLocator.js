@@ -8,7 +8,20 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadClinic(e) {
+        details = e.returnData;
+        console.log(details);
+        details && triggerPosition();
+        Ti.App.removeEventListener("aspClinic", loadClinic);
+    }
+    function triggerPosition() {
+        if (Ti.Geolocation.locationServicesEnabled) {
+            Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
+            Ti.Geolocation.getCurrentPosition(init);
+        } else alert("Please enable location services");
+    }
     function init(e) {
+        console.log("masuk init");
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -30,6 +43,7 @@ function Controller() {
             regionFit: true,
             userLocation: true
         });
+        if ("" == details) return false;
         details.forEach(function(entry) {
             var detBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-forward.png",
@@ -88,14 +102,17 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var library = Alloy.createCollection("panelList");
-    var details = library.getPanelList();
+    var corp = Ti.App.Properties.getString("corpcode");
+    var details;
+    if ("" == corp) {
+        details = library.getPanelList();
+        console.log(details);
+        triggerPosition();
+    } else API.loadPanelList();
     if (args.id) {
         library.getPanelListById(args.id);
     }
-    if (Ti.Geolocation.locationServicesEnabled) {
-        Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-        Ti.Geolocation.getCurrentPosition(init);
-    } else alert("Please enable location services");
+    Ti.App.addEventListener("aspClinic", loadClinic);
     _.extend($, exports);
 }
 

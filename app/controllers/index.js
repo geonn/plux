@@ -5,12 +5,17 @@ var users = Alloy.createCollection('users');
 users.addColumn("isver", "TEXT");
 users.addColumn("verno", "TEXT");
 
+var panelList = Alloy.createCollection('panelList'); 
+panelList.addColumn("clinicCode", "TEXT");
+panelList.addColumn("openHour", "TEXT");
+
 var u_id = Ti.App.Properties.getString('u_id') || "";
 var win = Alloy.createController("home").getView();
 
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
+API.loadClinicList();
 win.open(); 
 if(u_id == ""){
 	nav.navigateWithArgs("login", {});  

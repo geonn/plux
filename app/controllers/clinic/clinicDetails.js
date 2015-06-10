@@ -18,12 +18,42 @@ for (var i = 0; i < contacts.length; i++) {
 //var a = fruits.indexOf("Apple");
 var phoneArr = [];
 if(details != ""){ 
+	//var message = res_news.message;
+	//var msg_arr = message.split("[nl]");
+	var operHour = details.openHour;
+	var operHour_arr = operHour.split("[nl]"); 
+	var oh;
+	for(var i=0; i < operHour_arr.length; i++){
+ 		oh = operHour_arr[i].trim();
+ 		if(oh != ""){ 
+ 			oh += oh+"<br>\r\n";
+ 		}
+ 	}
+ 	
+ 	
+ 	
 	$.clinicName.text = details.clinicName;
 	$.clinicAddress1.text = details.add1;
 	$.clinicAddress2.text = details.add2;
 	$.clinicPostcode.text = details.postcode +", " + details.city;
 	$.clinicState.text = details.state;
 	$.clinicLocation.text = "COORDINATE : " +details.latitude +", "+ details.longitude;
+	 
+	for(var i=0; i < operHour_arr.length; i++){
+ 		var oh = operHour_arr[i].trim();
+ 		if(oh != ""){ 
+			oh = oh.replace(/&quot;/g,"'"); 
+ 			var oper_label = $.UI.create('Label', {
+				classes : ['clinic_address'],  
+				text: oh,  
+				width: "100%",   
+				height: Ti.UI.SIZE, 
+				textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT, 
+				bottom: 1
+			});
+			$.clinicOper.add(oper_label);
+ 		} 
+ 	} 
 	$.clinicTel.text = "TEL : " +details.tel  ; 
 	phoneArr.push(details.tel);
 }

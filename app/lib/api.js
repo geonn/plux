@@ -21,6 +21,7 @@ var pluxLoginUrl    = "http://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&ke
 var pluxSignUpUrl   = "http://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
+var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
 var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx"; 
@@ -324,7 +325,7 @@ exports.doLogin = function(username, password, mainView, target) {
 					if(target != "" && target != "home"){
 						nav.navigationWindow(target);
 					}
-					API.loadPanelList();
+					
 	       		}else{
 	       			Ti.App.fireEvent('loadPage');
 	       		}
@@ -647,19 +648,67 @@ exports.loadCategoryList = function (ex){
 	 client.send(); 
 };
 
+exports.loadClinicList = function (ex){ 
+	var checker = Alloy.createCollection('updateChecker'); 
+	var isUpdate = checker.getCheckerById("1");
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	} 
+	var url = clinicListUrl+"&last_updated="+last_updated; 
+  
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	
+	     	console.log(this.responseText);
+	     	var res = JSON.parse(this.responseText);
+	     	
+	     	if(res.status == "success"){  
+			 	 if(isUpdate	 !== "" || (res.last_updated != isUpdate.updated)){ 
+			 		
+				 	var library = Alloy.createCollection('panelList'); 
+					 
+					/**load new set of category from API**/ 
+					var arr = res.data;   
+			        library.addPanel(arr); 
+			        checker.updateModule("1","clinicList",currentDateTime()); 
+			        console.log("CLINIC DONE");
+			 	 }else{
+			 		// alert("?");
+			 	 }
+	        }
+		 	
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
 exports.loadPanelList = function (ex){
 	var corp = Ti.App.Properties.getString('corpcode');
 	var url =  panelList+"?CORPCODE="+corp;
-
+	 
 	var client = Ti.Network.createHTTPClient({ 
 	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);
-		 	/**reset current category**/
-		 	var library = Alloy.createCollection('panelList'); 
-			library.resetPanel();
-					
-			/**load new set of category from API**/ 
-			library.addPanel(res); 
+	     	var res = JSON.parse(this.responseText); 
+	     	var library = Alloy.createCollection('panelList');
+	     	var codeStr = "";
+			res.forEach(function(entry) {
+				codeStr += '"'+entry.cliniccode+'",'; 
+			});
+			codeStr = codeStr.substring(0, codeStr.length - 1);
+			details = library.getPanelListByCode(codeStr);
+			 
+	     	Ti.App.fireEvent('aspClinic', {returnData:details});
+	     	 
 	     }, 
 	     onerror : function(e) { },
 	     timeout : 50000  // in milliseconds

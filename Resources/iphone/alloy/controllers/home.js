@@ -74,7 +74,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "eCard" == e.source.mod || "myClaim" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigationWindow("clinic/" + target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "myClaim" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/" + target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");

@@ -80,7 +80,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
-        text: "Checking Status",
+        text: "Loading",
         color: "#ffffff",
         id: "__alloyId113"
     });
