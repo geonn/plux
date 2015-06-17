@@ -66,6 +66,9 @@ function Controller() {
     var panelList = Alloy.createCollection("panelList");
     panelList.addColumn("clinicCode", "TEXT");
     panelList.addColumn("openHour", "TEXT");
+    var claim_detailList = Alloy.createCollection("claim_detail");
+    claim_detailList.addColumn("status", "TEXT");
+    claim_detailList.addColumn("claimType", "TEXT");
     var u_id = Ti.App.Properties.getString("u_id") || "";
     var win = Alloy.createController("home").getView();
     API.loadCategoryList();

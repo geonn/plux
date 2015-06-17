@@ -14,13 +14,10 @@ for (var i = 0; i < contacts.length; i++) {
     	$.add2contact.title = "Already added to contact";
     } 
 } 
- 
-//var a = fruits.indexOf("Apple");
+  
 var phoneArr = [];
-if(details != ""){ 
-	//var message = res_news.message;
-	//var msg_arr = message.split("[nl]");
-	var operHour = details.openHour;
+if(details != ""){  
+	var operHour = details.openHour; 
 	var operHour_arr = operHour.split("[nl]"); 
 	var oh;
 	for(var i=0; i < operHour_arr.length; i++){
@@ -122,7 +119,7 @@ function direction2here(){
 	    } 
 	    var longitude = e.coords.longitude;
 	    var latitude = e.coords.latitude; 
-	 	console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+	 	//console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
 	    nav.navigateWithArgs("clinic/clinicMap", {url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
 	   	 
 	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 

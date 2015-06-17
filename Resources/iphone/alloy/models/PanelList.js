@@ -150,7 +150,6 @@ exports.definition = {
             getPanelListByCode: function(clinicCode) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicCode IN (" + clinicCode + ")";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

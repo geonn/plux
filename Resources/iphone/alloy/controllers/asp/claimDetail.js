@@ -12,7 +12,6 @@ function Controller() {
         var data = usersModel.getClaimDetailBySeries({
             serial: arg_serial
         });
-        console.log(data);
         $.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
         $.tv.appendRow(createTableViewRow("Patient Name", data.name));
         $.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
@@ -37,10 +36,11 @@ function Controller() {
         section.add(createTableViewRow("Bpd", data.bpd));
         section.add(createTableViewRow("Pulse", data.pulse));
         $.tv.appendSection(section);
+        common.hideLoading();
     }
     function createTableViewRow(text, value, dialog) {
-        value = "number" != typeof value ? value.replace(/^\s+|\s+$/g, "") : value;
-        text = "number" != typeof text ? text.replace(/^\s+|\s+$/g, "") : text;
+        "" != value && (value = "number" != typeof value ? value.replace(/^\s+|\s+$/g, "") : value);
+        "" != text && (text = "number" != typeof text ? text.replace(/^\s+|\s+$/g, "") : text);
         var row = $.UI.create("TableViewRow", {
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL
@@ -103,6 +103,32 @@ function Controller() {
         id: "claimDetail"
     });
     $.__views.claimDetail && $.addTopLevelView($.__views.claimDetail);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.claimDetail.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        style: Alloy.Globals.topbarTop,
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId99 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId99"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId99);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"
@@ -120,6 +146,8 @@ function Controller() {
         serial: arg_serial
     });
     var usersModel = Alloy.createCollection("claim_detail");
+    common.construct($);
+    common.showLoading();
     Ti.UI.addEventListener("load_claim_detail", init);
     _.extend($, exports);
 }

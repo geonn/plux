@@ -428,7 +428,7 @@ exports.claimDetailBySeries = function(e){
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
-	console.log(url);
+	//console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -444,7 +444,8 @@ exports.getClaimDetail = function(e){
 	       }else{
        			res.forEach(function(entry) {
        				 var claim_detail_model = Alloy.createCollection('claim_detail');
-       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname);
+       				  
+       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype);
        				 /* API update - removed the details portion to increase the Apps Response time
        				  * entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, */
        			});
@@ -661,8 +662,7 @@ exports.loadClinicList = function (ex){
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
-	     	
-	     	console.log(this.responseText);
+	     	 
 	     	var res = JSON.parse(this.responseText);
 	     	
 	     	if(res.status == "success"){  
@@ -673,8 +673,7 @@ exports.loadClinicList = function (ex){
 					/**load new set of category from API**/ 
 					var arr = res.data;   
 			        library.addPanel(arr); 
-			        checker.updateModule("1","clinicList",currentDateTime()); 
-			        console.log("CLINIC DONE");
+			        checker.updateModule("1","clinicList",currentDateTime());  
 			 	 }else{
 			 		// alert("?");
 			 	 }

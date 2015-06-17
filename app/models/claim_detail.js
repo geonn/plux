@@ -46,6 +46,25 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
+			addColumn : function( newFieldName, colSpec) {
+				var collection = this;
+				var db = Ti.Database.open(collection.config.adapter.db_name);
+				if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+				var fieldExists = false;
+				resultSet = db.execute('PRAGMA TABLE_INFO(' + collection.config.adapter.collection_name + ')');
+				while (resultSet.isValidRow()) {
+					if(resultSet.field(1)==newFieldName) {
+						fieldExists = true;
+					}
+					resultSet.next();
+				}  
+			 	if(!fieldExists) { 
+					db.execute('ALTER TABLE ' + collection.config.adapter.collection_name + ' ADD COLUMN '+newFieldName + ' ' + colSpec);
+				}
+				db.close();
+			},
 			getClaimDetailBySeries: function(e){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE serial = "+e.serial;
@@ -91,7 +110,9 @@ exports.definition = {
 						others_amt: res.fieldByName('others_amt'),  
 						bps: res.fieldByName('bps'), 
 						bpd: res.fieldByName('bpd'),  
-						pulse: res.fieldByName('pulse')
+						pulse: res.fieldByName('pulse'),
+						status: res.fieldByName('status'),  
+						claimType: res.fieldByName('claimType')
 					};	
 					 
 					res.next();
@@ -148,7 +169,9 @@ exports.definition = {
 						others_amt: res.fieldByName('others_amt'),  
 						bps: res.fieldByName('bps'), 
 						bpd: res.fieldByName('bpd'),  
-						pulse: res.fieldByName('pulse')
+						pulse: res.fieldByName('pulse'),
+						status: res.fieldByName('status'),  
+						claimType: res.fieldByName('claimType')
 					};	
 					 
 					res.next();
@@ -183,7 +206,7 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			save_claim_detail : function(serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname){
+			save_claim_detail : function(serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType){
 				var collection = this;
 				var sql_query =  "";
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial='"+ serial+"'";
@@ -196,14 +219,14 @@ exports.definition = {
                 var res = db.execute(sql);
                  
                 if (res.isValidRow()){
-                	if(res.fieldByName('memno') != memno || res.fieldByName('name') != name || res.fieldByName('relation') != relation || res.fieldByName('cliniccode') != cliniccode || res.fieldByName('visitdate') != visitdate || res.fieldByName('amount') != amount || res.fieldByName('category') != category || res.fieldByName('mcdays') != mcdays || res.fieldByName('clinicname') != clinicname){
-                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET memno = ?, name = ?, relation = ?, cliniccode = ?, visitdate = ?, amount = ?, category = ?, mcdays = ?, clinicname = ? WHERE serial = ?";
-                		db.execute(sql_query, memno,name,relation,cliniccode,visitdate,amount,category,mcdays, clinicname, serial);
+                	if(res.fieldByName('memno') != memno || res.fieldByName('name') != name || res.fieldByName('relation') != relation || res.fieldByName('cliniccode') != cliniccode || res.fieldByName('visitdate') != visitdate || res.fieldByName('amount') != amount || res.fieldByName('category') != category || res.fieldByName('mcdays') != mcdays || res.fieldByName('clinicname') != clinicname || res.fieldByName('status') != status || res.fieldByName('claimType') != claimType){
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET memno = ?, name = ?, relation = ?, cliniccode = ?, visitdate = ?, amount = ?, category = ?, mcdays = ?, clinicname = ?, status = ?, claimType = ? WHERE serial = ?";
+                		db.execute(sql_query, memno,name,relation,cliniccode,visitdate,amount,category,mcdays, clinicname, status, claimType, serial);
                 	}
                }else{
-            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname, status, claimType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
             		
-            		db.execute(sql_query, serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname);
+            		db.execute(sql_query, serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType);
             	}
             	
              	db.close();

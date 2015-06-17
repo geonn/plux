@@ -10,7 +10,6 @@ function __processArg(obj, key) {
 function Controller() {
     function loadClinic(e) {
         details = e.returnData;
-        console.log(details);
         details && triggerPosition();
         Ti.App.removeEventListener("aspClinic", loadClinic);
     }
@@ -21,7 +20,6 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        console.log("masuk init");
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -106,7 +104,6 @@ function Controller() {
     var details;
     if ("" == corp) {
         details = library.getPanelList();
-        console.log(details);
         triggerPosition();
     } else API.loadPanelList();
     if (args.id) {

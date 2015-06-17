@@ -355,7 +355,8 @@ exports.getClaimDetail = function(e) {
             var res = JSON.parse(this.responseText);
             0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
-                claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname);
+                console.log(entry);
+                claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype);
             }));
         },
         onerror: function() {
@@ -510,14 +511,12 @@ exports.loadClinicList = function() {
     var url = clinicListUrl + "&last_updated=" + last_updated;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             if ("success" == res.status && ("" !== isUpdate || res.last_updated != isUpdate.updated)) {
                 var library = Alloy.createCollection("panelList");
                 var arr = res.data;
                 library.addPanel(arr);
                 checker.updateModule("1", "clinicList", currentDateTime());
-                console.log("CLINIC DONE");
             }
         },
         onerror: function() {},
@@ -533,7 +532,6 @@ exports.loadPanelList = function() {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            console.log("get res data");
             var library = Alloy.createCollection("panelList");
             var codeStr = "";
             res.forEach(function(entry) {
@@ -541,8 +539,6 @@ exports.loadPanelList = function() {
             });
             codeStr = codeStr.substring(0, codeStr.length - 1);
             details = library.getPanelListByCode(codeStr);
-            console.log("at api, going to fireevent" + codeStr);
-            console.log(details);
             Ti.App.fireEvent("aspClinic", {
                 returnData: details
             });

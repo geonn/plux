@@ -1,10 +1,11 @@
 var args = arguments[0] || {};  
-var usersModel = Alloy.createCollection('users');  
+var usersModel = Alloy.createCollection('users');
+var user = usersModel.getOwnerData();   
 common.construct($); 
 loadPage();
 
 function loadPage(){
-	var user = usersModel.getOwnerData(); 
+	user = usersModel.getOwnerData(); 
  
 	if(user.isver == "true"){
 		common.showLoading();
@@ -38,7 +39,7 @@ function init(){
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));
-	var updated_date = Ti.App.Properties.getString('balchkUpdatedDate');
+	var updated_date = currentDateTime();//Ti.App.Properties.getString('balchkUpdatedDate');
 	$.date.text = timeFormat(updated_date);
  
 	var groups = {};
