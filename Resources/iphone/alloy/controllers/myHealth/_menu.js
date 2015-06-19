@@ -47,7 +47,7 @@ function Controller() {
         right: 3,
         top: 48,
         width: "70%",
-        height: 180,
+        height: 135,
         borderRadius: 5,
         borderColor: "#FC7474",
         borderWidth: 1,

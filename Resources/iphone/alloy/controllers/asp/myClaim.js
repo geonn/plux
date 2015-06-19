@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function loadPage() {
         user = usersModel.getOwnerData();
-        if ("false" == user.isver) {
+        if ("true" == user.isver) {
             common.showLoading();
             $.verifyContainer.hide();
             $.claimContainer.show();

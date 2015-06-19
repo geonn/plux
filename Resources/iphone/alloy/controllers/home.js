@@ -94,6 +94,25 @@ function Controller() {
         var bg = home_background.getCategoryByTime(hours);
         $.daily_background.setBackgroundImage(bg.img_path);
     }
+    function slideMenu() {
+        var popup_animation = Titanium.UI.createAnimation();
+        if ("0" == popStatus) {
+            popup_animation.bottom = 0;
+            popStatus = "1";
+        } else {
+            popup_animation.bottom = -200;
+            popStatus = "0";
+        }
+        popup_animation.duration = 500;
+        popup_view.animate(popup_animation);
+    }
+    function navByType(evt) {
+        hideWin = 0;
+        slideMenu();
+        "profile" == evt.source.source ? nav.navigationWindow("myHealth/profile") : "motion" == evt.source.source ? nav.navigationWindow("myHealth/workout") : Ti.App.fireEvent("filterList", {
+            category: evt.source.source
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
     this.args = arguments[0] || {};
@@ -329,6 +348,105 @@ function Controller() {
     }
     setBackground();
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
+    var popup_view = Titanium.UI.createView({
+        width: 320,
+        backgroundColor: "#E0E0E0",
+        left: 0,
+        bottom: -200,
+        layout: "vertical",
+        height: 240
+    });
+    var popup_label = Titanium.UI.createLabel({
+        color: "#000",
+        text: "Menu",
+        top: 3,
+        height: 35,
+        width: Ti.UI.FILL,
+        textAlign: "center",
+        font: {
+            fontSize: 12,
+            fontFamily: "Helvetica Neue"
+        }
+    });
+    var TheTable = Titanium.UI.createTableView({
+        width: "100%",
+        separatorColor: "#FC7474",
+        scrollable: false
+    });
+    var CustomData = [ {
+        image: "images/me.png",
+        title: "Me",
+        source: "profile"
+    }, {
+        image: "images/measurement.png",
+        title: "Body Measurement",
+        source: "measurement"
+    }, {
+        image: "images/vitals.png",
+        title: "Vitals",
+        source: "vitals"
+    }, {
+        image: "images/vitals.png",
+        title: "Core Motion",
+        source: "motion"
+    } ];
+    var data = [];
+    for (var i = 0; i < CustomData.length; i++) {
+        var row = Titanium.UI.createTableViewRow({
+            touchEnabled: true,
+            height: 45,
+            selectedBackgroundColor: "#FFE1E1",
+            source: CustomData[i].source,
+            backgroundGradient: {
+                type: "linear",
+                colors: [ "#FEFEFB", "#F7F7F6" ],
+                startPoint: {
+                    x: 0,
+                    y: 0
+                },
+                endPoint: {
+                    x: 0,
+                    y: 45
+                },
+                backFillStart: false
+            }
+        });
+        var leftImage = Titanium.UI.createImageView({
+            image: CustomData[i].image,
+            source: CustomData[i].source,
+            width: 25,
+            height: 25,
+            left: 10,
+            top: 10
+        });
+        var popUpTitle = Titanium.UI.createLabel({
+            text: CustomData[i].title,
+            source: CustomData[i].source,
+            font: {
+                fontSize: 16
+            },
+            color: "#848484",
+            width: "auto",
+            textAlign: "left",
+            top: 8,
+            left: 40,
+            height: 25
+        });
+        row.addEventListener("touchend", function(e) {
+            navByType(e);
+        });
+        row.add(leftImage);
+        row.add(popUpTitle);
+        data.push(row);
+    }
+    TheTable.setData(data);
+    popup_view.add(popup_label);
+    popup_view.add(TheTable);
+    var popStatus = "0";
+    popup_label.addEventListener("click", function() {
+        slideMenu();
+    });
+    $.root.add(popup_view);
     __defers["$.__views.__alloyId54!click!navWindow"] && $.__views.__alloyId54.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId55!click!navWindow"] && $.__views.__alloyId55.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId56!click!navWindow"] && $.__views.__alloyId56.addEventListener("click", navWindow);

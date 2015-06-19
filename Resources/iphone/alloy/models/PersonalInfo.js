@@ -81,7 +81,6 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "', gender='" + entry.gender + "' , bloodType='" + entry.bloodType + "' , birthDate='" + entry.birthDate + "', updated='" + currentDateTime() + "' WHERE id='" + entry.id + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(name, birthDate, gender, bloodType, isOwner,created,updated) VALUES ('" + entry.name + "', '" + entry.birthDate + "','" + entry.gender + "','" + entry.bloodType + "','1', '" + currentDateTime() + "', '" + currentDateTime() + "')";
-                console.log(sql_query);
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");

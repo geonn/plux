@@ -273,7 +273,7 @@ exports.do_asp_signup = function(data, mainView){
 
 exports.resendVerificationEmail = function(){
 	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('asp_email'); 
-	 console.log(url);
+	// console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 

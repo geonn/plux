@@ -246,7 +246,6 @@ exports.do_asp_signup = function(data, mainView) {
 
 exports.resendVerificationEmail = function() {
     var url = resendVerifUrl + "?LOGINID=" + Ti.App.Properties.getString("asp_email");
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             common.createAlert("Success", "Verification email sent!");
@@ -348,14 +347,12 @@ exports.claimDetailBySeries = function(e) {
 
 exports.getClaimDetail = function(e) {
     var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
-    console.log(url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
             0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
-                console.log(entry);
                 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype);
             }));
         },

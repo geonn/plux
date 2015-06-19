@@ -146,4 +146,4 @@ function setBackground(){
 }
 
 
-Ti.App.addEventListener('updateHeader', refreshHeaderInfo);
+Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 
