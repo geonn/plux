@@ -11,15 +11,18 @@ function Controller() {
     function create_field(key, title) {
         var view = $.UI.create("View", {
             classes: [ "small_padding" ],
+            height: Titanium.UI.SIZE,
             width: Ti.UI.FILL
         });
         var entidv_label = $.UI.create("Label", {
             text: title,
+            height: Titanium.UI.SIZE,
             left: 0
         });
         var entidv_val_label = $.UI.create("Label", {
             text: key,
             right: 0,
+            height: Titanium.UI.SIZE,
             color: "#ff0000"
         });
         view.add(entidv_label);
@@ -28,6 +31,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "_person_claim_view";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -79,13 +83,14 @@ function Controller() {
     var name = args.name;
     $.name.text = name;
     for (var a = 0; data.length > a; a++) {
-        console.log(data[a]["benefittype"]);
         var benefit_view = $.UI.create("View", {
             classes: [ "padding" ],
+            height: Titanium.UI.SIZE,
             bottom: 0
         });
         var benefit_label = $.UI.create("Label", {
             classes: [ "benefit_label" ],
+            height: Titanium.UI.SIZE,
             text: data[a]["benefittype"]
         });
         benefit_view.add(benefit_label);
@@ -95,15 +100,15 @@ function Controller() {
         $.main.add(benefit_view);
         $.main.add(line);
         if (99999 != data[a]["entidv"]) {
-            var view = create_field("RM" + data[a]["entidv"], "Entitlement");
+            var view = create_field("RM" + data[a]["entidv"], "Personal");
             $.main.add(view);
         }
-        if (99999 != data[a]["entidvbal"]) var view = create_field("RM" + data[a]["entidvbal"], "Entitlement Balance");
+        if (99999 != data[a]["entidvbal"]) var view = create_field("RM" + data[a]["entidvbal"], "Personal Balance");
         if (99999 != data[a]["entsha"]) {
-            var view = create_field("RM" + data[a]["entsha"], "Entitlement Shared");
+            var view = create_field("RM" + data[a]["entsha"], "Shared");
             $.main.add(view);
         }
-        if (99999 != data[a]["entshabal"]) var view = create_field("RM" + data[a]["entshabal"], "Entitlement Shared Balance");
+        if (99999 != data[a]["entshabal"]) var view = create_field("RM" + data[a]["entshabal"], "Shared Balance");
         if (99999 != data[a]["maxperclaim"]) {
             var view = create_field("RM" + data[a]["maxperclaim"], "Max per Claim");
             $.main.add(view);
@@ -119,6 +124,12 @@ function Controller() {
         }
         if (99999 != data[a]["vstshabal"]) var view = create_field(data[a]["vstshabal"], "Visitation Shared Balance");
     }
+    $.main.addEventListener("click", function() {
+        var nav = require("navigation");
+        nav.navigateWithArgs("asp/claimHistory", {
+            name: name
+        });
+    });
     _.extend($, exports);
 }
 

@@ -113,22 +113,21 @@ function Controller() {
     });
     $.__views.claimDetail.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        style: Alloy.Globals.topbarTop,
         top: 30,
         left: 30,
         width: 60,
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId99 = Ti.UI.createLabel({
+    $.__views.__alloyId100 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId99"
+        id: "__alloyId100"
     });
-    $.__views.loadingBar.add($.__views.__alloyId99);
+    $.__views.loadingBar.add($.__views.__alloyId100);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"

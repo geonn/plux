@@ -1,0 +1,20 @@
+<Alloy>
+	<Window title="Health Leaflet" backButtonTitle="" class="container" id="leaftletWin" navTintColor="#CE1D1C">
+		<View height="Ti.UI.FILL" width="Ti.UI.FILL" layout="vertical">
+			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" > 
+		     	<View id="pageTitle" width="Ti.UI.FILL">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Info</Label>
+		     	</View> 
+		 	</View> 
+			<View id="brochureView" class="container" backgroundColor="#828282">  
+				<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false" />
+					 
+				<View layout="vertical">
+					<ScrollView top="15" id="scrollview" layout="vertical" >
+						<View id="mainView" layout="vertical" height="Ti.UI.SIZE" width="100%" /> 
+					</ScrollView>
+				</View> 
+			</View> 
+		</View> 
+	</Window>
+</Alloy>

@@ -3,8 +3,7 @@ var rec_id = args.id || "";
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 var clickTime = null;
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');
-medicalAttachmentModel.addColumn("category", "TEXT");
+var medicalAttachmentModel = Alloy.createCollection('medicalAttachment'); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');
 var details = medicalRecordsModel.getRecordById(rec_id); 
  
@@ -16,6 +15,11 @@ function loadMedicalInfo(){
 	if(title != ""){
 		title = title.replace(/&quot;/g,"'");
 	} 
+	var clinic = details.clinic; 
+	if(clinic != ""){
+		//clinic = clinic.replace(/&quot;/g,"'");
+	} 
+	
 	var treatment = details.treatment;
 	if(treatment == "undefined"){
 		treatment= "";
@@ -23,6 +27,7 @@ function loadMedicalInfo(){
 	var message = details.message;
 	var treatment = treatment;
 	$.titleRecord.value= title;
+	$.clinicRecord.value= clinic;
 	$.proceduceTextArea.value= message ;
 	$.treatmentTextArea.value= treatment ;
 	$.lastUpdated.text = "Last updated: " +timeFormat(details.updated);
@@ -44,6 +49,7 @@ function loadImage(){
 
 function saveRecord(){
 	var title      = $.titleRecord.value; 
+	var clinic      = $.clinicRecord.value; 
 	var message   = $.proceduceTextArea.value;
 	var treatment = $.treatmentTextArea.value;
 
@@ -52,9 +58,10 @@ function saveRecord(){
 	}  
 	medicalRecordsModel.updateRecord({ 
 		id : rec_id,
-		title : title,
-		message : message,
-		treatment : treatment,  
+		title : title.trim(),
+		clinic  : clinic.trim(),
+		message : message.trim(),
+		treatment : treatment.trim(),  
 		updated : currentDateTime()
 	});  
 	// nav.navigationWindow("myHealth" );

@@ -10,6 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "attachmentDetails";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -53,23 +54,31 @@ function Controller() {
             var myImage = Ti.Utils.base64decode(items[i].blob);
             adImage = Ti.UI.createImageView({
                 image: myImage,
-                width: "100%"
+                width: "100%",
+                top: 40
             });
             var scrollView = Ti.UI.createScrollView({
                 contentWidth: "auto",
-                contentHeight: "auto",
+                contentHeight: Ti.UI.SIZE,
                 maxZoomScale: 30,
                 minZoomScale: 1,
                 zoomScale: 1,
-                height: Ti.UI.SIZE,
+                height: Ti.UI.FILL,
                 width: "100%"
+            });
+            var img_caption = Ti.UI.createLabel({
+                text: items[i].category,
+                height: 40,
+                top: 0,
+                color: "#ffffff"
             });
             row = $.UI.create("View", {
                 classes: [ "row" ],
                 id: "view" + counter
             });
-            $.attachment_Details.title = items[i].caption;
+            $.attachment_Details.title = items[i].category;
             row.add(adImage);
+            row.add(img_caption);
             scrollView.add(row);
             the_view.push(scrollView);
             counter++;
@@ -114,6 +123,11 @@ function Controller() {
                     medicalAttachmentModel.removeRecordById(items[my_page].id);
                     getAttImages();
                     Ti.App.fireEvent("refreshAttachment");
+                    $.attachment_Details.close({
+                        curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+                        opacity: 0,
+                        duration: 200
+                    });
                 }
             });
             dialog.show();

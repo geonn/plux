@@ -4,12 +4,14 @@ var usersModel = Alloy.createCollection('users');
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 refreshHeaderInfo(); 
 common.construct($);
-Alloy.Globals.navMenu = $.navMenu;
+if(Ti.Platform.osname != "android"){ 
+	Alloy.Globals.navMenu = $.navMenu;
+}
 /**********				init				*************/
 var initBackground = [
-	{img_path: "images/background1.jpg", time: 0},
-	{img_path: "images/background2.jpg", time: 10},
-	{img_path: "images/background3.jpg", time: 18},
+	{img_path: "/images/background1.jpg", time: 0},
+	{img_path: "/images/background2.jpg", time: 10},
+	{img_path: "/images/background3.jpg", time: 18},
 ];
 
 var initBackgroundData = Ti.App.Properties.getString('initBackgroundData');
@@ -28,14 +30,14 @@ if(initBackgroundData != "1"){
 setBackground();
 
 function refreshHeaderInfo(){
-	var auth = require("login");
+	var auth = require("auth_login");
 	removeAllChildren($.myInfo); 
 	var u_id = Ti.App.Properties.getString('u_id');
 	 
 	//
 	//if(!auth.checkLogin()){  
 	if(!auth.checkLogin()){  
-		$.logo.image = "/appicon-60@3x.png";
+		$.logo.image = "/images/logo_plux.png";
 		var plux_user = usersPluxModel.getUserById(u_id); 
 		 
 		var logoutBtn = Ti.UI.createButton({
@@ -70,7 +72,7 @@ function refreshHeaderInfo(){
 		$.myInfo.add(logoutBtn);
 		$.myInfo.add(welcomeTitle);
 	}else{
-		$.logo.image = "/asp_logo.png";
+		$.logo.image = "/images/asp_logo.png";
 		var me = usersModel.getUserByMemno();
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",

@@ -10,28 +10,54 @@ function __processArg(obj, key) {
 function Controller() {
     function doLogin() {
         common.showLoading();
-        var username = $.username.value;
+        var email = $.email.value;
         var password = $.password.value;
-        if ("" == username || "" == password) {
-            common.createAlert("Authentication warning", "Please fill in username and password");
+        if ("" == email || "" == password) {
+            common.createAlert("Authentication warning", "Please fill in email and password");
             common.hideLoading();
             return;
         }
         if (singleton) {
-            singleton = false;
-            API.doLogin(username, password, $, args.target);
+            var params = {
+                email: email,
+                password: password
+            };
+            API.do_pluxLogin(params, $);
         }
     }
     function hideProductFormKeyboard(e) {
         if ("TextField" != e.source.id) {
-            if ("username" == e.source.id) return false;
+            if ("email" == e.source.id) return false;
             if ("password" == e.source.id) return false;
-            $.username.blur();
+            $.email.blur();
             $.password.blur();
         }
     }
+    function doSignup() {
+        nav.navigationWindow("signup", 0);
+    }
+    function loginFacebook(e) {
+        if (e.success) {
+            common.showLoading();
+            FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {
+                if (e.success) {
+                    var fbRes = JSON.parse(e.result);
+                    Ti.App.Properties.setString("plux_email", fbRes.email);
+                    API.updateUserFromFB({
+                        email: fbRes.email,
+                        fbid: fbRes.id,
+                        link: fbRes.link,
+                        name: fbRes.name,
+                        gender: fbRes.gender
+                    }, $);
+                }
+            });
+            FACEBOOK.removeEventListener("login", loginFacebook);
+        } else e.error || e.cancelled;
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -53,13 +79,38 @@ function Controller() {
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
         id: "loginWin",
-        title: "Login"
+        title: "Login",
+        layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId10 = Ti.UI.createView({
-        id: "__alloyId10"
+    $.__views.__alloyId43 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: "100%",
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId43"
     });
-    $.__views.loginWin.add($.__views.__alloyId10);
+    $.__views.loginWin.add($.__views.__alloyId43);
+    $.__views.pageTitle = Ti.UI.createView({
+        id: "pageTitle",
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId43.add($.__views.pageTitle);
+    $.__views.__alloyId44 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Login",
+        textAlign: "center",
+        id: "__alloyId44"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createView({
+        id: "__alloyId45"
+    });
+    $.__views.loginWin.add($.__views.__alloyId45);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -68,41 +119,42 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId10.add($.__views.loadingBar);
+    $.__views.__alloyId45.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        style: Alloy.Globals.topbarTop,
         top: 30,
         left: 30,
         width: 60,
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId11 = Ti.UI.createLabel({
+    $.__views.__alloyId46 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId11"
+        id: "__alloyId46"
     });
-    $.__views.loadingBar.add($.__views.__alloyId11);
+    $.__views.loadingBar.add($.__views.__alloyId46);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
-        height: "95%"
+        height: "100%",
+        contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId10.add($.__views.main);
-    $.__views.__alloyId12 = Ti.UI.createImageView({
-        width: "50%",
+    $.__views.__alloyId45.add($.__views.main);
+    $.__views.__alloyId47 = Ti.UI.createImageView({
+        width: "40%",
+        borderRadius: "10",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
-        bottom: "50dp",
-        top: "50dp",
-        image: "appicon-76@2x.png",
-        id: "__alloyId12"
+        bottom: "30dp",
+        top: "30dp",
+        image: "/images/logo_plux.png",
+        id: "__alloyId47"
     });
-    $.__views.main.add($.__views.__alloyId12);
-    $.__views.username = Ti.UI.createTextField({
+    $.__views.main.add($.__views.__alloyId47);
+    $.__views.email = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"
         },
@@ -116,11 +168,11 @@ function Controller() {
         bottom: "5dp",
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-        id: "username",
-        hintText: "Enter Username",
-        value: "wongmy@demo.com"
+        id: "email",
+        hintText: "Enter Email",
+        value: ""
     });
-    $.__views.main.add($.__views.username);
+    $.__views.main.add($.__views.email);
     $.__views.password = Ti.UI.createTextField({
         passwordMask: true,
         font: {
@@ -137,107 +189,86 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_DONE,
         id: "password",
         hintText: "Enter Password",
-        value: "pass1234"
+        value: ""
     });
     $.__views.main.add($.__views.password);
     $.__views.loginAccountButton = Ti.UI.createButton({
         id: "loginAccountButton",
-        borderRadius: "15",
+        borderRadius: "5",
         backgroundColor: "#CC2228",
         title: "Login",
-        width: "90%",
+        width: "70%",
         top: "20",
-        height: "60",
+        height: "40",
         color: "#ffffff"
     });
     $.__views.main.add($.__views.loginAccountButton);
     doLogin ? $.__views.loginAccountButton.addEventListener("touchend", doLogin) : __defers["$.__views.loginAccountButton!touchend!doLogin"] = true;
-    $.__views.footer = Ti.UI.createView({
-        bottom: 0,
-        left: "10dp",
-        height: Titanium.UI.SIZE,
-        id: "footer",
-        layout: "horizontal"
+    $.__views.fbloginView = Ti.UI.createView({
+        height: "60",
+        id: "fbloginView",
+        width: "70%"
     });
-    $.__views.loginWin.add($.__views.footer);
-    $.__views.__alloyId13 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "ASPplux",
-        id: "__alloyId13"
+    $.__views.main.add($.__views.fbloginView);
+    $.__views.registerAccountButton = Ti.UI.createButton({
+        id: "registerAccountButton",
+        borderRadius: "5",
+        backgroundColor: "#7B7B7B",
+        title: "Register",
+        width: "70%",
+        top: "5",
+        height: "40",
+        color: "#ffffff"
     });
-    $.__views.footer.add($.__views.__alloyId13);
-    $.__views.__alloyId14 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "|",
-        id: "__alloyId14"
-    });
-    $.__views.footer.add($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "Privacy & Terms",
-        id: "__alloyId15"
-    });
-    $.__views.footer.add($.__views.__alloyId15);
-    $.__views.__alloyId16 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "|",
-        id: "__alloyId16"
-    });
-    $.__views.footer.add($.__views.__alloyId16);
-    $.__views.__alloyId17 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        font: {
-            fontSize: "11dp"
-        },
-        color: "#808080",
-        text: "Help",
-        id: "__alloyId17"
-    });
-    $.__views.footer.add($.__views.__alloyId17);
+    $.__views.main.add($.__views.registerAccountButton);
+    doSignup ? $.__views.registerAccountButton.addEventListener("touchend", doSignup) : __defers["$.__views.registerAccountButton!touchend!doSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0] || {};
-    Alloy.Globals.navMenu;
+    arguments[0] || {};
     var singleton = true;
     common.construct($);
+    var usersPluxModel = Alloy.createCollection("users_plux");
+    var preset_email = Ti.App.Properties.getString("plux_email") || "";
+    $.email.value = preset_email;
     var isKeyboardFocus = 0;
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
-    $.username.addEventListener("touchend", function() {
-        $.username.focus();
+    $.email.addEventListener("touchend", function() {
+        $.email.focus();
         isKeyboardFocus = 1;
     });
     $.password.addEventListener("touchend", function() {
         $.password.focus();
         isKeyboardFocus = 1;
     });
-    $.username.addEventListener("return", function() {
+    $.email.addEventListener("return", function() {
         $.password.focus();
     });
     $.password.addEventListener("return", function() {
         doLogin();
     });
+    $.fbloginView.add(FACEBOOK.createLoginButton({
+        top: 10,
+        readPermissions: [ "email", "public_profile", "user_friends" ],
+        style: FACEBOOK.BUTTON_STYLE_WIDE
+    }));
+    FACEBOOK.addEventListener("login", loginFacebook);
+    var touchLogin = function() {
+        var email = $.email.value;
+        var userData = usersPluxModel.getUserByEmail(email);
+        if (userData && "" != email) {
+            Ti.App.removeEventListener("touchLogin", touchLogin);
+            API.getUserService({
+                u_id: userData.id
+            });
+            Ti.App.Properties.setString("u_id", userData.id);
+            Ti.App.Properties.setString("plux_email", userData.email);
+            Ti.App.fireEvent("updateHeader");
+            nav.closeWindow($.loginWin);
+        }
+    };
+    Ti.App.addEventListener("touchLogin", touchLogin);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
+    __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
     _.extend($, exports);
 }
 

@@ -11,6 +11,21 @@
 	 		<TextField top="0"  id="titleRecord" height="40" hintText="Medical Problem" width="95%"/> 
 			<View height="1" width="100%" backgroundColor="#CE1D1C" top="40" />
 			<ScrollView id="aView" top="42" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" layout="vertical" bottom="90" > 
+				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
+				<TextField top="0" left="5" id="clinicRecord" height="40" hintText="Clinic/Hospital/Specialist" width="95%"/> 
+				
+				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
+			 	<TextArea id="treatmentTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Treatment" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
+			 		<KeyboardToolbar>
+						<Toolbar>
+							<Items> 
+								<FlexSpace/>
+								<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+							</Items>
+						</Toolbar>
+					</KeyboardToolbar>
+			 	</TextArea>
+			 	
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Proceduce</Label>
 			 	<TextArea id="proceduceTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Proceduce" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
 			 		<KeyboardToolbar>
@@ -22,17 +37,7 @@
 						</Toolbar>
 					</KeyboardToolbar>
 			 	</TextArea>
-			 	<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
-			 	<TextArea id="treatmentTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Treatment" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
-			 		<KeyboardToolbar>
-						<Toolbar>
-							<Items> 
-								<FlexSpace/>
-								<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
-							</Items>
-						</Toolbar>
-					</KeyboardToolbar>
-			 	</TextArea>
+			 	
 			 	
 			</ScrollView> 
 			<View bottom="40" height="Ti.UI.SIZE"  layout="horizontal" width="100%"  >

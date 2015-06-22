@@ -135,6 +135,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "healthInfo";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -148,6 +149,57 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.healthInfo = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "Health Info",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C",
+        id: "healthInfo"
+    });
+    $.__views.healthInfo && $.addTopLevelView($.__views.healthInfo);
+    $.__views.__alloyId11 = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        layout: "vertical",
+        id: "__alloyId11"
+    });
+    $.__views.healthInfo.add($.__views.__alloyId11);
+    $.__views.__alloyId12 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: "100%",
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId12"
+    });
+    $.__views.__alloyId11.add($.__views.__alloyId12);
+    $.__views.pageTitle = Ti.UI.createView({
+        id: "pageTitle",
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId12.add($.__views.pageTitle);
+    $.__views.__alloyId13 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Health Info",
+        textAlign: "center",
+        id: "__alloyId13"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId13);
+    $.__views.main = Ti.UI.createView({
+        backgroundColor: "#ffffff",
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        id: "main"
+    });
+    $.__views.__alloyId11.add($.__views.main);
+    $.__views.infoTable = Ti.UI.createTableView({
+        id: "infoTable"
+    });
+    $.__views.main.add($.__views.infoTable);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

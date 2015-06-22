@@ -59,6 +59,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    clinicCode: res.fieldByName('clinicCode'),
 					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
 					    add1: res.fieldByName('add1'),
 					    add2: res.fieldByName('add2'),
 					    city: res.fieldByName('city'),
@@ -90,6 +91,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    clinicCode: res.fieldByName('clinicCode'),
 					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
 					    add1: res.fieldByName('add1'),
 					    add2: res.fieldByName('add2'),
 					    city: res.fieldByName('city'),
@@ -142,6 +144,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    clinicCode: res.fieldByName('clinicCode'),
 					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
 					    add1: res.fieldByName('add1'),
 					    add2: res.fieldByName('add2'),
 					    city: res.fieldByName('city'),
@@ -173,6 +176,7 @@ exports.definition = {
 					    id: res.fieldByName('id'),
 					    clinicCode: res.fieldByName('clinicCode'),
 					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
 					    add1: res.fieldByName('add1'),
 					    add2: res.fieldByName('add2'),
 					    city: res.fieldByName('city'),
@@ -203,9 +207,9 @@ exports.definition = {
 					var qres = db.execute(qsql);
 		       		
 		       		 if (qres.isValidRow()){
-	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET clinicName='"+entry.clinicname+"', clinicCode='"+entry.cliniccode+"', openHour='"+entry.openhour+"', add1='"+entry.add1+"', add2='"+entry.add2+"', city='"+ entry.city+"', state='"+entry.state+"', longitude='"+entry.longitude+"', latitude='"+entry.latitude+"' WHERE id='" +entry.id+"'";
+	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET clinicName='"+entry.clinicname+"', clinicType='"+entry.clinictype+"', clinicCode='"+entry.cliniccode+"', openHour='"+entry.openhour+"', add1='"+entry.add1+"', add2='"+entry.add2+"', city='"+ entry.city+"', state='"+entry.state+"', longitude='"+entry.longitude+"', latitude='"+entry.latitude+"' WHERE id='" +entry.id+"'";
 	                }else{
-	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( id, clinicName,clinicCode,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+entry.id+"','"+entry.clinicname+"', '"+entry.cliniccode+"', '"+entry.openhour+"', '"+entry.add1+"','"+entry.add2+"', '"+entry.city+"','"+entry.postcode+"', '"+entry.state+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
+	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+entry.id+"','"+entry.clinicname+"', '"+entry.cliniccode+"', '"+entry.cliniccode+"', '"+entry.clinicType+"', '"+entry.add1+"','"+entry.add2+"', '"+entry.city+"','"+entry.postcode+"', '"+entry.state+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
 					                                                                                                            																									 
 				    }
 		       		//console.log(sql_query);

@@ -22,4 +22,7 @@
 	font:{
 		fontSize: "16dp"
 	}
+},
+"#clinicRecord" : { 
+	backgroundColor: "#F6F6F6"
 }

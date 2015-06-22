@@ -102,11 +102,13 @@ function loginFacebook(e){
 } 
 	 
 FACEBOOK.addEventListener('login', loginFacebook); 
- 
-TouchId.authenticate({
-    reason: "Please place finger print to login PLUX",
-    callback: authCB
-});
+
+if (Ti.Platform.osname == 'iphone') {
+	TouchId.authenticate({
+	    reason: "Please place finger print to login PLUX",
+	    callback: authCB
+	});
+}
 
 function authCB(e){ 
 	if(e.success == "1"){

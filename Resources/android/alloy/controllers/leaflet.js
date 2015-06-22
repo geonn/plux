@@ -186,7 +186,7 @@ function Controller() {
                             topView.add(BackBtn);
                             rightBtn.setVisible(false);
                             BackBtn.setVisible(true);
-                            webview.setUrl(targetUrl);
+                            webview.setUrl(content.url);
                         });
                         topView.add(rightBtn);
                     }
@@ -209,6 +209,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "leaflet";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -222,6 +223,81 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.leaftletWin = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "Health Leaflet",
+        backButtonTitle: "",
+        id: "leaftletWin",
+        navTintColor: "#CE1D1C"
+    });
+    $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
+    $.__views.__alloyId39 = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        layout: "vertical",
+        id: "__alloyId39"
+    });
+    $.__views.leaftletWin.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: "100%",
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId40"
+    });
+    $.__views.__alloyId39.add($.__views.__alloyId40);
+    $.__views.pageTitle = Ti.UI.createView({
+        id: "pageTitle",
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId40.add($.__views.pageTitle);
+    $.__views.__alloyId41 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Health Info",
+        textAlign: "center",
+        id: "__alloyId41"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId41);
+    $.__views.brochureView = Ti.UI.createView({
+        id: "brochureView",
+        backgroundColor: "#828282"
+    });
+    $.__views.__alloyId39.add($.__views.brochureView);
+    $.__views.bigView = Ti.UI.createScrollView({
+        id: "bigView",
+        zIndex: "99",
+        height: Ti.UI.SIZE,
+        layout: "vertical",
+        backgroundColor: "#ffffff",
+        opacity: "0.8",
+        bottom: "0",
+        width: "80%",
+        visible: "false"
+    });
+    $.__views.brochureView.add($.__views.bigView);
+    $.__views.__alloyId42 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId42"
+    });
+    $.__views.brochureView.add($.__views.__alloyId42);
+    $.__views.scrollview = Ti.UI.createScrollView({
+        top: "15",
+        id: "scrollview",
+        layout: "vertical"
+    });
+    $.__views.__alloyId42.add($.__views.scrollview);
+    $.__views.mainView = Ti.UI.createView({
+        id: "mainView",
+        layout: "vertical",
+        height: Ti.UI.SIZE,
+        width: "100%"
+    });
+    $.__views.scrollview.add($.__views.mainView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -41,7 +41,10 @@ function registerPush() {
         Ti.App.iOS.registerUserNotificationSettings({
             types: [ Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT, Ti.App.iOS.USER_NOTIFICATION_TYPE_SOUND, Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE ]
         });
-    } else Titanium.Network.registerForPushNotifications({
+    } else "android" == Ti.Platform.osname ? CloudPush.retrieveDeviceToken({
+        success: deviceTokenSuccess,
+        error: deviceTokenError
+    }) : Titanium.Network.registerForPushNotifications({
         types: [ Titanium.Network.NOTIFICATION_TYPE_BADGE, Titanium.Network.NOTIFICATION_TYPE_ALERT, Titanium.Network.NOTIFICATION_TYPE_SOUND ],
         success: deviceTokenSuccess,
         error: deviceTokenError,
@@ -50,6 +53,30 @@ function registerPush() {
 }
 
 var Cloud = require("ti.cloud");
+
+var app_status;
+
+var redirect = false;
+
+if ("android" == Ti.Platform.osname) {
+    var CloudPush = require("ti.cloudpush");
+    CloudPush.addEventListener("callback", function(evt) {
+        var payload = JSON.parse(evt.payload);
+        Ti.App.Payload = payload;
+        if (redirect) if ("not_running" == app_status) ; else {
+            redirect = false;
+            getNotificationNumber(payload);
+        }
+    });
+    CloudPush.addEventListener("trayClickLaunchedApp", function() {
+        redirect = true;
+        app_status = "not_running";
+    });
+    CloudPush.addEventListener("trayClickFocusedApp", function() {
+        redirect = true;
+        app_status = "running";
+    });
+}
 
 exports.registerPush = function() {
     registerPush();

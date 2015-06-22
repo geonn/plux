@@ -1,5 +1,5 @@
 function receivePush(e) {
-    nav.navigateWithArgs("survey", {
+    nav.navigateWithArgs("webview", {
         url: e.data.target
     });
     return false;
@@ -13,7 +13,7 @@ function deviceTokenSuccess(ex) {
     }, function(e) {
         e.success && Cloud.PushNotifications.subscribe({
             channel: "survey",
-            type: "ios",
+            type: "android",
             device_token: deviceToken
         }, function(e) {
             if (e.success) {
@@ -29,15 +29,38 @@ function deviceTokenError(e) {
 }
 
 function registerPush() {
-    Titanium.Network.registerForPushNotifications({
-        types: [ Titanium.Network.NOTIFICATION_TYPE_BADGE, Titanium.Network.NOTIFICATION_TYPE_ALERT, Titanium.Network.NOTIFICATION_TYPE_SOUND ],
+    CloudPush.retrieveDeviceToken({
         success: deviceTokenSuccess,
-        error: deviceTokenError,
-        callback: receivePush
+        error: deviceTokenError
     });
 }
 
 var Cloud = require("ti.cloud");
+
+var app_status;
+
+var redirect = false;
+
+var CloudPush = require("ti.cloudpush");
+
+CloudPush.addEventListener("callback", function(evt) {
+    var payload = JSON.parse(evt.payload);
+    Ti.App.Payload = payload;
+    if (redirect) if ("not_running" == app_status) ; else {
+        redirect = false;
+        getNotificationNumber(payload);
+    }
+});
+
+CloudPush.addEventListener("trayClickLaunchedApp", function() {
+    redirect = true;
+    app_status = "not_running";
+});
+
+CloudPush.addEventListener("trayClickFocusedApp", function() {
+    redirect = true;
+    app_status = "running";
+});
 
 exports.registerPush = function() {
     registerPush();

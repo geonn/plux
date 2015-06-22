@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Health Risk Assessment" id="hra" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="Health Risk Assessment" id="hra" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
 		<ListView id="menu">
 			<ListSection>
             	<ListItem mod="bmi" title="BMI Calculator"></ListItem>

@@ -2,8 +2,7 @@
 	 backgroundColor: "#ffffff",
 	fullscreen : true	
 },
-"#activityIndicator" : {
-	 style: Alloy.Globals.topbarTop,
+"#activityIndicator" : { 
 	 top:30,
 	 left:30,
 	 width:60,
@@ -24,4 +23,17 @@
 	bottom: 10,	
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
-}
+},
+
+".big_font":{
+	font: {fontSize: '20dp'},
+},
+".normal_font":{
+	font: {fontSize: '16dp'},
+},
+".medium_font":{
+	font: {fontSize: '14dp'},
+},
+".small_font":{
+	font: {fontSize: '12dp'},
+},

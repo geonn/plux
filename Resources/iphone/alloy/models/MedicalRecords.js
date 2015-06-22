@@ -46,6 +46,7 @@ exports.definition = {
                     listArr[count] = {
                         id: res.fieldByName("id"),
                         title: res.fieldByName("title"),
+                        clinic: res.fieldByName("clinic"),
                         treatment: res.fieldByName("treatment"),
                         message: res.fieldByName("message"),
                         created: res.fieldByName("created"),
@@ -70,6 +71,7 @@ exports.definition = {
                     id: res.fieldByName("id"),
                     title: res.fieldByName("title"),
                     treatment: res.fieldByName("treatment"),
+                    clinic: res.fieldByName("clinic"),
                     message: res.fieldByName("message"),
                     created: res.fieldByName("created"),
                     updated: res.fieldByName("updated")
@@ -101,6 +103,7 @@ exports.definition = {
                         id: res.fieldByName("id"),
                         title: res.fieldByName("title"),
                         treatment: res.fieldByName("treatment"),
+                        clinic: res.fieldByName("clinic"),
                         message: res.fieldByName("message"),
                         created: res.fieldByName("created"),
                         updated: res.fieldByName("updated")
@@ -119,11 +122,13 @@ exports.definition = {
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var title = entry.title;
                 "" != title && (title = title.replace(/["']/g, "&quot;"));
+                var clinic = entry.clinic;
+                "" != clinic && (clinic = clinic.replace(/["']/g, "&quot;"));
                 var treatment = entry.treatment;
                 "" != treatment && (treatment = treatment.replace(/["']/g, "&quot;"));
                 var message = entry.message;
                 "" != message && (message = message.replace(/["']/g, "&quot;"));
-                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',  message='" + entry.message + "', treatment='" + treatment + "' WHERE id='" + entry.id + "' ";
+                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',  message='" + entry.message + "', clinic='" + clinic + "', treatment='" + treatment + "' WHERE id='" + entry.id + "' ";
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");
@@ -134,9 +139,11 @@ exports.definition = {
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var title = entry.title;
                 "" != title && (title = title.replace(/["']/g, "&quot;"));
+                var clinic = entry.clinic;
+                "" != clinic && (clinic = clinic.replace(/["']/g, "&quot;"));
                 var message = entry.message;
                 "" != message && (message = message.replace(/["']/g, "&quot;"));
-                sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( title,message, created, updated, treatment ) VALUES ( '" + title + "', '" + message + "', '" + entry.created + "', '" + entry.updated + "', '" + entry.treatment + "')";
+                sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( title,message, created, updated, treatment,clinic ) VALUES ( '" + title + "', '" + message + "', '" + entry.created + "', '" + entry.updated + "', '" + entry.treatment + "', '" + entry.clinic + "')";
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");

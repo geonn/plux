@@ -1,6 +1,6 @@
 <Alloy>
 	<Window title="Panel Details" id="panelDetails" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		 <View layout="vertical" height="Ti.UI.SIZE" width="100%" top="0">
+		 <ScrollView layout="vertical" height="Ti.UI.SIZE" width="100%" top="0">
 		 	
 		 	<Label id="clinicName" class="clinic_name" top="5" bottom="10"/>
 		 	<Label id="clinicAddress1" class="clinic_address" />
@@ -18,6 +18,6 @@
 	            <TableViewRow id="add2contact" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="addToContact" title="Add To Contact"   />
 			</TableView>
 		 	 
-		 </View>
+		 </ScrollView>
 	</Window>
 </Alloy>

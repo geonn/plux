@@ -76,10 +76,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.signUpWin && $.addTopLevelView($.__views.signUpWin);
-    $.__views.__alloyId90 = Ti.UI.createView({
-        id: "__alloyId90"
+    $.__views.__alloyId91 = Ti.UI.createView({
+        id: "__alloyId91"
     });
-    $.__views.signUpWin.add($.__views.__alloyId90);
+    $.__views.signUpWin.add($.__views.__alloyId91);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -88,42 +88,41 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId90.add($.__views.loadingBar);
+    $.__views.__alloyId91.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        style: Alloy.Globals.topbarTop,
         top: 30,
         left: 30,
         width: 60,
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId91 = Ti.UI.createLabel({
+    $.__views.__alloyId92 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId91"
+        id: "__alloyId92"
     });
-    $.__views.loadingBar.add($.__views.__alloyId91);
+    $.__views.loadingBar.add($.__views.__alloyId92);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId90.add($.__views.main);
-    $.__views.__alloyId92 = Ti.UI.createImageView({
+    $.__views.__alloyId91.add($.__views.main);
+    $.__views.__alloyId93 = Ti.UI.createImageView({
         borderRadius: "10",
         width: "30%",
         height: Ti.UI.SIZE,
         backgroundColor: "#ff0000",
         bottom: "10dp",
         top: "10dp",
-        image: "appicon-76@2x.png",
-        id: "__alloyId92"
+        image: "/images/logo_plux.png",
+        id: "__alloyId93"
     });
-    $.__views.main.add($.__views.__alloyId92);
+    $.__views.main.add($.__views.__alloyId93);
     $.__views.fullname = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"

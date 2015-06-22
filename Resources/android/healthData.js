@@ -7,46 +7,75 @@ function getAge(dateString) {
     return age;
 }
 
-function loadInfo(gType) {
+function loadInfo(gType, dataPeriod) {
     var info = [];
     var info2 = [];
     var loadType = gType;
     ("5" == loadType || "6" == loadType) && (loadType = "1");
-    var info_details = lib_health.getHealthListByType(loadType);
-    info_details.reverse();
-    info_details.forEach(function(entry) {
-        var rec = {};
-        var convert = entry.date.split("-");
-        var month = parseInt(convert[1]) - 1;
-        var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
-        rec["label"] = newDate;
-        if ("2" == gType) {
-            rec["y"] = parseFloat(entry.field1);
-            var rec2 = {};
-            rec2["label"] = newDate;
-            rec2["y"] = parseFloat(entry.field2);
-            info2.push(rec2);
-        } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
-        info.push(rec);
-    });
+    if ("year" == dataPeriod) {
+        var info_details = lib_health.getHealthListByTypeInYear(loadType, gType);
+        info_details.forEach(function(entry) {
+            var rec = {};
+            var convert = entry.date.split("-");
+            var month = parseInt(convert[1]) - 1;
+            var newDate = m_names[month] + "" + convert[0].substring(2, 4);
+            rec["label"] = newDate;
+            if ("2" == gType) {
+                rec["y"] = parseFloat(entry.value);
+                var rec2 = {};
+                rec2["label"] = newDate;
+                rec2["y"] = parseFloat(entry.value2);
+                info2.push(rec2);
+            } else rec["y"] = "6" == gType ? parseFloat(entry.value) : "5" == gType ? 100 * parseFloat(entry.value) : parseFloat(entry.value);
+            info.push(rec);
+        });
+    } else {
+        if ("10" == gType) var info_details = lib_health.getSteps(); else var info_details = lib_health.getHealthListByType(loadType);
+        info_details.reverse();
+        info_details.forEach(function(entry) {
+            var rec = {};
+            var convert = entry.date.split("-");
+            var month = parseInt(convert[1]) - 1;
+            var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
+            rec["label"] = newDate;
+            if ("2" == gType) {
+                rec["y"] = parseFloat(entry.field1);
+                var rec2 = {};
+                rec2["label"] = newDate;
+                rec2["y"] = parseFloat(entry.field2);
+                info2.push(rec2);
+            } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
+            info.push(rec);
+        });
+    }
     1 == gType && Ti.App.fireEvent("app:bmiInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
         message: info,
-        message2: info2
+        message2: info2,
+        dataPeriod: dataPeriod
     });
     3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     5 == gType && Ti.App.fireEvent("app:height", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
     });
     6 == gType && Ti.App.fireEvent("app:weight", {
-        message: info
+        message: info,
+        dataPeriod: dataPeriod
+    });
+    10 == gType && Ti.App.fireEvent("app:steps", {
+        message: info,
+        dataPeriod: dataPeriod
     });
     return info;
 }
@@ -100,13 +129,12 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 6 >= i; i++) {
-        loadInfo(i);
-    }
+    for (var i = 1; 6 >= i; i++) var info = loadInfo(i);
+    info = loadInfo(10);
 };
 
-exports.loadGraphByType = function(gType) {
-    loadInfo(gType);
+exports.loadGraphByType = function(gType, dataPeriod) {
+    loadInfo(gType, dataPeriod);
 };
 
 exports.todayDate = function() {
@@ -156,12 +184,18 @@ exports.changeBloodType = function(e) {
 };
 
 exports.navigateGraph = function(gType) {
-    "1" == gType && nav.navigationWindow("healthDataBmi");
-    "2" == gType && nav.navigationWindow("healthDataBloodPressure");
-    "3" == gType && nav.navigationWindow("healthDataHeartRate");
-    "4" == gType && nav.navigationWindow("healthDataBodyTemperature");
-    "5" == gType && nav.navigationWindow("healthDataBmi");
-    "6" == gType && nav.navigationWindow("healthDataBmi");
+    "1" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+    "2" == gType && nav.navigationWindow("myHealth/healthDataBloodPressure");
+    "3" == gType && nav.navigationWindow("myHealth/healthDataHeartRate");
+    "4" == gType && nav.navigationWindow("myHealth/healthDataBodyTemperature");
+    "5" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+    "6" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+};
+
+exports.stepsMotion = function() {
+    lib_health.getHealthListByType(10);
+    Ti.App.Properties.getString("curH") || "";
+    Ti.App.Properties.getString("step") || 0;
 };
 
 exports.changeTime = function(e) {

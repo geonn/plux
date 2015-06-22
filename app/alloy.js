@@ -13,8 +13,11 @@ var common = require('common');
 var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
-var CoreMotion = require('ti.coremotion'); 
-var TouchId = require("ti.touchid");
+//var CoreMotion = require('ti.coremotion'); 
+if (Ti.Platform.osname == 'iphone') {
+	var TouchId = require("ti.touchid");
+}
+
 Alloy.Globals.Map = require('ti.map');
 
 /***Facebook Library***/
@@ -26,7 +29,7 @@ FACEBOOK.forceDialogAuth = true;
 
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
-
+/**
 if (CoreMotion.isStepCountingAvailable()) { 
     CoreMotion.startStepCountingUpdates({stepCounts: 1}, function(e){setInterval(function(){ countStep(); }, 1000); });
 } else {
@@ -36,7 +39,6 @@ var isCountStepEventExists = true;
 Ti.App.addEventListener('countStep',countStep );
 Ti.App.iOS.registerBackgroundService({url:'services.js'});   
 function countStep(){ 
-	
 	var starts = new Date(new Date().getTime() - 1*1000);
 	//console.log('start: '+starts);
 	var ends  =new Date();
@@ -87,7 +89,7 @@ function countStep(){
     }
     
 } 
-
+**/
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
@@ -164,7 +166,15 @@ function currentDateTime(){
 function resendVerificationEmail(){
 	API.resendVerificationEmail();
 }
- 
+
+function PixelsToDPUnits(ThePixels){
+  return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
+}
+
+function DPUnitsToPixels(TheDPUnits){
+  return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
+}
+
 function removeAllChildren(viewObject){
     //copy array of child object references because view's "children" property is live collection of child object references
     var children = viewObject.children.slice(0);
@@ -173,6 +183,7 @@ function removeAllChildren(viewObject){
         viewObject.remove(children[i]);
     }
 }
-
-Titanium.UI.iPhone.setAppBadge("0");
-PUSH.registerPush();
+if (Ti.Platform.osname == 'iphone') {
+	Titanium.UI.iPhone.setAppBadge("0");
+}
+//PUSH.registerPush();

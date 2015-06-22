@@ -1,5 +1,35 @@
 var Cloud = require('ti.cloud'); 
-
+var app_status;
+var redirect = false;
+if(Ti.Platform.osname == "android"){ 
+	var CloudPush = require('ti.cloudpush');
+	// notification callback function (important)
+	CloudPush.addEventListener('callback', function (evt) { 
+		var payload = JSON.parse(evt.payload);  
+		Ti.App.Payload = payload;
+		// if trayClickLaunchedApp or trayClickFocusedApp set redirect as true
+		if(redirect){
+			if(app_status == "not_running"){
+				
+			}else{
+				redirect = false;
+				getNotificationNumber(payload);
+			}
+		}else{
+			
+		}
+	});
+	
+	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
+		redirect = true;
+		app_status = "not_running"; 
+	    //getNotificationNumber(Ti.App.Payload);
+	});
+	CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
+		redirect = true;
+		app_status = "running"; 
+	}); 
+} 
 // Process incoming push notifications
 function receivePush(e) { 
 	nav.navigateWithArgs("webview", {
@@ -18,7 +48,7 @@ function deviceTokenSuccess(ex) {
 		if (e.success) {
 			Cloud.PushNotifications.subscribe({
 			    channel: 'survey',
-			    type:'ios', 
+			    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
 			    device_token: deviceToken
 			}, function (e) { 
 			    if (e.success  ) { 
@@ -64,6 +94,11 @@ function registerPush(){
 	            Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE
 	        ]
 	    });
+	}else if(Ti.Platform.osname == "android"){
+		CloudPush.retrieveDeviceToken({
+		    success: deviceTokenSuccess,
+		    error: deviceTokenError
+		});
 	}else{
 		Titanium.Network.registerForPushNotifications({
 		    types: [

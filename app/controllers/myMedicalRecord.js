@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
-medicalRecordsModel.addColumn("treatment", "TEXT");
+
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 common.construct($); 
@@ -19,7 +19,7 @@ function displayRecords(listing){
 	   		listing.forEach(function(entry) {
 	   			var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
-			    height: 70,
+			    height: 80,
 			    source: entry.id, 
 			   // layout: "vertical",
 			    selectedBackgroundColor: "#FFE1E1",
@@ -33,17 +33,17 @@ function displayRecords(listing){
 				
 				var tblView = Ti.UI.createView({
 					layout: "horizontal",
-					height:"70",
+					height:"80",
 					width:"100%" 
 				}); 
 				var leftView = Ti.UI.createView({
 					layout: "vertical",
-					height:"70",
+					height:"80",
 					width:"80%" 
 				}); 
 				var rightView = Ti.UI.createView({
 					layout: "vertical",
-					height:"70",
+					height:"80",
 					width:"auto" 
 				}); 
 				
@@ -51,6 +51,11 @@ function displayRecords(listing){
                 if(title != ""){ 
                 	title = title.replace(/["']/g, "&quot;");
                 }
+				
+				var clinic = entry.clinic;
+				if(clinic != ""){ 
+					clinic = clinic.replace(/["']/g, "&quot;");
+				}  
 				
 				var message = entry.message;
 				if(message != ""){ 
@@ -67,6 +72,17 @@ function displayRecords(listing){
 					top:5,
 					left:20, 
 					height:Ti.UI.SIZE
+				});
+				
+				var recClinic =  Titanium.UI.createLabel({
+					text: clinic,
+					source: entry.id,
+					font:{fontSize:12,fontWeight:'bold'}, 
+					color: "#848484",
+					textAlign:'left', 
+					width:'100%', 
+					left:20,
+					height:15
 				});
 				
 				var recMsg =  Titanium.UI.createLabel({
@@ -104,6 +120,7 @@ function displayRecords(listing){
 				});
 			  
 				leftView.add(recTitle);
+				leftView.add(recClinic);
 				leftView.add(recMsg);
 			 	leftView.add(updatedRecord);  
 			 	rightView.add(rightForwardBtn);

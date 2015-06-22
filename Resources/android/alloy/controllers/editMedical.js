@@ -12,31 +12,40 @@ function Controller() {
         loadImage();
         var title = details.title;
         "" != title && (title = title.replace(/&quot;/g, "'"));
+        var clinic = details.clinic;
+        "" != clinic;
+        var treatment = details.treatment;
+        "undefined" == treatment && (treatment = "");
         var message = details.message;
+        var treatment = treatment;
         $.titleRecord.value = title;
-        $.recordsTextArea.value = message;
+        $.clinicRecord.value = clinic;
+        $.proceduceTextArea.value = message;
+        $.treatmentTextArea.value = treatment;
         $.lastUpdated.text = "Last updated: " + timeFormat(details.updated);
     }
     function loadImage() {
         var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
         var counter = 0;
-        if (recAttachment.length > 0) {
-            removeAllChildren($.attachment);
-            recAttachment.forEach(function(att) {
-                var myImage = Ti.Utils.base64decode(att.blob);
-                $.attachment.add(attachedPhoto(myImage, counter));
-                counter++;
-            });
-        }
+        removeAllChildren($.attachment);
+        recAttachment.length > 0 && recAttachment.forEach(function(att) {
+            var myImage = Ti.Utils.base64decode(att.blob);
+            $.attachment.add(attachedPhoto(myImage, counter));
+            counter++;
+        });
     }
     function saveRecord() {
         var title = $.titleRecord.value;
-        var message = $.recordsTextArea.value;
+        var clinic = $.clinicRecord.value;
+        var message = $.proceduceTextArea.value;
+        var treatment = $.treatmentTextArea.value;
         "" == title.trim() && (title = "Untitled - " + currentDateTime());
         medicalRecordsModel.updateRecord({
             id: rec_id,
-            title: title,
-            message: message,
+            title: title.trim(),
+            clinic: clinic.trim(),
+            message: message.trim(),
+            treatment: treatment.trim(),
             updated: currentDateTime()
         });
         Ti.App.fireEvent("displayRecords");
@@ -44,8 +53,9 @@ function Controller() {
     }
     function backAndSave() {
         var title = $.titleRecord.value;
-        var message = $.recordsTextArea.value;
-        if ("" == title.trim() && "" == message.trim()) {
+        var message = $.proceduceTextArea.value;
+        var treatment = $.treatmentTextArea.value;
+        if ("" == title.trim() && "" == message.trim() && "" == treatment.trim()) {
             var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
             0 == recAttachment.length && medicalRecordsModel.removeRecordById(rec_id);
         } else saveRecord();
@@ -85,6 +95,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "editMedical";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -109,9 +120,7 @@ function Controller() {
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
     var details = medicalRecordsModel.getRecordById(rec_id);
     loadMedicalInfo();
-    $.recordsTextArea.addEventListener("focus", function() {
-        $.recordsTextArea.setHeight("70%");
-    });
+    $.proceduceTextArea.addEventListener("focus", function() {});
     $.editRecWin.addEventListener("close", function() {
         backAndSave();
     });

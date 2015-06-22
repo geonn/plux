@@ -2,21 +2,35 @@
 exports.navigationWindow = function(target, checkAuth, callback, param){
 	 
 	if(checkAuth == 1){
-		var auth = require("login");
+		var auth = require("auth_login");
 		if(!auth.checkLogin()){ 
 			var win = Alloy.createController("asp/login", {target: target}).getView(); 
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			
 		}else if(target =="m_eCard"){
 			 
 			var win = Alloy.createController(target).getView(); 
 			win.orientationModes = [Titanium.UI.PORTRAIT,
 		    Titanium.UI.LANDSCAPE_LEFT,
 		    Titanium.UI.LANDSCAPE_RIGHT,];
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+		    if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			
 		}else{
-			 
 			var win = Alloy.createController(target).getView(); 
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			 
 		}
 		return;
 	}else{
@@ -26,15 +40,26 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 			win.orientationModes = [Titanium.UI.PORTRAIT,
 		    Titanium.UI.LANDSCAPE_LEFT,
 		    Titanium.UI.LANDSCAPE_RIGHT,];
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
 		}else if(typeof param !== undefined && param !== null){
 			console.log(target+" my card no auth with param");
 			var win = Alloy.createController(target, param).getView();
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
-		}else{
-			console.log(target+"no auth");
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+		}else{ 
 			var win = Alloy.createController(target).getView(); 
-			Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
 		}
 	}
 };
@@ -42,14 +67,29 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 exports.navigationWebview = function(webview, title){
 	var win = Titanium.UI.createWindow({title: title});
     win.add(webview);
-	Alloy.Globals.navMenu.openWindow(win,{animated:true});
+    if(Ti.Platform.osname == "android"){ 
+		win.open(); 
+	}else{
+		Alloy.Globals.navMenu.openWindow(win,{animated:true});
+	}
+	 
 };
 
 exports.navigateWithArgs = function(target, args){
 	var win = Alloy.createController(target, args).getView(); 
-	Alloy.Globals.navMenu.openWindow(win,{animated:true});
+	
+	if(Ti.Platform.osname == "android"){ 
+		win.open(); 
+	}else{
+		Alloy.Globals.navMenu.openWindow(win,{animated:true});
+	}
 };
 
 exports.closeWindow = function(win){
-	Alloy.Globals.navMenu.closeWindow(win);
+	
+	if(Ti.Platform.osname == "android"){ 
+		win.close(); 
+	}else{
+		Alloy.Globals.navMenu.closeWindow(win);
+	}
 };

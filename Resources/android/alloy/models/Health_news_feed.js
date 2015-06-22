@@ -3,14 +3,14 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 exports.definition = {
     config: {
         columns: {
-            id: "int",
-            title: "string",
-            long_title: "string",
-            category: "string",
-            caption: "string",
-            created_date: "datetime",
-            modified_date: "datetime",
-            images: "string"
+            id: "INTEGER",
+            title: "TEXT",
+            long_title: "TEXT",
+            category: "TEXT",
+            caption: "TEXT",
+            created_date: "TEXT",
+            modified_date: "TEXT",
+            images: "TEXT"
         },
         adapter: {
             type: "sql",
@@ -73,11 +73,9 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    console.log(entry.latitude + " " + entry.longitude);
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES (" + entry.id + ", '" + mysql_real_escape_string(entry.title) + "', '" + mysql_real_escape_string(entry.long_title) + "', '" + mysql_real_escape_string(entry.category) + "', '" + entry.caption + "', '" + entry.created_date + "', '" + entry.modified_date + "', '" + entry.images + "')";
                     db.execute(sql_query);
                 });
-                console.log("GEOMILANO HERE");
                 db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");

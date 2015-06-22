@@ -10,6 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
+    this.args = arguments[0] || {};
     if (arguments[0]) {
         {
             __processArg(arguments[0], "__parentSymbol");
@@ -34,13 +35,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId9 = Ti.UI.createImageView({
+    $.__views.__alloyId38 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId9"
+        id: "__alloyId38"
     });
-    $.__views.main.add($.__views.__alloyId9);
+    $.__views.main.add($.__views.__alloyId38);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -59,12 +60,30 @@ function Controller() {
     $.__views.main.add($.__views.link_member);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var win = Alloy.createController("home").getView();
-    API.loadPanelList();
+    var users = Alloy.createCollection("users");
+    users.addColumn("isver", "TEXT");
+    users.addColumn("verno", "TEXT");
+    var panelList = Alloy.createCollection("panelList");
+    panelList.addColumn("clinicCode", "TEXT");
+    panelList.addColumn("openHour", "TEXT");
+    panelList.addColumn("clinicType", "TEXT");
+    var claim_detailList = Alloy.createCollection("claim_detail");
+    claim_detailList.addColumn("status", "TEXT");
+    claim_detailList.addColumn("claimType", "TEXT");
+    var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
+    medicalAttachmentModel.addColumn("category", "TEXT");
+    var medicalRecordsModel = Alloy.createCollection("medicalRecords");
+    medicalRecordsModel.addColumn("clinic", "TEXT");
+    medicalRecordsModel.addColumn("treatment", "TEXT");
+    var u_id = Ti.App.Properties.getString("u_id") || "";
     API.loadCategoryList();
     API.loadNewsFeed();
     API.loadLeaflet();
-    win.open();
+    API.loadClinicList();
+    if ("" == u_id) nav.navigateWithArgs("login", {}); else {
+        var win = Alloy.createController("home").getView();
+        win.open();
+    }
     _.extend($, exports);
 }
 

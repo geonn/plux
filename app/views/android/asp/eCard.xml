@@ -1,0 +1,26 @@
+<Alloy>
+	<Window title="ASP eCARD" backButtonTitle="" layout="" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C">
+		<View layout="vertical" width="Ti.UI.FILL" height="Ti.UI.FILL">
+			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" > 
+		     	<View id="pageTitle" width="Ti.UI.FILL">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP eCARD</Label>
+		     	</View> 
+		 	</View> 
+			<View id="mainContainer" height="Ti.UI.SIZE" width="Ti.UI.FILL" > 
+				<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+			        <ActivityIndicator  id="activityIndicator" />
+			    	<Label top="5" text="Loading" color="#ffffff" />
+				</View>
+				<View height="Ti.UI.FILL" width="Ti.UI.FILL" top="0" id="card"></View>
+				<View height="Ti.UI.FILL" width="Ti.UI.FILL" id="card_event"></View>
+				<View height="Ti.UI.FILL" width="80%" id="unverified" visible="false" top="0" layout="vertical"  >
+					<Label id="unveriLbl" class="label" top="40">You need to verify your account in order to use eCard.</Label>
+					<View height="Ti.UI.SIZE" width="Ti.UI.FILL" layout="horizontal">
+						<Button borderRadius="5" backgroundColor="#CE1D1C" onTouchend="resendVerificationEmail" left="0" title="Resend Verification"  width="55%" top="10"  height="40" color="#ffffff" />
+						<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="checkStatus" title="Refresh"  width="35%" left="10" top="10" height="40" color="#ffffff" />
+					</View>
+				</View>
+			</View>
+		</View>
+	</Window>
+</Alloy>

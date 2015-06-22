@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Clinic Locator" id="panelListTbl" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="Clinic Locator" id="panelListTbl" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
 		 
 	</Window>
 </Alloy>

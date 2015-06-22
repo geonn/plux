@@ -1,49 +1,3 @@
-function countStep() {
-    var starts = new Date(new Date().getTime() - 1e3);
-    var ends = new Date();
-    CoreMotion.queryStepCount({
-        start: starts,
-        end: ends
-    }, function(e) {
-        var gCurH = Ti.App.Properties.getString("curH") || "";
-        var gStep = Ti.App.Properties.getString("step") || 0;
-        gStep = parseInt(gStep);
-        var myCur = currentDateTime();
-        var d = myCur.split(":");
-        d[0].split(" ");
-        if (gCurH != d[1] || "" == gCurH) {
-            if (gStep > 0) {
-                var stepDateTime = Ti.App.Properties.getString("stepDateTime");
-                if ("" != stepDateTime) {
-                    var splitDT = stepDateTime.split(" ");
-                    var splitTT = splitDT[1].split(":");
-                    var lib_health = Alloy.createCollection("health");
-                    lib_health.addHealthData({
-                        date: splitDT[0],
-                        time: splitTT[0] + ":" + splitTT[1] + ":00",
-                        field1: "",
-                        field2: "",
-                        amount: gStep,
-                        type: 10
-                    });
-                }
-            }
-            Ti.App.Properties.setString("step", "0");
-            Ti.App.Properties.setString("curH", d[1]);
-        }
-        if (e.numberOfSteps > 0) {
-            gStep += e.numberOfSteps;
-            Ti.App.Properties.setString("stepDateTime", myCur);
-            Ti.App.Properties.setString("curH", d[1]);
-            Ti.App.Properties.setString("step", gStep);
-        }
-    });
-    if (isCountStepEventExists) {
-        Ti.App.removeEventListener("countStep", countStep);
-        isCountStepEventExists = false;
-    }
-}
-
 function mysql_real_escape_string(str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
         switch (char) {
@@ -110,6 +64,14 @@ function resendVerificationEmail() {
     API.resendVerificationEmail();
 }
 
+function PixelsToDPUnits(ThePixels) {
+    return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
+}
+
+function DPUnitsToPixels(TheDPUnits) {
+    return TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160);
+}
+
 function removeAllChildren(viewObject) {
     var children = viewObject.children.slice(0);
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
@@ -125,9 +87,7 @@ var PUSH = require("push");
 
 var nav = require("navigation");
 
-var CoreMotion = require("ti.coremotion");
-
-var TouchId = require("ti.touchid");
+if ("iphone" == Ti.Platform.osname) var TouchId = require("ti.touchid");
 
 Alloy.Globals.Map = require("ti.map");
 
@@ -143,23 +103,7 @@ FACEBOOK.forceDialogAuth = true;
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
-CoreMotion.isStepCountingAvailable() ? CoreMotion.startStepCountingUpdates({
-    stepCounts: 1
-}, function() {
-    setInterval(function() {
-        countStep();
-    }, 1e3);
-}) : Ti.API.warn("This device does not support counting steps.");
-
-var isCountStepEventExists = true;
-
-Ti.App.addEventListener("countStep", countStep);
-
-Ti.App.iOS.registerBackgroundService({
-    url: "services.js"
-});
-
-Titanium.UI.iPhone.setAppBadge("0");
+"iphone" == Ti.Platform.osname && Titanium.UI.iPhone.setAppBadge("0");
 
 PUSH.registerPush();
 

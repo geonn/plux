@@ -33,12 +33,14 @@ function timeFormat(datetime) {
     var newFormat;
     var ampm = "am";
     var date = timeStamp[0].split("-");
-    var time = timeStamp[1].split(":");
-    if (time[0] > 12) {
-        ampm = "pm";
-        time[0] = time[0] - 12;
+    if (1 == timeStamp.length) newFormat = date[2] + "/" + date[1] + "/" + date[0]; else {
+        var time = timeStamp[1].split(":");
+        if (time[0] > 12) {
+            ampm = "pm";
+            time[0] = time[0] - 12;
+        }
+        newFormat = date[2] + "/" + date[1] + "/" + date[0] + " " + time[0] + ":" + time[1] + " " + ampm;
     }
-    newFormat = date[2] + "/" + date[1] + "/" + date[0] + " " + time[0] + ":" + time[1] + " " + ampm;
     return newFormat;
 }
 
@@ -58,6 +60,18 @@ function currentDateTime() {
     return datetime;
 }
 
+function resendVerificationEmail() {
+    API.resendVerificationEmail();
+}
+
+function PixelsToDPUnits(ThePixels) {
+    return ThePixels / (Titanium.Platform.displayCaps.dpi / 160);
+}
+
+function DPUnitsToPixels(TheDPUnits) {
+    return TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160);
+}
+
 function removeAllChildren(viewObject) {
     var children = viewObject.children.slice(0);
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
@@ -73,12 +87,20 @@ var PUSH = require("push");
 
 var nav = require("navigation");
 
+var TouchId;
+
 Alloy.Globals.Map = require("ti.map");
 
+var FACEBOOK = require("facebook");
+
+FACEBOOK.appid = "684687638302896";
+
+FACEBOOK.permissions = [ "email", "public_profile", "user_friends" ];
+
+FACEBOOK.initialize(1e3);
+
+FACEBOOK.forceDialogAuth = true;
+
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
-
-Titanium.UI.iPhone.setAppBadge("0");
-
-PUSH.registerPush();
 
 Alloy.createController("index");

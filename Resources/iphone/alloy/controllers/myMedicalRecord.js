@@ -15,7 +15,7 @@ function Controller() {
             listing.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
-                    height: 70,
+                    height: 80,
                     source: entry.id,
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundGradient: {
@@ -34,21 +34,23 @@ function Controller() {
                 });
                 var tblView = Ti.UI.createView({
                     layout: "horizontal",
-                    height: "70",
+                    height: "80",
                     width: "100%"
                 });
                 var leftView = Ti.UI.createView({
                     layout: "vertical",
-                    height: "70",
+                    height: "80",
                     width: "80%"
                 });
                 var rightView = Ti.UI.createView({
                     layout: "vertical",
-                    height: "70",
+                    height: "80",
                     width: "auto"
                 });
                 var title = entry.title;
                 "" != title && (title = title.replace(/["']/g, "&quot;"));
+                var clinic = entry.clinic;
+                "" != clinic && (clinic = clinic.replace(/["']/g, "&quot;"));
                 var message = entry.message;
                 "" != message && (message = message.replace(/["']/g, "&quot;"));
                 var recTitle = Titanium.UI.createLabel({
@@ -63,6 +65,19 @@ function Controller() {
                     top: 5,
                     left: 20,
                     height: Ti.UI.SIZE
+                });
+                var recClinic = Titanium.UI.createLabel({
+                    text: clinic,
+                    source: entry.id,
+                    font: {
+                        fontSize: 12,
+                        fontWeight: "bold"
+                    },
+                    color: "#848484",
+                    textAlign: "left",
+                    width: "100%",
+                    left: 20,
+                    height: 15
                 });
                 var recMsg = Titanium.UI.createLabel({
                     text: message,
@@ -101,6 +116,7 @@ function Controller() {
                     viewDetails(e.rowData.source);
                 });
                 leftView.add(recTitle);
+                leftView.add(recClinic);
                 leftView.add(recMsg);
                 leftView.add(updatedRecord);
                 rightView.add(rightForwardBtn);
@@ -144,19 +160,19 @@ function Controller() {
         id: "myMedicalRecord"
     });
     $.__views.myMedicalRecord && $.addTopLevelView($.__views.myMedicalRecord);
-    $.__views.__alloyId81 = Ti.UI.createView({
-        id: "__alloyId81"
+    $.__views.__alloyId82 = Ti.UI.createView({
+        id: "__alloyId82"
     });
     $.__views.newRecord = Ti.UI.createButton({
         id: "newRecord",
         title: "Add"
     });
-    $.__views.__alloyId81.add($.__views.newRecord);
-    $.__views.myMedicalRecord.rightNavButton = $.__views.__alloyId81;
-    $.__views.__alloyId82 = Ti.UI.createView({
-        id: "__alloyId82"
+    $.__views.__alloyId82.add($.__views.newRecord);
+    $.__views.myMedicalRecord.rightNavButton = $.__views.__alloyId82;
+    $.__views.__alloyId83 = Ti.UI.createView({
+        id: "__alloyId83"
     });
-    $.__views.myMedicalRecord.add($.__views.__alloyId82);
+    $.__views.myMedicalRecord.add($.__views.__alloyId83);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -165,9 +181,8 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId82.add($.__views.loadingBar);
+    $.__views.__alloyId83.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        style: Alloy.Globals.topbarTop,
         top: 30,
         left: 30,
         width: 60,
@@ -189,7 +204,7 @@ function Controller() {
         top: "0",
         layout: "vertical"
     });
-    $.__views.__alloyId82.add($.__views.aView);
+    $.__views.__alloyId83.add($.__views.aView);
     $.__views.searchItem = Ti.UI.createSearchBar({
         tintColor: "#CE1D1C",
         id: "searchItem",
@@ -218,7 +233,6 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    medicalRecordsModel.addColumn("treatment", "TEXT");
     var MRECORDS = require("medicalRecords");
     MRECORDS.construct($);
     common.construct($);

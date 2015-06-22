@@ -43,11 +43,14 @@ exports.WIDGET_OBJECT = 'Widget';
 exports.SKIP_EVENT_HANDLING = ['Ti.UI.ListItem','Alloy.Abstract.ItemTemplate'];
 exports.ADAPTERS = ['localStorage', 'properties', 'sql'];
 exports.CONTROLLER_NODES = ['Alloy.Require', 'Alloy.Widget'];
+exports.DEFAULT_BACKBONE_VERSION = '0.9.2';
+exports.SUPPORTED_BACKBONE_VERSIONS = ['0.9.2', '1.1.2'];
 
 // property names
 exports.CLASS_PROPERTY = 'classes';
 exports.APINAME_PROPERTY = 'apiName';
 exports.AUTOSTYLE_PROPERTY = 'autoStyle';
+exports.DOCROOT_MODULE_PROPERTY = "module";
 
 // Constants related to model-view binding
 exports.BIND_PROPERTIES = ['dataCollection','dataFilter','dataTransform','dataFunction'];
@@ -201,6 +204,7 @@ exports.IMPLICIT_NAMESPACES = {
 	LeftNavButtons: 'Ti.UI.Window',
 	RightNavButtons: 'Ti.UI.Window',
 	TitleControl: 'Ti.UI.Window',
+	WindowToolbar: 'Ti.UI.Window',
 
 	// Ti.UI.iPad.Popover
 	ContentView: 'Ti.UI.iPad.Popover',
@@ -217,6 +221,7 @@ exports.IMPLICIT_NAMESPACES = {
 	RightButton: '_ProxyProperty',
 	LeftButton: '_ProxyProperty',
 	KeyboardToolbar: '_ProxyProperty',
+	ActionView: '_ProxyProperty'
 
 };
 
