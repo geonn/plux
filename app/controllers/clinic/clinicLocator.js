@@ -3,7 +3,8 @@ var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode');
 var details;
-
+common.construct($);
+common.showLoading();
 if(corp == ""){
 	details = library.getPanelByClinicType(clinicType);  
 	triggerPosition();
@@ -13,7 +14,7 @@ if(corp == ""){
 
 function loadClinic(e){
 	
-	details = e.returnData; 
+	details = e.details; 
 	if(details){
 		triggerPosition(); 
 	}
@@ -83,7 +84,7 @@ function init(e){
 		              
 		mapview.addAnnotation(merchantLoc); 
 	});
-	
+	common.hideLoading();
 	//mapview.addAnnotation(mountainView);
 	$.win_map.add(mapview);
 	// Handle click events on any annotations on this map.

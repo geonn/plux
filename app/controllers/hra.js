@@ -7,6 +7,6 @@ $.menu.addEventListener('itemclick', function(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.hra); 
+		nav.closeWindow($.hra); 
 	}); 
 }

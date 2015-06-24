@@ -8,15 +8,16 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function listing() {
+    function listing(e) {
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
             separatorColor: "#CE1D1C",
             height: Ti.UI.SIZE,
             top: 0
         });
+        console.log(e);
         var data = [];
-        var arr = details;
+        if ("" == e) var arr = details; else var arr = e.details;
         if (arr.length < 1) {
             var noRecord = Ti.UI.createLabel({
                 text: "No record found",
@@ -84,6 +85,8 @@ function Controller() {
                 clinicType: e.rowData.id
             });
         });
+        common.hideLoading();
+        Ti.App.removeEventListener("aspClinic", listing);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/listing";
@@ -110,12 +113,46 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.panelListTbl.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId136 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId136"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId136);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var library = Alloy.createCollection("panelList");
-    var details = library.getCountClinicType();
-    listing();
+    var corp = Ti.App.Properties.getString("corpcode");
+    var details;
+    common.construct($);
+    common.showLoading();
+    if ("" == corp) {
+        details = library.getCountClinicType();
+        listing("");
+    } else API.loadPanelList({
+        clinicType: ""
+    });
+    Ti.App.addEventListener("aspClinic", listing);
     _.extend($, exports);
 }
 

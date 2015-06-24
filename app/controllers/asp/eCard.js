@@ -154,6 +154,6 @@ Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.eCardWin); 
+		nav.closeWindow($.eCardWin); 
 	}); 
 }

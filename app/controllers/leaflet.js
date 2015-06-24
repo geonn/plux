@@ -222,6 +222,6 @@ function downloadBrochure(adImage,content){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.leaftletWin); 
+		nav.closeWindow($.leaftletWin); 
 	}); 
 }	 

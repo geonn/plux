@@ -1,5 +1,8 @@
 <Alloy>
 	<Window title="Clinic Locator" id="win_map" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
-		 
+		 <View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		    <ActivityIndicator  id="activityIndicator" />
+			<Label top="5" text="Loading" color="#ffffff" />
+		</View>
 	</Window>
 </Alloy>

@@ -9,6 +9,6 @@ $.profileData.add(Alloy.createController("_plux_profile_view", {profile_data: da
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.pluxProfileWin); 
+		nav.closeWindow($.pluxProfileWin); 
 	}); 
 }

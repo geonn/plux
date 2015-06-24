@@ -14,6 +14,6 @@ function navProfile(e){
 
 if(Ti.Platform.osname == "android"){		
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.myProfileWin); 
+		nav.closeWindow($.myProfileWin); 
 	}); 
 }

@@ -130,6 +130,6 @@ function viewDetails(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		COMMON.closeWindow($.healthInfoWindow); 
+		nav.closeWindow($.healthInfoWindow); 
 	}); 
 }

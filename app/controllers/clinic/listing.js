@@ -1,19 +1,35 @@
 var args = arguments[0] || {}; 
-var library = Alloy.createCollection('panelList');
-var details =  library.getCountClinicType(); 
-listing();  
-function listing(){
+var library = Alloy.createCollection('panelList'); 
+var corp = Ti.App.Properties.getString('corpcode');
+var details;
+common.construct($);
+common.showLoading();
+if(corp == ""){
+	details = library.getCountClinicType(); 
+	listing("");
+}else{
+	API.loadPanelList({clinicType:""});
+}
+
+Ti.App.addEventListener('aspClinic',listing);
+ 
+function listing(e){
 	var TheTable = Titanium.UI.createTableView({
 		width:'100%',
 		separatorColor: '#CE1D1C',
 		height: Ti.UI.SIZE,
 		top:0
 	});
-	
+	console.log(e);	
 	var data=[];
-
-   		var arr = details;
-   		var counter = 0;
+	
+	if(e == ""){
+		var arr = details;
+	}else{
+		var arr = e.details;
+	}
+   	 
+   	var counter = 0;
    		
    		if(arr.length < 1){
 			var noRecord = Ti.UI.createLabel({ 
@@ -37,8 +53,7 @@ function listing(){
 				    selectedBackgroundColor: "#FFE1E1",
 				    backgroundColor: "#ffffff"
 			    });
-				 
-		 
+				  
 				var popUpTitle = Titanium.UI.createLabel({
 					text:entry.clinicType,
 					font:{fontSize:16},
@@ -49,9 +64,7 @@ function listing(){
 					left:20,
 					height:25
 				});
-				
 				 
-				
 				var totalPanel =  Titanium.UI.createLabel({
 					text:entry.total,
 					source: entry.clinicType,
@@ -85,9 +98,10 @@ function listing(){
 			$.panelListTbl.add(TheTable);
 		}
 		
-		TheTable.addEventListener('click', function(e)
-		{
-			var nav = require('navigation');
-			nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
-		});
+	TheTable.addEventListener('click', function(e){
+		var nav = require('navigation');
+		nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
+	});
+	common.hideLoading();
+	Ti.App.removeEventListener('aspClinic',listing);
 }

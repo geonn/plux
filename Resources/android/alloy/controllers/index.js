@@ -35,13 +35,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId38 = Ti.UI.createImageView({
+    $.__views.__alloyId45 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId38"
+        id: "__alloyId45"
     });
-    $.__views.main.add($.__views.__alloyId38);
+    $.__views.main.add($.__views.__alloyId45);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -80,10 +80,9 @@ function Controller() {
     API.loadNewsFeed();
     API.loadLeaflet();
     API.loadClinicList();
-    if ("" == u_id) nav.navigateWithArgs("login", {}); else {
-        var win = Alloy.createController("home").getView();
-        win.open();
-    }
+    var win = Alloy.createController("home").getView();
+    win.open();
+    "" == u_id && nav.navigateWithArgs("login", {});
     _.extend($, exports);
 }
 

@@ -704,9 +704,13 @@ exports.loadPanelList = function (ex){
 				codeStr += '"'+entry.cliniccode+'",'; 
 			});
 			codeStr = codeStr.substring(0, codeStr.length - 1);
-			details = library.getPanelListByCode(codeStr,ex.clinicType);
+			if(ex.clinicType == ""){
+				details = library.getPanelListCount(codeStr);
+			}else{
+				details = library.getPanelListByCode(codeStr,ex.clinicType);
+			} 
 			 
-	     	Ti.App.fireEvent('aspClinic', {returnData:details});
+	     	Ti.App.fireEvent('aspClinic', {details:details});
 	     	 
 	     }, 
 	     onerror : function(e) { },

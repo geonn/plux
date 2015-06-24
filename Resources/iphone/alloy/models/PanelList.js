@@ -119,6 +119,26 @@ exports.definition = {
                 collection.trigger("sync");
                 return arr;
             },
+            getPanelListCount: function(clinicCode) {
+                var collection = this;
+                var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " WHERE clinicCode IN (" + clinicCode + ") GROUP BY clinicType ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        clinicType: res.fieldByName("clinicType"),
+                        total: res.fieldByName("total")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             getCountClinicType: function() {
                 var collection = this;
                 var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " GROUP BY clinicType ";

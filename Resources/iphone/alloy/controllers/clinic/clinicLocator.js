@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function loadClinic(e) {
-        details = e.returnData;
+        details = e.details;
         details && triggerPosition();
         Ti.App.removeEventListener("aspClinic", loadClinic);
     }
@@ -68,6 +68,7 @@ function Controller() {
             });
             mapview.addAnnotation(merchantLoc);
         });
+        common.hideLoading();
         $.win_map.add(mapview);
         mapview.addEventListener("click", function() {});
     }
@@ -96,6 +97,31 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win_map && $.addTopLevelView($.__views.win_map);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.win_map.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId135 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId135"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId135);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -103,6 +129,8 @@ function Controller() {
     var library = Alloy.createCollection("panelList");
     var corp = Ti.App.Properties.getString("corpcode");
     var details;
+    common.construct($);
+    common.showLoading();
     if ("" == corp) {
         details = library.getPanelByClinicType(clinicType);
         triggerPosition();
