@@ -131,6 +131,61 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
+			getCountClinicType : function(){
+				var collection = this;
+                var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name +" GROUP BY clinicType ";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){ 
+					listArr[count] = {  
+					    clinicType: res.fieldByName('clinicType'),
+					    total: res.fieldByName('total')  
+					};
+					res.next();
+					count++;
+				} 
+				 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
+			getPanelByClinicType : function(ClinicType){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE clinicType ='"+ClinicType+"' ";
+              
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){ 
+					listArr[count] = {  
+					    id: res.fieldByName('id'),
+					    clinicCode: res.fieldByName('clinicCode'),
+					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
+					    add1: res.fieldByName('add1'),
+					    add2: res.fieldByName('add2'),
+					    city: res.fieldByName('city'),
+					    postcode: res.fieldByName('postcode'),
+					    state: res.fieldByName('state'),
+					    tel : res.fieldByName('tel'),
+					    openHour : res.fieldByName('openHour'),
+					    latitude: res.fieldByName('latitude'),
+					    longitude: res.fieldByName('longitude')
+					};
+					res.next();
+					count++;
+				} 
+				 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
 			getPanelListById : function(id){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = "+id ;
@@ -163,9 +218,9 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			getPanelListByCode : function(clinicCode){
+			getPanelListByCode : function(clinicCode, clinicType){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicCode IN ("+clinicCode+")" ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicCode IN ("+clinicCode+") AND clinicType='"+clinicType+"' " ;
             
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
@@ -209,7 +264,7 @@ exports.definition = {
 		       		 if (qres.isValidRow()){
 	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET clinicName='"+entry.clinicname+"', clinicType='"+entry.clinictype+"', clinicCode='"+entry.cliniccode+"', openHour='"+entry.openhour+"', add1='"+entry.add1+"', add2='"+entry.add2+"', city='"+ entry.city+"', state='"+entry.state+"', longitude='"+entry.longitude+"', latitude='"+entry.latitude+"' WHERE id='" +entry.id+"'";
 	                }else{
-	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+entry.id+"','"+entry.clinicname+"', '"+entry.cliniccode+"', '"+entry.cliniccode+"', '"+entry.clinicType+"', '"+entry.add1+"','"+entry.add2+"', '"+entry.city+"','"+entry.postcode+"', '"+entry.state+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
+	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('"+entry.id+"','"+entry.clinicname+"', '"+entry.cliniccode+"', '"+entry.clinictype+"', '"+entry.openhour+"', '"+entry.add1+"','"+entry.add2+"', '"+entry.city+"','"+entry.postcode+"', '"+entry.state+"', '"+entry.tel+"', '"+entry.latitude+"', '"+entry.longitude+"')";
 					                                                                                                            																									 
 				    }
 		       		//console.log(sql_query);

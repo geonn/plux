@@ -13,7 +13,7 @@ function Controller() {
         removeAllChildren($.myInfo);
         var u_id = Ti.App.Properties.getString("u_id");
         if (auth.checkLogin()) {
-            $.logo.image = "/asp_logo.png";
+            $.logo.image = "/images/asp_logo.png";
             var me = usersModel.getUserByMemno();
             var logoutBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-logout.png",
@@ -74,7 +74,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "eCard" == e.source.mod || "myClaim" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/" + target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "myClaim" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/listing", 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         Ti.App.Properties.setString("memno", "");
@@ -303,13 +303,13 @@ function Controller() {
     common.construct($);
     "android" != Ti.Platform.osname && (Alloy.Globals.navMenu = $.navMenu);
     var initBackground = [ {
-        img_path: "images/background1.jpg",
+        img_path: "/images/background1.jpg",
         time: 0
     }, {
-        img_path: "images/background2.jpg",
+        img_path: "/images/background2.jpg",
         time: 10
     }, {
-        img_path: "images/background3.jpg",
+        img_path: "/images/background3.jpg",
         time: 18
     } ];
     var initBackgroundData = Ti.App.Properties.getString("initBackgroundData");

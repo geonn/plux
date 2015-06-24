@@ -347,7 +347,6 @@ exports.claimDetailBySeries = function(e) {
 
 exports.getClaimDetail = function(e) {
     var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
-    console.log(url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -507,6 +506,7 @@ exports.loadClinicList = function() {
     var last_updated = "";
     "" != isUpdate && (last_updated = isUpdate.updated);
     var url = clinicListUrl + "&last_updated=" + last_updated;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -524,7 +524,7 @@ exports.loadClinicList = function() {
     client.send();
 };
 
-exports.loadPanelList = function() {
+exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
     var client = Ti.Network.createHTTPClient({
@@ -536,7 +536,7 @@ exports.loadPanelList = function() {
                 codeStr += '"' + entry.cliniccode + '",';
             });
             codeStr = codeStr.substring(0, codeStr.length - 1);
-            details = library.getPanelListByCode(codeStr);
+            details = library.getPanelListByCode(codeStr, ex.clinicType);
             Ti.App.fireEvent("aspClinic", {
                 returnData: details
             });

@@ -80,10 +80,9 @@ function Controller() {
     API.loadNewsFeed();
     API.loadLeaflet();
     API.loadClinicList();
-    if ("" == u_id) nav.navigateWithArgs("login", {}); else {
-        var win = Alloy.createController("home").getView();
-        win.open();
-    }
+    var win = Alloy.createController("home").getView();
+    win.open();
+    "" == u_id && nav.navigateWithArgs("login", {});
     _.extend($, exports);
 }
 

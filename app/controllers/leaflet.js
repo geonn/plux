@@ -220,8 +220,8 @@ function downloadBrochure(adImage,content){
 	});
 }
 
-var readLeaflet = function(e){ 
-	docViewer = Ti.UI.iOS.createDocumentViewer({url:"http://plux.freejini.com.my/public/brochure/6/0/0d3985977.pdf"});
-	//docViewer.show(); 
-	
-};
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		COMMON.closeWindow($.leaftletWin); 
+	}); 
+}	 

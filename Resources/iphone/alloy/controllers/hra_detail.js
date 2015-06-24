@@ -24,15 +24,15 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.win = Ti.UI.createWindow({
+    $.__views.hraDetailsWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "",
         backButtonTitle: "",
-        id: "win",
+        id: "hraDetailsWin",
         navTintColor: "#CE1D1C"
     });
-    $.__views.win && $.addTopLevelView($.__views.win);
+    $.__views.hraDetailsWin && $.addTopLevelView($.__views.hraDetailsWin);
     $.__views.__alloyId73 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
@@ -41,7 +41,7 @@ function Controller() {
         layout: "vertical",
         id: "__alloyId73"
     });
-    $.__views.win.add($.__views.__alloyId73);
+    $.__views.hraDetailsWin.add($.__views.__alloyId73);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
@@ -58,16 +58,19 @@ function Controller() {
         width: Ti.UI.FILL,
         id: "picker"
     });
-    $.__views.win.add($.__views.picker);
+    $.__views.hraDetailsWin.add($.__views.picker);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var mod = args.mod;
     var module = require("hra/" + mod);
     module.construct($);
-    $.win.title = module.title;
+    $.hraDetailsWin.title = module.title;
     $.description.add(module.description());
     $.input_box.add(module.input_box());
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.hraDetailsWin);
+    });
     _.extend($, exports);
 }
 

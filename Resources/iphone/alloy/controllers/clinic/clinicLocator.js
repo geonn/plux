@@ -99,16 +99,16 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
+    var clinicType = args.clinicType || "CLINIC";
     var library = Alloy.createCollection("panelList");
     var corp = Ti.App.Properties.getString("corpcode");
     var details;
     if ("" == corp) {
-        details = library.getPanelList();
+        details = library.getPanelByClinicType(clinicType);
         triggerPosition();
-    } else API.loadPanelList();
-    if (args.id) {
-        library.getPanelListById(args.id);
-    }
+    } else API.loadPanelList({
+        clinicType: clinicType
+    });
     Ti.App.addEventListener("aspClinic", loadClinic);
     _.extend($, exports);
 }

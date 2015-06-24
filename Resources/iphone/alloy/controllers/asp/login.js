@@ -110,7 +110,7 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
-        image: "asp_logo.png",
+        image: "/images/asp_logo.png",
         id: "__alloyId107"
     });
     $.__views.main.add($.__views.__alloyId107);

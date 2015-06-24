@@ -24,8 +24,7 @@ function loadPage(){
 		$.unverified.show();
 		$.card.opacity = "0.1";
 	}   
-}
-
+} 
 
 function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
@@ -150,7 +149,11 @@ Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.
    		name_text.left= "20dp" ;
    		memno_text.top     = "90dp";
    		memno_text.left   = "20dp";
-    }
-     
-    
+    } 
 });
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		COMMON.closeWindow($.eCardWin); 
+	}); 
+}

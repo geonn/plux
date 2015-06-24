@@ -277,6 +277,9 @@ function Controller() {
     loadLeafLetList();
     var isDownloading = "0";
     var isDownloadLbl = "0";
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.leaftletWin);
+    });
     _.extend($, exports);
 }
 

@@ -143,7 +143,7 @@ function viewDetails(rec_id){
 
 Ti.App.addEventListener('displayRecords',displayRecords);
 $.newRecord.addEventListener('click',function(){
-	medicalRecordsModel.addRecord({title: "", message: "",created : currentDateTime(), updated: currentDateTime()});
+	medicalRecordsModel.addRecord({title: "", message: "", message: "",created : currentDateTime(), updated: currentDateTime()});
 	var lastRec = medicalRecordsModel.getLastId(); 
 	nav.navigateWithArgs("editMedical",{id: lastRec.id});
 });

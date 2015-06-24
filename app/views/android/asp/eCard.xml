@@ -1,7 +1,10 @@
 <Alloy>
-	<Window title="ASP eCARD" backButtonTitle="" layout="" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C">
+	<Window title="ASP eCARD" backButtonTitle="" layout="" id="eCardWin" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C">
 		<View layout="vertical" width="Ti.UI.FILL" height="Ti.UI.FILL">
 			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
 		     	<View id="pageTitle" width="Ti.UI.FILL">
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP eCARD</Label>
 		     	</View> 

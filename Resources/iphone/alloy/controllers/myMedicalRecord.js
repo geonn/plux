@@ -242,6 +242,7 @@ function Controller() {
         medicalRecordsModel.addRecord({
             title: "",
             message: "",
+            message: "",
             created: currentDateTime(),
             updated: currentDateTime()
         });

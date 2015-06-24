@@ -94,6 +94,9 @@ function Controller() {
             mod: item.properties.mod
         });
     });
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.hra);
+    });
     _.extend($, exports);
 }
 

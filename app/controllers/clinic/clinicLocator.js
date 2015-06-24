@@ -1,13 +1,14 @@
 var args = arguments[0] || {};
+var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode');
 var details;
 
 if(corp == ""){
-	details = library.getPanelList(); 
+	details = library.getPanelByClinicType(clinicType);  
 	triggerPosition();
 }else{
-	API.loadPanelList();
+	API.loadPanelList({clinicType:clinicType});
 }
 
 function loadClinic(e){
@@ -33,13 +34,7 @@ function triggerPosition(){
 var curLat = 37.390749;
 var curLot = -122.081651;
 var showCurLoc = false;
- 
-if(args.id){
-	var clinic = library.getPanelListById(args.id);
-}
- 
-
-
+   
 function init(e){ 
 	var longitude = e.coords.longitude;
     var latitude = e.coords.latitude;

@@ -185,11 +185,7 @@ exports.definition = {
                 	title = title.replace(/["']/g, "&quot;");
                 }
                 
-                var clinic = entry.clinic;
-                if(clinic != ""){ 
-                	clinic = clinic.replace(/["']/g, "&quot;");
-                }
-				
+                 
 				var message = entry.message;
 				if(message != ""){ 
 					message = message.replace(/["']/g, "&quot;");

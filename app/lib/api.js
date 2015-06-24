@@ -428,7 +428,7 @@ exports.claimDetailBySeries = function(e){
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
-	console.log(url);
+	//console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -658,7 +658,7 @@ exports.loadClinicList = function (ex){
 		last_updated = isUpdate.updated;
 	} 
 	var url = clinicListUrl+"&last_updated="+last_updated; 
-  
+  	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -704,7 +704,7 @@ exports.loadPanelList = function (ex){
 				codeStr += '"'+entry.cliniccode+'",'; 
 			});
 			codeStr = codeStr.substring(0, codeStr.length - 1);
-			details = library.getPanelListByCode(codeStr);
+			details = library.getPanelListByCode(codeStr,ex.clinicType);
 			 
 	     	Ti.App.fireEvent('aspClinic', {returnData:details});
 	     	 

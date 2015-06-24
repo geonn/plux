@@ -1,6 +1,6 @@
 exports.navigationWindow = function(target, checkAuth, callback, param) {
     if (1 == checkAuth) {
-        var auth = require("login");
+        var auth = require("auth_login");
         if (auth.checkLogin()) if ("m_eCard" == target) {
             var win = Alloy.createController(target).getView();
             win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];

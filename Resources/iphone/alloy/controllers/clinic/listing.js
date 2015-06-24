@@ -11,7 +11,9 @@ function Controller() {
     function listing() {
         var TheTable = Titanium.UI.createTableView({
             width: "100%",
-            separatorColor: "#ffffff"
+            separatorColor: "#CE1D1C",
+            height: Ti.UI.SIZE,
+            top: 0
         });
         var data = [];
         var arr = details;
@@ -30,76 +32,46 @@ function Controller() {
             $.panelListTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
+                console.log(entry.clinicType);
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
                     height: 70,
-                    id: entry.id,
+                    id: entry.clinicType,
                     selectedBackgroundColor: "#FFE1E1",
-                    backgroundGradient: {
-                        type: "linear",
-                        colors: [ "#FEFEFB", "#F7F7F6" ],
-                        startPoint: {
-                            x: 0,
-                            y: 0
-                        },
-                        endPoint: {
-                            x: 0,
-                            y: 70
-                        },
-                        backFillStart: false
-                    }
+                    backgroundColor: "#ffffff"
                 });
                 var popUpTitle = Titanium.UI.createLabel({
-                    text: entry.clinicName,
+                    text: entry.clinicType,
                     font: {
                         fontSize: 16
                     },
-                    source: entry.id,
+                    source: entry.clinicType,
                     color: "#848484",
                     width: "65%",
                     textAlign: "left",
-                    top: 8,
                     left: 20,
                     height: 25
                 });
-                var address = Titanium.UI.createLabel({
-                    text: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-                    source: entry.id,
+                var totalPanel = Titanium.UI.createLabel({
+                    text: entry.total,
+                    source: entry.clinicType,
                     font: {
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: "bold"
                     },
                     width: "auto",
                     color: "#848484",
-                    textAlign: "left",
-                    width: "85%",
-                    bottom: 23,
-                    left: 20,
-                    height: 12
-                });
-                var tel = Titanium.UI.createLabel({
-                    text: entry.tel,
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    bottom: 5,
-                    left: 20,
+                    right: 50,
                     height: 12
                 });
                 var rightForwardBtn = Titanium.UI.createImageView({
                     image: "/images/btn-forward.png",
-                    source: entry.m_id,
+                    source: entry.clinicType,
                     width: 15,
                     right: 20
                 });
                 row.add(popUpTitle);
-                row.add(address);
-                row.add(tel);
+                row.add(totalPanel);
                 row.add(rightForwardBtn);
                 data.push(row);
             });
@@ -109,7 +81,7 @@ function Controller() {
         TheTable.addEventListener("click", function(e) {
             var nav = require("navigation");
             nav.navigateWithArgs("clinic/clinicLocator", {
-                id: e.rowData.id
+                clinicType: e.rowData.id
             });
         });
     }
@@ -132,7 +104,7 @@ function Controller() {
     $.__views.panelListTbl = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
-        title: "Clinic Locator",
+        title: "Clinic Type List",
         id: "panelListTbl",
         backButtonTitle: "",
         navTintColor: "#CE1D1C"
@@ -140,10 +112,9 @@ function Controller() {
     $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0] || {};
-    var state = args.state || "";
+    arguments[0] || {};
     var library = Alloy.createCollection("panelList");
-    var details = library.getPanelByState(state);
+    var details = library.getCountClinicType();
     listing();
     _.extend($, exports);
 }

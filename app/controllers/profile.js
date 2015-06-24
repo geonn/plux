@@ -11,4 +11,9 @@ function navProfile(e){
 		nav.navigateWithArgs("plux_profile",{});  
 	}
 }
-		
+
+if(Ti.Platform.osname == "android"){		
+	$.btnBack.addEventListener('click', function(){  
+		COMMON.closeWindow($.myProfileWin); 
+	}); 
+}

@@ -80,7 +80,7 @@ function Controller() {
         mod: "plux",
         backgroundColor: "#ff0000",
         bottom: "30dp",
-        image: "appicon-60@2x.png",
+        image: "/images/logo_plux.png",
         id: "__alloyId89"
     });
     $.__views.__alloyId88.add($.__views.__alloyId89);
@@ -94,7 +94,7 @@ function Controller() {
         mod: "asp",
         backgroundColor: "#ff0000",
         bottom: "30dp",
-        image: "asp_logo.png",
+        image: "/images/asp_logo.png",
         id: "__alloyId90"
     });
     $.__views.__alloyId88.add($.__views.__alloyId90);
@@ -102,6 +102,9 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.myProfileWin);
+    });
     __defers["$.__views.__alloyId89!click!navProfile"] && $.__views.__alloyId89.addEventListener("click", navProfile);
     __defers["$.__views.__alloyId90!click!navProfile"] && $.__views.__alloyId90.addEventListener("click", navProfile);
     _.extend($, exports);

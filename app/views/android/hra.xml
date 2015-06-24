@@ -2,6 +2,9 @@
 	<Window title="Health Risk Assessment" id="hra" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
 		<View layout="vertical" height="Ti.UI.FILL">
 			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
 		     	<View id="pageTitle" width="Ti.UI.FILL">
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Risk Assessment</Label>
 		     	</View> 

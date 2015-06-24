@@ -176,6 +176,9 @@ function Controller() {
     var categoryModel = Alloy.createCollection("category");
     var cateList = categoryModel.getCategoryList();
     displayHealthInfo();
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.healthInfoWindow);
+    });
     _.extend($, exports);
 }
 

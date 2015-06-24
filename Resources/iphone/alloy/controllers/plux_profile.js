@@ -54,6 +54,9 @@ function Controller() {
     $.profileData.add(Alloy.createController("_plux_profile_view", {
         profile_data: data
     }).getView());
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        COMMON.closeWindow($.pluxProfileWin);
+    });
     _.extend($, exports);
 }
 

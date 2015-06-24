@@ -139,8 +139,6 @@ exports.definition = {
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var title = entry.title;
                 "" != title && (title = title.replace(/["']/g, "&quot;"));
-                var clinic = entry.clinic;
-                "" != clinic && (clinic = clinic.replace(/["']/g, "&quot;"));
                 var message = entry.message;
                 "" != message && (message = message.replace(/["']/g, "&quot;"));
                 sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( title,message, created, updated, treatment,clinic ) VALUES ( '" + title + "', '" + message + "', '" + entry.created + "', '" + entry.updated + "', '" + entry.treatment + "', '" + entry.clinic + "')";

@@ -127,3 +127,9 @@ function viewDetails(e){
 		news_id: e.source.source
 	});
 }
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		COMMON.closeWindow($.healthInfoWindow); 
+	}); 
+}
