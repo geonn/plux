@@ -120,17 +120,55 @@ var cover = Ti.UI.createView({
 });
 $.mainContainer.add(cover);
 
-$.card_event.addEventListener('click', function() {
+$.card.addEventListener('click', function(e) {
     var t; 
     if (frontbackcounter%2 == 0) {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
         $.card.animate({view:back, transition:t});
+        //rotate_box($.card);
     } else {
         t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
         $.card.animate({view:front, transition:t});
     }
     frontbackcounter++; 
 });
+
+function rotate_box(view_selected){
+	var m_front_to_back = Ti.UI.create3DMatrix();
+	var matrix2d = Ti.UI.create2DMatrix();
+	m_front_to_back = m_front_to_back.rotate(-180, 0, 1, 0);
+	var a_disappear = matrix2d.scale(0);
+	var a_normal = matrix2d.scale(1);
+	var a_front_to_back = Ti.UI.createAnimation({
+        transform: a_disappear,
+        duration: 200,
+        box: view_selected
+    });
+     view_selected.animate(a_front_to_back);
+    
+    a_front_to_back.addEventListener('complete', function() {
+        Ti.API.info('showFront: Animating the back to the front.');
+		a_front_to_back.removeEventListener('complete',function(){});
+		
+        var m_back_to_front = Ti.UI.create3DMatrix();
+        m_back_to_front = m_back_to_front.rotate(0, 0, 1, 0);
+        var a_back_to_front = Ti.UI.createAnimation({
+            transform: a_normal,
+            duration: 200,
+            curve: Ti.UI.ANIMATION_CURVE_EASE_OUT
+        });
+		var back = Ti.UI.createImageView({
+		    name:"back",
+		    width: Ti.UI.FILL,
+		    height: Ti.UI.SIZE,
+		    image:"/eCard-back.png",
+		    currentAngle: 10,
+		    top: 0,
+		});
+		view_selected.add(back);
+        view_selected.animate(a_back_to_front);
+    });
+}
 
 /**/
 Ti.Gesture.addEventListener('orientationchange', function(e){

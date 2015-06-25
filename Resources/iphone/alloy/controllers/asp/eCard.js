@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function loadPage() {
         var user = usersModel.getOwnerData();
-        if ("true" == user.isver) {
+        if ("true" == user.isver || true) {
             $.unverified.hide();
             $.card.opacity = "1";
         } else {
@@ -32,6 +32,40 @@ function Controller() {
             common.showLoading();
             API.doLogin(asp_email, asp_password, $, "refresh");
         }
+    }
+    function rotate_box(view_selected) {
+        var m_front_to_back = Ti.UI.create3DMatrix();
+        var matrix2d = Ti.UI.create2DMatrix();
+        m_front_to_back = m_front_to_back.rotate(-180, 0, 1, 0);
+        var a_disappear = matrix2d.scale(0);
+        var a_normal = matrix2d.scale(1);
+        var a_front_to_back = Ti.UI.createAnimation({
+            transform: a_disappear,
+            duration: 200,
+            box: view_selected
+        });
+        view_selected.animate(a_front_to_back);
+        a_front_to_back.addEventListener("complete", function() {
+            Ti.API.info("showFront: Animating the back to the front.");
+            a_front_to_back.removeEventListener("complete", function() {});
+            var m_back_to_front = Ti.UI.create3DMatrix();
+            m_back_to_front = m_back_to_front.rotate(0, 0, 1, 0);
+            var a_back_to_front = Ti.UI.createAnimation({
+                transform: a_normal,
+                duration: 200,
+                curve: Ti.UI.ANIMATION_CURVE_EASE_OUT
+            });
+            var back = Ti.UI.createImageView({
+                name: "back",
+                width: Ti.UI.FILL,
+                height: Ti.UI.SIZE,
+                image: "/eCard-back.png",
+                currentAngle: 10,
+                top: 0
+            });
+            view_selected.add(back);
+            view_selected.animate(a_back_to_front);
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/eCard";
@@ -92,18 +126,13 @@ function Controller() {
     });
     $.__views.loadingBar.add($.__views.__alloyId101);
     $.__views.card = Ti.UI.createView({
-        height: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
         top: "0",
+        backgroundColor: "red",
         id: "card"
     });
     $.__views.mainContainer.add($.__views.card);
-    $.__views.card_event = Ti.UI.createView({
-        height: Ti.UI.FILL,
-        width: Ti.UI.FILL,
-        id: "card_event"
-    });
-    $.__views.mainContainer.add($.__views.card_event);
     $.__views.unverified = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: "80%",
@@ -246,14 +275,11 @@ function Controller() {
         top: 0
     });
     $.mainContainer.add(cover);
-    $.card_event.addEventListener("click", function() {
+    $.card.addEventListener("click", function() {
         var t;
         if (frontbackcounter % 2 == 0) {
             t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
-            $.card.animate({
-                view: back,
-                transition: t
-            });
+            rotate_box($.card);
         } else {
             t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;
             $.card.animate({
