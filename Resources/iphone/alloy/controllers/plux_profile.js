@@ -55,7 +55,7 @@ function Controller() {
         profile_data: data
     }).getView());
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.pluxProfileWin);
+        nav.closeWindow($.pluxProfileWin);
     });
     _.extend($, exports);
 }

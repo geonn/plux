@@ -177,7 +177,7 @@ function Controller() {
     var cateList = categoryModel.getCategoryList();
     displayHealthInfo();
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.healthInfoWindow);
+        nav.closeWindow($.healthInfoWindow);
     });
     _.extend($, exports);
 }

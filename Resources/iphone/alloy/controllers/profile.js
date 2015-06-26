@@ -103,7 +103,7 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.myProfileWin);
+        nav.closeWindow($.myProfileWin);
     });
     __defers["$.__views.__alloyId89!click!navProfile"] && $.__views.__alloyId89.addEventListener("click", navProfile);
     __defers["$.__views.__alloyId90!click!navProfile"] && $.__views.__alloyId90.addEventListener("click", navProfile);

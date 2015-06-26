@@ -73,7 +73,7 @@ function Controller() {
         layout: "vertical",
         backgroundColor: "#F5F5F5",
         height: Ti.UI.SIZE,
-        top: "10",
+        top: "15",
         id: "__alloyId126"
     });
     $.__views.__alloyId125.add($.__views.__alloyId126);

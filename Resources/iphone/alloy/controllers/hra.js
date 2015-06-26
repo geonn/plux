@@ -95,7 +95,7 @@ function Controller() {
         });
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.hra);
+        nav.closeWindow($.hra);
     });
     _.extend($, exports);
 }

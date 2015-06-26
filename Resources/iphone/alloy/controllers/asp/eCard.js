@@ -305,7 +305,7 @@ function Controller() {
         }
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.eCardWin);
+        nav.closeWindow($.eCardWin);
     });
     __defers["$.__views.__alloyId103!touchend!resendVerificationEmail"] && $.__views.__alloyId103.addEventListener("touchend", resendVerificationEmail);
     __defers["$.__views.__alloyId104!touchend!checkStatus"] && $.__views.__alloyId104.addEventListener("touchend", checkStatus);
