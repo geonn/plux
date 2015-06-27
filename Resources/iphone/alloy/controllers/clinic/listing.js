@@ -13,7 +13,8 @@ function Controller() {
             width: "100%",
             separatorColor: "#CE1D1C",
             height: Ti.UI.SIZE,
-            top: 0
+            top: 0,
+            scrollable: false
         });
         var data = [];
         if ("" == e) var arr = details; else var arr = e.details;
@@ -32,7 +33,6 @@ function Controller() {
             $.panelListTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
-                console.log(entry.clinicType);
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
                     height: 70,

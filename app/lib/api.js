@@ -317,7 +317,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
-	       		
+	       		API.updateNotificationToken();   
 	       		if(target != 'refresh'){
 	       			nav.closeWindow(mainView.loginWin); 
 					Ti.App.fireEvent('updateHeader');
@@ -359,7 +359,7 @@ exports.doChangePassword = function(e, mainView) {
 	       var result = JSON.parse(this.responseText); 
 	       res = result[0]; 
 	        //GEO TO EDIT
-	        console.log(res);
+	        //console.log(res);
 	        if(res.code == "99"){ //success
 	        	common.createAlert("Done", res.message);
 	        	nav.closeWindow(mainView.changePasswordWin); 
@@ -386,7 +386,7 @@ exports.doChangePassword = function(e, mainView) {
 exports.claimDetailBySeries = function(e){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
 	var retryTimes = defaultRetryTimes;
-	//console.log(url);
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
@@ -416,7 +416,7 @@ exports.claimDetailBySeries = function(e){
 	     		Ti.UI.fireEvent("load_claim_detail");
 	     	}
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	});
 	
 	// Prepare the connection.

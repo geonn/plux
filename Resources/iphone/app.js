@@ -105,4 +105,6 @@ var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 "iphone" == Ti.Platform.osname && Titanium.UI.iPhone.setAppBadge("0");
 
+PUSH.registerPush();
+
 Alloy.createController("index");

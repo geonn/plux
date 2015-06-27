@@ -12,6 +12,7 @@ function Controller() {
         var data = usersModel.getClaimDetailBySeries({
             serial: arg_serial
         });
+        console.log(data);
         $.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
         $.tv.appendRow(createTableViewRow("Patient Name", data.name));
         $.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
@@ -21,7 +22,8 @@ function Controller() {
         var section = Ti.UI.createTableViewSection({
             headerTitle: "Amount"
         });
-        section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
+        var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
+        "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
         section.add(createTableViewRow("Consultation", "RM" + data.consultation_amt.toFixed(2)));
         section.add(createTableViewRow("Medication", "RM" + data.medication_amt.toFixed(2), data.medication));
         section.add(createTableViewRow("Injection", "RM" + data.injection_amt.toFixed(2), data.injection));
@@ -39,8 +41,8 @@ function Controller() {
         common.hideLoading();
     }
     function createTableViewRow(text, value, dialog) {
-        "" != value && (value = "number" != typeof value ? value.replace(/^\s+|\s+$/g, "") : value);
-        "" != text && (text = "number" != typeof text ? text.replace(/^\s+|\s+$/g, "") : text);
+        "" != value;
+        "" != text;
         var row = $.UI.create("TableViewRow", {
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL

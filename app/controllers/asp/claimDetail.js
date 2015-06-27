@@ -1,5 +1,6 @@
 var args = arguments[0] || {}; 
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
+
 API.claimDetailBySeries({serial : arg_serial});
 var usersModel = Alloy.createCollection('claim_detail'); 
 common.construct($); 
@@ -9,7 +10,9 @@ common.showLoading();
 Ti.UI.addEventListener("load_claim_detail", init);
 
 function init(){
+
 	var data = usersModel.getClaimDetailBySeries({serial : arg_serial}); 
+		console.log(data);
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
 	$.tv.appendRow(createTableViewRow("Patient Name", data.name));
 	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
@@ -17,7 +20,12 @@ function init(){
 	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
 	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
 	var section = Ti.UI.createTableViewSection({headerTitle: "Amount"});
-	section.add(createTableViewRow("Total Amount", "RM"+(data.amount).toFixed(2)));
+	
+	var totalAmount = (typeof data.amount != "undefined")?data.amount:"";
+ 
+	if(totalAmount != ""){
+		section.add(createTableViewRow("Total Amount", "RM"+(data.amount).toFixed(2)));
+	} 
 	section.add(createTableViewRow("Consultation", "RM"+(data.consultation_amt).toFixed(2)));
 	section.add(createTableViewRow("Medication", "RM"+(data.medication_amt).toFixed(2), data.medication));
 	section.add(createTableViewRow("Injection", "RM"+(data.injection_amt).toFixed(2), data.injection));
@@ -37,11 +45,11 @@ function init(){
 
 function createTableViewRow(text, value, dialog){
 	if(value != ""){
-		value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
+	//	value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
 	}
 	
 	if(text != ""){
-		text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
+	//	text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
 	}
 	
 	
