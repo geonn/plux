@@ -18,15 +18,15 @@ exports.createAlert = function(tt, msg) {
 };
 
 exports.showImageIndicator = function() {
+    var ind;
     var ind = Ti.UI.createActivityIndicator({
-        style: Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
+        style: Ti.UI.ActivityIndicatorStyle.DARK,
         bottom: 10,
         right: 20,
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
         zIndex: 11
     });
-    ind.show();
     return ind;
 };
 

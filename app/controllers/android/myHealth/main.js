@@ -6,14 +6,12 @@ common.construct($);
 common.showLoading();
 hd.stepsMotion();
 function resetGraph(){
-	$.stepsView.setHeight("0");
 	$.bmiView.setHeight("0");
 	$.bloodPressureView.setHeight("0");
 	$.heartRateView.setHeight("0");
 	$.bodyTemperatureView.setHeight("0");
 	$.heightView.setHeight("0");
 	$.weightView.setHeight("0");
-	$.stepsView.hide();
 	$.bmiView.hide();
 	$.bloodPressureView.hide();
 	$.heartRateView.hide();
@@ -35,7 +33,6 @@ function filterList(e){
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
 	}else{
-		$.stepsView.show();
 		$.weightView.show(); 
 		$.heightView.show(); 
 		$.bmiView.show();
@@ -48,17 +45,8 @@ Ti.App.addEventListener('filterList',filterList);
 setTimeout(function(){ 
 	hd.populateData();
 	common.hideLoading();
-}, 1500);
+},1000); 	
 filterList({category: "all"}); 
-
-$.stepsView.addEventListener('click',function(e){
-	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
-});
-
-$.stepsView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
-});
 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});
@@ -66,7 +54,7 @@ $.bmiView.addEventListener('click',function(e){
 
 $.bmiView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.bmiView.height = parseInt(actualHeight);
 });
 
 $.bloodPressureView.addEventListener('click',function(e){
@@ -75,7 +63,7 @@ $.bloodPressureView.addEventListener('click',function(e){
 
 $.bloodPressureView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.bloodPressureView.height = parseInt(actualHeight);
 });
 
 $.heartRateView.addEventListener('click',function(e){
@@ -84,7 +72,7 @@ $.heartRateView.addEventListener('click',function(e){
 
 $.heartRateView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.heartRateView.height = parseInt(actualHeight);
 });
 
 $.bodyTemperatureView.addEventListener('click',function(e){
@@ -93,7 +81,7 @@ $.bodyTemperatureView.addEventListener('click',function(e){
 
 $.bodyTemperatureView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.bodyTemperatureView.height = parseInt(actualHeight);
 });
 
 $.heightView.addEventListener('click',function(e){
@@ -102,19 +90,17 @@ $.heightView.addEventListener('click',function(e){
 
 $.heightView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.heightView.height = parseInt(actualHeight);
 });
 
 $.weightView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 6});
 });
 
-$.weightWebView.addEventListener('load',function(e){
-	hd.loadInfo(6);
+$.weightView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	$.weightView.height = parseInt(actualHeight);
 });
-
 
 $.moreHealth.addEventListener('click', function(e){
 	var page = Alloy.createController('myHealth/_menu').getView();

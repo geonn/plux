@@ -17,15 +17,26 @@ exports.createAlert = function(tt,msg){
 };
  
 exports.showImageIndicator = function(){
+	if(Ti.Platform.osname == "android"){
+		var ind = Ti.UI.createActivityIndicator({  
+		style:Ti.UI.ActivityIndicatorStyle.DARK,
+		bottom:10,
+		right:20,
+		height:Ti.UI.SIZE,
+		width:Ti.UI.SIZE,
+		zIndex: 11,
+	  });
+	}else{
 	var ind = Ti.UI.createActivityIndicator({  
-				style:Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
-				bottom:10,
-				right:20,
-				height:Ti.UI.SIZE,
-				width:Ti.UI.SIZE,
-				zIndex: 11,
-			  });
+		style:Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
+		bottom:10,
+		right:20,
+		height:Ti.UI.SIZE,
+		width:Ti.UI.SIZE,
+		zIndex: 11,
+	  });
 	ind.show();
+	}
 	return ind;
 };
 

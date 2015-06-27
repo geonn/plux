@@ -1,8 +1,8 @@
 var args = arguments[0] || {};
 var PDF = require('pdf'); 
 var leafletModel = Alloy.createCollection('leaflet');  
-var leaflist = leafletModel.getLeaftletList();  
-PDF.construct($);
+var leaflist = leafletModel.getLeaftletList();
+//PDF.construct($);
 loadLeafLetList(); 
 function loadLeafLetList(){ 
 	if(leaflist.length > 0 ){ 
@@ -147,7 +147,11 @@ function downloadBrochure(adImage,content){
 				leafletModel.updateDownloadedBrochure(content.id);
 			    indView.hide();  
 			    $.bigView.remove(indView); 
-			    	
+			    
+				if(Ti.Platform.osname == "android"){
+					PDF.android_launch(file);
+				}else{
+					
 				var myModal = Ti.UI.createWindow({
 					title           : 'Read PDF',
 					backgroundColor : 'transparent',
@@ -170,15 +174,16 @@ function downloadBrochure(adImage,content){
 				});
 				var containerView  = Ti.UI.createView({  // Set height appropriately
 				    height          : Ti.UI.SIZE,
+				    width			: Ti.UI.FILL,
 				    backgroundColor : 'transparent'
 				});
 				var webview = Ti.UI.createWebView({ 
 				   data: file.read(),
-				   height: 'auto',
+				   height: Ti.UI.FILL,
+				   width: Ti.UI.FILL,
 				   backgroundColor:"#ffffff",
 				   bottom:10 
 				});
-					 
 				if(content.url != ""){
 					var rightBtn = Ti.UI.createButton({
 						title: "Details",
@@ -216,6 +221,7 @@ function downloadBrochure(adImage,content){
 				});
 					
 			    }
+			   }
 		});
 	});
 }

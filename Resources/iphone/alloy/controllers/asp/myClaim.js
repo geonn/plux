@@ -247,7 +247,7 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "30dp",
         top: "30dp",
-        image: "asp_logo.png",
+        image: "/images/asp_logo.png",
         id: "__alloyId112"
     });
     $.__views.verifyContainer.add($.__views.__alloyId112);

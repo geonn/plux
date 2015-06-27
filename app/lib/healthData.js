@@ -69,6 +69,10 @@ exports.populateData = function(e){
 	info = loadInfo(10);
 };
 
+exports.loadInfo = function(gType){
+	loadInfo(gType);
+};
+
 function loadInfo(gType,dataPeriod){
 	var info = [];
 	var info2 = [];
@@ -138,24 +142,31 @@ function loadInfo(gType,dataPeriod){
  
 	if(gType == 1){ 
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 2){ 
 		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 3){
 		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 4){
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 5){
 		Ti.App.fireEvent('app:height',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 6){
 		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	if(gType == 10){
 		Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
+		console.log(gType);
 	}
 	return info;
 }

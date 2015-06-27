@@ -137,72 +137,7 @@ function Controller() {
                     leafletModel.updateDownloadedBrochure(content.id);
                     indView.hide();
                     $.bigView.remove(indView);
-                    var myModal = Ti.UI.createWindow({
-                        title: "Read PDF",
-                        backgroundColor: "transparent",
-                        fullscreen: true
-                    });
-                    var leftBtn = Ti.UI.createButton({
-                        title: "Close",
-                        color: "#CE1D1C",
-                        left: 15
-                    });
-                    var wrapperView = Ti.UI.createView({
-                        layout: "vertical",
-                        height: Ti.UI.SIZE
-                    });
-                    var topView = Ti.UI.createView({
-                        backgroundColor: "#EEEEEE",
-                        top: 0,
-                        height: 40
-                    });
-                    var containerView = Ti.UI.createView({
-                        height: Ti.UI.SIZE,
-                        backgroundColor: "transparent"
-                    });
-                    var webview = Ti.UI.createWebView({
-                        data: file.read(),
-                        height: "auto",
-                        backgroundColor: "#ffffff",
-                        bottom: 10
-                    });
-                    if ("" != content.url) {
-                        var rightBtn = Ti.UI.createButton({
-                            title: "Details",
-                            color: "#CE1D1C",
-                            right: 15
-                        });
-                        rightBtn.addEventListener("click", function() {
-                            var BackBtn = Ti.UI.createButton({
-                                title: "Back",
-                                color: "#CE1D1C",
-                                right: 15
-                            });
-                            BackBtn.addEventListener("click", function() {
-                                BackBtn.setVisible(false);
-                                rightBtn.setVisible(true);
-                                webview.setData(file.read());
-                            });
-                            topView.add(BackBtn);
-                            rightBtn.setVisible(false);
-                            BackBtn.setVisible(true);
-                            webview.setUrl(content.url);
-                        });
-                        topView.add(rightBtn);
-                    }
-                    containerView.add(webview);
-                    topView.add(leftBtn);
-                    wrapperView.add(topView);
-                    wrapperView.add(containerView);
-                    myModal.add(wrapperView);
-                    myModal.open({
-                        modal: true
-                    });
-                    leftBtn.addEventListener("click", function() {
-                        myModal.close({
-                            animated: true
-                        });
-                    });
+                    PDF.android_launch(file);
                 }
             });
         });
@@ -318,7 +253,6 @@ function Controller() {
     var PDF = require("pdf");
     var leafletModel = Alloy.createCollection("leaflet");
     var leaflist = leafletModel.getLeaftletList();
-    PDF.construct($);
     loadLeafLetList();
     var isDownloading = "0";
     var isDownloadLbl = "0";

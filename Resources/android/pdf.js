@@ -47,7 +47,7 @@ function download(url, cookies, done) {
 function copyToTemp(srcFile, base, myurl) {
     var myFileDir = Ti.Filesystem.applicationDataDirectory;
     Ti.Filesystem.isExternalStoragePresent() && (myFileDir = Ti.Filesystem.externalStorageDirectory);
-    var tempdir = Ti.Filesystem.getFile(myFileDir, base);
+    var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
     tempdir.createDirectory();
     if (void 0 === typeof myurl || null == myurl || "" == myurl) {
         console.log("masuk");
@@ -55,7 +55,7 @@ function copyToTemp(srcFile, base, myurl) {
     }
     var filename = myurl.split("/");
     filename = filename[filename.length - 1];
-    var tempFile = Ti.Filesystem.getFile(myFileDir, base, filename);
+    var tempFile = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base, filename);
     tempFile.write(srcFile.read());
     return tempFile;
 }
@@ -67,7 +67,10 @@ function pdf(url, cookies, inds, labels, indView, done) {
     download(url, cookies, function(err, file, base, url) {
         if (err) return done(err);
         var tempFile = copyToTemp(file, base, url);
-        false === tempFile ? copyToTemp(file, base, url) : done(err, file, base, url);
+        if (false === tempFile) {
+            tempFile = copyToTemp(file, base, url);
+            done(err, tempFile, base, url);
+        } else done(err, tempFile, base, url);
     });
 }
 
@@ -85,4 +88,13 @@ exports.construct = function(mv) {
 
 exports.createPdf = function(url, cookies, inds, labels, indView, done) {
     pdf(url, cookies, inds, labels, indView, done);
+};
+
+exports.android_launch = function(file) {
+    var intent = Ti.Android.createIntent({
+        action: Ti.Android.ACTION_VIEW,
+        data: file.getNativePath(),
+        type: "application/pdf"
+    });
+    Ti.Android.currentActivity.startActivity(intent);
 };

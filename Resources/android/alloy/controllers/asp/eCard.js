@@ -291,7 +291,7 @@ function Controller() {
         top: 0
     });
     $.mainContainer.add(cover);
-    $.card_event.addEventListener("click", function() {
+    $.card.addEventListener("click", function() {
         var t;
         if (frontbackcounter % 2 == 0) {
             t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;

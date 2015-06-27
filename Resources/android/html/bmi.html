@@ -13,19 +13,18 @@
  			font-size:18px; 
  			font-weight:bold; 
  			text-align:center;
- 			color: #787878;
+ 			color: #000;
  		}
  	</style>
 	<script>
-       
-            Ti.App.addEventListener("app:bmiInfo",function(e) {
-              if(e.message != ""){
-              	loadChart(e.message);
-              }else{
-              	loadNoData(e.dataPeriod);
-              }
-            });
-        </script>
+		Ti.App.addEventListener("app:bmiInfo",function(e) {
+          if(e.message != ""){
+          	loadChart(e.message);
+          }else{
+          	loadNoData(e.dataPeriod);
+          }
+        });
+    </script>
         
 <script type="text/javascript">
  

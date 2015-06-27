@@ -33,7 +33,7 @@
             width: 500,
             height: 400,
             zoomEnabled: false,
-            backgroundColor: "#EBEBEB",
+            backgroundColor: "#FFFFFF",
             theme: "theme1",
             animationEnabled: false,
             animationDuration: 1200,
@@ -49,11 +49,11 @@
             padding: 0,
             text: null,
             verticalAlign: "top",//top, center, bottom
-            horizontalAlign: "center",//left, center, right
+            horizontalAlign: "left",//left, center, right
             fontSize: 20,//in pixels
             fontFamily: "Arial",
             fontWeight: "normal", //normal, bold, bolder, lighter,
-            fontColor: "#CE1D1C",
+            fontColor: "#000000",
             fontStyle: "normal", // normal, italic, oblique
 
             borderThickness: 0,
@@ -369,7 +369,7 @@
 		        Title: {
 		            fontFamily: isCanvasSupported ? "Arial,Calibri, Optima, Candara, Verdana, Geneva, sans-serif" : "arial",
 		            fontSize: 33,
-		            fontColor: "#787878",
+		            fontColor: "#000000",
 		            fontWeight: "bold",
 		            verticalAlign: "top",
 		            margin: 10
