@@ -30,8 +30,8 @@
 					</ListSection>
 				</ListView>
 			-->
-				<ScrollView id="graphScrollView" layout="vertical" height="auto" width="100%" backgroundColor="#e9eaed"backgroundColor="#EBEBEB" contentWidth="Ti.UI.FILL" >
-					<View id="stepsView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10"borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false" platform="ios">
+				<ScrollView id="graphScrollView" layout="vertical" height="auto" width="100%" backgroundColor="#EBEBEB" contentWidth="Ti.UI.FILL" >
+					<View id="stepsView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false" platform="ios">
 						<WebView id="stepsWebView" height="200" width="100%" url="/html/steps.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">

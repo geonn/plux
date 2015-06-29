@@ -11,8 +11,7 @@ Ti.UI.addEventListener("load_claim_detail", init);
 
 function init(){
 
-	var data = usersModel.getClaimDetailBySeries({serial : arg_serial}); 
-		console.log(data);
+	var data = usersModel.getClaimDetailBySeries({serial : arg_serial});  
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
 	$.tv.appendRow(createTableViewRow("Patient Name", data.name));
 	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
@@ -45,11 +44,11 @@ function init(){
 
 function createTableViewRow(text, value, dialog){
 	if(value != ""){
-	//	value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
+		value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
 	}
 	
 	if(text != ""){
-	//	text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
+		text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
 	}
 	
 	

@@ -135,15 +135,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId136 = Ti.UI.createLabel({
+    $.__views.__alloyId135 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId136"
+        id: "__alloyId135"
     });
-    $.__views.loadingBar.add($.__views.__alloyId136);
+    $.__views.loadingBar.add($.__views.__alloyId135);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

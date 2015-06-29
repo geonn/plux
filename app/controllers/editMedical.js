@@ -16,9 +16,9 @@ function loadMedicalInfo(){
 		title = title.replace(/&quot;/g,"'");
 	} 
 	var clinic = details.clinic; 
-	if(clinic != ""){
-		//clinic = clinic.replace(/&quot;/g,"'");
-	} 
+	if(clinic == "undefined"){
+		clinic= "";
+	}
 	
 	var treatment = details.treatment;
 	if(treatment == "undefined"){

@@ -13,7 +13,7 @@ function Controller() {
         var title = details.title;
         "" != title && (title = title.replace(/&quot;/g, "'"));
         var clinic = details.clinic;
-        "" != clinic;
+        "undefined" == clinic && (clinic = "");
         var treatment = details.treatment;
         "undefined" == treatment && (treatment = "");
         var message = details.message;
