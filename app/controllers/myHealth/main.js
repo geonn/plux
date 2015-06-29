@@ -3,38 +3,66 @@ var category = args.category || "";
 var nav = require('navigation');
 var hd = require('healthData');  
 common.construct($);
-common.showLoading();
+//common.showLoading();
 hd.stepsMotion();
 function resetGraph(){
-	$.stepsView.setHeight("0");
 	$.bmiView.setHeight("0");
 	$.bloodPressureView.setHeight("0");
 	$.heartRateView.setHeight("0");
 	$.bodyTemperatureView.setHeight("0");
 	$.heightView.setHeight("0");
 	$.weightView.setHeight("0");
-	$.stepsView.hide();
-	$.bmiView.hide();
-	$.bloodPressureView.hide();
-	$.heartRateView.hide();
-	$.bodyTemperatureView.hide();
-	$.heightView.hide();
-	$.weightView.hide();
+	$.bmiView.setTop("0");
+	$.bloodPressureView.setTop("0");
+	$.heartRateView.setTop("0");
+	$.bodyTemperatureView.setTop("0");
+	$.heightView.setTop("0");
+	$.weightView.setTop("0");
 }
 
 function filterList(e){
 	 
 	if(e.category == "measurement"){
 		resetGraph();
-		$.bmiView.show(); 
+		$.bmiView.setHeight(Ti.UI.SIZE);
+		$.heightView.setHeight(Ti.UI.SIZE);
+		$.weightView.setHeight(Ti.UI.SIZE);
+		$.bmiView.setTop(10);
+		$.heightView.setTop(10);
+		$.weightView.setTop(10);
+		
+		$.bmiView.show();
 		$.heightView.show();
 		$.weightView.show(); 
 	}else if(e.category == "vitals"){
 		resetGraph();
+		$.heartRateView.setHeight(Ti.UI.SIZE);
+		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		$.heartRateView.setTop(10);
+		$.bodyTemperatureView.setTop(10);
+		$.bloodPressureView.setTop(10);
+		
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
 	}else{
+		$.stepsView.setHeight(Ti.UI.SIZE);
+		$.bmiView.setHeight(Ti.UI.SIZE);
+		$.heightView.setHeight(Ti.UI.SIZE);
+		$.weightView.setHeight(Ti.UI.SIZE);
+		$.heartRateView.setHeight(Ti.UI.SIZE);
+		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		
+		$.stepsView.setTop(10);
+		$.bmiView.setTop(10);
+		$.heightView.setTop(10);
+		$.weightView.setTop(10);
+		$.heartRateView.setTop(10);
+		$.bodyTemperatureView.setTop(10);
+		$.bloodPressureView.setTop(10);
+		
 		$.stepsView.show();
 		$.weightView.show(); 
 		$.heightView.show(); 
@@ -43,12 +71,16 @@ function filterList(e){
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 	}
+	
 }
+
 Ti.App.addEventListener('filterList',filterList);
-setTimeout(function(){ 
-	hd.populateData();
-	common.hideLoading();
-}, 1500);
+Ti.App.addEventListener('populateDataById',populateDataById);
+
+function populateDataById(e){
+	hd.loadInfo(e.id);
+}
+
 filterList({category: "all"}); 
 
 $.stepsView.addEventListener('click',function(e){
@@ -124,4 +156,9 @@ $.moreHealth.addEventListener('click', function(e){
 		opacity: 1,
 		duration: 200
 	});
+});
+
+$.myhealth.addEventListener("close", function(e){
+	Ti.App.removeEventListener('filterList',filterList);
+	Ti.App.removeEventListener('populateDataById',populateDataById);
 });

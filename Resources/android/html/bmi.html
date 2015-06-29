@@ -12,7 +12,8 @@
  		p {
  			font-size:18px; 
  			font-weight:bold; 
- 			text-align:center;
+ 			text-align:left;
+ 			padding-left:10px;
  			color: #000;
  		}
  	</style>
@@ -24,6 +25,7 @@
           	loadNoData(e.dataPeriod);
           }
         });
+        Ti.App.fireEvent('populateDataById',{ id: 1});
     </script>
         
 <script type="text/javascript">
@@ -35,7 +37,7 @@ function loadChart(data){
 		title:{
 			text: "BMI"              
 		},
-		backgroundColor : "#EBEBEB",
+		backgroundColor : "#FFFFFF",
 		animationEnabled: true,   // change to true
 		data: [              
 		{

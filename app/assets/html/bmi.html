@@ -24,8 +24,8 @@
           }else{
           	loadNoData(e.dataPeriod);
           }
-          
         });
+        Ti.App.fireEvent('populateDataById',{ id: 1});
     </script>
         
 <script type="text/javascript">

@@ -48,35 +48,56 @@ function loadInfo(gType, dataPeriod) {
             info.push(rec);
         });
     }
-    1 == gType && Ti.App.fireEvent("app:bmiInfo", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
-    2 == gType && Ti.App.fireEvent("app:bloodPressureInfo", {
-        message: info,
-        message2: info2,
-        dataPeriod: dataPeriod
-    });
-    3 == gType && Ti.App.fireEvent("app:heartRateInfo", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
-    4 == gType && Ti.App.fireEvent("app:bodyTemperatureInfo", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
-    5 == gType && Ti.App.fireEvent("app:height", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
-    6 == gType && Ti.App.fireEvent("app:weight", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
-    10 == gType && Ti.App.fireEvent("app:steps", {
-        message: info,
-        dataPeriod: dataPeriod
-    });
+    if (1 == gType) {
+        Ti.App.fireEvent("app:bmiInfo", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (2 == gType) {
+        Ti.App.fireEvent("app:bloodPressureInfo", {
+            message: info,
+            message2: info2,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (3 == gType) {
+        Ti.App.fireEvent("app:heartRateInfo", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (4 == gType) {
+        Ti.App.fireEvent("app:bodyTemperatureInfo", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (5 == gType) {
+        Ti.App.fireEvent("app:height", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (6 == gType) {
+        Ti.App.fireEvent("app:weight", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
+    if (10 == gType) {
+        Ti.App.fireEvent("app:steps", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        console.log(gType);
+    }
     return info;
 }
 
@@ -131,6 +152,10 @@ exports.enableSaveButton = function() {
 exports.populateData = function() {
     for (var i = 1; 6 >= i; i++) var info = loadInfo(i);
     info = loadInfo(10);
+};
+
+exports.loadInfo = function(gType) {
+    loadInfo(gType);
 };
 
 exports.loadGraphByType = function(gType, dataPeriod) {

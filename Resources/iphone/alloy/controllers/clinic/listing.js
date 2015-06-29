@@ -32,7 +32,6 @@ function Controller() {
             $.panelListTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
-                console.log(entry.clinicType);
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
                     height: 70,

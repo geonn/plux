@@ -13,7 +13,7 @@
  			font-size:18px; 
  			font-weight:bold; 
  			text-align:left;
- 			padding-left:13px;
+ 			padding-left:10px;
  			color: #000;
  		}
  	</style>
@@ -26,6 +26,7 @@
               	loadNoData(e.dataPeriod);
               }
             });
+            Ti.App.fireEvent('populateDataById',{ id: 10});
         </script>
         
 <script type="text/javascript">

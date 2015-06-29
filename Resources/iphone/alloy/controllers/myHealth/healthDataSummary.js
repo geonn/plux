@@ -39,19 +39,19 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.healthDataSummary = Ti.UI.createWindow({
+    $.__views.dashboard = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Dashboard",
+        id: "dashboard",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "healthDataSummary"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.healthDataSummary && $.addTopLevelView($.__views.healthDataSummary);
-    $.__views.__alloyId190 = Ti.UI.createView({
-        id: "__alloyId190"
+    $.__views.dashboard && $.addTopLevelView($.__views.dashboard);
+    $.__views.__alloyId191 = Ti.UI.createView({
+        id: "__alloyId191"
     });
-    $.__views.healthDataSummary.add($.__views.__alloyId190);
+    $.__views.dashboard.add($.__views.__alloyId191);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -60,7 +60,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId190.add($.__views.loadingBar);
+    $.__views.__alloyId191.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -68,15 +68,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId191 = Ti.UI.createLabel({
+    $.__views.__alloyId192 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId191"
+        id: "__alloyId192"
     });
-    $.__views.loadingBar.add($.__views.__alloyId191);
+    $.__views.loadingBar.add($.__views.__alloyId192);
     $.__views.main = Ti.UI.createView({
         id: "main",
         height: Ti.UI.SIZE,
@@ -84,18 +84,18 @@ function Controller() {
         backgroundColor: "#ffffff",
         top: "0"
     });
-    $.__views.__alloyId190.add($.__views.main);
-    var __alloyId192 = [];
-    var __alloyId195 = {
+    $.__views.__alloyId191.add($.__views.main);
+    var __alloyId193 = [];
+    var __alloyId196 = {
         title: "Month"
     };
-    __alloyId192.push(__alloyId195);
-    var __alloyId196 = {
+    __alloyId193.push(__alloyId196);
+    var __alloyId197 = {
         title: "Year"
     };
-    __alloyId192.push(__alloyId196);
-    $.__views.buttonbarData = Ti.UI.iOS.createTabbedBar({
-        labels: __alloyId192,
+    __alloyId193.push(__alloyId197);
+    $.__views.buttonbarData = (require("TabbedBar").createTabbedBar || Ti.UI.iOS.createTabbedBar)({
+        labels: __alloyId193,
         id: "buttonbarData",
         backgroundColor: "#CE1D1C",
         index: "0",
@@ -112,24 +112,9 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.main.add($.__views.bmiView);
-    $.__views.graphWebView = Ti.UI.createWebView({
-        id: "graphWebView",
-        width: "100%",
-        height: Ti.UI.FILL,
-        backgroundColor: "#EBEBEB"
-    });
-    $.__views.bmiView.add($.__views.graphWebView);
-    $.__views.__alloyId197 = Ti.UI.createView({
-        height: "1",
-        bottom: "0",
-        backgroundColor: "#FC7474",
-        width: "100%",
-        id: "__alloyId197"
-    });
-    $.__views.bmiView.add($.__views.__alloyId197);
     var __alloyId198 = [];
     $.__views.__alloyId199 = Ti.UI.createTableViewRow({
-        selectedBackgroundColor: "#FFE1E1",
+        backgroundSelectedColor: "#FFE1E1",
         title: "Add Data Point",
         hasChild: "true",
         id: "__alloyId199"
@@ -137,7 +122,7 @@ function Controller() {
     __alloyId198.push($.__views.__alloyId199);
     addData ? $.__views.__alloyId199.addEventListener("click", addData) : __defers["$.__views.__alloyId199!click!addData"] = true;
     $.__views.__alloyId200 = Ti.UI.createTableViewRow({
-        selectedBackgroundColor: "#FFE1E1",
+        backgroundSelectedColor: "#FFE1E1",
         title: "Show All Data",
         hasChild: "true",
         id: "__alloyId200"
@@ -158,19 +143,32 @@ function Controller() {
     var gType = args.gType || 1;
     var hd = require("healthData");
     common.construct($);
-    common.showLoading();
-    "1" == gType && $.graphWebView.setUrl("/html/bmi.html");
-    "2" == gType && $.graphWebView.setUrl("/html/bloodPressure.html");
-    "3" == gType && $.graphWebView.setUrl("/html/heartRate.html");
-    "4" == gType && $.graphWebView.setUrl("/html/bodyTemperature.html");
-    "5" == gType && $.graphWebView.setUrl("/html/height.html");
-    "6" == gType && $.graphWebView.setUrl("/html/weight.html");
-    "10" == gType && $.graphWebView.setUrl("/html/steps.html");
+    if ("1" == gType) var url = "/html/bmi.html";
+    if ("2" == gType) var url = "/html/bloodPressure.html";
+    if ("3" == gType) var url = "/html/heartRate.html";
+    if ("4" == gType) var url = "/html/bodyTemperature.html";
+    if ("5" == gType) var url = "/html/height.html";
+    if ("6" == gType) var url = "/html/weight.html";
+    if ("10" == gType) var url = "/html/steps.html";
+    var webview = $.UI.create("WebView", {
+        id: "graphWebView",
+        width: "100%",
+        url: url,
+        height: Ti.UI.FILL,
+        backgroundColor: "#EBEBEB"
+    });
+    var line = $.UI.create("View", {
+        height: 1,
+        bottom: 0,
+        backgroundColor: "#FC7474",
+        width: "100%"
+    });
+    $.bmiView.add(webview);
+    $.bmiView.add(line);
     $.buttonbarData.addEventListener("click", loadBarData);
-    setTimeout(function() {
-        loadGraph("month");
-        common.hideLoading();
-    }, 900);
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.dashboard);
+    });
     __defers["$.__views.__alloyId199!click!addData"] && $.__views.__alloyId199.addEventListener("click", addData);
     __defers["$.__views.__alloyId200!click!editData"] && $.__views.__alloyId200.addEventListener("click", editData);
     _.extend($, exports);

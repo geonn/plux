@@ -9,33 +9,57 @@ function __processArg(obj, key) {
 
 function Controller() {
     function resetGraph() {
-        $.stepsView.setHeight("0");
         $.bmiView.setHeight("0");
         $.bloodPressureView.setHeight("0");
         $.heartRateView.setHeight("0");
         $.bodyTemperatureView.setHeight("0");
         $.heightView.setHeight("0");
         $.weightView.setHeight("0");
-        $.stepsView.hide();
-        $.bmiView.hide();
-        $.bloodPressureView.hide();
-        $.heartRateView.hide();
-        $.bodyTemperatureView.hide();
-        $.heightView.hide();
-        $.weightView.hide();
+        $.bmiView.setTop("0");
+        $.bloodPressureView.setTop("0");
+        $.heartRateView.setTop("0");
+        $.bodyTemperatureView.setTop("0");
+        $.heightView.setTop("0");
+        $.weightView.setTop("0");
     }
     function filterList(e) {
         if ("measurement" == e.category) {
             resetGraph();
+            $.bmiView.setHeight(Ti.UI.SIZE);
+            $.heightView.setHeight(Ti.UI.SIZE);
+            $.weightView.setHeight(Ti.UI.SIZE);
+            $.bmiView.setTop(10);
+            $.heightView.setTop(10);
+            $.weightView.setTop(10);
             $.bmiView.show();
             $.heightView.show();
             $.weightView.show();
         } else if ("vitals" == e.category) {
             resetGraph();
+            $.heartRateView.setHeight(Ti.UI.SIZE);
+            $.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+            $.bloodPressureView.setHeight(Ti.UI.SIZE);
+            $.heartRateView.setTop(10);
+            $.bodyTemperatureView.setTop(10);
+            $.bloodPressureView.setTop(10);
             $.heartRateView.show();
             $.bodyTemperatureView.show();
             $.bloodPressureView.show();
         } else {
+            $.stepsView.setHeight(Ti.UI.SIZE);
+            $.bmiView.setHeight(Ti.UI.SIZE);
+            $.heightView.setHeight(Ti.UI.SIZE);
+            $.weightView.setHeight(Ti.UI.SIZE);
+            $.heartRateView.setHeight(Ti.UI.SIZE);
+            $.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+            $.bloodPressureView.setHeight(Ti.UI.SIZE);
+            $.stepsView.setTop(10);
+            $.bmiView.setTop(10);
+            $.heightView.setTop(10);
+            $.weightView.setTop(10);
+            $.heartRateView.setTop(10);
+            $.bodyTemperatureView.setTop(10);
+            $.bloodPressureView.setTop(10);
             $.stepsView.show();
             $.weightView.show();
             $.heightView.show();
@@ -44,6 +68,9 @@ function Controller() {
             $.heartRateView.show();
             $.bodyTemperatureView.show();
         }
+    }
+    function populateDataById(e) {
+        hd.loadInfo(e.id);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "myHealth/main";
@@ -61,15 +88,15 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.main = Ti.UI.createWindow({
+    $.__views.myhealth = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "MY HEALTH RECORD",
+        id: "myhealth",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "main"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.main && $.addTopLevelView($.__views.main);
+    $.__views.myhealth && $.addTopLevelView($.__views.myhealth);
     $.__views.__alloyId206 = Ti.UI.createView({
         id: "__alloyId206"
     });
@@ -80,11 +107,11 @@ function Controller() {
         image: "/images/health_love.png"
     });
     $.__views.__alloyId206.add($.__views.moreHealth);
-    $.__views.main.rightNavButton = $.__views.__alloyId206;
+    $.__views.myhealth.rightNavButton = $.__views.__alloyId206;
     $.__views.__alloyId207 = Ti.UI.createView({
         id: "__alloyId207"
     });
-    $.__views.main.add($.__views.__alloyId207);
+    $.__views.myhealth.add($.__views.__alloyId207);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -263,15 +290,15 @@ function Controller() {
         visible: "false"
     });
     $.__views.graphScrollView.add($.__views.bloodPressureView);
-    $.__views.bmiWebView = Ti.UI.createWebView({
+    $.__views.bloodPressureWebView = Ti.UI.createWebView({
         touchEnabled: false,
-        id: "bmiWebView",
+        id: "bloodPressureWebView",
         height: "200",
         width: "100%",
         url: "/html/bloodPressure.html",
         disableBounce: "true"
     });
-    $.__views.bloodPressureView.add($.__views.bmiWebView);
+    $.__views.bloodPressureView.add($.__views.bloodPressureWebView);
     $.__views.__alloyId217 = Ti.UI.createView({
         height: "1",
         left: "10",
@@ -567,13 +594,9 @@ function Controller() {
     var nav = require("navigation");
     var hd = require("healthData");
     common.construct($);
-    common.showLoading();
     hd.stepsMotion();
     Ti.App.addEventListener("filterList", filterList);
-    setTimeout(function() {
-        hd.populateData();
-        common.hideLoading();
-    }, 1500);
+    Ti.App.addEventListener("populateDataById", populateDataById);
     filterList({
         category: "all"
     });
@@ -649,6 +672,10 @@ function Controller() {
             opacity: 1,
             duration: 200
         });
+    });
+    $.myhealth.addEventListener("close", function() {
+        Ti.App.removeEventListener("filterList", filterList);
+        Ti.App.removeEventListener("populateDataById", populateDataById);
     });
     _.extend($, exports);
 }

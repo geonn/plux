@@ -2,28 +2,46 @@ var args = arguments[0] || {};
 var gType = args.gType || 1; 
 var hd = require('healthData');  
 common.construct($);
-common.showLoading();
+//common.showLoading();
+
 if(gType == "1"){
-	$.graphWebView.setUrl("/html/bmi.html");
+	var url = "/html/bmi.html";
 }
 if(gType == "2"){
-	$.graphWebView.setUrl("/html/bloodPressure.html");
+	var url = "/html/bloodPressure.html";
 }
 if(gType == "3"){
-	$.graphWebView.setUrl("/html/heartRate.html");
+	var url = "/html/heartRate.html";
 }
 if(gType == "4"){
-	$.graphWebView.setUrl("/html/bodyTemperature.html");
+	var url = "/html/bodyTemperature.html";
 }
 if(gType == "5"){
-	$.graphWebView.setUrl("/html/height.html");
+	var url = "/html/height.html";
 } 
 if(gType == "6"){
-	$.graphWebView.setUrl("/html/weight.html");
+	var url = "/html/weight.html";
 }
 if(gType == "10"){
-	$.graphWebView.setUrl("/html/steps.html");
+	var url = "/html/steps.html";
 }
+
+var webview = $.UI.create("WebView", {
+	id: "graphWebView",
+	width: "100%",
+	url: url,
+	height: Ti.UI.FILL,
+	backgroundColor:"#EBEBEB"
+});
+var line = $.UI.create("View", {
+	height: 1,
+	bottom: 0,
+	backgroundColor:"#FC7474",
+	width: "100%"
+});
+$.bmiView.add(webview);
+$.bmiView.add(line);
+//$.graphWebView.setUrl("http://google.com");
 function loadBarData(e){ 
 	if(e.index == "0"){
 		loadGraph("month"); 
@@ -34,11 +52,12 @@ function loadBarData(e){
 
 $.buttonbarData.addEventListener('click', loadBarData);  
 
+/*
 setTimeout(function(){	
 	loadGraph("month");  
 	common.hideLoading();
 },900); 
-
+*/
 function loadGraph(dataPeriod){
 	hd.loadGraphByType(gType,dataPeriod); 
 }
@@ -50,3 +69,9 @@ function addData(){
 function editData(){ 
 	nav.navigateWithArgs("myHealth/healthEditData",{gType: gType});
 }	 
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		nav.closeWindow($.dashboard); 
+	}); 
+}

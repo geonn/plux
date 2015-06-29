@@ -73,6 +73,8 @@ exports.noRecord = function() {
 };
 
 exports.showLoading = function() {
+    console.log(mainView);
+    console.log(mainView.activityIndicator);
     mainView.activityIndicator.show();
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";

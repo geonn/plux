@@ -12,7 +12,8 @@
  		p {
  			font-size:18px; 
  			font-weight:bold; 
- 			text-align:center;
+ 			text-align:left;
+ 			padding-left:10px;
  			color: #000;
  		}
  	</style>
@@ -25,6 +26,7 @@
               	loadNoData(e.dataPeriod);
               }
             });
+             Ti.App.fireEvent('populateDataById',{ id: 5});
         </script>
         
 <script type="text/javascript">
@@ -36,7 +38,7 @@ function loadChart(data){
 		title:{
 			text: "Height (CM)"              
 		},
-		backgroundColor : "#EBEBEB",
+		backgroundColor : "#FFFFFF",
 		animationEnabled: true,   // change to true
 		data: [              
 		{

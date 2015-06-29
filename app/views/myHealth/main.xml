@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="MY HEALTH RECORD" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="MY HEALTH RECORD" id="myhealth" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
 	         	<ImageView right='0' id="moreHealth" width='30' image="/images/health_love.png" />
@@ -48,7 +48,7 @@
 						</View>
 					</View>
 					<View id="bloodPressureView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="bmiWebView" height="200" width="100%" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="bloodPressureWebView" height="200" width="100%" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>

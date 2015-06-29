@@ -3,7 +3,7 @@ var category = args.category || "";
 var nav = require('navigation');
 var hd = require('healthData');  
 common.construct($);
-common.showLoading();
+//common.showLoading();
 hd.stepsMotion();
 function resetGraph(){
 	$.bmiView.setHeight("0");
@@ -12,27 +12,55 @@ function resetGraph(){
 	$.bodyTemperatureView.setHeight("0");
 	$.heightView.setHeight("0");
 	$.weightView.setHeight("0");
-	$.bmiView.hide();
-	$.bloodPressureView.hide();
-	$.heartRateView.hide();
-	$.bodyTemperatureView.hide();
-	$.heightView.hide();
-	$.weightView.hide();
+	$.bmiView.setTop("0");
+	$.bloodPressureView.setTop("0");
+	$.heartRateView.setTop("0");
+	$.bodyTemperatureView.setTop("0");
+	$.heightView.setTop("0");
+	$.weightView.setTop("0");
 }
 
 function filterList(e){
 	 
 	if(e.category == "measurement"){
 		resetGraph();
-		$.bmiView.show(); 
+		$.bmiView.setHeight(Ti.UI.SIZE);
+		$.heightView.setHeight(Ti.UI.SIZE);
+		$.weightView.setHeight(Ti.UI.SIZE);
+		$.bmiView.setTop(10);
+		$.heightView.setTop(10);
+		$.weightView.setTop(10);
+		
+		$.bmiView.show();
 		$.heightView.show();
 		$.weightView.show(); 
 	}else if(e.category == "vitals"){
 		resetGraph();
+		$.heartRateView.setHeight(Ti.UI.SIZE);
+		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		$.heartRateView.setTop(10);
+		$.bodyTemperatureView.setTop(10);
+		$.bloodPressureView.setTop(10);
+		
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
 	}else{
+		$.bmiView.setHeight(Ti.UI.SIZE);
+		$.heightView.setHeight(Ti.UI.SIZE);
+		$.weightView.setHeight(Ti.UI.SIZE);
+		$.heartRateView.setHeight(Ti.UI.SIZE);
+		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
+		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		
+		$.bmiView.setTop(10);
+		$.heightView.setTop(10);
+		$.weightView.setTop(10);
+		$.heartRateView.setTop(10);
+		$.bodyTemperatureView.setTop(10);
+		$.bloodPressureView.setTop(10);
+		
 		$.weightView.show(); 
 		$.heightView.show(); 
 		$.bmiView.show();
@@ -40,22 +68,31 @@ function filterList(e){
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 	}
+	
 }
+
 Ti.App.addEventListener('filterList',filterList);
-setTimeout(function(){ 
+Ti.App.addEventListener('populateDataById',populateDataById);
+
+function populateDataById(e){
+	hd.loadInfo(e.id);
+}
+/*setTimeout(function(){ 
 	hd.populateData();
 	common.hideLoading();
-},1000); 	
+}, 2000);*/
 filterList({category: "all"}); 
 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});
 });
 
-$.bmiView.addEventListener('load',function(e){
+$.bmiView.addEventListener('load', websiteSetHeight);
+
+function websiteSetHeight(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.bmiView.height = parseInt(actualHeight);
-});
+	e.source.height = parseInt(actualHeight);
+}
 
 $.bloodPressureView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 2});
@@ -63,7 +100,7 @@ $.bloodPressureView.addEventListener('click',function(e){
 
 $.bloodPressureView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.bloodPressureView.height = parseInt(actualHeight);
+	e.source.height = parseInt(actualHeight);
 });
 
 $.heartRateView.addEventListener('click',function(e){
@@ -72,7 +109,7 @@ $.heartRateView.addEventListener('click',function(e){
 
 $.heartRateView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.heartRateView.height = parseInt(actualHeight);
+	e.source.height = parseInt(actualHeight);
 });
 
 $.bodyTemperatureView.addEventListener('click',function(e){
@@ -81,7 +118,7 @@ $.bodyTemperatureView.addEventListener('click',function(e){
 
 $.bodyTemperatureView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.bodyTemperatureView.height = parseInt(actualHeight);
+	e.source.height = parseInt(actualHeight);
 });
 
 $.heightView.addEventListener('click',function(e){
@@ -90,7 +127,7 @@ $.heightView.addEventListener('click',function(e){
 
 $.heightView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.heightView.height = parseInt(actualHeight);
+	e.source.height = parseInt(actualHeight);
 });
 
 $.weightView.addEventListener('click',function(e){
@@ -99,7 +136,7 @@ $.weightView.addEventListener('click',function(e){
 
 $.weightView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	$.weightView.height = parseInt(actualHeight);
+	e.source.height = parseInt(actualHeight);
 });
 
 $.moreHealth.addEventListener('click', function(e){
@@ -110,4 +147,13 @@ $.moreHealth.addEventListener('click', function(e){
 		opacity: 1,
 		duration: 200
 	});
+});
+
+$.myhealth.addEventListener("close", function(e){
+	Ti.App.removeEventListener('filterList',filterList);
+	Ti.App.removeEventListener('populateDataById',populateDataById);
+});
+
+$.btnBack.addEventListener('click', function(){  
+	nav.closeWindow($.myhealth); 
 });

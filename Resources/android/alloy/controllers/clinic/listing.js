@@ -15,7 +15,6 @@ function Controller() {
             height: Ti.UI.SIZE,
             top: 0
         });
-        console.log(e);
         var data = [];
         if ("" == e) var arr = details; else var arr = e.details;
         if (arr.length < 1) {
@@ -33,13 +32,18 @@ function Controller() {
             $.panelListTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
-                console.log(entry.clinicType);
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
                     height: 70,
                     id: entry.clinicType,
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundColor: "#ffffff"
+                });
+                var leftImage = Titanium.UI.createImageView({
+                    image: "/images/" + entry.clinicType + ".png",
+                    width: 50,
+                    height: 50,
+                    left: 10
                 });
                 var popUpTitle = Titanium.UI.createLabel({
                     text: entry.clinicType,
@@ -50,7 +54,7 @@ function Controller() {
                     color: "#848484",
                     width: "65%",
                     textAlign: "left",
-                    left: 20,
+                    left: 70,
                     height: 25
                 });
                 var totalPanel = Titanium.UI.createLabel({
@@ -71,6 +75,7 @@ function Controller() {
                     width: 15,
                     right: 20
                 });
+                row.add(leftImage);
                 row.add(popUpTitle);
                 row.add(totalPanel);
                 row.add(rightForwardBtn);
