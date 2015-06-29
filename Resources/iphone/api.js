@@ -347,7 +347,8 @@ exports.claimDetailBySeries = function(e) {
 };
 
 exports.getClaimDetail = function(e) {
-    var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
+    var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode + "&PERIOD=ALL";
+    console.log("getClaimDetail : " + url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -373,6 +374,7 @@ exports.getClaimDetail = function(e) {
 
 exports.claimInfo = function(e) {
     var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
+    console.log("claim Info : " + url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {

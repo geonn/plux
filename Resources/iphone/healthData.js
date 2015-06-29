@@ -7,7 +7,7 @@ function getAge(dateString) {
     return age;
 }
 
-function loadInfo(gType, dataPeriod) {
+function loadInfo(gType, dataPeriod, showDetailsLabel) {
     var info = [];
     var info2 = [];
     var loadType = gType;
@@ -30,9 +30,13 @@ function loadInfo(gType, dataPeriod) {
             info.push(rec);
         });
     } else {
-        if ("10" == gType) var info_details = lib_health.getSteps(); else var info_details = lib_health.getHealthListByType(loadType);
+        if ("10" == gType) {
+            var info_details = lib_health.getSteps();
+            console.log(info_details);
+        } else var info_details = lib_health.getHealthListByType(loadType);
         info_details.reverse();
-        info_details.forEach(function(entry) {
+        var latestData;
+        info_details.length > 0 ? info_details.forEach(function(entry) {
             var rec = {};
             var convert = entry.date.split("-");
             var month = parseInt(convert[1]) - 1;
@@ -44,16 +48,26 @@ function loadInfo(gType, dataPeriod) {
                 rec2["label"] = newDate;
                 rec2["y"] = parseFloat(entry.field2);
                 info2.push(rec2);
-            } else rec["y"] = "6" == gType ? parseFloat(entry.field1) : "5" == gType ? 100 * parseFloat(entry.field2) : parseFloat(entry.amount);
+                latestData = parseFloat(entry.field2);
+            } else if ("6" == gType) {
+                rec["y"] = parseFloat(entry.field1);
+                latestData = parseFloat(entry.field1);
+            } else if ("5" == gType) {
+                rec["y"] = 100 * parseFloat(entry.field2);
+                latestData = 100 * parseFloat(entry.field2);
+            } else {
+                rec["y"] = parseFloat(entry.amount);
+                latestData = entry.amount;
+            }
             info.push(rec);
-        });
+        }) : latestData = "";
     }
     if (1 == gType) {
         Ti.App.fireEvent("app:bmiInfo", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.bmiDetailLabel.text = latestData || "N/A");
     }
     if (2 == gType) {
         Ti.App.fireEvent("app:bloodPressureInfo", {
@@ -61,42 +75,43 @@ function loadInfo(gType, dataPeriod) {
             message2: info2,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.bloodPressureDetailLabel.text = latestData || "N/A");
     }
     if (3 == gType) {
         Ti.App.fireEvent("app:heartRateInfo", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.heartRateDetailLabel.text = latestData || "N/A");
     }
     if (4 == gType) {
         Ti.App.fireEvent("app:bodyTemperatureInfo", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.bodyTempDetailLabel.text = latestData || "N/A");
     }
     if (5 == gType) {
         Ti.App.fireEvent("app:height", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.heightDetailLabel.text = latestData + " CM" || "N/A");
     }
     if (6 == gType) {
         Ti.App.fireEvent("app:weight", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "1" == showDetailsLabel && (mainView.weightDetailLabel.text = latestData + " KG" || "N/A");
     }
     if (10 == gType) {
         Ti.App.fireEvent("app:steps", {
             message: info,
             dataPeriod: dataPeriod
         });
-        console.log(gType);
+        "" != latestData && (latestData += " Steps");
+        "1" == showDetailsLabel && (mainView.stepsDetailLabel.text = latestData || "N/A");
     }
     return info;
 }
@@ -150,16 +165,16 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 6 >= i; i++) var info = loadInfo(i);
-    info = loadInfo(10);
+    for (var i = 1; 6 >= i; i++) var info = loadInfo(i, "", "1");
+    info = loadInfo(10, "", "1");
 };
 
 exports.loadInfo = function(gType) {
-    loadInfo(gType);
+    loadInfo(gType, "", "");
 };
 
 exports.loadGraphByType = function(gType, dataPeriod) {
-    loadInfo(gType, dataPeriod);
+    loadInfo(gType, dataPeriod, "");
 };
 
 exports.todayDate = function() {

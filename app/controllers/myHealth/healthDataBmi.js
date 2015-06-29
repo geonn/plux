@@ -81,6 +81,6 @@ function doSaveRecords(){
 		type : formType
 	});  
 	// nav.navigationWindow("myHealth" );
-	hd.populateData();
+	hd.loadInfo(formType);
 	nav.closeWindow($.healthBmiWin);
 }

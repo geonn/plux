@@ -35,56 +35,56 @@
 						<WebView id="stepsWebView" height="200" width="100%" url="/html/steps.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="stepsDetailLabel" />
 						</View>
 					</View>
 					<View id="bmiView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="bmiWebView" height="200" width="100%" url="/html/bmi.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bmiDetailLabel" />
 						</View>
 					</View>
 					<View id="bloodPressureView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="bmiWebView" height="200" width="100%" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bloodPressureDetailLabel" />
 						</View>
 					</View>
 					<View id="heartRateView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="heartRateWebView" height="200" width="100%" url="/html/heartRate.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="heartRateDetailLabel" />
 						</View>
 					</View>
 					<View id="bodyTemperatureView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="bodyTemperatureWebView" height="200" width="100%" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bodyTempDetailLabel" />
 						</View>
 					</View>
 					<View id="heightView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="heightWebView" height="200" width="100%" url="/html/height.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="heightDetailLabel" />
 						</View>
 					</View>
 					<View id="weightView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" bottom="10" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="weightWebView" height="200" width="100%" url="/html/weight.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Detail</Label>
-							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0">10000 Steps</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="weightDetailLabel" />
 						</View>
 					</View>
 				</ScrollView>

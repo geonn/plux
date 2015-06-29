@@ -4,6 +4,7 @@ var nav = require('navigation');
 var hd = require('healthData');  
 common.construct($);
 common.showLoading();
+hd.construct($);
 hd.stepsMotion();
 function resetGraph(){
 	$.stepsView.setHeight("0");
@@ -59,6 +60,7 @@ $.stepsView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
 	e.source.height = parseInt(actualHeight);
 });
+
 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});

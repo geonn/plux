@@ -58,7 +58,7 @@ function Controller() {
             amount: amount.toFixed(2),
             type: formType
         });
-        hd.populateData();
+        hd.loadInfo(formType);
         nav.closeWindow($.healthBmiWin);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));

@@ -62,18 +62,18 @@ exports.enableSaveButton = function(e){
 
 exports.populateData = function(e){
 	for(var i =1; i <= 6; i++){
-	 	var info = loadInfo(i);
+	 	var info = loadInfo(i,"","1");
 	}
 	
 	//steps
-	info = loadInfo(10);
+	info = loadInfo(10,"","1");
 };
 
 exports.loadInfo = function(gType){
-	loadInfo(gType);
+	loadInfo(gType,"","");
 };
 
-function loadInfo(gType,dataPeriod){
+function loadInfo(gType,dataPeriod,showDetailsLabel){
 	var info = [];
 	var info2 = [];
 	var loadType= gType;
@@ -110,69 +110,98 @@ function loadInfo(gType,dataPeriod){
 	}else{ 
 		if(gType == "10"){
 			var info_details = lib_health.getSteps();  
+			console.log(info_details);
 		}else{
 			var info_details = lib_health.getHealthListByType(loadType);  
 		}
 		
 		info_details.reverse();	 
-		info_details.forEach(function(entry) {
-			var rec = {};
-			var convert = (entry.date).split('-'); 
-			var month = parseInt(convert[1]) - 1;
-			var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
-			rec['label'] = newDate;
-			
-			if(gType == "2"){
-				rec['y'] = parseFloat(entry.field1); 
-				// For second records
-				var rec2 = {};
-				rec2['label'] = newDate;
-				rec2['y'] = parseFloat(entry.field2);
-				info2.push(rec2);
-			}else if(gType == "6"){
-				rec['y'] = parseFloat(entry.field1);
-			}else if(gType == "5"){
-				rec['y'] = parseFloat(entry.field2 ) * 100;
-			}else{
-				rec['y'] = parseFloat(entry.amount);
-			}
-			info.push(rec);
-		});  
+		var latestData;
+		if(info_details.length > 0){
+			info_details.forEach(function(entry) { 
+				var rec = {};
+				var convert = (entry.date).split('-'); 
+				var month = parseInt(convert[1]) - 1;
+				var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
+				rec['label'] = newDate;
+				
+				if(gType == "2"){
+					rec['y'] = parseFloat(entry.field1); 
+					// For second records
+					var rec2 = {};
+					rec2['label'] = newDate;
+					rec2['y'] = parseFloat(entry.field2);
+					info2.push(rec2);
+					latestData = parseFloat(entry.field2);
+				}else if(gType == "6"){
+					rec['y'] = parseFloat(entry.field1);
+					latestData = parseFloat(entry.field1);
+				}else if(gType == "5"){
+					rec['y'] = parseFloat(entry.field2 ) * 100;
+					latestData = parseFloat(entry.field2 ) * 100;
+				}else{
+					rec['y'] = parseFloat(entry.amount);
+					latestData = entry.amount;
+				}
+				info.push(rec);
+			});  
+		}else{
+			latestData = "";
+		}
+		
 	} 
  
 	if(gType == 1){ 
-		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
+		if(showDetailsLabel == "1"){
+			mainView.bmiDetailLabel.text = latestData|| "N/A";
+		}
+		
 	}
 	if(gType == 2){ 
 		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(showDetailsLabel == "1"){
+			mainView.bloodPressureDetailLabel.text = latestData ||  "N/A";
+		}
 	}
 	if(gType == 3){
 		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(showDetailsLabel == "1"){
+			mainView.heartRateDetailLabel.text = latestData ||  "N/A";
+		}
 	}
 	if(gType == 4){
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(showDetailsLabel == "1"){
+			mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
+		}
 	}
 	if(gType == 5){
 		Ti.App.fireEvent('app:height',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(showDetailsLabel == "1"){
+			mainView.heightDetailLabel.text = latestData+" CM"|| "N/A";
+		}
 	}
 	if(gType == 6){
 		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(showDetailsLabel == "1"){
+			mainView.weightDetailLabel.text = latestData +" KG"|| "N/A";
+		}
 	}
 	if(gType == 10){
 		Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
-		console.log(gType);
+		if(latestData != ""){
+			latestData = latestData  +" Steps";
+		}
+		if(showDetailsLabel == "1"){
+			mainView.stepsDetailLabel.text = latestData || "N/A";
+		}
 	}
 	return info;
 }
 
 exports.loadGraphByType = function(gType,dataPeriod){
-	var info = loadInfo(gType,dataPeriod); 
+	var info = loadInfo(gType,dataPeriod,""); 
 };
 
 exports.todayDate = function(){
