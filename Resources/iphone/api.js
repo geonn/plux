@@ -280,6 +280,7 @@ exports.doLogin = function(username, password, mainView, target) {
                 updateUserService(u_id, 1, username, password);
                 usersModel.addUserData(result);
                 common.hideLoading();
+                API.updateNotificationToken();
                 if ("refresh" != target) {
                     nav.closeWindow(mainView.loginWin);
                     Ti.App.fireEvent("updateHeader");
@@ -303,7 +304,6 @@ exports.doChangePassword = function(e, mainView) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-            console.log(res);
             if ("99" != res.code) {
                 common.createAlert("Error", res.message);
                 return false;
@@ -324,6 +324,7 @@ exports.doChangePassword = function(e, mainView) {
 exports.claimDetailBySeries = function(e) {
     var url = getclaimDetailBySeriesUrl + "?SERIAL=" + e.serial;
     var retryTimes = defaultRetryTimes;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -339,14 +340,15 @@ exports.claimDetailBySeries = function(e) {
                 serial: serial
             }) : Ti.UI.fireEvent("load_claim_detail");
         },
-        timeout: 1e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
 };
 
 exports.getClaimDetail = function(e) {
-    var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
+    var url = getClaimDetailUrl + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode + "&PERIOD=ALL";
+    console.log("getClaimDetail : " + url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -372,6 +374,7 @@ exports.getClaimDetail = function(e) {
 
 exports.claimInfo = function(e) {
     var url = checkBalanceUrl + "?MEMNO=" + e.memno + "&CORPCODE=" + e.corpcode;
+    console.log("claim Info : " + url);
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var client = Ti.Network.createHTTPClient({
         onload: function() {

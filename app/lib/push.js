@@ -32,15 +32,24 @@ if(Ti.Platform.osname == "android"){
 } 
 // Process incoming push notifications
 function receivePush(e) { 
-	nav.navigateWithArgs("webview", {
-		url: e.data.target
-	});
+	
+	if(e.data.target == "claimDetail"){
+		console.log(e.data.target + "=="+e.data.extra);
+		nav.navigateWithArgs("asp/"+e.data.target, {
+			serial: e.data.extra
+		});
+	}
+	if(e.data.target == "webview"){
+		nav.navigateWithArgs(e.data.target, {
+			url: e.data.extra
+		});
+	}
  
 	return false;
 }
 
 function deviceTokenSuccess(ex) {
-    deviceToken = ex.deviceToken;
+    deviceToken = ex.deviceToken; 
     Cloud.Users.login({
 	    login: 'geomilano',
 	    password: 'geonn2015'

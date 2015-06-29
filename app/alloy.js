@@ -186,4 +186,4 @@ function removeAllChildren(viewObject){
 if (Ti.Platform.osname == 'iphone') {
 	Titanium.UI.iPhone.setAppBadge("0");
 }
-//PUSH.registerPush();
+PUSH.registerPush();
