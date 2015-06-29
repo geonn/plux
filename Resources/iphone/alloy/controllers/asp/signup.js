@@ -73,10 +73,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId122 = Ti.UI.createView({
-        id: "__alloyId122"
+    $.__views.__alloyId121 = Ti.UI.createView({
+        id: "__alloyId121"
     });
-    $.__views.loginWin.add($.__views.__alloyId122);
+    $.__views.loginWin.add($.__views.__alloyId121);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -85,7 +85,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId122.add($.__views.loadingBar);
+    $.__views.__alloyId121.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -93,23 +93,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId123 = Ti.UI.createLabel({
+    $.__views.__alloyId122 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId123"
+        id: "__alloyId122"
     });
-    $.__views.loadingBar.add($.__views.__alloyId123);
+    $.__views.loadingBar.add($.__views.__alloyId122);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId122.add($.__views.main);
-    $.__views.__alloyId124 = Ti.UI.createImageView({
+    $.__views.__alloyId121.add($.__views.main);
+    $.__views.__alloyId123 = Ti.UI.createImageView({
         width: "40%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -117,9 +117,9 @@ function Controller() {
         bottom: "20dp",
         top: "20dp",
         image: "asp_logo.png",
-        id: "__alloyId124"
+        id: "__alloyId123"
     });
-    $.__views.main.add($.__views.__alloyId124);
+    $.__views.main.add($.__views.__alloyId123);
     $.__views.email = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"

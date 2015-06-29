@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="MY Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
 		<RightNavButton>
 	        <View>
 	         	<Button id="newRecord" title="Add" />

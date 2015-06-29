@@ -33,25 +33,25 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hraDetailsWin && $.addTopLevelView($.__views.hraDetailsWin);
-    $.__views.__alloyId73 = Ti.UI.createScrollView({
+    $.__views.__alloyId72 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId73"
+        id: "__alloyId72"
     });
-    $.__views.hraDetailsWin.add($.__views.__alloyId73);
+    $.__views.hraDetailsWin.add($.__views.__alloyId72);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId73.add($.__views.input_box);
+    $.__views.__alloyId72.add($.__views.input_box);
     $.__views.description = Ti.UI.createView({
         id: "description",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId73.add($.__views.description);
+    $.__views.__alloyId72.add($.__views.description);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,
