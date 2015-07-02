@@ -103,4 +103,6 @@ FACEBOOK.forceDialogAuth = true;
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
+PUSH.registerPush();
+
 Alloy.createController("index");

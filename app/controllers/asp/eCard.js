@@ -135,8 +135,9 @@ $.card.addEventListener('click', function(e) {
 
 function rotate_box(view_selected){
 	var m_front_to_back = Ti.UI.create3DMatrix();
-	var matrix2d = Ti.UI.create2DMatrix();
+	
 	m_front_to_back = m_front_to_back.rotate(-180, 0, 1, 0);
+	var matrix2d = Ti.UI.create2DMatrix();
 	var a_disappear = matrix2d.scale(0);
 	var a_normal = matrix2d.scale(1);
 	var a_front_to_back = Ti.UI.createAnimation({

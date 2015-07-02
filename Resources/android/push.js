@@ -1,6 +1,12 @@
 function receivePush(e) {
-    nav.navigateWithArgs("webview", {
-        url: e.data.target
+    if ("claimDetail" == e.data.target) {
+        console.log(e.data.target + "==" + e.data.extra);
+        nav.navigateWithArgs("asp/" + e.data.target, {
+            serial: e.data.extra
+        });
+    }
+    "webview" == e.data.target && nav.navigateWithArgs(e.data.target, {
+        url: e.data.extra
     });
     return false;
 }

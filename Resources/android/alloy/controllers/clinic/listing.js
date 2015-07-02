@@ -13,7 +13,8 @@ function Controller() {
             width: "100%",
             separatorColor: "#CE1D1C",
             height: Ti.UI.SIZE,
-            top: 0
+            top: 0,
+            scrollable: false
         });
         var data = [];
         if ("" == e) var arr = details; else var arr = e.details;

@@ -21,7 +21,8 @@ function Controller() {
         var section = Ti.UI.createTableViewSection({
             headerTitle: "Amount"
         });
-        section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
+        var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
+        "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
         section.add(createTableViewRow("Consultation", "RM" + data.consultation_amt.toFixed(2)));
         section.add(createTableViewRow("Medication", "RM" + data.medication_amt.toFixed(2), data.medication));
         section.add(createTableViewRow("Injection", "RM" + data.injection_amt.toFixed(2), data.injection));

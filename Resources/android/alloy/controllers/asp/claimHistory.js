@@ -35,6 +35,7 @@ function Controller() {
         memno: args.memno,
         name: arg_name
     });
+    console.log(data);
     data.forEach(function(entry) {
         var row = $.UI.create("TableViewRow");
         var view_container = $.UI.create("View", {
