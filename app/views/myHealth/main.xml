@@ -71,6 +71,15 @@
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bodyTempDetailLabel" />
 						</View>
 					</View>
+					<View id="cholestrolView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="cholestrolWebView" height="200" width="100%" url="/html/cholestrol.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="cholestrolDetailLabel" />
+						</View>
+					</View>
+					<!--
 					<View id="heightView" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
 						<WebView id="heightWebView" height="200" width="100%" url="/html/height.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
@@ -87,6 +96,7 @@
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="weightDetailLabel" />
 						</View>
 					</View>
+					-->
 				</ScrollView>
 			</View>
 		</View>

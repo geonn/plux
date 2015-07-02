@@ -8,6 +8,7 @@ ID       type Name
 4 		BODY TEMPERATURE
 5		HEIGHT
 6		WEIGHT 
+7		CHOLESTROL
 10		STEPS
 ************************************/
 

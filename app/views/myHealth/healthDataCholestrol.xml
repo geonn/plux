@@ -1,0 +1,69 @@
+<Alloy>
+	<Window title="Add Data" backButtonTitle="" id="healthCholestrolWin" class="container" navTintColor="#CE1D1C">
+		<RightNavButton>
+	        <View>
+	         	<Button id="saveButton" onTouchend="doSaveRecords" color="#ADADAD" title="Save" right="0" touchEnabled="false"  />
+	        </View>
+        </RightNavButton>
+        <View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+	        <ActivityIndicator  id="activityIndicator" />
+	    	<Label top="5" text="Loading" color="#ffffff" />
+	    </View>
+		<View id="main" layout="" backgroundColor="#F6F6F6" height="100%" >
+			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="80%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Add Data</Label>
+		     	</View>
+		     	<View width="10%">
+		         	<Button id="saveButton" onTouchend="doSaveRecords" color="#ADADAD" title="Save" right="0" touchEnabled="false"  />
+		   		</View>
+		 	</View> 
+			<View  layout="vertical" height="30" top="10"  >
+	        	<Label text="Please fill in your information below" color="#878686" id="description"  />
+	        </View>
+			<TableView id="table" height="180" top="40" scrollable="false">
+				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showDatePicker">
+					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
+						<Label text="Date" top="12" class="title_Label"  />
+						<Label text="" top="12" color="#707070" id="date_value" textAlign="right" width="80%"  />
+					</View>
+				</TableViewRow>
+				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showTimePicker">
+					<View  layout="horizontal" height="45" width="100%"  >
+						<Label text="Time"  top="12" class="title_Label" />
+						<Label text=""  top="12" color="#707070" id="time_value" textAlign="right" width="80%"  />
+					</View>
+				</TableViewRow>
+				<TableViewRow id="tvrField1" selectedBackgroundColor="#ffffff">
+					<View  layout="horizontal" height="45" width="100%" >
+						<Label text="HDL(mg/dL)" width="28%" top="12" class="title_Label"  />
+						<TextField id="field1" width="64%" right="0" top="12" textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+					</View>
+				</TableViewRow>
+				<TableViewRow id="tvrField2" selectedBackgroundColor="#ffffff">
+					<View  layout="horizontal" height="45" width="100%" >
+						<Label text="LDL(mg/dL)" width="30%" top="12" class="title_Label" />
+						<TextField id="field2" width="62%" right="0" top="12" textAlign="right" top="5"  backgroundColor="#ffffff" borderColor="#ffffff"  height="30" value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+					</View>
+				</TableViewRow>
+			</TableView>
+				
+			<View height="Ti.UI.SIZE" id="selectorView" bottom="0" >
+				<Picker id="datePicker"
+				          onChange="changeDate" 
+				          type="Ti.UI.PICKER_TYPE_DATE" 
+				           visible="false">
+				 </Picker>
+				 <Picker id="timePicker"
+				          onChange="changeTime" 
+				          type="Ti.UI.PICKER_TYPE_TIME" 
+				          visible="false">
+				 </Picker>
+			</View>	 
+			
+		</View>
+	</Window>
+</Alloy>

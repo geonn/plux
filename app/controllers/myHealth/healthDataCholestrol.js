@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var formType = 3;
+var formType = 7;
 var lib_health = Alloy.createCollection('health'); 
 var hd = require('healthData');
 
@@ -46,25 +46,26 @@ function doSaveRecords(){
 	var date    = $.date_value.text; 
 	var time    = $.time_value.text; 
 	var field1  = $.field1.value; 
+	var field2  = $.field2.value;
 	var s_date  = date.split('/');
 	var newDate = s_date[2] + "-"+s_date[1]+"-"+s_date[0];
 	
-	/**Heart Rate formula**/
+	/**Total Cholesterol Rate formula**/
 	var s_time = time.split(' ');
 	var newTime = s_time[0] ;
 	if(s_time[1] == "PM"){
 		hm = newTime.split(':');  
 		newTime = (parseInt(hm[0]) + 12) + ":"+hm[1];
-	}
-	
+	} 
 	lib_health.addHealthData({
 		date : newDate,
 		time : newTime,
 		field1 : field1, 
-		amount : field1,
+		field2 : field2,
+		amount : field1 + field2,
 		type : formType
 	});  
 	// nav.navigationWindow("myHealth" );
 	hd.loadInfo(formType);
-	nav.closeWindow($.healthDHWin);
+	nav.closeWindow($.healthCholestrolWin);
 }

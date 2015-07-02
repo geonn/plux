@@ -61,7 +61,7 @@ exports.enableSaveButton = function(e){
 };
 
 exports.populateData = function(e){
-	for(var i =1; i <= 6; i++){
+	for(var i =1; i <= 7; i++){
 	 	var info = loadInfo(i,"","1");
 	}
 	
@@ -69,8 +69,8 @@ exports.populateData = function(e){
 	info = loadInfo(10,"","1");
 };
 
-exports.loadInfo = function(gType){
-	loadInfo(gType,"","");
+exports.loadInfo = function(gType,dataPeriod,showDetailsLabel){
+	loadInfo(gType,dataPeriod,showDetailsLabel);
 };
 
 function loadInfo(gType,dataPeriod,showDetailsLabel){
@@ -91,7 +91,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			var newDate = m_names[month]+""+convert[0].substring(2, 4);
 			rec['label'] = newDate;
 			
-			if(gType == "2"){
+			if(gType == "2" || gType == "7"){
 				rec['y'] = parseFloat(entry.value); 
 				// For second records
 				var rec2 = {};
@@ -110,10 +110,11 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 	}else{ 
 		if(gType == "10"){
 			var info_details = lib_health.getSteps();  
-			console.log(info_details);
+			
 		}else{
 			var info_details = lib_health.getHealthListByType(loadType);  
 		}
+		
 		
 		info_details.reverse();	 
 		var latestData;
@@ -125,14 +126,14 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 				var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
 				rec['label'] = newDate;
 				
-				if(gType == "2"){
+				if(gType == "2" || gType == "7" ){
 					rec['y'] = parseFloat(entry.field1); 
 					// For second records
 					var rec2 = {};
 					rec2['label'] = newDate;
 					rec2['y'] = parseFloat(entry.field2);
-					info2.push(rec2);
-					latestData = parseFloat(entry.field2);
+					info2.push(rec2); 
+					latestData = "-";
 				}else if(gType == "6"){
 					rec['y'] = parseFloat(entry.field1);
 					latestData = parseFloat(entry.field1);
@@ -186,6 +187,12 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			mainView.weightDetailLabel.text = latestData +" KG"|| "N/A";
+		}
+	}
+	if(gType == 7){ 
+		Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		if(showDetailsLabel == "1"){
+			mainView.cholestrolDetailLabel.text = "-";
 		}
 	}
 	if(gType == 10){
@@ -296,6 +303,9 @@ exports.navigateGraph = function(gType){
 	}
 	if(gType == "6"){
 		nav.navigationWindow("myHealth/healthDataBmi");
+	}
+	if(gType == "7"){
+		nav.navigationWindow("myHealth/healthDataCholestrol");
 	}
 };
 
