@@ -22,6 +22,9 @@ if(gType == "5"){
 if(gType == "6"){
 	var url = "/html/weight.html";
 }
+if(gType == "7"){
+	var url = "/html/cholestrol.html";
+}
 if(gType == "10"){
 	var url = "/html/steps.html";
 }

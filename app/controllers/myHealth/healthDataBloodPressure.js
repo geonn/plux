@@ -80,6 +80,6 @@ function doSaveRecords(){
 		amount : amount.toFixed(2),
 		type : formType
 	});  
-	hd.populateData(); 
+	hd.loadInfo(formType);
 	nav.closeWindow($.healthDBPWin); 
 }

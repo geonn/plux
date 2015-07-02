@@ -20,7 +20,7 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             var month = parseInt(convert[1]) - 1;
             var newDate = m_names[month] + "" + convert[0].substring(2, 4);
             rec["label"] = newDate;
-            if ("2" == gType) {
+            if ("2" == gType || "7" == gType) {
                 rec["y"] = parseFloat(entry.value);
                 var rec2 = {};
                 rec2["label"] = newDate;
@@ -30,10 +30,7 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             info.push(rec);
         });
     } else {
-        if ("10" == gType) {
-            var info_details = lib_health.getSteps();
-            console.log(info_details);
-        } else var info_details = lib_health.getHealthListByType(loadType);
+        if ("10" == gType) var info_details = lib_health.getSteps(); else var info_details = lib_health.getHealthListByType(loadType);
         info_details.reverse();
         var latestData;
         info_details.length > 0 ? info_details.forEach(function(entry) {
@@ -42,13 +39,13 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             var month = parseInt(convert[1]) - 1;
             var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
             rec["label"] = newDate;
-            if ("2" == gType) {
+            if ("2" == gType || "7" == gType) {
                 rec["y"] = parseFloat(entry.field1);
                 var rec2 = {};
                 rec2["label"] = newDate;
                 rec2["y"] = parseFloat(entry.field2);
                 info2.push(rec2);
-                latestData = parseFloat(entry.field2);
+                latestData = "-";
             } else if ("6" == gType) {
                 rec["y"] = parseFloat(entry.field1);
                 latestData = parseFloat(entry.field1);
@@ -104,6 +101,14 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             dataPeriod: dataPeriod
         });
         "1" == showDetailsLabel && (mainView.weightDetailLabel.text = latestData + " KG" || "N/A");
+    }
+    if (7 == gType) {
+        Ti.App.fireEvent("app:cholestrol", {
+            message: info,
+            message2: info2,
+            dataPeriod: dataPeriod
+        });
+        "1" == showDetailsLabel && (mainView.cholestrolDetailLabel.text = "-");
     }
     if (10 == gType) {
         Ti.App.fireEvent("app:steps", {
@@ -165,12 +170,12 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 6 >= i; i++) var info = loadInfo(i, "", "1");
+    for (var i = 1; 7 >= i; i++) var info = loadInfo(i, "", "1");
     info = loadInfo(10, "", "1");
 };
 
-exports.loadInfo = function(gType) {
-    loadInfo(gType, "", "");
+exports.loadInfo = function(gType, dataPeriod, showDetailsLabel) {
+    loadInfo(gType, dataPeriod, showDetailsLabel);
 };
 
 exports.loadGraphByType = function(gType, dataPeriod) {
@@ -230,6 +235,7 @@ exports.navigateGraph = function(gType) {
     "4" == gType && nav.navigationWindow("myHealth/healthDataBodyTemperature");
     "5" == gType && nav.navigationWindow("myHealth/healthDataBmi");
     "6" == gType && nav.navigationWindow("myHealth/healthDataBmi");
+    "7" == gType && nav.navigationWindow("myHealth/healthDataCholestrol");
 };
 
 exports.stepsMotion = function() {
