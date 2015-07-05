@@ -18,20 +18,22 @@ function Controller() {
         leftNavView.addEventListener("click", cancelEdit);
         $.editButton.visible = "false";
         $.saveButton.visible = "true";
-        $.datePicker.show();
-        $.genderPicker.show();
-        $.bloodTypePicker.show();
         $.healthProfileWin.leftNavButton = leftNavView;
+        var all_picker = $.selectorView.children;
+        all_picker[2].show();
+        showDatePicker();
+        for (var i = 0; i < all_picker.length; i++) ;
     }
     function showDatePicker() {
+        var all_picker = $.selectorView.children;
         var isEnabled = $.tvrFieldDate.getTouchEnabled();
         if (isEnabled) {
             resetTextColor();
             $.date_value.color = "#ff0000";
             hd.showBirthDatePicker({
-                date: $.datePicker,
-                gender: $.genderPicker,
-                bloodType: $.bloodTypePicker
+                date: all_picker[2],
+                gender: all_picker[0],
+                bloodType: all_picker[1]
             });
             hideKeyboard();
         }
@@ -42,27 +44,29 @@ function Controller() {
         $.bloodType_value.color = "#757575";
     }
     function showGenderPicker() {
+        var all_picker = $.selectorView.children;
         var isEnabled = $.tvrFieldGender.getTouchEnabled();
         if (isEnabled) {
             resetTextColor();
             $.gender_value.color = "#ff0000";
             hd.showGenderPicker({
-                gender: $.genderPicker,
-                bloodType: $.bloodTypePicker,
-                date: $.datePicker
+                gender: all_picker[0],
+                bloodType: all_picker[1],
+                date: all_picker[2]
             });
             hideKeyboard();
         }
     }
     function showBloodTypePicker() {
+        var all_picker = $.selectorView.children;
         var isEnabled = $.tvrFieldBloodType.getTouchEnabled();
         if (isEnabled) {
             resetTextColor();
             $.bloodType_value.color = "#ff0000";
             hd.showBloodTypePicker({
-                bloodType: $.bloodTypePicker,
-                gender: $.genderPicker,
-                date: $.datePicker
+                bloodType: all_picker[1],
+                gender: all_picker[0],
+                date: all_picker[2]
             });
             hideKeyboard();
         }
@@ -103,6 +107,16 @@ function Controller() {
         cancelEdit();
     }
     function setupPersonalData() {
+        var datePicker = Ti.UI.createPicker({
+            type: Ti.UI.PICKER_TYPE_DATE,
+            minDate: new Date(1930, 0, 1),
+            maxDate: new Date(yyyy, mm, dd),
+            id: "datePicker",
+            visible: false
+        });
+        $.selectorView.add(datePicker);
+        datePicker.addEventListener("change", changeDate);
+        var all_picker = $.selectorView.children;
         if (0 == myData.length) {
             myData = lib_health.getOwnerData();
             setupPersonalData();
@@ -116,9 +130,9 @@ function Controller() {
             var gendata = Ti.UI.createPickerRow({
                 title: genderData.toString()
             });
-            $.genderPicker.add(gendata);
+            all_picker[0].add(gendata);
         }
-        $.genderPicker.setSelectedRow(0, myGender, true);
+        all_picker[0].setSelectedRow(0, myGender, true);
         var bloodTypeValue = [ "Not Set", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" ];
         var myBloodType;
         for (var i = 0; i < bloodTypeValue.length; i++) {
@@ -127,7 +141,7 @@ function Controller() {
             var blooddata = Ti.UI.createPickerRow({
                 title: bloodTypeData.toString()
             });
-            $.bloodTypePicker.add(blooddata);
+            all_picker[1].add(blooddata);
         }
         var today = new Date();
         var dd = today.getDate();
@@ -139,10 +153,8 @@ function Controller() {
         if (sBday.length > 1) {
             var myAge = hd.getAge(myBDay);
             showBday = sBday[2] + "/" + sBday[1] + "/" + sBday[0] + "(" + myAge + ")";
-            $.datePicker.setValue(new Date(sBday[0], sBday[1], sBday[2]));
+            all_picker[2].setValue(new Date(sBday[0], sBday[1], sBday[2]));
         }
-        $.datePicker.setMinDate(new Date(1930, 0, 1));
-        $.datePicker.setMaxDate(new Date(yyyy, mm, dd));
         $.bloodTypePicker.setSelectedRow(0, myBloodType, true);
         $.date_value.text = showBday;
         $.gender_value.text = myData.gender;
@@ -201,7 +213,7 @@ function Controller() {
     $.__views.healthProfileWin.rightNavButton = $.__views.__alloyId242;
     $.__views.main = Ti.UI.createView({
         id: "main",
-        layout: "",
+        layout: "vertical",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
@@ -342,15 +354,6 @@ function Controller() {
     });
     $.__views.selectorView.add($.__views.bloodTypePicker);
     changeBloodType ? $.__views.bloodTypePicker.addEventListener("change", changeBloodType) : __defers["$.__views.bloodTypePicker!change!changeBloodType"] = true;
-    $.__views.datePicker = Ti.UI.createPicker({
-        format24: false,
-        calendarViewShown: false,
-        id: "datePicker",
-        type: Ti.UI.PICKER_TYPE_DATE,
-        visible: "false"
-    });
-    $.__views.selectorView.add($.__views.datePicker);
-    changeDate ? $.__views.datePicker.addEventListener("change", changeDate) : __defers["$.__views.datePicker!change!changeDate"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -364,19 +367,21 @@ function Controller() {
     });
     var leftNavView = Titanium.UI.createView();
     var cancelEdit = function() {
+        var all_picker = $.selectorView.children;
         resetTextColor();
         $.tvrFieldDate.setTouchEnabled(false);
         $.tvrFieldGender.setTouchEnabled(false);
         $.tvrFieldBloodType.setTouchEnabled(false);
         $.editButton.visible = "true";
         $.saveButton.visible = "false";
-        $.datePicker.hide();
-        $.genderPicker.hide();
-        $.bloodTypePicker.hide();
+        for (var i = 0; i < all_picker.length; i++) all_picker[i].hide();
         leftNavView.removeEventListener("click", cancelEdit);
         $.healthProfileWin.leftNavButton = null;
     };
     setupPersonalData();
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.healthProfileWin);
+    });
     __defers["$.__views.editButton!touchend!doEditRecords"] && $.__views.editButton.addEventListener("touchend", doEditRecords);
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
     __defers["$.__views.tvrFieldDate!click!showDatePicker"] && $.__views.tvrFieldDate.addEventListener("click", showDatePicker);
@@ -384,7 +389,6 @@ function Controller() {
     __defers["$.__views.tvrFieldBloodType!click!showBloodTypePicker"] && $.__views.tvrFieldBloodType.addEventListener("click", showBloodTypePicker);
     __defers["$.__views.genderPicker!change!changeGender"] && $.__views.genderPicker.addEventListener("change", changeGender);
     __defers["$.__views.bloodTypePicker!change!changeBloodType"] && $.__views.bloodTypePicker.addEventListener("change", changeBloodType);
-    __defers["$.__views.datePicker!change!changeDate"] && $.__views.datePicker.addEventListener("change", changeDate);
     _.extend($, exports);
 }
 

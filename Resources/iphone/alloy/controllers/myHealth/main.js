@@ -92,13 +92,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.myhealth && $.addTopLevelView($.__views.myhealth);
-<<<<<<< HEAD
-    $.__views.__alloyId205 = Ti.UI.createView({
-        id: "__alloyId205"
-=======
     $.__views.__alloyId220 = Ti.UI.createView({
         id: "__alloyId220"
->>>>>>> origin/master
     });
     $.__views.moreHealth = Ti.UI.createImageView({
         right: "0",
@@ -106,21 +101,12 @@ function Controller() {
         width: "30",
         image: "/images/health_love.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId205.add($.__views.moreHealth);
-    $.__views.myhealth.rightNavButton = $.__views.__alloyId205;
-    $.__views.__alloyId206 = Ti.UI.createView({
-        id: "__alloyId206"
-    });
-    $.__views.myhealth.add($.__views.__alloyId206);
-=======
     $.__views.__alloyId220.add($.__views.moreHealth);
     $.__views.myhealth.rightNavButton = $.__views.__alloyId220;
     $.__views.__alloyId221 = Ti.UI.createView({
         id: "__alloyId221"
     });
     $.__views.myhealth.add($.__views.__alloyId221);
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -306,11 +292,7 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bloodPressureView.add($.__views.bloodPressureWebView);
-<<<<<<< HEAD
-    $.__views.__alloyId214 = Ti.UI.createView({
-=======
     $.__views.__alloyId229 = Ti.UI.createView({
->>>>>>> origin/master
         height: "1",
         left: "10",
         right: "10",
