@@ -5,21 +5,20 @@ common.construct($);
 loadPage();
 
 function loadPage(){
-	user = usersModel.getOwnerData(); 
- 
+	user = usersModel.getOwnerData();
 	if(user.isver == "true"){
+		console.log('show claim');
 		common.showLoading();
 		$.verifyContainer.hide();
 		$.claimContainer.show();
 		API.claimInfo({memno : user.icno, corpcode : user.corpcode});
 		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
-	} else{ 
+	}else{ 
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
 		$.verifyContainer.show();
 		$.claimContainer.hide();
 	} 
 	Ti.App.removeEventListener('loadPage',loadPage);
-	 
 }
   
 function checkStatus(){
@@ -32,10 +31,11 @@ function checkStatus(){
 	}
 } 
 		
-Ti.UI.addEventListener("data_loaded", init);
+Ti.App.addEventListener("data_loaded", init);
 
 function init(){
 	//var d = new Date();
+	console.log('init');
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));
@@ -76,7 +76,7 @@ function init(){
 	    var personal_claim_view = Alloy.createController("_person_claim_view", {claim_data: groups[group], name: group}).getView();
 	    $.main.add(personal_claim_view);
 	});
-	Ti.UI.removeEventListener("data_loaded", init);
+	Ti.App.removeEventListener("data_loaded", init);
 	common.hideLoading();
 }
 
@@ -147,3 +147,9 @@ $.view_balance.addEventListener("click", function(){
 	var nav = require('navigation');
 	nav.navigateWithArgs("asp/claimHistory", {memno: user.icno});
 });
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		nav.closeWindow($.myClaim); 
+	});
+}

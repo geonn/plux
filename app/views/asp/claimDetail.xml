@@ -1,10 +1,18 @@
 <Alloy>
-	<Window title="Claim Detail" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
-		    <ActivityIndicator  id="activityIndicator" />
-			<Label top="5" text="Loading" color="#ffffff" />
-		</View>
+	<Window title="Claim Detail" id="claimDetail" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
+         		<ActivityIndicator id="activityIndicator" />
+         		<Label top="5" bottom="5" text="Loading" color="#ffffff" />
+         </View>
 		<View id="main" layout="vertical">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="90%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Detail</Label>
+		     	</View>
+		 	</View>
 			<TableView id="tv">
 		    </TableView>
 		</View>

@@ -72,25 +72,27 @@ exports.noRecord = function(){
 	return data;
 };
 
-exports.showLoading = function(){ 
-	console.log(mainView);
-	console.log(mainView.activityIndicator);
-	mainView.activityIndicator.show();
+exports.showLoading = function(){
+	console.log('show loading');
+	
 	mainView.loadingBar.opacity = "1";
 	mainView.loadingBar.zIndex = "100";
-	mainView.loadingBar.height = "120";
+	//mainView.loadingBar.height = "120";
 	 
 	if(Ti.Platform.osname == "android"){
-		mainView.loadingBar.top =  (DPUnitsToPixels(Ti.Platform.displayCaps.platformHeight) / 2) -50; 
+		//mainView.loadingBar.top =  (DPUnitsToPixels(Ti.Platform.displayCaps.platformHeight) / 2) -50; 
+		mainView.loadingBar.height = Ti.UI.SIZE;
 		mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
-		//mainView.activityIndicator.top = 0; 
+		mainView.activityIndicator.top = 0; 
 	}else if (Ti.Platform.name === 'iPhone OS'){
 		mainView.loadingBar.top = (Ti.Platform.displayCaps.platformHeight / 2) -80; 
 		mainView.activityIndicator.style = Ti.UI.iPhone.ActivityIndicatorStyle.BIG;
-	}  
+	}
+	mainView.activityIndicator.show();
 };
 
 exports.hideLoading = function(){
+	console.log("hideLoading");
 	mainView.activityIndicator.hide();
 	mainView.loadingBar.opacity = "0";
 	mainView.loadingBar.height = "0";

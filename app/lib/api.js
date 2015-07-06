@@ -296,7 +296,7 @@ exports.resendVerificationEmail = function(){
 exports.doLogin = function(username, password, mainView, target) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	 
+	 console.log("asp login"+url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -340,7 +340,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     	common.hideLoading();
        		
 	     },
-	     timeout : 130000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -403,7 +403,7 @@ exports.claimDetailBySeries = function(e){
        				 claim_detail_model.save_claim_extra_detail(entry.serial,entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
        			});
 	       }
-	       Ti.UI.fireEvent("load_claim_detail");
+	       Ti.App.fireEvent("load_claim_detail");
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
@@ -411,12 +411,12 @@ exports.claimDetailBySeries = function(e){
 	     	retryTimes --;
 	     	
 	     	if(retryTimes !== 0){
-	     		API.claimDetailBySeries({serial : serial});
+	     		API.claimDetailBySeries({serial : e.serial});
 	     	}else{
-	     		Ti.UI.fireEvent("load_claim_detail");
+	     		Ti.App.fireEvent("load_claim_detail");
 	     	}
 	     },
-	     timeout : 60000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	});
 	
 	// Prepare the connection.
@@ -436,9 +436,10 @@ exports.getClaimDetail = function(e){
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
+	       console.log(res);
 	       if(res.length == 0){
 	       	
-	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
+	       }else if( typeof res[0].message !== "undefined" && res[0].message != null){
 	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{
@@ -453,16 +454,16 @@ exports.getClaimDetail = function(e){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
-	     	//console.log('error');
+	     	console.log(ex);
 	     	retryTimes --;
 	     	
 	     	if(retryTimes !== 0){
 	     		API.getClaimDetail({empno : e.empno, corpcode : e.corpcode, retryTimes: retryTimes});
 	     	}else{
-	     		Ti.UI.fireEvent("data_loaded");
+	     		//Ti.App.fireEvent("data_loaded");
 	     	}
 	     },
-	     timeout : 120000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	});
 	
 	// Prepare the connection.
@@ -480,12 +481,14 @@ exports.claimInfo = function(e) {
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
+	       console.log(res);
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		common.createAlert(res[0].message);
 	       }else{
 	       		Ti.App.Properties.setString('balchk', this.responseText);
 	       		Ti.App.Properties.setString('balchkUpdatedDate', currentDateTime());
-	       		Ti.UI.fireEvent("data_loaded");
+	       		Ti.App.fireEvent("data_loaded");
+	       		console.log('fired');
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
@@ -495,10 +498,10 @@ exports.claimInfo = function(e) {
 	     	if(retryTimes !== 0){
 	     		API.claimInfo({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
 	     	}else{
-	     		Ti.UI.fireEvent("data_loaded");
+	     		Ti.App.fireEvent("data_loaded");
 	     	}
 	     },
-	     timeout : 5000  // in milliseconds
+	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);

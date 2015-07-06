@@ -47,7 +47,10 @@ function Controller() {
     var args = arguments[0] || {};
     var arg_name = "undefined" != typeof args.name ? args.name : "%";
     var title = "%" == arg_name ? "All Claim Records" : arg_name;
-    $.claim_history.title = title;
+    if ("android" == Ti.Platform.osname) {
+        console.log($.pageTitle);
+        $.pageTitle.text = title;
+    } else $.claim_history.title = title;
     var claimDetailModel = Alloy.createCollection("claim_detail");
     var data = claimDetailModel.getClaimDetail({
         memno: args.memno,
@@ -140,6 +143,9 @@ function Controller() {
                 serial: e.source.serial
             });
         });
+    });
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.claim_history);
     });
     _.extend($, exports);
 }

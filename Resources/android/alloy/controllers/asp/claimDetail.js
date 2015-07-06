@@ -9,6 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init() {
+        console.log("init");
         var data = usersModel.getClaimDetailBySeries({
             serial: arg_serial
         });
@@ -95,6 +96,89 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.claimDetail = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "Claim Detail",
+        id: "claimDetail",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C"
+    });
+    $.__views.claimDetail && $.addTopLevelView($.__views.claimDetail);
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        zIndex: "12",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.claimDetail.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId89 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        bottom: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId89"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId89);
+    $.__views.main = Ti.UI.createView({
+        id: "main",
+        layout: "vertical"
+    });
+    $.__views.claimDetail.add($.__views.main);
+    $.__views.__alloyId90 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: Ti.UI.FILL,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId90"
+    });
+    $.__views.main.add($.__views.__alloyId90);
+    $.__views.__alloyId91 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId91"
+    });
+    $.__views.__alloyId90.add($.__views.__alloyId91);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        width: "25",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId91.add($.__views.btnBack);
+    $.__views.__alloyId92 = Ti.UI.createView({
+        width: "90%",
+        id: "__alloyId92"
+    });
+    $.__views.__alloyId90.add($.__views.__alloyId92);
+    $.__views.pageTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Claim Detail",
+        id: "pageTitle",
+        textAlign: "center"
+    });
+    $.__views.__alloyId92.add($.__views.pageTitle);
+    $.__views.tv = Ti.UI.createTableView({
+        id: "tv"
+    });
+    $.__views.main.add($.__views.tv);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -105,7 +189,10 @@ function Controller() {
     var usersModel = Alloy.createCollection("claim_detail");
     common.construct($);
     common.showLoading();
-    Ti.UI.addEventListener("load_claim_detail", init);
+    Ti.App.addEventListener("load_claim_detail", init);
+    $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.claimDetail);
+    });
     _.extend($, exports);
 }
 

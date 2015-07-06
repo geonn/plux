@@ -10,12 +10,14 @@ function resetGraph(){
 	$.bloodPressureView.setHeight("0");
 	$.heartRateView.setHeight("0");
 	$.bodyTemperatureView.setHeight("0");
+	$.cholestrolView.setHeight("0");
 	//$.heightView.setHeight("0");
 	//$.weightView.setHeight("0");
 	$.bmiView.setTop("0");
 	$.bloodPressureView.setTop("0");
 	$.heartRateView.setTop("0");
 	$.bodyTemperatureView.setTop("0");
+	$.cholestrolView.setTop("0");
 	//$.heightView.setTop("0");
 	//$.weightView.setTop("0");
 }
@@ -25,13 +27,16 @@ function filterList(e){
 	if(e.category == "measurement"){
 		resetGraph();
 		$.bmiView.setHeight(Ti.UI.SIZE);
+		$.cholestrolView.setHeight(Ti.UI.SIZE);
 		//$.heightView.setHeight(Ti.UI.SIZE);
 		//$.weightView.setHeight(Ti.UI.SIZE);
 		$.bmiView.setTop(10);
+		$.cholestrolView.setTop(10);
 		//$.heightView.setTop(10);
 		//$.weightView.setTop(10);
 		
 		$.bmiView.show();
+		$.cholestrolView.show();
 		//$.heightView.show();
 		//$.weightView.show(); 
 	}else if(e.category == "vitals"){
@@ -39,13 +44,17 @@ function filterList(e){
 		$.heartRateView.setHeight(Ti.UI.SIZE);
 		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
 		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		$.cholestrolView.setHeight(Ti.UI.SIZE);
+		
 		$.heartRateView.setTop(10);
 		$.bodyTemperatureView.setTop(10);
 		$.bloodPressureView.setTop(10);
+		$.cholestrolView.setTop(10);
 		
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
+		$.cholestrolView.show();
 	}else{
 		$.bmiView.setHeight(Ti.UI.SIZE);
 		//$.heightView.setHeight(Ti.UI.SIZE);
@@ -53,6 +62,7 @@ function filterList(e){
 		$.heartRateView.setHeight(Ti.UI.SIZE);
 		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
 		$.bloodPressureView.setHeight(Ti.UI.SIZE);
+		$.cholestrolView.setHeight(Ti.UI.SIZE);
 		
 		$.bmiView.setTop(10);
 		//$.heightView.setTop(10);
@@ -60,6 +70,7 @@ function filterList(e){
 		$.heartRateView.setTop(10);
 		$.bodyTemperatureView.setTop(10);
 		$.bloodPressureView.setTop(10);
+		$.cholestrolView.setTop(10);
 		
 		//$.weightView.show(); 
 		//$.heightView.show(); 
@@ -67,6 +78,7 @@ function filterList(e){
 		$.bloodPressureView.show();
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
+		$.cholestrolView.show();
 	}
 	
 }
@@ -165,6 +177,15 @@ $.moreHealth.addEventListener('click', function(e){
 			Ti.App.fireEvent('filterList',{category: "vitals"});
 		}
 	});
+});
+
+$.cholestrolView.addEventListener('click',function(e){
+	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 7});
+});
+
+$.cholestrolView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
 });
 
 $.myhealth.addEventListener("close", function(e){

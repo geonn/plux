@@ -263,6 +263,7 @@ exports.resendVerificationEmail = function() {
 exports.doLogin = function(username, password, mainView, target) {
     var u_id = Ti.App.Properties.getString("u_id") || "";
     var url = loginUrl + "?LOGINID=" + username + "&PASSWORD=" + password;
+    console.log("asp login" + url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -292,7 +293,7 @@ exports.doLogin = function(username, password, mainView, target) {
             common.createAlert("Login Fail", "unexpected error");
             common.hideLoading();
         },
-        timeout: 13e4
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -332,15 +333,15 @@ exports.claimDetailBySeries = function(e) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_extra_detail(entry.serial, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
             }));
-            Ti.UI.fireEvent("load_claim_detail");
+            Ti.App.fireEvent("load_claim_detail");
         },
         onerror: function() {
             retryTimes--;
             0 !== retryTimes ? API.claimDetailBySeries({
-                serial: serial
-            }) : Ti.UI.fireEvent("load_claim_detail");
+                serial: e.serial
+            }) : Ti.App.fireEvent("load_claim_detail");
         },
-        timeout: 6e4
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -353,20 +354,22 @@ exports.getClaimDetail = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
+            console.log(res);
             0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype);
             }));
         },
-        onerror: function() {
+        onerror: function(ex) {
+            console.log(ex);
             retryTimes--;
-            0 !== retryTimes ? API.getClaimDetail({
+            0 !== retryTimes && API.getClaimDetail({
                 empno: e.empno,
                 corpcode: e.corpcode,
                 retryTimes: retryTimes
-            }) : Ti.UI.fireEvent("data_loaded");
+            });
         },
-        timeout: 12e4
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();
@@ -379,10 +382,12 @@ exports.claimInfo = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
+            console.log(res);
             if (void 0 !== typeof res[0].message && null != res[0].message) common.createAlert(res[0].message); else {
                 Ti.App.Properties.setString("balchk", this.responseText);
                 Ti.App.Properties.setString("balchkUpdatedDate", currentDateTime());
-                Ti.UI.fireEvent("data_loaded");
+                Ti.App.fireEvent("data_loaded");
+                console.log("fired");
             }
         },
         onerror: function() {
@@ -391,9 +396,9 @@ exports.claimInfo = function(e) {
                 memno: e.memno,
                 corpcode: e.corpcode,
                 retryTimes: retryTimes
-            }) : Ti.UI.fireEvent("data_loaded");
+            }) : Ti.App.fireEvent("data_loaded");
         },
-        timeout: 5e3
+        timeout: 1e4
     });
     client.open("GET", url);
     client.send();

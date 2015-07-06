@@ -64,17 +64,17 @@ exports.noRecord = function() {
 };
 
 exports.showLoading = function() {
-    console.log(mainView);
-    console.log(mainView.activityIndicator);
-    mainView.activityIndicator.show();
+    console.log("show loading");
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";
-    mainView.loadingBar.height = "120";
-    mainView.loadingBar.top = DPUnitsToPixels(Ti.Platform.displayCaps.platformHeight) / 2 - 50;
+    mainView.loadingBar.height = Ti.UI.SIZE;
     mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
+    mainView.activityIndicator.top = 0;
+    mainView.activityIndicator.show();
 };
 
 exports.hideLoading = function() {
+    console.log("hideLoading");
     mainView.activityIndicator.hide();
     mainView.loadingBar.opacity = "0";
     mainView.loadingBar.height = "0";

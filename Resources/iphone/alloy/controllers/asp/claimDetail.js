@@ -9,6 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init() {
+        console.log("init");
         var data = usersModel.getClaimDetailBySeries({
             serial: arg_serial
         });
@@ -99,15 +100,16 @@ function Controller() {
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Claim Detail",
+        id: "claimDetail",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "claimDetail"
+        navTintColor: "#CE1D1C"
     });
     $.__views.claimDetail && $.addTopLevelView($.__views.claimDetail);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
         height: "120",
+        zIndex: "12",
         width: "120",
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
@@ -124,6 +126,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
+        bottom: "5",
         text: "Loading",
         color: "#ffffff",
         id: "__alloyId99"
@@ -148,7 +151,10 @@ function Controller() {
     var usersModel = Alloy.createCollection("claim_detail");
     common.construct($);
     common.showLoading();
-    Ti.UI.addEventListener("load_claim_detail", init);
+    Ti.App.addEventListener("load_claim_detail", init);
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.claimDetail);
+    });
     _.extend($, exports);
 }
 

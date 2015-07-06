@@ -24,12 +24,69 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.claim_history = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "My Claim History",
+        id: "claim_history",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C"
+    });
+    $.__views.claim_history && $.addTopLevelView($.__views.claim_history);
+    $.__views.main = Ti.UI.createView({
+        id: "main",
+        layout: "vertical"
+    });
+    $.__views.claim_history.add($.__views.main);
+    $.__views.__alloyId93 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: Ti.UI.FILL,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId93"
+    });
+    $.__views.main.add($.__views.__alloyId93);
+    $.__views.__alloyId94 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId94"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId94);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        width: "25",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId94.add($.__views.btnBack);
+    $.__views.__alloyId95 = Ti.UI.createView({
+        width: "90%",
+        id: "__alloyId95"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId95);
+    $.__views.pageTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "My Claim History",
+        id: "pageTitle",
+        textAlign: "center"
+    });
+    $.__views.__alloyId95.add($.__views.pageTitle);
+    $.__views.tv = Ti.UI.createTableView({
+        id: "tv"
+    });
+    $.__views.main.add($.__views.tv);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var arg_name = "undefined" != typeof args.name ? args.name : "%";
     var title = "%" == arg_name ? "All Claim Records" : arg_name;
-    $.claim_history.title = title;
+    console.log($.pageTitle);
+    $.pageTitle.text = title;
     var claimDetailModel = Alloy.createCollection("claim_detail");
     var data = claimDetailModel.getClaimDetail({
         memno: args.memno,
@@ -122,6 +179,9 @@ function Controller() {
                 serial: e.source.serial
             });
         });
+    });
+    $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.claim_history);
     });
     _.extend($, exports);
 }

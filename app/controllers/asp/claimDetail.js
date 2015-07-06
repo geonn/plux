@@ -7,10 +7,10 @@ common.construct($);
 common.showLoading();
 //var data = usersModel.getClaimDetailBySeries({serial : arg_serial});
 
-Ti.UI.addEventListener("load_claim_detail", init);
+Ti.App.addEventListener("load_claim_detail", init);
 
 function init(){
-
+	console.log('init');
 	var data = usersModel.getClaimDetailBySeries({serial : arg_serial});  
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
 	$.tv.appendRow(createTableViewRow("Patient Name", data.name));
@@ -95,4 +95,10 @@ function createTableViewRow(text, value, dialog){
 	}
 	
 	return row;
+}
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		nav.closeWindow($.claimDetail); 
+	});
 }
