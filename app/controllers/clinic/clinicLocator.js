@@ -29,10 +29,7 @@ function triggerPosition(){
 	    alert('Please enable location services');
 	} 
 }
-
-var curLat = 37.390749;
-var curLot = -122.081651;
-var showCurLoc = false;
+  
    
 function init(e){ 
 	console.log(e);

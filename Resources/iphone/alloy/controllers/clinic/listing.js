@@ -40,8 +40,9 @@ function Controller() {
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundColor: "#ffffff"
                 });
+                console.log("/images/" + entry.clinicType + ".png");
                 var leftImage = Titanium.UI.createImageView({
-                    image: "/images/" + entry.clinicType + ".png",
+                    image: entry.clinicType + ".png",
                     width: 50,
                     height: 50,
                     left: 10
@@ -68,7 +69,7 @@ function Controller() {
                     width: "auto",
                     color: "#848484",
                     right: 50,
-                    height: 12
+                    height: 25
                 });
                 var rightForwardBtn = Titanium.UI.createImageView({
                     image: "/images/btn-forward.png",

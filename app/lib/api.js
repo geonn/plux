@@ -1,7 +1,7 @@
 /*********************
 *** SETTING / API ***
 **********************/
-var API_DOMAIN = "www.asp-medical-clinic.com.my/aida";
+var API_DOMAIN = "appsapi.aspmedic.com/aida/";
 var FREEJINI_DOMAIN =  "plux.freejini.com.my";
 var url_doLogin		= API_DOMAIN+"login.aspx";
 var url_panelList   = API_DOMAIN+"panellist.aspx";
@@ -22,14 +22,14 @@ var pluxSignUpUrl   = "http://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&k
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
 var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
-var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
-var loginUrl        = "https://"+API_DOMAIN+"/login.aspx"; 
-var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx"; 
-var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";  
-var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
-var aspSignupUrl 	= "https://"+API_DOMAIN+"/signup.aspx";
-var resendVerifUrl  = "https://"+API_DOMAIN+"/sendveriemail.aspx";
-var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx"; 
+var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
+var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
+var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx"; 
+var checkBalanceUrl = "http://"+API_DOMAIN+"/balchk.aspx";  
+var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
+var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
+var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
+var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx"; 
 //configuration 
 var defaultRetryTimes = 3;
 
@@ -154,8 +154,14 @@ exports.removeHealthDataById = function(id){
 };
 
 exports.do_pluxLogin = function(data,mainView){
-	var url = pluxLoginUrl +"&email="+data.email+"&password="+data.password;
+	var url = pluxLoginUrl +"&email="+data.email+"&password="+data.password ;
  
+	var records = {};
+	records['version'] =  Ti.Platform.version;
+	records['os'] =  Ti.Platform.osname;
+	records['model'] =  Ti.Platform.model;
+	records['macaddress'] =  Ti.Platform.macaddress;  
+
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
@@ -198,8 +204,8 @@ exports.do_pluxLogin = function(data,mainView){
 		},
 		timeout : 7000  // in milliseconds
 	}); 
-	client.open("GET", url); 
-	client.send(); 
+	client.open("POST", url); 
+	client.send({list: JSON.stringify(records)}); 
 };
 
 exports.do_signup = function(data,mainView){

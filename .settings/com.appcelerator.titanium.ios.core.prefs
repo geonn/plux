@@ -5,5 +5,5 @@ iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.geonn.plux
 iosLaunchConfigurationAttributes/certificate=Freejini Sdn Bhd (MB2GQ323RN)
 iosLaunchConfigurationAttributes/keychain=/Users/geomilano/Library/Keychains/login.keychain
-iosLaunchConfigurationAttributes/sdk_version=8.3
-iosLaunchConfigurationAttributes/uuid=2dc1ed29-d77a-48e7-96b7-69143a3635a6
+iosLaunchConfigurationAttributes/sdk_version=8.4
+iosLaunchConfigurationAttributes/uuid=2a24d218-3df5-4bdd-982a-2c66fe23e137

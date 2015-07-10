@@ -34,7 +34,7 @@ if(Ti.Platform.osname == "android"){
 function receivePush(e) { 
 	
 	if(e.data.target == "claimDetail"){
-		console.log(e.data.target + "=="+e.data.extra);
+		 
 		nav.navigateWithArgs("asp/"+e.data.target, {
 			serial: e.data.extra
 		});
@@ -61,9 +61,11 @@ function deviceTokenSuccess(ex) {
 			    device_token: deviceToken
 			}, function (e) { 
 			    if (e.success  ) { 
+			     
 			    	/** User device token**/
 	         		Ti.App.Properties.setString('deviceToken', deviceToken); 
 					API.updateNotificationToken();
+					 
 			    } else {
 			    	registerPush();
 			    }
@@ -75,6 +77,8 @@ function deviceTokenSuccess(ex) {
 
     
 }
+
+
 function deviceTokenError(e) {
     alert('Failed to register for push notifications! ' + e.error);
 }

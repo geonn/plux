@@ -22,7 +22,6 @@ medicalRecordsModel.addColumn("clinic", "TEXT");
 medicalRecordsModel.addColumn("treatment", "TEXT");
 var u_id = Ti.App.Properties.getString('u_id') || "";
 
-
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
