@@ -5,6 +5,7 @@ var hd = require('healthData');
 
 hd.construct($);
 hd.todayDate();
+
 function hideKeyboard(){
 	$.field1.blur(); 
 }
@@ -67,4 +68,10 @@ function doSaveRecords(){
 	// nav.navigationWindow("myHealth" );
 	hd.loadInfo(formType);
 	nav.closeWindow($.healthDHWin);
+}
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.healthDHWin); 
+	}); 
 }

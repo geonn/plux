@@ -64,7 +64,15 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             message: info,
             dataPeriod: dataPeriod
         });
-        "1" == showDetailsLabel && (mainView.bmiDetailLabel.text = latestData || "N/A");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 0;
+            console.log("bmi" + id);
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     if (2 == gType) {
         Ti.App.fireEvent("app:bloodPressureInfo", {
@@ -72,35 +80,42 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             message2: info2,
             dataPeriod: dataPeriod
         });
-        "1" == showDetailsLabel && (mainView.bloodPressureDetailLabel.text = latestData || "N/A");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 1;
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     if (3 == gType) {
         Ti.App.fireEvent("app:heartRateInfo", {
             message: info,
             dataPeriod: dataPeriod
         });
-        "1" == showDetailsLabel && (mainView.heartRateDetailLabel.text = latestData || "N/A");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 2;
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     if (4 == gType) {
         Ti.App.fireEvent("app:bodyTemperatureInfo", {
             message: info,
             dataPeriod: dataPeriod
         });
-        "1" == showDetailsLabel && (mainView.bodyTempDetailLabel.text = latestData || "N/A");
-    }
-    if (5 == gType) {
-        Ti.App.fireEvent("app:height", {
-            message: info,
-            dataPeriod: dataPeriod
-        });
-        "1" == showDetailsLabel && (mainView.heightDetailLabel.text = latestData + " CM" || "N/A");
-    }
-    if (6 == gType) {
-        Ti.App.fireEvent("app:weight", {
-            message: info,
-            dataPeriod: dataPeriod
-        });
-        "1" == showDetailsLabel && (mainView.weightDetailLabel.text = latestData + " KG" || "N/A");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 3;
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     if (7 == gType) {
         Ti.App.fireEvent("app:cholestrol", {
@@ -108,7 +123,14 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             message2: info2,
             dataPeriod: dataPeriod
         });
-        "1" == showDetailsLabel && (mainView.cholestrolDetailLabel.text = "-");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 4;
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     if (10 == gType) {
         Ti.App.fireEvent("app:steps", {
@@ -116,7 +138,14 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             dataPeriod: dataPeriod
         });
         "" != latestData && (latestData += " Steps");
-        "1" == showDetailsLabel && (mainView.stepsDetailLabel.text = latestData || "N/A");
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            var id = 0;
+            Ti.App.fireEvent("loadLatest", {
+                id: id,
+                text: text
+            });
+        }
     }
     return info;
 }
@@ -129,6 +158,7 @@ var m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", 
 
 exports.construct = function(mv) {
     mainView = mv;
+    console.log("a");
 };
 
 exports.showDatePicker = function(e) {
@@ -196,6 +226,7 @@ exports.todayDate = function() {
     today = dd + "/" + mm + "/" + yyyy;
     var ampm = hh >= 12 ? "PM" : "AM";
     hh > 12 && (hh -= 12);
+    console.log(mainView);
     mainView.date_value.text = today;
     mainView.time_value.text = hh + ":" + min + " " + ampm;
 };

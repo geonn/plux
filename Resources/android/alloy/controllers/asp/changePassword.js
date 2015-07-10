@@ -114,15 +114,17 @@ function Controller() {
     });
     $.__views.main.add($.__views.description);
     $.__views.password = Ti.UI.createTextField({
-        passwordMask: true,
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        passwordMask: true,
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
@@ -133,15 +135,17 @@ function Controller() {
     });
     $.__views.main.add($.__views.password);
     $.__views.password2 = Ti.UI.createTextField({
-        passwordMask: true,
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        passwordMask: true,
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         keyboardType: Titanium.UI.KEYBOARD_DEFAULT,

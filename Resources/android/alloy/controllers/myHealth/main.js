@@ -61,12 +61,11 @@ function Controller() {
             $.cholestrolView.show();
         }
     }
-    function populateDataById(e) {
-        hd.loadInfo(e.id);
+    function loadLatest(e) {
+        $.graphScrollView.children[e.id].children[2].children[1].text = e.text;
     }
-    function websiteSetHeight(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+    function populateDataById(e) {
+        hd.loadInfo(e.id, "", "1");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "myHealth/main";
@@ -93,8 +92,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.myhealth && $.addTopLevelView($.__views.myhealth);
-    $.__views.__alloyId214 = Ti.UI.createView({
-        id: "__alloyId214"
+    $.__views.__alloyId264 = Ti.UI.createView({
+        id: "__alloyId264"
     });
     $.__views.moreHealth = Ti.UI.createImageView({
         right: "0",
@@ -102,12 +101,12 @@ function Controller() {
         width: "30",
         image: "/images/health_love.png"
     });
-    $.__views.__alloyId214.add($.__views.moreHealth);
-    $.__views.myhealth.rightNavButton = $.__views.__alloyId214;
-    $.__views.__alloyId215 = Ti.UI.createView({
-        id: "__alloyId215"
+    $.__views.__alloyId264.add($.__views.moreHealth);
+    $.__views.myhealth.rightNavButton = $.__views.__alloyId264;
+    $.__views.__alloyId265 = Ti.UI.createView({
+        id: "__alloyId265"
     });
-    $.__views.myhealth.add($.__views.__alloyId215);
+    $.__views.myhealth.add($.__views.__alloyId265);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -116,7 +115,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId215.add($.__views.loadingBar);
+    $.__views.__alloyId265.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -124,35 +123,35 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId216 = Ti.UI.createLabel({
+    $.__views.__alloyId266 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId216"
+        id: "__alloyId266"
     });
-    $.__views.loadingBar.add($.__views.__alloyId216);
+    $.__views.loadingBar.add($.__views.__alloyId266);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical",
         backgroundColor: "#ffffff"
     });
-    $.__views.__alloyId215.add($.__views.main);
-    $.__views.__alloyId217 = Ti.UI.createView({
+    $.__views.__alloyId265.add($.__views.main);
+    $.__views.__alloyId267 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId217"
+        id: "__alloyId267"
     });
-    $.__views.main.add($.__views.__alloyId217);
-    $.__views.__alloyId218 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId267);
+    $.__views.__alloyId268 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId218"
+        id: "__alloyId268"
     });
-    $.__views.__alloyId217.add($.__views.__alloyId218);
+    $.__views.__alloyId267.add($.__views.__alloyId268);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -160,13 +159,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId218.add($.__views.btnBack);
+    $.__views.__alloyId268.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "80%"
     });
-    $.__views.__alloyId217.add($.__views.pageTitle);
-    $.__views.__alloyId219 = Ti.UI.createLabel({
+    $.__views.__alloyId267.add($.__views.pageTitle);
+    $.__views.__alloyId269 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -174,20 +173,20 @@ function Controller() {
         },
         text: "Health Info",
         textAlign: "center",
-        id: "__alloyId219"
+        id: "__alloyId269"
     });
-    $.__views.pageTitle.add($.__views.__alloyId219);
-    $.__views.__alloyId220 = Ti.UI.createView({
+    $.__views.pageTitle.add($.__views.__alloyId269);
+    $.__views.__alloyId270 = Ti.UI.createView({
         width: "10%",
-        id: "__alloyId220"
+        id: "__alloyId270"
     });
-    $.__views.__alloyId217.add($.__views.__alloyId220);
+    $.__views.__alloyId267.add($.__views.__alloyId270);
     $.__views.moreHealth = Ti.UI.createImageView({
         id: "moreHealth",
         width: "30",
         image: "/images/health_love.png"
     });
-    $.__views.__alloyId220.add($.__views.moreHealth);
+    $.__views.__alloyId270.add($.__views.moreHealth);
     $.__views.graphScrollView = Ti.UI.createScrollView({
         id: "graphScrollView",
         layout: "vertical",
@@ -220,35 +219,35 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bmiView.add($.__views.bmiWebView);
-    $.__views.__alloyId221 = Ti.UI.createView({
+    $.__views.__alloyId271 = Ti.UI.createView({
         height: "1",
         left: "10",
         right: "10",
         bottom: "0",
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
-        id: "__alloyId221"
+        id: "__alloyId271"
     });
-    $.__views.bmiView.add($.__views.__alloyId221);
-    $.__views.__alloyId222 = Ti.UI.createView({
+    $.__views.bmiView.add($.__views.__alloyId271);
+    $.__views.__alloyId272 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
-        id: "__alloyId222"
+        id: "__alloyId272"
     });
-    $.__views.bmiView.add($.__views.__alloyId222);
-    $.__views.__alloyId223 = Ti.UI.createLabel({
+    $.__views.bmiView.add($.__views.__alloyId272);
+    $.__views.__alloyId273 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Latest",
         color: "#9197a3",
         font: "fontSize: 12",
         left: "0",
-        id: "__alloyId223"
+        id: "__alloyId273"
     });
-    $.__views.__alloyId222.add($.__views.__alloyId223);
+    $.__views.__alloyId272.add($.__views.__alloyId273);
     $.__views.bmiDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -257,7 +256,7 @@ function Controller() {
         right: "0",
         id: "bmiDetailLabel"
     });
-    $.__views.__alloyId222.add($.__views.bmiDetailLabel);
+    $.__views.__alloyId272.add($.__views.bmiDetailLabel);
     $.__views.bloodPressureView = Ti.UI.createView({
         id: "bloodPressureView",
         height: Ti.UI.SIZE,
@@ -281,35 +280,35 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bloodPressureView.add($.__views.bloodPressureWebView);
-    $.__views.__alloyId224 = Ti.UI.createView({
+    $.__views.__alloyId274 = Ti.UI.createView({
         height: "1",
         left: "10",
         right: "10",
         bottom: "0",
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
-        id: "__alloyId224"
+        id: "__alloyId274"
     });
-    $.__views.bloodPressureView.add($.__views.__alloyId224);
-    $.__views.__alloyId225 = Ti.UI.createView({
+    $.__views.bloodPressureView.add($.__views.__alloyId274);
+    $.__views.__alloyId275 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
-        id: "__alloyId225"
+        id: "__alloyId275"
     });
-    $.__views.bloodPressureView.add($.__views.__alloyId225);
-    $.__views.__alloyId226 = Ti.UI.createLabel({
+    $.__views.bloodPressureView.add($.__views.__alloyId275);
+    $.__views.__alloyId276 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Latest",
         color: "#9197a3",
         font: "fontSize: 12",
         left: "0",
-        id: "__alloyId226"
+        id: "__alloyId276"
     });
-    $.__views.__alloyId225.add($.__views.__alloyId226);
+    $.__views.__alloyId275.add($.__views.__alloyId276);
     $.__views.bloodPressureDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -318,7 +317,7 @@ function Controller() {
         right: "0",
         id: "bloodPressureDetailLabel"
     });
-    $.__views.__alloyId225.add($.__views.bloodPressureDetailLabel);
+    $.__views.__alloyId275.add($.__views.bloodPressureDetailLabel);
     $.__views.heartRateView = Ti.UI.createView({
         id: "heartRateView",
         height: Ti.UI.SIZE,
@@ -342,35 +341,35 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.heartRateView.add($.__views.heartRateWebView);
-    $.__views.__alloyId227 = Ti.UI.createView({
+    $.__views.__alloyId277 = Ti.UI.createView({
         height: "1",
         left: "10",
         right: "10",
         bottom: "0",
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
-        id: "__alloyId227"
+        id: "__alloyId277"
     });
-    $.__views.heartRateView.add($.__views.__alloyId227);
-    $.__views.__alloyId228 = Ti.UI.createView({
+    $.__views.heartRateView.add($.__views.__alloyId277);
+    $.__views.__alloyId278 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
-        id: "__alloyId228"
+        id: "__alloyId278"
     });
-    $.__views.heartRateView.add($.__views.__alloyId228);
-    $.__views.__alloyId229 = Ti.UI.createLabel({
+    $.__views.heartRateView.add($.__views.__alloyId278);
+    $.__views.__alloyId279 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Latest",
         color: "#9197a3",
         font: "fontSize: 12",
         left: "0",
-        id: "__alloyId229"
+        id: "__alloyId279"
     });
-    $.__views.__alloyId228.add($.__views.__alloyId229);
+    $.__views.__alloyId278.add($.__views.__alloyId279);
     $.__views.heartRateDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -379,7 +378,7 @@ function Controller() {
         right: "0",
         id: "heartRateDetailLabel"
     });
-    $.__views.__alloyId228.add($.__views.heartRateDetailLabel);
+    $.__views.__alloyId278.add($.__views.heartRateDetailLabel);
     $.__views.bodyTemperatureView = Ti.UI.createView({
         id: "bodyTemperatureView",
         height: Ti.UI.SIZE,
@@ -403,35 +402,35 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.bodyTemperatureView.add($.__views.bodyTemperatureWebView);
-    $.__views.__alloyId230 = Ti.UI.createView({
+    $.__views.__alloyId280 = Ti.UI.createView({
         height: "1",
         left: "10",
         right: "10",
         bottom: "0",
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
-        id: "__alloyId230"
+        id: "__alloyId280"
     });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId230);
-    $.__views.__alloyId231 = Ti.UI.createView({
+    $.__views.bodyTemperatureView.add($.__views.__alloyId280);
+    $.__views.__alloyId281 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
-        id: "__alloyId231"
+        id: "__alloyId281"
     });
-    $.__views.bodyTemperatureView.add($.__views.__alloyId231);
-    $.__views.__alloyId232 = Ti.UI.createLabel({
+    $.__views.bodyTemperatureView.add($.__views.__alloyId281);
+    $.__views.__alloyId282 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Latest",
         color: "#9197a3",
         font: "fontSize: 12",
         left: "0",
-        id: "__alloyId232"
+        id: "__alloyId282"
     });
-    $.__views.__alloyId231.add($.__views.__alloyId232);
+    $.__views.__alloyId281.add($.__views.__alloyId282);
     $.__views.bodyTempDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -440,7 +439,7 @@ function Controller() {
         right: "0",
         id: "bodyTempDetailLabel"
     });
-    $.__views.__alloyId231.add($.__views.bodyTempDetailLabel);
+    $.__views.__alloyId281.add($.__views.bodyTempDetailLabel);
     $.__views.cholestrolView = Ti.UI.createView({
         id: "cholestrolView",
         height: Ti.UI.SIZE,
@@ -464,35 +463,35 @@ function Controller() {
         disableBounce: "true"
     });
     $.__views.cholestrolView.add($.__views.cholestrolWebView);
-    $.__views.__alloyId233 = Ti.UI.createView({
+    $.__views.__alloyId283 = Ti.UI.createView({
         height: "1",
         left: "10",
         right: "10",
         bottom: "0",
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
-        id: "__alloyId233"
+        id: "__alloyId283"
     });
-    $.__views.cholestrolView.add($.__views.__alloyId233);
-    $.__views.__alloyId234 = Ti.UI.createView({
+    $.__views.cholestrolView.add($.__views.__alloyId283);
+    $.__views.__alloyId284 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         left: "10",
         right: "10",
         top: "10",
         bottom: "10",
-        id: "__alloyId234"
+        id: "__alloyId284"
     });
-    $.__views.cholestrolView.add($.__views.__alloyId234);
-    $.__views.__alloyId235 = Ti.UI.createLabel({
+    $.__views.cholestrolView.add($.__views.__alloyId284);
+    $.__views.__alloyId285 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Latest",
         color: "#9197a3",
         font: "fontSize: 12",
         left: "0",
-        id: "__alloyId235"
+        id: "__alloyId285"
     });
-    $.__views.__alloyId234.add($.__views.__alloyId235);
+    $.__views.__alloyId284.add($.__views.__alloyId285);
     $.__views.cholestrolDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -501,7 +500,7 @@ function Controller() {
         right: "0",
         id: "cholestrolDetailLabel"
     });
-    $.__views.__alloyId234.add($.__views.cholestrolDetailLabel);
+    $.__views.__alloyId284.add($.__views.cholestrolDetailLabel);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -509,8 +508,9 @@ function Controller() {
     var nav = require("navigation");
     var hd = require("healthData");
     common.construct($);
-    hd.stepsMotion();
+    hd.construct($);
     Ti.App.addEventListener("filterList", filterList);
+    Ti.App.addEventListener("loadLatest", loadLatest);
     Ti.App.addEventListener("populateDataById", populateDataById);
     filterList({
         category: "all"
@@ -520,7 +520,10 @@ function Controller() {
             gType: 1
         });
     });
-    $.bmiView.addEventListener("load", websiteSetHeight);
+    $.bmiView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
     $.bloodPressureView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 2
@@ -548,21 +551,6 @@ function Controller() {
         var actualHeight = e.source.evalJS("document.height;");
         e.source.height = parseInt(actualHeight);
     });
-    $.moreHealth.addEventListener("click", function() {
-        var dialog = Ti.UI.createOptionDialog({
-            cancel: 3,
-            options: [ "Me", "Body Measurement", "Vitals", "Cancel" ],
-            title: "More"
-        });
-        dialog.show();
-        dialog.addEventListener("click", function(e) {
-            0 == e.index ? nav.navigationWindow("myHealth/profile") : 1 == e.index ? Ti.App.fireEvent("filterList", {
-                category: "measurement"
-            }) : 2 == e.index && Ti.App.fireEvent("filterList", {
-                category: "vitals"
-            });
-        });
-    });
     $.cholestrolView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 7
@@ -572,9 +560,19 @@ function Controller() {
         var actualHeight = e.source.evalJS("document.height;");
         e.source.height = parseInt(actualHeight);
     });
+    $.moreHealth.addEventListener("click", function() {
+        var page = Alloy.createController("myHealth/_menu").getView();
+        page.open();
+        page.animate({
+            curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+            opacity: 1,
+            duration: 200
+        });
+    });
     $.myhealth.addEventListener("close", function() {
         Ti.App.removeEventListener("filterList", filterList);
         Ti.App.removeEventListener("populateDataById", populateDataById);
+        Ti.App.removeEventListener("loadLatest", loadLatest);
     });
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myhealth);

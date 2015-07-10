@@ -69,3 +69,9 @@ function doSaveRecords(){
 	hd.loadInfo(formType);
 	nav.closeWindow($.healthCholestrolWin);
 }
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.healthCholestrolWin); 
+	}); 
+}

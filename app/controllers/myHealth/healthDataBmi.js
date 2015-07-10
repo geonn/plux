@@ -84,3 +84,9 @@ function doSaveRecords(){
 	hd.loadInfo(formType);
 	nav.closeWindow($.healthBmiWin);
 }
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.healthBmiWin); 
+	}); 
+}

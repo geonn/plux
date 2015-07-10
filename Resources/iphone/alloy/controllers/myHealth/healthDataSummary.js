@@ -107,7 +107,7 @@ function Controller() {
     $.__views.main.add($.__views.buttonbarData);
     $.__views.bmiView = Ti.UI.createView({
         id: "bmiView",
-        height: "60%",
+        height: Ti.UI.SIZE,
         width: "100%",
         backgroundColor: "#EBEBEB"
     });
@@ -154,8 +154,9 @@ function Controller() {
     var webview = $.UI.create("WebView", {
         id: "graphWebView",
         width: "100%",
+        bottom: 10,
         url: url,
-        height: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         backgroundColor: "#EBEBEB"
     });
     var line = $.UI.create("View", {

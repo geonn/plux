@@ -121,14 +121,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.__alloyId129);
     $.__views.email = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",
@@ -140,14 +142,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.email);
     $.__views.email2 = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",
@@ -159,15 +163,17 @@ function Controller() {
     });
     $.__views.main.add($.__views.email2);
     $.__views.password = Ti.UI.createTextField({
-        passwordMask: true,
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        passwordMask: true,
+        color: "#000000",
+        borderColor: "#cccccc",
         bottom: "5dp",
         paddingLeft: "20dp",
         paddingRight: "20dp",
@@ -179,14 +185,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.password);
     $.__views.name = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",
@@ -198,14 +206,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.name);
     $.__views.memno = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",
@@ -217,14 +227,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.memno);
     $.__views.empno = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",
@@ -236,14 +248,16 @@ function Controller() {
     });
     $.__views.main.add($.__views.empno);
     $.__views.mobileno = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
         font: {
             fontSize: "14dp"
         },
-        color: "#000000",
-        backgroundColor: "#fff",
-        borderColor: "#cccccc",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
-        height: "50dp",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
         bottom: "5dp",

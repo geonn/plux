@@ -19,6 +19,7 @@ function getAge(dateString) {
 
 exports.construct = function(mv){
 	mainView = mv;
+	console.log('a');
 };
 
 exports.showDatePicker = function(e){
@@ -115,7 +116,6 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			var info_details = lib_health.getHealthListByType(loadType);  
 		}
 		
-		
 		info_details.reverse();	 
 		var latestData;
 		if(info_details.length > 0){
@@ -151,33 +151,57 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 		
 	} 
- 
 	if(gType == 1){ 
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
 		if(showDetailsLabel == "1"){
-			mainView.bmiDetailLabel.text = latestData|| "N/A";
+			var text = latestData|| "N/A";
+			var id = 0;
+			if(Ti.Platform.osname != "android"){
+				id++;
+			}
+			console.log("bmi"+id);
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.bmiDetailLabel.text = latestData|| "N/A";
 		}
-		
 	}
 	if(gType == 2){ 
 		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
-			mainView.bloodPressureDetailLabel.text = latestData ||  "N/A";
+			var text = latestData|| "N/A";
+			var id = 1;
+			if(Ti.Platform.osname != "android"){
+				id++;
+			}
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.bloodPressureDetailLabel.text = latestData ||  "N/A";
 		}
 	}
 	if(gType == 3){
 		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
-			mainView.heartRateDetailLabel.text = latestData ||  "N/A";
+			var text = latestData|| "N/A";
+			var id = 2;
+			if(Ti.Platform.osname != "android"){
+				id++;
+			}
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.heartRateDetailLabel.text = latestData ||  "N/A";
 		}
 	}
 	if(gType == 4){
+		
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
-			mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
+			var text = latestData|| "N/A";
+			var id = 3;
+			if(Ti.Platform.osname != "android"){
+				id++;
+			}
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
 		}
 	}
-	if(gType == 5){
+	/*if(gType == 5){
 		Ti.App.fireEvent('app:height',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			mainView.heightDetailLabel.text = latestData+" CM"|| "N/A";
@@ -188,11 +212,17 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		if(showDetailsLabel == "1"){
 			mainView.weightDetailLabel.text = latestData +" KG"|| "N/A";
 		}
-	}
+	}*/
 	if(gType == 7){ 
 		Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
-			mainView.cholestrolDetailLabel.text = "-";
+			var text = latestData|| "N/A";
+			var id = 4;
+			if(Ti.Platform.osname != "android"){
+				id++;
+			}
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.cholestrolDetailLabel.text = "-";
 		}
 	}
 	if(gType == 10){
@@ -201,7 +231,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			latestData = latestData  +" Steps";
 		}
 		if(showDetailsLabel == "1"){
-			mainView.stepsDetailLabel.text = latestData || "N/A";
+			var text = latestData|| "N/A";
+			var id = 0;
+			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			//mainView.stepsDetailLabel.text = latestData || "N/A";
 		}
 	}
 	return info;
@@ -240,7 +273,7 @@ exports.todayDate = function(){
 	if(hh > 12) {
 	    hh = hh-12;
 	}
-	
+	console.log(mainView);
 	mainView.date_value.text = today; 
 	mainView.time_value.text = hh +":"+min + " "+ ampm;
 };

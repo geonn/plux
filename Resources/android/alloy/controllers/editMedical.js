@@ -280,19 +280,23 @@ function Controller() {
         font: {
             fontSize: "10dp"
         },
+        color: "#000",
         id: "saveRecord",
         title: "Done"
     });
     $.__views.__alloyId17.add($.__views.saveRecord);
     $.__views.titleRecord = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "40",
         font: {
             fontSize: "20dp"
         },
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: "95%",
+        backgroundColor: "#ffffff",
         top: "0",
         id: "titleRecord",
-        height: "40",
-        hintText: "Medical Problem",
-        width: "95%"
+        hintText: "Medical Problem"
     });
     $.__views.__alloyId13.add($.__views.titleRecord);
     $.__views.__alloyId18 = Ti.UI.createView({
@@ -320,14 +324,19 @@ function Controller() {
     });
     $.__views.aView.add($.__views.__alloyId19);
     $.__views.clinicRecord = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "40",
+        font: {
+            fontSize: "14dp"
+        },
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: Ti.UI.FILL,
         backgroundColor: "#F6F6F6",
         top: "0",
         left: "10",
         right: "10",
         id: "clinicRecord",
-        height: "40",
-        hintText: "",
-        width: Ti.UI.FILL
+        hintText: ""
     });
     $.__views.aView.add($.__views.clinicRecord);
     $.__views.__alloyId20 = Ti.UI.createLabel({
@@ -476,7 +485,6 @@ function Controller() {
     Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
     $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.editRecWin);
     });
     __defers["$.__views.__alloyId23!click!showCategory"] && $.__views.__alloyId23.addEventListener("click", showCategory);

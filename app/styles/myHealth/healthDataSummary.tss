@@ -7,3 +7,9 @@
 	color: "#A8A8A8",
 	font: {fontSize: '16dp'},
 },
+"TableViewRow[platform=android]":{
+	top: 10,
+	bottom:10,
+	left: 10,
+	right: 10,
+}
