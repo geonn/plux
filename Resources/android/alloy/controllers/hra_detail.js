@@ -114,7 +114,8 @@ function Controller() {
     $.description.add(module.description());
     $.input_box.add(module.input_box());
     $.btnBack.addEventListener("click", function() {
-        COMMON.closeWindow($.hraDetailsWin);
+        console.log("close!!");
+        nav.closeWindow($.hraDetailsWin);
     });
     _.extend($, exports);
 }

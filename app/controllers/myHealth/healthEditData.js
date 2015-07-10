@@ -77,8 +77,14 @@ function loadList(showDelete){
 			});
 			
 			rmvBtn.addEventListener('click', function(re){ 
-				lib_health.removeHealthDataById(re.rowData.source);
-				hd.populateData();
+				console.log(re);
+				if(Ti.Platform.osname == "android"){
+					lib_health.removeHealthDataById(re.source.source);
+				}else{
+					lib_health.removeHealthDataById(re.rowData.source);
+				}
+				//hd.populateData();
+				hd.loadInfo(gType,"","1");
 				loadList("2"); 
 			});
 		}
@@ -148,5 +154,11 @@ function doEditRecords(){
 function doDone(){
 	loadList("1");
 	$.editButton.setVisible(true); 
-	$.doneButton.setVisible(false);  
+	$.doneButton.setVisible(false);
+}
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.healthEditWindow); 
+	}); 
 }

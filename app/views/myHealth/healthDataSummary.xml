@@ -21,7 +21,7 @@
 		                <Label>Year</Label> 
 		            </Labels> 
 		        </TabbedBar>
-				<View id="bmiView" height="60%"  width="100%" backgroundColor="#EBEBEB" >
+				<View id="bmiView" height="Ti.UI.SIZE" width="100%" backgroundColor="#EBEBEB" >
 					<!--<WebView id="graphWebView" width="100%" height="Ti.UI.FILL" backgroundColor="#EBEBEB" />
 					<View height="1" bottom="0" backgroundColor="#FC7474" width="100%" />-->
 				</View> 

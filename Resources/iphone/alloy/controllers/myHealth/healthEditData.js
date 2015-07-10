@@ -72,8 +72,9 @@ function Controller() {
                     image: "/images/btn-delete.png"
                 });
                 rmvBtn.addEventListener("click", function(re) {
-                    lib_health.removeHealthDataById(re.rowData.source);
-                    hd.populateData();
+                    console.log(re);
+                    lib_health.removeHealthDataById("android" == Ti.Platform.osname ? re.source.source : re.rowData.source);
+                    hd.loadInfo(gType, "", "1");
                     loadList("2");
                 });
             }
@@ -205,7 +206,10 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId224);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
-        height: Ti.UI.SIZE,
+        height: Ti.UI.FILL,
+        contentHeight: Ti.UI.SIZE,
+        width: Ti.UI.FILL,
+        contentWidth: Ti.UI.FILL,
         layout: "vertical",
         backgroundColor: "#ffffff",
         top: "0"
@@ -214,6 +218,7 @@ function Controller() {
     $.__views.healthTableData = Ti.UI.createTableView({
         id: "healthTableData",
         height: Ti.UI.SIZE,
+        contentWidth: Ti.UI.FILL,
         width: "100%",
         scrollable: "false"
     });
@@ -227,6 +232,9 @@ function Controller() {
     common.construct($);
     common.showLoading();
     loadList("1");
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.healthEditWindow);
+    });
     __defers["$.__views.editButton!touchend!doEditRecords"] && $.__views.editButton.addEventListener("touchend", doEditRecords);
     __defers["$.__views.doneButton!touchend!doDone"] && $.__views.doneButton.addEventListener("touchend", doDone);
     _.extend($, exports);

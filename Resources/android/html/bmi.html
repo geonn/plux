@@ -50,6 +50,9 @@ function loadChart(data){
 	chart.render();
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
+	var contentHeight = $( "#chartContainer" ).height();
+	$("html").css("height", contentHeight );
+	$("body").css("height", contentHeight);
 }
 function loadNoData(dataPeriod){
 	var dateNow = currentDate(0); 

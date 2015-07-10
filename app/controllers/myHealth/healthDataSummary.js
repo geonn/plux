@@ -32,8 +32,9 @@ if(gType == "10"){
 var webview = $.UI.create("WebView", {
 	id: "graphWebView",
 	width: "100%",
+	bottom: 10,
 	url: url,
-	height: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	backgroundColor:"#EBEBEB"
 });
 var line = $.UI.create("View", {

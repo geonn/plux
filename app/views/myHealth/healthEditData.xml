@@ -12,20 +12,20 @@
 		        <ActivityIndicator  id="activityIndicator" />
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
-		    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
-				<View left="0" width="10%">
-		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
-		   		</View>
-		     	<View id="pageTitle" width="80%">
-		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">All Recorded Data</Label>
-		     	</View>
-		     	<View width="10%">
-		         	<Button id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
-		         	<Button id="doneButton" onTouchend="doDone"  title="Done" right="0" touchEnabled="true" visible="false"  />
-		   		</View>
-		 	</View> 
-			<ScrollView id="main" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" top="0">
-				 <TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" />
+			<ScrollView id="main" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" width="Ti.UI.FILL" contentWidth="Ti.UI.FILL" layout="vertical" backgroundColor="#ffffff" top="0">
+				<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+					<View left="0" width="20%">
+			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+			   		</View>
+			     	<View id="pageTitle" width="60%">
+			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">All Recorded Data</Label>
+			     	</View>
+			     	<View width="20%">
+			         	<Button class="navbtn" id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
+			         	<Button class="navbtn" id="doneButton" onTouchend="doDone"  title="Done" right="0" touchEnabled="true" visible="false"  />
+			   		</View>
+			 	</View> 
+				<TableView id="healthTableData" height="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" width="100%" scrollable="false" />
 			</ScrollView>
 		</View>
 	</Window>

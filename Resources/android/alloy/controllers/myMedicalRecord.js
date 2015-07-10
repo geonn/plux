@@ -253,6 +253,7 @@ function Controller() {
         font: {
             fontSize: "10dp"
         },
+        color: "#000",
         id: "newRecord",
         title: "Add"
     });

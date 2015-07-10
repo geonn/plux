@@ -212,11 +212,17 @@ function Controller() {
     });
     $.__views.editRecWin.add($.__views.__alloyId13);
     $.__views.titleRecord = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "40",
+        font: {
+            fontSize: "14dp"
+        },
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: "95%",
+        backgroundColor: "#ffffff",
         top: "0",
         id: "titleRecord",
-        height: "40",
-        hintText: "Medical Problem",
-        width: "95%"
+        hintText: "Medical Problem"
     });
     $.__views.__alloyId13.add($.__views.titleRecord);
     $.__views.__alloyId14 = Ti.UI.createView({

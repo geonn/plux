@@ -127,7 +127,7 @@ function Controller() {
     $.__views.loadingBar.add($.__views.__alloyId159);
     $.__views.main = Ti.UI.createView({
         id: "main",
-        layout: "",
+        layout: "vertical",
         backgroundColor: "#F6F6F6",
         height: "100%"
     });
@@ -228,13 +228,13 @@ function Controller() {
     __alloyId161.push($.__views.tvrField1);
     $.__views.__alloyId168 = Ti.UI.createView({
         layout: "horizontal",
-        height: "45",
+        height: Ti.UI.SIZE,
         width: "100%",
         id: "__alloyId168"
     });
     $.__views.tvrField1.add($.__views.__alloyId168);
     $.__views.__alloyId169 = Ti.UI.createLabel({
-        width: "28%",
+        width: "50%",
         height: Titanium.UI.SIZE,
         left: 20,
         color: "#A8A8A8",
@@ -247,14 +247,19 @@ function Controller() {
     });
     $.__views.__alloyId168.add($.__views.__alloyId169);
     $.__views.field1 = Ti.UI.createTextField({
-        id: "field1",
-        width: "64%",
-        right: "0",
-        top: "5",
-        textAlign: "right",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "45dp",
+        font: {
+            fontSize: "14dp"
+        },
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: Ti.UI.FILL,
         backgroundColor: "#ffffff",
-        borderColor: "#ffffff",
-        height: "30",
+        id: "field1",
+        top: "5",
+        bottom: "5",
+        right: "5",
+        textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
@@ -266,13 +271,13 @@ function Controller() {
     __alloyId161.push($.__views.tvrField2);
     $.__views.__alloyId170 = Ti.UI.createView({
         layout: "horizontal",
-        height: "45",
+        height: Ti.UI.SIZE,
         width: "100%",
         id: "__alloyId170"
     });
     $.__views.tvrField2.add($.__views.__alloyId170);
     $.__views.__alloyId171 = Ti.UI.createLabel({
-        width: "30%",
+        width: "50%",
         height: Titanium.UI.SIZE,
         left: 20,
         color: "#A8A8A8",
@@ -285,14 +290,19 @@ function Controller() {
     });
     $.__views.__alloyId170.add($.__views.__alloyId171);
     $.__views.field2 = Ti.UI.createTextField({
-        id: "field2",
-        width: "62%",
-        right: "0",
-        top: "5",
-        textAlign: "right",
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "45dp",
+        font: {
+            fontSize: "14dp"
+        },
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: Ti.UI.FILL,
         backgroundColor: "#ffffff",
-        borderColor: "#ffffff",
-        height: "30",
+        id: "field2",
+        top: "5",
+        bottom: "5",
+        right: "5",
+        textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
@@ -300,8 +310,8 @@ function Controller() {
     $.__views.table = Ti.UI.createTableView({
         data: __alloyId161,
         id: "table",
-        height: "180",
-        top: "40",
+        height: Ti.UI.SIZE,
+        top: "10",
         scrollable: "false"
     });
     $.__views.main.add($.__views.table);
@@ -350,6 +360,9 @@ function Controller() {
     });
     $.tvrField2.addEventListener("click", function() {
         $.field1.focus();
+    });
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.healthBmiWin);
     });
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
     __defers["$.__views.__alloyId162!click!showDatePicker"] && $.__views.__alloyId162.addEventListener("click", showDatePicker);

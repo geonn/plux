@@ -41,4 +41,15 @@
 },
 ".navbtn[platform=android]": { 
 	font: {fontSize: '10dp'},
+	color: "#000"
 },
+"TextField":{
+	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	height:'45dp',
+	 font:{
+		fontSize: '14dp'
+	},
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	width: Ti.UI.FILL,
+	backgroundColor: "#ffffff",
+}

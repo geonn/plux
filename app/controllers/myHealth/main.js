@@ -4,7 +4,10 @@ var nav = require('navigation');
 var hd = require('healthData');  
 common.construct($);
 hd.construct($);
-hd.stepsMotion();
+
+if(Ti.Platform.osname != "android"){
+	hd.stepsMotion();
+}
 
 function resetGraph(){
 	$.bmiView.setHeight("0");
@@ -59,7 +62,11 @@ function filterList(e){
 		$.bloodPressureView.show();
 		$.cholestrolView.show();
 	}else{
-		$.stepsView.setHeight(Ti.UI.SIZE);
+		if(Ti.Platform.osname != "android"){
+			$.stepsView.setHeight(Ti.UI.SIZE);
+			$.stepsView.setTop(10);
+			$.stepsView.show();
+		}
 		$.bmiView.setHeight(Ti.UI.SIZE);
 //		$.heightView.setHeight(Ti.UI.SIZE);
 //		$.weightView.setHeight(Ti.UI.SIZE);
@@ -68,7 +75,6 @@ function filterList(e){
 		$.bloodPressureView.setHeight(Ti.UI.SIZE);
 		$.cholestrolView.setHeight(Ti.UI.SIZE);
 		
-		$.stepsView.setTop(10);
 		$.bmiView.setTop(10);
 //		$.heightView.setTop(10);
 //		$.weightView.setTop(10);
@@ -77,7 +83,6 @@ function filterList(e){
 		$.bloodPressureView.setTop(10);
 		$.cholestrolView.setTop(10);
 		
-		$.stepsView.show();
 //		$.weightView.show(); 
 //		$.heightView.show(); 
 		$.bmiView.show();
@@ -90,6 +95,13 @@ function filterList(e){
 }
 
 Ti.App.addEventListener('filterList',filterList);
+
+Ti.App.addEventListener("loadLatest", loadLatest);
+
+function loadLatest(e){
+	$.graphScrollView.children[e.id].children[2].children[1].text = e.text;
+}
+
 Ti.App.addEventListener('populateDataById',populateDataById);
 
 function populateDataById(e){
@@ -97,17 +109,16 @@ function populateDataById(e){
 }
 
 filterList({category: "all"}); 
-
-$.stepsView.addEventListener('click',function(e){
-	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
-});
-
-$.stepsView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
-});
-
-
+if(Ti.Platform.osname != "android"){
+	$.stepsView.addEventListener('click',function(e){
+		nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
+	});
+	
+	$.stepsView.addEventListener('load',function(e){
+		var actualHeight = e.source.evalJS("document.height;");
+		e.source.height = parseInt(actualHeight);
+	});
+}
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});
 });
@@ -185,4 +196,11 @@ $.moreHealth.addEventListener('click', function(e){
 $.myhealth.addEventListener("close", function(e){
 	Ti.App.removeEventListener('filterList',filterList);
 	Ti.App.removeEventListener('populateDataById',populateDataById);
+	Ti.App.removeEventListener('loadLatest',loadLatest);
 });
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		nav.closeWindow($.myhealth); 
+	});
+}
