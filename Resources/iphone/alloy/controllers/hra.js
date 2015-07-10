@@ -41,6 +41,7 @@ function Controller() {
     var __alloyId66 = [];
     $.__views.__alloyId67 = {
         properties: {
+            color: "#000",
             mod: "bmi",
             title: "BMI Calculator",
             id: "__alloyId67"
@@ -49,6 +50,7 @@ function Controller() {
     __alloyId66.push($.__views.__alloyId67);
     $.__views.__alloyId68 = {
         properties: {
+            color: "#000",
             mod: "whratio",
             title: "Waist-To-Hips Ratio Calculator",
             id: "__alloyId68"
@@ -57,6 +59,7 @@ function Controller() {
     __alloyId66.push($.__views.__alloyId68);
     $.__views.__alloyId69 = {
         properties: {
+            color: "#000",
             mod: "nutritional_profile",
             title: "Nutritional Profile",
             id: "__alloyId69"
@@ -65,6 +68,7 @@ function Controller() {
     __alloyId66.push($.__views.__alloyId69);
     $.__views.__alloyId70 = {
         properties: {
+            color: "#000",
             mod: "smokecost",
             title: "Smoking Cost Calculator",
             id: "__alloyId70"
@@ -73,6 +77,7 @@ function Controller() {
     __alloyId66.push($.__views.__alloyId70);
     $.__views.__alloyId71 = {
         properties: {
+            color: "#000",
             mod: "diabetes",
             title: "Diabetes Risk Calculator",
             id: "__alloyId71"

@@ -70,7 +70,7 @@ function Controller() {
                     animate: true,
                     subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                     pincolor: Map.ANNOTATION_RED,
-                    rightView: viewRight,
+                    rightView: detBtn,
                     myid: entry.id
                 });
                 mapview.addAnnotation(merchantLoc);

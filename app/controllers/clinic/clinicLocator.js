@@ -80,7 +80,7 @@ function init(e){
 			    animate : true, 
 			    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
 			    pincolor:Map.ANNOTATION_RED,
-			    rightView: viewRight,
+			    rightView: detBtn,
 			    myid: entry.id// Custom property to uniquely identify this annotation.
 			}); 
 			mapview.addAnnotation(merchantLoc); 
