@@ -184,3 +184,10 @@ $.searchItem.addEventListener("return", searchResult);
 $.aView	.addEventListener('touchend', function(e){
     $.searchItem.blur(); 
 });
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		console.log('close!!');
+		nav.closeWindow($.myMedicalRecord); 
+	}); 
+}

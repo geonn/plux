@@ -65,7 +65,7 @@ function Controller() {
     });
     $.__views.main && $.addTopLevelView($.__views.main);
     $.__views.__alloyId1 = Ti.UI.createView({
-        backgroundColor: "#ddd",
+        backgroundColor: "#fff",
         height: Ti.UI.SIZE,
         layout: "vertical",
         id: "__alloyId1"

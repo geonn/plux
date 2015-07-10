@@ -1,22 +1,31 @@
 <Alloy>
-	<Window id="editRecWin" title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		 
+	<Window id="editRecWin" title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
 	         	<Button id="saveRecord" title="Done" />
 	        </View>
         </RightNavButton>
-	 
-	 	<View >
+	 	<View layout="vertical" bottom="90">
+	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
+		     	</View>
+		     	<View left="0" width="20%">
+		         	<Button class="navbtn" id="saveRecord" title="Done" />
+		   		</View>
+		 	</View>
 	 		<TextField top="0"  id="titleRecord" height="40" hintText="Medical Problem" width="95%"/> 
-			<View height="1" width="100%" backgroundColor="#CE1D1C" top="40" />
-			<ScrollView id="aView" top="42" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" layout="vertical" bottom="90" > 
+			<View height="1" width="100%" backgroundColor="#CE1D1C" />
+			<ScrollView id="aView" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" layout="vertical" > 
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
-				<TextField top="0" left="5" id="clinicRecord" height="40" hintText="Clinic/Hospital/Specialist" width="95%"/> 
+				<TextField top="0" left="10" right="10" id="clinicRecord" height="40" hintText="" width="Ti.UI.FILL"/> 
 				
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
 			 	<TextArea id="treatmentTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Treatment" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
-			 		<KeyboardToolbar>
+			 		<KeyboardToolbar platform="ios">
 						<Toolbar>
 							<Items> 
 								<FlexSpace/>
@@ -28,7 +37,7 @@
 			 	
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Proceduce</Label>
 			 	<TextArea id="proceduceTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Proceduce" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
-			 		<KeyboardToolbar>
+			 		<KeyboardToolbar platform="ios">
 						<Toolbar>
 							<Items> 
 								<FlexSpace/>
@@ -37,10 +46,9 @@
 						</Toolbar>
 					</KeyboardToolbar>
 			 	</TextArea>
-			 	
-			 	
-			</ScrollView> 
-			<View bottom="40" height="Ti.UI.SIZE"  layout="horizontal" width="100%"  >
+			</ScrollView>
+		</View>
+		<View bottom="40" height="Ti.UI.SIZE"  layout="horizontal" width="100%"  >
 				<ScrollView id="attachment" scrollType="horizontal" layout="horizontal" height="Ti.UI.SIZE" width="80%" /> 
 				<View width="auto" height="Ti.UI.SIZE" onClick="showCategory" >
 					<View backgroundColor="#CE1D1C" height="50" width="Ti.UI.FILL" right="0" ><Label id="addLbl" color="#ffffff" text="+" /></View>
@@ -52,6 +60,5 @@
 					<Label id="lastUpdated" textAlign="right" right="10"></Label>
 				</View> 
 			</View>
-		</View>
 	</Window>
 </Alloy>

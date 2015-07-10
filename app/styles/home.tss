@@ -7,7 +7,8 @@
 		fontSize: 14,
 		fontWeight: 'bold'
 	},
-	width: "auto",
-	left: 5,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
 	color: "#ffffff"
 }

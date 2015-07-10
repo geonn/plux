@@ -65,7 +65,8 @@ function refreshHeaderInfo(){
 			dialog.show(); 
 		});
 		var welcomeTitle = $.UI.create('Label',{
-			text: "Welcome "+ plux_user.fullname,
+			text: "Welcome, "+plux_user.fullname,
+			width: Ti.UI.FILL,
 			classes :['welcome_text']
 		});
 		
@@ -74,12 +75,16 @@ function refreshHeaderInfo(){
 	}else{
 		$.logo.image = "/images/asp_logo.png";
 		var me = usersModel.getUserByMemno();
+		var button_view = $.UI.create("View", {
+			width: Ti.UI.SIZE,
+			height: Ti.UI.FILL,
+		});
 		var logoutBtn = Ti.UI.createButton({
 			backgroundImage : "/images/btn-logout.png",
-			width: "40",
+			width: 40,
+			height: 40,
 			left: 5,
 			right: 5,
-			zIndex: 20,
 		});
 		logoutBtn.addEventListener('click', function(){
 			var dialog = Ti.UI.createAlertDialog({
@@ -98,13 +103,20 @@ function refreshHeaderInfo(){
 			});
 			dialog.show(); 
 		});
+		var title_view = $.UI.create("View", {
+			width: "auto",
+			height: Ti.UI.FILL,
+		});
 		var welcomeTitle = $.UI.create('Label',{
 			text: "Welcome, "+me.name,
 			classes :['welcome_text']
 		});
 		
-		$.myInfo.add(logoutBtn);
-		$.myInfo.add(welcomeTitle);
+		title_view.add(welcomeTitle);
+		button_view.add(logoutBtn);
+		
+		$.myInfo.add(button_view);
+		$.myInfo.add(title_view);
 	}
 }	 
 

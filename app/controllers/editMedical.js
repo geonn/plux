@@ -288,3 +288,10 @@ $.editRecWin.addEventListener('close',function(){
 });
 Ti.App.addEventListener('refreshAttachment',loadImage );
 $.saveRecord.addEventListener('click', saveRecord);
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		console.log('close!!');
+		nav.closeWindow($.editRecWin); 
+	}); 
+}

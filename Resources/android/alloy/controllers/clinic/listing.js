@@ -110,15 +110,58 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.panelListTbl = Ti.UI.createWindow({
+    $.__views.listing = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Type List",
-        id: "panelListTbl",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C"
+        navTintColor: "#CE1D1C",
+        id: "listing"
     });
-    $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
+    $.__views.listing && $.addTopLevelView($.__views.listing);
+    $.__views.panelListTbl = Ti.UI.createView({
+        id: "panelListTbl",
+        layout: "vertical"
+    });
+    $.__views.listing.add($.__views.panelListTbl);
+    $.__views.__alloyId149 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: Ti.UI.FILL,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId149"
+    });
+    $.__views.panelListTbl.add($.__views.__alloyId149);
+    $.__views.__alloyId150 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId150"
+    });
+    $.__views.__alloyId149.add($.__views.__alloyId150);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        width: "25",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId150.add($.__views.btnBack);
+    $.__views.__alloyId151 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId151"
+    });
+    $.__views.__alloyId149.add($.__views.__alloyId151);
+    $.__views.pageTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Clinic Type List",
+        id: "pageTitle",
+        textAlign: "center"
+    });
+    $.__views.__alloyId151.add($.__views.pageTitle);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -127,7 +170,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.panelListTbl.add($.__views.loadingBar);
+    $.__views.listing.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -135,15 +178,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId114 = Ti.UI.createLabel({
+    $.__views.__alloyId152 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId114"
+        id: "__alloyId152"
     });
-    $.__views.loadingBar.add($.__views.__alloyId114);
+    $.__views.loadingBar.add($.__views.__alloyId152);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

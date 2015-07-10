@@ -15,12 +15,16 @@ function Controller() {
         if (auth.checkLogin()) {
             $.logo.image = "/images/asp_logo.png";
             var me = usersModel.getUserByMemno();
+            var button_view = $.UI.create("View", {
+                width: Ti.UI.SIZE,
+                height: Ti.UI.FILL
+            });
             var logoutBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-logout.png",
-                width: "40",
+                width: 40,
+                height: 40,
                 left: 5,
-                right: 5,
-                zIndex: 20
+                right: 5
             });
             logoutBtn.addEventListener("click", function() {
                 var dialog = Ti.UI.createAlertDialog({
@@ -35,12 +39,18 @@ function Controller() {
                 });
                 dialog.show();
             });
+            var title_view = $.UI.create("View", {
+                width: "auto",
+                height: Ti.UI.FILL
+            });
             var welcomeTitle = $.UI.create("Label", {
                 text: "Welcome, " + me.name,
                 classes: [ "welcome_text" ]
             });
-            $.myInfo.add(logoutBtn);
-            $.myInfo.add(welcomeTitle);
+            title_view.add(welcomeTitle);
+            button_view.add(logoutBtn);
+            $.myInfo.add(button_view);
+            $.myInfo.add(title_view);
         } else {
             $.logo.image = "/images/logo_plux.png";
             var plux_user = usersPluxModel.getUserById(u_id);
@@ -65,7 +75,8 @@ function Controller() {
                 dialog.show();
             });
             var welcomeTitle = $.UI.create("Label", {
-                text: "Welcome " + plux_user.fullname,
+                text: "Welcome, " + plux_user.fullname,
+                width: Ti.UI.FILL,
                 classes: [ "welcome_text" ]
             });
             $.myInfo.add(logoutBtn);
@@ -150,17 +161,16 @@ function Controller() {
         layout: "horizontal",
         height: Ti.UI.SIZE,
         top: "20",
-        backgroundColor: "#666666",
-        opacity: "0.7"
+        backgroundColor: "#B3000000"
     });
     $.__views.__alloyId52.add($.__views.myinfo_view);
     $.__views.myInfo = Ti.UI.createView({
         layout: "horizontal",
         left: "110",
-        width: "auto",
+        width: Ti.UI.FILL,
         top: "10",
         bottom: "10",
-        height: Ti.UI.SIZE,
+        height: "60",
         id: "myInfo"
     });
     $.__views.myinfo_view.add($.__views.myInfo);

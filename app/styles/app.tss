@@ -24,7 +24,9 @@
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 },
-
+"ListItem":{
+	color: "#000",
+}
 ".big_font":{
 	font: {fontSize: '20dp'},
 },
@@ -36,4 +38,7 @@
 },
 ".small_font":{
 	font: {fontSize: '12dp'},
+},
+".navbtn[platform=android]": { 
+	font: {fontSize: '10dp'},
 },

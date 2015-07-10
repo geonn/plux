@@ -1,7 +1,15 @@
 <Alloy>
-	<Window title="PLUX Profile" backButtonTitle="" id="healthProfileWin" class="container" navTintColor="#CE1D1C" platform="ios">
+	<Window title="PLUX Profile" id="plux_profile" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<View layout="vertical">
-			<ScrollView id="profileData" height="90%"/>
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="90%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">PLUX Profile</Label>
+		     	</View>
+		 	</View>
+			<ScrollView id="profileData" height="Ti.UI.FILL" backgroundColor="#ffffff"></ScrollView>
 		</View>
 	</Window>
 </Alloy>

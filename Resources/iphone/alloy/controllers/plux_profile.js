@@ -24,25 +24,26 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.healthProfileWin = Ti.UI.createWindow({
+    $.__views.plux_profile = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "PLUX Profile",
+        id: "plux_profile",
         backButtonTitle: "",
-        id: "healthProfileWin",
         navTintColor: "#CE1D1C"
     });
-    $.__views.healthProfileWin && $.addTopLevelView($.__views.healthProfileWin);
-    $.__views.__alloyId85 = Ti.UI.createView({
+    $.__views.plux_profile && $.addTopLevelView($.__views.plux_profile);
+    $.__views.__alloyId89 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId85"
+        id: "__alloyId89"
     });
-    $.__views.healthProfileWin.add($.__views.__alloyId85);
+    $.__views.plux_profile.add($.__views.__alloyId89);
     $.__views.profileData = Ti.UI.createScrollView({
         id: "profileData",
-        height: "90%"
+        height: Ti.UI.FILL,
+        backgroundColor: "#ffffff"
     });
-    $.__views.__alloyId85.add($.__views.profileData);
+    $.__views.__alloyId89.add($.__views.profileData);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -55,7 +56,7 @@ function Controller() {
         profile_data: data
     }).getView());
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.pluxProfileWin);
+        nav.closeWindow($.plux_profile);
     });
     _.extend($, exports);
 }

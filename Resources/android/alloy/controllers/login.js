@@ -83,20 +83,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId50 = Ti.UI.createView({
+    $.__views.__alloyId66 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId50"
+        id: "__alloyId66"
     });
-    $.__views.loginWin.add($.__views.__alloyId50);
+    $.__views.loginWin.add($.__views.__alloyId66);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId50.add($.__views.pageTitle);
-    $.__views.__alloyId51 = Ti.UI.createLabel({
+    $.__views.__alloyId66.add($.__views.pageTitle);
+    $.__views.__alloyId67 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -104,13 +104,13 @@ function Controller() {
         },
         text: "Login",
         textAlign: "center",
-        id: "__alloyId51"
+        id: "__alloyId67"
     });
-    $.__views.pageTitle.add($.__views.__alloyId51);
-    $.__views.__alloyId52 = Ti.UI.createView({
-        id: "__alloyId52"
+    $.__views.pageTitle.add($.__views.__alloyId67);
+    $.__views.__alloyId68 = Ti.UI.createView({
+        id: "__alloyId68"
     });
-    $.__views.loginWin.add($.__views.__alloyId52);
+    $.__views.loginWin.add($.__views.__alloyId68);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -119,7 +119,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId52.add($.__views.loadingBar);
+    $.__views.__alloyId68.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -127,23 +127,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId53 = Ti.UI.createLabel({
+    $.__views.__alloyId69 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId53"
+        id: "__alloyId69"
     });
-    $.__views.loadingBar.add($.__views.__alloyId53);
+    $.__views.loadingBar.add($.__views.__alloyId69);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId52.add($.__views.main);
-    $.__views.__alloyId54 = Ti.UI.createImageView({
+    $.__views.__alloyId68.add($.__views.main);
+    $.__views.__alloyId70 = Ti.UI.createImageView({
         width: "40%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -151,9 +151,9 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId54"
+        id: "__alloyId70"
     });
-    $.__views.main.add($.__views.__alloyId54);
+    $.__views.main.add($.__views.__alloyId70);
     $.__views.email = Ti.UI.createTextField({
         font: {
             fontSize: "14dp"

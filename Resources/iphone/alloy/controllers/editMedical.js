@@ -230,6 +230,8 @@ function Controller() {
     $.__views.__alloyId28.add($.__views.saveRecord);
     $.__views.editRecWin.rightNavButton = $.__views.__alloyId28;
     $.__views.__alloyId29 = Ti.UI.createView({
+        layout: "vertical",
+        bottom: "90",
         id: "__alloyId29"
     });
     $.__views.editRecWin.add($.__views.__alloyId29);
@@ -248,17 +250,14 @@ function Controller() {
         height: "1",
         width: "100%",
         backgroundColor: "#CE1D1C",
-        top: "40",
         id: "__alloyId30"
     });
     $.__views.__alloyId29.add($.__views.__alloyId30);
     $.__views.aView = Ti.UI.createScrollView({
         id: "aView",
-        top: "42",
         height: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
-        layout: "vertical",
-        bottom: "90"
+        layout: "vertical"
     });
     $.__views.__alloyId29.add($.__views.aView);
     $.__views.__alloyId31 = Ti.UI.createLabel({
@@ -274,11 +273,12 @@ function Controller() {
     $.__views.clinicRecord = Ti.UI.createTextField({
         backgroundColor: "#F6F6F6",
         top: "0",
-        left: "5",
+        left: "10",
+        right: "10",
         id: "clinicRecord",
         height: "40",
-        hintText: "Clinic/Hospital/Specialist",
-        width: "95%"
+        hintText: "",
+        width: Ti.UI.FILL
     });
     $.__views.aView.add($.__views.clinicRecord);
     $.__views.__alloyId32 = Ti.UI.createLabel({
@@ -404,7 +404,7 @@ function Controller() {
         width: "100%",
         id: "__alloyId46"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId46);
+    $.__views.editRecWin.add($.__views.__alloyId46);
     $.__views.attachment = Ti.UI.createScrollView({
         id: "attachment",
         scrollType: "horizontal",
@@ -447,7 +447,7 @@ function Controller() {
         backgroundColor: "#EEEEEE",
         id: "__alloyId49"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId49);
+    $.__views.editRecWin.add($.__views.__alloyId49);
     $.__views.__alloyId50 = Ti.UI.createButton({
         backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
@@ -494,6 +494,10 @@ function Controller() {
     });
     Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        console.log("close!!");
+        nav.closeWindow($.editRecWin);
+    });
     __defers["$.__views.__alloyId38!click!hideKeyboard"] && $.__views.__alloyId38.addEventListener("click", hideKeyboard);
     __defers["$.__views.__alloyId45!click!hideKeyboard"] && $.__views.__alloyId45.addEventListener("click", hideKeyboard);
     __defers["$.__views.__alloyId47!click!showCategory"] && $.__views.__alloyId47.addEventListener("click", showCategory);

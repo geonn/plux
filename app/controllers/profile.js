@@ -5,7 +5,6 @@ function navProfile(e){
 	var target = e.source.mod; 
 	
 	if(target == "asp"){
-		
 		nav.navigationWindow(target+"/profile", 1);  
 	}else{
 		nav.navigateWithArgs("plux_profile",{});  
@@ -14,6 +13,6 @@ function navProfile(e){
 
 if(Ti.Platform.osname == "android"){		
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.myProfileWin); 
+		nav.closeWindow($.myProfile); 
 	}); 
 }

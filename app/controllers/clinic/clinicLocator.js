@@ -13,12 +13,10 @@ if(corp == ""){
 }
 
 function loadClinic(e){
-	
 	details = e.details; 
 	if(details){
 		triggerPosition(); 
 	}
-	
 	Ti.App.removeEventListener('aspClinic',loadClinic);
 }
 
@@ -37,6 +35,7 @@ var curLot = -122.081651;
 var showCurLoc = false;
    
 function init(e){ 
+	console.log(e);
 	var longitude = e.coords.longitude;
     var latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -54,7 +53,6 @@ function init(e){
         regionFit:true,
         userLocation:true
     });
-    
     if(details == ""){
     	return false;
     }
@@ -67,22 +65,29 @@ function init(e){
 			width: 20,
 			panel_id: entry.id
 		});
+		var viewRight = Ti.UI.createView({
+		    width: Ti.UI.SIZE,
+		    height: Ti.UI.SIZE
+		});
+
 		detBtn.addEventListener('click', function(ex){ 
 			nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
-		});       
-		var merchantLoc = Map.createAnnotation({
-		    latitude:entry.latitude,
-		    longitude:entry.longitude, 
-		    title: entry.clinicName,
-		    image: '/images/marker.png',
-		    animate : true, 
-		    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-		    pincolor:Map.ANNOTATION_RED,
-		    rightView: detBtn,
-		    myid: entry.id// Custom property to uniquely identify this annotation.
-		});
-		              
-		mapview.addAnnotation(merchantLoc); 
+		});      
+		viewRight.add(detBtn);
+		if(entry.latitude != "" && entry.longitude != ""){
+			var merchantLoc = Map.createAnnotation({
+			    latitude: entry.latitude,
+			    longitude: entry.longitude, 
+			    title: entry.clinicName,
+			    image: '/images/marker.png',
+			    animate : true, 
+			    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
+			    pincolor:Map.ANNOTATION_RED,
+			    rightView: viewRight,
+			    myid: entry.id// Custom property to uniquely identify this annotation.
+			}); 
+			mapview.addAnnotation(merchantLoc); 
+		}
 	});
 	common.hideLoading();
 	//mapview.addAnnotation(mountainView);

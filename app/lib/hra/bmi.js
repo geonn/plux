@@ -130,22 +130,29 @@ function addForm(text, type){
 				form[a].blur();
 			}
 		});
-		
-		var keyboardToolbarButtons = Ti.UI.iOS.createToolbar({
-			 items : [cancel],
-			 right: 5,
-			 width: 20,
-		     height: 20
-		});
-		
-		var textField = $.UI.create("TextField", {
-			width: Ti.UI.FILL,
-			height: 40,  
-			keyboardToolbar : keyboardToolbarButtons,
-			backgroundColor : "#ffffff",
-			borderRadius : 5
-		});
-		
+		if(Ti.Platform.osname == "android"){
+			var textField = $.UI.create("TextField", {
+				width: Ti.UI.FILL,
+				height: 40,  
+				backgroundColor : "#ffffff",
+				borderRadius : 5
+			});
+		}else{
+			var keyboardToolbarButtons = Ti.UI.iOS.createToolbar({
+				 items : [cancel],
+				 right: 5,
+				 width: 20,
+			     height: 20
+			});
+			
+			var textField = $.UI.create("TextField", {
+				width: Ti.UI.FILL,
+				height: 40,  
+				keyboardToolbar : keyboardToolbarButtons,
+				backgroundColor : "#ffffff",
+				borderRadius : 5
+			});
+		}
 		var view_textfield = $.UI.create("View", {
 			width: Ti.UI.FILL,
 			height: Ti.UI.SIZE,

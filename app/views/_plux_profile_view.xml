@@ -1,6 +1,6 @@
 <Alloy>
 	<ScrollView class="container" id="main" layout="vertical">
-		<View backgroundColor="#ddd" height="Ti.UI.SIZE" layout="vertical">
+		<View backgroundColor="#fff" height="Ti.UI.SIZE" layout="vertical">
 			<View class="header">
 				<Label class="padding header_label">Personal Information</Label>
 			</View>

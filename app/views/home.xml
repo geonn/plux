@@ -5,9 +5,9 @@
 				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL"></View>
 				<View layout="">
 					<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png" zIndex="5" />
-					<View zIndex="4" id="myinfo_view" layout="horizontal" height="Ti.UI.SIZE" top="20" backgroundColor="#666666" opacity="0.7"> 
+					<View zIndex="4" id="myinfo_view" layout="horizontal" height="Ti.UI.SIZE" top="20" backgroundColor="#B3000000"> 
 						<!--<View height="40" id="fbloginView" />-->
-						<View layout="horizontal" left="110" width="auto" top="10" bottom="10" height="Ti.UI.SIZE" id="myInfo" />
+						<View layout="horizontal" left="110" width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
 					</View>
 					<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
 				        <ActivityIndicator  id="activityIndicator" />

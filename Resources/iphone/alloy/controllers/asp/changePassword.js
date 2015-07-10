@@ -54,10 +54,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.changePasswordWin && $.addTopLevelView($.__views.changePasswordWin);
-    $.__views.__alloyId95 = Ti.UI.createView({
-        id: "__alloyId95"
+    $.__views.__alloyId99 = Ti.UI.createView({
+        id: "__alloyId99"
     });
-    $.__views.changePasswordWin.add($.__views.__alloyId95);
+    $.__views.changePasswordWin.add($.__views.__alloyId99);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -66,7 +66,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId95.add($.__views.loadingBar);
+    $.__views.__alloyId99.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -74,23 +74,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId96 = Ti.UI.createLabel({
+    $.__views.__alloyId100 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId96"
+        id: "__alloyId100"
     });
-    $.__views.loadingBar.add($.__views.__alloyId96);
+    $.__views.loadingBar.add($.__views.__alloyId100);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId95.add($.__views.main);
-    $.__views.__alloyId97 = Ti.UI.createImageView({
+    $.__views.__alloyId99.add($.__views.main);
+    $.__views.__alloyId101 = Ti.UI.createImageView({
         width: "40%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -98,9 +98,9 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "asp_logo.png",
-        id: "__alloyId97"
+        id: "__alloyId101"
     });
-    $.__views.main.add($.__views.__alloyId97);
+    $.__views.main.add($.__views.__alloyId101);
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "40dp",
@@ -152,7 +152,7 @@ function Controller() {
         value: ""
     });
     $.__views.main.add($.__views.password2);
-    $.__views.__alloyId98 = Ti.UI.createButton({
+    $.__views.__alloyId102 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Change Password",
@@ -160,16 +160,16 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId98"
+        id: "__alloyId102"
     });
-    $.__views.main.add($.__views.__alloyId98);
-    submitPassword ? $.__views.__alloyId98.addEventListener("touchend", submitPassword) : __defers["$.__views.__alloyId98!touchend!submitPassword"] = true;
+    $.__views.main.add($.__views.__alloyId102);
+    submitPassword ? $.__views.__alloyId102.addEventListener("touchend", submitPassword) : __defers["$.__views.__alloyId102!touchend!submitPassword"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var loginId = Ti.App.Properties.getString("asp_email");
     $.description.text = "You are about to change password for " + loginId;
-    __defers["$.__views.__alloyId98!touchend!submitPassword"] && $.__views.__alloyId98.addEventListener("touchend", submitPassword);
+    __defers["$.__views.__alloyId102!touchend!submitPassword"] && $.__views.__alloyId102.addEventListener("touchend", submitPassword);
     _.extend($, exports);
 }
 

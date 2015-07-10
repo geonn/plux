@@ -110,15 +110,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.panelListTbl = Ti.UI.createWindow({
+    $.__views.listing = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Type List",
-        id: "panelListTbl",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C"
+        navTintColor: "#CE1D1C",
+        id: "listing"
     });
-    $.__views.panelListTbl && $.addTopLevelView($.__views.panelListTbl);
+    $.__views.listing && $.addTopLevelView($.__views.listing);
+    $.__views.panelListTbl = Ti.UI.createView({
+        id: "panelListTbl",
+        layout: "vertical"
+    });
+    $.__views.listing.add($.__views.panelListTbl);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -127,7 +132,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.panelListTbl.add($.__views.loadingBar);
+    $.__views.listing.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -135,15 +140,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId136 = Ti.UI.createLabel({
+    $.__views.__alloyId141 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId136"
+        id: "__alloyId141"
     });
-    $.__views.loadingBar.add($.__views.__alloyId136);
+    $.__views.loadingBar.add($.__views.__alloyId141);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

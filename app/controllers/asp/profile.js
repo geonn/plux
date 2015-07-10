@@ -44,3 +44,10 @@ function changePassword(){
 	var nav = require('navigation');
 	nav.navigationWindow("asp/changePassword", 0);
 } 
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		console.log('close!!');
+		nav.closeWindow($.asp_profile); 
+	}); 
+}

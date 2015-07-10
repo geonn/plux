@@ -21,16 +21,10 @@ function addForm(text, type, options) {
         cancel.addEventListener("click", function() {
             for (a = 0; a < form.length; a++) form[a].blur();
         });
-        var keyboardToolbarButtons = Ti.UI.iOS.createToolbar({
-            items: [ cancel ],
-            right: 5,
-            width: 20,
-            height: 20
-        });
+        var textField;
         var textField = $.UI.create("TextField", {
             width: Ti.UI.FILL,
             height: 40,
-            keyboardToolbar: keyboardToolbarButtons,
             backgroundColor: "#ffffff",
             borderRadius: 5
         });

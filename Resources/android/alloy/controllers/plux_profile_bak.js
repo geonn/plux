@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "plux_profile";
+    this.__controllerPath = "plux_profile_bak";
     this.args = arguments[0] || {};
     if (arguments[0]) {
         {
@@ -24,34 +24,29 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.plux_profile = Ti.UI.createWindow({
+    $.__views.pluxProfileWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "PLUX Profile",
-        id: "plux_profile",
         backButtonTitle: "",
+        id: "pluxProfileWin",
         navTintColor: "#CE1D1C"
     });
-    $.__views.plux_profile && $.addTopLevelView($.__views.plux_profile);
-    $.__views.__alloyId78 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId78"
-    });
-    $.__views.plux_profile.add($.__views.__alloyId78);
-    $.__views.__alloyId79 = Ti.UI.createView({
+    $.__views.pluxProfileWin && $.addTopLevelView($.__views.pluxProfileWin);
+    $.__views.__alloyId94 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
-        width: Ti.UI.FILL,
+        width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId79"
+        id: "__alloyId94"
     });
-    $.__views.__alloyId78.add($.__views.__alloyId79);
-    $.__views.__alloyId80 = Ti.UI.createView({
+    $.__views.pluxProfileWin.add($.__views.__alloyId94);
+    $.__views.__alloyId95 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId80"
+        id: "__alloyId95"
     });
-    $.__views.__alloyId79.add($.__views.__alloyId80);
+    $.__views.__alloyId94.add($.__views.__alloyId95);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -59,13 +54,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId80.add($.__views.btnBack);
+    $.__views.__alloyId95.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
-        width: "90%"
+        width: Ti.UI.FILL
     });
-    $.__views.__alloyId79.add($.__views.pageTitle);
-    $.__views.__alloyId81 = Ti.UI.createLabel({
+    $.__views.__alloyId94.add($.__views.pageTitle);
+    $.__views.__alloyId96 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -73,29 +68,21 @@ function Controller() {
         },
         text: "PLUX Profile",
         textAlign: "center",
-        id: "__alloyId81"
+        id: "__alloyId96"
     });
-    $.__views.pageTitle.add($.__views.__alloyId81);
+    $.__views.pageTitle.add($.__views.__alloyId96);
+    $.__views.__alloyId97 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId97"
+    });
+    $.__views.pluxProfileWin.add($.__views.__alloyId97);
     $.__views.profileData = Ti.UI.createScrollView({
         id: "profileData",
-        height: Ti.UI.FILL,
-        backgroundColor: "#ffffff"
+        height: "90%"
     });
-    $.__views.__alloyId78.add($.__views.profileData);
+    $.__views.__alloyId97.add($.__views.profileData);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
-    var usersModel = Alloy.createCollection("users_plux");
-    var u_id = Ti.App.Properties.getString("u_id");
-    var data = usersModel.getUserById(u_id);
-    var healthModel = Alloy.createCollection("personalInfo");
-    data["personal_health"] = healthModel.getOwnerData();
-    $.profileData.add(Alloy.createController("_plux_profile_view", {
-        profile_data: data
-    }).getView());
-    $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.plux_profile);
-    });
     _.extend($, exports);
 }
 
