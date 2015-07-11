@@ -44,6 +44,11 @@ function Controller() {
             $.bloodPressureView.show();
             $.cholestrolView.show();
         } else {
+            for (var a = 0; a < $.graphScrollView.children.length; a++) {
+                var activityIndicator = createIndicator();
+                $.graphScrollView.children[a].children[0].add(activityIndicator);
+                activityIndicator.show();
+            }
             if ("android" != Ti.Platform.osname) {
                 $.stepsView.setHeight(Ti.UI.SIZE);
                 $.stepsView.setTop(10);
@@ -67,7 +72,18 @@ function Controller() {
         }
     }
     function loadLatest(e) {
-        $.graphScrollView.children[e.id].children[2].children[1].text = e.text;
+        var graph_view = children({
+            name: "gType",
+            value: e.gType
+        }, $.graphScrollView);
+        graph_view.children[2].children[1].text = e.text;
+    }
+    function graphLoaded(e) {
+        var graph_view = children({
+            name: "gType",
+            value: e.id
+        }, $.graphScrollView);
+        graph_view.children[0].children[0].hide();
     }
     function populateDataById(e) {
         hd.loadInfo(e.id, "", "1");
@@ -154,6 +170,7 @@ function Controller() {
     $.__views.main.add($.__views.graphScrollView);
     $.__views.stepsView = Ti.UI.createView({
         id: "stepsView",
+        gType: "10",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -215,6 +232,7 @@ function Controller() {
     $.__views.__alloyId230.add($.__views.stepsDetailLabel);
     $.__views.bmiView = Ti.UI.createView({
         id: "bmiView",
+        gType: "1",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -276,6 +294,7 @@ function Controller() {
     $.__views.__alloyId233.add($.__views.bmiDetailLabel);
     $.__views.bloodPressureView = Ti.UI.createView({
         id: "bloodPressureView",
+        gType: "2",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -337,6 +356,7 @@ function Controller() {
     $.__views.__alloyId236.add($.__views.bloodPressureDetailLabel);
     $.__views.heartRateView = Ti.UI.createView({
         id: "heartRateView",
+        gType: "3",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -398,6 +418,7 @@ function Controller() {
     $.__views.__alloyId239.add($.__views.heartRateDetailLabel);
     $.__views.bodyTemperatureView = Ti.UI.createView({
         id: "bodyTemperatureView",
+        gType: "4",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -459,6 +480,7 @@ function Controller() {
     $.__views.__alloyId242.add($.__views.bodyTempDetailLabel);
     $.__views.cholestrolView = Ti.UI.createView({
         id: "cholestrolView",
+        gType: "7",
         height: Ti.UI.SIZE,
         layout: "vertical",
         borderRadius: "5",
@@ -529,6 +551,7 @@ function Controller() {
     "android" != Ti.Platform.osname && hd.stepsMotion();
     Ti.App.addEventListener("filterList", filterList);
     Ti.App.addEventListener("loadLatest", loadLatest);
+    Ti.App.addEventListener("populateDataById", graphLoaded);
     Ti.App.addEventListener("populateDataById", populateDataById);
     filterList({
         category: "all"
@@ -590,18 +613,35 @@ function Controller() {
         e.source.height = parseInt(actualHeight);
     });
     $.moreHealth.addEventListener("click", function() {
-        var page = Alloy.createController("myHealth/_menu").getView();
-        page.open();
-        page.animate({
-            curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-            opacity: 1,
-            duration: 200
-        });
+        if ("android" == Ti.Platform.osname) {
+            var dialog = Ti.UI.createOptionDialog({
+                cancel: 3,
+                options: [ "Me", "Body Measurement", "Vitals", "Cancel" ],
+                title: "More"
+            });
+            dialog.show();
+            dialog.addEventListener("click", function(e) {
+                0 == e.index ? nav.navigationWindow("myHealth/profile") : 1 == e.index ? Ti.App.fireEvent("filterList", {
+                    category: "measurement"
+                }) : 2 == e.index && Ti.App.fireEvent("filterList", {
+                    category: "vitals"
+                });
+            });
+        } else {
+            var page = Alloy.createController("myHealth/_menu").getView();
+            page.open();
+            page.animate({
+                curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+                opacity: 1,
+                duration: 200
+            });
+        }
     });
     $.myhealth.addEventListener("close", function() {
         Ti.App.removeEventListener("filterList", filterList);
         Ti.App.removeEventListener("populateDataById", populateDataById);
         Ti.App.removeEventListener("loadLatest", loadLatest);
+        Ti.App.removeEventListener("populateDataById", graphLoaded);
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myhealth);

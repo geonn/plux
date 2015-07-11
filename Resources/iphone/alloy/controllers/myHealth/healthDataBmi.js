@@ -228,7 +228,7 @@ function Controller() {
     __alloyId161.push($.__views.tvrField1);
     $.__views.__alloyId168 = Ti.UI.createView({
         layout: "horizontal",
-        height: Ti.UI.SIZE,
+        height: "55",
         width: "100%",
         id: "__alloyId168"
     });
@@ -271,7 +271,7 @@ function Controller() {
     __alloyId161.push($.__views.tvrField2);
     $.__views.__alloyId170 = Ti.UI.createView({
         layout: "horizontal",
-        height: Ti.UI.SIZE,
+        height: "55",
         width: "100%",
         id: "__alloyId170"
     });

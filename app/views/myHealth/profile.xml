@@ -16,8 +16,8 @@
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Me</Label>
 		     	</View>
 		     	<View width="20%">
-		         	<Button id="editButton" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
-	         		<Button id="saveButton" onTouchend="doSaveRecords"  title="Save" right="0" touchEnabled="true" visible="false"  />
+		         	<Button id="editButton" class="navbtn" onTouchend="doEditRecords" title="Edit" right="0" touchEnabled="true" visible="true"  />
+	         		<Button id="saveButton" class="navbtn" onTouchend="doSaveRecords"  title="Save" right="0" touchEnabled="true" visible="false"  />
 		   		</View>
 		 	</View>
 			<TableView id="table" height="135" top="30" scrollable="false">

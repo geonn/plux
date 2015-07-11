@@ -53,6 +53,7 @@ function loadChart(data){
 	var contentHeight = $( "#chartContainer" ).height();
 	$("html").css("height", contentHeight );
 	$("body").css("height", contentHeight);
+	Ti.App.fireEvent('graphLoaded',{ id: 1});
 }
 function loadNoData(dataPeriod){
 	var dateNow = currentDate(0); 

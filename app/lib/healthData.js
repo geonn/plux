@@ -155,12 +155,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 0;
-			if(Ti.Platform.osname != "android"){
-				id++;
-			}
-			console.log("bmi"+id);
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.bmiDetailLabel.text = latestData|| "N/A";
 		}
 	}
@@ -168,11 +163,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 1;
-			if(Ti.Platform.osname != "android"){
-				id++;
-			}
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.bloodPressureDetailLabel.text = latestData ||  "N/A";
 		}
 	}
@@ -180,11 +171,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 2;
-			if(Ti.Platform.osname != "android"){
-				id++;
-			}
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.heartRateDetailLabel.text = latestData ||  "N/A";
 		}
 	}
@@ -193,11 +180,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 3;
-			if(Ti.Platform.osname != "android"){
-				id++;
-			}
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
 		}
 	}
@@ -217,11 +200,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 4;
-			if(Ti.Platform.osname != "android"){
-				id++;
-			}
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.cholestrolDetailLabel.text = "-";
 		}
 	}
@@ -232,8 +211,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
-			var id = 0;
-			Ti.App.fireEvent('loadLatest',{id: id, text: text});
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.stepsDetailLabel.text = latestData || "N/A";
 		}
 	}

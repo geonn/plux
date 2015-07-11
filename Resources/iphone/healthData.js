@@ -66,11 +66,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 0;
-            "android" != Ti.Platform.osname && id++;
-            console.log("bmi" + id);
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -83,10 +80,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 1;
-            "android" != Ti.Platform.osname && id++;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -98,10 +93,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 2;
-            "android" != Ti.Platform.osname && id++;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -113,10 +106,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 3;
-            "android" != Ti.Platform.osname && id++;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -129,10 +120,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 4;
-            "android" != Ti.Platform.osname && id++;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -145,9 +134,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         "" != latestData && (latestData += " Steps");
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 0;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }

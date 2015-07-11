@@ -40,8 +40,9 @@ function Controller() {
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundColor: "#ffffff"
                 });
+                console.log("/images/" + entry.clinicType + ".png");
                 var leftImage = Titanium.UI.createImageView({
-                    image: "/images/" + entry.clinicType + ".png",
+                    image: entry.clinicType + ".png",
                     width: 50,
                     height: 50,
                     left: 10
@@ -68,7 +69,7 @@ function Controller() {
                     width: "auto",
                     color: "#848484",
                     right: 50,
-                    height: 12
+                    height: 25
                 });
                 var rightForwardBtn = Titanium.UI.createImageView({
                     image: "/images/btn-forward.png",
@@ -187,6 +188,44 @@ function Controller() {
         id: "__alloyId152"
     });
     $.__views.loadingBar.add($.__views.__alloyId152);
+    $.__views.__alloyId153 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: "100%",
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId153"
+    });
+    $.__views.listing.add($.__views.__alloyId153);
+    $.__views.__alloyId154 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId154"
+    });
+    $.__views.__alloyId153.add($.__views.__alloyId154);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        width: "25",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId154.add($.__views.btnBack);
+    $.__views.pageTitle = Ti.UI.createView({
+        id: "pageTitle",
+        width: "80%"
+    });
+    $.__views.__alloyId153.add($.__views.pageTitle);
+    $.__views.__alloyId155 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Clinic Type List",
+        textAlign: "center",
+        id: "__alloyId155"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId155);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

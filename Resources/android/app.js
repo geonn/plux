@@ -77,6 +77,41 @@ function removeAllChildren(viewObject) {
     for (var i = 0; i < children.length; ++i) viewObject.remove(children[i]);
 }
 
+function parent(key, e) {
+    if (eval("e." + key.name) == key.value) return e;
+    if (eval("e.parent." + key.name) == key.value) return e.parent;
+    if (eval("e.parent.parent." + key.name) == key.value) return e.parent.parent;
+    console.log("box not found");
+}
+
+function children(key, e) {
+    if (eval("e." + key.name) == key.value) return e;
+    for (var i = 0; i < e.children.length; i++) {
+        if (eval("e.children[i]." + key.name) == key.value) return e.children[i];
+        for (var a = 0; a < e.children[i].children.length; a++) {
+            if (eval("e.children[i].children[a]." + key.name) == key.value) return e.children[i].children[a];
+            for (var c = 0; c < e.children[i].children[a].children.length; c++) if (eval("e.children[i].children[a].children[c]." + key.name) == key.value) return e.children[i].children[a].children[c];
+        }
+    }
+}
+
+function createIndicator() {
+    var style;
+    style = Ti.UI.ActivityIndicatorStyle.DARK;
+    var activityIndicator = Ti.UI.createActivityIndicator({
+        color: "black",
+        font: {
+            fontFamily: "Helvetica Neue",
+            fontSize: 12
+        },
+        message: "Loading...",
+        style: style,
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE
+    });
+    return activityIndicator;
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 var common = require("common");

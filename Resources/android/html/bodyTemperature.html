@@ -50,6 +50,7 @@ function loadChart(data){
 		]
 	});
 	chart.render();
+	Ti.App.fireEvent('graphLoaded',{ id: 4});
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
 }

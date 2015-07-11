@@ -28,7 +28,7 @@ function resetGraph(){
 }
 
 function filterList(e){
-	 
+	
 	if(e.category == "measurement"){
 		resetGraph();
 		$.bmiView.setHeight(Ti.UI.SIZE);
@@ -44,7 +44,7 @@ function filterList(e){
 		$.bmiView.show();
 //		$.heightView.show();
 //		$.weightView.show(); 
-		$.cholestrolView.show(); 
+		$.cholestrolView.show();
 	}else if(e.category == "vitals"){
 		resetGraph();
 		$.heartRateView.setHeight(Ti.UI.SIZE);
@@ -62,6 +62,11 @@ function filterList(e){
 		$.bloodPressureView.show();
 		$.cholestrolView.show();
 	}else{
+		for(var a = 0; a < $.graphScrollView.children.length; a++){
+			var activityIndicator = createIndicator();
+			$.graphScrollView.children[a].children[0].add(activityIndicator);
+			activityIndicator.show();
+		}
 		if(Ti.Platform.osname != "android"){
 			$.stepsView.setHeight(Ti.UI.SIZE);
 			$.stepsView.setTop(10);
@@ -99,7 +104,15 @@ Ti.App.addEventListener('filterList',filterList);
 Ti.App.addEventListener("loadLatest", loadLatest);
 
 function loadLatest(e){
-	$.graphScrollView.children[e.id].children[2].children[1].text = e.text;
+	var graph_view = children({name: "gType", value: e.gType}, $.graphScrollView);
+	graph_view.children[2].children[1].text = e.text;
+}
+
+Ti.App.addEventListener('populateDataById', graphLoaded);
+
+function graphLoaded(e){
+	var graph_view = children({name: "gType", value: e.id}, $.graphScrollView);
+	graph_view.children[0].children[0].hide();
 }
 
 Ti.App.addEventListener('populateDataById',populateDataById);
@@ -184,19 +197,42 @@ $.cholestrolView.addEventListener('load',function(e){
 });
 
 $.moreHealth.addEventListener('click', function(e){
-	var page = Alloy.createController('myHealth/_menu').getView();
-	page.open();
-	page.animate({
-		curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-		opacity: 1,
-		duration: 200
-	});
+	if(Ti.Platform.osname == "android"){
+		var dialog = Ti.UI.createOptionDialog({
+		  cancel: 3,
+		  options: ['Me', 'Body Measurement', 'Vitals', 'Cancel'],
+		  title: 'More'
+		});
+		
+		dialog.show();
+		
+		dialog.addEventListener("click", function(e){
+			if(e.index == 0){
+				nav.navigationWindow("myHealth/profile");
+			}else if(e.index == 1){
+				Ti.App.fireEvent('filterList',{category: "measurement"});
+				//API.loadCategory({types: "popular"});
+			}else if(e.index == 2){
+				Ti.App.fireEvent('filterList',{category: "vitals"});
+			}
+		});
+	}else{
+		var page = Alloy.createController('myHealth/_menu').getView();
+		page.open();
+		page.animate({
+			curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+			opacity: 1,
+			duration: 200
+		});
+	}
+	
 });
 
 $.myhealth.addEventListener("close", function(e){
 	Ti.App.removeEventListener('filterList',filterList);
 	Ti.App.removeEventListener('populateDataById',populateDataById);
 	Ti.App.removeEventListener('loadLatest',loadLatest);
+	Ti.App.removeEventListener('populateDataById', graphLoaded);
 });
 
 if(Ti.Platform.osname == "android"){

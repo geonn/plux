@@ -66,10 +66,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 0;
-            console.log("bmi" + id);
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -82,9 +80,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 1;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -96,9 +93,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 2;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -110,9 +106,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 3;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -125,9 +120,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         });
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 4;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
@@ -140,9 +134,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         "" != latestData && (latestData += " Steps");
         if ("1" == showDetailsLabel) {
             var text = latestData || "N/A";
-            var id = 0;
             Ti.App.fireEvent("loadLatest", {
-                id: id,
+                gType: gType,
                 text: text
             });
         }
