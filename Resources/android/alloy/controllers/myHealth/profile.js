@@ -262,6 +262,10 @@ function Controller() {
     });
     $.__views.__alloyId291.add($.__views.__alloyId294);
     $.__views.editButton = Ti.UI.createButton({
+        font: {
+            fontSize: "10dp"
+        },
+        color: "#000",
         touchEnabled: true,
         id: "editButton",
         title: "Edit",
@@ -271,6 +275,10 @@ function Controller() {
     $.__views.__alloyId294.add($.__views.editButton);
     doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.saveButton = Ti.UI.createButton({
+        font: {
+            fontSize: "10dp"
+        },
+        color: "#000",
         touchEnabled: true,
         id: "saveButton",
         title: "Save",

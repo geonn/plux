@@ -40,63 +40,25 @@ function Controller() {
         id: "__alloyId73"
     });
     $.__views.hraDetailsWin.add($.__views.__alloyId73);
-    $.__views.__alloyId74 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "50",
-        width: "100%",
-        backgroundColor: "#DEDEDE",
-        id: "__alloyId74"
-    });
-    $.__views.__alloyId73.add($.__views.__alloyId74);
-    $.__views.__alloyId75 = Ti.UI.createView({
-        left: "0",
-        width: "10%",
-        id: "__alloyId75"
-    });
-    $.__views.__alloyId74.add($.__views.__alloyId75);
-    $.__views.btnBack = Ti.UI.createImageView({
-        left: "10",
-        id: "btnBack",
-        width: "25",
-        height: "25",
-        image: "/images/btn-back.png"
-    });
-    $.__views.__alloyId75.add($.__views.btnBack);
-    $.__views.pageTitle = Ti.UI.createView({
-        id: "pageTitle",
-        width: Ti.UI.FILL
-    });
-    $.__views.__alloyId74.add($.__views.pageTitle);
-    $.__views.hraTitle = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        text: "Health Info",
-        id: "hraTitle",
-        textAlign: "center"
-    });
-    $.__views.pageTitle.add($.__views.hraTitle);
-    $.__views.__alloyId76 = Ti.UI.createScrollView({
+    $.__views.__alloyId74 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId76"
+        id: "__alloyId74"
     });
-    $.__views.__alloyId73.add($.__views.__alloyId76);
+    $.__views.__alloyId73.add($.__views.__alloyId74);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId76.add($.__views.input_box);
+    $.__views.__alloyId74.add($.__views.input_box);
     $.__views.description = Ti.UI.createView({
         id: "description",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId76.add($.__views.description);
+    $.__views.__alloyId74.add($.__views.description);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,
@@ -114,7 +76,6 @@ function Controller() {
     $.description.add(module.description());
     $.input_box.add(module.input_box());
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.hraDetailsWin);
     });
     _.extend($, exports);

@@ -3,7 +3,7 @@ var form = null;
 var form_data = null;
 var form_label = null;
 var count = null;
-
+var tb = require("TabbedBar");
 exports.title = "Nutritional Profile";
 
 exports.construct = function(mv){
@@ -175,7 +175,7 @@ function addForm(text, type, options){
 			width: Ti.UI.FILL,
 			height: Ti.UI.SIZE,
 		});
-		var buttonbar = $.UI.create("TabbedBar", {
+		var buttonbar = tb.createTabbedBar({
 			width: Ti.UI.FILL,
 			height: Ti.UI.SIZE,
 			counter: count,
