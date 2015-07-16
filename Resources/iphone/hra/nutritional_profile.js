@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
+ 
 function addForm(text, type, options) {
     if ("TextField" == type) {
         var label_textfield = $.UI.create("Label", {
@@ -174,6 +171,9 @@ var $ = null;
 var $ = null;  
 >>>>>>> origin/master
 >>>>>>> origin/master
+=======
+var $ = null;  
+>>>>>>> Stashed changes
 var form = null;
 
 var form_data = null;
@@ -181,9 +181,7 @@ var form_data = null;
 var form_label = null;
 
 var count = null;
-
 var tb = require("TabbedBar");
-
 exports.title = "Nutritional Profile";
 
 exports.construct = function(mv) {
@@ -217,6 +215,7 @@ exports.description = function() {
     return view_container;
 };
 
+<<<<<<< Updated upstream
 exports.input_box = function() {
     var view_header = $.UI.create("View", {
         classes: [ "header_view" ]
@@ -265,3 +264,198 @@ exports.input_box = function() {
     button_submit.addEventListener("click", formular);
     return view_container;
 };
+=======
+/*
+ 	private function
+ * */
+
+function addForm(text, type, options){
+	if(type == "TextField"){
+		var label_textfield = $.UI.create("Label", {
+			text: text,
+			width: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
+		});
+		
+		var cancel = Titanium.UI.createButton({
+		     backgroundImage: "/images/btn-down.png",
+		     textAlign: "right",
+		     right: 0,
+		     width: 20,
+		     height: 20  
+		});
+		
+		cancel.addEventListener("click", function(e){
+			for(a = 0; a < form.length; a++){
+				form[a].blur();
+			}
+		});
+		
+		if(Ti.Platform.osname == "android"){
+			var textField = $.UI.create("TextField", {
+				width: Ti.UI.FILL,
+				height: 40,  
+				backgroundColor : "#ffffff",
+				borderRadius : 5
+			});
+		}else{
+			var keyboardToolbarButtons = Ti.UI.iOS.createToolbar({
+				 items : [cancel],
+				 right: 5,
+				 width: 20,
+			     height: 20
+			});
+			
+			var textField = $.UI.create("TextField", {
+				width: Ti.UI.FILL,
+				height: 40,  
+				keyboardToolbar : keyboardToolbarButtons,
+				backgroundColor : "#ffffff",
+				borderRadius : 5
+			});
+		}
+		
+		var view_textfield = $.UI.create("View", {
+			width: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
+			left: 10,
+			right: 10,
+			top: 10,
+			bottom: 10,
+			layout: "vertical",
+		});
+		
+		form.push(textField);
+		
+		view_textfield.add(label_textfield);
+		view_textfield.add(textField);
+		count++;
+		form_label.push([]);
+		return view_textfield;
+	}else if(type == "ButtonBar"){
+		var data = [];
+		var label_buttonbar = $.UI.create("Label", {
+			text: text,
+			width: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
+		});
+		var buttonbar = tb.createTabbedBar({
+			width: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
+			counter: count,
+			row_value: 0, 
+			labels:options,  
+		    backgroundColor:'#CE1D1C',
+		    borderColor : '#CE1D1C',
+		    //style:Titanium.UI.iPhone.SystemButtonStyle.BAR
+		});
+		buttonbar.addEventListener("click", function(e){
+			var index = e.source.counter; 
+			 
+			 if(e.index == "0"){
+			 	form_data[index] = 1;
+			 }else{
+			 	form_data[index] = 0;
+			 }
+			  
+		});
+		
+		var view_picker = $.UI.create("View", {
+			width: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
+			left: 10,
+			right: 10,
+			top: 10,
+			bottom: 10,
+			layout: "vertical",
+		});
+		view_picker.add(label_buttonbar);
+		view_picker.add(buttonbar);
+		count ++;
+		return view_picker;
+	}
+}
+
+function formular(){
+	var total_score = 0; 
+	for(a = 0; a < form_data.length; a++){  
+		if(form_data[a] == '1'){
+			total_score++;
+		}
+	}
+	  
+	if(total_score <= 3){
+		resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ");
+	}else if(total_score <= 6){
+		resultPopUp("RESULT", "Not bad! You are halfway there. You still have a way to go. Look at your 'No' answers to help you decide which areas of your diet need to be improved, or whether your physical activity level should be increased.");
+	}else if(total_score <= 8){
+		resultPopUp("RESULT", "Good for you! You are living smart! Keep up the good habits, and keep looking for ways to improve.");
+	}
+}
+
+function resultPopUp(title, msg){
+	var mask = Titanium.UI.createView({
+		width: "100%",
+		height: "100%",
+		zIndex: 19,
+		backgroundColor: "#000",
+		opacity:0.45,
+	});
+	
+	var box = Titanium.UI.createView({
+		width: "90%",
+		height: Ti.UI.SIZE,
+		layout: "vertical",
+		opacity:1.0,zIndex: 20,
+	});
+	var header = Titanium.UI.createView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+		backgroundColor: "#EA2035",
+	});
+	var head_title = Titanium.UI.createLabel({
+		text: title,
+		top: '20dp',
+		left: '20dp',
+		right: '20dp',
+		bottom: '20dp',
+		color: "#ffffff",
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+	});
+	header.add(head_title);
+	var content = Titanium.UI.createView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+		backgroundColor: "#fff",
+		layout: "vertical",
+	});
+	var content_text = Titanium.UI.createLabel({
+		text: msg,
+		top: '20dp',
+		left: '20dp',
+		right: '20dp',
+		bottom: '20dp',
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+	});
+	var okButton = Ti.UI.createButton({
+		title: "OK",
+		width: "100dp",
+		backgroundColor: "#CE1D1C",
+		color: "#ffffff",
+		height: "40dp",
+		bottom: "20dp",
+	});
+	content.add(content_text);
+	content.add(okButton);
+	box.add(header);
+	box.add(content);
+	$.win.add(box);
+	$.win.add(mask);
+	okButton.addEventListener("click", function(){
+		$.win.remove(box);
+		$.win.remove(mask);
+	});
+};
+>>>>>>> Stashed changes
