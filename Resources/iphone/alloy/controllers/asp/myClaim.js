@@ -108,14 +108,34 @@ function Controller() {
                 var view_line = $.UI.create("View", {
                     classes: [ "line" ]
                 });
+                var view_header = $.UI.create("View", {
+                    width: Ti.UI.FILL,
+                    height: Ti.UI.SIZE,
+                    left: 10,
+                    right: 10,
+                    layout: "horizontal"
+                });
                 var label_name = $.UI.create("Label", {
-                    classes: [ "padding" ],
+                    height: Ti.UI.SIZE,
                     wordWrap: false,
                     ellipsize: true,
+                    font: {
+                        fontSize: "16sp"
+                    },
+                    width: "70%",
                     text: b
                 });
+                var label_balance_limit = $.UI.create("Label", {
+                    height: Ti.UI.SIZE,
+                    wordWrap: false,
+                    ellipsize: true,
+                    width: "30%",
+                    text: "balance / limit"
+                });
+                view_header.add(label_name);
+                view_header.add(label_balance_limit);
                 $.view_balance.add(view_line);
-                $.view_balance.add(label_name);
+                $.view_balance.add(view_header);
                 for (var c = 0; tmp_group[b].length > c; c++) {
                     var view_category = $.UI.create("View", {
                         width: Ti.UI.FILL,
@@ -188,7 +208,7 @@ function Controller() {
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         font: {
-            fontSize: "16dp"
+            fontSize: "16sp"
         },
         top: "5",
         bottom: "5",
@@ -268,7 +288,7 @@ function Controller() {
         width: Titanium.UI.FILL,
         height: "80dp",
         font: {
-            fontSize: "12dp"
+            fontSize: "16sp"
         },
         color: "#6E6E6E",
         bottom: "10dp",

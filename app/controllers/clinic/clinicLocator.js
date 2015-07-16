@@ -106,3 +106,10 @@ function setCurLoc(e){
 } 
 
 Ti.App.addEventListener('aspClinic',loadClinic);
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){
+		console.log('close!!');
+		nav.closeWindow($.clinicLocator); 
+	}); 
+}

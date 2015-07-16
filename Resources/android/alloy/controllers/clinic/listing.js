@@ -111,20 +111,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.listing = Ti.UI.createWindow({
+    $.__views.clinicList = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Type List",
+        id: "clinicList",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "listing"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.listing && $.addTopLevelView($.__views.listing);
+    $.__views.clinicList && $.addTopLevelView($.__views.clinicList);
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
-    $.__views.listing.add($.__views.panelListTbl);
+    $.__views.clinicList.add($.__views.panelListTbl);
     $.__views.__alloyId149 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
@@ -171,7 +171,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.listing.add($.__views.loadingBar);
+    $.__views.clinicList.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -188,44 +188,6 @@ function Controller() {
         id: "__alloyId152"
     });
     $.__views.loadingBar.add($.__views.__alloyId152);
-    $.__views.__alloyId153 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "50",
-        width: "100%",
-        backgroundColor: "#DEDEDE",
-        id: "__alloyId153"
-    });
-    $.__views.listing.add($.__views.__alloyId153);
-    $.__views.__alloyId154 = Ti.UI.createView({
-        left: "0",
-        width: "10%",
-        id: "__alloyId154"
-    });
-    $.__views.__alloyId153.add($.__views.__alloyId154);
-    $.__views.btnBack = Ti.UI.createImageView({
-        left: "10",
-        id: "btnBack",
-        width: "25",
-        height: "25",
-        image: "/images/btn-back.png"
-    });
-    $.__views.__alloyId154.add($.__views.btnBack);
-    $.__views.pageTitle = Ti.UI.createView({
-        id: "pageTitle",
-        width: "80%"
-    });
-    $.__views.__alloyId153.add($.__views.pageTitle);
-    $.__views.__alloyId155 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        text: "Clinic Type List",
-        textAlign: "center",
-        id: "__alloyId155"
-    });
-    $.__views.pageTitle.add($.__views.__alloyId155);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -241,6 +203,10 @@ function Controller() {
         clinicType: ""
     });
     Ti.App.addEventListener("aspClinic", listing);
+    $.btnBack.addEventListener("click", function() {
+        console.log("close!!");
+        nav.closeWindow($.clinicList);
+    });
     _.extend($, exports);
 }
 

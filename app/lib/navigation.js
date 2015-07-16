@@ -75,14 +75,33 @@ exports.navigationWebview = function(webview, title){
 	 
 };
 
-exports.navigateWithArgs = function(target, args){
+var navigateWithArgs = _.debounce(
+	function(target, args){
 	var win = Alloy.createController(target, args).getView(); 
 	
 	if(Ti.Platform.osname == "android"){ 
+		if(target == "login"){
+			console.log('fb login');
+			win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: win});
+		}
 		win.open(); 
 	}else{
 		Alloy.Globals.navMenu.openWindow(win,{animated:true});
-	}
+	}, 
+1000, true);
+
+function open_window(win){
+	if(Ti.Platform.osname == "android"){ 
+	  	win.open(); //{fullscreen:false, navBarHidden: false}
+	}else{ 
+		var nav = Alloy.Globals.navMenu;
+		nav.openWindow(win,{animated:true});  
+	} 
+}
+
+
+exports.navigateWithArgs = function(target, args){
+	navigateWithArgs(target, args);
 };
 
 exports.closeWindow = function(win){

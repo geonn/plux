@@ -111,20 +111,20 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.listing = Ti.UI.createWindow({
+    $.__views.clinicList = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Type List",
+        id: "clinicList",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "listing"
+        navTintColor: "#CE1D1C"
     });
-    $.__views.listing && $.addTopLevelView($.__views.listing);
+    $.__views.clinicList && $.addTopLevelView($.__views.clinicList);
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
-    $.__views.listing.add($.__views.panelListTbl);
+    $.__views.clinicList.add($.__views.panelListTbl);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -133,7 +133,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.listing.add($.__views.loadingBar);
+    $.__views.clinicList.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -165,6 +165,10 @@ function Controller() {
         clinicType: ""
     });
     Ti.App.addEventListener("aspClinic", listing);
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        console.log("close!!");
+        nav.closeWindow($.clinicList);
+    });
     _.extend($, exports);
 }
 

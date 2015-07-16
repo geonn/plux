@@ -527,6 +527,7 @@ exports.loadClinicList = function() {
             var res = JSON.parse(this.responseText);
             if ("success" == res.status && ("" !== isUpdate || res.last_updated != isUpdate.updated)) {
                 var library = Alloy.createCollection("panelList");
+                library.resetPanel();
                 var arr = res.data;
                 library.addPanel(arr);
                 checker.updateModule("1", "clinicList", currentDateTime());
