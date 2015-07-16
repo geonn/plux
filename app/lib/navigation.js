@@ -1,6 +1,4 @@
-
-exports.navigationWindow = function(target, checkAuth, callback, param){
-	 
+function navigationWindow (target, checkAuth, callback, param){
 	if(checkAuth == 1){
 		var auth = require("auth_login");
 		if(!auth.checkLogin()){ 
@@ -64,7 +62,7 @@ exports.navigationWindow = function(target, checkAuth, callback, param){
 	}
 };
 
-exports.navigationWebview = function(webview, title){
+function navigationWebview(webview, title){
 	var win = Titanium.UI.createWindow({title: title});
     win.add(webview);
     if(Ti.Platform.osname == "android"){ 
@@ -75,10 +73,9 @@ exports.navigationWebview = function(webview, title){
 	 
 };
 
-var navigateWithArgs = _.debounce(
-	function(target, args){
+function navigateWithArgs(target, args){
 	var win = Alloy.createController(target, args).getView(); 
-	
+	console.log('a');
 	if(Ti.Platform.osname == "android"){ 
 		if(target == "login"){
 			console.log('fb login');
@@ -87,28 +84,20 @@ var navigateWithArgs = _.debounce(
 		win.open(); 
 	}else{
 		Alloy.Globals.navMenu.openWindow(win,{animated:true});
-	}, 
-1000, true);
-
-function open_window(win){
-	if(Ti.Platform.osname == "android"){ 
-	  	win.open(); //{fullscreen:false, navBarHidden: false}
-	}else{ 
-		var nav = Alloy.Globals.navMenu;
-		nav.openWindow(win,{animated:true});  
-	} 
+	}
 }
 
-
-exports.navigateWithArgs = function(target, args){
-	navigateWithArgs(target, args);
-};
-
-exports.closeWindow = function(win){
-	
+function closeWindow(win){
 	if(Ti.Platform.osname == "android"){ 
 		win.close(); 
 	}else{
 		Alloy.Globals.navMenu.closeWindow(win);
 	}
 };
+
+//var navigateWithArgs = _.debounce(nagivate_args, 1000, true);
+exports.navigationWindow = _.debounce(navigationWindow, 1000, true);
+exports.navigationWebview = _.debounce(navigationWebview, 1000, true);
+exports.navigateWithArgs = _.debounce(navigateWithArgs, 1000, true);
+exports.closeWindow = _.debounce(closeWindow, 1000, true);
+
