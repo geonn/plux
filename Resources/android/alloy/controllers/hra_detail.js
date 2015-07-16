@@ -73,7 +73,6 @@ function Controller() {
         font: {
             fontSize: "16dp"
         },
-        text: "Health Info",
         id: "hraTitle",
         textAlign: "center"
     });
@@ -110,11 +109,10 @@ function Controller() {
     var mod = args.mod;
     var module = require("hra/" + mod);
     module.construct($);
-    $.hraDetailsWin.title = module.title;
+    $.hraTitle.text = module.title;
     $.description.add(module.description());
     $.input_box.add(module.input_box());
     $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.hraDetailsWin);
     });
     _.extend($, exports);
