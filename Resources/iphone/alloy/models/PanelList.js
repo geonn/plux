@@ -255,18 +255,20 @@ exports.definition = {
             addPanel: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                db.execute("BEGIN");
-                arr.forEach(function(entry) {
-                    var qsql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=" + entry.id;
-                    var qres = db.execute(qsql);
-                    sql_query = qres.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET clinicName='" + entry.clinicname + "', clinicType='" + entry.clinictype + "', clinicCode='" + entry.cliniccode + "', openHour='" + entry.openhour + "', add1='" + entry.add1 + "', add2='" + entry.add2 + "', city='" + entry.city + "', state='" + entry.state + "', longitude='" + entry.longitude + "', latitude='" + entry.latitude + "' WHERE id='" + entry.id + "'" : "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES ('" + entry.id + "','" + entry.clinicname + "', '" + entry.cliniccode + "', '" + entry.clinictype + "', '" + entry.openhour + "', '" + entry.add1 + "','" + entry.add2 + "', '" + entry.city + "','" + entry.postcode + "', '" + entry.state + "', '" + entry.tel + "', '" + entry.latitude + "', '" + entry.longitude + "')";
-                    console.log("a");
-                    db.execute(sql_query);
+                var total = arr.length;
+                console.log(total);
+                if (total > 50) {
+                    db.execute("BEGIN");
+                    arr.forEach(function(entry) {
+                        sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
+                        db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
+                    });
+                    db.execute("COMMIT");
+                } else total > 0 && arr.forEach(function(entry) {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
                 });
-                console.log("b");
-                db.execute("COMMIT");
                 db.close();
-                console.log("c");
                 collection.trigger("sync");
             },
             resetPanel: function() {

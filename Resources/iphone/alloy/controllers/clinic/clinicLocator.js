@@ -100,9 +100,9 @@ function Controller() {
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Locator",
+        id: "clinicLocator",
         backButtonTitle: "",
-        navTintColor: "#CE1D1C",
-        id: "clinicLocator"
+        navTintColor: "#CE1D1C"
     });
     $.__views.clinicLocator && $.addTopLevelView($.__views.clinicLocator);
     $.__views.win_map = Ti.UI.createView({
@@ -151,6 +151,10 @@ function Controller() {
         clinicType: clinicType
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        console.log("close!!");
+        nav.closeWindow($.clinicLocator);
+    });
     _.extend($, exports);
 }
 

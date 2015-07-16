@@ -1,65 +1,114 @@
-exports.navigationWindow = function(target, checkAuth, callback, param) {
-    if (1 == checkAuth) {
-        var auth = require("auth_login");
-        if (auth.checkLogin()) if ("m_eCard" == target) {
-            var win = Alloy.createController(target).getView();
-            win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];
-            "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-                animated: true
-            });
-        } else {
-            var win = Alloy.createController(target).getView();
-            "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-                animated: true
-            });
-        } else {
-            var win = Alloy.createController("asp/login", {
-                target: target
-            }).getView();
-            "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-                animated: true
-            });
-        }
-        return;
-    }
-    if ("m_eCard" == target) {
-        console.log(target + " my card no auth");
-        var win = Alloy.createController(target).getView();
-        win.orientationModes = [ Titanium.UI.PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT ];
-        "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-            animated: true
-        });
-    } else if (void 0 !== typeof param && null !== param) {
-        console.log(target + " my card no auth with param");
-        var win = Alloy.createController(target, param).getView();
-        "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-            animated: true
-        });
-    } else {
-        var win = Alloy.createController(target).getView();
-        "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-            animated: true
-        });
-    }
+
+exports.navigationWindow = function(target, checkAuth, callback, param){
+	 
+	if(checkAuth == 1){
+		var auth = require("auth_login");
+		if(!auth.checkLogin()){ 
+			var win = Alloy.createController("asp/login", {target: target}).getView(); 
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			
+		}else if(target =="m_eCard"){
+			 
+			var win = Alloy.createController(target).getView(); 
+			win.orientationModes = [Titanium.UI.PORTRAIT,
+		    Titanium.UI.LANDSCAPE_LEFT,
+		    Titanium.UI.LANDSCAPE_RIGHT,];
+		    if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			
+		}else{
+			var win = Alloy.createController(target).getView(); 
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			 
+		}
+		return;
+	}else{
+		if(target =="m_eCard"){
+			console.log(target+" my card no auth");
+			var win = Alloy.createController(target).getView(); 
+			win.orientationModes = [Titanium.UI.PORTRAIT,
+		    Titanium.UI.LANDSCAPE_LEFT,
+		    Titanium.UI.LANDSCAPE_RIGHT,];
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+		}else if(typeof param !== undefined && param !== null){
+			console.log(target+" my card no auth with param");
+			var win = Alloy.createController(target, param).getView();
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+		}else{ 
+			var win = Alloy.createController(target).getView(); 
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+		}
+	}
 };
 
-exports.navigationWebview = function(webview, title) {
-    var win = Titanium.UI.createWindow({
-        title: title
-    });
+exports.navigationWebview = function(webview, title){
+	var win = Titanium.UI.createWindow({title: title});
     win.add(webview);
-    "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-        animated: true
-    });
+    if(Ti.Platform.osname == "android"){ 
+		win.open(); 
+	}else{
+		Alloy.Globals.navMenu.openWindow(win,{animated:true});
+	}
+	 
 };
 
-exports.navigateWithArgs = function(target, args) {
-    var win = Alloy.createController(target, args).getView();
-    "android" == Ti.Platform.osname ? win.open() : Alloy.Globals.navMenu.openWindow(win, {
-        animated: true
-    });
+var navigateWithArgs = _.debounce(
+	function(target, args){
+	var win = Alloy.createController(target, args).getView(); 
+	
+	if(Ti.Platform.osname == "android"){ 
+		if(target == "login"){
+			console.log('fb login');
+			win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: win});
+		}
+		win.open(); 
+	}else{
+		Alloy.Globals.navMenu.openWindow(win,{animated:true});
+	}, 
+1000, true);
+
+function open_window(win){
+	if(Ti.Platform.osname == "android"){ 
+	  	win.open(); //{fullscreen:false, navBarHidden: false}
+	}else{ 
+		var nav = Alloy.Globals.navMenu;
+		nav.openWindow(win,{animated:true});  
+	} 
+}
+
+
+exports.navigateWithArgs = function(target, args){
+	navigateWithArgs(target, args);
 };
 
-exports.closeWindow = function(win) {
-    "android" == Ti.Platform.osname ? win.close() : Alloy.Globals.navMenu.closeWindow(win);
+exports.closeWindow = function(win){
+	
+	if(Ti.Platform.osname == "android"){ 
+		win.close(); 
+	}else{
+		Alloy.Globals.navMenu.closeWindow(win);
+	}
 };

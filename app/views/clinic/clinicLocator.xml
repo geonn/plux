@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Clinic Locator" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+	<Window title="Clinic Locator" id="clinicLocator" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
 		<View id="win_map" layout="vertical">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">

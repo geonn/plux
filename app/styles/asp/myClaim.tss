@@ -17,7 +17,7 @@
 	bottom: "10dp",
 	textAlign: "center",
 	font:{
-		fontSize: "12dp",
+		fontSize: "16sp",
 	}
 },
 ".claim_info":{
@@ -28,7 +28,7 @@
 "Label":{
 	height: Titanium.UI.SIZE,
 	font:{
-		fontSize: "16dp"
+		fontSize: "16sp"
 	},
 },
 ".title":{
@@ -63,6 +63,6 @@
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 	font:{
-		fontSize: "12dp"
+		fontSize: "14sp"
 	}
 }

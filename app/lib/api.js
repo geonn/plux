@@ -677,11 +677,10 @@ exports.loadClinicList = function (ex){
 	     	if(res.status == "success"){  
 			 	 if(isUpdate	 !== "" || (res.last_updated != isUpdate.updated)){ 
 			 		
-				 	var library = Alloy.createCollection('panelList'); 
-					 
+				 	var library = Alloy.createCollection('panelList');
 					/**load new set of category from API**/ 
 					var arr = res.data;   
-			        library.addPanel(arr); 
+			        library.addPanel(arr);
 			        checker.updateModule("1","clinicList",currentDateTime());  
 			 	 }else{
 			 		// alert("?");

@@ -9,6 +9,8 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+var _ = require('underscore')._;
+
 var common = require('common');
 var API = require('api');
 var PUSH = require('push');
