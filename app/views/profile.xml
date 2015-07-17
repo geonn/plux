@@ -12,8 +12,8 @@
         	 <Label id="description" class="label" text="Please choose profile of the below services" />
         	 <ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
 				<View layout="horizontal" width="293" top="20">
-					<ImageView top="15" borderRadius="10" width="120" left="15" height="Ti.UI.SIZE" onClick="navProfile" mod="plux" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/logo_plux.png"></ImageView>
-					<ImageView top="15" borderRadius="10" width="120" left="15" height="Ti.UI.SIZE" onClick="navProfile" mod="asp" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/asp_logo.png"></ImageView>
+					<ImageView top="15" borderRadius="10" width="120" left="15" height="120" onClick="navProfile" mod="plux" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/logo_plux.png"></ImageView>
+					<ImageView top="15" borderRadius="10" width="120" left="15" height="120" onClick="navProfile" mod="asp" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/asp_logo.png"></ImageView>
 				</View>
 			</ScrollView> 
 		</View>

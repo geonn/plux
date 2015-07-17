@@ -7,11 +7,13 @@ function submitPassword(){
 	var confirm = $.password2.value; 
 	
 	if(password.trim() == ""){
+		common.hideLoading();
 		common.createAlert("Error", "Please fill in your password");
 		return false;
 	}
 	
 	if(confirm.trim() != password.trim()){
+		common.hideLoading();
 		common.createAlert("Error", "Your password are not match");
 		return false;
 	}
@@ -21,4 +23,10 @@ function submitPassword(){
 		password: password 
 	};
 	API.doChangePassword(params, $);
+}
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.changePasswordWin); 
+	}); 
 }

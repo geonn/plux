@@ -73,10 +73,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId144 = Ti.UI.createView({
-        id: "__alloyId144"
+    $.__views.__alloyId147 = Ti.UI.createView({
+        id: "__alloyId147"
     });
-    $.__views.loginWin.add($.__views.__alloyId144);
+    $.__views.loginWin.add($.__views.__alloyId147);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -85,7 +85,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId144.add($.__views.loadingBar);
+    $.__views.__alloyId147.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -93,23 +93,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId145 = Ti.UI.createLabel({
+    $.__views.__alloyId148 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId145"
+        id: "__alloyId148"
     });
-    $.__views.loadingBar.add($.__views.__alloyId145);
+    $.__views.loadingBar.add($.__views.__alloyId148);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId144.add($.__views.main);
-    $.__views.__alloyId146 = Ti.UI.createImageView({
+    $.__views.__alloyId147.add($.__views.main);
+    $.__views.__alloyId149 = Ti.UI.createImageView({
         width: "40%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -117,9 +117,9 @@ function Controller() {
         bottom: "20dp",
         top: "20dp",
         image: "asp_logo.png",
-        id: "__alloyId146"
+        id: "__alloyId149"
     });
-    $.__views.main.add($.__views.__alloyId146);
+    $.__views.main.add($.__views.__alloyId149);
     $.__views.email = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",

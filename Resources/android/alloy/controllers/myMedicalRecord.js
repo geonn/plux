@@ -268,17 +268,20 @@ function Controller() {
         hintText: "Search medical data..."
     });
     $.__views.aView.add($.__views.searchItem);
-    $.__views.recordView = Ti.UI.createScrollView({
+    $.__views.recordView = Ti.UI.createView({
         id: "recordView",
         layout: "vertical",
-        height: Ti.UI.SIZE,
-        width: "100%"
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL
     });
     $.__views.aView.add($.__views.recordView);
     $.__views.recordTable = Ti.UI.createTableView({
-        width: "100%",
+        width: Ti.UI.FILL,
         id: "recordTable",
         top: "0",
+        height: Ti.UI.FILL,
+        contentWidth: Ti.UI.FILL,
+        contentHeight: Ti.UI.SIZE,
         separatorColor: "#375540"
     });
     $.__views.recordView.add($.__views.recordTable);
