@@ -38,12 +38,12 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.myProfile && $.addTopLevelView($.__views.myProfile);
-    $.__views.__alloyId95 = Ti.UI.createView({
+    $.__views.__alloyId90 = Ti.UI.createView({
         layout: "vertical",
         height: "100%",
-        id: "__alloyId95"
+        id: "__alloyId90"
     });
-    $.__views.myProfile.add($.__views.__alloyId95);
+    $.__views.myProfile.add($.__views.__alloyId90);
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "40dp",
@@ -56,22 +56,22 @@ function Controller() {
         id: "description",
         text: "Please choose profile of the below services"
     });
-    $.__views.__alloyId95.add($.__views.description);
+    $.__views.__alloyId90.add($.__views.description);
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
         width: Titanium.UI.FILL,
         height: Ti.UI.FILL,
         zIndex: "3"
     });
-    $.__views.__alloyId95.add($.__views.scrollboard);
-    $.__views.__alloyId96 = Ti.UI.createView({
+    $.__views.__alloyId90.add($.__views.scrollboard);
+    $.__views.__alloyId91 = Ti.UI.createView({
         layout: "horizontal",
         width: "293",
         top: "20",
-        id: "__alloyId96"
+        id: "__alloyId91"
     });
-    $.__views.scrollboard.add($.__views.__alloyId96);
-    $.__views.__alloyId97 = Ti.UI.createImageView({
+    $.__views.scrollboard.add($.__views.__alloyId91);
+    $.__views.__alloyId92 = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: "10",
         width: "120",
@@ -81,11 +81,11 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "30dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId97"
+        id: "__alloyId92"
     });
-    $.__views.__alloyId96.add($.__views.__alloyId97);
-    navProfile ? $.__views.__alloyId97.addEventListener("click", navProfile) : __defers["$.__views.__alloyId97!click!navProfile"] = true;
-    $.__views.__alloyId98 = Ti.UI.createImageView({
+    $.__views.__alloyId91.add($.__views.__alloyId92);
+    navProfile ? $.__views.__alloyId92.addEventListener("click", navProfile) : __defers["$.__views.__alloyId92!click!navProfile"] = true;
+    $.__views.__alloyId93 = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: "10",
         width: "120",
@@ -95,18 +95,18 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "30dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId98"
+        id: "__alloyId93"
     });
-    $.__views.__alloyId96.add($.__views.__alloyId98);
-    navProfile ? $.__views.__alloyId98.addEventListener("click", navProfile) : __defers["$.__views.__alloyId98!click!navProfile"] = true;
+    $.__views.__alloyId91.add($.__views.__alloyId93);
+    navProfile ? $.__views.__alloyId93.addEventListener("click", navProfile) : __defers["$.__views.__alloyId93!click!navProfile"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });
-    __defers["$.__views.__alloyId97!click!navProfile"] && $.__views.__alloyId97.addEventListener("click", navProfile);
-    __defers["$.__views.__alloyId98!click!navProfile"] && $.__views.__alloyId98.addEventListener("click", navProfile);
+    __defers["$.__views.__alloyId92!click!navProfile"] && $.__views.__alloyId92.addEventListener("click", navProfile);
+    __defers["$.__views.__alloyId93!click!navProfile"] && $.__views.__alloyId93.addEventListener("click", navProfile);
     _.extend($, exports);
 }
 

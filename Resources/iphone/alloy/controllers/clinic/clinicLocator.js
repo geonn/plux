@@ -77,8 +77,10 @@ function Controller() {
         });
         common.hideLoading();
         $.win_map.add(mapview);
-        mapview.addEventListener("click", function(evt) {
-            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.panel_id);
+        "android" == Ti.Platform.osname && mapview.addEventListener("click", function(evt) {
+            nav.navigateWithArgs("clinic/clinicDetails", {
+                panel_id: evt.annotation.panel_id
+            });
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -127,15 +129,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId145 = Ti.UI.createLabel({
+    $.__views.__alloyId140 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId145"
+        id: "__alloyId140"
     });
-    $.__views.loadingBar.add($.__views.__alloyId145);
+    $.__views.loadingBar.add($.__views.__alloyId140);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

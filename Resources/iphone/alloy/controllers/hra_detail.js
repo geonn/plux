@@ -40,45 +40,25 @@ function Controller() {
         id: "__alloyId75"
     });
     $.__views.hraDetailsWin.add($.__views.__alloyId75);
-    var __alloyId76 = [];
-    var __alloyId79 = {
-        title: "Month"
-    };
-    __alloyId76.push(__alloyId79);
-    var __alloyId80 = {
-        title: "Year"
-    };
-    __alloyId76.push(__alloyId80);
-    $.__views.buttonbarData = (require("TabbedBar").createTabbedBar || Ti.UI.iOS.createTabbedBar)({
-        labels: __alloyId76,
-        id: "buttonbarData",
-        backgroundColor: "#CE1D1C",
-        index: "0",
-        color: "#ffffff",
-        borderColor: "#CE1D1C",
-        height: "25",
-        width: Ti.UI.FILL
-    });
-    $.__views.__alloyId75.add($.__views.buttonbarData);
-    $.__views.__alloyId81 = Ti.UI.createScrollView({
+    $.__views.__alloyId76 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId81"
+        id: "__alloyId76"
     });
-    $.__views.__alloyId75.add($.__views.__alloyId81);
+    $.__views.__alloyId75.add($.__views.__alloyId76);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId81.add($.__views.input_box);
+    $.__views.__alloyId76.add($.__views.input_box);
     $.__views.description = Ti.UI.createView({
         id: "description",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId81.add($.__views.description);
+    $.__views.__alloyId76.add($.__views.description);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,

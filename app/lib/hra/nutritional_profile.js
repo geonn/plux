@@ -177,19 +177,21 @@ function addForm(text, type, options){
 			height: Ti.UI.SIZE,
 		});
 		
-		var bar = tb.createTabbedBar({labels:["Tab 1", "Tab 2"], index:0,counter: count, selectedColor: "#ffffff",tintColor: "#CE1D1C", top:10, width:"90%"});
+		var bar = tb.createTabbedBar({
+			labels:["Tab 1", "Tab 2"], 
+			counter: count, 
+			selectedColor: "#ffffff",
+			tintColor: "#CE1D1C",
+			top:10, 
+			width:"90%"});
  
 		bar.labels = options; //alternatively use bar.setLabels()
-		bar.index = 0; //alternatively use bar.setIndex()
+		//bar.index = 0; //alternatively use bar.setIndex()
  
 		bar.addEventListener("click", function(e){
 			var elbl = JSON.stringify(e.source); 
-			var res = JSON.parse(elbl);
-		
-			console.log(e);
-			console.log(res);
-			var index = e.source.counter; 
-			 
+			var res = JSON.parse(elbl); 
+			var index = res.counter; 
 			 if(e.index == "0"){
 			 	form_data[index] = 1;
 			 }else{
@@ -215,14 +217,12 @@ function addForm(text, type, options){
 }
 
 function formular(){
-	var total_score = 0; 
-	console.log(form_data);
+	var total_score = 0;  
 	for(a = 0; a < form_data.length; a++){  
 		if(form_data[a] == '1'){
 			total_score++;
 		}
-	}
-	 console.log("total_score = "+total_score);
+	} 
 	if(total_score <= 3){
 		resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ");
 	}else if(total_score <= 6){

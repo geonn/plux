@@ -233,6 +233,7 @@ exports.input_box = function() {
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,
+        bottom: 10,
         width: 100,
         height: 50,
         backgroundColor: "#ff0000",
