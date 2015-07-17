@@ -17,7 +17,7 @@ function Controller() {
                     touchEnabled: true,
                     height: 80,
                     source: entry.id,
-                    selectedBackgroundColor: "#FFE1E1",
+                    backgroundSelectedColor: "#FFE1E1",
                     backgroundGradient: {
                         type: "linear",
                         colors: [ "#FEFEFB", "#F7F7F6" ],

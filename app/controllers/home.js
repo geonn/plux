@@ -159,5 +159,25 @@ function setBackground(){
 	$.daily_background.setBackgroundImage(bg.img_path);
 }
 
+if(Ti.Platform.osname == "android"){
+	$.root.addEventListener('android:back', function (e) {
+		var dialog = Ti.UI.createAlertDialog({
+			cancel: 1,
+			buttonNames: ['Cancel','Confirm'],
+			message: 'Would you like to logout?',
+			title: 'Logout PLUX'
+		});
+		dialog.addEventListener('click', function(e){
+			if (e.index === e.source.cancel){
+				//Do nothing
+			}
+			if (e.index === 1){
+				logoutUser();
+			}
+		});
+		dialog.show(); 
+	});
+}
+
 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 

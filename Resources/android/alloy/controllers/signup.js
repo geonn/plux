@@ -137,9 +137,9 @@ function Controller() {
     });
     $.__views.__alloyId93.add($.__views.main);
     $.__views.__alloyId95 = Ti.UI.createImageView({
-        width: "40%",
+        width: "120",
         borderRadius: "10",
-        height: Ti.UI.SIZE,
+        height: "120",
         backgroundColor: "#ff0000",
         bottom: "10dp",
         top: "10dp",

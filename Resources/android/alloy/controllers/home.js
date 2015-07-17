@@ -211,14 +211,16 @@ function Controller() {
     $.__views.__alloyId32.add($.__views.scrollboard);
     $.__views.__alloyId34 = Ti.UI.createView({
         layout: "horizontal",
-        width: Ti.UI.FILL,
+        width: "90%",
         top: "239",
-        left: "15",
+        left: "5%",
+        right: "5%",
         id: "__alloyId34"
     });
     $.__views.scrollboard.add($.__views.__alloyId34);
     $.__views.__alloyId35 = Ti.UI.createImageView({
         mod: "eCard",
+        left: "15",
         top: "15",
         width: "139",
         image: "/images/btn/btn_asp_e_card_pass.png",
@@ -238,6 +240,7 @@ function Controller() {
     navWindow ? $.__views.__alloyId36.addEventListener("click", navWindow) : __defers["$.__views.__alloyId36!click!navWindow"] = true;
     $.__views.__alloyId37 = Ti.UI.createImageView({
         mod: "myClaim",
+        left: "15",
         top: "15",
         width: "139",
         image: "/images/btn/btn_my_claim_detail.png",
@@ -257,6 +260,7 @@ function Controller() {
     navWindow ? $.__views.__alloyId38.addEventListener("click", navWindow) : __defers["$.__views.__alloyId38!click!navWindow"] = true;
     $.__views.__alloyId39 = Ti.UI.createImageView({
         mod: "leaflet",
+        left: "15",
         top: "15",
         width: "139",
         image: "/images/btn/btn_leaflet.png",
@@ -276,6 +280,7 @@ function Controller() {
     navWindow ? $.__views.__alloyId40.addEventListener("click", navWindow) : __defers["$.__views.__alloyId40!click!navWindow"] = true;
     $.__views.__alloyId41 = Ti.UI.createImageView({
         mod: "clinicLocator",
+        left: "15",
         top: "15",
         width: "139",
         image: "/images/btn/btn_clinic_location.png",
@@ -325,6 +330,19 @@ function Controller() {
         }
     }
     setBackground();
+    $.root.addEventListener("android:back", function() {
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: [ "Cancel", "Confirm" ],
+            message: "Would you like to logout?",
+            title: "Logout PLUX"
+        });
+        dialog.addEventListener("click", function(e) {
+            e.index === e.source.cancel;
+            1 === e.index && logoutUser();
+        });
+        dialog.show();
+    });
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
     __defers["$.__views.__alloyId35!click!navWindow"] && $.__views.__alloyId35.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId36!click!navWindow"] && $.__views.__alloyId36.addEventListener("click", navWindow);
