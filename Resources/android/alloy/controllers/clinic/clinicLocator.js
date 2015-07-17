@@ -20,7 +20,6 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        console.log(e);
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -71,14 +70,18 @@ function Controller() {
                     subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                     pincolor: Map.ANNOTATION_RED,
                     rightView: detBtn,
-                    myid: entry.id
+                    panel_id: entry.id
                 });
                 mapview.addAnnotation(merchantLoc);
             }
         });
         common.hideLoading();
         $.win_map.add(mapview);
-        mapview.addEventListener("click", function() {});
+        mapview.addEventListener("click", function(evt) {
+            nav.navigateWithArgs("clinic/clinicDetails", {
+                panel_id: evt.annotation.panel_id
+            });
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicLocator";
@@ -110,20 +113,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
-    $.__views.__alloyId145 = Ti.UI.createView({
+    $.__views.__alloyId160 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId145"
+        id: "__alloyId160"
     });
-    $.__views.win_map.add($.__views.__alloyId145);
-    $.__views.__alloyId146 = Ti.UI.createView({
+    $.__views.win_map.add($.__views.__alloyId160);
+    $.__views.__alloyId161 = Ti.UI.createView({
         left: "0",
         width: "20%",
-        id: "__alloyId146"
+        id: "__alloyId161"
     });
-    $.__views.__alloyId145.add($.__views.__alloyId146);
+    $.__views.__alloyId160.add($.__views.__alloyId161);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -131,12 +134,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId146.add($.__views.btnBack);
-    $.__views.__alloyId147 = Ti.UI.createView({
+    $.__views.__alloyId161.add($.__views.btnBack);
+    $.__views.__alloyId162 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId147"
+        id: "__alloyId162"
     });
-    $.__views.__alloyId145.add($.__views.__alloyId147);
+    $.__views.__alloyId160.add($.__views.__alloyId162);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -147,7 +150,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId147.add($.__views.pageTitle);
+    $.__views.__alloyId162.add($.__views.pageTitle);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -164,15 +167,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId148 = Ti.UI.createLabel({
+    $.__views.__alloyId163 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId148"
+        id: "__alloyId163"
     });
-    $.__views.loadingBar.add($.__views.__alloyId148);
+    $.__views.loadingBar.add($.__views.__alloyId163);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -190,7 +193,6 @@ function Controller() {
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
     $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.clinicLocator);
     });
     _.extend($, exports);

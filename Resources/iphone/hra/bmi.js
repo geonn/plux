@@ -140,11 +140,11 @@ function resultPopUp(title, msg) {
     content.add(btnView);
     box.add(header);
     box.add(content);
-    $.win.add(box);
-    $.win.add(mask);
+    $.hraDetailsWin.add(box);
+    $.hraDetailsWin.add(mask);
     okButton.addEventListener("click", function() {
-        $.win.remove(box);
-        $.win.remove(mask);
+        $.hraDetailsWin.remove(box);
+        $.hraDetailsWin.remove(mask);
     });
     saveButton.addEventListener("click", function() {
         var weight = form[0].value;

@@ -20,7 +20,6 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        console.log(e);
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -71,14 +70,16 @@ function Controller() {
                     subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                     pincolor: Map.ANNOTATION_RED,
                     rightView: detBtn,
-                    myid: entry.id
+                    panel_id: entry.id
                 });
                 mapview.addAnnotation(merchantLoc);
             }
         });
         common.hideLoading();
         $.win_map.add(mapview);
-        mapview.addEventListener("click", function() {});
+        mapview.addEventListener("click", function(evt) {
+            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.panel_id);
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicLocator";
@@ -126,15 +127,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId138 = Ti.UI.createLabel({
+    $.__views.__alloyId145 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId138"
+        id: "__alloyId145"
     });
-    $.__views.loadingBar.add($.__views.__alloyId138);
+    $.__views.loadingBar.add($.__views.__alloyId145);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -152,7 +153,6 @@ function Controller() {
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.clinicLocator);
     });
     _.extend($, exports);

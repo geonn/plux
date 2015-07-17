@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 var panel_id = args.panel_id || ""; 
 var panelListModel = Alloy.createCollection('panelList'); 
+
 var details = panelListModel.getPanelListById(panel_id);
 
 var contacts = Ti.Contacts.getAllPeople(); 
@@ -130,3 +131,9 @@ function direction2here(){
 	Titanium.Geolocation.addEventListener('location', locationCallback); 
 }
  
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.panelDetails); 
+	}); 
+}

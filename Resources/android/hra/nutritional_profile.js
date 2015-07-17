@@ -44,16 +44,22 @@ function addForm(text, type, options) {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-        var buttonbar = tb.createTabbedBar({
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
+        var bar = tb.createTabbedBar({
+            labels: [ "Tab 1", "Tab 2" ],
+            index: 0,
             counter: count,
-            row_value: 0,
-            labels: options,
-            backgroundColor: "#CE1D1C",
-            borderColor: "#CE1D1C"
+            selectedColor: "#ffffff",
+            tintColor: "#CE1D1C",
+            top: 10,
+            width: "90%"
         });
-        buttonbar.addEventListener("click", function(e) {
+        bar.labels = options;
+        bar.index = 0;
+        bar.addEventListener("click", function(e) {
+            var elbl = JSON.stringify(e.source);
+            var res = JSON.parse(elbl);
+            console.log(e);
+            console.log(res);
             var index = e.source.counter;
             form_data[index] = "0" == e.index ? 1 : 0;
         });
@@ -67,7 +73,7 @@ function addForm(text, type, options) {
             layout: "vertical"
         });
         view_picker.add(label_buttonbar);
-        view_picker.add(buttonbar);
+        view_picker.add(bar);
         count++;
         return view_picker;
     }
@@ -75,7 +81,9 @@ function addForm(text, type, options) {
 
 function formular() {
     var total_score = 0;
+    console.log(form_data);
     for (a = 0; a < form_data.length; a++) "1" == form_data[a] && total_score++;
+    console.log("total_score = " + total_score);
     3 >= total_score ? resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ") : 6 >= total_score ? resultPopUp("RESULT", "Not bad! You are halfway there. You still have a way to go. Look at your 'No' answers to help you decide which areas of your diet need to be improved, or whether your physical activity level should be increased.") : 8 >= total_score && resultPopUp("RESULT", "Good for you! You are living smart! Keep up the good habits, and keep looking for ways to improve.");
 }
 
@@ -137,11 +145,11 @@ function resultPopUp(title, msg) {
     content.add(okButton);
     box.add(header);
     box.add(content);
-    $.win.add(box);
-    $.win.add(mask);
+    $.hraDetailsWin.add(box);
+    $.hraDetailsWin.add(mask);
     okButton.addEventListener("click", function() {
-        $.win.remove(box);
-        $.win.remove(mask);
+        $.hraDetailsWin.remove(box);
+        $.hraDetailsWin.remove(mask);
     });
 }
 
@@ -218,6 +226,7 @@ exports.input_box = function() {
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,
+        bottom: 10,
         width: 100,
         height: 50,
         backgroundColor: "#ff0000",

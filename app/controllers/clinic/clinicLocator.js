@@ -31,8 +31,7 @@ function triggerPosition(){
 }
   
    
-function init(e){ 
-	console.log(e);
+function init(e){  
 	var longitude = e.coords.longitude;
     var latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -81,20 +80,25 @@ function init(e){
 			    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
 			    pincolor:Map.ANNOTATION_RED,
 			    rightView: detBtn,
-			    myid: entry.id// Custom property to uniquely identify this annotation.
+			    panel_id: entry.id
+			    
 			}); 
 			mapview.addAnnotation(merchantLoc); 
+			//if(Ti.Platform.osname == "android"){
+			 
+			//}
 		}
 	});
 	common.hideLoading();
 	//mapview.addAnnotation(mountainView);
 	$.win_map.add(mapview);
 	// Handle click events on any annotations on this map.
-	mapview.addEventListener('click', function(evt) {
-		 
-	    //Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-	});
-
+	if(Ti.Platform.osname == "android"){
+		mapview.addEventListener('click', function(evt) {
+			 nav.navigateWithArgs("clinic/clinicDetails", {panel_id:evt.annotation.panel_id});
+		    // Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.panel_id);
+		});
+	}
 }
 
 function setCurLoc(e){
@@ -108,8 +112,7 @@ function setCurLoc(e){
 Ti.App.addEventListener('aspClinic',loadClinic);
 
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){
-		console.log('close!!');
+	$.btnBack.addEventListener('click', function(){ 
 		nav.closeWindow($.clinicLocator); 
 	}); 
 }

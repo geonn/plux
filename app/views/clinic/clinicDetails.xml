@@ -1,6 +1,15 @@
 <Alloy>
-	<Window title="Panel Details" id="panelDetails" backButtonTitle="" class="container" navTintColor="#CE1D1C" platform="ios">
-		 <ScrollView layout="vertical" backgroundColor="#C3C3C3" height="Ti.UI.SIZE" width="Ti.UI.FILL" top="0">
+	<Window title="Panel Details" id="panelDetails" backButtonTitle="" class="container" navTintColor="#CE1D1C"  >
+		<View id="main" layout="vertical" backgroundColor="#F6F6F6" height="100%" >
+		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="panelDetails" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Panel Details</Label>
+		     	</View>
+		 </View>
+		 <ScrollView layout="vertical" backgroundColor="#C3C3C3" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
 		 	<View width="95%" layout="vertical" backgroundColor="#F5F5F5" height="Ti.UI.SIZE" top="15">
 		 		<Label id="clinicName" class="clinic_name" top="5" bottom="10"/>
 		 		<Label text="Address" class="clinic_address clinicLabelTitle" />
@@ -17,12 +26,13 @@
 			 </View>
 		 	
 		 	<View height="1" backgroundColor="#CE1D1C" width="98%" top="10" />
-		 	<TableView id="healthTableData" height="Ti.UI.SIZE" width="100%" scrollable="false" >
-		 		<TableViewRow selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="direction2here" title="Direction To Here"   />
-				<TableViewRow selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="clickToCall" title="Call"   />
-	            <TableViewRow id="add2contact" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="addToContact" title="Add To Contact"   />
+		 	<TableView id="healthTableData" backgroundColor="#ffffff" height="Ti.UI.FILL" width="100%" scrollable="false" >
+		 		<TableViewRow height="50" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="direction2here" title="Direction To Here"   />
+				<TableViewRow height="50" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="clickToCall" title="Call"   />
+	            <TableViewRow height="50" id="add2contact" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="addToContact" title="Add To Contact"   />
 			</TableView>
 		 	 
 		 </ScrollView>
+		 </View>
 	</Window>
 </Alloy>

@@ -151,7 +151,6 @@ var m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", 
 
 exports.construct = function(mv) {
     mainView = mv;
-    console.log("a");
 };
 
 exports.showDatePicker = function(e) {

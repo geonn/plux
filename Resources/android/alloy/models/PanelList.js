@@ -254,13 +254,19 @@ exports.definition = {
             addPanel: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                arr.length;
-                db.execute("BEGIN");
-                arr.forEach(function(entry) {
-                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
-                    db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.state, entry.tel, entry.latitude, entry.longitude);
+                var total = arr.length;
+                console.log(total);
+                if (total > 50) {
+                    db.execute("BEGIN");
+                    arr.forEach(function(entry) {
+                        sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
+                        db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
+                    });
+                    db.execute("COMMIT");
+                } else total > 0 && arr.forEach(function(entry) {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
                 });
-                db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             },

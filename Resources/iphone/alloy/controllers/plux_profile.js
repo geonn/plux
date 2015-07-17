@@ -33,17 +33,17 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.plux_profile && $.addTopLevelView($.__views.plux_profile);
-    $.__views.__alloyId87 = Ti.UI.createView({
+    $.__views.__alloyId94 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId87"
+        id: "__alloyId94"
     });
-    $.__views.plux_profile.add($.__views.__alloyId87);
+    $.__views.plux_profile.add($.__views.__alloyId94);
     $.__views.profileData = Ti.UI.createScrollView({
         id: "profileData",
         height: Ti.UI.FILL,
         backgroundColor: "#ffffff"
     });
-    $.__views.__alloyId87.add($.__views.profileData);
+    $.__views.__alloyId94.add($.__views.profileData);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
