@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 var panel_id = args.panel_id || ""; 
 var panelListModel = Alloy.createCollection('panelList'); 
+
 var details = panelListModel.getPanelListById(panel_id);
 
 var contacts = Ti.Contacts.getAllPeople(); 
@@ -13,8 +14,7 @@ for (var i = 0; i < contacts.length; i++) {
     	isAddedToContact = "1";
     	$.add2contact.title = "Already added to contact";
     } 
-} 
-  
+}  
 var phoneArr = [];
 if(details != ""){  
 	var operHour = details.openHour; 
@@ -26,7 +26,7 @@ if(details != ""){
  			oh += oh+"<br>\r\n";
  		}
  	}
- 	 
+ 	  
 	$.clinicName.text = details.clinicName;
 	
 	var add2 =details.add2;
@@ -123,10 +123,37 @@ function direction2here(){
 	    var longitude = e.coords.longitude;
 	    var latitude = e.coords.latitude; 
 	 	//console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
-	    nav.navigateWithArgs("clinic/clinicMap", {url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
-	   	 
+	     
+		var url = 'geo:'+latitude+','+longitude+"?q="+details.clinicName+" (" + details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state + ")";
+		  
+		   
+			if (Ti.Android){
+				try {
+					Ti.API.info('Trying to Launch via Intent');
+					var intent = Ti.Android.createIntent({
+						action: Ti.Android.ACTION_VIEW,
+						data: url
+						
+					});
+					Ti.Android.currentActivity.startActivity(intent);
+				} catch (e){
+					Ti.API.info('Caught Error launching intent: '+e);
+					exports.Install();
+				}
+			}else{
+				nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
+	   	 	}
+				
+				
+	    
 	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 
 	};
 	Titanium.Geolocation.addEventListener('location', locationCallback); 
 }
  
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.panelDetails); 
+	}); 
+}

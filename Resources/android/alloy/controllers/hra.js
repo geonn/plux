@@ -76,70 +76,106 @@ function Controller() {
         textAlign: "center"
     });
     $.__views.__alloyId46.add($.__views.pageTitle);
-    var __alloyId49 = [];
-    $.__views.__alloyId50 = {
-        properties: {
-            color: "#000",
-            mod: "bmi",
-            title: "BMI Calculator",
-            id: "__alloyId50"
-        }
-    };
-    __alloyId49.push($.__views.__alloyId50);
-    $.__views.__alloyId51 = {
-        properties: {
-            color: "#000",
-            mod: "whratio",
-            title: "Waist-To-Hips Ratio Calculator",
-            id: "__alloyId51"
-        }
-    };
-    __alloyId49.push($.__views.__alloyId51);
-    $.__views.__alloyId52 = {
-        properties: {
-            color: "#000",
-            mod: "nutritional_profile",
-            title: "Nutritional Profile",
-            id: "__alloyId52"
-        }
-    };
-    __alloyId49.push($.__views.__alloyId52);
-    $.__views.__alloyId53 = {
-        properties: {
-            color: "#000",
-            mod: "smokecost",
-            title: "Smoking Cost Calculator",
-            id: "__alloyId53"
-        }
-    };
-    __alloyId49.push($.__views.__alloyId53);
-    $.__views.__alloyId54 = {
-        properties: {
-            color: "#000",
-            mod: "diabetes",
-            title: "Diabetes Risk Calculator",
-            id: "__alloyId54"
-        }
-    };
-    __alloyId49.push($.__views.__alloyId54);
-    $.__views.__alloyId47 = Ti.UI.createListSection({
-        id: "__alloyId47"
+    var __alloyId47 = [];
+    $.__views.__alloyId48 = Ti.UI.createTableViewRow({
+        mod: "bmi",
+        height: "40",
+        top: "5",
+        bottom: "5",
+        id: "__alloyId48"
     });
-    $.__views.__alloyId47.items = __alloyId49;
-    var __alloyId55 = [];
-    __alloyId55.push($.__views.__alloyId47);
-    $.__views.menu = Ti.UI.createListView({
-        sections: __alloyId55,
+    __alloyId47.push($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "BMI Calculator",
+        textAlign: "left",
+        left: "15",
+        id: "__alloyId49"
+    });
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    $.__views.__alloyId50 = Ti.UI.createTableViewRow({
+        mod: "whratio",
+        height: "40",
+        top: "5",
+        bottom: "5",
+        id: "__alloyId50"
+    });
+    __alloyId47.push($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "Waist-To-Hips Ratio Calculator",
+        textAlign: "left",
+        left: "15",
+        id: "__alloyId51"
+    });
+    $.__views.__alloyId50.add($.__views.__alloyId51);
+    $.__views.__alloyId52 = Ti.UI.createTableViewRow({
+        mod: "nutritional_profile",
+        height: "40",
+        top: "5",
+        bottom: "5",
+        id: "__alloyId52"
+    });
+    __alloyId47.push($.__views.__alloyId52);
+    $.__views.__alloyId53 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "Nutritional Profile",
+        textAlign: "left",
+        left: "15",
+        id: "__alloyId53"
+    });
+    $.__views.__alloyId52.add($.__views.__alloyId53);
+    $.__views.__alloyId54 = Ti.UI.createTableViewRow({
+        mod: "smokecost",
+        height: "40",
+        top: "5",
+        bottom: "5",
+        id: "__alloyId54"
+    });
+    __alloyId47.push($.__views.__alloyId54);
+    $.__views.__alloyId55 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "Smoking Cost Calculator",
+        textAlign: "left",
+        left: "15",
+        id: "__alloyId55"
+    });
+    $.__views.__alloyId54.add($.__views.__alloyId55);
+    $.__views.__alloyId56 = Ti.UI.createTableViewRow({
+        mod: "diabetes",
+        height: "40",
+        top: "5",
+        bottom: "5",
+        id: "__alloyId56"
+    });
+    __alloyId47.push($.__views.__alloyId56);
+    $.__views.__alloyId57 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "Diabetes Risk Calculator",
+        textAlign: "left",
+        left: "15",
+        id: "__alloyId57"
+    });
+    $.__views.__alloyId56.add($.__views.__alloyId57);
+    $.__views.menu = Ti.UI.createTableView({
+        data: __alloyId47,
         id: "menu"
     });
     $.__views.__alloyId43.add($.__views.menu);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    $.menu.addEventListener("itemclick", function(e) {
-        var item = e.section.getItemAt(e.itemIndex);
+    $.menu.addEventListener("click", function(e) {
+        var elbl = JSON.stringify(e.rowData);
+        var res = JSON.parse(elbl);
+        console.log(res);
         nav.navigateWithArgs("hra_detail", {
-            mod: item.properties.mod
+            mod: res.mod
         });
     });
     $.btnBack.addEventListener("click", function() {

@@ -23,9 +23,9 @@
 			   		</View>
 			 	</View>
 				<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." /> 
-			 	<ScrollView id="recordView" layout="vertical" height="Ti.UI.SIZE" width="100%" >
-			 		<TableView width="100%"  id="recordTable"  top="0"  separatorColor="#375540" />
-			 	</ScrollView>
+			 	<View id="recordView" layout="vertical" height="Ti.UI.FILL" width="Ti.UI.FILL" >
+			 		<TableView width="100%"  id="recordTable"  top="0" width="Ti.UI.FILL" height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
+			 	</View>
 			</View> 
 		</View>
 	</Window>

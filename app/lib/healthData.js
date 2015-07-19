@@ -19,7 +19,6 @@ function getAge(dateString) {
 
 exports.construct = function(mv){
 	mainView = mv;
-	console.log('a');
 };
 
 exports.showDatePicker = function(e){

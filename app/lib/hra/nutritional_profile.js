@@ -76,6 +76,7 @@ exports.input_box = function(){
 	var button_submit = $.UI.create("Button",{
 		title: "Calculate",
 		top: 10,
+		bottom: 10,
 		width: 100,
 		height: 50,
 		backgroundColor: "#ff0000",
@@ -175,19 +176,22 @@ function addForm(text, type, options){
 			width: Ti.UI.FILL,
 			height: Ti.UI.SIZE,
 		});
-		var buttonbar = tb.createTabbedBar({
-			width: Ti.UI.FILL,
-			height: Ti.UI.SIZE,
-			counter: count,
-			row_value: 0, 
-			labels:options,  
-		    backgroundColor:'#CE1D1C',
-		    borderColor : '#CE1D1C',
-		    //style:Titanium.UI.iPhone.SystemButtonStyle.BAR
-		});
-		buttonbar.addEventListener("click", function(e){
-			var index = e.source.counter; 
-			 
+		
+		var bar = tb.createTabbedBar({
+			labels:["Tab 1", "Tab 2"], 
+			counter: count, 
+			selectedColor: "#ffffff",
+			tintColor: "#CE1D1C",
+			top:10, 
+			width:"90%"});
+ 
+		bar.labels = options; //alternatively use bar.setLabels()
+		//bar.index = 0; //alternatively use bar.setIndex()
+ 
+		bar.addEventListener("click", function(e){
+			var elbl = JSON.stringify(e.source); 
+			var res = JSON.parse(elbl); 
+			var index = res.counter; 
 			 if(e.index == "0"){
 			 	form_data[index] = 1;
 			 }else{
@@ -206,20 +210,19 @@ function addForm(text, type, options){
 			layout: "vertical",
 		});
 		view_picker.add(label_buttonbar);
-		view_picker.add(buttonbar);
+		view_picker.add(bar);
 		count ++;
 		return view_picker;
 	}
 }
 
 function formular(){
-	var total_score = 0; 
+	var total_score = 0;  
 	for(a = 0; a < form_data.length; a++){  
 		if(form_data[a] == '1'){
 			total_score++;
 		}
-	}
-	  
+	} 
 	if(total_score <= 3){
 		resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ");
 	}else if(total_score <= 6){
@@ -287,10 +290,10 @@ function resultPopUp(title, msg){
 	content.add(okButton);
 	box.add(header);
 	box.add(content);
-	$.win.add(box);
-	$.win.add(mask);
+	$.hraDetailsWin.add(box);
+	$.hraDetailsWin.add(mask);
 	okButton.addEventListener("click", function(){
-		$.win.remove(box);
-		$.win.remove(mask);
+		$.hraDetailsWin.remove(box);
+		$.hraDetailsWin.remove(mask);
 	});
 };

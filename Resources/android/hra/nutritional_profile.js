@@ -44,17 +44,19 @@ function addForm(text, type, options) {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-        var buttonbar = tb.createTabbedBar({
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
+        var bar = tb.createTabbedBar({
+            labels: [ "Tab 1", "Tab 2" ],
             counter: count,
-            row_value: 0,
-            labels: options,
-            backgroundColor: "#CE1D1C",
-            borderColor: "#CE1D1C"
+            selectedColor: "#ffffff",
+            tintColor: "#CE1D1C",
+            top: 10,
+            width: "90%"
         });
-        buttonbar.addEventListener("click", function(e) {
-            var index = e.source.counter;
+        bar.labels = options;
+        bar.addEventListener("click", function(e) {
+            var elbl = JSON.stringify(e.source);
+            var res = JSON.parse(elbl);
+            var index = res.counter;
             form_data[index] = "0" == e.index ? 1 : 0;
         });
         var view_picker = $.UI.create("View", {
@@ -67,7 +69,7 @@ function addForm(text, type, options) {
             layout: "vertical"
         });
         view_picker.add(label_buttonbar);
-        view_picker.add(buttonbar);
+        view_picker.add(bar);
         count++;
         return view_picker;
     }
@@ -137,11 +139,11 @@ function resultPopUp(title, msg) {
     content.add(okButton);
     box.add(header);
     box.add(content);
-    $.win.add(box);
-    $.win.add(mask);
+    $.hraDetailsWin.add(box);
+    $.hraDetailsWin.add(mask);
     okButton.addEventListener("click", function() {
-        $.win.remove(box);
-        $.win.remove(mask);
+        $.hraDetailsWin.remove(box);
+        $.hraDetailsWin.remove(mask);
     });
 }
 
@@ -218,6 +220,7 @@ exports.input_box = function() {
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,
+        bottom: 10,
         width: 100,
         height: 50,
         backgroundColor: "#ff0000",

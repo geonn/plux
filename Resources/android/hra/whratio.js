@@ -104,11 +104,11 @@ function resultPopUp(title, msg) {
     content.add(okButton);
     box.add(header);
     box.add(content);
-    $.win.add(box);
-    $.win.add(mask);
+    $.hraDetailsWin.add(box);
+    $.hraDetailsWin.add(mask);
     okButton.addEventListener("click", function() {
-        $.win.remove(box);
-        $.win.remove(mask);
+        $.hraDetailsWin.remove(box);
+        $.hraDetailsWin.remove(mask);
     });
 }
 
@@ -178,6 +178,7 @@ exports.input_box = function() {
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,
+        bottom: 10,
         width: 100,
         height: 50,
         backgroundColor: "#ff0000",

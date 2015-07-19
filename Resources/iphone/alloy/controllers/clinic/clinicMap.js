@@ -33,17 +33,33 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelMapWin && $.addTopLevelView($.__views.panelMapWin);
-    $.__views.panelMap = Ti.UI.createWebView({
-        id: "panelMap",
+    $.__views.__alloyId141 = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
         layout: "vertical",
-        height: "100%",
-        width: "100%"
+        id: "__alloyId141"
     });
-    $.__views.panelMapWin.add($.__views.panelMap);
+    $.__views.panelMapWin.add($.__views.__alloyId141);
+    $.__views.panelMap = Ti.UI.createScrollView({
+        backgroundColor: "red",
+        id: "panelMap",
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId141.add($.__views.panelMap);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    $.panelMap.url = args.url;
+    var maps = args.map_url;
+    console.log(maps);
+    $.panelMap.add(Ti.UI.createWebView({
+        url: maps,
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL
+    }));
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.panelMapWin);
+    });
     _.extend($, exports);
 }
 

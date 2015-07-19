@@ -5,17 +5,17 @@
 ".clinic_name":{
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.FILL,
-	right: 5,
+	left: 10,
 	font:{
 		fontSize: 18
 	},
-	color: "5E5E5E",
+	color: "#5E5E5E",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
 },
 
 ".clinic_address":{
 	left: 10,
-	widht: "90%", 
+	width: "90%", 
 	height: Titanium.UI.SIZE,
 	font:{
 		fontSize: 14

@@ -44,6 +44,7 @@ module.exports = (function () {
             barWidth,
             barHeight,
             barLabels,
+            barCounter,
             barIndex;
         //setting options/default values
         options.barBorderWidth ? barBorderWidth = options.barBorderWidth : barBorderWidth = _toDp(1);
@@ -57,6 +58,7 @@ module.exports = (function () {
         options.width ? barWidth = options.width : barWidth = _toDp(200);
         options.height ? barHeight = options.height : barHeight = _toDp(18);
 		barLabels= options.labels;
+		barCounter = options.counter;
 		barIndex = options.index;
 
         //Errors & Warnings
@@ -70,7 +72,8 @@ module.exports = (function () {
             width: barWidth,
             borderRadius: _toDp(2.5),
             borderWidth: barBorderWidth,
-            borderColor: barTintColor
+            borderColor: barTintColor,
+            counter : barCounter,
         });
 
         //passing positioning data to the view

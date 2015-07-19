@@ -20,7 +20,6 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        console.log(e);
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -71,14 +70,18 @@ function Controller() {
                     subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                     pincolor: Map.ANNOTATION_RED,
                     rightView: detBtn,
-                    myid: entry.id
+                    panel_id: entry.id
                 });
                 mapview.addAnnotation(merchantLoc);
             }
         });
         common.hideLoading();
         $.win_map.add(mapview);
-        mapview.addEventListener("click", function() {});
+        mapview.addEventListener("click", function(evt) {
+            nav.navigateWithArgs("clinic/clinicDetails", {
+                panel_id: evt.annotation.panel_id
+            });
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicLocator";
@@ -110,11 +113,16 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
+<<<<<<< HEAD
     $.__views.__alloyId158 = Ti.UI.createView({
+=======
+    $.__views.__alloyId164 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId158"
     });
     $.__views.win_map.add($.__views.__alloyId158);
@@ -124,6 +132,17 @@ function Controller() {
         id: "__alloyId159"
     });
     $.__views.__alloyId158.add($.__views.__alloyId159);
+=======
+        id: "__alloyId164"
+    });
+    $.__views.win_map.add($.__views.__alloyId164);
+    $.__views.__alloyId165 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId165"
+    });
+    $.__views.__alloyId164.add($.__views.__alloyId165);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -131,12 +150,21 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId159.add($.__views.btnBack);
     $.__views.__alloyId160 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId160"
     });
     $.__views.__alloyId158.add($.__views.__alloyId160);
+=======
+    $.__views.__alloyId165.add($.__views.btnBack);
+    $.__views.__alloyId166 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId166"
+    });
+    $.__views.__alloyId164.add($.__views.__alloyId166);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -147,7 +175,11 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId160.add($.__views.pageTitle);
+=======
+    $.__views.__alloyId166.add($.__views.pageTitle);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -164,15 +196,25 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId161 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId167 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId161"
     });
     $.__views.loadingBar.add($.__views.__alloyId161);
+=======
+        id: "__alloyId167"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId167);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -190,7 +232,6 @@ function Controller() {
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
     $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.clinicLocator);
     });
     _.extend($, exports);

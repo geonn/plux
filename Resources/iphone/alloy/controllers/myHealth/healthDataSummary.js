@@ -48,10 +48,17 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.dashboard && $.addTopLevelView($.__views.dashboard);
+<<<<<<< HEAD
     $.__views.__alloyId219 = Ti.UI.createView({
         id: "__alloyId219"
     });
     $.__views.dashboard.add($.__views.__alloyId219);
+=======
+    $.__views.__alloyId212 = Ti.UI.createView({
+        id: "__alloyId212"
+    });
+    $.__views.dashboard.add($.__views.__alloyId212);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -60,7 +67,11 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId219.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId212.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -68,15 +79,25 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId220 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId213 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId220"
     });
     $.__views.loadingBar.add($.__views.__alloyId220);
+=======
+        id: "__alloyId213"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId213);
+>>>>>>> origin/master
     $.__views.main = Ti.UI.createView({
         id: "main",
         height: Ti.UI.SIZE,
@@ -84,6 +105,7 @@ function Controller() {
         backgroundColor: "#ffffff",
         top: "0"
     });
+<<<<<<< HEAD
     $.__views.__alloyId219.add($.__views.main);
     var __alloyId221 = [];
     var __alloyId224 = {
@@ -96,6 +118,20 @@ function Controller() {
     __alloyId221.push(__alloyId225);
     $.__views.buttonbarData = (require("TabbedBar").createTabbedBar || Ti.UI.iOS.createTabbedBar)({
         labels: __alloyId221,
+=======
+    $.__views.__alloyId212.add($.__views.main);
+    var __alloyId214 = [];
+    var __alloyId217 = {
+        title: "Month"
+    };
+    __alloyId214.push(__alloyId217);
+    var __alloyId218 = {
+        title: "Year"
+    };
+    __alloyId214.push(__alloyId218);
+    $.__views.buttonbarData = (require("TabbedBar").createTabbedBar || Ti.UI.iOS.createTabbedBar)({
+        labels: __alloyId214,
+>>>>>>> origin/master
         id: "buttonbarData",
         backgroundColor: "#CE1D1C",
         index: "0",
@@ -112,6 +148,7 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.main.add($.__views.bmiView);
+<<<<<<< HEAD
     var __alloyId226 = [];
     $.__views.__alloyId227 = Ti.UI.createTableViewRow({
         backgroundSelectedColor: "#FFE1E1",
@@ -131,6 +168,27 @@ function Controller() {
     editData ? $.__views.__alloyId228.addEventListener("click", editData) : __defers["$.__views.__alloyId228!click!editData"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId226,
+=======
+    var __alloyId219 = [];
+    $.__views.__alloyId220 = Ti.UI.createTableViewRow({
+        backgroundSelectedColor: "#FFE1E1",
+        title: "Add Data Point",
+        hasChild: "true",
+        id: "__alloyId220"
+    });
+    __alloyId219.push($.__views.__alloyId220);
+    addData ? $.__views.__alloyId220.addEventListener("click", addData) : __defers["$.__views.__alloyId220!click!addData"] = true;
+    $.__views.__alloyId221 = Ti.UI.createTableViewRow({
+        backgroundSelectedColor: "#FFE1E1",
+        title: "Show All Data",
+        hasChild: "true",
+        id: "__alloyId221"
+    });
+    __alloyId219.push($.__views.__alloyId221);
+    editData ? $.__views.__alloyId221.addEventListener("click", editData) : __defers["$.__views.__alloyId221!click!editData"] = true;
+    $.__views.healthTableData = Ti.UI.createTableView({
+        data: __alloyId219,
+>>>>>>> origin/master
         id: "healthTableData",
         height: Ti.UI.SIZE,
         width: "100%",
@@ -171,8 +229,13 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.dashboard);
     });
+<<<<<<< HEAD
     __defers["$.__views.__alloyId227!click!addData"] && $.__views.__alloyId227.addEventListener("click", addData);
     __defers["$.__views.__alloyId228!click!editData"] && $.__views.__alloyId228.addEventListener("click", editData);
+=======
+    __defers["$.__views.__alloyId220!click!addData"] && $.__views.__alloyId220.addEventListener("click", addData);
+    __defers["$.__views.__alloyId221!click!editData"] && $.__views.__alloyId221.addEventListener("click", editData);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

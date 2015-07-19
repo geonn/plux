@@ -6,7 +6,7 @@
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView borderRadius="10" width="30%" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
+				<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
 				<TextField class="text_input" id="fullname" hintText="Enter Full Name" value="" /><!-- wongbh@live.com -->
 				<TextField class="text_input" id="email" hintText="Enter Email" value="" /><!-- wongbh@live.com -->
 				<TextField id="password" hintText="Enter Password" value="" />

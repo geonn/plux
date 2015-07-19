@@ -54,7 +54,7 @@ function listing(e){
 			    });
 				console.log("/images/"+entry.clinicType +".png");
 				var leftImage =  Titanium.UI.createImageView({
-					image:entry.clinicType +".png",
+					image:"/images/"+entry.clinicType +".png",
 					width:50,
 					height:50,
 					left:10

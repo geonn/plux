@@ -20,7 +20,6 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        console.log(e);
         var longitude = e.coords.longitude;
         var latitude = e.coords.latitude;
         e.coords.altitude;
@@ -71,14 +70,18 @@ function Controller() {
                     subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
                     pincolor: Map.ANNOTATION_RED,
                     rightView: detBtn,
-                    myid: entry.id
+                    panel_id: entry.id
                 });
                 mapview.addAnnotation(merchantLoc);
             }
         });
         common.hideLoading();
         $.win_map.add(mapview);
-        mapview.addEventListener("click", function() {});
+        "android" == Ti.Platform.osname && mapview.addEventListener("click", function(evt) {
+            nav.navigateWithArgs("clinic/clinicDetails", {
+                panel_id: evt.annotation.panel_id
+            });
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicLocator";
@@ -126,15 +129,25 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId148 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId140 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId148"
     });
     $.__views.loadingBar.add($.__views.__alloyId148);
+=======
+        id: "__alloyId140"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId140);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -152,7 +165,6 @@ function Controller() {
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.clinicLocator);
     });
     _.extend($, exports);

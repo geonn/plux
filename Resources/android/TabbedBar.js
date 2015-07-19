@@ -43,7 +43,7 @@ module.exports = function() {
                 });
             }
         }
-        var barBorderWidth, barTextColor, barSelectedTextColor, barTextFont, barTintColor, barBackgroundColor, barWidth, barHeight, barLabels, barIndex;
+        var barBorderWidth, barTextColor, barSelectedTextColor, barTextFont, barTintColor, barBackgroundColor, barWidth, barHeight, barLabels, barCounter, barIndex;
         barBorderWidth = options.barBorderWidth ? options.barBorderWidth : _toDp(1);
         barSelectedTextColor = options.selectedColor ? options.selectedColor : "#ffffff";
         barTintColor = options.tintColor ? options.tintColor : "#007AFF";
@@ -55,6 +55,7 @@ module.exports = function() {
         barWidth = options.width ? options.width : _toDp(200);
         barHeight = options.height ? options.height : _toDp(18);
         barLabels = options.labels;
+        barCounter = options.counter;
         barIndex = options.index;
         1 > barBorderWidth && Ti.API.warn("Borders between buttons may not be visible on devices with <= 160 dpi. Consider using a value >= 1");
         var bar = Ti.UI.createView({
@@ -63,7 +64,8 @@ module.exports = function() {
             width: barWidth,
             borderRadius: _toDp(2.5),
             borderWidth: barBorderWidth,
-            borderColor: barTintColor
+            borderColor: barTintColor,
+            counter: barCounter
         });
         "undefined" != typeof options.top && (bar.top = options.top);
         "undefined" != typeof options.bottom && (bar.bottom = options.bottom);
