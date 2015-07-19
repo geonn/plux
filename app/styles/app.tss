@@ -53,3 +53,40 @@
 	width: Ti.UI.FILL,
 	backgroundColor: "#ffffff",
 }
+
+'.vert':{
+	layout: "vertical"
+}
+
+'.horz':{
+	layout: "horizontal"
+}
+
+'.wfill':{
+	width: Ti.UI.FILL
+}
+
+'.wsize':{
+	width: Ti.UI.SIZE
+}
+
+'.hfill':{
+	height: Ti.UI.FILL
+}
+
+'.hsize':{
+	height: Ti.UI.SIZE
+}
+
+'.padding':{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+}
+
+'.box':{
+	borderRadius: "5",
+	borderColor: "#dfe0e4",
+	backgroundColor: "#FFFFFF",
+}

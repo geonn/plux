@@ -1,0 +1,41 @@
+<Alloy>
+	<Window title="My Claim Details" id="myClaim" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<RightNavButton>
+	        <View>
+	         	<!--<ImageView right='0' id="setting" width='30' image="/btn/btn_history_icon.png" />-->
+	        </View>
+        </RightNavButton>
+         <View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
+         		<ActivityIndicator id="activityIndicator" />
+         		<Label top="5" bottom="5" text="Loading" color="#ffffff" />
+         </View>
+        <View layout="vertical" backgroundColor="#F6F6F6" height="100%" >
+        	<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="90%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Claim Details</Label>
+		     	</View>
+		 	</View>
+		 	<View height="Ti.UI.FILL" width="Ti.UI.FILL">
+		        <View id="claimContainer"width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
+					<ScrollView id="main" layout="vertical" backgroundColor="#ffffff" scrollType="vertical">
+						<Label id="date"></Label>
+						<View left="10" right="10" top="10" bottom="10" height="Ti.UI.SIZE" width="Ti.UI.FILL">
+							<View borderColor="#000000" width="Ti.UI.FILL" height="Ti.UI.SIZE" layout="vertical" id="view_balance">
+								
+							</View>
+						</View>
+					</ScrollView>
+				</View>
+				<View id="verifyContainer" visible="false" layout="vertical">
+					<ImageView width="40%" borderRadius="10" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/asp_logo.png"></ImageView>
+					<Label id="description" class="label"   />
+					<Button borderRadius="5" backgroundColor="#CE1D1C" onTouchend="resendVerificationEmail" title="Resend Verification"  width="70%" top="10" height="40" color="#ffffff" />
+					<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="checkStatus" title="Refresh"  width="70%" top="10" height="40" color="#ffffff" />
+				</View>
+			</View>
+		</View>
+	</Window>
+</Alloy>

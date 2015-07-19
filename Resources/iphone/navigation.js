@@ -69,12 +69,14 @@ function navigateWithArgs(target, args) {
     });
 }
 
+function closeWindow(win) {
+    "android" == Ti.Platform.osname ? win.close() : Alloy.Globals.navMenu.closeWindow(win);
+}
+
 exports.navigationWindow = _.debounce(navigationWindow, 1e3, true);
 
 exports.navigationWebview = _.debounce(navigationWebview, 1e3, true);
 
 exports.navigateWithArgs = _.debounce(navigateWithArgs, 1e3, true);
 
-exports.closeWindow = function(win) {
-    "android" == Ti.Platform.osname ? win.close() : Alloy.Globals.navMenu.closeWindow(win);
-};
+exports.closeWindow = _.debounce(closeWindow, 1e3, true);

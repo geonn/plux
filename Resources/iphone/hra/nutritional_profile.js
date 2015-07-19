@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 function addForm(text, type, options) {
     if ("TextField" == type) {
         var label_textfield = $.UI.create("Label", {
@@ -61,11 +57,7 @@ function addForm(text, type, options) {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-<<<<<<< HEAD
-        var buttonbar = $.UI.create("TabbedBar", {
-=======
         var buttonbar = tb.createTabbedBar({
->>>>>>> origin/master
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
             counter: count,
@@ -168,12 +160,6 @@ function resultPopUp(title, msg) {
 
 var $ = null;
 
-<<<<<<< HEAD
-=======
-=======
-var $ = null;  
->>>>>>> origin/master
->>>>>>> origin/master
 var form = null;
 
 var form_data = null;

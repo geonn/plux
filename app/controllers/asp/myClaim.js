@@ -1,23 +1,23 @@
 var args = arguments[0] || {};  
 var usersModel = Alloy.createCollection('users');
-var user = usersModel.getOwnerData();   
-common.construct($); 
+common.construct($);
+
 loadPage();
 
 function loadPage(){
 	user = usersModel.getOwnerData();
 	if(user.isver == "true"){
-		console.log('show claim');
 		common.showLoading();
 		$.verifyContainer.hide();
 		$.claimContainer.show();
 		API.claimInfo({memno : user.icno, corpcode : user.corpcode});
 		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
 	}else{ 
+		common.hideLoading();
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
 		$.verifyContainer.show();
 		$.claimContainer.hide();
-	} 
+	}
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
   
@@ -40,7 +40,7 @@ function init(){
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));
 	var updated_date = currentDateTime();//Ti.App.Properties.getString('balchkUpdatedDate');
-	$.date.text = timeFormat(updated_date);
+	$.date.text = "Up to date "+timeFormat(updated_date);
  
 	var groups = {};
 	var balance_groups = {};
@@ -48,7 +48,7 @@ function init(){
 	
 	for(var i=0; i < e.length; i++){
 		var val = e[i];
-		if(val.entidvbal < 99999){
+		/*if(val.entidvbal < 99999){
 			balance_groups['entidvbal'] = balance_groups['entidvbal'] || [];
 			balance_groups['entidvbal'].push(val);
 		}
@@ -64,16 +64,15 @@ function init(){
 		if(val.vstshabal < 99999){
 			balance_groups['vstshabal'] = balance_groups['vstshabal'] || [];
 			balance_groups['vstshabal'].push(val);
-		}
+		}*/
 		
 		groups[val.name] = groups[val.name] || [];
    	    groups[val.name].push( val );
 	}
-	
 	GenerateClaimBalanceTable(balance_groups);
 	Object.keys(groups).map( function( group ){ 
 		//GenerateClaimBalanceTable({claim_data: groups[group], name: group});
-	    var personal_claim_view = Alloy.createController("_person_claim_view", {claim_data: groups[group], name: group}).getView();
+	    var personal_claim_view = Alloy.createController("asp/_personal_claim_view", {data: groups[group], name: group}).getView();
 	    $.main.add(personal_claim_view);
 	});
 	Ti.App.removeEventListener("data_loaded", init);
@@ -122,7 +121,7 @@ function GenerateClaimBalanceTable(balance_groups){
 				wordWrap: false,
 				ellipsize: true,
 				font:{
-					fontSize: "16sp"
+					fontSize: "16dp"
 				},
 				width: "70%",
 				text: b,
@@ -132,6 +131,9 @@ function GenerateClaimBalanceTable(balance_groups){
 				height: Ti.UI.SIZE,
 				wordWrap: false,
 				ellipsize: true,
+				font:{
+					fontSize: "12dp"
+				},
 				width: "30%",
 				text: "balance / limit",
 			});
@@ -163,12 +165,7 @@ function GenerateClaimBalanceTable(balance_groups){
 		});
 	});
 }
- 
 
-$.view_balance.addEventListener("click", function(){
-	var nav = require('navigation');
-	nav.navigateWithArgs("asp/claimHistory", {memno: user.icno});
-});
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  

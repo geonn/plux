@@ -1,0 +1,9 @@
+<Alloy>
+	<View class="padding wfill hsize">
+		<Label id="name" class="font_big" backgroundColor="#fff" left="10" top="8" zIndex="10"></Label>
+		<Button class="font_small" right="10" id="more" top="0" zIndex="10" width="40dp" height="40dp" borderRadius="20" borderColor="#af2120" backgroundColor="#d2202c" color="#ffffff" >More</Button>
+		<View id="main" class="box wfill hsize vert" top="18">
+			<View height="15" width="Ti.UI.FILL"></View>
+		</View>
+	</View>
+</Alloy>

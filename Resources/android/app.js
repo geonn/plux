@@ -114,6 +114,8 @@ function createIndicator() {
 
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
+var _ = require("underscore")._;
+
 var common = require("common");
 
 var API = require("api");
