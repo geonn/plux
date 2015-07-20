@@ -127,10 +127,14 @@ exports.getUserService = function(e) {
 };
 
 exports.getNearbyClinic = function(e) {
-    var url = nearbyClinicUrl + "&longitude=" + e.longitude + "&latitude=" + e.latitude;
-    console.log(url);
+    var url = nearbyClinicUrl + "&longitude=" + e.longitude + "&latitude=" + e.latitude + "&clinicType=" + e.clinicType;
     var client = Ti.Network.createHTTPClient({
-        onload: function() {},
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            "success" == res.status && Ti.App.fireEvent("updateNearbyList", {
+                data: res.data
+            });
+        },
         onerror: function() {},
         timeout: 6e3
     });

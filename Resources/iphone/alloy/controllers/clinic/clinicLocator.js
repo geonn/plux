@@ -167,7 +167,8 @@ function Controller() {
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicNearby", {
             longitude: longitude,
-            latitude: latitude
+            latitude: latitude,
+            clinicType: clinicType
         });
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {

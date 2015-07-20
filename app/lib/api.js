@@ -116,13 +116,16 @@ exports.getUserService = function(e){
 };
 
 exports.getNearbyClinic = function(e){ 
-	var url = nearbyClinicUrl + "&longitude="+e.longitude + "&latitude="+e.latitude; 
-	console.log(url);
+	var url = nearbyClinicUrl + "&longitude="+e.longitude + "&latitude="+e.latitude+"&clinicType="+e.clinicType; 
+	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
-	     	//var res = JSON.parse(this.responseText);
+	     	var res = JSON.parse(this.responseText); 
 	     	 
+	     	if(res.status == "success"){ 
+	     		Ti.App.fireEvent("updateNearbyList", {data:res.data }); 
+	     	}
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {   

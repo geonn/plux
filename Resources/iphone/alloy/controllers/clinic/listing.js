@@ -40,9 +40,11 @@ function Controller() {
                     selectedBackgroundColor: "#FFE1E1",
                     backgroundColor: "#ffffff"
                 });
-                console.log("/images/" + entry.clinicType + ".png");
+                var clinicImg = entry.clinicType;
+                clinicImg = clinicImg.toLowerCase();
+                console.log("/images/" + clinicImg + ".png");
                 var leftImage = Titanium.UI.createImageView({
-                    image: "/images/" + entry.clinicType + ".png",
+                    image: "/images/" + clinicImg + ".png",
                     width: 50,
                     height: 50,
                     left: 10

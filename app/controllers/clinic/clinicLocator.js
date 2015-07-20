@@ -113,7 +113,7 @@ function setCurLoc(e){
 Ti.App.addEventListener('aspClinic',loadClinic);
 
 $.btnList.addEventListener('click', function(){    
-	nav.navigateWithArgs("clinic/clinicNearby", {longitude:longitude, latitude:latitude });
+	nav.navigateWithArgs("clinic/clinicNearby", {longitude:longitude, latitude:latitude, clinicType: clinicType });
 }); 
 
 if(Ti.Platform.osname == "android"){
