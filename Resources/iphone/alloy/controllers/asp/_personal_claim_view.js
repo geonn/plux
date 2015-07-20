@@ -97,12 +97,12 @@ function Controller() {
         top: "18"
     });
     $.__views._personal_claim_view.add($.__views.main);
-    $.__views.__alloyId97 = Ti.UI.createView({
+    $.__views.__alloyId99 = Ti.UI.createView({
         height: "15",
         width: Ti.UI.FILL,
-        id: "__alloyId97"
+        id: "__alloyId99"
     });
-    $.__views.main.add($.__views.__alloyId97);
+    $.__views.main.add($.__views.__alloyId99);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

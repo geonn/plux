@@ -329,6 +329,19 @@ function Controller() {
         }
     }
     setBackground();
+    "android" == Ti.Platform.osname && $.root.addEventListener("android:back", function() {
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: [ "Cancel", "Confirm" ],
+            message: "Would you like to logout?",
+            title: "Logout PLUX"
+        });
+        dialog.addEventListener("click", function(e) {
+            e.index === e.source.cancel;
+            1 === e.index && logoutUser();
+        });
+        dialog.show();
+    });
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
     __defers["$.__views.__alloyId55!click!navWindow"] && $.__views.__alloyId55.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId56!click!navWindow"] && $.__views.__alloyId56.addEventListener("click", navWindow);

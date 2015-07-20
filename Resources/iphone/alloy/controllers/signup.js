@@ -114,8 +114,8 @@ function Controller() {
     $.__views.__alloyId94.add($.__views.main);
     $.__views.__alloyId96 = Ti.UI.createImageView({
         borderRadius: "10",
-        width: "30%",
-        height: Ti.UI.SIZE,
+        width: "120",
+        height: "120",
         backgroundColor: "#ff0000",
         bottom: "10dp",
         top: "10dp",

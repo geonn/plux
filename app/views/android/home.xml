@@ -13,16 +13,16 @@
 				    	<Label top="5" text="Loading" color="#ffffff" />
 				    </View>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
-						<View layout="horizontal" width="90%"  top="239" left="5%" right="5%">
+						<View layout="horizontal" width="Ti.UI.FILL" top="239" left="15">
 
-							<ImageView onClick="navWindow" mod="eCard" left="15" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/>
+							<ImageView onClick="navWindow" mod="eCard" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
-							<ImageView onClick="navWindow" mod="myClaim" left="15" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
+							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
 							<ImageView onClick="navWindow" mod="profile" top="15" left="15" width="139" image="/images/btn/btn_profile.png"/>
 							<!--<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/images/btn/btn_healthInfo.png"/>-->
-							<ImageView onClick="navWindow" mod="leaflet" left="15" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
+							<ImageView onClick="navWindow" mod="leaflet" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
 							<ImageView onClick="navWindow" mod="myMedicalRecord" top="15" left="15" width="139" image="/images/btn/btn_my_medical_record.png"/>
-							<ImageView onClick="navWindow" mod="clinicLocator" left="15" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
+							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
 							<ImageView onClick="navWindow" mod="hra" top="15" left="15"width="139" image="/images/btn/btn_hra.png"/>
 							
 						</View>

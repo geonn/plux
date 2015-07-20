@@ -84,8 +84,8 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
-        id: "loginWin",
         title: "Login",
+        id: "loginWin",
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
@@ -131,13 +131,13 @@ function Controller() {
     });
     $.__views.__alloyId81.add($.__views.main);
     $.__views.__alloyId83 = Ti.UI.createImageView({
-        width: "40%",
+        width: "120",
         borderRadius: "10",
-        height: Ti.UI.SIZE,
+        height: "120",
         backgroundColor: "#ff0000",
         bottom: "30dp",
         top: "30dp",
-        image: "appicon-76@2x.png",
+        image: "/images/logo_plux.png",
         id: "__alloyId83"
     });
     $.__views.main.add($.__views.__alloyId83);
@@ -262,6 +262,22 @@ function Controller() {
         }
     };
     Ti.App.addEventListener("touchLogin", touchLogin);
+    "android" == Ti.Platform.osname && $.loginWin.addEventListener("android:back", function() {
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: [ "Cancel", "Confirm" ],
+            message: "Would you like to exit Plux?",
+            title: "Exit app"
+        });
+        dialog.addEventListener("click", function(e) {
+            e.index === e.source.cancel;
+            if (1 === e.index) {
+                var activity = Titanium.Android.currentActivity;
+                activity.finish();
+            }
+        });
+        dialog.show();
+    });
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
     _.extend($, exports);

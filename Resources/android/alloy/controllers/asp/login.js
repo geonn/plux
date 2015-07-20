@@ -67,17 +67,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-<<<<<<< HEAD
-    $.__views.__alloyId118 = Ti.UI.createView({
-        id: "__alloyId118"
+    $.__views.__alloyId123 = Ti.UI.createView({
+        id: "__alloyId123"
     });
-    $.__views.loginWin.add($.__views.__alloyId118);
-=======
-    $.__views.__alloyId122 = Ti.UI.createView({
-        id: "__alloyId122"
-    });
-    $.__views.loginWin.add($.__views.__alloyId122);
->>>>>>> origin/master
+    $.__views.loginWin.add($.__views.__alloyId123);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -86,11 +79,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId118.add($.__views.loadingBar);
-=======
-    $.__views.__alloyId122.add($.__views.loadingBar);
->>>>>>> origin/master
+    $.__views.__alloyId123.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -98,38 +87,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-    $.__views.__alloyId119 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId123 = Ti.UI.createLabel({
->>>>>>> origin/master
+    $.__views.__alloyId124 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-<<<<<<< HEAD
-        id: "__alloyId119"
+        id: "__alloyId124"
     });
-    $.__views.loadingBar.add($.__views.__alloyId119);
-=======
-        id: "__alloyId123"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId123);
->>>>>>> origin/master
+    $.__views.loadingBar.add($.__views.__alloyId124);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-<<<<<<< HEAD
-    $.__views.__alloyId118.add($.__views.main);
-    $.__views.__alloyId120 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId122.add($.__views.main);
-    $.__views.__alloyId124 = Ti.UI.createImageView({
->>>>>>> origin/master
+    $.__views.__alloyId123.add($.__views.main);
+    $.__views.__alloyId125 = Ti.UI.createImageView({
         width: "50%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -137,15 +111,9 @@ function Controller() {
         bottom: "50dp",
         top: "50dp",
         image: "/images/asp_logo.png",
-<<<<<<< HEAD
-        id: "__alloyId120"
+        id: "__alloyId125"
     });
-    $.__views.main.add($.__views.__alloyId120);
-=======
-        id: "__alloyId124"
-    });
-    $.__views.main.add($.__views.__alloyId124);
->>>>>>> origin/master
+    $.__views.main.add($.__views.__alloyId125);
     $.__views.username = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
