@@ -42,7 +42,6 @@ function Controller() {
                 });
                 var clinicImg = entry.clinicType;
                 clinicImg = clinicImg.toLowerCase();
-                console.log("/images/" + clinicImg + ".png");
                 var leftImage = Titanium.UI.createImageView({
                     image: "/images/" + clinicImg + ".png",
                     width: 50,
