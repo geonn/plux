@@ -37,6 +37,7 @@ var webview = $.UI.create("WebView", {
 	height: Ti.UI.SIZE,
 	backgroundColor:"#EBEBEB"
 });
+
 var line = $.UI.create("View", {
 	height: 1,
 	bottom: 0,

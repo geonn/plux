@@ -99,8 +99,7 @@ function filterList(e){
 	
 }
 
-Ti.App.addEventListener('filterList',filterList);
-
+Ti.App.addEventListener('filterList', filterList);
 Ti.App.addEventListener("loadLatest", loadLatest);
 
 function loadLatest(e){
@@ -108,14 +107,15 @@ function loadLatest(e){
 	graph_view.children[2].children[1].text = e.text;
 }
 
-Ti.App.addEventListener('populateDataById', graphLoaded);
+Ti.App.addEventListener('graphLoaded', graphLoaded);
 
 function graphLoaded(e){
 	var graph_view = children({name: "gType", value: e.id}, $.graphScrollView);
 	graph_view.children[0].children[0].hide();
+	graph_view.children[0].height = e.contentheight;
 }
 
-Ti.App.addEventListener('populateDataById',populateDataById);
+Ti.App.addEventListener('populateDataById', populateDataById);
 
 function populateDataById(e){
 	hd.loadInfo(e.id,'','1');
@@ -125,47 +125,23 @@ filterList({category: "all"});
 if(Ti.Platform.osname != "android"){
 	$.stepsView.addEventListener('click',function(e){
 		nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
-	});
-	
-	$.stepsView.addEventListener('load',function(e){
-		var actualHeight = e.source.evalJS("document.height;");
-		e.source.height = parseInt(actualHeight);
-	});
+	});	
 }
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});
-});
-
-$.bmiView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
 });
 
 $.bloodPressureView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 2});
 });
 
-$.bloodPressureView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
-});
-
 $.heartRateView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 3});
 });
 
-$.heartRateView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
-});
 
 $.bodyTemperatureView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 4});
-});
-
-$.bodyTemperatureView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
 });
 
 //$.heightView.addEventListener('click',function(e){
@@ -189,11 +165,6 @@ $.bodyTemperatureView.addEventListener('load',function(e){
 
 $.cholestrolView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 7});
-});
-
-$.cholestrolView.addEventListener('load',function(e){
-	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
 });
 
 $.moreHealth.addEventListener('click', function(e){
@@ -232,7 +203,7 @@ $.myhealth.addEventListener("close", function(e){
 	Ti.App.removeEventListener('filterList',filterList);
 	Ti.App.removeEventListener('populateDataById',populateDataById);
 	Ti.App.removeEventListener('loadLatest',loadLatest);
-	Ti.App.removeEventListener('populateDataById', graphLoaded);
+	Ti.App.removeEventListener('graphLoaded', graphLoaded);
 });
 
 if(Ti.Platform.osname == "android"){
