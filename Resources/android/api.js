@@ -52,6 +52,8 @@ var removeHealthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/removeHealthData?u
 
 var clinicListUrl = "http://" + FREEJINI_DOMAIN + "/api/getClinicLocator?user=" + USER + "&key=" + KEY;
 
+var nearbyClinicUrl = "http://" + FREEJINI_DOMAIN + "/api/searchNearbyClinic?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";

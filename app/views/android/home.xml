@@ -14,7 +14,6 @@
 				    </View>
 					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
 						<View layout="horizontal" width="Ti.UI.SIZE" top="239">
-
 							<ImageView onClick="navWindow" mod="eCard" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/>
 							<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
 							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>

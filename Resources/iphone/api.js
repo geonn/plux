@@ -52,6 +52,8 @@ var removeHealthDataUrl = "http://" + FREEJINI_DOMAIN + "/api/removeHealthData?u
 
 var clinicListUrl = "http://" + FREEJINI_DOMAIN + "/api/getClinicLocator?user=" + USER + "&key=" + KEY;
 
+var nearbyClinicUrl = "http://" + FREEJINI_DOMAIN + "/api/searchNearbyClinic?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -116,6 +118,22 @@ exports.getUserService = function(e) {
                 Ti.App.Properties.setString("asp_email", res.data[i].email);
                 Ti.App.Properties.setString("asp_password", res.data[i].password);
             }
+        },
+        onerror: function() {},
+        timeout: 6e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.getNearbyClinic = function(e) {
+    var url = nearbyClinicUrl + "&longitude=" + e.longitude + "&latitude=" + e.latitude + "&clinicType=" + e.clinicType;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            "success" == res.status && Ti.App.fireEvent("updateNearbyList", {
+                data: res.data
+            });
         },
         onerror: function() {},
         timeout: 6e3

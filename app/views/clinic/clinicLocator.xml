@@ -1,5 +1,8 @@
 <Alloy>
 	<Window title="Clinic Locator" id="clinicLocator" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+		<RightNavButton>
+			<ImageView right='10' id="btnList" width="25" height="25" image="/images/list.png" />
+		</RightNavButton>
 		<View id="win_map" layout="vertical">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
@@ -8,6 +11,9 @@
 		     	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
 		     	</View>
+		     	<View right="0" width="20%" >
+		         	<ImageView right='10' id="btnList" width="25" height="25" image="/images/list.png" />
+		   		</View>
 		 	</View>
 		</View>
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >

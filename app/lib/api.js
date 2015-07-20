@@ -22,6 +22,8 @@ var pluxSignUpUrl   = "http://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&k
 var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
 var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
+var nearbyClinicUrl = "http://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
+
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
 var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx"; 
@@ -112,6 +114,29 @@ exports.getUserService = function(e){
 	 // Send the request.
 	 client.send();
 };
+
+exports.getNearbyClinic = function(e){ 
+	var url = nearbyClinicUrl + "&longitude="+e.longitude + "&latitude="+e.latitude+"&clinicType="+e.clinicType; 
+	
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText); 
+	     	 
+	     	if(res.status == "success"){ 
+	     		Ti.App.fireEvent("updateNearbyList", {data:res.data }); 
+	     	}
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {   
+	     },
+	     timeout : 6000  // in milliseconds
+	 });
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send();
+};
+ 
 
 exports.syncHealthData = function(e){
 	var healthModel = Alloy.createCollection('health'); 

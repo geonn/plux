@@ -30,10 +30,11 @@ function triggerPosition(){
 	} 
 }
   
-   
+var longitude;
+var latitude;   
 function init(e){  
-	var longitude = e.coords.longitude;
-    var latitude = e.coords.latitude;
+	longitude = e.coords.longitude;
+    latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
     var heading = e.coords.heading;
     var accuracy = e.coords.accuracy;
@@ -110,6 +111,10 @@ function setCurLoc(e){
 } 
 
 Ti.App.addEventListener('aspClinic',loadClinic);
+
+$.btnList.addEventListener('click', function(){    
+	nav.navigateWithArgs("clinic/clinicNearby", {longitude:longitude, latitude:latitude, clinicType: clinicType });
+}); 
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 

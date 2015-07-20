@@ -57,14 +57,8 @@ function addForm(text, type, options) {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-<<<<<<< HEAD
-        var buttonbar = tb.createTabbedBar({
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-=======
         var bar = tb.createTabbedBar({
             labels: [ "Tab 1", "Tab 2" ],
->>>>>>> origin/master
             counter: count,
             selectedColor: "#ffffff",
             tintColor: "#CE1D1C",

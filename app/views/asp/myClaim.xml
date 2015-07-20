@@ -19,7 +19,7 @@
 		     	</View>
 		 	</View>
 		 	<View height="Ti.UI.FILL" width="Ti.UI.FILL">
-		        <View id="claimContainer"width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
+		        <View id="claimContainer" width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
 					<ScrollView id="main" layout="vertical" backgroundColor="#ffffff" scrollType="vertical">
 						<Label id="date"></Label>
 						<!--<Require type="view" src="asp/_personal_claim_view"></Require>-->

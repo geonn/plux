@@ -19,7 +19,7 @@
 		     	</View>
 		 	</View>
 		 	<View height="Ti.UI.FILL" width="Ti.UI.FILL">
-		        <View id="claimContainer"width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
+		        <View id="claimContainer" width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
 					<ScrollView id="main" layout="vertical" backgroundColor="#ffffff" scrollType="vertical">
 						<Label id="date"></Label>
 						<View left="10" right="10" top="10" bottom="10" height="Ti.UI.SIZE" width="Ti.UI.FILL">

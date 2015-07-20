@@ -20,8 +20,8 @@ function Controller() {
         } else alert("Please enable location services");
     }
     function init(e) {
-        var longitude = e.coords.longitude;
-        var latitude = e.coords.latitude;
+        longitude = e.coords.longitude;
+        latitude = e.coords.latitude;
         e.coords.altitude;
         e.coords.heading;
         e.coords.accuracy;
@@ -108,6 +108,14 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.clinicLocator && $.addTopLevelView($.__views.clinicLocator);
+    $.__views.btnList = Ti.UI.createImageView({
+        right: "10",
+        id: "btnList",
+        width: "25",
+        height: "25",
+        image: "/images/list.png"
+    });
+    $.__views.clinicLocator.rightNavButton = $.__views.btnList;
     $.__views.win_map = Ti.UI.createView({
         id: "win_map",
         layout: "vertical"
@@ -129,25 +137,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-    $.__views.__alloyId148 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId140 = Ti.UI.createLabel({
->>>>>>> origin/master
+    $.__views.__alloyId151 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-<<<<<<< HEAD
-        id: "__alloyId148"
+        id: "__alloyId151"
     });
-    $.__views.loadingBar.add($.__views.__alloyId148);
-=======
-        id: "__alloyId140"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId140);
->>>>>>> origin/master
+    $.__views.loadingBar.add($.__views.__alloyId151);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -163,7 +161,16 @@ function Controller() {
     } else API.loadPanelList({
         clinicType: clinicType
     });
+    var longitude;
+    var latitude;
     Ti.App.addEventListener("aspClinic", loadClinic);
+    $.btnList.addEventListener("click", function() {
+        nav.navigateWithArgs("clinic/clinicNearby", {
+            longitude: longitude,
+            latitude: latitude,
+            clinicType: clinicType
+        });
+    });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicLocator);
     });
