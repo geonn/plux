@@ -39,7 +39,7 @@ function Controller() {
                 top: 15,
                 width: Ti.UI.SIZE
             });
-            $.clinicNearby.add(noRecord);
+            $.clinicNearbySv.add(noRecord);
         } else {
             arr.forEach(function(entry) {
                 var isValid = aspClinicArr.indexOf(entry.id);
@@ -106,7 +106,7 @@ function Controller() {
                 }
             });
             TheTable.setData(data);
-            $.clinicNearby.add(TheTable);
+            $.clinicNearbySv.add(TheTable);
         }
         common.hideLoading();
         TheTable.addEventListener("click", function(e) {
@@ -145,6 +145,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicNearby.add($.__views.win_map);
+    $.__views.clinicNearbySv = Ti.UI.createScrollView({
+        id: "clinicNearbySv"
+    });
+    $.__views.win_map.add($.__views.clinicNearbySv);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -161,15 +165,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId153 = Ti.UI.createLabel({
+    $.__views.__alloyId156 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId153"
+        id: "__alloyId156"
     });
-    $.__views.loadingBar.add($.__views.__alloyId153);
+    $.__views.loadingBar.add($.__views.__alloyId156);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

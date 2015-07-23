@@ -740,7 +740,12 @@ exports.loadPanelList = function (ex){
 			if(ex.clinicType == ""){
 				details = library.getPanelListCount(codeStr);
 			}else{
-				details = library.getPanelListByCode(codeStr,ex.clinicType);
+				if(ex.clinicType == "hours24"){
+					details = library.getPanelListBy24Hours(codeStr);
+				}else{
+					details = library.getPanelListByCode(codeStr,ex.clinicType);
+				}
+				
 			} 
 			 
 	     	Ti.App.fireEvent('aspClinic', {details:details});

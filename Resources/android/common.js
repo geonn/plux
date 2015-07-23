@@ -64,7 +64,6 @@ exports.noRecord = function() {
 };
 
 exports.showLoading = function() {
-    console.log("show loading");
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";
     mainView.loadingBar.height = Ti.UI.SIZE;
@@ -74,7 +73,6 @@ exports.showLoading = function() {
 };
 
 exports.hideLoading = function() {
-    console.log("hideLoading");
     mainView.activityIndicator.hide();
     mainView.loadingBar.opacity = "0";
     mainView.loadingBar.height = "0";
@@ -169,11 +167,9 @@ exports.createCheckbox = function(specs, checkboxspecs, image) {
         if (viw.checked) {
             viw.checked = false;
             imageView.opacity = 0;
-            console.log(viw.name);
         } else {
             viw.checked = true;
             imageView.opacity = 1;
-            console.log(viw.name);
         }
     }
     "object" != typeof checkboxspecs && (checkboxspecs = {});

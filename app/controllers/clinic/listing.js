@@ -49,15 +49,18 @@ function listing(e){
 				    touchEnabled: true,
 				    height: 70,
 				    id: entry.clinicType,
-				    selectedBackgroundColor: "#FFE1E1",
+				    backgroundSelectedColor: "#FFE1E1",
 				    backgroundColor: "#ffffff"
 			    });
 				
 				var clinicImg = entry.clinicType;
-				clinicImg = clinicImg.toLowerCase();
-				var leftImage =  Titanium.UI.createImageView({
-					image:"/images/"+clinicImg+".png",
-					width:50,
+				if(OS_IOS){
+					clinicImg = clinicImg.toLowerCase(); 
+				}
+				
+				var leftImage =  Titanium.UI.createView({
+					backgroundImage:"/images/"+clinicImg+".png", 
+					width: 50,
 					height:50,
 					left:10
 				});	
@@ -102,21 +105,72 @@ function listing(e){
 				data.push(row);
 	   		});
 	   		
+	   		
+	   		// 24 hours
+	   		var hours24Det = library.getCount24Hours(); 
+	   		var row = Titanium.UI.createTableViewRow({
+				    touchEnabled: true,
+				    height: 70,
+				    id: "hours24",
+				    backgroundSelectedColor: "#FFE1E1",
+				    backgroundColor: "#ffffff"
+			    });
+				
+				 
+				var leftImage =  Titanium.UI.createImageView({
+					image:"/images/hours24.png",
+					width:50,
+					height:50,
+					left:10
+				});	
+				
+				var popUpTitle = Titanium.UI.createLabel({
+					text: "24 HOURS",
+					font:{fontSize:16},
+					source: "hours24",
+					color: "#848484",
+					width:'65%',
+					textAlign:'left', 
+					left:70,
+					height:25
+				});
+				 
+				var totalPanel =  Titanium.UI.createLabel({
+					text:hours24Det.total,
+					source: "hours24",
+					font:{fontSize:14,fontWeight:'bold'},
+					width:'auto',
+					color: "#848484",  
+					right:50,
+					height:25
+				});
+				 
+				var rightForwardBtn =  Titanium.UI.createImageView({
+					image:"/images/btn-forward.png",
+					source: "hours24",
+					width:15,
+					right:20 
+				});	
+			row.add(leftImage); 
+			row.add(popUpTitle);
+			row.add(totalPanel); 
+			row.add(rightForwardBtn);
+			data.push(row);
 	   		TheTable.setData(data);
 			$.panelListTbl.add(TheTable);
 		}
 		
 	TheTable.addEventListener('click', function(e){
 		var nav = require('navigation');
-		nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
+		//nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
+		nav.navigateWithArgs("clinic/clinicList", {clinicType:e.rowData.id});
 	});
 	common.hideLoading();
 	Ti.App.removeEventListener('aspClinic',listing);
 }
 
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){
-		console.log('close!!');
+	$.btnBack.addEventListener('click', function(){ 
 		nav.closeWindow($.clinicList); 
 	}); 
 }

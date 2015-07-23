@@ -158,9 +158,57 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
+            getCount24Hours: function() {
+                var collection = this;
+                var sql = "SELECT count(*) as total FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr;
+                while (res.isValidRow()) {
+                    listArr = {
+                        total: res.fieldByName("total")
+                    };
+                    res.next();
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             getPanelByClinicType: function(ClinicType) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        clinicCode: res.fieldByName("clinicCode"),
+                        clinicName: res.fieldByName("clinicName"),
+                        clinicType: res.fieldByName("clinicType"),
+                        add1: res.fieldByName("add1"),
+                        add2: res.fieldByName("add2"),
+                        city: res.fieldByName("city"),
+                        postcode: res.fieldByName("postcode"),
+                        state: res.fieldByName("state"),
+                        tel: res.fieldByName("tel"),
+                        openHour: res.fieldByName("openHour"),
+                        latitude: res.fieldByName("latitude"),
+                        longitude: res.fieldByName("longitude")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
+            getPanelBy24Hours: function() {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -251,11 +299,41 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
+            getPanelListBy24Hours: function(clinicCode) {
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicCode IN (" + clinicCode + ") AND openHour LIKE '%24 HOURS%' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        clinicCode: res.fieldByName("clinicCode"),
+                        clinicName: res.fieldByName("clinicName"),
+                        clinicType: res.fieldByName("clinicType"),
+                        add1: res.fieldByName("add1"),
+                        add2: res.fieldByName("add2"),
+                        city: res.fieldByName("city"),
+                        postcode: res.fieldByName("postcode"),
+                        state: res.fieldByName("state"),
+                        tel: res.fieldByName("tel"),
+                        openHour: res.fieldByName("openHour"),
+                        latitude: res.fieldByName("latitude"),
+                        longitude: res.fieldByName("longitude")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             addPanel: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var total = arr.length;
-                console.log(total);
                 if (total > 50) {
                     db.execute("BEGIN");
                     arr.forEach(function(entry) {

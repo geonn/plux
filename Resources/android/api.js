@@ -126,6 +126,22 @@ exports.getUserService = function(e) {
     client.send();
 };
 
+exports.getNearbyClinic = function(e) {
+    var url = nearbyClinicUrl + "&longitude=" + e.longitude + "&latitude=" + e.latitude + "&clinicType=" + e.clinicType;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            "success" == res.status && Ti.App.fireEvent("updateNearbyList", {
+                data: res.data
+            });
+        },
+        onerror: function() {},
+        timeout: 6e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
 exports.syncHealthData = function(e) {
     var healthModel = Alloy.createCollection("health");
     var records = healthModel.getHealthList();
@@ -553,7 +569,7 @@ exports.loadPanelList = function(ex) {
                 codeStr += '"' + entry.cliniccode + '",';
             });
             codeStr = codeStr.substring(0, codeStr.length - 1);
-            details = "" == ex.clinicType ? library.getPanelListCount(codeStr) : library.getPanelListByCode(codeStr, ex.clinicType);
+            details = "" == ex.clinicType ? library.getPanelListCount(codeStr) : "hours24" == ex.clinicType ? library.getPanelListBy24Hours(codeStr) : library.getPanelListByCode(codeStr, ex.clinicType);
             Ti.App.fireEvent("aspClinic", {
                 details: details
             });

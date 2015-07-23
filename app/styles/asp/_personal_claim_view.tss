@@ -29,15 +29,15 @@
 	color: "#9197a3 "
 }
 
-'.progressBar':{
-	borderColor: "#2E2E2E",
-	backgroundColor: "#dfe0e4",
+'.progressBar':{ 
+	backgroundColor: "#C0C0C0",
+	borderRadius: 8,
 	width: Ti.UI.FILL,
-	height: 30,
+	height: 15,
 	layout: "horizontal",
 }
 
 '.progressBarFill':{
-	height: 30,
+	height: 15,
 	backgroundColor: "#CE1D1C",
 }

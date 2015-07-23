@@ -45,6 +45,7 @@
 			<View height="Ti.UI.SIZE" id="selectorView" bottom="0" >
 				 <Picker id="genderPicker" onChange="changeGender"  visible="false" />  
 				 <Picker id="bloodTypePicker" onChange="changeBloodType"  visible="false" />
+				  
 			</View>	 
 			
 		</View>

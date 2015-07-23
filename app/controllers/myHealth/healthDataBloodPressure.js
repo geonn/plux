@@ -20,7 +20,7 @@ function showTimePicker(e){
 	hideKeyboard();
 }
 
-function changeDate(e){ 
+function changeDate(e){  
 	hd.changeDate({date: e.value});
 }
 
