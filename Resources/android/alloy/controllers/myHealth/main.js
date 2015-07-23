@@ -74,12 +74,12 @@ function Controller() {
         graph_view.children[2].children[1].text = e.text;
     }
     function graphLoaded(e) {
+        console.log(e.id);
         var graph_view = children({
             name: "gType",
             value: e.id
         }, $.graphScrollView);
         graph_view.children[0].children[0].hide();
-        graph_view.children[0].height = e.contentheight;
     }
     function populateDataById(e) {
         hd.loadInfo(e.id, "", "1");
@@ -231,7 +231,7 @@ function Controller() {
     $.__views.bmiWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bmiWebView",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: Ti.UI.FILL,
         url: "/html/bmi.html",
         disableBounce: "true"
@@ -293,7 +293,7 @@ function Controller() {
     $.__views.bloodPressureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bloodPressureWebView",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: Ti.UI.FILL,
         url: "/html/bloodPressure.html",
         disableBounce: "true"
@@ -355,7 +355,7 @@ function Controller() {
     $.__views.heartRateWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "heartRateWebView",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: Ti.UI.FILL,
         url: "/html/heartRate.html",
         disableBounce: "true"
@@ -417,7 +417,7 @@ function Controller() {
     $.__views.bodyTemperatureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bodyTemperatureWebView",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: Ti.UI.FILL,
         url: "/html/bodyTemperature.html",
         disableBounce: "true"
@@ -479,7 +479,7 @@ function Controller() {
     $.__views.cholestrolWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "cholestrolWebView",
-        height: Ti.UI.SIZE,
+        height: "200",
         width: Ti.UI.FILL,
         url: "/html/cholestrol.html",
         disableBounce: "true"
@@ -557,6 +557,26 @@ function Controller() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 4
         });
+    });
+    $.bmiWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.bloodPressureWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.heartRateWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.bodyTemperatureWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.cholestrolWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
     });
     $.cholestrolView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {

@@ -29,7 +29,7 @@
 		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
 		    document.body.clientHeight
 		);
-		setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height}); }, 1000);
+		Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height});
           
         });
         Ti.App.fireEvent('populateDataById',{ id: 1});
@@ -60,7 +60,6 @@ function loadChart(data){
 	var contentHeight = $( "#chartContainer" ).height();
 	$("html").css("height", contentHeight );
 	$("body").css("height", contentHeight);
-	Ti.App.fireEvent('graphLoaded',{ id: 1});
 }
 function loadNoData(dataPeriod){
 	var dateNow = currentDate(0); 

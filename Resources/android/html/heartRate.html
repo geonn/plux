@@ -25,12 +25,12 @@
               }else{
               	loadNoData(e.dataPeriod);
               }
-               var height= (
-		    'innerHeight' in window? window.innerHeight :
-		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
-		    document.body.clientHeight
-		);
-          setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height}); }, 1000);
+           var height= (
+			    'innerHeight' in window? window.innerHeight :
+			    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+			    document.body.clientHeight
+			);
+          Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height});
             });
              Ti.App.fireEvent('populateDataById',{ id: 3});
         </script>
@@ -55,7 +55,6 @@ function loadChart(data){
 		]
 	});
 	chart.render();
-	Ti.App.fireEvent('graphLoaded',{ id: 3});
 	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
 	$(".canvasjs-chart-credit").hide();
 }
