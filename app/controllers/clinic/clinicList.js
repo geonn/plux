@@ -4,9 +4,8 @@ var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode');
 var list;
 var aspClinicArr = [];
-common.construct($);
+common.construct($); 
 common.showLoading();
-
 setTimeout(function(){ 
 	if(clinicType == "hours24"){
 		if(OS_IOS){
@@ -14,17 +13,15 @@ setTimeout(function(){
 		}else{
 			$.pageTitle.text = "24 Hours Clinic List";
 		}
-		list = library.getPanelBy24Hours();   
+		 
 	}else{
 		if(OS_IOS){
 			$.clinicList.title = clinicType + " List";
 		}else{
 			$.pageTitle.text = clinicType + " List";
-		}
-		
-		list = library.getPanelByClinicType(clinicType);   
+		} 
 	}
-	
+	loadData();
 	if(corp == ""){ 
 		listing();
 	}else{
@@ -48,22 +45,26 @@ function loadClinic(e){
 	    barColor:'#F0F0F0', 
 	    showCancel:true,
 	    height:45,
+	    hintText:'Search Clinic',
 	    top:0,
 });
 	
 Ti.App.addEventListener('aspClinic',loadClinic);
 
 function listing(){ 
+	
 	var TheTable = Titanium.UI.createTableView({
 		width:Ti.UI.FILL, 
 		height: Ti.UI.SIZE,
-		search:searchBar
+		hideSearchOnSelection: true
 		//separatorColor: '#ffffff'
 	});
+	
 	
 	var data=[]; 
    		var arr = list;
    		var counter = 0; 
+   		
    		if(arr.length < 1){
 			var noRecord = Ti.UI.createLabel({ 
 			    text: "No clinic found nearby", 
@@ -73,6 +74,10 @@ function listing(){
 			    top: 15,
 			    width: Ti.UI.SIZE 
 			 });
+			 if(OS_IOS){
+				removeAllChildren($.clinicListSv);
+			}
+			
 			$.clinicListSv.add(noRecord);
 		}else{
 			
@@ -130,6 +135,7 @@ function listing(){
 						textAlign:'left', 
 						left:15,
 						bottom:5,
+						width: "85%",
 						height:Ti.UI.SIZE
 					}); 
 					contentView.add(distLbl);
@@ -154,9 +160,18 @@ function listing(){
 	   		});
 	   		
 	   		TheTable.setData(data);
+	   		if(OS_IOS){
+				removeAllChildren($.clinicListSv);
+			}
+			
 			$.clinicListSv.add(TheTable);
+			common.hideLoading();
+			if(OS_ANDROID){
+				TheTable.search = searchBar;
+			}
+			
 		}
-		common.hideLoading();
+		
 		TheTable.addEventListener('click', function(e) { 
 			nav.navigateWithArgs("clinic/clinicDetails", {panel_id:e.rowData.source});
 		});
@@ -170,4 +185,51 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
 		nav.closeWindow($.clinicList); 
 	}); 
+}else{
+	/***SEARCH FUNCTION***/
+	function searchResult(){
+		$.searchItem.blur(); 
+		common.showLoading();
+		var str = $.searchItem.getValue(); 
+		console.log(str);
+		if(str != ""){
+			if(clinicType == "hours24"){ 
+				list = library.getPanelBy24Hours(str);   
+			}else{ 
+				list = library.getPanelByClinicType(clinicType,str);   
+			}
+			listing();
+		}else{
+			loadData();
+		}
+			 
+		
+	}
+	$.searchItem.addEventListener("return", searchResult);
+
+	var first = true;
+	 
+	$.searchItem.addEventListener('focus', function f(e){
+		 
+		$.searchItem.removeEventListener('focus', f);
+	});
+	
+	$.searchItem.addEventListener('cancel', function(e){ 
+		$.searchItem.blur(); 
+		loadData();
+	});
+	
+	$.searchItem.addEventListener('blur', function(e){
+		
+	});
+}
+
+function loadData(){
+	if(clinicType == "hours24"){ 
+		list = library.getPanelBy24Hours("");   
+	}else{ 
+		list = library.getPanelByClinicType(clinicType,"");   
+	}
+	common.showLoading();
+	listing();
 }

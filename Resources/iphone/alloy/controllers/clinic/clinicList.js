@@ -20,7 +20,7 @@ function Controller() {
         var TheTable = Titanium.UI.createTableView({
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
-            search: searchBar
+            hideSearchOnSelection: true
         });
         var data = [];
         var arr = list;
@@ -36,6 +36,7 @@ function Controller() {
                 top: 15,
                 width: Ti.UI.SIZE
             });
+            removeAllChildren($.clinicListSv);
             $.clinicListSv.add(noRecord);
         } else {
             arr.forEach(function(entry) {
@@ -92,6 +93,7 @@ function Controller() {
                         textAlign: "left",
                         left: 15,
                         bottom: 5,
+                        width: "85%",
                         height: Ti.UI.SIZE
                     });
                     contentView.add(distLbl);
@@ -107,14 +109,30 @@ function Controller() {
                 }
             });
             TheTable.setData(data);
+            removeAllChildren($.clinicListSv);
             $.clinicListSv.add(TheTable);
+            common.hideLoading();
         }
-        common.hideLoading();
         TheTable.addEventListener("click", function(e) {
             nav.navigateWithArgs("clinic/clinicDetails", {
                 panel_id: e.rowData.source
             });
         });
+    }
+    function searchResult() {
+        $.searchItem.blur();
+        common.showLoading();
+        var str = $.searchItem.getValue();
+        console.log(str);
+        if ("" != str) {
+            list = "hours24" == clinicType ? library.getPanelBy24Hours(str) : library.getPanelByClinicType(clinicType, str);
+            listing();
+        } else loadData();
+    }
+    function loadData() {
+        list = "hours24" == clinicType ? library.getPanelBy24Hours("") : library.getPanelByClinicType(clinicType, "");
+        common.showLoading();
+        listing();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicList";
@@ -154,10 +172,23 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicList.add($.__views.panelListTbl);
+    $.__views.searchItem = Ti.UI.createSearchBar({
+        barColor: "#FFFFFF",
+        tintColor: "#EABD2A",
+        id: "searchItem",
+        showCancel: "true",
+        text: "",
+        height: "50",
+        hintText: "Search Clinic"
+    });
+    $.__views.panelListTbl.add($.__views.searchItem);
     $.__views.clinicListSv = Ti.UI.createScrollView({
         id: "clinicListSv",
+        layout: "vertical",
+        top: "0",
         height: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
+        scrollType: "vertical",
         contentHeight: Ti.UI.SIZE,
         width: Ti.UI.FILL
     });
@@ -198,21 +229,17 @@ function Controller() {
     common.construct($);
     common.showLoading();
     setTimeout(function() {
-        if ("hours24" == clinicType) {
-            $.clinicList.title = "24 Hours Clinic List";
-            list = library.getPanelBy24Hours();
-        } else {
-            $.clinicList.title = clinicType + " List";
-            list = library.getPanelByClinicType(clinicType);
-        }
+        $.clinicList.title = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
+        loadData();
         "" == corp ? listing() : API.loadPanelList({
             clinicType: clinicType
         });
     }, 1e3);
-    var searchBar = Titanium.UI.createSearchBar({
+    Titanium.UI.createSearchBar({
         barColor: "#F0F0F0",
         showCancel: true,
         height: 45,
+        hintText: "Search Clinic",
         top: 0
     });
     Ti.App.addEventListener("aspClinic", loadClinic);
@@ -221,9 +248,19 @@ function Controller() {
             clinicType: clinicType
         });
     });
-    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+    if ("android" == Ti.Platform.osname) $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicList);
-    });
+    }); else {
+        $.searchItem.addEventListener("return", searchResult);
+        $.searchItem.addEventListener("focus", function f() {
+            $.searchItem.removeEventListener("focus", f);
+        });
+        $.searchItem.addEventListener("cancel", function() {
+            $.searchItem.blur();
+            loadData();
+        });
+        $.searchItem.addEventListener("blur", function() {});
+    }
     _.extend($, exports);
 }
 
