@@ -179,7 +179,6 @@ exports.definition = {
             getPanelByClinicType: function(ClinicType, searchKey) {
                 var collection = this;
                 if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND clinicName LIKE '%" + searchKey + "%' "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' ";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

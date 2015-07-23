@@ -175,9 +175,9 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getPanelByClinicType: function(ClinicType) {
+            getPanelByClinicType: function(ClinicType, searchKey) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' ";
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND clinicName LIKE '%" + searchKey + "%' "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -206,9 +206,9 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getPanelBy24Hours: function() {
+            getPanelBy24Hours: function(searchKey) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND clinicName LIKE '%" + searchKey + "%' "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

@@ -19,8 +19,7 @@ function Controller() {
     function listing() {
         var TheTable = Titanium.UI.createTableView({
             width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-            hideSearchOnSelection: true
+            height: Ti.UI.SIZE
         });
         var data = [];
         var arr = list;
@@ -188,7 +187,6 @@ function Controller() {
         top: "0",
         height: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
-        scrollType: "vertical",
         contentHeight: Ti.UI.SIZE,
         width: Ti.UI.FILL
     });
@@ -231,7 +229,7 @@ function Controller() {
     setTimeout(function() {
         $.clinicList.title = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
         loadData();
-        "" == corp ? listing() : API.loadPanelList({
+        "" == corp || API.loadPanelList({
             clinicType: clinicType
         });
     }, 1e3);

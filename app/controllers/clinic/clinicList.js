@@ -23,7 +23,7 @@ setTimeout(function(){
 	}
 	loadData();
 	if(corp == ""){ 
-		listing();
+		//listing();
 	}else{
 		API.loadPanelList({clinicType:clinicType});
 	}
@@ -42,24 +42,25 @@ function loadClinic(e){
 }
 
  var searchBar = Titanium.UI.createSearchBar({
-	    barColor:'#F0F0F0', 
-	    showCancel:true,
-	    height:45,
-	    hintText:'Search Clinic',
-	    top:0,
+	barColor:'#F0F0F0', 
+	showCancel:true,
+	height:45,
+	hintText:'Search Clinic',
+	top:0,
 });
 	
 Ti.App.addEventListener('aspClinic',loadClinic);
 
 function listing(){ 
-	
+	 
 	var TheTable = Titanium.UI.createTableView({
 		width:Ti.UI.FILL, 
-		height: Ti.UI.SIZE,
-		hideSearchOnSelection: true
+		height: Ti.UI.SIZE,  
 		//separatorColor: '#ffffff'
 	});
-	
+	if(OS_ANDROID){
+		TheTable.search = searchBar;
+	}
 	
 	var data=[]; 
    		var arr = list;
@@ -191,7 +192,6 @@ if(Ti.Platform.osname == "android"){
 		$.searchItem.blur(); 
 		common.showLoading();
 		var str = $.searchItem.getValue(); 
-		console.log(str);
 		if(str != ""){
 			if(clinicType == "hours24"){ 
 				list = library.getPanelBy24Hours(str);   

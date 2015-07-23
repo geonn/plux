@@ -19,9 +19,9 @@ function Controller() {
     function listing() {
         var TheTable = Titanium.UI.createTableView({
             width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-            search: searchBar
+            height: Ti.UI.SIZE
         });
+        TheTable.search = searchBar;
         var data = [];
         var arr = list;
         if (arr.length < 1) {
@@ -92,6 +92,7 @@ function Controller() {
                         textAlign: "left",
                         left: 15,
                         bottom: 5,
+                        width: "85%",
                         height: Ti.UI.SIZE
                     });
                     contentView.add(distLbl);
@@ -108,13 +109,19 @@ function Controller() {
             });
             TheTable.setData(data);
             $.clinicListSv.add(TheTable);
+            common.hideLoading();
+            TheTable.search = searchBar;
         }
-        common.hideLoading();
         TheTable.addEventListener("click", function(e) {
             nav.navigateWithArgs("clinic/clinicDetails", {
                 panel_id: e.rowData.source
             });
         });
+    }
+    function loadData() {
+        list = "hours24" == clinicType ? library.getPanelBy24Hours("") : library.getPanelByClinicType(clinicType, "");
+        common.showLoading();
+        listing();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicList";
@@ -207,6 +214,8 @@ function Controller() {
     $.__views.__alloyId182.add($.__views.btnList);
     $.__views.clinicListSv = Ti.UI.createScrollView({
         id: "clinicListSv",
+        layout: "vertical",
+        top: "0",
         height: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
@@ -249,14 +258,9 @@ function Controller() {
     common.construct($);
     common.showLoading();
     setTimeout(function() {
-        if ("hours24" == clinicType) {
-            $.pageTitle.text = "24 Hours Clinic List";
-            list = library.getPanelBy24Hours();
-        } else {
-            $.pageTitle.text = clinicType + " List";
-            list = library.getPanelByClinicType(clinicType);
-        }
-        "" == corp ? listing() : API.loadPanelList({
+        $.pageTitle.text = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
+        loadData();
+        "" == corp || API.loadPanelList({
             clinicType: clinicType
         });
     }, 1e3);
@@ -264,6 +268,7 @@ function Controller() {
         barColor: "#F0F0F0",
         showCancel: true,
         height: 45,
+        hintText: "Search Clinic",
         top: 0
     });
     Ti.App.addEventListener("aspClinic", loadClinic);

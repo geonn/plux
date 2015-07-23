@@ -16,7 +16,7 @@
 		   		</View>
 		 	</View>
 		  	<SearchBar barColor="#FFFFFF" tintColor="#EABD2A" id="searchItem" showCancel="true" text="" height="50"  hintText="Search Clinic" platform="ios" />
-		 	<ScrollView id="clinicListSv" layout="vertical" top="0"  height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" scrollType="vertical" contentHeight="Ti.UI.SIZE" width="Ti.UI.FILL" />
+		 	<ScrollView id="clinicListSv" layout="vertical" top="0"  height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" width="Ti.UI.FILL" />
 		 		 
 	 	</View>
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
