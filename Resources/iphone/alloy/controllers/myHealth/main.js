@@ -79,6 +79,7 @@ function Controller() {
         graph_view.children[2].children[1].text = e.text;
     }
     function graphLoaded(e) {
+        console.log(e.id);
         var graph_view = children({
             name: "gType",
             value: e.id
@@ -249,7 +250,7 @@ function Controller() {
         touchEnabled: false,
         id: "bmiWebView",
         height: "200",
-        width: "100%",
+        width: Ti.UI.FILL,
         url: "/html/bmi.html",
         disableBounce: "true"
     });
@@ -311,7 +312,7 @@ function Controller() {
         touchEnabled: false,
         id: "bloodPressureWebView",
         height: "200",
-        width: "100%",
+        width: Ti.UI.FILL,
         url: "/html/bloodPressure.html",
         disableBounce: "true"
     });
@@ -373,7 +374,7 @@ function Controller() {
         touchEnabled: false,
         id: "heartRateWebView",
         height: "200",
-        width: "100%",
+        width: Ti.UI.FILL,
         url: "/html/heartRate.html",
         disableBounce: "true"
     });
@@ -435,7 +436,7 @@ function Controller() {
         touchEnabled: false,
         id: "bodyTemperatureWebView",
         height: "200",
-        width: "100%",
+        width: Ti.UI.FILL,
         url: "/html/bodyTemperature.html",
         disableBounce: "true"
     });
@@ -497,7 +498,7 @@ function Controller() {
         touchEnabled: false,
         id: "cholestrolWebView",
         height: "200",
-        width: "100%",
+        width: Ti.UI.FILL,
         url: "/html/cholestrol.html",
         disableBounce: "true"
     });
@@ -551,7 +552,7 @@ function Controller() {
     "android" != Ti.Platform.osname && hd.stepsMotion();
     Ti.App.addEventListener("filterList", filterList);
     Ti.App.addEventListener("loadLatest", loadLatest);
-    Ti.App.addEventListener("populateDataById", graphLoaded);
+    Ti.App.addEventListener("graphLoaded", graphLoaded);
     Ti.App.addEventListener("populateDataById", populateDataById);
     filterList({
         category: "all"
@@ -562,7 +563,7 @@ function Controller() {
                 gType: 10
             });
         });
-        $.stepsView.addEventListener("load", function(e) {
+        $.stepsWebView.addEventListener("load", function(e) {
             var actualHeight = e.source.evalJS("document.height;");
             e.source.height = parseInt(actualHeight);
         });
@@ -572,34 +573,38 @@ function Controller() {
             gType: 1
         });
     });
-    $.bmiView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
-    });
     $.bloodPressureView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 2
         });
-    });
-    $.bloodPressureView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
     });
     $.heartRateView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 3
         });
     });
-    $.heartRateView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
-    });
     $.bodyTemperatureView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 4
         });
     });
-    $.bodyTemperatureView.addEventListener("load", function(e) {
+    $.bmiWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.bloodPressureWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.heartRateWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.bodyTemperatureWebView.addEventListener("load", function(e) {
+        var actualHeight = e.source.evalJS("document.height;");
+        e.source.height = parseInt(actualHeight);
+    });
+    $.cholestrolWebView.addEventListener("load", function(e) {
         var actualHeight = e.source.evalJS("document.height;");
         e.source.height = parseInt(actualHeight);
     });
@@ -607,10 +612,6 @@ function Controller() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 7
         });
-    });
-    $.cholestrolView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
     });
     $.moreHealth.addEventListener("click", function() {
         if ("android" == Ti.Platform.osname) {
@@ -641,7 +642,7 @@ function Controller() {
         Ti.App.removeEventListener("filterList", filterList);
         Ti.App.removeEventListener("populateDataById", populateDataById);
         Ti.App.removeEventListener("loadLatest", loadLatest);
-        Ti.App.removeEventListener("populateDataById", graphLoaded);
+        Ti.App.removeEventListener("graphLoaded", graphLoaded);
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myhealth);

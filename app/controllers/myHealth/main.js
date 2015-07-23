@@ -110,9 +110,10 @@ function loadLatest(e){
 Ti.App.addEventListener('graphLoaded', graphLoaded);
 
 function graphLoaded(e){
+	console.log(e.id);
 	var graph_view = children({name: "gType", value: e.id}, $.graphScrollView);
 	graph_view.children[0].children[0].hide();
-	graph_view.children[0].height = e.contentheight;
+	//graph_view.children[0].height = e.contentheight;
 }
 
 Ti.App.addEventListener('populateDataById', populateDataById);
@@ -126,7 +127,13 @@ if(Ti.Platform.osname != "android"){
 	$.stepsView.addEventListener('click',function(e){
 		nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
 	});	
+	
+	$.stepsWebView.addEventListener('load',function(e){
+		var actualHeight = e.source.evalJS("document.height;");
+		e.source.height = parseInt(actualHeight);
+	});
 }
+
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});
 });
@@ -139,11 +146,34 @@ $.heartRateView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 3});
 });
 
-
 $.bodyTemperatureView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 4});
 });
 
+$.bmiWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
+});
+
+$.bloodPressureWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
+});
+
+$.heartRateWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
+});
+
+$.bodyTemperatureWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
+});
+
+$.cholestrolWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	e.source.height = parseInt(actualHeight);
+});
 //$.heightView.addEventListener('click',function(e){
 //	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 5});
 //});

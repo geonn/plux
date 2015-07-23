@@ -24,6 +24,13 @@
           }else{
           	loadNoData(e.dataPeriod);
           }
+          var height= (
+		    'innerHeight' in window? window.innerHeight :
+		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+		    document.body.clientHeight
+		);
+		Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height});
+          
         });
         Ti.App.fireEvent('populateDataById',{ id: 1});
     </script>
@@ -53,7 +60,6 @@ function loadChart(data){
 	var contentHeight = $( "#chartContainer" ).height();
 	$("html").css("height", contentHeight );
 	$("body").css("height", contentHeight);
-	Ti.App.fireEvent('graphLoaded',{ id: 1});
 }
 function loadNoData(dataPeriod){
 	var dateNow = currentDate(0); 
