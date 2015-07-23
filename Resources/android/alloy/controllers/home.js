@@ -211,14 +211,8 @@ function Controller() {
     $.__views.__alloyId32.add($.__views.scrollboard);
     $.__views.__alloyId34 = Ti.UI.createView({
         layout: "horizontal",
-<<<<<<< HEAD
         width: Ti.UI.SIZE,
         top: "239",
-=======
-        width: Ti.UI.FILL,
-        top: "239",
-        left: "15",
->>>>>>> origin/master
         id: "__alloyId34"
     });
     $.__views.scrollboard.add($.__views.__alloyId34);

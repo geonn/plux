@@ -121,36 +121,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
-<<<<<<< HEAD
-    $.__views.__alloyId177 = Ti.UI.createView({
-=======
-    $.__views.__alloyId178 = Ti.UI.createView({
->>>>>>> origin/master
+    $.__views.__alloyId185 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
-        id: "__alloyId177"
+        id: "__alloyId185"
     });
-    $.__views.win_map.add($.__views.__alloyId177);
-    $.__views.__alloyId178 = Ti.UI.createView({
+    $.__views.win_map.add($.__views.__alloyId185);
+    $.__views.__alloyId186 = Ti.UI.createView({
         left: "0",
         width: "20%",
-        id: "__alloyId178"
+        id: "__alloyId186"
     });
-    $.__views.__alloyId177.add($.__views.__alloyId178);
-=======
-        id: "__alloyId178"
-    });
-    $.__views.win_map.add($.__views.__alloyId178);
-    $.__views.__alloyId179 = Ti.UI.createView({
-        left: "0",
-        width: "20%",
-        id: "__alloyId179"
-    });
-    $.__views.__alloyId178.add($.__views.__alloyId179);
->>>>>>> origin/master
+    $.__views.__alloyId185.add($.__views.__alloyId186);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -158,21 +142,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId178.add($.__views.btnBack);
-    $.__views.__alloyId179 = Ti.UI.createView({
+    $.__views.__alloyId186.add($.__views.btnBack);
+    $.__views.__alloyId187 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId179"
+        id: "__alloyId187"
     });
-    $.__views.__alloyId177.add($.__views.__alloyId179);
-=======
-    $.__views.__alloyId179.add($.__views.btnBack);
-    $.__views.__alloyId180 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId180"
-    });
-    $.__views.__alloyId178.add($.__views.__alloyId180);
->>>>>>> origin/master
+    $.__views.__alloyId185.add($.__views.__alloyId187);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -183,16 +158,13 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId179.add($.__views.pageTitle);
-=======
-    $.__views.__alloyId180.add($.__views.pageTitle);
-    $.__views.__alloyId181 = Ti.UI.createView({
+    $.__views.__alloyId187.add($.__views.pageTitle);
+    $.__views.__alloyId188 = Ti.UI.createView({
         right: "0",
         width: "20%",
-        id: "__alloyId181"
+        id: "__alloyId188"
     });
-    $.__views.__alloyId178.add($.__views.__alloyId181);
+    $.__views.__alloyId185.add($.__views.__alloyId188);
     $.__views.btnList = Ti.UI.createImageView({
         right: "10",
         id: "btnList",
@@ -200,8 +172,7 @@ function Controller() {
         height: "25",
         image: "/images/list.png"
     });
-    $.__views.__alloyId181.add($.__views.btnList);
->>>>>>> origin/master
+    $.__views.__alloyId188.add($.__views.btnList);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -218,25 +189,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-    $.__views.__alloyId180 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId182 = Ti.UI.createLabel({
->>>>>>> origin/master
+    $.__views.__alloyId189 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-<<<<<<< HEAD
-        id: "__alloyId180"
+        id: "__alloyId189"
     });
-    $.__views.loadingBar.add($.__views.__alloyId180);
-=======
-        id: "__alloyId182"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId182);
->>>>>>> origin/master
+    $.__views.loadingBar.add($.__views.__alloyId189);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -256,8 +217,11 @@ function Controller() {
     var latitude;
     Ti.App.addEventListener("aspClinic", loadClinic);
     $.btnList.addEventListener("click", function() {
-        alert(longitude + "==" + latitude);
-        nav.navigateWithArgs("clinic/clinicNearby", {});
+        nav.navigateWithArgs("clinic/clinicNearby", {
+            longitude: longitude,
+            latitude: latitude,
+            clinicType: clinicType
+        });
     });
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicLocator);

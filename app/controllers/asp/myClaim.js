@@ -40,7 +40,7 @@ function init(){
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));
 	var updated_date = currentDateTime();//Ti.App.Properties.getString('balchkUpdatedDate');
-	$.date.text = "Up to date "+timeFormat(updated_date);
+	$.date.text = timeFormat(updated_date);
  
 	var groups = {};
 	var balance_groups = {};

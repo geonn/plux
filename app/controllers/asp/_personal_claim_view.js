@@ -61,7 +61,7 @@ function generate_description(balance, limit){
   return view_desc;
 }
 
-$.more.addEventListener("click", function(){
+$.personalClaimVw.addEventListener("click", function(){
 	var nav = require('navigation');
 	nav.navigateWithArgs("asp/claimHistory", {name: args.name});
 });

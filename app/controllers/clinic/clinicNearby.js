@@ -50,7 +50,7 @@ function listing(e){
 			    top: 15,
 			    width: Ti.UI.SIZE 
 			 });
-			$.clinicNearby.add(noRecord);
+			$.clinicNearbySv.add(noRecord);
 		}else{
 
 	   		arr.forEach(function(entry) {
@@ -126,7 +126,7 @@ function listing(e){
 	   		});
 	   		
 	   		TheTable.setData(data);
-			$.clinicNearby.add(TheTable);
+			$.clinicNearbySv.add(TheTable);
 		}
 		common.hideLoading();
 		TheTable.addEventListener('click', function(e) { 

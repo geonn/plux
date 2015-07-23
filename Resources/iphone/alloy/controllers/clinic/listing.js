@@ -37,13 +37,18 @@ function Controller() {
                     touchEnabled: true,
                     height: 70,
                     id: entry.clinicType,
-                    selectedBackgroundColor: "#FFE1E1",
+                    backgroundSelectedColor: "#FFE1E1",
                     backgroundColor: "#ffffff"
                 });
                 var clinicImg = entry.clinicType;
                 clinicImg = clinicImg.toLowerCase();
+<<<<<<< HEAD
                 var leftImage = Titanium.UI.createImageView({
                     image: "/images/" + clinicImg + ".png",
+=======
+                var leftImage = Titanium.UI.createView({
+                    backgroundImage: "/images/" + clinicImg + ".png",
+>>>>>>> origin/master
                     width: 50,
                     height: 50,
                     left: 10
@@ -84,12 +89,61 @@ function Controller() {
                 row.add(rightForwardBtn);
                 data.push(row);
             });
+            var hours24Det = library.getCount24Hours();
+            var row = Titanium.UI.createTableViewRow({
+                touchEnabled: true,
+                height: 70,
+                id: "hours24",
+                backgroundSelectedColor: "#FFE1E1",
+                backgroundColor: "#ffffff"
+            });
+            var leftImage = Titanium.UI.createImageView({
+                image: "/images/hours24.png",
+                width: 50,
+                height: 50,
+                left: 10
+            });
+            var popUpTitle = Titanium.UI.createLabel({
+                text: "24 HOURS",
+                font: {
+                    fontSize: 16
+                },
+                source: "hours24",
+                color: "#848484",
+                width: "65%",
+                textAlign: "left",
+                left: 70,
+                height: 25
+            });
+            var totalPanel = Titanium.UI.createLabel({
+                text: hours24Det.total,
+                source: "hours24",
+                font: {
+                    fontSize: 14,
+                    fontWeight: "bold"
+                },
+                width: "auto",
+                color: "#848484",
+                right: 50,
+                height: 25
+            });
+            var rightForwardBtn = Titanium.UI.createImageView({
+                image: "/images/btn-forward.png",
+                source: "hours24",
+                width: 15,
+                right: 20
+            });
+            row.add(leftImage);
+            row.add(popUpTitle);
+            row.add(totalPanel);
+            row.add(rightForwardBtn);
+            data.push(row);
             TheTable.setData(data);
             $.panelListTbl.add(TheTable);
         }
         TheTable.addEventListener("click", function(e) {
             var nav = require("navigation");
-            nav.navigateWithArgs("clinic/clinicLocator", {
+            nav.navigateWithArgs("clinic/clinicList", {
                 clinicType: e.rowData.id
             });
         });
@@ -142,15 +196,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId154 = Ti.UI.createLabel({
+    $.__views.__alloyId157 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId154"
+        id: "__alloyId157"
     });
-    $.__views.loadingBar.add($.__views.__alloyId154);
+    $.__views.loadingBar.add($.__views.__alloyId157);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -167,7 +221,6 @@ function Controller() {
     });
     Ti.App.addEventListener("aspClinic", listing);
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.clinicList);
     });
     _.extend($, exports);

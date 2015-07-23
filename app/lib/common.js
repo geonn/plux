@@ -72,9 +72,7 @@ exports.noRecord = function(){
 	return data;
 };
 
-exports.showLoading = function(){
-	console.log('show loading');
-	
+exports.showLoading = function(){ 
 	mainView.loadingBar.opacity = "1";
 	mainView.loadingBar.zIndex = "100";
 	//mainView.loadingBar.height = "120";
@@ -91,8 +89,7 @@ exports.showLoading = function(){
 	mainView.activityIndicator.show();
 };
 
-exports.hideLoading = function(){
-	console.log("hideLoading");
+exports.hideLoading = function(){ 
 	mainView.activityIndicator.hide();
 	mainView.loadingBar.opacity = "0";
 	mainView.loadingBar.height = "0";
@@ -219,13 +216,11 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     function togglecheck () {
         if(!viw.checked) {
             viw.checked = true;
-            imageView.opacity = 1;
-			console.log(viw.name);
+            imageView.opacity = 1; 
         }
         else {
             viw.checked = false;
-            imageView.opacity = 0;
-            console.log(viw.name);
+            imageView.opacity = 0; 
         }           
     }
     clickview.addEventListener("click",togglecheck);

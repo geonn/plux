@@ -1,0 +1,27 @@
+<Alloy>
+	<Window title="Clinic List" id="clinicList" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+		<RightNavButton>
+			<ImageView right='10' id="btnList" width="15" height="25" image="/images/marker.png" />
+		</RightNavButton>
+		<View id="panelListTbl" layout="vertical">
+	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack"  height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic List</Label>
+		     	</View>
+		     	<View right="0" width="20%" >
+		         	<ImageView right='10' id="btnList" width="15" height="25" image="/images/marker.png" />
+		   		</View>
+		 	</View>
+		  	<SearchBar barColor="#FFFFFF" tintColor="#EABD2A" id="searchItem" showCancel="true" text="" height="50"  hintText="Search Clinic" platform="ios" />
+		 	<ScrollView id="clinicListSv" layout="vertical" top="0"  height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" width="Ti.UI.FILL" />
+		 		 
+	 	</View>
+		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		    <ActivityIndicator  id="activityIndicator" />
+			<Label top="5" text="Loading" color="#ffffff" />
+		</View>
+	</Window>
+</Alloy>

@@ -45,47 +45,17 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views._personal_claim_view = Ti.UI.createView({
+    $.__views.personalClaimVw = Ti.UI.createView({
         top: 10,
         left: 10,
         right: 10,
         bottom: 10,
+        layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "_personal_claim_view"
+        id: "personalClaimVw"
     });
-    $.__views._personal_claim_view && $.addTopLevelView($.__views._personal_claim_view);
-    $.__views.name = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#0c0e15",
-        font: {
-            fontSize: 18
-        },
-        id: "name",
-        backgroundColor: "#fff",
-        left: "10",
-        top: "8",
-        zIndex: "10"
-    });
-    $.__views._personal_claim_view.add($.__views.name);
-    $.__views.more = Ti.UI.createButton({
-        font: {
-            fontSize: 10
-        },
-        title: "More",
-        right: "10",
-        id: "more",
-        top: "0",
-        zIndex: "10",
-        width: "40dp",
-        height: "40dp",
-        borderRadius: "20",
-        borderColor: "#af2120",
-        backgroundColor: "#d2202c",
-        color: "#ffffff"
-    });
-    $.__views._personal_claim_view.add($.__views.more);
+    $.__views.personalClaimVw && $.addTopLevelView($.__views.personalClaimVw);
     $.__views.main = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -93,16 +63,45 @@ function Controller() {
         borderRadius: "5",
         borderColor: "#dfe0e4",
         backgroundColor: "#FFFFFF",
-        id: "main",
-        top: "18"
+        id: "main"
     });
-    $.__views._personal_claim_view.add($.__views.main);
+    $.__views.personalClaimVw.add($.__views.main);
     $.__views.__alloyId108 = Ti.UI.createView({
-        height: "15",
+        layout: "horizontal",
         width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         id: "__alloyId108"
     });
     $.__views.main.add($.__views.__alloyId108);
+    $.__views.name = Ti.UI.createLabel({
+        width: "85%",
+        height: Ti.UI.SIZE,
+        color: "#CE1D1C",
+        font: {
+            fontSize: 18
+        },
+        id: "name",
+        left: "10",
+        top: "5",
+        zIndex: "10"
+    });
+    $.__views.__alloyId108.add($.__views.name);
+    $.__views.more = Ti.UI.createImageView({
+        id: "more",
+        image: "/images/btn-forward.png",
+        right: "8",
+        top: "8",
+        zIndex: "10",
+        width: "20dp",
+        height: "20dp"
+    });
+    $.__views.__alloyId108.add($.__views.more);
+    $.__views.__alloyId109 = Ti.UI.createView({
+        height: "15",
+        width: Ti.UI.FILL,
+        id: "__alloyId109"
+    });
+    $.__views.main.add($.__views.__alloyId109);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -133,7 +132,7 @@ function Controller() {
         }
         $.main.add(view_container);
     }
-    $.more.addEventListener("click", function() {
+    $.personalClaimVw.addEventListener("click", function() {
         var nav = require("navigation");
         nav.navigateWithArgs("asp/claimHistory", {
             name: args.name

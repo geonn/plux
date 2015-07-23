@@ -30,7 +30,7 @@
 			    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
 			    document.body.clientHeight
 			);
-         setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 2, contentheight: height}); }, 3000);
+         setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 2, contentheight: height}); }, 1000);
         });
             Ti.App.fireEvent('populateDataById',{ id: 2});
         </script>

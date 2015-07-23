@@ -1,8 +1,14 @@
 <Alloy>
-	<View class="padding wfill hsize">
-		<Label id="name" class="font_big" backgroundColor="#fff" left="10" top="8" zIndex="10"></Label>
-		<Button class="font_small" right="10" id="more" top="0" zIndex="10" width="40dp" height="40dp" borderRadius="20" borderColor="#af2120" backgroundColor="#d2202c" color="#ffffff" >More</Button>
-		<View id="main" class="box wfill hsize vert" top="18">
+	<View class="padding wfill hsize vert" id="personalClaimVw">
+		<View id="main" class="box wfill hsize vert" >
+			<View class="hsize wfill horz">
+				<Label id="name" class="font_big" color="#CE1D1C" left="10" top="5" zIndex="10" width="85%"></Label>
+				<!--
+				<Button class="font_small" right="10" id="more" top="0" zIndex="10" width="40dp" height="40dp" borderRadius="20" borderColor="#af2120" backgroundColor="#d2202c" color="#ffffff" >More</Button>
+				
+				-->
+				<ImageView id="more" image="/images/btn-forward.png" right="8" id="more" top="8" zIndex="10" width="20dp" height="20dp"  />
+			</View>
 			<View height="15" width="Ti.UI.FILL"></View>
 		</View>
 	</View>

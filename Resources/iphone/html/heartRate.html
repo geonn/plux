@@ -25,12 +25,21 @@
               }else{
               	loadNoData(e.dataPeriod);
               }
+<<<<<<< HEAD
            var height= (
 			    'innerHeight' in window? window.innerHeight :
 			    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
 			    document.body.clientHeight
 			);
           Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height});
+=======
+               var height= (
+		    'innerHeight' in window? window.innerHeight :
+		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+		    document.body.clientHeight
+		);
+          setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height}); }, 1000);
+>>>>>>> origin/master
             });
              Ti.App.fireEvent('populateDataById',{ id: 3});
         </script>
