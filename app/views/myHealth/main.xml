@@ -32,7 +32,7 @@
 			-->
 				<ScrollView id="graphScrollView" layout="vertical" height="auto" width="100%" backgroundColor="#EBEBEB" contentWidth="Ti.UI.FILL" >
 					<View id="stepsView" gType="10" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false" platform="ios">
-						<WebView id="stepsWebView" height="200" width="100%" url="/html/steps.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="stepsWebView" height="230" width="100%" url="/html/steps.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
@@ -40,7 +40,7 @@
 						</View>
 					</View>
 					<View id="bmiView" gType="1" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="bmiWebView" height="200" width="Ti.UI.FILL" url="/html/bmi.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="bmiWebView" height="230" width="Ti.UI.FILL" url="/html/bmi.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
@@ -48,7 +48,7 @@
 						</View>
 					</View>
 					<View id="bloodPressureView" gType="2" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="bloodPressureWebView" height="200" width="Ti.UI.FILL" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="bloodPressureWebView" height="230" width="Ti.UI.FILL" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
@@ -56,7 +56,7 @@
 						</View>
 					</View>
 					<View id="heartRateView" gType="3" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="heartRateWebView" height="200" width="Ti.UI.FILL" url="/html/heartRate.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="heartRateWebView" height="230" width="Ti.UI.FILL" url="/html/heartRate.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
@@ -64,7 +64,7 @@
 						</View>
 					</View>
 					<View id="bodyTemperatureView" gType="4" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="bodyTemperatureWebView" height="200" width="Ti.UI.FILL" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="bodyTemperatureWebView" height="230" width="Ti.UI.FILL" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
@@ -72,7 +72,7 @@
 						</View>
 					</View>
 					<View id="cholestrolView" gType="7" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="cholestrolWebView" height="200" width="Ti.UI.FILL" url="/html/cholestrol.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="cholestrolWebView" height="230" width="Ti.UI.FILL" url="/html/cholestrol.html" disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>

@@ -152,27 +152,27 @@ $.bodyTemperatureView.addEventListener('click',function(e){
 
 $.bmiWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	//e.source.height = parseInt(actualHeight);
 });
 
 $.bloodPressureWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	//e.source.height = parseInt(actualHeight);
 });
 
 $.heartRateWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	//e.source.height = parseInt(actualHeight);
 });
 
 $.bodyTemperatureWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	//e.source.height = parseInt(actualHeight);
 });
 
 $.cholestrolWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
-	e.source.height = parseInt(actualHeight);
+	//e.source.height = parseInt(actualHeight);
 });
 //$.heightView.addEventListener('click',function(e){
 //	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 5});

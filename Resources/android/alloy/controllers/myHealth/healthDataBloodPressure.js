@@ -13,16 +13,31 @@ function Controller() {
         $.field2.blur();
     }
     function showDatePicker() {
-        hd.showDatePicker({
-            date: $.datePicker,
-            time: $.timePicker
+        var datePicker = Ti.UI.createPicker({
+            type: Ti.UI.PICKER_TYPE_DATE,
+            minDate: new Date(1930, 0, 1),
+            maxDate: new Date(yyyy, mm, dd),
+            id: "datePicker",
+            visible: false
+        });
+        datePicker.showDatePickerDialog({
+            value: new Date(yyyy, parseInt(mm), dd),
+            callback: function(e) {
+                e.cancel || changeDate(e);
+            }
         });
         hideKeyboard();
     }
     function showTimePicker() {
-        hd.showTimePicker({
-            date: $.datePicker,
-            time: $.timePicker
+        var timePicker = Ti.UI.createPicker({
+            type: Ti.UI.PICKER_TYPE_TIME,
+            id: "timePicker",
+            visible: false
+        });
+        timePicker.showTimePickerDialog({
+            callback: function(e) {
+                e.cancel || changeTime(e);
+            }
         });
         hideKeyboard();
     }
@@ -377,6 +392,10 @@ function Controller() {
     var hd = require("healthData");
     hd.construct($);
     hd.todayDate();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth();
+    var yyyy = today.getFullYear();
     $.field2.addEventListener("change", function(e) {
         var field2 = $.field2.value;
         "" != e.value && "" != field2 ? hd.enableSaveButton() : hd.disableSaveButton();

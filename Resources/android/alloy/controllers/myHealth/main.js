@@ -231,7 +231,7 @@ function Controller() {
     $.__views.bmiWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bmiWebView",
-        height: "200",
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bmi.html",
         disableBounce: "true"
@@ -293,7 +293,7 @@ function Controller() {
     $.__views.bloodPressureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bloodPressureWebView",
-        height: "200",
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bloodPressure.html",
         disableBounce: "true"
@@ -355,7 +355,7 @@ function Controller() {
     $.__views.heartRateWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "heartRateWebView",
-        height: "200",
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/heartRate.html",
         disableBounce: "true"
@@ -417,7 +417,7 @@ function Controller() {
     $.__views.bodyTemperatureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bodyTemperatureWebView",
-        height: "200",
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bodyTemperature.html",
         disableBounce: "true"
@@ -479,7 +479,7 @@ function Controller() {
     $.__views.cholestrolWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "cholestrolWebView",
-        height: "200",
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/cholestrol.html",
         disableBounce: "true"
@@ -559,24 +559,19 @@ function Controller() {
         });
     });
     $.bmiWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.bloodPressureWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.heartRateWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.bodyTemperatureWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.cholestrolWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.cholestrolView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {

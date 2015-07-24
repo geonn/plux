@@ -5,17 +5,58 @@ var hd = require('healthData');
 
 hd.construct($);
 hd.todayDate();
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth(); 
+var yyyy = today.getFullYear();
+
 function hideKeyboard(){
 	$.field1.blur(); 
 }
 
 function showDatePicker(e){ 
-	hd.showDatePicker({date: $.datePicker, time: $.timePicker}); 
+	if(OS_ANDROID){ 
+		var datePicker = Ti.UI.createPicker({
+			  type: Ti.UI.PICKER_TYPE_DATE,
+			  minDate: new Date(1930,0,1),
+			  maxDate: new Date(yyyy,mm,dd),
+			  id: "datePicker",
+			  visible: false
+		});
+		datePicker.showDatePickerDialog({
+			value: new Date(yyyy,parseInt(mm) , dd),
+			callback: function(e) {
+			if (e.cancel) { 
+				} else {
+					changeDate(e);
+				}
+			}
+		});
+	}else{  
+		hd.showDatePicker({date: $.datePicker, time: $.timePicker}); 
+	} 
 	hideKeyboard();
 }
 
 function showTimePicker(e){
-	hd.showTimePicker({date: $.datePicker, time: $.timePicker}); 
+	if(OS_ANDROID){ 
+		var timePicker = Ti.UI.createPicker({
+			  type: Ti.UI.PICKER_TYPE_TIME, 
+			  id: "timePicker",
+			  visible: false
+		});
+		timePicker.showTimePickerDialog({
+			//value: new Date(yyyy,parseInt(mm) - 1, dd),
+			callback: function(e) {
+			if (e.cancel) { 
+				} else {
+					changeTime(e);
+				}
+			}
+		});
+	}else{ 
+		hd.showTimePicker({date: $.datePicker, time: $.timePicker}); 
+	}
 	hideKeyboard();
 }
 
