@@ -32,6 +32,7 @@ function Controller() {
         });
     }
     function changeTime(e) {
+        console.log(e.value);
         hd.changeTime({
             time: e.value
         });
@@ -347,6 +348,10 @@ function Controller() {
     var hd = require("healthData");
     hd.construct($);
     hd.todayDate();
+    var today = new Date();
+    today.getDate();
+    today.getMonth();
+    today.getFullYear();
     $.field2.addEventListener("change", function(e) {
         var field2 = $.field2.value;
         "" != e.value && "" != field2 ? hd.enableSaveButton() : hd.disableSaveButton();

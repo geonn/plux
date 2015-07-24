@@ -275,6 +275,10 @@ function Controller() {
     var hd = require("healthData");
     hd.construct($);
     hd.todayDate();
+    var today = new Date();
+    today.getDate();
+    today.getMonth();
+    today.getFullYear();
     $.field1.addEventListener("change", function(e) {
         "" != e.value ? hd.enableSaveButton() : hd.disableSaveButton();
     });

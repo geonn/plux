@@ -56,7 +56,8 @@ function Controller() {
             var plux_user = usersPluxModel.getUserById(u_id);
             var logoutBtn = Ti.UI.createButton({
                 backgroundImage: "/images/btn-logout.png",
-                width: "40",
+                width: 40,
+                height: 40,
                 left: 5,
                 right: 5,
                 zIndex: 20
@@ -74,13 +75,17 @@ function Controller() {
                 });
                 dialog.show();
             });
+            var title_view = $.UI.create("View", {
+                width: "auto",
+                height: Ti.UI.FILL
+            });
             var welcomeTitle = $.UI.create("Label", {
                 text: "Welcome, " + plux_user.fullname,
-                width: Ti.UI.FILL,
                 classes: [ "welcome_text" ]
             });
+            title_view.add(welcomeTitle);
             $.myInfo.add(logoutBtn);
-            $.myInfo.add(welcomeTitle);
+            $.myInfo.add(title_view);
         }
     }
     function navWindow(e) {

@@ -85,7 +85,6 @@ function Controller() {
             value: e.id
         }, $.graphScrollView);
         graph_view.children[0].children[0].hide();
-        graph_view.children[0].height = e.contentheight;
     }
     function populateDataById(e) {
         hd.loadInfo(e.id, "", "1");
@@ -188,7 +187,7 @@ function Controller() {
     $.__views.stepsWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "stepsWebView",
-        height: Ti.UI.SIZE,
+        height: "230",
         width: "100%",
         url: "/html/steps.html",
         disableBounce: "true"
@@ -250,11 +249,7 @@ function Controller() {
     $.__views.bmiWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bmiWebView",
-<<<<<<< HEAD
-        height: "200",
-=======
-        height: Ti.UI.SIZE,
->>>>>>> origin/master
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bmi.html",
         disableBounce: "true"
@@ -316,11 +311,7 @@ function Controller() {
     $.__views.bloodPressureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bloodPressureWebView",
-<<<<<<< HEAD
-        height: "200",
-=======
-        height: Ti.UI.SIZE,
->>>>>>> origin/master
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bloodPressure.html",
         disableBounce: "true"
@@ -382,11 +373,7 @@ function Controller() {
     $.__views.heartRateWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "heartRateWebView",
-<<<<<<< HEAD
-        height: "200",
-=======
-        height: Ti.UI.SIZE,
->>>>>>> origin/master
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/heartRate.html",
         disableBounce: "true"
@@ -448,11 +435,7 @@ function Controller() {
     $.__views.bodyTemperatureWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "bodyTemperatureWebView",
-<<<<<<< HEAD
-        height: "200",
-=======
-        height: Ti.UI.SIZE,
->>>>>>> origin/master
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/bodyTemperature.html",
         disableBounce: "true"
@@ -514,11 +497,7 @@ function Controller() {
     $.__views.cholestrolWebView = Ti.UI.createWebView({
         touchEnabled: false,
         id: "cholestrolWebView",
-<<<<<<< HEAD
-        height: "200",
-=======
-        height: Ti.UI.SIZE,
->>>>>>> origin/master
+        height: "230",
         width: Ti.UI.FILL,
         url: "/html/cholestrol.html",
         disableBounce: "true"
@@ -578,7 +557,6 @@ function Controller() {
     filterList({
         category: "all"
     });
-<<<<<<< HEAD
     if ("android" != Ti.Platform.osname) {
         $.stepsView.addEventListener("click", function() {
             nav.navigateWithArgs("myHealth/healthDataSummary", {
@@ -588,13 +566,8 @@ function Controller() {
         $.stepsWebView.addEventListener("load", function(e) {
             var actualHeight = e.source.evalJS("document.height;");
             e.source.height = parseInt(actualHeight);
-=======
-    "android" != Ti.Platform.osname && $.stepsView.addEventListener("click", function() {
-        nav.navigateWithArgs("myHealth/healthDataSummary", {
-            gType: 10
->>>>>>> origin/master
         });
-    });
+    }
     $.bmiView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 1
@@ -615,29 +588,21 @@ function Controller() {
             gType: 4
         });
     });
-<<<<<<< HEAD
     $.bmiWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.bloodPressureWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.heartRateWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.bodyTemperatureWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
     $.cholestrolWebView.addEventListener("load", function(e) {
-        var actualHeight = e.source.evalJS("document.height;");
-        e.source.height = parseInt(actualHeight);
+        e.source.evalJS("document.height;");
     });
-=======
->>>>>>> origin/master
     $.cholestrolView.addEventListener("click", function() {
         nav.navigateWithArgs("myHealth/healthDataSummary", {
             gType: 7

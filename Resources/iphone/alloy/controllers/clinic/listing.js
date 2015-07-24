@@ -42,13 +42,8 @@ function Controller() {
                 });
                 var clinicImg = entry.clinicType;
                 clinicImg = clinicImg.toLowerCase();
-<<<<<<< HEAD
-                var leftImage = Titanium.UI.createImageView({
-                    image: "/images/" + clinicImg + ".png",
-=======
                 var leftImage = Titanium.UI.createView({
                     backgroundImage: "/images/" + clinicImg + ".png",
->>>>>>> origin/master
                     width: 50,
                     height: 50,
                     left: 10

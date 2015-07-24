@@ -143,7 +143,7 @@ function showDatePicker(e){
 			var sBday = myBDay.split("-"); 
 			
 			datePicker.showDatePickerDialog({
-			  value: new Date(sBday[0],parseInt(sBday[1]) - 1, parseInt(sBday[2]) + 1),
+			  value: new Date(sBday[0],parseInt(sBday[1]) - 1, parseInt(sBday[2]) ),
 			  callback: function(e) {
 			    if (e.cancel) { 
 			    } else {

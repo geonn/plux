@@ -122,7 +122,6 @@ function Controller() {
         $.searchItem.blur();
         common.showLoading();
         var str = $.searchItem.getValue();
-        console.log(str);
         if ("" != str) {
             list = "hours24" == clinicType ? library.getPanelBy24Hours(str) : library.getPanelByClinicType(clinicType, str);
             listing();

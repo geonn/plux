@@ -218,7 +218,6 @@ exports.todayDate = function() {
     today = dd + "/" + mm + "/" + yyyy;
     var ampm = hh >= 12 ? "PM" : "AM";
     hh > 12 && (hh -= 12);
-    console.log(mainView);
     mainView.date_value.text = today;
     mainView.time_value.text = hh + ":" + min + " " + ampm;
 };
@@ -277,5 +276,6 @@ exports.changeTime = function(e) {
     var minute = pickerdate.getMinutes();
     10 > minute && (minute = "0" + minute);
     selTime = hour + ":" + minute + " " + ampm;
+    console.log("geo day : " + selTime);
     mainView.time_value.text = selTime;
 };
