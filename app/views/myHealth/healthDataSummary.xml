@@ -14,11 +14,11 @@
 			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">All Recorded Data</Label>
 			     	</View>
 			     </View>
-				<TabbedBar module="TabbedBar" id="buttonbarData" backgroundColor="#CE1D1C" index="0" color="#ffffff" borderColor="#CE1D1C" height="25" width="Ti.UI.FILL">
+				<TabbedBar module="TabbedBar" id="buttonbarData" backgroundColor="#CE1D1C" index="0" color="#ffffff" borderColor="#CE1D1C" height="35" width="Ti.UI.FILL">
 		             
-		            <Labels id="labels"> 
-		                <Label>Month</Label>
-		                <Label>Year</Label> 
+		            <Labels id="labels"  class="small_font"> 
+		                <Label class="small_font">Month</Label>
+		                <Label class="small_font">Year</Label> 
 		            </Labels> 
 		        </TabbedBar>
 				<View id="bmiView" height="Ti.UI.SIZE" width="100%" backgroundColor="#EBEBEB" >

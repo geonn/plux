@@ -246,6 +246,7 @@ exports.do_signup = function(data,mainView){
 				common.createAlert("Error", result.data);
 				return false;
 			}else{
+				common.createAlert("Success", "Plux account registration successful!");
 				nav.closeWindow(mainView.signUpWin); 
 			}
 		},
@@ -259,7 +260,7 @@ exports.do_signup = function(data,mainView){
 };
 
 exports.do_asp_signup = function(data, mainView){
-	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME="+data.smsme+"&AGREETS="+data.agreets; 
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
 	console.log(url);
 	var client = Ti.Network.createHTTPClient({

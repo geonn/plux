@@ -87,10 +87,16 @@ function Controller() {
     $.__views.__alloyId227.add($.__views.main);
     var __alloyId229 = [];
     var __alloyId232 = {
+        font: {
+            fontSize: "12dp"
+        },
         title: "Month"
     };
     __alloyId229.push(__alloyId232);
     var __alloyId233 = {
+        font: {
+            fontSize: "12dp"
+        },
         title: "Year"
     };
     __alloyId229.push(__alloyId233);

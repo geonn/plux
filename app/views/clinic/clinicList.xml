@@ -15,7 +15,7 @@
 		         	<ImageView right='10' id="btnList" width="15" height="25" image="/images/marker.png" />
 		   		</View>
 		 	</View>
-		  	<SearchBar barColor="#FFFFFF" tintColor="#EABD2A" id="searchItem" showCancel="true" text="" height="50"  hintText="Search Clinic" platform="ios" />
+		  	<SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="searchItem" showCancel="true" text="" height="50"  hintText="Search Clinic" platform="ios" />
 		 	<ScrollView id="clinicListSv" layout="vertical" top="0"  height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" width="Ti.UI.FILL" />
 		 		 
 	 	</View>

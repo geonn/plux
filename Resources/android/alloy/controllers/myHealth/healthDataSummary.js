@@ -125,10 +125,16 @@ function Controller() {
     $.__views.pageTitle.add($.__views.__alloyId295);
     var __alloyId296 = [];
     var __alloyId299 = {
+        font: {
+            fontSize: "12dp"
+        },
         title: "Month"
     };
     __alloyId296.push(__alloyId299);
     var __alloyId300 = {
+        font: {
+            fontSize: "12dp"
+        },
         title: "Year"
     };
     __alloyId296.push(__alloyId300);
@@ -139,7 +145,7 @@ function Controller() {
         index: "0",
         color: "#ffffff",
         borderColor: "#CE1D1C",
-        height: "25",
+        height: "35",
         width: Ti.UI.FILL
     });
     $.__views.main.add($.__views.buttonbarData);

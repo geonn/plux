@@ -38,6 +38,10 @@ function registerPush() {
     });
 }
 
+function getNotificationNumber(payload) {
+    console.log(payload);
+}
+
 var Cloud = require("ti.cloud");
 
 var app_status;

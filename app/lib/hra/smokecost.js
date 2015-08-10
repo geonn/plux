@@ -166,7 +166,10 @@ function formular(){
 	var b = form[1].value;
 	var c = form[2].value;
 	var d = form[3].value;
-	
+	if(a == "" || b == "" || c == "" || d == ""){
+		common.createAlert("Error","You must key in all fields before calculate");
+		return false;	 
+	}
 	var weekly = ((a / b) * c * 7).toFixed(2);
 	var monthly = ((a / b) * c * 30).toFixed(2);
 	var yearly = ((a / b) * c * 365).toFixed(2);

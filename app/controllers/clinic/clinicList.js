@@ -166,7 +166,10 @@ function listing(){
 			}
 			
 			$.clinicListSv.add(TheTable);
-			common.hideLoading();
+			setTimeout(function(){
+				common.hideLoading();
+			},5000);
+			
 			if(OS_ANDROID){
 				TheTable.search = searchBar;
 			}

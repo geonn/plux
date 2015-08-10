@@ -29,11 +29,7 @@
 		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
 		    document.body.clientHeight
 		);
-<<<<<<< HEAD
 		Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height});
-=======
-		setTimeout(function(){ Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height}); }, 1000);
->>>>>>> origin/master
           
         });
         Ti.App.fireEvent('populateDataById',{ id: 1});

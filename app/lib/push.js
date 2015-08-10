@@ -127,6 +127,10 @@ function registerPush(){
 	
 }
 
+function getNotificationNumber(payload){ 
+	console.log(payload);
+}
+
 exports.registerPush = function(){
 	registerPush();
 };

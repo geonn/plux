@@ -35,7 +35,7 @@ function Controller() {
             var addDataView = Titanium.UI.createButton({
                 title: "Add Data",
                 height: 40,
-                width: 80,
+                width: 120,
                 backgroundColor: "#CE1D1C",
                 color: "#ffffff",
                 top: 30,

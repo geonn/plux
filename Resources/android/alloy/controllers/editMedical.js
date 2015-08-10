@@ -86,11 +86,13 @@ function Controller() {
             position: position,
             width: 50,
             left: 5,
-            right: 5
+            right: 5,
+            bottom: 0
         });
         var iImage = Ti.UI.createImageView({
             image: image,
-            position: position
+            position: position,
+            width: Ti.UI.FILL
         });
         iView.add(iImage);
         iView.addEventListener("click", function() {
@@ -366,7 +368,7 @@ function Controller() {
     $.__views.__alloyId21 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        text: "Proceduce",
+        text: "Procedures",
         left: "10",
         top: "10",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
@@ -378,7 +380,7 @@ function Controller() {
         backgroundColor: "#f6f6f6",
         color: "#888",
         textAlign: "left",
-        hintText: "Proceduce",
+        hintText: "Procedures",
         value: "",
         width: Ti.UI.FILL,
         left: "10",

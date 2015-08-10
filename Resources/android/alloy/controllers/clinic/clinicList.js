@@ -109,7 +109,9 @@ function Controller() {
             });
             TheTable.setData(data);
             $.clinicListSv.add(TheTable);
-            common.hideLoading();
+            setTimeout(function() {
+                common.hideLoading();
+            }, 5e3);
             TheTable.search = searchBar;
         }
         TheTable.addEventListener("click", function(e) {

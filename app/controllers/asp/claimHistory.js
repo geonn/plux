@@ -100,7 +100,7 @@ data.forEach(function(entry){
 	
 	view_container.addEventListener("click", function(e){
 		if(e.source.claimType == "Reimbursement"){
-			common.createAlert('Claim Details', 'There are no available claim details.');
+			common.createAlert('Claim Details', 'Sorry, the claim details is not available.');
 			return false;
 		}else{
 			var nav = require('navigation');

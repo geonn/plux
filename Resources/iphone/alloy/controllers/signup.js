@@ -30,6 +30,10 @@ function Controller() {
             common.createAlert("Error", "Your password are not match");
             return false;
         }
+        if ("1" != view_agreement) {
+            common.createAlert("Error", "You must agree to all the terms and conditions to register as Plux member.");
+            return false;
+        }
         common.showLoading();
         var params = {
             fullname: fullname,
@@ -236,8 +240,7 @@ function Controller() {
     common.construct($);
     var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {
         name: "agreets"
-    });
-    console.log(view_agreement_box.children[0].children[0].name);
+    }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
     $.tc_area.add(view_agreement_box);
     $.signUpWin.addEventListener("click", hideProductFormKeyboard);
     __defers["$.__views.sign_btn!click!doSignup"] && $.__views.sign_btn.addEventListener("click", doSignup);

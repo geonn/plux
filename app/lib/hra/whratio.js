@@ -176,6 +176,11 @@ function formular(){
 	var waist = form[0].value;
 	var hips = form[1].value;
 	
+	if(waist == "" || hips==""){
+		common.createAlert("Error","You must key in both waist circumference and hips circumference");
+		return false;
+	}
+	
 	var result = waist / hips;
 	var result = result.toFixed(2);
 	

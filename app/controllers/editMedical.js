@@ -124,12 +124,14 @@ function attachedPhoto(image,position){
 		position : position,
 		width: 50,
 		left:5,
-		right: 5
+		right: 5,
+		bottom:0
 	});
 		            
 	var iImage = Ti.UI.createImageView({
 		image : image,
-		position :position
+		position :position,
+		width: Ti.UI.FILL
 	}); 
 	iView.add(iImage);
 	

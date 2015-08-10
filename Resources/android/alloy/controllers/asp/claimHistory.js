@@ -171,7 +171,7 @@ function Controller() {
         $.tv.appendRow(row);
         view_container.addEventListener("click", function(e) {
             if ("Reimbursement" == e.source.claimType) {
-                common.createAlert("Claim Details", "There are no available claim details.");
+                common.createAlert("Claim Details", "Sorry, the claim details is not available.");
                 return false;
             }
             var nav = require("navigation");

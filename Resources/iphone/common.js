@@ -156,7 +156,7 @@ exports.createCustomAlert = function(win, title, msg) {
     });
 };
 
-exports.CheckboxwithText = function(text, checkboxspecs) {
+exports.CheckboxwithText = function(text, checkboxspecs, urlLink) {
     var checkbox = this.createCheckbox({}, checkboxspecs);
     var label_sms = Titanium.UI.createLabel({
         text: text,
@@ -173,6 +173,74 @@ exports.CheckboxwithText = function(text, checkboxspecs) {
     });
     view_sms_box.add(checkbox);
     view_sms_box.add(label_sms);
+    label_sms.addEventListener("touchend", function() {
+        var myModal = Ti.UI.createWindow({
+            title: "Privacy Policy",
+            backgroundColor: "#FFFFFF",
+            height: Ti.UI.FILL,
+            width: Ti.UI.FILL,
+            navBarHidden: true,
+            fullscreen: true
+        });
+        var leftBtn = Ti.UI.createButton({
+            title: "Close",
+            color: "#CE1D1C",
+            left: 10,
+            top: 5
+        });
+        var wrapperView = Ti.UI.createView({
+            layout: "vertical",
+            height: Ti.UI.FILL
+        });
+        var topView = Ti.UI.createView({
+            backgroundColor: "#EEEEEE",
+            top: 0,
+            layout: "horizontal",
+            height: 40
+        });
+        var viewLabel = Ti.UI.createView({
+            width: Ti.UI.FILL,
+            height: 40
+        });
+        var titleLabel = Ti.UI.createLabel({
+            height: Ti.UI.SIZE,
+            width: Ti.UI.FILL,
+            textAlign: "center",
+            top: 10,
+            color: "#646464",
+            text: "Privacy Policy"
+        });
+        viewLabel.add(titleLabel);
+        var containerView = Ti.UI.createView({
+            height: Ti.UI.SIZE,
+            width: Ti.UI.FILL,
+            backgroundColor: "transparent"
+        });
+        var webview = Ti.UI.createWebView({
+            url: urlLink,
+            height: Ti.UI.FILL,
+            width: Ti.UI.FILL,
+            backgroundColor: "#ffffff",
+            bottom: 10
+        });
+        topView.add(leftBtn);
+        topView.add(viewLabel);
+        containerView.add(webview);
+        wrapperView.add(topView);
+        wrapperView.add(mainView.UI.create("View", {
+            classes: [ "line" ]
+        }));
+        wrapperView.add(containerView);
+        myModal.add(wrapperView);
+        myModal.open({
+            modal: true
+        });
+        leftBtn.addEventListener("click", function() {
+            myModal.close({
+                animated: true
+            });
+        });
+    });
     return view_sms_box;
 };
 

@@ -17,8 +17,11 @@ function Controller() {
         var memno = $.memno.value;
         var empno = $.empno.value;
         var mobileno = $.mobileno.value;
-        var view_sms = view_sms_box.children[0].children[0].checked;
         var view_agreement = view_agreement_box.children[0].children[0].checked;
+        if ("1" != view_agreement) {
+            common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP Plux member.");
+            return false;
+        }
         var params = {
             email: email,
             email2: email2,
@@ -27,7 +30,6 @@ function Controller() {
             memno: memno,
             empno: empno,
             mobileno: mobileno,
-            smsme: view_sms,
             agreets: view_agreement
         };
         API.do_asp_signup(params, $);
@@ -116,7 +118,7 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "20dp",
         top: "20dp",
-        image: "asp_logo.png",
+        image: "/images/asp_logo.png",
         id: "__alloyId140"
     });
     $.__views.main.add($.__views.__alloyId140);
@@ -202,7 +204,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "name",
         hintText: "Enter Name",
-        value: "Tan Ah Kow"
+        value: ""
     });
     $.__views.main.add($.__views.name);
     $.__views.memno = Ti.UI.createTextField({
@@ -223,7 +225,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "memno",
         hintText: "Enter Member Number",
-        value: "801015085917"
+        value: ""
     });
     $.__views.main.add($.__views.memno);
     $.__views.empno = Ti.UI.createTextField({
@@ -244,7 +246,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "empno",
         hintText: "Enter Employee Number",
-        value: "801015085917"
+        value: ""
     });
     $.__views.main.add($.__views.empno);
     $.__views.mobileno = Ti.UI.createTextField({
@@ -265,7 +267,7 @@ function Controller() {
         returnKeyType: Titanium.UI.RETURNKEY_NEXT,
         id: "mobileno",
         hintText: "Enter Mobile Number",
-        value: "123213213213"
+        value: ""
     });
     $.__views.main.add($.__views.mobileno);
     $.__views.tc_area = Ti.UI.createView({
@@ -293,17 +295,13 @@ function Controller() {
     arguments[0] || {};
     Alloy.Globals.navMenu;
     common.construct($);
-    var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {
-        name: "smsme"
-    });
-    var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {
+    var view_agreement_box = common.CheckboxwithText("I have read and agree to the Privacy Policy", {
         name: "agreets"
-    });
+    }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
     var preset_password = Ti.App.Properties.getString("plux_password") || "";
     $.email.value = preset_email;
     $.email.password = preset_password;
-    $.tc_area.add(view_sms_box);
     $.tc_area.add(view_agreement_box);
     $.loginWin.addEventListener("click", hideProductFormKeyboard);
     __defers["$.__views.asp_sign_btn!click!doAspSignup"] && $.__views.asp_sign_btn.addEventListener("click", doAspSignup);

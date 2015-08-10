@@ -1,15 +1,15 @@
 var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
 common.construct($);
-var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
-var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {name: "agreets"});
+//var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
+var view_agreement_box = common.CheckboxwithText("I have read and agree to the Privacy Policy", {name: "agreets"},"https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var preset_password = Ti.App.Properties.getString('plux_password') || "";
 $.email.value = preset_email;
 $.email.password = preset_password;
 
-$.tc_area.add(view_sms_box);
+//$.tc_area.add(view_sms_box);
 $.tc_area.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
@@ -23,9 +23,12 @@ function doAspSignup(){
 	var memno = $.memno.value;
 	var empno = $.empno.value;
 	var mobileno = $.mobileno.value;
-	var view_sms = view_sms_box.children[0].children[0].checked;
+	//var view_sms = view_sms_box.children[0].children[0].checked;
 	var view_agreement = view_agreement_box.children[0].children[0].checked;
-	
+	if(view_agreement != "1"){
+		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP Plux member.");
+		return false;
+	}
 	var params = {
 		email: email,
 		email2: email2,
@@ -34,7 +37,7 @@ function doAspSignup(){
 		memno: memno,
 		empno: empno,
 		mobileno: mobileno,
-		smsme: view_sms,
+		//smsme: view_sms,
 		agreets: view_agreement
 	};
 	 
