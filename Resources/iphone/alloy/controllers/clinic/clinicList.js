@@ -110,7 +110,9 @@ function Controller() {
             TheTable.setData(data);
             removeAllChildren($.clinicListSv);
             $.clinicListSv.add(TheTable);
-            common.hideLoading();
+            setTimeout(function() {
+                common.hideLoading();
+            }, 5e3);
         }
         TheTable.addEventListener("click", function(e) {
             nav.navigateWithArgs("clinic/clinicDetails", {
@@ -172,7 +174,7 @@ function Controller() {
     $.__views.clinicList.add($.__views.panelListTbl);
     $.__views.searchItem = Ti.UI.createSearchBar({
         barColor: "#FFFFFF",
-        tintColor: "#EABD2A",
+        tintColor: "#CE1D1C",
         id: "searchItem",
         showCancel: "true",
         text: "",

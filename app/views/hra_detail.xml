@@ -14,7 +14,7 @@
 				<View id="input_box" height="Ti.UI.SIZE"></View>
 				<View id="description" height="Ti.UI.SIZE"></View>
 			</ScrollView>
-			<View bottom="0" height="Ti.UI.SIZE" width="Ti.UI.FILL" id="picker"></View>
 		</View>
+		<View bottom="0" height="Ti.UI.SIZE" width="Ti.UI.FILL" id="picker"></View>
 	</Window>
 </Alloy>

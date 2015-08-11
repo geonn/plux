@@ -1,9 +1,5 @@
 function addForm(text, type, options) {
-    function formEvent(ex) {
-        form_label[ex.source.counter].text = ex.row.title;
-        $.picker.removeAllChildren();
-        ex.source.removeEventListener("change", formEvent);
-        form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
+    function androidformEvent(ex) {
         form[ex.source.counter].row_value = ex.rowIndex;
     }
     if ("TextField" == type) {
@@ -52,6 +48,10 @@ function addForm(text, type, options) {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
+        var picker;
+        var a;
+        var row;
+        var view_picker;
         var picker = $.UI.create("Picker", {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
@@ -59,31 +59,7 @@ function addForm(text, type, options) {
             row_value: 0,
             bottom: 0
         });
-        var label_picker_value = $.UI.create("Label", {
-            text: options[0],
-            counter: count,
-            mod: 0,
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-            left: 10,
-            right: 10,
-            top: 10,
-            bottom: 10
-        });
-        var view_border_pv = $.UI.create("View", {
-            backgroundColor: "#ffffff",
-            borderCorder: "#dddddd",
-            borderRadius: 10,
-            text: options[0],
-            counter: count,
-            height: Ti.UI.SIZE
-        });
-        view_border_pv.add(label_picker_value);
-        label_picker_value.addEventListener("click", function(e) {
-            var index = e.source.counter;
-            $.picker.add(form[index]);
-            form[index].addEventListener("change", formEvent);
-        });
+        picker.addEventListener("change", androidformEvent);
         for (var a = 0; a < options.length; a++) {
             var row = Ti.UI.createPickerRow({
                 title: options[a]
@@ -101,9 +77,8 @@ function addForm(text, type, options) {
             layout: "vertical"
         });
         form.push(picker);
-        form_label.push(label_picker_value);
         view_picker.add(label_picker);
-        view_picker.add(view_border_pv);
+        view_picker.add(picker);
         count++;
         return view_picker;
     }

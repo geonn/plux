@@ -1,8 +1,8 @@
 function addForm(text, type, options) {
     function formEvent(ex) {
+        alert("a");
         form_label[ex.source.counter].text = ex.row.title;
         $.picker.removeAllChildren();
-        ex.source.removeEventListener("change", formEvent);
         form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
         form[ex.source.counter].row_value = ex.rowIndex;
     }

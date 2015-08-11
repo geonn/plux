@@ -107,7 +107,7 @@ function Controller() {
         index: "0",
         color: "#ffffff",
         borderColor: "#CE1D1C",
-        height: "25",
+        height: "35",
         width: Ti.UI.FILL
     });
     $.__views.main.add($.__views.buttonbarData);

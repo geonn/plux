@@ -65,7 +65,7 @@ function Controller() {
         width: Ti.UI.FILL,
         id: "picker"
     });
-    $.__views.__alloyId75.add($.__views.picker);
+    $.__views.hraDetailsWin.add($.__views.picker);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
