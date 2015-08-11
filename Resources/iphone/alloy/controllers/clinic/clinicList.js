@@ -10,6 +10,8 @@ function __processArg(obj, key) {
 function Controller() {
     function loadClinic(e) {
         var details = e.details;
+        console.log("load clinic");
+        console.log(details);
         details && details.forEach(function(d) {
             aspClinicArr.push(d.id);
         });
@@ -17,6 +19,7 @@ function Controller() {
         Ti.App.removeEventListener("aspClinic", loadClinic);
     }
     function listing() {
+        removeAllChildren($.clinicListSv);
         var TheTable = Titanium.UI.createTableView({
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
@@ -108,7 +111,6 @@ function Controller() {
                 }
             });
             TheTable.setData(data);
-            removeAllChildren($.clinicListSv);
             $.clinicListSv.add(TheTable);
             setTimeout(function() {
                 common.hideLoading();

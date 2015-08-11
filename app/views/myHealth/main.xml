@@ -40,7 +40,7 @@
 						</View>
 					</View>
 					<View id="bmiView" gType="1" height="Ti.UI.SIZE" layout="vertical" borderRadius="5" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
-						<WebView id="bmiWebView" height="230" width="Ti.UI.FILL" url="/html/bmi.html" disableBounce='true' touchEnabled="false"></WebView>
+						<WebView id="bmiWebView" height="230" width="Ti.UI.FILL" url="/html/bmi.html"   disableBounce='true' touchEnabled="false"></WebView>
 						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
 						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
 							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>

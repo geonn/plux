@@ -5,6 +5,8 @@ var hd = require('healthData');
 common.construct($);
 hd.construct($);
 
+ 
+
 if(Ti.Platform.osname != "android"){
 	hd.stepsMotion();
 }

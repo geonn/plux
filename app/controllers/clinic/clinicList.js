@@ -32,6 +32,8 @@ setTimeout(function(){
 
 function loadClinic(e){
 	var details = e.details; 
+	console.log("load clinic");
+	console.log(details);
 	if(details){ 
 		details.forEach(function(d) {
 			aspClinicArr.push(d.id);
@@ -52,20 +54,18 @@ function loadClinic(e){
 Ti.App.addEventListener('aspClinic',loadClinic);
 
 function listing(){ 
-	 
+	removeAllChildren($.clinicListSv);
 	var TheTable = Titanium.UI.createTableView({
 		width:Ti.UI.FILL, 
 		height: Ti.UI.SIZE,  
 		//separatorColor: '#ffffff'
 	});
-	if(OS_ANDROID){
-		TheTable.search = searchBar;
-	}
+	
 	
 	var data=[]; 
    		var arr = list;
    		var counter = 0; 
-   		
+   		 
    		if(arr.length < 1){
 			var noRecord = Ti.UI.createLabel({ 
 			    text: "No clinic found nearby", 
@@ -83,8 +83,10 @@ function listing(){
 		}else{
 			
 	   		arr.forEach(function(entry) {
+	   			
 	   			var isValid = aspClinicArr.indexOf(entry.id);  
-	   			if(isValid != "-1" || corp == ""){	 
+	   			
+	   			if(isValid != "-1" || corp == ""){	  
 		   			var row = Titanium.UI.createTableViewRow({
 					    touchEnabled: true,
 					    height: Ti.UI.SIZE,
@@ -156,15 +158,17 @@ function listing(){
 					 
 					row.add(contentView);
 					row.add(rightForwardBtn); 
+				 
 					data.push(row);
 				}
 	   		});
-	   		
-	   		TheTable.setData(data);
-	   		if(OS_IOS){
-				removeAllChildren($.clinicListSv);
+	   		if(OS_ANDROID){
+				TheTable.search = searchBar;
 			}
+	   		TheTable.setData(data);
+	   		 
 			
+		 
 			$.clinicListSv.add(TheTable);
 			setTimeout(function(){
 				common.hideLoading();

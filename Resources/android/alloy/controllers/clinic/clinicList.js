@@ -10,6 +10,8 @@ function __processArg(obj, key) {
 function Controller() {
     function loadClinic(e) {
         var details = e.details;
+        console.log("load clinic");
+        console.log(details);
         details && details.forEach(function(d) {
             aspClinicArr.push(d.id);
         });
@@ -17,11 +19,11 @@ function Controller() {
         Ti.App.removeEventListener("aspClinic", loadClinic);
     }
     function listing() {
+        removeAllChildren($.clinicListSv);
         var TheTable = Titanium.UI.createTableView({
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE
         });
-        TheTable.search = searchBar;
         var data = [];
         var arr = list;
         if (arr.length < 1) {
@@ -107,6 +109,7 @@ function Controller() {
                     data.push(row);
                 }
             });
+            TheTable.search = searchBar;
             TheTable.setData(data);
             $.clinicListSv.add(TheTable);
             setTimeout(function() {
