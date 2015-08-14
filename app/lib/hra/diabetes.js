@@ -59,10 +59,10 @@ exports.input_box = function(){
 		layout: "vertical"
 	});
 	view_inputbox.add(view_header);
-	view_inputbox.add(addForm("Your Age", "Picker", ['Less than 35', '35 to 49', '50 and above']));
-	view_inputbox.add(addForm("Your Waist Circumference", "Picker", ['Less than 35 Inches', '35 to 39 Inches', 'Greater than 39 Inches']));
-	view_inputbox.add(addForm("Daily Routine", "Picker", ['No regular exercise', 'Mild exercise', 'Moderate exercise', 'Regular exercise']));
-	view_inputbox.add(addForm("Family History of Diabetes", "Picker", ['No family history', 'One of my parent diabetic', 'Both of my parent diabetic']));
+	view_inputbox.add(addForm("Your Age", "Picker", ['Please select','Less than 35', '35 to 49', '50 and above']));
+	view_inputbox.add(addForm("Your Waist Circumference", "Picker", ['Please select','Less than 35 Inches', '35 to 39 Inches', 'Greater than 39 Inches']));
+	view_inputbox.add(addForm("Daily Routine", "Picker", ['Please select','No regular exercise', 'Mild exercise', 'Moderate exercise', 'Regular exercise']));
+	view_inputbox.add(addForm("Family History of Diabetes", "Picker", ['Please select','No family history', 'One of my parent diabetic', 'Both of my parent diabetic']));
 	
 	var button_submit = $.UI.create("Button",{
 		title: "Calculate",
@@ -244,8 +244,7 @@ function addForm(text, type, options){
 				form[index].addEventListener("change", formEvent);
 			});
 			
-			function formEvent(ex){
-				alert('a');
+			function formEvent(ex){ 
 				form_label[ex.source.counter].text = ex.row.title;
 				$.picker.removeAllChildren();
 				ex.source.removeEventListener("change", formEvent);
@@ -284,54 +283,70 @@ function formular(){
 	var total_score = 0; 
 	switch(form[0].row_value){
 		case 0: 
+			total_score = -100;
+			break;
+		case 1: 
 			total_score += 0;
 			break;
-		case 1:
+		case 2:
 			total_score += 20;
 			break;
-		case 2:
+		case 3:
 			total_score += 30;
 			break;
 	}
 	
 	switch(form[1].row_value){
 		case 0: 
+			total_score = -100;
+			break;
+		case 1: 
 			total_score += 0;
 			break;
-		case 1:
+		case 2:
 			total_score += 20;
 			break;
-		case 2:
+		case 3:
 			total_score += 30;
 			break;
 	}
 	
 	switch(form[2].row_value){
 		case 0: 
+			total_score = -100;
+			break;
+		case 1: 
 			total_score += 30;
 			break;
-		case 1:
+		case 2:
 			total_score += 20;
 			break;
-		case 2:
+		case 3:
 			total_score += 10;
 			break;
-		case 3:
+		case 4:
 			total_score += 0;
 			break;
 	}
 	
 	switch(form[3].row_value){
 		case 0: 
+			total_score = -100;
+			break;
+		case 1: 
 			total_score += 0;
 			break;
-		case 1:
+		case 2:
 			total_score += 10;
 			break;
-		case 2:
+		case 3:
 			total_score += 20;
 			break;
 	} 
+	if(total_score < 0){
+		common.createAlert("Error","You must answer all the questions above");
+		return false;	 
+	}
 	if(total_score <= 30){
 		resultPopUp("RESULT", "You have a Low Risk for diabetes. Stay fit and healthy by doing regularly exercise of moderate intensity like swimming, gardening or brisk walking. Follow a well balanced diet with low fat content. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.");
 	}else if(total_score <= 60){

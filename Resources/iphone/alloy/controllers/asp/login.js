@@ -56,21 +56,21 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.loginWin = Ti.UI.createWindow({
+    $.__views.aspLoginWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
-        id: "loginWin",
         title: "Login",
+        id: "aspLoginWin",
         layout: "vertical"
     });
-    $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId110 = Ti.UI.createView({
-        id: "__alloyId110"
+    $.__views.aspLoginWin && $.addTopLevelView($.__views.aspLoginWin);
+    $.__views.__alloyId160 = Ti.UI.createView({
+        id: "__alloyId160"
     });
-    $.__views.loginWin.add($.__views.__alloyId110);
+    $.__views.aspLoginWin.add($.__views.__alloyId160);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -79,7 +79,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId110.add($.__views.loadingBar);
+    $.__views.__alloyId160.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -87,33 +87,38 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId111 = Ti.UI.createLabel({
+    $.__views.__alloyId161 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId111"
+        id: "__alloyId161"
     });
-    $.__views.loadingBar.add($.__views.__alloyId111);
+    $.__views.loadingBar.add($.__views.__alloyId161);
+    $.__views.__alloyId162 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId162"
+    });
+    $.__views.__alloyId160.add($.__views.__alloyId162);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId110.add($.__views.main);
-    $.__views.__alloyId112 = Ti.UI.createImageView({
-        width: "50%",
+    $.__views.__alloyId162.add($.__views.main);
+    $.__views.__alloyId163 = Ti.UI.createImageView({
+        width: "120",
         borderRadius: "10",
-        height: Ti.UI.SIZE,
+        height: "120",
         backgroundColor: "#ff0000",
         bottom: "50dp",
         top: "50dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId112"
+        id: "__alloyId163"
     });
-    $.__views.main.add($.__views.__alloyId112);
+    $.__views.main.add($.__views.__alloyId163);
     $.__views.username = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -183,14 +188,13 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    Alloy.Globals.navMenu;
     var singleton = true;
     common.construct($);
     $.username.value = Ti.App.Properties.getString("asp_email") || "";
     $.password.value = Ti.App.Properties.getString("asp_password") || "";
     autoLogin();
     var isKeyboardFocus = 0;
-    $.loginWin.addEventListener("click", hideProductFormKeyboard);
+    $.aspLoginWin.addEventListener("click", hideProductFormKeyboard);
     $.username.addEventListener("touchend", function() {
         $.username.focus();
         isKeyboardFocus = 1;
@@ -205,6 +209,12 @@ function Controller() {
     $.password.addEventListener("return", function() {
         doLogin();
     });
+    if ("android" == Ti.Platform.osname) {
+        var nav = require("navigation");
+        $.btnBack.addEventListener("click", function() {
+            nav.closeWindow($.aspLoginWin);
+        });
+    }
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
     _.extend($, exports);

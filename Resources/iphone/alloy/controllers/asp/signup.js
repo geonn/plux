@@ -64,21 +64,21 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.loginWin = Ti.UI.createWindow({
+    $.__views.aspSignUpWin = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
         title: "ASP Signup",
-        id: "loginWin",
+        id: "aspSignUpWin",
         layout: "vertical"
     });
-    $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    $.__views.__alloyId138 = Ti.UI.createView({
-        id: "__alloyId138"
+    $.__views.aspSignUpWin && $.addTopLevelView($.__views.aspSignUpWin);
+    $.__views.__alloyId189 = Ti.UI.createView({
+        id: "__alloyId189"
     });
-    $.__views.loginWin.add($.__views.__alloyId138);
+    $.__views.aspSignUpWin.add($.__views.__alloyId189);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -87,7 +87,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId138.add($.__views.loadingBar);
+    $.__views.__alloyId189.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -95,33 +95,38 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId139 = Ti.UI.createLabel({
+    $.__views.__alloyId190 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId139"
+        id: "__alloyId190"
     });
-    $.__views.loadingBar.add($.__views.__alloyId139);
+    $.__views.loadingBar.add($.__views.__alloyId190);
+    $.__views.__alloyId191 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId191"
+    });
+    $.__views.__alloyId189.add($.__views.__alloyId191);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId138.add($.__views.main);
-    $.__views.__alloyId140 = Ti.UI.createImageView({
-        width: "40%",
+    $.__views.__alloyId191.add($.__views.main);
+    $.__views.__alloyId192 = Ti.UI.createImageView({
+        width: "120",
         borderRadius: "10",
-        height: Ti.UI.SIZE,
+        height: "120",
         backgroundColor: "#ff0000",
         bottom: "20dp",
         top: "20dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId140"
+        id: "__alloyId192"
     });
-    $.__views.main.add($.__views.__alloyId140);
+    $.__views.main.add($.__views.__alloyId192);
     $.__views.email = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -293,9 +298,9 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    Alloy.Globals.navMenu;
+    var nav = Alloy.Globals.navMenu;
     common.construct($);
-    var view_agreement_box = common.CheckboxwithText("I have read and agree to the Privacy Policy", {
+    var view_agreement_box = common.CheckboxwithText("I have read and agree to the ", "Privacy Policy", {
         name: "agreets"
     }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
@@ -303,7 +308,13 @@ function Controller() {
     $.email.value = preset_email;
     $.email.password = preset_password;
     $.tc_area.add(view_agreement_box);
-    $.loginWin.addEventListener("click", hideProductFormKeyboard);
+    $.aspSignUpWin.addEventListener("click", hideProductFormKeyboard);
+    if ("android" == Ti.Platform.osname) {
+        var nav = require("navigation");
+        $.btnBack.addEventListener("click", function() {
+            nav.closeWindow($.aspSignUpWin);
+        });
+    }
     __defers["$.__views.asp_sign_btn!click!doAspSignup"] && $.__views.asp_sign_btn.addEventListener("click", doAspSignup);
     _.extend($, exports);
 }

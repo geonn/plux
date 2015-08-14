@@ -36,7 +36,10 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
         info_details.length > 0 ? info_details.forEach(function(entry) {
             var rec = {};
             var convert = entry.date.split("-");
-            var month = parseInt(convert[1]) - 1;
+            var month = convert[1];
+            "08" == convert[1] && (month = 8);
+            "09" == convert[1] && (month = 9);
+            var month = parseInt(month) - 1;
             var newDate = convert[2] + " " + m_names[month] + convert[0].substring(2, 4);
             rec["label"] = newDate;
             if ("2" == gType || "7" == gType) {

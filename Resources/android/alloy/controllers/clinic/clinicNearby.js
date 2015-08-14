@@ -145,20 +145,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicNearby.add($.__views.win_map);
-    $.__views.__alloyId194 = Ti.UI.createView({
+    $.__views.__alloyId255 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId194"
+        id: "__alloyId255"
     });
-    $.__views.win_map.add($.__views.__alloyId194);
-    $.__views.__alloyId195 = Ti.UI.createView({
+    $.__views.win_map.add($.__views.__alloyId255);
+    $.__views.__alloyId256 = Ti.UI.createView({
         left: "0",
         width: "20%",
-        id: "__alloyId195"
+        id: "__alloyId256"
     });
-    $.__views.__alloyId194.add($.__views.__alloyId195);
+    $.__views.__alloyId255.add($.__views.__alloyId256);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -166,12 +166,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId195.add($.__views.btnBack);
-    $.__views.__alloyId196 = Ti.UI.createView({
+    $.__views.__alloyId256.add($.__views.btnBack);
+    $.__views.__alloyId257 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId196"
+        id: "__alloyId257"
     });
-    $.__views.__alloyId194.add($.__views.__alloyId196);
+    $.__views.__alloyId255.add($.__views.__alloyId257);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -182,7 +182,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId196.add($.__views.pageTitle);
+    $.__views.__alloyId257.add($.__views.pageTitle);
     $.__views.clinicNearbySv = Ti.UI.createScrollView({
         id: "clinicNearbySv"
     });
@@ -203,15 +203,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId197 = Ti.UI.createLabel({
+    $.__views.__alloyId258 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId197"
+        id: "__alloyId258"
     });
-    $.__views.loadingBar.add($.__views.__alloyId197);
+    $.__views.loadingBar.add($.__views.__alloyId258);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

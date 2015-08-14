@@ -33,6 +33,8 @@ function Controller() {
             $.panelListTbl.add(noRecord);
         } else {
             arr.forEach(function(entry) {
+                var myClinicType = entry.clinicType;
+                "hours24" == entry.clinicType && (myClinicType = "24 HOURS");
                 var row = Titanium.UI.createTableViewRow({
                     touchEnabled: true,
                     height: 70,
@@ -49,7 +51,7 @@ function Controller() {
                     left: 10
                 });
                 var popUpTitle = Titanium.UI.createLabel({
-                    text: entry.clinicType,
+                    text: myClinicType,
                     font: {
                         fontSize: 16
                     },
@@ -84,55 +86,6 @@ function Controller() {
                 row.add(rightForwardBtn);
                 data.push(row);
             });
-            var hours24Det = library.getCount24Hours();
-            var row = Titanium.UI.createTableViewRow({
-                touchEnabled: true,
-                height: 70,
-                id: "hours24",
-                backgroundSelectedColor: "#FFE1E1",
-                backgroundColor: "#ffffff"
-            });
-            var leftImage = Titanium.UI.createImageView({
-                image: "/images/hours24.png",
-                width: 50,
-                height: 50,
-                left: 10
-            });
-            var popUpTitle = Titanium.UI.createLabel({
-                text: "24 HOURS",
-                font: {
-                    fontSize: 16
-                },
-                source: "hours24",
-                color: "#848484",
-                width: "65%",
-                textAlign: "left",
-                left: 70,
-                height: 25
-            });
-            var totalPanel = Titanium.UI.createLabel({
-                text: hours24Det.total,
-                source: "hours24",
-                font: {
-                    fontSize: 14,
-                    fontWeight: "bold"
-                },
-                width: "auto",
-                color: "#848484",
-                right: 50,
-                height: 25
-            });
-            var rightForwardBtn = Titanium.UI.createImageView({
-                image: "/images/btn-forward.png",
-                source: "hours24",
-                width: 15,
-                right: 20
-            });
-            row.add(leftImage);
-            row.add(popUpTitle);
-            row.add(totalPanel);
-            row.add(rightForwardBtn);
-            data.push(row);
             TheTable.setData(data);
             $.panelListTbl.add(TheTable);
         }
@@ -191,15 +144,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId157 = Ti.UI.createLabel({
+    $.__views.__alloyId209 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId157"
+        id: "__alloyId209"
     });
-    $.__views.loadingBar.add($.__views.__alloyId157);
+    $.__views.loadingBar.add($.__views.__alloyId209);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -210,6 +163,12 @@ function Controller() {
     common.showLoading();
     if ("" == corp) {
         details = library.getCountClinicType();
+        details24 = library.getCount24Hours();
+        var det24 = {
+            clinicType: "hours24",
+            total: details24.total
+        };
+        details.push(det24);
         listing("");
     } else API.loadPanelList({
         clinicType: ""

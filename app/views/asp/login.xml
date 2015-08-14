@@ -1,18 +1,28 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" id="login" title="Login" id="loginWin" class="container" layout="vertical">
+	<Window navTintColor="#CE1D1C" title="Login" id="aspLoginWin" class="container" layout="vertical">
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
 		    	<Label top="5" text="Loading" color="#ffffff" />
 		    </View>
-			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="50%"  borderRadius="10" height="Ti.UI.SIZE" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="/images/asp_logo.png"></ImageView>
-				<TextField id="username" hintText="Enter Username" value="" /><!--asplux@corpdemo.com -->
-				<TextField id="password" hintText="Enter Password" value="" /><!--asplux123 -->
-				<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />
-				 
-				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doSignup" title="First-Time Login"  width="70%" top="5" height="40" color="#ffffff" />
-			</ScrollView>
+		    <View layout="vertical">
+			    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android"> 
+					<View left="0" width="10%">
+			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+			   		</View>
+			     	<View id="pageTitle" width="Ti.UI.FILL">
+			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP Login</Label>
+			     	</View> 
+			 	</View> 
+				<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
+					<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="50dp" top="50dp" image="/images/asp_logo.png"></ImageView>
+					<TextField id="username" hintText="Enter Username" value="" /><!--asplux@corpdemo.com -->
+					<TextField id="password" hintText="Enter Password" value="" /><!--asplux123 -->
+					<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />
+					 
+					<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doSignup" title="First-Time Login"  width="70%" top="5" height="40" color="#ffffff" />
+				</ScrollView>
+			</View>
 		</View><!--
 		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
 			 <Label class="ftText">ASPplux</Label>

@@ -22,6 +22,10 @@ function Controller() {
             common.createAlert("Error", "Please fill in your email");
             return false;
         }
+        if ("1" != validateEmail(email)) {
+            common.createAlert("Error", "Please fill in an valid email");
+            return false;
+        }
         if ("" == password.trim()) {
             common.createAlert("Error", "Please fill in your password");
             return false;
@@ -80,10 +84,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.signUpWin && $.addTopLevelView($.__views.signUpWin);
-    $.__views.__alloyId94 = Ti.UI.createView({
-        id: "__alloyId94"
+    $.__views.__alloyId144 = Ti.UI.createView({
+        id: "__alloyId144"
     });
-    $.__views.signUpWin.add($.__views.__alloyId94);
+    $.__views.signUpWin.add($.__views.__alloyId144);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -92,7 +96,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId94.add($.__views.loadingBar);
+    $.__views.__alloyId144.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -100,23 +104,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId95 = Ti.UI.createLabel({
+    $.__views.__alloyId145 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId95"
+        id: "__alloyId145"
     });
-    $.__views.loadingBar.add($.__views.__alloyId95);
+    $.__views.loadingBar.add($.__views.__alloyId145);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId94.add($.__views.main);
-    $.__views.__alloyId96 = Ti.UI.createImageView({
+    $.__views.__alloyId144.add($.__views.main);
+    $.__views.__alloyId146 = Ti.UI.createImageView({
         borderRadius: "10",
         width: "120",
         height: "120",
@@ -124,9 +128,9 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId96"
+        id: "__alloyId146"
     });
-    $.__views.main.add($.__views.__alloyId96);
+    $.__views.main.add($.__views.__alloyId146);
     $.__views.fullname = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -238,7 +242,7 @@ function Controller() {
     arguments[0] || {};
     Alloy.Globals.navMenu;
     common.construct($);
-    var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {
+    var view_agreement_box = common.CheckboxwithText("Agree to all the ", "terms and conditions", {
         name: "agreets"
     }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
     $.tc_area.add(view_agreement_box);

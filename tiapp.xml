@@ -72,7 +72,7 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest>
-            <application android:debuggable="true" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <application android:debuggable="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
                 <meta-data
                     android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBJ0EF9lpsbttU_OdKA3BBxscR0ygt9D2A"/>
                 <intent-filter>

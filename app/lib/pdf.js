@@ -59,32 +59,32 @@ function download (url, cookies, done) {
   // Download pdf file
   var client = Ti.Network.createHTTPClient();
   client.onload = function (e) {
-    try {
+    try { 
       // reopen the file, because otherwise the app will segfault, no really.
       var base = Ti.Utils.md5HexDigest(url) + '.pdf';
       var file = Ti.Filesystem.getFile(
         Ti.Filesystem.applicationDataDirectory, 
         base
-      );
+      ); 
       if (e.source.status != 200)
         throw new Error("http status " + e.source.status);
-     	 file.write(e.source.responseData);
-     	 
+     	 file.write(e.source.responseData); 
       	return done(null, file, base, url);
-    } catch (e) {
-      //return done(e);
+    } catch (e) { 
+      return done(e);
     } 
   };
  
-  client.onerror = function (e) { 
+  client.onerror = function (e) {  
     return done(e);
   };
   
-  	client.ondatastream = function(e) {
+  	client.ondatastream = function(e) { 
 		ind.value = e.progress ;
 		label.text = (ind.value*100).toFixed(0)+"% Downloading"; 
 		if((ind.value*100) == 100){
-			return done();
+		 
+			//return done(null);
 		}
 	};
 	
@@ -112,8 +112,7 @@ function copyToTemp (srcFile, base, myurl) {
 	 //var tempdir = Ti.Filesystem.getFile(myFileDir, base);
 	 var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
 	 tempdir.createDirectory(); 
-	 if(typeof myurl === undefined || myurl == null || myurl == ""){
-	 	console.log("masuk");
+	 if(typeof myurl === undefined || myurl == null || myurl == ""){ 
 	 	return false; 
 	 }else{
 	 	 var filename = myurl.split('/');
@@ -140,12 +139,19 @@ function pdf (url, cookies, inds, labels,indView, done) {
 	    if(tempFile === false){
 	    	tempFile = copyToTemp(file, base, url);
 	    	if(Ti.Platform.osname == "android"){
+	    		if(err == null){
+	    	 		err = "";
+	    	 	}
 	    		done(err, tempFile, base, url);
 	    	}else{
 	    		done(err, file, base, url);
 	    	}
 	    }else{
 	    	if(Ti.Platform.osname == "android"){
+	    	 	if(err == null){
+	    	 		err = "";
+	    	 	}
+	    	  
 	    		done(err, tempFile, base, url);
 	    	}else{
 	    		done(err, file, base, url);

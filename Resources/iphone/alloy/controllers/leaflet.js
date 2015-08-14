@@ -137,7 +137,10 @@ function Controller() {
                     leafletModel.updateDownloadedBrochure(content.id);
                     indView.hide();
                     $.bigView.remove(indView);
-                    if ("android" == Ti.Platform.osname) PDF.android_launch(file); else {
+                    if ("android" == Ti.Platform.osname) {
+                        console.log("file return : " + file.getNativePath());
+                        PDF.android_launch(file);
+                    } else {
                         var myModal = Ti.UI.createWindow({
                             title: "Read PDF",
                             backgroundColor: "transparent",
@@ -208,6 +211,7 @@ function Controller() {
                         });
                     }
                 }
+                alert;
             });
         });
     }

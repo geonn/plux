@@ -9,8 +9,7 @@ $.menu.addEventListener('itemclick', function(e){
 
 $.menu.addEventListener('click', function(e){ 
 	var elbl = JSON.stringify(e.rowData); 
-		var res = JSON.parse(elbl);
-		console.log(res);
+	var res = JSON.parse(elbl); 
 	nav.navigateWithArgs("hra_detail", {mod: res.mod});
 });
 

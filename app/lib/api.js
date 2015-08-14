@@ -185,13 +185,12 @@ exports.do_pluxLogin = function(data,mainView){
 	records['version'] =  Ti.Platform.version;
 	records['os'] =  Ti.Platform.osname;
 	records['model'] =  Ti.Platform.model;
-	records['macaddress'] =  Ti.Platform.macaddress;  
-
+	records['macaddress'] =  Ti.Platform.macaddress;   
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
 			var result = JSON.parse(this.responseText);
-			common.hideLoading(); 
+			common.hideLoading();  
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
 				return false;
@@ -218,10 +217,9 @@ exports.do_pluxLogin = function(data,mainView){
 					  }
 					};
 				}
-	       		
-	       		
+	       		 
 				Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.loginWin); 
+				nav.closeWindow(mainView.loginWin);  
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -236,7 +234,11 @@ exports.do_pluxLogin = function(data,mainView){
 exports.do_signup = function(data,mainView){
 	 
 	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
- 
+  	var params = { 
+			email: data.email,
+			password: data.password 
+	};
+   
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
@@ -246,8 +248,8 @@ exports.do_signup = function(data,mainView){
 				common.createAlert("Error", result.data);
 				return false;
 			}else{
-				common.createAlert("Success", "Plux account registration successful!");
-				nav.closeWindow(mainView.signUpWin); 
+				nav.closeWindow(mainView.signUpWin);  
+  				Ti.App.fireEvent('loginAfterRegister',{params: params}); 
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -285,7 +287,7 @@ exports.do_asp_signup = function(data, mainView){
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
 	       		 
-				nav.closeWindow(mainView.loginWin); 
+				nav.closeWindow(mainView.aspSignUpWin); 
 				Ti.App.fireEvent('updateHeader');
 				nav.navigationWindow("home");
 	       }
@@ -328,7 +330,7 @@ exports.resendVerificationEmail = function(){
 exports.doLogin = function(username, password, mainView, target) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	 console.log("asp login"+url);
+	// console.log("asp login"+url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -351,7 +353,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		common.hideLoading();
 	       		API.updateNotificationToken();   
 	       		if(target != 'refresh'){
-	       			nav.closeWindow(mainView.loginWin); 
+	       			nav.closeWindow(mainView.aspLoginWin); 
 					Ti.App.fireEvent('updateHeader');
 					//console.log("["+target+"]");
 					if(target != "" && target != "home"){
@@ -460,7 +462,7 @@ exports.claimDetailBySeries = function(e){
 exports.getClaimDetail = function(e){
 	
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode+"&PERIOD=ALL";
-	 console.log("getClaimDetail : " + url);
+ 
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
@@ -468,7 +470,7 @@ exports.getClaimDetail = function(e){
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       console.log(res);
+	    
 	       if(res.length == 0){
 	       	
 	       }else if( typeof res[0].message !== "undefined" && res[0].message != null){
@@ -486,7 +488,7 @@ exports.getClaimDetail = function(e){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
-	     	console.log(ex);
+	     //	console.log(ex);
 	     	retryTimes --;
 	     	
 	     	if(retryTimes !== 0){
@@ -506,21 +508,20 @@ exports.getClaimDetail = function(e){
 
 exports.claimInfo = function(e) { 
 	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
-	console.log("claim Info : " +url);
+ 
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       console.log(res);
+	       //console.log(res);
 	       if(typeof res[0].message !== undefined && res[0].message != null){
 	       		common.createAlert(res[0].message);
 	       }else{
 	       		Ti.App.Properties.setString('balchk', this.responseText);
 	       		Ti.App.Properties.setString('balchkUpdatedDate', currentDateTime());
-	       		Ti.App.fireEvent("data_loaded");
-	       		console.log('fired');
+	       		Ti.App.fireEvent("data_loaded"); 
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
@@ -693,7 +694,7 @@ exports.loadClinicList = function (ex){
 		last_updated = isUpdate.updated;
 	} 
 	var url = clinicListUrl+"&last_updated="+last_updated; 
-  	console.log(url);
+  	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -740,9 +741,16 @@ exports.loadPanelList = function (ex){
 			codeStr = codeStr.substring(0, codeStr.length - 1);
 			if(ex.clinicType == ""){
 				details = library.getPanelListCount(codeStr);
+				details24 = library.getPanelListBy24Hours(codeStr);
+				
+				var det24= { 
+					clinicType: "hours24",
+					total: details24.length 
+				};
+				details.push(det24); 
 			}else{
 				if(ex.clinicType == "hours24"){
-					details = library.getPanelListBy24Hours(codeStr);
+					details = library.getPanelListBy24Hours(codeStr); 
 				}else{
 					details = library.getPanelListByCode(codeStr,ex.clinicType);
 				}

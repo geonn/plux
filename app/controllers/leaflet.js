@@ -142,13 +142,14 @@ function downloadBrochure(adImage,content){
 		PDF.createPdf(content.attachment,true, ind,label,indView,  function (err, file, base, url) {
 			if (err){
 				alert(err);
-			}else{
+			}else{ 
 				isDownloading = "0";
 				leafletModel.updateDownloadedBrochure(content.id);
 			    indView.hide();  
 			    $.bigView.remove(indView); 
 			    
 				if(Ti.Platform.osname == "android"){
+					console.log("file return : "+file.getNativePath());
 					PDF.android_launch(file);
 				}else{
 					
@@ -221,7 +222,7 @@ function downloadBrochure(adImage,content){
 				});
 					
 			    }
-			   }
+			   }alert
 		});
 	});
 }

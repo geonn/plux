@@ -25,7 +25,7 @@ function doLogin() {
 			email: email,
 			password: password 
 		};
-		API.do_pluxLogin(params, $ );
+		API.do_pluxLogin(params, $  );
 	}
 }
 
@@ -135,7 +135,22 @@ var touchLogin =  function(){
 	}
 };
 
+var loginAfterRegister =  function(e){
+	var email = e.params.email; 
+	var password = e.params.password; 
+	
+	var params = { 
+			email: email,
+			password: password 
+		};
+	API.do_pluxLogin(params, $  );
+	common.createAlert("Success", "Plux account registration successful!");
+	var win = Alloy.createController("home").getView();
+	win.open(); 
+	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
+};
 Ti.App.addEventListener('touchLogin', touchLogin);
+Ti.App.addEventListener('loginAfterRegister', loginAfterRegister);
 
 if(Ti.Platform.osname == "android"){
 	$.loginWin.addEventListener('android:back', function (e) { 

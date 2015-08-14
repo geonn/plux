@@ -3,9 +3,15 @@ var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode');
 var details;
 common.construct($);
-common.showLoading();
+common.showLoading(); 
 if(corp == ""){
 	details = library.getCountClinicType(); 
+	details24 = library.getCount24Hours(); 
+	var det24= { 
+		clinicType: "hours24",
+		total: details24.total 
+	};
+	details.push(det24); 
 	listing("");
 }else{
 	API.loadPanelList({clinicType:""});
@@ -29,7 +35,7 @@ function listing(e){
 	}else{
 		var arr = e.details;
 	}
-   	 
+   	  
    	var counter = 0;
    		
    		if(arr.length < 1){
@@ -45,6 +51,10 @@ function listing(e){
 		}else{
 
 	   		arr.forEach(function(entry) {
+	   			var myClinicType = entry.clinicType;
+	   			if(entry.clinicType == "hours24"){
+	   				myClinicType = "24 HOURS";
+	   			}
 	   			var row = Titanium.UI.createTableViewRow({
 				    touchEnabled: true,
 				    height: 70,
@@ -66,7 +76,7 @@ function listing(e){
 				});	
 				
 				var popUpTitle = Titanium.UI.createLabel({
-					text:entry.clinicType,
+					text:myClinicType,
 					font:{fontSize:16},
 					source: entry.clinicType,
 					color: "#848484",
@@ -105,57 +115,7 @@ function listing(e){
 				data.push(row);
 	   		});
 	   		
-	   		
-	   		// 24 hours
-	   		var hours24Det = library.getCount24Hours(); 
-	   		var row = Titanium.UI.createTableViewRow({
-				    touchEnabled: true,
-				    height: 70,
-				    id: "hours24",
-				    backgroundSelectedColor: "#FFE1E1",
-				    backgroundColor: "#ffffff"
-			    });
-				
-				 
-				var leftImage =  Titanium.UI.createImageView({
-					image:"/images/hours24.png",
-					width:50,
-					height:50,
-					left:10
-				});	
-				
-				var popUpTitle = Titanium.UI.createLabel({
-					text: "24 HOURS",
-					font:{fontSize:16},
-					source: "hours24",
-					color: "#848484",
-					width:'65%',
-					textAlign:'left', 
-					left:70,
-					height:25
-				});
-				 
-				var totalPanel =  Titanium.UI.createLabel({
-					text:hours24Det.total,
-					source: "hours24",
-					font:{fontSize:14,fontWeight:'bold'},
-					width:'auto',
-					color: "#848484",  
-					right:50,
-					height:25
-				});
-				 
-				var rightForwardBtn =  Titanium.UI.createImageView({
-					image:"/images/btn-forward.png",
-					source: "hours24",
-					width:15,
-					right:20 
-				});	
-			row.add(leftImage); 
-			row.add(popUpTitle);
-			row.add(totalPanel); 
-			row.add(rightForwardBtn);
-			data.push(row);
+	   		 
 	   		TheTable.setData(data);
 			$.panelListTbl.add(TheTable);
 		}

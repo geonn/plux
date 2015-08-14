@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
 common.construct($);
-var view_agreement_box = common.CheckboxwithText("Agree to all the terms and conditions", {name: "agreets"},"https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
+var view_agreement_box = common.CheckboxwithText("Agree to all the ","terms and conditions", {name: "agreets"},"https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
 $.tc_area.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
@@ -17,10 +17,13 @@ function doSignup(){
 		common.createAlert("Error", "Please fill in your full name");
 		return false;
 	}
-	
+	 
 	if(email.trim() == ""){
 		common.createAlert("Error", "Please fill in your email");
 		return false;
+	}else if(validateEmail(email) != "1"){
+		common.createAlert("Error", "Please fill in an valid email");
+		return false;	
 	}
 	
 	if(password.trim() == ""){

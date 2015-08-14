@@ -23,8 +23,8 @@
 			<TableView id="table" height="135" top="30" scrollable="false">
 				<TableViewRow id="tvrFieldDate" selectedBackgroundColor="#ffffff"  onClick="showDatePicker">
 					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
-						<Label text="Birthdate" top="12" width="40%" class="title_Label"  />
-						<Label text="" top="12" color="#707070" id="date_value" textAlign="right" width="50%"  />
+						<Label text="Birth Date" top="12" width="40%" class="title_Label"  />
+						<Label text="Not Set" top="12" color="#707070" id="date_value" textAlign="right" width="50%"  />
 					</View>
 				</TableViewRow>
 				 

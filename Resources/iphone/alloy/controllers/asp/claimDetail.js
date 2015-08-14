@@ -41,7 +41,6 @@ function Controller() {
         common.hideLoading();
     }
     function createTableViewRow(text, value, dialog) {
-        "" != value && (value = "number" != typeof value ? value.replace(/^\s+|\s+$/g, "") : value);
         "" != text && (text = "number" != typeof text ? text.replace(/^\s+|\s+$/g, "") : text);
         var row = $.UI.create("TableViewRow", {
             height: Ti.UI.SIZE,
@@ -122,16 +121,16 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId105 = Ti.UI.createLabel({
+    $.__views.__alloyId155 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         bottom: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId105"
+        id: "__alloyId155"
     });
-    $.__views.loadingBar.add($.__views.__alloyId105);
+    $.__views.loadingBar.add($.__views.__alloyId155);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"

@@ -57,7 +57,7 @@ function formular() {
     var c = form[2].value;
     var d = form[3].value;
     if ("" == a || "" == b || "" == c || "" == d) {
-        common.createAlert("Error", "You must key in all fields before calculate");
+        common.createAlert("Error", "You must answer all the questions above");
         return false;
     }
     var weekly = (a / b * c * 7).toFixed(2);

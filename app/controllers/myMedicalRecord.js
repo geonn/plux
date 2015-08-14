@@ -186,8 +186,7 @@ $.aView	.addEventListener('touchend', function(e){
 });
 
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){
-		console.log('close!!');
+	$.btnBack.addEventListener('click', function(){ 
 		nav.closeWindow($.myMedicalRecord); 
 	}); 
 }

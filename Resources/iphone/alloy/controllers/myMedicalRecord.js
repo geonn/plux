@@ -283,7 +283,6 @@ function Controller() {
         $.searchItem.blur();
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        console.log("close!!");
         nav.closeWindow($.myMedicalRecord);
     });
     _.extend($, exports);

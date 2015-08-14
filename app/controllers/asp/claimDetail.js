@@ -43,10 +43,7 @@ function init(){
 }
 
 function createTableViewRow(text, value, dialog){
-	if(value != ""){
-		value = (typeof value != "number")?value.replace(/^\s+|\s+$/g, ""):value;
-	}
-	
+	 
 	if(text != ""){
 		text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
 	}

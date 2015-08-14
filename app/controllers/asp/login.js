@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var nav = Alloy.Globals.navMenu;
+//var nav = Alloy.Globals.navMenu;
 var singleton = true;
 common.construct($);
 
@@ -59,7 +59,7 @@ function doSignup(){
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.loginWin.addEventListener('click',hideProductFormKeyboard);
+$.aspLoginWin.addEventListener('click',hideProductFormKeyboard);
 
 $.username.addEventListener('touchend', function(e){
     $.username.focus();
@@ -77,5 +77,10 @@ $.username.addEventListener("return", function(){
 $.password.addEventListener("return", function(){
 	doLogin();
 });
-
-
+ 
+if(Ti.Platform.osname == "android"){
+	var nav = require('navigation');
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.aspLoginWin); 
+	}); 
+}

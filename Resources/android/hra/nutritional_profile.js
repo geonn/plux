@@ -77,7 +77,17 @@ function addForm(text, type, options) {
 
 function formular() {
     var total_score = 0;
-    for (a = 0; a < form_data.length; a++) "1" == form_data[a] && total_score++;
+    if (0 == form_data.length) {
+        common.createAlert("Error", "You must answer all the questions above.");
+        return false;
+    }
+    for (a = 0; a < form_data.length; a++) {
+        if (null == form_data[a]) {
+            common.createAlert("Error", "You must answer all the questions above.");
+            return false;
+        }
+        "1" == form_data[a] && total_score++;
+    }
     3 >= total_score ? resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ") : 6 >= total_score ? resultPopUp("RESULT", "Not bad! You are halfway there. You still have a way to go. Look at your 'No' answers to help you decide which areas of your diet need to be improved, or whether your physical activity level should be increased.") : 8 >= total_score && resultPopUp("RESULT", "Good for you! You are living smart! Keep up the good habits, and keep looking for ways to improve.");
 }
 

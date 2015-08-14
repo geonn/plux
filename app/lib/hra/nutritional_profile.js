@@ -218,10 +218,20 @@ function addForm(text, type, options){
 
 function formular(){
 	var total_score = 0;  
+	if(form_data.length == 0){
+		common.createAlert("Error","You must answer all the questions above.");
+		return false;
+	} 
 	for(a = 0; a < form_data.length; a++){  
-		if(form_data[a] == '1'){
-			total_score++;
+		if(form_data[a] == null){
+			common.createAlert("Error","You must answer all the questions above.");
+			return false;
+		}else{
+			if(form_data[a] == '1'){
+				total_score++;
+			}
 		}
+		
 	} 
 	if(total_score <= 3){
 		resultPopUp("RESULT", "Diet alert! Your diet is probably too high in calories and fat and too low in plant foods like vegetables, fruits, and grains. You may want to take a look at your eating habits and find ways to make some changes. And don’t forget – exercise is important too. ");

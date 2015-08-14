@@ -88,35 +88,63 @@ function formular() {
     var total_score = 0;
     switch (form[0].row_value) {
       case 0:
-        total_score += 0;
+        total_score = -100;
         break;
 
       case 1:
-        total_score += 20;
+        total_score += 0;
         break;
 
       case 2:
+        total_score += 20;
+        break;
+
+      case 3:
         total_score += 30;
     }
     switch (form[1].row_value) {
       case 0:
-        total_score += 0;
+        total_score = -100;
         break;
 
       case 1:
-        total_score += 20;
+        total_score += 0;
         break;
 
       case 2:
+        total_score += 20;
+        break;
+
+      case 3:
         total_score += 30;
     }
     switch (form[2].row_value) {
       case 0:
-        total_score += 30;
+        total_score = -100;
         break;
 
       case 1:
+        total_score += 30;
+        break;
+
+      case 2:
         total_score += 20;
+        break;
+
+      case 3:
+        total_score += 10;
+        break;
+
+      case 4:
+        total_score += 0;
+    }
+    switch (form[3].row_value) {
+      case 0:
+        total_score = -100;
+        break;
+
+      case 1:
+        total_score += 0;
         break;
 
       case 2:
@@ -124,19 +152,11 @@ function formular() {
         break;
 
       case 3:
-        total_score += 0;
-    }
-    switch (form[3].row_value) {
-      case 0:
-        total_score += 0;
-        break;
-
-      case 1:
-        total_score += 10;
-        break;
-
-      case 2:
         total_score += 20;
+    }
+    if (0 > total_score) {
+        common.createAlert("Error", "You must answer all the questions above");
+        return false;
     }
     30 >= total_score ? resultPopUp("RESULT", "You have a Low Risk for diabetes. Stay fit and healthy by doing regularly exercise of moderate intensity like swimming, gardening or brisk walking. Follow a well balanced diet with low fat content. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.") : 60 >= total_score ? resultPopUp("RESULT", "You have a Moderate Risk for diabetes. Walk briskly for half an hour daily to reduce your risk by 30%. Cut down the intake of sugary drinks as they drastically increase your risk. Choose a diet rich in whole grains to protect your body against diabetes. If you are over 35 years of age, we recommend that you check your blood glucose level at least once in every three years.") : resultPopUp("RESULT", "You have a High Risk for diabetes.\nWe recommend the following preventive measures:\n-   Consult your physician to plan an exercise regime\n- Choose a diet rich in whole grains and low in calories\n- We advice you to take the Oral Glucose Tolerance Test (OGTT) at one of the recommended diagnostic centres or hospitals\n- It is recommended that you check your glucose levels more frequently (once in 4 to 6 months)");
 }
@@ -263,10 +283,10 @@ exports.input_box = function() {
         layout: "vertical"
     });
     view_inputbox.add(view_header);
-    view_inputbox.add(addForm("Your Age", "Picker", [ "Less than 35", "35 to 49", "50 and above" ]));
-    view_inputbox.add(addForm("Your Waist Circumference", "Picker", [ "Less than 35 Inches", "35 to 39 Inches", "Greater than 39 Inches" ]));
-    view_inputbox.add(addForm("Daily Routine", "Picker", [ "No regular exercise", "Mild exercise", "Moderate exercise", "Regular exercise" ]));
-    view_inputbox.add(addForm("Family History of Diabetes", "Picker", [ "No family history", "One of my parent diabetic", "Both of my parent diabetic" ]));
+    view_inputbox.add(addForm("Your Age", "Picker", [ "Please select", "Less than 35", "35 to 49", "50 and above" ]));
+    view_inputbox.add(addForm("Your Waist Circumference", "Picker", [ "Please select", "Less than 35 Inches", "35 to 39 Inches", "Greater than 39 Inches" ]));
+    view_inputbox.add(addForm("Daily Routine", "Picker", [ "Please select", "No regular exercise", "Mild exercise", "Moderate exercise", "Regular exercise" ]));
+    view_inputbox.add(addForm("Family History of Diabetes", "Picker", [ "Please select", "No family history", "One of my parent diabetic", "Both of my parent diabetic" ]));
     var button_submit = $.UI.create("Button", {
         title: "Calculate",
         top: 10,

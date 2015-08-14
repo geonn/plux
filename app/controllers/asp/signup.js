@@ -2,7 +2,7 @@ var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
 common.construct($);
 //var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
-var view_agreement_box = common.CheckboxwithText("I have read and agree to the Privacy Policy", {name: "agreets"},"https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
+var view_agreement_box = common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var preset_password = Ti.App.Properties.getString('plux_password') || "";
@@ -65,4 +65,13 @@ function hideProductFormKeyboard(e){
 });*/
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.loginWin.addEventListener('click',hideProductFormKeyboard);
+$.aspSignUpWin.addEventListener('click',hideProductFormKeyboard);
+
+ 
+
+if(Ti.Platform.osname == "android"){
+	var nav = require('navigation');
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.aspSignUpWin); 
+	}); 
+}

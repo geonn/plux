@@ -120,8 +120,15 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		if(info_details.length > 0){
 			info_details.forEach(function(entry) { 
 				var rec = {};
-				var convert = (entry.date).split('-'); 
-				var month = parseInt(convert[1]) - 1;
+				var convert = (entry.date).split('-');  
+				var month = convert[1];
+				if(convert[1] == "08"){
+					month = 8;
+				}
+				if(convert[1] == "09"){
+					month = 9;
+				}
+				var month = parseInt(month) - 1;
 				var newDate = convert[2]+" " +m_names[month]+""+convert[0].substring(2, 4);
 				rec['label'] = newDate;
 				

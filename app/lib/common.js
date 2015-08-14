@@ -159,13 +159,23 @@ exports.createCustomAlert = function(win, title, msg){
 	});
 };
 
-exports.CheckboxwithText = function(text, checkboxspecs, urlLink){
+exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 	var checkbox = this.createCheckbox({}, checkboxspecs);
 	var label_sms = Titanium.UI.createLabel({
 		text: text,
 		width: "auto",
 		height: Ti.UI.SIZE,
 		font:{
+			fontSize: 12
+		}
+	});
+	var label_privacy = Titanium.UI.createLabel({
+		text: highlightText,
+		width: "auto",
+		height: Ti.UI.SIZE,
+		color: "#CE1D1C",
+		font:{
+			fontWeight: "bold",
 			fontSize: 12
 		}
 	});
@@ -176,76 +186,9 @@ exports.CheckboxwithText = function(text, checkboxspecs, urlLink){
 	});
 	view_sms_box.add(checkbox);
 	view_sms_box.add(label_sms);
-	
-	label_sms.addEventListener('touchend',function(){
-		//Activate Banner link
-		var myModal = Ti.UI.createWindow({
-			title	: "Privacy Policy",
-			backgroundColor : '#FFFFFF',
-			height: Ti.UI.FILL,
-			width: Ti.UI.FILL,
-			navBarHidden : true,
-			fullscreen	 :true
-		});
-		var leftBtn = Ti.UI.createButton({
-			title: "Close",
-			color: "#CE1D1C",
-			left: 10,
-			top: 5,
-		});
-		var wrapperView    = Ti.UI.createView({
-			layout:"vertical",
-			height: Ti.UI.FILL
-		}); 
-		// Full screen
-		var topView = Ti.UI.createView({  // Also full screen
-		    backgroundColor : '#EEEEEE',
-		    top         : 0,
-		    layout		: "horizontal",
-		    height		: 40
-		}); 
-		
-		var viewLabel = Ti.UI.createView({  // Also full screen
-		   	width 		: Ti.UI.FILL, 
-		    height		: 40 
-		}); 
-		
-		var titleLabel = Ti.UI.createLabel({
-			height: Ti.UI.SIZE,
-			width : Ti.UI.FILL,
-			textAlign : "center",
-			top: 10,
-			color: "#646464",
-			text: 	"Privacy Policy",
-		});
-		viewLabel.add(titleLabel);
-		var containerView  = Ti.UI.createView({  // Set height appropriately
-		    height          : Ti.UI.SIZE,
-		    width			: Ti.UI.FILL,
-		    backgroundColor : 'transparent'
-		});
-		var webview = Ti.UI.createWebView({ 
-		   url: urlLink,
-		   height: Ti.UI.FILL,
-		   width: Ti.UI.FILL,
-		   backgroundColor:"#ffffff",
-		   bottom:10 
-		});
-		topView.add(leftBtn); 
-		topView.add(viewLabel);
-		containerView.add(webview); 
-		wrapperView.add(topView);
-		wrapperView.add(mainView.UI.create('View',{ 
-			classes : ["line"]
-		}));
-		wrapperView.add(containerView); 
-		myModal.add(wrapperView); 
-		myModal.open({
-			modal : true
-		});
-		leftBtn.addEventListener('click',function(ex){
-			myModal.close({animated: true});
-		});		
+	view_sms_box.add(label_privacy);
+	label_privacy.addEventListener('touchend',function(){ 
+		nav.navigationWindow("privacy");
 	});
 	return view_sms_box;
 };

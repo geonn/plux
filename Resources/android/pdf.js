@@ -28,7 +28,9 @@ function download(url, cookies, done) {
             if (200 != e.source.status) throw new Error("http status " + e.source.status);
             file.write(e.source.responseData);
             return done(null, file, base, url);
-        } catch (e) {}
+        } catch (e) {
+            return done(e);
+        }
     };
     client.onerror = function(e) {
         return done(e);
@@ -36,7 +38,7 @@ function download(url, cookies, done) {
     client.ondatastream = function(e) {
         ind.value = e.progress;
         label.text = (100 * ind.value).toFixed(0) + "% Downloading";
-        if (100 * ind.value == 100) return done();
+        100 * ind.value == 100;
     };
     client.setRequestHeader("Cookie", cookies);
     client.open("GET", url);
@@ -49,10 +51,7 @@ function copyToTemp(srcFile, base, myurl) {
     Ti.Filesystem.isExternalStoragePresent() && (myFileDir = Ti.Filesystem.externalStorageDirectory);
     var tempdir = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base);
     tempdir.createDirectory();
-    if (void 0 === typeof myurl || null == myurl || "" == myurl) {
-        console.log("masuk");
-        return false;
-    }
+    if (void 0 === typeof myurl || null == myurl || "" == myurl) return false;
     var filename = myurl.split("/");
     filename = filename[filename.length - 1];
     var tempFile = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, base, filename);
@@ -69,8 +68,12 @@ function pdf(url, cookies, inds, labels, indView, done) {
         var tempFile = copyToTemp(file, base, url);
         if (false === tempFile) {
             tempFile = copyToTemp(file, base, url);
+            null == err && (err = "");
             done(err, tempFile, base, url);
-        } else done(err, tempFile, base, url);
+        } else {
+            null == err && (err = "");
+            done(err, tempFile, base, url);
+        }
     });
 }
 

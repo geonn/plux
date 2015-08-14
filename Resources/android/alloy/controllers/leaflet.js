@@ -137,8 +137,10 @@ function Controller() {
                     leafletModel.updateDownloadedBrochure(content.id);
                     indView.hide();
                     $.bigView.remove(indView);
+                    console.log("file return : " + file.getNativePath());
                     PDF.android_launch(file);
                 }
+                alert;
             });
         });
     }
