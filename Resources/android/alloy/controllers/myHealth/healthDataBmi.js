@@ -42,12 +42,13 @@ function Controller() {
         hideKeyboard();
     }
     function changeDate(e) {
-        hd.changeDate({
+        var date = hd.changeDate({
             date: e.value
         });
+        $.date_value.text = date;
+        console.log("hide");
     }
     function changeTime(e) {
-        console.log(e.value);
         hd.changeTime({
             time: e.value
         });
@@ -76,6 +77,22 @@ function Controller() {
         });
         hd.loadInfo(formType);
         nav.closeWindow($.healthBmiWin);
+    }
+    function picker() {
+        var timePicker = Ti.UI.createPicker({
+            type: Ti.UI.PICKER_TYPE_TIME,
+            id: "timePicker",
+            visible: false
+        });
+        timePicker.showTimePickerDialog({
+            callback: function(e) {
+                if (e.cancel) ; else {
+                    console.log("callback");
+                    $.time_value.hide();
+                    changeTime(e);
+                }
+            }
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "myHealth/healthDataBmi";
@@ -218,6 +235,16 @@ function Controller() {
         id: "description"
     });
     $.__views.__alloyId289.add($.__views.description);
+    $.__views.time_value = Ti.UI.createLabel({
+        width: "80%",
+        height: Titanium.UI.SIZE,
+        text: "",
+        top: "12",
+        color: "#707070",
+        id: "time_value",
+        textAlign: "right"
+    });
+    $.__views.main.add($.__views.time_value);
     var __alloyId290 = [];
     $.__views.__alloyId291 = Ti.UI.createTableViewRow({
         selectedBackgroundColor: "#ffffff",
@@ -282,16 +309,6 @@ function Controller() {
         id: "__alloyId296"
     });
     $.__views.__alloyId295.add($.__views.__alloyId296);
-    $.__views.time_value = Ti.UI.createLabel({
-        width: "80%",
-        height: Titanium.UI.SIZE,
-        text: "",
-        top: "12",
-        color: "#707070",
-        id: "time_value",
-        textAlign: "right"
-    });
-    $.__views.__alloyId295.add($.__views.time_value);
     $.__views.tvrField1 = Ti.UI.createTableViewRow({
         id: "tvrField1",
         selectedBackgroundColor: "#ffffff"
@@ -439,6 +456,7 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthBmiWin);
     });
+    setTimeout(picker, 2e3);
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
     __defers["$.__views.__alloyId291!click!showDatePicker"] && $.__views.__alloyId291.addEventListener("click", showDatePicker);

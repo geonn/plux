@@ -21,6 +21,7 @@ function Controller() {
     function direction2here() {
         var locationCallback = function(e) {
             if (!e.success || e.error) {
+                alert("Please enable location services");
                 Ti.API.info("error:" + JSON.stringify(e.error));
                 return;
             }

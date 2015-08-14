@@ -26,10 +26,15 @@ function triggerPosition(){
 	    //Ti.Geolocation.addEventListener('location', setCurLoc);
 	    Ti.Geolocation.getCurrentPosition(init);
 	} else {
-	    alert('Please enable location services');
+	    //alert('Please enable location services');
+	    setTimeout(alerts, 1000);
 	} 
 }
-  
+ 
+function alerts(){
+	common.createAlert("Error", "Please enable location services", function(){nav.closeWindow($.clinicLocator);});
+}
+ 
 var longitude;
 var latitude;   
 function init(e){  

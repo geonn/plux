@@ -7,13 +7,22 @@ exports.deconstruct = function(){
 	mainView = null;
 };
 
-exports.createAlert = function(tt,msg){
+exports.createAlert = function(tt,msg, callback){
 	var box = Titanium.UI.createAlertDialog({
 		title: tt,
 		ok: 'OK',
 		message: msg
 	});
 	box.show();
+	box.addEventListener('click', function(e){
+		console.log(e.index+" "+e.source.ok);
+	    if (e.index == 0){
+	    	console.log(typeof callback);
+	    	if(typeof callback == "function"){
+	    		callback && callback();
+	    	}
+	    }
+  });
 };
  
 exports.showImageIndicator = function(){
