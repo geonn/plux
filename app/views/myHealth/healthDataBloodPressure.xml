@@ -20,32 +20,36 @@
 			<View layout="vertical" height="30" top="10"  >
 	        	<Label text="Please fill in your information below" color="#878686" id="description"  />
 	        </View>
-			<TableView id="table" height="Ti.UI.SIZE" top="10" scrollable="false">
-				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showDatePicker">
+			<View id="table" height="Ti.UI.SIZE" top="10" backgroundColor="#ffffff" layout="vertical" scrollable="false"> 
+				<View class="line" />
+				<View height="Ti.UI.SIZE" selectedBackgroundColor="#ffffff" onClick="showDatePicker">
 					<View  layout="horizontal" height="45" width="100%" textAlign="right" >
 						<Label text="Date" top="12" class="title_Label"  />
 						<Label text="" top="12" color="#707070" id="date_value" textAlign="right" width="80%"  />
 					</View>
-				</TableViewRow>
-				<TableViewRow selectedBackgroundColor="#ffffff" onClick="showTimePicker">
+				</View>
+				<View class="line" />
+				<View selectedBackgroundColor="#ffffff" height="Ti.UI.SIZE" onClick="showTimePicker">
 					<View  layout="horizontal" height="45" width="100%"  >
 						<Label text="Time"  top="12" class="title_Label" />
 						<Label text=""  top="12" color="#707070" id="time_value" textAlign="right" width="80%"  />
 					</View>
-				</TableViewRow>
-				<TableViewRow id="tvrField1" selectedBackgroundColor="#ffffff">
+				</View>
+				<View class="line" />
+				<View id="tvrField1" height="Ti.UI.SIZE" selectedBackgroundColor="#ffffff">
 					<View layout="horizontal" height="55" width="100%" >
 						<Label text="Systolic (mm Hg)" width="50%" top="12" class="title_Label"  />
 						<TextField id="field1" top="5" bottom='5' right='5' textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
-				</TableViewRow>
-				<TableViewRow id="tvrField2" selectedBackgroundColor="#ffffff">
+				</View>
+				<View class="line" />
+				<View id="tvrField2" height="Ti.UI.SIZE" selectedBackgroundColor="#ffffff">
 					<View  layout="horizontal" height="55" width="100%" >
 						<Label text="Diastolic (mm Hg)" width="50%" top="12" class="title_Label" />
 						<TextField id="field2" top="5" bottom='5' right='5' textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
-				</TableViewRow>
-			</TableView>
+				</View>
+			</View>
 				
 			<View height="Ti.UI.SIZE" id="selectorView" bottom="0" >
 				<Picker id="datePicker"

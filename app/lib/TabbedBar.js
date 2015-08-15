@@ -48,8 +48,8 @@ module.exports = (function () {
             barIndex;
         //setting options/default values
         options.barBorderWidth ? barBorderWidth = options.barBorderWidth : barBorderWidth = _toDp(1);
-        options.selectedColor ? barSelectedTextColor = options.selectedColor : barSelectedTextColor = "#ffffff";
-        options.tintColor ? barTintColor = options.tintColor : barTintColor = "#007AFF";
+        options.selectedColor ? barSelectedTextColor = options.selectedColor : barSelectedTextColor = "#6D6D6D";
+        options.tintColor ? barTintColor = options.tintColor : barTintColor = "#E4E4E4";
         options.color ? barTextColor = options.color : barTextColor = barTintColor;
         options.backgroundColor ? barBackgroundColor = options.backgroundColor : barBackgroundColor = "transparent";
         options.font ? barTextFont = options.font : barTextFont = {

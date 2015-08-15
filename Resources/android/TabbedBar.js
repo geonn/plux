@@ -45,8 +45,8 @@ module.exports = function() {
         }
         var barBorderWidth, barTextColor, barSelectedTextColor, barTextFont, barTintColor, barBackgroundColor, barWidth, barHeight, barLabels, barCounter, barIndex;
         barBorderWidth = options.barBorderWidth ? options.barBorderWidth : _toDp(1);
-        barSelectedTextColor = options.selectedColor ? options.selectedColor : "#ffffff";
-        barTintColor = options.tintColor ? options.tintColor : "#007AFF";
+        barSelectedTextColor = options.selectedColor ? options.selectedColor : "#6D6D6D";
+        barTintColor = options.tintColor ? options.tintColor : "#E4E4E4";
         barTextColor = options.color ? options.color : barTintColor;
         barBackgroundColor = options.backgroundColor ? options.backgroundColor : "transparent";
         barTextFont = options.font ? options.font : {
