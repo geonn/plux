@@ -27,9 +27,11 @@ function Controller() {
         hideKeyboard();
     }
     function changeDate(e) {
-        hd.changeDate({
-            date: e.value
-        });
+        setTimeout(function() {
+            hd.changeDate({
+                date: e.value
+            });
+        }, 1e3);
     }
     function changeTime(e) {
         console.log(e.value);

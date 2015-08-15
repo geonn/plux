@@ -23,7 +23,10 @@ function Controller() {
         datePicker.showDatePickerDialog({
             value: new Date(yyyy, parseInt(mm), dd),
             callback: function(e) {
-                e.cancel || changeDate(e);
+                if (e.cancel) ; else {
+                    var dateValue = e.value;
+                    $.date_value.text = dateValue.getDate() + "/" + (dateValue.getMonth() + 1) + "/" + dateValue.getFullYear();
+                }
             }
         });
         hideKeyboard();

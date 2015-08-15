@@ -301,7 +301,7 @@ function Controller() {
         font: {
             fontSize: "16dp"
         },
-        text: "Birthdate",
+        text: "Birth Date",
         top: "12",
         id: "__alloyId404"
     });
@@ -309,7 +309,7 @@ function Controller() {
     $.__views.date_value = Ti.UI.createLabel({
         width: "50%",
         height: Titanium.UI.SIZE,
-        text: "",
+        text: "Not Set",
         top: "12",
         color: "#707070",
         id: "date_value",
