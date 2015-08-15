@@ -30,7 +30,7 @@ function showDatePicker(e){
 			callback: function(e) {
 			if (e.cancel) { 
 				} else {
-					changeDate(e);
+					 changeDate(e);
 				}
 			}
 		});
