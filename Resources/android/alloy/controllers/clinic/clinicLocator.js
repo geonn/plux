@@ -17,7 +17,12 @@ function Controller() {
         if (Ti.Geolocation.locationServicesEnabled) {
             Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
             Ti.Geolocation.getCurrentPosition(init);
-        } else alert("Please enable location services");
+        } else setTimeout(alerts, 1e3);
+    }
+    function alerts() {
+        common.createAlert("Error", "Please enable location services", function() {
+            nav.closeWindow($.clinicLocator);
+        });
     }
     function init(e) {
         longitude = e.coords.longitude;

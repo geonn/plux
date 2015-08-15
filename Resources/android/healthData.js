@@ -242,7 +242,9 @@ exports.changeDate = function(e) {
     selDate = day + "/" + month + "/" + year;
     var age = "";
     "1" == e.age && (age = "(" + getAge(year + "-" + month + "-" + day) + ")");
+    mainView.date_value.setText(selDate + age);
     mainView.date_value.text = selDate + age;
+    return selDate + age;
 };
 
 exports.changeGender = function(e) {
