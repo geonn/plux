@@ -336,6 +336,7 @@ function Controller() {
         top: "5",
         bottom: "5",
         right: "5",
+        borderColor: "#ffffff",
         textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
@@ -387,6 +388,7 @@ function Controller() {
         top: "5",
         bottom: "5",
         right: "5",
+        borderColor: "#ffffff",
         textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD

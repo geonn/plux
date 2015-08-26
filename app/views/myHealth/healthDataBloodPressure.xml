@@ -39,14 +39,14 @@
 				<View id="tvrField1" height="Ti.UI.SIZE" selectedBackgroundColor="#ffffff">
 					<View layout="horizontal" height="55" width="100%" >
 						<Label text="Systolic (mm Hg)" width="50%" top="12" class="title_Label"  />
-						<TextField id="field1" top="5" bottom='5' right='5' textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+						<TextField id="field1" top="5" bottom='5' right='5' borderColor="#ffffff" textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
 				</View>
 				<View class="line" />
 				<View id="tvrField2" height="Ti.UI.SIZE" selectedBackgroundColor="#ffffff">
 					<View  layout="horizontal" height="55" width="100%" >
 						<Label text="Diastolic (mm Hg)" width="50%" top="12" class="title_Label" />
-						<TextField id="field2" top="5" bottom='5' right='5' textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
+						<TextField id="field2" top="5" bottom='5' right='5' borderColor="#ffffff" textAlign="right"  value="" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" />
 					</View>
 				</View>
 			</View>

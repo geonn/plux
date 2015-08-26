@@ -170,9 +170,7 @@ function listing(){
 			
 		 
 			$.clinicListSv.add(TheTable);
-			setTimeout(function(){
-				common.hideLoading();
-			},5000);
+			common.hideLoading();
 			
 			if(OS_ANDROID){
 				TheTable.search = searchBar;

@@ -157,19 +157,19 @@ function Controller() {
     });
     $.__views.main.add($.__views.bmiView);
     var __alloyId376 = [];
-    $.__views.__alloyId377 = Ti.UI.createTableViewRow({
+    $.__views.addHealthData = Ti.UI.createTableViewRow({
         top: 10,
         bottom: 10,
         left: 10,
         right: 10,
         backgroundSelectedColor: "#FFE1E1",
+        id: "addHealthData",
         title: "Add Data Point",
-        hasChild: "true",
-        id: "__alloyId377"
+        hasChild: "true"
     });
-    __alloyId376.push($.__views.__alloyId377);
-    addData ? $.__views.__alloyId377.addEventListener("click", addData) : __defers["$.__views.__alloyId377!click!addData"] = true;
-    $.__views.__alloyId378 = Ti.UI.createTableViewRow({
+    __alloyId376.push($.__views.addHealthData);
+    addData ? $.__views.addHealthData.addEventListener("click", addData) : __defers["$.__views.addHealthData!click!addData"] = true;
+    $.__views.__alloyId377 = Ti.UI.createTableViewRow({
         top: 10,
         bottom: 10,
         left: 10,
@@ -177,10 +177,10 @@ function Controller() {
         backgroundSelectedColor: "#FFE1E1",
         title: "Show All Data",
         hasChild: "true",
-        id: "__alloyId378"
+        id: "__alloyId377"
     });
-    __alloyId376.push($.__views.__alloyId378);
-    editData ? $.__views.__alloyId378.addEventListener("click", editData) : __defers["$.__views.__alloyId378!click!editData"] = true;
+    __alloyId376.push($.__views.__alloyId377);
+    editData ? $.__views.__alloyId377.addEventListener("click", editData) : __defers["$.__views.__alloyId377!click!editData"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId376,
         id: "healthTableData",
@@ -223,8 +223,8 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.dashboard);
     });
-    __defers["$.__views.__alloyId377!click!addData"] && $.__views.__alloyId377.addEventListener("click", addData);
-    __defers["$.__views.__alloyId378!click!editData"] && $.__views.__alloyId378.addEventListener("click", editData);
+    __defers["$.__views.addHealthData!click!addData"] && $.__views.addHealthData.addEventListener("click", addData);
+    __defers["$.__views.__alloyId377!click!editData"] && $.__views.__alloyId377.addEventListener("click", editData);
     _.extend($, exports);
 }
 

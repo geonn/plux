@@ -90,15 +90,7 @@ $.field1.addEventListener('change',function(e){
 		hd.disableSaveButton();
 	}
 });
-
-$.tvrField1.addEventListener('click',function(){
-	$.field2.focus();
-});
-
-$.tvrField2.addEventListener('click',function(){
-	$.field1.focus();
-});
-
+ 
 function doSaveRecords(){
 	var date    = $.date_value.text; 
 	var time    = $.time_value.text; 
