@@ -83,13 +83,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthDBPWin && $.addTopLevelView($.__views.healthDBPWin);
-<<<<<<< HEAD
     $.__views.__alloyId250 = Ti.UI.createView({
         id: "__alloyId250"
-=======
-    $.__views.__alloyId248 = Ti.UI.createView({
-        id: "__alloyId248"
->>>>>>> origin/master
     });
     $.__views.saveButton = Ti.UI.createButton({
         touchEnabled: false,
@@ -98,15 +93,9 @@ function Controller() {
         title: "Save",
         right: "0"
     });
-<<<<<<< HEAD
     $.__views.__alloyId250.add($.__views.saveButton);
     doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
     $.__views.healthDBPWin.rightNavButton = $.__views.__alloyId250;
-=======
-    $.__views.__alloyId248.add($.__views.saveButton);
-    doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-    $.__views.healthDBPWin.rightNavButton = $.__views.__alloyId248;
->>>>>>> origin/master
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical",
@@ -114,7 +103,6 @@ function Controller() {
         height: "100%"
     });
     $.__views.healthDBPWin.add($.__views.main);
-<<<<<<< HEAD
     $.__views.__alloyId251 = Ti.UI.createView({
         layout: "vertical",
         height: "30",
@@ -122,15 +110,6 @@ function Controller() {
         id: "__alloyId251"
     });
     $.__views.main.add($.__views.__alloyId251);
-=======
-    $.__views.__alloyId249 = Ti.UI.createView({
-        layout: "vertical",
-        height: "30",
-        top: "10",
-        id: "__alloyId249"
-    });
-    $.__views.main.add($.__views.__alloyId249);
->>>>>>> origin/master
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -138,11 +117,7 @@ function Controller() {
         color: "#878686",
         id: "description"
     });
-<<<<<<< HEAD
     $.__views.__alloyId251.add($.__views.description);
-=======
-    $.__views.__alloyId249.add($.__views.description);
->>>>>>> origin/master
     $.__views.table = Ti.UI.createView({
         id: "table",
         height: Ti.UI.SIZE,
@@ -152,7 +127,6 @@ function Controller() {
         scrollable: "false"
     });
     $.__views.main.add($.__views.table);
-<<<<<<< HEAD
     $.__views.__alloyId252 = Ti.UI.createView({
         width: Titanium.UI.FILL,
         height: 1,
@@ -168,38 +142,14 @@ function Controller() {
     $.__views.table.add($.__views.__alloyId253);
     showDatePicker ? $.__views.__alloyId253.addEventListener("click", showDatePicker) : __defers["$.__views.__alloyId253!click!showDatePicker"] = true;
     $.__views.__alloyId254 = Ti.UI.createView({
-=======
-    $.__views.__alloyId250 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#F6F6F6",
-        id: "__alloyId250"
-    });
-    $.__views.table.add($.__views.__alloyId250);
-    $.__views.__alloyId251 = Ti.UI.createView({
-        height: Ti.UI.SIZE,
-        selectedBackgroundColor: "#ffffff",
-        id: "__alloyId251"
-    });
-    $.__views.table.add($.__views.__alloyId251);
-    showDatePicker ? $.__views.__alloyId251.addEventListener("click", showDatePicker) : __defers["$.__views.__alloyId251!click!showDatePicker"] = true;
-    $.__views.__alloyId252 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: "45",
         width: "100%",
         textAlign: "right",
-<<<<<<< HEAD
         id: "__alloyId254"
     });
     $.__views.__alloyId253.add($.__views.__alloyId254);
     $.__views.__alloyId255 = Ti.UI.createLabel({
-=======
-        id: "__alloyId252"
-    });
-    $.__views.__alloyId251.add($.__views.__alloyId252);
-    $.__views.__alloyId253 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         left: 20,
@@ -209,15 +159,9 @@ function Controller() {
         },
         text: "Date",
         top: "12",
-<<<<<<< HEAD
         id: "__alloyId255"
     });
     $.__views.__alloyId254.add($.__views.__alloyId255);
-=======
-        id: "__alloyId253"
-    });
-    $.__views.__alloyId252.add($.__views.__alloyId253);
->>>>>>> origin/master
     $.__views.date_value = Ti.UI.createLabel({
         width: "80%",
         height: Titanium.UI.SIZE,
@@ -227,7 +171,6 @@ function Controller() {
         id: "date_value",
         textAlign: "right"
     });
-<<<<<<< HEAD
     $.__views.__alloyId254.add($.__views.date_value);
     $.__views.__alloyId256 = Ti.UI.createView({
         width: Titanium.UI.FILL,
@@ -251,31 +194,6 @@ function Controller() {
     });
     $.__views.__alloyId257.add($.__views.__alloyId258);
     $.__views.__alloyId259 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId252.add($.__views.date_value);
-    $.__views.__alloyId254 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#F6F6F6",
-        id: "__alloyId254"
-    });
-    $.__views.table.add($.__views.__alloyId254);
-    $.__views.__alloyId255 = Ti.UI.createView({
-        height: Ti.UI.SIZE,
-        selectedBackgroundColor: "#ffffff",
-        id: "__alloyId255"
-    });
-    $.__views.table.add($.__views.__alloyId255);
-    showTimePicker ? $.__views.__alloyId255.addEventListener("click", showTimePicker) : __defers["$.__views.__alloyId255!click!showTimePicker"] = true;
-    $.__views.__alloyId256 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "45",
-        width: "100%",
-        id: "__alloyId256"
-    });
-    $.__views.__alloyId255.add($.__views.__alloyId256);
-    $.__views.__alloyId257 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         left: 20,
@@ -285,15 +203,9 @@ function Controller() {
         },
         text: "Time",
         top: "12",
-<<<<<<< HEAD
         id: "__alloyId259"
     });
     $.__views.__alloyId258.add($.__views.__alloyId259);
-=======
-        id: "__alloyId257"
-    });
-    $.__views.__alloyId256.add($.__views.__alloyId257);
->>>>>>> origin/master
     $.__views.time_value = Ti.UI.createLabel({
         width: "80%",
         height: Titanium.UI.SIZE,
@@ -303,7 +215,6 @@ function Controller() {
         id: "time_value",
         textAlign: "right"
     });
-<<<<<<< HEAD
     $.__views.__alloyId258.add($.__views.time_value);
     $.__views.__alloyId260 = Ti.UI.createView({
         width: Titanium.UI.FILL,
@@ -312,23 +223,12 @@ function Controller() {
         id: "__alloyId260"
     });
     $.__views.table.add($.__views.__alloyId260);
-=======
-    $.__views.__alloyId256.add($.__views.time_value);
-    $.__views.__alloyId258 = Ti.UI.createView({
-        width: Titanium.UI.FILL,
-        height: 1,
-        backgroundColor: "#F6F6F6",
-        id: "__alloyId258"
-    });
-    $.__views.table.add($.__views.__alloyId258);
->>>>>>> origin/master
     $.__views.tvrField1 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         id: "tvrField1",
         selectedBackgroundColor: "#ffffff"
     });
     $.__views.table.add($.__views.tvrField1);
-<<<<<<< HEAD
     $.__views.__alloyId261 = Ti.UI.createView({
         layout: "horizontal",
         height: "55",
@@ -337,16 +237,6 @@ function Controller() {
     });
     $.__views.tvrField1.add($.__views.__alloyId261);
     $.__views.__alloyId262 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId259 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "55",
-        width: "100%",
-        id: "__alloyId259"
-    });
-    $.__views.tvrField1.add($.__views.__alloyId259);
-    $.__views.__alloyId260 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: "50%",
         height: Titanium.UI.SIZE,
         left: 20,
@@ -356,15 +246,9 @@ function Controller() {
         },
         text: "C",
         top: "12",
-<<<<<<< HEAD
         id: "__alloyId262"
     });
     $.__views.__alloyId261.add($.__views.__alloyId262);
-=======
-        id: "__alloyId260"
-    });
-    $.__views.__alloyId259.add($.__views.__alloyId260);
->>>>>>> origin/master
     $.__views.field1 = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "45dp",
@@ -383,11 +267,7 @@ function Controller() {
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
-<<<<<<< HEAD
     $.__views.__alloyId261.add($.__views.field1);
-=======
-    $.__views.__alloyId259.add($.__views.field1);
->>>>>>> origin/master
     $.__views.selectorView = Ti.UI.createView({
         height: Ti.UI.SIZE,
         id: "selectorView",
@@ -434,13 +314,8 @@ function Controller() {
         nav.closeWindow($.healthDBPWin);
     });
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
-<<<<<<< HEAD
     __defers["$.__views.__alloyId253!click!showDatePicker"] && $.__views.__alloyId253.addEventListener("click", showDatePicker);
     __defers["$.__views.__alloyId257!click!showTimePicker"] && $.__views.__alloyId257.addEventListener("click", showTimePicker);
-=======
-    __defers["$.__views.__alloyId251!click!showDatePicker"] && $.__views.__alloyId251.addEventListener("click", showDatePicker);
-    __defers["$.__views.__alloyId255!click!showTimePicker"] && $.__views.__alloyId255.addEventListener("click", showTimePicker);
->>>>>>> origin/master
     __defers["$.__views.datePicker!change!changeDate"] && $.__views.datePicker.addEventListener("change", changeDate);
     __defers["$.__views.timePicker!change!changeTime"] && $.__views.timePicker.addEventListener("change", changeTime);
     _.extend($, exports);

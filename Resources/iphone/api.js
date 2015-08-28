@@ -510,12 +510,7 @@ exports.loadNewsFeed = function() {
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-<<<<<<< HEAD
             var res = JSON.parse(String(this.responseText));
-=======
-            console.log(this.responseText);
-            var res = JSON.parse(this.responseText);
->>>>>>> origin/master
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");
             library.resetNews();

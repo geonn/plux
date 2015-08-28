@@ -259,55 +259,48 @@ function Controller() {
     $.__views.__alloyId54.add($.__views.__alloyId58);
     navWindow ? $.__views.__alloyId58.addEventListener("click", navWindow) : __defers["$.__views.__alloyId58!click!navWindow"] = true;
     $.__views.__alloyId59 = Ti.UI.createImageView({
-        mod: "healthInfo",
+        mod: "leaflet",
         top: "15",
         width: "139",
-        image: "/images/btn/btn_healthInfo.png",
+        image: "/images/btn/btn_leaflet.png",
         id: "__alloyId59"
     });
     $.__views.__alloyId54.add($.__views.__alloyId59);
     navWindow ? $.__views.__alloyId59.addEventListener("click", navWindow) : __defers["$.__views.__alloyId59!click!navWindow"] = true;
     $.__views.__alloyId60 = Ti.UI.createImageView({
-        mod: "leaflet",
-        top: "15",
-        width: "139",
-        image: "/images/btn/btn_leaflet.png",
-        id: "__alloyId60"
-    });
-    $.__views.__alloyId54.add($.__views.__alloyId60);
-    navWindow ? $.__views.__alloyId60.addEventListener("click", navWindow) : __defers["$.__views.__alloyId60!click!navWindow"] = true;
-    $.__views.__alloyId61 = Ti.UI.createImageView({
         mod: "myMedicalRecord",
         top: "15",
         left: "15",
         width: "139",
         image: "/images/btn/btn_my_medical_record.png",
+        id: "__alloyId60"
+    });
+    $.__views.__alloyId54.add($.__views.__alloyId60);
+    navWindow ? $.__views.__alloyId60.addEventListener("click", navWindow) : __defers["$.__views.__alloyId60!click!navWindow"] = true;
+    $.__views.__alloyId61 = Ti.UI.createImageView({
+        mod: "clinicLocator",
+        top: "15",
+        width: "139",
+        image: "/images/btn/btn_clinic_location.png",
         id: "__alloyId61"
     });
     $.__views.__alloyId54.add($.__views.__alloyId61);
     navWindow ? $.__views.__alloyId61.addEventListener("click", navWindow) : __defers["$.__views.__alloyId61!click!navWindow"] = true;
     $.__views.__alloyId62 = Ti.UI.createImageView({
-        mod: "clinicLocator",
-        top: "15",
-        width: "139",
-        image: "/images/btn/btn_clinic_location.png",
-        id: "__alloyId62"
-    });
-    $.__views.__alloyId54.add($.__views.__alloyId62);
-    navWindow ? $.__views.__alloyId62.addEventListener("click", navWindow) : __defers["$.__views.__alloyId62!click!navWindow"] = true;
-    $.__views.__alloyId63 = Ti.UI.createImageView({
-<<<<<<< HEAD
-        mod: "healthInfo",
-        top: "15",
-        width: "139",
-        image: "/images/btn/btn_healthInfo.png",
-=======
         mod: "hra",
         top: "15",
         left: "15",
         width: "139",
         image: "/images/btn/btn_hra.png",
->>>>>>> origin/master
+        id: "__alloyId62"
+    });
+    $.__views.__alloyId54.add($.__views.__alloyId62);
+    navWindow ? $.__views.__alloyId62.addEventListener("click", navWindow) : __defers["$.__views.__alloyId62!click!navWindow"] = true;
+    $.__views.__alloyId63 = Ti.UI.createImageView({
+        mod: "healthInfo",
+        top: "15",
+        width: "139",
+        image: "/images/btn/btn_healthInfo.png",
         id: "__alloyId63"
     });
     $.__views.__alloyId54.add($.__views.__alloyId63);
