@@ -654,10 +654,16 @@ console.log(url);
 			newsFe.forEach(function(nf) { 
 				var elements = nf.element;
 				elements.forEach(function(entry) {  
+					
+					var content = entry.content;
+					if(content != "" &&  content != null){
+						content = content.replace(/["']/g, "&quot;"); 
+					}
+						
 					var eleModel = Alloy.createModel('news_element', {
 					        id         : entry.id, 
 							news_id		: nf.id,
-							content		: entry.content ,
+							content		: content ,
 							type		: entry.type ,
 							images		: entry.media ,
 							position	: entry.position ,

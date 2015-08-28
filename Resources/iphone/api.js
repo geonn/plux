@@ -510,7 +510,12 @@ exports.loadNewsFeed = function() {
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
+<<<<<<< HEAD
             var res = JSON.parse(String(this.responseText));
+=======
+            console.log(this.responseText);
+            var res = JSON.parse(this.responseText);
+>>>>>>> origin/master
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");
             library.resetNews();
@@ -521,10 +526,12 @@ exports.loadNewsFeed = function() {
             newsFe.forEach(function(nf) {
                 var elements = nf.element;
                 elements.forEach(function(entry) {
+                    var content = entry.content;
+                    "" != content && null != content && (content = content.replace(/["']/g, "&quot;"));
                     var eleModel = Alloy.createModel("news_element", {
                         id: entry.id,
                         news_id: nf.id,
-                        content: entry.content,
+                        content: content,
                         type: entry.type,
                         images: entry.media,
                         position: entry.position

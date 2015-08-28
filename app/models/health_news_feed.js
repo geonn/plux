@@ -90,7 +90,16 @@ exports.definition = {
 	           
 	            db.execute("BEGIN");
 				arr.forEach(function(entry) { 
-		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES ("+entry.id+", '"+mysql_real_escape_string(entry.title)+"', '"+mysql_real_escape_string(entry.long_title) +"', '"+mysql_real_escape_string(entry.category)+"', '"+ entry.caption +"', '"+entry.created_date+"', '"+entry.modified_date+"', '"+entry.images+"')";
+					var title = entry.title;
+					if(title != "" &&  title != null){
+						title = title.replace(/["']/g, "&quot;"); 
+					}
+					var long_title = entry.long_title;
+					if(long_title != "" &&  long_title != null){
+						long_title = long_title.replace(/["']/g, "&quot;"); 
+					}
+
+		       		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, title, long_title, category, caption,created_date, modified_date, images) VALUES ("+entry.id+", '"+ title+"', '"+long_title +"', '"+mysql_real_escape_string(entry.category)+"', '"+ entry.caption +"', '"+entry.created_date+"', '"+entry.modified_date+"', '"+entry.images+"')";
 					 
 				    db.execute(sql_query);
 				});

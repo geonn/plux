@@ -26,7 +26,7 @@ if(gType == "7"){
 	var url = "/html/cholestrol.html";
 }
 if(gType == "10"){
-	var url = "/html/steps.html";
+	var url = "/html/steps.html"; 
 }
 
 var webview = $.UI.create("WebView", {

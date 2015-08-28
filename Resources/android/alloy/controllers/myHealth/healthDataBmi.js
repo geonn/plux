@@ -362,6 +362,7 @@ function Controller() {
         top: "5",
         bottom: "5",
         right: "5",
+        borderColor: "#ffffff",
         textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
@@ -413,6 +414,7 @@ function Controller() {
         top: "5",
         bottom: "5",
         right: "5",
+        borderColor: "#ffffff",
         textAlign: "right",
         value: "",
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
@@ -461,12 +463,6 @@ function Controller() {
     $.field1.addEventListener("change", function(e) {
         var field1 = $.field1.value;
         "" != e.value && "" != field1 ? hd.enableSaveButton() : hd.disableSaveButton();
-    });
-    $.tvrField1.addEventListener("click", function() {
-        $.field2.focus();
-    });
-    $.tvrField2.addEventListener("click", function() {
-        $.field1.focus();
     });
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthBmiWin);
