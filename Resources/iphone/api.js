@@ -481,6 +481,7 @@ exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
+            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");
@@ -491,10 +492,12 @@ exports.loadNewsFeed = function() {
             newsFe.forEach(function(nf) {
                 var elements = nf.element;
                 elements.forEach(function(entry) {
+                    var content = entry.content;
+                    "" != content && null != content && (content = content.replace(/["']/g, "&quot;"));
                     var eleModel = Alloy.createModel("news_element", {
                         id: entry.id,
                         news_id: nf.id,
-                        content: entry.content,
+                        content: content,
                         type: entry.type,
                         images: entry.media,
                         position: entry.position
@@ -559,6 +562,7 @@ exports.loadClinicList = function() {
 exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);

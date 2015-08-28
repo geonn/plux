@@ -32,8 +32,7 @@ setTimeout(function(){
 
 function loadClinic(e){
 	var details = e.details; 
-	console.log("load clinic");
-	console.log(details);
+	
 	if(details){ 
 		details.forEach(function(d) {
 			aspClinicArr.push(d.id);
@@ -83,7 +82,8 @@ function listing(){
 		}else{
 			
 	   		arr.forEach(function(entry) {
-	   			
+	   			console.log(entry.id);
+	   			console.log(aspClinicArr);
 	   			var isValid = aspClinicArr.indexOf(entry.id);  
 	   			
 	   			if(isValid != "-1" || corp == ""){	  

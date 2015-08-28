@@ -10,8 +10,6 @@ function __processArg(obj, key) {
 function Controller() {
     function loadClinic(e) {
         var details = e.details;
-        console.log("load clinic");
-        console.log(details);
         details && details.forEach(function(d) {
             aspClinicArr.push(d.id);
         });
@@ -42,6 +40,8 @@ function Controller() {
             $.clinicListSv.add(noRecord);
         } else {
             arr.forEach(function(entry) {
+                console.log(entry.id);
+                console.log(aspClinicArr);
                 var isValid = aspClinicArr.indexOf(entry.id);
                 if ("-1" != isValid || "" == corp) {
                     var row = Titanium.UI.createTableViewRow({
@@ -112,9 +112,7 @@ function Controller() {
             });
             TheTable.setData(data);
             $.clinicListSv.add(TheTable);
-            setTimeout(function() {
-                common.hideLoading();
-            }, 5e3);
+            common.hideLoading();
         }
         TheTable.addEventListener("click", function(e) {
             nav.navigateWithArgs("clinic/clinicDetails", {
@@ -210,15 +208,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId204 = Ti.UI.createLabel({
+    $.__views.__alloyId205 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId204"
+        id: "__alloyId205"
     });
-    $.__views.loadingBar.add($.__views.__alloyId204);
+    $.__views.loadingBar.add($.__views.__alloyId205);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
