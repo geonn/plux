@@ -48,10 +48,10 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.dashboard && $.addTopLevelView($.__views.dashboard);
-    $.__views.__alloyId279 = Ti.UI.createView({
-        id: "__alloyId279"
+    $.__views.__alloyId296 = Ti.UI.createView({
+        id: "__alloyId296"
     });
-    $.__views.dashboard.add($.__views.__alloyId279);
+    $.__views.dashboard.add($.__views.__alloyId296);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -60,7 +60,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId279.add($.__views.loadingBar);
+    $.__views.__alloyId296.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -68,15 +68,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId280 = Ti.UI.createLabel({
+    $.__views.__alloyId297 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId280"
+        id: "__alloyId297"
     });
-    $.__views.loadingBar.add($.__views.__alloyId280);
+    $.__views.loadingBar.add($.__views.__alloyId297);
     $.__views.main = Ti.UI.createView({
         id: "main",
         height: Ti.UI.SIZE,
@@ -84,24 +84,24 @@ function Controller() {
         backgroundColor: "#ffffff",
         top: "0"
     });
-    $.__views.__alloyId279.add($.__views.main);
-    var __alloyId281 = [];
-    var __alloyId284 = {
+    $.__views.__alloyId296.add($.__views.main);
+    var __alloyId298 = [];
+    var __alloyId301 = {
         font: {
             fontSize: "12dp"
         },
         title: "Month"
     };
-    __alloyId281.push(__alloyId284);
-    var __alloyId285 = {
+    __alloyId298.push(__alloyId301);
+    var __alloyId302 = {
         font: {
             fontSize: "12dp"
         },
         title: "Year"
     };
-    __alloyId281.push(__alloyId285);
+    __alloyId298.push(__alloyId302);
     $.__views.buttonbarData = (require("TabbedBar").createTabbedBar || Ti.UI.iOS.createTabbedBar)({
-        labels: __alloyId281,
+        labels: __alloyId298,
         id: "buttonbarData",
         backgroundColor: "#CE1D1C",
         index: "0",
@@ -118,25 +118,25 @@ function Controller() {
         backgroundColor: "#EBEBEB"
     });
     $.__views.main.add($.__views.bmiView);
-    var __alloyId286 = [];
-    $.__views.__alloyId287 = Ti.UI.createTableViewRow({
+    var __alloyId303 = [];
+    $.__views.__alloyId304 = Ti.UI.createTableViewRow({
         backgroundSelectedColor: "#FFE1E1",
         title: "Add Data Point",
         hasChild: "true",
-        id: "__alloyId287"
+        id: "__alloyId304"
     });
-    __alloyId286.push($.__views.__alloyId287);
-    addData ? $.__views.__alloyId287.addEventListener("click", addData) : __defers["$.__views.__alloyId287!click!addData"] = true;
-    $.__views.__alloyId288 = Ti.UI.createTableViewRow({
+    __alloyId303.push($.__views.__alloyId304);
+    addData ? $.__views.__alloyId304.addEventListener("click", addData) : __defers["$.__views.__alloyId304!click!addData"] = true;
+    $.__views.__alloyId305 = Ti.UI.createTableViewRow({
         backgroundSelectedColor: "#FFE1E1",
         title: "Show All Data",
         hasChild: "true",
-        id: "__alloyId288"
+        id: "__alloyId305"
     });
-    __alloyId286.push($.__views.__alloyId288);
-    editData ? $.__views.__alloyId288.addEventListener("click", editData) : __defers["$.__views.__alloyId288!click!editData"] = true;
+    __alloyId303.push($.__views.__alloyId305);
+    editData ? $.__views.__alloyId305.addEventListener("click", editData) : __defers["$.__views.__alloyId305!click!editData"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
-        data: __alloyId286,
+        data: __alloyId303,
         id: "healthTableData",
         height: Ti.UI.SIZE,
         width: "100%",
@@ -177,8 +177,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.dashboard);
     });
-    __defers["$.__views.__alloyId287!click!addData"] && $.__views.__alloyId287.addEventListener("click", addData);
-    __defers["$.__views.__alloyId288!click!editData"] && $.__views.__alloyId288.addEventListener("click", editData);
+    __defers["$.__views.__alloyId304!click!addData"] && $.__views.__alloyId304.addEventListener("click", addData);
+    __defers["$.__views.__alloyId305!click!editData"] && $.__views.__alloyId305.addEventListener("click", editData);
     _.extend($, exports);
 }
 

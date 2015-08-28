@@ -82,6 +82,7 @@ exports.noRecord = function() {
 exports.showLoading = function() {
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";
+    mainView.loadingBar.height = "120";
     if ("android" == Ti.Platform.osname) {
         mainView.loadingBar.height = Ti.UI.SIZE;
         mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;

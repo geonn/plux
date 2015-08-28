@@ -8,9 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function loadClinic(e) {
-        var details = e.details;
+    function loadClinic() {
+        details = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         details && details.forEach(function(d) {
+            console.log(d.id);
             aspClinicArr.push(d.id);
         });
         list = API.getNearbyClinic({
@@ -18,7 +19,6 @@ function Controller() {
             latitude: latitude,
             clinicType: clinicType
         });
-        Ti.App.removeEventListener("aspClinic", loadClinic);
     }
     function listing(e) {
         var TheTable = Titanium.UI.createTableView({
@@ -219,19 +219,18 @@ function Controller() {
     var latitude = args.latitude || "";
     var clinicType = args.clinicType || "";
     var corp = Ti.App.Properties.getString("corpcode");
+    var library = Alloy.createCollection("panelList");
     var list;
-    "" != corp ? API.loadPanelList({
-        clinicType: clinicType
-    }) : list = API.getNearbyClinic({
+    var details;
+    var aspClinicArr = [];
+    "" != corp ? loadClinic() : list = API.getNearbyClinic({
         longitude: longitude,
         latitude: latitude,
         clinicType: clinicType
     });
-    var aspClinicArr = [];
     common.construct($);
     common.showLoading();
     Ti.App.addEventListener("updateNearbyList", listing);
-    Ti.App.addEventListener("aspClinic", loadClinic);
     _.extend($, exports);
 }
 

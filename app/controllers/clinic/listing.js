@@ -1,40 +1,19 @@
 var args = arguments[0] || {}; 
 var library = Alloy.createCollection('panelList'); 
-var corp = Ti.App.Properties.getString('corpcode');
+var corp = Ti.App.Properties.getString('corpcode') || "";
+var memno = Ti.App.Properties.getString('memno');
 var details;
 common.construct($);
-common.showLoading(); 
-if(corp == ""){
-	details = library.getCountClinicType(); 
-	details24 = library.getCount24Hours(); 
-	var det24= { 
-		clinicType: "hours24",
-		total: details24.total 
-	};
-	details.push(det24); 
-	listing("");
-}else{
+common.showLoading();
+
+function doRefresh(){
 	API.loadPanelList({clinicType:""});
 }
 
-Ti.App.addEventListener('aspClinic',listing);
- 
-function listing(e){
-	var TheTable = Titanium.UI.createTableView({
-		width:'100%',
-		separatorColor: '#CE1D1C',
-		height: Ti.UI.SIZE,
-		top:0,
-		scrollable:false
-	});
+function listing(){
 	 
 	var data=[];
-	
-	if(e == ""){
-		var arr = details;
-	}else{
-		var arr = e.details;
-	}
+	var arr = details;
    	  
    	var counter = 0;
    		
@@ -103,11 +82,6 @@ function listing(e){
 					right:20 
 				});		
 				
-				/**
-				row.addEventListener('touchend', function(e) {
-				 //	goAd(e);
-				});
-			 */
 				row.add(leftImage); 
 				row.add(popUpTitle);
 				row.add(totalPanel); 
@@ -115,22 +89,42 @@ function listing(e){
 				data.push(row);
 	   		});
 	   		
-	   		 
-	   		TheTable.setData(data);
-			$.panelListTbl.add(TheTable);
+			$.tblview.setData(data);
 		}
 		
-	TheTable.addEventListener('click', function(e){
-		var nav = require('navigation');
-		//nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
-		nav.navigateWithArgs("clinic/clinicList", {clinicType:e.rowData.id});
-	});
+	
 	common.hideLoading();
-	Ti.App.removeEventListener('aspClinic',listing);
 }
+
+function init(){
+	details = library.getCountClinicType(corp); 
+	details24 = library.getCount24Hours(corp); 
+	var det24= { 
+		clinicType: "hours24",
+		total: details24.total 
+	};
+	details.push(det24);
+	listing();
+}
+init();
+
+$.win.addEventListener('close',function(){
+	Ti.App.removeEventListener('aspClinic',listing);
+	details = null;
+	details24 = null;
+	det24 = null;
+});
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.clinicList); 
+		nav.closeWindow($.win); 
 	}); 
 }
+
+Ti.App.addEventListener('aspClinic',init);
+
+$.tblview.addEventListener('click', function(e){
+	var nav = require('navigation');
+	//nav.navigateWithArgs("clinic/clinicLocator", {clinicType:e.rowData.id});
+	nav.navigateWithArgs("clinic/clinicList", {clinicType:e.rowData.id});
+});

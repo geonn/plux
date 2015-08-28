@@ -5,20 +5,13 @@ var corp = Ti.App.Properties.getString('corpcode');
 var details;
 common.construct($);
 common.showLoading();
-if(corp == ""){
-	details = library.getPanelByClinicType(clinicType);  
-	triggerPosition();
-}else{
-	API.loadPanelList({clinicType:clinicType});
-}
 
-function loadClinic(e){
-	details = e.details; 
-	if(details){
-		triggerPosition(); 
-	}
-	Ti.App.removeEventListener('aspClinic',loadClinic);
+if(clinicType == "hours24"){  
+	details = library.getPanelBy24Hours("", corp); 
+}else{ 
+	details = library.getPanelByClinicType(clinicType, "", corp);     
 }
+triggerPosition();
 
 function triggerPosition(){
 	if (Ti.Geolocation.locationServicesEnabled) {
@@ -38,6 +31,7 @@ function alerts(){
 var longitude;
 var latitude;   
 function init(e){  
+	console.log('init');
 	longitude = e.coords.longitude;
     latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -113,9 +107,7 @@ function setCurLoc(e){
         latitudeDelta:0.01, longitudeDelta:0.01
     };
     mapview.setLocation(region);
-} 
-
-Ti.App.addEventListener('aspClinic',loadClinic);
+}
 
 $.btnList.addEventListener('click', function(){    
 	nav.navigateWithArgs("clinic/clinicNearby", {longitude:longitude, latitude:latitude, clinicType: clinicType });

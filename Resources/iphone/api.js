@@ -28,6 +28,8 @@ var USER = "freejini";
 
 var KEY = "06b53047cf294f7207789ff5293ad2dc";
 
+var checkAppVersionUrl = "http://" + FREEJINI_DOMAIN + "/api/checkAppVersion?user=" + USER + "&key=" + KEY;
+
 var updateUserServiceUrl = "http://" + FREEJINI_DOMAIN + "/api/updateUserService?user=" + USER + "&key=" + KEY;
 
 var getUserServiceUrl = "http://" + FREEJINI_DOMAIN + "/api/getUserService?user=" + USER + "&key=" + KEY;
@@ -136,6 +138,28 @@ exports.getNearbyClinic = function(e) {
             });
         },
         onerror: function() {},
+        timeout: 6e3
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.checkAppVersion = function(callback_download) {
+    var appVersion = Ti.App.Properties.getString("appVersion") || "";
+    appVersion = .9;
+    var url = checkAppVersionUrl + "&appVersion=" + appVersion + "&appPlatform=android";
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            if ("error" == result.status) {
+                console.log(result);
+                callback_download && callback_download(result);
+            }
+        },
+        onerror: function() {
+            console.log("error check version");
+        },
         timeout: 6e3
     });
     client.open("GET", url);
@@ -309,6 +333,7 @@ exports.doLogin = function(username, password, mainView, target) {
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 Ti.App.Properties.setString("asp_email", username);
                 Ti.App.Properties.setString("asp_password", password);
+                console.log(res.corpcode + " why missing");
                 updateUserService(u_id, 1, username, password);
                 usersModel.addUserData(result);
                 common.hideLoading();
@@ -318,6 +343,9 @@ exports.doLogin = function(username, password, mainView, target) {
                     Ti.App.fireEvent("updateHeader");
                     "" != target && "home" != target && nav.navigationWindow(target);
                 } else Ti.App.fireEvent("loadPage");
+                API.loadPanelList({
+                    clinicType: ""
+                });
             }
         },
         onerror: function() {
@@ -479,13 +507,15 @@ exports.loadLeaflet = function() {
 
 exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var res = JSON.parse(this.responseText);
+            var res = JSON.parse(String(this.responseText));
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");
             library.resetNews();
             newElementModel.resetNewsElement();
+            console.log(res.data);
             library.addNews(res.data);
             var newsFe = res.data;
             newsFe.forEach(function(nf) {
@@ -559,15 +589,16 @@ exports.loadClinicList = function() {
 exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
+            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
+            console.log(res);
             var library = Alloy.createCollection("panelList");
-            var codeStr = "";
-            res.forEach(function(entry) {
-                codeStr += '"' + entry.cliniccode + '",';
-            });
-            codeStr = codeStr.substring(0, codeStr.length - 1);
+            var codeStr = res[0].cliniccode;
+            console.log(codeStr);
+            library.updatePanelList(codeStr);
             if ("" == ex.clinicType) {
                 details = library.getPanelListCount(codeStr);
                 details24 = library.getPanelListBy24Hours(codeStr);

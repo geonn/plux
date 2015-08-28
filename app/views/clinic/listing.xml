@@ -1,5 +1,8 @@
 <Alloy>
-	<Window title="Clinic Type List" id="clinicList" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+	<Window title="Clinic Type List" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+		<RightNavButton>
+			<Label right='10' onClick="doRefresh" class="wsize hsize">Refresh</Label>
+		</RightNavButton>
 		<View id="panelListTbl" layout="vertical">
 	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
@@ -8,7 +11,11 @@
 		     	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Type List</Label>
 		     	</View>
+		     	<View right="0" width="20%" >
+		         	<Label right='10' onClick="doRefresh" class="wsize hsize">Refresh</Label>
+		   		</View>
 		 	</View>
+		 	<TableView id="tblview" width="Ti.UI.FILL" height="Ti.UI.FILL" top="0"></TableView>
 	 	</View>
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		    <ActivityIndicator  id="activityIndicator" />

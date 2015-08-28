@@ -8,7 +8,9 @@ exports.definition = {
             message: "TEXT",
             treatment: "TEXT",
             created: "TEXT",
-            updated: "TEXT"
+            updated: "TEXT",
+            clinic: "TEXT",
+            treatment: "TEXT"
         },
         adapter: {
             type: "sql",

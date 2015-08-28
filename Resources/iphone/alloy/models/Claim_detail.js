@@ -31,7 +31,9 @@ exports.definition = {
             others_amt: "INTEGER",
             bps: "INTEGER",
             bpd: "INTEGER",
-            pulse: "INTEGER"
+            pulse: "INTEGER",
+            status: "TEXT",
+            claimType: "TEXT"
         },
         adapter: {
             type: "sql",

@@ -153,8 +153,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthEditWindow && $.addTopLevelView($.__views.healthEditWindow);
-    $.__views.__alloyId380 = Ti.UI.createView({
-        id: "__alloyId380"
+    $.__views.__alloyId384 = Ti.UI.createView({
+        id: "__alloyId384"
     });
     $.__views.editButton = Ti.UI.createButton({
         touchEnabled: true,
@@ -163,7 +163,7 @@ function Controller() {
         right: "0",
         visible: "true"
     });
-    $.__views.__alloyId380.add($.__views.editButton);
+    $.__views.__alloyId384.add($.__views.editButton);
     doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.doneButton = Ti.UI.createButton({
         touchEnabled: true,
@@ -172,13 +172,13 @@ function Controller() {
         right: "0",
         visible: "false"
     });
-    $.__views.__alloyId380.add($.__views.doneButton);
+    $.__views.__alloyId384.add($.__views.doneButton);
     doDone ? $.__views.doneButton.addEventListener("touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
-    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId380;
-    $.__views.__alloyId381 = Ti.UI.createView({
-        id: "__alloyId381"
+    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId384;
+    $.__views.__alloyId385 = Ti.UI.createView({
+        id: "__alloyId385"
     });
-    $.__views.healthEditWindow.add($.__views.__alloyId381);
+    $.__views.healthEditWindow.add($.__views.__alloyId385);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -187,7 +187,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId381.add($.__views.loadingBar);
+    $.__views.__alloyId385.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -195,15 +195,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId382 = Ti.UI.createLabel({
+    $.__views.__alloyId386 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId382"
+        id: "__alloyId386"
     });
-    $.__views.loadingBar.add($.__views.__alloyId382);
+    $.__views.loadingBar.add($.__views.__alloyId386);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         height: Ti.UI.FILL,
@@ -214,21 +214,21 @@ function Controller() {
         backgroundColor: "#ffffff",
         top: "0"
     });
-    $.__views.__alloyId381.add($.__views.main);
-    $.__views.__alloyId383 = Ti.UI.createView({
+    $.__views.__alloyId385.add($.__views.main);
+    $.__views.__alloyId387 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId383"
+        id: "__alloyId387"
     });
-    $.__views.main.add($.__views.__alloyId383);
-    $.__views.__alloyId384 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId387);
+    $.__views.__alloyId388 = Ti.UI.createView({
         left: "0",
         width: "20%",
-        id: "__alloyId384"
+        id: "__alloyId388"
     });
-    $.__views.__alloyId383.add($.__views.__alloyId384);
+    $.__views.__alloyId387.add($.__views.__alloyId388);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -236,13 +236,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId384.add($.__views.btnBack);
+    $.__views.__alloyId388.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "60%"
     });
-    $.__views.__alloyId383.add($.__views.pageTitle);
-    $.__views.__alloyId385 = Ti.UI.createLabel({
+    $.__views.__alloyId387.add($.__views.pageTitle);
+    $.__views.__alloyId389 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -250,14 +250,14 @@ function Controller() {
         },
         text: "All Recorded Data",
         textAlign: "center",
-        id: "__alloyId385"
+        id: "__alloyId389"
     });
-    $.__views.pageTitle.add($.__views.__alloyId385);
-    $.__views.__alloyId386 = Ti.UI.createView({
+    $.__views.pageTitle.add($.__views.__alloyId389);
+    $.__views.__alloyId390 = Ti.UI.createView({
         width: "20%",
-        id: "__alloyId386"
+        id: "__alloyId390"
     });
-    $.__views.__alloyId383.add($.__views.__alloyId386);
+    $.__views.__alloyId387.add($.__views.__alloyId390);
     $.__views.editButton = Ti.UI.createButton({
         font: {
             fontSize: "10dp"
@@ -269,7 +269,7 @@ function Controller() {
         right: "0",
         visible: "true"
     });
-    $.__views.__alloyId386.add($.__views.editButton);
+    $.__views.__alloyId390.add($.__views.editButton);
     doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.doneButton = Ti.UI.createButton({
         font: {
@@ -282,7 +282,7 @@ function Controller() {
         right: "0",
         visible: "false"
     });
-    $.__views.__alloyId386.add($.__views.doneButton);
+    $.__views.__alloyId390.add($.__views.doneButton);
     doDone ? $.__views.doneButton.addEventListener("touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         id: "healthTableData",

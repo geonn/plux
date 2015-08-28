@@ -129,6 +129,10 @@ var PUSH = require("push");
 
 var nav = require("navigation");
 
+var DBVersionControl = require("DBVersionControl");
+
+DBVersionControl.checkAndUpdate();
+
 var TouchId;
 
 Alloy.Globals.Map = require("ti.map");

@@ -15,6 +15,10 @@ var common = require('common');
 var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
+
+var DBVersionControl = require('DBVersionControl');
+DBVersionControl.checkAndUpdate();
+
 //var CoreMotion = require('ti.coremotion'); 
 if (Ti.Platform.osname == 'iphone') {
 	var TouchId = require("ti.touchid");

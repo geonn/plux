@@ -33,102 +33,102 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hra && $.addTopLevelView($.__views.hra);
-    $.__views.__alloyId63 = Ti.UI.createView({
+    $.__views.__alloyId64 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId63"
+        id: "__alloyId64"
     });
-    $.__views.hra.add($.__views.__alloyId63);
-    var __alloyId64 = [];
-    $.__views.__alloyId65 = Ti.UI.createTableViewRow({
+    $.__views.hra.add($.__views.__alloyId64);
+    var __alloyId65 = [];
+    $.__views.__alloyId66 = Ti.UI.createTableViewRow({
         mod: "bmi",
         height: "40",
         top: "5",
         bottom: "5",
-        id: "__alloyId65"
+        id: "__alloyId66"
     });
-    __alloyId64.push($.__views.__alloyId65);
-    $.__views.__alloyId66 = Ti.UI.createLabel({
+    __alloyId65.push($.__views.__alloyId66);
+    $.__views.__alloyId67 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "BMI Calculator",
         textAlign: "left",
         left: "15",
-        id: "__alloyId66"
+        id: "__alloyId67"
     });
-    $.__views.__alloyId65.add($.__views.__alloyId66);
-    $.__views.__alloyId67 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId66.add($.__views.__alloyId67);
+    $.__views.__alloyId68 = Ti.UI.createTableViewRow({
         mod: "whratio",
         height: "40",
         top: "5",
         bottom: "5",
-        id: "__alloyId67"
+        id: "__alloyId68"
     });
-    __alloyId64.push($.__views.__alloyId67);
-    $.__views.__alloyId68 = Ti.UI.createLabel({
+    __alloyId65.push($.__views.__alloyId68);
+    $.__views.__alloyId69 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Waist-To-Hips Ratio Calculator",
         textAlign: "left",
         left: "15",
-        id: "__alloyId68"
+        id: "__alloyId69"
     });
-    $.__views.__alloyId67.add($.__views.__alloyId68);
-    $.__views.__alloyId69 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId68.add($.__views.__alloyId69);
+    $.__views.__alloyId70 = Ti.UI.createTableViewRow({
         mod: "nutritional_profile",
         height: "40",
         top: "5",
         bottom: "5",
-        id: "__alloyId69"
+        id: "__alloyId70"
     });
-    __alloyId64.push($.__views.__alloyId69);
-    $.__views.__alloyId70 = Ti.UI.createLabel({
+    __alloyId65.push($.__views.__alloyId70);
+    $.__views.__alloyId71 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Nutritional Profile",
         textAlign: "left",
         left: "15",
-        id: "__alloyId70"
+        id: "__alloyId71"
     });
-    $.__views.__alloyId69.add($.__views.__alloyId70);
-    $.__views.__alloyId71 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId70.add($.__views.__alloyId71);
+    $.__views.__alloyId72 = Ti.UI.createTableViewRow({
         mod: "smokecost",
         height: "40",
         top: "5",
         bottom: "5",
-        id: "__alloyId71"
+        id: "__alloyId72"
     });
-    __alloyId64.push($.__views.__alloyId71);
-    $.__views.__alloyId72 = Ti.UI.createLabel({
+    __alloyId65.push($.__views.__alloyId72);
+    $.__views.__alloyId73 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Smoking Cost Calculator",
         textAlign: "left",
         left: "15",
-        id: "__alloyId72"
+        id: "__alloyId73"
     });
-    $.__views.__alloyId71.add($.__views.__alloyId72);
-    $.__views.__alloyId73 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId72.add($.__views.__alloyId73);
+    $.__views.__alloyId74 = Ti.UI.createTableViewRow({
         mod: "diabetes",
         height: "40",
         top: "5",
         bottom: "5",
-        id: "__alloyId73"
+        id: "__alloyId74"
     });
-    __alloyId64.push($.__views.__alloyId73);
-    $.__views.__alloyId74 = Ti.UI.createLabel({
+    __alloyId65.push($.__views.__alloyId74);
+    $.__views.__alloyId75 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         text: "Diabetes Risk Calculator",
         textAlign: "left",
         left: "15",
-        id: "__alloyId74"
+        id: "__alloyId75"
     });
-    $.__views.__alloyId73.add($.__views.__alloyId74);
+    $.__views.__alloyId74.add($.__views.__alloyId75);
     $.__views.menu = Ti.UI.createTableView({
-        data: __alloyId64,
+        data: __alloyId65,
         id: "menu"
     });
-    $.__views.__alloyId63.add($.__views.menu);
+    $.__views.__alloyId64.add($.__views.menu);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

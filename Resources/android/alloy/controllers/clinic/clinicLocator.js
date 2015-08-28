@@ -8,11 +8,6 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function loadClinic(e) {
-        details = e.details;
-        details && triggerPosition();
-        Ti.App.removeEventListener("aspClinic", loadClinic);
-    }
     function triggerPosition() {
         if (Ti.Geolocation.locationServicesEnabled) {
             Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
@@ -25,6 +20,7 @@ function Controller() {
         });
     }
     function init(e) {
+        console.log("init");
         longitude = e.coords.longitude;
         latitude = e.coords.latitude;
         e.coords.altitude;
@@ -212,15 +208,10 @@ function Controller() {
     var details;
     common.construct($);
     common.showLoading();
-    if ("" == corp) {
-        details = library.getPanelByClinicType(clinicType);
-        triggerPosition();
-    } else API.loadPanelList({
-        clinicType: clinicType
-    });
+    details = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
+    triggerPosition();
     var longitude;
     var latitude;
-    Ti.App.addEventListener("aspClinic", loadClinic);
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicNearby", {
             longitude: longitude,

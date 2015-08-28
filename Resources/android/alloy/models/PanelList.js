@@ -4,6 +4,7 @@ exports.definition = {
     config: {
         columns: {
             id: "TEXT",
+            clinicCode: "TEXT",
             clinicName: "TEXT",
             add1: "TEXT",
             add2: "TEXT",
@@ -12,7 +13,10 @@ exports.definition = {
             state: "TEXT",
             tel: "TEXT",
             latitude: "TEXT",
-            longitude: "TEXT"
+            longitude: "TEXT",
+            panel: "INTEGER",
+            openHour: "TEXT",
+            clinicType: "TEXT"
         },
         adapter: {
             type: "sql",
@@ -37,6 +41,20 @@ exports.definition = {
                 fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
                 db.close();
             },
+            updatePanelList: function(clinicCode) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=0";
+                console.log("a");
+                db.execute(sql_query);
+                console.log(db.rowsAffected);
+                console.log("b");
+                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN (" + clinicCode + ")";
+                db.execute(sql_query);
+                console.log(db.rowsAffected);
+                db.close();
+                collection.trigger("sync");
+            },
             getPanelList: function() {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
@@ -55,6 +73,7 @@ exports.definition = {
                         city: res.fieldByName("city"),
                         postcode: res.fieldByName("postcode"),
                         state: res.fieldByName("state"),
+                        panel: res.fieldByName("panel"),
                         tel: res.fieldByName("tel"),
                         openHour: res.fieldByName("openHour"),
                         latitude: res.fieldByName("latitude"),
@@ -66,6 +85,7 @@ exports.definition = {
                 res.close();
                 db.close();
                 collection.trigger("sync");
+                console.log(count);
                 return listArr;
             },
             getPanelByState: function(state) {
@@ -138,9 +158,10 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getCountClinicType: function() {
+            getCountClinicType: function(corp) {
                 var collection = this;
-                var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " GROUP BY clinicType ";
+                if ("" != corp) var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " where panel=1 GROUP BY clinicType "; else var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " GROUP BY clinicType ";
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -158,9 +179,9 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getCount24Hours: function() {
+            getCount24Hours: function(corp) {
                 var collection = this;
-                var sql = "SELECT count(*) as total FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
+                if ("" != corp) var sql = "SELECT count(*) as total FROM " + collection.config.adapter.collection_name + " WHERE panel =1 AND openHour LIKE '%24 HOURS%' "; else var sql = "SELECT count(*) as total FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr;
@@ -175,9 +196,10 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getPanelByClinicType: function(ClinicType, searchKey) {
+            getPanelByClinicType: function(ClinicType, searchKey, corp) {
                 var collection = this;
-                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND clinicName LIKE '%" + searchKey + "%' "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' ";
+                var panel_sql = "" != corp ? " AND panel=1" : "";
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND clinicName LIKE '%" + searchKey + "%' " + panel_sql; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' " + panel_sql;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -206,9 +228,10 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            getPanelBy24Hours: function(searchKey) {
+            getPanelBy24Hours: function(searchKey, corp) {
                 var collection = this;
-                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND clinicName LIKE '%" + searchKey + "%' "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' ";
+                var corp_sql = "" != corp ? "AND panel = 1" : "";
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND clinicName LIKE '%" + searchKey + "%' " + corp_sql; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' " + corp_sql;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -333,18 +356,13 @@ exports.definition = {
             addPanel: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var total = arr.length;
-                if (total > 50) {
-                    db.execute("BEGIN");
-                    arr.forEach(function(entry) {
-                        sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
-                        db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
-                    });
-                    db.execute("COMMIT");
-                } else total > 0 && arr.forEach(function(entry) {
-                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                arr.length;
+                db.execute("BEGIN");
+                arr.forEach(function(entry) {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "( id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
                     db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude);
                 });
+                db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             },

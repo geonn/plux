@@ -1,25 +1,4 @@
 var args = {};
-
-/***New DB field add here***/
-var users = Alloy.createCollection('users'); 
-users.addColumn("isver", "TEXT");
-users.addColumn("verno", "TEXT");
-
-var panelList = Alloy.createCollection('panelList'); 
-panelList.addColumn("clinicCode", "TEXT");
-panelList.addColumn("openHour", "TEXT");
-panelList.addColumn("clinicType", "TEXT");
-
-var claim_detailList = Alloy.createCollection('claim_detail'); 
-claim_detailList.addColumn("status", "TEXT");
-claim_detailList.addColumn("claimType", "TEXT");
-
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');
-medicalAttachmentModel.addColumn("category", "TEXT");
-
-var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
-medicalRecordsModel.addColumn("clinic", "TEXT");
-medicalRecordsModel.addColumn("treatment", "TEXT");
 var u_id = Ti.App.Properties.getString('u_id') || "";
 
 API.loadCategoryList(); 
@@ -33,6 +12,10 @@ if(u_id == ""){
 	nav.navigateWithArgs("login", {});  
 } 
 
+if (Ti.Platform.osname == 'android') {
+	var AppVersionControl = require('AppVersionControl');
+	AppVersionControl.checkAndUpdate();
+}
 
 /*
 $.root.open({fullscreen:true});

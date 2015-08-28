@@ -3,32 +3,38 @@ var longitude = args.longitude || "";
 var latitude = args.latitude || "";
 var clinicType = args.clinicType || "";
 var corp = Ti.App.Properties.getString('corpcode');
+var library = Alloy.createCollection('panelList');
 var list; 
- 
+var details;
+var aspClinicArr = [];
+
 if(corp != ""){ 
-	API.loadPanelList({clinicType:clinicType});
+	//API.loadPanelList({clinicType:clinicType});
+	loadClinic();
 }else{
 	list = API.getNearbyClinic({longitude:longitude, latitude:latitude, clinicType: clinicType }); 
 }
 
-var aspClinicArr = [];
-function loadClinic(e){
-	var details = e.details; 
-	if(details){ 
+function loadClinic(){
+	if(clinicType == "hours24"){  
+		details = library.getPanelBy24Hours("", corp); 
+	}else{ 
+		details = library.getPanelByClinicType(clinicType, "", corp);     
+	}
+	if(details){
 		details.forEach(function(d) {
+			console.log(d.id);
 			aspClinicArr.push(d.id);
 		});
 	}
 	list = API.getNearbyClinic({longitude:longitude, latitude:latitude, clinicType: clinicType });
-	
-	Ti.App.removeEventListener('aspClinic',loadClinic);
 }
 
 //listing();
 common.construct($);
 common.showLoading();
 Ti.App.addEventListener('updateNearbyList' , listing);
-Ti.App.addEventListener('aspClinic',loadClinic);
+
 function listing(e){
 	 
 	var TheTable = Titanium.UI.createTableView({

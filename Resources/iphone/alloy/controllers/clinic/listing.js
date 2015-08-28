@@ -8,16 +8,14 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function listing(e) {
-        var TheTable = Titanium.UI.createTableView({
-            width: "100%",
-            separatorColor: "#CE1D1C",
-            height: Ti.UI.SIZE,
-            top: 0,
-            scrollable: false
+    function doRefresh() {
+        API.loadPanelList({
+            clinicType: ""
         });
+    }
+    function listing() {
         var data = [];
-        if ("" == e) var arr = details; else var arr = e.details;
+        var arr = details;
         if (arr.length < 1) {
             var noRecord = Ti.UI.createLabel({
                 text: "No record found",
@@ -86,17 +84,19 @@ function Controller() {
                 row.add(rightForwardBtn);
                 data.push(row);
             });
-            TheTable.setData(data);
-            $.panelListTbl.add(TheTable);
+            $.tblview.setData(data);
         }
-        TheTable.addEventListener("click", function(e) {
-            var nav = require("navigation");
-            nav.navigateWithArgs("clinic/clinicList", {
-                clinicType: e.rowData.id
-            });
-        });
         common.hideLoading();
-        Ti.App.removeEventListener("aspClinic", listing);
+    }
+    function init() {
+        details = library.getCountClinicType(corp);
+        details24 = library.getCount24Hours(corp);
+        var det24 = {
+            clinicType: "hours24",
+            total: details24.total
+        };
+        details.push(det24);
+        listing();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/listing";
@@ -114,20 +114,37 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.clinicList = Ti.UI.createWindow({
+    var __defers = {};
+    $.__views.win = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "Clinic Type List",
-        id: "clinicList",
+        id: "win",
         backButtonTitle: "",
         navTintColor: "#CE1D1C"
     });
-    $.__views.clinicList && $.addTopLevelView($.__views.clinicList);
+    $.__views.win && $.addTopLevelView($.__views.win);
+    $.__views.__alloyId211 = Ti.UI.createLabel({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        text: "Refresh",
+        right: "10",
+        id: "__alloyId211"
+    });
+    doRefresh ? $.__views.__alloyId211.addEventListener("click", doRefresh) : __defers["$.__views.__alloyId211!click!doRefresh"] = true;
+    $.__views.win.rightNavButton = $.__views.__alloyId211;
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
-    $.__views.clinicList.add($.__views.panelListTbl);
+    $.__views.win.add($.__views.panelListTbl);
+    $.__views.tblview = Ti.UI.createTableView({
+        id: "tblview",
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        top: "0"
+    });
+    $.__views.panelListTbl.add($.__views.tblview);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -136,7 +153,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.clinicList.add($.__views.loadingBar);
+    $.__views.win.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -144,39 +161,42 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId209 = Ti.UI.createLabel({
+    $.__views.__alloyId212 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId209"
+        id: "__alloyId212"
     });
-    $.__views.loadingBar.add($.__views.__alloyId209);
+    $.__views.loadingBar.add($.__views.__alloyId212);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var library = Alloy.createCollection("panelList");
-    var corp = Ti.App.Properties.getString("corpcode");
+    var corp = Ti.App.Properties.getString("corpcode") || "";
+    Ti.App.Properties.getString("memno");
     var details;
     common.construct($);
     common.showLoading();
-    if ("" == corp) {
-        details = library.getCountClinicType();
-        details24 = library.getCount24Hours();
-        var det24 = {
-            clinicType: "hours24",
-            total: details24.total
-        };
-        details.push(det24);
-        listing("");
-    } else API.loadPanelList({
-        clinicType: ""
+    init();
+    $.win.addEventListener("close", function() {
+        Ti.App.removeEventListener("aspClinic", listing);
+        details = null;
+        details24 = null;
+        det24 = null;
     });
-    Ti.App.addEventListener("aspClinic", listing);
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.clinicList);
+        nav.closeWindow($.win);
     });
+    Ti.App.addEventListener("aspClinic", init);
+    $.tblview.addEventListener("click", function(e) {
+        var nav = require("navigation");
+        nav.navigateWithArgs("clinic/clinicList", {
+            clinicType: e.rowData.id
+        });
+    });
+    __defers["$.__views.__alloyId211!click!doRefresh"] && $.__views.__alloyId211.addEventListener("click", doRefresh);
     _.extend($, exports);
 }
 

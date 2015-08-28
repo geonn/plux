@@ -35,13 +35,13 @@ function Controller() {
         id: "main"
     });
     $.__views.root.add($.__views.main);
-    $.__views.__alloyId77 = Ti.UI.createImageView({
+    $.__views.__alloyId78 = Ti.UI.createImageView({
         width: "100%",
         height: "100%",
         image: "/dummy/dummy-introduce.jpg",
-        id: "__alloyId77"
+        id: "__alloyId78"
     });
-    $.__views.main.add($.__views.__alloyId77);
+    $.__views.main.add($.__views.__alloyId78);
     $.__views.link_visitor = Ti.UI.createImageView({
         id: "link_visitor",
         width: "130",
@@ -60,21 +60,6 @@ function Controller() {
     $.__views.main.add($.__views.link_member);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var users = Alloy.createCollection("users");
-    users.addColumn("isver", "TEXT");
-    users.addColumn("verno", "TEXT");
-    var panelList = Alloy.createCollection("panelList");
-    panelList.addColumn("clinicCode", "TEXT");
-    panelList.addColumn("openHour", "TEXT");
-    panelList.addColumn("clinicType", "TEXT");
-    var claim_detailList = Alloy.createCollection("claim_detail");
-    claim_detailList.addColumn("status", "TEXT");
-    claim_detailList.addColumn("claimType", "TEXT");
-    var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
-    medicalAttachmentModel.addColumn("category", "TEXT");
-    var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    medicalRecordsModel.addColumn("clinic", "TEXT");
-    medicalRecordsModel.addColumn("treatment", "TEXT");
     var u_id = Ti.App.Properties.getString("u_id") || "";
     API.loadCategoryList();
     API.loadNewsFeed();
@@ -83,6 +68,10 @@ function Controller() {
     var win = Alloy.createController("home").getView();
     win.open();
     "" == u_id && nav.navigateWithArgs("login", {});
+    if ("android" == Ti.Platform.osname) {
+        var AppVersionControl = require("AppVersionControl");
+        AppVersionControl.checkAndUpdate();
+    }
     _.extend($, exports);
 }
 

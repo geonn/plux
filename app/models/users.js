@@ -11,7 +11,9 @@ exports.definition = {
 		    "corpname" : "TEXT",
 		    "costcenter" : "TEXT",
 		    "dept" : "TEXT",
-		    "allergy" : "TEXT" 
+		    "allergy" : "TEXT",
+		   	"isver" : "TEXT",
+		    "verno" : "TEXT"
 		},
 		adapter: {
 			type: "sql",

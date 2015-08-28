@@ -129,6 +129,10 @@ var PUSH = require("push");
 
 var nav = require("navigation");
 
+var DBVersionControl = require("DBVersionControl");
+
+DBVersionControl.checkAndUpdate();
+
 if ("iphone" == Ti.Platform.osname) var TouchId = require("ti.touchid");
 
 Alloy.Globals.Map = require("ti.map");
