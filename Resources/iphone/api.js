@@ -592,13 +592,16 @@ exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
     console.log(url);
+    url = "http://plux.freejini.com.my/api/getPanellistSample?user=freejini&key=06b53047cf294f7207789ff5293ad2dc";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
-            console.log(res);
             var library = Alloy.createCollection("panelList");
-            var codeStr = res[0].cliniccode;
+            var codeStr = "";
+            res.cliniccode.forEach(function(entry) {
+                codeStr += '"' + entry + '",';
+            });
+            codeStr = codeStr.substr(0, codeStr.length - 1);
             console.log(codeStr);
             library.updatePanelList(codeStr);
             if ("" == ex.clinicType) {
