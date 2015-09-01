@@ -31,7 +31,7 @@ function Controller() {
                 color: "transparent"
             });
             row.add(noRecord);
-            $.clinicListSv.add(row);
+            $.clinicListTv.setData(row);
         } else {
             arr.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({
