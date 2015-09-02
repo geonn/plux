@@ -9,10 +9,11 @@ function __processArg(obj, key) {
 
 function Controller() {
     function listing() {
-        $.clinicListTv.removeAllChildren();
         var data = [];
+        $.clinicListTv.setData(data);
         var arr = list;
         if (arr.length < 1) {
+            common.hideLoading();
             var noRecord = Ti.UI.createLabel({
                 text: "No clinic found nearby",
                 color: "#CE1D1C",
@@ -31,7 +32,8 @@ function Controller() {
                 color: "transparent"
             });
             row.add(noRecord);
-            $.clinicListTv.setData(row);
+            data.push(row);
+            $.clinicListTv.setData(data);
         } else {
             arr.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({
@@ -239,6 +241,7 @@ function Controller() {
         });
         $.searchItem.addEventListener("cancel", function() {
             $.searchItem.blur();
+            loadData(corp);
         });
         $.searchItem.addEventListener("blur", function() {});
     }

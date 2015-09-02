@@ -24,6 +24,111 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.news = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "",
+        backButtonTitle: "",
+        id: "news",
+        navTintColor: "#CE1D1C"
+    });
+    $.__views.news && $.addTopLevelView($.__views.news);
+    $.__views.main = Ti.UI.createView({
+        backgroundColor: "#ffffff",
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        id: "main",
+        layout: "vertical"
+    });
+    $.__views.news.add($.__views.main);
+    $.__views.__alloyId81 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: Ti.UI.FILL,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId81"
+    });
+    $.__views.main.add($.__views.__alloyId81);
+    $.__views.__alloyId82 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId82"
+    });
+    $.__views.__alloyId81.add($.__views.__alloyId82);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId82.add($.__views.btnBack);
+    $.__views.__alloyId83 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId83"
+    });
+    $.__views.__alloyId81.add($.__views.__alloyId83);
+    $.__views.pageTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Health Article",
+        id: "pageTitle",
+        textAlign: "center"
+    });
+    $.__views.__alloyId83.add($.__views.pageTitle);
+    var __alloyId85 = [];
+    $.__views.myContentView = Ti.UI.createScrollView({
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        layout: "vertical",
+        id: "myContentView",
+        contentHeight: "auto",
+        contentWidth: Ti.UI.FILL
+    });
+    __alloyId85.push($.__views.myContentView);
+    $.__views.newsTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        wordWrap: true,
+        color: "#1C1C1C",
+        font: {
+            fontSize: "20dp"
+        },
+        left: "10dp",
+        right: "10dp",
+        bottom: "10dp",
+        top: "10dp",
+        id: "newsTitle"
+    });
+    $.__views.myContentView.add($.__views.newsTitle);
+    $.__views.newsImage = Ti.UI.createImageView({
+        width: Titanium.UI.FILL,
+        height: "auto",
+        id: "newsImage",
+        image: ""
+    });
+    $.__views.myContentView.add($.__views.newsImage);
+    $.__views.newsDate = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        font: {
+            fontSize: "10dp"
+        },
+        color: "#9E9E9E",
+        left: "8dp",
+        top: "8dp",
+        text: "",
+        id: "newsDate"
+    });
+    $.__views.myContentView.add($.__views.newsDate);
+    $.__views.__alloyId84 = Ti.UI.createScrollableView({
+        views: __alloyId85,
+        showPagingControl: "false",
+        id: "__alloyId84"
+    });
+    $.__views.main.add($.__views.__alloyId84);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -33,11 +138,10 @@ function Controller() {
     var categoryModel = Alloy.createCollection("category");
     var news = newsFeedModel.getRecordsById(news_id);
     var details = newsElementModel.getListByNews(news_id);
-    var pageCate = categoryModel.getCategoryById(news.category);
-    $.news.title = pageCate.category;
-    $.newsTitle.setText(news.title);
-    $.newsImage.setImage(news.images);
-    $.newsDate.setText(timeFormat(news.updated));
+    categoryModel.getCategoryById(news.category);
+    $.newsTitle.text = news.title;
+    $.newsImage.image = news.images;
+    $.newsDate.text = timeFormat(news.updated);
     details.forEach(function(entry) {
         if ("1" == entry.type) {
             var dynaLabel = $.UI.create("Label", {
@@ -68,6 +172,9 @@ function Controller() {
             });
             $.myContentView.add(dynaLabel);
         }
+    });
+    $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.news);
     });
     _.extend($, exports);
 }

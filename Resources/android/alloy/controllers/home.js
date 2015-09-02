@@ -297,6 +297,15 @@ function Controller() {
     });
     $.__views.__alloyId34.add($.__views.__alloyId42);
     navWindow ? $.__views.__alloyId42.addEventListener("click", navWindow) : __defers["$.__views.__alloyId42!click!navWindow"] = true;
+    $.__views.__alloyId43 = Ti.UI.createImageView({
+        mod: "healthInfo",
+        top: "15",
+        width: "139",
+        image: "/images/btn/btn_healthInfo.png",
+        id: "__alloyId43"
+    });
+    $.__views.__alloyId34.add($.__views.__alloyId43);
+    navWindow ? $.__views.__alloyId43.addEventListener("click", navWindow) : __defers["$.__views.__alloyId43!click!navWindow"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -351,6 +360,7 @@ function Controller() {
     __defers["$.__views.__alloyId40!click!navWindow"] && $.__views.__alloyId40.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId41!click!navWindow"] && $.__views.__alloyId41.addEventListener("click", navWindow);
     __defers["$.__views.__alloyId42!click!navWindow"] && $.__views.__alloyId42.addEventListener("click", navWindow);
+    __defers["$.__views.__alloyId43!click!navWindow"] && $.__views.__alloyId43.addEventListener("click", navWindow);
     _.extend($, exports);
 }
 

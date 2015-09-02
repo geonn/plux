@@ -145,10 +145,8 @@ exports.getNearbyClinic = function(e) {
 };
 
 exports.checkAppVersion = function(callback_download) {
-    var appVersion = Ti.App.Properties.getString("appVersion") || "";
-    appVersion = .9;
+    var appVersion = Ti.App.Properties.getString("appVersion") || "1.0";
     var url = checkAppVersionUrl + "&appVersion=" + appVersion + "&appPlatform=android";
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -384,7 +382,6 @@ exports.doChangePassword = function(e, mainView) {
 exports.claimDetailBySeries = function(e) {
     var url = getclaimDetailBySeriesUrl + "?SERIAL=" + e.serial;
     var retryTimes = defaultRetryTimes;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -507,7 +504,6 @@ exports.loadLeaflet = function() {
 
 exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(String(this.responseText));
@@ -515,7 +511,6 @@ exports.loadNewsFeed = function() {
             var newElementModel = Alloy.createCollection("news_element");
             library.resetNews();
             newElementModel.resetNewsElement();
-            console.log(res.data);
             library.addNews(res.data);
             var newsFe = res.data;
             newsFe.forEach(function(nf) {
@@ -591,8 +586,6 @@ exports.loadClinicList = function() {
 exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
-    console.log(url);
-    url = "http://plux.freejini.com.my/api/getPanellistSample?user=freejini&key=06b53047cf294f7207789ff5293ad2dc";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -602,7 +595,6 @@ exports.loadPanelList = function(ex) {
                 codeStr += '"' + entry + '",';
             });
             codeStr = codeStr.substr(0, codeStr.length - 1);
-            console.log(codeStr);
             library.updatePanelList(codeStr);
             if ("" == ex.clinicType) {
                 details = library.getPanelListCount(codeStr);

@@ -27,22 +27,15 @@ setTimeout(function(){
 	loadData(corp);
 }, 1000);
 
-var searchBar = Titanium.UI.createSearchBar({
-	barColor:'#F0F0F0', 
-	showCancel:true,
-	height:45,
-	hintText:'Search Clinic',
-	top:0,
-});
 
-function listing(){ 
-	$.clinicListTv.removeAllChildren();
-	
+function listing(){   
 	var data=[]; 
+	$.clinicListTv.setData(data);
    		var arr = list;
    		var counter = 0; 
    		 
    		if(arr.length < 1){
+   			common.hideLoading();
 			var noRecord = Ti.UI.createLabel({ 
 			    text: "No clinic found nearby", 
 			    color: '#CE1D1C', 
@@ -57,8 +50,9 @@ function listing(){
 			    backgroundSelectedColor: "#FFE1E1",
 				color: "transparent"
 			   });
-			   row.add(noRecord);
-			$.clinicListTv.setData(row);
+			row.add(noRecord);
+			data.push(row);
+			$.clinicListTv.setData(data);
 		}else{
 			
 	   		arr.forEach(function(entry) {
@@ -131,10 +125,7 @@ function listing(){
 				data.push(row);
 	   		});
 	   		
-	   		if(OS_ANDROID){
-				$.clinicListTv.search = searchBar;
-			}
-			
+	   		
 	   		$.clinicListTv.setData(data);
 	   		common.hideLoading();
 		}
@@ -152,7 +143,7 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
 		nav.closeWindow($.clinicList); 
 	}); 
-}else{
+} 
 	/***SEARCH FUNCTION***/
 	function searchResult(){
 		$.searchItem.blur(); 
@@ -178,12 +169,13 @@ if(Ti.Platform.osname == "android"){
 	
 	$.searchItem.addEventListener('cancel', function(e){ 
 		$.searchItem.blur();
+		loadData(corp);
 	});
 	
 	$.searchItem.addEventListener('blur', function(e){
-		
+		 
 	});
-}
+ 
 
 function loadData(corp){
 	if(clinicType == "hours24"){ 

@@ -76,7 +76,6 @@ exports.showLoading = function() {
     mainView.loadingBar.height = "120";
     mainView.loadingBar.height = Ti.UI.SIZE;
     mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
-    mainView.activityIndicator.top = 0;
     mainView.activityIndicator.show();
 };
 
@@ -84,7 +83,6 @@ exports.hideLoading = function() {
     mainView.activityIndicator.hide();
     mainView.loadingBar.opacity = "0";
     mainView.loadingBar.height = "0";
-    mainView.loadingBar.top = "0";
 };
 
 exports.createCustomAlert = function(win, title, msg) {

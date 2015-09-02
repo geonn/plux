@@ -145,10 +145,8 @@ exports.getNearbyClinic = function(e) {
 };
 
 exports.checkAppVersion = function(callback_download) {
-    var appVersion = Ti.App.Properties.getString("appVersion") || "";
-    appVersion = .9;
+    var appVersion = Ti.App.Properties.getString("appVersion") || "1.0";
     var url = checkAppVersionUrl + "&appVersion=" + appVersion + "&appPlatform=android";
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
@@ -384,7 +382,6 @@ exports.doChangePassword = function(e, mainView) {
 exports.claimDetailBySeries = function(e) {
     var url = getclaimDetailBySeriesUrl + "?SERIAL=" + e.serial;
     var retryTimes = defaultRetryTimes;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -509,7 +506,7 @@ exports.loadNewsFeed = function() {
     var url = newsfeed + "&date=01-01-2015";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            var res = JSON.parse(this.responseText);
+            var res = JSON.parse(String(this.responseText));
             var library = Alloy.createCollection("health_news_feed");
             var newElementModel = Alloy.createCollection("news_element");
             library.resetNews();
@@ -519,10 +516,12 @@ exports.loadNewsFeed = function() {
             newsFe.forEach(function(nf) {
                 var elements = nf.element;
                 elements.forEach(function(entry) {
+                    var content = entry.content;
+                    "" != content && null != content && (content = content.replace(/["']/g, "&quot;"));
                     var eleModel = Alloy.createModel("news_element", {
                         id: entry.id,
                         news_id: nf.id,
-                        content: entry.content,
+                        content: content,
                         type: entry.type,
                         images: entry.media,
                         position: entry.position
@@ -587,15 +586,15 @@ exports.loadClinicList = function() {
 exports.loadPanelList = function(ex) {
     var corp = Ti.App.Properties.getString("corpcode");
     var url = panelList + "?CORPCODE=" + corp;
-    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
-            console.log(this.responseText);
             var res = JSON.parse(this.responseText);
-            console.log(res);
             var library = Alloy.createCollection("panelList");
-            var codeStr = res[0].cliniccode;
-            console.log(codeStr);
+            var codeStr = "";
+            res.cliniccode.forEach(function(entry) {
+                codeStr += '"' + entry + '",';
+            });
+            codeStr = codeStr.substr(0, codeStr.length - 1);
             library.updatePanelList(codeStr);
             if ("" == ex.clinicType) {
                 details = library.getPanelListCount(codeStr);

@@ -445,7 +445,7 @@ exports.doChangePassword = function(e, mainView) {
 exports.claimDetailBySeries = function(e){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
 	var retryTimes = defaultRetryTimes;
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
@@ -635,7 +635,7 @@ exports.loadLeaflet = function(ex){
 
 exports.loadNewsFeed = function (ex){
 	var url = newsfeed+'&date=01-01-2015'; 
-console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -645,8 +645,7 @@ console.log(url);
 		 	var newElementModel = Alloy.createCollection('news_element'); 
 			library.resetNews();
 			newElementModel.resetNewsElement();		
-			/**load new set of category from API**/ 
-			console.log(res.data);
+			/**load new set of category from API**/  
 			library.addNews(res.data); 
 			var newsFe = res.data;
 			newsFe.forEach(function(nf) { 
@@ -760,7 +759,7 @@ exports.loadClinicList = function (ex){
 exports.loadPanelList = function (ex){
 	var corp = Ti.App.Properties.getString('corpcode');
 	var url =  panelList+"?CORPCODE="+corp;
-	console.log(url);
+	//console.log(url);
 	var client = Ti.Network.createHTTPClient({ 
 	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
@@ -771,8 +770,7 @@ exports.loadPanelList = function (ex){
 				codeStr += '"'+entry+'",'; 
 			});
 			codeStr = codeStr.substr(0, codeStr.length-1); 
-			//set panel = 1
-			console.log(codeStr);
+			//set panel = 1 
 			library.updatePanelList(codeStr);
 			
 			if(ex.clinicType == ""){

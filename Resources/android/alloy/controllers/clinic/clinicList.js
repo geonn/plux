@@ -9,10 +9,11 @@ function __processArg(obj, key) {
 
 function Controller() {
     function listing() {
-        $.clinicListTv.removeAllChildren();
         var data = [];
+        $.clinicListTv.setData(data);
         var arr = list;
         if (arr.length < 1) {
+            common.hideLoading();
             var noRecord = Ti.UI.createLabel({
                 text: "No clinic found nearby",
                 color: "#CE1D1C",
@@ -31,7 +32,8 @@ function Controller() {
                 color: "transparent"
             });
             row.add(noRecord);
-            $.clinicListSv.add(row);
+            data.push(row);
+            $.clinicListTv.setData(data);
         } else {
             arr.forEach(function(entry) {
                 var row = Titanium.UI.createTableViewRow({
@@ -99,7 +101,6 @@ function Controller() {
                 row.add(rightForwardBtn);
                 data.push(row);
             });
-            $.clinicListTv.search = searchBar;
             $.clinicListTv.setData(data);
             common.hideLoading();
         }
@@ -108,6 +109,15 @@ function Controller() {
                 panel_id: e.rowData.source
             });
         });
+    }
+    function searchResult() {
+        $.searchItem.blur();
+        common.showLoading();
+        var str = $.searchItem.getValue();
+        if ("" != str) {
+            list = "hours24" == clinicType ? library.getPanelBy24Hours(str, corp) : library.getPanelByClinicType(clinicType, str, corp);
+            listing();
+        } else loadData(corp);
     }
     function loadData(corp) {
         list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
@@ -147,72 +157,6 @@ function Controller() {
         image: "/images/marker.png"
     });
     $.__views.clinicList.rightNavButton = $.__views.btnList;
-    $.__views.panelListTbl = Ti.UI.createView({
-        id: "panelListTbl",
-        layout: "vertical"
-    });
-    $.__views.clinicList.add($.__views.panelListTbl);
-    $.__views.__alloyId240 = Ti.UI.createView({
-        layout: "horizontal",
-        height: "50",
-        width: Ti.UI.FILL,
-        backgroundColor: "#DEDEDE",
-        id: "__alloyId240"
-    });
-    $.__views.panelListTbl.add($.__views.__alloyId240);
-    $.__views.__alloyId241 = Ti.UI.createView({
-        left: "0",
-        width: "20%",
-        id: "__alloyId241"
-    });
-    $.__views.__alloyId240.add($.__views.__alloyId241);
-    $.__views.btnBack = Ti.UI.createImageView({
-        left: "10",
-        id: "btnBack",
-        height: "25",
-        image: "/images/btn-back.png"
-    });
-    $.__views.__alloyId241.add($.__views.btnBack);
-    $.__views.__alloyId242 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId242"
-    });
-    $.__views.__alloyId240.add($.__views.__alloyId242);
-    $.__views.pageTitle = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        font: {
-            fontSize: "16dp"
-        },
-        text: "Clinic List",
-        id: "pageTitle",
-        textAlign: "center"
-    });
-    $.__views.__alloyId242.add($.__views.pageTitle);
-    $.__views.__alloyId243 = Ti.UI.createView({
-        right: "0",
-        width: "20%",
-        id: "__alloyId243"
-    });
-    $.__views.__alloyId240.add($.__views.__alloyId243);
-    $.__views.btnList = Ti.UI.createImageView({
-        right: "10",
-        id: "btnList",
-        width: "15",
-        height: "25",
-        image: "/images/marker.png"
-    });
-    $.__views.__alloyId243.add($.__views.btnList);
-    $.__views.clinicListTv = Ti.UI.createTableView({
-        id: "clinicListTv",
-        layout: "vertical",
-        top: "0",
-        height: Ti.UI.FILL,
-        contentWidth: Ti.UI.FILL,
-        contentHeight: Ti.UI.SIZE,
-        width: Ti.UI.FILL
-    });
-    $.__views.panelListTbl.add($.__views.clinicListTv);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -229,15 +173,91 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId244 = Ti.UI.createLabel({
+    $.__views.__alloyId246 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId244"
+        id: "__alloyId246"
     });
-    $.__views.loadingBar.add($.__views.__alloyId244);
+    $.__views.loadingBar.add($.__views.__alloyId246);
+    $.__views.panelListTbl = Ti.UI.createView({
+        id: "panelListTbl",
+        layout: "vertical"
+    });
+    $.__views.clinicList.add($.__views.panelListTbl);
+    $.__views.__alloyId247 = Ti.UI.createView({
+        layout: "horizontal",
+        height: "50",
+        width: Ti.UI.FILL,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId247"
+    });
+    $.__views.panelListTbl.add($.__views.__alloyId247);
+    $.__views.__alloyId248 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId248"
+    });
+    $.__views.__alloyId247.add($.__views.__alloyId248);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: "10",
+        id: "btnBack",
+        height: "25",
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId248.add($.__views.btnBack);
+    $.__views.__alloyId249 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId249"
+    });
+    $.__views.__alloyId247.add($.__views.__alloyId249);
+    $.__views.pageTitle = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Clinic List",
+        id: "pageTitle",
+        textAlign: "center"
+    });
+    $.__views.__alloyId249.add($.__views.pageTitle);
+    $.__views.__alloyId250 = Ti.UI.createView({
+        right: "0",
+        width: "20%",
+        id: "__alloyId250"
+    });
+    $.__views.__alloyId247.add($.__views.__alloyId250);
+    $.__views.btnList = Ti.UI.createImageView({
+        right: "10",
+        id: "btnList",
+        width: "15",
+        height: "25",
+        image: "/images/marker.png"
+    });
+    $.__views.__alloyId250.add($.__views.btnList);
+    $.__views.searchItem = Ti.UI.createSearchBar({
+        barColor: "#FFFFFF",
+        tintColor: "#CE1D1C",
+        id: "searchItem",
+        showCancel: "true",
+        text: "",
+        height: "50",
+        hintText: "Search Clinic"
+    });
+    $.__views.panelListTbl.add($.__views.searchItem);
+    $.__views.clinicListTv = Ti.UI.createTableView({
+        id: "clinicListTv",
+        layout: "vertical",
+        top: "0",
+        height: Ti.UI.FILL,
+        contentWidth: Ti.UI.FILL,
+        contentHeight: Ti.UI.SIZE,
+        width: Ti.UI.FILL
+    });
+    $.__views.panelListTbl.add($.__views.clinicListTv);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -251,13 +271,6 @@ function Controller() {
     setTimeout(function() {
         loadData(corp);
     }, 1e3);
-    var searchBar = Titanium.UI.createSearchBar({
-        barColor: "#F0F0F0",
-        showCancel: true,
-        height: 45,
-        hintText: "Search Clinic",
-        top: 0
-    });
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicLocator", {
             clinicType: clinicType
@@ -266,6 +279,15 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicList);
     });
+    $.searchItem.addEventListener("return", searchResult);
+    $.searchItem.addEventListener("focus", function f() {
+        $.searchItem.removeEventListener("focus", f);
+    });
+    $.searchItem.addEventListener("cancel", function() {
+        $.searchItem.blur();
+        loadData(corp);
+    });
+    $.searchItem.addEventListener("blur", function() {});
     _.extend($, exports);
 }
 

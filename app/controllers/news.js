@@ -7,10 +7,13 @@ var categoryModel = Alloy.createCollection('category');
 var news    = newsFeedModel.getRecordsById(news_id);
 var details = newsElementModel.getListByNews(news_id); 
 var pageCate = categoryModel.getCategoryById(news.category);
-$.news.title = pageCate.category; 
-$.newsTitle.setText(news.title);
-$.newsImage.setImage(news.images);
-$.newsDate.setText(timeFormat(news.updated));
+if(OS_IOS){
+	$.news.title = pageCate.category;
+}
+ 
+$.newsTitle.text = news.title;
+$.newsImage.image = news.images;
+$.newsDate.text = timeFormat(news.updated);
 
 details.forEach(function(entry) {
 	if(entry.type == "1"){
@@ -46,4 +49,10 @@ details.forEach(function(entry) {
 		$.myContentView.add(dynaLabel);
 	}
 });
+
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.news); 
+	}); 
+} 
 //$.myContentView.add();

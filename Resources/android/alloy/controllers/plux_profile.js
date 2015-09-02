@@ -33,25 +33,25 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.plux_profile && $.addTopLevelView($.__views.plux_profile);
-    $.__views.__alloyId80 = Ti.UI.createView({
+    $.__views.__alloyId86 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId80"
+        id: "__alloyId86"
     });
-    $.__views.plux_profile.add($.__views.__alloyId80);
-    $.__views.__alloyId81 = Ti.UI.createView({
+    $.__views.plux_profile.add($.__views.__alloyId86);
+    $.__views.__alloyId87 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId81"
+        id: "__alloyId87"
     });
-    $.__views.__alloyId80.add($.__views.__alloyId81);
-    $.__views.__alloyId82 = Ti.UI.createView({
+    $.__views.__alloyId86.add($.__views.__alloyId87);
+    $.__views.__alloyId88 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId82"
+        id: "__alloyId88"
     });
-    $.__views.__alloyId81.add($.__views.__alloyId82);
+    $.__views.__alloyId87.add($.__views.__alloyId88);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -59,13 +59,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId82.add($.__views.btnBack);
+    $.__views.__alloyId88.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "90%"
     });
-    $.__views.__alloyId81.add($.__views.pageTitle);
-    $.__views.__alloyId83 = Ti.UI.createLabel({
+    $.__views.__alloyId87.add($.__views.pageTitle);
+    $.__views.__alloyId89 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -73,15 +73,15 @@ function Controller() {
         },
         text: "PLUX Profile",
         textAlign: "center",
-        id: "__alloyId83"
+        id: "__alloyId89"
     });
-    $.__views.pageTitle.add($.__views.__alloyId83);
+    $.__views.pageTitle.add($.__views.__alloyId89);
     $.__views.profileData = Ti.UI.createScrollView({
         id: "profileData",
         height: Ti.UI.FILL,
         backgroundColor: "#ffffff"
     });
-    $.__views.__alloyId80.add($.__views.profileData);
+    $.__views.__alloyId86.add($.__views.profileData);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
