@@ -20,7 +20,6 @@ function Controller() {
         });
     }
     function init(e) {
-        console.log("init");
         longitude = e.coords.longitude;
         latitude = e.coords.latitude;
         e.coords.altitude;
@@ -138,15 +137,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId207 = Ti.UI.createLabel({
+    $.__views.__alloyId230 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId207"
+        id: "__alloyId230"
     });
-    $.__views.loadingBar.add($.__views.__alloyId207);
+    $.__views.loadingBar.add($.__views.__alloyId230);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

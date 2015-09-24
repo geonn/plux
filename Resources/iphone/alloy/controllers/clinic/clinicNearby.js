@@ -11,7 +11,6 @@ function Controller() {
     function loadClinic() {
         details = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         details && details.forEach(function(d) {
-            console.log(d.id);
             aspClinicArr.push(d.id);
         });
         list = API.getNearbyClinic({
@@ -165,15 +164,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId209 = Ti.UI.createLabel({
+    $.__views.__alloyId232 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId209"
+        id: "__alloyId232"
     });
-    $.__views.loadingBar.add($.__views.__alloyId209);
+    $.__views.loadingBar.add($.__views.__alloyId232);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

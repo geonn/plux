@@ -41,7 +41,6 @@ function Controller() {
                     height: Ti.UI.SIZE,
                     source: entry.id,
                     backgroundSelectedColor: "#FFE1E1",
-                    title: entry.clinicName,
                     color: "transparent"
                 });
                 var contentView = Ti.UI.createView({
@@ -52,7 +51,7 @@ function Controller() {
                 var clinicLbl = Titanium.UI.createLabel({
                     text: entry.clinicName,
                     font: {
-                        fontSize: 16
+                        fontSize: 14
                     },
                     source: entry.id,
                     color: "#CE1D1C",
@@ -66,7 +65,7 @@ function Controller() {
                 var mobileLbl = Titanium.UI.createLabel({
                     text: "Tel: " + entry.tel,
                     font: {
-                        fontSize: 14
+                        fontSize: 12
                     },
                     source: entry.id,
                     color: "#848484",
@@ -75,12 +74,10 @@ function Controller() {
                     height: Ti.UI.SIZE
                 });
                 contentView.add(mobileLbl);
-                var add2 = entry.add2;
-                "" != add2.trim() && (add2 += "\r\n");
                 var distLbl = Titanium.UI.createLabel({
-                    text: entry.add1 + "\r\n" + add2 + entry.postcode + ", " + entry.city + "\r\n" + entry.state,
+                    text: entry.postcode + ", " + entry.city + ", " + entry.state,
                     font: {
-                        fontSize: 14
+                        fontSize: 12
                     },
                     source: entry.id,
                     color: "#848484",
@@ -173,15 +170,25 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId205 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId228 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId205"
     });
     $.__views.loadingBar.add($.__views.__alloyId205);
+=======
+        id: "__alloyId228"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId228);
+>>>>>>> origin/master
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"

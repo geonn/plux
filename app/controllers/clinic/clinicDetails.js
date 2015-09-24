@@ -5,11 +5,11 @@ var panelListModel = Alloy.createCollection('panelList');
 var details = panelListModel.getPanelListById(panel_id);
 
 var contacts = Ti.Contacts.getAllPeople(); 
+ 
 var isAddedToContact = "0";
 for (var i = 0; i < contacts.length; i++) {
-	var phone = contacts[i].phone;
-    
-    var workPhone = phone.work; 
+	var phone = contacts[i].phone || "";  
+    var workPhone = phone.mobile; 
     if(workPhone != null && workPhone[0] == details.tel ){
     	isAddedToContact = "1";
     	$.add2contact.title = "Already added to contact";
@@ -17,6 +17,32 @@ for (var i = 0; i < contacts.length; i++) {
 }  
 var phoneArr = [];
 if(details != ""){  
+	if(details.latitude != "" && details.longitude != "") {
+		var Map = require('ti.map');
+		var mapview = Map.createView({
+		    mapType: Map.NORMAL_TYPE,
+		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
+		    animate:true,
+		    regionFit:true,
+		    height:200,
+		    top:0,
+		    userLocation:true
+		});
+		var merchantLoc = Map.createAnnotation({
+		    latitude: details.latitude,
+		    longitude: details.longitude, 
+		    title: details.clinicName,
+		    image: '/images/marker.png',
+		    animate : true, 
+		  //  subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
+		    pincolor:Map.ANNOTATION_RED,
+		   
+		}); 
+		mapview.addAnnotation(merchantLoc);
+		$.clinicMap.height = 200;
+		$.clinicMap.add(mapview);			
+	}
+	
 	var operHour = details.openHour; 
 	var operHour_arr = operHour.split("[nl]"); 
 	var oh;
@@ -75,7 +101,7 @@ var performAddressBookFunction = function(){
 	};
 	
 	var phoneList = { 
-	    work: phoneArr
+	    mobile: phoneArr
 	 };
   
 	Ti.Contacts.createPerson({
@@ -142,7 +168,9 @@ function direction2here(){
 					exports.Install();
 				}
 			}else{
-				nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude});
+				//http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude
+				//var str = 'http://maps.apple.com/?daddr='+ a +'&saddr='+latitude+ ',' +longitude
+				nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.apple.com/?daddr='+ details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state +'&saddr='+details.latitude+ ',' +details.longitude});
 	   	 	}
 				
 				

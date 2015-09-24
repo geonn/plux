@@ -61,7 +61,7 @@ function listing(){
 				    height: Ti.UI.SIZE,
 				    source: entry.id,
 				    backgroundSelectedColor: "#FFE1E1",
-					title :  entry.clinicName,
+					//title :  entry.clinicName,
 					color: "transparent"
 				   });
 				
@@ -73,7 +73,7 @@ function listing(){
 				
 				var clinicLbl = Titanium.UI.createLabel({
 					text:entry.clinicName,
-					font:{fontSize:16},
+					font:{fontSize:14},
 					source: entry.id,
 					color: "#CE1D1C", 
 					textAlign:'left',  
@@ -86,7 +86,7 @@ function listing(){
 				
 				var mobileLbl = Titanium.UI.createLabel({
 					text:"Tel: " +entry.tel,
-					font:{fontSize:14},
+					font:{fontSize:12},
 					source: entry.id,
 					color: "#848484", 
 					textAlign:'left', 
@@ -94,14 +94,10 @@ function listing(){
 					height:Ti.UI.SIZE
 				}); 
 				contentView.add(mobileLbl);
-				
-				var add2 =entry.add2;
-				if(add2.trim() != ""){
-					add2 = add2  +"\r\n";
-				}
+			 
 				var distLbl = Titanium.UI.createLabel({
-					text: entry.add1 + "\r\n"+ add2 +  entry.postcode +", " + entry.city +"\r\n"+  entry.state,
-					font:{fontSize:14},
+					text:  entry.postcode +", " + entry.city +", "+  entry.state,
+					font:{fontSize:12},
 					source: entry.id,
 					color: "#848484", 
 					textAlign:'left', 

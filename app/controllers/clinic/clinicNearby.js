@@ -22,8 +22,7 @@ function loadClinic(){
 		details = library.getPanelByClinicType(clinicType, "", corp);     
 	}
 	if(details){
-		details.forEach(function(d) {
-			console.log(d.id);
+		details.forEach(function(d) { 
 			aspClinicArr.push(d.id);
 		});
 	}

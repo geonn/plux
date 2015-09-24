@@ -90,3 +90,7 @@
 	borderColor: "#dfe0e4",
 	backgroundColor: "#FFFFFF",
 }
+
+".greyText" : {
+	color: "#B5B5B5",
+}

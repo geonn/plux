@@ -84,10 +84,10 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.signUpWin && $.addTopLevelView($.__views.signUpWin);
-    $.__views.__alloyId145 = Ti.UI.createView({
-        id: "__alloyId145"
+    $.__views.__alloyId168 = Ti.UI.createView({
+        id: "__alloyId168"
     });
-    $.__views.signUpWin.add($.__views.__alloyId145);
+    $.__views.signUpWin.add($.__views.__alloyId168);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -96,7 +96,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId145.add($.__views.loadingBar);
+    $.__views.__alloyId168.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -104,23 +104,23 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId146 = Ti.UI.createLabel({
+    $.__views.__alloyId169 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId146"
+        id: "__alloyId169"
     });
-    $.__views.loadingBar.add($.__views.__alloyId146);
+    $.__views.loadingBar.add($.__views.__alloyId169);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId145.add($.__views.main);
-    $.__views.__alloyId147 = Ti.UI.createImageView({
+    $.__views.__alloyId168.add($.__views.main);
+    $.__views.__alloyId170 = Ti.UI.createImageView({
         borderRadius: "10",
         width: "120",
         height: "120",
@@ -128,9 +128,9 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId147"
+        id: "__alloyId170"
     });
-    $.__views.main.add($.__views.__alloyId147);
+    $.__views.main.add($.__views.__alloyId170);
     $.__views.fullname = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
