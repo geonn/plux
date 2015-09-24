@@ -171,7 +171,7 @@ function Controller() {
         id: "__alloyId155"
     });
     $.__views.main.add($.__views.__alloyId155);
-    submitPassword ? $.__views.__alloyId155.addEventListener("touchend", submitPassword) : __defers["$.__views.__alloyId155!touchend!submitPassword"] = true;
+    submitPassword ? $.addListener($.__views.__alloyId155, "touchend", submitPassword) : __defers["$.__views.__alloyId155!touchend!submitPassword"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -180,7 +180,7 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.changePasswordWin);
     });
-    __defers["$.__views.__alloyId155!touchend!submitPassword"] && $.__views.__alloyId155.addEventListener("touchend", submitPassword);
+    __defers["$.__views.__alloyId155!touchend!submitPassword"] && $.addListener($.__views.__alloyId155, "touchend", submitPassword);
     _.extend($, exports);
 }
 

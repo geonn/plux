@@ -84,7 +84,7 @@ function Controller() {
         id: "__alloyId143"
     });
     $.__views.__alloyId142.add($.__views.__alloyId143);
-    navProfile ? $.__views.__alloyId143.addEventListener("click", navProfile) : __defers["$.__views.__alloyId143!click!navProfile"] = true;
+    navProfile ? $.addListener($.__views.__alloyId143, "click", navProfile) : __defers["$.__views.__alloyId143!click!navProfile"] = true;
     $.__views.__alloyId144 = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: "10",
@@ -98,15 +98,15 @@ function Controller() {
         id: "__alloyId144"
     });
     $.__views.__alloyId142.add($.__views.__alloyId144);
-    navProfile ? $.__views.__alloyId144.addEventListener("click", navProfile) : __defers["$.__views.__alloyId144!click!navProfile"] = true;
+    navProfile ? $.addListener($.__views.__alloyId144, "click", navProfile) : __defers["$.__views.__alloyId144!click!navProfile"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });
-    __defers["$.__views.__alloyId143!click!navProfile"] && $.__views.__alloyId143.addEventListener("click", navProfile);
-    __defers["$.__views.__alloyId144!click!navProfile"] && $.__views.__alloyId144.addEventListener("click", navProfile);
+    __defers["$.__views.__alloyId143!click!navProfile"] && $.addListener($.__views.__alloyId143, "click", navProfile);
+    __defers["$.__views.__alloyId144!click!navProfile"] && $.addListener($.__views.__alloyId144, "click", navProfile);
     _.extend($, exports);
 }
 

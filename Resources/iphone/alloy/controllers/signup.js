@@ -236,7 +236,7 @@ function Controller() {
         color: "#ffffff"
     });
     $.__views.main.add($.__views.sign_btn);
-    doSignup ? $.__views.sign_btn.addEventListener("click", doSignup) : __defers["$.__views.sign_btn!click!doSignup"] = true;
+    doSignup ? $.addListener($.__views.sign_btn, "click", doSignup) : __defers["$.__views.sign_btn!click!doSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -247,7 +247,7 @@ function Controller() {
     }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
     $.tc_area.add(view_agreement_box);
     $.signUpWin.addEventListener("click", hideProductFormKeyboard);
-    __defers["$.__views.sign_btn!click!doSignup"] && $.__views.sign_btn.addEventListener("click", doSignup);
+    __defers["$.__views.sign_btn!click!doSignup"] && $.addListener($.__views.sign_btn, "click", doSignup);
     _.extend($, exports);
 }
 

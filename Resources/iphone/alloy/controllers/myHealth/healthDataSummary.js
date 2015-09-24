@@ -126,7 +126,7 @@ function Controller() {
         hasChild: "true"
     });
     __alloyId303.push($.__views.addHealthData);
-    addData ? $.__views.addHealthData.addEventListener("click", addData) : __defers["$.__views.addHealthData!click!addData"] = true;
+    addData ? $.addListener($.__views.addHealthData, "click", addData) : __defers["$.__views.addHealthData!click!addData"] = true;
     $.__views.__alloyId304 = Ti.UI.createTableViewRow({
         backgroundSelectedColor: "#FFE1E1",
         title: "Show All Data",
@@ -134,7 +134,7 @@ function Controller() {
         id: "__alloyId304"
     });
     __alloyId303.push($.__views.__alloyId304);
-    editData ? $.__views.__alloyId304.addEventListener("click", editData) : __defers["$.__views.__alloyId304!click!editData"] = true;
+    editData ? $.addListener($.__views.__alloyId304, "click", editData) : __defers["$.__views.__alloyId304!click!editData"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId303,
         id: "healthTableData",
@@ -177,8 +177,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.dashboard);
     });
-    __defers["$.__views.addHealthData!click!addData"] && $.__views.addHealthData.addEventListener("click", addData);
-    __defers["$.__views.__alloyId304!click!editData"] && $.__views.__alloyId304.addEventListener("click", editData);
+    __defers["$.__views.addHealthData!click!addData"] && $.addListener($.__views.addHealthData, "click", addData);
+    __defers["$.__views.__alloyId304!click!editData"] && $.addListener($.__views.__alloyId304, "click", editData);
     _.extend($, exports);
 }
 

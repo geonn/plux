@@ -96,7 +96,7 @@ function Controller() {
         right: "0"
     });
     $.__views.__alloyId264.add($.__views.saveButton);
-    doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
+    doSaveRecords ? $.addListener($.__views.saveButton, "touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
     $.__views.healthCholestrolWin.rightNavButton = $.__views.__alloyId264;
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
@@ -167,7 +167,7 @@ function Controller() {
         id: "__alloyId268"
     });
     $.__views.table.add($.__views.__alloyId268);
-    showDatePicker ? $.__views.__alloyId268.addEventListener("click", showDatePicker) : __defers["$.__views.__alloyId268!click!showDatePicker"] = true;
+    showDatePicker ? $.addListener($.__views.__alloyId268, "click", showDatePicker) : __defers["$.__views.__alloyId268!click!showDatePicker"] = true;
     $.__views.__alloyId269 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
@@ -212,7 +212,7 @@ function Controller() {
         id: "__alloyId272"
     });
     $.__views.table.add($.__views.__alloyId272);
-    showTimePicker ? $.__views.__alloyId272.addEventListener("click", showTimePicker) : __defers["$.__views.__alloyId272!click!showTimePicker"] = true;
+    showTimePicker ? $.addListener($.__views.__alloyId272, "click", showTimePicker) : __defers["$.__views.__alloyId272!click!showTimePicker"] = true;
     $.__views.__alloyId273 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
@@ -368,7 +368,7 @@ function Controller() {
         visible: "false"
     });
     $.__views.selectorView.add($.__views.datePicker);
-    changeDate ? $.__views.datePicker.addEventListener("change", changeDate) : __defers["$.__views.datePicker!change!changeDate"] = true;
+    changeDate ? $.addListener($.__views.datePicker, "change", changeDate) : __defers["$.__views.datePicker!change!changeDate"] = true;
     $.__views.timePicker = Ti.UI.createPicker({
         format24: false,
         calendarViewShown: false,
@@ -377,7 +377,7 @@ function Controller() {
         visible: "false"
     });
     $.__views.selectorView.add($.__views.timePicker);
-    changeTime ? $.__views.timePicker.addEventListener("change", changeTime) : __defers["$.__views.timePicker!change!changeTime"] = true;
+    changeTime ? $.addListener($.__views.timePicker, "change", changeTime) : __defers["$.__views.timePicker!change!changeTime"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -400,11 +400,11 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthCholestrolWin);
     });
-    __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
-    __defers["$.__views.__alloyId268!click!showDatePicker"] && $.__views.__alloyId268.addEventListener("click", showDatePicker);
-    __defers["$.__views.__alloyId272!click!showTimePicker"] && $.__views.__alloyId272.addEventListener("click", showTimePicker);
-    __defers["$.__views.datePicker!change!changeDate"] && $.__views.datePicker.addEventListener("change", changeDate);
-    __defers["$.__views.timePicker!change!changeTime"] && $.__views.timePicker.addEventListener("change", changeTime);
+    __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.addListener($.__views.saveButton, "touchend", doSaveRecords);
+    __defers["$.__views.__alloyId268!click!showDatePicker"] && $.addListener($.__views.__alloyId268, "click", showDatePicker);
+    __defers["$.__views.__alloyId272!click!showTimePicker"] && $.addListener($.__views.__alloyId272, "click", showTimePicker);
+    __defers["$.__views.datePicker!change!changeDate"] && $.addListener($.__views.datePicker, "change", changeDate);
+    __defers["$.__views.timePicker!change!changeTime"] && $.addListener($.__views.timePicker, "change", changeTime);
     _.extend($, exports);
 }
 

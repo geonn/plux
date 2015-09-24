@@ -164,7 +164,7 @@ function Controller() {
         visible: "true"
     });
     $.__views.__alloyId306.add($.__views.editButton);
-    doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
+    doEditRecords ? $.addListener($.__views.editButton, "touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.doneButton = Ti.UI.createButton({
         touchEnabled: true,
         id: "doneButton",
@@ -173,7 +173,7 @@ function Controller() {
         visible: "false"
     });
     $.__views.__alloyId306.add($.__views.doneButton);
-    doDone ? $.__views.doneButton.addEventListener("touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
+    doDone ? $.addListener($.__views.doneButton, "touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
     $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId306;
     $.__views.__alloyId307 = Ti.UI.createView({
         id: "__alloyId307"
@@ -235,8 +235,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthEditWindow);
     });
-    __defers["$.__views.editButton!touchend!doEditRecords"] && $.__views.editButton.addEventListener("touchend", doEditRecords);
-    __defers["$.__views.doneButton!touchend!doDone"] && $.__views.doneButton.addEventListener("touchend", doDone);
+    __defers["$.__views.editButton!touchend!doEditRecords"] && $.addListener($.__views.editButton, "touchend", doEditRecords);
+    __defers["$.__views.doneButton!touchend!doDone"] && $.addListener($.__views.doneButton, "touchend", doDone);
     _.extend($, exports);
 }
 

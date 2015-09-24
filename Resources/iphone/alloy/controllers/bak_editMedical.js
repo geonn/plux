@@ -255,7 +255,7 @@ function Controller() {
         id: "__alloyId20"
     });
     __alloyId18.push($.__views.__alloyId20);
-    hideKeyboard ? $.__views.__alloyId20.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId20!click!hideKeyboard"] = true;
+    hideKeyboard ? $.addListener($.__views.__alloyId20, "click", hideKeyboard) : __defers["$.__views.__alloyId20!click!hideKeyboard"] = true;
     $.__views.__alloyId16 = Ti.UI.iOS.createToolbar({
         items: __alloyId18,
         id: "__alloyId16"
@@ -305,7 +305,7 @@ function Controller() {
         id: "__alloyId22"
     });
     $.__views.__alloyId21.add($.__views.__alloyId22);
-    takePhoto ? $.__views.__alloyId22.addEventListener("click", takePhoto) : __defers["$.__views.__alloyId22!click!takePhoto"] = true;
+    takePhoto ? $.addListener($.__views.__alloyId22, "click", takePhoto) : __defers["$.__views.__alloyId22!click!takePhoto"] = true;
     $.__views.__alloyId23 = Ti.UI.createView({
         backgroundColor: "#CE1D1C",
         height: "50",
@@ -340,7 +340,7 @@ function Controller() {
         id: "__alloyId25"
     });
     $.__views.__alloyId24.add($.__views.__alloyId25);
-    deleteRecord ? $.__views.__alloyId25.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId25!click!deleteRecord"] = true;
+    deleteRecord ? $.addListener($.__views.__alloyId25, "click", deleteRecord) : __defers["$.__views.__alloyId25!click!deleteRecord"] = true;
     $.__views.__alloyId26 = Ti.UI.createView({
         width: "auto",
         height: Ti.UI.FILL,
@@ -374,9 +374,9 @@ function Controller() {
     });
     Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
-    __defers["$.__views.__alloyId20!click!hideKeyboard"] && $.__views.__alloyId20.addEventListener("click", hideKeyboard);
-    __defers["$.__views.__alloyId22!click!takePhoto"] && $.__views.__alloyId22.addEventListener("click", takePhoto);
-    __defers["$.__views.__alloyId25!click!deleteRecord"] && $.__views.__alloyId25.addEventListener("click", deleteRecord);
+    __defers["$.__views.__alloyId20!click!hideKeyboard"] && $.addListener($.__views.__alloyId20, "click", hideKeyboard);
+    __defers["$.__views.__alloyId22!click!takePhoto"] && $.addListener($.__views.__alloyId22, "click", takePhoto);
+    __defers["$.__views.__alloyId25!click!deleteRecord"] && $.addListener($.__views.__alloyId25, "click", deleteRecord);
     _.extend($, exports);
 }
 

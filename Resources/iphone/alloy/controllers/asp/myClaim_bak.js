@@ -317,7 +317,7 @@ function Controller() {
         id: "__alloyId180"
     });
     $.__views.verifyContainer.add($.__views.__alloyId180);
-    resendVerificationEmail ? $.__views.__alloyId180.addEventListener("touchend", resendVerificationEmail) : __defers["$.__views.__alloyId180!touchend!resendVerificationEmail"] = true;
+    resendVerificationEmail ? $.addListener($.__views.__alloyId180, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId180!touchend!resendVerificationEmail"] = true;
     $.__views.__alloyId181 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
@@ -329,7 +329,7 @@ function Controller() {
         id: "__alloyId181"
     });
     $.__views.verifyContainer.add($.__views.__alloyId181);
-    checkStatus ? $.__views.__alloyId181.addEventListener("touchend", checkStatus) : __defers["$.__views.__alloyId181!touchend!checkStatus"] = true;
+    checkStatus ? $.addListener($.__views.__alloyId181, "touchend", checkStatus) : __defers["$.__views.__alloyId181!touchend!checkStatus"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -347,8 +347,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myClaim);
     });
-    __defers["$.__views.__alloyId180!touchend!resendVerificationEmail"] && $.__views.__alloyId180.addEventListener("touchend", resendVerificationEmail);
-    __defers["$.__views.__alloyId181!touchend!checkStatus"] && $.__views.__alloyId181.addEventListener("touchend", checkStatus);
+    __defers["$.__views.__alloyId180!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId180, "touchend", resendVerificationEmail);
+    __defers["$.__views.__alloyId181!touchend!checkStatus"] && $.addListener($.__views.__alloyId181, "touchend", checkStatus);
     _.extend($, exports);
 }
 

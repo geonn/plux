@@ -294,7 +294,7 @@ function Controller() {
         color: "#ffffff"
     });
     $.__views.main.add($.__views.asp_sign_btn);
-    doAspSignup ? $.__views.asp_sign_btn.addEventListener("click", doAspSignup) : __defers["$.__views.asp_sign_btn!click!doAspSignup"] = true;
+    doAspSignup ? $.addListener($.__views.asp_sign_btn, "click", doAspSignup) : __defers["$.__views.asp_sign_btn!click!doAspSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -315,7 +315,7 @@ function Controller() {
             nav.closeWindow($.aspSignUpWin);
         });
     }
-    __defers["$.__views.asp_sign_btn!click!doAspSignup"] && $.__views.asp_sign_btn.addEventListener("click", doAspSignup);
+    __defers["$.__views.asp_sign_btn!click!doAspSignup"] && $.addListener($.__views.asp_sign_btn, "click", doAspSignup);
     _.extend($, exports);
 }
 

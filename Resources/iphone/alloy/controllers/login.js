@@ -194,7 +194,7 @@ function Controller() {
         color: "#ffffff"
     });
     $.__views.main.add($.__views.loginAccountButton);
-    doLogin ? $.__views.loginAccountButton.addEventListener("touchend", doLogin) : __defers["$.__views.loginAccountButton!touchend!doLogin"] = true;
+    doLogin ? $.addListener($.__views.loginAccountButton, "touchend", doLogin) : __defers["$.__views.loginAccountButton!touchend!doLogin"] = true;
     $.__views.fbloginView = Ti.UI.createView({
         height: "60",
         id: "fbloginView",
@@ -212,7 +212,7 @@ function Controller() {
         color: "#ffffff"
     });
     $.__views.main.add($.__views.registerAccountButton);
-    doSignup ? $.__views.registerAccountButton.addEventListener("touchend", doSignup) : __defers["$.__views.registerAccountButton!touchend!doSignup"] = true;
+    doSignup ? $.addListener($.__views.registerAccountButton, "touchend", doSignup) : __defers["$.__views.registerAccountButton!touchend!doSignup"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -292,8 +292,8 @@ function Controller() {
         });
         dialog.show();
     });
-    __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.__views.loginAccountButton.addEventListener("touchend", doLogin);
-    __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.__views.registerAccountButton.addEventListener("touchend", doSignup);
+    __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
+    __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);
     _.extend($, exports);
 }
 

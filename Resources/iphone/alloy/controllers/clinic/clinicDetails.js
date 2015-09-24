@@ -236,7 +236,7 @@ function Controller() {
         id: "__alloyId202"
     });
     __alloyId201.push($.__views.__alloyId202);
-    direction2here ? $.__views.__alloyId202.addEventListener("click", direction2here) : __defers["$.__views.__alloyId202!click!direction2here"] = true;
+    direction2here ? $.addListener($.__views.__alloyId202, "click", direction2here) : __defers["$.__views.__alloyId202!click!direction2here"] = true;
     $.__views.__alloyId203 = Ti.UI.createTableViewRow({
         height: "50",
         left: "10",
@@ -246,7 +246,7 @@ function Controller() {
         id: "__alloyId203"
     });
     __alloyId201.push($.__views.__alloyId203);
-    clickToCall ? $.__views.__alloyId203.addEventListener("click", clickToCall) : __defers["$.__views.__alloyId203!click!clickToCall"] = true;
+    clickToCall ? $.addListener($.__views.__alloyId203, "click", clickToCall) : __defers["$.__views.__alloyId203!click!clickToCall"] = true;
     $.__views.add2contact = Ti.UI.createTableViewRow({
         height: "50",
         left: "10",
@@ -256,7 +256,7 @@ function Controller() {
         title: "Add To Contact"
     });
     __alloyId201.push($.__views.add2contact);
-    addToContact ? $.__views.add2contact.addEventListener("click", addToContact) : __defers["$.__views.add2contact!click!addToContact"] = true;
+    addToContact ? $.addListener($.__views.add2contact, "click", addToContact) : __defers["$.__views.add2contact!click!addToContact"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId201,
         id: "healthTableData",
@@ -344,9 +344,9 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.panelDetails);
     });
-    __defers["$.__views.__alloyId202!click!direction2here"] && $.__views.__alloyId202.addEventListener("click", direction2here);
-    __defers["$.__views.__alloyId203!click!clickToCall"] && $.__views.__alloyId203.addEventListener("click", clickToCall);
-    __defers["$.__views.add2contact!click!addToContact"] && $.__views.add2contact.addEventListener("click", addToContact);
+    __defers["$.__views.__alloyId202!click!direction2here"] && $.addListener($.__views.__alloyId202, "click", direction2here);
+    __defers["$.__views.__alloyId203!click!clickToCall"] && $.addListener($.__views.__alloyId203, "click", clickToCall);
+    __defers["$.__views.add2contact!click!addToContact"] && $.addListener($.__views.add2contact, "click", addToContact);
     _.extend($, exports);
 }
 

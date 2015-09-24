@@ -131,7 +131,7 @@ function Controller() {
         right: "10",
         id: "__alloyId211"
     });
-    doRefresh ? $.__views.__alloyId211.addEventListener("click", doRefresh) : __defers["$.__views.__alloyId211!click!doRefresh"] = true;
+    doRefresh ? $.addListener($.__views.__alloyId211, "click", doRefresh) : __defers["$.__views.__alloyId211!click!doRefresh"] = true;
     $.__views.win.rightNavButton = $.__views.__alloyId211;
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
@@ -196,7 +196,7 @@ function Controller() {
             clinicType: e.rowData.id
         });
     });
-    __defers["$.__views.__alloyId211!click!doRefresh"] && $.__views.__alloyId211.addEventListener("click", doRefresh);
+    __defers["$.__views.__alloyId211!click!doRefresh"] && $.addListener($.__views.__alloyId211, "click", doRefresh);
     _.extend($, exports);
 }
 

@@ -188,7 +188,7 @@ function Controller() {
         visible: "true"
     });
     $.__views.__alloyId332.add($.__views.editButton);
-    doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
+    doEditRecords ? $.addListener($.__views.editButton, "touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.saveButton = Ti.UI.createButton({
         touchEnabled: true,
         id: "saveButton",
@@ -197,7 +197,7 @@ function Controller() {
         visible: "false"
     });
     $.__views.__alloyId332.add($.__views.saveButton);
-    doSaveRecords ? $.__views.saveButton.addEventListener("touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
+    doSaveRecords ? $.addListener($.__views.saveButton, "touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
     $.__views.healthProfileWin.rightNavButton = $.__views.__alloyId332;
     $.__views.main = Ti.UI.createView({
         id: "main",
@@ -212,7 +212,7 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     __alloyId333.push($.__views.tvrFieldDate);
-    showDatePicker ? $.__views.tvrFieldDate.addEventListener("click", showDatePicker) : __defers["$.__views.tvrFieldDate!click!showDatePicker"] = true;
+    showDatePicker ? $.addListener($.__views.tvrFieldDate, "click", showDatePicker) : __defers["$.__views.tvrFieldDate!click!showDatePicker"] = true;
     $.__views.__alloyId334 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
@@ -249,7 +249,7 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     __alloyId333.push($.__views.tvrFieldGender);
-    showGenderPicker ? $.__views.tvrFieldGender.addEventListener("click", showGenderPicker) : __defers["$.__views.tvrFieldGender!click!showGenderPicker"] = true;
+    showGenderPicker ? $.addListener($.__views.tvrFieldGender, "click", showGenderPicker) : __defers["$.__views.tvrFieldGender!click!showGenderPicker"] = true;
     $.__views.__alloyId336 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
@@ -285,7 +285,7 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     __alloyId333.push($.__views.tvrFieldBloodType);
-    showBloodTypePicker ? $.__views.tvrFieldBloodType.addEventListener("click", showBloodTypePicker) : __defers["$.__views.tvrFieldBloodType!click!showBloodTypePicker"] = true;
+    showBloodTypePicker ? $.addListener($.__views.tvrFieldBloodType, "click", showBloodTypePicker) : __defers["$.__views.tvrFieldBloodType!click!showBloodTypePicker"] = true;
     $.__views.__alloyId338 = Ti.UI.createView({
         layout: "horizontal",
         height: "45",
@@ -335,13 +335,13 @@ function Controller() {
         visible: "false"
     });
     $.__views.selectorView.add($.__views.genderPicker);
-    changeGender ? $.__views.genderPicker.addEventListener("change", changeGender) : __defers["$.__views.genderPicker!change!changeGender"] = true;
+    changeGender ? $.addListener($.__views.genderPicker, "change", changeGender) : __defers["$.__views.genderPicker!change!changeGender"] = true;
     $.__views.bloodTypePicker = Ti.UI.createPicker({
         id: "bloodTypePicker",
         visible: "false"
     });
     $.__views.selectorView.add($.__views.bloodTypePicker);
-    changeBloodType ? $.__views.bloodTypePicker.addEventListener("change", changeBloodType) : __defers["$.__views.bloodTypePicker!change!changeBloodType"] = true;
+    changeBloodType ? $.addListener($.__views.bloodTypePicker, "change", changeBloodType) : __defers["$.__views.bloodTypePicker!change!changeBloodType"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -381,13 +381,13 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthProfileWin);
     });
-    __defers["$.__views.editButton!touchend!doEditRecords"] && $.__views.editButton.addEventListener("touchend", doEditRecords);
-    __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.__views.saveButton.addEventListener("touchend", doSaveRecords);
-    __defers["$.__views.tvrFieldDate!click!showDatePicker"] && $.__views.tvrFieldDate.addEventListener("click", showDatePicker);
-    __defers["$.__views.tvrFieldGender!click!showGenderPicker"] && $.__views.tvrFieldGender.addEventListener("click", showGenderPicker);
-    __defers["$.__views.tvrFieldBloodType!click!showBloodTypePicker"] && $.__views.tvrFieldBloodType.addEventListener("click", showBloodTypePicker);
-    __defers["$.__views.genderPicker!change!changeGender"] && $.__views.genderPicker.addEventListener("change", changeGender);
-    __defers["$.__views.bloodTypePicker!change!changeBloodType"] && $.__views.bloodTypePicker.addEventListener("change", changeBloodType);
+    __defers["$.__views.editButton!touchend!doEditRecords"] && $.addListener($.__views.editButton, "touchend", doEditRecords);
+    __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.addListener($.__views.saveButton, "touchend", doSaveRecords);
+    __defers["$.__views.tvrFieldDate!click!showDatePicker"] && $.addListener($.__views.tvrFieldDate, "click", showDatePicker);
+    __defers["$.__views.tvrFieldGender!click!showGenderPicker"] && $.addListener($.__views.tvrFieldGender, "click", showGenderPicker);
+    __defers["$.__views.tvrFieldBloodType!click!showBloodTypePicker"] && $.addListener($.__views.tvrFieldBloodType, "click", showBloodTypePicker);
+    __defers["$.__views.genderPicker!change!changeGender"] && $.addListener($.__views.genderPicker, "change", changeGender);
+    __defers["$.__views.bloodTypePicker!change!changeBloodType"] && $.addListener($.__views.bloodTypePicker, "change", changeBloodType);
     _.extend($, exports);
 }
 

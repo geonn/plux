@@ -157,31 +157,6 @@ function Controller() {
         image: "/images/marker.png"
     });
     $.__views.clinicList.rightNavButton = $.__views.btnList;
-    $.__views.panelListTbl = Ti.UI.createView({
-        id: "panelListTbl",
-        layout: "vertical"
-    });
-    $.__views.clinicList.add($.__views.panelListTbl);
-    $.__views.searchItem = Ti.UI.createSearchBar({
-        barColor: "#FFFFFF",
-        tintColor: "#CE1D1C",
-        id: "searchItem",
-        showCancel: "true",
-        text: "",
-        height: "50",
-        hintText: "Search Clinic"
-    });
-    $.__views.panelListTbl.add($.__views.searchItem);
-    $.__views.clinicListTv = Ti.UI.createTableView({
-        id: "clinicListTv",
-        layout: "vertical",
-        top: "0",
-        height: Ti.UI.FILL,
-        contentWidth: Ti.UI.FILL,
-        contentHeight: Ti.UI.SIZE,
-        width: Ti.UI.FILL
-    });
-    $.__views.panelListTbl.add($.__views.clinicListTv);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -207,6 +182,31 @@ function Controller() {
         id: "__alloyId205"
     });
     $.__views.loadingBar.add($.__views.__alloyId205);
+    $.__views.panelListTbl = Ti.UI.createView({
+        id: "panelListTbl",
+        layout: "vertical"
+    });
+    $.__views.clinicList.add($.__views.panelListTbl);
+    $.__views.searchItem = Ti.UI.createSearchBar({
+        barColor: "#FFFFFF",
+        tintColor: "#CE1D1C",
+        id: "searchItem",
+        showCancel: "true",
+        text: "",
+        height: "50",
+        hintText: "Search Clinic"
+    });
+    $.__views.panelListTbl.add($.__views.searchItem);
+    $.__views.clinicListTv = Ti.UI.createTableView({
+        id: "clinicListTv",
+        layout: "vertical",
+        top: "0",
+        height: Ti.UI.FILL,
+        contentWidth: Ti.UI.FILL,
+        contentHeight: Ti.UI.SIZE,
+        width: Ti.UI.FILL
+    });
+    $.__views.panelListTbl.add($.__views.clinicListTv);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -220,31 +220,23 @@ function Controller() {
     setTimeout(function() {
         loadData(corp);
     }, 1e3);
-    Titanium.UI.createSearchBar({
-        barColor: "#F0F0F0",
-        showCancel: true,
-        height: 45,
-        hintText: "Search Clinic",
-        top: 0
-    });
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicLocator", {
             clinicType: clinicType
         });
     });
-    if ("android" == Ti.Platform.osname) $.btnBack.addEventListener("click", function() {
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicList);
-    }); else {
-        $.searchItem.addEventListener("return", searchResult);
-        $.searchItem.addEventListener("focus", function f() {
-            $.searchItem.removeEventListener("focus", f);
-        });
-        $.searchItem.addEventListener("cancel", function() {
-            $.searchItem.blur();
-            loadData(corp);
-        });
-        $.searchItem.addEventListener("blur", function() {});
-    }
+    });
+    $.searchItem.addEventListener("return", searchResult);
+    $.searchItem.addEventListener("focus", function f() {
+        $.searchItem.removeEventListener("focus", f);
+    });
+    $.searchItem.addEventListener("cancel", function() {
+        $.searchItem.blur();
+        loadData(corp);
+    });
+    $.searchItem.addEventListener("blur", function() {});
     _.extend($, exports);
 }
 
