@@ -30,8 +30,7 @@ function alerts(){
  
 var longitude;
 var latitude;   
-function init(e){  
-	console.log('init');
+function init(e){   
 	longitude = e.coords.longitude;
     latitude = e.coords.latitude;
     var altitude = e.coords.altitude;

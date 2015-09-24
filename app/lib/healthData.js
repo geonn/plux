@@ -61,7 +61,7 @@ exports.enableSaveButton = function(e){
 };
 
 exports.populateData = function(e){
-	for(var i =1; i <= 7; i++){
+	for(var i =1; i <= 8; i++){
 	 	var info = loadInfo(i,"","1");
 	}
 	
@@ -181,8 +181,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			//mainView.heartRateDetailLabel.text = latestData ||  "N/A";
 		}
 	}
-	if(gType == 4){
-		
+	if(gType == 4){ 
 		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
@@ -208,6 +207,14 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.cholestrolDetailLabel.text = "-";
+		}
+	}
+	if(gType == 8){ 
+		Ti.App.fireEvent('app:bloodGlucose',{ message:  info, dataPeriod:dataPeriod });
+		if(showDetailsLabel == "1"){
+			var text = latestData|| "N/A";
+			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
+			//mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
 		}
 	}
 	if(gType == 10){
@@ -321,6 +328,9 @@ exports.navigateGraph = function(gType){
 	}
 	if(gType == "7"){
 		nav.navigationWindow("myHealth/healthDataCholestrol");
+	}
+	if(gType == "8"){
+		nav.navigationWindow("myHealth/healthDataGlucose");
 	}
 };
 

@@ -129,6 +129,19 @@ function loadInfo(gType, dataPeriod, showDetailsLabel) {
             });
         }
     }
+    if (8 == gType) {
+        Ti.App.fireEvent("app:bloodGlucose", {
+            message: info,
+            dataPeriod: dataPeriod
+        });
+        if ("1" == showDetailsLabel) {
+            var text = latestData || "N/A";
+            Ti.App.fireEvent("loadLatest", {
+                gType: gType,
+                text: text
+            });
+        }
+    }
     if (10 == gType) {
         Ti.App.fireEvent("app:steps", {
             message: info,
@@ -195,7 +208,7 @@ exports.enableSaveButton = function() {
 };
 
 exports.populateData = function() {
-    for (var i = 1; 7 >= i; i++) var info = loadInfo(i, "", "1");
+    for (var i = 1; 8 >= i; i++) var info = loadInfo(i, "", "1");
     info = loadInfo(10, "", "1");
 };
 
@@ -261,6 +274,7 @@ exports.navigateGraph = function(gType) {
     "5" == gType && nav.navigationWindow("myHealth/healthDataBmi");
     "6" == gType && nav.navigationWindow("myHealth/healthDataBmi");
     "7" == gType && nav.navigationWindow("myHealth/healthDataCholestrol");
+    "8" == gType && nav.navigationWindow("myHealth/healthDataGlucose");
 };
 
 exports.stepsMotion = function() {

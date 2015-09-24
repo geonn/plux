@@ -98,6 +98,40 @@ exports.definition = {
                 console.log(count);
                 return listArr;
 			},
+			getPanelListTest : function(){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name+ " LIMIT 0,30 " ;
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){
+					listArr[count] = {
+					    id: res.fieldByName('id'),
+					    clinicCode: res.fieldByName('clinicCode'),
+					    clinicName: res.fieldByName('clinicName'),
+					    clinicType: res.fieldByName('clinicType'),
+					    add1: res.fieldByName('add1'),
+					    add2: res.fieldByName('add2'),
+					    city: res.fieldByName('city'),
+					    postcode: res.fieldByName('postcode'),
+					    state: res.fieldByName('state'),
+					    panel: res.fieldByName('panel'),
+					    tel : res.fieldByName('tel'),
+					    openHour : res.fieldByName('openHour'),
+					    latitude: res.fieldByName('latitude'),
+					    longitude: res.fieldByName('longitude')
+					};
+					res.next();
+					count++;
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                console.log(count);
+                return listArr;
+			},
 			getPanelByState : function(state){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE state='"+state+"' ";

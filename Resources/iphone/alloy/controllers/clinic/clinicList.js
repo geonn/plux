@@ -41,7 +41,6 @@ function Controller() {
                     height: Ti.UI.SIZE,
                     source: entry.id,
                     backgroundSelectedColor: "#FFE1E1",
-                    title: entry.clinicName,
                     color: "transparent"
                 });
                 var contentView = Ti.UI.createView({
@@ -52,7 +51,7 @@ function Controller() {
                 var clinicLbl = Titanium.UI.createLabel({
                     text: entry.clinicName,
                     font: {
-                        fontSize: 16
+                        fontSize: 14
                     },
                     source: entry.id,
                     color: "#CE1D1C",
@@ -66,7 +65,7 @@ function Controller() {
                 var mobileLbl = Titanium.UI.createLabel({
                     text: "Tel: " + entry.tel,
                     font: {
-                        fontSize: 14
+                        fontSize: 12
                     },
                     source: entry.id,
                     color: "#848484",
@@ -75,12 +74,10 @@ function Controller() {
                     height: Ti.UI.SIZE
                 });
                 contentView.add(mobileLbl);
-                var add2 = entry.add2;
-                "" != add2.trim() && (add2 += "\r\n");
                 var distLbl = Titanium.UI.createLabel({
-                    text: entry.add1 + "\r\n" + add2 + entry.postcode + ", " + entry.city + "\r\n" + entry.state,
+                    text: entry.postcode + ", " + entry.city + ", " + entry.state,
                     font: {
-                        fontSize: 14
+                        fontSize: 12
                     },
                     source: entry.id,
                     color: "#848484",
@@ -157,6 +154,31 @@ function Controller() {
         image: "/images/marker.png"
     });
     $.__views.clinicList.rightNavButton = $.__views.btnList;
+    $.__views.loadingBar = Ti.UI.createView({
+        layout: "vertical",
+        id: "loadingBar",
+        height: "120",
+        width: "120",
+        borderRadius: "15",
+        backgroundColor: "#2E2E2E"
+    });
+    $.__views.clinicList.add($.__views.loadingBar);
+    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
+        top: 30,
+        left: 30,
+        width: 60,
+        id: "activityIndicator"
+    });
+    $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.__alloyId228 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        top: "5",
+        text: "Loading",
+        color: "#ffffff",
+        id: "__alloyId228"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId228);
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
@@ -182,31 +204,6 @@ function Controller() {
         width: Ti.UI.FILL
     });
     $.__views.panelListTbl.add($.__views.clinicListTv);
-    $.__views.loadingBar = Ti.UI.createView({
-        layout: "vertical",
-        id: "loadingBar",
-        height: "120",
-        width: "120",
-        borderRadius: "15",
-        backgroundColor: "#2E2E2E"
-    });
-    $.__views.clinicList.add($.__views.loadingBar);
-    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        top: 30,
-        left: 30,
-        width: 60,
-        id: "activityIndicator"
-    });
-    $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId205 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        top: "5",
-        text: "Loading",
-        color: "#ffffff",
-        id: "__alloyId205"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId205);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -220,31 +217,23 @@ function Controller() {
     setTimeout(function() {
         loadData(corp);
     }, 1e3);
-    Titanium.UI.createSearchBar({
-        barColor: "#F0F0F0",
-        showCancel: true,
-        height: 45,
-        hintText: "Search Clinic",
-        top: 0
-    });
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicLocator", {
             clinicType: clinicType
         });
     });
-    if ("android" == Ti.Platform.osname) $.btnBack.addEventListener("click", function() {
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicList);
-    }); else {
-        $.searchItem.addEventListener("return", searchResult);
-        $.searchItem.addEventListener("focus", function f() {
-            $.searchItem.removeEventListener("focus", f);
-        });
-        $.searchItem.addEventListener("cancel", function() {
-            $.searchItem.blur();
-            loadData(corp);
-        });
-        $.searchItem.addEventListener("blur", function() {});
-    }
+    });
+    $.searchItem.addEventListener("return", searchResult);
+    $.searchItem.addEventListener("focus", function f() {
+        $.searchItem.removeEventListener("focus", f);
+    });
+    $.searchItem.addEventListener("cancel", function() {
+        $.searchItem.blur();
+        loadData(corp);
+    });
+    $.searchItem.addEventListener("blur", function() {});
     _.extend($, exports);
 }
 

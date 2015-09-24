@@ -19,7 +19,7 @@ function resetGraph(){
 //	$.heightView.setHeight("0");
 //	$.weightView.setHeight("0");
 	$.cholestrolView.setHeight("0");
-
+	$.glucoseView.setHeight("0");
 	$.bmiView.setTop("0");
 	$.bloodPressureView.setTop("0");
 	$.heartRateView.setTop("0");
@@ -53,16 +53,19 @@ function filterList(e){
 		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
 		$.bloodPressureView.setHeight(Ti.UI.SIZE);
 		$.cholestrolView.setHeight(Ti.UI.SIZE);
+		$.glucoseView.setHeight(Ti.UI.SIZE);
 		
 		$.heartRateView.setTop(10);
 		$.bodyTemperatureView.setTop(10);
 		$.bloodPressureView.setTop(10);
 		$.cholestrolView.setTop(10);
+		$.glucoseView.setTop(10);
 		
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 		$.bloodPressureView.show();
 		$.cholestrolView.show();
+		$.glucoseView.show();
 	}else{
 		for(var a = 0; a < $.graphScrollView.children.length; a++){
 			var activityIndicator = createIndicator();
@@ -81,6 +84,7 @@ function filterList(e){
 		$.bodyTemperatureView.setHeight(Ti.UI.SIZE);
 		$.bloodPressureView.setHeight(Ti.UI.SIZE);
 		$.cholestrolView.setHeight(Ti.UI.SIZE);
+		$.glucoseView.setHeight(Ti.UI.SIZE);
 		
 		$.bmiView.setTop(10);
 //		$.heightView.setTop(10);
@@ -89,6 +93,7 @@ function filterList(e){
 		$.bodyTemperatureView.setTop(10);
 		$.bloodPressureView.setTop(10);
 		$.cholestrolView.setTop(10);
+		$.glucoseView.setTop(10);
 		
 //		$.weightView.show(); 
 //		$.heightView.show(); 
@@ -97,6 +102,7 @@ function filterList(e){
 		$.heartRateView.show();
 		$.bodyTemperatureView.show();
 		$.cholestrolView.show();
+		$.glucoseView.show();
 	}
 	
 }
@@ -112,7 +118,7 @@ function loadLatest(e){
 Ti.App.addEventListener('graphLoaded', graphLoaded);
 
 function graphLoaded(e){
-	console.log(e.id);
+	//console.log(e.id);
 	var graph_view = children({name: "gType", value: e.id}, $.graphScrollView);
 	graph_view.children[0].children[0].hide();
 	//graph_view.children[0].height = e.contentheight;
@@ -176,6 +182,12 @@ $.cholestrolWebView.addEventListener('load',function(e){
 	var actualHeight = e.source.evalJS("document.height;");
 	//e.source.height = parseInt(actualHeight);
 });
+
+$.glucoseWebView.addEventListener('load',function(e){
+	var actualHeight = e.source.evalJS("document.height;");
+	//e.source.height = parseInt(actualHeight);
+});
+
 //$.heightView.addEventListener('click',function(e){
 //	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 5});
 //});
@@ -197,6 +209,10 @@ $.cholestrolWebView.addEventListener('load',function(e){
 
 $.cholestrolView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 7});
+});
+
+$.glucoseView.addEventListener('click',function(e){
+	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 8});
 });
 
 $.moreHealth.addEventListener('click', function(e){

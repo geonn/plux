@@ -56,6 +56,10 @@ var clinicListUrl = "http://" + FREEJINI_DOMAIN + "/api/getClinicLocator?user=" 
 
 var nearbyClinicUrl = "http://" + FREEJINI_DOMAIN + "/api/searchNearbyClinic?user=" + USER + "&key=" + KEY;
 
+var doctorListUrl = "http://" + FREEJINI_DOMAIN + "/api/getDoctorList?user=" + USER + "&key=" + KEY;
+
+var addAppointmentUrl = "http://" + FREEJINI_DOMAIN + "/api/addAppointment?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -126,6 +130,22 @@ exports.getUserService = function(e) {
     });
     client.open("GET", url);
     client.send();
+};
+
+exports.addAppointment = function(e, callback) {
+    var url = addAppointmentUrl;
+    console.log(url);
+    console.log(callback);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            console.log(res);
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("POST", url);
+    client.send(e.param);
 };
 
 exports.getNearbyClinic = function(e) {
@@ -494,6 +514,23 @@ exports.loadLeaflet = function() {
                 });
                 lfModel.save();
             });
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.getDoctorList = function() {
+    var url = doctorListUrl;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            console.log(res);
+            var doctorsModel = Alloy.createCollection("doctors");
+            var info = res.data;
+            doctorsModel.saveArray(info);
         },
         onerror: function() {},
         timeout: 5e4

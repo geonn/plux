@@ -153,8 +153,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.healthEditWindow && $.addTopLevelView($.__views.healthEditWindow);
-    $.__views.__alloyId306 = Ti.UI.createView({
-        id: "__alloyId306"
+    $.__views.__alloyId343 = Ti.UI.createView({
+        id: "__alloyId343"
     });
     $.__views.editButton = Ti.UI.createButton({
         touchEnabled: true,
@@ -163,8 +163,8 @@ function Controller() {
         right: "0",
         visible: "true"
     });
-    $.__views.__alloyId306.add($.__views.editButton);
-    doEditRecords ? $.__views.editButton.addEventListener("touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
+    $.__views.__alloyId343.add($.__views.editButton);
+    doEditRecords ? $.addListener($.__views.editButton, "touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.doneButton = Ti.UI.createButton({
         touchEnabled: true,
         id: "doneButton",
@@ -172,13 +172,13 @@ function Controller() {
         right: "0",
         visible: "false"
     });
-    $.__views.__alloyId306.add($.__views.doneButton);
-    doDone ? $.__views.doneButton.addEventListener("touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
-    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId306;
-    $.__views.__alloyId307 = Ti.UI.createView({
-        id: "__alloyId307"
+    $.__views.__alloyId343.add($.__views.doneButton);
+    doDone ? $.addListener($.__views.doneButton, "touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
+    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId343;
+    $.__views.__alloyId344 = Ti.UI.createView({
+        id: "__alloyId344"
     });
-    $.__views.healthEditWindow.add($.__views.__alloyId307);
+    $.__views.healthEditWindow.add($.__views.__alloyId344);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -187,7 +187,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId307.add($.__views.loadingBar);
+    $.__views.__alloyId344.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -195,15 +195,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId308 = Ti.UI.createLabel({
+    $.__views.__alloyId345 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId308"
+        id: "__alloyId345"
     });
-    $.__views.loadingBar.add($.__views.__alloyId308);
+    $.__views.loadingBar.add($.__views.__alloyId345);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         height: Ti.UI.FILL,
@@ -214,7 +214,7 @@ function Controller() {
         backgroundColor: "#ffffff",
         top: "0"
     });
-    $.__views.__alloyId307.add($.__views.main);
+    $.__views.__alloyId344.add($.__views.main);
     $.__views.healthTableData = Ti.UI.createTableView({
         id: "healthTableData",
         height: Ti.UI.SIZE,
@@ -235,8 +235,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthEditWindow);
     });
-    __defers["$.__views.editButton!touchend!doEditRecords"] && $.__views.editButton.addEventListener("touchend", doEditRecords);
-    __defers["$.__views.doneButton!touchend!doDone"] && $.__views.doneButton.addEventListener("touchend", doDone);
+    __defers["$.__views.editButton!touchend!doEditRecords"] && $.addListener($.__views.editButton, "touchend", doEditRecords);
+    __defers["$.__views.doneButton!touchend!doDone"] && $.addListener($.__views.doneButton, "touchend", doDone);
     _.extend($, exports);
 }
 

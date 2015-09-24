@@ -37,10 +37,11 @@ function Controller() {
         backgroundColor: "#ffffff",
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
-        id: "main"
+        id: "main",
+        layout: "vertical"
     });
     $.__views.news.add($.__views.main);
-    var __alloyId89 = [];
+    var __alloyId112 = [];
     $.__views.myContentView = Ti.UI.createScrollView({
         height: Titanium.UI.FILL,
         width: Titanium.UI.FILL,
@@ -49,7 +50,7 @@ function Controller() {
         contentHeight: "auto",
         contentWidth: Ti.UI.FILL
     });
-    __alloyId89.push($.__views.myContentView);
+    __alloyId112.push($.__views.myContentView);
     $.__views.newsTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -62,7 +63,6 @@ function Controller() {
         right: "10dp",
         bottom: "10dp",
         top: "10dp",
-        text: "Bone Health for Life: Health Information Basics for You and Your Family",
         id: "newsTitle"
     });
     $.__views.myContentView.add($.__views.newsTitle);
@@ -86,12 +86,12 @@ function Controller() {
         id: "newsDate"
     });
     $.__views.myContentView.add($.__views.newsDate);
-    $.__views.__alloyId88 = Ti.UI.createScrollableView({
-        views: __alloyId89,
+    $.__views.__alloyId111 = Ti.UI.createScrollableView({
+        views: __alloyId112,
         showPagingControl: "false",
-        id: "__alloyId88"
+        id: "__alloyId111"
     });
-    $.__views.main.add($.__views.__alloyId88);
+    $.__views.main.add($.__views.__alloyId111);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -103,9 +103,9 @@ function Controller() {
     var details = newsElementModel.getListByNews(news_id);
     var pageCate = categoryModel.getCategoryById(news.category);
     $.news.title = pageCate.category;
-    $.newsTitle.setText(news.title);
-    $.newsImage.setImage(news.images);
-    $.newsDate.setText(timeFormat(news.updated));
+    $.newsTitle.text = news.title;
+    $.newsImage.image = news.images;
+    $.newsDate.text = timeFormat(news.updated);
     details.forEach(function(entry) {
         if ("1" == entry.type) {
             var dynaLabel = $.UI.create("Label", {
@@ -136,6 +136,9 @@ function Controller() {
             });
             $.myContentView.add(dynaLabel);
         }
+    });
+    "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.news);
     });
     _.extend($, exports);
 }

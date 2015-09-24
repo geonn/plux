@@ -86,7 +86,6 @@ exports.showLoading = function() {
     if ("android" == Ti.Platform.osname) {
         mainView.loadingBar.height = Ti.UI.SIZE;
         mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
-        mainView.activityIndicator.top = 0;
     } else {
         mainView.loadingBar.top = Ti.Platform.displayCaps.platformHeight / 2 - 80;
         mainView.activityIndicator.style = Ti.UI.iPhone.ActivityIndicatorStyle.BIG;
@@ -98,7 +97,6 @@ exports.hideLoading = function() {
     mainView.activityIndicator.hide();
     mainView.loadingBar.opacity = "0";
     mainView.loadingBar.height = "0";
-    mainView.loadingBar.top = "0";
 };
 
 exports.createCustomAlert = function(win, title, msg) {

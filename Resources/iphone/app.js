@@ -44,6 +44,21 @@ function timeFormat(datetime) {
     return newFormat;
 }
 
+function convertToDBDateFormat(datetime) {
+    var timeStamp = datetime.split(" ");
+    var newFormat;
+    var date = timeStamp[0].split("/");
+    if (1 == timeStamp.length) newFormat = date[2] + "-" + date[1] + "-" + date[0]; else {
+        var time = timeStamp[1].split(":");
+        if (time[0] > 12) {
+            ampm = "pm";
+            time[0] = time[0] - 12;
+        }
+        newFormat = date[2] + "-" + date[1] + "-" + date[0] + " " + timeStamp[1];
+    }
+    return newFormat;
+}
+
 function currentDateTime() {
     var today = new Date();
     var dd = today.getDate();
@@ -133,7 +148,7 @@ var DBVersionControl = require("DBVersionControl");
 
 DBVersionControl.checkAndUpdate();
 
-if ("iphone" == Ti.Platform.osname) var TouchId = require("ti.touchid");
+var TouchId = require("ti.touchid");
 
 Alloy.Globals.Map = require("ti.map");
 

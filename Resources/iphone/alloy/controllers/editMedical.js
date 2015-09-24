@@ -222,21 +222,21 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.editRecWin && $.addTopLevelView($.__views.editRecWin);
-    $.__views.__alloyId28 = Ti.UI.createView({
-        id: "__alloyId28"
+    $.__views.__alloyId50 = Ti.UI.createView({
+        id: "__alloyId50"
     });
     $.__views.saveRecord = Ti.UI.createButton({
         id: "saveRecord",
         title: "Done"
     });
-    $.__views.__alloyId28.add($.__views.saveRecord);
-    $.__views.editRecWin.rightNavButton = $.__views.__alloyId28;
-    $.__views.__alloyId29 = Ti.UI.createView({
+    $.__views.__alloyId50.add($.__views.saveRecord);
+    $.__views.editRecWin.rightNavButton = $.__views.__alloyId50;
+    $.__views.__alloyId51 = Ti.UI.createView({
         layout: "vertical",
         bottom: "90",
-        id: "__alloyId29"
+        id: "__alloyId51"
     });
-    $.__views.editRecWin.add($.__views.__alloyId29);
+    $.__views.editRecWin.add($.__views.__alloyId51);
     $.__views.titleRecord = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "40",
@@ -250,31 +250,31 @@ function Controller() {
         id: "titleRecord",
         hintText: "Medical Problem"
     });
-    $.__views.__alloyId29.add($.__views.titleRecord);
-    $.__views.__alloyId30 = Ti.UI.createView({
+    $.__views.__alloyId51.add($.__views.titleRecord);
+    $.__views.__alloyId52 = Ti.UI.createView({
         height: "1",
         width: "100%",
         backgroundColor: "#CE1D1C",
-        id: "__alloyId30"
+        id: "__alloyId52"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId30);
+    $.__views.__alloyId51.add($.__views.__alloyId52);
     $.__views.aView = Ti.UI.createScrollView({
         id: "aView",
         height: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         layout: "vertical"
     });
-    $.__views.__alloyId29.add($.__views.aView);
-    $.__views.__alloyId31 = Ti.UI.createLabel({
+    $.__views.__alloyId51.add($.__views.aView);
+    $.__views.__alloyId53 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         text: "Clinic/Hospital/Specialist",
         left: "10",
         top: "10",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        id: "__alloyId31"
+        id: "__alloyId53"
     });
-    $.__views.aView.add($.__views.__alloyId31);
+    $.__views.aView.add($.__views.__alloyId53);
     $.__views.clinicRecord = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "40",
@@ -291,37 +291,37 @@ function Controller() {
         hintText: ""
     });
     $.__views.aView.add($.__views.clinicRecord);
-    $.__views.__alloyId32 = Ti.UI.createLabel({
+    $.__views.__alloyId54 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         text: "Treatment",
         left: "10",
         top: "10",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        id: "__alloyId32"
+        id: "__alloyId54"
     });
-    $.__views.aView.add($.__views.__alloyId32);
-    var __alloyId36 = [];
-    $.__views.__alloyId37 = Ti.UI.createButton({
+    $.__views.aView.add($.__views.__alloyId54);
+    var __alloyId58 = [];
+    $.__views.__alloyId59 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
-    __alloyId36.push($.__views.__alloyId37);
-    $.__views.__alloyId38 = Ti.UI.createButton({
+    __alloyId58.push($.__views.__alloyId59);
+    $.__views.__alloyId60 = Ti.UI.createButton({
         backgroundImage: "/images/btn-down.png",
         textAlign: "right",
         right: "5",
         width: "20",
         height: "20",
-        id: "__alloyId38"
+        id: "__alloyId60"
     });
-    __alloyId36.push($.__views.__alloyId38);
-    hideKeyboard ? $.__views.__alloyId38.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId38!click!hideKeyboard"] = true;
-    $.__views.__alloyId34 = Ti.UI.iOS.createToolbar({
-        items: __alloyId36,
-        id: "__alloyId34"
+    __alloyId58.push($.__views.__alloyId60);
+    hideKeyboard ? $.addListener($.__views.__alloyId60, "click", hideKeyboard) : __defers["$.__views.__alloyId60!click!hideKeyboard"] = true;
+    $.__views.__alloyId56 = Ti.UI.iOS.createToolbar({
+        items: __alloyId58,
+        id: "__alloyId56"
     });
     $.__views.treatmentTextArea = Ti.UI.createTextArea({
-        keyboardToolbar: $.__views.__alloyId34,
+        keyboardToolbar: $.__views.__alloyId56,
         id: "treatmentTextArea",
         backgroundColor: "#f6f6f6",
         color: "#888",
@@ -335,8 +335,8 @@ function Controller() {
         suppressReturn: "false"
     });
     $.__views.aView.add($.__views.treatmentTextArea);
-    $.__views.__alloyId34 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId34,
+    $.__views.__alloyId56 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId56,
         id: "treatmentTextArea",
         backgroundColor: "#f6f6f6",
         color: "#888",
@@ -349,37 +349,37 @@ function Controller() {
         height: "200",
         suppressReturn: "false"
     });
-    $.__views.__alloyId39 = Ti.UI.createLabel({
+    $.__views.__alloyId61 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         text: "Procedures",
         left: "10",
         top: "10",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        id: "__alloyId39"
+        id: "__alloyId61"
     });
-    $.__views.aView.add($.__views.__alloyId39);
-    var __alloyId43 = [];
-    $.__views.__alloyId44 = Ti.UI.createButton({
+    $.__views.aView.add($.__views.__alloyId61);
+    var __alloyId65 = [];
+    $.__views.__alloyId66 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
-    __alloyId43.push($.__views.__alloyId44);
-    $.__views.__alloyId45 = Ti.UI.createButton({
+    __alloyId65.push($.__views.__alloyId66);
+    $.__views.__alloyId67 = Ti.UI.createButton({
         backgroundImage: "/images/btn-down.png",
         textAlign: "right",
         right: "5",
         width: "20",
         height: "20",
-        id: "__alloyId45"
+        id: "__alloyId67"
     });
-    __alloyId43.push($.__views.__alloyId45);
-    hideKeyboard ? $.__views.__alloyId45.addEventListener("click", hideKeyboard) : __defers["$.__views.__alloyId45!click!hideKeyboard"] = true;
-    $.__views.__alloyId41 = Ti.UI.iOS.createToolbar({
-        items: __alloyId43,
-        id: "__alloyId41"
+    __alloyId65.push($.__views.__alloyId67);
+    hideKeyboard ? $.addListener($.__views.__alloyId67, "click", hideKeyboard) : __defers["$.__views.__alloyId67!click!hideKeyboard"] = true;
+    $.__views.__alloyId63 = Ti.UI.iOS.createToolbar({
+        items: __alloyId65,
+        id: "__alloyId63"
     });
     $.__views.proceduceTextArea = Ti.UI.createTextArea({
-        keyboardToolbar: $.__views.__alloyId41,
+        keyboardToolbar: $.__views.__alloyId63,
         id: "proceduceTextArea",
         backgroundColor: "#f6f6f6",
         color: "#888",
@@ -393,8 +393,8 @@ function Controller() {
         suppressReturn: "false"
     });
     $.__views.aView.add($.__views.proceduceTextArea);
-    $.__views.__alloyId41 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId41,
+    $.__views.__alloyId63 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId63,
         id: "proceduceTextArea",
         backgroundColor: "#f6f6f6",
         color: "#888",
@@ -407,14 +407,14 @@ function Controller() {
         height: "200",
         suppressReturn: "false"
     });
-    $.__views.__alloyId46 = Ti.UI.createView({
+    $.__views.__alloyId68 = Ti.UI.createView({
         bottom: "40",
         height: Ti.UI.SIZE,
         layout: "horizontal",
         width: "100%",
-        id: "__alloyId46"
+        id: "__alloyId68"
     });
-    $.__views.editRecWin.add($.__views.__alloyId46);
+    $.__views.editRecWin.add($.__views.__alloyId68);
     $.__views.attachment = Ti.UI.createScrollView({
         id: "attachment",
         scrollType: "horizontal",
@@ -422,22 +422,22 @@ function Controller() {
         height: Ti.UI.SIZE,
         width: "80%"
     });
-    $.__views.__alloyId46.add($.__views.attachment);
-    $.__views.__alloyId47 = Ti.UI.createView({
+    $.__views.__alloyId68.add($.__views.attachment);
+    $.__views.__alloyId69 = Ti.UI.createView({
         width: "auto",
         height: Ti.UI.SIZE,
-        id: "__alloyId47"
+        id: "__alloyId69"
     });
-    $.__views.__alloyId46.add($.__views.__alloyId47);
-    showCategory ? $.__views.__alloyId47.addEventListener("click", showCategory) : __defers["$.__views.__alloyId47!click!showCategory"] = true;
-    $.__views.__alloyId48 = Ti.UI.createView({
+    $.__views.__alloyId68.add($.__views.__alloyId69);
+    showCategory ? $.addListener($.__views.__alloyId69, "click", showCategory) : __defers["$.__views.__alloyId69!click!showCategory"] = true;
+    $.__views.__alloyId70 = Ti.UI.createView({
         backgroundColor: "#CE1D1C",
         height: "50",
         width: Ti.UI.FILL,
         right: "0",
-        id: "__alloyId48"
+        id: "__alloyId70"
     });
-    $.__views.__alloyId47.add($.__views.__alloyId48);
+    $.__views.__alloyId69.add($.__views.__alloyId70);
     $.__views.addLbl = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -448,32 +448,32 @@ function Controller() {
         color: "#ffffff",
         text: "+"
     });
-    $.__views.__alloyId48.add($.__views.addLbl);
-    $.__views.__alloyId49 = Ti.UI.createView({
+    $.__views.__alloyId70.add($.__views.addLbl);
+    $.__views.__alloyId71 = Ti.UI.createView({
         height: "40",
         layout: "horizontal",
         bottom: "0",
         width: "100%",
         backgroundColor: "#EEEEEE",
-        id: "__alloyId49"
+        id: "__alloyId71"
     });
-    $.__views.editRecWin.add($.__views.__alloyId49);
-    $.__views.__alloyId50 = Ti.UI.createButton({
+    $.__views.editRecWin.add($.__views.__alloyId71);
+    $.__views.__alloyId72 = Ti.UI.createButton({
         backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
         left: "15",
         width: "30",
         height: "30",
-        id: "__alloyId50"
+        id: "__alloyId72"
     });
-    $.__views.__alloyId49.add($.__views.__alloyId50);
-    deleteRecord ? $.__views.__alloyId50.addEventListener("click", deleteRecord) : __defers["$.__views.__alloyId50!click!deleteRecord"] = true;
-    $.__views.__alloyId51 = Ti.UI.createView({
+    $.__views.__alloyId71.add($.__views.__alloyId72);
+    deleteRecord ? $.addListener($.__views.__alloyId72, "click", deleteRecord) : __defers["$.__views.__alloyId72!click!deleteRecord"] = true;
+    $.__views.__alloyId73 = Ti.UI.createView({
         width: "auto",
         height: Ti.UI.FILL,
-        id: "__alloyId51"
+        id: "__alloyId73"
     });
-    $.__views.__alloyId49.add($.__views.__alloyId51);
+    $.__views.__alloyId71.add($.__views.__alloyId73);
     $.__views.lastUpdated = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -485,7 +485,7 @@ function Controller() {
         textAlign: "right",
         right: "10"
     });
-    $.__views.__alloyId51.add($.__views.lastUpdated);
+    $.__views.__alloyId73.add($.__views.lastUpdated);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -507,10 +507,10 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.editRecWin);
     });
-    __defers["$.__views.__alloyId38!click!hideKeyboard"] && $.__views.__alloyId38.addEventListener("click", hideKeyboard);
-    __defers["$.__views.__alloyId45!click!hideKeyboard"] && $.__views.__alloyId45.addEventListener("click", hideKeyboard);
-    __defers["$.__views.__alloyId47!click!showCategory"] && $.__views.__alloyId47.addEventListener("click", showCategory);
-    __defers["$.__views.__alloyId50!click!deleteRecord"] && $.__views.__alloyId50.addEventListener("click", deleteRecord);
+    __defers["$.__views.__alloyId60!click!hideKeyboard"] && $.addListener($.__views.__alloyId60, "click", hideKeyboard);
+    __defers["$.__views.__alloyId67!click!hideKeyboard"] && $.addListener($.__views.__alloyId67, "click", hideKeyboard);
+    __defers["$.__views.__alloyId69!click!showCategory"] && $.addListener($.__views.__alloyId69, "click", showCategory);
+    __defers["$.__views.__alloyId72!click!deleteRecord"] && $.addListener($.__views.__alloyId72, "click", deleteRecord);
     _.extend($, exports);
 }
 

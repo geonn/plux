@@ -9,8 +9,9 @@
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Panel Details</Label>
 		     	</View>
 		 </View>
-		 <ScrollView layout="vertical" backgroundColor="#C3C3C3" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
+		 <ScrollView layout="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
 		 	<View width="95%" layout="vertical" backgroundColor="#F5F5F5" height="Ti.UI.SIZE" top="15">
+		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" />
 		 		<Label id="clinicName" class="clinic_name"   bottom="10"/>
 		 		<Label text="Address" class="clinic_address clinicLabelTitle" />
 			 	<Label id="clinicAddress" class="clinic_address" bottom="10" /> 
@@ -22,7 +23,7 @@
 			 	<Label id="clinicTel" class="clinic_address"  bottom="10"   />
 			 	
 			 	<Label text="Operation Hours" class="clinic_address clinicLabelTitle" />
-			 	<View layout="vertical" height="Ti.UI.SIZE" left="0" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
+			 	<View layout="vertical" height="Ti.UI.SIZE" left="0" right="5" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
 			 </View>
 		 	
 		 	<View height="1" backgroundColor="#CE1D1C" width="98%" top="10" />

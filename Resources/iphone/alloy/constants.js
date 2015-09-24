@@ -36,6 +36,7 @@ exports.PLUGIN_NAME = 'ti.alloy';
 exports.EXPR_PREFIX = '#';
 exports.PLUGIN_FILE = 'plugin.py';
 exports.HOOK_FILE = 'alloy.js';
+exports.HOOK_FILE_CLEAN = 'deepclean.js';
 exports.MINIMUM_TI_SDK = '3.0.0';
 exports.ITEM_TEMPLATE_VAR = '__itemTemplate';
 exports.PARENT_SYMBOL_VAR = '__parentSymbol';
@@ -110,12 +111,14 @@ exports.DIR = {
 	THEME: 'themes',
 	BUILD: 'build/alloy',
 	I18N: 'i18n',
-	PLATFORM: 'platform'
+	PLATFORM: 'platform',
+	BUILD_I18N: 'build/i18n',
+	BUILD_PLATFORM: 'build/platform'
 };
 // folders/files to exclude when copying and processing files
 // RegEx format: must escape special chars - so use \.svn not .svn
 exports.EXCLUDED_FILES = [
-	'\\.svn'
+	'\\.svn','\\.git'
 ];
 
 // constants identifying JS reserved words
@@ -141,7 +144,8 @@ var NS_ALLOY = 'Alloy',
 	NS_TI_UI_IOS = 'Ti.UI.iOS',
 	NS_TI_UI_IPAD = 'Ti.UI.iPad',
 	NS_TI_UI_IPHONE = 'Ti.UI.iPhone',
-	NS_TI_UI_MOBILEWEB = 'Ti.UI.MobileWeb';
+	NS_TI_UI_MOBILEWEB = 'Ti.UI.MobileWeb',
+	NS_TI_UI_WINDOWS = 'Ti.UI.Windows';
 
 exports.IMPLICIT_NAMESPACES = {
 	// Alloy
@@ -184,12 +188,12 @@ exports.IMPLICIT_NAMESPACES = {
 	// Ti.UI.iOS
 	AdView: NS_TI_UI_IOS,
 	CoverFlowView: NS_TI_UI_IOS,
+	DocumentViewer: NS_TI_UI_IOS,
 	NavigationWindow: NS_TI_UI_IOS,
 	TabbedBar: NS_TI_UI_IOS,
 	Toolbar: NS_TI_UI_IOS,
 
 	// Ti.UI.iPad
-	DocumentViewer: NS_TI_UI_IPAD,
 	Popover: NS_TI_UI_IPAD,
 	SplitWindow: NS_TI_UI_IPAD,
 
@@ -197,6 +201,12 @@ exports.IMPLICIT_NAMESPACES = {
 	NavigationGroup: isTitanium && Ti.Platform.osname === 'mobileweb' ?
 		NS_TI_UI_MOBILEWEB: NS_TI_UI_IPHONE,
 	StatusBar: NS_TI_UI_IPHONE,
+
+	// Ti.UI.Windows
+	CommandBar: NS_TI_UI_WINDOWS,
+	AppBarButton: NS_TI_UI_WINDOWS,
+	AppBarToggleButton: NS_TI_UI_WINDOWS,
+	AppBarSeparator: NS_TI_UI_WINDOWS,
 
 	// Ti.UI.Window
 	LeftNavButton: 'Ti.UI.Window',
@@ -232,3 +242,7 @@ exports.SPECIAL_PROPERTY_NAMES = [
 	'onCreateOptionsMenu',
 	'onPrepareOptionsMenu'
 ];
+
+exports.COMMANDS = {
+	GENERATE: 'generate'
+};

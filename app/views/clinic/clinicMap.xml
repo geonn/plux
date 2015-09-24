@@ -11,7 +11,7 @@
 		     	</View> 
 		 	</View> 
 		 	 
-		 	<ScrollView backgroundColor="red" id="panelMap" height="Ti.UI.FILL" width="Ti.UI.FILL" />
+		 	<ScrollView id="panelMap" height="Ti.UI.FILL" width="Ti.UI.FILL" />
 		</View> 
 		 
 	</Window>

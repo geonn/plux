@@ -83,16 +83,17 @@
                 <activity android:label="plux"
                     android:name="com.facebook.LoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
                 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
-				<activity android:name="com.android.packageinstaller" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|screenSize">
-					<intent-filter>
-						<action android:name="android.intent.action.VIEW"/>
-						<category android:name="android.intent.category.DEFAULT"/>
-					</intent-filter>
-				</activity>
-				<manifest android:versionCode="2"
-		            android:versionName="1.0.2"
-		            android:installLocation="auto">
-		        </manifest>
+                <activity
+                    android:configChanges="keyboardHidden|orientation|screenSize"
+                    android:label="@string/app_name"
+                    android:name="com.android.packageinstaller" android:theme="@style/Theme.Titanium">
+                    <intent-filter>
+                        <action android:name="android.intent.action.VIEW"/>
+                        <category android:name="android.intent.category.DEFAULT"/>
+                    </intent-filter>
+                </activity>
+                <manifest android:installLocation="auto"
+                    android:versionCode="2" android:versionName="1.0.2"/>
             </application>
             <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21"/>
         </manifest>
@@ -106,19 +107,17 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="commonjs" version="3.2.8">ti.cloud</module>
-        <module platform="android">ti.map</module>
-        <module platform="iphone">ti.map</module>
-        <module platform="android">ti.cloudpush</module>
+        <module platform="android" version="3.3.8">ti.cloudpush</module>
         <module platform="iphone">com.appcelerator.urlSession</module>
         <module platform="iphone">ti.coremotion</module>
-        <module platform="android">analytics.google</module>
-        <module platform="iphone">analytics.google</module>
         <module platform="android">com.appcelerator.apm</module>
         <module platform="iphone">com.appcelerator.apm</module>
         <module platform="android">facebook</module>
         <module platform="iphone">facebook</module>
         <module platform="iphone">ti.touchid</module>
+        <module platform="commonjs" version="3.2.8">ti.cloud</module>
+        <module platform="iphone">ti.map</module>
+        <module platform="android" version="2.3.1">ti.map</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>
@@ -128,7 +127,7 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>4.1.0.GA</sdk-version>
+    <sdk-version>5.0.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

@@ -24,6 +24,8 @@ var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER
 var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
 var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
 var nearbyClinicUrl = "http://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
+var doctorListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
+var addAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -114,6 +116,27 @@ exports.getUserService = function(e){
 	 client.open("GET", url);
 	 // Send the request.
 	 client.send();
+};
+
+exports.addAppointment = function(e, callback){
+	var url = addAppointmentUrl; 
+	console.log(url);
+	console.log(callback);
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText); 
+	     	console.log(res);
+		 	//callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+
+	client.open("POST", url);
+	client.send(e.param);
 };
 
 exports.getNearbyClinic = function(e){ 
@@ -621,6 +644,30 @@ exports.loadLeaflet = function(ex){
 				});
 				lfModel.save();  
 			});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
+exports.getDoctorList = function(ex){
+	var url = doctorListUrl;
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);
+	     	console.log(res);
+		 	/**reset current category**/
+		 	var doctorsModel = Alloy.createCollection('doctors');  
+			 
+			var info = res.data; 
+			doctorsModel.saveArray(info);
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {

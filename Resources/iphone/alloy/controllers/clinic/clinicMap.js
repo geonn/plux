@@ -33,25 +33,23 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelMapWin && $.addTopLevelView($.__views.panelMapWin);
-    $.__views.__alloyId208 = Ti.UI.createView({
+    $.__views.__alloyId231 = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId208"
+        id: "__alloyId231"
     });
-    $.__views.panelMapWin.add($.__views.__alloyId208);
+    $.__views.panelMapWin.add($.__views.__alloyId231);
     $.__views.panelMap = Ti.UI.createScrollView({
-        backgroundColor: "red",
         id: "panelMap",
         height: Ti.UI.FILL,
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId208.add($.__views.panelMap);
+    $.__views.__alloyId231.add($.__views.panelMap);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var maps = args.map_url;
-    console.log(maps);
     $.panelMap.add(Ti.UI.createWebView({
         url: maps,
         width: Ti.UI.FILL,
