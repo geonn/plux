@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
-var corp = Ti.App.Properties.getString('corpcode');
+var corp = Ti.App.Properties.getString('corpcode') || "";
 var list;
 var aspClinicArr = [];
 
@@ -23,13 +23,10 @@ if(clinicType == "hours24"){
 	} 
 }
 
-setTimeout(function(){ 
-	loadData(corp);
-}, 1000);
-
+loadData(corp); 
 
 function listing(){   
-	var data=[]; 
+	var data=[];  
 	$.clinicListTv.setData(data);
    		var arr = list;
    		var counter = 0; 
@@ -37,7 +34,7 @@ function listing(){
    		if(arr.length < 1){
    			common.hideLoading();
 			var noRecord = Ti.UI.createLabel({ 
-			    text: "No clinic found nearby", 
+			    text: "No clinic found", 
 			    color: '#CE1D1C', 
 			    textAlign: 'center',
 			    font:{fontSize:14,fontStyle:'italic'},
@@ -178,7 +175,7 @@ function loadData(corp){
 		list = library.getPanelBy24Hours("", corp);   
 	}else{ 
 		list = library.getPanelByClinicType(clinicType,"", corp);   
-	}
+	} 
 	common.showLoading();
 	listing();
 }

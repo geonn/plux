@@ -10,12 +10,14 @@ function __processArg(obj, key) {
 function Controller() {
     function listing() {
         var data = [];
+        console.log("listing");
+        console.log(list);
         $.clinicListTv.setData(data);
         var arr = list;
         if (arr.length < 1) {
             common.hideLoading();
             var noRecord = Ti.UI.createLabel({
-                text: "No clinic found nearby",
+                text: "No clinic found",
                 color: "#CE1D1C",
                 textAlign: "center",
                 font: {
@@ -118,6 +120,8 @@ function Controller() {
     }
     function loadData(corp) {
         list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
+        console.log("loadData :");
+        console.log(list);
         common.showLoading();
         listing();
     }
@@ -209,14 +213,12 @@ function Controller() {
     var args = arguments[0] || {};
     var clinicType = args.clinicType || "CLINIC";
     var library = Alloy.createCollection("panelList");
-    var corp = Ti.App.Properties.getString("corpcode");
+    var corp = Ti.App.Properties.getString("corpcode") || "";
     var list;
     common.construct($);
     common.showLoading();
     $.clinicList.title = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
-    setTimeout(function() {
-        loadData(corp);
-    }, 1e3);
+    loadData(corp);
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicLocator", {
             clinicType: clinicType
