@@ -155,18 +155,32 @@ function direction2here(){
 		  
 		   
 			if (Ti.Android){
-				try {
-					Ti.API.info('Trying to Launch via Intent');
-					var intent = Ti.Android.createIntent({
+				try
+				{
+				   	var waze_url = 'waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes';
+				   	var intent = Ti.Android.createIntent({
 						action: Ti.Android.ACTION_VIEW,
-						data: url
-						
+						data: waze_url
 					});
 					Ti.Android.currentActivity.startActivity(intent);
-				} catch (e){
-					Ti.API.info('Caught Error launching intent: '+e);
-					exports.Install();
+					console.log('waze');
 				}
+				catch (ex)
+				{	
+					console.log(ex);
+				  	try {
+						Ti.API.info('Trying to Launch via Intent');
+						var intent = Ti.Android.createIntent({
+							action: Ti.Android.ACTION_VIEW,
+							data: url
+						});
+						Ti.Android.currentActivity.startActivity(intent);
+					} catch (e){
+						Ti.API.info('Caught Error launching intent: '+e);
+						exports.Install();
+					}
+				}
+				
 			}else{
 				if(Titanium.Platform.canOpenURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes')){
 					Titanium.Platform.openURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes');
