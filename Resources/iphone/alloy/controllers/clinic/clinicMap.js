@@ -42,7 +42,8 @@ function Controller() {
     $.__views.panelMapWin.add($.__views.__alloyId231);
     $.__views.panelMap = Ti.UI.createScrollView({
         id: "panelMap",
-        height: Ti.UI.FILL,
+        scrollType: "vertical",
+        height: Ti.UI.SIZE,
         width: Ti.UI.FILL
     });
     $.__views.__alloyId231.add($.__views.panelMap);

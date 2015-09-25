@@ -46,13 +46,9 @@ exports.definition = {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=0";
-                console.log("a");
                 db.execute(sql_query);
-                console.log(db.rowsAffected);
-                console.log("b");
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN (" + clinicCode + ")";
                 db.execute(sql_query);
-                console.log(db.rowsAffected);
                 db.close();
                 collection.trigger("sync");
             },
@@ -86,7 +82,6 @@ exports.definition = {
                 res.close();
                 db.close();
                 collection.trigger("sync");
-                console.log(count);
                 return listArr;
             },
             getPanelListTest: function() {
@@ -119,7 +114,6 @@ exports.definition = {
                 res.close();
                 db.close();
                 collection.trigger("sync");
-                console.log(count);
                 return listArr;
             },
             getPanelByState: function(state) {
@@ -195,7 +189,6 @@ exports.definition = {
             getCountClinicType: function(corp) {
                 var collection = this;
                 if ("" != corp) var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " where panel=1 GROUP BY clinicType "; else var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name + " GROUP BY clinicType ";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -234,7 +227,6 @@ exports.definition = {
                 var collection = this;
                 var panel_sql = "" != corp ? " AND panel=1" : "";
                 if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND clinicName LIKE '%" + searchKey + "%' " + panel_sql; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' " + panel_sql;
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -267,7 +259,6 @@ exports.definition = {
                 var collection = this;
                 var corp_sql = "" != corp ? "AND panel = 1" : "";
                 if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND clinicName LIKE '%" + searchKey + "%' " + corp_sql; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' " + corp_sql;
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

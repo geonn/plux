@@ -124,11 +124,11 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId234 = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        text: "Refresh",
+    $.__views.__alloyId234 = Ti.UI.createImageView({
         right: "10",
+        width: "25",
+        height: "25",
+        image: "/images/icon_refresh.png",
         id: "__alloyId234"
     });
     doRefresh ? $.addListener($.__views.__alloyId234, "click", doRefresh) : __defers["$.__views.__alloyId234!click!doRefresh"] = true;

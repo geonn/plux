@@ -54,13 +54,11 @@ exports.definition = {
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=0";
-                console.log('a');
-		        db.execute(sql_query);
-		         console.log(db.rowsAffected);
-		        console.log('b');
+              
+		        db.execute(sql_query); 
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN ("+clinicCode+")";
 		        db.execute(sql_query);
-		        console.log(db.rowsAffected);
+		        
          		db.close();
 	            collection.trigger('sync');
 			},
@@ -95,7 +93,7 @@ exports.definition = {
 				res.close();
                 db.close();
                 collection.trigger('sync');
-                console.log(count);
+               // console.log(count);
                 return listArr;
 			},
 			getPanelListTest : function(){
@@ -129,7 +127,7 @@ exports.definition = {
 				res.close();
                 db.close();
                 collection.trigger('sync');
-                console.log(count);
+                //console.log(count);
                 return listArr;
 			},
 			getPanelByState : function(state){
@@ -214,7 +212,7 @@ exports.definition = {
 				}else{
                 var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name +" GROUP BY clinicType ";
                }
-               console.log(sql);
+               //console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -264,7 +262,7 @@ exports.definition = {
 				}else{
 					var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE clinicType ='"+ClinicType+"' "+panel_sql;
 				}
-                console.log(sql);
+                //console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -302,7 +300,7 @@ exports.definition = {
 				}else{
 				 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE openHour LIKE '%24 HOURS%' "+corp_sql;	
 				}
-               console.log(sql);
+               //console.log(sql);
                
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

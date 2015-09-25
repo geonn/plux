@@ -38,7 +38,9 @@ function Controller() {
             } catch (e) {
                 Ti.API.info("Caught Error launching intent: " + e);
                 exports.Install();
-            } else Titanium.Platform.openURL("waze://?ll=" + details.latitude + "," + details.longitude + "&navigate=yes");
+            } else Titanium.Platform.canOpenURL("waze://?ll=" + details.latitude + "," + details.longitude + "&navigate=yes") ? Titanium.Platform.openURL("waze://?ll=" + details.latitude + "," + details.longitude + "&navigate=yes") : nav.navigateWithArgs("clinic/clinicMap", {
+                map_url: "http://maps.apple.com/?daddr=" + details.add1 + "\r\n" + add2 + details.postcode + ", " + details.city + "\r\n" + details.state + "&saddr=" + details.latitude + "," + details.longitude
+            });
             Titanium.Geolocation.removeEventListener("location", locationCallback);
         };
         Titanium.Geolocation.addEventListener("location", locationCallback);
