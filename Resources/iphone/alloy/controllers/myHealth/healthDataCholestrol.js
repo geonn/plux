@@ -95,15 +95,9 @@ function Controller() {
         title: "Save",
         right: "0"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId264.add($.__views.saveButton);
-    doSaveRecords ? $.addListener($.__views.saveButton, "touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
-    $.__views.healthCholestrolWin.rightNavButton = $.__views.__alloyId264;
-=======
     $.__views.__alloyId287.add($.__views.saveButton);
     doSaveRecords ? $.addListener($.__views.saveButton, "touchend", doSaveRecords) : __defers["$.__views.saveButton!touchend!doSaveRecords"] = true;
     $.__views.healthCholestrolWin.rightNavButton = $.__views.__alloyId287;
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -172,15 +166,9 @@ function Controller() {
         selectedBackgroundColor: "#ffffff",
         id: "__alloyId291"
     });
-<<<<<<< HEAD
-    $.__views.table.add($.__views.__alloyId268);
-    showDatePicker ? $.addListener($.__views.__alloyId268, "click", showDatePicker) : __defers["$.__views.__alloyId268!click!showDatePicker"] = true;
-    $.__views.__alloyId269 = Ti.UI.createView({
-=======
     $.__views.table.add($.__views.__alloyId291);
     showDatePicker ? $.addListener($.__views.__alloyId291, "click", showDatePicker) : __defers["$.__views.__alloyId291!click!showDatePicker"] = true;
     $.__views.__alloyId292 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: "45",
         width: "100%",
@@ -223,15 +211,9 @@ function Controller() {
         selectedBackgroundColor: "#ffffff",
         id: "__alloyId295"
     });
-<<<<<<< HEAD
-    $.__views.table.add($.__views.__alloyId272);
-    showTimePicker ? $.addListener($.__views.__alloyId272, "click", showTimePicker) : __defers["$.__views.__alloyId272!click!showTimePicker"] = true;
-    $.__views.__alloyId273 = Ti.UI.createView({
-=======
     $.__views.table.add($.__views.__alloyId295);
     showTimePicker ? $.addListener($.__views.__alloyId295, "click", showTimePicker) : __defers["$.__views.__alloyId295!click!showTimePicker"] = true;
     $.__views.__alloyId296 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: "45",
         width: "100%",
@@ -419,13 +401,8 @@ function Controller() {
         nav.closeWindow($.healthCholestrolWin);
     });
     __defers["$.__views.saveButton!touchend!doSaveRecords"] && $.addListener($.__views.saveButton, "touchend", doSaveRecords);
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId268!click!showDatePicker"] && $.addListener($.__views.__alloyId268, "click", showDatePicker);
-    __defers["$.__views.__alloyId272!click!showTimePicker"] && $.addListener($.__views.__alloyId272, "click", showTimePicker);
-=======
     __defers["$.__views.__alloyId291!click!showDatePicker"] && $.addListener($.__views.__alloyId291, "click", showDatePicker);
     __defers["$.__views.__alloyId295!click!showTimePicker"] && $.addListener($.__views.__alloyId295, "click", showTimePicker);
->>>>>>> origin/master
     __defers["$.__views.datePicker!change!changeDate"] && $.addListener($.__views.datePicker, "change", changeDate);
     __defers["$.__views.timePicker!change!changeTime"] && $.addListener($.__views.timePicker, "change", changeTime);
     _.extend($, exports);

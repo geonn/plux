@@ -125,27 +125,16 @@ function Controller() {
         title: "Add Data Point",
         hasChild: "true"
     });
-<<<<<<< HEAD
-    __alloyId303.push($.__views.addHealthData);
-    addData ? $.addListener($.__views.addHealthData, "click", addData) : __defers["$.__views.addHealthData!click!addData"] = true;
-    $.__views.__alloyId304 = Ti.UI.createTableViewRow({
-=======
     __alloyId340.push($.__views.addHealthData);
     addData ? $.addListener($.__views.addHealthData, "click", addData) : __defers["$.__views.addHealthData!click!addData"] = true;
     $.__views.__alloyId341 = Ti.UI.createTableViewRow({
->>>>>>> origin/master
         backgroundSelectedColor: "#FFE1E1",
         title: "Show All Data",
         hasChild: "true",
         id: "__alloyId341"
     });
-<<<<<<< HEAD
-    __alloyId303.push($.__views.__alloyId304);
-    editData ? $.addListener($.__views.__alloyId304, "click", editData) : __defers["$.__views.__alloyId304!click!editData"] = true;
-=======
     __alloyId340.push($.__views.__alloyId341);
     editData ? $.addListener($.__views.__alloyId341, "click", editData) : __defers["$.__views.__alloyId341!click!editData"] = true;
->>>>>>> origin/master
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId340,
         id: "healthTableData",
@@ -190,11 +179,7 @@ function Controller() {
         nav.closeWindow($.dashboard);
     });
     __defers["$.__views.addHealthData!click!addData"] && $.addListener($.__views.addHealthData, "click", addData);
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId304!click!editData"] && $.addListener($.__views.__alloyId304, "click", editData);
-=======
     __defers["$.__views.__alloyId341!click!editData"] && $.addListener($.__views.__alloyId341, "click", editData);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

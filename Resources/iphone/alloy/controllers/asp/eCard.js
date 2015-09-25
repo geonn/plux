@@ -182,15 +182,9 @@ function Controller() {
         color: "#ffffff",
         id: "__alloyId182"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId158.add($.__views.__alloyId159);
-    resendVerificationEmail ? $.addListener($.__views.__alloyId159, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId159!touchend!resendVerificationEmail"] = true;
-    $.__views.__alloyId160 = Ti.UI.createButton({
-=======
     $.__views.__alloyId181.add($.__views.__alloyId182);
     resendVerificationEmail ? $.addListener($.__views.__alloyId182, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId182!touchend!resendVerificationEmail"] = true;
     $.__views.__alloyId183 = Ti.UI.createButton({
->>>>>>> origin/master
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Refresh",
@@ -201,13 +195,8 @@ function Controller() {
         color: "#ffffff",
         id: "__alloyId183"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId158.add($.__views.__alloyId160);
-    checkStatus ? $.addListener($.__views.__alloyId160, "touchend", checkStatus) : __defers["$.__views.__alloyId160!touchend!checkStatus"] = true;
-=======
     $.__views.__alloyId181.add($.__views.__alloyId183);
     checkStatus ? $.addListener($.__views.__alloyId183, "touchend", checkStatus) : __defers["$.__views.__alloyId183!touchend!checkStatus"] = true;
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -315,13 +304,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.eCardWin);
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId159!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId159, "touchend", resendVerificationEmail);
-    __defers["$.__views.__alloyId160!touchend!checkStatus"] && $.addListener($.__views.__alloyId160, "touchend", checkStatus);
-=======
     __defers["$.__views.__alloyId182!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId182, "touchend", resendVerificationEmail);
     __defers["$.__views.__alloyId183!touchend!checkStatus"] && $.addListener($.__views.__alloyId183, "touchend", checkStatus);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

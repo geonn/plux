@@ -314,19 +314,11 @@ function Controller() {
         height: "20",
         id: "__alloyId60"
     });
-<<<<<<< HEAD
-    __alloyId36.push($.__views.__alloyId38);
-    hideKeyboard ? $.addListener($.__views.__alloyId38, "click", hideKeyboard) : __defers["$.__views.__alloyId38!click!hideKeyboard"] = true;
-    $.__views.__alloyId34 = Ti.UI.iOS.createToolbar({
-        items: __alloyId36,
-        id: "__alloyId34"
-=======
     __alloyId58.push($.__views.__alloyId60);
     hideKeyboard ? $.addListener($.__views.__alloyId60, "click", hideKeyboard) : __defers["$.__views.__alloyId60!click!hideKeyboard"] = true;
     $.__views.__alloyId56 = Ti.UI.iOS.createToolbar({
         items: __alloyId58,
         id: "__alloyId56"
->>>>>>> origin/master
     });
     $.__views.treatmentTextArea = Ti.UI.createTextArea({
         keyboardToolbar: $.__views.__alloyId56,
@@ -380,19 +372,11 @@ function Controller() {
         height: "20",
         id: "__alloyId67"
     });
-<<<<<<< HEAD
-    __alloyId43.push($.__views.__alloyId45);
-    hideKeyboard ? $.addListener($.__views.__alloyId45, "click", hideKeyboard) : __defers["$.__views.__alloyId45!click!hideKeyboard"] = true;
-    $.__views.__alloyId41 = Ti.UI.iOS.createToolbar({
-        items: __alloyId43,
-        id: "__alloyId41"
-=======
     __alloyId65.push($.__views.__alloyId67);
     hideKeyboard ? $.addListener($.__views.__alloyId67, "click", hideKeyboard) : __defers["$.__views.__alloyId67!click!hideKeyboard"] = true;
     $.__views.__alloyId63 = Ti.UI.iOS.createToolbar({
         items: __alloyId65,
         id: "__alloyId63"
->>>>>>> origin/master
     });
     $.__views.proceduceTextArea = Ti.UI.createTextArea({
         keyboardToolbar: $.__views.__alloyId63,
@@ -444,15 +428,9 @@ function Controller() {
         height: Ti.UI.SIZE,
         id: "__alloyId69"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId46.add($.__views.__alloyId47);
-    showCategory ? $.addListener($.__views.__alloyId47, "click", showCategory) : __defers["$.__views.__alloyId47!click!showCategory"] = true;
-    $.__views.__alloyId48 = Ti.UI.createView({
-=======
     $.__views.__alloyId68.add($.__views.__alloyId69);
     showCategory ? $.addListener($.__views.__alloyId69, "click", showCategory) : __defers["$.__views.__alloyId69!click!showCategory"] = true;
     $.__views.__alloyId70 = Ti.UI.createView({
->>>>>>> origin/master
         backgroundColor: "#CE1D1C",
         height: "50",
         width: Ti.UI.FILL,
@@ -488,15 +466,9 @@ function Controller() {
         height: "30",
         id: "__alloyId72"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId49.add($.__views.__alloyId50);
-    deleteRecord ? $.addListener($.__views.__alloyId50, "click", deleteRecord) : __defers["$.__views.__alloyId50!click!deleteRecord"] = true;
-    $.__views.__alloyId51 = Ti.UI.createView({
-=======
     $.__views.__alloyId71.add($.__views.__alloyId72);
     deleteRecord ? $.addListener($.__views.__alloyId72, "click", deleteRecord) : __defers["$.__views.__alloyId72!click!deleteRecord"] = true;
     $.__views.__alloyId73 = Ti.UI.createView({
->>>>>>> origin/master
         width: "auto",
         height: Ti.UI.FILL,
         id: "__alloyId73"
@@ -535,17 +507,10 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.editRecWin);
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId38!click!hideKeyboard"] && $.addListener($.__views.__alloyId38, "click", hideKeyboard);
-    __defers["$.__views.__alloyId45!click!hideKeyboard"] && $.addListener($.__views.__alloyId45, "click", hideKeyboard);
-    __defers["$.__views.__alloyId47!click!showCategory"] && $.addListener($.__views.__alloyId47, "click", showCategory);
-    __defers["$.__views.__alloyId50!click!deleteRecord"] && $.addListener($.__views.__alloyId50, "click", deleteRecord);
-=======
     __defers["$.__views.__alloyId60!click!hideKeyboard"] && $.addListener($.__views.__alloyId60, "click", hideKeyboard);
     __defers["$.__views.__alloyId67!click!hideKeyboard"] && $.addListener($.__views.__alloyId67, "click", hideKeyboard);
     __defers["$.__views.__alloyId69!click!showCategory"] && $.addListener($.__views.__alloyId69, "click", showCategory);
     __defers["$.__views.__alloyId72!click!deleteRecord"] && $.addListener($.__views.__alloyId72, "click", deleteRecord);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

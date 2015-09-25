@@ -83,15 +83,9 @@ function Controller() {
         image: "/images/logo_plux.png",
         id: "__alloyId166"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId142.add($.__views.__alloyId143);
-    navProfile ? $.addListener($.__views.__alloyId143, "click", navProfile) : __defers["$.__views.__alloyId143!click!navProfile"] = true;
-    $.__views.__alloyId144 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId165.add($.__views.__alloyId166);
     navProfile ? $.addListener($.__views.__alloyId166, "click", navProfile) : __defers["$.__views.__alloyId166!click!navProfile"] = true;
     $.__views.__alloyId167 = Ti.UI.createImageView({
->>>>>>> origin/master
         top: "30dp",
         borderRadius: "10",
         width: "120",
@@ -103,26 +97,16 @@ function Controller() {
         image: "/images/asp_logo.png",
         id: "__alloyId167"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId142.add($.__views.__alloyId144);
-    navProfile ? $.addListener($.__views.__alloyId144, "click", navProfile) : __defers["$.__views.__alloyId144!click!navProfile"] = true;
-=======
     $.__views.__alloyId165.add($.__views.__alloyId167);
     navProfile ? $.addListener($.__views.__alloyId167, "click", navProfile) : __defers["$.__views.__alloyId167!click!navProfile"] = true;
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId143!click!navProfile"] && $.addListener($.__views.__alloyId143, "click", navProfile);
-    __defers["$.__views.__alloyId144!click!navProfile"] && $.addListener($.__views.__alloyId144, "click", navProfile);
-=======
     __defers["$.__views.__alloyId166!click!navProfile"] && $.addListener($.__views.__alloyId166, "click", navProfile);
     __defers["$.__views.__alloyId167!click!navProfile"] && $.addListener($.__views.__alloyId167, "click", navProfile);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

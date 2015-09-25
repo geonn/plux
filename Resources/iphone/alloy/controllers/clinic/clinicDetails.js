@@ -242,15 +242,9 @@ function Controller() {
         title: "Direction To Here",
         id: "__alloyId225"
     });
-<<<<<<< HEAD
-    __alloyId201.push($.__views.__alloyId202);
-    direction2here ? $.addListener($.__views.__alloyId202, "click", direction2here) : __defers["$.__views.__alloyId202!click!direction2here"] = true;
-    $.__views.__alloyId203 = Ti.UI.createTableViewRow({
-=======
     __alloyId224.push($.__views.__alloyId225);
     direction2here ? $.addListener($.__views.__alloyId225, "click", direction2here) : __defers["$.__views.__alloyId225!click!direction2here"] = true;
     $.__views.__alloyId226 = Ti.UI.createTableViewRow({
->>>>>>> origin/master
         height: "50",
         left: "10",
         selectedBackgroundColor: "#FFE1E1",
@@ -258,13 +252,8 @@ function Controller() {
         title: "Call",
         id: "__alloyId226"
     });
-<<<<<<< HEAD
-    __alloyId201.push($.__views.__alloyId203);
-    clickToCall ? $.addListener($.__views.__alloyId203, "click", clickToCall) : __defers["$.__views.__alloyId203!click!clickToCall"] = true;
-=======
     __alloyId224.push($.__views.__alloyId226);
     clickToCall ? $.addListener($.__views.__alloyId226, "click", clickToCall) : __defers["$.__views.__alloyId226!click!clickToCall"] = true;
->>>>>>> origin/master
     $.__views.add2contact = Ti.UI.createTableViewRow({
         height: "50",
         left: "10",
@@ -273,11 +262,7 @@ function Controller() {
         color: "#5E5E5E",
         title: "Add To Contact"
     });
-<<<<<<< HEAD
-    __alloyId201.push($.__views.add2contact);
-=======
     __alloyId224.push($.__views.add2contact);
->>>>>>> origin/master
     addToContact ? $.addListener($.__views.add2contact, "click", addToContact) : __defers["$.__views.add2contact!click!addToContact"] = true;
     $.__views.healthTableData = Ti.UI.createTableView({
         data: __alloyId224,
@@ -394,13 +379,8 @@ function Controller() {
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.panelDetails);
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId202!click!direction2here"] && $.addListener($.__views.__alloyId202, "click", direction2here);
-    __defers["$.__views.__alloyId203!click!clickToCall"] && $.addListener($.__views.__alloyId203, "click", clickToCall);
-=======
     __defers["$.__views.__alloyId225!click!direction2here"] && $.addListener($.__views.__alloyId225, "click", direction2here);
     __defers["$.__views.__alloyId226!click!clickToCall"] && $.addListener($.__views.__alloyId226, "click", clickToCall);
->>>>>>> origin/master
     __defers["$.__views.add2contact!click!addToContact"] && $.addListener($.__views.add2contact, "click", addToContact);
     _.extend($, exports);
 }
