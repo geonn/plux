@@ -23,14 +23,12 @@ if(clinicType == "hours24"){
 	} 
 }
 
-setTimeout(function(){ 
-	console.log('after 1 sec');
+setTimeout(function(){
 	loadData(corp);
 }, 1000);
 
-
 function listing(){   
-	var data=[]; 
+	var data=[];  
 	$.clinicListTv.setData(data);
    		var arr = list;
    		var counter = 0; 
@@ -38,7 +36,7 @@ function listing(){
    		if(arr.length < 1){
    			common.hideLoading();
 			var noRecord = Ti.UI.createLabel({ 
-			    text: "No clinic found nearby", 
+			    text: "No clinic found", 
 			    color: '#CE1D1C', 
 			    textAlign: 'center',
 			    font:{fontSize:14,fontStyle:'italic'},
@@ -175,12 +173,11 @@ if(Ti.Platform.osname == "android"){
  
 
 function loadData(corp){
-	console.log("load data!!!");
 	if(clinicType == "hours24"){ 
 		list = library.getPanelBy24Hours("", corp);   
 	}else{ 
 		list = library.getPanelByClinicType(clinicType,"", corp);   
-	}
+	} 
 	common.showLoading();
 	listing();
 }
