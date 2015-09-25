@@ -6,7 +6,7 @@ var details;
 common.construct($);
 common.showLoading();
 
-if(clinicType == "hours24"){  
+if(clinicType == "hours24"){  	
 	details = library.getPanelBy24Hours("", corp); 
 }else{ 
 	details = library.getPanelByClinicType(clinicType, "", corp);     

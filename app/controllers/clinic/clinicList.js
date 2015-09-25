@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
-var corp = Ti.App.Properties.getString('corpcode');
+var corp = Ti.App.Properties.getString('corpcode') || "";
 var list;
 var aspClinicArr = [];
 
@@ -24,6 +24,7 @@ if(clinicType == "hours24"){
 }
 
 setTimeout(function(){ 
+	console.log('after 1 sec');
 	loadData(corp);
 }, 1000);
 
@@ -174,6 +175,7 @@ if(Ti.Platform.osname == "android"){
  
 
 function loadData(corp){
+	console.log("load data!!!");
 	if(clinicType == "hours24"){ 
 		list = library.getPanelBy24Hours("", corp);   
 	}else{ 

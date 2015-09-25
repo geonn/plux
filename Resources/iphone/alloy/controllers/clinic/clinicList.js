@@ -117,6 +117,7 @@ function Controller() {
         } else loadData(corp);
     }
     function loadData(corp) {
+        console.log("load data!!!");
         list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         common.showLoading();
         listing();
@@ -209,12 +210,13 @@ function Controller() {
     var args = arguments[0] || {};
     var clinicType = args.clinicType || "CLINIC";
     var library = Alloy.createCollection("panelList");
-    var corp = Ti.App.Properties.getString("corpcode");
+    var corp = Ti.App.Properties.getString("corpcode") || "";
     var list;
     common.construct($);
     common.showLoading();
     $.clinicList.title = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
     setTimeout(function() {
+        console.log("after 1 sec");
         loadData(corp);
     }, 1e3);
     $.btnList.addEventListener("click", function() {

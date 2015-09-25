@@ -11,7 +11,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>b98d676c-afda-43e7-9999-a1908c83672a</guid>
+    <guid>49b73c4b-04a8-461a-9888-9fab05f3c10b</guid>
     <property name="acs-oauth-secret-development" type="string">5EQbnzq1Ec0FyPh7ftnnYqlH5x7zjSzU</property>
     <property name="acs-oauth-key-development" type="string">ywzZEIPgxSpYB3jR3AyzwtGzhFh88ha8</property>
     <property name="acs-api-key-development" type="string">Mavow9cvBi4O7ipIO8h6f4kLIDXT9j87</property>
@@ -107,7 +107,6 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
- 
         <module platform="android" version="3.3.8">ti.cloudpush</module>
         <module platform="iphone">com.appcelerator.urlSession</module>
         <module platform="iphone">ti.coremotion</module>
@@ -120,13 +119,13 @@
         <module platform="iphone">ti.map</module>
         <module platform="android" version="2.3.1">ti.map</module>
     </modules>
-    <deployment-targets> 
+    <deployment-targets>
         <target device="android">true</target>
         <target device="ipad">true</target>
         <target device="iphone">true</target>
-        <target device="mobileweb">true</target> 
+        <target device="mobileweb">true</target>
     </deployment-targets>
-    <sdk-version>5.0.0.GA</sdk-version>
+    <sdk-version>5.1.0.v20150922160425</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
