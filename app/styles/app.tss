@@ -27,6 +27,10 @@
 "ListItem":{
 	color: "#000",
 }
+".themeColor" :{
+	color: "#CE1D1C"
+	
+},
 ".big_font":{
 	font: {fontSize: '20dp'},
 },
@@ -92,5 +96,5 @@
 }
 
 ".greyText" : {
-	color: "#B5B5B5",
+	color: "#9E9E9E",
 }

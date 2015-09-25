@@ -26,6 +26,8 @@ var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USE
 var nearbyClinicUrl = "http://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
 var doctorListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
 var addAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
+var syncAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
+var deleteAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -119,15 +121,12 @@ exports.getUserService = function(e){
 };
 
 exports.addAppointment = function(e, callback){
-	var url = addAppointmentUrl; 
-	console.log(url);
-	console.log(callback);
+	var url = addAppointmentUrl;  
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText); 
-	     	console.log(res);
-		 	//callback({param: res});
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
@@ -137,6 +136,50 @@ exports.addAppointment = function(e, callback){
 
 	client.open("POST", url);
 	client.send(e.param);
+};
+
+exports.syncAppointmentData = function(callback){
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	if(u_id == ""){ 
+		return false;
+	}
+	var url = syncAppointmentUrl + "&u_id="+u_id;  
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+
+	client.open("GET", url);
+	client.send();
+};
+
+exports.deleteAppointment = function(id, callback){
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	if(u_id == ""){ 
+		return false;
+	}
+	var url = deleteAppointmentUrl + "&id="+id+ "&status=5";  
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+
+	client.open("GET", url);
+	client.send();
 };
 
 exports.getNearbyClinic = function(e){ 

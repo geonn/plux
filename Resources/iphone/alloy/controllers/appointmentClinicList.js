@@ -35,13 +35,13 @@ function Controller() {
                     width: "auto"
                 });
                 var docName = $.UI.create("Label", {
-                    classes: [ "font_regular", "wfill", "hsize", "themeColor" ],
+                    classes: [ "medium_font", "wfill", "hsize", "themeColor" ],
                     text: entry.clinicName,
                     source: entry.id,
                     textAlign: "left",
                     clinicName: entry.clinicName,
                     top: 5,
-                    left: 4
+                    left: 15
                 });
                 var docSpecialty = $.UI.create("Label", {
                     classes: [ "small_font", "wfill", "hsize" ],
@@ -50,8 +50,7 @@ function Controller() {
                     clinicName: entry.clinicName,
                     color: "#848484",
                     textAlign: "left",
-                    top: 5,
-                    left: 4
+                    left: 15
                 });
                 var docContact = $.UI.create("Label", {
                     classes: [ "small_font", "wfill", "hsize" ],
@@ -60,9 +59,8 @@ function Controller() {
                     clinicName: entry.clinicName,
                     color: "#848484",
                     textAlign: "left",
-                    top: 5,
                     bottom: 5,
-                    left: 4
+                    left: 15
                 });
                 tblView.add(docName);
                 tblView.add(docSpecialty);
@@ -206,24 +204,17 @@ function Controller() {
     var bigContainer = $.UI.create("View", {
         classes: [ "hfill", "wfill", "vert" ]
     });
-    var optionContainer = $.UI.create("View", {
-        classes: [ "wfill", "horz" ],
-        height: 50
-    });
     var docContainer = Ti.UI.createScrollView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL
     });
-    bigContainer.add(optionContainer);
     bigContainer.add(separateHozLine());
     bigContainer.add(docContainer);
     $.doctorContainer.add(bigContainer);
     setTimeout(function() {
         createDoctorList();
     }, 600);
-    $.win.addEventListener("close", function() {
-        optionContainer = null;
-    });
+    $.win.addEventListener("close", function() {});
     __defers["$.__views.__alloyId15!click!closeWin"] && $.addListener($.__views.__alloyId15, "click", closeWin);
     _.extend($, exports);
 }

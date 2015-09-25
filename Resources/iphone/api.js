@@ -60,6 +60,10 @@ var doctorListUrl = "http://" + FREEJINI_DOMAIN + "/api/getDoctorList?user=" + U
 
 var addAppointmentUrl = "http://" + FREEJINI_DOMAIN + "/api/addAppointment?user=" + USER + "&key=" + KEY;
 
+var syncAppointmentUrl = "http://" + FREEJINI_DOMAIN + "/api/syncAppointmentData?user=" + USER + "&key=" + KEY;
+
+var deleteAppointmentUrl = "http://" + FREEJINI_DOMAIN + "/api/deleteAppointment?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -134,18 +138,54 @@ exports.getUserService = function(e) {
 
 exports.addAppointment = function(e, callback) {
     var url = addAppointmentUrl;
-    console.log(url);
-    console.log(callback);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            console.log(res);
+            callback({
+                param: res
+            });
         },
         onerror: function() {},
         timeout: 5e4
     });
     client.open("POST", url);
     client.send(e.param);
+};
+
+exports.syncAppointmentData = function(callback) {
+    var u_id = Ti.App.Properties.getString("u_id") || "";
+    if ("" == u_id) return false;
+    var url = syncAppointmentUrl + "&u_id=" + u_id;
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            callback({
+                param: res
+            });
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.deleteAppointment = function(id, callback) {
+    var u_id = Ti.App.Properties.getString("u_id") || "";
+    if ("" == u_id) return false;
+    var url = deleteAppointmentUrl + "&id=" + id + "&status=5";
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            callback({
+                param: res
+            });
+        },
+        onerror: function() {},
+        timeout: 5e4
+    });
+    client.open("GET", url);
+    client.send();
 };
 
 exports.getNearbyClinic = function(e) {

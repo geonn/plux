@@ -13,17 +13,13 @@ listing = panelListModel.getPanelListTest();
 var bigContainer = $.UI.create('View',{
 	classes: ['hfill','wfill','vert']
 });
-var optionContainer = $.UI.create('View',{
-	classes: [ 'wfill','horz'],
-	height:50
-});
+ 
 var docContainer = Ti.UI.createScrollView({
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL 
 });
 
- 
-bigContainer.add(optionContainer);
+  
 bigContainer.add(separateHozLine());
 bigContainer.add(docContainer);
 $.doctorContainer.add(bigContainer); 
@@ -63,13 +59,13 @@ function createDoctorList(){
 			}); 
 			 
 			var docName = $.UI.create('Label',{
-					classes : ['font_regular','wfill','hsize','themeColor'],
-					text:  entry.clinicName, 
-					source: entry.id, 
-					textAlign:'left',
-					clinicName: entry.clinicName, 
-					top:5,
-					left:4
+				classes : ['medium_font','wfill','hsize','themeColor'],
+				text:  entry.clinicName, 
+				source: entry.id, 
+				textAlign:'left',
+				clinicName: entry.clinicName, 
+				top:5,
+				left:15
 			});	
 			var docSpecialty = $.UI.create('Label',{
 				classes : ['small_font','wfill','hsize'],
@@ -77,9 +73,8 @@ function createDoctorList(){
 				source: entry.id,
 				clinicName: entry.clinicName, 
 				color: "#848484", 
-				textAlign:'left',
-				top:5,
-				left:4,  
+				textAlign:'left', 
+				left:15,  
 			});	
 			var docContact = $.UI.create('Label',{
 				classes : ['small_font','wfill','hsize'],
@@ -87,10 +82,9 @@ function createDoctorList(){
 				source: entry.id,
 				clinicName: entry.clinicName, 
 				color: "#848484", 
-				textAlign:'left',
-				top:5,
+				textAlign:'left', 
 				bottom:5,
-				left:4 
+				left:15 
 			});	
 			tblView.add(docName); 
 			tblView.add(docSpecialty); 
@@ -135,6 +129,5 @@ function closeWin(){
 }
 
 $.win.addEventListener("close", function(){ 
-	//Ti.App.removeEventListener('filterList',filterList);
-	optionContainer = null;
+	//Ti.App.removeEventListener('filterList',filterList); 
 });

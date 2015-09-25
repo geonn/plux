@@ -48,14 +48,7 @@ function convertToDBDateFormat(datetime) {
     var timeStamp = datetime.split(" ");
     var newFormat;
     var date = timeStamp[0].split("/");
-    if (1 == timeStamp.length) newFormat = date[2] + "-" + date[1] + "-" + date[0]; else {
-        var time = timeStamp[1].split(":");
-        if (time[0] > 12) {
-            ampm = "pm";
-            time[0] = time[0] - 12;
-        }
-        newFormat = date[2] + "-" + date[1] + "-" + date[0] + " " + timeStamp[1];
-    }
+    newFormat = 1 == timeStamp.length ? date[2] + "-" + date[1] + "-" + date[0] : date[2] + "-" + date[1] + "-" + date[0] + " " + timeStamp[1];
     return newFormat;
 }
 
@@ -75,6 +68,11 @@ function currentDateTime() {
     return datetime;
 }
 
+function nl2br(str, is_xhtml) {
+    str.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
+    return str;
+}
+
 function validateEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
@@ -90,6 +88,26 @@ function PixelsToDPUnits(ThePixels) {
 
 function DPUnitsToPixels(TheDPUnits) {
     return TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160);
+}
+
+function monthFormat(datetime) {
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var timeStamp = datetime.split(" ");
+    var newFormat;
+    var ampm = "am";
+    var date = timeStamp[0].split("-");
+    "08" == date[1] && (date[1] = "8");
+    "09" == date[1] && (date[1] = "9");
+    month = parseInt(date[1]) - 1;
+    if (1 == timeStamp.length) newFormat = date[2] + " " + monthNames[month] + " " + date[0]; else {
+        var time = timeStamp[1].split(":");
+        if (time[0] > 12) {
+            ampm = "pm";
+            time[0] = time[0] - 12;
+        }
+        newFormat = date[2] + " " + monthNames[month] + " " + date[0] + ", " + time[0] + ":" + time[1] + " " + ampm;
+    }
+    return newFormat;
 }
 
 function removeAllChildren(viewObject) {

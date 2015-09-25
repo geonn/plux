@@ -310,7 +310,7 @@ function Controller() {
         top: "15",
         left: "15",
         width: "139",
-        image: "/images/btn/btn_hra.png",
+        image: "/images/btn/btn_appointment.png",
         id: "__alloyId86"
     });
     $.__views.__alloyId76.add($.__views.__alloyId86);
