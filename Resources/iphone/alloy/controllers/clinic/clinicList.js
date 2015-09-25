@@ -117,6 +117,7 @@ function Controller() {
         } else loadData(corp);
     }
     function loadData(corp) {
+        console.log("load data!!!");
         list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         common.showLoading();
         listing();
@@ -214,7 +215,14 @@ function Controller() {
     common.construct($);
     common.showLoading();
     $.clinicList.title = "hours24" == clinicType ? "24 Hours Clinic List" : clinicType + " List";
+<<<<<<< HEAD
+    setTimeout(function() {
+        console.log("after 1 sec");
+        loadData(corp);
+    }, 1e3);
+=======
     loadData(corp);
+>>>>>>> origin/master
     $.btnList.addEventListener("click", function() {
         nav.navigateWithArgs("clinic/clinicLocator", {
             clinicType: clinicType

@@ -168,9 +168,14 @@ function direction2here(){
 					exports.Install();
 				}
 			}else{
+				if(Titanium.Platform.canOpenURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes')){
+					Titanium.Platform.openURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes');
+				}else{
+					nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.apple.com/?daddr='+ details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state +'&saddr='+details.latitude+ ',' +details.longitude});
+				}
 				//http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude
 				//var str = 'http://maps.apple.com/?daddr='+ a +'&saddr='+latitude+ ',' +longitude
-				nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.apple.com/?daddr='+ details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state +'&saddr='+details.latitude+ ',' +details.longitude});
+				//
 	   	 	}
 				
 				

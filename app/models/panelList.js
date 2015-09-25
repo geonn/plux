@@ -264,7 +264,7 @@ exports.definition = {
 				}else{
 					var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE clinicType ='"+ClinicType+"' "+panel_sql;
 				}
-                
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -302,7 +302,7 @@ exports.definition = {
 				}else{
 				 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE openHour LIKE '%24 HOURS%' "+corp_sql;	
 				}
-               
+               console.log(sql);
                
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

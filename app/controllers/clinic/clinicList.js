@@ -23,7 +23,9 @@ if(clinicType == "hours24"){
 	} 
 }
 
-loadData(corp); 
+setTimeout(function(){
+	loadData(corp);
+}, 1000);
 
 function listing(){   
 	var data=[];  
