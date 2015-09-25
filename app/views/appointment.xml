@@ -22,9 +22,9 @@
 			         	<Button class="navbtn" id="newRecord" title="Add" />
 			   		</View>
 			 	</View>
-				<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search appointment data..." /> 
+				<!--<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search appointment data..." /> -->
 			 	<View id="recordView" layout="vertical" height="Ti.UI.FILL" width="Ti.UI.FILL" >
-			 		<TableView width="100%"  id="recordTable"  top="0" width="Ti.UI.FILL" height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
+			 		<TableView width="100%"  id="recordTable"  top="0" width="Ti.UI.FILL" height="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
 			 	</View>
 			</View> 
 		</View>

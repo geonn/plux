@@ -149,12 +149,7 @@ function convertToDBDateFormat(datetime){
 	if(timeStamp.length == 1){
 		newFormat = date[2]+"-"+date[1]+"-"+date[0] ;
 	}else{
-		var time = timeStamp[1].split(":");  
-		if(time[0] > 12){
-			ampm = "pm";
-			time[0] = time[0] - 12;
-		}
-		
+		 
 		newFormat = date[2]+"-"+date[1]+"-"+date[0] + " "+ timeStamp[1];
 	}
 	
@@ -188,6 +183,20 @@ function currentDateTime(){
 	return datetime ;
 } 
 
+function nl2br (str, is_xhtml) {
+     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+     str.replace(/\\n/g, "\\n")
+               .replace(/\\'/g, "\\'")
+               .replace(/\\"/g, '\\"')
+               .replace(/\\&/g, "\\&")
+               .replace(/\\r/g, "\\r")
+               .replace(/\\t/g, "\\t")
+               .replace(/\\b/g, "\\b")
+               .replace(/\\f/g, "\\f");
+    return str;
+    // return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+  } 
+  
 function validateEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
@@ -204,6 +213,42 @@ function PixelsToDPUnits(ThePixels){
 function DPUnitsToPixels(TheDPUnits){
   return (TheDPUnits * (Titanium.Platform.displayCaps.dpi / 160));
 }
+
+function monthFormat(datetime){
+	
+	var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+    
+	var timeStamp = datetime.split(" ");  
+	var newFormat;
+	var ampm = "am";
+	var date = timeStamp[0].split("-");   
+    if(date[1] == "08"){
+		date[1] = "8";
+	}
+	if(date[1] == "09"){
+		date[1] = "9";
+	}
+    month = parseInt(date[1]) -1; 
+	if(timeStamp.length == 1){
+		newFormat =  date[2]+" "+ monthNames[month]+" "+ date[0];
+	}else{
+		var time = timeStamp[1].split(":");  
+		if(time[0] > 12){
+			ampm = "pm";
+			time[0] = time[0] - 12;
+		}
+		
+		newFormat = date[2]+" "+ monthNames[month]+" "+ date[0] + ", "+ time[0]+":"+time[1]+ " "+ ampm;
+	}
+	
+	return newFormat;
+}
+
 
 function removeAllChildren(viewObject){
     //copy array of child object references because view's "children" property is live collection of child object references

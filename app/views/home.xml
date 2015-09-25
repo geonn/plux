@@ -24,7 +24,7 @@
 							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
 							<ImageView onClick="navWindow" mod="hra" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" width="139" image="/images/btn/btn_healthInfo.png"/>
-							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
+							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>
 						</View>
 					</ScrollView>
 				</View>

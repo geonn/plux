@@ -254,19 +254,11 @@ function Controller() {
         height: "20",
         id: "__alloyId42"
     });
-<<<<<<< HEAD
-    __alloyId18.push($.__views.__alloyId20);
-    hideKeyboard ? $.addListener($.__views.__alloyId20, "click", hideKeyboard) : __defers["$.__views.__alloyId20!click!hideKeyboard"] = true;
-    $.__views.__alloyId16 = Ti.UI.iOS.createToolbar({
-        items: __alloyId18,
-        id: "__alloyId16"
-=======
     __alloyId40.push($.__views.__alloyId42);
     hideKeyboard ? $.addListener($.__views.__alloyId42, "click", hideKeyboard) : __defers["$.__views.__alloyId42!click!hideKeyboard"] = true;
     $.__views.__alloyId38 = Ti.UI.iOS.createToolbar({
         items: __alloyId40,
         id: "__alloyId38"
->>>>>>> origin/master
     });
     $.__views.recordsTextArea = Ti.UI.createTextArea({
         keyboardToolbar: $.__views.__alloyId38,
@@ -312,15 +304,9 @@ function Controller() {
         height: Ti.UI.SIZE,
         id: "__alloyId44"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId21.add($.__views.__alloyId22);
-    takePhoto ? $.addListener($.__views.__alloyId22, "click", takePhoto) : __defers["$.__views.__alloyId22!click!takePhoto"] = true;
-    $.__views.__alloyId23 = Ti.UI.createView({
-=======
     $.__views.__alloyId43.add($.__views.__alloyId44);
     takePhoto ? $.addListener($.__views.__alloyId44, "click", takePhoto) : __defers["$.__views.__alloyId44!click!takePhoto"] = true;
     $.__views.__alloyId45 = Ti.UI.createView({
->>>>>>> origin/master
         backgroundColor: "#CE1D1C",
         height: "50",
         width: Ti.UI.FILL,
@@ -353,15 +339,9 @@ function Controller() {
         height: "30",
         id: "__alloyId47"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId24.add($.__views.__alloyId25);
-    deleteRecord ? $.addListener($.__views.__alloyId25, "click", deleteRecord) : __defers["$.__views.__alloyId25!click!deleteRecord"] = true;
-    $.__views.__alloyId26 = Ti.UI.createView({
-=======
     $.__views.__alloyId46.add($.__views.__alloyId47);
     deleteRecord ? $.addListener($.__views.__alloyId47, "click", deleteRecord) : __defers["$.__views.__alloyId47!click!deleteRecord"] = true;
     $.__views.__alloyId48 = Ti.UI.createView({
->>>>>>> origin/master
         width: "auto",
         height: Ti.UI.FILL,
         id: "__alloyId48"
@@ -394,15 +374,9 @@ function Controller() {
     });
     Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId20!click!hideKeyboard"] && $.addListener($.__views.__alloyId20, "click", hideKeyboard);
-    __defers["$.__views.__alloyId22!click!takePhoto"] && $.addListener($.__views.__alloyId22, "click", takePhoto);
-    __defers["$.__views.__alloyId25!click!deleteRecord"] && $.addListener($.__views.__alloyId25, "click", deleteRecord);
-=======
     __defers["$.__views.__alloyId42!click!hideKeyboard"] && $.addListener($.__views.__alloyId42, "click", hideKeyboard);
     __defers["$.__views.__alloyId44!click!takePhoto"] && $.addListener($.__views.__alloyId44, "click", takePhoto);
     __defers["$.__views.__alloyId47!click!deleteRecord"] && $.addListener($.__views.__alloyId47, "click", deleteRecord);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

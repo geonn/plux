@@ -5,11 +5,13 @@ var frontbackcounter = 0;
 common.construct($); 
 var usersModel = Alloy.createCollection('users'); 
 var user = usersModel.getOwnerData(); 
-loadPage();
+var qrcode = require('qrcode');
 
-function loadPage(){
+init();
+
+function init(){
 	var user = usersModel.getOwnerData(); 
-	console.log(user.isver);
+ 	 
 	if(user.isver == "true"){ 
 	 
 		$.unverified.hide();
@@ -32,7 +34,7 @@ function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
 	var asp_password = Ti.App.Properties.getString('asp_password');	 
 	if(asp_email){
-		Ti.App.addEventListener('loadPage', loadPage);
+		Ti.App.addEventListener('loadPage', init);
 		common.showLoading();
 		API.doLogin(asp_email, asp_password, $, "refresh" );
 	}
@@ -92,7 +94,8 @@ var front_bg = Ti.UI.createImageView({
     	fontSize: "11dp"
     },
     zIndex: 11,
-    top: 0
+    top: 0,
+    bottom: 10
 });
 
 front.add(front_bg);
@@ -109,8 +112,22 @@ var back = Ti.UI.createImageView({
     top: 0,
 });
 
+var userQR = qrcode.QRCode({
+	typeNumber: 4,
+	errorCorrectLevel: 'M'
+});
+
+var userIc = user.ic || "";	 
+
+var qrcodeView = userQR.createQRCodeView({
+	width: 200,
+	height: 200,
+	margin: 4,
+	text: user.name+"||"+user.memno+"||"+userIc
+}); 
 //$.card.add(back);
 $.card.add(front);
+$.card.add(qrcodeView);
 
 var cover = Ti.UI.createView({ 
     width: Ti.UI.FILL,

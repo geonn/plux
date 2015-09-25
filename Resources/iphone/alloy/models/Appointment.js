@@ -3,12 +3,13 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 exports.definition = {
     config: {
         columns: {
-            id: "INTEGER",
+            id: "INTEGER PRIMARY KEY",
             u_id: "TEXT",
             clinic_id: "INTEGER",
             date: "TEXT",
             remark: "TEXT",
             status: "INTEGER",
+            suggested_date: "TEXT",
             created: "TEXT",
             updated: "TEXT"
         },
@@ -26,7 +27,7 @@ exports.definition = {
         _.extend(Collection.prototype, {
             getAppointmentList: function(ex) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id=" + ex.u_id + " ORDER BY created DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id=" + ex.u_id + " AND status != 5 ORDER BY created DESC";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var res = db.execute(sql);
@@ -51,20 +52,33 @@ exports.definition = {
                 collection.trigger("sync");
                 return listArr;
             },
-            addRecord: function(entry) {
+            saveArray: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 db.execute("BEGIN");
-                var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-                db.execute(sql_query, entry.id, entry.name, entry.dr_code, entry.email, entry.mobile, entry.status, entry.specialty, entry.qualification, entry.introduction, entry.created, entry.updated);
+                arr.forEach(function(entry) {
+                    var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, u_id,clinic_id, remark,  status,date,suggested_date, created, updated) VALUES (?,?,?,?,?,?,?,?,?)";
+                    db.execute(sql_query, entry.id, entry.u_id, entry.clinic_id, entry.remark, entry.status, entry.date, entry.suggested_date, entry.created, entry.updated);
+                    var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET clinic_id=?,remark=?,status=?,date=?,suggested_date=?,updated=? WHERE id=?";
+                    db.execute(sql_query, entry.clinic_id, entry.remark, entry.status, entry.date, entry.suggested_date, entry.updated, entry.id);
+                });
                 db.execute("COMMIT");
+                db.close();
+                collection.trigger("sync");
+            },
+            updateAppointmentStatus: function(id, statusCode) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
+                var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET status=? WHERE id=?";
+                db.execute(sql_query, statusCode, id);
                 db.close();
                 collection.trigger("sync");
             },
             getAppointmentById: function(id) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' AND status != 5 ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 "android" != Ti.Platform.osname && db.file.setRemoteBackup(false);
                 var res = db.execute(sql);

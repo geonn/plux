@@ -5,7 +5,7 @@
 	         	<Button id="saveRecord" onClick="saveRecord" title="Done" />
 	        </View>
         </RightNavButton>
-	 	<View layout="vertical" bottom="90">
+	 	<View layout="vertical" >
 	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
@@ -18,7 +18,7 @@
 		   		</View>
 		 	</View>
 	 	 
-			<ScrollView id="aView" height="Ti.UI.FILL" class="box" contentHeight="Ti.UI.SIZE" layout="vertical" > 
+			<ScrollView id="aView" height="Ti.UI.FILL"  contentHeight="Ti.UI.SIZE" layout="vertical" > 
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Patient Name</Label>
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="patient_name"></Label>
 				
@@ -34,7 +34,8 @@
 				
 				
 				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Remark</Label>
-			 	<TextArea id="remarkTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Remark" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
+			 	<Label height="0" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="remarkTextArea_readonly" ></Label>
+				<TextArea id="remarkTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Remark" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
 			 		<KeyboardToolbar platform="ios">
 						<Toolbar>
 							<Items> 

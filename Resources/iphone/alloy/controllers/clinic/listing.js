@@ -131,13 +131,8 @@ function Controller() {
         right: "10",
         id: "__alloyId234"
     });
-<<<<<<< HEAD
-    doRefresh ? $.addListener($.__views.__alloyId211, "click", doRefresh) : __defers["$.__views.__alloyId211!click!doRefresh"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId211;
-=======
     doRefresh ? $.addListener($.__views.__alloyId234, "click", doRefresh) : __defers["$.__views.__alloyId234!click!doRefresh"] = true;
     $.__views.win.rightNavButton = $.__views.__alloyId234;
->>>>>>> origin/master
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
@@ -201,11 +196,7 @@ function Controller() {
             clinicType: e.rowData.id
         });
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId211!click!doRefresh"] && $.addListener($.__views.__alloyId211, "click", doRefresh);
-=======
     __defers["$.__views.__alloyId234!click!doRefresh"] && $.addListener($.__views.__alloyId234, "click", doRefresh);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

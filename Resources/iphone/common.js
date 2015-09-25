@@ -16,11 +16,7 @@ exports.createAlert = function(tt, msg, callback) {
     });
     box.show();
     box.addEventListener("click", function(e) {
-        console.log(e.index + " " + e.source.ok);
-        if (0 == e.index) {
-            console.log(typeof callback);
-            "function" == typeof callback && callback && callback();
-        }
+        0 == e.index && "function" == typeof callback && callback && callback();
     });
 };
 

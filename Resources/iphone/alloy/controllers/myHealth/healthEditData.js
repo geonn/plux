@@ -163,11 +163,7 @@ function Controller() {
         right: "0",
         visible: "true"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId306.add($.__views.editButton);
-=======
     $.__views.__alloyId343.add($.__views.editButton);
->>>>>>> origin/master
     doEditRecords ? $.addListener($.__views.editButton, "touchend", doEditRecords) : __defers["$.__views.editButton!touchend!doEditRecords"] = true;
     $.__views.doneButton = Ti.UI.createButton({
         touchEnabled: true,
@@ -176,19 +172,11 @@ function Controller() {
         right: "0",
         visible: "false"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId306.add($.__views.doneButton);
-    doDone ? $.addListener($.__views.doneButton, "touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
-    $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId306;
-    $.__views.__alloyId307 = Ti.UI.createView({
-        id: "__alloyId307"
-=======
     $.__views.__alloyId343.add($.__views.doneButton);
     doDone ? $.addListener($.__views.doneButton, "touchend", doDone) : __defers["$.__views.doneButton!touchend!doDone"] = true;
     $.__views.healthEditWindow.rightNavButton = $.__views.__alloyId343;
     $.__views.__alloyId344 = Ti.UI.createView({
         id: "__alloyId344"
->>>>>>> origin/master
     });
     $.__views.healthEditWindow.add($.__views.__alloyId344);
     $.__views.loadingBar = Ti.UI.createView({
