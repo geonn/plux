@@ -10,8 +10,6 @@ function __processArg(obj, key) {
 function Controller() {
     function listing() {
         var data = [];
-        console.log("listing");
-        console.log(list);
         $.clinicListTv.setData(data);
         var arr = list;
         if (arr.length < 1) {
@@ -120,8 +118,6 @@ function Controller() {
     }
     function loadData(corp) {
         list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
-        console.log("loadData :");
-        console.log(list);
         common.showLoading();
         listing();
     }
