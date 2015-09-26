@@ -88,7 +88,7 @@ var ic_text = Ti.UI.createLabel({
 var front_bg = Ti.UI.createImageView({
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
-    image:"/eCard-front.png",
+    image:"/images/eCard-front.png",
     currentAngle: 10,
     font:{
     	fontSize: "11dp"
@@ -107,7 +107,7 @@ var back = Ti.UI.createImageView({
     name:"back",
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
-    image:"/eCard-back.png",
+    image:"/images/eCard-back.png",
     currentAngle: 10,
     top: 0,
 });
@@ -127,7 +127,7 @@ var qrcodeView = userQR.createQRCodeView({
 }); 
 //$.card.add(back);
 $.card.add(front);
-$.card.add(qrcodeView);
+$.qrCode.add(qrcodeView);
 
 var cover = Ti.UI.createView({ 
     width: Ti.UI.FILL,
@@ -189,13 +189,14 @@ function rotate_box(view_selected, back2front){
 		    name:"back",
 		    width: Ti.UI.FILL,
 		    height: Ti.UI.SIZE,
-		    image:"/eCard-back.png",
+		    image:"/images/eCard-back.png",
 		    currentAngle: 10,
 		    top: 0,
 		});
 		if(back2front){
 			view_selected.remove(view_selected.children[1]);
 		}else{
+			//removeAllChildren(view_selected);
 			view_selected.add(back);
 		}
         view_selected.animate(a_back_to_front);

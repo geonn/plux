@@ -103,7 +103,9 @@ function init(){
 		clinicType: "hours24",
 		total: details24.total 
 	};
-	details.push(det24);
+	
+	details.splice(1, 0, det24);
+	//details.push(det24);
 	listing();
 }
 init();

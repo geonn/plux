@@ -98,7 +98,7 @@ exports.definition = {
 			},
 			getPanelListTest : function(){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name+ " LIMIT 0,30 " ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name+ " WHERE clinicType ='SPECIALIST'  LIMIT 0,100 " ;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);

@@ -33,15 +33,16 @@ function displayAppointmentList(){
 	if(appointmentList.length < 1){
 		common.hideLoading();
 		var noRecord = Ti.UI.createLabel({ 
-		    text: "No clinic found nearby", 
+		    text: "No appointment found", 
 		    color: '#CE1D1C', 
 		    textAlign: 'center',
 		    font:{fontSize:14,fontStyle:'italic'},
 		    top: 15,
+		    bottom: 15,
 		    width: Ti.UI.SIZE 
 		 });
 		var row = Titanium.UI.createTableViewRow({
-		    touchEnabled: true,
+		    touchEnabled: false,
 		    height: Ti.UI.SIZE,
 		    backgroundSelectedColor: "#FFE1E1",
 			color: "transparent"
@@ -148,7 +149,7 @@ function viewDetails(rec_id){
 }
 
 $.newRecord.addEventListener('click',function(){ 
-	nav.navigateWithArgs("appointmentForm",{isEdit : 0});
+	nav.navigateWithArgs("appointmentForm",{id : ""});
 });
 
 
