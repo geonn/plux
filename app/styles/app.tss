@@ -97,4 +97,9 @@
 
 ".greyText" : {
 	color: "#9E9E9E",
+},
+
+".darkgreyText" : {
+	color: "#626262",
+	font: {fontWeight: 'bold'},
 }

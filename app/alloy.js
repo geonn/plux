@@ -95,6 +95,13 @@ FACEBOOK.forceDialogAuth = true;
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
  
+ function ucwords(str) { 
+  return (str + '')
+    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
+      return $1.toUpperCase();
+    });
+}
+
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
@@ -258,9 +265,15 @@ function removeAllChildren(viewObject){
         viewObject.remove(children[i]);
     }
 }
-if (Ti.Platform.osname == 'iphone') {
-	Titanium.UI.iPhone.setAppBadge("0");
-}
+
+
+
+Titanium.App.addEventListener('resumed', function(e) {
+	if (OS_IOS) {
+		Titanium.UI.iPhone.setAppBadge("0");
+	}
+});
+
 PUSH.registerPush();
 
 function parent(key, e){

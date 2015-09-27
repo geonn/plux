@@ -1,10 +1,5 @@
 function receivePush(e) {
-    "claimDetail" == e.data.target && nav.navigateWithArgs("asp/" + e.data.target, {
-        serial: e.data.extra
-    });
-    "webview" == e.data.target && nav.navigateWithArgs(e.data.target, {
-        url: e.data.extra
-    });
+    console.log(e);
     return false;
 }
 
@@ -70,10 +65,7 @@ if ("android" == Ti.Platform.osname) {
     CloudPush.addEventListener("callback", function(evt) {
         var payload = JSON.parse(evt.payload);
         Ti.App.Payload = payload;
-        if (redirect) if ("not_running" == app_status) ; else {
-            redirect = false;
-            getNotificationNumber(payload);
-        }
+        receivePush(payload);
     });
     CloudPush.addEventListener("trayClickLaunchedApp", function() {
         redirect = true;

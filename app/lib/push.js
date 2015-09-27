@@ -8,16 +8,9 @@ if(Ti.Platform.osname == "android"){
 		var payload = JSON.parse(evt.payload);  
 		Ti.App.Payload = payload;
 		// if trayClickLaunchedApp or trayClickFocusedApp set redirect as true
-		if(redirect){
-			if(app_status == "not_running"){
-				
-			}else{
-				redirect = false;
-				getNotificationNumber(payload);
-			}
-		}else{
-			
-		}
+		
+		receivePush(payload);
+ 
 	});
 	
 	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
@@ -32,18 +25,37 @@ if(Ti.Platform.osname == "android"){
 } 
 // Process incoming push notifications
 function receivePush(e) { 
+	console.log(e);
+	return false;
+	var notificationModel = Alloy.createCollection('notification'); 
+	notificationModel.addData();
 	
-	if(e.data.target == "claimDetail"){
-		 
-		nav.navigateWithArgs("asp/"+e.data.target, {
-			serial: e.data.extra
-		});
-	}
-	if(e.data.target == "webview"){
-		nav.navigateWithArgs(e.data.target, {
-			url: e.data.extra
-		});
-	}
+	var dialog = Ti.UI.createAlertDialog({
+		cancel: 1,
+		buttonNames: ['Cancel','OK'],
+		message: 'New message available. Do you want to read now?',
+		title: 'Confirmation'
+	});
+	dialog.addEventListener('click', function(ex){
+		if (ex.index === 0){
+			//Do nothing
+		}
+	
+		if (ex.index === 1){
+			if(e.data.target == "claimDetail"){ 
+				nav.navigateWithArgs("asp/"+e.data.target, {
+					serial: e.data.extra
+				});
+			}
+			if(e.data.target == "webview"){
+				nav.navigateWithArgs(e.data.target, {
+					url: e.data.extra
+				});
+			}
+		}
+	});
+	dialog.show();  	
+	
  
 	return false;
 }

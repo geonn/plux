@@ -1,3 +1,9 @@
+function ucwords(str) {
+    return (str + "").replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
+        return $1.toUpperCase();
+    });
+}
+
 function mysql_real_escape_string(str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
         switch (char) {
@@ -182,7 +188,9 @@ FACEBOOK.forceDialogAuth = true;
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
-"iphone" == Ti.Platform.osname && Titanium.UI.iPhone.setAppBadge("0");
+Titanium.App.addEventListener("resumed", function() {
+    Titanium.UI.iPhone.setAppBadge("0");
+});
 
 PUSH.registerPush();
 

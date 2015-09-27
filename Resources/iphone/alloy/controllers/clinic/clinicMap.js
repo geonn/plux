@@ -33,20 +33,20 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.panelMapWin && $.addTopLevelView($.__views.panelMapWin);
-    $.__views.__alloyId231 = Ti.UI.createView({
+    $.__views.__alloyId238 = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId231"
+        id: "__alloyId238"
     });
-    $.__views.panelMapWin.add($.__views.__alloyId231);
+    $.__views.panelMapWin.add($.__views.__alloyId238);
     $.__views.panelMap = Ti.UI.createScrollView({
         id: "panelMap",
         scrollType: "vertical",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId231.add($.__views.panelMap);
+    $.__views.__alloyId238.add($.__views.panelMap);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
