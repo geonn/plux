@@ -19,7 +19,7 @@
 	font:{
 		fontSize: 16
 	},
-	color: "#ff0000",
+	color: "#CE1D1C",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
 },
 ".date":{

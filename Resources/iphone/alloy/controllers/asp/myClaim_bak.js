@@ -254,7 +254,7 @@ function Controller() {
         font: {
             fontSize: "16dp"
         },
-        color: "#ff0000",
+        color: "#CE1D1C",
         top: "10dp",
         id: "date"
     });

@@ -26,7 +26,7 @@
 ".header_view" : {
   width: Titanium.UI.FILL,
   height: Titanium.UI.SIZE,
-  backgroundColor: "#ff0000"
+  backgroundColor: "#CE1D1C"
 }
 
 ".header_text" : {

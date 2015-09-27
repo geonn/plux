@@ -74,7 +74,7 @@ function Controller() {
     $.__views.__alloyId7 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
         id: "__alloyId7"
     });
     $.__views.__alloyId6.add($.__views.__alloyId7);
@@ -102,7 +102,7 @@ function Controller() {
     $.__views.__alloyId9 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
         id: "__alloyId9"
     });
     $.__views.__alloyId6.add($.__views.__alloyId9);

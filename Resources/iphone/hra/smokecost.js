@@ -193,7 +193,7 @@ exports.input_box = function() {
         bottom: 10,
         width: 100,
         height: 50,
-        backgroundColor: "#ff0000",
+        backgroundColor: "#CE1D1C",
         borderColor: "#cccccc",
         color: "#ffffff"
     });

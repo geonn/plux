@@ -1,5 +1,5 @@
 "#date" :{
-	color: "#ff0000",
+	color: "#CE1D1C",
 	font:{
 		fontSize: "16dp"
 	},
@@ -57,7 +57,7 @@
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	 bottom: 5,
 	 top:5,
-	 color: "#ff0000",
+	 color: "#CE1D1C",
 	 right: 10,
 	 font:{
 	 	fontSize: "16dp"

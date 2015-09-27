@@ -31,25 +31,8 @@ function displayAppointmentList(){
 	var counter = 0; 
  
 	if(appointmentList.length < 1){
-		common.hideLoading();
-		var noRecord = Ti.UI.createLabel({ 
-		    text: "No appointment found", 
-		    color: '#CE1D1C', 
-		    textAlign: 'center',
-		    font:{fontSize:14,fontStyle:'italic'},
-		    top: 15,
-		    bottom: 15,
-		    width: Ti.UI.SIZE 
-		 });
-		var row = Titanium.UI.createTableViewRow({
-		    touchEnabled: false,
-		    height: Ti.UI.SIZE,
-		    backgroundSelectedColor: "#FFE1E1",
-			color: "transparent"
-		   });
-		row.add(noRecord);
-		data.push(row);
-		$.recordTable.setData(data);
+		common.hideLoading(); 
+		$.recordTable.setData(common.noRecord());
 	}else{
 		appointmentList.forEach(function(entry) {
 			var row = Titanium.UI.createTableViewRow({
