@@ -99,6 +99,9 @@
 	color: "#9E9E9E",
 },
 
+".center" :{
+	textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
+}
 ".darkgreyText" : {
 	color: "#626262",
 	font: {fontWeight: 'bold'},

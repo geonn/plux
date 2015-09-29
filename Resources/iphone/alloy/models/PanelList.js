@@ -226,11 +226,9 @@ exports.definition = {
             getPanelByClinicType: function(ClinicType, searchKey, corp) {
                 var collection = this;
                 var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
-                console.log("clinicLocationSelection : " + clinicLocationSelection);
-                var location_sql = null != clinicLocationSelection ? " AND state='" + clinicLocationSelection + "' " : "";
+                var location_sql = null != clinicLocationSelection ? " AND state='" + clinicLocationSelection.toUpperCase() + "' " : "";
                 var panel_sql = "" != corp ? " AND panel=1" : "";
-                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' AND (clinicName LIKE '%" + searchKey + "%' OR add1 LIKE '%" + searchKey + "%' OR city LIKE '%" + searchKey + "%' OR postcode LIKE '%" + searchKey + "%' OR state LIKE '%" + searchKey + "%') " + panel_sql + location_sql + " ORDER BY state, postcode, clinicName"; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType + "' " + panel_sql + location_sql + " ORDER BY state, postcode, clinicName";
-                console.log(sql);
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' AND (clinicName LIKE '%" + searchKey + "%' OR add1 LIKE '%" + searchKey + "%' OR city LIKE '%" + searchKey + "%' OR postcode LIKE '%" + searchKey + "%' OR state LIKE '%" + searchKey + "%') " + panel_sql + location_sql + " ORDER BY state, postcode, clinicName"; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' " + panel_sql + location_sql + " ORDER BY state, postcode, clinicName";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

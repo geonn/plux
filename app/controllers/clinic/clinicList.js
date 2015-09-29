@@ -4,6 +4,10 @@ var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode') || "";
 var list;
 var aspClinicArr = [];
+
+if(clinicType == "hours24"){
+	clinicType = "24 Hours";
+}
 Ti.App.Properties.setString('clinicTypeSelection', clinicType);  
 var clinicLocationSelection = Ti.App.Properties.getString('clinicLocationSelection'); 
 var clinicLocationSelection = (clinicLocationSelection != null )? clinicLocationSelection :"All";
@@ -126,13 +130,14 @@ function listing(){
 }
 
 $.btnSearch.addEventListener('click', function(){    
-	var isVis=  $.searchItem.getVisible();
-	if(isVis == false){
-		$.searchItem.visible = true;
-		$.searchItem.height = 50;
-	}else{
+	var isVis=  $.searchItem.getVisible(); 
+	if(isVis === true){ 
 		$.searchItem.visible = false;
 		$.searchItem.height = 0;
+		
+	}else{ 
+		$.searchItem.visible = true;
+		$.searchItem.height = 50;
 	}
 }); 
 
@@ -147,7 +152,7 @@ if(Ti.Platform.osname == "android"){
 		common.showLoading();
 		var str = $.searchItem.getValue(); 
 		if(str != ""){
-			if(clinicType == "hours24"){  
+			if(clinicType == "24 Hours"){  
 				list = library.getPanelBy24Hours(str, corp); 
 			}else{ 
 				list = library.getPanelByClinicType(clinicType, str, corp);     
@@ -175,23 +180,22 @@ if(Ti.Platform.osname == "android"){
  
 function showTypeSelection(){
 	var clinicTypeList = library.getCountClinicType();
+	
 	var det24= { 
-		clinicType: "Hours24"
+		clinicType: "24 Hours"
 	};
 	clinicTypeList.splice(1, 0, det24);
 	var clinicArr = [];
-	clinicTypeList.forEach(function(entry) {
+	clinicTypeList.forEach(function(entry) { 
 		clinicArr.push(ucwords(entry.clinicType));
-	});
-	
-	
+	}); 
 	clinicArr.push("Cancel"); 
 	var cancelBtn = clinicArr.length -1;
 	var dialog = Ti.UI.createOptionDialog({
 		  cancel: clinicArr.length -1,
 		  options: clinicArr,
 		  selectedIndex: 0,
-		  title: 'Clinic Type Selection'
+		  title: 'Choose Type'
 		});
 		
 		dialog.show();
@@ -200,7 +204,12 @@ function showTypeSelection(){
 			if(cancelBtn != e.index){
 				$.clinicTypeSelection.text = clinicArr[e.index]; 
 				Ti.App.Properties.setString('clinicTypeSelection', clinicArr[e.index]);  
-				list = library.getPanelByClinicType(clinicArr[e.index],"", corp);   
+				if(clinicArr[e.index] == "24 Hours"){   
+					list = library.getPanelBy24Hours("", corp);   
+				}else{
+					list = library.getPanelByClinicType(clinicArr[e.index],"", corp);   
+				}
+				
 				common.showLoading();
 				listing();
 		 
@@ -223,28 +232,27 @@ function showLocationSelection(){
 		  cancel: clinicLocationArr.length -1,
 		  options: clinicLocationArr,
 		  selectedIndex: 0,
-		  title: 'Clinic Type Selection'
-		});
+		  title: 'Choose Location'
+	});
 		
-		dialog.show();
+	dialog.show();
 		
-		dialog.addEventListener("click", function(e){  
-			
-			if(e.index == "0"){
-				nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection') });
-			} else if(cancelBtn != e.index){
-				$.clinicLocationSelection.text = clinicLocationArr[e.index];
-				Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
+	dialog.addEventListener("click", function(e){   
+		if(e.index == "0"){
+			nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection') });
+		} else if(cancelBtn != e.index){
+			$.clinicLocationSelection.text = clinicLocationArr[e.index];
+			Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
 				
-				list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
-				common.showLoading();
-				listing();    
-			}
-		});
+			list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
+			common.showLoading();
+			listing();    
+		}
+	});
 }
 
 function loadData(corp){
-	if(clinicType == "hours24"){ 
+	if(clinicType == "24 Hours"){ 
 		list = library.getPanelBy24Hours("", corp);   
 	}else{ 
 		list = library.getPanelByClinicType(clinicType,"", corp);   

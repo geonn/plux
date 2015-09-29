@@ -47,6 +47,7 @@ exports.showImageIndicator = function(){
 	return ind;
 };
 
+
 exports.imageIndicatorEvent = function(theImage,activityIndicator){
 	theImage.addEventListener('load', function(e) {
 		activityIndicator.hide();

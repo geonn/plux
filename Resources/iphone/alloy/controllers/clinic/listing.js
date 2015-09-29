@@ -124,15 +124,15 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId241 = Ti.UI.createImageView({
+    $.__views.__alloyId250 = Ti.UI.createImageView({
         right: "10",
         width: "25",
         height: "25",
         image: "/images/icon_refresh.png",
-        id: "__alloyId241"
+        id: "__alloyId250"
     });
-    doRefresh ? $.addListener($.__views.__alloyId241, "click", doRefresh) : __defers["$.__views.__alloyId241!click!doRefresh"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId241;
+    doRefresh ? $.addListener($.__views.__alloyId250, "click", doRefresh) : __defers["$.__views.__alloyId250!click!doRefresh"] = true;
+    $.__views.win.rightNavButton = $.__views.__alloyId250;
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
@@ -161,15 +161,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId242 = Ti.UI.createLabel({
+    $.__views.__alloyId251 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId242"
+        id: "__alloyId251"
     });
-    $.__views.loadingBar.add($.__views.__alloyId242);
+    $.__views.loadingBar.add($.__views.__alloyId251);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -196,7 +196,7 @@ function Controller() {
             clinicType: e.rowData.id
         });
     });
-    __defers["$.__views.__alloyId241!click!doRefresh"] && $.addListener($.__views.__alloyId241, "click", doRefresh);
+    __defers["$.__views.__alloyId250!click!doRefresh"] && $.addListener($.__views.__alloyId250, "click", doRefresh);
     _.extend($, exports);
 }
 

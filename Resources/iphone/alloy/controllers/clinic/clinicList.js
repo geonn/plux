@@ -112,14 +112,14 @@ function Controller() {
         common.showLoading();
         var str = $.searchItem.getValue();
         if ("" != str) {
-            list = "hours24" == clinicType ? library.getPanelBy24Hours(str, corp) : library.getPanelByClinicType(clinicType, str, corp);
+            list = "24 Hours" == clinicType ? library.getPanelBy24Hours(str, corp) : library.getPanelByClinicType(clinicType, str, corp);
             listing();
         } else loadData(corp);
     }
     function showTypeSelection() {
         var clinicTypeList = library.getCountClinicType();
         var det24 = {
-            clinicType: "Hours24"
+            clinicType: "24 Hours"
         };
         clinicTypeList.splice(1, 0, det24);
         var clinicArr = [];
@@ -132,14 +132,14 @@ function Controller() {
             cancel: clinicArr.length - 1,
             options: clinicArr,
             selectedIndex: 0,
-            title: "Clinic Type Selection"
+            title: "Choose Type"
         });
         dialog.show();
         dialog.addEventListener("click", function(e) {
             if (cancelBtn != e.index) {
                 $.clinicTypeSelection.text = clinicArr[e.index];
                 Ti.App.Properties.setString("clinicTypeSelection", clinicArr[e.index]);
-                list = library.getPanelByClinicType(clinicArr[e.index], "", corp);
+                list = "24 Hours" == clinicArr[e.index] ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicArr[e.index], "", corp);
                 common.showLoading();
                 listing();
             }
@@ -158,7 +158,7 @@ function Controller() {
             cancel: clinicLocationArr.length - 1,
             options: clinicLocationArr,
             selectedIndex: 0,
-            title: "Clinic Type Selection"
+            title: "Choose Location"
         });
         dialog.show();
         dialog.addEventListener("click", function(e) {
@@ -174,7 +174,7 @@ function Controller() {
         });
     }
     function loadData(corp) {
-        list = "hours24" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
+        list = "24 Hours" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         common.showLoading();
         listing();
     }
@@ -228,15 +228,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId228 = Ti.UI.createLabel({
+    $.__views.__alloyId237 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
-        id: "__alloyId228"
+        id: "__alloyId237"
     });
-    $.__views.loadingBar.add($.__views.__alloyId228);
+    $.__views.loadingBar.add($.__views.__alloyId237);
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
@@ -253,20 +253,20 @@ function Controller() {
         hintText: "Search Clinic"
     });
     $.__views.panelListTbl.add($.__views.searchItem);
-    $.__views.__alloyId229 = Ti.UI.createView({
+    $.__views.__alloyId238 = Ti.UI.createView({
         height: "50",
         layout: "horizontal",
         width: Ti.UI.FILL,
-        id: "__alloyId229"
+        id: "__alloyId238"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId229);
-    $.__views.__alloyId230 = Ti.UI.createView({
+    $.__views.panelListTbl.add($.__views.__alloyId238);
+    $.__views.__alloyId239 = Ti.UI.createView({
         width: "50%",
         height: Ti.UI.SIZE,
-        id: "__alloyId230"
+        id: "__alloyId239"
     });
-    $.__views.__alloyId229.add($.__views.__alloyId230);
-    showTypeSelection ? $.addListener($.__views.__alloyId230, "click", showTypeSelection) : __defers["$.__views.__alloyId230!click!showTypeSelection"] = true;
+    $.__views.__alloyId238.add($.__views.__alloyId239);
+    showTypeSelection ? $.addListener($.__views.__alloyId239, "click", showTypeSelection) : __defers["$.__views.__alloyId239!click!showTypeSelection"] = true;
     $.__views.clinicTypeSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -278,29 +278,29 @@ function Controller() {
         text: "Clinic Type",
         id: "clinicTypeSelection"
     });
-    $.__views.__alloyId230.add($.__views.clinicTypeSelection);
-    $.__views.__alloyId231 = Ti.UI.createImageView({
+    $.__views.__alloyId239.add($.__views.clinicTypeSelection);
+    $.__views.__alloyId240 = Ti.UI.createImageView({
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
-        id: "__alloyId231"
+        id: "__alloyId240"
     });
-    $.__views.__alloyId230.add($.__views.__alloyId231);
-    $.__views.__alloyId232 = Ti.UI.createView({
+    $.__views.__alloyId239.add($.__views.__alloyId240);
+    $.__views.__alloyId241 = Ti.UI.createView({
         width: "1",
         height: "50",
         backgroundColor: "#9E9E9E",
-        id: "__alloyId232"
+        id: "__alloyId241"
     });
-    $.__views.__alloyId229.add($.__views.__alloyId232);
-    $.__views.__alloyId233 = Ti.UI.createView({
+    $.__views.__alloyId238.add($.__views.__alloyId241);
+    $.__views.__alloyId242 = Ti.UI.createView({
         width: "auto",
         height: Ti.UI.SIZE,
-        id: "__alloyId233"
+        id: "__alloyId242"
     });
-    $.__views.__alloyId229.add($.__views.__alloyId233);
-    showLocationSelection ? $.addListener($.__views.__alloyId233, "click", showLocationSelection) : __defers["$.__views.__alloyId233!click!showLocationSelection"] = true;
+    $.__views.__alloyId238.add($.__views.__alloyId242);
+    showLocationSelection ? $.addListener($.__views.__alloyId242, "click", showLocationSelection) : __defers["$.__views.__alloyId242!click!showLocationSelection"] = true;
     $.__views.clinicLocationSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -312,22 +312,22 @@ function Controller() {
         text: "Clinic Location",
         id: "clinicLocationSelection"
     });
-    $.__views.__alloyId233.add($.__views.clinicLocationSelection);
-    $.__views.__alloyId234 = Ti.UI.createImageView({
+    $.__views.__alloyId242.add($.__views.clinicLocationSelection);
+    $.__views.__alloyId243 = Ti.UI.createImageView({
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
-        id: "__alloyId234"
+        id: "__alloyId243"
     });
-    $.__views.__alloyId233.add($.__views.__alloyId234);
-    $.__views.__alloyId235 = Ti.UI.createView({
+    $.__views.__alloyId242.add($.__views.__alloyId243);
+    $.__views.__alloyId244 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: "1",
         backgroundColor: "#9E9E9E",
-        id: "__alloyId235"
+        id: "__alloyId244"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId235);
+    $.__views.panelListTbl.add($.__views.__alloyId244);
     $.__views.clinicListTv = Ti.UI.createTableView({
         id: "clinicListTv",
         layout: "vertical",
@@ -345,6 +345,7 @@ function Controller() {
     var library = Alloy.createCollection("panelList");
     var corp = Ti.App.Properties.getString("corpcode") || "";
     var list;
+    "hours24" == clinicType && (clinicType = "24 Hours");
     Ti.App.Properties.setString("clinicTypeSelection", clinicType);
     var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
     var clinicLocationSelection = null != clinicLocationSelection ? clinicLocationSelection : "All";
@@ -358,12 +359,12 @@ function Controller() {
     }, 1e3);
     $.btnSearch.addEventListener("click", function() {
         var isVis = $.searchItem.getVisible();
-        if (false == isVis) {
-            $.searchItem.visible = true;
-            $.searchItem.height = 50;
-        } else {
+        if (true === isVis) {
             $.searchItem.visible = false;
             $.searchItem.height = 0;
+        } else {
+            $.searchItem.visible = true;
+            $.searchItem.height = 50;
         }
     });
     "android" == Ti.Platform.osname && $.btnBack.addEventListener("click", function() {
@@ -378,8 +379,8 @@ function Controller() {
         loadData(corp);
     });
     $.searchItem.addEventListener("blur", function() {});
-    __defers["$.__views.__alloyId230!click!showTypeSelection"] && $.addListener($.__views.__alloyId230, "click", showTypeSelection);
-    __defers["$.__views.__alloyId233!click!showLocationSelection"] && $.addListener($.__views.__alloyId233, "click", showLocationSelection);
+    __defers["$.__views.__alloyId239!click!showTypeSelection"] && $.addListener($.__views.__alloyId239, "click", showTypeSelection);
+    __defers["$.__views.__alloyId242!click!showLocationSelection"] && $.addListener($.__views.__alloyId242, "click", showLocationSelection);
     _.extend($, exports);
 }
 

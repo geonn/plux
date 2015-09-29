@@ -175,6 +175,7 @@ function Controller() {
     $.__views.__alloyId18 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
         top: "5",
         text: "Loading",
         color: "#ffffff",

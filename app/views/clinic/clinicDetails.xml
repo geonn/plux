@@ -1,5 +1,10 @@
 <Alloy>
 	<Window title="Panel Details" id="panelDetails" backButtonTitle="" class="container" navTintColor="#CE1D1C"  >
+		<RightNavButton platform="ios" >
+	        <View right="0" width="20%">
+		         	<ImageView right='10' id="btnDirection" visible="false" width="25" height="25" image="/images/map.png" />
+		   		</View>
+        </RightNavButton>
 		<View id="main" layout="vertical" backgroundColor="#F6F6F6" height="100%" >
 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
@@ -10,28 +15,44 @@
 		     	</View>
 		 </View>
 		 <ScrollView layout="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
-		 	<View width="95%" layout="vertical" backgroundColor="#F5F5F5" height="Ti.UI.SIZE" top="15">
-		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" />
-		 		<Label id="clinicName" class="clinic_name"   bottom="10"/>
-		 		<Label text="Address" class="clinic_address clinicLabelTitle" />
-			 	<Label id="clinicAddress" class="clinic_address" bottom="10" /> 
-			 	
-			 	<Label text="Coordinate" class="clinic_address clinicLabelTitle" />
-			 	<Label id="clinicLocation" class="clinic_address"  bottom="10"   />
-			 	
-			 	<Label text="Telephone/Mobile" class="clinic_address clinicLabelTitle" />
-			 	<Label id="clinicTel" class="clinic_address"  bottom="10"   />
-			 	
-			 	<Label text="Operation Hours" class="clinic_address clinicLabelTitle" />
-			 	<View layout="vertical" height="Ti.UI.SIZE" left="0" right="5" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
+		 	 
+		 		<View class="box padding wfill hsize horz" backgroundColor="#F5F5F5">
+		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" >
+		 			<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" />
+		 		</View>
+		 		<View layout="vertical" id="clinicDetails" width="Ti.UI.FILL" height="Ti.UI.SIZE">
+			 		<Label id="clinicName" class="clinic_name"   bottom="10"/>
+			 		<Label text="Address" class="clinic_address clinicLabelTitle" />
+				 	<Label id="clinicAddress" class="clinic_address" bottom="10" /> 
+				 	
+				 	<Label text="Coordinate" class="clinic_address clinicLabelTitle" />
+				 	<Label id="clinicLocation" class="clinic_address"  bottom="10"   />
+				 	
+				 	<Label text="Telephone/Mobile" class="clinic_address clinicLabelTitle" />
+				 	<Label id="clinicTel" class="clinic_address"  bottom="10"   />
+				 	
+				 	<Label text="Operation Hours" class="clinic_address clinicLabelTitle" />
+				 	<View layout="vertical" height="Ti.UI.SIZE" left="0" right="5" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
+			 	</View>
 			 </View>
-		 	
-		 	<View height="1" backgroundColor="#CE1D1C" width="98%" top="10" />
-		 	<TableView id="healthTableData" backgroundColor="#ffffff" height="Ti.UI.SIZE" width="100%" scrollable="false" >
-		 		<TableViewRow height="50" left="10" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="direction2here" title="Direction To Here"   />
-				<TableViewRow height="50" left="10" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="clickToCall" title="Call"   />
-	            <TableViewRow height="50" left="10" id="add2contact" selectedBackgroundColor="#FFE1E1" color="#5E5E5E" onClick="addToContact" title="Add To Contact"   />
-			</TableView>
+		 	 
+		 	<View class="box padding wfill hsize horz" backgroundColor="#F5F5F5">
+		 		<View width="32%" height="80" onClick="direction2here" layout="vertical">
+		 			<ImageView image="/images/map.png" width="40" height="40" top="5" />
+		 			<Label class="darkgreyText small_font center"   >Direction To Here</Label>
+		 		</View>
+		 		<View width="1" height="80" backgroundColor="#dfe0e4" />
+		 		<View width="32%" height="80" onClick="clickToCall" layout="vertical"  >
+		 			<ImageView image="/images/call.png" width="35" height="35" top="5" />
+		 			<Label class="darkgreyText small_font center" top="5" >Call</Label>
+		 		</View>
+		 		<View width="1" height="80" backgroundColor="#dfe0e4" />
+		 		<View width="auto" height="80" onClick="addToContact" id="add2contact" layout="vertical" >
+		 			<ImageView image="/images/add_to_contact.png" width="35" height="35" top="5" />
+		 			<Label class="darkgreyText small_font center"  width="Ti.UI.FILL" top="5">Add To Contact</Label>
+		 		</View>
+		 	</View>
+		 	 
 		 	 
 		 </ScrollView>
 		 </View>
