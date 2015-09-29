@@ -180,7 +180,7 @@ if(Ti.Platform.osname == "android"){
  
 function showTypeSelection(){
 	var clinicTypeList = library.getCountClinicType();
-	
+	console.log(clinicTypeList);
 	var det24= { 
 		clinicType: "24 Hours"
 	};
