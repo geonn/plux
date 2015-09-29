@@ -177,16 +177,19 @@ function direction2here(){
 					}
 				} 
 			}else{
+				Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+				/**	
 				//var wazeUrl = 'waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes';
 				var wazeUrl = 'http://waze.to/?ll='+details.latitude+','+details.longitude+'&navigate=yes';
 				console.log(wazeUrl);
 				if(Titanium.Platform.canOpenURL(wazeUrl)){
-					Titanium.Platform.openURL(wazeUrl);
+					//Titanium.Platform.openURL(wazeUrl);
+					
 				}else{
 					var gMap = 'http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude; 
 					
 					nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.apple.com/?daddr='+ details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state +'&saddr='+details.latitude+ ',' +details.longitude});
-				}
+				}**/
 				//
 				//var str = 'http://maps.apple.com/?daddr='+ a +'&saddr='+latitude+ ',' +longitude
 				//

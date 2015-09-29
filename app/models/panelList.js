@@ -212,7 +212,7 @@ exports.definition = {
 				}else{
                 var sql = "SELECT clinicType, count(*) as total FROM " + collection.config.adapter.collection_name +" GROUP BY clinicType ";
                }
-             console.log(sql);
+             //console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 

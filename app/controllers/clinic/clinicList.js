@@ -71,7 +71,7 @@ function listing(){
 				
 				var clinicLbl = Titanium.UI.createLabel({
 					text:entry.clinicName,
-					font:{fontSize:14},
+					font:{fontSize:14,fontWeight: 'bold'},
 					source: entry.id,
 					color: "#CE1D1C", 
 					textAlign:'left',  
