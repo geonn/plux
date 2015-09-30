@@ -485,7 +485,7 @@
 		        },
 		        Axis: {
 		            titleFontSize: 22,
-		            titleFontColor: "#ff0000",
+		            titleFontColor: "#CE1D1C",
 		            //titleFontFamily: "arial black",
 		            titleFontFamily: isCanvasSupported ? "Arial,Verdana, Geneva, Calibri, sans-serif" : "arial",
 		            //titleFontWeight: "bold",

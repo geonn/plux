@@ -5,23 +5,23 @@ var corp = Ti.App.Properties.getString('corpcode') || "";
 var list;
 var aspClinicArr = [];
 
+if(clinicType == "hours24"){
+	clinicType = "24 Hours";
+}
+
+Ti.App.Properties.setString('clinicTypeSelection', clinicType);  
+var clinicLocationSelection = Ti.App.Properties.getString('clinicLocationSelection'); 
+var clinicLocationSelection = (clinicLocationSelection != null )? clinicLocationSelection :"All";
 common.construct($); 
 common.showLoading();
 
-if(clinicType == "hours24"){
-	if(OS_IOS){
-		$.clinicList.title = "24 Hours Clinic List";
-	}else{
-		$.pageTitle.text = "24 Hours Clinic List";
-	}
-	 
+$.clinicTypeSelection.text = clinicType;
+$.clinicLocationSelection.text = clinicLocationSelection;
+if(OS_IOS){
+	$.clinicList.title = "Clinic Location List";
 }else{
-	if(OS_IOS){
-		$.clinicList.title = clinicType + " List";
-	}else{
-		$.pageTitle.text = clinicType + " List";
-	} 
-}
+	$.pageTitle.text =  "Clinic Location List";
+} 
 
 setTimeout(function(){
 	loadData(corp);
@@ -72,7 +72,7 @@ function listing(){
 				
 				var clinicLbl = Titanium.UI.createLabel({
 					text:entry.clinicName,
-					font:{fontSize:14},
+					font:{fontSize:14,fontWeight: 'bold'},
 					source: entry.id,
 					color: "#CE1D1C", 
 					textAlign:'left',  
@@ -130,8 +130,17 @@ function listing(){
 		});
 }
 
-$.btnList.addEventListener('click', function(){    
-	nav.navigateWithArgs("clinic/clinicLocator", { clinicType: clinicType });
+
+$.btnSearch.addEventListener('click', function(){    
+	var isVis=  $.searchItem.getVisible(); 
+	if(isVis === true){ 
+		$.searchItem.visible = false;
+		$.searchItem.height = 0;
+		
+	}else{ 
+		$.searchItem.visible = true;
+		$.searchItem.height = 50;
+	}
 }); 
 
 if(Ti.Platform.osname == "android"){
@@ -145,7 +154,7 @@ if(Ti.Platform.osname == "android"){
 		common.showLoading();
 		var str = $.searchItem.getValue(); 
 		if(str != ""){
-			if(clinicType == "hours24"){  
+			if(clinicType == "24 Hours"){  
 				list = library.getPanelBy24Hours(str, corp); 
 			}else{ 
 				list = library.getPanelByClinicType(clinicType, str, corp);     
@@ -171,9 +180,81 @@ if(Ti.Platform.osname == "android"){
 		 
 	});
  
+function showTypeSelection(){
+	var clinicTypeList = library.getCountClinicType();
+
+	var det24= { 
+		clinicType: "24 Hours"
+	};
+	clinicTypeList.splice(1, 0, det24);
+	var clinicArr = [];
+	clinicTypeList.forEach(function(entry) { 
+		clinicArr.push(ucwords(entry.clinicType));
+	}); 
+	clinicArr.push("Cancel"); 
+	var cancelBtn = clinicArr.length -1;
+	var dialog = Ti.UI.createOptionDialog({
+		  cancel: clinicArr.length -1,
+		  options: clinicArr,
+		  selectedIndex: 0,
+		  title: 'Choose Type'
+		});
+		
+		dialog.show();
+		
+		dialog.addEventListener("click", function(e){   
+			if(cancelBtn != e.index){
+				$.clinicTypeSelection.text = clinicArr[e.index]; 
+				Ti.App.Properties.setString('clinicTypeSelection', clinicArr[e.index]);  
+				if(clinicArr[e.index] == "24 Hours"){   
+					list = library.getPanelBy24Hours("", corp);   
+				}else{
+					list = library.getPanelByClinicType(clinicArr[e.index],"", corp);   
+				}
+
+				common.showLoading();
+				listing();
+		 
+			}
+		});
+}
+
+function showLocationSelection(){
+	var stateList = library.getPanelListByState();
+	var clinicLocationArr = [];
+	clinicLocationArr.push("Show Map"); 
+	stateList.forEach(function(entry) {
+		if(entry.state != ""){
+			clinicLocationArr.push(ucwords(entry.state));
+		} 
+	});
+	clinicLocationArr.push("Cancel"); 
+	var cancelBtn = clinicLocationArr.length -1;
+	var dialog = Ti.UI.createOptionDialog({
+		  cancel: clinicLocationArr.length -1,
+		  options: clinicLocationArr,
+		  selectedIndex: 0,
+		  title: 'Choose Location'
+	});
+		
+	dialog.show();
+		
+	dialog.addEventListener("click", function(e){   
+		if(e.index == "0"){
+			nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection') });
+		} else if(cancelBtn != e.index){
+			$.clinicLocationSelection.text = clinicLocationArr[e.index];
+			Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
+				
+			list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
+			common.showLoading();
+			listing();    
+		}
+	});
+}
 
 function loadData(corp){
-	if(clinicType == "hours24"){ 
+	if(clinicType == "24 Hours"){ 
 		list = library.getPanelBy24Hours("", corp);   
 	}else{ 
 		list = library.getPanelByClinicType(clinicType,"", corp);   

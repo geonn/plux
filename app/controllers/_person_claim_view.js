@@ -84,7 +84,7 @@ function create_field(key, title){
 		text: key,
 		right: 0,
 		height: Titanium.UI.SIZE ,
-		color: "#ff0000"
+		color: "#CE1D1C"
 	});
 	view.add(entidv_label);
 	view.add(entidv_val_label);

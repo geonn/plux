@@ -1,12 +1,11 @@
 var args = arguments[0] || {};
+var Map = require('ti.map');
 var panel_id = args.panel_id || ""; 
-var panelListModel = Alloy.createCollection('panelList'); 
-
-var details = panelListModel.getPanelListById(panel_id);
-
-var contacts = Ti.Contacts.getAllPeople(); 
- 
+var panelListModel = Alloy.createCollection('panelList');  
+var details = panelListModel.getPanelListById(panel_id); 
+var contacts = Ti.Contacts.getAllPeople();  
 var isAddedToContact = "0";
+populateMap(200);
 for (var i = 0; i < contacts.length; i++) {
 	var phone = contacts[i].phone || "";  
     var workPhone = phone.mobile; 
@@ -16,15 +15,16 @@ for (var i = 0; i < contacts.length; i++) {
     } 
 }  
 var phoneArr = [];
-if(details != ""){  
+
+function populateMap(mapHeight){
 	if(details.latitude != "" && details.longitude != "") {
-		var Map = require('ti.map');
+		
 		var mapview = Map.createView({
 		    mapType: Map.NORMAL_TYPE,
 		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
 		    animate:true,
 		    regionFit:true,
-		    height:200,
+		    height:mapHeight,
 		    top:0,
 		    userLocation:true
 		});
@@ -39,10 +39,12 @@ if(details != ""){
 		   
 		}); 
 		mapview.addAnnotation(merchantLoc);
-		$.clinicMap.height = 200;
+		$.clinicMap.height = mapHeight;
 		$.clinicMap.add(mapview);			
 	}
-	
+}
+
+if(details != ""){   
 	var operHour = details.openHour; 
 	var operHour_arr = operHour.split("[nl]"); 
 	var oh;
@@ -138,7 +140,8 @@ function addToContact(){
 		}
 	}
 }
- 
+
+$.btnDirection.addEventListener('click',direction2here );
 function direction2here(){
 	 
 	var locationCallback = function(e) {
@@ -152,22 +155,15 @@ function direction2here(){
 	 	//console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
 	     
 		var url = 'geo:'+latitude+','+longitude+"?q="+details.clinicName+" (" + details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state + ")";
-		  
-		   
-			if (Ti.Android){
-				try
-				{
+		  if (Ti.Android){
+				try {
 				   	var waze_url = 'waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes';
 				   	var intent = Ti.Android.createIntent({
 						action: Ti.Android.ACTION_VIEW,
 						data: waze_url
 					});
-					Ti.Android.currentActivity.startActivity(intent);
-					console.log('waze');
-				}
-				catch (ex)
-				{	
-					console.log(ex);
+					Ti.Android.currentActivity.startActivity(intent); 
+				} catch (ex) { 
 				  	try {
 						Ti.API.info('Trying to Launch via Intent');
 						var intent = Ti.Android.createIntent({
@@ -179,15 +175,11 @@ function direction2here(){
 						Ti.API.info('Caught Error launching intent: '+e);
 						exports.Install();
 					}
-				}
-				
+				} 
 			}else{
-				if(Titanium.Platform.canOpenURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes')){
-					Titanium.Platform.openURL('waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes');
-				}else{
-					nav.navigateWithArgs("clinic/clinicMap", {map_url:'http://maps.apple.com/?daddr='+ details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state +'&saddr='+details.latitude+ ',' +details.longitude});
-				}
-				//http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude
+
+				Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+				//
 				//var str = 'http://maps.apple.com/?daddr='+ a +'&saddr='+latitude+ ',' +longitude
 				//
 	   	 	}
@@ -198,7 +190,29 @@ function direction2here(){
 	};
 	Titanium.Geolocation.addEventListener('location', locationCallback); 
 }
- 
+
+var showFull = false;
+$.showFullMap.addEventListener('click', function(){
+	if(showFull === false){
+		$.clinicDetails.visible =false;
+		$.clinicDetails.height = 0;
+		$.clinicMap.height = Titanium.Platform.displayCaps.platformHeight;
+		$.showFullMap.image =  "/images/zoom_out.png";
+		$.btnDirection.visible = true;
+		showFull = true;
+		populateMap(Titanium.Platform.displayCaps.platformHeight);
+	}else{
+		$.clinicDetails.visible =true;
+		$.btnDirection.visible = false;
+		$.clinicDetails.height = Ti.UI.SIZE;
+		$.clinicMap.height = 200;
+		$.showFullMap.image =  "/images/zoom_in.png";
+		showFull = false; 
+		populateMap(200);
+	}
+	
+	
+});
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 

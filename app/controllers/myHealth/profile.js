@@ -110,7 +110,7 @@ var cancelEdit = function(){
 };
 
 function doEditRecords(e){
-	$.date_value.color = "#ff0000";
+	$.date_value.color = "#CE1D1C";
 	$.tvrFieldDate.setTouchEnabled(true);
 	$.tvrFieldGender.setTouchEnabled(true);
 	$.tvrFieldBloodType.setTouchEnabled(true);
@@ -155,7 +155,7 @@ function showDatePicker(e){
 			hd.showBirthDatePicker({date: all_picker[2],gender: all_picker[0], bloodType: all_picker[1]});  
 		}
 		resetTextColor();
-		$.date_value.color = "#ff0000"; 
+		$.date_value.color = "#CE1D1C"; 
 	}
 	
 }
@@ -171,7 +171,7 @@ function showGenderPicker(e){
 	var isEnabled = $.tvrFieldGender.getTouchEnabled();
 	if(isEnabled){
 		resetTextColor();
-		$.gender_value.color = "#ff0000";
+		$.gender_value.color = "#CE1D1C";
 		hd.showGenderPicker({gender: all_picker[0], bloodType: all_picker[1],date: all_picker[2]});  
 	}
 } 
@@ -181,7 +181,7 @@ function showBloodTypePicker(e){
 	var isEnabled = $.tvrFieldBloodType.getTouchEnabled();
 	if(isEnabled){
 		resetTextColor();
-		$.bloodType_value.color = "#ff0000";
+		$.bloodType_value.color = "#CE1D1C";
 		hd.showBloodTypePicker({bloodType: all_picker[1], gender: all_picker[0],date: all_picker[2]}); 
 		 
 	}

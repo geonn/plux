@@ -17,7 +17,7 @@ var dpView = Titanium.UI.createView({
 		visible: true
 });
 	
-init();
+ init();
 
 function saveRecord(){
 	//var title      = $.titleRecord.value;  
@@ -214,17 +214,21 @@ function init(){
 		value.setDate(parseInt(cd[2]));
 		value.setHours(ct[0],ct[1],0);
 		//value.setMinutes(parseInt(ct[1]));
-		
-	var picker = Ti.UI.createPicker({
-		type: Ti.UI.PICKER_TYPE_DATE_AND_TIME,
-		minDate: minDate,
-		value : value,
-		bottom: 0
-	});
-	picker.addEventListener("change", changeDate);
+	
+	if(OS_IOS){
+		var picker = Ti.UI.createPicker({
+			type: Ti.UI.PICKER_TYPE_DATE_AND_TIME,
+			minDate: minDate,
+			value : value,
+			bottom: 0
+		});
+		picker.addEventListener("change", changeDate);
+		picker.selectionIndicator = true; 
+		dpView.add(picker);
+	}	
+	
 	// turn on the selection indicator (off by default)
-	picker.selectionIndicator = true; 
-	dpView.add(picker);
+	
 	$.appointmentDateTime.add(dpView);
 }
 

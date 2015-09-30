@@ -1,6 +1,6 @@
 <Alloy>
 	<Window id="editRecWin" title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-		<RightNavButton>
+		<RightNavButton platform="ios">
 	        <View>
 	         	<Button id="saveRecord" title="Done" />
 	        </View>

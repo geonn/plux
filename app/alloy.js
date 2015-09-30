@@ -94,7 +94,16 @@ FACEBOOK.forceDialogAuth = true;
 
 //constant variable
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
- 
+
+function ucwords(str) { 
+  	str = str.toLowerCase();
+	return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+        function($1){
+            return $1.toUpperCase();
+	});
+}
+
+
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
@@ -258,25 +267,48 @@ function removeAllChildren(viewObject){
         viewObject.remove(children[i]);
     }
 }
-if (Ti.Platform.osname == 'iphone') {
-	Titanium.UI.iPhone.setAppBadge("0");
-}
+
+
+
+Titanium.App.addEventListener('resumed', function(e) {
+	if (OS_IOS) {
+		Titanium.UI.iPhone.setAppBadge("0");
+	}
+});
+
 PUSH.registerPush();
 
 function parent(key, e){
-	if(eval("e."+key.name+"") != key.value){
-		if(eval("e.parent."+key.name+"") != key.value){
-			if(eval("e.parent.parent."+key.name+"") != key.value){
-    			console.log("box not found");
-    		}else{
-    			return e.parent.parent;
-    		}
-    	}else{
-    		return e.parent;
-    	}
-    }else{
-    		return e;
-    }
+	// if key.value undefined mean it look for key only
+	if(typeof key.value != "undefined"){
+		if(eval("e."+key.name+"") != key.value){
+			if(eval("e.parent."+key.name+"") != key.value){
+				if(eval("e.parent.parent."+key.name+"") != key.value){
+	    			console.log("box not found");
+	    		}else{
+	    			return e.parent.parent;
+	    		}
+	    	}else{
+	    		return e.parent;
+	    	}
+	    }else{
+	    		return e;
+	    }
+	}else{
+		if(eval("typeof e."+key.name) == "undefined"){
+			if(eval("typeof e.parent."+key.name+"") == "undefined"){
+				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
+	    			console.log("box not found");
+	    		}else{
+	    			return eval("e.parent.parent."+key.name);
+	    		}
+	    	}else{
+	    		return eval("e.parent."+key.name);
+	    	}
+	    }else{
+	    		return eval("e."+key.name);
+	    }
+	}
 }
 
 function children(key, e){

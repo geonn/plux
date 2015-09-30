@@ -97,4 +97,48 @@
 
 ".greyText" : {
 	color: "#9E9E9E",
+},
+
+".center" :{
+	textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
 }
+".darkgreyText" : {
+	color: "#626262",
+	font: {fontWeight: 'bold'},
+}
+
+".h1":{
+	font:{
+		fontSize: 36
+	}
+},
+
+".h2":{
+	font:{
+		fontSize: 30
+	}
+},
+
+".h3":{
+	font:{
+		fontSize: 24
+	}
+},
+
+".h4":{
+	font:{
+		fontSize: 18
+	},
+},
+
+".h5":{
+	font:{
+		fontSize: 14
+	}
+},
+
+".h6":{
+	font:{
+		fontSize: 12
+	}
+},

@@ -129,15 +129,13 @@ function refreshHeaderInfo(){
  
 function navWindow(e){
 	var target = e.source.mod; 
-	
-	if(e.source.mod == "eCard" || e.source.mod == "myClaim" ){ 
- 
+	console.log(target+" wtf");
+	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" ){
 		nav.navigationWindow("asp/"+target, 1);  
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
-		nav.navigateWithArgs("clinic/listing", 1);  
-  
+		nav.navigateWithArgs("clinic/listing", 1);
 	}else{
 		nav.navigationWindow(target);
 	}	

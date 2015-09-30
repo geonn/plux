@@ -4,4 +4,10 @@ build
 npm-debug.log
 tmp
 .map
-Resources/iphone/login.js
+Resources/iphone
+
+tiapp.xml
+
+app/assets/images/icon_referesh.png
+
+tiapp.xml

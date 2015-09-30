@@ -1,0 +1,5 @@
+<Alloy>
+	<Window id="win" title="ASP eCARD" backButtonTitle="" backgroundColor="#fff" navTintColor="#CE1D1C">
+		<View id="inner_box" class="wfill hfill"></View>
+	</Window>
+</Alloy>

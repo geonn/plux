@@ -1,7 +1,7 @@
 ".header" : {
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.FILL,
-	backgroundColor: "#ff0000",
+	backgroundColor: "#CE1D1C",
 },
 ".header_label":{
 	color: "#ffffff",

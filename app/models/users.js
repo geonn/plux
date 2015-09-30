@@ -147,12 +147,12 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			getOwnerData : function(){
+			getOwnerData : function(id){
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno='"+Ti.App.Properties.getString('memno')+"'";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=?";
                
-                var res = db.execute(sql);
+                var res = db.execute(sql, id);
                 var arr = []; 
                
                 if (res.isValidRow()){
