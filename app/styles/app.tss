@@ -101,11 +101,12 @@
 
 ".center" :{
 	textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
-}
+},
+
 ".darkgreyText" : {
 	color: "#626262",
 	font: {fontWeight: 'bold'},
-}
+},
 
 ".h1":{
 	font:{

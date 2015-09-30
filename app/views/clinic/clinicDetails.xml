@@ -17,6 +17,7 @@
 		 <ScrollView layout="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
 		 	 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 		<View class="box padding wfill hsize horz" backgroundColor="#F5F5F5">
 		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" >
 		 			<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" />
@@ -24,6 +25,8 @@
 		 		<View layout="vertical" id="clinicDetails" width="Ti.UI.FILL" height="Ti.UI.SIZE">
 			 		<Label id="clinicName" class="clinic_name"   bottom="10"/>
 =======
+=======
+>>>>>>> origin/master
 		 	<View class="box padding wfill hsize horz" backgroundColor="#F5F5F5" bottom="0">
 		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" >
 		 			<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" />
@@ -46,6 +49,9 @@
 			 	</View>
 		 		<View layout="vertical" id="clinicDetails" width="Ti.UI.FILL" height="Ti.UI.SIZE">
 			 		<Label id="clinicName" class="clinic_name" top="10" bottom="10"/>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			 		<Label text="Address" class="clinic_address clinicLabelTitle" />
 				 	<Label id="clinicAddress" class="clinic_address" bottom="10" /> 
@@ -60,6 +66,7 @@
 				 	<View layout="vertical" height="Ti.UI.SIZE" left="0" right="5" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
 			 	</View>
 			 </View>
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 	 
 		 	<View class="box padding wfill hsize horz" backgroundColor="#F5F5F5">
@@ -82,6 +89,9 @@
 =======
 >>>>>>> origin/master
 		 	 
+=======
+		 	 
+>>>>>>> origin/master
 		 	
 		 	  
 		 </ScrollView>

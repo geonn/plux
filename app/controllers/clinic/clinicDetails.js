@@ -179,9 +179,7 @@ function direction2here(){
 			}else{
 
 				Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
-				//
-				//var str = 'http://maps.apple.com/?daddr='+ a +'&saddr='+latitude+ ',' +longitude
-				//
+				
 	   	 	}
 				
 				
