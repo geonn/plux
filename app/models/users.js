@@ -151,7 +151,7 @@ exports.definition = {
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=?";
-               
+               console.log(sql);
                 var res = db.execute(sql, id);
                 var arr = []; 
                

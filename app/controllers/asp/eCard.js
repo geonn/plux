@@ -119,7 +119,7 @@ var userQR = qrcode.QRCode({
 });
 
 var userIc = user.ic || "";	 
-
+console.log(user);
 var qrcodeView = userQR.createQRCodeView({
 	width: 200,
 	height: 200,

@@ -1,5 +1,15 @@
 <Alloy>
 	<Window id="win" title="ASP eCARD" backButtonTitle="" backgroundColor="#fff" navTintColor="#CE1D1C">
-		<View id="inner_box" class="wfill hfill"></View>
+		<View layout="vertical" width="Ti.UI.FILL" height="Ti.UI.FILL">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="90%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP eCard</Label>
+		     	</View>
+		 	</View>
+			<View id="inner_box" class="wfill hfill"></View>
+		</View>
 	</Window>
 </Alloy>
