@@ -5,8 +5,8 @@ var corp = Ti.App.Properties.getString('corpcode');
 var details;
 common.construct($);
 common.showLoading();
-
-if(clinicType == "hours24"){  	
+//console.log("clinicType: " +clinicType);
+if(clinicType == "24 Hours"){  	
 	details = library.getPanelBy24Hours("", corp); 
 }else{ 
 	details = library.getPanelByClinicType(clinicType, "", corp);     

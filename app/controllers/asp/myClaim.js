@@ -5,7 +5,7 @@ common.construct($);
 loadPage();
 
 function loadPage(){
-	user = usersModel.getOwnerData();
+	user = usersModel.getPrincipleData();
 	if(user.isver == "true"){
 		common.showLoading();
 		$.verifyContainer.hide();

@@ -50,7 +50,7 @@ function refreshHeaderInfo(){
 		});
 		logoutBtn.addEventListener('click', function(){
 			var dialog = Ti.UI.createAlertDialog({
-				cancel: 1,
+				cancel: 0,
 				buttonNames: ['Cancel','Confirm'],
 				message: 'Would you like to logout?',
 				title: 'Logout PLUX'
@@ -94,7 +94,7 @@ function refreshHeaderInfo(){
 		});
 		logoutBtn.addEventListener('click', function(){
 			var dialog = Ti.UI.createAlertDialog({
-				cancel: 1,
+				cancel: 0,
 				buttonNames: ['Cancel','Confirm'],
 				message: 'Would you like to logout?',
 				title: 'Logout PLUX'
@@ -128,8 +128,7 @@ function refreshHeaderInfo(){
 
  
 function navWindow(e){
-	var target = e.source.mod; 
-	console.log(target+" wtf");
+	var target = e.source.mod;  
 	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" ){
 		nav.navigationWindow("asp/"+target, 1);  
 	}else if(e.source.mod == "myHealth"){
@@ -166,18 +165,15 @@ function setBackground(){
 if(Ti.Platform.osname == "android"){
 	$.root.addEventListener('android:back', function (e) {
 		var dialog = Ti.UI.createAlertDialog({
-			cancel: 1,
+			cancel: 0,
 			buttonNames: ['Cancel','Confirm'],
 			message: 'Would you like to logout?',
 			title: 'Logout PLUX'
 		});
-		dialog.addEventListener('click', function(e){
-			if (e.index === e.source.cancel){
-				//Do nothing
-			}
-			if (e.index === 1){
+		dialog.addEventListener('click', function(e){ 
+			if (e.index == 1){ 
 				logoutUser();
-			}
+			} 
 		});
 		dialog.show(); 
 	});

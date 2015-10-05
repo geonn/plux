@@ -13,7 +13,7 @@ function init(){
 	console.log('init');
 	var data = usersModel.getClaimDetailBySeries({serial : arg_serial});  
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
-	$.tv.appendRow(createTableViewRow("Patient Name", data.name));
+	//$.tv.appendRow(createTableViewRow("Patient Name", data.name));
 	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
 	$.tv.appendRow(createTableViewRow("Category", data.category));
 	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
@@ -64,6 +64,7 @@ function createTableViewRow(text, value, dialog){
 	});
 	
 	var label_text = $.UI.create("Label",{
+		classes: ['themeColor'],
 		height:Ti.UI.SIZE,
 		width: Ti.UI.SIZE,
 		left: 0,
@@ -89,8 +90,7 @@ function createTableViewRow(text, value, dialog){
 			});
 			dialogs.show();
 		});
-	}
-	
+	} 
 	return row;
 }
 

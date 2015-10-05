@@ -177,6 +177,36 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
+			getPrincipleData : function(){
+				var collection = this; 
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno='"+Ti.App.Properties.getString('memno')+"'";
+               
+                var res = db.execute(sql);
+                var arr = []; 
+               
+                if (res.isValidRow()){
+					arr = {
+					    id: res.fieldByName('id'),
+					    name: res.fieldByName('name'),
+					    memno: res.fieldByName('memno'),
+					    icno: res.fieldByName('icno'),
+					    relation: res.fieldByName('relation'), 
+					    empno: res.fieldByName('empno'),
+					    corpcode: res.fieldByName('corpcode'),
+					    corpname: res.fieldByName('corpname'),
+					    costcenter: res.fieldByName('costcenter'),
+					    dept: res.fieldByName('dept'),
+					    allergy: res.fieldByName('allergy'),
+					    isver: res.fieldByName('isver'),
+					    verno: res.fieldByName('verno')
+					  };
+				}  
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
 			addUserData : function(arr) {
 				var collection = this;
 				arr.forEach(function(entry) {
