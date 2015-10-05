@@ -151,8 +151,6 @@ function attachedPhoto(image,position){
 			duration: 300
 		});
 	});
-	
-	
 	return iView;	            
 }
 var categoryType = "Blood Test";
@@ -188,22 +186,24 @@ function takePhoto(){
 	    options: ['Camera','Photo Gallery', 'Cancel'], 
 	    cancel:2 //index of cancel button
 	});
-	  
+	var pWidth = Ti.Platform.displayCaps.platformWidth;
+    var pHeight = Ti.Platform.displayCaps.platformHeight;
+    console.log(pWidth+"wwww");
 	dialog.addEventListener('click', function(e) { 
-	     
+	    
 	    if(e.index == 0) { //if first option was selected
 	        //then we are getting image from camera
 	        Titanium.Media.showCamera({ 
 	            success:function(event) { 
 	               var image = event.media;
-        		 
+        		   
 	        		if(image.width > image.height){
-	        			var newWidth = 320;
-	        			var ratio =   320 / image.width;
+	        			var newWidth = pWidth;
+	        			var ratio =   pWidth / image.width;
 	        			var newHeight = image.height * ratio;
 	        		}else{
-	        			var newHeight = 320;
-	        			var ratio =   320 / image.height;
+	        			var newHeight = pHeight;
+	        			var ratio =   pHeight / image.height;
 	        			var newWidth = image.width * ratio;
 	        		}
 	        		
@@ -248,17 +248,18 @@ function takePhoto(){
 	            	var image = event.media;
 	            	
 	            	if(image.width > image.height){
-	        			var newWidth = 320;
-	        			var ratio =   320 / image.width;
+	        			var newWidth = pWidth;
+	        			var ratio =   pWidth / image.width;
 	        			var newHeight = image.height * ratio;
 	        		}else{
-	        			var newHeight = 320;
-	        			var ratio =   320 / image.height;
+	        			var newHeight = pHeight;
+	        			var ratio =   pHeight / image.height;
 	        			var newWidth = image.width * ratio;
 	        		}
 	        		
 					image = image.imageAsResized(newWidth, newHeight); 
 		            blobContainer = image; 
+		            console.log(pWidth+" "+newWidth);
 		            medicalAttachmentModel.addAttachment({
 						medical_id : rec_id,
 						category: categoryType,
