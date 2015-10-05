@@ -28,7 +28,15 @@ var a = {
   
 };
 
-var pWidth = Ti.Platform.displayCaps.platformWidth;
+
+if(Titanium.Platform.osname == "android"){
+	var temp = (value * 100) / 320;
+	console.log(Alloy.Globals.platformWidth);
+	console.log(Ti.Platform.displayCaps.platformWidth);
+	var pWidth = parseInt((Alloy.Globals.platformWidth * temp) / 100);
+}else{
+	var pWidth = Ti.Platform.displayCaps.platformWidth;
+}
 var panelWidth = Math.floor(pWidth*0.7) ;
 var leftPadding = (pWidth - panelWidth) / 2;
 
@@ -104,7 +112,7 @@ function render_ecard_list(){
 	$.inner_box.removeAllChildren();
 
 	for (var i=0; i < data.length; i++) {
-		console.log(data[i].id+"user id");
+		console.log(panelWidth+" "+Math.floor(pWidth*0.65));
 		var viewTemplate = {
 			height: 150,
 			id: data[i].id,
@@ -175,9 +183,7 @@ function revealCard(i) {
 }
 
 function navToEcard(index){
-	console.log(cards[index].id);
-	var uid = parent({key: "id"}, cards[index]);
-	console.log('member id '+uid);
+	console.log(cards[index].id+" u_id");
 	nav.navigateWithArgs("asp/eCard", {u_id: cards[index].id});  
 }
 

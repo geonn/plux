@@ -11,7 +11,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>b98d676c-afda-43e7-9999-a1908c83672a</guid>
+    <guid>73e86c38-864d-4c85-9222-6afe06ffe88e</guid>
     <property name="acs-oauth-secret-development" type="string">5EQbnzq1Ec0FyPh7ftnnYqlH5x7zjSzU</property>
     <property name="acs-oauth-key-development" type="string">ywzZEIPgxSpYB3jR3AyzwtGzhFh88ha8</property>
     <property name="acs-api-key-development" type="string">Mavow9cvBi4O7ipIO8h6f4kLIDXT9j87</property>
@@ -127,8 +127,9 @@
         <target device="ipad">true</target>
         <target device="iphone">true</target>
         <target device="mobileweb">true</target>
-    </deployment-targets>
-    <sdk-version>5.0.1.GA</sdk-version>
+    </deployment-targets> 
+    <sdk-version>5.1.0.v20150922160425</sdk-version>
+ 
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

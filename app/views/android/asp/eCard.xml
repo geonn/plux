@@ -15,6 +15,7 @@
 			    	<Label top="5" text="Loading" color="#ffffff" />
 				</View>
 				<View height="Ti.UI.FILL" width="Ti.UI.FILL" top="0" id="card" zIndex="12"></View>
+				<View height="Ti.UI.SIZE" width="Ti.UI.FILL" layout="vertical" bottom="50" id="qrCode"></View>
 				<View height="Ti.UI.FILL" width="Ti.UI.FILL" id="card_event"></View>
 				<View height="Ti.UI.FILL" width="80%" id="unverified" visible="false" top="0" layout="vertical"  >
 					<Label id="unveriLbl" class="label" top="40">You need to verify your account in order to use eCard.</Label>
