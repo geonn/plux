@@ -129,7 +129,7 @@ function refreshHeaderInfo(){
  
 function navWindow(e){
 	var target = e.source.mod;  
-	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" ){
+	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" ){
 		nav.navigationWindow("asp/"+target, 1);  
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 

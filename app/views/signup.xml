@@ -1,5 +1,5 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" id="login" title="Plux Signup" id="signUpWin" class="container" layout="vertical">
+	<Window navTintColor="#CE1D1C" id="login" title="Plux Signup" id="win" class="container" layout="vertical">
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 		        <ActivityIndicator id="activityIndicator" />

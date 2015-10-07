@@ -40,30 +40,10 @@ function displayAppointmentList(){
 			    height: Ti.UI.SIZE,
 			    source: entry.id,
 			    backgroundSelectedColor: "#FFE1E1", 
-				color: "transparent"
+				color: "transparent",
+				
 			   });
-			
-			var contentView = Ti.UI.createView({
-				layout: "vertical",
-				height: Ti.UI.SIZE,
-				source: entry.id,
-				width: Ti.UI.FILL
-			});
-			 
-			panel = panelListModel.getPanelListById(entry.clinic_id);
-			var clinicLbl = Titanium.UI.createLabel({
-				text:panel.clinicName || "",
-				font:{fontSize:14},
-				source: entry.id,
-				color: "#CE1D1C", 
-				textAlign:'left',  
-				top:5,
-				left:15, 
-				width:"80%",
-				height:Ti.UI.SIZE
-			}); 
-			contentView.add(clinicLbl);
-			
+		
 			var statusText = "Pending";
 			var statusColor = "#8A6500";
 			if(entry.status == "2"){ //rejected
@@ -82,25 +62,49 @@ function displayAppointmentList(){
 				statusColor = "#CE1D1C";
 			}
 			
-			var statusLbl = Titanium.UI.createLabel({
-				text: "Status : "+statusText,
-				font:{fontSize:12},
+			var horzView = $.UI.create('View',{
+				classes: ['horz', 'hsize','wfill'], 
+				source: entry.id, 
+				top:5,
+				bottom: 5
+			});
+			
+			var statustView = $.UI.create('View',{
+				height: 50,
 				source: entry.id,
-				color: statusColor, 
-				textAlign:'left', 
-				left:15,
+				width: 10,
+				backgroundColor: statusColor
+			});
+			horzView.add(statustView);
+			var contentView = Ti.UI.createView({
+				layout: "vertical",
+				height: Ti.UI.SIZE,
+				source: entry.id,
+				width: Ti.UI.FILL
+			});
+			 
+			panel = panelListModel.getPanelListById(entry.clinic_id);
+			var clinicLbl = $.UI.create('Label',{
+				classes : ['themeColor', 'h5', 'bold'],
+				text:panel.clinicName || "",
+				font:{fontSize:14},
+				source: entry.id, 
+				textAlign:'left',   
+				left:15, 
+				width:"80%",
 				height:Ti.UI.SIZE
 			}); 
-			contentView.add(statusLbl);
-		 
-			var appLbl = Titanium.UI.createLabel({
+			contentView.add(clinicLbl);
+			
+			 
+			var appLbl =  $.UI.create('Label',{ 
+				classes: ['h6'],
 				text:  "Appt. date : "+monthFormat(entry.date),
 				font:{fontSize:12},
 				source: entry.id,
 				color: "#848484", 
 				textAlign:'left', 
-				left:15,
-				bottom:5,
+				left:15, 
 				width: "85%",
 				height:Ti.UI.SIZE
 			}); 
@@ -112,8 +116,8 @@ function displayAppointmentList(){
 				width:15,
 				right:20 
 			});
-			
-			row.add(contentView);
+			horzView.add(contentView);
+			row.add(horzView);
 			row.add(rightForwardBtn); 
 		 	row.addEventListener('click', function(e) {
 				viewDetails(e.rowData.source);

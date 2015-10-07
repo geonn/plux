@@ -26,11 +26,7 @@
 },
 "ListItem":{
 	color: "#000",
-}
-".themeColor" :{
-	color: "#CE1D1C"
-	
-},
+} 
 ".big_font":{
 	font: {fontSize: '20dp'},
 },
@@ -108,6 +104,22 @@
 	font: {fontWeight: 'bold'},
 },
 
+".bottom":{
+	bottom: 0
+},
+
+".top":{
+	top: 0
+},
+
+".right":{
+	right: 0
+},
+
+".left":{
+	left: 0
+},
+
 ".h1":{
 	font:{
 		fontSize: 36
@@ -129,7 +141,7 @@
 ".h4":{
 	font:{
 		fontSize: 18
-	},
+	}
 },
 
 ".h5":{
@@ -143,3 +155,70 @@
 		fontSize: 12
 	}
 },
+ 
+".h7":{
+	font:{
+		fontSize: 8
+	}
+},
+'.font_light_grey':{
+	color: "#9197a3 "
+},
+'.font_dark_grey' :{
+	color: "#C8C8CD"
+},
+".black-line":{
+	backgroundColor: "#525252",
+	width: Ti.UI.FILL,
+	height: 1	
+},
+
+".gray-line":{
+	backgroundColor: "#ececec",
+	width: Ti.UI.FILL,
+	height: 1	
+},
+".grey-background" :{
+	backgroundColor: "#F4F4F4",
+},
+
+".white-line":{
+	backgroundColor: "#fff",
+	width: Ti.UI.FILL,
+	height: 1	
+},
+
+".bold":{
+	font: { fontWeight: 'bold'}
+},
+
+'.left-align' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+}
+'.right-align' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
+}
+'.center' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+},
+'.whiteColor' : {
+	color: "#ffffff"
+}
+'.themeColor' : {
+	color: "#CE1D1C"
+}
+'.themeBg' : {
+	backgroundColor: "#CE1D1C"
+}, 
+".padding-top":{
+	top: 10
+}, 
+".padding-left":{
+	left: 10
+}, 
+".padding-right":{
+	right: 10
+}, 
+".padding-bottom":{
+	bottom: 10
+}, 

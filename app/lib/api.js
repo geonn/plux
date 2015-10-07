@@ -37,6 +37,11 @@ var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
 var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
 var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
 var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx"; 
+
+/**claim submmission***/
+var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
+var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
+
 //configuration 
 var defaultRetryTimes = 3;
 
@@ -307,7 +312,7 @@ exports.do_pluxLogin = function(data,mainView){
 				}
 	       		 
 				Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.loginWin);  
+				nav.closeWindow(mainView.win);  
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -336,7 +341,7 @@ exports.do_signup = function(data,mainView){
 				common.createAlert("Error", result.data);
 				return false;
 			}else{
-				nav.closeWindow(mainView.signUpWin);  
+				nav.closeWindow(mainView.win);  
   				Ti.App.fireEvent('loginAfterRegister',{params: params}); 
 			}
 		},
@@ -893,6 +898,33 @@ exports.loadPanelList = function (ex){
 	 client.send(); 
 };
 
+
+exports.callByPost = function(e, onload, onerror){
+	var url =  eval(e.url);
+	console.log(url);
+	var _result = contactServerByPost(url, e.params || {});   
+	_result.onload = function(e) {   
+		onload && onload(this.responseText); 
+	};
+		
+	_result.onerror = function(e) { 
+		onerror && onerror(); 
+	};	
+};
+ 
+exports.callByGet  = function(e, onload, onerror){
+	var url =  eval(e.url) + "?"+e.params;
+	console.log(url);
+	var _result = contactServerByGet(url);   
+	_result.onload = function(e) {   
+		onload && onload(this.responseText); 
+	};
+		
+	_result.onerror = function(e) { 
+		onerror && onerror(); 
+	};	
+};
+
 function updateUserService(u_id, service_id, email, password){
 	var url =  updateUserServiceUrl+"&u_id="+u_id+"&service_id="+service_id+"&email="+email+"&password="+password;
 
@@ -909,6 +941,30 @@ function updateUserService(u_id, service_id, email, password){
 	 // Send the request.
 	 client.send(); 
 }
+
+function contactServerByGet(url) {  
+	var client = Ti.Network.createHTTPClient({
+		timeout : 5000
+	});
+  	if(OS_ANDROID){
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+	 } 
+	client.open("GET", url);  
+	client.send();
+	return client;
+};
+
+function contactServerByPost(url,records) {  
+	var client = Ti.Network.createHTTPClient({
+		timeout : 5000
+	});
+  	if(OS_ANDROID){
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+	 } 
+	client.open("POST", url);  
+	client.send(records);
+	return client;
+};
 
 function onErrorCallback(e) {
 	var common = require('common');

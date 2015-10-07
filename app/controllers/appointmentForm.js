@@ -86,9 +86,11 @@ function init(){
 		
 		
 		$.appointment_datetime.text = timeFormat(details.date);
+		$.appointment_datetime.color = "#000000";
 		
 		var clinic = panelListModel.getPanelListById(details.clinic_id);
 		$.appointment_clinic.text = clinic.clinicName;
+		$.appointment_clinic.color = "#000000";
 		selectedClinic = details.clinic_id; 
 		
 		//add Delete button if the appointment still active
@@ -261,17 +263,18 @@ function changeDate(e){
     selDate = day + "/" + month + "/" + year + " "+hours+":"+minutes+":00"; 
      
 	$.appointment_datetime.text = selDate  ;  
+	$.appointment_datetime.color = "#000000";
 }
 
 if(details.date >= currentDateTime() || appointment_id == ""){ 
-	$.appointment_clinic.addEventListener('click', function(e){ 
+	$.tvrClinicVisit.addEventListener('click', function(e){ 
 		var winClinic = Alloy.createController('appointmentClinicList').getView();
 		winClinic.open({
 				modal:true
 			}); 
 	});
 	
-	$.appointment_datetime.addEventListener('click', function(e){ 
+	$.tvrDateVisit.addEventListener('click', function(e){ 
 		$.appointmentDateTime.visible = 1;
 		$.appointmentDateTime.height = 200;
 	});
@@ -280,6 +283,7 @@ if(details.date >= currentDateTime() || appointment_id == ""){
 function selectClinic(e){ 
 	selectedClinic = e.clinicId;
 	$.appointment_clinic.text = e.clinicName;
+	$.appointment_clinic.color = "#000000";
 }
 
 function hideKeyboard(){

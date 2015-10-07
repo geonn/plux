@@ -306,12 +306,14 @@ function resultPopUp(title, msg){
 		width: Ti.UI.FILL,
 		height: Ti.UI.SIZE,
 	});
-	var okButton = Ti.UI.createButton({
+	var okButton = Ti.UI.createButton({ 
 		title: "OK",
 		width: "100dp",
-		backgroundColor: "#CE1D1C",
-		color: "#ffffff",
-		height: "40dp",
+		backgroundColor: "#F1F1F1",
+		borderColor: "#CE1D1C",
+		color: "#CE1D1C",
+		borderRadius: 10,
+		height: Ti.UI.SIZE,
 		bottom: "20dp",
 	});
 	content.add(content_text);

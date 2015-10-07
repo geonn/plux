@@ -245,3 +245,67 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     clickview.addEventListener("click",togglecheck);
     return outerview;
 };
+
+
+exports.resultPopUp = function(title, msg){
+	var mask = Titanium.UI.createView({
+		width: "100%",
+		height: "100%",
+		zIndex: 999,
+		backgroundColor: "#000",
+		opacity:0.45,
+	});
+	
+	var box = mainView.UI.create('View',{
+		classes : ['hsize','vert'],
+		width: "90%", 
+		opacity:1.0,zIndex: 1999,
+	});
+	var header = mainView.UI.create('View',{
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+		backgroundColor: "#CE1D1C",
+	});
+	var head_title = mainView.UI.create('Label',{
+		text: title,
+		classes: ['padding'],
+		color: "#ffffff", 
+	});
+	header.add(head_title);
+	var content = mainView.UI.create('View',{
+		classes : ['hsize','wfill','vert'], 
+		backgroundColor: "#fff", 
+	});
+	var content_text = mainView.UI.create('Label',{
+		classes : ['hsize','wfill','padding'], 
+		text: msg 
+	});
+	
+	var btnView = mainView.UI.create('View',{
+		classes : ['hsize','wfill'],  
+		backgroundColor: "#fff", 
+		textAlign: 'center' 
+	});
+	var okButton = Ti.UI.createButton({ 
+		title: "OK",
+		width: "30%",
+		backgroundColor: "#F1F1F1",
+		borderColor: "#CE1D1C",
+		color: "#CE1D1C",
+		borderRadius: 10,
+		height: Ti.UI.SIZE,
+		bottom: "20dp",
+	});
+	 
+	btnView.add(okButton); 
+	content.add(content_text);
+	content.add(btnView);
+	box.add(header);
+	box.add(content); 
+	mainView.win.add(box);
+	mainView.win.add(mask);
+	okButton.addEventListener("click", function(){
+		mainView.win.remove(box);
+		mainView.win.remove(mask);
+	}); 
+};

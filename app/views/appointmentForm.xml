@@ -1,10 +1,6 @@
 <Alloy>
 	<Window id="win" title="Appointment Form" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-		<RightNavButton>
-	        <View>
-	         	<Button id="saveRecord" onClick="saveRecord" title="Done" />
-	        </View>
-        </RightNavButton>
+		 
 	 	<View layout="vertical" >
 	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
@@ -13,40 +9,73 @@
 		     	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Appointment Form</Label>
 		     	</View>
-		     	<View left="0" width="20%">
-		         	<Button class="navbtn" id="saveRecord" onClick="saveRecord" title="Done" />
-		   		</View>
+		      
 		 	</View>
-	 	 
-			<ScrollView id="aView" height="Ti.UI.FILL"  contentHeight="Ti.UI.SIZE" layout="vertical" > 
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Patient Name</Label>
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="patient_name"></Label>
+	 	 	<Label text="Please fill in below info to make appointment" class="wfill padding padding-right h5" top="10"    />  
+		 	 
+			<ScrollView id="aView" class="wfill hfill vert" top="10"  contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  backgroundColor="#ffffff"  >
+			 	<View id="tvrName"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" >
+					<View class="horz hsize wfill "  textAlign="right" >
+						<Label text="Patient Name" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+						<View width="auto"  class="right-align hsize" >
+							<Label text="Date of visit a clinic" class="wfill padding padding-right h6 right-align" top="12"  id="patient_name"  color="#000000"  />  
+						</View> 
+					</View>
+				</View> 
+				<View class="gray-line" /> 
 				
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Patient Email</Label>
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="patient_email"></Label>
-				
-				
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Appointment Date & Time</Label>
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="appointment_datetime">Choose Date and Time</Label>
-				
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic</Label>
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="appointment_clinic">Choose Clinic to attend</Label>
-				
-				
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Remark</Label>
-			 	<Label height="0" width="Ti.UI.FILL" class="medium_font greyText" left="20" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" id="remarkTextArea_readonly" ></Label>
-				<TextArea id="remarkTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Remark" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
-			 		<KeyboardToolbar platform="ios">
-						<Toolbar>
-							<Items> 
-								<FlexSpace/>
-								<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
-							</Items>
-						</Toolbar>
-					</KeyboardToolbar>
-			 	</TextArea>
-			 	
+				 <View id="tvrEmail"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" >
+					<View class="horz hsize wfill "  textAlign="right" >
+						<Label text="Patient Email" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+						<View width="auto"  class="right-align hsize" >
+							<Label text="Date of visit a clinic" class="wfill padding padding-right h6 right-align" top="12"  id="patient_email" color="#000000"   />  
+						</View> 
+					</View>
+				</View> 
+				<View class="gray-line" /> 
 				 
+				<View id="tvrDateVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff"  >
+					<View class="horz hsize wfill "  textAlign="right" >
+						<Label text="Appointment Date & Time" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+						<View width="auto"  class="right-align hsize" >
+							<Label text="Choose Date and Time" class="wfill padding padding-right font_dark_grey h6 right-align" top="12"  id="appointment_datetime"    />  
+						</View> 
+					</View>
+				</View> 
+				<View class="gray-line" /> 
+				
+				<View id="tvrClinicVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" >
+					<View class="horz hsize wfill "  textAlign="right" >
+						<Label text="Clinic" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+						<View width="auto"  class="right-align hsize" >
+							<Label text="Choose Clinic to attend" class="wfill padding padding-right font_dark_grey h6 right-align" top="12"  id="appointment_clinic"    />  
+						</View> 
+					</View>
+				</View> 
+				<View class="gray-line" /> 
+				 
+				
+				<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff"  >
+					<View class="horz hsize wfill "  textAlign="right" >
+						<Label text="Remark" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+						 
+						<TextArea id="remarkTextArea" class="h6" color="#000000" textAlign="right" hintText="Remark" value="" width="Ti.UI.FILL" left="10" right="10" height="100" suppressReturn="false" >
+					 		<KeyboardToolbar platform="ios">
+								<Toolbar>
+									<Items> 
+										<FlexSpace/>
+										<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+									</Items>
+								</Toolbar>
+							</KeyboardToolbar>
+					 	</TextArea>
+					 	
+					</View>
+				</View> 
+				<View class="gray-line" /> 
+				<View class="wfill hsize" top="10"> 
+					<Button onClick="saveRecord"  id="saveRecord" title="Submit Appointment" borderRadius="5" backgroundColor="#7B7B7B"    width="70%" top="5" height="40" color="#ffffff" ></Button> 
+				</View>  
 			</ScrollView>
 		</View>
 		 <View id="appointmentDateTime" height="0"  visible="0" /> 

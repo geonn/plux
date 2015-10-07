@@ -49,7 +49,7 @@ function doSignup(){
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.loginWin.addEventListener('click',hideProductFormKeyboard);
+$.win.addEventListener('click',hideProductFormKeyboard);
 
 $.email.addEventListener('touchend', function(e){
     $.email.focus();
@@ -131,7 +131,7 @@ var touchLogin =  function(){
 		Ti.App.Properties.setString('u_id', userData.id); 
 		Ti.App.Properties.setString('plux_email',userData.email);
 		Ti.App.fireEvent('updateHeader'); 
-		nav.closeWindow($.loginWin);  
+		nav.closeWindow($.win);  
 	}
 };
 
@@ -153,7 +153,7 @@ Ti.App.addEventListener('touchLogin', touchLogin);
 Ti.App.addEventListener('loginAfterRegister', loginAfterRegister);
 
 if(Ti.Platform.osname == "android"){
-	$.loginWin.addEventListener('android:back', function (e) { 
+	$.win.addEventListener('android:back', function (e) { 
 		var dialog = Ti.UI.createAlertDialog({
 			    cancel: 1,
 			    buttonNames: ['Cancel','Confirm'],

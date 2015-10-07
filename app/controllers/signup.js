@@ -69,4 +69,4 @@ function hideProductFormKeyboard(e){
 });*/
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.signUpWin.addEventListener('click',hideProductFormKeyboard);
+$.win.addEventListener('click',hideProductFormKeyboard);

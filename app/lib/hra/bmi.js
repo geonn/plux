@@ -215,17 +215,12 @@ function resultPopUp(title, msg){
 	var header = Titanium.UI.createView({
 		width: Ti.UI.FILL,
 		height: Ti.UI.SIZE,
-		backgroundColor: "#EA2035",
+		backgroundColor: "#CE1D1C",
 	});
-	var head_title = Titanium.UI.createLabel({
+	var head_title = $.UI.create('Label',{
 		text: title,
-		top: '20dp',
-		left: '20dp',
-		right: '20dp',
-		bottom: '20dp',
-		color: "#ffffff",
-		width: Ti.UI.FILL,
-		height: Ti.UI.SIZE,
+		classes: ['padding'],
+		color: "#ffffff", 
 	});
 	header.add(head_title);
 	var content = Titanium.UI.createView({
@@ -234,14 +229,9 @@ function resultPopUp(title, msg){
 		backgroundColor: "#fff",
 		layout: "vertical",
 	});
-	var content_text = Titanium.UI.createLabel({
-		text: msg,
-		top: '20dp',
-		left: '20dp',
-		right: '20dp',
-		bottom: '20dp',
-		width: Ti.UI.FILL,
-		height: Ti.UI.SIZE,
+	var content_text = $.UI.create('Label',{
+		classes : ['hsize','wfill','padding'], 
+		text: msg 
 	});
 	
 	var btnView = Titanium.UI.createView({
@@ -252,21 +242,27 @@ function resultPopUp(title, msg){
 		layout: "horizontal",
 	});
 	var okButton = Ti.UI.createButton({
+		
 		left:40,
 		title: "OK",
-		width: "100dp",
-		backgroundColor: "#CE1D1C",
-		color: "#ffffff",
-		height: "40dp",
+		width: "30%",
+		backgroundColor: "#F1F1F1",
+		borderColor: "#CE1D1C",
+		color: "#CE1D1C",
+		borderRadius: 10,
+		height: Ti.UI.SIZE,
 		bottom: "20dp",
 	});
 	var saveButton = Ti.UI.createButton({
+		
 		title: "Save BMI",
-		width: "100dp",
+		width: "50%",
 		left: 10,
-		backgroundColor: "#CE1D1C",
-		color: "#ffffff",
-		height: "40dp",
+		backgroundColor: "#F1F1F1",
+		borderColor: "#CE1D1C",
+		color: "#CE1D1C",
+		borderRadius: 10,
+		height: Ti.UI.SIZE,
 		bottom: "20dp",
 	});
 	btnView.add(okButton);

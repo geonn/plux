@@ -30,9 +30,7 @@ var a = {
 
 
 if(Titanium.Platform.osname == "android"){
-	var temp = (value * 100) / 320;
-	console.log(Alloy.Globals.platformWidth);
-	console.log(Ti.Platform.displayCaps.platformWidth);
+	var temp = (value * 100) / 320; 
 	var pWidth = parseInt((Alloy.Globals.platformWidth * temp) / 100);
 }else{
 	var pWidth = Ti.Platform.displayCaps.platformWidth;
