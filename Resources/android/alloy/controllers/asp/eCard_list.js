@@ -148,12 +148,17 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+<<<<<<< HEAD
     $.__views.__alloyId265 = Ti.UI.createView({
+=======
+    $.__views.__alloyId271 = Ti.UI.createView({
+>>>>>>> origin/master
         top: "0",
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId265"
     });
     $.__views.win.add($.__views.__alloyId265);
@@ -163,6 +168,17 @@ function Controller() {
         id: "__alloyId266"
     });
     $.__views.__alloyId265.add($.__views.__alloyId266);
+=======
+        id: "__alloyId271"
+    });
+    $.__views.win.add($.__views.__alloyId271);
+    $.__views.__alloyId272 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId272"
+    });
+    $.__views.__alloyId271.add($.__views.__alloyId272);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -170,12 +186,21 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId266.add($.__views.btnBack);
     $.__views.__alloyId267 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId267"
     });
     $.__views.__alloyId265.add($.__views.__alloyId267);
+=======
+    $.__views.__alloyId272.add($.__views.btnBack);
+    $.__views.__alloyId273 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId273"
+    });
+    $.__views.__alloyId271.add($.__views.__alloyId273);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -186,7 +211,11 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId267.add($.__views.pageTitle);
+=======
+    $.__views.__alloyId273.add($.__views.pageTitle);
+>>>>>>> origin/master
     $.__views.inner_box = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,

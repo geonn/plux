@@ -68,10 +68,17 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.aspLoginWin && $.addTopLevelView($.__views.aspLoginWin);
+<<<<<<< HEAD
     $.__views.__alloyId268 = Ti.UI.createView({
         id: "__alloyId268"
     });
     $.__views.aspLoginWin.add($.__views.__alloyId268);
+=======
+    $.__views.__alloyId274 = Ti.UI.createView({
+        id: "__alloyId274"
+    });
+    $.__views.aspLoginWin.add($.__views.__alloyId274);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -80,7 +87,11 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId268.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId274.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -88,12 +99,17 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId269 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId275 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId269"
     });
     $.__views.loadingBar.add($.__views.__alloyId269);
@@ -103,10 +119,22 @@ function Controller() {
     });
     $.__views.__alloyId268.add($.__views.__alloyId270);
     $.__views.__alloyId271 = Ti.UI.createView({
+=======
+        id: "__alloyId275"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId275);
+    $.__views.__alloyId276 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId276"
+    });
+    $.__views.__alloyId274.add($.__views.__alloyId276);
+    $.__views.__alloyId277 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId271"
     });
     $.__views.__alloyId270.add($.__views.__alloyId271);
@@ -116,6 +144,17 @@ function Controller() {
         id: "__alloyId272"
     });
     $.__views.__alloyId271.add($.__views.__alloyId272);
+=======
+        id: "__alloyId277"
+    });
+    $.__views.__alloyId276.add($.__views.__alloyId277);
+    $.__views.__alloyId278 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId278"
+    });
+    $.__views.__alloyId277.add($.__views.__alloyId278);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -123,13 +162,22 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId272.add($.__views.btnBack);
+=======
+    $.__views.__alloyId278.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId271.add($.__views.pageTitle);
     $.__views.__alloyId273 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId277.add($.__views.pageTitle);
+    $.__views.__alloyId279 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -137,17 +185,28 @@ function Controller() {
         },
         text: "ASP Login",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId273"
     });
     $.__views.pageTitle.add($.__views.__alloyId273);
+=======
+        id: "__alloyId279"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId279);
+>>>>>>> origin/master
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
+<<<<<<< HEAD
     $.__views.__alloyId270.add($.__views.main);
     $.__views.__alloyId274 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId276.add($.__views.main);
+    $.__views.__alloyId280 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "120",
         borderRadius: "10",
         height: "120",
@@ -155,9 +214,15 @@ function Controller() {
         bottom: "50dp",
         top: "50dp",
         image: "/images/asp_logo.png",
+<<<<<<< HEAD
         id: "__alloyId274"
     });
     $.__views.main.add($.__views.__alloyId274);
+=======
+        id: "__alloyId280"
+    });
+    $.__views.main.add($.__views.__alloyId280);
+>>>>>>> origin/master
     $.__views.username = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",

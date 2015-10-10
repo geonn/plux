@@ -1,4 +1,5 @@
 function receivePush(e) {
+<<<<<<< HEAD
     var param = {
         id: e.data.id || "",
         member_no: e.data.mem_no || "",
@@ -28,6 +29,9 @@ function receivePush(e) {
         }
     });
     dialog.show();
+=======
+    console.log(e);
+>>>>>>> origin/master
     return false;
 }
 

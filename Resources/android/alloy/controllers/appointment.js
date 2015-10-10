@@ -121,7 +121,11 @@ function Controller() {
         common.hideLoading();
     }
     function viewDetails(rec_id) {
+<<<<<<< HEAD
         nav.navigateWithArgs("appointmentForm", {
+=======
+        nav.navigateWithArgs("appointment/index", {
+>>>>>>> origin/master
             id: rec_id
         });
     }
@@ -275,7 +279,11 @@ function Controller() {
     common.showLoading();
     init();
     $.newRecord.addEventListener("click", function() {
+<<<<<<< HEAD
         nav.navigateWithArgs("appointmentForm", {
+=======
+        nav.navigateWithArgs("appointment/index", {
+>>>>>>> origin/master
             id: ""
         });
     });

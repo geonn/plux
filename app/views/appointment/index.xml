@@ -1,0 +1,27 @@
+<Alloy>
+	<Window id="win" title="Appointment Form" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="vert wfill hfill">
+	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">New Appointment</Label>
+		     	</View>
+		 	</View>
+		 	<View class="wfill hsize vert" backgroundColor="#f0f5f8">
+		 		<View class="gray-line" /> 
+		 		<View class="hsize wfill padding" >
+		 			<ImageView left='10' id="sub_back" width="25" height="25" image="/images/btn-back.png" />
+		 			<Label class="hsize wsize h5" id="sub_title" top="10" bottom="10" textAlign="center" color="#2a363a">SELECT A CLINIC</Label>
+		 		</View>
+		 		<View class="gray-line" /> 
+		 	</View>
+		 	<ScrollableView id="inner_box" scrollingEnabled="false">
+		 		<Require src="appointment/_clinic_list"></Require>
+		 		<Require src="appointment/_available_timeslot"></Require>
+		 		<Require id="_appointment_form" src="appointment/_appointment_form"></Require>
+		 	</ScrollableView>
+		</View>
+	</Window>
+</Alloy>

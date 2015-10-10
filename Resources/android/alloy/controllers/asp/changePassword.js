@@ -72,12 +72,17 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId207 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId213 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId207"
     });
     $.__views.loadingBar.add($.__views.__alloyId207);
@@ -88,10 +93,23 @@ function Controller() {
     });
     $.__views.changePasswordWin.add($.__views.__alloyId208);
     $.__views.__alloyId209 = Ti.UI.createView({
+=======
+        id: "__alloyId213"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId213);
+    $.__views.__alloyId214 = Ti.UI.createView({
+        layout: "vertical",
+        height: "100%",
+        id: "__alloyId214"
+    });
+    $.__views.changePasswordWin.add($.__views.__alloyId214);
+    $.__views.__alloyId215 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId209"
     });
     $.__views.__alloyId208.add($.__views.__alloyId209);
@@ -101,6 +119,17 @@ function Controller() {
         id: "__alloyId210"
     });
     $.__views.__alloyId209.add($.__views.__alloyId210);
+=======
+        id: "__alloyId215"
+    });
+    $.__views.__alloyId214.add($.__views.__alloyId215);
+    $.__views.__alloyId216 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId216"
+    });
+    $.__views.__alloyId215.add($.__views.__alloyId216);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -108,13 +137,22 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId210.add($.__views.btnBack);
+=======
+    $.__views.__alloyId216.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "60%"
     });
+<<<<<<< HEAD
     $.__views.__alloyId209.add($.__views.pageTitle);
     $.__views.__alloyId211 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId215.add($.__views.pageTitle);
+    $.__views.__alloyId217 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -122,17 +160,28 @@ function Controller() {
         },
         text: "Change Password",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId211"
     });
     $.__views.pageTitle.add($.__views.__alloyId211);
+=======
+        id: "__alloyId217"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId217);
+>>>>>>> origin/master
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
+<<<<<<< HEAD
     $.__views.__alloyId208.add($.__views.main);
     $.__views.__alloyId212 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId214.add($.__views.main);
+    $.__views.__alloyId218 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "120",
         borderRadius: "10",
         height: "120",
@@ -140,9 +189,15 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/asp_logo.png",
+<<<<<<< HEAD
         id: "__alloyId212"
     });
     $.__views.main.add($.__views.__alloyId212);
+=======
+        id: "__alloyId218"
+    });
+    $.__views.main.add($.__views.__alloyId218);
+>>>>>>> origin/master
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "40dp",
@@ -198,7 +253,11 @@ function Controller() {
         value: ""
     });
     $.__views.main.add($.__views.password2);
+<<<<<<< HEAD
     $.__views.__alloyId213 = Ti.UI.createButton({
+=======
+    $.__views.__alloyId219 = Ti.UI.createButton({
+>>>>>>> origin/master
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Change Password",
@@ -206,10 +265,17 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId213"
     });
     $.__views.main.add($.__views.__alloyId213);
     submitPassword ? $.addListener($.__views.__alloyId213, "touchend", submitPassword) : __defers["$.__views.__alloyId213!touchend!submitPassword"] = true;
+=======
+        id: "__alloyId219"
+    });
+    $.__views.main.add($.__views.__alloyId219);
+    submitPassword ? $.addListener($.__views.__alloyId219, "touchend", submitPassword) : __defers["$.__views.__alloyId219!touchend!submitPassword"] = true;
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -218,7 +284,11 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.changePasswordWin);
     });
+<<<<<<< HEAD
     __defers["$.__views.__alloyId213!touchend!submitPassword"] && $.addListener($.__views.__alloyId213, "touchend", submitPassword);
+=======
+    __defers["$.__views.__alloyId219!touchend!submitPassword"] && $.addListener($.__views.__alloyId219, "touchend", submitPassword);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

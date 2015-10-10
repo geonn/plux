@@ -140,6 +140,10 @@ function Controller() {
                     console.log("file return : " + file.getNativePath());
                     PDF.android_launch(file);
                 }
+<<<<<<< HEAD
+=======
+                alert;
+>>>>>>> origin/master
             });
         });
     }
@@ -168,6 +172,7 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
+<<<<<<< HEAD
     $.__views.__alloyId101 = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
@@ -176,10 +181,21 @@ function Controller() {
     });
     $.__views.leaftletWin.add($.__views.__alloyId101);
     $.__views.__alloyId102 = Ti.UI.createView({
+=======
+    $.__views.__alloyId75 = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        layout: "vertical",
+        id: "__alloyId75"
+    });
+    $.__views.leaftletWin.add($.__views.__alloyId75);
+    $.__views.__alloyId76 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId102"
     });
     $.__views.__alloyId101.add($.__views.__alloyId102);
@@ -189,6 +205,17 @@ function Controller() {
         id: "__alloyId103"
     });
     $.__views.__alloyId102.add($.__views.__alloyId103);
+=======
+        id: "__alloyId76"
+    });
+    $.__views.__alloyId75.add($.__views.__alloyId76);
+    $.__views.__alloyId77 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId77"
+    });
+    $.__views.__alloyId76.add($.__views.__alloyId77);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -196,13 +223,22 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId103.add($.__views.btnBack);
+=======
+    $.__views.__alloyId77.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId102.add($.__views.pageTitle);
     $.__views.__alloyId104 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId76.add($.__views.pageTitle);
+    $.__views.__alloyId78 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         font: {
@@ -210,14 +246,24 @@ function Controller() {
         },
         text: "Health Info",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId104"
     });
     $.__views.pageTitle.add($.__views.__alloyId104);
+=======
+        id: "__alloyId78"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId78);
+>>>>>>> origin/master
     $.__views.brochureView = Ti.UI.createView({
         id: "brochureView",
         backgroundColor: "#828282"
     });
+<<<<<<< HEAD
     $.__views.__alloyId101.add($.__views.brochureView);
+=======
+    $.__views.__alloyId75.add($.__views.brochureView);
+>>>>>>> origin/master
     $.__views.bigView = Ti.UI.createScrollView({
         id: "bigView",
         zIndex: "99",
@@ -230,17 +276,29 @@ function Controller() {
         visible: "false"
     });
     $.__views.brochureView.add($.__views.bigView);
+<<<<<<< HEAD
     $.__views.__alloyId105 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId105"
     });
     $.__views.brochureView.add($.__views.__alloyId105);
+=======
+    $.__views.__alloyId79 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId79"
+    });
+    $.__views.brochureView.add($.__views.__alloyId79);
+>>>>>>> origin/master
     $.__views.scrollview = Ti.UI.createScrollView({
         top: "15",
         id: "scrollview",
         layout: "vertical"
     });
+<<<<<<< HEAD
     $.__views.__alloyId105.add($.__views.scrollview);
+=======
+    $.__views.__alloyId79.add($.__views.scrollview);
+>>>>>>> origin/master
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",

@@ -41,16 +41,26 @@ function Controller() {
         style: Ti.UI.ActivityIndicatorStyle.BIG
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId106 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId80 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
         textAlign: "center",
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId106"
     });
     $.__views.loadingBar.add($.__views.__alloyId106);
+=======
+        id: "__alloyId80"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId80);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

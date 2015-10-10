@@ -229,25 +229,40 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId342 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId344 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         top: "5",
         text: "Loading",
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId342"
     });
     $.__views.loadingBar.add($.__views.__alloyId342);
+=======
+        id: "__alloyId344"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId344);
+>>>>>>> origin/master
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
     $.__views.clinicList.add($.__views.panelListTbl);
+<<<<<<< HEAD
     $.__views.__alloyId343 = Ti.UI.createView({
+=======
+    $.__views.__alloyId345 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId343"
     });
     $.__views.panelListTbl.add($.__views.__alloyId343);
@@ -257,18 +272,38 @@ function Controller() {
         id: "__alloyId344"
     });
     $.__views.__alloyId343.add($.__views.__alloyId344);
+=======
+        id: "__alloyId345"
+    });
+    $.__views.panelListTbl.add($.__views.__alloyId345);
+    $.__views.__alloyId346 = Ti.UI.createView({
+        left: "0",
+        width: "20%",
+        id: "__alloyId346"
+    });
+    $.__views.__alloyId345.add($.__views.__alloyId346);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId344.add($.__views.btnBack);
     $.__views.__alloyId345 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId345"
     });
     $.__views.__alloyId343.add($.__views.__alloyId345);
+=======
+    $.__views.__alloyId346.add($.__views.btnBack);
+    $.__views.__alloyId347 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId347"
+    });
+    $.__views.__alloyId345.add($.__views.__alloyId347);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -279,6 +314,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId345.add($.__views.pageTitle);
     $.__views.__alloyId346 = Ti.UI.createView({
         right: "0",
@@ -286,6 +322,15 @@ function Controller() {
         id: "__alloyId346"
     });
     $.__views.__alloyId343.add($.__views.__alloyId346);
+=======
+    $.__views.__alloyId347.add($.__views.pageTitle);
+    $.__views.__alloyId348 = Ti.UI.createView({
+        right: "0",
+        width: "20%",
+        id: "__alloyId348"
+    });
+    $.__views.__alloyId345.add($.__views.__alloyId348);
+>>>>>>> origin/master
     $.__views.btnSearch = Ti.UI.createImageView({
         right: "10",
         id: "btnSearch",
@@ -293,7 +338,11 @@ function Controller() {
         height: "25",
         image: "/images/search.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId346.add($.__views.btnSearch);
+=======
+    $.__views.__alloyId348.add($.__views.btnSearch);
+>>>>>>> origin/master
     $.__views.searchItem = Ti.UI.createSearchBar({
         barColor: "#FFFFFF",
         tintColor: "#CE1D1C",
@@ -305,6 +354,7 @@ function Controller() {
         hintText: "Search Clinic"
     });
     $.__views.panelListTbl.add($.__views.searchItem);
+<<<<<<< HEAD
     $.__views.__alloyId347 = Ti.UI.createView({
         height: "50",
         layout: "horizontal",
@@ -319,6 +369,22 @@ function Controller() {
     });
     $.__views.__alloyId347.add($.__views.__alloyId348);
     showTypeSelection ? $.addListener($.__views.__alloyId348, "click", showTypeSelection) : __defers["$.__views.__alloyId348!click!showTypeSelection"] = true;
+=======
+    $.__views.__alloyId349 = Ti.UI.createView({
+        height: "50",
+        layout: "horizontal",
+        width: Ti.UI.FILL,
+        id: "__alloyId349"
+    });
+    $.__views.panelListTbl.add($.__views.__alloyId349);
+    $.__views.__alloyId350 = Ti.UI.createView({
+        width: "50%",
+        height: Ti.UI.SIZE,
+        id: "__alloyId350"
+    });
+    $.__views.__alloyId349.add($.__views.__alloyId350);
+    showTypeSelection ? $.addListener($.__views.__alloyId350, "click", showTypeSelection) : __defers["$.__views.__alloyId350!click!showTypeSelection"] = true;
+>>>>>>> origin/master
     $.__views.clinicTypeSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -330,12 +396,18 @@ function Controller() {
         text: "Clinic Type",
         id: "clinicTypeSelection"
     });
+<<<<<<< HEAD
     $.__views.__alloyId348.add($.__views.clinicTypeSelection);
     $.__views.__alloyId349 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId350.add($.__views.clinicTypeSelection);
+    $.__views.__alloyId351 = Ti.UI.createImageView({
+>>>>>>> origin/master
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
+<<<<<<< HEAD
         id: "__alloyId349"
     });
     $.__views.__alloyId348.add($.__views.__alloyId349);
@@ -353,6 +425,25 @@ function Controller() {
     });
     $.__views.__alloyId347.add($.__views.__alloyId351);
     showLocationSelection ? $.addListener($.__views.__alloyId351, "click", showLocationSelection) : __defers["$.__views.__alloyId351!click!showLocationSelection"] = true;
+=======
+        id: "__alloyId351"
+    });
+    $.__views.__alloyId350.add($.__views.__alloyId351);
+    $.__views.__alloyId352 = Ti.UI.createView({
+        width: "1",
+        height: "50",
+        backgroundColor: "#9E9E9E",
+        id: "__alloyId352"
+    });
+    $.__views.__alloyId349.add($.__views.__alloyId352);
+    $.__views.__alloyId353 = Ti.UI.createView({
+        width: "auto",
+        height: Ti.UI.SIZE,
+        id: "__alloyId353"
+    });
+    $.__views.__alloyId349.add($.__views.__alloyId353);
+    showLocationSelection ? $.addListener($.__views.__alloyId353, "click", showLocationSelection) : __defers["$.__views.__alloyId353!click!showLocationSelection"] = true;
+>>>>>>> origin/master
     $.__views.clinicLocationSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -364,12 +455,18 @@ function Controller() {
         text: "Clinic Location",
         id: "clinicLocationSelection"
     });
+<<<<<<< HEAD
     $.__views.__alloyId351.add($.__views.clinicLocationSelection);
     $.__views.__alloyId352 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId353.add($.__views.clinicLocationSelection);
+    $.__views.__alloyId354 = Ti.UI.createImageView({
+>>>>>>> origin/master
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
+<<<<<<< HEAD
         id: "__alloyId352"
     });
     $.__views.__alloyId351.add($.__views.__alloyId352);
@@ -380,6 +477,18 @@ function Controller() {
         id: "__alloyId353"
     });
     $.__views.panelListTbl.add($.__views.__alloyId353);
+=======
+        id: "__alloyId354"
+    });
+    $.__views.__alloyId353.add($.__views.__alloyId354);
+    $.__views.__alloyId355 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: "1",
+        backgroundColor: "#9E9E9E",
+        id: "__alloyId355"
+    });
+    $.__views.panelListTbl.add($.__views.__alloyId355);
+>>>>>>> origin/master
     $.__views.clinicListTv = Ti.UI.createTableView({
         id: "clinicListTv",
         layout: "vertical",
@@ -431,8 +540,13 @@ function Controller() {
         loadData(corp);
     });
     $.searchItem.addEventListener("blur", function() {});
+<<<<<<< HEAD
     __defers["$.__views.__alloyId348!click!showTypeSelection"] && $.addListener($.__views.__alloyId348, "click", showTypeSelection);
     __defers["$.__views.__alloyId351!click!showLocationSelection"] && $.addListener($.__views.__alloyId351, "click", showLocationSelection);
+=======
+    __defers["$.__views.__alloyId350!click!showTypeSelection"] && $.addListener($.__views.__alloyId350, "click", showTypeSelection);
+    __defers["$.__views.__alloyId353!click!showLocationSelection"] && $.addListener($.__views.__alloyId353, "click", showLocationSelection);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

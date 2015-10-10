@@ -129,6 +129,10 @@ function parent(key, e) {
         if (eval("e.parent.parent." + key.name) == key.value) return e.parent.parent;
         console.log("box not found");
     } else {
+<<<<<<< HEAD
+=======
+        console.log(key.name);
+>>>>>>> origin/master
         if ("undefined" != eval("typeof e." + key.name)) return eval("e." + key.name);
         if ("undefined" != eval("typeof e.parent." + key.name)) return eval("e.parent." + key.name);
         if ("undefined" != eval("typeof e.parent.parent." + key.name)) return eval("e.parent.parent." + key.name);

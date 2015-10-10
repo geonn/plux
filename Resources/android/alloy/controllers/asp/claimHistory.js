@@ -38,11 +38,16 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.claim_history.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId218 = Ti.UI.createView({
+=======
+    $.__views.__alloyId224 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId218"
     });
     $.__views.main.add($.__views.__alloyId218);
@@ -52,6 +57,17 @@ function Controller() {
         id: "__alloyId219"
     });
     $.__views.__alloyId218.add($.__views.__alloyId219);
+=======
+        id: "__alloyId224"
+    });
+    $.__views.main.add($.__views.__alloyId224);
+    $.__views.__alloyId225 = Ti.UI.createView({
+        left: "0",
+        width: "10%",
+        id: "__alloyId225"
+    });
+    $.__views.__alloyId224.add($.__views.__alloyId225);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -59,12 +75,21 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId219.add($.__views.btnBack);
     $.__views.__alloyId220 = Ti.UI.createView({
         width: "90%",
         id: "__alloyId220"
     });
     $.__views.__alloyId218.add($.__views.__alloyId220);
+=======
+    $.__views.__alloyId225.add($.__views.btnBack);
+    $.__views.__alloyId226 = Ti.UI.createView({
+        width: "90%",
+        id: "__alloyId226"
+    });
+    $.__views.__alloyId224.add($.__views.__alloyId226);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -75,7 +100,11 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId220.add($.__views.pageTitle);
+=======
+    $.__views.__alloyId226.add($.__views.pageTitle);
+>>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });

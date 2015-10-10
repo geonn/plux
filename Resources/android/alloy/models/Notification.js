@@ -23,11 +23,18 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
+<<<<<<< HEAD
             getList: function(e) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='" + e.member_no + "' ";
                 console.log(sql);
+=======
+            getList: function() {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name;
+>>>>>>> origin/master
                 var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;
@@ -57,7 +64,10 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET subject='" + entry.subject + "', message='" + entry.message + "' , url='" + entry.url + "' , expired='" + entry.expired + "', updated='" + entry.updated + "' WHERE id='" + entry.id + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(id, member_no, subject, message, url,expired,created,updated) VALUES ('" + entry.id + "', '" + entry.member_no + "','" + entry.subject + "','" + entry.message + "','" + entry.url + "', '" + entry.expired + "', '" + entry.created + "', '" + entry.updated + "')";
+<<<<<<< HEAD
                 console.log(sql_query);
+=======
+>>>>>>> origin/master
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");
