@@ -93,7 +93,7 @@ function render_card(entry){
 
 	var imageview_card = Ti.UI.createImageView({
 		classes:['wfill','hsize'],
-	    image:"/eCard-front.png",
+	    image:"/images/eCard-front.png",
 	});
 	
 	front.add(imageview_card);

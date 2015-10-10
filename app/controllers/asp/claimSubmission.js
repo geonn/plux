@@ -19,12 +19,21 @@ function init(){
 		claimName.push(entry.name);
 		claimMemNo.push(entry.memno);
 	}); 
-	claimName.push("Cancel"); 	 
+	
+	if(OS_IOS){
+		claimName.push("Cancel");
+	}
+	 	 
 }
 
 function getClaimCategory(){  
 	API.callByGet({url:"getclaimCategoryUrl", params: "CORPCODE="+user.corpcode }, function(responseText){ 
 		var res = JSON.parse(responseText); 
+		if(res.length < 1){
+			common.createAlert("Error", "Your are not allowed to submit claim" );
+			nav.closeWindow($.win); 
+			return false;
+		}
 		res.forEach(function(entry) {  
 			claimCategoryIdArr.push(entry.catID);
 			claimCategoryArr.push( entry.catDesc);
@@ -82,7 +91,7 @@ function submitClaim(){
 	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+user.empno+"&CORPCODE="+user.corpcode+
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount ;
-	console.log(params);
+	//console.log(params);
 	common.showLoading(); 
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){ 
 		var res = JSON.parse(responseText); 

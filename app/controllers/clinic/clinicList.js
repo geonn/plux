@@ -204,6 +204,7 @@ function showTypeSelection(){
 		
 		dialog.addEventListener("click", function(e){   
 			if(cancelBtn != e.index){
+				dialog.selectedIndex = e.index;
 				$.clinicTypeSelection.text = clinicArr[e.index]; 
 				Ti.App.Properties.setString('clinicTypeSelection', clinicArr[e.index]);  
 				if(clinicArr[e.index] == "24 Hours"){   
@@ -223,6 +224,7 @@ function showLocationSelection(){
 	var stateList = library.getPanelListByState();
 	var clinicLocationArr = [];
 	clinicLocationArr.push("Show Map"); 
+	clinicLocationArr.push("All"); 
 	stateList.forEach(function(entry) {
 		if(entry.state != ""){
 			clinicLocationArr.push(ucwords(entry.state));
@@ -243,10 +245,22 @@ function showLocationSelection(){
 		if(e.index == "0"){
 			nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection') });
 		} else if(cancelBtn != e.index){
+			dialog.selectedIndex = e.index;
 			$.clinicLocationSelection.text = clinicLocationArr[e.index];
-			Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
+			
+			if(e.index == "1"){
+				Ti.App.Properties.setString('clinicLocationSelection', null); 
+			}else{
+				Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
+			}
+			
 				
-			list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
+			//list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
+			if(Ti.App.Properties.getString('clinicTypeSelection') == "24 Hours"){   
+				list = library.getPanelBy24Hours("", corp);   
+			}else{
+				list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp);   
+			}
 			common.showLoading();
 			listing();    
 		}
