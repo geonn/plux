@@ -88,10 +88,10 @@ function submitClaim(){
 		var res = JSON.parse(responseText); 
 		common.hideLoading();
 		if(res[0]['code'] == "02"){
-			resultPopUp("Success",res[0]['message'] );
+			common.resultPopUp("Success",res[0]['message'] );
 			$.win.close();
 		}else{
-			resultPopUp("Error",res[0]['message'] );
+			common.resultPopUp("Error",res[0]['message'] );
 		} 
 	}); 
 }
@@ -166,10 +166,42 @@ function hideDatePicker(){
 }
 
 function showVisitPicker(){  
-	$.dateVisitPicker.visible = true;
-	$.selectorView.height = Ti.UI.SIZE;
-	$.dateToolbar.visible = true;
+	if(OS_ANDROID){ 
+		var curDate = currentDateTime();   
+		var ed = curDate.substr(0, 10); 
+		var res_ed = ed.split('-'); 
+		if(res_ed[1] == "08"){
+			res_ed[1] = "8";
+		}
+		if(res_ed[1] == "09"){
+			res_ed[1] = "9";
+		}
+		var datePicker = Ti.UI.createPicker({
+			  type: Ti.UI.PICKER_TYPE_DATE,
+			  minDate: new Date(2015,0,1),
+			  id: "datePicker",
+			  visible: false
+		});
+		datePicker.showDatePickerDialog({
+			value: new Date(res_ed[0],parseInt(res_ed[1]) -1,res_ed[2]),
+			callback: function(e) {
+			if (e.cancel) { 
+				} else {
+					 changeVisitDate(e);
+				}
+			}
+		});
+	}else{ 
+		$.dateVisitPicker.visible = true;
+		$.selectorView.height = Ti.UI.SIZE;
+		$.dateToolbar.visible = true;
+	}
 }
 
- 
+ if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){  
+		nav.closeWindow($.win); 
+	});
+}
+
 

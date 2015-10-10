@@ -27,12 +27,12 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
-			getList : function(){
+			getList : function(e){
 				var collection = this;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name ;
-               
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' " ;
+               console.log(sql);
                 var res = db.execute(sql);
                 var listArr = []; 
                 var count = 0;
@@ -70,7 +70,7 @@ exports.definition = {
                 	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,expired,created,updated) VALUES ('"+entry.id+"', '"+entry.member_no +"','"+entry.subject+"','"+entry.message+"','"+entry.url+"', '"+entry.expired+"', '"+entry.created+"', '"+entry.updated+"')";
 				}
 				 
-				//console.log(sql_query);
+				console.log(sql_query);
                 db.execute(sql_query);
 	            db.close();
 	            collection.trigger('sync');

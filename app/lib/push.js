@@ -24,11 +24,21 @@ if(Ti.Platform.osname == "android"){
 	}); 
 } 
 // Process incoming push notifications
-function receivePush(e) { 
-	console.log(e);
-	return false;
+function receivePush(e) {  
+ 
+	var param = {
+		"id": e.data.id || "",
+		"member_no": e.data.mem_no || "",
+		"subject": e.data.title || "",
+		"message" : e.data.message || "",
+		"url" : e.data.extra || "",
+		"expired" : "",
+		"created" : e.data.created,
+		"updated" : e.data.updated,
+	};
+	console.log(param);
 	var notificationModel = Alloy.createCollection('notification'); 
-	notificationModel.addData();
+	notificationModel.addData(param);
 	
 	var dialog = Ti.UI.createAlertDialog({
 		cancel: 1,
@@ -43,9 +53,7 @@ function receivePush(e) {
 	
 		if (ex.index === 1){
 			if(e.data.target == "claimDetail"){ 
-				nav.navigateWithArgs("asp/"+e.data.target, {
-					serial: e.data.extra
-				});
+				nav.navigateWithArgs("asp/notification");
 			}
 			if(e.data.target == "webview"){
 				nav.navigateWithArgs(e.data.target, {

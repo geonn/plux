@@ -18,7 +18,7 @@
 							<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
 							
 							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
-							<ImageView onClick="navWindow" mod="claimSubmission" top="15" width="139" image="/images/btn/btn_claim_submission.png"/>
+							<ImageView onClick="navWindow" mod="claimSubmission" top="15" left="15"  width="139" image="/images/btn/btn_claim_submission.png"/>
 							
 							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
 							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>
@@ -30,7 +30,8 @@
 							<ImageView onClick="navWindow" mod="leaflet" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
 							 
-							<ImageView onClick="navWindow" mod="profile" top="15" left="15" width="139" image="/images/btn/btn_profile.png"/>
+							<ImageView onClick="navWindow" mod="profile" top="15" width="139" image="/images/btn/btn_profile.png"/>
+							<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
 										
 						</View>
 					</ScrollView>

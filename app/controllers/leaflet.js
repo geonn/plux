@@ -222,7 +222,7 @@ function downloadBrochure(adImage,content){
 				});
 					
 			    }
-			   }alert
+			   } 
 		});
 	});
 }
