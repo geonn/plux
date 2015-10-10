@@ -1,11 +1,13 @@
 var args = arguments[0] || {};
-var appointment_id = args.id || "";
+var appointment_id = args.appointment_id || "";
 var userModel = Alloy.createCollection('users_plux'); 
 var appointmentModel = Alloy.createCollection('appointment'); 
 var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
 var panelListModel = Alloy.createCollection('panelList'); 
 var selectedClinic; 
+var appointmentDatetime; 
 var toolbar;
+var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
 
 $.patient_name.text = user.fullname;
 $.patient_email.text = user.email;
@@ -17,7 +19,7 @@ var dpView = Titanium.UI.createView({
 		visible: true
 });
 	
- init();
+init();
 
 function saveRecord(){
 	//var title      = $.titleRecord.value;  
@@ -42,12 +44,13 @@ function saveRecord(){
  		id :appointment_id,
 		u_id : Ti.App.Properties.getString('u_id'),
 		date : appDate,
+		duration : duration,
 		clinic_id  : appClinic,
 		remark : remark.trim() ,
 		created : currentDateTime(),  
 		updated : currentDateTime()
 	};  
-	
+	console.log(param);
  	API.addAppointment({param: param}, savedAppointment);
  	 
 	// nav.navigationWindow("myHealth" );
@@ -56,6 +59,7 @@ function saveRecord(){
 
 function savedAppointment(ex){ 
 	var result = ex.param;
+	console.log(result);
 	if(result.status == "error"){
 		common.createAlert("Error", result.data);
 		return false;
@@ -64,7 +68,6 @@ function savedAppointment(ex){
 	}
 	
 	Ti.App.fireEvent('displayRecords');
-	nav.closeWindow($.win); 
 }
 
  
@@ -83,7 +86,6 @@ function init(){
 			$.remarkTextArea_readonly.height = Ti.UI.SIZE;
 			$.remarkTextArea_readonly.text = remark.replace(regex, "\n");
 		}
-		
 		
 		$.appointment_datetime.text = timeFormat(details.date);
 		$.appointment_datetime.color = "#000000";
@@ -124,7 +126,7 @@ function init(){
 				dialog.show();  
 			});
 		
-			$.aView.add(deleteBtn);
+			//$.aView.add(deleteBtn);
 		}else{
 			var statusLbl = Titanium.UI.createLabel({
 				text: "Status", 
@@ -176,8 +178,8 @@ function init(){
 		});
 		   
 		done.addEventListener('click', function(){ 
-			$.appointmentDateTime.visible = 0;
-			$.appointmentDateTime.height = 0;
+			//$.appointmentDateTime.visible = 0;
+			//$.appointmentDateTime.height = 0;
 		});
 	  
 		toolbar = Titanium.UI.iOS.createToolbar({
@@ -216,85 +218,36 @@ function init(){
 		value.setDate(parseInt(cd[2]));
 		value.setHours(ct[0],ct[1],0);
 		//value.setMinutes(parseInt(ct[1]));
-	
-	if(OS_IOS){
-		var picker = Ti.UI.createPicker({
-			type: Ti.UI.PICKER_TYPE_DATE_AND_TIME,
-			minDate: minDate,
-			value : value,
-			bottom: 0
-		});
-		picker.addEventListener("change", changeDate);
-		picker.selectionIndicator = true; 
-		dpView.add(picker);
-	}	
-	
 	// turn on the selection indicator (off by default)
 	
-	$.appointmentDateTime.add(dpView);
+	//$.appointmentDateTime.add(dpView);
 }
 
 function removeAppointment(){
 	appointmentModel.updateAppointmentStatus(appointment_id, 5);
 	Ti.App.fireEvent('displayRecords');
-	nav.closeWindow($.win);
 }
 
-function changeDate(e){ 
-	 
-	var pickerdate = e.value; 
-    var day = pickerdate.getDate();
-    day = day.toString();
-    var hours = pickerdate.getHours();
-    var minutes = pickerdate.getMinutes(); 
-    if (day.length < 2) {
-        day = '0' + day;
-    }
-  
-    var month = pickerdate.getMonth();
-    month = month + 1;
-    month = month.toString();
- 
-    if (month.length < 2) {
-        month = '0' + month;
-    }
- 
-    var year = pickerdate.getFullYear(); 
-    selDate = day + "/" + month + "/" + year + " "+hours+":"+minutes+":00"; 
-     
-	$.appointment_datetime.text = selDate  ;  
-	$.appointment_datetime.color = "#000000";
-}
-
-if(details.date >= currentDateTime() || appointment_id == ""){ 
-	$.tvrClinicVisit.addEventListener('click', function(e){ 
-		var winClinic = Alloy.createController('appointmentClinicList').getView();
-		winClinic.open({
-				modal:true
-			}); 
-	});
-	
-	$.tvrDateVisit.addEventListener('click', function(e){ 
-		$.appointmentDateTime.visible = 1;
-		$.appointmentDateTime.height = 200;
-	});
-}
-
-function selectClinic(e){ 
+$.update_selectClinic = function(e){
 	selectedClinic = e.clinicId;
 	$.appointment_clinic.text = e.clinicName;
 	$.appointment_clinic.color = "#000000";
-}
+};
+
+$.update_chooseDateTime = function(e){
+	appointmentDatetime = e.date;
+	$.appointment_datetime.text = e.date;
+	$.appointment_datetime.color = "#000000";
+};
 
 function hideKeyboard(){
 	$.remarkTextArea.blur();  
 }
 
-Ti.App.addEventListener('selectClinic',selectClinic);
-//release memory when close
-$.win.addEventListener("close", function(){
-    Ti.App.removeEventListener('selectClinic',selectClinic); 
-    toolbar = null;
-    dpView = null;
+$.appointment_datetime.addEventListener("click", function(e){
+	Ti.App.fireEvent("appointment_index:scrollToViewPage", {number: 1});
 });
 
+$.appointment_clinic.addEventListener("click", function(e){
+	Ti.App.fireEvent("appointment_index:scrollToViewPage", {number: 0});
+});

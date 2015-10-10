@@ -132,11 +132,11 @@ function displayAppointmentList(){
 }
 
 function viewDetails(rec_id){  
-	nav.navigateWithArgs("appointmentForm",{id: rec_id}); 
+	nav.navigateWithArgs("appointment/index",{id: rec_id}); 
 }
 
 $.newRecord.addEventListener('click',function(){ 
-	nav.navigateWithArgs("appointmentForm",{id : ""});
+	nav.navigateWithArgs("appointment/index",{id : ""});
 });
 
 

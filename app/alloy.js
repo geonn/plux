@@ -294,7 +294,9 @@ function parent(key, e){
 	    		return e;
 	    }
 	}else{
+		console.log(key.name);
 		if(eval("typeof e."+key.name) == "undefined"){
+			
 			if(eval("typeof e.parent."+key.name+"") == "undefined"){
 				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
 	    			console.log("box not found");
