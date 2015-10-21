@@ -1,4 +1,6 @@
 var args = arguments[0] || {};
+var isEdit = args.edit || "";
+var serial = args.serial || "";
 var usersModel = Alloy.createCollection('users');
 var user = usersModel.getPrincipleData();
 var claimCategoryArr = [];
@@ -13,6 +15,16 @@ common.showLoading();
 init();
 
 function init(){
+	if(isEdit != ""){   
+		var params = "SERIAL="+serial;
+		console.log(params);
+		common.showLoading(); 
+		API.callByGet({url:"getclaimDetailBySeriesUrl", params: params}, function(responseText){ 
+			var res = JSON.parse(responseText); 
+		 	console.log(res);
+		}); 
+	}
+	
 	getClaimCategory(); 
 	var userMem =  usersModel.getUserByEmpNo();
 	userMem.forEach(function(entry) {  
@@ -38,8 +50,9 @@ function getClaimCategory(){
 			claimCategoryIdArr.push(entry.catID);
 			claimCategoryArr.push( entry.catDesc);
 		}); 
-	 	
-		claimCategoryArr.push("Cancel"); 
+	 	if(OS_IOS){
+			claimCategoryArr.push("Cancel"); 
+		}
 		common.hideLoading();
 	}); 
 }
@@ -55,7 +68,7 @@ function submitClaim(){
 	var remark        = $.remark.value;
 	var gstAmount     = $.gstAmount.value;
 	var mc            = $.mc.value;
-	var diagnosis     =  $.diagnosis.value;
+	var diagnosis     = $.diagnosis.value;
 	var glamount      = $.glamount.value;
 	
 	if(receiptNo.trim() == ""){
@@ -81,6 +94,9 @@ function submitClaim(){
 	if(dateVisit.trim() == ""){
 		common.resultPopUp("Error", "Please choose date visit to clinic/hospital" );
 		return false;
+	}else{ 
+		dateVisit = dateVisit.split("/");  
+		dateVisit = dateVisit[1]+"/"+dateVisit[0]+"/"+dateVisit[2];
 	}
 	
 	if(clinicName.trim() == ""){

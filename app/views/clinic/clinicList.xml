@@ -1,7 +1,10 @@
 <Alloy>
 	<Window title="Clinic List" id="clinicList" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
 		<RightNavButton>
-			<ImageView right='10' id="btnSearch" width="25" height="25" image="/images/search.png" />
+			<View class="horz" right='5' >
+				<ImageView  right="10" id="btnMap" width="25" height="25" image="/images/map.png" />
+				<ImageView id="btnSearch" width="25" height="25" image="/images/search.png" />
+			</View>
 		</RightNavButton>
 		
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
@@ -17,6 +20,7 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic List</Label>
 		     	</View>
 		     	<View right="0" width="20%" >
+		     		<ImageView right='10' id="btnSearch" width="25" height="25" image="/images/map.png" />
 		         	<ImageView right='10' id="btnSearch" width="25" height="25" image="/images/search.png" />
 		   		</View>
 		 	</View>

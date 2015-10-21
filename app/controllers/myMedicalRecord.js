@@ -1,10 +1,109 @@
 var args = arguments[0] || {};
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');  
-
+var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');  
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 common.construct($); 
-displayRecords(""); 
+init();
+
+function init(){
+	checkDataSync(); 
+	displayRecords(""); 
+}
+
+function checkDataSync(){
+	var param = {  
+		u_id : Ti.App.Properties.getString('u_id')
+	};
+	API.checkMedicalDataSync({param: param}, savedRecords);
+}
+
+function savedRecords(ex){
+	var result = ex.param; 
+	var info =result.data;
+	if(info.length > 0){
+		info.forEach(function(entry) {
+			var dataFromApp = medicalRecordsModel.getRecordById(entry.app_id);
+			if(dataFromApp != ""){
+				 
+			}else{
+				 
+				var arr = {
+					id: entry.app_id,
+					server_id: entry.id,
+					title: entry.title,
+					message: entry.message ,
+					clinic: entry.clinic,
+					treatment: entry.treatment,
+					created: entry.created,
+					updated: entry.updated,
+				};
+				medicalRecordsModel.addRecordFromServer(arr);
+			}
+		
+		});
+		
+		displayRecords("");
+	}
+	syncToServer();
+}
+
+function syncToServer(){
+	var unsyncList = medicalRecordsModel.getUnsyncList();
+	 
+	if(unsyncList.length > 0){ 
+		unsyncList.forEach(function(entry) {
+			/** save text information***/
+			var param = { 
+		 		app_id :entry.id,
+				u_id : Ti.App.Properties.getString('u_id'),
+				clinic : entry.clinic,
+				title : entry.title,
+				message  : entry.message,
+				treatment : entry.treatment,
+				created : entry.created,
+				updated : entry.updated,
+			};    
+		 	API.syncMedicalRecords({param: param}, updatedRecords);
+		 	
+		 	/** save attachment information***/
+		 	var attachments = medicalAttachmentModel.getUnuploadAttachment(entry.id);
+			//console.log(attachments);
+			if(attachments.length > 0){ 
+				attachments.forEach(function(att) {
+					var img = att.blob;
+					var param = { 
+				 		app_id :att.id,
+				 		medical_id :att.medical_id,
+				 		u_id :Ti.App.Properties.getString('u_id'),
+				 		caption : att.category,
+				 		Filedata : Ti.Utils.base64decode(att.blob),
+				 	};	
+				
+				 	API.syncAttachments({param: param}, savedAttachment);	 
+				});
+			}
+			/***sync attachment end***/
+		});
+	}
+ 
+}
+
+function savedAttachment(ex){
+	var result = ex.param;
+ 	medicalAttachmentModel.updateFromServer(result.data); 
+}
+
+function updatedRecords(ex){
+	var result = ex.param;
+	
+	var param = { 
+ 		server_id :result.data.id,
+		id : result.data.app_id 
+	};   
+	 
+ 	medicalRecordsModel.updateFromServer(param); 
+}
 
 function displayRecords(listing){ 
 	if(listing == "" || listing.type == "displayRecords"){

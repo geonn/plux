@@ -28,6 +28,9 @@ var doctorListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"
 var addAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
 var syncAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
 var deleteAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
+var syncMedicalUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
+var checkMedicalDataUrl = "http://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
+var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -143,7 +146,7 @@ exports.addAppointment = function(e, callback){
 	client.send(e.param);
 };
 
-exports.syncAppointmentData = function(callback){
+exports.syncAppointmentData = function(e,callback){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	if(u_id == ""){ 
 		return false;
@@ -161,8 +164,75 @@ exports.syncAppointmentData = function(callback){
 	     timeout : 50000  // in milliseconds
 	 });
 
-	client.open("GET", url);
-	client.send();
+	client.open("POST", url);
+	client.send(e.param);
+};
+
+exports.checkMedicalDataSync = function(e, callback){
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	if(u_id == ""){ 
+		return false;
+	}
+	var url = checkMedicalDataUrl + "&u_id="+u_id;   
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {  
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+
+	client.open("POST", url);
+	client.send(e.param);
+};
+
+exports.syncAttachments = function(e,callback){
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	if(u_id == ""){ 
+		return false;
+	}
+	var url = syncAttachmentssUrl ;  
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {  
+	      
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 500000  // in milliseconds
+	 });
+
+	client.open("POST", url);
+	client.send(e.param);
+};
+
+exports.syncMedicalRecords = function(e,callback){
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	if(u_id == ""){ 
+		return false;
+	}
+	var url = syncMedicalUrl ;  
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {  
+	     	var res = JSON.parse(this.responseText);  
+		 	callback({param: res});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+
+	client.open("POST", url);
+	client.send(e.param);
 };
 
 exports.deleteAppointment = function(id, callback){
@@ -216,8 +286,7 @@ exports.checkAppVersion = function(callback_download){
 		// function called when the response data is available
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
-			if(result.status == "error"){
-				console.log(result);
+			if(result.status == "error"){ 
 				callback_download && callback_download(result);
 			}
 		},
@@ -441,7 +510,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
 	       		Ti.App.Properties.setString('asp_email', username);
 	       		Ti.App.Properties.setString('asp_password',password);
-	       		console.log(res.corpcode+" why missing");
+	       		 
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
@@ -710,7 +779,7 @@ exports.getDoctorList = function(ex){
 	     // function called when the response data is available
 	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
-	     	console.log(res);
+	     	 
 		 	/**reset current category**/
 		 	var doctorsModel = Alloy.createCollection('doctors');  
 			 

@@ -9,8 +9,7 @@ common.showLoading();
 
 Ti.App.addEventListener("load_claim_detail", init);
 
-function init(){
-	console.log('init');
+function init(){ 
 	var data = usersModel.getClaimDetailBySeries({serial : arg_serial});  
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
 	//$.tv.appendRow(createTableViewRow("Patient Name", data.name));

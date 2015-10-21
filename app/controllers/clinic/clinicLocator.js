@@ -1,17 +1,24 @@
 var args = arguments[0] || {};
 var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
-var corp = Ti.App.Properties.getString('corpcode');
+var corp = Ti.App.Properties.getString('corpcode') || "";
+var location = args.location || "";
 var details;
 common.construct($);
-common.showLoading();
-//console.log("clinicType: " +clinicType);
-if(clinicType == "24 Hours"){  	
-	details = library.getPanelBy24Hours("", corp); 
-}else{ 
-	details = library.getPanelByClinicType(clinicType, "", corp);     
+
+initialized(); 
+function initialized(){ 
+	common.showLoading();
+	if(clinicType == "24 Hours"){  	
+		details = library.getPanelBy24Hours("", corp); 
+	}else{ 
+		details = library.getPanelByClinicType(clinicType, "", corp);     
+	} 
+	triggerPosition();
+	
 }
-triggerPosition();
+//console.log("clinicType: " +clinicType);
+
 
 function triggerPosition(){
 	if (Ti.Geolocation.locationServicesEnabled) {
@@ -31,6 +38,7 @@ function alerts(){
 var longitude;
 var latitude;   
 function init(e){   
+	 
 	longitude = e.coords.longitude;
     latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -48,46 +56,45 @@ function init(e){
         regionFit:true,
         userLocation:true
     });
-    if(details == ""){
-    	return false;
-    }
     
-	details.forEach(function(entry) {
-		var detBtn =Ti.UI.createButton({
-		    backgroundImage: '/images/btn-forward.png',
-		    color: "red",
-		    height: 20,
-			width: 20,
-			panel_id: entry.id
+    if(details != ""){ 
+		details.forEach(function(entry) {
+			var detBtn =Ti.UI.createButton({
+			    backgroundImage: '/images/btn-forward.png',
+			    color: "red",
+			    height: 20,
+				width: 20,
+				panel_id: entry.id
+			});
+			var viewRight = Ti.UI.createView({
+			    width: Ti.UI.SIZE,
+			    height: Ti.UI.SIZE
+			});
+	
+			detBtn.addEventListener('click', function(ex){ 
+				nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
+			});      
+			viewRight.add(detBtn);
+			if(entry.latitude != "" && entry.longitude != ""){
+				var merchantLoc = Map.createAnnotation({
+				    latitude: entry.latitude,
+				    longitude: entry.longitude, 
+				    title: entry.clinicName,
+				    image: '/images/marker.png',
+				    animate : true, 
+				    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
+				    pincolor:Map.ANNOTATION_RED,
+				    rightView: detBtn,
+				    panel_id: entry.id
+				    
+				}); 
+				mapview.addAnnotation(merchantLoc); 
+				//if(Ti.Platform.osname == "android"){
+				 
+				//}
+			}
 		});
-		var viewRight = Ti.UI.createView({
-		    width: Ti.UI.SIZE,
-		    height: Ti.UI.SIZE
-		});
-
-		detBtn.addEventListener('click', function(ex){ 
-			nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
-		});      
-		viewRight.add(detBtn);
-		if(entry.latitude != "" && entry.longitude != ""){
-			var merchantLoc = Map.createAnnotation({
-			    latitude: entry.latitude,
-			    longitude: entry.longitude, 
-			    title: entry.clinicName,
-			    image: '/images/marker.png',
-			    animate : true, 
-			    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-			    pincolor:Map.ANNOTATION_RED,
-			    rightView: detBtn,
-			    panel_id: entry.id
-			    
-			}); 
-			mapview.addAnnotation(merchantLoc); 
-			//if(Ti.Platform.osname == "android"){
-			 
-			//}
-		}
-	});
+	}
 	common.hideLoading();
 	//mapview.addAnnotation(mountainView);
 	$.win_map.add(mapview);

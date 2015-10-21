@@ -35,7 +35,7 @@ Ti.App.addEventListener("data_loaded", init);
 
 function init(){
 	//var d = new Date();
-	console.log('init');
+	 
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));

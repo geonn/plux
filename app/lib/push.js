@@ -24,19 +24,37 @@ if(Ti.Platform.osname == "android"){
 	}); 
 } 
 // Process incoming push notifications
-function receivePush(e) {  
- 
-	var param = {
-		"id": e.data.id || "",
-		"member_no": e.data.mem_no || "",
-		"subject": e.data.title || "",
-		"message" : e.data.message || "",
-		"url" : e.data.extra || "",
-		"expired" : "",
-		"created" : e.data.created,
-		"updated" : e.data.updated,
-	};
-	console.log(param);
+function receivePush(e) {   
+	var target;
+	var url;
+	if(OS_IOS){
+		var param = {
+			"id": e.data.id || "",
+			"member_no": e.data.mem_no || "",
+			"subject": e.data.title || "",
+			"message" : e.data.message || "",
+			"url" : e.data.extra || "",
+			"expired" : "",
+			"created" : e.data.created,
+			"updated" : e.data.updated,
+		};
+		target = e.data.target;
+		url = e.data.extra;
+	}else{
+		var param = {
+			"id": e.id || "",
+			"member_no": e.mem_no || "",
+			"subject": e.android.title || "",
+			"message" : e.message || "",
+			"url" : e.extra || "",
+			"expired" : "",
+			"created" : e.created,
+			"updated" : e.updated,
+		};
+		target = e.target;
+		url = e.extra;
+	} 
+		
 	var notificationModel = Alloy.createCollection('notification'); 
 	notificationModel.addData(param);
 	
@@ -52,12 +70,12 @@ function receivePush(e) {
 		}
 	
 		if (ex.index === 1){
-			if(e.data.target == "claimDetail"){ 
+			if(target == "claimDetail"){ 
 				nav.navigateWithArgs("asp/notification");
 			}
-			if(e.data.target == "webview"){
-				nav.navigateWithArgs(e.data.target, {
-					url: e.data.extra
+			if(target == "webview"){
+				nav.navigateWithArgs(target, {
+					url: url
 				});
 			}
 		}

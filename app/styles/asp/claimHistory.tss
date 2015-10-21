@@ -23,8 +23,7 @@
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
 },
 ".date":{
-	height: Titanium.UI.SIZE,
-	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE, 
 	font:{
 		fontSize: 14
 	},

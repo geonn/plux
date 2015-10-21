@@ -18,9 +18,9 @@ common.showLoading();
 $.clinicTypeSelection.text = clinicType;
 $.clinicLocationSelection.text = clinicLocationSelection;
 if(OS_IOS){
-	$.clinicList.title = "Clinic Location List";
+	$.clinicList.title = "Locator List";
 }else{
-	$.pageTitle.text =  "Clinic Location List";
+	$.pageTitle.text =  "Locator List";
 } 
 
 setTimeout(function(){
@@ -52,8 +52,7 @@ function listing(){
 			row.add(noRecord);
 			data.push(row);
 			$.clinicListTv.setData(data);
-		}else{
-			
+		}else{ 
 	   		arr.forEach(function(entry) {
 	   			var row = Titanium.UI.createTableViewRow({
 				    touchEnabled: true,
@@ -70,8 +69,9 @@ function listing(){
 					width: Ti.UI.FILL
 				});
 				
+				var cn = entry.clinicName.replace("[quot]", "'");
 				var clinicLbl = Titanium.UI.createLabel({
-					text:entry.clinicName,
+					text:cn,
 					font:{fontSize:14,fontWeight: 'bold'},
 					source: entry.id,
 					color: "#CE1D1C", 
@@ -93,9 +93,15 @@ function listing(){
 					height:Ti.UI.SIZE
 				}); 
 				contentView.add(mobileLbl);
-			 
+			  	
+			  	if(entry.city != "" ){
+			  		entry.city = ", " + entry.city;
+			  	}
+			  	if(entry.state != "" ){
+			  		entry.state = ", " + entry.state;
+			  	}
 				var distLbl = Titanium.UI.createLabel({
-					text:  entry.postcode +", " + entry.city +", "+  entry.state,
+					text:  entry.postcode +  entry.city + entry.state,
 					font:{fontSize:12},
 					source: entry.id,
 					color: "#848484", 
@@ -181,8 +187,7 @@ if(Ti.Platform.osname == "android"){
 	});
  
 function showTypeSelection(){
-	var clinicTypeList = library.getCountClinicType();
-
+	var clinicTypeList = library.getCountClinicType(corp); 
 	var det24= { 
 		clinicType: "24 Hours"
 	};
@@ -221,12 +226,11 @@ function showTypeSelection(){
 }
 
 function showLocationSelection(){
-	var stateList = library.getPanelListByState();
-	var clinicLocationArr = [];
-	clinicLocationArr.push("Show Map"); 
+	var stateList = library.getPanelListByState(); 
+	var clinicLocationArr = []; 
 	clinicLocationArr.push("All"); 
 	stateList.forEach(function(entry) {
-		if(entry.state != ""){
+		if(entry.state != null){
 			clinicLocationArr.push(ucwords(entry.state));
 		} 
 	});
@@ -242,13 +246,11 @@ function showLocationSelection(){
 	dialog.show();
 		
 	dialog.addEventListener("click", function(e){   
-		if(e.index == "0"){
-			nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection') });
-		} else if(cancelBtn != e.index){
+		if(cancelBtn != e.index){
 			dialog.selectedIndex = e.index;
 			$.clinicLocationSelection.text = clinicLocationArr[e.index];
 			
-			if(e.index == "1"){
+			if(e.index == "0"){
 				Ti.App.Properties.setString('clinicLocationSelection', null); 
 			}else{
 				Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
@@ -266,6 +268,10 @@ function showLocationSelection(){
 		}
 	});
 }
+
+$.btnMap.addEventListener('click', function(){
+	nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection'), location: Ti.App.Properties.getString('clinicLocationSelection') });
+});
 
 function loadData(corp){
 	if(clinicType == "24 Hours"){ 
