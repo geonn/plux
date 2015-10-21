@@ -129,7 +129,7 @@ function refreshHeaderInfo(){
  
 function navWindow(e){
 	var target = e.source.mod;  
-	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" ){
+	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" || e.source.mod == "notification" ){
 		nav.navigationWindow("asp/"+target, 1);  
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
@@ -141,16 +141,21 @@ function navWindow(e){
 }
 
 function logoutUser(){
-	Ti.App.Properties.setString('memno','');
-	Ti.App.Properties.setString('empno','');
-	Ti.App.Properties.setString('corpcode',''); 
-	Ti.App.Properties.setString('u_id','');
-	Ti.App.Properties.removeProperty('asp_email');
-	Ti.App.Properties.removeProperty('asp_password');
+	var isCorpCode = Ti.App.Properties.getString('corpcode','');
 	
-	refreshHeaderInfo();
-	FACEBOOK.logout();
-	nav.navigateWithArgs("login", {});  
+	if(isCorpCode != "" ){
+		Ti.App.Properties.removeProperty('memno');
+		Ti.App.Properties.removeProperty('empno');
+		Ti.App.Properties.removeProperty('corpcode'); 
+		Ti.App.Properties.removeProperty('asp_email');
+		Ti.App.Properties.removeProperty('asp_password');
+	}else{
+		Ti.App.Properties.setString('u_id',''); 
+		FACEBOOK.logout();
+		nav.navigateWithArgs("login", {});  
+	}
+	 
+	refreshHeaderInfo(); 
 }
 
 function setBackground(){

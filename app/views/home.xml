@@ -32,6 +32,7 @@
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
 							 
 							<ImageView onClick="navWindow" mod="profile" top="15"  width="139" image="/images/btn/btn_profile.png"/>
+							<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
 							
 						</View>
 					</ScrollView>

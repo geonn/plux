@@ -1,6 +1,12 @@
 var args = {};
 var u_id = Ti.App.Properties.getString('u_id') || "";
 
+var medicalRecordsModel = Alloy.createCollection('medicalRecords');   
+medicalRecordsModel.addColumn("server_id", "TEXT"); 
+
+var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');   
+medicalAttachmentModel.addColumn("img_path", "TEXT"); 
+
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();

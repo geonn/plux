@@ -3,12 +3,12 @@ exports.definition = {
 		columns: {
 		    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
 		    "title": "TEXT",
+		    "server_id": "TEXT",
 		    "message": "TEXT", 
 		    "treatment": "TEXT", 
 		    "created": "TEXT",
 		    "updated": "TEXT",
-		    "clinic": "TEXT",
-		    "treatment": "TEXT",
+		    "clinic": "TEXT"
 		},
 		adapter: {
 			type: "sql",
@@ -44,6 +44,38 @@ exports.definition = {
 				}
 				db.close();
 			},
+			getUnsyncList: function(){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE server_id IS NULL " ;
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                var res = db.execute(sql);
+                var listArr = []; 
+                var count = 0;
+                while (res.isValidRow()){ 
+					listArr[count] = { 
+							id: res.fieldByName('id'),
+							server_id: res.fieldByName('server_id'),
+						    title: res.fieldByName('title'),
+						    clinic: res.fieldByName('clinic'),
+						    treatment: res.fieldByName('treatment'),
+						    message: res.fieldByName('message'), 
+						    created: res.fieldByName('created'),
+						    updated: res.fieldByName('updated') 
+					};	
+					 
+					res.next();
+					count++;
+				} 
+			 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
 			getRecordsList: function(){
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +"  order by updated DESC";
@@ -58,6 +90,7 @@ exports.definition = {
                 while (res.isValidRow()){ 
 					listArr[count] = { 
 							id: res.fieldByName('id'),
+							server_id: res.fieldByName('server_id'),
 						    title: res.fieldByName('title'),
 						    clinic: res.fieldByName('clinic'),
 						    treatment: res.fieldByName('treatment'),
@@ -175,6 +208,18 @@ exports.definition = {
 	            db.close();
 	            collection.trigger('sync');
 			},
+			updateFromServer : function(entry){
+				var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	            if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }  
+		   		sql_query = "UPDATE "+ collection.config.adapter.collection_name + " SET server_id='"+entry.server_id+"' WHERE id='" + entry.id + "' "; 
+				 
+				db.execute(sql_query); 
+	            db.close();
+	            collection.trigger('sync');
+			},
 			addRecord : function(entry) {
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -194,6 +239,31 @@ exports.definition = {
 				} 
 				 
 		   		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( title,message, created, updated, treatment,clinic ) VALUES ( '"+title+"', '"+message+"', '"+entry.created+"', '"+entry.updated+"', '"+entry.treatment+"', '"+entry.clinic+"')";
+				 
+				db.execute(sql_query);
+				  
+	            db.close();
+	            collection.trigger('sync');
+           },
+           addRecordFromServer : function(entry){
+           		var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	            if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                } 
+                
+                var title = entry.title;
+                if(title != ""){ 
+                	title = title.replace(/["']/g, "&quot;");
+                }
+                
+                 
+				var message = entry.message;
+				if(message != ""){ 
+					message = message.replace(/["']/g, "&quot;");
+				} 
+				 
+		   		sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( id, server_id,title,message, created, updated, treatment,clinic ) VALUES ( '"+entry.id+"','"+entry.server_id+"','"+title+"', '"+message+"', '"+entry.created+"', '"+entry.updated+"', '"+entry.treatment+"', '"+entry.clinic+"')";
 				 
 				db.execute(sql_query);
 				  

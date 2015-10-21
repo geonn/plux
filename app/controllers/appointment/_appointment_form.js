@@ -51,9 +51,11 @@ function saveRecord(){
 		remark : remark.trim() ,
 		created : currentDateTime(),  
 		updated : currentDateTime()
+
 	};
 	console.log(param);
 	Ti.App.fireEvent("appointment_index:loadingStart");
+
  	API.addAppointment({param: param}, savedAppointment);
  	 
 	// nav.navigationWindow("myHealth" );

@@ -28,7 +28,12 @@ function loadImage(){
 	if(recAttachment.length > 0){
 		removeAllChildren($.attachment);
 	 	recAttachment.forEach(function(att){ 
-	 		var myImage = Ti.Utils.base64decode(att.blob);
+	 		if(att.img_path == null){
+	 			var myImage = Ti.Utils.base64decode(att.blob);
+	 		}else{
+	 			var myImage = att.img_path;
+	 		}
+	 		
 	 		$.attachment.add(attachedPhoto(myImage, counter));
 	 		counter++;  
 	 	}); 

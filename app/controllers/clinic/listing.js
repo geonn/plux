@@ -43,10 +43,9 @@ function listing(){
 			    });
 				
 				var clinicImg = entry.clinicType;
-				if(OS_IOS){
+				/**if(OS_IOS){
 					clinicImg = clinicImg.toLowerCase(); 
-				}
-				
+				}**/ 
 				var leftImage =  Titanium.UI.createView({
 					backgroundImage:"/images/"+clinicImg+".png", 
 					width: 50,

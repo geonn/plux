@@ -1,77 +1,154 @@
 var args = arguments[0] || {};
+var id = args.id || "";
+var notificationModel = Alloy.createCollection('notification');  
 var PDF = require('pdf'); 
-var leafletModel = Alloy.createCollection('leaflet');  
-var leaflist = leafletModel.getLeaftletList();
-//PDF.construct($);
-loadLeafLetList(); 
-function loadLeafLetList(){ 
-	if(leaflist.length > 0 ){ 
-		for(var i=0; i < leaflist.length; i++){ 
-			var leafView = Ti.UI.createView({
-				bottom: 0,
-				right: 5,
-				height : 200,
-				width: "30%"
-			});
-			
-			var leafImage = Ti.UI.createImageView({
-				id: leaflist[i].id,
-				image: leaflist[i].cover,
-				backgroundImage : leaflist[i].cover, 
-				leafLet :  leaflist[i].attachment, 
-				name :  leaflist[i].title, 
-				url :  leaflist[i].url, 
-				downloaded : leaflist[i].isDownloaded, 
-				defaultImage: "/images/warm-grey-bg.png",
-				bottom : 0,
-				width: 90
-			});
-			var activityIndicator = common.showImageIndicator(); 
-			
-			downloadBrochure(leafImage,leaflist[i]);  
-			 
-			leafView.add(leafImage);
-			leafView.add(activityIndicator);
-			common.imageIndicatorEvent(leafImage,activityIndicator);
-			
-			if(i % 3 == 0){
-				var containerView = Ti.UI.createView({
-					bottom: 0,
-					layout: "vertical",
-					height : 220, 
-					width: "100%"
-				});
-				var innerView = Ti.UI.createView({ 
-					layout: "horizontal",
-					height : Ti.UI.SIZE,
-					width: "100%",
-					left: "5%", 
-					right: "5%"
-				});	
-				 
-				innerView.add(leafView); 
-				containerView.add(innerView);
-				$.mainView.add(containerView);
-			}else{ 
-				innerView.add(leafView);
-				if((i+1)  % 3 == 0){
-					var lineImg = Ti.UI.createImageView({
-						image: '/images/div.png',
-						width: "100%"
-					});
-					innerView.add(lineImg); 
-				}
-			}
-		}
-		 
-	}
+var notificationList;
+common.construct($); 
+common.showLoading();
+init();
+
+function init(){ 
+	displayList();
 }
+
+function savedAppointment(ex){ 
+	var result = ex.param;
+	if(result.status == "error"){
+		common.createAlert("Error", result.data);
+		return false;
+	}else{  
+		notificationModel.getList(result.data); 
+	}
+	
+	displayList(); 
+}
+
+
+function displayList(){  
+	notificationList = notificationModel.getList({member_no: Ti.App.Properties.getString('memno') }); 
+	var data=[]; 
+	$.recordTable.setData(data);
+	var counter = 0; 
+ 
+	if(notificationList.length < 1){
+		common.hideLoading(); 
+		$.recordTable.setData(common.noRecord());
+	}else{
+		notificationList.forEach(function(entry) {
+			 
+			var row = Titanium.UI.createTableViewRow({
+			    touchEnabled: true,
+			    height: Ti.UI.SIZE,
+			    source: entry.id,
+			    title: entry.subject,
+			    url: entry.url,
+			    backgroundSelectedColor: "#FFE1E1", 
+				color: "transparent", 
+			   });
+		 
+			var contentView = $.UI.create('View',{
+				classes: ['vert','hsize','wfill'], 
+				source: entry.id,
+				url: entry.url,
+				title: entry.subject,
+				top: 10,
+				bottom: 10
+			});
+			  
+			var clinicLbl = $.UI.create('Label',{
+				classes : ['themeColor', 'h5', 'bold'],
+				text:entry.subject || "",
+				font:{fontSize:14},
+				source: entry.id, 
+				title: entry.subject,
+				url: entry.url,
+				textAlign:'left',   
+				left:15, 
+				width:"80%",
+				height:Ti.UI.SIZE
+			}); 
+			contentView.add(clinicLbl);
+			
+			
+			 var msgLbl =  $.UI.create('Label',{ 
+				classes: ['h6', 'hsize'],
+				text:  entry.message, 
+				source: entry.id, 
+				url: entry.url,
+				title: entry.subject,
+				textAlign:'left', 
+				left:15, 
+				width: "85%", 
+			}); 
+			 
+			contentView.add(msgLbl);
+			
+			var updated = entry.updated;
+			updated = updated.replace("  "," ");
+			var appLbl =  $.UI.create('Label',{ 
+				classes: ['h6'],
+				text:  "Last Updated : "+monthFormat(updated), 
+				source: entry.id, 
+				url: entry.url,
+				title: entry.subject,
+				textAlign:'left', 
+				left:15, 
+				width: "85%",
+				height:Ti.UI.SIZE
+			}); 
+			contentView.add(appLbl);
+			
+			var rightForwardBtn =  Titanium.UI.createImageView({
+				image:"/images/btn-forward.png",
+				source: entry.id,
+				title: entry.subject,
+				url: entry.url,
+				width:15,
+				right:20 
+			});
+		 
+			row.add(contentView);
+			//row.add(rightForwardBtn); 
+			if(entry.url != ""){
+				row.addEventListener('click', function(e) {
+					viewDetails(e.rowData);
+				});
+			}
+		 	
+			data.push(row);
+		});
+	
+		
+		$.recordTable.setData(data);
+	}
+	common.hideLoading(); 
+}
+
+function viewDetails(msg){  
+	//msg.source;msg.url;
+	downloadBrochure(msg);
+	//nav.navigateWithArgs("appointmentForm",{id: rec_id}); 
+}
+ 
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.win); 
+	}); 
+}
+
+Ti.App.addEventListener('displayRecords', displayList);
+/** close all editProfile eventListener when close the page**/
+$.win.addEventListener("close", function(){
+	$.destroy(); 
+    Ti.App.removeEventListener('displayRecords', displayList);
+});
+
 var isDownloading = "0";
 var isDownloadLbl = "0";
 //ex.source.id,ex.source.leafLet,ex.source.url,ex.source.downloaded,ex.source.name
 //id,content,targetUrl,downloaded, title
-function downloadBrochure(adImage,content){ 
-	adImage.addEventListener( "click", function(){
+function downloadBrochure( content){ 
+	//adImage.addEventListener( "click", function(){
 		var indView = Ti.UI.createView({
 			height : 100,
 			layout : "vertical",
@@ -139,12 +216,12 @@ function downloadBrochure(adImage,content){
 			$.bigView.setVisible(true);
 		}
 							
-		PDF.createPdf(content.attachment,true, ind,label,indView,  function (err, file, base, url) {
+		PDF.createPdf(content.url,true, ind,label,indView,  function (err, file, base, url) {
 			if (err){
 				alert(err);
 			}else{ 
 				isDownloading = "0";
-				leafletModel.updateDownloadedBrochure(content.id);
+				 
 			    indView.hide();  
 			    $.bigView.remove(indView); 
 			    
@@ -224,11 +301,5 @@ function downloadBrochure(adImage,content){
 			    }
 			   } 
 		});
-	});
+	//});
 }
-
-if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.leaftletWin); 
-	}); 
-}	 

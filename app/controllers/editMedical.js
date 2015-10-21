@@ -196,17 +196,16 @@ function takePhoto(){
 	        Titanium.Media.showCamera({ 
 	            success:function(event) { 
 	               var image = event.media;
-        		   
-	        		if(image.width > image.height){
-	        			var newWidth = pWidth;
-	        			var ratio =   pWidth / image.width;
+        		   if(image.width > image.height){
+	        			var newWidth = 640;
+	        			var ratio =   640 / image.width;
 	        			var newHeight = image.height * ratio;
 	        		}else{
-	        			var newHeight = pHeight;
-	        			var ratio =   pHeight / image.height;
+	        			var newHeight = 640;
+	        			var ratio =   640 / image.height;
 	        			var newWidth = image.width * ratio;
-	        		}
-	        		
+	        		} 
+	        		 
 					image = image.imageAsResized(newWidth, newHeight); 
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                   //var nativePath = event.media.nativePath;  
@@ -246,17 +245,15 @@ function takePhoto(){
 	            success:function(event){
 	            	// set image view
 	            	var image = event.media;
-	            	
 	            	if(image.width > image.height){
-	        			var newWidth = pWidth;
-	        			var ratio =   pWidth / image.width;
+	        			var newWidth = 640;
+	        			var ratio =   640 / image.width;
 	        			var newHeight = image.height * ratio;
 	        		}else{
-	        			var newHeight = pHeight;
-	        			var ratio =   pHeight / image.height;
+	        			var newHeight = 640;
+	        			var ratio =   640 / image.height;
 	        			var newWidth = image.width * ratio;
-	        		}
-	        		
+	        		} 
 					image = image.imageAsResized(newWidth, newHeight); 
 		            blobContainer = image; 
 		            console.log(pWidth+" "+newWidth);
