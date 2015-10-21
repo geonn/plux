@@ -4,7 +4,7 @@ var data = [];
 var cards = [];
 var cardContent = [];
 var index = 0;
-
+var scrolling = false;
 //scrollview init
 var a = {
   move: function(x, y, curve, duration, delay) {
@@ -33,8 +33,8 @@ if(Titanium.Platform.osname == "android"){
 	//var pWidth = parseInt((Alloy.Globals.platformWidth * temp) / 100);
 	var pw = Ti.Platform.displayCaps.platformWidth;
 	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
-	var pwidth = parseInt(pw / (ldf || 1), 10);
-	console.log(pwidth);
+	var pWidth = parseInt(pw / (ldf || 1), 10);
+	console.log(pWidth);
 }else{
 	var pWidth = Ti.Platform.displayCaps.platformWidth;
 }
@@ -135,9 +135,15 @@ function render_ecard_list(){
 	//eventlistener
 	var x = 0;
 	var dragStartTime = 0;
-	scrollViewDrag.addEventListener('click', function(e) {
-	  	navToEcard(index);
+	
+	scrollViewDrag.addEventListener('dblclick', function(e) {
+		navToEcard();
 	});
+	if(OS_IOS){
+		scrollViewDrag.addEventListener('click', function(e) {
+			navToEcard();
+		});
+	}
 	scrollViewDrag.addEventListener('touchstart', function(e) {
 	  x = e.x;
 	  dragStartTime = new Date().getTime();
@@ -153,6 +159,7 @@ function render_ecard_list(){
 	  else if (e.x > x + cards[index].width/2) { prevCard(); }
 	  else { scrollTo(index); }
 	});
+	
 	scrollView.addEventListener('touchCancel', function() {
 	  scrollTo(index);
 	});
@@ -184,7 +191,7 @@ function revealCard(i) {
   }
 }
 
-function navToEcard(index){
+function navToEcard(){
 	console.log(cards[index].id+" u_id");
 	nav.navigateWithArgs("asp/eCard", {u_id: cards[index].id});  
 }
