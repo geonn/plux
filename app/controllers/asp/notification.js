@@ -9,23 +9,10 @@ init();
 
 function init(){ 
 	displayList();
-}
-
-function savedAppointment(ex){ 
-	var result = ex.param;
-	if(result.status == "error"){
-		common.createAlert("Error", result.data);
-		return false;
-	}else{  
-		notificationModel.getList(result.data); 
-	}
-	
-	displayList(); 
-}
-
+} 
 
 function displayList(){  
-	notificationList = notificationModel.getList({member_no: Ti.App.Properties.getString('memno') }); 
+	notificationList = notificationModel.getList({member_no: Ti.App.Properties.getString('memno') });  
 	var data=[]; 
 	$.recordTable.setData(data);
 	var counter = 0; 

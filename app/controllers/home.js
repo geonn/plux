@@ -2,32 +2,48 @@ var args = arguments[0] || {};
 var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
 var usersPluxModel = Alloy.createCollection('users_plux'); 
-refreshHeaderInfo(); 
+var notificationModel = Alloy.createCollection('notification'); 
 common.construct($);
+init();
+
+
 if(Ti.Platform.osname != "android"){ 
 	Alloy.Globals.navMenu = $.navMenu;
 }
-/**********				init				*************/
-var initBackground = [
-	{img_path: "/images/background1.jpg", time: 0},
-	{img_path: "/images/background2.jpg", time: 10},
-	{img_path: "/images/background3.jpg", time: 18},
-];
-
-var initBackgroundData = Ti.App.Properties.getString('initBackgroundData');
-initBackgroundData = 0;
-if(initBackgroundData != "1"){
-	Ti.App.Properties.setString('initBackgroundData',"1");
-	var homebgModel = Alloy.createCollection('home_background'); 
-	homebgModel.resetCategory();
-	for (var i=0; i < initBackground.length; i++) {
-		
-	    var model = Alloy.createModel('home_background', {img_path: initBackground[i].img_path, time: initBackground[i].time});
-		model.save();
-	};
+/**********				init				*************/ 
+function init(){
+	var ismemno = Ti.App.Properties.getString('memno') || ""; 
+	if(ismemno != ""){
+		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
+		if(gotNotification.total > 0){
+			$.notificationText.text = gotNotification.total;
+		}else{
+			$.notificationIcon.visible = false;
+		}
+	} 
+	
+	refreshHeaderInfo(); 
+	
+	/** app home page background***/
+	var initBackground = [
+		{img_path: "/images/background1.jpg", time: 0},
+		{img_path: "/images/background2.jpg", time: 10},
+		{img_path: "/images/background3.jpg", time: 18},
+	]; 
+	var initBackgroundData = Ti.App.Properties.getString('initBackgroundData');
+	initBackgroundData = 0;
+	if(initBackgroundData != "1"){
+		Ti.App.Properties.setString('initBackgroundData',"1");
+		var homebgModel = Alloy.createCollection('home_background'); 
+		homebgModel.resetCategory();
+		for (var i=0; i < initBackground.length; i++) {
+			
+		    var model = Alloy.createModel('home_background', {img_path: initBackground[i].img_path, time: initBackground[i].time});
+			model.save();
+		};
+	}
+	setBackground();
 }
-
-setBackground();
 
 function refreshHeaderInfo(){
 	var auth = require("auth_login");

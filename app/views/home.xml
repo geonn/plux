@@ -32,8 +32,13 @@
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
 							 
 							<ImageView onClick="navWindow" mod="profile" top="15"  width="139" image="/images/btn/btn_profile.png"/>
-							<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
 							
+							<View class="hsize wsize">
+								<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
+								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
+									<Label id="notificationText" text="0" color="#ffffff" />
+								</View>
+							</View>
 						</View>
 					</ScrollView>
 				</View>

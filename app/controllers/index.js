@@ -7,6 +7,9 @@ medicalRecordsModel.addColumn("server_id", "TEXT");
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');   
 medicalAttachmentModel.addColumn("img_path", "TEXT"); 
 
+var notificationModel = Alloy.createCollection('notification');   
+notificationModel.addColumn("isRead", "TEXT"); 
+
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
