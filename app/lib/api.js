@@ -149,6 +149,7 @@ exports.syncAppointmentData = function(callback){
 		return false;
 	}
 	var url = syncAppointmentUrl + "&u_id="+u_id;  
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 

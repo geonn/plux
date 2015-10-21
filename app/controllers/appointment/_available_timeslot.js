@@ -2,9 +2,10 @@ var panelListModel = Alloy.createCollection('panelList');
 var listing = [];
 var selected_date = new Date();
 var lastday = selected_date;
-
+var clinicId = 0;
 var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
 var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+var u_id = Ti.App.Properties.getString('u_id') || 0;
 //generate date function
 
 Date.prototype.addDays = function(days) {
@@ -30,6 +31,10 @@ function convertMinuteToHour(minutes){
     return ('0' + date.getHours()).slice(-2)+":"+('0' + date.getMinutes()).slice(-2);
 }
 
+$.set_clinicId = function(e){
+	clinicId = e.clinicId;
+	refresh();
+};
 
 function render_date_bar(){
 	var dateArray = getDates(lastday, (lastday).addDays(10));
@@ -66,25 +71,66 @@ function render_available_timeslot(){
 	var pw = Ti.Platform.displayCaps.platformWidth;
 	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
 	var pwidth = parseInt(pw / (ldf || 1), 10);
+	if(OS_IOS){
+		pwidth = Ti.Platform.displayCaps.platformWidth;
+	}
 	var cell_width = Math.floor((pwidth - 22) / 3);
-	console.log(pwidth);
-	console.log(cell_width);
+	
+	console.log("pwidth = "+pwidth);
+	console.log("cell_width = "+cell_width);
 	$.inner_box.width = pwidth - 18;
 	
 	$.timeslot.removeAllChildren();
+	
 	var workingHourArray = new Array();
 	var working_hour_begin = parseInt(Ti.App.Properties.getString('working_hour_begin')) || 480; //8:00 am
-	var working_hour_close = parseInt(Ti.App.Properties.getString('working_hour_close')) || 1320; //10:00 pm
+	var working_hour_end = parseInt(Ti.App.Properties.getString('working_hour_end')) || 1320; //10:00 pm
 	var timeblock = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
+	var appointmentModel = Alloy.createCollection('appointment');  
+	var booked_time = new Array();
 	
-	while(working_hour_begin+timeblock < working_hour_close){
+	/*
+	 generate timeslot by working hour begin / end
+	 * */
+	while(working_hour_begin+timeblock < working_hour_end){
 		var time_key = Math.floor(working_hour_begin / timeblock);
 		workingHourArray[time_key] = working_hour_begin;
 		working_hour_begin = working_hour_begin + timeblock;
 	}
 	
+	/*
+	 get booked timeblock by u_id and clinic from local DB
+	 * */
+	
+	var start_date = selected_date.getFullYear()+"-"+(parseInt(selected_date.getMonth())+1)+"-"+selected_date.getDate()+" 00:00:00";
+	var end_date = selected_date.getFullYear()+"-"+(parseInt(selected_date.getMonth())+1)+"-"+selected_date.getDate()+" 23:59:59";
+	var appointmentList = appointmentModel.getAppointmentList({u_id: u_id, clinicId: clinicId, start_date: start_date, end_date:end_date});
+	
+	/*
+	 generate booked timeslot from appointment list
+	 * */
+	for (var i=0; i < appointmentList.length; i++) {
+	  var datetime = appointmentList[i].start_date;
+	  var timeStamp = datetime.split(" ");
+	  var time = timeStamp[1].split(":"); 
+	  var booking_min = parseInt(time[0]) * 60 + parseInt(time[1]);
+	  var time_start_key = Math.floor(booking_min / timeblock);
+	  var time_end_key = Math.floor((booking_min+parseInt(appointmentList[i].duration)) / timeblock);
+	  console.log(time_start_key+" = "+time_end_key);
+	  for(;time_end_key >= time_start_key;  time_start_key++){
+	  	booked_time.push(time_start_key.toString());
+	  }
+	};
+	
+	/*
+	 remove booked slot from workingHourArray
+	 * */
+	workingHourArray = _.omit(workingHourArray, booked_time);
+	console.log(workingHourArray);
+	/*
+	 render workingHourArray 
+	 * */
 	for(key in workingHourArray){
-		console.log((parseInt(selected_date.getMonth())+1));
 		var view_time_box = $.UI.create("View", {
 			width: cell_width,
 			date_s:  selected_date.getFullYear()+"-"+(parseInt(selected_date.getMonth())+1)+"-"+selected_date.getDate()+" "+convertMinuteToHour(workingHourArray[key]),
@@ -110,9 +156,8 @@ function navToForms(e){
 }
 
 function changeDate(e){
-	console.log(e.source);
+	Ti.App.fireEvent("appointment_index:loadingStart");
 	var sdate = parent({name: "date_s"}, e.source);
-	console.log(sdate);
 	var childrens = $.date_bar.getChildren();
 	
 	for (var i=0; i < childrens.length; i++) {
@@ -135,6 +180,7 @@ function changeDate(e){
 	 };
 	selected_date = sdate;
 	render_available_timeslot();
+	Ti.App.fireEvent("appointment_index:loadingFinish");
 }
 
 function refresh(){

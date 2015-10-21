@@ -13,10 +13,11 @@ function init(){
 
 function savedAppointment(ex){ 
 	var result = ex.param;
+	console.log(result);
 	if(result.status == "error"){
 		common.createAlert("Error", result.data);
 		return false;
-	}else{  
+	}else{
 		appointmentModel.saveArray(result.data); 
 	}
 	
@@ -25,11 +26,11 @@ function savedAppointment(ex){
 
 
 function displayAppointmentList(){ 
-	appointmentList = appointmentModel.getAppointmentList({u_id: Ti.App.Properties.getString('u_id') }); 
+	appointmentList = appointmentModel.getAppointmentList({u_id: Ti.App.Properties.getString('u_id')}); 
 	var data=[]; 
 	$.recordTable.setData(data);
 	var counter = 0; 
- 
+ 	console.log(appointmentList);
 	if(appointmentList.length < 1){
 		common.hideLoading(); 
 		$.recordTable.setData(common.noRecord());
@@ -57,7 +58,7 @@ function displayAppointmentList(){
 				statusColor = "#005E8A";
 			}
 			 
-			if(entry.date < currentDateTime() ){ 
+			if(entry.start_date < currentDateTime() ){ 
 				statusText = "Expired";
 				statusColor = "#CE1D1C";
 			}
@@ -99,7 +100,7 @@ function displayAppointmentList(){
 			 
 			var appLbl =  $.UI.create('Label',{ 
 				classes: ['h6'],
-				text:  "Appt. date : "+monthFormat(entry.date),
+				text:  "Appt. date : "+monthFormat(entry.start_date),
 				font:{fontSize:12},
 				source: entry.id,
 				color: "#848484", 
@@ -125,13 +126,13 @@ function displayAppointmentList(){
 			data.push(row);
 		});
 	
-		
 		$.recordTable.setData(data);
 	}
 	common.hideLoading(); 
 }
 
 function viewDetails(rec_id){  
+	console.log(rec_id);
 	nav.navigateWithArgs("appointment/index",{id: rec_id}); 
 }
 

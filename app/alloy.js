@@ -157,8 +157,12 @@ function convertToDBDateFormat(datetime){
 	if(timeStamp.length == 1){
 		newFormat = date[2]+"-"+date[1]+"-"+date[0] ;
 	}else{
-		 
-		newFormat = date[2]+"-"+date[1]+"-"+date[0] + " "+ timeStamp[1];
+		var time = timeStamp[1].split(":");
+		var hour = (timeStamp[2] == "pm")?12 + parseInt(time[0]):time[0];
+		var min = time[1] || "00";
+		var sec = time[2] || "00";
+		
+		newFormat = date[2]+"-"+date[1]+"-"+date[0] + " "+hour+":"+min+":"+sec;
 	}
 	
 	return newFormat;

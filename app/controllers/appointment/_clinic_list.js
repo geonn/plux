@@ -12,6 +12,7 @@ function render_clinic_list(){
 		docTable.setData(common.noRecord());
 	}else{
 		listing.forEach(function(entry) {
+			console.log(entry.id);
 	   		var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
 			    height: Ti.UI.SIZE,
@@ -80,10 +81,10 @@ function render_clinic_list(){
  
 function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
-		var elbl = JSON.stringify(e.source); 
-		var res = JSON.parse(elbl);  
-		Ti.App.fireEvent("appointment_index:moveNext");
+		var elbl = JSON.stringify(e.source);
+		var res = JSON.parse(elbl);
 	 	Ti.App.fireEvent('selectClinic',{clinicName:res.clinicName,clinicId:res.source });
+	 	Ti.App.fireEvent("appointment_index:moveNext");
 	});
 }
 

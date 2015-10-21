@@ -50,6 +50,43 @@ exports.definition = {
 				}
 				db.close();
 			},
+			getDataByID: function(id){ 
+                var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name+" where id = '"+id+"'";
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                
+                //var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id=?";
+                //console.log(id+"id at panellist");
+                //db = Ti.Database.open(collection.config.adapter.db_name);
+
+                //var res = db.execute(sql);
+                var arr = [];
+                if (res.isValidRow()){
+                	console.log('wtf');
+					arr = {
+					   id: res.fieldByName('id'),
+						clinicCode: res.fieldByName('clinicCode'), 
+						clinicName : res.fieldByName('clinicName'),  
+						add1: res.fieldByName('add1'), 
+						city: res.fieldByName('city'),
+						postcode: res.fieldByName('postcode'),
+						state: res.fieldByName('state'),
+						tel: res.fieldByName('tel'),
+						latitude: res.fieldByName('latitude') ,
+						longitude: res.fieldByName('longitude') ,
+						panel: res.fieldByName('panel') ,
+						openHour: res.fieldByName('openHour') ,
+						clinicType: res.fieldByName('clinicType') 
+					};
+					
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			}, 
 			updatePanelList : function(clinicCode){
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);

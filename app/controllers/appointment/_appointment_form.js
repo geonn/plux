@@ -37,20 +37,23 @@ function saveRecord(){
 		 common.createAlert("Fail","Please choose a clinic");
 		 return false;
 	}
+	console.log(appDate);
 	appDate = convertToDBDateFormat(appDate); 
+	
 	remark = remark.replace(/\r?\n/g, '<br />');
  
  	var param = { 
  		id :appointment_id,
 		u_id : Ti.App.Properties.getString('u_id'),
-		date : appDate,
+		start_date : appDate,
 		duration : duration,
 		clinic_id  : appClinic,
 		remark : remark.trim() ,
 		created : currentDateTime(),  
 		updated : currentDateTime()
-	};  
+	};
 	console.log(param);
+	Ti.App.fireEvent("appointment_index:loadingStart");
  	API.addAppointment({param: param}, savedAppointment);
  	 
 	// nav.navigationWindow("myHealth" );
@@ -68,6 +71,8 @@ function savedAppointment(ex){
 	}
 	
 	Ti.App.fireEvent('displayRecords');
+	Ti.App.fireEvent("appointment_index:loadingFinish");
+	Ti.App.fireEvent("appointment_index:windowClose");
 }
 
  

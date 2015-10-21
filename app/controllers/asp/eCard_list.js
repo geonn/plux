@@ -28,14 +28,18 @@ var a = {
   
 };
 
-
 if(Titanium.Platform.osname == "android"){
-	var temp = (value * 100) / 320; 
-	var pWidth = parseInt((Alloy.Globals.platformWidth * temp) / 100);
+	//var temp = (value * 100) / 320; 
+	//var pWidth = parseInt((Alloy.Globals.platformWidth * temp) / 100);
+	var pw = Ti.Platform.displayCaps.platformWidth;
+	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
+	var pwidth = parseInt(pw / (ldf || 1), 10);
+	console.log(pwidth);
 }else{
 	var pWidth = Ti.Platform.displayCaps.platformWidth;
 }
 var panelWidth = Math.floor(pWidth*0.7) ;
+console.log(panelWidth);
 var leftPadding = (pWidth - panelWidth) / 2;
 
 var scrollView = Ti.UI.createView({

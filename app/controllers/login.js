@@ -70,9 +70,9 @@ $.password.addEventListener("return", function(){
 
 /*** Facebook login***/ 
 $.fbloginView.add(FACEBOOK.createLoginButton({
-	    top : 10,
-	   	readPermissions: ['email','public_profile','user_friends'],
-	    style : FACEBOOK.BUTTON_STYLE_WIDE
+    top : 10,
+   	readPermissions: ['email','public_profile','user_friends'],
+    style : FACEBOOK.BUTTON_STYLE_WIDE
 }));  
   
 function loginFacebook(e){ 
