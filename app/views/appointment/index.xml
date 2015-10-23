@@ -3,7 +3,7 @@
 		<View class="vert wfill hfill">
 	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
-		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		         	<ImageView left='10' onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
 		     	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">New Appointment</Label>
