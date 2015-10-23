@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" />
+	<script type="text/javascript" src="js/canvasjs.js"></script>
+ 	<script type="text/javascript" src="js/jquery.min.js"></script>
+ 	<script type="text/javascript" src="js/common.js"></script>
+ 	<style>
+ 		body {
+		 	font-family: "arial";
+		 }
+ 		p {
+ 			font-size:18px; 
+ 			font-weight:bold; 
+ 			text-align:left;
+ 			padding-left:10px;
+ 			color: #000;
+ 		}
+ 	</style>
+	<script>
+            
+            Ti.App.addEventListener("app:bloodGlucose",function(e) {
+              if(e.message != ""){
+              	loadChart(e.message);
+              }else{
+              	loadNoData(e.dataPeriod);
+              }
+           var height= (
+			    'innerHeight' in window? window.innerHeight :
+			    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+			    document.body.clientHeight
+			);
+          Ti.App.fireEvent('graphLoaded', { id: 8, contentheight: height});
+            });
+             Ti.App.fireEvent('populateDataById',{ id: 8});
+        </script>
+        
+<script type="text/javascript">
+ 
+function loadChart(data){
+	//Ti.API.info(data);
+	var chart = new CanvasJS.Chart("chartContainer", {
+		theme: "theme1",//theme1
+		title:{
+			text: "Blood Glucose"              
+		},
+		backgroundColor : "#FFFFFF",
+		animationEnabled: true,   // change to true
+		data: [              
+		{
+			// Change type to "bar", "splineArea", "area", "spline", "pie",etc.
+			type: "spline",
+			dataPoints: data
+		}
+		]
+	});
+	chart.render();
+	//document.getElementsByClassName("canvasjs-chart-credit").style.display = 'none';
+	$(".canvasjs-chart-credit").hide();
+}
+
+function loadNoData(dataPeriod){
+	var dateNow = currentDate(0); 
+	var dayBefore = currentDate(-15); 
+	var dayNext = currentDate(15); 
+	if(dataPeriod == "year"){
+		dateNow = currentMonthYear(0);
+		dayBefore = currentMonthYear(-5); 
+		dayNext = currentMonthYear(10); 
+	} 
+	
+	$("#chartContainer").html('');
+	$("#chartContainer").append('<p>Blood Glucose</p>');
+	$("#chartContainer").append('<div style="text-align:center;"><img src="images/nodata.png" style="width:85%;"></div>'); 
+	$("#chartContainer").append('<div style="text-align:center;color:#CE1D1C;padding-left:20px;font-size:10px;display:inline-block;width:90%"><div style="float:left;width:33%;">'+dayBefore+'</div><div style="float:left;width:33%;">'+dateNow+'</div><div style="float:left;width:33%;">'+dayNext+'</div></div>');
+} 
+</script>
+ 
+</head>
+<body>
+<div id="chartContainer" style="height: 200px; width: 100%;"></div>
+</body>
+</html>
