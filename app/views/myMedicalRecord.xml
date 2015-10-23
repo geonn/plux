@@ -2,7 +2,8 @@
 	<Window title="My Medical Record" id="myMedicalRecord" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
-	         	<Button id="newRecord" title="Add" />
+	         	<ImageView left='10' id="newRecord" width="25" height="20" image="/images/add.png" />
+			         	
 	        </View>
         </RightNavButton>
 	 	<View>
@@ -19,7 +20,8 @@
 			     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
 			     	</View>
 			     	<View left="0" width="20%">
-			         	<Button class="navbtn" id="newRecord" title="Add" />
+			     		<ImageView left='10' id="newRecord"  width="25" height="20" image="/images/add.png" />
+			         	 
 			   		</View>
 			 	</View>
 				<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." /> 

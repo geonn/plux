@@ -45,6 +45,19 @@ function init(){
 	setBackground();
 }
 
+function updateNotification(){ 
+	var ismemno = Ti.App.Properties.getString('memno') || ""; 
+	if(ismemno != ""){
+		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
+		if(gotNotification.total > 0){
+			$.notificationText.text = gotNotification.total;
+		}else{
+			$.notificationIcon.visible = false;
+		}
+	} 
+	console.log("notification counter refresh");
+}
+
 function refreshHeaderInfo(){
 	var auth = require("auth_login");
 	removeAllChildren($.myInfo); 
@@ -200,5 +213,5 @@ if(Ti.Platform.osname == "android"){
 	});
 }
 
-
+Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 

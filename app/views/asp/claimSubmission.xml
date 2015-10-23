@@ -48,7 +48,16 @@
 					<View id="tvrReceiptAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="Receipt Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receiptAmount" bottom='5' right='5' textAlign="right" horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="Receipt amount in RM" />
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receiptAmount" bottom='5' right='5' textAlign="right" horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="Receipt amount in RM" >
+								<KeyboardToolbar platform="ios">
+										<Toolbar>
+											<Items> 
+												<FlexSpace/>
+												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+											</Items>
+										</Toolbar>
+									</KeyboardToolbar>
+							</TextField>
 						</View>
 					</View> 
 					<View class="gray-line" /> 
@@ -77,7 +86,16 @@
 					<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="85" textAlign="right" >
 							<Label text="Remark" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="remark"   bottom='5' right='5' textAlign="right" hintText="Claim remark" />
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="remark"   bottom='5' right='5' textAlign="right" hintText="Claim remark" >
+								<KeyboardToolbar platform="ios">
+										<Toolbar>
+											<Items> 
+												<FlexSpace/>
+												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+											</Items>
+										</Toolbar>
+									</KeyboardToolbar>
+							</TextField>
 						</View>
 					</View> 
 					<View class="gray-line" /> 
@@ -86,7 +104,16 @@
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="GST Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
 							<View width="auto"  class="right-align hsize" >
-								<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="gstAmount"  bottom='5' right='5'  textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD"  hintText="GST Amount (If applicable)" />
+								<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="gstAmount"  bottom='5' right='5'  textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD"  hintText="GST Amount (If applicable)" >
+									<KeyboardToolbar platform="ios">
+										<Toolbar>
+											<Items> 
+												<FlexSpace/>
+												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+											</Items>
+										</Toolbar>
+									</KeyboardToolbar>
+								</TextField>
 							</View>
 						</View>
 					</View> 
@@ -95,7 +122,16 @@
 					<View id="tvrMc"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="MC Issued" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="mc"  bottom='5' right='5' textAlign="right" horizontalWrap="true" keyboardType="Ti.UI.KEYBOARD_NUMBER_PAD" hintText="MC Issued (Days)" />
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="mc"  bottom='5' right='5' textAlign="right" horizontalWrap="true" keyboardType="Ti.UI.KEYBOARD_NUMBER_PAD" hintText="MC Issued (Days)" >
+								<KeyboardToolbar platform="ios">
+										<Toolbar>
+											<Items> 
+												<FlexSpace/>
+												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+											</Items>
+										</Toolbar>
+									</KeyboardToolbar>
+							</TextField>
 						</View>
 					</View> 
 					<View class="gray-line" /> 
@@ -111,7 +147,16 @@
 					<View id="tvrGlAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="GL Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="glamount" bottom='5' right='5' textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="GL Amount (If applicable)" />
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="glamount" bottom='5' right='5' textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="GL Amount (If applicable)" >
+								<KeyboardToolbar platform="ios">
+										<Toolbar>
+											<Items> 
+												<FlexSpace/>
+												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+											</Items>
+										</Toolbar>
+									</KeyboardToolbar>
+							</TextField>
 						</View>
 					</View> 
 					<View class="gray-line" />  

@@ -51,8 +51,8 @@ exports.definition = {
 				var collection = this;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' " ;
-              
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and (expired !='' OR expired <='"+currentDateTime()+ "') " ;
+               
                 var res = db.execute(sql);
                 var listArr = []; 
                 var count = 0;
@@ -72,6 +72,7 @@ exports.definition = {
 					res.next();
 					count++;
 				} 
+				 
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -81,7 +82,7 @@ exports.definition = {
 				var collection = this;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT COUNT(*) AS total FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' " ;
+                var sql = "SELECT COUNT(*) AS total FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' and (expired !='' OR expired <='"+currentDateTime+ "') " ;
                
                 var res = db.execute(sql);
                 var listArr;
@@ -96,6 +97,24 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			}, 
+			setAllAsRead : function(e){
+				var collection = this;
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' " ;
+               
+                var res = db.execute(sql);
+                var listArr;
+                while (res.isValidRow()){  
+					sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET isRead=1 WHERE id='" +res.fieldByName('id')  +"' ";
+					db.execute(sql_query); 
+					res.next();
+				} 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return listArr;
+			},
 			addData : function(entry) {
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" +entry.id+"' ";
@@ -104,12 +123,11 @@ exports.definition = {
                 var res = db.execute(sql);
              
                 if (res.isValidRow()){
-             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' , isRead='"+entry.isRead+"', expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
+             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
                 }else{
                 	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,created,updated) VALUES ('"+entry.id+"', '"+entry.member_no +"','"+entry.subject+"','"+entry.message+"','"+entry.url+"', '"+entry.isRead+"', '"+entry.expired+"', '"+entry.created+"', '"+entry.updated+"')";
 				}
 				 
-				console.log(sql_query);
                 db.execute(sql_query);
 	            db.close();
 	            collection.trigger('sync');

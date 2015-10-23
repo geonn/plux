@@ -53,37 +53,39 @@ function syncToServer(){
 	 
 	if(unsyncList.length > 0){ 
 		unsyncList.forEach(function(entry) {
-			/** save text information***/
-			var param = { 
-		 		app_id :entry.id,
-				u_id : Ti.App.Properties.getString('u_id'),
-				clinic : entry.clinic,
-				title : entry.title,
-				message  : entry.message,
-				treatment : entry.treatment,
-				created : entry.created,
-				updated : entry.updated,
-			};    
-		 	API.syncMedicalRecords({param: param}, updatedRecords);
-		 	
-		 	/** save attachment information***/
-		 	var attachments = medicalAttachmentModel.getUnuploadAttachment(entry.id);
-			//console.log(attachments);
-			if(attachments.length > 0){ 
-				attachments.forEach(function(att) {
-					var img = att.blob;
-					var param = { 
-				 		app_id :att.id,
-				 		medical_id :att.medical_id,
-				 		u_id :Ti.App.Properties.getString('u_id'),
-				 		caption : att.category,
-				 		Filedata : Ti.Utils.base64decode(att.blob),
-				 	};	
-				
-				 	API.syncAttachments({param: param}, savedAttachment);	 
-				});
+			if(entry.title != "" &&  entry.message !=""){ 
+				/** save text information***/
+				var param = { 
+			 		app_id :entry.id,
+					u_id : Ti.App.Properties.getString('u_id'),
+					clinic : entry.clinic,
+					title : entry.title,
+					message  : entry.message,
+					treatment : entry.treatment,
+					created : entry.created,
+					updated : entry.updated,
+				};    
+			 	API.syncMedicalRecords({param: param}, updatedRecords);
+			 	
+			 	/** save attachment information***/
+			 	var attachments = medicalAttachmentModel.getUnuploadAttachment(entry.id);
+				//console.log(attachments);
+				if(attachments.length > 0){ 
+					attachments.forEach(function(att) {
+						var img = att.blob;
+						var param = { 
+					 		app_id :att.id,
+					 		medical_id :att.medical_id,
+					 		u_id :Ti.App.Properties.getString('u_id'),
+					 		caption : att.category,
+					 		Filedata : Ti.Utils.base64decode(att.blob),
+					 	};	
+					
+					 	API.syncAttachments({param: param}, savedAttachment);	 
+					});
+				}
+				/***sync attachment end***/
 			}
-			/***sync attachment end***/
 		});
 	}
  
@@ -109,7 +111,7 @@ function displayRecords(listing){
 	if(listing == "" || listing.type == "displayRecords"){
 		listing = medicalRecordsModel.getRecordsList();  
 	} 
- 
+ 	console.log(listing);
 	var data=[];  
    		var counter = 0; 
    		if(listing.length < 1){ 

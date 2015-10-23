@@ -20,10 +20,10 @@
 	 		<TextField top="0"  id="titleRecord" height="40" borderColor="#ffffff" hintText="Medical Problem" width="95%"/> 
 			<View height="1" width="100%" backgroundColor="#CE1D1C" />
 			<ScrollView id="aView" height="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" layout="vertical" > 
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
-				<TextField top="0" left="10" right="10" id="clinicRecord" backgroundColor="#f6f6f6" borderColor="#f6f6f6" height="40" hintText="" width="Ti.UI.FILL"/> 
+				<Label class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
+				<TextField top="0" left="10" right="10" id="clinicRecord" backgroundColor="#f6f6f6" borderColor="#f6f6f6" height="40" hintText="Please fill in Clinic/Hospital/Specialist" width="Ti.UI.FILL"/> 
 				
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
+				<Label  class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Treatment</Label>
 			 	<TextArea id="treatmentTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Treatment" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
 			 		<KeyboardToolbar platform="ios">
 						<Toolbar>
@@ -35,7 +35,7 @@
 					</KeyboardToolbar>
 			 	</TextArea>
 			 	
-				<Label height="Ti.UI.SIZE" width="Ti.UI.FILL" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Procedures</Label>
+				<Label  class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Procedures</Label>
 			 	<TextArea id="proceduceTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Procedures" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
 			 		<KeyboardToolbar platform="ios">
 						<Toolbar>

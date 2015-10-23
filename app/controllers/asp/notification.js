@@ -8,8 +8,50 @@ common.showLoading();
 init();
 
 function init(){ 
+	notificationModel.setAllAsRead({member_no: Ti.App.Properties.getString('memno') });
 	displayList();
+	syncFromServer();
 } 
+
+function syncFromServer(){
+	var checker = Alloy.createCollection('updateChecker'); 
+	var isUpdate = checker.getCheckerById("1");
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}  
+	var param = { 
+		"member_no"	  : Ti.App.Properties.getString('memno'),
+		"last_updated" : last_updated
+	};
+	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
+		var res = JSON.parse(responseText);  
+		if(res.status == "success"){  
+			var record = res.data;
+			if(record.length > 0){ 
+				record.forEach(function(entry) {
+					var param = {
+						"id": entry.id || "",
+						"member_no": entry.member_no || "",
+						"subject":entry.subject || "",
+						"message" : entry.message || "",
+						"url" : entry.url || "",
+						"isRead" : "0",
+						"expired" : entry.expired || "",
+						"created" : entry.created,
+						"updated" : entry.updated,
+					};
+					notificationModel.addData(param);
+				});
+				 checker.updateModule("2","notificationList",res.last_updated); 
+				 displayList(); 
+			}
+		}
+		
+	});
+	
+}
 
 function displayList(){  
 	notificationList = notificationModel.getList({member_no: Ti.App.Properties.getString('memno') });  

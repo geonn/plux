@@ -30,7 +30,7 @@ data.forEach(function(entry){
 	});
 	
 	var statustView = $.UI.create('View',{
-		height: 100,
+		height: 105,
 		serial: entry.serial,
 		width: 10,
 		backgroundColor: statusColor
@@ -55,7 +55,7 @@ data.forEach(function(entry){
 	});
 	
 	var label_clinic = $.UI.create("Label",{
-		classes: ['clinic_name'],
+		classes: ['clinic_name','bold'],
 		text: entry.clinicname,
 		claimType:entry.claimType,
 		serial: entry.serial,

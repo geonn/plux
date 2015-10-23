@@ -3,7 +3,7 @@ CHECKER CONFIG
 ID       type Name
 ------------------------------------
 1		getClinicList	 
-2 		 
+2 		notification 
 ************************************/
 
 exports.definition = {

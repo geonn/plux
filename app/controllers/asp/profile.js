@@ -4,7 +4,7 @@ common.construct($);
 loadPage();
 
 function loadPage(){
-	var userInfo = usersModel.getOwnerData();  
+	var userInfo = usersModel.getPrincipleData();  
 	if(userInfo.isver == "true"){ 
 		$.verifyContainer.hide();
 		$.profileContainer.show();

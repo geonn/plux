@@ -113,8 +113,7 @@ function render_card(entry){
 function render_ecard_list(){
 	$.inner_box.removeAllChildren();
 
-	for (var i=0; i < data.length; i++) {
-		console.log(panelWidth+" "+Math.floor(pWidth*0.65));
+	for (var i=0; i < data.length; i++) { 
 		var viewTemplate = {
 			height: 150,
 			id: data[i].id,
@@ -191,8 +190,7 @@ function revealCard(i) {
   }
 }
 
-function navToEcard(){
-	console.log(cards[index].id+" u_id");
+function navToEcard(){ 
 	nav.navigateWithArgs("asp/eCard", {u_id: cards[index].id});  
 }
 

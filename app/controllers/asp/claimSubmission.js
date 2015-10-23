@@ -7,7 +7,9 @@ var claimCategoryArr = [];
 var claimCategoryIdArr = [];
 var claimName = [];
 var claimMemNo = [];
-
+var geoCate = [];
+var panelCategory;
+var userMem;
 var claimCategoryId = 0;
 var claimMemId;
 common.construct($);
@@ -15,45 +17,71 @@ common.showLoading();
 init();
 
 function init(){
-	if(isEdit != ""){   
-		var params = "SERIAL="+serial;
-		console.log(params);
-		common.showLoading(); 
-		API.callByGet({url:"getclaimDetailBySeriesUrl", params: params}, function(responseText){ 
-			var res = JSON.parse(responseText); 
-		 	console.log(res);
-		}); 
-	}
-	
-	getClaimCategory(); 
-	var userMem =  usersModel.getUserByEmpNo();
+	userMem =  usersModel.getUserByEmpNo();
 	userMem.forEach(function(entry) {  
 		claimName.push(entry.name);
 		claimMemNo.push(entry.memno);
 	}); 
-	
+	getClaimCategory(); 
 	if(OS_IOS){
 		claimName.push("Cancel");
 	}
 	 	 
 }
 
+function checkIfHaveData(){
+
+	if(isEdit != ""){   
+		var params = "SERIAL="+serial; 
+		common.showLoading();  
+		API.callByGet({url:"getclaimReimbUrl", params: params}, function(responseText){ 
+			var res = JSON.parse(responseText); 
+			var claimer = usersModel.getUserByMemno(res[0].memno); 
+		 	$.receiptAmount.value = res[0].amt || "";
+		 	$.diagnosis.value = res[0].diagnosis || "";
+		 	$.glamount.value = res[0].glamt || 0;
+		 	$.gstAmount.value = res[0].gstamt || 0;
+		 	$.clinicName.value = res[0].nclinic || "";
+		 	$.receipt_no.value = res[0].recno || "";
+		 	$.remark.value = res[0].remarks || "";
+		 	$.mc.value = res[0].mcdays || 0;
+		 	var visitDate = res[0].visitdt || "";
+		 	dateVisit = visitDate.split("/");  
+			dateVisit = dateVisit[1]+"/"+dateVisit[0]+"/"+dateVisit[2];
+		 	$.dateVisit.text = dateVisit;
+		 	$.dateVisit.color = "#000000";
+		 	$.claim_under.text = claimer.name;
+		 	$.claim_under.color = "#000000";
+		 	 
+		 	a = claimCategoryIdArr.indexOf(res[0].category);
+		 	$.category.text = claimCategoryArr[a];
+		 	$.category.color = "#000000"; 
+	 		//claimCategoryIdArr.push(entry.catID);
+			//claimCategoryArr;
+		 	common.hideLoading(); 
+		}); 
+		$.saveBtn.visible = false;
+	}
+}
+
 function getClaimCategory(){  
 	API.callByGet({url:"getclaimCategoryUrl", params: "CORPCODE="+user.corpcode }, function(responseText){ 
-		var res = JSON.parse(responseText); 
-		if(res.length < 1){
+		panelCategory = JSON.parse(responseText); 
+		
+		if(panelCategory.length < 1){
 			common.createAlert("Error", "Your are not allowed to submit claim" );
 			nav.closeWindow($.win); 
 			return false;
 		}
-		res.forEach(function(entry) {  
+		panelCategory.forEach(function(entry) {  
 			claimCategoryIdArr.push(entry.catID);
-			claimCategoryArr.push( entry.catDesc);
+			claimCategoryArr.push( entry.catDesc); 
 		}); 
 	 	if(OS_IOS){
 			claimCategoryArr.push("Cancel"); 
 		}
 		common.hideLoading();
+		checkIfHaveData();
 	}); 
 }
 
@@ -121,6 +149,13 @@ function submitClaim(){
 	}); 
 }
 
+function hideKeyboard(){
+	$.receiptAmount.blur();
+	$.gstAmount.blur();
+	$.remark.blur();
+	$.mc.blur();
+	$.glamount.blur();
+}
 
 function changeVisitDate(e){  
 	var pickerdate = e.value; 
@@ -145,44 +180,45 @@ function changeVisitDate(e){
 	$.dateVisit.text = selDate ;  
 	$.dateVisit.color = "#000000" ;
 }
-
-$.tvrCategory.addEventListener('click', function(){ 
-	var cancelBtn = claimCategoryArr.length -1;
-	var dialog = Ti.UI.createOptionDialog({
-	  cancel: claimCategoryArr.length -1,
-	  options: claimCategoryArr,
-	  selectedIndex: 0,
-	  title: 'Choose Claim Category'
+if(isEdit == ""){   
+	$.tvrCategory.addEventListener('click', function(){ 
+		var cancelBtn = claimCategoryArr.length -1;
+		var dialog = Ti.UI.createOptionDialog({
+		  cancel: claimCategoryArr.length -1,
+		  options: claimCategoryArr,
+		  selectedIndex: 0,
+		  title: 'Choose Claim Category'
+		});
+		
+		dialog.show(); 
+		dialog.addEventListener("click", function(e){   
+			if(cancelBtn != e.index){ 
+				claimCategoryId = claimCategoryIdArr[e.index];
+				$.category.text = claimCategoryArr[e.index];  
+				$.category.color = "#000000";
+			}
+		});
 	});
 	
-	dialog.show(); 
-	dialog.addEventListener("click", function(e){   
-		if(cancelBtn != e.index){ 
-			claimCategoryId = claimCategoryIdArr[e.index];
-			$.category.text = claimCategoryArr[e.index];  
-			$.category.color = "#000000";
-		}
+	$.tvrClaimUnder.addEventListener('click', function(){
+		var cancelBtn = claimName.length -1;
+		var dialog = Ti.UI.createOptionDialog({
+		  cancel: claimName.length -1,
+		  options: claimName,
+		  selectedIndex: 0,
+		  title: 'Choose Claim Under'
+		});
+		
+		dialog.show(); 
+		dialog.addEventListener("click", function(e){   
+			if(cancelBtn != e.index){ 
+				claimMemId = claimMemNo[e.index];
+				$.claim_under.text = claimName[e.index];  
+				$.claim_under.color = "#000000";
+			}
+		});
 	});
-});
-
-$.tvrClaimUnder.addEventListener('click', function(){
-	var cancelBtn = claimName.length -1;
-	var dialog = Ti.UI.createOptionDialog({
-	  cancel: claimName.length -1,
-	  options: claimName,
-	  selectedIndex: 0,
-	  title: 'Choose Claim Under'
-	});
-	
-	dialog.show(); 
-	dialog.addEventListener("click", function(e){   
-		if(cancelBtn != e.index){ 
-			claimMemId = claimMemNo[e.index];
-			$.claim_under.text = claimName[e.index];  
-			$.claim_under.color = "#000000";
-		}
-	});
-});
+}
 
 function hideDatePicker(){
 	$.dateVisitPicker.visible = false; 
@@ -191,35 +227,37 @@ function hideDatePicker(){
 }
 
 function showVisitPicker(){  
-	if(OS_ANDROID){ 
-		var curDate = currentDateTime();   
-		var ed = curDate.substr(0, 10); 
-		var res_ed = ed.split('-'); 
-		if(res_ed[1] == "08"){
-			res_ed[1] = "8";
-		}
-		if(res_ed[1] == "09"){
-			res_ed[1] = "9";
-		}
-		var datePicker = Ti.UI.createPicker({
-			  type: Ti.UI.PICKER_TYPE_DATE,
-			  minDate: new Date(2015,0,1),
-			  id: "datePicker",
-			  visible: false
-		});
-		datePicker.showDatePickerDialog({
-			value: new Date(res_ed[0],parseInt(res_ed[1]) -1,res_ed[2]),
-			callback: function(e) {
-			if (e.cancel) { 
-				} else {
-					 changeVisitDate(e);
-				}
+	if(isEdit == ""){   
+		if(OS_ANDROID){ 
+			var curDate = currentDateTime();   
+			var ed = curDate.substr(0, 10); 
+			var res_ed = ed.split('-'); 
+			if(res_ed[1] == "08"){
+				res_ed[1] = "8";
 			}
-		});
-	}else{ 
-		$.dateVisitPicker.visible = true;
-		$.selectorView.height = Ti.UI.SIZE;
-		$.dateToolbar.visible = true;
+			if(res_ed[1] == "09"){
+				res_ed[1] = "9";
+			}
+			var datePicker = Ti.UI.createPicker({
+				  type: Ti.UI.PICKER_TYPE_DATE,
+				  minDate: new Date(2015,0,1),
+				  id: "datePicker",
+				  visible: false
+			});
+			datePicker.showDatePickerDialog({
+				value: new Date(res_ed[0],parseInt(res_ed[1]) -1,res_ed[2]),
+				callback: function(e) {
+				if (e.cancel) { 
+					} else {
+						 changeVisitDate(e);
+					}
+				}
+			});
+		}else{ 
+			$.dateVisitPicker.visible = true;
+			$.selectorView.height = Ti.UI.SIZE;
+			$.dateToolbar.visible = true;
+		}
 	}
 }
 

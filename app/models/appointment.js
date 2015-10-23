@@ -64,8 +64,7 @@ exports.definition = {
                 }else{
                 	var res = db.execute(sql);
                 }
-                console.log(sql);
-                console.log(ex);
+                 
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){ 
@@ -101,7 +100,7 @@ exports.definition = {
 		            var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, u_id,clinic_id, remark,  status,start_date,end_date, duration,suggested_date, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 					db.execute(sql_query, entry.id, entry.u_id,entry.clinic_id, entry.remark,entry.status ,entry.start_date, entry.end_date,entry.duration,entry.suggested_date, entry.created,entry.updated);
 				 	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET clinic_id=?,remark=?,status=?,start_date=?,end_date=?, duration=?, suggested_date=?,updated=? WHERE id=?";
-				 	console.log(sql_query);
+				 	 
 					db.execute(sql_query,entry.clinic_id,entry.remark, entry.status,entry.start_date,entry.end_date,entry.duration,entry.suggested_date,entry.updated, entry.id);
 				});
 				db.execute("COMMIT");

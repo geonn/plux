@@ -14,7 +14,8 @@
 },
 "Label":{
 	width: Titanium.UI.SIZE,
-	height: Titanium.UI.SIZE 
+	height: Titanium.UI.SIZE,
+	color: "#606060"
 },
 ".padding":{
 	top: 10,

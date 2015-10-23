@@ -7,22 +7,7 @@
 	font:{
 		fontSize: "12dp"
 	}
-},
-"#addLbl" : {
-	font:{
-		fontSize: "20dp"
-	}
-},
-"#titleRecord" :{
-	font:{
-		fontSize: "20dp"
-	}
-},
-"#recordsTextArea" :{
-	font:{
-		fontSize: "16dp"
-	}
-},
+}, 
 "#clinicRecord" : { 
 	backgroundColor: "#F6F6F6"
 }

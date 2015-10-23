@@ -12,8 +12,7 @@ function init(){
 }
 
 function savedAppointment(ex){ 
-	var result = ex.param;
-	console.log(result);
+	var result = ex.param; 
 	if(result.status == "error"){
 		common.createAlert("Error", result.data);
 		return false;
@@ -29,8 +28,7 @@ function displayAppointmentList(){
 	appointmentList = appointmentModel.getAppointmentList({u_id: Ti.App.Properties.getString('u_id')}); 
 	var data=[]; 
 	$.recordTable.setData(data);
-	var counter = 0; 
- 	console.log(appointmentList);
+	var counter = 0;  
 	if(appointmentList.length < 1){
 		common.hideLoading(); 
 		$.recordTable.setData(common.noRecord());
@@ -38,7 +36,7 @@ function displayAppointmentList(){
 		appointmentList.forEach(function(entry) {
 			var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
-			    height: Ti.UI.SIZE,
+			    height: 60,
 			    source: entry.id,
 			    backgroundSelectedColor: "#FFE1E1", 
 				color: "transparent",
@@ -65,13 +63,11 @@ function displayAppointmentList(){
 			
 			var horzView = $.UI.create('View',{
 				classes: ['horz', 'hsize','wfill'], 
-				source: entry.id, 
-				top:5,
-				bottom: 5
+				source: entry.id,  
 			});
 			
 			var statustView = $.UI.create('View',{
-				height: 50,
+				height: 60,
 				source: entry.id,
 				width: 10,
 				backgroundColor: statusColor
@@ -92,15 +88,21 @@ function displayAppointmentList(){
 				source: entry.id, 
 				textAlign:'left',   
 				left:15, 
+				top:0,
 				width:"80%",
 				height:Ti.UI.SIZE
 			}); 
 			contentView.add(clinicLbl);
 			
-			 
+			var appDate = entry.start_date;
+			if(entry.start_date == "" || entry.start_date == "0000-00-00 00:00:00"){
+				appDate = "N/A"; 
+			}else{
+				appDate= monthFormat(entry.start_date);
+			} 
 			var appLbl =  $.UI.create('Label',{ 
 				classes: ['h6'],
-				text:  "Appt. date : "+monthFormat(entry.start_date),
+				text:  "Appt. date : "+appDate,
 				font:{fontSize:12},
 				source: entry.id,
 				color: "#848484", 

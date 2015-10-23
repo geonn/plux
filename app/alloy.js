@@ -229,10 +229,10 @@ function DPUnitsToPixels(TheDPUnits){
 function monthFormat(datetime){
 	
 	var monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
+        "Jan", "Feb", "Mar",
+        "April", "May", "June", "Jul",
+        "Aug", "Sep", "Oct",
+        "Nov", "Dec"
     ];
     
 	var timeStamp = datetime.split(" ");  

@@ -31,6 +31,7 @@ var deleteAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAppointment?use
 var syncMedicalUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
 var checkMedicalDataUrl = "http://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
 var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
+var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -40,7 +41,7 @@ var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
 var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
 var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
 var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx"; 
-
+var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";  
 /**claim submmission***/
 var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
 var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
@@ -146,7 +147,7 @@ exports.addAppointment = function(e, callback){
 	client.send(e.param);
 };
 
-exports.syncAppointmentData = function(e,callback){
+exports.syncAppointmentData = function(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	if(u_id == ""){ 
 		return false;
@@ -166,7 +167,7 @@ exports.syncAppointmentData = function(e,callback){
 	 });
 
 	client.open("POST", url);
-	client.send(e.param);
+	client.send();
 };
 
 exports.checkMedicalDataSync = function(e, callback){
