@@ -54,7 +54,7 @@ var defaultRetryTimes = 3;
 **********************/
 exports.updateUserFromFB = function(e, mainView){ 
 	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
-
+	console.log('updateuserfromFB');
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
@@ -62,6 +62,7 @@ exports.updateUserFromFB = function(e, mainView){
 			//console.log(res);
 			common.hideLoading();
 		    if(res.status == "success"){ 
+		    	console.log('success');
 		        API.syncHealthData({u_id:res.data.u_id});
 		        
 		        var usersPluxModel = Alloy.createCollection('users_plux'); 
@@ -89,7 +90,9 @@ exports.updateUserFromFB = function(e, mainView){
 	         	Ti.App.Properties.setString('facebooklogin', 1);
 	         	
 	         	Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.loginWin); 
+	         	console.log(mainView.win);
+	         	mainView.win.close();
+				nav.closeWindow(mainView.win); 
 	         	//API.updateNotificationToken();   
 		    }
 		},
@@ -152,8 +155,7 @@ exports.syncAppointmentData = function(callback){
 	if(u_id == ""){ 
 		return false;
 	}
-	var url = syncAppointmentUrl + "&u_id="+u_id;  
-	console.log(url);
+	var url = syncAppointmentUrl + "&u_id="+u_id;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -428,7 +430,6 @@ exports.do_signup = function(data,mainView){
 exports.do_asp_signup = function(data, mainView){
 	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {

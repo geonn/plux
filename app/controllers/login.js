@@ -75,11 +75,11 @@ $.fbloginView.add(FACEBOOK.createLoginButton({
     style : FACEBOOK.BUTTON_STYLE_WIDE
 }));  
   
-function loginFacebook(e){ 
+function loginFacebook(e){
 	if (e.success) { 
+		
 		common.showLoading();
 	    FACEBOOK.requestWithGraphPath('me', { }, 'GET', function(e) {
-	    	 
 		    if (e.success) { 
 		    	var fbRes = JSON.parse(e.result);
 		     	Ti.App.Properties.setString('plux_email',fbRes.email);
