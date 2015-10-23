@@ -229,6 +229,7 @@ function Controller() {
     };
     $.set_clinicId = function(e) {
         clinicId = e.clinicId;
+        console.log("set clinicId refresh");
         refresh();
     };
     init();

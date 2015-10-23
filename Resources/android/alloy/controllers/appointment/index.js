@@ -14,6 +14,7 @@ function Controller() {
         $.sub_back.hide();
     }
     function postlayout() {
+        $.win.removeEventListener("postlayout", postlayout);
         if (appointment_id) {
             var appointmentModel = Alloy.createCollection("appointment");
             var clinicModel = Alloy.createCollection("panelList");
@@ -246,7 +247,11 @@ function Controller() {
     Ti.App.addEventListener("appointment_index:scrollToViewPage", scrollToViewPage);
     $.win.addEventListener("postlayout", postlayout);
     $.win.addEventListener("close", function() {
+        Ti.App.removeEventListener("update_chooseDateTime", update_chooseDateTime);
         Ti.App.removeEventListener("selectClinic", selectClinic);
+        Ti.App.removeEventListener("appointment_index:windowClose", closeWindow);
+        Ti.App.removeEventListener("appointment_index:loadingStart", loadingStart);
+        Ti.App.removeEventListener("appointment_index:loadingFinish", loadingFinish);
         Ti.App.removeEventListener("appointment_index:moveNext", moveNext);
         Ti.App.removeEventListener("appointment_index:movePrevious", movePrevious);
         Ti.App.removeEventListener("appointment_index:scrollToViewPage", scrollToViewPage);

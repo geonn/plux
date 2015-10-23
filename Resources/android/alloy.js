@@ -196,7 +196,6 @@ exports.createStyle = function(controller, opts, defaults) {
             if (style.key !== apiName) continue;
         }
         if (style.queries && style.queries.formFactor && !Alloy[style.queries.formFactor]) continue;
-        if (style.queries && style.queries.if && ("false" === style.queries.if.trim().toLowerCase() || -1 !== style.queries.if.indexOf("Alloy.Globals") && false === Alloy.Globals[style.queries.if.split(".")[2]])) continue;
         deepExtend(true, styleFinal, style.style);
     }
     var extraStyle = _.omit(opts, [ CONST.CLASS_PROPERTY, CONST.APINAME_PROPERTY ]);

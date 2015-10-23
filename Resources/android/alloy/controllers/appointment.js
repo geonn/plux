@@ -246,7 +246,6 @@ function Controller() {
     });
     $.__views.__alloyId14.add($.__views.__alloyId17);
     $.__views.newRecord = Ti.UI.createImageView({
-        left: "10",
         id: "newRecord",
         width: "25",
         height: "20",
