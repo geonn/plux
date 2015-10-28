@@ -69,6 +69,9 @@ $.password.addEventListener("return", function(){
 });
 
 /*** Facebook login***/ 
+if (Ti.Platform.name === 'android') {
+    $.win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: $.win});
+}
 $.fbloginView.add(FACEBOOK.createLoginButton({
     top : 10,
    	readPermissions: ['email','public_profile','user_friends'],
@@ -79,9 +82,9 @@ function loginFacebook(e){
 	if (e.success) { 
 		
 		common.showLoading();
-	    FACEBOOK.requestWithGraphPath('me', { }, 'GET', function(e) {
-		    if (e.success) { 
-		    	var fbRes = JSON.parse(e.result);
+	    FACEBOOK.requestWithGraphPath('me', { 'fields': 'id, email,name,link'}, 'GET', function(e) {
+		    if (e.success) {  
+		    	var fbRes = JSON.parse(e.result); 
 		     	Ti.App.Properties.setString('plux_email',fbRes.email);
 		     	API.updateUserFromFB({
 			       	email: fbRes.email,

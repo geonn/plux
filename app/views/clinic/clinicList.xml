@@ -20,8 +20,10 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic List</Label>
 		     	</View>
 		     	<View right="0" width="20%" >
-		     		<ImageView right='10' id="btnSearch" width="25" height="25" image="/images/map.png" />
-		         	<ImageView right='10' id="btnSearch" width="25" height="25" image="/images/search.png" />
+		     		<View class="horz" right='5' top="10" >
+						<ImageView  right="10" id="btnMap" width="25" height="25" image="/images/map.png" />
+						<ImageView id="btnSearch" width="25" height="25" image="/images/search.png" />
+					</View>
 		   		</View>
 		 	</View>
 		 	<SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="searchItem" showCancel="true" text="" height="0" visible="false"  hintText="Search Clinic" />
@@ -31,7 +33,7 @@
 		 			<ImageView right='10'   width="15" height="15" image="/images/btn-down.png" />
 		 		</View>
 		 		<View width="1" height="50" backgroundColor="#9E9E9E" />
-		 		<View width="auto" height="Ti.UI.SIZE" onClick="showLocationSelection">
+		 		<View width="49%" height="Ti.UI.SIZE"   onClick="showLocationSelection" >
 		 			<Label id="clinicLocationSelection" class="darkgreyText medium_font">Clinic Location</Label>
 		 			<ImageView right='10'   width="15" height="15" image="/images/btn-down.png" />
 		 		</View>

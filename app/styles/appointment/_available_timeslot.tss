@@ -6,7 +6,7 @@
 }
 
 ".active_view":{
-	backgroundColor: "#2eafa8"
+	backgroundColor: "#CE1D1C"
 }
 
 ".active_label":{

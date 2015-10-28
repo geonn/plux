@@ -225,7 +225,7 @@ function showTypeSelection(){
 		});
 }
 
-function showLocationSelection(){
+function showLocationSelection(){ 
 	var stateList = library.getPanelListByState(); 
 	var clinicLocationArr = []; 
 	clinicLocationArr.push("All"); 

@@ -39,7 +39,13 @@ function Controller() {
     function loginFacebook(e) {
         if (e.success) {
             common.showLoading();
+<<<<<<< HEAD
             FACEBOOK.requestWithGraphPath("me", {}, "GET", function(e) {
+=======
+            FACEBOOK.requestWithGraphPath("me", {
+                fields: "id, email,name,link"
+            }, "GET", function(e) {
+>>>>>>> origin/master
                 if (e.success) {
                     var fbRes = JSON.parse(e.result);
                     Ti.App.Properties.setString("plux_email", fbRes.email);
@@ -251,6 +257,12 @@ function Controller() {
     $.password.addEventListener("return", function() {
         doLogin();
     });
+<<<<<<< HEAD
+=======
+    $.win.fbProxy = FACEBOOK.createActivityWorker({
+        lifecycleContainer: $.win
+    });
+>>>>>>> origin/master
     $.fbloginView.add(FACEBOOK.createLoginButton({
         top: 10,
         readPermissions: [ "email", "public_profile", "user_friends" ],
