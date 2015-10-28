@@ -89,8 +89,7 @@ exports.updateUserFromFB = function(e, mainView){
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
 	         	
-	         	Ti.App.fireEvent('updateHeader');
-	         	console.log(mainView.win);
+	         	Ti.App.fireEvent('updateHeader'); 
 	         	mainView.win.close();
 				nav.closeWindow(mainView.win); 
 	         	//API.updateNotificationToken();   

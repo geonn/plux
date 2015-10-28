@@ -172,7 +172,7 @@ function changeDate(e){
 	};
 	
 	var select_view = parent({name: "view_element", value: "view_date_box"}, e.source);
-	select_view.backgroundColor = "#2eafa8";
+	select_view.backgroundColor = "#CE1D1C";
 	//$.addClass(select_view, "active_view");
 	var active_children = select_view.getChildren();
 	for (var k=0; k < active_children.length; k++) {

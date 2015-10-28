@@ -38,6 +38,7 @@ function populateMap(mapHeight){
 		    pincolor:Map.ANNOTATION_RED,
 		   
 		}); 
+		 
 		mapview.addAnnotation(merchantLoc);
 		$.clinicMap.height = mapHeight;
 		$.clinicMap.add(mapview);			
