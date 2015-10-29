@@ -123,51 +123,25 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-<<<<<<< HEAD
-    $.__views.__alloyId380 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId382 = Ti.UI.createImageView({
->>>>>>> origin/master
         right: "10",
         width: "25",
         height: "25",
         image: "/images/icon_refresh.png",
-<<<<<<< HEAD
-        id: "__alloyId380"
-    });
-    doRefresh ? $.addListener($.__views.__alloyId380, "click", doRefresh) : __defers["$.__views.__alloyId380!click!doRefresh"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId380;
-=======
         id: "__alloyId382"
     });
     doRefresh ? $.addListener($.__views.__alloyId382, "click", doRefresh) : __defers["$.__views.__alloyId382!click!doRefresh"] = true;
     $.__views.win.rightNavButton = $.__views.__alloyId382;
->>>>>>> origin/master
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
     $.__views.win.add($.__views.panelListTbl);
-<<<<<<< HEAD
-    $.__views.__alloyId381 = Ti.UI.createView({
-=======
     $.__views.__alloyId383 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
-        id: "__alloyId381"
-    });
-    $.__views.panelListTbl.add($.__views.__alloyId381);
-    $.__views.__alloyId382 = Ti.UI.createView({
-        left: "0",
-        width: "20%",
-        id: "__alloyId382"
-    });
-    $.__views.__alloyId381.add($.__views.__alloyId382);
-=======
         id: "__alloyId383"
     });
     $.__views.panelListTbl.add($.__views.__alloyId383);
@@ -177,7 +151,6 @@ function Controller() {
         id: "__alloyId384"
     });
     $.__views.__alloyId383.add($.__views.__alloyId384);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -185,21 +158,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId382.add($.__views.btnBack);
-    $.__views.__alloyId383 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId383"
-    });
-    $.__views.__alloyId381.add($.__views.__alloyId383);
-=======
     $.__views.__alloyId384.add($.__views.btnBack);
     $.__views.__alloyId385 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId385"
     });
     $.__views.__alloyId383.add($.__views.__alloyId385);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -211,16 +175,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId383.add($.__views.pageTitle);
-    $.__views.__alloyId384 = Ti.UI.createView({
-        right: "0",
-        width: "20%",
-        id: "__alloyId384"
-    });
-    $.__views.__alloyId381.add($.__views.__alloyId384);
-    $.__views.__alloyId385 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId385.add($.__views.pageTitle);
     $.__views.__alloyId386 = Ti.UI.createView({
         right: "0",
@@ -229,22 +183,14 @@ function Controller() {
     });
     $.__views.__alloyId383.add($.__views.__alloyId386);
     $.__views.__alloyId387 = Ti.UI.createImageView({
->>>>>>> origin/master
         right: "10",
         width: "25",
         height: "25",
         image: "/images/icon_refresh.png",
-<<<<<<< HEAD
-        id: "__alloyId385"
-    });
-    $.__views.__alloyId384.add($.__views.__alloyId385);
-    doRefresh ? $.addListener($.__views.__alloyId385, "click", doRefresh) : __defers["$.__views.__alloyId385!click!doRefresh"] = true;
-=======
         id: "__alloyId387"
     });
     $.__views.__alloyId386.add($.__views.__alloyId387);
     doRefresh ? $.addListener($.__views.__alloyId387, "click", doRefresh) : __defers["$.__views.__alloyId387!click!doRefresh"] = true;
->>>>>>> origin/master
     $.__views.tblview = Ti.UI.createTableView({
         id: "tblview",
         width: Ti.UI.FILL,
@@ -268,25 +214,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-    $.__views.__alloyId386 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId388 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: "5",
         text: "Loading",
-<<<<<<< HEAD
-        id: "__alloyId386"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId386);
-=======
         id: "__alloyId388"
     });
     $.__views.loadingBar.add($.__views.__alloyId388);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -313,13 +249,8 @@ function Controller() {
             clinicType: e.rowData.id
         });
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId380!click!doRefresh"] && $.addListener($.__views.__alloyId380, "click", doRefresh);
-    __defers["$.__views.__alloyId385!click!doRefresh"] && $.addListener($.__views.__alloyId385, "click", doRefresh);
-=======
     __defers["$.__views.__alloyId382!click!doRefresh"] && $.addListener($.__views.__alloyId382, "click", doRefresh);
     __defers["$.__views.__alloyId387!click!doRefresh"] && $.addListener($.__views.__alloyId387, "click", doRefresh);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

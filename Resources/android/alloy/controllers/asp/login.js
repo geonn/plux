@@ -217,7 +217,7 @@ function Controller() {
         id: "registerAccountButton",
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
-        title: "First-Time Login",
+        title: "Register for ASP",
         width: "70%",
         top: "5",
         height: "40",

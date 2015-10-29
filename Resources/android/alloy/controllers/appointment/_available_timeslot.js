@@ -133,11 +133,7 @@ function Controller() {
             name: "view_element",
             value: "view_date_box"
         }, e.source);
-<<<<<<< HEAD
-        select_view.backgroundColor = "#2eafa8";
-=======
         select_view.backgroundColor = "#CE1D1C";
->>>>>>> origin/master
         var active_children = select_view.getChildren();
         for (var k = 0; k < active_children.length; k++) active_children[k].color = "#FFFFFF";
         selected_date = sdate;

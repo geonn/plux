@@ -208,17 +208,10 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.clinicList && $.addTopLevelView($.__views.clinicList);
-<<<<<<< HEAD
-    $.__views.__alloyId352 = Ti.UI.createView({
-        layout: "horizontal",
-        right: "5",
-        id: "__alloyId352"
-=======
     $.__views.__alloyId353 = Ti.UI.createView({
         layout: "horizontal",
         right: "5",
         id: "__alloyId353"
->>>>>>> origin/master
     });
     $.__views.btnMap = Ti.UI.createImageView({
         right: "10",
@@ -227,24 +220,15 @@ function Controller() {
         height: "25",
         image: "/images/map.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId352.add($.__views.btnMap);
-=======
     $.__views.__alloyId353.add($.__views.btnMap);
->>>>>>> origin/master
     $.__views.btnSearch = Ti.UI.createImageView({
         id: "btnSearch",
         width: "25",
         height: "25",
         image: "/images/search.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId352.add($.__views.btnSearch);
-    $.__views.clinicList.rightNavButton = $.__views.__alloyId352;
-=======
     $.__views.__alloyId353.add($.__views.btnSearch);
     $.__views.clinicList.rightNavButton = $.__views.__alloyId353;
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -261,50 +245,25 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-    $.__views.__alloyId353 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId354 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: "5",
         text: "Loading",
-<<<<<<< HEAD
-        id: "__alloyId353"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId353);
-=======
         id: "__alloyId354"
     });
     $.__views.loadingBar.add($.__views.__alloyId354);
->>>>>>> origin/master
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
     $.__views.clinicList.add($.__views.panelListTbl);
-<<<<<<< HEAD
-    $.__views.__alloyId354 = Ti.UI.createView({
-=======
     $.__views.__alloyId355 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
-        id: "__alloyId354"
-    });
-    $.__views.panelListTbl.add($.__views.__alloyId354);
-    $.__views.__alloyId355 = Ti.UI.createView({
-        left: "0",
-        width: "20%",
-        id: "__alloyId355"
-    });
-    $.__views.__alloyId354.add($.__views.__alloyId355);
-=======
         id: "__alloyId355"
     });
     $.__views.panelListTbl.add($.__views.__alloyId355);
@@ -314,28 +273,18 @@ function Controller() {
         id: "__alloyId356"
     });
     $.__views.__alloyId355.add($.__views.__alloyId356);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
         height: "25",
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId355.add($.__views.btnBack);
-    $.__views.__alloyId356 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId356"
-    });
-    $.__views.__alloyId354.add($.__views.__alloyId356);
-=======
     $.__views.__alloyId356.add($.__views.btnBack);
     $.__views.__alloyId357 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId357"
     });
     $.__views.__alloyId355.add($.__views.__alloyId357);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -347,18 +296,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId356.add($.__views.pageTitle);
-    $.__views.__alloyId357 = Ti.UI.createView({
-        right: "0",
-        width: "20%",
-        id: "__alloyId357"
-    });
-    $.__views.__alloyId354.add($.__views.__alloyId357);
-    $.__views.btnSearch = Ti.UI.createImageView({
-        right: "10",
-        id: "btnSearch",
-=======
     $.__views.__alloyId357.add($.__views.pageTitle);
     $.__views.__alloyId358 = Ti.UI.createView({
         right: "0",
@@ -376,29 +313,18 @@ function Controller() {
     $.__views.btnMap = Ti.UI.createImageView({
         right: "10",
         id: "btnMap",
->>>>>>> origin/master
         width: "25",
         height: "25",
         image: "/images/map.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId357.add($.__views.btnSearch);
-    $.__views.btnSearch = Ti.UI.createImageView({
-        right: "10",
-=======
     $.__views.__alloyId359.add($.__views.btnMap);
     $.__views.btnSearch = Ti.UI.createImageView({
->>>>>>> origin/master
         id: "btnSearch",
         width: "25",
         height: "25",
         image: "/images/search.png"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId357.add($.__views.btnSearch);
-=======
     $.__views.__alloyId359.add($.__views.btnSearch);
->>>>>>> origin/master
     $.__views.searchItem = Ti.UI.createSearchBar({
         barColor: "#FFFFFF",
         tintColor: "#CE1D1C",
@@ -410,22 +336,6 @@ function Controller() {
         hintText: "Search Clinic"
     });
     $.__views.panelListTbl.add($.__views.searchItem);
-<<<<<<< HEAD
-    $.__views.__alloyId358 = Ti.UI.createView({
-        height: "50",
-        layout: "horizontal",
-        width: Ti.UI.FILL,
-        id: "__alloyId358"
-    });
-    $.__views.panelListTbl.add($.__views.__alloyId358);
-    $.__views.__alloyId359 = Ti.UI.createView({
-        width: "50%",
-        height: Ti.UI.SIZE,
-        id: "__alloyId359"
-    });
-    $.__views.__alloyId358.add($.__views.__alloyId359);
-    showTypeSelection ? $.addListener($.__views.__alloyId359, "click", showTypeSelection) : __defers["$.__views.__alloyId359!click!showTypeSelection"] = true;
-=======
     $.__views.__alloyId360 = Ti.UI.createView({
         height: "50",
         layout: "horizontal",
@@ -440,7 +350,6 @@ function Controller() {
     });
     $.__views.__alloyId360.add($.__views.__alloyId361);
     showTypeSelection ? $.addListener($.__views.__alloyId361, "click", showTypeSelection) : __defers["$.__views.__alloyId361!click!showTypeSelection"] = true;
->>>>>>> origin/master
     $.__views.clinicTypeSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -452,36 +361,12 @@ function Controller() {
         text: "Clinic Type",
         id: "clinicTypeSelection"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId359.add($.__views.clinicTypeSelection);
-    $.__views.__alloyId360 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId361.add($.__views.clinicTypeSelection);
     $.__views.__alloyId362 = Ti.UI.createImageView({
->>>>>>> origin/master
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
-<<<<<<< HEAD
-        id: "__alloyId360"
-    });
-    $.__views.__alloyId359.add($.__views.__alloyId360);
-    $.__views.__alloyId361 = Ti.UI.createView({
-        width: "1",
-        height: "50",
-        backgroundColor: "#9E9E9E",
-        id: "__alloyId361"
-    });
-    $.__views.__alloyId358.add($.__views.__alloyId361);
-    $.__views.__alloyId362 = Ti.UI.createView({
-        width: "auto",
-        height: Ti.UI.SIZE,
-        id: "__alloyId362"
-    });
-    $.__views.__alloyId358.add($.__views.__alloyId362);
-    showLocationSelection ? $.addListener($.__views.__alloyId362, "click", showLocationSelection) : __defers["$.__views.__alloyId362!click!showLocationSelection"] = true;
-=======
         id: "__alloyId362"
     });
     $.__views.__alloyId361.add($.__views.__alloyId362);
@@ -499,7 +384,6 @@ function Controller() {
     });
     $.__views.__alloyId360.add($.__views.__alloyId364);
     showLocationSelection ? $.addListener($.__views.__alloyId364, "click", showLocationSelection) : __defers["$.__views.__alloyId364!click!showLocationSelection"] = true;
->>>>>>> origin/master
     $.__views.clinicLocationSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -511,29 +395,12 @@ function Controller() {
         text: "Clinic Location",
         id: "clinicLocationSelection"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId362.add($.__views.clinicLocationSelection);
-    $.__views.__alloyId363 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId364.add($.__views.clinicLocationSelection);
     $.__views.__alloyId365 = Ti.UI.createImageView({
->>>>>>> origin/master
         right: "10",
         width: "15",
         height: "15",
         image: "/images/btn-down.png",
-<<<<<<< HEAD
-        id: "__alloyId363"
-    });
-    $.__views.__alloyId362.add($.__views.__alloyId363);
-    $.__views.__alloyId364 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: "1",
-        backgroundColor: "#9E9E9E",
-        id: "__alloyId364"
-    });
-    $.__views.panelListTbl.add($.__views.__alloyId364);
-=======
         id: "__alloyId365"
     });
     $.__views.__alloyId364.add($.__views.__alloyId365);
@@ -544,7 +411,6 @@ function Controller() {
         id: "__alloyId366"
     });
     $.__views.panelListTbl.add($.__views.__alloyId366);
->>>>>>> origin/master
     $.__views.clinicListTv = Ti.UI.createTableView({
         id: "clinicListTv",
         layout: "vertical",
@@ -602,13 +468,8 @@ function Controller() {
             location: Ti.App.Properties.getString("clinicLocationSelection")
         });
     });
-<<<<<<< HEAD
-    __defers["$.__views.__alloyId359!click!showTypeSelection"] && $.addListener($.__views.__alloyId359, "click", showTypeSelection);
-    __defers["$.__views.__alloyId362!click!showLocationSelection"] && $.addListener($.__views.__alloyId362, "click", showLocationSelection);
-=======
     __defers["$.__views.__alloyId361!click!showTypeSelection"] && $.addListener($.__views.__alloyId361, "click", showTypeSelection);
     __defers["$.__views.__alloyId364!click!showLocationSelection"] && $.addListener($.__views.__alloyId364, "click", showLocationSelection);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

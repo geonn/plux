@@ -145,10 +145,6 @@ exports.updateUserFromFB = function(e, mainView) {
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
                 Ti.App.fireEvent("updateHeader");
-<<<<<<< HEAD
-                console.log(mainView.win);
-=======
->>>>>>> origin/master
                 mainView.win.close();
                 nav.closeWindow(mainView.win);
             }
