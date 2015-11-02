@@ -138,9 +138,10 @@ function viewDetails(rec_id){
 	nav.navigateWithArgs("appointment/index",{id: rec_id}); 
 }
 
-$.newRecord.addEventListener('click',function(){ 
+function new_appointment(){
+	console.log("new record clicked!!");
 	nav.navigateWithArgs("appointment/index",{id : ""});
-});
+}
 
 
 if(Ti.Platform.osname == "android"){

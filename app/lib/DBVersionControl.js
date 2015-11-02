@@ -8,7 +8,7 @@
 // update user device token
 exports.checkAndUpdate = function(e){
 	var dbVersion = Ti.App.Properties.getString("dbVersion");
-	console.log(dbVersion);
+	console.log(dbVersion+": dbVersion");
 	if (dbVersion == '1.0') {
 	  // do 1.1 upgrade
 		var panelList = Alloy.createCollection('panelList'); 
@@ -22,6 +22,10 @@ exports.checkAndUpdate = function(e){
 		appointment.addColumn("end_date", "TEXT");
 		appointment.addColumn("duration", "INTEGER");
 		dbVersion = '1.2';
+	}
+	if(dbVersion == 1.2){
+		var doctors = Alloy.createCollection('doctors'); 
+		doctors.addColumn("clinic_id", "INTEGER");
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

@@ -14,7 +14,7 @@ API.loadCategoryList();
 API.loadNewsFeed();
 API.loadLeaflet();
 API.loadClinicList();
-//API.getDoctorList();
+API.getDoctorList();
  
 var win = Alloy.createController("home").getView();
 win.open(); 

@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 var appointment_id = args.id || 0;
-var page_container = [{title: "SELECT A CLINIC"}, {title: "SELECT AN AVAILABLE TIME"}, {title: "CREATE THIS APPOINTMENT"}];
+var page_container = [{title: "SELECT A CLINIC"},{title: "SELECT A SPECIALTY"}, {title: "SELECT AN AVAILABLE TIME"}, {title: "CREATE THIS APPOINTMENT"}];
 var loading = Alloy.createController("loading");
 
 function init(){
@@ -22,7 +22,7 @@ function postlayout(){
 		console.log(data_clinic);
 		Ti.App.fireEvent('selectClinic',{clinicName:data_clinic.clinicName, clinicId:data_appointment.clinic_id });
 		Ti.App.fireEvent("update_chooseDateTime", {date: timeFormat(data_appointment.start_date)});
-		scrollToViewPage({number: 2});
+		scrollToViewPage({number: 3});
 	}
 	loading.finish();
 }
@@ -55,6 +55,7 @@ function movePrevious(){
 
 function selectClinic(e){
 	$._available_timeslot.set_clinicId({clinicId:e.clinicId });
+	$._specialty_list.set_clinicId({clinicId:e.clinicId });
 	$._appointment_form.update_selectClinic({clinicName:e.clinicName, clinicId:e.clinicId });
 }
 
