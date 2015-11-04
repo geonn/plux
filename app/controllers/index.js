@@ -13,10 +13,13 @@ notificationModel.addColumn("isRead", "TEXT");
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
-API.loadClinicList();
+API.loadClinicList(); 
 //API.getDoctorList();
 $.index.win.open();
-/**
+/** 
+API.getDoctorList();
+ 
+>>>>>>> origin/master
 var win = Alloy.createController("home").getView();
 win.open(); 
 if(u_id == ""){ 
