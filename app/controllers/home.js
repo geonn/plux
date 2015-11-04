@@ -54,6 +54,8 @@ function updateNotification(){
 		}else{
 			$.notificationIcon.visible = false;
 		}
+	}else{
+		$.notificationIcon.visible = false;
 	} 
 	console.log("notification counter refresh");
 }
@@ -107,6 +109,10 @@ function refreshHeaderInfo(){
 		title_view.add(welcomeTitle);
 		$.myInfo.add(logoutBtn);
 		$.myInfo.add(title_view);
+		
+		$.logo.addEventListener('click',function(){ 
+			nav.navigationWindow("aboutUs");
+		});
 	}else{
 		$.logo.image = "/images/asp_logo.png";
 		var me = usersModel.getUserByMemno();

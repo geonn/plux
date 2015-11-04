@@ -15,13 +15,14 @@ API.loadNewsFeed();
 API.loadLeaflet();
 API.loadClinicList();
 //API.getDoctorList();
- 
+$.index.win.open();
+/**
 var win = Alloy.createController("home").getView();
 win.open(); 
 if(u_id == ""){ 
 	nav.navigateWithArgs("login", {});  
 } 
-
+**/
 if (Ti.Platform.osname == 'android') {
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();

@@ -1,9 +1,3 @@
 <Alloy>
-	<Window id="root" title="" class="container">
-		<View id="main">
-			<ImageView width="100%" height="100%" image="/dummy/dummy-introduce.jpg" />
-			<ImageView id="link_visitor" width="130" top="210" left="30" image="/btn/btn-visitor.jpg" />
-			<ImageView id="link_member" width="130" top="210" left="170" image="/btn/btn-member.jpg" />
-		</View>
-	</Window>
+	<Require id="index" src="slideshow"/>
 </Alloy>

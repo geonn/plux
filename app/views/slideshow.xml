@@ -1,0 +1,48 @@
+<Alloy>
+	<Window class="container" barColor="#75d0cb" id="win" title="News" navBarHidden="false">
+	<ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
+	<View id="image_container" backgroundColor="#000" class="wfill hfill">
+    	
+    </View>
+    <ImageView class="wfill hfill" image="/images/gradient-bg.png"></ImageView>
+    <View class="wfill hfill vert">
+	    <ScrollableView id="slogan" class="wfill" height="85%" pagingControlColor="transparent" showPagingControl="true" disableBounce="true">
+	    	<View class="wfill hfill" layout="composite">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Welcome,</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Lorem ipsum dolor sit amet, est ne affert dolores insolens, eu omnes officiis pro</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill" layout="composite">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Claim</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Lorem ipsum dolor sit amet, est ne affert dolores insolens, eu omnes officiis pro</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Locator</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Facer imperdiet vulputate ut eum. Mea ad purto delicata, sea cu impetus veritus</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert" bottom="20">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">eCARD</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Agam eripuit tractatos cum ut, altera expetenda no vis. Id mel case utinam deterruisset</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    </ScrollableView>
+	    <View class="wfill hsize">
+	    	<Button width="60%" onClick="do_continue" class="custom_button bold" title="Continue"></Button>
+	    </View>
+    </View>
+    </Window>
+</Alloy>
