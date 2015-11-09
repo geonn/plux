@@ -15,7 +15,18 @@ API.loadNewsFeed();
 API.loadLeaflet();
 API.loadClinicList(); 
 //API.getDoctorList();
-$.index.win.open();
+var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
+ 
+if(isShowIntro	!= ""){ 
+		var win = Alloy.createController("home").getView();
+		win.open(); 
+		if(u_id == ""){ 
+			nav.navigateWithArgs("login", {});  
+		} 
+}else{ 
+		$.index.win.open();
+}
+
 /** 
 API.getDoctorList();
  

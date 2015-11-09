@@ -20,7 +20,9 @@ function init(){
 		}else{
 			$.notificationIcon.visible = false;
 		}
-	} 
+	}else{
+			$.notificationIcon.visible = false;
+		} 
 	
 	refreshHeaderInfo(); 
 	

@@ -11,34 +11,35 @@
 	    		<View class="wfill hsize" bottom="0">
 		    		<View class="wfill hsize padding vert">
 		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Welcome,</Label>
-		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Lorem ipsum dolor sit amet, est ne affert dolores insolens, eu omnes officiis pro</Label>
-		    		</View>
-	    		</View>
-	    	</View>
-	    	<View class="wfill hfill" layout="composite">
-	    		<View class="wfill hsize" bottom="0">
-		    		<View class="wfill hsize padding vert">
-		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Claim</Label>
-		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Lorem ipsum dolor sit amet, est ne affert dolores insolens, eu omnes officiis pro</Label>
-		    		</View>
-	    		</View>
-	    	</View>
-	    	<View class="wfill hfill">
-	    		<View class="wfill hsize" bottom="0">
-		    		<View class="wfill hsize padding vert">
-		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Locator</Label>
-		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Facer imperdiet vulputate ut eum. Mea ad purto delicata, sea cu impetus veritus</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">a FREE app that automates most of the management, claims and tracking functions that are performed by companies’ HR departments</Label>
 		    		</View>
 	    		</View>
 	    	</View>
 	    	<View class="wfill hfill">
 	    		<View class="wfill hsize" bottom="0">
 		    		<View class="wfill hsize padding vert" bottom="20">
-		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">eCARD</Label>
-		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Agam eripuit tractatos cum ut, altera expetenda no vis. Id mel case utinam deterruisset</Label>
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Doctor Appointment Booking</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Employees can choose from a panel of thousands of doctors for unparalleled convenience</Label>
 		    		</View>
 	    		</View>
 	    	</View>
+	    	<View class="wfill hfill" layout="composite">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Smart Claims</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Access details of entitlements, claims made, claims remaining, etc</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Easy Clinic Locator</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Search through our panel of thousands of doctors, located all over Malaysia</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	
 	    </ScrollableView>
 	    <View class="wfill hsize">
 	    	<Button width="60%" onClick="do_continue" class="custom_button bold" title="Continue"></Button>

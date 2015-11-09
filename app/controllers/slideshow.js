@@ -9,6 +9,7 @@ var fade_view = $.UI.create("View", {
 var fade_images = ['/images/slideshow/bg0.png', '/images/slideshow/bg1.png', '/images/slideshow/bg2.png', '/images/slideshow/bg3.png'];
 
 function do_continue(){
+	Ti.App.Properties.setString('isShowIntro',1)
 	var win = Alloy.createController("home").getView();
 	win.open(); 
 	if(u_id == ""){ 
