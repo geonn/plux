@@ -38,6 +38,7 @@ function syncFromServer(){
 						"message" : entry.message || "",
 						"url" : entry.url || "",
 						"isRead" : "0",
+						"status" : entry.status || "",
 						"expired" : entry.expired || "",
 						"created" : entry.created,
 						"updated" : entry.updated,
