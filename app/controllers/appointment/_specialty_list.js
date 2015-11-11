@@ -72,11 +72,10 @@ function update_specialty_to_form(vw){
 }
 
 function refresh(){
-	console.log('z');
 	listing = doctors_model.getDoctorListGroupBySpecialty([{key: "clinic_id", value: clinicId}]);
-	console.log(clinicId+"clinic Id");
-	console.log(listing);
-	render_specialty_list();
+	if(clinicId){
+		render_specialty_list();
+	}
 }
 
 function init(){

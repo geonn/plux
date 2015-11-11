@@ -32,6 +32,7 @@ var syncMedicalUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+U
 var checkMedicalDataUrl = "http://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
 var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
 var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
+var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 

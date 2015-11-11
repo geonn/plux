@@ -47,10 +47,9 @@
 			</View>
 		</View>
 		<View class="gray-line" />
-		<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff"  >
+		<View class="hsize vert" selectedBackgroundColor="#ffffff" >
 			<View class="horz hsize wfill "  textAlign="right" >
 				<Label text="Remark" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-				 
 				<TextArea id="remarkTextArea" class="h6" color="#000000" textAlign="right" hintText="Remark" value="" width="Ti.UI.FILL" left="10" right="10" height="100" suppressReturn="false" >
 			 		<KeyboardToolbar platform="ios">
 						<Toolbar>
@@ -61,12 +60,11 @@
 						</Toolbar>
 					</KeyboardToolbar>
 			 	</TextArea>
-			 	
 			</View>
-		</View> 
+		</View>
 		<View class="gray-line" /> 
-		<View class="wfill hsize vert" top="10" id="aView"> 
-			<Button onClick="saveRecord"  id="saveRecord" title="Submit Appointment" borderRadius="5" backgroundColor="#7B7B7B"    width="70%" top="5" height="40" color="#ffffff" ></Button> 
+		<View class="wfill hsize vert" top="10">
+			<Button onClick="saveRecord" title="Submit Appointment" borderRadius="5" backgroundColor="#7B7B7B" width="70%" top="5" height="40" color="#ffffff"></Button>
 		</View>  
 	</ScrollView>
 </Alloy>

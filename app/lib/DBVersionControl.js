@@ -30,6 +30,13 @@ exports.checkAndUpdate = function(e){
 		var appointment = Alloy.createCollection('appointment');
 		appointment.addColumn("specialty", "TEXT");
 		console.log('specialty added into appointment');
+		dbVersion = '1.3';
+	}
+	
+	if(dbVersion == "1.3"){
+		var notification = Alloy.createCollection('notification'); 
+		notification.addColumn("status", "INTEGER");
+		dbVersion = '1.4';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

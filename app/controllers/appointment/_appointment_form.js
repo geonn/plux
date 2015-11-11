@@ -1,9 +1,16 @@
+console.log('a');
 var args = arguments[0] || {};
+console.log('a');
 var appointment_id = args.appointment_id || "";
+console.log('a');
 var userModel = Alloy.createCollection('users_plux'); 
+console.log('a');
 var appointmentModel = Alloy.createCollection('appointment'); 
+console.log('a');
 var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
+console.log('a');
 var panelListModel = Alloy.createCollection('panelList'); 
+console.log('a');
 var selectedClinic, specialty; 
 var appointmentDatetime; 
 var toolbar;
@@ -11,7 +18,7 @@ var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
 
 $.patient_name.text = user.fullname;
 $.patient_email.text = user.email;
-
+console.log('a');
 var dpView = Titanium.UI.createView({
 		layout: "vertical",
 		height: 200,
@@ -81,6 +88,7 @@ function savedAppointment(ex){
 
  
 function init(){
+	console.log('a');
 	details = appointmentModel.getAppointmentById(appointment_id) || ""; 
 	if(details != ""){
 		var remark = details.remark; 
@@ -90,7 +98,6 @@ function init(){
 			$.remarkTextArea.value = remark.replace(regex, "\n");
 		}else{
 			//if expired or cannot edit the appointment
-			$.saveRecord.visible = false;
 			$.remarkTextArea.height= 0;
 			$.remarkTextArea_readonly.height = Ti.UI.SIZE;
 			$.remarkTextArea_readonly.text = remark.replace(regex, "\n");
@@ -107,81 +114,6 @@ function init(){
 		var specialty_field = details.specialty;
 		$.specialty.text = specialty_field;
 		
-		//add Delete button if the appointment still active
-		if(details.date >= currentDateTime() ){ 
-			//add delete appointment button 
-			var deleteBtn = Ti.UI.createButton({
-				borderRadius: 5,
-				backgroundColor : "#CC2228",
-				title : "Delete Appointment",
-				width : "70%",
-				top	  : 20,
-				height: 40,
-				color : "#ffffff"
-			});
-			deleteBtn.addEventListener('click', function(){
-			
-				var dialog = Ti.UI.createAlertDialog({
-					cancel: 1,
-					buttonNames: ['Cancel','Confirm'],
-					message: 'Are you sure want to delete this records?',
-					title: 'Delete Confirmation'
-				});
-				dialog.addEventListener('click', function(e){
-					if (e.index === e.source.cancel){
-					      //Do nothing
-					}
-					if (e.index === 1){ 
-						 API.deleteAppointment(appointment_id, removeAppointment); 
-					}
-				});
-				dialog.show();  
-			});
-		
-			$.aView.add(deleteBtn);
-		}else{
-			var statusLbl = Titanium.UI.createLabel({
-				text: "Status", 
-				source: details.id, 
-				textAlign:Ti.UI.TEXT_ALIGNMENT_LEFT,  
-				top:10,
-				left:10, 
-				width:Ti.UI.FILL,
-				height:Ti.UI.SIZE
-			}); 
-			
-			var statusText = "Pending";
-			var statusColor = "#8A6500";
-			if(details.status == "2"){ //rejected
-				statusText = "Rejected";
-				statusColor = "#CE1D1C";
-			}else if(details.status == "3"){ //accepted
-				statusText = "Accepted";
-				statusColor = "#2C8A00";
-			}else if(details.status == "4"){ //suggested date
-				statusText = "Suggested Another Date And Time";
-				statusColor = "#005E8A";
-			}
-			 
-			if(details.date < currentDateTime() ){ 
-				statusText = "Expired";
-				statusColor = "#CE1D1C";
-			}
-			var statusText = $.UI.create('Label', {
-				classes : ["medium_font", "greyText"],
-				text: statusText, 
-				source: details.id, 
-				color: statusColor,
-				textAlign:Ti.UI.TEXT_ALIGNMENT_LEFT,  
-				top:10,
-				left:20, 
-				width:Ti.UI.FILL,
-				height:Ti.UI.SIZE
-			}); 
-			 
-			$.aView.add(statusLbl);	
-			$.aView.add(statusText);
-		}
 	}
 	if(OS_IOS){
 		var done = Titanium.UI.createButton({
@@ -233,6 +165,7 @@ function init(){
 	// turn on the selection indicator (off by default)
 	
 	//$.appointmentDateTime.add(dpView);
+	console.log('a');
 }
 
 function removeAppointment(){

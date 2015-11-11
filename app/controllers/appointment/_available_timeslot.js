@@ -194,4 +194,4 @@ function init(){
 	refresh();
 }
 
-//init();
+init();

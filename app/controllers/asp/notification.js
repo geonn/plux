@@ -36,6 +36,7 @@ function syncFromServer(){
 						"member_no": entry.member_no || "",
 						"subject":entry.subject || "",
 						"message" : entry.message || "",
+						"status" : entry.status || 1,
 						"url" : entry.url || "",
 						"isRead" : "0",
 						"expired" : entry.expired || "",
@@ -176,7 +177,7 @@ var isDownloading = "0";
 var isDownloadLbl = "0";
 //ex.source.id,ex.source.leafLet,ex.source.url,ex.source.downloaded,ex.source.name
 //id,content,targetUrl,downloaded, title
-function downloadBrochure( content){ 
+function downloadBrochure(content){ 
 	//adImage.addEventListener( "click", function(){
 		var indView = Ti.UI.createView({
 			height : 100,
@@ -293,25 +294,39 @@ function downloadBrochure( content){
 				});
 				if(content.url != ""){
 					var rightBtn = Ti.UI.createButton({
-						title: "Details",
+						title: "Delete",
 						color: "#CE1D1C",
 						right: 15
 					});
+					
 					rightBtn.addEventListener('click',function(rx){ 
-						var BackBtn = Ti.UI.createButton({
-							title: "Back",
-							color: "#CE1D1C",
-							right: 15
+						var dialog = Ti.UI.createAlertDialog({
+							cancel: 0,
+							buttonNames: ['Cancel','Confirm'],
+							message: 'Are you sure want to delete?',
+							title: 'Message'
 						});
-						BackBtn.addEventListener('click',function(sa){
-								BackBtn.setVisible(false);
-								rightBtn.setVisible(true);
-								webview.setData(file.read()); 
+						dialog.addEventListener('click', function(e){
+							if (e.index === e.source.cancel){
+							      //Do nothing
+							}
+							if (e.index === 1){
+								var param = { 
+									"status"	  : 2,
+									"id" : content.source
+								};
+								console.log(param);
+								API.callByPost({url:"deleteNotification", params: param}, function(responseText){
+									var res = JSON.parse(responseText);  
+									if(res.status == "success"){  
+										notificationModel.update_status(param);
+										displayList();
+										myModal.close({animated: true});
+									}
+								});
+							}
 						});
-						topView.add(BackBtn);
-						rightBtn.setVisible(false);
-						BackBtn.setVisible(true);
-						webview.setUrl(content.url); 
+						dialog.show();
 					});  
 					topView.add(rightBtn);
 				}
