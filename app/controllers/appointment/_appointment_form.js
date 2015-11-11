@@ -195,7 +195,7 @@ function hideKeyboard(){
 }
 
 $.appointment_datetime.addEventListener("click", function(e){
-	Ti.App.fireEvent("appointment_index:scrollToViewPage", {number: 1});
+	Ti.App.fireEvent("appointment_index:scrollToViewPage", {number: 2});
 });
 
 $.appointment_clinic.addEventListener("click", function(e){
