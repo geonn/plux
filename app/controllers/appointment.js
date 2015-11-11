@@ -17,7 +17,7 @@ function savedAppointment(ex){
 		common.createAlert("Error", result.data);
 		return false;
 	}else{
-		appointmentModel.saveArray(result.data); 
+		appointmentModel.saveArray(result.data);
 	}
 	
 	displayAppointmentList(); 

@@ -22,7 +22,7 @@ function render_specialty_list(){
 			    backgroundSelectedColor: "#ECFFF9",
 		 
 			}); 
-			
+			console.log(entry.specialty+" specialty at tablerow");
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
@@ -46,7 +46,7 @@ function render_specialty_list(){
 			});
 			tblView.add(label_specialty);
 			tblRowView.add(tblView);
-			addClinicAction(tblRowView);
+			update_specialty_to_form(tblRowView);
 			row.add(tblRowView);
 			data.push(row);	   
 		});
@@ -61,11 +61,12 @@ $.set_clinicId = function(e){
 	refresh();
 };
 
-function addClinicAction(vw){
+function update_specialty_to_form(vw){
 	vw.addEventListener('click', function(e){
 		var elbl = JSON.stringify(e.source);
 		var res = JSON.parse(elbl);
-	 	Ti.App.fireEvent('selectSpecialty',{specialty:res.specialty});
+		console.log(res);
+	 	Ti.App.fireEvent('update_specialty',{specialty:res.specialty});
 	 	Ti.App.fireEvent("appointment_index:moveNext");
 	});
 }

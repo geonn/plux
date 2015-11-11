@@ -29,7 +29,7 @@
 			</View>
 		</View> 
 		<View class="gray-line" />
-		<View id="tvrClinicVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" >
+		<View height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" >
 			<View class="horz hsize wfill "  textAlign="right" >
 				<Label text="Clinic" top="12" width="35%" class="h5 padding-left themeColor"  /> 
 				<View width="auto"  class="right-align hsize" >
@@ -37,6 +37,15 @@
 				</View> 
 			</View>
 		</View> 
+		<View class="gray-line" />
+		<View class="hsize vert" selectedBackgroundColor="#ffffff" >
+			<View class="horz hsize wfill "  textAlign="right" >
+				<Label text="Specialty" top="12" width="35%" class="h5 padding-left themeColor"  /> 
+				<View width="auto"  class="right-align hsize" >
+					<Label text="Choose Specialty" class="wfill padding padding-right font_dark_grey h6 right-align" top="12" id="specialty" />  
+				</View> 
+			</View>
+		</View>
 		<View class="gray-line" />
 		<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff"  >
 			<View class="horz hsize wfill "  textAlign="right" >
@@ -56,7 +65,7 @@
 			</View>
 		</View> 
 		<View class="gray-line" /> 
-		<View class="wfill hsize" top="10"> 
+		<View class="wfill hsize vert" top="10" id="aView"> 
 			<Button onClick="saveRecord"  id="saveRecord" title="Submit Appointment" borderRadius="5" backgroundColor="#7B7B7B"    width="70%" top="5" height="40" color="#ffffff" ></Button> 
 		</View>  
 	</ScrollView>

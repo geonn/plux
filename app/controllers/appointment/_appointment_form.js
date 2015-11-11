@@ -4,7 +4,7 @@ var userModel = Alloy.createCollection('users_plux');
 var appointmentModel = Alloy.createCollection('appointment'); 
 var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
 var panelListModel = Alloy.createCollection('panelList'); 
-var selectedClinic; 
+var selectedClinic, specialty; 
 var appointmentDatetime; 
 var toolbar;
 var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
@@ -26,6 +26,7 @@ function saveRecord(){
 	//var message   = $.proceduceTextArea.value;
 	var remark = $.remarkTextArea.value;
 	var appDate   = $.appointment_datetime.text;
+	var param_specialty   = $.specialty.text || "";
 	var appClinic = selectedClinic || "";
 	 
 	if(appDate == "Choose Date and Time"){
@@ -48,6 +49,7 @@ function saveRecord(){
 		start_date : appDate,
 		duration : duration,
 		clinic_id  : appClinic,
+		specialty: param_specialty,
 		remark : remark.trim() ,
 		created : currentDateTime(),  
 		updated : currentDateTime()
@@ -102,6 +104,9 @@ function init(){
 		$.appointment_clinic.color = "#000000";
 		selectedClinic = details.clinic_id; 
 		
+		var specialty_field = details.specialty;
+		$.specialty.text = specialty_field;
+		
 		//add Delete button if the appointment still active
 		if(details.date >= currentDateTime() ){ 
 			//add delete appointment button 
@@ -133,7 +138,7 @@ function init(){
 				dialog.show();  
 			});
 		
-			//$.aView.add(deleteBtn);
+			$.aView.add(deleteBtn);
 		}else{
 			var statusLbl = Titanium.UI.createLabel({
 				text: "Status", 
@@ -239,6 +244,11 @@ $.update_selectClinic = function(e){
 	selectedClinic = e.clinicId;
 	$.appointment_clinic.text = e.clinicName;
 	$.appointment_clinic.color = "#000000";
+};
+
+$.update_specialty = function(e){
+	$.specialty.text = e.specialty;
+	$.specialty.color = "#000000";
 };
 
 $.update_chooseDateTime = function(e){
