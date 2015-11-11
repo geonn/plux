@@ -113,22 +113,30 @@ var back = Ti.UI.createImageView({
     top: 0,
 });
 
-var userQR = qrcode.QRCode({
-	typeNumber: 4,
-	errorCorrectLevel: 'M'
-});
+
 
 var userIc = user.ic || "";	 
-console.log(user);
-var qrcodeView = userQR.createQRCodeView({
-	width: 200,
-	height: 200,
-	margin: 4,
-	text: user.name+"||"+user.memno+"||"+userIc
-}); 
+
+var genCode = setInterval(function(){
+	removeAllChildren($.qrCode);
+	var dateTimeNow = currentDateTime();
+	var userQR = qrcode.QRCode({
+		typeNumber: 10,
+		errorCorrectLevel: 'M'
+	});
+	var qrcodeView = userQR.createQRCodeView({
+		width: 200,
+		height: 200,
+		margin: 4,
+		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"+"||" +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
+	}); 
+ 
+	$.qrCode.add(qrcodeView);
+},2000);
+
 //$.card.add(back);
 $.card.add(front);
-$.qrCode.add(qrcodeView);
+
 
 var cover = Ti.UI.createView({ 
     width: Ti.UI.FILL,
@@ -229,3 +237,8 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.eCardWin); 
 	}); 
 }
+ 
+$.eCard.addEventListener("close", function(){
+	console.log("close ecard");
+	clearInterval(genCode);
+});

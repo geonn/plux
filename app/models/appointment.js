@@ -8,6 +8,7 @@ exports.definition = {
 		    "start_date" : "TEXT",
 		    "end_date" : "TEXT",
 		    "remark" : "TEXT",
+		    "specialty" : "TEXT",
 		    "status": "INTEGER" ,
 		    "created": "TEXT" ,
 		    "updated": "TEXT",
@@ -77,7 +78,8 @@ exports.definition = {
 						duration: res.fieldByName('duration'),
 						remark: res.fieldByName('remark'),
 						created: res.fieldByName('created'),
-						updated: res.fieldByName('updated') 
+						updated: res.fieldByName('updated'),
+						specialty: res.fieldByName('specialty'),
 					};	 
 					res.next();
 					count++;
@@ -97,11 +99,11 @@ exports.definition = {
                 }
                 db.execute("BEGIN"); 
                	arr.forEach(function(entry) {
-		            var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, u_id,clinic_id, remark,  status,start_date,end_date, duration,suggested_date, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.u_id,entry.clinic_id, entry.remark,entry.status ,entry.start_date, entry.end_date,entry.duration,entry.suggested_date, entry.created,entry.updated);
-				 	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET clinic_id=?,remark=?,status=?,start_date=?,end_date=?, duration=?, suggested_date=?,updated=? WHERE id=?";
+		            var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, u_id,clinic_id, remark,  status,start_date,end_date, duration,suggested_date, created, updated, specialty) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+					db.execute(sql_query, entry.id, entry.u_id,entry.clinic_id, entry.remark,entry.status ,entry.start_date, entry.end_date,entry.duration,entry.suggested_date, entry.created,entry.updated, entry.specialty);
+				 	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET clinic_id=?,remark=?,status=?,start_date=?,end_date=?, duration=?, suggested_date=?,updated=?, specialty=? WHERE id=?";
 				 	 
-					db.execute(sql_query,entry.clinic_id,entry.remark, entry.status,entry.start_date,entry.end_date,entry.duration,entry.suggested_date,entry.updated, entry.id);
+					db.execute(sql_query,entry.clinic_id,entry.remark, entry.status,entry.start_date,entry.end_date,entry.duration,entry.suggested_date,entry.updated, entry.specialty, entry.id);
 				});
 				db.execute("COMMIT");
 	            db.close();
@@ -143,7 +145,8 @@ exports.definition = {
 						date: res.fieldByName('date'),
 						remark: res.fieldByName('remark'),
 						created: res.fieldByName('created'),
-						updated: res.fieldByName('updated') 
+						updated: res.fieldByName('updated'),
+						specialty: res.fieldByName('specialty'),
 					};
 					
 				} 
