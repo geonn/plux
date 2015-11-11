@@ -13,15 +13,30 @@ notificationModel.addColumn("isRead", "TEXT");
 API.loadCategoryList(); 
 API.loadNewsFeed();
 API.loadLeaflet();
-API.loadClinicList();
+API.loadClinicList(); 
+//API.getDoctorList();
+var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
+ 
+if(isShowIntro	!= ""){ 
+		var win = Alloy.createController("home").getView();
+		win.open(); 
+		if(u_id == ""){ 
+			nav.navigateWithArgs("login", {});  
+		} 
+}else{ 
+		$.index.win.open();
+}
+
+/** 
 API.getDoctorList();
  
+>>>>>>> origin/master
 var win = Alloy.createController("home").getView();
 win.open(); 
 if(u_id == ""){ 
 	nav.navigateWithArgs("login", {});  
 } 
-
+**/
 if (Ti.Platform.osname == 'android') {
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();

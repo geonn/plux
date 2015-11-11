@@ -1,0 +1,49 @@
+<Alloy>
+	<Window class="container" barColor="#75d0cb" id="win" title="News" navBarHidden="false">
+	<ActionBar platform="android" displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
+	<View id="image_container" backgroundColor="#000" class="wfill hfill">
+    	
+    </View>
+    <ImageView class="wfill hfill" image="/images/gradient-bg.png"></ImageView>
+    <View class="wfill hfill vert">
+	    <ScrollableView id="slogan" class="wfill" height="85%" pagingControlColor="transparent" showPagingControl="true" disableBounce="true">
+	    	<View class="wfill hfill" layout="composite">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Welcome,</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">a FREE app that automates most of the management, claims and tracking functions that are performed by companies’ HR departments</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert" bottom="20">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Doctor Appointment Booking</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Employees can choose from a panel of thousands of doctors for unparalleled convenience</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill" layout="composite">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Smart Claims</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Access details of entitlements, claims made, claims remaining, etc</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	<View class="wfill hfill">
+	    		<View class="wfill hsize" bottom="0">
+		    		<View class="wfill hsize padding vert">
+		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Easy Clinic Locator</Label>
+		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Search through our panel of thousands of doctors, located all over Malaysia</Label>
+		    		</View>
+	    		</View>
+	    	</View>
+	    	
+	    </ScrollableView>
+	    <View class="wfill hsize">
+	    	<Button width="60%" onClick="do_continue" class="custom_button bold" title="Continue"></Button>
+	    </View>
+    </View>
+    </Window>
+</Alloy>

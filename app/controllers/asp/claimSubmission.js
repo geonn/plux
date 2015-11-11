@@ -12,6 +12,8 @@ var panelCategory;
 var userMem;
 var claimCategoryId = 0;
 var claimMemId;
+var claimSerial;
+var claimMode = "INSERT";
 common.construct($);
 common.showLoading();
 init();
@@ -30,12 +32,14 @@ function init(){
 }
 
 function checkIfHaveData(){
-
-	if(isEdit != ""){   
+ if(isEdit != ""){
+		claimMode = "UPDATE";
+		claimSerial = serial;
 		var params = "SERIAL="+serial; 
 		common.showLoading();  
 		API.callByGet({url:"getclaimReimbUrl", params: params}, function(responseText){ 
 			var res = JSON.parse(responseText); 
+			claimMemId = res[0].memno;
 			var claimer = usersModel.getUserByMemno(res[0].memno); 
 		 	$.receiptAmount.value = res[0].amt || "";
 		 	$.diagnosis.value = res[0].diagnosis || "";
@@ -54,14 +58,15 @@ function checkIfHaveData(){
 		 	$.claim_under.color = "#000000";
 		 	 
 		 	a = claimCategoryIdArr.indexOf(res[0].category);
+		 	claimCategoryId = claimCategoryArr[a];
 		 	$.category.text = claimCategoryArr[a];
 		 	$.category.color = "#000000"; 
 	 		//claimCategoryIdArr.push(entry.catID);
 			//claimCategoryArr;
 		 	common.hideLoading(); 
 		}); 
-		$.saveBtn.visible = false;
-	}
+		//s$.saveBtn.visible = false;
+	} 
 }
 
 function getClaimCategory(){  
@@ -98,7 +103,7 @@ function submitClaim(){
 	var mc            = $.mc.value;
 	var diagnosis     = $.diagnosis.value;
 	var glamount      = $.glamount.value;
-	
+	var mode     = claimMode;
 	if(receiptNo.trim() == ""){
 		common.resultPopUp("Error", "Please fill in receipt number" );
 		return false;
@@ -132,10 +137,14 @@ function submitClaim(){
 		return false;
 	}
 	
+	var ser = "";
+	if(isEdit != ""){ 
+		ser = "&SERIAL="+claimSerial;
+	}
 	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+user.empno+"&CORPCODE="+user.corpcode+
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
-				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount ;
-	//console.log(params);
+				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
+	
 	common.showLoading(); 
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){ 
 		var res = JSON.parse(responseText); 
@@ -180,7 +189,7 @@ function changeVisitDate(e){
 	$.dateVisit.text = selDate ;  
 	$.dateVisit.color = "#000000" ;
 }
-if(isEdit == ""){   
+ 
 	$.tvrCategory.addEventListener('click', function(){ 
 		var cancelBtn = claimCategoryArr.length -1;
 		var dialog = Ti.UI.createOptionDialog({
@@ -218,7 +227,7 @@ if(isEdit == ""){
 			}
 		});
 	});
-}
+ 
 
 function hideDatePicker(){
 	$.dateVisitPicker.visible = false; 
@@ -227,7 +236,7 @@ function hideDatePicker(){
 }
 
 function showVisitPicker(){  
-	if(isEdit == ""){   
+ 
 		if(OS_ANDROID){ 
 			var curDate = currentDateTime();   
 			var ed = curDate.substr(0, 10); 
@@ -257,8 +266,7 @@ function showVisitPicker(){
 			$.dateVisitPicker.visible = true;
 			$.selectorView.height = Ti.UI.SIZE;
 			$.dateToolbar.visible = true;
-		}
-	}
+		} 
 }
 
  if(Ti.Platform.osname == "android"){
