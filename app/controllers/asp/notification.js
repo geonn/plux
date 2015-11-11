@@ -15,7 +15,7 @@ function init(){
 
 function syncFromServer(){
 	var checker = Alloy.createCollection('updateChecker'); 
-	var isUpdate = checker.getCheckerById("1");
+	var isUpdate = checker.getCheckerById("2");
 	var last_updated ="";
 	 
 	if(isUpdate != "" ){
@@ -25,6 +25,7 @@ function syncFromServer(){
 		"member_no"	  : Ti.App.Properties.getString('memno'),
 		"last_updated" : last_updated
 	};
+	console.log(param);
 	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){  
