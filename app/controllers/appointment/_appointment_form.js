@@ -1,16 +1,9 @@
-console.log('a');
 var args = arguments[0] || {};
-console.log('a');
 var appointment_id = args.appointment_id || "";
-console.log('a');
-var userModel = Alloy.createCollection('users_plux'); 
-console.log('a');
-var appointmentModel = Alloy.createCollection('appointment'); 
-console.log('a');
+var userModel = Alloy.createCollection('users_plux');
+var appointmentModel = Alloy.createCollection('appointment');
 var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
-console.log('a');
-var panelListModel = Alloy.createCollection('panelList'); 
-console.log('a');
+var panelListModel = Alloy.createCollection('panelList');
 var selectedClinic, specialty; 
 var appointmentDatetime; 
 var toolbar;
@@ -18,7 +11,6 @@ var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
 
 $.patient_name.text = user.fullname;
 $.patient_email.text = user.email;
-console.log('a');
 var dpView = Titanium.UI.createView({
 		layout: "vertical",
 		height: 200,
@@ -88,7 +80,6 @@ function savedAppointment(ex){
 
  
 function init(){
-	console.log('a');
 	details = appointmentModel.getAppointmentById(appointment_id) || ""; 
 	if(details != ""){
 		var remark = details.remark; 
@@ -165,7 +156,6 @@ function init(){
 	// turn on the selection indicator (off by default)
 	
 	//$.appointmentDateTime.add(dpView);
-	console.log('a');
 }
 
 function removeAppointment(){

@@ -11,11 +11,9 @@
 				<View width="60%">
 					<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">eCard List</Label>
 				</View>
-		  		<View right="0" width="20%" >
-		     		<ImageView left='10' id="btnBack" onClick="navToEcard" width="25" height="25" image="/images/view.png" />
-		   		</View>
 			</View>
-			<View id="inner_box" class="wfill hfill"></View>
+			<ImageView class="wfill wsize" top="10" left="10" right="10" image="/images/eCard-front.png"></ImageView>
+			<TableView class="wfill hfill" id="inner_box" top="0" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
 		</View>
 	</Window>
 </Alloy>
