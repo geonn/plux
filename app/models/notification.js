@@ -10,6 +10,7 @@ exports.definition = {
 		    "url" : "TEXT", 
 		    "expired" : "TEXT",
 		    "isRead" : "TEXT",
+		    "status" : "TEXT",
 		    "created" : "TEXT",
 		    "updated" : "TEXT",
 		    "status" : "INTEGER"
@@ -51,8 +52,9 @@ exports.definition = {
 			getList : function(e){
 				var collection = this;
                 
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and (expired !='' OR expired <='"+currentDateTime()+ "') AND status = 1" ;
+                db = Ti.Database.open(collection.config.adapter.db_name); 
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' AND status=1 AND (expired !='' OR expired <='"+currentDateTime()+ "') ORDER BY id DESC" ;
+ 
                
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -66,6 +68,7 @@ exports.definition = {
 					    message: res.fieldByName('message'),
 					    url: res.fieldByName('url'), 
 					    isRead: res.fieldByName('isRead'),
+					    status: res.fieldByName('status'),
 					    expired: res.fieldByName('expired'), 
 					    created: res.fieldByName('created'), 
 					    updated: res.fieldByName('updated')
@@ -131,10 +134,11 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
              
-                if (res.isValidRow()){
-             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"', status="+entry.status+" WHERE id='" +entry.id+"' ";
+                if (res.isValidRow()){ 
+             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,status='"+entry.status+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
                 }else{
-                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,created,updated, status) VALUES ('"+entry.id+"', '"+entry.member_no +"','"+entry.subject+"','"+entry.message+"','"+entry.url+"', '"+entry.isRead+"', '"+entry.expired+"', '"+entry.created+"', '"+entry.updated+"', "+entry.status+")";
+                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES ('"+entry.id+"', '"+entry.member_no +"','"+entry.subject+"','"+entry.message+"','"+entry.url+"', '"+entry.isRead+"', '"+entry.expired+"','"+entry.status+"', '"+entry.created+"', '"+entry.updated+"')";
+ 
 				}
 				 
                 db.execute(sql_query);

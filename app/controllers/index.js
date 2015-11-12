@@ -9,6 +9,7 @@ medicalAttachmentModel.addColumn("img_path", "TEXT");
 
 var notificationModel = Alloy.createCollection('notification');   
 notificationModel.addColumn("isRead", "TEXT"); 
+notificationModel.addColumn("status", "TEXT"); 
 
 API.loadCategoryList(); 
 API.loadNewsFeed();
