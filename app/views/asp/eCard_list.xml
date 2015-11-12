@@ -1,8 +1,5 @@
 <Alloy>
 	<Window id="win" title="ASP eCARD" backButtonTitle="" backgroundColor="#fff" navTintColor="#CE1D1C">
-		<RightNavButton platform="ios">
-			<ImageView left='10' id="btnBack" onClick="navToEcard" width="25" height="25" image="/images/view.png" />
-		</RightNavButton>
 		<View class="hfill wfill vert">
 			<View top="0" layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">

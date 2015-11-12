@@ -212,10 +212,9 @@ function rotate_box(view_selected, back2front){
     });
 }
 
-/**/
-Ti.Gesture.addEventListener('orientationchange', function(e){
+function orientationchange(e){
 	Ti.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);
-Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
+	Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
     if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight){ 
         // do something 
         name_text.top  = "160dp";
@@ -230,7 +229,10 @@ Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.
    		memno_text.top     = "90dp";
    		memno_text.left   = "20dp";
     } 
-});
+}
+
+/**/
+Ti.Gesture.addEventListener('orientationchange', orientationchange);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
@@ -240,5 +242,6 @@ if(Ti.Platform.osname == "android"){
  
 $.eCard.addEventListener("close", function(){
 	console.log("close ecard");
+	Ti.Gesture.removeEventListener('orientationchange', orientationchange);
 	clearInterval(genCode);
 });
