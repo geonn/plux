@@ -52,16 +52,17 @@ exports.definition = {
 			},
 			getAppointmentList: function(ex){
 				var query_clinicid = (typeof ex.clinicId != "undefined")?" AND clinic_id= ? ":"";
+				var query_specialty = (typeof ex.specialty != "undefined")?" AND specialty= ? ":"";
 				var query_start_date = (typeof ex.start_date != "undefined")?" AND start_date >= ? AND start_date < ? ":"";
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE u_id='"+ex.u_id+"' "+query_clinicid+query_start_date+" AND status != 5 ORDER BY created DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE u_id='"+ex.u_id+"' "+query_clinicid+query_specialty+query_start_date+" AND status != 5 ORDER BY created DESC";
               	 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
                 if(typeof ex.clinicId != "undefined"){
-                	var res = db.execute(sql, ex.clinicId, ex.start_date, ex.end_date);
+                	var res = db.execute(sql, ex.clinicId, ex.specialty, ex.start_date, ex.end_date);
                 }else{
                 	var res = db.execute(sql);
                 }

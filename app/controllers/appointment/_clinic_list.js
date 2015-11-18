@@ -83,7 +83,7 @@ function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
 		var elbl = JSON.stringify(e.source);
 		var res = JSON.parse(elbl);
-	 	Ti.App.fireEvent('selectClinic',{clinicName:res.clinicName,clinicId:res.source });
+	 	Ti.App.fireEvent('selectClinic',{clinicName:res.clinicName,clinicId:res.source, specialty:res.specialty });
 	 	Ti.App.fireEvent("appointment_index:moveNext");
 	});
 }

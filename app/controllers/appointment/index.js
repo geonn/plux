@@ -66,6 +66,7 @@ function update_chooseDateTime(e){
 
 function update_specialty(e){
 	$._appointment_form.update_specialty({specialty:e.specialty});
+	$._available_timeslot.set_specialty({specialty:e.specialty });
 }
 
 function loadingStart(){
