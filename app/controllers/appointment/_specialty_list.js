@@ -21,11 +21,12 @@ function render_specialty_list(){
 			   // layout: "vertical",
 			    backgroundSelectedColor: "#ECFFF9",
 		 
-			}); 
-			console.log(entry.specialty+" specialty at tablerow");
+			});
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
+					top: 10,
+					bottom: 10,
 					specialty: entry.specialty
 			}); 
 

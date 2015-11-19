@@ -51,11 +51,11 @@ exports.definition = {
 				db.close();
 			},
 			getAppointmentList: function(ex){
-				var query_clinicid = (typeof ex.clinicId != "undefined")?" AND clinic_id= ? ":"";
-				var query_specialty = (typeof ex.specialty != "undefined")?" AND specialty= ? ":"";
-				var query_start_date = (typeof ex.start_date != "undefined")?" AND start_date >= ? AND start_date < ? ":"";
+				var query_clinicid = (typeof ex.clinicId != "undefined")?" AND appointment.clinic_id= ? ":"";
+				var query_specialty = (typeof ex.specialty != "undefined")?" AND appointment.specialty= ? ":"";
+				var query_start_date = (typeof ex.start_date != "undefined")?" AND appointment.start_date >= ? AND appointment.start_date < ? ":"";
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE u_id='"+ex.u_id+"' "+query_clinicid+query_specialty+query_start_date+" AND status != 5 ORDER BY created DESC";
+                var sql = "SELECT appointment.*, p.clinicName FROM appointment LEFT OUTER JOIN panelList as p on p.id = appointment.clinic_id WHERE appointment.u_id='"+ex.u_id+"' "+query_clinicid+query_specialty+query_start_date+" AND appointment.status != 5 ORDER BY appointment.created DESC";
               	 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -74,6 +74,7 @@ exports.definition = {
 						id: res.fieldByName('id'),
 						u_id: res.fieldByName('u_id'), 
 						clinic_id : res.fieldByName('clinic_id'),  
+						clinicName : res.fieldByName('clinicName'),  
 						status: res.fieldByName('status'), 
 						start_date: res.fieldByName('start_date'),
 						duration: res.fieldByName('duration'),

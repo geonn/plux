@@ -33,6 +33,7 @@ var checkMedicalDataUrl = "http://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user=
 var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
 var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
+var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -156,6 +157,7 @@ exports.syncAppointmentData = function(callback){
 		return false;
 	}
 	var url = syncAppointmentUrl + "&u_id="+u_id;
+	console.log(url+" appointment data");
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -1026,17 +1028,38 @@ function contactServerByGet(url) {
 	return client;
 };
 
-function contactServerByPost(url,records) {  
+function contactServerByPost(url,records) { 
 	var client = Ti.Network.createHTTPClient({
 		timeout : 5000
 	});
-  	if(OS_ANDROID){
-	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
-	 } 
-	client.open("POST", url);  
+	if(OS_ANDROID){
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 }
+	client.open("POST", url);
 	client.send(records);
 	return client;
 };
+
+exports.callByPost = function(e, onload, onerror){
+	
+	var deviceToken = Ti.App.Properties.getString('deviceToken');
+	if(deviceToken != ""){  
+		var url = eval(e.url);
+		console.log(url);
+		var _result = contactServerByPost(url, e.params || {});   
+		_result.onload = function(ex) { 
+			console.log('success callByPost');
+			console.log(this.responseText);
+			onload && onload(this.responseText); 
+		};
+		
+		_result.onerror = function(ex) {  
+			API.callByPost(e, onload, onerror); 
+		};
+	}
+};
+
+
 
 function onErrorCallback(e) {
 	var common = require('common');
