@@ -92,7 +92,7 @@ function add_appointment_row(entry){
 		color: "#ffffff",
 		bottom: 0,
 		minimumFontSize: 12,
-		text: time
+		text: convert_ampm(time)
 	});
 	
 	var label_status = $.UI.create("Label", {
@@ -216,6 +216,17 @@ function check_update_currentdate(date){
 		view_date.add(label_date);
 		$.appointment_list.add(view_date);
 	}
+}
+
+function convert_ampm(timeStamp){
+	var time = timeStamp.split(":");
+	var ampm = "am";
+	if(time[0] > 12){
+		ampm = "pm";
+		time[0] = time[0] - 12;
+	}
+	
+	return time[0]+":"+time[1]+ " "+ ampm;
 }
 
 
