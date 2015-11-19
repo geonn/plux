@@ -77,7 +77,7 @@ function add_appointment_row(entry){
 		appointment_id: entry.id,
 		status: entry.status,
 		view_row: 1,
-		top: 10
+		top: 3
 	});
 	
 	var view_date_status_box = $.UI.create("View", {
@@ -92,7 +92,7 @@ function add_appointment_row(entry){
 		color: "#ffffff",
 		bottom: 0,
 		minimumFontSize: 12,
-		text: time
+		text: time.substring(0, 5) 
 	});
 	
 	var label_status = $.UI.create("Label", {
@@ -204,13 +204,20 @@ function check_update_currentdate(date){
 		current_date = date;
 		//add date into list
 		var view_date = $.UI.create("View", {
-			classes: ['wsize', 'hsize', 'box'],
+			classes: ['wsize', 'hsize' ],
 			top: 10
 		});
 		
+		var d = new Date(); 
+		var inputDate = new Date(current_date);  
+		var bool = (d.toDateString() == inputDate.toDateString()); 
+		var dateText = monthFormat(current_date); 
+		if(bool === true){
+			dateText = "Today";
+		}
 		var label_date = $.UI.create("Label", {
-			classes: ['wsize', 'hsize', 'padding'],
-			text: current_date
+			classes: ['wsize', 'hsize', 'padding',"themeColor"],
+			text: dateText
 		});
 		
 		view_date.add(label_date);
