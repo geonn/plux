@@ -14,7 +14,7 @@ data.reverse();
 data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{
-		height: 105,
+		height: 120,
 	});
 	 
 	var statusColor = "#CE1D1C";
@@ -30,7 +30,7 @@ data.forEach(function(entry){
 	});
 	
 	var statustView = $.UI.create('View',{
-		height: 105,
+		height: 120,
 		serial: entry.serial,
 		width: 10,
 		backgroundColor: statusColor
@@ -49,15 +49,19 @@ data.forEach(function(entry){
 	});
 	
 	var view_detail = $.UI.create("View",{
-		height: Ti.UI.SIZE,
+		height: 40,
+		classes: ['wfill'],
 		serial: entry.serial,
 		claimType:entry.claimType
 	});
 	
 	var label_clinic = $.UI.create("Label",{
-		classes: ['clinic_name','bold'],
-		text: entry.clinicname,
+		classes: ['h5','bold'],
+		text:entry.clinicname,
 		claimType:entry.claimType,
+		top: 0,
+		left: 0,
+		width: "70%",
 		serial: entry.serial,
 	});
 	

@@ -29,7 +29,7 @@ for (var i=0; i < args.data.length; i++) {
   }
   
   var totalLimitLbl = $.UI.create("Label",{
-  	classes: ['font_small'],
+  	classes: ['h5','themeColor'],
   	right: 0,
   	width: "35%",
   	textAlign: "right",
