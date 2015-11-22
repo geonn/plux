@@ -29,7 +29,7 @@ for (var i=0; i < args.data.length; i++) {
   }
   
   var totalLimitLbl = $.UI.create("Label",{
-  	classes: ['font_small'],
+  	classes: ['h5', 'themeColor'],
   	right: 0,
   	width: "35%",
   	textAlign: "right",
@@ -42,7 +42,7 @@ for (var i=0; i < args.data.length; i++) {
   view_container.add(typeHeaderView);
   if(args.data[i].entidvbal < 99999){
   	 var balance = Math.ceil(((args.data[i].entidv-args.data[i].entidvbal)/args.data[i].entidv)*100);
-  	 console.log(balance);
+  	// console.log(balance);
   	 view_container.add(generate_progressBar(balance+"%"));
   	 view_container.add(generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));  
   }

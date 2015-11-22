@@ -17,12 +17,17 @@ function render_ecard_list(){
 	for (var i=0; i < data.length; i++) { 
 		var row = Titanium.UI.createTableViewRow({
 		    touchEnabled: true,
-		    height: Ti.UI.SIZE,
+		    height: 50,
 		    source: data[i].id,
 		    backgroundSelectedColor: "#FFE1E1", 
 			color: "transparent", 
 		   });
-	 
+	 	
+	 	var rowView = $.UI.create('View',{
+			classes: ['wfill'], 
+			source: data[i].id 
+		});
+		
 		var contentView = $.UI.create('View',{
 			classes: ['vert','hsize','wfill'], 
 			source: data[i].id,
@@ -38,8 +43,18 @@ function render_ecard_list(){
 			textAlign:'left',
 			height:Ti.UI.SIZE
 		}); 
+		
+		var forwardImg = $.UI.create('ImageView',{
+			classes : ['wsize'],
+			image : "/images/btn-forward.png",
+			width: 15,
+			right:5 
+		});  
+		
 		contentView.add(Label_name);
-		row.add(contentView);
+		rowView.add(contentView);
+		rowView.add(forwardImg);
+		row.add(rowView);
 		$.inner_box.appendRow(row);
 		contentView.addEventListener("click", navToEcard);
 	}

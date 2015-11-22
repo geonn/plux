@@ -14,7 +14,7 @@ data.reverse();
 data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{
-		height: 105,
+		height: 125,
 	});
 	 
 	var statusColor = "#CE1D1C";
@@ -30,7 +30,7 @@ data.forEach(function(entry){
 	});
 	
 	var statustView = $.UI.create('View',{
-		height: 105,
+		height: 125,
 		serial: entry.serial,
 		width: 10,
 		backgroundColor: statusColor
@@ -48,18 +48,29 @@ data.forEach(function(entry){
 		bottom: 5,
 	});
 	
-	var view_detail = $.UI.create("View",{
+	var view_detail = $.UI.create("View",{ 
 		height: Ti.UI.SIZE,
 		serial: entry.serial,
 		claimType:entry.claimType
 	});
 	
+	
+	var labelClinicView = $.UI.create("View",{ 
+		height: Ti.UI.SIZE,
+		serial: entry.serial,
+		height: 45,
+		top:0,
+		claimType:entry.claimType
+	});
+	
 	var label_clinic = $.UI.create("Label",{
 		classes: ['clinic_name','bold'],
-		text: entry.clinicname,
+		text: entry.clinicname,  
 		claimType:entry.claimType,
+		top:0,
 		serial: entry.serial,
 	});
+	labelClinicView.add(label_clinic);
 	
 	var label_amount = $.UI.create("Label",{
 		classes: ['amount','bold'],
@@ -120,7 +131,7 @@ data.forEach(function(entry){
 		text: "Status: "+entry.status
 	});**/
 	
-	view_detail.add(label_clinic);
+	view_detail.add(labelClinicView);
 	view_detail.add(label_amount);
 	view_detail2.add(label_category);
 	view_detail2.add(label_date);

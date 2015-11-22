@@ -25,7 +25,7 @@ function syncFromServer(){
 		"member_no"	  : Ti.App.Properties.getString('memno'),
 		"last_updated" : last_updated
 	};
-	console.log(param);
+ 
 	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){  

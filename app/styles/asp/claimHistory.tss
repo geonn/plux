@@ -2,8 +2,7 @@
 "TableViewRow" : {
   height: Titanium.UI.SIZE,
 },
-".clinic_name":{
-	height: Titanium.UI.SIZE,
+".clinic_name":{ 
 	width: Titanium.UI.FILL,
 	right: 80,
 	font:{

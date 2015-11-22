@@ -128,7 +128,7 @@ var genCode = setInterval(function(){
 		width: 200,
 		height: 200,
 		margin: 4,
-		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"+"||" +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
+		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"  +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
 	}); 
  
 	$.qrCode.add(qrcodeView);

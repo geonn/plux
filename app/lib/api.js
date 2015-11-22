@@ -2,7 +2,7 @@
 *** SETTING / API ***
 **********************/
 var API_DOMAIN = "appsapi.aspmedic.com/aida/";
-var FREEJINI_DOMAIN =  "geonn.com.my";
+var FREEJINI_DOMAIN =  "plux.freejini.com.my";
 var url_doLogin		= API_DOMAIN+"login.aspx";
 var url_panelList   = API_DOMAIN+"panellist.aspx";
 
@@ -742,6 +742,7 @@ exports.updateNotificationToken = function(e){
 
 exports.loadLeaflet = function(ex){
 	var url = leafletUrl;
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
