@@ -56,7 +56,7 @@ exports.definition = {
 				  var key = params[i].key || "";
 				  var value = params[i].value || "";
 				  console.log(params[i]);
-				  addon += " AND "+key+" = '"+value+"'";
+				  addon += " AND "+key+" like '%"+value+"%'";
 				};
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE `status` =1 "+addon+" group by specialty ORDER BY name ASC";

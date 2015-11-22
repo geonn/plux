@@ -124,15 +124,17 @@ var genCode = setInterval(function(){
 		typeNumber: 10,
 		errorCorrectLevel: 'M'
 	});
+	 
 	var qrcodeView = userQR.createQRCodeView({
 		width: 200,
 		height: 200,
-		margin: 4,
+		margin: 4, 
 		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"  +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
+ 
 	}); 
  
 	$.qrCode.add(qrcodeView);
-},2000);
+},1000);
 
 //$.card.add(back);
 $.card.add(front);

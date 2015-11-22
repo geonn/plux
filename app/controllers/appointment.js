@@ -2,13 +2,18 @@ var args = arguments[0] || {};
 var appointmentModel = Alloy.createCollection('appointment');  
 var panelListModel = Alloy.createCollection('panelList');  
 var appointmentList;
-common.construct($); 
-common.showLoading();
+var indicator_color = ["#ffffff", '#fccd03', '#CE1D1C', '#afdb00', '#3f99f9', 'black'];
+var status_text = ["", "Pending", "Rejected", "Accepted", "Suggestion", "Deleted"];
+var current_date = "";
+var loading = Alloy.createController("loading");
+
 init();
 
 function init(){
+	$.win.add(loading.getView());
+	loading.start();
 	API.syncAppointmentData(savedAppointment);
-	displayAppointmentList();
+	render_appointment_list();
 }
 
 function savedAppointment(ex){ 
@@ -20,127 +25,215 @@ function savedAppointment(ex){
 		appointmentModel.saveArray(result.data);
 	}
 	
-	displayAppointmentList(); 
+	render_appointment_list(); 
 }
 
 
-function displayAppointmentList(){ 
+function render_appointment_list(){ 
+	$.appointment_list.removeAllChildren();
 	appointmentList = appointmentModel.getAppointmentList({u_id: Ti.App.Properties.getString('u_id')}); 
-	var data=[]; 
-	$.recordTable.setData(data);
+	var data=[];
 	var counter = 0;  
 	if(appointmentList.length < 1){
-		common.hideLoading(); 
-		$.recordTable.setData(common.noRecord());
-	}else{
-		appointmentList.forEach(function(entry) {
-			var row = Titanium.UI.createTableViewRow({
-			    touchEnabled: true,
-			    height: 60,
-			    source: entry.id,
-			    backgroundSelectedColor: "#FFE1E1", 
-				color: "transparent",
-				
-			   });
-		
-			var statusText = "Pending";
-			var statusColor = "#8A6500";
-			if(entry.status == "2"){ //rejected
-				statusText = "Rejected";
-				statusColor = "#CE1D1C";
-			}else if(entry.status == "3"){ //accepted
-				statusText = "Accepted";
-				statusColor = "#2C8A00";
-			}else if(entry.status == "4"){ //suggested date
-				statusText = "Suggested Another Date And Time";
-				statusColor = "#005E8A";
-			}
-			 
-			if(entry.start_date < currentDateTime() ){ 
-				statusText = "Expired";
-				statusColor = "#CE1D1C";
-			}
-			
-			var horzView = $.UI.create('View',{
-				classes: ['horz', 'hsize','wfill'], 
-				source: entry.id,  
-			});
-			
-			var statustView = $.UI.create('View',{
-				height: 60,
-				source: entry.id,
-				width: 10,
-				backgroundColor: statusColor
-			});
-			horzView.add(statustView);
-			var contentView = Ti.UI.createView({
-				layout: "vertical",
-				height: Ti.UI.SIZE,
-				source: entry.id,
-				width: Ti.UI.FILL
-			});
-			 
-			panel = panelListModel.getPanelListById(entry.clinic_id);
-			var clinicLbl = $.UI.create('Label',{
-				classes : ['themeColor', 'h5', 'bold'],
-				text:panel.clinicName || "",
-				font:{fontSize:14},
-				source: entry.id, 
-				textAlign:'left',   
-				left:15, 
-				top:0,
-				width:"80%",
-				height:Ti.UI.SIZE
-			}); 
-			contentView.add(clinicLbl);
-			
-			var appDate = entry.start_date;
-			if(entry.start_date == "" || entry.start_date == "0000-00-00 00:00:00"){
-				appDate = "N/A"; 
-			}else{
-				appDate= monthFormat(entry.start_date);
-			} 
-			var appLbl =  $.UI.create('Label',{ 
-				classes: ['h6'],
-				text:  "Appt. date : "+appDate,
-				font:{fontSize:12},
-				source: entry.id,
-				color: "#848484", 
-				textAlign:'left', 
-				left:15, 
-				width: "85%",
-				height:Ti.UI.SIZE
-			}); 
-			contentView.add(appLbl);
-			
-			var rightForwardBtn =  Titanium.UI.createImageView({
-				image:"/images/btn-forward.png",
-				source: entry.id,
-				width:15,
-				right:20 
-			});
-			horzView.add(contentView);
-			row.add(horzView);
-			row.add(rightForwardBtn); 
-		 	row.addEventListener('click', function(e) {
-				viewDetails(e.rowData.source);
-			});
-			data.push(row);
+		var view_norecord = $.UI.create("View", {
+			classes: ['wsize', 'hsize', 'box']
 		});
-	
-		$.recordTable.setData(data);
+		var label_no_record = $.UI.create("Label", {
+			classes: ['wsize', 'hsize','padding'],
+			text: "No appointment at this moment."
+		});
+		view_norecord.add(label_no_record);
+		$.appointment_list.add(view_norecord);
+	}else{
+		var all_date = _.sortBy(appointmentList, 'start_date');
+		all_date = all_date.reverse();
+		console.log(all_date);
+		
+		for (var i=0; i < all_date.length; i++) {
+			var datetime = all_date[i].start_date.split(" ");
+			check_update_currentdate(datetime[0]);
+		    $.appointment_list.add(add_appointment_row(all_date[i]));
+		};
 	}
-	common.hideLoading(); 
-}
-
-function viewDetails(rec_id){  
-	console.log(rec_id);
-	nav.navigateWithArgs("appointment/index",{id: rec_id}); 
+	loading.finish();
 }
 
 function new_appointment(){
 	console.log("new record clicked!!");
 	nav.navigateWithArgs("appointment/index",{id : ""});
+}
+
+/*
+ Private Function
+ * */
+
+function add_appointment_row(entry){
+	var datetime = entry.start_date.split(" ");
+	var time = datetime[1];
+	
+	var view_row = $.UI.create("View", {
+		classes: ['wfill', 'box', 'horz'],
+		height: 70,
+		appointment_id: entry.id,
+		status: entry.status,
+		view_row: 1,
+		top: 3
+	});
+	
+	var view_date_status_box = $.UI.create("View", {
+		classes: ['hfill', 'vert'],
+		width: 90,
+		backgroundColor: indicator_color[entry.status]
+	});
+	
+	var label_time = $.UI.create("Label", {
+		classes: ['wfill', 'hsize','padding'],
+		textAlign: "center",
+		color: "#ffffff",
+		bottom: 0,
+		minimumFontSize: 12,
+		text: convert_ampm(time)
+	});
+	
+	var label_status = $.UI.create("Label", {
+		classes: ['wfill', 'hsize','padding'],
+		textAlign: "center",
+		top: 0,
+		color: "#ffffff",
+		font:{
+			fontSize: 12
+		},
+		text: status_text[entry.status]
+	});
+	
+	view_date_status_box.add(label_time);
+	view_date_status_box.add(label_status);
+	
+	//middle part
+	var view_clinic_specialty_box = $.UI.create("View", {
+		classes: ['hfill', 'vert'],
+		width: "auto",
+	});
+	
+	var label_clinic = $.UI.create("Label", {
+		classes: ['wfill', 'hsize','padding'],
+		bottom: 0,
+		font:{
+			fontSize: 12
+		},
+		text: entry.clinicName
+	});
+	
+	var label_specialty = $.UI.create("Label", {
+		classes: ['wfill', 'hsize','padding'],
+		bottom: 0,
+		top: 0,
+		font:{
+			fontSize: 12
+		},
+		text: entry.specialty
+	});
+	
+	view_clinic_specialty_box.add(label_clinic);
+	view_clinic_specialty_box.add(label_specialty);
+	
+	view_row.add(view_date_status_box);
+	view_row.add(view_clinic_specialty_box);
+	
+	view_row.addEventListener("click", create_dialog_box);
+	return view_row;
+}
+
+function create_dialog_box(ex){
+	var id = parent({name: "appointment_id"}, ex.source);
+	var status = parent({name: "status"}, ex.source);
+	var buttonName = [], message = "";
+	//var view_row = parent({name: "view_row", value: 1}, ex.source);
+	switch(status){
+		case 1:
+		case 2:	
+			buttonName = ['Cancel Appointment', "Cancel"];
+			message = "Are you sure want to cancel this appointment?";
+			break;
+		case 4:
+			buttonName = ['Accept', "Cancel"];
+			message = "Please confirm if this appointment time is convenient for you.";
+			break;
+		case 3:
+			return;	
+		
+	}
+	var dialog = Ti.UI.createAlertDialog({
+	    cancel: 1,
+	    buttonNames: buttonName,
+	    message: message,
+	    title: 'Actions'
+	  });
+	  dialog.addEventListener('click', function(e){
+	    if (e.index === 0){
+	      if(status == 4){
+	      	loading.start();
+	      	API.callByPost({url: "suggestedAppointmentUrl", params:{id: id}}, function(responseText){
+	      		console.log(responseText);
+	      		var model = Alloy.createCollection("appointment");
+				var res = JSON.parse(responseText);
+				var arr = res.data || null;
+				model.saveArray(arr);
+				render_appointment_list();
+				loading.finish();
+	      	});
+	      }else if(status == 1 || status == 2){
+	      	loading.start();
+	      	API.callByPost({url: "addAppointmentUrl", params:{id: id, isDoctor:1, status: 5}}, function(responseText){
+	      		console.log(responseText);
+	      		var model = Alloy.createCollection("appointment");
+				var res = JSON.parse(responseText);
+				var arr = res.data || null;
+				model.updateAppointmentStatus(id, 5);
+				render_appointment_list();
+				loading.finish();
+	      	});
+	      }
+	    }
+	  });
+	  dialog.show();
+}
+
+function check_update_currentdate(date){
+	if(current_date != date){
+		current_date = date;
+		//add date into list
+		var view_date = $.UI.create("View", {
+			classes: ['wsize', 'hsize' ],
+			top: 10
+		});
+		
+		var d = new Date(); 
+		var inputDate = new Date(current_date);  
+		var bool = (d.toDateString() == inputDate.toDateString()); 
+		var dateText = monthFormat(current_date); 
+		if(bool === true){
+			dateText = "Today";
+		}
+		var label_date = $.UI.create("Label", {
+			classes: ['wsize', 'hsize', 'padding',"themeColor"],
+			text: dateText
+		});
+		
+		view_date.add(label_date);
+		$.appointment_list.add(view_date);
+	}
+}
+
+function convert_ampm(timeStamp){
+	var time = timeStamp.split(":");
+	var ampm = "am";
+	if(time[0] > 12){
+		ampm = "pm";
+		time[0] = time[0] - 12;
+	}
+	
+	return time[0]+":"+time[1]+ " "+ ampm;
 }
 
 
@@ -150,9 +243,9 @@ if(Ti.Platform.osname == "android"){
 	}); 
 }
 
-Ti.App.addEventListener('displayRecords', displayAppointmentList);
+Ti.App.addEventListener('displayRecords', render_appointment_list);
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
 	$.destroy(); 
-    Ti.App.removeEventListener('displayRecords', displayAppointmentList);
+    Ti.App.removeEventListener('displayRecords', render_appointment_list);
 });

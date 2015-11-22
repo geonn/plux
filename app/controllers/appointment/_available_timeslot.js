@@ -3,6 +3,7 @@ var listing = [];
 var selected_date = new Date();
 var lastday = selected_date;
 var clinicId = 0;
+var specialty = 0;
 var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
 var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 var u_id = Ti.App.Properties.getString('u_id') || 0;
@@ -33,7 +34,10 @@ function convertMinuteToHour(minutes){
 
 $.set_clinicId = function(e){
 	clinicId = e.clinicId;
-	console.log("set clinicId refresh");
+};
+
+$.set_specialty = function(e){
+	specialty = e.specialty;
 	refresh();
 };
 
@@ -105,7 +109,7 @@ function render_available_timeslot(){
 	
 	var start_date = selected_date.getFullYear()+"-"+(parseInt(selected_date.getMonth())+1)+"-"+selected_date.getDate()+" 00:00:00";
 	var end_date = selected_date.getFullYear()+"-"+(parseInt(selected_date.getMonth())+1)+"-"+selected_date.getDate()+" 23:59:59";
-	var appointmentList = appointmentModel.getAppointmentList({u_id: u_id, clinicId: clinicId, start_date: start_date, end_date:end_date});
+	var appointmentList = appointmentModel.getAppointmentList({u_id: u_id, clinicId: clinicId, specialty: specialty, start_date: start_date, end_date:end_date});
 	
 	/*
 	 generate booked timeslot from appointment list
@@ -118,7 +122,7 @@ function render_available_timeslot(){
 	  var time_start_key = Math.floor(booking_min / timeblock);
 	  var time_end_key = Math.floor((booking_min+parseInt(appointmentList[i].duration)) / timeblock);
 	  console.log(time_start_key+" = "+time_end_key);
-	  for(;time_end_key >= time_start_key;  time_start_key++){
+	  for(;time_end_key > time_start_key;  time_start_key++){
 	  	booked_time.push(time_start_key.toString());
 	  }
 	};

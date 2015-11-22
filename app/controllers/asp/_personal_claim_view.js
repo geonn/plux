@@ -28,8 +28,8 @@ for (var i=0; i < args.data.length; i++) {
   	var totBal = args.data[i].entshabal;
   }
   
-  var totalLimitLbl = $.UI.create("Label",{
-  	classes: ['h5', 'themeColor'],
+  var totalLimitLbl = $.UI.create("Label",{ 
+  	classes: ['h5', 'themeColor'], 
   	right: 0,
   	width: "35%",
   	textAlign: "right",
