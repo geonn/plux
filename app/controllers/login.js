@@ -107,10 +107,14 @@ function loginFacebook(e){
 FACEBOOK.addEventListener('login', loginFacebook); 
 
 if (Ti.Platform.osname == 'iphone') {
-	TouchId.authenticate({
-	    reason: "Please place finger print to login PLUX",
-	    callback: authCB
-	});
+	var email = $.email.value;
+	var userData = usersPluxModel.getUserByEmail(email);
+	if(userData && email != ""){ 
+		TouchId.authenticate({
+		    reason: "Please place finger print to login PLUX Healthcare",
+		    callback: authCB
+		});
+	}
 }
 
 function authCB(e){ 
