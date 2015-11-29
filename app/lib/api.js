@@ -198,7 +198,7 @@ exports.checkMedicalDataSync = function(e, callback){
 	client.send(e.param);
 };
 
-exports.syncAttachments = function(e,callback){
+exports.syncAttachments = function(e,onload){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	if(u_id == ""){ 
 		return false;
@@ -207,9 +207,8 @@ exports.syncAttachments = function(e,callback){
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {  
-	      
-	     	var res = JSON.parse(this.responseText);  
-		 	callback({param: res});
+			onload && onload(this.responseText); 	      
+	     	 
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {

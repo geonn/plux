@@ -41,13 +41,13 @@ function loadImage(){
 	removeAllChildren($.attachment);
 	if(recAttachment.length > 0){ 
 	 	recAttachment.forEach(function(att){ 
-	 		console.log(att);
+	 		 
 	 		//if(typeof att.blob == "undefined"  ){
 	 			var myImage = att.img_path;
 	 		//}else{
 	 		//	var myImage = Ti.Utils.base64decode(att.blob);
 	 		//}
-	 		console.log("["+ myImage);
+	 		 
 	 		$.attachment.add(attachedPhoto(myImage, counter));
 	 		counter++;  
 	 	}); 
@@ -163,8 +163,7 @@ function attachedPhoto(image,position){
 	    if (currentTime - clickTime < 1000) {
 	        return;
 	    };
-	    clickTime = currentTime;
-	    console.log("position : "+position);
+	    clickTime = currentTime; 
 		var page = Alloy.createController("attachmentDetails",{rec_id:rec_id,position:position}).getView(); 
 	  	page.open();
 	  	page.animate({
@@ -232,12 +231,26 @@ function takePhoto(){
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                   //var nativePath = event.media.nativePath;  
 			            blobContainer = image; 
-			            medicalAttachmentModel.addAttachment({
-							medical_id : rec_id,
-							category: categoryType,
-							blob : Ti.Utils.base64encode(image)
-						});
-			            loadImage(); 
+			            
+						var param = { 
+						 		app_id : rec_id,
+						 		medical_id :rec_id,
+						 		u_id :Ti.App.Properties.getString('u_id'),
+						 		caption : categoryType,
+						 		Filedata : image,
+						};	
+						 
+						API.syncAttachments({param: param}, function(responseText){
+							var res = JSON.parse(responseText);  
+							if(res.status == "success"){  
+								var record = res.data;  
+								medicalAttachmentModel.addFromServer(record[0].id, record);
+							}
+							
+				            loadImage(); 
+						});	 
+					 	
+					 	
 	                }
 	            },
 	            cancel:function(){
@@ -287,12 +300,13 @@ function takePhoto(){
 					 		Filedata : image,
 					};	
 					 
-					API.syncAttachments({param: param}, function(){
-						medicalAttachmentModel.addAttachment({
-							medical_id : rec_id,
-							category: categoryType,
-							blob : Ti.Utils.base64encode(image)
-						}); 
+					API.syncAttachments({param: param}, function(responseText){
+						var res = JSON.parse(responseText);  
+						if(res.status == "success"){  
+							var record = res.data;  
+							medicalAttachmentModel.addFromServer(record[0].id, record);
+						}
+						
 			            loadImage(); 
 					});	 
 					 	
