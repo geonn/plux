@@ -35,12 +35,19 @@ function loadMedicalInfo(){
 
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
+	 
 	var counter = 0;
 	 
 	removeAllChildren($.attachment);
 	if(recAttachment.length > 0){ 
 	 	recAttachment.forEach(function(att){ 
-	 		var myImage = Ti.Utils.base64decode(att.blob);
+	 		console.log(att);
+	 		//if(typeof att.blob == "undefined"  ){
+	 			var myImage = att.img_path;
+	 		//}else{
+	 		//	var myImage = Ti.Utils.base64decode(att.blob);
+	 		//}
+	 		console.log("["+ myImage);
 	 		$.attachment.add(attachedPhoto(myImage, counter));
 	 		counter++;  
 	 	}); 
@@ -56,20 +63,35 @@ function saveRecord(){
 	if(title.trim() == ""){
 		title = "Untitled - "+ currentDateTime();
 	}  
-	medicalRecordsModel.updateRecord({ 
-		id : rec_id,
-		title : title.trim(),
-		clinic  : clinic.trim(),
-		message : message.trim(),
-		treatment : treatment.trim(),  
-		updated : currentDateTime()
-	});  
+	
+	/** save text information***/
+	var param = { 
+		app_id :rec_id,
+		u_id : Ti.App.Properties.getString('u_id'),
+		clinic : clinic,
+		title : title,
+		message  : message,
+		treatment : treatment,
+		created : details.created,
+		updated : currentDateTime(),
+	};    
+	API.syncMedicalRecords({param: param}, function(){
+		medicalRecordsModel.updateRecord({ 
+			id : rec_id,
+			title : title.trim(),
+			clinic  : clinic.trim(),
+			message : message.trim(),
+			treatment : treatment.trim(),  
+			updated : currentDateTime()
+		});  
+		Ti.App.fireEvent('displayRecords');
+		nav.closeWindow($.editRecWin);
+	});
+	
 	// nav.navigationWindow("myHealth" );
-	Ti.App.fireEvent('displayRecords');
-	nav.closeWindow($.editRecWin);
+	
 	 
-}
-
+} 
 function deleteRecord(){
 	
 	var dialog = Ti.UI.createAlertDialog({
@@ -188,7 +210,7 @@ function takePhoto(){
 	});
 	var pWidth = Ti.Platform.displayCaps.platformWidth;
     var pHeight = Ti.Platform.displayCaps.platformHeight;
-    console.log(pWidth+"wwww");
+     
 	dialog.addEventListener('click', function(e) { 
 	    
 	    if(e.index == 0) { //if first option was selected
@@ -256,13 +278,25 @@ function takePhoto(){
 	        		} 
 					image = image.imageAsResized(newWidth, newHeight); 
 		            blobContainer = image; 
-		            console.log(pWidth+" "+newWidth);
-		            medicalAttachmentModel.addAttachment({
-						medical_id : rec_id,
-						category: categoryType,
-						blob : Ti.Utils.base64encode(image)
-					}); 
-		            loadImage(); 
+		           	 
+					var param = { 
+					 		app_id : rec_id,
+					 		medical_id :rec_id,
+					 		u_id :Ti.App.Properties.getString('u_id'),
+					 		caption : categoryType,
+					 		Filedata : image,
+					};	
+					 
+					API.syncAttachments({param: param}, function(){
+						medicalAttachmentModel.addAttachment({
+							medical_id : rec_id,
+							category: categoryType,
+							blob : Ti.Utils.base64encode(image)
+						}); 
+			            loadImage(); 
+					});	 
+					 	
+		           
 	            },
 	            cancel:function() {
 	               

@@ -20,14 +20,25 @@ function checkDataSync(){
 
 function savedRecords(ex){
 	var result = ex.param; 
-	var info =result.data;
+	var info =result.data; 
 	if(info.length > 0){
 		info.forEach(function(entry) {
 			var dataFromApp = medicalRecordsModel.getRecordById(entry.app_id);
+		 
 			if(dataFromApp != ""){
-				 
-			}else{
-				 
+				var arr = {
+					id: entry.app_id,
+					server_id: entry.id,
+					title: entry.title,
+					message: entry.message ,
+					clinic: entry.clinic,
+					treatment: entry.treatment, 
+					updated: entry.updated,
+				};
+			 
+				medicalRecordsModel.updateRecord(arr);
+				
+			}else{ 
 				var arr = {
 					id: entry.app_id,
 					server_id: entry.id,
@@ -38,9 +49,13 @@ function savedRecords(ex){
 					created: entry.created,
 					updated: entry.updated,
 				};
+			 
 				medicalRecordsModel.addRecordFromServer(arr);
-			}
-		
+			} 
+			
+			var att = entry.attachment;
+			medicalAttachmentModel.removeRecordByRec(entry.app_id); 
+			medicalAttachmentModel.addFromServer(entry.app_id, att);
 		});
 		
 		displayRecords("");
@@ -50,7 +65,7 @@ function savedRecords(ex){
 
 function syncToServer(){
 	var unsyncList = medicalRecordsModel.getUnsyncList();
-	 
+	  
 	if(unsyncList.length > 0){ 
 		unsyncList.forEach(function(entry) {
 			if(entry.title != "" &&  entry.message !=""){ 
@@ -111,7 +126,7 @@ function displayRecords(listing){
 	if(listing == "" || listing.type == "displayRecords"){
 		listing = medicalRecordsModel.getRecordsList();  
 	} 
- 	console.log(listing);
+ 	 
 	var data=[];  
    		var counter = 0; 
    		if(listing.length < 1){ 
@@ -163,11 +178,11 @@ function displayRecords(listing){
 					message = message.replace(/["']/g, "&quot;");
 				}  
 				
-				var recTitle = Titanium.UI.createLabel({
+				var recTitle = $.UI.create('Label',{
+					classes: ['themeColor'],
 					text: title,
 					font:{fontSize:16},
-					source: entry.id,
-					color: "#848484",
+					source: entry.id, 
 					width:'90%',
 					textAlign:'left',
 					top:5,

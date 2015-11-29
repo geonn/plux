@@ -34,6 +34,7 @@ var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments
 var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
+var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -180,6 +181,7 @@ exports.checkMedicalDataSync = function(e, callback){
 		return false;
 	}
 	var url = checkMedicalDataUrl + "&u_id="+u_id;   
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {  
@@ -976,7 +978,7 @@ exports.loadPanelList = function (ex){
 
 exports.callByPost = function(e, onload, onerror){
 	var url =  eval(e.url);
-	console.log(url);
+	//console.log(url);
 	var _result = contactServerByPost(url, e.params || {});   
 	_result.onload = function(e) {   
 		onload && onload(this.responseText); 

@@ -13,7 +13,12 @@ var getAttImages = function(){
 	var the_view = [];
 	
 	for (var i=0; i< items.length; i++) {
-		var myImage = Ti.Utils.base64decode(items[i].blob);
+		//if(items[i].blob == ""){
+	 		var myImage = items[i].img_path;
+	 //	}else{
+	 //		var myImage = Ti.Utils.base64decode(items[i].blob);
+	 //	}
+		
 		adImage = Ti.UI.createImageView({
 			image: myImage,
 			width:"100%",
@@ -97,14 +102,36 @@ var getAttImages = function(){
 			      //Do nothing
 			}
 			if (e.index === 1){ 
-				medicalAttachmentModel.removeRecordById(items[my_page].id);
-				getAttImages();
-				Ti.App.fireEvent('refreshAttachment'); 
-				$.attachment_Details.close({
-					curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-					opacity: 0,
-					duration: 200
+				var imgDetails = medicalAttachmentModel.getRecordById(items[my_page].id);
+				var param = {  
+					"img_id" : imgDetails.server_id
+				};
+			 
+			  
+				API.callByPost({url:"deleteAttachmentUrl", params: param}, function(responseText){ 
+					var res = JSON.parse(responseText);  
+					if(res.status == "success"){  
+						medicalAttachmentModel.removeRecordById(items[my_page].id);
+						getAttImages();
+						Ti.App.fireEvent('refreshAttachment'); 
+						$.attachment_Details.close({
+							curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+							opacity: 0,
+							duration: 200
+						});
+						
+					}
+				}, function(){
+					medicalAttachmentModel.removeRecordById(items[my_page].id);
+						getAttImages();
+						Ti.App.fireEvent('refreshAttachment'); 
+						$.attachment_Details.close({
+							curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+							opacity: 0,
+							duration: 200
+						});
 				});
+				
 			}
 		});
 		dialog.show(); 

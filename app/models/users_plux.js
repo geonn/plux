@@ -54,7 +54,7 @@ exports.definition = {
 				var collection = this;
                 var db1 = Ti.Database.open(collection.config.adapter.db_name); 
                 
-                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email='"+email+"' "); 
+                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email='"+email+"' AND id != 'undefined' "); 
                 
                 var listArr = [];   
                 while (res.isValidRow()){ 
@@ -77,17 +77,17 @@ exports.definition = {
 			}, 
 			addUserData : function(entry) {
 				var collection = this; 
-	            var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" +entry.id+"' ";
+	            var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" +entry.u_id+"' ";
 	            var sql_query =  "";
 	            db = Ti.Database.open(collection.config.adapter.db_name);
 	            var res = db.execute(sql);
 	            //console.log(entry.memno);
 	            if (res.isValidRow()){
-	            	sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET fullname='"+entry.fullname+"',  email='"+entry.email+"' , status='"+entry.status+"', facebook_id='"+entry.facebook_id+"', facebook_url='"+entry.facebook_url+"', last_login='"+entry.last_login+"' WHERE id='" +entry.id+"' ";
+	            	sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET fullname='"+entry.fullname+"',  email='"+entry.email+"' , status='"+entry.status+"', facebook_id='"+entry.facebook_id+"', facebook_url='"+entry.facebook_url+"', last_login='"+entry.last_login+"' WHERE id='" +entry.u_id+"' ";
 	            }else{
 	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES ('"+entry.u_id+"', '"+entry.fullname +"','"+entry.email+"','"+entry.status+"', '"+ entry.facebook_id +"',  '"+ entry.facebook_url +"',  '"+ entry.last_login +"')";
 				}
-				//console.log(sql_query);
+				console.log(sql_query);
 	            db.execute(sql_query);
 	            db.close();
 	           	collection.trigger('sync'); 

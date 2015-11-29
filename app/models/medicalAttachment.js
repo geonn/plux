@@ -3,6 +3,7 @@ exports.definition = {
 		columns: {
 		    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
 		    "medical_id": "INTEGER",
+		    "server_id": "INTEGER",
 		    "blob": "BLOB", 
 		    "img_path": "TEXT", 
 		    "category": "TEXT",
@@ -42,6 +43,33 @@ exports.definition = {
 				}
 				db.close();
 			},
+			getRecordById : function(id){
+				var collection = this;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "'" ;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+               
+                var res = db.execute(sql);
+                var arr = []; 
+               
+                if (res.isValidRow()){
+					arr = {
+					    id: res.fieldByName('id'),
+						server_id: res.fieldByName('server_id'),
+						medical_id: res.fieldByName('medical_id'),
+						blob: res.fieldByName('blob'), 
+					  	img_path: res.fieldByName('img_path'), 
+						category: res.fieldByName('category'), 
+						created: res.fieldByName('created'),
+						updated: res.fieldByName('updated') 
+					  };
+				}  
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
 			// extended functions and properties go here
 			getRecordByMecId: function(medical_id){
 				var collection = this;
@@ -57,8 +85,10 @@ exports.definition = {
                 while (res.isValidRow()){ 
 					listArr[count] = { 
 							id: res.fieldByName('id'),
+							server_id: res.fieldByName('server_id'),
 						    medical_id: res.fieldByName('medical_id'),
 						    blob: res.fieldByName('blob'), 
+						    img_path: res.fieldByName('img_path'), 
 						    category: res.fieldByName('category'), 
 						    created: res.fieldByName('created'),
 						    updated: res.fieldByName('updated') 
@@ -88,6 +118,7 @@ exports.definition = {
                 while (res.isValidRow()){ 
 					listArr[count] = { 
 							id: res.fieldByName('id'),
+							server_id: res.fieldByName('server_id'),
 						    medical_id: res.fieldByName('medical_id'),
 						    blob: res.fieldByName('blob'), 
 						    category: res.fieldByName('category'), 
@@ -140,6 +171,24 @@ exports.definition = {
 	            db.close();
 	            collection.trigger('sync');
            },
+           addFromServer : function(medical_id, arr){
+				var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+	            if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }  
+		   		
+	
+				db.execute("BEGIN");
+                arr.forEach(function(entry) { 
+	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( medical_id, server_id, img_path, created, updated, category ) VALUES ( '"+ medical_id+"', '"+entry.img_id+"', '"+entry.img_path+"', '"+entry.created+"', '"+entry.updated+"', '"+entry.img_caption+"')";
+					db.execute(sql_query );
+					console.log(sql_query);
+				});
+				db.execute("COMMIT");
+	            db.close();
+	            collection.trigger('sync');
+			} ,
            updateFromServer : function(arr){
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -149,15 +198,14 @@ exports.definition = {
 		   		
 	
 				db.execute("BEGIN");
-                arr.forEach(function(entry) {
-                	console.log(entry); 
+                arr.forEach(function(entry) { 
 	                var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET img_path=?  WHERE id=?";
 					db.execute(sql_query,   entry.img_path, entry.id);
 				});
 				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
-			},
+			} 
 		});
 
 		return Collection;

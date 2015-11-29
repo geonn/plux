@@ -84,14 +84,7 @@ exports.showLoading = function(){
 	mainView.loadingBar.opacity = "1";
 	mainView.loadingBar.zIndex = "100";
 	mainView.loadingBar.height = "120";
-	 
-	if(Ti.Platform.osname == "android"){ 
-		mainView.loadingBar.height = Ti.UI.SIZE;
-		mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG; 
-	}else if (Ti.Platform.name === 'iPhone OS'){
-		mainView.loadingBar.top = (Ti.Platform.displayCaps.platformHeight / 2) -80; 
-		mainView.activityIndicator.style = Ti.UI.iPhone.ActivityIndicatorStyle.BIG;
-	}
+	mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG; 
 	mainView.activityIndicator.show();
 };
 
