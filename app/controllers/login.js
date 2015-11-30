@@ -48,6 +48,11 @@ function doSignup(){
 	nav.navigationWindow("signup", 0);
 }
 
+function doASPSignup(){
+	var nav = require('navigation');
+	nav.navigationWindow("asp/signup", 0);
+}
+
 /** To fixed keyboard hide/show when textfield is activate**/
 $.win.addEventListener('click',hideProductFormKeyboard);
 

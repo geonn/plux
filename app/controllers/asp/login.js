@@ -55,7 +55,7 @@ function hideProductFormKeyboard(e){
 	}
 }; 
 
-function doSignup(){
+function doASPSignup(){
 	var nav = require('navigation');
 	nav.navigationWindow("asp/signup", 0);
 }
@@ -67,6 +67,7 @@ $.username.addEventListener('touchend', function(e){
     $.username.focus();
     isKeyboardFocus = 1;
 });
+
 $.password.addEventListener('touchend', function(e){
     $.password.focus();
     isKeyboardFocus = 1;
