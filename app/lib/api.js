@@ -679,7 +679,7 @@ exports.getClaimDetail = function(e){
 
 exports.claimInfo = function(e) { 
 	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
- 
+ 	console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available

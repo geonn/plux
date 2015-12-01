@@ -36,6 +36,11 @@ function doLogin(asp_email, asp_password) {
 	}
 }
 
+function doASPSignup(){
+	var nav = require('navigation');
+	nav.navigationWindow("asp/signup", 0);
+}
+
 function doRegister(){
 	
 }

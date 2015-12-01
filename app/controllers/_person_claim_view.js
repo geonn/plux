@@ -27,7 +27,7 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['entidvbal'] != 99999){
-		var view = create_field("RM"+data[a]['entidvbal'], "Personal Balance");
+		var view = create_field("RM"+data[a]['entidvbal'], "Personal "+data[a]['entTitle']);
 		//$.main.add(view);
 	}
 	
@@ -37,7 +37,7 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['entshabal'] != 99999){
-		var view = create_field("RM"+data[a]['entshabal'], "Shared Balance");
+		var view = create_field("RM"+data[a]['entshabal'], "Shared "+data[a]['entTitle']);
 		//$.main.add(view);
 	}
 	
@@ -52,7 +52,7 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['vstidvbal'] != 99999){
-		var view = create_field(data[a]['vstidvbal'], "Visitation Balance");
+		var view = create_field(data[a]['vstidvbal'], "Visitation "+data[a]['vstTitle']);
 		//$.main.add(view);
 	}
 	
@@ -62,7 +62,7 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['vstshabal'] != 99999){
-		var view = create_field(data[a]['vstshabal'], "Visitation Shared Balance");
+		var view = create_field(data[a]['vstshabal'], "Visitation Shared "+data[a]['vstTitle']);
 		//$.main.add(view);
 	}
 }
