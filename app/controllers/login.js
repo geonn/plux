@@ -3,8 +3,10 @@ var singleton = true;
 common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
+var loading = Alloy.createController('loading'); 
 
 $.email.value = preset_email;
+$.win.add(loading.getView());
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
@@ -85,8 +87,8 @@ $.fbloginView.add(FACEBOOK.createLoginButton({
   
 function loginFacebook(e){
 	if (e.success) { 
-		
-		common.showLoading();
+		loading.start();
+		//common.showLoading();
 	    FACEBOOK.requestWithGraphPath('me', { 'fields': 'id, email,name,link'}, 'GET', function(e) {
 		    if (e.success) {  
 		    	var fbRes = JSON.parse(e.result); 
@@ -103,9 +105,9 @@ function loginFacebook(e){
 		}); 
 		FACEBOOK.removeEventListener('login', loginFacebook); 
 	}  else if (e.error) {
-		       
+		loading.finish();
 	} else if (e.cancelled) {
-		        
+		loading.finish();  
 	}  	 
 } 
 	 

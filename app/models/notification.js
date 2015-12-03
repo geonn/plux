@@ -100,24 +100,14 @@ exports.definition = {
                 db.close();
                 collection.trigger('sync');
                 return listArr;
-			}, 
-			setAllAsRead : function(e){
+			},
+			setAllAsRead: function(entry){
 				var collection = this;
-                
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' " ;
-               
-                var res = db.execute(sql);
-                var listArr;
-                while (res.isValidRow()){  
-					sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET isRead=1 WHERE id='" +res.fieldByName('id')  +"' ";
-					db.execute(sql_query); 
-					res.next();
-				} 
-				res.close();
-                db.close();
-                collection.trigger('sync');
-                return listArr;
+				db = Ti.Database.open(collection.config.adapter.db_name);
+				var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET isRead=1 WHERE member_no=? ";
+				db.execute(sql_query, entry.member_no); 
+				db.close();
+	            collection.trigger('sync');
 			},
 			update_status: function(entry){
 				var collection = this;
@@ -137,10 +127,10 @@ exports.definition = {
                 if (res.isValidRow()){ 
              		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,status='"+entry.status+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
                 }else{
-                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES ('"+entry.id+"', '"+entry.member_no +"','"+entry.subject+"','"+entry.message+"','"+entry.url+"', '"+entry.isRead+"', '"+entry.expired+"','"+entry.status+"', '"+entry.created+"', '"+entry.updated+"')";
- 
+                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
+ 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, entry.isRead, entry.expired, entry.status, entry.created, entry.updated);
 				}
-				 
+				console.log(sql_query);
                 db.execute(sql_query);
 	            db.close();
 	            collection.trigger('sync');

@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
+var loading = Alloy.createController('loading'); 
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var notificationModel = Alloy.createCollection('notification'); 
 common.construct($);
@@ -10,8 +11,11 @@ init();
 if(Ti.Platform.osname != "android"){ 
 	Alloy.Globals.navMenu = $.navMenu;
 }
+
 /**********				init				*************/ 
 function init(){
+	$.win.add(loading.getView());
+	loading.start();
 	var ismemno = Ti.App.Properties.getString('memno') || ""; 
 	if(ismemno != ""){
 		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
@@ -45,6 +49,7 @@ function init(){
 		};
 	}
 	setBackground();
+	loading.finish();
 }
 
 function updateNotification(){ 
@@ -178,6 +183,7 @@ function navWindow(e){
 }
 
 function logoutUser(){
+	loading.start();
 	var isCorpCode = Ti.App.Properties.getString('corpcode','');
 	
 	if(isCorpCode != "" ){
@@ -193,6 +199,7 @@ function logoutUser(){
 	}
 	 
 	refreshHeaderInfo(); 
+	loading.finish();
 }
 
 function setBackground(){
@@ -205,7 +212,7 @@ function setBackground(){
 }
 
 if(Ti.Platform.osname == "android"){
-	$.root.addEventListener('android:back', function (e) {
+	$.win.addEventListener('android:back', function (e) {
 		var dialog = Ti.UI.createAlertDialog({
 			cancel: 0,
 			buttonNames: ['Cancel','Confirm'],

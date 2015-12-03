@@ -14,7 +14,7 @@ data.reverse();
 data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{ 
-		height: 120, 
+		height: 130, 
 	});
 	 
 	var statusColor = "#CE1D1C";
@@ -30,7 +30,7 @@ data.forEach(function(entry){
 	});
 	
 	var statustView = $.UI.create('View',{ 
-		height: 120, 
+		height: 130, 
 		serial: entry.serial,
 		width: 10,
 		backgroundColor: statusColor

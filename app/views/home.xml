@@ -1,6 +1,6 @@
 <Alloy>
 	<NavigationWindow id="navMenu" platform="ios">
-		<Window id="root" title="" navBarHidden="true" class="container">
+		<Window id="win" title="" navBarHidden="true" class="container">
 			<View id="main">
 				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL"></View>
 				<View layout="">

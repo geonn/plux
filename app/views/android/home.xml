@@ -1,47 +1,47 @@
 <Alloy> 
-		<Window id="root" title="" navBarHidden="true" class="container">
-			<View id="main">
-				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL" ></View>
-				<View width="Ti.UI.FILL">
-					<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" image="/images/logo_plux.png" zIndex="5" />
-					<View zIndex="4" id="myinfo_view" width="Ti.UI.FILL" height="Ti.UI.SIZE" top="20" backgroundColor="#B3000000"> 
-						<!--<View height="40" id="fbloginView" />-->
-						<View layout="horizontal" left="110" width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
-					</View>
-					<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
-				        <ActivityIndicator  id="activityIndicator" />
-				    	<Label top="5" text="Loading" color="#ffffff" />
-				    </View>
-					<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
-						<View layout="horizontal" width="Ti.UI.SIZE" top="239">
-							<ImageView onClick="navWindow" mod="eCard_list" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/>
-							<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
-							
-							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
+	<Window id="win" title="" navBarHidden="true" class="container">
+		<View id="main">
+			<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL" ></View>
+			<View width="Ti.UI.FILL">
+				<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" image="/images/logo_plux.png" zIndex="5" />
+				<View zIndex="4" id="myinfo_view" width="Ti.UI.FILL" height="Ti.UI.SIZE" top="20" backgroundColor="#B3000000"> 
+					<!--<View height="40" id="fbloginView" />-->
+					<View layout="horizontal" left="110" width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
+				</View>
+				<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
+			        <ActivityIndicator  id="activityIndicator" />
+			    	<Label top="5" text="Loading" color="#ffffff" />
+			    </View>
+				<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
+					<View layout="horizontal" width="Ti.UI.SIZE" top="239">
+						<ImageView onClick="navWindow" mod="eCard_list" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/>
+						<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
+						
+						<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
  
 							<ImageView onClick="navWindow" mod="claimSubmission" top="15" left="15"  width="139" image="/images/btn/btn_claim_submission.png"/>
  
 							
 							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
-							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>
-							
-							<ImageView onClick="navWindow" mod="myMedicalRecord" top="15" width="139" image="/images/btn/btn_my_medical_record.png"/>
-							<ImageView onClick="navWindow" mod="hra" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
-							 
-							 
-							<ImageView onClick="navWindow" mod="leaflet" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
-							<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
-							 
-							<ImageView onClick="navWindow" mod="profile" top="15" width="139" image="/images/btn/btn_profile.png"/>
-							<View class="hsize wsize">
-								<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
-								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
-									<Label id="notificationText" text="0" color="#ffffff" />
-								</View>
-							</View>			
-						</View>
-					</ScrollView>
-				</View>
+						<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>
+						
+						<ImageView onClick="navWindow" mod="myMedicalRecord" top="15" width="139" image="/images/btn/btn_my_medical_record.png"/>
+						<ImageView onClick="navWindow" mod="hra" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
+						 
+						 
+						<ImageView onClick="navWindow" mod="leaflet" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
+						<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
+						 
+						<ImageView onClick="navWindow" mod="profile" top="15" width="139" image="/images/btn/btn_profile.png"/>
+						<View class="hsize wsize">
+							<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
+							<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
+								<Label id="notificationText" text="0" color="#ffffff" />
+							</View>
+						</View>			
+					</View>
+				</ScrollView>
 			</View>
-		</Window> 
+		</View>
+	</Window> 
 </Alloy>

@@ -24,39 +24,31 @@ function render_ecard_list(){
 		   });
 	 	
 	 	var rowView = $.UI.create('View',{
-			classes: ['wfill'], 
+			classes: ['wfill', 'hfill'], 
 			source: data[i].id 
 		});
 		
-		var contentView = $.UI.create('View',{
-			classes: ['vert','hsize','wfill'], 
-			source: data[i].id,
-			top: 10,
-			bottom: 10
-		});
-		  
 		var Label_name = $.UI.create('Label',{
-			classes : ['themeColor', 'h5', 'bold', 'padding'],
+			classes : ['themeColor', 'h5', 'bold', 'padding', 'hfill'],
 			text: data[i].name || "",
 			font:{fontSize:14},
 			source: data[i].id,
 			textAlign:'left',
-			height:Ti.UI.SIZE
 		}); 
 		
 		var forwardImg = $.UI.create('ImageView',{
-			classes : ['wsize'],
+			classes : ['wsize', 'hsize'],
 			image : "/images/btn-forward.png",
 			width: 15,
+			zIndex: 10,
 			right:5 
 		});  
 		
-		contentView.add(Label_name);
-		rowView.add(contentView);
+		rowView.add(Label_name);
 		rowView.add(forwardImg);
 		row.add(rowView);
 		$.inner_box.appendRow(row);
-		contentView.addEventListener("click", navToEcard);
+		rowView.addEventListener("click", navToEcard);
 	}
 }
 

@@ -90,7 +90,6 @@ var front_bg = Ti.UI.createImageView({
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
     image:"/images/eCard-front.png",
-    currentAngle: 10,
     font:{
     	fontSize: "11dp"
     },
@@ -118,7 +117,7 @@ var back = Ti.UI.createImageView({
 var userIc = user.ic || "";	 
 
 var genCode = setInterval(function(){
-	removeAllChildren($.qrCode);
+	
 	var dateTimeNow = currentDateTime();
 	var userQR = qrcode.QRCode({
 		typeNumber: 10,
@@ -132,7 +131,8 @@ var genCode = setInterval(function(){
 		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"  +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
  
 	}); 
- 
+ 	//removeAllChildren($.qrCode);
+ 	$.qrCode.removeAllChildren();
 	$.qrCode.add(qrcodeView);
 },1000);
 
@@ -238,7 +238,7 @@ Ti.Gesture.addEventListener('orientationchange', orientationchange);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.eCardWin); 
+		nav.closeWindow($.eCard); 
 	}); 
 }
  
