@@ -139,7 +139,7 @@ function authCB(e){
 var touchLogin =  function(){
 	var email = $.email.value;
 	var userData = usersPluxModel.getUserByEmail(email);
-	console.log(userData);
+	 
 	if(userData && email != ""){ 
 		Ti.App.removeEventListener('touchLogin', touchLogin);
 		API.getUserService({u_id : userData.id});

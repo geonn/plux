@@ -55,8 +55,7 @@ function doSignup(){
 function hideProductFormKeyboard(e){
 	var exception = ["email", "password"];
 
-	if(exception.indexOf(e.source.id) >= 0){
-		console.log(e.source.id);
+	if(exception.indexOf(e.source.id) >= 0){ 
 		return false;
 	} 
 	

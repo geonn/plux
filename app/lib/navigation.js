@@ -33,7 +33,7 @@ function navigationWindow (target, checkAuth, callback, param){
 		return;
 	}else{
 		if(target =="m_eCard"){
-			console.log(target+" my card no auth");
+			 
 			var win = Alloy.createController(target).getView(); 
 			win.orientationModes = [Titanium.UI.PORTRAIT,
 		    Titanium.UI.LANDSCAPE_LEFT,
@@ -44,7 +44,7 @@ function navigationWindow (target, checkAuth, callback, param){
 				Alloy.Globals.navMenu.openWindow(win,{animated:true});
 			}
 		}else if(typeof param !== undefined && param !== null){
-			console.log(target+" my card no auth with param");
+			 
 			var win = Alloy.createController(target, param).getView();
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
@@ -75,10 +75,10 @@ function navigationWebview(webview, title){
 
 function navigateWithArgs(target, args){
 	var win = Alloy.createController(target, args).getView(); 
-	console.log('a');
+	 
 	if(Ti.Platform.osname == "android"){ 
 		if(target == "login"){
-			console.log('fb login');
+			 
 			win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: win});
 		}
 		win.open(); 

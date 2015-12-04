@@ -8,7 +8,10 @@ addField("Email : ", profile.email, $.profile_data);
 addField("Last Login : ", timeFormat(profile.last_login), $.profile_data); 
  
 if(typeof profile.personal_health != "undefined"){ 
-	if(personal_health['birthDate'] != "Not Set"){
+	
+	var dob = personal_health['birthDate'] || "Not Set";
+	 
+	if(dob != "Not Set"){
 		personal_health['birthDate'] =timeFormat(personal_health['birthDate']);
 	}
 	addField("Birthday : ", personal_health['birthDate'], $.my_health);

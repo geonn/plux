@@ -183,7 +183,7 @@ exports.definition = {
                 arr.forEach(function(entry) { 
 	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( medical_id, server_id, img_path, created, updated, category ) VALUES ( '"+ medical_id+"', '"+entry.img_id+"', '"+entry.img_path+"', '"+entry.created+"', '"+entry.updated+"', '"+entry.img_caption+"')";
 					db.execute(sql_query );
-					console.log(sql_query);
+					 
 				});
 				db.execute("COMMIT");
 	            db.close();

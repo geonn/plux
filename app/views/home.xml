@@ -27,10 +27,10 @@
 							<ImageView onClick="navWindow" mod="myMedicalRecord" top="15"width="139" image="/images/btn/btn_my_medical_record.png"/>
 							<ImageView onClick="navWindow" mod="hra" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
 							 
-							 
+							<!--
 							<ImageView onClick="navWindow" mod="leaflet" top="15" width="139" image="/images/btn/btn_leaflet.png"/>
 							<ImageView onClick="navWindow" mod="healthInfo" top="15" left="15" width="139" image="/images/btn/btn_healthInfo.png"/>
-							 
+							-->
 							<ImageView onClick="navWindow" mod="profile" top="15"  width="139" image="/images/btn/btn_profile.png"/>
 							
 							<View class="hsize wsize">

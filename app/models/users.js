@@ -151,7 +151,7 @@ exports.definition = {
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=?";
-               console.log(sql);
+                
                 var res = db.execute(sql, id);
                 var arr = []; 
                
@@ -220,7 +220,7 @@ exports.definition = {
 	                }else{
 	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES ('"+entry.name+"', '"+entry.memno +"','"+entry.icno+"','"+entry.relation+"', '"+ entry.empno +"',  '"+ entry.corpcode +"',  '"+ entry.corpname +"',  '"+ entry.costcenter +"',  '"+ entry.dept +"', '"+ entry.allergy +"', '"+ entry.isver +"', '"+ entry.verno +"')";
 					}
-					console.log(sql_query);
+					 
 	                db.execute(sql_query);
 	                db.close();
 	           		collection.trigger('sync');

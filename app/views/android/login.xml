@@ -8,7 +8,7 @@
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
-		    	<Label top="5" text="Loading" color="#ffffff" />
+		    	 
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
 				<ImageView width="120" borderRadius="10" height="120" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/logo_plux.png"></ImageView>
@@ -16,8 +16,8 @@
 				<TextField id="password" hintText="Enter Password" value="" /><!--asplux123 -->
 				<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />
 				<View height="60" id="fbloginView" width="70%" />
-				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doSignup" title="Register"  width="70%" top="5" height="40" color="#ffffff" />
-				
+				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doSignup" title="Register for PLUX"  width="70%" top="5" height="40" color="#ffffff" />
+				<Button id="registerAccountButton" borderRadius="5" backgroundColor="#7B7B7B" onTouchend="doASPSignup" title="Register for ASP"  width="70%" top="5" height="40" color="#ffffff" />
 			</ScrollView>
 		</View><!--
 		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">

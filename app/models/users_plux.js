@@ -87,7 +87,7 @@ exports.definition = {
 	            }else{
 	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES ('"+entry.u_id+"', '"+entry.fullname +"','"+entry.email+"','"+entry.status+"', '"+ entry.facebook_id +"',  '"+ entry.facebook_url +"',  '"+ entry.last_login +"')";
 				}
-				console.log(sql_query);
+				 
 	            db.execute(sql_query);
 	            db.close();
 	           	collection.trigger('sync'); 

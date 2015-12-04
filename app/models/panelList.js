@@ -65,7 +65,7 @@ exports.definition = {
                 //var res = db.execute(sql);
                 var arr = [];
                 if (res.isValidRow()){
-                	console.log('wtf');
+                	 
 					arr = {
 					   id: res.fieldByName('id'),
 						clinicCode: res.fieldByName('clinicCode'), 
@@ -204,7 +204,7 @@ exports.definition = {
 			getPanelListByState : function(){
 				var collection = this;
                 var sql = "SELECT DISTINCT(state) FROM " + collection.config.adapter.collection_name + " WHERE state !='' GROUP BY state" ;
-                console.log(sql);
+                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var arr = []; 
@@ -344,8 +344,7 @@ exports.definition = {
 				}else{
 				 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE openHour LIKE '%24 HOURS%' "+corp_sql+location_sql+ "  GROUP BY id ";	
 				}
-               console.log(sql);
-              
+                
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 

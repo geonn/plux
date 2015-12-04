@@ -358,6 +358,6 @@ exports.changeTime = function(e){
         minute = '0' + minute;
     }
     selTime = hour + ":" + minute + " "+ampm; 
-    console.log("geo day : "+ selTime);
+     
 	mainView.time_value.text = selTime; 
 };
