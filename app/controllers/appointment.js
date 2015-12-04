@@ -46,8 +46,7 @@ function render_appointment_list(){
 		$.appointment_list.add(view_norecord);
 	}else{
 		var all_date = _.sortBy(appointmentList, 'start_date');
-		all_date = all_date.reverse();
-		console.log(all_date);
+		all_date = all_date.reverse(); 
 		
 		for (var i=0; i < all_date.length; i++) {
 			var datetime = all_date[i].start_date.split(" ");
@@ -58,8 +57,7 @@ function render_appointment_list(){
 	loading.finish();
 }
 
-function new_appointment(){
-	console.log("new record clicked!!");
+function new_appointment(){ 
 	nav.navigateWithArgs("appointment/index",{id : ""});
 }
 
@@ -173,8 +171,7 @@ function create_dialog_box(ex){
 	    if (e.index === 0){
 	      if(status == 4){
 	      	loading.start();
-	      	API.callByPost({url: "suggestedAppointmentUrl", params:{id: id}}, function(responseText){
-	      		console.log(responseText);
+	      	API.callByPost({url: "suggestedAppointmentUrl", params:{id: id}}, function(responseText){ 
 	      		var model = Alloy.createCollection("appointment");
 				var res = JSON.parse(responseText);
 				var arr = res.data || null;
@@ -184,8 +181,7 @@ function create_dialog_box(ex){
 	      	});
 	      }else if(status == 1 || status == 2){
 	      	loading.start();
-	      	API.callByPost({url: "addAppointmentUrl", params:{id: id, isDoctor:1, status: 5}}, function(responseText){
-	      		console.log(responseText);
+	      	API.callByPost({url: "addAppointmentUrl", params:{id: id, isDoctor:1, status: 5}}, function(responseText){ 
 	      		var model = Alloy.createCollection("appointment");
 				var res = JSON.parse(responseText);
 				var arr = res.data || null;
