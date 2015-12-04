@@ -171,7 +171,8 @@ if(Ti.Platform.osname == "android"){
 Ti.App.addEventListener('displayRecords', displayList);
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
-	$.destroy(); 
+	$.destroy();
+	Ti.App.fireEvent("updateNotification");
     Ti.App.removeEventListener('displayRecords', displayList);
 });
 

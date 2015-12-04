@@ -83,8 +83,7 @@ function receivePush(e) {
 		}
 	});
 	dialog.show();  	
-	
- 
+	Ti.App.fireEvent("updateNotification"); 
 	return false;
 }
 
