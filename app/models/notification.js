@@ -86,14 +86,12 @@ exports.definition = {
 				var collection = this;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT COUNT(*) AS total FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' and (expired !='' OR expired <='"+currentDateTime+ "') " ;
-               
+                var sql = "SELECT COUNT(*) AS total FROM " + collection.config.adapter.collection_name + " WHERE member_no='"+e.member_no+"' and isRead='0' and (expired !='' OR expired <='"+currentDateTime()+ "') " ;
+               console.log(sql);
                 var res = db.execute(sql);
-                var listArr;
+                var listArr =0;
                 while (res.isValidRow()){
-					listArr = { 
-					    total: res.fieldByName('total')  
-					};
+					listArr = res.fieldByName('total'); 
 					res.next();
 				} 
 				res.close();
@@ -124,13 +122,18 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
              
-                if (res.isValidRow()){ 
-             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,status='"+entry.status+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
+                if (res.isValidRow()){  
+                	if(entry.from == "push"){
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,status='"+entry.status+"' ,  isRead='"+entry.isRead+"', expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
+                	}else{
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no='"+entry.member_no+"', subject='"+entry.subject+"', message='"+entry.message+"' , url='"+entry.url+"' ,status='"+entry.status+"' ,  expired='"+entry.expired+"', updated='"+entry.updated+"' WHERE id='" +entry.id+"' ";
+                	}
+             		
                 }else{
                 	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
- 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, entry.isRead, entry.expired, entry.status, entry.created, entry.updated);
+ 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, "0", entry.expired, entry.status, entry.created, entry.updated);
 				}
-				console.log(sql_query);
+				//console.log(sql_query);
                 db.execute(sql_query);
 	            db.close();
 	            collection.trigger('sync');

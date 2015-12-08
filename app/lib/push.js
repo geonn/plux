@@ -38,6 +38,7 @@ function receivePush(e) {
 			"expired" : "",
 			"created" : e.data.created,
 			"updated" : e.data.updated,
+			"from" : "push"
 		};
 		target = e.data.target;
 		url = e.data.extra;
@@ -50,6 +51,7 @@ function receivePush(e) {
 			"url" : e.extra || "",
 			"isRead" : "0",
 			"expired" : "",
+			"status" : e.status,
 			"created" : e.created,
 			"updated" : e.updated,
 		};

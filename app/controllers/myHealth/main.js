@@ -72,11 +72,11 @@ function filterList(e){
 			$.graphScrollView.children[a].children[0].add(activityIndicator);
 			activityIndicator.show();
 		}
-		if(Ti.Platform.osname != "android"){
+		/**if(Ti.Platform.osname != "android"){
 			$.stepsView.setHeight(Ti.UI.SIZE);
 			$.stepsView.setTop(10);
 			$.stepsView.show();
-		}
+		}**/
 		$.bmiView.setHeight(Ti.UI.SIZE);
 //		$.heightView.setHeight(Ti.UI.SIZE);
 //		$.weightView.setHeight(Ti.UI.SIZE);
@@ -131,7 +131,7 @@ function populateDataById(e){
 }
 
 filterList({category: "all"}); 
-if(Ti.Platform.osname != "android"){
+/**if(Ti.Platform.osname != "android"){
 	$.stepsView.addEventListener('click',function(e){
 		nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});
 	});	
@@ -140,7 +140,7 @@ if(Ti.Platform.osname != "android"){
 		var actualHeight = e.source.evalJS("document.height;");
 		e.source.height = parseInt(actualHeight);
 	});
-}
+}**/
 
 $.bmiView.addEventListener('click',function(e){
 	nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 1});

@@ -16,17 +16,7 @@ if(Ti.Platform.osname != "android"){
 function init(){
 	$.win.add(loading.getView());
 	loading.start();
-	var ismemno = Ti.App.Properties.getString('memno') || ""; 
-	if(ismemno != ""){
-		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
-		if(gotNotification.total > 0){
-			$.notificationText.text = gotNotification.total;
-		}else{
-			$.notificationIcon.visible = false;
-		}
-	}else{
-			$.notificationIcon.visible = false;
-		} 
+	syncFromServer(); 
 	
 	refreshHeaderInfo(); 
 	
@@ -52,19 +42,63 @@ function init(){
 	loading.finish();
 }
 
+function syncFromServer(){
+	var checker = Alloy.createCollection('updateChecker'); 
+	var isUpdate = checker.getCheckerById("2");
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}  
+	var param = { 
+		"member_no"	  : Ti.App.Properties.getString('memno'),
+		"last_updated" : last_updated
+	};
+ 
+	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
+		var res = JSON.parse(responseText);  
+		if(res.status == "success"){  
+			var record = res.data;
+			if(record.length > 0){ 
+				record.forEach(function(entry) {
+					var param = {
+						"id": entry.id || "",
+						"member_no": entry.member_no || "",
+						"subject":entry.subject || "",
+						"message" : entry.message || "",
+						"status" : entry.status || 1,
+						"url" : entry.url || "", 
+						"status" : entry.status || "",
+						"expired" : entry.expired || "",
+						"created" : entry.created,
+						"updated" : entry.updated,
+						"from" : "home"
+					};
+					notificationModel.addData(param);
+				});
+				 checker.updateModule("2","notificationList",res.last_updated); 
+				 updateNotification(); 
+			}
+		}
+		
+	});
+	
+}
+
 function updateNotification(){ 
 	var ismemno = Ti.App.Properties.getString('memno') || ""; 
 	if(ismemno != ""){
 		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
-		if(gotNotification.total > 0){
-			$.notificationText.text = gotNotification.total;
+		//console.log("gotNotification : "+gotNotification);
+		if(parseInt(gotNotification) > 0){
+			$.notificationText.text = gotNotification;
 		}else{
 			$.notificationIcon.visible = false;
 		}
 	}else{
 		$.notificationIcon.visible = false;
 	} 
-	console.log("notification counter refresh");
+	 
 }
 
 function refreshHeaderInfo(){
@@ -227,6 +261,9 @@ if(Ti.Platform.osname == "android"){
 		dialog.show(); 
 	});
 }
+Titanium.App.addEventListener('resumed', function(e){ 
+    syncFromServer();
+});
 
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 
