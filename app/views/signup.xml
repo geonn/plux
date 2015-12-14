@@ -3,7 +3,7 @@
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 		        <ActivityIndicator id="activityIndicator" />
-		    	<Label top="5" text="Loading" color="#ffffff" />
+		    	<Label top="5" text="Loading" platform="ios"  color="#ffffff" />
 		    </View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
 				<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>

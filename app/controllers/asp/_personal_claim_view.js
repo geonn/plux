@@ -28,12 +28,16 @@ for (var i=0; i < args.data.length; i++) {
   	var totBal = args.data[i].entshabal;
   }
   
+  var textTotBal = "RM "+ totBal;
+  if(totBal == "9999"){
+  	textTotBal = "Unlimited";
+  }
   var totalLimitLbl = $.UI.create("Label",{ 
   	classes: ['h5', 'themeColor'], 
   	right: 0,
   	width: "35%",
   	textAlign: "right",
-  	text: "RM "+ totBal
+  	text: textTotBal
   });
   
   typeHeaderView.add(label_type);
@@ -43,15 +47,27 @@ for (var i=0; i < args.data.length; i++) {
   if(args.data[i].entidvbal < 99999){
   	 var balance = Math.ceil(((args.data[i].entidv-args.data[i].entidvbal)/args.data[i].entidv)*100);
   	// console.log(balance);
-  	 view_container.add(generate_progressBar(balance+"%"));
-  	 view_container.add(generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));  
+  	 view_container.add(generate_progressBar(balance+"%")); 
+  	if(args.data[i].entidvbal == "9999"){
+  	 	view_container.add(generate_description("Limit: ", args.data[i].entidv , "Unlimited"));  
+  	}else{
+  		view_container.add(generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));  
+  	}
+  	 
   }
   
   if(args.data[i].entshabal < 99999){
   	 var share_balance = Math.ceil(((args.data[i].entsha-args.data[i].entshabal)/args.data[i].entsha)*100);
   	 console.log(share_balance);
   	 view_container.add(generate_progressBar(share_balance+"%"));
-  	 view_container.add(generate_description("Shared Limit: RM ",args.data[i].entshabal, args.data[i].entsha));  
+  	 
+  	 if(args.data[i].entshabal == "9999"){
+  	 	view_container.add(generate_description("Shared Limit: ", args.data[i].entshabal, "Unlimited"));  
+  	 }else{
+  	 	view_container.add(generate_description("Shared Limit: RM ", args.data[i].entshabal, args.data[i].entsha));  
+  	 }
+  	
+  	 //view_container.add(generate_description("Shared Limit: RM ",args.data[i].entshabal, args.data[i].entsha));  
   }
   
   $.main.add(view_container);

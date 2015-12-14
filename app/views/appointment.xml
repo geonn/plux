@@ -15,7 +15,7 @@
 			     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Appointment</Label>
 			     	</View>
 			     	<View left="0" width="20%">
-			         	<ImageView id="newRecord"  width="25" height="20" image="/images/add.png" />
+			         	<ImageView id="newRecord" onClick="new_appointment" width="25" height="20" image="/images/add.png" />
 			   		</View>
 			 	</View>
 				<!--<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search appointment data..." /> -->

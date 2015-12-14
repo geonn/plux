@@ -19,7 +19,7 @@
 		</View>
 		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 			<ActivityIndicator id="activityIndicator" />
-			<Label top="5" class="center" text="Loading" color="#ffffff" />
+			<Label top="5" class="center" platform="ios"  text="Loading" color="#ffffff" />
 		</View>
 			 
 		<View id="doctorView" class="vert"  > 

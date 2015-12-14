@@ -2,7 +2,7 @@
 	<Window title="Claim Detail" id="claimDetail" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
          		<ActivityIndicator id="activityIndicator" />
-         		<Label text="Loading" color="#ffffff" />
+         		<Label text="Loading" platform="ios" color="#ffffff" />
          </View>
 		<View id="main" layout="vertical">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
