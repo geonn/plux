@@ -22,7 +22,8 @@ for(var a = 0; data.length > a; a++){
 	$.main.add(line);
 	
 	if(data[a]['entidv'] != 99999){
-		var view = create_field("RM"+data[a]['entidv'], "Personal");
+		var val = (data[a]['entidv'] == 9999)?"Unlimited":"RM"+data[a]['entidv'];
+		var view = create_field(val, "Personal");
 		$.main.add(view);
 	}
 	
@@ -32,7 +33,8 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['entsha'] != 99999){
-		var view = create_field("RM"+data[a]['entsha'], "Shared");
+		var val = (data[a]['entsha'] == 9999)?"Unlimited":"RM"+data[a]['entsha'];
+		var view = create_field(val, "Shared");
 		$.main.add(view);
 	}
 	
@@ -42,12 +44,14 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['maxperclaim'] != 99999){
-		var view = create_field("RM"+data[a]['maxperclaim'], "Max per Claim");
+		var val = (data[a]['maxperclaim'] == 9999)?"Unlimited":"RM"+data[a]['maxperclaim'];
+		var view = create_field(val, "Max per Claim");
 		$.main.add(view);
 	}
 	
 	if(data[a]['vstidv'] != 99999){
-		var view = create_field(data[a]['vstidv'], "Visitation");
+		var val = (data[a]['vstidv'] == 9999)?"Unlimited":"RM"+data[a]['vstidv'];
+		var view = create_field(val, "Visitation");
 		$.main.add(view);
 	}
 	
@@ -57,7 +61,8 @@ for(var a = 0; data.length > a; a++){
 	}
 	
 	if(data[a]['vstsha'] != 99999){
-		var view = create_field(data[a]['vstsha'], "Visitation Shared");
+		var val = (data[a]['vstsha'] == 9999)?"Unlimited":"RM"+data[a]['vstsha'];
+		var view = create_field(val, "Visitation Shared");
 		$.main.add(view);
 	}
 	
