@@ -48,8 +48,8 @@ for (var i=0; i < args.data.length; i++) {
   	 var balance = Math.ceil(((args.data[i].entidv-args.data[i].entidvbal)/args.data[i].entidv)*100);
   	// console.log(balance);
   	 view_container.add(generate_progressBar(balance+"%")); 
-  	if(args.data[i].entidvbal == "9999"){
-  	 	view_container.add(generate_description("Limit: ", args.data[i].entidv , "Unlimited"));  
+  	if(args.data[i].entidv == "9999"){
+  	 	view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "Unlimited"));  
   	}else{
   		view_container.add(generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));  
   	}
@@ -61,7 +61,7 @@ for (var i=0; i < args.data.length; i++) {
   	 console.log(share_balance);
   	 view_container.add(generate_progressBar(share_balance+"%"));
   	 
-  	 if(args.data[i].entshabal == "9999"){
+  	 if(args.data[i].entsha == "9999"){
   	 	view_container.add(generate_description("Shared Limit: ", args.data[i].entshabal, "Unlimited"));  
   	 }else{
   	 	view_container.add(generate_description("Shared Limit: RM ", args.data[i].entshabal, args.data[i].entsha));  

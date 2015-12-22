@@ -635,7 +635,7 @@ exports.getClaimDetail = function(e){
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode+"&PERIOD=ALL";
  
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	//console.log(url);
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
