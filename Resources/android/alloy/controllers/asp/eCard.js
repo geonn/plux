@@ -130,34 +130,34 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId346 = Ti.UI.createLabel({
+    $.__views.__alloyId350 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: "5",
         text: "Loading",
-        id: "__alloyId346"
+        id: "__alloyId350"
     });
-    $.__views.loadingBar.add($.__views.__alloyId346);
+    $.__views.loadingBar.add($.__views.__alloyId350);
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical"
     });
     $.__views.mainContainer.add($.__views.main);
-    $.__views.__alloyId347 = Ti.UI.createView({
+    $.__views.__alloyId351 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId347"
+        id: "__alloyId351"
     });
-    $.__views.main.add($.__views.__alloyId347);
-    $.__views.__alloyId348 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId351);
+    $.__views.__alloyId352 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId348"
+        id: "__alloyId352"
     });
-    $.__views.__alloyId347.add($.__views.__alloyId348);
+    $.__views.__alloyId351.add($.__views.__alloyId352);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -165,12 +165,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId348.add($.__views.btnBack);
-    $.__views.__alloyId349 = Ti.UI.createView({
+    $.__views.__alloyId352.add($.__views.btnBack);
+    $.__views.__alloyId353 = Ti.UI.createView({
         width: "90%",
-        id: "__alloyId349"
+        id: "__alloyId353"
     });
-    $.__views.__alloyId347.add($.__views.__alloyId349);
+    $.__views.__alloyId351.add($.__views.__alloyId353);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -182,7 +182,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId349.add($.__views.pageTitle);
+    $.__views.__alloyId353.add($.__views.pageTitle);
     $.__views.card = Ti.UI.createView({
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
@@ -222,14 +222,14 @@ function Controller() {
         top: "40"
     });
     $.__views.unverified.add($.__views.unveriLbl);
-    $.__views.__alloyId350 = Ti.UI.createView({
+    $.__views.__alloyId354 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
         layout: "horizontal",
-        id: "__alloyId350"
+        id: "__alloyId354"
     });
-    $.__views.unverified.add($.__views.__alloyId350);
-    $.__views.__alloyId351 = Ti.UI.createButton({
+    $.__views.unverified.add($.__views.__alloyId354);
+    $.__views.__alloyId355 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#CE1D1C",
         left: "0",
@@ -238,11 +238,11 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId351"
+        id: "__alloyId355"
     });
-    $.__views.__alloyId350.add($.__views.__alloyId351);
-    resendVerificationEmail ? $.addListener($.__views.__alloyId351, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId351!touchend!resendVerificationEmail"] = true;
-    $.__views.__alloyId352 = Ti.UI.createButton({
+    $.__views.__alloyId354.add($.__views.__alloyId355);
+    resendVerificationEmail ? $.addListener($.__views.__alloyId355, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId355!touchend!resendVerificationEmail"] = true;
+    $.__views.__alloyId356 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Refresh",
@@ -251,10 +251,10 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId352"
+        id: "__alloyId356"
     });
-    $.__views.__alloyId350.add($.__views.__alloyId352);
-    checkStatus ? $.addListener($.__views.__alloyId352, "touchend", checkStatus) : __defers["$.__views.__alloyId352!touchend!checkStatus"] = true;
+    $.__views.__alloyId354.add($.__views.__alloyId356);
+    checkStatus ? $.addListener($.__views.__alloyId356, "touchend", checkStatus) : __defers["$.__views.__alloyId356!touchend!checkStatus"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -370,8 +370,8 @@ function Controller() {
         Ti.Gesture.removeEventListener("orientationchange", orientationchange);
         clearInterval(genCode);
     });
-    __defers["$.__views.__alloyId351!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId351, "touchend", resendVerificationEmail);
-    __defers["$.__views.__alloyId352!touchend!checkStatus"] && $.addListener($.__views.__alloyId352, "touchend", checkStatus);
+    __defers["$.__views.__alloyId355!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId355, "touchend", resendVerificationEmail);
+    __defers["$.__views.__alloyId356!touchend!checkStatus"] && $.addListener($.__views.__alloyId356, "touchend", checkStatus);
     _.extend($, exports);
 }
 

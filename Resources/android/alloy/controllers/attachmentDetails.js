@@ -8,6 +8,21 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function __alloyId68() {
+        $.__views.attachment_Details.removeEventListener("open", __alloyId68);
+        if ($.__views.attachment_Details.activity) $.__views.attachment_Details.activity.actionBar.onHomeIconItemSelected = closeWindow; else {
+            Ti.API.warn("You attempted to access an Activity on a lightweight Window or other");
+            Ti.API.warn("UI component which does not have an Android activity. Android Activities");
+            Ti.API.warn("are valid with only windows in TabGroups or heavyweight Windows.");
+        }
+    }
+    function closeWindow() {
+        $.attachment_Details.close({
+            curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+            opacity: 0,
+            duration: 200
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "attachmentDetails";
     this.args = arguments[0] || {};
@@ -24,6 +39,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.attachment_Details = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
@@ -32,6 +48,16 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.attachment_Details && $.addTopLevelView($.__views.attachment_Details);
+    $.__views.attachment_Details.addEventListener("open", __alloyId68);
+    $.__views.__alloyId70 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        color: "#606060",
+        text: "Close",
+        id: "__alloyId70"
+    });
+    closeWindow ? $.addListener($.__views.__alloyId70, "click", closeWindow) : __defers["$.__views.__alloyId70!click!closeWindow"] = true;
+    $.__views.attachment_Details.rightNavButton = $.__views.__alloyId70;
     $.__views.albumView = Ti.UI.createView({
         id: "albumView",
         height: Ti.UI.SIZE,
@@ -66,6 +92,20 @@ function Controller() {
                 height: Ti.UI.FILL,
                 width: "100%"
             });
+            var close_label = Ti.UI.createLabel({
+                text: "Close",
+                top: 0,
+                right: 0,
+                height: 40,
+                width: Ti.UI.SIZE,
+                color: "#ffffff"
+            });
+            close_label.addEventListener("click", closeWindow);
+            var header = Ti.UI.createView({
+                width: Ti.UI.FILL,
+                height: 40,
+                top: 0
+            });
             var img_caption = Ti.UI.createLabel({
                 text: items[i].category,
                 height: 40,
@@ -78,7 +118,9 @@ function Controller() {
             });
             $.attachment_Details.title = items[i].category;
             row.add(adImage);
-            row.add(img_caption);
+            header.add(img_caption);
+            header.add(close_label);
+            row.add(header);
             scrollView.add(row);
             the_view.push(scrollView);
             counter++;
@@ -163,6 +205,7 @@ function Controller() {
         });
     });
     getAttImages();
+    __defers["$.__views.__alloyId70!click!closeWindow"] && $.addListener($.__views.__alloyId70, "click", closeWindow);
     _.extend($, exports);
 }
 

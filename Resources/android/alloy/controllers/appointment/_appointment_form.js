@@ -129,15 +129,15 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     $.__views.aView.add($.__views.tvrName);
-    $.__views.__alloyId248 = Ti.UI.createView({
+    $.__views.__alloyId252 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId248"
+        id: "__alloyId252"
     });
-    $.__views.tvrName.add($.__views.__alloyId248);
-    $.__views.__alloyId249 = Ti.UI.createLabel({
+    $.__views.tvrName.add($.__views.__alloyId252);
+    $.__views.__alloyId253 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -147,16 +147,16 @@ function Controller() {
         left: 10,
         text: "Patient Name",
         top: "12",
-        id: "__alloyId249"
+        id: "__alloyId253"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId249);
-    $.__views.__alloyId250 = Ti.UI.createView({
+    $.__views.__alloyId252.add($.__views.__alloyId253);
+    $.__views.__alloyId254 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
         width: "auto",
-        id: "__alloyId250"
+        id: "__alloyId254"
     });
-    $.__views.__alloyId248.add($.__views.__alloyId250);
+    $.__views.__alloyId252.add($.__views.__alloyId254);
     $.__views.patient_name = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -172,14 +172,14 @@ function Controller() {
         text: "Date of visit a clinic",
         id: "patient_name"
     });
-    $.__views.__alloyId250.add($.__views.patient_name);
-    $.__views.__alloyId251 = Ti.UI.createView({
+    $.__views.__alloyId254.add($.__views.patient_name);
+    $.__views.__alloyId255 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId251"
+        id: "__alloyId255"
     });
-    $.__views.aView.add($.__views.__alloyId251);
+    $.__views.aView.add($.__views.__alloyId255);
     $.__views.tvrEmail = Ti.UI.createView({
         id: "tvrEmail",
         height: Ti.UI.SIZE,
@@ -187,15 +187,15 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     $.__views.aView.add($.__views.tvrEmail);
-    $.__views.__alloyId252 = Ti.UI.createView({
+    $.__views.__alloyId256 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId252"
+        id: "__alloyId256"
     });
-    $.__views.tvrEmail.add($.__views.__alloyId252);
-    $.__views.__alloyId253 = Ti.UI.createLabel({
+    $.__views.tvrEmail.add($.__views.__alloyId256);
+    $.__views.__alloyId257 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -205,16 +205,16 @@ function Controller() {
         left: 10,
         text: "Patient Email",
         top: "12",
-        id: "__alloyId253"
+        id: "__alloyId257"
     });
-    $.__views.__alloyId252.add($.__views.__alloyId253);
-    $.__views.__alloyId254 = Ti.UI.createView({
+    $.__views.__alloyId256.add($.__views.__alloyId257);
+    $.__views.__alloyId258 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
         width: "auto",
-        id: "__alloyId254"
+        id: "__alloyId258"
     });
-    $.__views.__alloyId252.add($.__views.__alloyId254);
+    $.__views.__alloyId256.add($.__views.__alloyId258);
     $.__views.patient_email = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -230,14 +230,14 @@ function Controller() {
         text: "Date of visit a clinic",
         id: "patient_email"
     });
-    $.__views.__alloyId254.add($.__views.patient_email);
-    $.__views.__alloyId255 = Ti.UI.createView({
+    $.__views.__alloyId258.add($.__views.patient_email);
+    $.__views.__alloyId259 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId255"
+        id: "__alloyId259"
     });
-    $.__views.aView.add($.__views.__alloyId255);
+    $.__views.aView.add($.__views.__alloyId259);
     $.__views.tvrDateVisit = Ti.UI.createView({
         id: "tvrDateVisit",
         height: Ti.UI.SIZE,
@@ -245,15 +245,15 @@ function Controller() {
         selectedBackgroundColor: "#ffffff"
     });
     $.__views.aView.add($.__views.tvrDateVisit);
-    $.__views.__alloyId256 = Ti.UI.createView({
+    $.__views.__alloyId260 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId256"
+        id: "__alloyId260"
     });
-    $.__views.tvrDateVisit.add($.__views.__alloyId256);
-    $.__views.__alloyId257 = Ti.UI.createLabel({
+    $.__views.tvrDateVisit.add($.__views.__alloyId260);
+    $.__views.__alloyId261 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -263,16 +263,16 @@ function Controller() {
         left: 10,
         text: "Appointment Date & Time",
         top: "12",
-        id: "__alloyId257"
+        id: "__alloyId261"
     });
-    $.__views.__alloyId256.add($.__views.__alloyId257);
-    $.__views.__alloyId258 = Ti.UI.createView({
+    $.__views.__alloyId260.add($.__views.__alloyId261);
+    $.__views.__alloyId262 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
         width: "auto",
-        id: "__alloyId258"
+        id: "__alloyId262"
     });
-    $.__views.__alloyId256.add($.__views.__alloyId258);
+    $.__views.__alloyId260.add($.__views.__alloyId262);
     $.__views.appointment_datetime = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -288,30 +288,30 @@ function Controller() {
         text: "Choose Date and Time",
         id: "appointment_datetime"
     });
-    $.__views.__alloyId258.add($.__views.appointment_datetime);
-    $.__views.__alloyId259 = Ti.UI.createView({
+    $.__views.__alloyId262.add($.__views.appointment_datetime);
+    $.__views.__alloyId263 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId259"
+        id: "__alloyId263"
     });
-    $.__views.aView.add($.__views.__alloyId259);
-    $.__views.__alloyId260 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId263);
+    $.__views.__alloyId264 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         layout: "vertical",
         selectedBackgroundColor: "#ffffff",
-        id: "__alloyId260"
+        id: "__alloyId264"
     });
-    $.__views.aView.add($.__views.__alloyId260);
-    $.__views.__alloyId261 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId264);
+    $.__views.__alloyId265 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId261"
+        id: "__alloyId265"
     });
-    $.__views.__alloyId260.add($.__views.__alloyId261);
-    $.__views.__alloyId262 = Ti.UI.createLabel({
+    $.__views.__alloyId264.add($.__views.__alloyId265);
+    $.__views.__alloyId266 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -321,16 +321,16 @@ function Controller() {
         left: 10,
         text: "Clinic",
         top: "12",
-        id: "__alloyId262"
+        id: "__alloyId266"
     });
-    $.__views.__alloyId261.add($.__views.__alloyId262);
-    $.__views.__alloyId263 = Ti.UI.createView({
+    $.__views.__alloyId265.add($.__views.__alloyId266);
+    $.__views.__alloyId267 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
         width: "auto",
-        id: "__alloyId263"
+        id: "__alloyId267"
     });
-    $.__views.__alloyId261.add($.__views.__alloyId263);
+    $.__views.__alloyId265.add($.__views.__alloyId267);
     $.__views.appointment_clinic = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -346,30 +346,30 @@ function Controller() {
         text: "Choose Clinic to attend",
         id: "appointment_clinic"
     });
-    $.__views.__alloyId263.add($.__views.appointment_clinic);
-    $.__views.__alloyId264 = Ti.UI.createView({
+    $.__views.__alloyId267.add($.__views.appointment_clinic);
+    $.__views.__alloyId268 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId264"
+        id: "__alloyId268"
     });
-    $.__views.aView.add($.__views.__alloyId264);
-    $.__views.__alloyId265 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId268);
+    $.__views.__alloyId269 = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
         selectedBackgroundColor: "#ffffff",
-        id: "__alloyId265"
+        id: "__alloyId269"
     });
-    $.__views.aView.add($.__views.__alloyId265);
-    $.__views.__alloyId266 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId269);
+    $.__views.__alloyId270 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId266"
+        id: "__alloyId270"
     });
-    $.__views.__alloyId265.add($.__views.__alloyId266);
-    $.__views.__alloyId267 = Ti.UI.createLabel({
+    $.__views.__alloyId269.add($.__views.__alloyId270);
+    $.__views.__alloyId271 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -379,16 +379,16 @@ function Controller() {
         left: 10,
         text: "Specialty",
         top: "12",
-        id: "__alloyId267"
+        id: "__alloyId271"
     });
-    $.__views.__alloyId266.add($.__views.__alloyId267);
-    $.__views.__alloyId268 = Ti.UI.createView({
+    $.__views.__alloyId270.add($.__views.__alloyId271);
+    $.__views.__alloyId272 = Ti.UI.createView({
         height: Ti.UI.SIZE,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
         width: "auto",
-        id: "__alloyId268"
+        id: "__alloyId272"
     });
-    $.__views.__alloyId266.add($.__views.__alloyId268);
+    $.__views.__alloyId270.add($.__views.__alloyId272);
     $.__views.specialty = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Titanium.UI.SIZE,
@@ -404,30 +404,30 @@ function Controller() {
         text: "Choose Specialty",
         id: "specialty"
     });
-    $.__views.__alloyId268.add($.__views.specialty);
-    $.__views.__alloyId269 = Ti.UI.createView({
+    $.__views.__alloyId272.add($.__views.specialty);
+    $.__views.__alloyId273 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId269"
+        id: "__alloyId273"
     });
-    $.__views.aView.add($.__views.__alloyId269);
-    $.__views.__alloyId270 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId273);
+    $.__views.__alloyId274 = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
         selectedBackgroundColor: "#ffffff",
-        id: "__alloyId270"
+        id: "__alloyId274"
     });
-    $.__views.aView.add($.__views.__alloyId270);
-    $.__views.__alloyId271 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId274);
+    $.__views.__alloyId275 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         textAlign: "right",
-        id: "__alloyId271"
+        id: "__alloyId275"
     });
-    $.__views.__alloyId270.add($.__views.__alloyId271);
-    $.__views.__alloyId272 = Ti.UI.createLabel({
+    $.__views.__alloyId274.add($.__views.__alloyId275);
+    $.__views.__alloyId276 = Ti.UI.createLabel({
         width: "35%",
         height: Titanium.UI.SIZE,
         color: "#CE1D1C",
@@ -437,9 +437,9 @@ function Controller() {
         left: 10,
         text: "Remark",
         top: "12",
-        id: "__alloyId272"
+        id: "__alloyId276"
     });
-    $.__views.__alloyId271.add($.__views.__alloyId272);
+    $.__views.__alloyId275.add($.__views.__alloyId276);
     $.__views.remarkTextArea = Ti.UI.createTextArea({
         font: {
             fontSize: 12
@@ -455,23 +455,23 @@ function Controller() {
         height: "100",
         suppressReturn: "false"
     });
-    $.__views.__alloyId271.add($.__views.remarkTextArea);
-    $.__views.__alloyId273 = Ti.UI.createView({
+    $.__views.__alloyId275.add($.__views.remarkTextArea);
+    $.__views.__alloyId277 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId273"
+        id: "__alloyId277"
     });
-    $.__views.aView.add($.__views.__alloyId273);
-    $.__views.__alloyId274 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId277);
+    $.__views.__alloyId278 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         top: "10",
-        id: "__alloyId274"
+        id: "__alloyId278"
     });
-    $.__views.aView.add($.__views.__alloyId274);
-    $.__views.__alloyId275 = Ti.UI.createButton({
+    $.__views.aView.add($.__views.__alloyId278);
+    $.__views.__alloyId279 = Ti.UI.createButton({
         title: "Submit Appointment",
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
@@ -479,10 +479,10 @@ function Controller() {
         top: "5",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId275"
+        id: "__alloyId279"
     });
-    $.__views.__alloyId274.add($.__views.__alloyId275);
-    saveRecord ? $.addListener($.__views.__alloyId275, "click", saveRecord) : __defers["$.__views.__alloyId275!click!saveRecord"] = true;
+    $.__views.__alloyId278.add($.__views.__alloyId279);
+    saveRecord ? $.addListener($.__views.__alloyId279, "click", saveRecord) : __defers["$.__views.__alloyId279!click!saveRecord"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -527,7 +527,7 @@ function Controller() {
             number: 0
         });
     });
-    __defers["$.__views.__alloyId275!click!saveRecord"] && $.addListener($.__views.__alloyId275, "click", saveRecord);
+    __defers["$.__views.__alloyId279!click!saveRecord"] && $.addListener($.__views.__alloyId279, "click", saveRecord);
     _.extend($, exports);
 }
 

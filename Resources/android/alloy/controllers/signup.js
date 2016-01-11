@@ -81,20 +81,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId205 = Ti.UI.createView({
+    $.__views.__alloyId209 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId205"
+        id: "__alloyId209"
     });
-    $.__views.win.add($.__views.__alloyId205);
+    $.__views.win.add($.__views.__alloyId209);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId205.add($.__views.pageTitle);
-    $.__views.__alloyId206 = Ti.UI.createLabel({
+    $.__views.__alloyId209.add($.__views.pageTitle);
+    $.__views.__alloyId210 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -103,13 +103,13 @@ function Controller() {
         },
         text: "Sign Up",
         textAlign: "center",
-        id: "__alloyId206"
+        id: "__alloyId210"
     });
-    $.__views.pageTitle.add($.__views.__alloyId206);
-    $.__views.__alloyId207 = Ti.UI.createView({
-        id: "__alloyId207"
+    $.__views.pageTitle.add($.__views.__alloyId210);
+    $.__views.__alloyId211 = Ti.UI.createView({
+        id: "__alloyId211"
     });
-    $.__views.win.add($.__views.__alloyId207);
+    $.__views.win.add($.__views.__alloyId211);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -118,7 +118,7 @@ function Controller() {
         borderRadius: "15",
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId207.add($.__views.loadingBar);
+    $.__views.__alloyId211.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -132,8 +132,8 @@ function Controller() {
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId207.add($.__views.main);
-    $.__views.__alloyId208 = Ti.UI.createImageView({
+    $.__views.__alloyId211.add($.__views.main);
+    $.__views.__alloyId212 = Ti.UI.createImageView({
         width: "120",
         borderRadius: "10",
         height: "120",
@@ -141,9 +141,9 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId208"
+        id: "__alloyId212"
     });
-    $.__views.main.add($.__views.__alloyId208);
+    $.__views.main.add($.__views.__alloyId212);
     $.__views.fullname = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",

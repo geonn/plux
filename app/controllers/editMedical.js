@@ -6,7 +6,9 @@ var clickTime = null;
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachment'); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');
 var details = medicalRecordsModel.getRecordById(rec_id); 
- 
+var MediaPickerModule = require('MediaPicker').MediaPicker;
+var MediaPicker = new MediaPickerModule();
+			
 loadMedicalInfo(); 
  
 function loadMedicalInfo(){ 
@@ -274,7 +276,10 @@ function takePhoto(){
 	            saveToPhotoGallery:true
 	        });
 	    } else if(e.index == 1){
-	    	 
+	    	var maximumImageCount = 20;
+			
+			MediaPicker.show(function(e){saveImage(e);}, maximumImageCount, 'photos', 'Choose up to four images! Longlick image for preview.');
+			return;
 	    	//obtain an image from the gallery
 	        Titanium.Media.openPhotoGallery({
 	            success:function(event){
@@ -327,6 +332,64 @@ function takePhoto(){
 	dialog.show();
 
 }
+
+function saveImage(items){
+	var iterate = function(item) {
+		MediaPicker.getImageByURL({
+			key: item.url,
+			id: item.id,
+			success: function(e) {
+				var image;
+				if(e.image.apiName == 'Ti.Blob'){
+					image = e.image;
+				}else{
+					var imageview = Ti.UI.createImageView({
+						image: 'file://'+e.image
+					});
+					image = imageview.toBlob();
+				}
+				
+				if(image.width > image.height){
+					var newWidth = 640;
+					var ratio =   640 / image.width;
+					var newHeight = image.height * ratio;
+				}else{
+					var newHeight = 640;
+					var ratio =   640 / image.height;
+					var newWidth = image.width * ratio;
+				} 
+				image = image.imageAsResized(newWidth, newHeight); 
+			    blobContainer = image; 
+			   	 
+				var param = { 
+				 		app_id : rec_id,
+				 		medical_id :rec_id,
+				 		u_id :Ti.App.Properties.getString('u_id'),
+				 		caption : categoryType,
+				 		Filedata : image,
+				};	
+				 
+				API.syncAttachments({param: param}, function(responseText){
+					var res = JSON.parse(responseText);  
+					if(res.status == "success"){  
+						var record = res.data;  
+						medicalAttachmentModel.addFromServer(record[0].id, record);
+					}
+					
+			        loadImage();
+			        console.log(items.length);
+			        if (items.length) iterate(items.splice(0,1)[0]);
+			        else{
+			        	
+			        }
+				});
+			}
+		});
+	};
+	console.log(items.length+"?total image picker");
+	if (items.length) iterate(items.splice(0,1)[0]);
+}
+
 $.proceduceTextArea.addEventListener('focus', function(){
 	//$.proceduceTextArea.setHeight("70%");
 });
@@ -342,3 +405,9 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.editRecWin); 
 	}); 
 }
+
+var applicationDatDirectory = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory);
+console.log(applicationDatDirectory);
+var filesInFolder = applicationDatDirectory.getDirectoryListing();
+console.log(filesInFolder);
+

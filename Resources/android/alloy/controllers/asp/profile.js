@@ -75,36 +75,36 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId391 = Ti.UI.createLabel({
+    $.__views.__alloyId395 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: "5",
         text: "Loading",
-        id: "__alloyId391"
+        id: "__alloyId395"
     });
-    $.__views.loadingBar.add($.__views.__alloyId391);
-    $.__views.__alloyId392 = Ti.UI.createView({
+    $.__views.loadingBar.add($.__views.__alloyId395);
+    $.__views.__alloyId396 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId392"
+        id: "__alloyId396"
     });
-    $.__views.asp_profile.add($.__views.__alloyId392);
-    $.__views.__alloyId393 = Ti.UI.createView({
+    $.__views.asp_profile.add($.__views.__alloyId396);
+    $.__views.__alloyId397 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId393"
+        id: "__alloyId397"
     });
-    $.__views.__alloyId392.add($.__views.__alloyId393);
-    $.__views.__alloyId394 = Ti.UI.createView({
+    $.__views.__alloyId396.add($.__views.__alloyId397);
+    $.__views.__alloyId398 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId394"
+        id: "__alloyId398"
     });
-    $.__views.__alloyId393.add($.__views.__alloyId394);
+    $.__views.__alloyId397.add($.__views.__alloyId398);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -112,13 +112,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId394.add($.__views.btnBack);
+    $.__views.__alloyId398.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "90%"
     });
-    $.__views.__alloyId393.add($.__views.pageTitle);
-    $.__views.__alloyId395 = Ti.UI.createLabel({
+    $.__views.__alloyId397.add($.__views.pageTitle);
+    $.__views.__alloyId399 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -127,30 +127,30 @@ function Controller() {
         },
         text: "ASP Profile",
         textAlign: "center",
-        id: "__alloyId395"
+        id: "__alloyId399"
     });
-    $.__views.pageTitle.add($.__views.__alloyId395);
-    $.__views.__alloyId396 = Ti.UI.createView({
+    $.__views.pageTitle.add($.__views.__alloyId399);
+    $.__views.__alloyId400 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId396"
+        id: "__alloyId400"
     });
-    $.__views.__alloyId392.add($.__views.__alloyId396);
+    $.__views.__alloyId396.add($.__views.__alloyId400);
     $.__views.profileContainer = Ti.UI.createView({
         layout: "vertical",
         id: "profileContainer",
         visible: "false"
     });
-    $.__views.__alloyId396.add($.__views.profileContainer);
-    var __alloyId397 = [];
+    $.__views.__alloyId400.add($.__views.profileContainer);
+    var __alloyId401 = [];
     $.__views.main = Ti.UI.createScrollableView({
-        views: __alloyId397,
+        views: __alloyId401,
         id: "main",
         height: "80%",
         backgroundColor: "#ffffff"
     });
     $.__views.profileContainer.add($.__views.main);
-    $.__views.__alloyId398 = Ti.UI.createButton({
+    $.__views.__alloyId402 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Change Password",
@@ -158,17 +158,17 @@ function Controller() {
         top: "5",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId398"
+        id: "__alloyId402"
     });
-    $.__views.profileContainer.add($.__views.__alloyId398);
-    changePassword ? $.addListener($.__views.__alloyId398, "touchend", changePassword) : __defers["$.__views.__alloyId398!touchend!changePassword"] = true;
+    $.__views.profileContainer.add($.__views.__alloyId402);
+    changePassword ? $.addListener($.__views.__alloyId402, "touchend", changePassword) : __defers["$.__views.__alloyId402!touchend!changePassword"] = true;
     $.__views.verifyContainer = Ti.UI.createView({
         id: "verifyContainer",
         visible: "false",
         layout: "vertical"
     });
-    $.__views.__alloyId396.add($.__views.verifyContainer);
-    $.__views.__alloyId399 = Ti.UI.createImageView({
+    $.__views.__alloyId400.add($.__views.verifyContainer);
+    $.__views.__alloyId403 = Ti.UI.createImageView({
         width: "40%",
         borderRadius: "10",
         height: Ti.UI.SIZE,
@@ -176,9 +176,9 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId399"
+        id: "__alloyId403"
     });
-    $.__views.verifyContainer.add($.__views.__alloyId399);
+    $.__views.verifyContainer.add($.__views.__alloyId403);
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "80dp",
@@ -191,7 +191,7 @@ function Controller() {
         id: "description"
     });
     $.__views.verifyContainer.add($.__views.description);
-    $.__views.__alloyId400 = Ti.UI.createButton({
+    $.__views.__alloyId404 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#CE1D1C",
         title: "Resend Verification",
@@ -199,11 +199,11 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId400"
+        id: "__alloyId404"
     });
-    $.__views.verifyContainer.add($.__views.__alloyId400);
-    resendVerificationEmail ? $.addListener($.__views.__alloyId400, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId400!touchend!resendVerificationEmail"] = true;
-    $.__views.__alloyId401 = Ti.UI.createButton({
+    $.__views.verifyContainer.add($.__views.__alloyId404);
+    resendVerificationEmail ? $.addListener($.__views.__alloyId404, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId404!touchend!resendVerificationEmail"] = true;
+    $.__views.__alloyId405 = Ti.UI.createButton({
         borderRadius: "5",
         backgroundColor: "#7B7B7B",
         title: "Refresh",
@@ -211,10 +211,10 @@ function Controller() {
         top: "10",
         height: "40",
         color: "#ffffff",
-        id: "__alloyId401"
+        id: "__alloyId405"
     });
-    $.__views.verifyContainer.add($.__views.__alloyId401);
-    checkStatus ? $.addListener($.__views.__alloyId401, "touchend", checkStatus) : __defers["$.__views.__alloyId401!touchend!checkStatus"] = true;
+    $.__views.verifyContainer.add($.__views.__alloyId405);
+    checkStatus ? $.addListener($.__views.__alloyId405, "touchend", checkStatus) : __defers["$.__views.__alloyId405!touchend!checkStatus"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -235,9 +235,9 @@ function Controller() {
         console.log("close!!");
         nav.closeWindow($.asp_profile);
     });
-    __defers["$.__views.__alloyId398!touchend!changePassword"] && $.addListener($.__views.__alloyId398, "touchend", changePassword);
-    __defers["$.__views.__alloyId400!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId400, "touchend", resendVerificationEmail);
-    __defers["$.__views.__alloyId401!touchend!checkStatus"] && $.addListener($.__views.__alloyId401, "touchend", checkStatus);
+    __defers["$.__views.__alloyId402!touchend!changePassword"] && $.addListener($.__views.__alloyId402, "touchend", changePassword);
+    __defers["$.__views.__alloyId404!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId404, "touchend", resendVerificationEmail);
+    __defers["$.__views.__alloyId405!touchend!checkStatus"] && $.addListener($.__views.__alloyId405, "touchend", checkStatus);
     _.extend($, exports);
 }
 

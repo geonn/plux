@@ -35,6 +35,23 @@ var getAttImages = function(){
 		  	width: '100%'
 		});
 		
+		var close_label = Ti.UI.createLabel({
+			text: "Close",
+			top: 0,
+			right: 0,
+			height: 40,
+			width: Ti.UI.SIZE,
+			color: "#ffffff"
+		});
+		
+		close_label.addEventListener("click", closeWindow);
+		
+		var header = Ti.UI.createView({
+			width: Ti.UI.FILL,
+			height: 40,
+			top: 0,
+		});
+		
 		var img_caption = Ti.UI.createLabel({
 			text: items[i].category,
 			height: 40,
@@ -46,7 +63,9 @@ var getAttImages = function(){
 		
 		$.attachment_Details.title=items[i].category;
 		row.add(adImage);
-		row.add(img_caption);
+		header.add(img_caption);
+		header.add(close_label);
+		row.add(header);
 		scrollView.add(row);
 		the_view.push(scrollView); 
 		
@@ -61,10 +80,9 @@ var getAttImages = function(){
 	});
 	
 	$.albumView.add(scrollableView);
-	
 	scrollableView.scrollToView(position, true); 
 	 
-	scrollableView.addEventListener( 'scrollend', function(e) {
+	scrollableView.addEventListener('scrollend', function(e) {
 		if((scrollableView.currentPage+1) === items.length){
 			if(scrollableView.currentPage === my_page){
 				scrollableView.currentPage=0;
@@ -88,6 +106,7 @@ var getAttImages = function(){
 		width	:30,
 		height  :30
 	});
+	
 	deleteView.add(deleteBtn);	
 	deleteBtn.addEventListener('click',function(){
 		my_page = scrollableView.currentPage; 
@@ -141,12 +160,20 @@ var getAttImages = function(){
 };
 
 $.albumView.addEventListener('click', function(){
-		$.attachment_Details.close({
-			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-			opacity: 0,
-			duration: 200
-		});
+	$.attachment_Details.close({
+		curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+		opacity: 0,
+		duration: 200
 	});
+});
+
+function closeWindow(){
+	$.attachment_Details.close({
+		curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+		opacity: 0,
+		duration: 200
+	});
+}
 /************************
 *******APP RUNNING*******
 *************************/

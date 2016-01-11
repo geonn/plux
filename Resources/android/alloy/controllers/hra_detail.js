@@ -33,27 +33,27 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hraDetailsWin && $.addTopLevelView($.__views.hraDetailsWin);
-    $.__views.__alloyId115 = Ti.UI.createView({
+    $.__views.__alloyId119 = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId115"
+        id: "__alloyId119"
     });
-    $.__views.hraDetailsWin.add($.__views.__alloyId115);
-    $.__views.__alloyId116 = Ti.UI.createView({
+    $.__views.hraDetailsWin.add($.__views.__alloyId119);
+    $.__views.__alloyId120 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId116"
+        id: "__alloyId120"
     });
-    $.__views.__alloyId115.add($.__views.__alloyId116);
-    $.__views.__alloyId117 = Ti.UI.createView({
+    $.__views.__alloyId119.add($.__views.__alloyId120);
+    $.__views.__alloyId121 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId117"
+        id: "__alloyId121"
     });
-    $.__views.__alloyId116.add($.__views.__alloyId117);
+    $.__views.__alloyId120.add($.__views.__alloyId121);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -61,12 +61,12 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId117.add($.__views.btnBack);
+    $.__views.__alloyId121.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId116.add($.__views.pageTitle);
+    $.__views.__alloyId120.add($.__views.pageTitle);
     $.__views.hraTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -78,25 +78,25 @@ function Controller() {
         textAlign: "center"
     });
     $.__views.pageTitle.add($.__views.hraTitle);
-    $.__views.__alloyId118 = Ti.UI.createScrollView({
+    $.__views.__alloyId122 = Ti.UI.createScrollView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId118"
+        id: "__alloyId122"
     });
-    $.__views.__alloyId115.add($.__views.__alloyId118);
+    $.__views.__alloyId119.add($.__views.__alloyId122);
     $.__views.input_box = Ti.UI.createView({
         id: "input_box",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId118.add($.__views.input_box);
+    $.__views.__alloyId122.add($.__views.input_box);
     $.__views.description = Ti.UI.createView({
         id: "description",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId118.add($.__views.description);
+    $.__views.__alloyId122.add($.__views.description);
     $.__views.picker = Ti.UI.createView({
         bottom: "0",
         height: Ti.UI.SIZE,

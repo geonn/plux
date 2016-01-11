@@ -168,27 +168,27 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
-    $.__views.__alloyId119 = Ti.UI.createView({
+    $.__views.__alloyId123 = Ti.UI.createView({
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId119"
+        id: "__alloyId123"
     });
-    $.__views.leaftletWin.add($.__views.__alloyId119);
-    $.__views.__alloyId120 = Ti.UI.createView({
+    $.__views.leaftletWin.add($.__views.__alloyId123);
+    $.__views.__alloyId124 = Ti.UI.createView({
         layout: "horizontal",
         height: "50",
         width: "100%",
         backgroundColor: "#DEDEDE",
-        id: "__alloyId120"
+        id: "__alloyId124"
     });
-    $.__views.__alloyId119.add($.__views.__alloyId120);
-    $.__views.__alloyId121 = Ti.UI.createView({
+    $.__views.__alloyId123.add($.__views.__alloyId124);
+    $.__views.__alloyId125 = Ti.UI.createView({
         left: "0",
         width: "10%",
-        id: "__alloyId121"
+        id: "__alloyId125"
     });
-    $.__views.__alloyId120.add($.__views.__alloyId121);
+    $.__views.__alloyId124.add($.__views.__alloyId125);
     $.__views.btnBack = Ti.UI.createImageView({
         left: "10",
         id: "btnBack",
@@ -196,13 +196,13 @@ function Controller() {
         height: "25",
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId121.add($.__views.btnBack);
+    $.__views.__alloyId125.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
-    $.__views.__alloyId120.add($.__views.pageTitle);
-    $.__views.__alloyId122 = Ti.UI.createLabel({
+    $.__views.__alloyId124.add($.__views.pageTitle);
+    $.__views.__alloyId126 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -211,14 +211,14 @@ function Controller() {
         },
         text: "Health Info",
         textAlign: "center",
-        id: "__alloyId122"
+        id: "__alloyId126"
     });
-    $.__views.pageTitle.add($.__views.__alloyId122);
+    $.__views.pageTitle.add($.__views.__alloyId126);
     $.__views.brochureView = Ti.UI.createView({
         id: "brochureView",
         backgroundColor: "#828282"
     });
-    $.__views.__alloyId119.add($.__views.brochureView);
+    $.__views.__alloyId123.add($.__views.brochureView);
     $.__views.bigView = Ti.UI.createScrollView({
         id: "bigView",
         zIndex: "99",
@@ -231,17 +231,17 @@ function Controller() {
         visible: "false"
     });
     $.__views.brochureView.add($.__views.bigView);
-    $.__views.__alloyId123 = Ti.UI.createView({
+    $.__views.__alloyId127 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId123"
+        id: "__alloyId127"
     });
-    $.__views.brochureView.add($.__views.__alloyId123);
+    $.__views.brochureView.add($.__views.__alloyId127);
     $.__views.scrollview = Ti.UI.createScrollView({
         top: "15",
         id: "scrollview",
         layout: "vertical"
     });
-    $.__views.__alloyId123.add($.__views.scrollview);
+    $.__views.__alloyId127.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",

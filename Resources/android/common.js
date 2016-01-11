@@ -70,7 +70,6 @@ exports.showLoading = function() {
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";
     mainView.loadingBar.height = "120";
-    mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
     mainView.activityIndicator.show();
 };
 
