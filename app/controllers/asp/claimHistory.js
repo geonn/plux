@@ -119,12 +119,12 @@ data.forEach(function(entry){
 		claimType:entry.claimType,
 		text: "MC Days: "+entry.mcdays
 	});
-	
+	var claim_type_text = (entry.claimType == "Reimbursement")?entry.claimType:entry.claimType+" [Detail]";
 	var label_claimType = $.UI.create("Label",{
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
 		claimType:entry.claimType,
-		text: "Claim Type: "+entry.claimType
+		text: "Claim Type: "+claim_type_text
 	});
 	
 	/**var label_status = $.UI.create("Label",{
