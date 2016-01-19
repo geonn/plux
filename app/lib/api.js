@@ -468,7 +468,7 @@ exports.do_asp_signup = function(data, mainView){
 	     timeout : 6000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send();
 };
@@ -490,7 +490,7 @@ exports.resendVerificationEmail = function(){
 	     timeout : 130000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 };
@@ -548,7 +548,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 }; 
@@ -583,7 +583,7 @@ exports.doChangePassword = function(e, mainView) {
 	     timeout : 6000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 }; 
@@ -625,7 +625,7 @@ exports.claimDetailBySeries = function(e){
 	});
 	
 	// Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 };
@@ -672,7 +672,7 @@ exports.getClaimDetail = function(e){
 	});
 	
 	// Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 };
@@ -708,7 +708,7 @@ exports.claimInfo = function(e) {
 	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 };
@@ -969,7 +969,7 @@ exports.loadPanelList = function (ex){
 	     timeout : 50000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", url);
+	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
 };
@@ -991,7 +991,7 @@ exports.callByPost = function(e, onload, onerror){
 exports.callByGet  = function(e, onload, onerror){
 	var url =  eval(e.url) + "?"+e.params;
 	console.log(url);
-	var _result = contactServerByGet(url);   
+	var _result = contactServerByGet(encodeURI(url));   
 	_result.onload = function(e) {   
 		onload && onload(this.responseText); 
 	};
