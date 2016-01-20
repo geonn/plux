@@ -4,7 +4,7 @@ var u_id = Ti.App.Properties.getString('u_id') || "";
 //var data = friends.getData();
 var fade_view = $.UI.create("View", {
 	classes:['wfill', 'hfill'],
-	backgroundColor: "#000000"
+	backgroundColor: "#ffffff"
 });
 var fade_images = ['/images/slideshow/bg0.png', '/images/slideshow/bg1.png', '/images/slideshow/bg2.png', '/images/slideshow/bg3.png'];
 
