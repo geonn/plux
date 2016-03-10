@@ -348,8 +348,8 @@ exports.removeHealthDataById = function(id){
 };
 
 exports.do_pluxLogin = function(data,mainView){
-	var url = pluxLoginUrl +"&email="+data.email+"&password="+data.password ;
- 
+	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password) ;
+ 	 
 	var records = {};
 	records['version'] =  Ti.Platform.version;
 	records['os'] =  Ti.Platform.osname;
@@ -382,7 +382,7 @@ exports.do_pluxLogin = function(data,mainView){
 					//	console.log(result.data.user_service[i]);
 					  if(result.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
-		       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
+		       			Ti.App.Properties.setString('asp_password', data.password);
 					  }
 					};
 				}
@@ -497,8 +497,10 @@ exports.resendVerificationEmail = function(){
 
 exports.doLogin = function(username, password, mainView, target) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	// console.log("asp login"+url);
+	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password); 
+ 
+	  console.log("asp login"+url);
+	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -548,7 +550,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", encodeURI(url));
+	 client.open("GET", url);
 	 // Send the request.
 	 client.send(); 
 }; 

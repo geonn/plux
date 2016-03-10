@@ -181,11 +181,12 @@ function Controller() {
             claimType: entry.claimType,
             text: "MC Days: " + entry.mcdays
         });
+        var claim_type_text = "Reimbursement" == entry.claimType ? entry.claimType : entry.claimType + " [Detail]";
         var label_claimType = $.UI.create("Label", {
             classes: [ "h5", "hsize", "wfill", "left-align" ],
             serial: entry.serial,
             claimType: entry.claimType,
-            text: "Claim Type: " + entry.claimType
+            text: "Claim Type: " + claim_type_text
         });
         view_detail.add(labelClinicView);
         view_detail.add(label_amount);
