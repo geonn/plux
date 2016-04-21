@@ -158,7 +158,11 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		
 	} 
 	if(gType == 1){ 
-		Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
+		setTimeout(function(){
+			Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
+		}, 950);
+		
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -166,7 +170,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}
 	if(gType == 2){ 
-		Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		}, 650);
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -174,7 +181,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}
 	if(gType == 3){
-		Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
+		}, 750);
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -182,7 +192,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}
 	if(gType == 4){ 
-		Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
+		}, 1000);
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -202,7 +215,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}*/
 	if(gType == 7){ 
-		Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
+		}, 1250);
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -210,7 +226,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}
 	if(gType == 8){ 
-		Ti.App.fireEvent('app:bloodGlucose',{ message:  info, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:bloodGlucose',{ message:  info, dataPeriod:dataPeriod });
+		}, 1500);
+		
 		if(showDetailsLabel == "1"){
 			var text = latestData|| "N/A";
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
@@ -218,7 +237,10 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}
 	}
 	if(gType == 10){
-		Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
+		setTimeout(function(){
+			Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
+		}, 1750);
+		
 		if(latestData != ""){
 			latestData = latestData  +" Steps";
 		}
@@ -227,7 +249,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
 			//mainView.stepsDetailLabel.text = latestData || "N/A";
 		}
-	}
+	} 
 	return info;
 }
 

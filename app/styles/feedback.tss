@@ -1,0 +1,10 @@
+
+".container" : {
+  
+},
+
+".gray-line":{
+	backgroundColor: "#ececec",
+	width: Ti.UI.FILL,
+	height: 1	
+},

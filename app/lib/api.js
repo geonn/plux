@@ -35,6 +35,7 @@ var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+
 var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
 var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
 var getSpecialtylist = "http://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
@@ -42,7 +43,7 @@ var getDoctorPanelBySpecialty = "http://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBy
 var getWorkingHoursByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
 var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
 var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
-
+var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -159,6 +160,7 @@ exports.addAppointment = function(e, callback){
 	client.open("POST", url);
 	client.send(e.param);
 };
+ 
 
 exports.syncAppointmentData = function(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
@@ -356,8 +358,8 @@ exports.removeHealthDataById = function(id){
 };
 
 exports.do_pluxLogin = function(data,mainView){
-	var url = pluxLoginUrl +"&email="+data.email+"&password="+data.password ;
- 
+	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password) ;
+ 	 
 	var records = {};
 	records['version'] =  Ti.Platform.version;
 	records['os'] =  Ti.Platform.osname;
@@ -390,7 +392,7 @@ exports.do_pluxLogin = function(data,mainView){
 					//	console.log(result.data.user_service[i]);
 					  if(result.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
-		       			Ti.App.Properties.setString('asp_password', result.data.user_service[i].password);
+		       			Ti.App.Properties.setString('asp_password', data.password);
 					  }
 					};
 				}
@@ -505,8 +507,10 @@ exports.resendVerificationEmail = function(){
 
 exports.doLogin = function(username, password, mainView, target) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	var url = loginUrl+"?LOGINID="+username+"&PASSWORD="+password; 
-	// console.log("asp login"+url);
+	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password); 
+ 
+	  console.log("asp login"+url);
+	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -556,7 +560,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     timeout : 10000  // in milliseconds
 	 });
 	 // Prepare the connection.
-	 client.open("GET", encodeURI(url));
+	 client.open("GET", url);
 	 // Send the request.
 	 client.send(); 
 }; 

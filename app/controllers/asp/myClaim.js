@@ -39,13 +39,17 @@ function init(){
  	var month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
  	
 	var e = JSON.parse(Ti.App.Properties.getString('balchk'));
+	
+	if(e == ""){
+		alert("No records found");
+		return false;
+	}
 	var updated_date = currentDateTime();//Ti.App.Properties.getString('balchkUpdatedDate');
 	$.date.text = timeFormat(updated_date);
  
 	var groups = {};
 	var balance_groups = {};
-	var balance_user_groups = {};
-	
+	var balance_user_groups = {}; 
 	for(var i=0; i < e.length; i++){
 		var val = e[i];
 		/*if(val.entidvbal < 99999){
@@ -69,6 +73,8 @@ function init(){
 		groups[val.name] = groups[val.name] || [];
    	    groups[val.name].push( val );
 	}
+	
+	 
 	GenerateClaimBalanceTable(balance_groups);
 	Object.keys(groups).map( function( group ){ 
 		//GenerateClaimBalanceTable({claim_data: groups[group], name: group});
