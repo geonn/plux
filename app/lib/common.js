@@ -35,7 +35,7 @@ exports.showImageIndicator = function(){
 	  });
 	}else{
 	var ind = Ti.UI.createActivityIndicator({  
-		style:Ti.UI.iPhone.ActivityIndicatorStyle.LIGHT,
+		style:Ti.UITi.UI.ActivityIndicatorStyle.DARK.ActivityIndicatorStyle.LIGHT,
 		bottom:10,
 		right:20,
 		height:Ti.UI.SIZE,
@@ -84,7 +84,7 @@ exports.showLoading = function(){
 	mainView.loadingBar.opacity = "1";
 	mainView.loadingBar.zIndex = "100";
 	mainView.loadingBar.height = "120";
-	//mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG; 
+	mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG; 
 	mainView.activityIndicator.show();
 };
 
@@ -187,7 +187,7 @@ exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 	view_sms_box.add(label_sms);
 	view_sms_box.add(label_privacy);
 	label_privacy.addEventListener('touchend',function(){ 
-		nav.navigationWindow("privacy");
+		nav.navigationWindow("tnc");
 	});
 	return view_sms_box;
 };

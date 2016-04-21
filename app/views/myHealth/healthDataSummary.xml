@@ -1,10 +1,7 @@
 <Alloy>
 	<Window title="Dashboard" id="dashboard" backButtonTitle="" class="container" navTintColor="#CE1D1C">
         <View>
-        	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
-		        <ActivityIndicator  id="activityIndicator" />
-		    	<Label top="5" text="Loading" color="#ffffff" />
-		    </View>
+        	 
 			<View id="main" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" top="0">
 				<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
 					<View left="0" width="10%">

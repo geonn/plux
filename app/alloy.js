@@ -149,6 +149,10 @@ function timeFormat(datetime){
 	return newFormat;
 }
 
+function IsNumeric(input){
+    return (input - 0) == input && (''+input).trim().length > 0;
+}
+
 function convertToDBDateFormat(datetime){
 	var timeStamp = datetime.split(" ");  
 	var newFormat;
@@ -341,7 +345,7 @@ function children(key, e){
 function createIndicator(){
 	var style;
 	if (Ti.Platform.name === 'iPhone OS'){
-	  style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
+	  style = Ti.UI.ActivityIndicatorStyle.DARK;
 	}
 	else {
 	  style = Ti.UI.ActivityIndicatorStyle.DARK;

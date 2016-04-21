@@ -45,7 +45,7 @@ for(var a = 0; data.length > a; a++){
 	
 	if(data[a]['maxperclaim'] != 99999){
 		var val = (data[a]['maxperclaim'] == 9999)?"Unlimited":"RM"+data[a]['maxperclaim'];
-		var view = create_field(val, "Max per Claim");
+		var view = create_field(val, "Max Per Claim");
 		$.main.add(view);
 	}
 	

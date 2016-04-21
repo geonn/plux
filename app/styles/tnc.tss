@@ -1,0 +1,36 @@
+".container": {
+	backgroundColor:"#FFFFF6",
+	layout: 'vertical',
+	width: Ti.UI.FILL,
+	fullscreen: true,
+},
+".title_header":{
+	font: {
+        fontSize: '18'
+    },
+    
+    color: '#CC2228',
+    left: '10',
+    right: '10'
+},
+".subtitle_header":{
+	font: {
+        fontSize: '16',
+        fontWeight: "bold"
+    },
+    
+    color: '#404040',
+    left: '10',
+    right: '10'
+},
+
+".description_content":{
+	font: {
+        fontSize: '14'
+    },
+    
+    color: '#6E6E6E',
+    left: '10',
+    textAlign: "left",
+    right: '10'
+}

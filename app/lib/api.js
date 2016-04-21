@@ -35,6 +35,7 @@ var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -151,6 +152,7 @@ exports.addAppointment = function(e, callback){
 	client.open("POST", url);
 	client.send(e.param);
 };
+ 
 
 exports.syncAppointmentData = function(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
