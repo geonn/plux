@@ -31,7 +31,7 @@ if(isShowIntro	!= ""){
 }
 
 /** 
-API.getDoctorList();
+
  
 >>>>>>> origin/master
 var win = Alloy.createController("home").getView();

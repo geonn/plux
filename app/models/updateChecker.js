@@ -4,6 +4,11 @@ ID       type Name
 ------------------------------------
 1		getClinicList	 
 2 		notification 
+3		getMessageByRoom
+4 		getDoctorByPanel
+5		getSpecialtylist
+6		getDoctorPanelBySpecialty
+7		getHelplineMessage
 ************************************/
 
 exports.definition = {

@@ -1,5 +1,4 @@
-var doctors_model = Alloy.createCollection('doctors');   
-var clinicId = 0; 
+
 var listing = [];   
 
 function render_specialty_list(){
@@ -12,43 +11,22 @@ function render_specialty_list(){
   	if(listing.length < 1){ 
 		docTable.setData(common.noRecord());
 	}else{
-		listing.forEach(function(entry) {
-			console.log(entry.id);
-	   		var row = Titanium.UI.createTableViewRow({
+		listing.forEach(function(entry){
+	   		var row = $.UI.create("TableViewRow", {
+	   			classes: ['hsize'],
 			    touchEnabled: true,
-			    height: Ti.UI.SIZE,
-			    specialty: entry.specialty, 
-			   // layout: "vertical",
+			    specialty_id: entry.id,
+			    specialty_name: entry.title,
 			    backgroundSelectedColor: "#ECFFF9",
-		 
 			});
-			var tblRowView = Ti.UI.createView({ 
-					height:Ti.UI.SIZE, 
-					width:Ti.UI.FILL,
-					top: 10,
-					bottom: 10,
-					specialty: entry.specialty
-			}); 
-
-			var tblView = Ti.UI.createView({
-					layout: "vertical",
-					height:Ti.UI.SIZE,
-					specialty: entry.specialty, 
-					width:"auto" 
-			}); 
 			 
 			var label_specialty = $.UI.create('Label',{
-				classes : ['medium_font','wfill','hsize','themeColor'],
-				text:  entry.specialty,
-				textAlign:'left',
-				specialty: entry.specialty, 
-				top:5,
-				left:15
+				classes : ['medium_font','wfill','hsize','themeColor', 'padding'],
+				text: entry.title,
+				textAlign: 'left',
 			});
-			tblView.add(label_specialty);
-			tblRowView.add(tblView);
-			update_specialty_to_form(tblRowView);
-			row.add(tblRowView);
+			row.add(label_specialty);
+			update_specialty_to_form(row);
 			data.push(row);	   
 		});
 		docTable.setData(data);  
@@ -56,27 +34,34 @@ function render_specialty_list(){
 	$.specialty_container.add(docTable); 
 }
 
-$.set_clinicId = function(e){
-	console.log("specialty called");
-	clinicId = e.clinicId;
-	refresh();
-};
-
 function update_specialty_to_form(vw){
 	vw.addEventListener('click', function(e){
-		var elbl = JSON.stringify(e.source);
-		var res = JSON.parse(elbl);
-		console.log(res);
-	 	Ti.App.fireEvent('update_specialty',{specialty:res.specialty});
+		var specialty_id = parent({name: "specialty_id"}, e.source);
+		var specialty_name = parent({name: "specialty_name"}, e.source);
+		
+	 	Ti.App.fireEvent('update_specialty',{specialty_id:specialty_id, specialty_name: specialty_name});
 	 	Ti.App.fireEvent("appointment_index:moveNext");
 	});
 }
 
 function refresh(){
-	listing = doctors_model.getDoctorListGroupBySpecialty([{key: "clinic_id", value: clinicId}]);
-	if(clinicId){
-		render_specialty_list();
+	var checker = Alloy.createCollection('updateChecker');
+	var isUpdate = checker.getCheckerById("2");
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
 	}
+	
+	API.callByPost({url:"getSpecialtylist", params: {last_updated: last_updated}}, function(responseText){
+		var model = Alloy.createCollection("specialty");
+		var res = JSON.parse(responseText);
+		var arr = res.data || null;
+		model.saveArray(arr);
+		checker.updateModule(5,"getSpecialtylist", common.now());
+		listing = model.getData();
+		render_specialty_list();
+	});
 }
 
 function init(){

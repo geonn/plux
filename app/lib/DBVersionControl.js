@@ -23,7 +23,7 @@ exports.checkAndUpdate = function(e){
 		appointment.addColumn("duration", "INTEGER");
 		dbVersion = '1.2';
 	}
-	dbVersion = '1.2';
+	
 	if(dbVersion == 1.2){
 		var doctors = Alloy.createCollection('doctors'); 
 		doctors.addColumn("clinic_id", "INTEGER");
@@ -36,6 +36,12 @@ exports.checkAndUpdate = function(e){
 		var notification = Alloy.createCollection('notification'); 
 		notification.addColumn("status", "INTEGER");
 		dbVersion = '1.4';
+	}
+	
+	if(dbVersion == "1.4"){
+		var doctors_model = Alloy.createCollection('doctors'); 
+		doctors_model.rebuildDb();
+		dbVersion = '1.5';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

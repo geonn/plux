@@ -1,0 +1,33 @@
+<Alloy>
+<Window title="Ask Doctor" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<View class="hfill wfill vert">
+		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+			<View left="0" width="20%">
+	         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+	   		</View>
+	     	<View width="60%">
+	     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Chatroom</Label>
+	     	</View>
+	 	</View>
+	 	<ScrollView class="wfill hfill" contentHeight="Ti.UI.FILL" contentWidth="Ti.UI.FILL">
+			<View class="wfill hfill vert">
+		    	<View class="wfill hsize">
+		        	<View class="wsize hsize vert padding">
+			        	<Label id="f_name" class="h4 wsize hsize"></Label>
+		        	</View>
+		    	</View>
+		    	<View class="wfill hsize box vert padding" top="0">
+			    	<ScrollView id="chatroom" backgroundColor="#e5e5e5" class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL">
+				    	<View id="inner_box" class="wfill hsize vert" top="0" >
+						</View>
+					</ScrollView>
+				</View>
+	   		</View>
+		    <View backgroundColor="white" class="wfill horz hsize" bottom="0">
+		    	<TextField id="message" class="padding" width="70%"></TextField>
+		    	<Button class="small_button" height="40" width="60" right="10" onClick="SendMessage">Send</Button>
+		    </View>
+	    </ScrollView>
+	</View>
+</Window>
+</Alloy>

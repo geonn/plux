@@ -2,7 +2,7 @@ var panelListModel = Alloy.createCollection('panelList');
 var listing = [];
 var selected_date = new Date();
 var lastday = selected_date;
-var doctor_panel_id = 0;
+var clinicId = 0;
 var specialty = 0;
 var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
 var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
@@ -32,13 +32,13 @@ function convertMinuteToHour(minutes){
     return ('0' + date.getHours()).slice(-2)+":"+('0' + date.getMinutes()).slice(-2);
 }
 
-$.set_doctor_panel_id = function(e){
-	doctor_panel_id = e.doctor_panel_id;
-	refresh();
+$.set_clinicId = function(e){
+	clinicId = e.clinicId;
 };
 
 $.set_specialty = function(e){
 	specialty = e.specialty;
+	refresh();
 };
 
 function render_date_bar(){
@@ -109,8 +109,8 @@ function render_available_timeslot(){
 	
 	var start_date = selected_date.getFullYear()+"-"+("0"+(parseInt(selected_date.getMonth())+1)).slice(-2)+"-"+("0"+selected_date.getDate()).slice(-2)+" 00:00:00";
 	var end_date = selected_date.getFullYear()+"-"+("0"+(parseInt(selected_date.getMonth())+1)).slice(-2)+"-"+("0"+selected_date.getDate()).slice(-2)+" 23:59:59";
-	var appointmentList = appointmentModel.getAppointmentList({doctor_panel_id: doctor_panel_id, start_date: start_date, end_date:end_date});
-	console.log(appointmentList);
+	var appointmentList = appointmentModel.getAppointmentList({u_id: u_id, clinicId: clinicId, specialty: specialty, start_date: start_date, end_date:end_date});
+	
 	/*
 	 generate booked timeslot from appointment list
 	 * */
@@ -189,23 +189,13 @@ function changeDate(e){
 }
 
 function refresh(){
+	//listing = panelListModel.getPanelListTest();
 	render_date_bar();
-	
-	API.callByPost({url:"getWorkingHoursByDoctorPanel", params: {doctor_panel_id: doctor_panel_id}}, function(responseText){
-		var model = Alloy.createCollection("doctor_panel");
-		var res = JSON.parse(responseText);
-		var arr = res.data || null;
-		Ti.App.Properties.setString('working_hour_begin', arr.working_hour_begin);
-		Ti.App.Properties.setString('working_hour_end', arr.working_hour_end);
-		Ti.App.Properties.setString('timeblock', arr.timeblock);
-		
-		render_available_timeslot();
-	});
-	
+	render_available_timeslot();
 }
 
 function init(){
-	render_date_bar();
+	refresh();
 }
 
 init();

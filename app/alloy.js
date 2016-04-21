@@ -287,7 +287,7 @@ function parent(key, e){
 		if(eval("e."+key.name+"") != key.value){
 			if(eval("e.parent."+key.name+"") != key.value){
 				if(eval("e.parent.parent."+key.name+"") != key.value){
-	    			console.log("box not found");
+	    			console.log("key and value not match");
 	    		}else{
 	    			return e.parent.parent;
 	    		}
@@ -298,12 +298,11 @@ function parent(key, e){
 	    		return e;
 	    }
 	}else{
-		console.log(key.name);
 		if(eval("typeof e."+key.name) == "undefined"){
 			
 			if(eval("typeof e.parent."+key.name+"") == "undefined"){
 				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
-	    			console.log("box not found");
+	    			console.log("key not found");
 	    		}else{
 	    			return eval("e.parent.parent."+key.name);
 	    		}

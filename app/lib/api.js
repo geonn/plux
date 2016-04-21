@@ -35,6 +35,14 @@ var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
+var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
+var getSpecialtylist = "http://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
+var getDoctorPanelBySpecialty = "http://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
+var getWorkingHoursByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
+var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
+var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
+
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -782,6 +790,7 @@ exports.loadLeaflet = function(ex){
 
 exports.getDoctorList = function(ex){
 	var url = doctorListUrl;
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -1051,7 +1060,6 @@ exports.callByPost = function(e, onload, onerror){
 		var _result = contactServerByPost(url, e.params || {});   
 		_result.onload = function(ex) { 
 			console.log('success callByPost');
-			console.log(this.responseText);
 			onload && onload(this.responseText); 
 		};
 		

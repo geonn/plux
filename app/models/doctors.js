@@ -1,19 +1,20 @@
 exports.definition = {
 	config: {
 		columns: {
-		    "id": "INTEGER",
+		    "id": "INTEGER PRIMARY KEY",
 		    "name": "TEXT" ,
 		    "dr_code": "TEXT" ,
 		    "status": "INTEGER" ,
-		    "email": "INTEGER" ,
+		    "email": "TEXT" ,
 		    "mobile": "TEXT" ,
 		    "specialty": "TEXT" ,
 		    "qualification" : "TEXT",
 		    "introduction" : "TEXT",
 		    "created": "TEXT" ,
 		    "updated": "TEXT",
-		    "clinic_id": "INTEGER"
+		    //"clinic_id": "INTEGER" abaddon
 		},
+		
 		adapter: {
 			type: "sql",
 			collection_name: "doctors",
@@ -51,8 +52,8 @@ exports.definition = {
 			},
 			getDoctorListGroupBySpecialty: function(params){
 				var addon = "";
-				console.log(params);
-				for (var i=0; i < params.length; i++) {
+				var params_length = (typeof params != "undefined")?params.length:0;
+				for (var i=0; i < params_length; i++) {
 				  var key = params[i].key || "";
 				  var value = params[i].value || "";
 				  console.log(params[i]);
@@ -68,7 +69,7 @@ exports.definition = {
                 var res = db.execute(sql);
                 var listArr = []; 
                 var count = 0;
-                while (res.isValidRow()){ 
+                while (res.isValidRow()){
 					listArr[count] = { 
 						id: res.fieldByName('id'),
 						name: res.fieldByName('name'), 
@@ -81,7 +82,7 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
-						clinic_id: res.fieldByName('clinic_id')
+						//clinic_id: res.fieldByName('clinic_id')
 					};	
 					 
 					res.next();
@@ -102,7 +103,7 @@ exports.definition = {
 				  addon = " AND "+key+" = '"+value+"'";
 				};
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE `status` =1 "+addon+" ORDER BY name ASC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE `status` = 1 "+addon+" ORDER BY name ASC";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -124,10 +125,11 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
-						clinic_id: res.fieldByName('clinic_id')
+						//clinic_id: res.fieldByName('clinic_id')
 					};	
 					 
 					res.next();
+					console.log(count);
 					count++;
 				} 
 			 
@@ -138,13 +140,13 @@ exports.definition = {
 			},
 			getDoctorById: function(id){ 
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id ='"+id+"' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id = ? ";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, id);
                 var arr = []; 
                
                 if (res.isValidRow()){
@@ -160,7 +162,7 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
-						clinic_id: res.fieldByName('clinic_id')
+						//clinic_id: res.fieldByName('clinic_id')
 					};
 					
 				} 
@@ -178,11 +180,11 @@ exports.definition = {
                 }
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated, clinic_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.name,entry.dr_code, entry.email,entry.mobile,entry.status ,entry.specialty,entry.qualification,entry.introduction,entry.created,entry.updated, entry.clinic_id);
+	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+					db.execute(sql_query, entry.id, entry.name,entry.dr_code, entry.email,entry.mobile,entry.status ,entry.specialty,entry.qualification,entry.introduction,entry.created,entry.updated);
 					 
-					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET name=?,dr_code=?, email=?,mobile=?,status=?,specialty=?,qualification=?,introduction=?,updated=?, clinic_id=? WHERE id=?";
-					db.execute(sql_query, entry.name,entry.dr_code,entry.email,entry.mobile,entry.status,entry.specialty,entry.qualification,entry.introduction, entry.updated, entry.clinic_id, entry.id);
+					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET name=?,dr_code=?, email=?,mobile=?,status=?,specialty=?,qualification=?,introduction=?,updated=? WHERE id=?";
+					db.execute(sql_query, entry.name,entry.dr_code,entry.email,entry.mobile,entry.status,entry.specialty,entry.qualification,entry.introduction, entry.updated, entry.id);
 				});
 				db.execute("COMMIT");
 	            db.close();
@@ -217,9 +219,20 @@ exports.definition = {
                 db.execute(sql);
                 db.close();
                 collection.trigger('sync');
+			},
+			rebuildDb : function(){
+				console.log("rebuildDb");
+				var collection = this;
+				db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+				db.execute('DROP TABLE IF EXISTS doctors');
+		db.execute('CREATE TABLE IF NOT EXISTS doctors(id INTEGER PRIMARY KEY, name TEXT, dr_code TEXT, status INTEGER, email TEXT, mobile TEXT, specialty TEXT, qualification TEXT, introduction TEXT, created DATE, updated DATE);');
+			 	db.close();
+                collection.trigger('sync');
 			}
 		});
-
 		return Collection;
 	}
 };  

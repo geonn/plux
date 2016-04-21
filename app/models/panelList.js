@@ -12,8 +12,8 @@ exports.definition = {
 		    "tel": "TEXT",
 		    "latitude": "TEXT",
 		    "longitude": "TEXT",
-		    "panel": "INTEGER",
-		    "openHour": "TEXT",
+		    "panel": "INTEGER",		
+		    "openHour": "TEXT",		// abaddon
 			"clinicType": "TEXT"
 		},
 		adapter: {

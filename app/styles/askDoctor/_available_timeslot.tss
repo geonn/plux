@@ -1,0 +1,20 @@
+".gap" : {
+	backgroundColor: "#FFFFFF",
+	top:1,
+	right:1,
+	bottom:1
+}
+
+".active_view":{
+	backgroundColor: "#CE1D1C"
+}
+
+".active_label":{
+	color: "#ffffff"
+}
+
+".time_gap":{
+	backgroundColor: "#FFFFFF",
+	right: 1,
+	bottom: 1
+}

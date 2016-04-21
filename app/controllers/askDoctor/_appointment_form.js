@@ -4,7 +4,7 @@ var userModel = Alloy.createCollection('users_plux');
 var appointmentModel = Alloy.createCollection('appointment');
 var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
 var panelListModel = Alloy.createCollection('panelList');
-var selectedClinic, specialty, doctor_panel_id; 
+var selectedClinic, specialty; 
 var appointmentDatetime; 
 var toolbar;
 var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
@@ -30,10 +30,14 @@ function saveRecord(){
 	 
 	if(appDate == "Choose Date and Time"){
 		 common.createAlert("Fail","Please choose appointment date and time");
-		 Ti.App.fireEvent("appointment_index:loadingEnd");
 		 return false;
 	}
-	
+
+	if(appClinic == ""){
+		 common.createAlert("Fail","Please choose a clinic");
+		 return false;
+	}
+	console.log(appDate);
 	appDate = convertToDBDateFormat(appDate); 
 	
 	remark = remark.replace(/\r?\n/g, '<br />');
@@ -45,13 +49,11 @@ function saveRecord(){
 		duration : duration,
 		clinic_id  : appClinic,
 		specialty: param_specialty,
-		doctor_panel_id: doctor_panel_id,
 		remark : remark.trim() ,
 		created : currentDateTime(),  
 		updated : currentDateTime()
 
 	};
-	console.log(doctor_panel_id);
 	console.log(param);
 	Ti.App.fireEvent("appointment_index:loadingStart");
 
@@ -162,15 +164,13 @@ function removeAppointment(){
 }
 
 $.update_selectClinic = function(e){
-	console.log(e.doctor_panel_id);
 	selectedClinic = e.clinicId;
-	doctor_panel_id = e.doctor_panel_id;
 	$.appointment_clinic.text = e.clinicName;
 	$.appointment_clinic.color = "#000000";
 };
 
 $.update_specialty = function(e){
-	$.specialty.text = e.specialty_name;
+	$.specialty.text = e.specialty;
 	$.specialty.color = "#000000";
 };
 

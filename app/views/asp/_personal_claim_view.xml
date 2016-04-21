@@ -1,6 +1,6 @@
 <Alloy>
 	<View class="padding wfill hsize vert" id="personalClaimVw">
-		<View id="main" class="box wfill hsize vert" >
+		<View id="main" class="box wfill hsize vert rounded" >
 			<View class="hsize wfill horz">
 				<Label id="name" class="font_big" color="#CE1D1C" left="10" top="5" zIndex="10" width="85%"></Label>
 				<!--

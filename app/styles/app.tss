@@ -87,9 +87,25 @@
 }
 
 '.box':{
-	borderRadius: "5",
 	borderColor: "#dfe0e4",
 	backgroundColor: "#FFFFFF",
+}
+
+".small_button":{
+	borderColor: "#75d0cb",
+	backgroundColor: "#ffffff",
+	color: "#75d0cb",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	font:{
+		fontSize: 14,
+		fontFamily: 'Lato-Regular',
+	}
+}
+
+".rounded":{
+	borderRadius: "5",
 }
 
 ".greyText" : {
@@ -223,3 +239,18 @@
 ".padding-bottom":{
 	bottom: 10
 }, 
+'.button': {
+	height: 40,
+	borderColor: "#C6C8CA",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundColor: "#ED1C24",
+	borderRadius: 6,
+	color: "#ffffff",
+	width: Titanium.UI.FILL,
+	left: 10,
+	right: 10,
+	top: 10,
+	font: {
+		fontFamily: 'Lato-Regular',
+	}
+},

@@ -1,0 +1,29 @@
+<Alloy>
+	<View class="wfill hfill vert" backgroundColor="#f0f5f8">
+		<ScrollView class="wfill horz" height="80" showVerticalScrollIndicator="false" scrollType="horizontal" contentWidth="auto" contentHeight="Ti.UI.FILL" backgroundColor="#d7d7d7" id="date_bar">
+			<!--<View width="80" height="80" class="gap active_view">
+				<Label class="wsize hsize h6 active_label" top="10">THU, OCT</Label>
+				<Label class="wsize hszie h5 bold active_label">08</Label>
+			</View>
+			<View width="80" height="80" class="gap">
+				<Label class="wsize hsize h6" top="10">FRI, OCT</Label>
+				<Label class="wsize hszie h5 bold">09</Label>
+			</View>
+			<View width="80" height="80" class="gap">
+				<Label class="wsize hsize h6" top="10">SAT, OCT</Label>
+				<Label class="wsize hszie h5 bold">10</Label>
+			</View>
+			<View width="80" height="80" class="gap">
+				<Label class="wsize hsize h6" top="10">SUN, OCT</Label>
+				<Label class="wsize hszie h5 bold">11</Label>
+			</View>-->
+		</ScrollView>
+		<View class="padding wfill hfill vert" id="inner_box" left="9" right="9" width="301">
+			<ScrollView class="wfill hfill" contentWidth="Ti.UI.FILL" disableBounce="true" contentHeight="Ti.UI.SIZE" backgroundColor="#d7d7d7">
+				<View left="1" top="1" class="wfill hsize horz" id="timeslot">
+					
+				</View>
+			</ScrollView>
+		</View>
+	</View>
+</Alloy>
