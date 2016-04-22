@@ -7,6 +7,8 @@ var specialty = 0;
 var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
 var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 var u_id = Ti.App.Properties.getString('u_id') || 0;
+var day_selected = 0;
+var working_hour =[];
 //generate date function
 
 Date.prototype.addDays = function(days) {
@@ -52,6 +54,7 @@ function render_date_bar(){
 	    var view_date_box = $.UI.create("View",{
 	    	width: 80,
 	    	height: 80,
+	    	day: dateArray[i].getDay(),
 	    	view_element: "view_date_box",
 	    	date_s: dateArray[i],
 	    	classes:['gap', active_view]
@@ -73,6 +76,29 @@ function render_date_bar(){
 }
 
 function render_available_timeslot(){
+	for (var i=0; i < working_hour.length; i++) {
+	
+	  if(working_hour[i].days == selected_date.getDay()){
+	  		console.log(working_hour[i]);
+	  		console.log(working_hour[i].time_start+" "+working_hour[i].duration);
+	  		var whb = working_hour[i].time_start.split(":");
+	  		var whe = working_hour[i].time_end.split(":");
+	  		console.log(parseInt(whb[0]) * 60 + parseInt(whb[1]));
+	  		
+	  		Ti.App.Properties.setString('working_hour_begin', parseInt(whb[0]) * 60 + parseInt(whb[1]));
+			Ti.App.Properties.setString('working_hour_end', parseInt(whe[0]) * 60 + parseInt(whe[1]));
+			Ti.App.Properties.setString('timeblock', working_hour[i].duration);
+			break;
+	  }else{
+	  		Ti.App.Properties.setString('working_hour_begin', 0);
+			Ti.App.Properties.setString('working_hour_end', 0);
+			Ti.App.Properties.setString('timeblock', 0);
+	  }
+	};
+	
+	console.log("working hour");
+	
+	
 	var pw = Ti.Platform.displayCaps.platformWidth;
 	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
 	var pwidth = parseInt(pw / (ldf || 1), 10);
@@ -88,16 +114,17 @@ function render_available_timeslot(){
 	$.timeslot.removeAllChildren();
 	
 	var workingHourArray = new Array();
-	var working_hour_begin = parseInt(Ti.App.Properties.getString('working_hour_begin')) || 480; //8:00 am
-	var working_hour_end = parseInt(Ti.App.Properties.getString('working_hour_end')) || 1320; //10:00 pm
-	var timeblock = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
+	var working_hour_begin = parseInt(Ti.App.Properties.getString('working_hour_begin')); //8:00 am
+	var working_hour_end = parseInt(Ti.App.Properties.getString('working_hour_end')); //10:00 pm
+	var timeblock = parseInt(Ti.App.Properties.getString('timeblock') || 0);
+	console.log(working_hour_begin+" "+working_hour_end+" "+timeblock);
 	var appointmentModel = Alloy.createCollection('appointment');  
 	var booked_time = new Array();
 	
 	/*
 	 generate timeslot by working hour begin / end
 	 * */
-	while(working_hour_begin+timeblock < working_hour_end){
+	while(working_hour_begin+timeblock <= working_hour_end){
 		var time_key = Math.floor(working_hour_begin / timeblock);
 		workingHourArray[time_key] = working_hour_begin;
 		working_hour_begin = working_hour_begin + timeblock;
@@ -163,6 +190,7 @@ function navToForms(e){
 function changeDate(e){
 	Ti.App.fireEvent("appointment_index:loadingStart");
 	var sdate = parent({name: "date_s"}, e.source);
+	day_selected = parent({name: "day"}, e.source);
 	var childrens = $.date_bar.getChildren();
 	
 	for (var i=0; i < childrens.length; i++) {
@@ -194,10 +222,7 @@ function refresh(){
 	API.callByPost({url:"getWorkingHoursByDoctorPanel", params: {doctor_panel_id: doctor_panel_id}}, function(responseText){
 		var model = Alloy.createCollection("doctor_panel");
 		var res = JSON.parse(responseText);
-		var arr = res.data || null;
-		Ti.App.Properties.setString('working_hour_begin', arr.working_hour_begin);
-		Ti.App.Properties.setString('working_hour_end', arr.working_hour_end);
-		Ti.App.Properties.setString('timeblock', arr.timeblock);
+		working_hour = res.data || null;
 		
 		render_available_timeslot();
 	});
