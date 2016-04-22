@@ -15,6 +15,8 @@ function SendMessage(){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
+		$.message.value = "";
+		$.message.blur();
 		console.log('message sent');
 		$.message.value = "";
 		$.message.blur();

@@ -92,15 +92,14 @@
 }
 
 ".small_button":{
-	borderColor: "#75d0cb",
+	borderColor: "#CE1D1C",
 	backgroundColor: "#ffffff",
-	color: "#75d0cb",
+	color: "#CE1D1C",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	font:{
-		fontSize: 14,
-		fontFamily: 'Lato-Regular',
+		fontSize: 14, 
 	}
 }
 
