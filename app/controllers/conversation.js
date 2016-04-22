@@ -16,7 +16,8 @@ function SendMessage(){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		console.log('message sent');
-		
+		$.message.value = "";
+		$.message.blur();
 		refresh();
 		setTimeout(scrollToBottom, 500);
 		});

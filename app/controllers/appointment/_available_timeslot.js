@@ -106,7 +106,7 @@ function render_available_timeslot(){
 		pwidth = Ti.Platform.displayCaps.platformWidth;
 	}
 	var cell_width = Math.floor((pwidth - 22) / 3);
-	
+		
 	console.log("pwidth = "+pwidth);
 	console.log("cell_width = "+cell_width);
 	$.inner_box.width = pwidth - 18;
@@ -124,12 +124,13 @@ function render_available_timeslot(){
 	/*
 	 generate timeslot by working hour begin / end
 	 * */
-	while(working_hour_begin+timeblock <= working_hour_end){
-		var time_key = Math.floor(working_hour_begin / timeblock);
-		workingHourArray[time_key] = working_hour_begin;
-		working_hour_begin = working_hour_begin + timeblock;
+	if(working_hour_end){
+		while(working_hour_begin+timeblock <= working_hour_end){
+			var time_key = Math.floor(working_hour_begin / timeblock);
+			workingHourArray[time_key] = working_hour_begin;
+			working_hour_begin = working_hour_begin + timeblock;
+		}
 	}
-	
 	/*
 	 get booked timeblock by u_id and clinic from local DB
 	 * */
@@ -217,7 +218,7 @@ function changeDate(e){
 }
 
 function refresh(){
-	render_date_bar();
+	
 	
 	API.callByPost({url:"getWorkingHoursByDoctorPanel", params: {doctor_panel_id: doctor_panel_id}}, function(responseText){
 		var model = Alloy.createCollection("doctor_panel");
@@ -231,6 +232,7 @@ function refresh(){
 
 function init(){
 	render_date_bar();
+	refresh();
 }
 
 init();
