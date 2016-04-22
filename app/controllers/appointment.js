@@ -13,8 +13,6 @@ function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	API.syncAppointmentData(savedAppointment);
-	
-	render_appointment_list();
 }
 
 function savedAppointment(ex){ 
