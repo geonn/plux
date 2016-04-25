@@ -14,7 +14,7 @@ if(Ti.Platform.osname != "android"){
 
 /**********				init				*************/ 
 function init(){
-	PUSH.setInApp();
+	
 	$.win.add(loading.getView());
 	loading.start();
 	syncFromServer(); 
@@ -41,6 +41,10 @@ function init(){
 	}
 	setBackground();
 	loading.finish();
+	setTimeout(function(){
+		PUSH.setInApp();
+	},2000);
+	
 }
 
 function syncFromServer(){

@@ -100,11 +100,11 @@ exports.updateUserFromFB = function(e, mainView){
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
-	         	
+	         	API.updateNotificationToken();   
 	         	Ti.App.fireEvent('updateHeader'); 
 	         	mainView.win.close();
 				nav.closeWindow(mainView.win); 
-	         	//API.updateNotificationToken();   
+	         	//
 		    }
 		},
 		// function called when an error occurs, including a timeout
@@ -396,7 +396,7 @@ exports.do_pluxLogin = function(data,mainView){
 					  }
 					};
 				}
-	       		 
+	       		API.updateNotificationToken();    
 				Ti.App.fireEvent('updateHeader');
 				nav.closeWindow(mainView.win);  
 			}
