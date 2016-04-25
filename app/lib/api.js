@@ -732,7 +732,7 @@ exports.updateNotificationToken = function(e){
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	if(deviceToken != ""){ 
 		var url = updateToken+"&token="+deviceToken+"&member_no="+memno+"&u_id="+u_id;
-		console.log(url);
+ 
 		var client = Ti.Network.createHTTPClient({
 		     // function called when the response data is available
 		     onload : function(e) {
