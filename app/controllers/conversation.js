@@ -51,34 +51,51 @@ function render_conversation(){
 			image: thumb_path
 		});
 		*/
-		var view_text_container = $.UI.create("View", {
-			classes:  ['hsize', 'vert', 'box'],
-			top: 10,
-			width: "75%"
-		});
-		var label_name = $.UI.create("label",{
-			classes: ['h5','wfill', 'hsize', 'bold', 'padding'],
-			text: data[i].sender_name
-		});
-		var label_message = $.UI.create("Label", {
-			classes:['h5', 'wfill', 'hsize','padding'],
-			text: data[i].message
-		});
-		var label_time = $.UI.create("Label", {
-			classes:['h5', 'wfill', 'hsize','padding'],
-			top:0,
-			text: data[i].created,
-			textAlign: "right"
-		});
-		view_text_container.add(label_name);
-		view_text_container.add(label_message);
-		view_text_container.add(label_time);
-		if(data[i].is_endUser){
-			view_text_container.setLeft(10);
-			//view_container.add(imageview_thumb_path);
+		if(data[i].sender_id){
+			var view_text_container = $.UI.create("View", {
+				classes:  ['hsize', 'vert', 'box'],
+				top: 10,
+				width: "75%"
+			});
+			var label_name = $.UI.create("label",{
+				classes: ['h5','wfill', 'hsize', 'bold', 'padding'],
+				text: data[i].sender_name
+			});
+			var label_message = $.UI.create("Label", {
+				classes:['h5', 'wfill', 'hsize','padding'],
+				top: 0,
+				bottom: 5,
+				text: data[i].message
+			});
+			var label_time = $.UI.create("Label", {
+				classes:['h5', 'wfill', 'hsize','padding'],
+				top:0,
+				text: timeFormat(data[i].created),
+				textAlign: "right"
+			});
+			view_text_container.add(label_name);
+			view_text_container.add(label_message);
+			view_text_container.add(label_time);
+			if(data[i].is_endUser){
+				view_text_container.setLeft(10);
+				//view_container.add(imageview_thumb_path);
+			}else{
+				//view_container.add(imageview_thumb_path);
+				view_text_container.setRight(10);
+			}
+			
 		}else{
-			//view_container.add(imageview_thumb_path);
-			view_text_container.setRight(10);
+			var view_text_container = $.UI.create("View", {
+				classes: ['wsize','hsize','box','rounded'],
+				top: 10,
+				backgroundColor: "#3ddaf6"
+			});
+			
+			var label_system_msg = $.UI.create("Label",{
+				classes: ['wsize', 'hsize','padding','h6'],
+				text: data[i].message
+			});
+			view_text_container.add(label_system_msg);
 		}
 		view_container.add(view_text_container);
 		$.inner_box.add(view_container);
@@ -97,7 +114,7 @@ function getConversationByRoomId(callback){
 		console.log(responseText);
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
-		
+		Ti.App.Properties.setString('estimate_time', res.estimate_time);
 		console.log('api get message');
 		console.log(arr);
 		model.saveArray(arr, callback);
@@ -119,6 +136,15 @@ function refresh(){
 	getConversationByRoomId(function(){
 		var model = Alloy.createCollection("helpline");
 		data = model.getData();
+		var estimate_time = Ti.App.Properties.getString('estimate_time');
+		console.log(estimate_time+" estimate time");
+		if(estimate_time != 0){
+			$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
+			$.estimate.parent.show();
+		}else{
+			console.log('wtf');
+			$.estimate.parent.hide();
+		}
 		render_conversation();
 	});
 	loading.finish();

@@ -61,31 +61,41 @@ function receivePush(e) {
 		
 	var notificationModel = Alloy.createCollection('notification'); 
 	notificationModel.addData(param);
-	
-	var dialog = Ti.UI.createAlertDialog({
-		cancel: 1,
-		buttonNames: ['Cancel','OK'],
-		message: 'New message available. Do you want to read now?',
-		title: 'Confirmation'
-	});
-	dialog.addEventListener('click', function(ex){
-		if (ex.index === 0){
-			//Do nothing
+	console.log(target+" and app status "+app_status);
+	if(target == "conversation"){
+		if(app_status == "not_running"){
+			nav.navigateWithArgs("conversation");
+		}else{
+			Ti.App.fireEvent("conversation:refresh");
 		}
-	
-		if (ex.index === 1){
-			if(target == "claimDetail"){ 
-				nav.navigateWithArgs("asp/notification");
+	}else{
+		var dialog = Ti.UI.createAlertDialog({
+			cancel: 1,
+			buttonNames: ['Cancel','OK'],
+			message: 'New message available. Do you want to read now?',
+			title: 'Confirmation'
+		});
+		dialog.addEventListener('click', function(ex){
+			if (ex.index === 0){
+				//Do nothing
 			}
-			if(target == "webview"){
-				nav.navigateWithArgs(target, {
-					url: url
-				});
+		
+			if (ex.index === 1){
+				if(target == "claimDetail"){ 
+					nav.navigateWithArgs("asp/notification");
+				}
+				
+				if(target == "webview"){
+					nav.navigateWithArgs(target, {
+						url: url
+					});
+				}
 			}
-		}
-	});
-	dialog.show();  	
-	Ti.App.fireEvent("updateNotification"); 
+		});
+		dialog.show();  	
+		Ti.App.fireEvent("updateNotification");
+	}
+	 
 	return false;
 }
 
