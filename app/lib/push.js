@@ -1,6 +1,6 @@
 var Cloud = require('ti.cloud'); 
 var app_status;
-var redirect = false;
+var redirect = true;
 if(Ti.Platform.osname == "android"){ 
 	var CloudPush = require('ti.cloudpush');
 	// notification callback function (important)
@@ -57,19 +57,17 @@ function receivePush(e) {
 		};
 		target = e.target;
 		url = e.extra;
-	} 
-		
-	
-	console.log(target+" and app status "+app_status);
+	}  
+	console.log(target+" and redirect "+redirect); 
 	if(target == "conversation"){
-		if(app_status == "not_running"){
+		if(redirect){
 			nav.navigateWithArgs("conversation");
 		}else{
 			Ti.App.fireEvent("conversation:refresh");
 		}
 	}else{
-		var notificationModel = Alloy.createCollection('notification'); 
-	    notificationModel.addData(param);
+		var notificationModel = Alloy.createCollection('notification');  
+	    notificationModel.addData(param); 
 		var dialog = Ti.UI.createAlertDialog({
 			cancel: 1,
 			buttonNames: ['Cancel','OK'],
@@ -182,6 +180,21 @@ function registerPush(){
 function getNotificationNumber(payload){ 
 	 
 }
+/*
+Ti.App.addEventListener("pause", function(e){
+	console.log('sleep');
+	redirect = false;
+});
+
+Ti.App.addEventListener("resumed", function(e){
+	console.log('resume');
+	redirect = false;
+});
+*/
+exports.setInApp = function(){
+	console.log('In App');
+	redirect = false;
+};
 
 exports.registerPush = function(){
 	registerPush();
