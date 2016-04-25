@@ -72,6 +72,7 @@ function add_appointment_row(entry){
 		classes: ['wfill', 'box', 'horz', 'rounded'],
 		height: 70,
 		appointment_id: entry.id,
+		doctor_panel_id: entry.doctor_panel_id,
 		status: entry.status,
 		view_row: 1,
 		top: 3
@@ -143,6 +144,7 @@ function add_appointment_row(entry){
 
 function create_dialog_box(ex){
 	var id = parent({name: "appointment_id"}, ex.source);
+	var doctor_panel_id = parent({name: "doctor_panel_id"}, ex.source);
 	var status = parent({name: "status"}, ex.source);
 	var buttonName = [], message = "";
 	//var view_row = parent({name: "view_row", value: 1}, ex.source);
@@ -174,8 +176,11 @@ function create_dialog_box(ex){
 	      		var model = Alloy.createCollection("appointment");
 				var res = JSON.parse(responseText);
 				var arr = res.data || null;
+				console.log("doctor_panel_id"+doctor_panel_id);
+				console.log(arr);
 				model.saveArray(arr);
-				render_appointment_list();
+				model.updateSuggestedAppointmentStatus(doctor_panel_id);
+				setTimeout(render_appointment_list, 1000);
 				loading.finish();
 	      	});
 	      }else if(status == 1 || status == 2){

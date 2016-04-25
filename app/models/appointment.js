@@ -131,6 +131,20 @@ exports.definition = {
                 db.close();
 	            collection.trigger('sync');
 			},
+			updateSuggestedAppointmentStatus : function(doctor_panel_id, statusCode){
+				var collection = this;
+				
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+             	
+             	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET status=5 WHERE doctor_panel_id=? AND status = 4";
+				db.execute(sql_query, doctor_panel_id);
+			 
+                db.close();
+	            collection.trigger('sync');
+			},
 			getAppointmentById: function(id){ 
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id ='"+id+"'";
