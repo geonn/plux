@@ -59,8 +59,7 @@ function receivePush(e) {
 		url = e.extra;
 	} 
 		
-	var notificationModel = Alloy.createCollection('notification'); 
-	notificationModel.addData(param);
+	
 	console.log(target+" and app status "+app_status);
 	if(target == "conversation"){
 		if(app_status == "not_running"){
@@ -69,6 +68,8 @@ function receivePush(e) {
 			Ti.App.fireEvent("conversation:refresh");
 		}
 	}else{
+		var notificationModel = Alloy.createCollection('notification'); 
+	    notificationModel.addData(param);
 		var dialog = Ti.UI.createAlertDialog({
 			cancel: 1,
 			buttonNames: ['Cancel','OK'],
