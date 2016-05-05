@@ -33,7 +33,7 @@
 									<Label id="notificationText" text="0" color="#ffffff" />
 								</View>
 							</View>
-							<ImageView onClick="navWindow" mod="conversation" top="15"  width="139" image="/images/btn/btn_ask_doctor.png"/>
+							<ImageView onClick="navWindow" mod="conversation" top="15"  width="139" image="/images/btn/btn_ask_me.png"/>
 							<ImageView onClick="navWindow" mod="feedback" top="15" left="15"  width="139" image="/images/btn/btn_feedback.png"/>
 							<ImageView onClick="navWindow" mod="appointment" top="15" width="139" image="/images/btn/btn_appointment.png"/>
 						</View>

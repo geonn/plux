@@ -159,7 +159,7 @@ function closeWindow(){
 
 function updateFriendInfo(callback){
 	//friend_thumb_path = doctors_data[0].thumb_path;
-	$.f_name.text = "Helpline";
+	//$.f_name.text = "Helpline";
 	callback && callback();
 	
 	return;
