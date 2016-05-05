@@ -65,6 +65,12 @@ function receivePush(e) {
 		}else{
 			Ti.App.fireEvent("conversation:refresh");
 		}
+	}else if(target =="appointment"){
+		if(redirect){
+			nav.navigateWithArgs("appointment");
+		}else{
+			Ti.App.fireEvent("appointment:refresh");
+		}
 	}else{
 		var notificationModel = Alloy.createCollection('notification');  
 	    notificationModel.addData(param); 

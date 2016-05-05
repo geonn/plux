@@ -244,8 +244,11 @@ if(Ti.Platform.osname == "android"){
 }
 
 Ti.App.addEventListener('displayRecords', render_appointment_list);
+Ti.App.addEventListener('appointment:refresh', render_appointment_list);
+
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
 	$.destroy(); 
     Ti.App.removeEventListener('displayRecords', render_appointment_list);
+    Ti.App.removeEventListener('appointment:refresh', render_appointment_list);
 });
