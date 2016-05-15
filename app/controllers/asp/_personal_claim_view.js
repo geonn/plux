@@ -1,5 +1,4 @@
-var args = arguments[0] || {};
- console.log(args);
+var args = arguments[0] || {}; 
 $.name.text = args.name;
 
 for (var i=0; i < args.data.length; i++) {
@@ -56,8 +55,8 @@ for (var i=0; i < args.data.length; i++) {
   	 
   }
   
-  if(args.data[i].entshabal < 99999){
-  	 var share_balance = Math.ceil(((args.data[i].entsha-args.data[i].entshabal)/args.data[i].entsha)*100); 
+  if(args.data[i].entshabal < 99999){  
+  	 var share_balance = Math.ceil(((args.data[i].entsha-args.data[i].entshabal)/args.data[i].entsha)*100);  
   	 view_container.add(generate_progressBar(share_balance+"%"));
   	 
   	 if(args.data[i].entsha == "9999"){
