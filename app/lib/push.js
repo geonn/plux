@@ -28,6 +28,7 @@ function receivePush(e) {
 	var target;
 	var url;
 	if(OS_IOS){
+		Titanium.UI.iPhone.setAppBadge("0"); 
 		var param = {
 			"id": e.data.id || "",
 			"member_no": e.data.mem_no || "",

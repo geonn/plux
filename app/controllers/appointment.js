@@ -185,7 +185,7 @@ function create_dialog_box(ex){
 	      	});
 	      }else if(status == 1 || status == 2){
 	      	loading.start();
-	      	API.callByPost({url: "addAppointmentUrl", params:{id: id, isDoctor:1, status: 5}}, function(responseText){ 
+	      	API.callByPost({url: "addAppointmentUrl", params:{id: id, status: 5}}, function(responseText){ 
 	      		var model = Alloy.createCollection("appointment");
 				var res = JSON.parse(responseText);
 				var arr = res.data || null;
