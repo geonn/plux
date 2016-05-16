@@ -60,6 +60,7 @@ function refresh(){
 		model.saveArray(arr);
 		checker.updateModule(5,"getSpecialtylist", common.now());
 		listing = model.getData();
+		 
 		render_specialty_list();
 	});
 }

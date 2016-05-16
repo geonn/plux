@@ -67,9 +67,12 @@ function receivePush(e) {
 			Ti.App.fireEvent("conversation:refresh");
 		}
 	}else if(target =="appointment"){
+		console.log("in appointment");
 		if(redirect){
+			console.log("redirect true");
 			nav.navigateWithArgs("appointment");
 		}else{
+			console.log("redirect false");
 			Ti.App.fireEvent("appointment:refresh");
 		}
 	}else{
@@ -200,7 +203,7 @@ Ti.App.addEventListener("resumed", function(e){
 */
 exports.setInApp = function(){
 	console.log('In App');
-	redirect = false;
+	//redirect = false;
 };
 
 exports.registerPush = function(){
