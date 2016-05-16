@@ -17,9 +17,9 @@ function render_clinic_list(){
 		docTable.setData(common.noRecord());
 	}else{
 		listing.forEach(function(entry) {
-			console.log(entry.id);
+			console.log(entry);
 	   		var row = $.UI.create("TableViewRow", {
-	   			classes: ['hsize', 'vert'],
+	   			classes: ['hsize', 'horz'],
 			    touchEnabled: true,
 			    doctor_panel_id: entry.id, 
 			    clinic_id: entry.clinic_id,
@@ -27,15 +27,29 @@ function render_clinic_list(){
 			    clinic_name: entry.clinicName,
 			   	// layout: "vertical",
 			    backgroundSelectedColor: "#ECFFF9",
+			    horizontalWrap: false
 			}); 
 			var tblRowView = $.UI.create("View", {
-				classes:['hsize', 'wfill','vert'], 
+				classes:['hsize','vert'],
+				width: "auto",
 				doctor_panel_id: entry.id, 
 			    clinic_id: entry.clinic_id,
 			    test:"asda",
 			    specialty_id: entry.specialty_id,
 			    clinic_name: entry.clinicName,
 			}); 
+			
+			var img_path = $.UI.create("ImageView", {
+				image: entry.doctor_img_path || "/images/SPECIALIST.png",
+				defaultImage: "/images/SPECIALIST.png",
+				//classes: ['rounded'],
+				width: 70,
+				height: 70,
+				borderRadius: 35,
+				left: 10,
+				top: 5,
+				bottom: 5
+			});
 			 
 			var docName = $.UI.create('Label',{
 				classes : ['medium_font','wfill','hsize','themeColor'],
@@ -47,7 +61,7 @@ function render_clinic_list(){
 			var docSpecialty = $.UI.create('Label',{
 				classes : ['small_font','wfill','hsize'],
 				text:  entry.doctor_name,
-				color: "#848484", 
+				color: "#000000", 
 				textAlign:'left', 
 				left:15,  
 			});	
@@ -62,6 +76,7 @@ function render_clinic_list(){
 			tblRowView.add(docName); 
 			tblRowView.add(docSpecialty); 
 			tblRowView.add(docContact);
+			row.add(img_path);
 			row.add(tblRowView);
 			row.addEventListener("click", function(e){
 				var clinicName = parent({name: "clinic_name"}, e.source);

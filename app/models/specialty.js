@@ -47,6 +47,37 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
+			getAvailableData : function(){
+				var collection = this;
+                var sql = "SELECT specialty.* FROM specialty, doctor_panel where doctor_panel.specialty_id = specialty.id group by specialty.id";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                var res = db.execute(sql);
+                
+                var row_count = res.fieldCount;
+                for(var a = 0; a < row_count; a++){
+            		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+            	 }
+            	
+                var arr = [];
+                var count = 0;
+                while (res.isValidRow()){
+					arr[count] = {
+					    id: res.fieldByName('id'),
+					    title: res.fieldByName('title'),
+					    status: res.fieldByName('status'),
+					};
+					res.next();
+					count++;
+				}
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
 			saveArray : function(arr){
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);

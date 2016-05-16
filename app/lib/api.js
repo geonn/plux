@@ -40,6 +40,7 @@ var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key
 var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
 var getSpecialtylist = "http://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
 var getDoctorPanelBySpecialty = "http://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
+var getDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+USER+"&key="+KEY;
 var getWorkingHoursByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
 var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
 var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
@@ -888,6 +889,47 @@ exports.loadCategoryList = function (ex){
 				});
 				category.save(); 
 			});
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     },
+	     timeout : 50000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", url);
+	 // Send the request.
+	 client.send(); 
+};
+
+exports.loadDoctorPanel = function(ex){
+	var checker = Alloy.createCollection('updateChecker'); 
+	var isUpdate = checker.getCheckerById("8");
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	} 
+	var url = getDoctorPanel+"&last_updated="+last_updated; 
+  	//console.log(url);
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) { 
+	     	 
+	     	var res = JSON.parse(this.responseText);
+	     	
+	     	if(res.status == "success"){  
+			 	 if(isUpdate	 !== "" || (res.last_updated != isUpdate.updated)){ 
+			 		
+				 	var library = Alloy.createCollection('doctor_panel');
+					/**load new set of category from API**/ 
+					var arr = res.data;   
+			        library.saveArray(arr);
+			        checker.updateModule("8", "loadDoctorPanel",currentDateTime());  
+			 	 }else{
+			 		// alert("?");
+			 	 }
+	        }
+		 	
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {

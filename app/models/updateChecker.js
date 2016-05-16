@@ -9,6 +9,7 @@ ID       type Name
 5		getSpecialtylist
 6		getDoctorPanelBySpecialty
 7		getHelplineMessage
+8		getDcotroPanel
 ************************************/
 
 exports.definition = {

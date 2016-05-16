@@ -59,7 +59,7 @@ function refresh(){
 		var arr = res.data || null;
 		model.saveArray(arr);
 		checker.updateModule(5,"getSpecialtylist", common.now());
-		listing = model.getData();
+		listing = model.getAvailableData();
 		render_specialty_list();
 	});
 }

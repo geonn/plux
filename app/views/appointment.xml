@@ -20,7 +20,6 @@
 			 	</View>
 				<!--<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search appointment data..." /> -->
 				<ScrollView class="wfill hfill vert" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE" id="appointment_list"></ScrollView>
-		 		<TableView width="100%"  id="recordTable"  top="0" width="Ti.UI.FILL" height="Ti.UI.FILL" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
 			</View> 
 		</View>
 	</Window>

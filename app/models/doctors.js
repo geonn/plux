@@ -12,6 +12,7 @@ exports.definition = {
 		    "introduction" : "TEXT",
 		    "created": "TEXT" ,
 		    "updated": "TEXT",
+		    "img_path": "TEXT",
 		    //"clinic_id": "INTEGER" abaddon
 		},
 		
@@ -82,6 +83,7 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
+						img_path: res.fieldByName('img_path')
 						//clinic_id: res.fieldByName('clinic_id')
 					};	
 					 
@@ -125,6 +127,7 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
+						img_path: res.fieldByName('img_path')
 						//clinic_id: res.fieldByName('clinic_id')
 					};	
 					 
@@ -162,6 +165,7 @@ exports.definition = {
 						introduction: res.fieldByName('introduction'),
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
+						img_path: res.fieldByName('img_path')
 						//clinic_id: res.fieldByName('clinic_id')
 					};
 					
@@ -180,11 +184,11 @@ exports.definition = {
                 }
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.name,entry.dr_code, entry.email,entry.mobile,entry.status ,entry.specialty,entry.qualification,entry.introduction,entry.created,entry.updated);
+	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated, img_path) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+					db.execute(sql_query, entry.id, entry.name,entry.dr_code, entry.email,entry.mobile,entry.status ,entry.specialty,entry.qualification,entry.introduction,entry.created,entry.updated, entry.img_path);
 					 
-					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET name=?,dr_code=?, email=?,mobile=?,status=?,specialty=?,qualification=?,introduction=?,updated=? WHERE id=?";
-					db.execute(sql_query, entry.name,entry.dr_code,entry.email,entry.mobile,entry.status,entry.specialty,entry.qualification,entry.introduction, entry.updated, entry.id);
+					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET name=?,dr_code=?, email=?,mobile=?,status=?,specialty=?,qualification=?,introduction=?,updated=?,img_path=? WHERE id=?";
+					db.execute(sql_query, entry.name,entry.dr_code,entry.email,entry.mobile,entry.status,entry.specialty,entry.qualification,entry.introduction, entry.updated, entry.img_path, entry.id);
 				});
 				db.execute("COMMIT");
 	            db.close();

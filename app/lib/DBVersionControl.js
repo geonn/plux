@@ -43,6 +43,12 @@ exports.checkAndUpdate = function(e){
 		doctors_model.rebuildDb();
 		dbVersion = '1.5';
 	}
+	if(dbVersion == "1.5"){
+		
+		var notification = Alloy.createCollection('doctors'); 
+		notification.addColumn("img_path", "TEXT");
+		dbVersion = '1.6';
+	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };
 

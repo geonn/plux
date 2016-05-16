@@ -21,6 +21,7 @@ API.loadCategoryList();
 API.loadNewsFeed();
 API.loadLeaflet();
 API.loadClinicList(); 
+API.loadDoctorPanel();
 API.getDoctorList();
 
 var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
