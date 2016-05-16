@@ -64,8 +64,8 @@ exports.definition = {
                 	db.file.setRemoteBackup(false);
                 }
                 if(typeof ex.doctor_panel_id != "undefined"){
-                	console.log('doctor_panel_id '+ ex.doctor_panel_id);
-                	console.log(sql);
+                	//console.log(ex);
+                	//console.log(sql);
                 	var res = db.execute(sql, ex.doctor_panel_id, ex.start_date, ex.end_date);
                 }else{
                 	console.log('wrong');

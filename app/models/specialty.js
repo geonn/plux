@@ -24,7 +24,7 @@ exports.definition = {
 			// extended functions and properties go here
 			getData : function(){
 				var collection = this;
-                var sql = "SELECT * FROM "+collection.config.adapter.collection_name;
+                var sql = "SELECT * FROM "+collection.config.adapter.collection_name+" where status = 1";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -84,7 +84,7 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN");
+                db.execute("BEGIN"); 
                 arr.forEach(function(entry) {
 	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, title, status, created, updated) VALUES (?,?,?,?,?)";
 					db.execute(sql_query, entry.id, entry.title, entry.status, entry.created, entry.updated);
