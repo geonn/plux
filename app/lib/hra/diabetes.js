@@ -238,9 +238,9 @@ function addForm(text, type, options){
 			view_border_pv.add(label_picker_value);
 			
 			label_picker_value.addEventListener("click", function(e){
+				
 				var index = e.source.counter;
-				$.picker.add(form[index]);
-				 
+				$.picker.add(form[index]); 
 				form[index].addEventListener("change", formEvent);
 			});
 			

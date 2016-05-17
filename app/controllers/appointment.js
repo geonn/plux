@@ -21,7 +21,7 @@ function savedAppointment(ex){
 		common.createAlert("Error", result.data);
 		return false;
 	}else{
-		console.log(result.data);
+		//console.log(result.data);
 		appointmentModel.saveArray(result.data);
 	}
 	render_appointment_list();
@@ -46,7 +46,7 @@ function render_appointment_list(){
 	}else{
 		var all_date = _.sortBy(appointmentList, 'start_date');
 		all_date = all_date.reverse(); 
-		console.log(all_date);
+		//console.log(all_date);
 		for (var i=0; i < all_date.length; i++) {
 			var datetime = all_date[i].start_date.split(" ");
 			check_update_currentdate(datetime[0]);
@@ -176,8 +176,8 @@ function create_dialog_box(ex){
 	      		var model = Alloy.createCollection("appointment");
 				var res = JSON.parse(responseText);
 				var arr = res.data || null;
-				console.log("doctor_panel_id"+doctor_panel_id);
-				console.log(arr);
+				//console.log("doctor_panel_id"+doctor_panel_id);
+				//console.log(arr);
 				model.saveArray(arr);
 				model.updateSuggestedAppointmentStatus(doctor_panel_id);
 				setTimeout(render_appointment_list, 1000);

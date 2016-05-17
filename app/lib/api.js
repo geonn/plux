@@ -909,7 +909,7 @@ exports.loadDoctorPanel = function(ex){
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
 	} 
-	var url = getDoctorPanel+"&last_updated="+last_updated; 
+	var url = getDoctorPanel+"&last_updated=";//+last_updated; 
   	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
@@ -923,8 +923,9 @@ exports.loadDoctorPanel = function(ex){
 				 	var library = Alloy.createCollection('doctor_panel');
 					/**load new set of category from API**/ 
 					var arr = res.data;   
+					library.resetData();
 			        library.saveArray(arr);
-			        checker.updateModule("8", "loadDoctorPanel",currentDateTime());  
+			        //checker.updateModule("8", "loadDoctorPanel",currentDateTime());  
 			 	 }else{
 			 		// alert("?");
 			 	 }

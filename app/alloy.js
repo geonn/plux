@@ -359,3 +359,7 @@ function createIndicator(){
 	});
 	return activityIndicator;
 }
+
+if(OS_IOS){ 
+	Titanium.UI.iPhone.setAppBadge("0"); 
+}
