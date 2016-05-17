@@ -16,8 +16,7 @@ function SendMessage(){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		$.message.value = "";
-		$.message.blur();
-		console.log('message sent');
+		$.message.blur(); 
 		$.message.value = "";
 		$.message.blur();
 		refresh();
@@ -40,7 +39,7 @@ function render_conversation(){
 		var view_container = $.UI.create("View",{
 			classes: ['hsize','wfill'],
 		});
-		console.log("message:"+data[i].message+", is_endUser:"+data[i].is_endUser);
+		//console.log("message:"+data[i].message+", is_endUser:"+data[i].is_endUser +"=="+data[i].created);
 		/*var thumb_path = (data[i].u_id == u_id)?user_thumb_path:friend_thumb_path;
 		var imageview_thumb_path = $.UI.create("ImageView", {
 			top: 10,
@@ -70,7 +69,7 @@ function render_conversation(){
 			var label_time = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','padding'],
 				top:0,
-				text: timeFormat(data[i].created),
+				text: data[i].created,//timeFormat(),
 				textAlign: "right"
 			});
 			view_text_container.add(label_name);
@@ -177,7 +176,9 @@ function updateFriendInfo(callback){
 
 function init(){
 	$.win.add(loading.getView());
-	updateFriendInfo(refresh);
+	setTimeout(function () {
+		updateFriendInfo(refresh);
+	},1000);	
 }
 
 init();
