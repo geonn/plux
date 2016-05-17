@@ -25,8 +25,6 @@ function saveRecord(){
 	//var message   = $.proceduceTextArea.value;
 	var remark = $.remarkTextArea.value;
 	var appDate   = $.appointment_datetime.text;
-	var param_specialty   = $.specialty.text || "";
-	var appClinic = selectedClinic || "";
 	 
 	if(appDate == "Choose Date and Time"){
 		 common.createAlert("Fail","Please choose appointment date and time");
@@ -43,8 +41,6 @@ function saveRecord(){
 		u_id : Ti.App.Properties.getString('u_id'),
 		start_date : appDate,
 		duration : duration,
-		clinic_id  : appClinic,
-		specialty: param_specialty,
 		doctor_panel_id: doctor_panel_id,
 		remark : remark.trim() ,
 		created : currentDateTime(),  

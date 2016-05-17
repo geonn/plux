@@ -116,10 +116,22 @@ function add_appointment_row(entry){
 	var label_clinic = $.UI.create("Label", {
 		classes: ['wfill', 'hsize','padding'],
 		bottom: 0,
+		color: "#000000",
 		font:{
 			fontSize: 12
 		},
 		text: entry.clinic_name
+	});
+	
+	var label_doctor_name = $.UI.create("Label", {
+		classes: ['wfill', 'hsize','padding'],
+		bottom: 0,
+		top: 0,
+		color: "#000000",
+		font:{
+			fontSize: 12
+		},
+		text: entry.doctor_name
 	});
 	
 	var label_specialty = $.UI.create("Label", {
@@ -133,6 +145,7 @@ function add_appointment_row(entry){
 	});
 	
 	view_clinic_specialty_box.add(label_clinic);
+	view_clinic_specialty_box.add(label_doctor_name);
 	view_clinic_specialty_box.add(label_specialty);
 	
 	view_row.add(view_date_status_box);
