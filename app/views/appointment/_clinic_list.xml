@@ -1,9 +1,10 @@
 <Alloy>
 	<View class="wfill hfill">
 		<View class="wfill hfill" id="doctorContainer"></View>
-		<View zIndex="10" bottom="0" backgroundColor="#f0f5f8" class="wfill hsize vert" id="clinic">
-			<Label class="padding wfill hsize" textAlign="center">Select Panel</Label>
-			<TableView backgroundColor="#f0f5f8" id="clinic_list" class="wfill hsize"></TableView>
+		<View zIndex="10" bottom="0" backgroundColor="#e1e2e2" class="wfill hsize vert" id="clinic">
+			<Label class="padding wfill hsize" color="#cd1a19" textAlign="center">Select the panel</Label>
+			<TableView backgroundColor="#e1e2e2" id="clinic_list" class="wfill hsize">
+			</TableView>
 		</View>
 		
 	</View>
