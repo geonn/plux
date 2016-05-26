@@ -39,7 +39,7 @@
 			 			<Label class="darkgreyText small_font center"  width="Ti.UI.FILL" top="5">Add To Contact</Label>
 			 		</View>
 			 	</View>
-		 		<View layout="vertical" id="clinicDetails" width="Ti.UI.FILL" height="Ti.UI.SIZE">
+		 		<View layout="vertical" id="clinicDetailsView" width="Ti.UI.FILL" height="Ti.UI.SIZE">
 			 		<Label id="clinicName" class="clinic_name" top="10" bottom="10"/>
  
 			 		<Label text="Address" class="clinic_address clinicLabelTitle" />

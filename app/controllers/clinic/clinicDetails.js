@@ -193,17 +193,17 @@ function direction2here(){
 var showFull = false;
 $.showFullMap.addEventListener('click', function(){
 	if(showFull === false){
-		$.clinicDetails.visible =false;
-		$.clinicDetails.height = 0;
+		$.clinicDetailsView.visible =false;
+		$.clinicDetailsView.height = 0;
 		$.clinicMap.height = Titanium.Platform.displayCaps.platformHeight;
 		$.showFullMap.image =  "/images/zoom_out.png";
 		$.btnDirection.visible = true;
 		showFull = true;
 		populateMap(Titanium.Platform.displayCaps.platformHeight);
 	}else{
-		$.clinicDetails.visible =true;
+		$.clinicDetailsView.visible =true;
 		$.btnDirection.visible = false;
-		$.clinicDetails.height = Ti.UI.SIZE;
+		$.clinicDetailsView.height = Ti.UI.SIZE;
 		$.clinicMap.height = 200;
 		$.showFullMap.image =  "/images/zoom_in.png";
 		showFull = false; 

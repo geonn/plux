@@ -247,7 +247,7 @@ function displayRecords(listing){
 	   		});
 	   		
 	   		$.recordTable.setData(data);  
-	   		$.recordTable.setHeight(Ti.UI.SIZE);
+	   		$.recordTable.setHeight(Ti.UI.SIZE); 
 		} 
 	common.hideLoading();
 };
