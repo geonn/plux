@@ -28,10 +28,14 @@ function render_clinic_list(){
 		});
 		
 		listing.forEach(function(entry) {
-			new_list[entry.doctor_name].clinic.push({doctor_panel_id: entry.id, clinic_name: entry.clinicName, title: entry.clinicName});
+			var panel = Alloy.createCollection("panelList");
+			var clinic_dat = panel.getDataByID(entry.clinic_id);
+			new_list[entry.doctor_name].clinic.push({doctor_panel_id: entry.id, clinic_name: clinic_dat.clinicName, title: clinic_dat.clinicName});
 		});
-		
+		console.log("new_list");
+		console.log(listing);
 		for(i in new_list){
+			console.log(new_list[i]);
 	   		var row = $.UI.create("TableViewRow", {
 	   			classes: ['hsize', 'horz'],
 			    touchEnabled: true,
@@ -74,15 +78,26 @@ function render_clinic_list(){
 			});	
 			//tblRowView.add(docName); 
 			tblRowView.add(docSpecialty); 
-			tblRowView.add(docContact);
+			//tblRowView.add(docContact);
 			row.add(img_path);
 			row.add(tblRowView);
 			row.addEventListener("click", function(e){
 				var clinic = parent({name: "clinic"}, e.source);
+				console.log("clinic list");
 				console.log(clinic);
+				var arr = Array();
+				for (var i=0; i < clinic.length; i++) {
+					var row = $.UI.create("TableViewRow",{
+						classes:['wfill','hsize'],
+						title: clinic[i].clinic_name,
+						clinic_name: clinic[i].clinic_name,
+				  		doctor_panel_id: clinic[i].doctor_panel_id,
+					});
+				  arr.push(row);
+				};
 				$.clinic.show();
 				$.clinic_list.removeAllChildren();
-				$.clinic_list.setData(clinic);
+				$.clinic_list.setData(arr);
 			});
 			data.push(row);	   
 		};
@@ -95,10 +110,11 @@ function render_clinic_list(){
 }
 
 $.clinic_list.addEventListener("click", function(e){
-	var clinicName = parent({name: "clinic_name"}, e.source);
-	var doctor_panel_id = parent({name: "doctor_panel_id"}, e.source);
-	console.log(clinicName+" "+doctor_panel_id);
-	Ti.App.fireEvent('selectClinic',{clinicName: clinicName, doctor_panel_id: doctor_panel_id });
+	console.log(e.rowData);
+	var clinic_name = e.rowData.clinic_name;
+	var doctor_panel_id = e.rowData.doctor_panel_id;
+	console.log(clinic_name+" here 2 "+doctor_panel_id);
+	Ti.App.fireEvent('selectClinic',{clinicName: clinic_name, doctor_panel_id: doctor_panel_id });
 	Ti.App.fireEvent("appointment_index:moveNext");
 	$.clinic.hide();
 	$.clinic_list.removeAllChildren();
@@ -122,6 +138,7 @@ function refresh(){
 		model.saveArray(arr);
 		checker.updateModule(6,"getDoctorPanelBySpecialty", common.now(), specialty_id);
 		listing = model.getData(specialty_id);
+		console.log(listing);
 		render_clinic_list();
 	});
 	

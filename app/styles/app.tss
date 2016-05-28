@@ -44,6 +44,11 @@
 	font: {fontSize: '10dp'},
 	color: "#000"
 },
+"TableViewRow[platform=android]":{
+	color: "#606060",
+	top:10,
+	bottom:10,
+},
 "TextField":{
 	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	height:'45dp',
