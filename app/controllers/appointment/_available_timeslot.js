@@ -79,11 +79,9 @@ function render_available_timeslot(){
 	for (var i=0; i < working_hour.length; i++) {
 	
 	  if(working_hour[i].days == selected_date.getDay()){
-	  		console.log(working_hour[i]);
-	  		console.log(working_hour[i].time_start+" "+working_hour[i].duration);
+	  		
 	  		var whb = working_hour[i].time_start.split(":");
 	  		var whe = working_hour[i].time_end.split(":");
-	  		console.log(parseInt(whb[0]) * 60 + parseInt(whb[1]));
 	  		
 	  		Ti.App.Properties.setString('working_hour_begin', parseInt(whb[0]) * 60 + parseInt(whb[1]));
 			Ti.App.Properties.setString('working_hour_end', parseInt(whe[0]) * 60 + parseInt(whe[1]));
@@ -96,7 +94,6 @@ function render_available_timeslot(){
 	  }
 	};
 	
-	console.log("working hour");
 	
 	
 	var pw = Ti.Platform.displayCaps.platformWidth;
@@ -107,8 +104,6 @@ function render_available_timeslot(){
 	}
 	var cell_width = Math.floor((pwidth - 22) / 3);
 		
-	console.log("pwidth = "+pwidth);
-	console.log("cell_width = "+cell_width);
 	$.inner_box.width = pwidth - 18;
 	
 	$.timeslot.removeAllChildren();
@@ -117,7 +112,7 @@ function render_available_timeslot(){
 	var working_hour_begin = parseInt(Ti.App.Properties.getString('working_hour_begin')); //8:00 am
 	var working_hour_end = parseInt(Ti.App.Properties.getString('working_hour_end')); //10:00 pm
 	var timeblock = parseInt(Ti.App.Properties.getString('timeblock') || 0);
-	console.log(working_hour_begin+" "+working_hour_end+" "+timeblock);
+
 	var appointmentModel = Alloy.createCollection('appointment');  
 	var booked_time = new Array();
 	
@@ -138,7 +133,7 @@ function render_available_timeslot(){
 	var start_date = selected_date.getFullYear()+"-"+("0"+(parseInt(selected_date.getMonth())+1)).slice(-2)+"-"+("0"+selected_date.getDate()).slice(-2)+" 00:00:00";
 	var end_date = selected_date.getFullYear()+"-"+("0"+(parseInt(selected_date.getMonth())+1)).slice(-2)+"-"+("0"+selected_date.getDate()).slice(-2)+" 23:59:59";
 	var appointmentList = appointmentModel.getAppointmentList({doctor_panel_id: doctor_panel_id, start_date: start_date, end_date:end_date});
-	console.log(appointmentList);
+	
 	/*
 	 generate booked timeslot from appointment list
 	 * */
@@ -149,7 +144,7 @@ function render_available_timeslot(){
 	  var booking_min = parseInt(time[0]) * 60 + parseInt(time[1]);
 	  var time_start_key = Math.floor(booking_min / timeblock);
 	  var time_end_key = Math.floor((booking_min+parseInt(appointmentList[i].duration)) / timeblock);
-	  console.log(time_start_key+" = "+time_end_key);
+	  
 	  for(;time_end_key > time_start_key;  time_start_key++){
 	  	booked_time.push(time_start_key.toString());
 	  }
@@ -159,7 +154,7 @@ function render_available_timeslot(){
 	 remove booked slot from workingHourArray
 	 * */
 	workingHourArray = _.omit(workingHourArray, booked_time);
-	console.log(workingHourArray);
+	
 	/*
 	 render workingHourArray 
 	 * */
@@ -225,8 +220,16 @@ function refresh(){
 		 
 		working_hour = res.data || null;
 		
-		render_available_timeslot();
+		API.callByPost({url:"getAppointmentByDoctorPanel", params: { doctor_panel_id: doctor_panel_id}}, function(responseText){
+			var model = Alloy.createCollection("appointment");
+			var res = JSON.parse(responseText);
+			var arr = res.data || null;
+			
+			model.saveArray(arr);
+			render_available_timeslot();
+		});
 	});
+	
 	
 }
 

@@ -10,6 +10,7 @@ ID       type Name
 6		getDoctorPanelBySpecialty
 7		getHelplineMessage
 8		getDcotroPanel
+9		getAppointmentByDoctorPanel
 ************************************/
 
 exports.definition = {

@@ -53,28 +53,31 @@ exports.definition = {
 				db.close();
 			},
 			getAppointmentList: function(ex){
-				var query_doctor_panel_id = (typeof ex.doctor_panel_id != "undefined")?" AND appointment.doctor_panel_id= ? ":"";
-				var query_start_date = (typeof ex.start_date != "undefined")?" AND appointment.start_date >= ? AND appointment.start_date < ? ":"";
-				var query_uid = (typeof ex.u_id != "undefined")?" AND appointment.u_id=?":"";
+				var query_doctor_panel_id = (typeof ex.doctor_panel_id != "undefined")?" doctor_panel_id= ? ":"";
+				var query_start_date = (typeof ex.start_date != "undefined")?" AND start_date >= ? AND start_date < ? ":"";
+				var query_uid = (typeof ex.u_id != "undefined")?"  u_id=?":"";
 				var collection = this;
-                var sql = "SELECT appointment.* FROM appointment WHERE 1 "+query_uid+query_doctor_panel_id+query_start_date+" AND appointment.status != 5 ORDER BY appointment.created DESC";
+                var sql = "SELECT * FROM appointment WHERE "+query_uid+query_doctor_panel_id+query_start_date+" AND status != 5 ORDER BY created DESC";
               	 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
                 if(typeof ex.doctor_panel_id != "undefined"){
-                	//console.log(ex);
-                	//console.log(sql);
-                	var res = db.execute(sql, ex.doctor_panel_id, ex.start_date, ex.end_date);
+                	var res = db.execute(sql, ex.doctor_panel_id.toString(), ex.start_date, ex.end_date);
                 }else{
-                	console.log('wrong');
                 	var res = db.execute(sql, ex.u_id);
                 }
                  
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()){ 
+                	var row_count = res.fieldCount;
+                	 /*
+                	 for(var a = 0; a < row_count; a++){
+                		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+                	 }
+                	 */
 					listArr[count] = { 
 						id: res.fieldByName('id'),
 						u_id: res.fieldByName('u_id'), 
@@ -88,7 +91,7 @@ exports.definition = {
 						created: res.fieldByName('created'),
 						updated: res.fieldByName('updated'),
 						specialty_name: res.fieldByName('specialty_name'),
-					};	 
+					};
 					res.next();
 					count++;
 				}

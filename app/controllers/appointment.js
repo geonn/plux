@@ -106,8 +106,6 @@ function add_appointment_row(entry){
 	
 	view_date_status_box.add(label_time);
 	view_date_status_box.add(label_status);
-	console.log("here");
-	console.log(entry);
 	//middle part
 	var view_clinic_specialty_box = $.UI.create("View", {
 		classes: ['hfill', 'vert'],

@@ -32,10 +32,9 @@ function render_clinic_list(){
 			var clinic_dat = panel.getDataByID(entry.clinic_id);
 			new_list[entry.doctor_name].clinic.push({doctor_panel_id: entry.id, clinic_name: clinic_dat.clinicName, title: clinic_dat.clinicName});
 		});
-		console.log("new_list");
-		console.log(listing);
+		
 		for(i in new_list){
-			console.log(new_list[i]);
+			
 	   		var row = $.UI.create("TableViewRow", {
 	   			classes: ['hsize', 'horz'],
 			    touchEnabled: true,
@@ -83,8 +82,7 @@ function render_clinic_list(){
 			row.add(tblRowView);
 			row.addEventListener("click", function(e){
 				var clinic = parent({name: "clinic"}, e.source);
-				console.log("clinic list");
-				console.log(clinic);
+				
 				var arr = Array();
 				for (var i=0; i < clinic.length; i++) {
 					var row = $.UI.create("TableViewRow",{
@@ -110,10 +108,10 @@ function render_clinic_list(){
 }
 
 $.clinic_list.addEventListener("click", function(e){
-	console.log(e.rowData);
+	
 	var clinic_name = e.rowData.clinic_name;
 	var doctor_panel_id = e.rowData.doctor_panel_id;
-	console.log(clinic_name+" here 2 "+doctor_panel_id);
+	
 	Ti.App.fireEvent('selectClinic',{clinicName: clinic_name, doctor_panel_id: doctor_panel_id });
 	Ti.App.fireEvent("appointment_index:moveNext");
 	$.clinic.hide();
@@ -138,7 +136,7 @@ function refresh(){
 		model.saveArray(arr);
 		checker.updateModule(6,"getDoctorPanelBySpecialty", common.now(), specialty_id);
 		listing = model.getData(specialty_id);
-		console.log(listing);
+		
 		render_clinic_list();
 	});
 	
