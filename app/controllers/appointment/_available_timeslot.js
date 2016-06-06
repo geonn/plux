@@ -213,7 +213,7 @@ function changeDate(e){
 }
 
 function refresh(){
-	 
+	 console.log("doctor_panel_id: "+doctor_panel_id);
 	API.callByPost({url:"getWorkingHoursByDoctorPanel", params: {doctor_panel_id: doctor_panel_id}}, function(responseText){
 		var model = Alloy.createCollection("doctor_panel");
 		var res = JSON.parse(responseText);

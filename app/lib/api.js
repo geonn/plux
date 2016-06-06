@@ -1035,7 +1035,7 @@ exports.loadPanelList = function (ex){
 
 exports.callByPost = function(e, onload, onerror){
 	var url =  eval(e.url);
-	//console.log(url);
+	 console.log(url);
 	var _result = contactServerByPost(url, e.params || {});   
 	_result.onload = function(e) {   
 		onload && onload(this.responseText); 
