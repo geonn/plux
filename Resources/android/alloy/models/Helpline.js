@@ -1,0 +1,114 @@
+var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collection;
+
+exports.definition = {
+    config: {
+        columns: {
+            id: "INTEGER PRIMARY KEY AUTOINCREMENT",
+            u_id: "INTEGER",
+            sender_id: "INTEGER",
+            message: "TEXT",
+            created: "DATE",
+            is_endUser: "INTEGER",
+            sender_name: "TEXT"
+        },
+        adapter: {
+            type: "sql",
+            collection_name: "helpline",
+            idAttribute: "id"
+        }
+    },
+    extendModel: function(Model) {
+        _.extend(Model.prototype, {});
+        return Model;
+    },
+    extendCollection: function(Collection) {
+        _.extend(Collection.prototype, {
+            getData: function() {
+                var collection = this;
+                var u_id = Ti.App.Properties.getString("u_id");
+                var sql = "SELECT * from helpline where u_id = ?";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql, u_id);
+                var arr = [];
+                var count = 0;
+                var row_count = res.fieldCount;
+                for (var a = 0; row_count > a; a++) console.log(a + ":" + res.fieldName(a) + ":" + res.field(a));
+                while (res.isValidRow()) {
+                    arr[count] = {
+                        id: res.fieldByName("id"),
+                        u_id: res.fieldByName("u_id"),
+                        sender_id: res.fieldByName("sender_id"),
+                        message: res.fieldByName("message"),
+                        created: res.fieldByName("created"),
+                        is_endUser: res.fieldByName("is_endUser"),
+                        sender_name: res.fieldByName("sender_name")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return arr;
+            },
+            messageRead: function(entry) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET read=1 WHERE room_id=?";
+                db.execute(sql_query, entry.room_id);
+                console.log(db.getRowsAffected() + " " + entry.room_id + " read");
+                db.close();
+                collection.trigger("sync");
+            },
+            saveArray: function(arr) {
+                console.log(typeof arr);
+                console.log(arr);
+                console.log(arr.length);
+                if ("undefined" == typeof arr || "no room found" == arr) return;
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                db.execute("BEGIN");
+                arr.forEach(function(entry) {
+                    entry.message = entry.message.replace("[br]", "\n");
+                    var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
+                    db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
+                });
+                db.execute("COMMIT");
+                db.close();
+                collection.trigger("sync");
+            },
+            saveRecord: function(entry) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                console.log(typeof entry.message);
+                console.log(entry.message);
+                entry.message = entry.message.replace("[br]", "\n");
+                var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
+                db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
+                db.close();
+                collection.trigger("sync");
+            },
+            addColumn: function(newFieldName, colSpec) {
+                var collection = this;
+                var db = Ti.Database.open(collection.config.adapter.db_name);
+                var fieldExists = false;
+                resultSet = db.execute("PRAGMA TABLE_INFO(" + collection.config.adapter.collection_name + ")");
+                while (resultSet.isValidRow()) {
+                    resultSet.field(1) == newFieldName && (fieldExists = true);
+                    resultSet.next();
+                }
+                fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
+                db.close();
+            }
+        });
+        return Collection;
+    }
+};
+
+model = Alloy.M("helpline", exports.definition, []);
+
+collection = Alloy.C("helpline", exports.definition, model);
+
+exports.Model = model;
+
+exports.Collection = collection;

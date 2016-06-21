@@ -520,7 +520,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText); 
 	       res = result[0]; 
-	       //console.log(res);
+	        console.log(res);
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
@@ -531,7 +531,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
 	       		Ti.App.Properties.setString('asp_email', username);
 	       		Ti.App.Properties.setString('asp_password',password);
-	       		 
+	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();

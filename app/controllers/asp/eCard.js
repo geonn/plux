@@ -114,7 +114,7 @@ var back = Ti.UI.createImageView({
 
 
 
-var userIc = user.ic || "";	 
+var userIc = user.icno || "";	 
 
 var genCode = setInterval(function(){
 	
@@ -123,12 +123,12 @@ var genCode = setInterval(function(){
 		typeNumber: 10,
 		errorCorrectLevel: 'M'
 	});
-	 
+	
 	var qrcodeView = userQR.createQRCodeView({
 		width: 200,
 		height: 200,
 		margin: 4, 
-		text: user.name+"||"+user.id+"||"+ userIc+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"  +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow
+		text: user.name+"||"+user.id+"||"+ user.icno+"||"+user.memno+"||"+user.empno+"||"+user.relation+"||"+ user.corpcode+"||" +user.corpname+"||" +user.costcenter+"||" +user.dept+"||"  +user.allergy+"||" +user.isver+"||" +user.verno+"||"+dateTimeNow+"||"+Ti.App.Properties.getString('cardno')    
  
 	}); 
  	//removeAllChildren($.qrCode);
