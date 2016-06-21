@@ -445,6 +445,7 @@ exports.do_signup = function(data,mainView){
 exports.do_asp_signup = function(data, mainView){
 	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -474,10 +475,10 @@ exports.do_asp_signup = function(data, mainView){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
-	     	common.createAlert("Sign Up Fail", "unexpected error");
+	     	common.createAlert("Sign Up Fail", e.error);
 	     	common.hideLoading();
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
