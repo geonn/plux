@@ -90,7 +90,12 @@
 	right: 10,
 	bottom: 10,
 }
-
+'.small_padding':{
+	top: 4,
+	left: 4,
+	right: 4,
+	bottom: 4,
+}
 '.box':{
 	borderColor: "#dfe0e4",
 	backgroundColor: "#FFFFFF",
@@ -110,6 +115,9 @@
 
 ".rounded":{
 	borderRadius: "5",
+}
+".bigRounded":{
+	borderRadius: "20",
 }
 
 ".greyText" : {
@@ -179,7 +187,7 @@
  
 ".h7":{
 	font:{
-		fontSize: 8
+		fontSize: 10
 	}
 },
 '.font_light_grey':{

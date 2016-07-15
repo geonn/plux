@@ -52,23 +52,29 @@ function render_conversation(latest){
 		*/
 		if(data[i].sender_id){
 			var view_text_container = $.UI.create("View", {
-				classes:  ['hsize', 'vert', 'box'],
-				top: 10,
+				classes:  ['hsize', 'vert', 'box','bigRounded'],
+				top: 2,
 				width: "75%"
 			});
 			var label_name = $.UI.create("label",{
-				classes: ['h5','wfill', 'hsize', 'bold', 'padding'],
+				classes: ['h6','wfill', 'hsize', 'bold', 'small_padding'],
+				left:15,
+				color: "#7F7F7F",
 				text: data[i].sender_name
 			});
+			
+			var ss = data[i].message;
+			var newText = ss.replace("[br]", "\r\n");
 			var label_message = $.UI.create("Label", {
-				classes:['h5', 'wfill', 'hsize','padding'],
+				classes:['h5', 'wfill', 'hsize','small_padding'],
 				top: 0,
-				bottom: 5,
-				text: data[i].message
+				left:15,
+				text: newText
 			});
 			var label_time = $.UI.create("Label", {
-				classes:['h5', 'wfill', 'hsize','padding'],
+				classes:['h7', 'wfill', 'hsize','small_padding'],
 				top:0,
+				right:15,
 				text: data[i].created,//timeFormat(),
 				textAlign: "right"
 			});
@@ -76,9 +82,12 @@ function render_conversation(latest){
 			view_text_container.add(label_message);
 			view_text_container.add(label_time);
 			if(data[i].is_endUser){
+				
+				view_text_container.setBackgroundColor("#F1FFE3");
 				view_text_container.setLeft(10);
 				//view_container.add(imageview_thumb_path);
 			}else{
+				view_text_container.setBackgroundColor("#FFFFE3");
 				//view_container.add(imageview_thumb_path);
 				view_text_container.setRight(10);
 			}
