@@ -105,7 +105,14 @@ exports.updateUserFromFB = function(e, mainView){
 	         	API.updateNotificationToken();   
 	         	Ti.App.fireEvent('updateHeader'); 
 	         	mainView.win.close();
-				nav.closeWindow(mainView.win); 
+	         	if(typeof Alloy.Globals.navMenu != "undefined"){
+	         		console.log(typeof Alloy.Globals.navMenu);
+					nav.closeWindow(mainView.win); 
+				}else{
+					var win = Alloy.createController("home").getView();
+					win.open();
+				}
+				
 	         	//
 		    }
 		},

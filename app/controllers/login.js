@@ -151,7 +151,12 @@ var touchLogin =  function(){
 		Ti.App.Properties.setString('plux_email',userData.email);
 		Ti.App.fireEvent('updateHeader'); 
 		//nav.closeWindow($.win); 
-		$.win.close(); 
+		$.win.close();
+		if(typeof Alloy.Globals.navMenu == "undefined"){
+			var win = Alloy.createController("home").getView();
+			win.open();
+		}
+		
 	}
 };
 
