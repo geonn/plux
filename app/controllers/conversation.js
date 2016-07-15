@@ -1,8 +1,10 @@
 var args = arguments[0] || {};
 var dr_id = args.dr_id;
-var room_id = args.room_id;
 var loading = Alloy.createController("loading");
-
+var room_id = 0;
+var anchor = common.now();
+var last_update = common.now();
+var start = 0;
 /**
  * Send message
  */
@@ -16,11 +18,8 @@ function SendMessage(){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		$.message.value = "";
-		$.message.blur(); 
-		$.message.value = "";
 		$.message.blur();
-		refresh();
-		setTimeout(scrollToBottom, 500);
+		Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
 		});
 	
 	//var params = {u_id: u_id, to_id: to_id, message: $.message.value, type: "text", room_id: room_id};
@@ -31,10 +30,11 @@ function SendMessage(){
 }
 
 
-function render_conversation(){
-	$.inner_box.removeAllChildren();
-	console.log("render_conversation");
-	console.log(data);
+function render_conversation(latest){
+	if(!latest){
+		//$.chatroom.setContentOffset({y: 100});
+	}
+	var contain_height = 50;
 	for (var i=0; i < data.length; i++) {
 		var view_container = $.UI.create("View",{
 			classes: ['hsize','wfill'],
@@ -97,9 +97,13 @@ function render_conversation(){
 			view_text_container.add(label_system_msg);
 		}
 		view_container.add(view_text_container);
-		$.inner_box.add(view_container);
+		if(latest){
+			$.inner_area.insertAt({view: view_container});
+		}else{
+			$.inner_area.insertAt({view: view_container, position: 1});
+		}
+		
 	}
-	scrollToBottom();
 }
 
 function getConversationByRoomId(callback){
@@ -107,18 +111,22 @@ function getConversationByRoomId(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(7, u_id);
 	var last_updated = isUpdate.updated || "";
-	console.log(u_id);
+	
 	API.callByPost({url:"getHelplineMessage", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
-		console.log(responseText);
+		
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		console.log('api get message');
+		console.log("getConversationByRoomId function");
 		console.log(arr);
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", common.now(), u_id);
-		
+		if(!room_id){
+			console.log(res.room_id+" room id");
+			room_id = res.room_id;
+			setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});}, 1000);
+		}
 		callback && callback();
 	});
 }
@@ -130,23 +138,54 @@ function scrollToBottom(){
 /*
  	Refresh
  * */
-function refresh(){
+function refresh(callback, firsttime){
 	loading.start();
 	getConversationByRoomId(function(){
-		var model = Alloy.createCollection("helpline");
-		data = model.getData();
-		var estimate_time = Ti.App.Properties.getString('estimate_time');
-		console.log(estimate_time+" estimate time");
-		if(estimate_time != 0){
-			$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
-			$.estimate.parent.show();
-		}else{
-			console.log('wtf');
-			$.estimate.parent.hide();
-		}
-		render_conversation();
+		callback({firsttime: firsttime});
 	});
 	loading.finish();
+}
+
+function refresh_latest(){
+	console.log("refresh_latest");
+	refresh(getLatestData);
+}
+
+function getPreviousData(param){
+	var model = Alloy.createCollection("helpline");
+	data = model.getData(false, "", start, anchor);
+	var estimate_time = Ti.App.Properties.getString('estimate_time');
+	console.log(estimate_time+" estimate time");
+	if(estimate_time != 0){
+		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
+		$.estimate.parent.show();
+	}else{
+		$.estimate.parent.hide();
+	}
+	render_conversation(false);
+	start = start + 11;
+	if(typeof param.firsttime != "undefined"){
+		console.log("not posible"+param.firsttime);
+		setTimeout(function(e){scrollToBottom();}, 500);
+	}else{
+		$.chatroom.setContentOffset({y: 1000}, {animated: false});
+	}
+}
+
+function getLatestData(){
+	var model = Alloy.createCollection("helpline");
+	data = model.getData(true, last_update);
+	last_update = common.now();
+	var estimate_time = Ti.App.Properties.getString('estimate_time');
+	console.log(estimate_time+" estimate time");
+	if(estimate_time != 0){
+		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
+		$.estimate.parent.show();
+	}else{
+		$.estimate.parent.hide();
+	}
+	render_conversation(true);
+	setTimeout(function(e){scrollToBottom();}, 500);
 }
 
 /**
@@ -156,39 +195,17 @@ function closeWindow(){
 	$.win.close();
 }
 
-function updateFriendInfo(callback){
-	//friend_thumb_path = doctors_data[0].thumb_path;
-	//$.f_name.text = "Helpline";
-	callback && callback();
-	
-	return;
-	/*
-	API.callByPost({url:"getFriendListUrl", params: {u_id: u_id}}, function(responseText){
-		var res = JSON.parse(responseText);
-		var arr = res.data || null;
-		doctors.saveArray(arr);
-		var doctors_data = doctors.getData(dr_id);
-		//friend_thumb_path = doctors_data[0].thumb_path;
-		$.f_name.text = doctors_data[0].fullname;
-		callback && callback();
-	});*/
-}
-
 function init(){
 	$.win.add(loading.getView());
-	setTimeout(function () {
-		updateFriendInfo(refresh);
-	},1000);	
+	refresh(getPreviousData, true);
 }
 
 init();
 
-$.chatroom.addEventListener("postlayout", scrollToBottom);
-
-Ti.App.addEventListener('conversation:refresh', refresh);
+Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
 $.win.addEventListener("close", function(){
-	Ti.App.removeEventListener('conversation:refresh',refresh);
+	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	$.destroy();
 	console.log("window close");
 });

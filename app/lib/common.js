@@ -22,6 +22,41 @@ exports.createAlert = function(tt,msg, callback){
 	    }
   });
 };
+
+exports.createAlert = function(tt,msg, callback){
+	var box = Titanium.UI.createAlertDialog({
+		title: tt,
+		ok: 'OK',
+		message: msg
+	});
+	box.show();
+	box.addEventListener('click', function(e){ 
+	    if (e.index == 0){ 
+	    	if(typeof callback == "function"){
+	    		callback && callback();
+	    	}
+	    }
+  });
+};
+
+exports.lightbox = function(data, win){
+	var mask = Ti.UI.createImageView({
+		image: "/images/transparent-bg.png",
+		width: Ti.UI.FILL,
+		height: Ti.UI.FILL,
+		zIndex: 99,
+	});
+	
+	var img = Ti.UI.createImageView({
+		image: data.img_path,
+		zIndex: 100,
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE
+	});
+	
+	win.add(mask);
+	win.add(img);
+};
  
 exports.showImageIndicator = function(){
 	if(Ti.Platform.osname == "android"){

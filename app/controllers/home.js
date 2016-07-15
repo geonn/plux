@@ -147,8 +147,10 @@ function refreshHeaderInfo(){
 			width: "auto",
 			height: Ti.UI.FILL,
 		});
+		
+		var welcomeText = (plux_user.fullname != "undefined")?"Welcome, "+plux_user.fullname:"Welcome";
 		var welcomeTitle = $.UI.create('Label',{
-			text: "Welcome, "+plux_user.fullname,
+			text: welcomeText,
 			classes :['welcome_text']
 		});
 		
@@ -216,6 +218,8 @@ function navWindow(e){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
 		nav.navigateWithArgs("clinic/listing", 1);
+	}else if(e.source.mod == "conversation"){
+		nav.navigationWindow(target, 1);
 	}else{
 		nav.navigationWindow(target);
 	}	

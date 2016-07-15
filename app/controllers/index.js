@@ -26,12 +26,14 @@ API.getDoctorList();
 
 var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
  
-if(isShowIntro	!= ""){ 
+if(isShowIntro	!= ""){
+	if(u_id == ""){ 
+		var win = Alloy.createController("login").getView();
+		win.open(); 
+	}else{
 		var win = Alloy.createController("home").getView();
 		win.open(); 
-		if(u_id == ""){ 
-			nav.navigateWithArgs("login", {});  
-		} 
+	}
 }else{ 
 		$.index.win.open();
 }

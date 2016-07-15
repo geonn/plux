@@ -47,12 +47,16 @@ function hideProductFormKeyboard(e){
 }; 
 
 function doSignup(){
-	nav.navigationWindow("signup", 0);
+	var win = Alloy.createController("signup").getView();
+	win.open(); 
+	//nav.navigationWindow("signup", 0);
 }
 
 function doASPSignup(){
-	var nav = require('navigation');
-	nav.navigationWindow("asp/signup", 0);
+	var win = Alloy.createController("asp/signup").getView();
+	win.open(); 
+	//var nav = require('navigation');
+	//nav.navigationWindow("asp/signup", 0);
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/
@@ -146,7 +150,8 @@ var touchLogin =  function(){
 		Ti.App.Properties.setString('u_id', userData.id); 
 		Ti.App.Properties.setString('plux_email',userData.email);
 		Ti.App.fireEvent('updateHeader'); 
-		nav.closeWindow($.win);  
+		//nav.closeWindow($.win); 
+		$.win.close(); 
 	}
 };
 

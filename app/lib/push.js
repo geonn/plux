@@ -63,8 +63,6 @@ function receivePush(e) {
 	if(target == "conversation"){
 		if(redirect){
 			nav.navigateWithArgs("conversation");
-		}else{
-			Ti.App.fireEvent("conversation:refresh");
 		}
 	}else if(target =="appointment"){
 		console.log("in appointment");
@@ -190,7 +188,7 @@ function registerPush(){
 function getNotificationNumber(payload){ 
 	 
 }
-/*
+
 Ti.App.addEventListener("pause", function(e){
 	console.log('sleep');
 	redirect = false;
@@ -200,10 +198,10 @@ Ti.App.addEventListener("resumed", function(e){
 	console.log('resume');
 	redirect = false;
 });
-*/
+
 exports.setInApp = function(){
 	console.log('In App');
-	//redirect = false;
+	redirect = false;
 };
 
 exports.registerPush = function(){

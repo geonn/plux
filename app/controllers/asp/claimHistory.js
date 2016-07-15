@@ -105,11 +105,16 @@ data.forEach(function(entry){
 		classes: ['h5','hsize','wsize','right-align'],
 	}); 
  
+ 	var receipt_button = $.UI.create("Button", {
+ 		title: "Receipt",
+ 		appcode: entry.appcode
+ 	});
+ 
 	var label_name = $.UI.create("Label",{
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
 		claimType:entry.claimType,
-		text: "Claim Under: "+entry.name
+		text: "Claim Under: "+entry.name+" "+entry.appcode
 	});
 	 
 	
@@ -133,11 +138,18 @@ data.forEach(function(entry){
 		claimType:entry.claimType,
 		text: "Status: "+entry.status
 	});**/
+	receipt_button.addEventListener("click", function(e){
+		console.log(e.source);
+		var img_path = "https://tslip.aspmedic.com/"+e.source.appcode+".png";
+		console.log(img_path);
+		common.lightbox({img_path: img_path}, $.claim_history);
+	});
 	
 	view_detail.add(labelClinicView);
 	view_detail.add(label_amount);
 	view_detail2.add(label_category);
 	view_detail2.add(label_date);
+	view_detail2.add(receipt_button);
 	view_container.add(view_detail);
 	view_container.add(view_detail2);
 	view_container.add(label_name); 

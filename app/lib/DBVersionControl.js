@@ -49,6 +49,12 @@ exports.checkAndUpdate = function(e){
 		notification.addColumn("img_path", "TEXT");
 		dbVersion = '1.6';
 	}
+	if(dbVersion == "1.6"){
+		
+		var claim_detail = Alloy.createCollection('claim_detail'); 
+		claim_detail.addColumn("appcode", "TEXT");
+		dbVersion = '1.7';
+	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };
 

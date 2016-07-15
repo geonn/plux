@@ -25,11 +25,19 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
-			getData: function(){
+			getData: function(latest, last_update, start, anchor){
+				var last_update = last_update || common.now();
+				if(latest){
+					var start_limit = "";
+					var sql_lastupdate = " AND created > '"+last_update+"'";
+				}else{
+					var start_limit = " limit "+start+", 10";
+					var sql_lastupdate = " AND created < '"+anchor+"'";
+				}
 				
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id');
-                var sql = "SELECT * from helpline where u_id = ?" ;
+                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by id desc"+start_limit ;
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){

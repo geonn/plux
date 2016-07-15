@@ -399,8 +399,10 @@ exports.do_pluxLogin = function(data,mainView){
 					};
 				}
 	       		API.updateNotificationToken();    
-				Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.win);  
+				/*Ti.App.fireEvent('updateHeader');
+				nav.closeWindow(mainView.win);  */
+				var win = Alloy.createController("home").getView();
+				win.open(); 
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -470,7 +472,9 @@ exports.do_asp_signup = function(data, mainView){
 	       		 
 				nav.closeWindow(mainView.aspSignUpWin); 
 				Ti.App.fireEvent('updateHeader');
-				nav.navigationWindow("home");
+				//nav.navigationWindow("home");
+				var win = Alloy.createController("home").getView();
+				win.open(); 
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
@@ -650,6 +654,7 @@ exports.getClaimDetail = function(e){
 	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode+"&PERIOD=ALL";
  
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
+	console.log('getClaimDetail');
 	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
@@ -666,7 +671,7 @@ exports.getClaimDetail = function(e){
        			res.forEach(function(entry) {
        				 var claim_detail_model = Alloy.createCollection('claim_detail');
        				  
-       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype);
+       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype, entry.appcode);
        				 /* API update - removed the details portion to increase the Apps Response time
        				  * entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, */
        			});

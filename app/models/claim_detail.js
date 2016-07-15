@@ -32,6 +32,7 @@ exports.definition = {
 		    "pulse": "INTEGER",
 		    "status" : "TEXT",
 		    "claimType" : "TEXT",
+		    "appcode" : "TEXT"
 		},
 		adapter: {
 			type: "sql",
@@ -114,7 +115,8 @@ exports.definition = {
 						bpd: res.fieldByName('bpd'),  
 						pulse: res.fieldByName('pulse'),
 						status: res.fieldByName('status'),  
-						claimType: res.fieldByName('claimType')
+						claimType: res.fieldByName('claimType'),
+						appcode: res.fieldByName('appcode')
 					};	
 					 
 					res.next();
@@ -173,7 +175,8 @@ exports.definition = {
 						bpd: res.fieldByName('bpd'),  
 						pulse: res.fieldByName('pulse'),
 						status: res.fieldByName('status'),  
-						claimType: res.fieldByName('claimType')
+						claimType: res.fieldByName('claimType'),
+						appcode: res.fieldByName('appcode')
 					};	
 					 
 					res.next();
@@ -208,7 +211,7 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			save_claim_detail : function(serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType){
+			save_claim_detail : function(serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType, appcode){
 				var collection = this;
 				var sql_query =  "";
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial='"+ serial+"'";
@@ -221,14 +224,15 @@ exports.definition = {
                 var res = db.execute(sql);
                  
                 if (res.isValidRow()){
-                	if(res.fieldByName('memno') != memno || res.fieldByName('name') != name || res.fieldByName('relation') != relation || res.fieldByName('cliniccode') != cliniccode || res.fieldByName('visitdate') != visitdate || res.fieldByName('amount') != amount || res.fieldByName('category') != category || res.fieldByName('mcdays') != mcdays || res.fieldByName('clinicname') != clinicname || res.fieldByName('status') != status || res.fieldByName('claimType') != claimType){
-                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET memno = ?, name = ?, relation = ?, cliniccode = ?, visitdate = ?, amount = ?, category = ?, mcdays = ?, clinicname = ?, status = ?, claimType = ? WHERE serial = ?";
-                		db.execute(sql_query, memno,name,relation,cliniccode,visitdate,amount,category,mcdays, clinicname, status, claimType, serial);
+                	if(res.fieldByName('memno') != memno || res.fieldByName('name') != name || res.fieldByName('relation') != relation || res.fieldByName('cliniccode') != cliniccode || res.fieldByName('visitdate') != visitdate || res.fieldByName('amount') != amount || res.fieldByName('category') != category || res.fieldByName('mcdays') != mcdays || res.fieldByName('clinicname') != clinicname || res.fieldByName('status') != status || res.fieldByName('claimType') != claimType || res.fieldByName('appcode') != appcode){
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET memno = ?, name = ?, relation = ?, cliniccode = ?, visitdate = ?, amount = ?, category = ?, mcdays = ?, clinicname = ?, status = ?, claimType = ?, appcode = ? WHERE serial = ?";
+                		console.log(sql_query+" "+appcode);
+                		db.execute(sql_query, memno,name,relation,cliniccode,visitdate,amount,category,mcdays, clinicname, status, claimType, appcode, serial);
                 	}
                }else{
-            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname, status, claimType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+            		sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname, status, claimType, appcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
             		
-            		db.execute(sql_query, serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType);
+            		db.execute(sql_query, serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType,appcode);
             	}
             	
              	db.close();
