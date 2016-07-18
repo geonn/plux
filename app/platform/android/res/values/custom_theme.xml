@@ -9,10 +9,7 @@
     	<item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         
-	    <item name="android:textCursorDrawable">#A1A1A1</item>   
-	    <item name="android:textColor">#656565</item>
-	    <item name="android:text_tab_selected">#E15151</item>
-	    <item name="android:text_tab_unselected">#8F8F8F</item>
+	    <item name="android:textColor">#656565</item> 
 	    
 	    <item name="android:paddingLeft">10dp</item>
 	    <item name="android:paddingRight">10dp</item>

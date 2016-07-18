@@ -75,7 +75,7 @@ function render_conversation(latest){
 				classes:['h7', 'wfill', 'hsize','small_padding'],
 				top:0,
 				right:15,
-				text: data[i].created,//timeFormat(),
+				text: timeFormat(data[i].created),
 				textAlign: "right"
 			});
 			view_text_container.add(label_name);
@@ -160,12 +160,14 @@ function refresh_latest(){
 	refresh(getLatestData);
 }
 
-function getPreviousData(param){
+function getPreviousData(param){ 
+	start = parseInt(start);
 	var model = Alloy.createCollection("helpline");
 	data = model.getData(false, "", start, anchor);
 	var estimate_time = Ti.App.Properties.getString('estimate_time');
 	console.log(estimate_time+" estimate time");
-	if(estimate_time != 0){
+	 
+	if(estimate_time  != "0"){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
 		$.estimate.parent.show();
 	}else{
@@ -173,20 +175,21 @@ function getPreviousData(param){
 	}
 	render_conversation(false);
 	start = start + 11;
-	if(typeof param.firsttime != "undefined"){
-		console.log("not posible"+param.firsttime);
+	if(typeof param.firsttime != "undefined"){ 
 		setTimeout(function(e){scrollToBottom();}, 500);
 	}else{
-		$.chatroom.setContentOffset({y: 1000}, {animated: false});
+		if(OS_IOS){
+			$.chatroom.setContentOffset({y: 1000}, {animated: false});
+		} 
 	}
+ 
 }
 
 function getLatestData(){
 	var model = Alloy.createCollection("helpline");
 	data = model.getData(true, last_update);
 	last_update = common.now();
-	var estimate_time = Ti.App.Properties.getString('estimate_time');
-	console.log(estimate_time+" estimate time");
+	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
 		$.estimate.parent.show();
