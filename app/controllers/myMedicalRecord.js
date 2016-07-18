@@ -247,7 +247,7 @@ function displayRecords(listing){
 	   		});
 	   		
 	   		$.recordTable.setData(data);  
-	   		$.recordTable.setHeight(Ti.UI.SIZE); 
+	   		$.recordTable.setHeight(Ti.UI.FILL); 
 		} 
 	common.hideLoading();
 };
@@ -268,8 +268,8 @@ $.newRecord.addEventListener('click',function(){
 /***SEARCH PRODUCTS***/
 $.searchItem.addEventListener('focus', function(e){
 	$.searchItem.showCancel =  true; 
-	$.recordView.opacity = 1;
-	$.recordView.height = "auto";
+	$.recordTable.opacity = 1;
+	$.recordTable.height = "auto";
 });
 
 $.searchItem.addEventListener('blur', function(e){

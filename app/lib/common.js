@@ -38,8 +38,14 @@ exports.lightbox = function(data, win){
 		bottom: 20,
 		width: Ti.UI.FILL,
 		height: Ti.UI.SIZE,
-		contentHeight: Ti.UI.SIZE,
+		contentHeight: "auto",
 		contentWidth: Ti.UI.FILL,
+		showVerticalScrollIndicator: true,
+    	showHorizontalScrollIndicator: true,
+
+	    //Here you can determine the max and min zoom scale
+	    maxZoomScale: 100,
+	    minZoomScale: 1,
 		zIndex: 100
 	});
 	
