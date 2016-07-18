@@ -20,18 +20,6 @@ exports.createAlert = function(tt, msg, callback) {
     });
 };
 
-exports.createAlert = function(tt, msg, callback) {
-    var box = Titanium.UI.createAlertDialog({
-        title: tt,
-        ok: "OK",
-        message: msg
-    });
-    box.show();
-    box.addEventListener("click", function(e) {
-        0 == e.index && "function" == typeof callback && callback && callback();
-    });
-};
-
 exports.lightbox = function(data, win) {
     var mask = Ti.UI.createImageView({
         image: "/images/transparent-bg.png",
@@ -39,14 +27,34 @@ exports.lightbox = function(data, win) {
         height: Ti.UI.FILL,
         zIndex: 99
     });
+    var zoomable = Ti.UI.createScrollView({
+        top: 20,
+        right: 20,
+        left: 20,
+        bottom: 20,
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        contentHeight: Ti.UI.SIZE,
+        contentWidth: Ti.UI.FILL,
+        zIndex: 100
+    });
     var img = Ti.UI.createImageView({
         image: data.img_path,
         zIndex: 100,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });
+    zoomable.add(img);
+    zoomable.addEventListener("click", function() {
+        win.remove(mask);
+        win.remove(zoomable);
+    });
+    mask.addEventListener("click", function() {
+        win.remove(mask);
+        win.remove(zoomable);
+    });
     win.add(mask);
-    win.add(img);
+    win.add(zoomable);
 };
 
 exports.showImageIndicator = function() {

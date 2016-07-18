@@ -1,8 +1,12 @@
 var args = arguments[0] || {}; 
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
 if(args.appcode.charAt(0) != "T"){
-	$.claimDetail.setRightNavButton(null);
-	$.recepit.hide();
+	if(OS_IOS){
+		$.claimDetail.setRightNavButton(null);
+	}else{
+		//$.recepit.hide();
+	} 
+	
 }
 console.log(args.appcode);
 console.log(args.appcode.charAt(0));

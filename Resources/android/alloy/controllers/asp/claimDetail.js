@@ -21,6 +21,7 @@ function Controller() {
             headerTitle: "Amount"
         });
         var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
+        appcode = data.appcode;
         "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
         section.add(createTableViewRow("Consultation", "RM" + data.consultation_amt.toFixed(2)));
         section.add(createTableViewRow("Medication", "RM" + data.medication_amt.toFixed(2), data.medication));
@@ -78,6 +79,13 @@ function Controller() {
         });
         return row;
     }
+    function lightBox() {
+        var img_path = "https://tslip.aspmedic.com/" + appcode + ".png";
+        console.log(img_path);
+        common.lightbox({
+            img_path: img_path
+        }, $.claimDetail);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/claimDetail";
     this.args = arguments[0] || {};
@@ -94,6 +102,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.claimDetail = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
@@ -148,7 +157,7 @@ function Controller() {
     });
     $.__views.__alloyId396.add($.__views.btnBack);
     $.__views.__alloyId397 = Ti.UI.createView({
-        width: "90%",
+        width: "65%",
         id: "__alloyId397"
     });
     $.__views.__alloyId395.add($.__views.__alloyId397);
@@ -164,6 +173,21 @@ function Controller() {
         textAlign: "center"
     });
     $.__views.__alloyId397.add($.__views.pageTitle);
+    $.__views.__alloyId398 = Ti.UI.createView({
+        left: 0,
+        width: "25%",
+        id: "__alloyId398"
+    });
+    $.__views.__alloyId395.add($.__views.__alloyId398);
+    lightBox ? $.addListener($.__views.__alloyId398, "click", lightBox) : __defers["$.__views.__alloyId398!click!lightBox"] = true;
+    $.__views.recepit = Ti.UI.createLabel({
+        width: "auto",
+        height: Ti.UI.SIZE,
+        color: "#606060",
+        text: "Receipt",
+        id: "recepit"
+    });
+    $.__views.__alloyId398.add($.__views.recepit);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -172,16 +196,21 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var arg_serial = "undefined" != typeof args.serial ? args.serial : 0;
+    "T" != args.appcode.charAt(0);
+    console.log(args.appcode);
+    console.log(args.appcode.charAt(0));
     API.claimDetailBySeries({
         serial: arg_serial
     });
     var usersModel = Alloy.createCollection("claim_detail");
+    var appcode = "";
     common.construct($);
     common.showLoading();
     Ti.App.addEventListener("load_claim_detail", init);
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.claimDetail);
     });
+    __defers["$.__views.__alloyId398!click!lightBox"] && $.addListener($.__views.__alloyId398, "click", lightBox);
     _.extend($, exports);
 }
 

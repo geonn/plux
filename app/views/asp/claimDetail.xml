@@ -1,6 +1,6 @@
 <Alloy>
 	<Window title="Claim Detail" id="claimDetail" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-		<RightNavButton title="Receipt" id="recepit" onClick="lightBox"></RightNavButton>
+		<RightNavButton platform="ios" title="Receipt" id="recepit" onClick="lightBox"></RightNavButton>
 		<View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
          		<ActivityIndicator id="activityIndicator" />
          		<Label text="Loading" platform="ios" color="#ffffff" />
@@ -11,12 +11,14 @@
 				<View left="0" width="10%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
-		     	<View width="90%">
+		     	<View width="65%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Detail</Label>
 		     	</View>
-		     	<View left="0" width="10%">
+		     	<View left="0" onClick="lightBox" width="25%">
 		         	<Label class="hsize" id="recepit" width="auto">Receipt</Label>
 		   		</View>
+		   		 
+			   		
 		 	</View>
 			<TableView id="tv">
 		    </TableView>

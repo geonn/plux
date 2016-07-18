@@ -59,6 +59,15 @@ exports.definition = {
                 collection.trigger("sync");
                 return arr;
             },
+            removeById: function(m_id) {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql_query = "DELETE FROM " + collection.config.adapter.collection_name + " WHERE id=?";
+                db.execute(sql_query, m_id);
+                console.log(db.getRowsAffected() + " deleted");
+                db.close();
+                collection.trigger("sync");
+            },
             messageRead: function(entry) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
