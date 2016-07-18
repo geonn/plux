@@ -1,10 +1,18 @@
 var args = arguments[0] || {}; 
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
+if(args.appcode.charAt(0) != "T"){
+	$.claimDetail.setRightNavButton(null);
+	$.recepit.hide();
+}
+console.log(args.appcode);
+console.log(args.appcode.charAt(0));
 
 API.claimDetailBySeries({serial : arg_serial});
 var usersModel = Alloy.createCollection('claim_detail'); 
+var appcode = "";
 common.construct($); 
 common.showLoading();
+
 //var data = usersModel.getClaimDetailBySeries({serial : arg_serial});
 
 Ti.App.addEventListener("load_claim_detail", init);
@@ -20,7 +28,8 @@ function init(){
 	var section = Ti.UI.createTableViewSection({headerTitle: "Amount"});
 	
 	var totalAmount = (typeof data.amount != "undefined")?data.amount:"";
- 
+	
+ 	appcode = data.appcode;
 	if(totalAmount != ""){
 		section.add(createTableViewRow("Total Amount", "RM"+(data.amount).toFixed(2)));
 	} 
@@ -91,6 +100,12 @@ function createTableViewRow(text, value, dialog){
 		});
 	} 
 	return row;
+}
+
+function lightBox(){
+	var img_path = "https://tslip.aspmedic.com/"+appcode+".png";
+	console.log(img_path);
+	common.lightbox({img_path: img_path}, $.claimDetail);
 }
 
 if(Ti.Platform.osname == "android"){

@@ -1,9 +1,11 @@
 <Alloy>
 	<Window title="Claim Detail" id="claimDetail" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<RightNavButton title="Receipt" id="recepit" onClick="lightBox"></RightNavButton>
 		<View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
          		<ActivityIndicator id="activityIndicator" />
          		<Label text="Loading" platform="ios" color="#ffffff" />
          </View>
+         
 		<View id="main" layout="vertical">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="10%">
@@ -12,6 +14,9 @@
 		     	<View width="90%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Detail</Label>
 		     	</View>
+		     	<View left="0" width="10%">
+		         	<Label class="hsize" id="recepit" width="auto">Receipt</Label>
+		   		</View>
 		 	</View>
 			<TableView id="tv">
 		    </TableView>

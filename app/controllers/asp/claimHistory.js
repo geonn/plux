@@ -11,6 +11,7 @@ if(Ti.Platform.osname == "android"){
 var claimDetailModel = Alloy.createCollection('claim_detail'); 
 var data = claimDetailModel.getClaimDetail({memno: args.memno, name: arg_name}); 
 data.reverse();
+data = _.sortBy(data, "visitdate");
 data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{ 
@@ -26,12 +27,14 @@ data.forEach(function(entry){
 	
 	var horzView = $.UI.create('View',{
 		classes: ['horz', 'hsize','wfill'], 
-		serial: entry.serial 
+		serial: entry.serial ,
+		appcode: entry.appcode,
 	});
 	
 	var statustView = $.UI.create('View',{ 
 		height: 130, 
 		serial: entry.serial,
+		appcode: entry.appcode,
 		width: 10,
 		backgroundColor: statusColor
 	});
@@ -39,9 +42,10 @@ data.forEach(function(entry){
 		
 	var view_container = $.UI.create("View",{
 		classes: ['vert','hsize'],
-		width: "auto", 
+		width: "auto",
 		claimType:entry.claimType,
 		serial: entry.serial,
+		appcode: entry.appcode,
 		top: 5,
 		right: 5,
 		left: 5,
@@ -52,6 +56,7 @@ data.forEach(function(entry){
 		height: 40,
 		classes: ['wfill'], 
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType
 	});
 	
@@ -59,6 +64,7 @@ data.forEach(function(entry){
 	var labelClinicView = $.UI.create("View",{ 
 		height: Ti.UI.SIZE,
 		serial: entry.serial,
+		appcode: entry.appcode,
 		height: 45,
 		top:0,
 		claimType:entry.claimType
@@ -72,18 +78,21 @@ data.forEach(function(entry){
 		left: 0,
 		width: "70%", 
 		serial: entry.serial,
+		appcode: entry.appcode,
 	});
 	labelClinicView.add(label_clinic);
 	
 	var label_amount = $.UI.create("Label",{
 		classes: ['amount','bold'],
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: "RM "+ (entry.amount).toFixed(2)
 	});
 	
 	var view_detail2 = $.UI.create("View",{ 
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
 		classes: [ "hsize"]
 	});
@@ -91,6 +100,7 @@ data.forEach(function(entry){
 	var label_category = $.UI.create("Label",{
 		classes: ['h5','hsize','wsize','left-align'],
 		serial: entry.serial,
+		appcode: entry.appcode,
 		left:0,
 		claimType:entry.claimType,
 		text: "Category: "+entry.category
@@ -99,28 +109,25 @@ data.forEach(function(entry){
  
 	var label_date = $.UI.create("Label",{ 
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: timeFormat(entry.visitdate),
 		right: 10,
 		classes: ['h5','hsize','wsize','right-align'],
 	}); 
  
- 	var receipt_button = $.UI.create("Button", {
- 		title: "Receipt",
- 		appcode: entry.appcode
- 	});
- 
 	var label_name = $.UI.create("Label",{
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
-		text: "Claim Under: "+entry.name+" "+entry.appcode
+		text: "Claim Under: "+entry.name
 	});
-	 
 	
 	var label_mc = $.UI.create("Label",{
 		classes: ['mc'],
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: "MC Days: "+entry.mcdays
 	});
@@ -128,6 +135,7 @@ data.forEach(function(entry){
 	var label_claimType = $.UI.create("Label",{
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
+		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: "Claim Type: "+claim_type_text
 	});
@@ -138,18 +146,10 @@ data.forEach(function(entry){
 		claimType:entry.claimType,
 		text: "Status: "+entry.status
 	});**/
-	receipt_button.addEventListener("click", function(e){
-		console.log(e.source);
-		var img_path = "https://tslip.aspmedic.com/"+e.source.appcode+".png";
-		console.log(img_path);
-		common.lightbox({img_path: img_path}, $.claim_history);
-	});
-	
 	view_detail.add(labelClinicView);
 	view_detail.add(label_amount);
 	view_detail2.add(label_category);
 	view_detail2.add(label_date);
-	view_detail2.add(receipt_button);
 	view_container.add(view_detail);
 	view_container.add(view_detail2);
 	view_container.add(label_name); 
@@ -166,7 +166,7 @@ data.forEach(function(entry){
 			//common.createAlert('Claim Details', 'Sorry, the claim details is not available.');
 			return false;
 		}else{ 
-			nav.navigateWithArgs("asp/claimDetail", {serial: e.source.serial});
+			nav.navigateWithArgs("asp/claimDetail", {serial: e.source.serial, appcode: e.source.appcode});
 		}
 		
 	});

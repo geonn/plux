@@ -38,6 +38,7 @@ function render_conversation(latest){
 	for (var i=0; i < data.length; i++) {
 		var view_container = $.UI.create("View",{
 			classes: ['hsize','wfill'],
+			m_id: data[i].id
 		});
 		//console.log("message:"+data[i].message+", is_endUser:"+data[i].is_endUser +"=="+data[i].created);
 		/*var thumb_path = (data[i].u_id == u_id)?user_thumb_path:friend_thumb_path;
@@ -106,6 +107,29 @@ function render_conversation(latest){
 			view_text_container.add(label_system_msg);
 		}
 		view_container.add(view_text_container);
+		view_container.addEventListener("longpress", function(e){
+			var m_id = parent({name: "m_id"}, e.source);
+			var message_box = parent({name: "m_id", value: m_id}, e.source);
+			var dialog = Ti.UI.createAlertDialog({
+			    cancel: 1,
+			    buttonNames: ['Confirm', 'Cancel'],
+			    message: 'Would you like to delete the message?',
+			    title: 'Delete'
+			  });
+			  
+		  dialog.addEventListener('click', function(ex){
+		  	console.log(message_box);
+   			 if (ex.index === ex.source.cancel){
+   			 	console.log("cancel");
+   			 }if(ex.index == 0){
+   			 	console.log(m_id);
+   			 	var model = Alloy.createCollection("helpline");
+				model.removeById(m_id);
+   			 	$.inner_area.remove(message_box);
+   			 }
+   			});
+   			dialog.show();
+		});
 		if(latest){
 			$.inner_area.insertAt({view: view_container});
 		}else{
