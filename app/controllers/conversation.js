@@ -118,11 +118,9 @@ function render_conversation(latest){
 			  });
 			  
 		  dialog.addEventListener('click', function(ex){
-		  	console.log(message_box);
    			 if (ex.index === ex.source.cancel){
    			 	console.log("cancel");
    			 }if(ex.index == 0){
-   			 	console.log(m_id);
    			 	var model = Alloy.createCollection("helpline");
 				model.removeById(m_id);
    			 	$.inner_area.remove(message_box);
@@ -151,12 +149,11 @@ function getConversationByRoomId(callback){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		console.log("getConversationByRoomId function");
-		console.log(arr);
+		
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", common.now(), u_id);
 		if(!room_id){
-			console.log(res.room_id+" room id");
+			
 			room_id = res.room_id;
 			setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});}, 1000);
 		}
@@ -179,8 +176,13 @@ function refresh(callback, firsttime){
 	loading.finish();
 }
 
-function refresh_latest(){
-	console.log("refresh_latest");
+function refresh_latest(param){
+	if(param.admin){
+		Ti.App.Properties.setString('estimate_time', "0");
+	}else{
+		
+	}
+	
 	refresh(getLatestData);
 }
 
@@ -191,7 +193,7 @@ function getPreviousData(param){
 	var estimate_time = Ti.App.Properties.getString('estimate_time');
 	console.log(estimate_time+" estimate time");
 	 
-	if(estimate_time  != "0"){
+	if(estimate_time != "0"){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
 		$.estimate.parent.show();
 	}else{
