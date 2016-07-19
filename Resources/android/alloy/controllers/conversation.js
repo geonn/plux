@@ -101,10 +101,8 @@ function Controller() {
                     title: "Delete"
                 });
                 dialog.addEventListener("click", function(ex) {
-                    console.log(message_box);
                     ex.index === ex.source.cancel && console.log("cancel");
                     if (0 == ex.index) {
-                        console.log(m_id);
                         var model = Alloy.createCollection("helpline");
                         model.removeById(m_id);
                         $.inner_area.remove(message_box);
@@ -136,12 +134,9 @@ function Controller() {
             var res = JSON.parse(responseText);
             var arr = res.data || null;
             Ti.App.Properties.setString("estimate_time", res.estimate_time);
-            console.log("getConversationByRoomId function");
-            console.log(arr);
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", common.now(), u_id);
             if (!room_id) {
-                console.log(res.room_id + " room id");
                 room_id = res.room_id;
                 setTimeout(function() {
                     Ti.App.fireEvent("web:setRoom", {
@@ -164,8 +159,8 @@ function Controller() {
         });
         loading.finish();
     }
-    function refresh_latest() {
-        console.log("refresh_latest");
+    function refresh_latest(param) {
+        param.admin && Ti.App.Properties.setString("estimate_time", "0");
         refresh(getLatestData);
     }
     function getPreviousData(param) {

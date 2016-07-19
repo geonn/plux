@@ -1,19 +1,20 @@
 <Alloy>
 	<Window navTintColor="#CE1D1C" title="ASP Signup" id="aspSignUpWin" class="container" layout="vertical">
+		<View  top="0" height="50" backgroundColor="#DEDEDE"> 
+				<View left="0" zIndex="9" id="btnBack" width="20%"  >
+					<ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
+				</View>
+				<View >
+					<Label id="titleLbl"  class='hsize themeColor' textAlign="center">ASP Sign Up</Label>
+			   </View>
+			</View>
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 		        <ActivityIndicator id="activityIndicator" />
 		    	<Label top="5" text="Loading" platform="ios"  color="#ffffff" />
 		    </View>
 		    <View layout="vertical">
-			    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android"> 
-					<View left="0" width="10%">
-			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
-			   		</View>
-			     	<View id="pageTitle" width="Ti.UI.FILL">
-			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP Sign Up</Label>
-			     	</View> 
-			 	</View> 
+			  
 				<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
 					<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
 					<TextField class="text_input" id="email" hintText="Enter Email" value="" /><!-- wongbh@live.com -->

@@ -6,8 +6,11 @@ var clickTime = null;
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachment'); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');
 var details = medicalRecordsModel.getRecordById(rec_id); 
-var MediaPickerModule = require('MediaPicker').MediaPicker;
-var MediaPicker = new MediaPickerModule();
+if(OS_IOS){
+	var MediaPickerModule = require('MediaPicker').MediaPicker;
+	var MediaPicker = new MediaPickerModule();
+}
+
 			
 loadMedicalInfo(); 
  
@@ -276,53 +279,56 @@ function takePhoto(){
 	            saveToPhotoGallery:true
 	        });
 	    } else if(e.index == 1){
-	    	var maximumImageCount = 20;
-			
-			MediaPicker.show(function(e){saveImage(e);}, maximumImageCount, 'photos', 'Choose up to four images! Longlick image for preview.');
-			return;
-	    	//obtain an image from the gallery
-	        Titanium.Media.openPhotoGallery({
-	            success:function(event){
-	            	// set image view
-	            	var image = event.media;
-	            	if(image.width > image.height){
-	        			var newWidth = 640;
-	        			var ratio =   640 / image.width;
-	        			var newHeight = image.height * ratio;
-	        		}else{
-	        			var newHeight = 640;
-	        			var ratio =   640 / image.height;
-	        			var newWidth = image.width * ratio;
-	        		} 
-					image = image.imageAsResized(newWidth, newHeight); 
-		            blobContainer = image; 
-		           	 
-					var param = { 
-					 		app_id : rec_id,
-					 		medical_id :rec_id,
-					 		u_id :Ti.App.Properties.getString('u_id'),
-					 		caption : categoryType,
-					 		Filedata : image,
-					};	
-					 
-					API.syncAttachments({param: param}, function(responseText){
-						var res = JSON.parse(responseText);  
-						if(res.status == "success"){  
-							var record = res.data;  
-							medicalAttachmentModel.addFromServer(record[0].id, record);
-						}
-						
-			            loadImage(); 
-					});	 
-					 	
-		           
-	            },
-	            cancel:function() {
-	               
-	            },
-	            
-	            mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
-	        });
+	    	if(OS_IOS){
+		    	var maximumImageCount = 20;
+				MediaPicker.show(function(e){saveImage(e);}, maximumImageCount, 'photos', 'Choose up to four images! Longlick image for preview.');
+			}else{
+	    		//obtain an image from the gallery
+		        Titanium.Media.openPhotoGallery({
+		            success:function(event){
+		            	// set image view
+		            	var image = event.media;
+		            	if(image.width > image.height){
+		        			var newWidth = 640;
+		        			var ratio =   640 / image.width;
+		        			var newHeight = image.height * ratio;
+		        		}else{
+		        			var newHeight = 640;
+		        			var ratio =   640 / image.height;
+		        			var newWidth = image.width * ratio;
+		        		} 
+						image = image.imageAsResized(newWidth, newHeight); 
+			            blobContainer = image; 
+			           	 
+						var param = { 
+						 		app_id : rec_id,
+						 		medical_id :rec_id,
+						 		u_id :Ti.App.Properties.getString('u_id'),
+						 		caption : categoryType,
+						 		Filedata : image,
+						};	
+						 
+						API.syncAttachments({param: param}, function(responseText){
+							var res = JSON.parse(responseText);  
+							if(res.status == "success"){  
+								var record = res.data;  
+								medicalAttachmentModel.addFromServer(record[0].id, record);
+							}
+							
+				            loadImage(); 
+						});	 
+						 	
+			           
+		            },
+		            cancel:function() {
+		               
+		            },
+		            
+		            mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+		        });
+	    	}
+	    	 
+	    	
 	    } else {
 	        
 	    }

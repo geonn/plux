@@ -68,10 +68,6 @@ function hideProductFormKeyboard(e){
 $.aspSignUpWin.addEventListener('click',hideProductFormKeyboard);
 
  
-
-if(Ti.Platform.osname == "android"){
-	var nav = require('navigation');
-	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.aspSignUpWin); 
-	}); 
-}
+$.btnBack.addEventListener('click', function(){ 
+	$.aspSignUpWin.close(); 
+});  
