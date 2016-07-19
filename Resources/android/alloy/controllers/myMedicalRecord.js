@@ -222,7 +222,7 @@ function Controller() {
                 data.push(row);
             });
             $.recordTable.setData(data);
-            $.recordTable.setHeight(Ti.UI.SIZE);
+            $.recordTable.setHeight(Ti.UI.FILL);
         }
         common.hideLoading();
     }
@@ -367,15 +367,6 @@ function Controller() {
         hintText: "Search medical data..."
     });
     $.__views.aView.add($.__views.searchItem);
-    $.__views.recordView = Ti.UI.createScrollView({
-        id: "recordView",
-        layout: "vertical",
-        height: Ti.UI.FILL,
-        width: Ti.UI.FILL,
-        contentWidth: Ti.UI.FILL,
-        contentHeight: Ti.UI.SIZE
-    });
-    $.__views.aView.add($.__views.recordView);
     $.__views.recordTable = Ti.UI.createTableView({
         id: "recordTable",
         top: 0,
@@ -385,7 +376,7 @@ function Controller() {
         contentHeight: Ti.UI.SIZE,
         separatorColor: "#375540"
     });
-    $.__views.recordView.add($.__views.recordTable);
+    $.__views.aView.add($.__views.recordTable);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -411,8 +402,8 @@ function Controller() {
     });
     $.searchItem.addEventListener("focus", function() {
         $.searchItem.showCancel = true;
-        $.recordView.opacity = 1;
-        $.recordView.height = "auto";
+        $.recordTable.opacity = 1;
+        $.recordTable.height = "auto";
     });
     $.searchItem.addEventListener("blur", function() {
         $.searchItem.showCancel = false;
