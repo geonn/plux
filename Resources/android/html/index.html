@@ -37,7 +37,10 @@
 	      });
 	      
 	      Ti.App.addEventListener("web:sendMessage", function(ex) {
+<<<<<<< HEAD
+=======
 	      	Ti.App.fireEvent("chatroom_listener fire!!!");
+>>>>>>> origin/master
 	    	socket.emit('chatroom_listener', ex.room_id, false);
 	  	  });
   	  });

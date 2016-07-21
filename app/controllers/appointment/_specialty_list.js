@@ -58,7 +58,7 @@ function refresh(){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		model.saveArray(arr);
-		checker.updateModule(5,"getSpecialtylist", common.now());
+		checker.updateModule(5,"getSpecialtylist", res.last_updated);
 		listing = model.getAvailableData();
 		render_specialty_list();
 	});

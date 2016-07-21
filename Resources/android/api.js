@@ -328,7 +328,7 @@ exports.getNearbyClinic = function(e) {
 };
 
 exports.checkAppVersion = function(callback_download) {
-    var appVersion = Ti.App.Properties.getString("appVersion") || "1.0";
+    var appVersion = Ti.App.Properties.getString("appVersion");
     var url = checkAppVersionUrl + "&appVersion=" + appVersion + "&appPlatform=android";
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -801,7 +801,7 @@ exports.loadClinicList = function() {
                 var library = Alloy.createCollection("panelList");
                 var arr = res.data;
                 library.addPanel(arr);
-                checker.updateModule("1", "clinicList", currentDateTime());
+                checker.updateModule("1", "clinicList", res.last_updated);
             }
         },
         onerror: function() {},

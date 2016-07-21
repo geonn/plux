@@ -11,6 +11,10 @@ ID       type Name
 7		getHelplineMessage
 8		getDcotroPanel
 9		getAppointmentByDoctorPanel
+10		categoryUrl
+11		leafletUrl
+12		doctorListUrl
+13		getClinicLocator2
 ************************************/
 
 exports.definition = {

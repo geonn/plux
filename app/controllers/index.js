@@ -17,54 +17,45 @@ var notificationModel = Alloy.createCollection('notification');
 notificationModel.addColumn("isRead", "TEXT"); 
 notificationModel.addColumn("status", "TEXT"); 
 
-API.loadCategoryList(); 
-API.loadNewsFeed();
-API.loadLeaflet();
-API.loadClinicList(); 
-API.loadDoctorPanel();
-API.getDoctorList();
+var loadingView = Alloy.createController("loader");
+loadingView.getView().open();
+loadingView.start();
 
-var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
- 
-if(isShowIntro	!= ""){
-	if(u_id == ""){ 
-		var win = Alloy.createController("login").getView();
-		win.open(); 
-	}else{
-		var win = Alloy.createController("home").getView();
-		win.open(); 
-	}
-}else{ 
-		$.index.win.open();
+function loadingViewFinish(){
+	loadingView.finish(function(){
+		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
+		 
+		if(isShowIntro	!= ""){
+			if(u_id == ""){ 
+				var win = Alloy.createController("login").getView();
+				win.open(); 
+			}else{
+				var win = Alloy.createController("home").getView();
+				win.open(); 
+			}
+		}else{ 
+			$.index.win.open();
+		}
+		loadingView = null;
+	});
 }
 
-/** 
+//API.loadCategoryList(); 
+//API.loadNewsFeed();
+//API.loadLeaflet();
+//API.loadClinicList(); 
+//API.loadDoctorPanel();
+//API.getDoctorList();
+console.log(common.now()+"before");
 
- 
->>>>>>> origin/master
-var win = Alloy.createController("home").getView();
-win.open(); 
-if(u_id == ""){ 
-	nav.navigateWithArgs("login", {});  
-} 
-**/
-if (Ti.Platform.osname == 'android') {
-	var AppVersionControl = require('AppVersionControl');
-	AppVersionControl.checkAndUpdate();
-}
-
-/*
-$.root.open({fullscreen:true});
-
-$.link_visitor.addEventListener('click', function(e){
-	var win = Alloy.createController("home").getView(); 
-	win.open();
-});
-
-$.link_member.addEventListener('click', function(e){
-	var win = Alloy.createController("login").getView(); 
-	win.open();
+API.callByPost({url: "dateNow"}, function(responseText){
+	console.log(responseText+" wtf");
+	common.sync_time(responseText);
+	console.log(common.now()+"after");
 });
 
 
-*/
+var AppVersionControl = require('AppVersionControl');
+AppVersionControl.checkAndUpdate();
+
+Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
