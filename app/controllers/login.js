@@ -1,5 +1,6 @@
 var args = arguments[0] || {}; 
 var singleton = true;
+console.log('login');
 common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";

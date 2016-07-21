@@ -102,6 +102,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var res = JSON.parse(this.responseText);
+	       console.log(res);
 	       if(res.status == "Success" || res.status == "success"){
 	       	/**reset current category**/
 			//library.resetCategory();

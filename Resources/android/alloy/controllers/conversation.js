@@ -20,8 +20,7 @@ function Controller() {
             }
         }, function(responseText) {
             Alloy.createCollection("helpline");
-            var res = JSON.parse(responseText);
-            res.data || null;
+            JSON.parse(responseText);
             $.message.value = "";
             $.message.blur();
             Ti.App.fireEvent("web:sendMessage", {
@@ -135,6 +134,8 @@ function Controller() {
             var res = JSON.parse(responseText);
             var arr = res.data || null;
             Ti.App.Properties.setString("estimate_time", res.estimate_time);
+            console.log("refresh save arr");
+            console.log(arr);
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
             if (!room_id) {
@@ -163,13 +164,8 @@ function Controller() {
         loading.finish();
     }
     function refresh_latest(param) {
-<<<<<<< HEAD
         console.log("refresh_latest");
         param.admin && Ti.App.Properties.setString("estimate_time", "0");
-        console.log(param);
-=======
-        param.admin && Ti.App.Properties.setString("estimate_time", "0");
->>>>>>> origin/master
         refresh(getLatestData);
     }
     function getPreviousData(param) {
@@ -191,6 +187,8 @@ function Controller() {
     function getLatestData() {
         var model = Alloy.createCollection("helpline");
         data = model.getData(true, last_update);
+        console.log("getLatestData");
+        console.log(data);
         last_update = common.now();
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         if (0 != estimate_time) {

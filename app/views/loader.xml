@@ -1,8 +1,7 @@
 <Alloy>
-	<Window id="rocket" class="container">
+	<Window id="rocket" navBarHidden="true" class="container">
 		<View id="overlay" />
-		<ImageView id="rocketSmoke"/>
-		<ImageView id="rocketFlight" />
+		<ImageView class="wsize hsize" image="/images/logo_plux.png"/>
 		<Label id="loading_text" class="wsize hsize" bottom="50" color="#ffffff"></Label>
 	</Window>
 </Alloy>

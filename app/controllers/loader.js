@@ -5,21 +5,9 @@ var args = arguments[0] || {};
  */
 $.start = function() {
 	//$.overlay.opacity = 0;
-	$.rocketSmoke.opacity = 0.1;
-	$.rocketFlight.opacity = 0;
-	$.rocketFlight.top = null;
-	
-	$.rocketFlight.stop();
-	$.rocketSmoke.start();
-	
 	$.overlay.animate({
 		opacity: 0.7,
 		duration: 250
-	});
-	
-	$.rocketSmoke.animate({
-		opacity: 1,
-		duration: 500
 	});
 };
 
@@ -36,14 +24,6 @@ $.finish = function(_callback) {
 		duration: 500
 	});
 	*/
-	$.rocketSmoke.stop();
-	$.rocketSmoke.animate({
-		duration: 500,
-		delay: 500,
-		right: -500,
-		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
-	}, function() {
-		
 		
 		/*$.rocketFlight.animate({
 			top: -130,
@@ -55,11 +35,8 @@ $.finish = function(_callback) {
 			opacity: 0,
 			duration: 750
 		}, function() {
-			$.rocketFlight.stop();
-			
 			_callback && _callback();
 		});
-	});
 };
 
 //load API loadAPIBySequence

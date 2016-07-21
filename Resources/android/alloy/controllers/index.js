@@ -8,6 +8,24 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadingViewFinish() {
+        loadingView.finish(function() {
+            var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
+            if ("" != isShowIntro) if ("" == u_id) {
+                console.log("login");
+                var win = Alloy.createController("login").getView();
+                win.open();
+            } else {
+                console.log("home");
+                var win = Alloy.createController("home").getView();
+                win.open();
+            } else {
+                console.log("firsttime");
+                $.index.win.open();
+            }
+            loadingView = null;
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     this.args = arguments[0] || {};
@@ -31,6 +49,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var u_id = Ti.App.Properties.getString("u_id") || "";
+    var loadingView;
     var appointmentModel = Alloy.createCollection("appointment");
     appointmentModel.addColumn("doctor_panel_id", "TEXT");
     appointmentModel.addColumn("clinic_name", "TEXT");
@@ -44,22 +63,20 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     notificationModel.addColumn("isRead", "TEXT");
     notificationModel.addColumn("status", "TEXT");
-    API.loadCategoryList();
-    API.loadNewsFeed();
-    API.loadLeaflet();
-    API.loadClinicList();
-    API.loadDoctorPanel();
-    API.getDoctorList();
-    var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
-    if ("" != isShowIntro) if ("" == u_id) {
-        var win = Alloy.createController("login").getView();
-        win.open();
-    } else {
-        var win = Alloy.createController("home").getView();
-        win.open();
-    } else $.index.win.open();
+    console.log(common.now() + "before");
+    API.callByPost({
+        url: "dateNow"
+    }, function(responseText) {
+        console.log(responseText + " wtf");
+        common.sync_time(responseText);
+        console.log(common.now() + "after");
+        loadingView = Alloy.createController("loader");
+        loadingView.getView().open();
+        loadingView.start();
+    });
     var AppVersionControl = require("AppVersionControl");
     AppVersionControl.checkAndUpdate();
+    Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     _.extend($, exports);
 }
 

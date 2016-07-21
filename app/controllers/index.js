@@ -1,6 +1,6 @@
 var args = {};
 var u_id = Ti.App.Properties.getString('u_id') || "";
-
+var loadingView;
 var appointmentModel = Alloy.createCollection('appointment');   
 appointmentModel.addColumn("doctor_panel_id", "TEXT"); 
 appointmentModel.addColumn("clinic_name", "TEXT"); 
@@ -17,23 +17,22 @@ var notificationModel = Alloy.createCollection('notification');
 notificationModel.addColumn("isRead", "TEXT"); 
 notificationModel.addColumn("status", "TEXT"); 
 
-var loadingView = Alloy.createController("loader");
-loadingView.getView().open();
-loadingView.start();
-
 function loadingViewFinish(){
 	loadingView.finish(function(){
 		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 		 
 		if(isShowIntro	!= ""){
 			if(u_id == ""){ 
+				console.log('login');
 				var win = Alloy.createController("login").getView();
 				win.open(); 
 			}else{
+				console.log('home');
 				var win = Alloy.createController("home").getView();
 				win.open(); 
 			}
 		}else{ 
+			console.log('firsttime');
 			$.index.win.open();
 		}
 		loadingView = null;
@@ -52,6 +51,9 @@ API.callByPost({url: "dateNow"}, function(responseText){
 	console.log(responseText+" wtf");
 	common.sync_time(responseText);
 	console.log(common.now()+"after");
+	loadingView = Alloy.createController("loader");
+	loadingView.getView().open();
+	loadingView.start();
 });
 
 
