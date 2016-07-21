@@ -21,7 +21,7 @@ var loadingView = Alloy.createController("loader");
 loadingView.getView().open();
 loadingView.start();
 
-function loadingViewFinish(){
+function loadingViewFinish(){ 
 	loadingView.finish(function(){
 		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 		 

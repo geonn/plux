@@ -118,6 +118,10 @@ var addFeedbackUrl = "http://" + FREEJINI_DOMAIN + "/api/addFeedback?user=" + US
 
 var getAppointmentByDoctorPanel = "http://" + FREEJINI_DOMAIN + "/api/getAppointmentByDoctorPanel?user=" + USER + "&key=" + KEY;
 
+var getClinicLocator2 = "http://" + FREEJINI_DOMAIN + "/api/getClinicLocator2?user=" + USER + "&key=" + KEY;
+
+var dateNow = "http://plux.freejini.com.my/main/dateNow";
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -141,6 +145,59 @@ var getclaimCategoryUrl = "http://" + API_DOMAIN + "/claimcategory.aspx";
 var getclaimSubmissionUrl = "http://" + API_DOMAIN + "/ClaimSubmission.aspx";
 
 var defaultRetryTimes = 3;
+
+var APILoadingList = [ {
+    url: getClinicLocator2,
+    model: "panelList",
+    checkId: "13"
+}, {
+    url: getDoctorPanel,
+    model: "doctor_panel",
+    checkId: "8"
+}, {
+    url: doctorListUrl,
+    model: "doctors",
+    checkId: "12"
+} ];
+
+exports.loadAPIBySequence = function(ex, counter) {
+    counter = "undefined" == typeof counter ? 0 : counter;
+    if (counter >= APILoadingList.length) {
+        Ti.App.fireEvent("app:loadingViewFinish");
+        return false;
+    }
+    var api = APILoadingList[counter];
+    var checker = Alloy.createCollection("updateChecker");
+    var isUpdate = checker.getCheckerById(api["checkId"]);
+    var last_updated = "";
+    var model = Alloy.createCollection(api["model"]);
+    "" != isUpdate && (last_updated = isUpdate.updated);
+    var url = api["url"] + "&last_updated=" + last_updated;
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var res = JSON.parse(this.responseText);
+            if ("Success" == res.status || "success" == res.status) {
+                var arr = res.data;
+                model.saveArray(arr);
+            }
+            Ti.App.fireEvent("app:update_loading_text", {
+                text: APILoadingList[counter]["model"] + " loading..."
+            });
+            checker.updateModule(APILoadingList[counter]["checkId"], APILoadingList[counter]["model"], res.last_updated);
+            counter++;
+            API.loadAPIBySequence(ex, counter);
+        },
+        onerror: function() {
+            console.log("API getCategoryList fail, skip sync with server");
+            API.loadAPIBySequence(ex, counter);
+        },
+        timeout: 7e3
+    });
+    client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    client.open("POST", url);
+    client.send();
+};
 
 exports.updateUserFromFB = function(e, mainView) {
     var url = updateUserFromFB + "&email=" + e.email + "&fbid=" + e.fbid + "&link=" + e.link + "&name=" + e.name + "&gender=" + e.gender;
@@ -794,6 +851,7 @@ exports.loadClinicList = function() {
     var last_updated = "";
     "" != isUpdate && (last_updated = isUpdate.updated);
     var url = clinicListUrl + "&last_updated=" + last_updated;
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);

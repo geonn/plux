@@ -1,5 +1,7 @@
 var mainView = null;
 
+var time_offset = 0;
+
 exports.construct = function(mv) {
     mainView = mv;
 };
@@ -321,8 +323,27 @@ exports.resultPopUp = function(title, msg) {
     });
 };
 
+exports.sync_time = function(time) {
+    console.log(time.trim());
+    var a = time.trim();
+    var b = a.split("  ");
+    var date = b[0].split("-");
+    var time = b[1].split(":");
+    var s_date = new Date(date[0], date[1] - 1, date[2], time[0], time[1], time[2]);
+    var now = new Date();
+    var s = Date.parse(s_date.toUTCString());
+    var l = Date.parse(now.toUTCString());
+    console.log(s_date);
+    console.log(now);
+    console.log(s);
+    console.log(l);
+    time_offset = s - l;
+    console.log(time_offset);
+};
+
 exports.now = function() {
     var today = new Date();
+    today.setTime(today.getTime() + time_offset);
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();

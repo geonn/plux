@@ -8,6 +8,16 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadingViewFinish() {
+        var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
+        if ("" != isShowIntro) if ("" == u_id) {
+            var win = Alloy.createController("login").getView();
+            win.open();
+        } else {
+            var win = Alloy.createController("home").getView();
+            win.open();
+        } else $.index.win.open();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     this.args = arguments[0] || {};
@@ -44,22 +54,20 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     notificationModel.addColumn("isRead", "TEXT");
     notificationModel.addColumn("status", "TEXT");
-    API.loadCategoryList();
-    API.loadNewsFeed();
-    API.loadLeaflet();
-    API.loadClinicList();
-    API.loadDoctorPanel();
-    API.getDoctorList();
-    var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
-    if ("" != isShowIntro) if ("" == u_id) {
-        var win = Alloy.createController("login").getView();
-        win.open();
-    } else {
-        var win = Alloy.createController("home").getView();
-        win.open();
-    } else $.index.win.open();
+    var loadingView = Alloy.createController("loader");
+    loadingView.getView().open();
+    loadingView.start();
+    console.log(common.now() + "before");
+    API.callByPost({
+        url: "dateNow"
+    }, function(responseText) {
+        console.log(responseText + " wtf");
+        common.sync_time(responseText);
+        console.log(common.now() + "after");
+    });
     var AppVersionControl = require("AppVersionControl");
     AppVersionControl.checkAndUpdate();
+    Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     _.extend($, exports);
 }
 

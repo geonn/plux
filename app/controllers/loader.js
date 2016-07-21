@@ -36,7 +36,7 @@ $.finish = function(_callback) {
 		duration: 500
 	});
 	*/
-	$.rocketSmoke.stop();
+	 
 	$.rocketSmoke.animate({
 		duration: 500,
 		delay: 500,

@@ -5,8 +5,8 @@ exports.definition = {
 		   	"doctor_id": "INTEGER",
 		   	"clinic_id":"INTEGER",
 		   	"specialty_id":"INTEGER",
-		   	"created":"DATE",
-		   	"updated":"DATE"
+		   	"created":"TEXT",
+		   	"updated":"TEXT"
 		},
 		adapter: {
 			type: "sql",
