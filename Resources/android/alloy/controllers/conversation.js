@@ -101,10 +101,8 @@ function Controller() {
                     title: "Delete"
                 });
                 dialog.addEventListener("click", function(ex) {
-                    console.log(message_box);
                     ex.index === ex.source.cancel && console.log("cancel");
                     if (0 == ex.index) {
-                        console.log(m_id);
                         var model = Alloy.createCollection("helpline");
                         model.removeById(m_id);
                         $.inner_area.remove(message_box);
@@ -125,6 +123,7 @@ function Controller() {
         var u_id = Ti.App.Properties.getString("u_id") || 0;
         var isUpdate = checker.getCheckerById(7, u_id);
         var last_updated = isUpdate.updated || "";
+        console.log(last_updated + " last_updated " + u_id);
         API.callByPost({
             url: "getHelplineMessage",
             params: {
@@ -136,18 +135,17 @@ function Controller() {
             var res = JSON.parse(responseText);
             var arr = res.data || null;
             Ti.App.Properties.setString("estimate_time", res.estimate_time);
-            console.log("getConversationByRoomId function");
-            console.log(arr);
             model.saveArray(arr, callback);
-            checker.updateModule(7, "getHelplineMessage", common.now(), u_id);
+            checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
             if (!room_id) {
-                console.log(res.room_id + " room id");
                 room_id = res.room_id;
+                loading.start();
                 setTimeout(function() {
                     Ti.App.fireEvent("web:setRoom", {
                         room_id: room_id
                     });
-                }, 1e3);
+                    loading.finish();
+                }, 2e3);
             }
             callback && callback();
         });
@@ -164,8 +162,10 @@ function Controller() {
         });
         loading.finish();
     }
-    function refresh_latest() {
+    function refresh_latest(param) {
         console.log("refresh_latest");
+        param.admin && Ti.App.Properties.setString("estimate_time", "0");
+        console.log(param);
         refresh(getLatestData);
     }
     function getPreviousData(param) {
@@ -233,6 +233,7 @@ function Controller() {
     $.__views.win && $.addTopLevelView($.__views.win);
     $.__views.socket = Ti.UI.createWebView({
         width: Ti.UI.FILL,
+        zIndex: 100,
         url: "/html/index.html",
         id: "socket",
         height: 0

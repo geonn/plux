@@ -16,7 +16,6 @@ function SendMessage(){
 	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
-		var arr = res.data || null;
 		$.message.value = "";
 		$.message.blur();
 		Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
@@ -143,19 +142,22 @@ function getConversationByRoomId(callback){
 	var isUpdate = checker.getCheckerById(7, u_id);
 	var last_updated = isUpdate.updated || "";
 	
+	console.log(last_updated+" last_updated "+u_id);
+	
 	API.callByPost({url:"getHelplineMessage", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		
+		console.log("refresh save arr");
+		console.log(arr);
 		model.saveArray(arr, callback);
-		checker.updateModule(7, "getHelplineMessage", common.now(), u_id);
+		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
 		if(!room_id){
-			
 			room_id = res.room_id;
-			setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});}, 1000);
+			loading.start();
+			setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
 		}
 		callback && callback();
 	});
@@ -177,12 +179,12 @@ function refresh(callback, firsttime){
 }
 
 function refresh_latest(param){
+	console.log("refresh_latest");
 	if(param.admin){
 		Ti.App.Properties.setString('estimate_time', "0");
 	}else{
 		
 	}
-	
 	refresh(getLatestData);
 }
 
@@ -214,6 +216,8 @@ function getPreviousData(param){
 function getLatestData(){
 	var model = Alloy.createCollection("helpline");
 	data = model.getData(true, last_update);
+	console.log("getLatestData");
+	console.log(data);
 	last_update = common.now();
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){

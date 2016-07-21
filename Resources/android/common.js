@@ -34,8 +34,12 @@ exports.lightbox = function(data, win) {
         bottom: 20,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        contentHeight: Ti.UI.SIZE,
+        contentHeight: "auto",
         contentWidth: Ti.UI.FILL,
+        showVerticalScrollIndicator: true,
+        showHorizontalScrollIndicator: true,
+        maxZoomScale: 100,
+        minZoomScale: 1,
         zIndex: 100
     });
     var img = Ti.UI.createImageView({

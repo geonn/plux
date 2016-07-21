@@ -1,7 +1,3 @@
-function updateAppVersion(appVersion) {
-    Ti.App.Properties.setString("appVersion", appVersion);
-}
-
 function callback_download(e) {
     var dialog = Ti.UI.createAlertDialog({
         cancel: 1,
@@ -18,10 +14,9 @@ function callback_download(e) {
             Ti.API.info("e ==> " + JSON.stringify(e));
         }
     });
-    updateAppVersion(e.currentVersion);
 }
 
 exports.checkAndUpdate = function() {
-    var u_id = Ti.App.Properties.getString("u_id") || 0;
-    u_id && API.checkAppVersion(callback_download);
+    Ti.App.Properties.setString("appVersion", "1.1.1");
+    API.checkAppVersion(callback_download);
 };

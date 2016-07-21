@@ -39,8 +39,6 @@ exports.definition = {
                 var res = db.execute(sql, u_id);
                 var arr = [];
                 var count = 0;
-                var row_count = res.fieldCount;
-                for (var a = 0; row_count > a; a++) console.log(a + ":" + res.fieldName(a) + ":" + res.field(a));
                 while (res.isValidRow()) {
                     arr[count] = {
                         id: res.fieldByName("id"),

@@ -134,7 +134,7 @@ function refresh(){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		model.saveArray(arr);
-		checker.updateModule(6,"getDoctorPanelBySpecialty", common.now(), specialty_id);
+		checker.updateModule(6,"getDoctorPanelBySpecialty", res.last_updated, specialty_id);
 		listing = model.getData(specialty_id);
 		
 		render_clinic_list();

@@ -91,7 +91,7 @@ function Controller() {
             var res = JSON.parse(responseText);
             var arr = res.data || null;
             model.saveArray(arr);
-            checker.updateModule(4, "getDoctorByPanel", Common.now(), clinicId);
+            checker.updateModule(4, "getDoctorByPanel", res.last_updated, clinicId);
             render_timeslot();
             listing = model.getData(clinicId);
             render_doctor_list();

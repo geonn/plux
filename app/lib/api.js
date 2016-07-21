@@ -46,6 +46,8 @@ var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user
 var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
 var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
+var getClinicLocator2 = "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
+var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -63,9 +65,72 @@ var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx";
 //configuration 
 var defaultRetryTimes = 3;
 
+//API that call in sequence 
+var APILoadingList = [
+	{url: getClinicLocator2, model: "panelList", checkId: "13"},
+	//{url: categoryUrl, model: "panelList", checkId: "10"},
+	//{url: leafletUrl, model: "leaflet", checkId: "11"},
+	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
+	{url: doctorListUrl, model: "doctors", checkId: "12"}
+];
+
+
 /*********************
 **** API FUNCTION*****
 **********************/
+
+exports.loadAPIBySequence = function (ex, counter){ 
+	counter = (typeof counter == "undefined")?0:counter;
+	if(counter >= APILoadingList.length){
+		Ti.App.fireEvent('app:loadingViewFinish');
+		return false;
+	}
+	
+	var api = APILoadingList[counter];
+	var checker = Alloy.createCollection('updateChecker'); 
+	var isUpdate = checker.getCheckerById(api['checkId']);
+	var last_updated ="";
+	
+	var model = Alloy.createCollection(api['model']);
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}
+	
+	 var url = api['url']+"&last_updated="+last_updated;
+	 console.log(url);
+	 var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var res = JSON.parse(this.responseText);
+	       if(res.status == "Success" || res.status == "success"){
+	       	/**reset current category**/
+			//library.resetCategory();
+			/**load new set of category from API**/
+	       	var arr = res.data; 
+	        model.saveArray(arr);
+	       }
+			Ti.App.fireEvent('app:update_loading_text', {text: APILoadingList[counter]['model']+" loading..."});
+			checker.updateModule(APILoadingList[counter]['checkId'],APILoadingList[counter]['model'], res.last_updated);
+			
+			counter++;
+			API.loadAPIBySequence(ex, counter);
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) {
+	     	console.log("API getCategoryList fail, skip sync with server");
+	     	API.loadAPIBySequence(ex, counter);
+	     },
+	     timeout : 7000  // in milliseconds
+	 });
+	 if(Ti.Platform.osname == "android"){
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 }
+ 
+	 client.open("POST", url);
+	 // Send the request.
+	client.send();
+};
+
 exports.updateUserFromFB = function(e, mainView){ 
 	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
 	console.log('updateuserfromFB');
@@ -306,7 +371,7 @@ exports.getNearbyClinic = function(e){
 };
  
 exports.checkAppVersion = function(callback_download){
-	var appVersion = Ti.App.Properties.getString("appVersion") || "1.0";
+	var appVersion = Ti.App.Properties.getString("appVersion");
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform=android";
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
@@ -966,7 +1031,7 @@ exports.loadClinicList = function (ex){
 		last_updated = isUpdate.updated;
 	} 
 	var url = clinicListUrl+"&last_updated="+last_updated; 
-  	//console.log(url);
+  	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -978,9 +1043,9 @@ exports.loadClinicList = function (ex){
 			 		
 				 	var library = Alloy.createCollection('panelList');
 					/**load new set of category from API**/ 
-					var arr = res.data;   
+					var arr = res.data;
 			        library.addPanel(arr);
-			        checker.updateModule("1","clinicList",currentDateTime());  
+			        checker.updateModule("1","clinicList", res.last_updated);  
 			 	 }else{
 			 		// alert("?");
 			 	 }

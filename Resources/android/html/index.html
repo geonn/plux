@@ -32,13 +32,12 @@
 	      	socket.emit('set_room', e.room_id);
 	      });
 	      
-	      socket.on('refresh_chatroom', function(msg){
-	      	Ti.App.fireEvent("conversation:refresh");
+	      socket.on('refresh_chatroom', function(param){
+	      	Ti.App.fireEvent("conversation:refresh", param);
 	      });
 	      
 	      Ti.App.addEventListener("web:sendMessage", function(ex) {
-	      	Ti.App.fireEvent("chatroom_listener fire!!!");
-	    	socket.emit('chatroom_listener', ex.room_id);
+	    	socket.emit('chatroom_listener', ex.room_id, false);
 	  	  });
   	  });
     </script>

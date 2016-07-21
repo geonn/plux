@@ -1,6 +1,6 @@
 <Alloy>
 <Window title="Ask Me - Helpline" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-	<WebView url="/html/index.html" id="socket" class="wfill" height="0"></WebView>
+	<WebView zIndex="100" url="/html/index.html" id="socket" class="wfill" height="0"></WebView>
 	<View class="hfill wfill vert">
 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 			<View left="0" width="20%">
