@@ -11,10 +11,10 @@
 				<View left="0" width="10%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
-		     	<View width="65%">
+		     	<View width="70%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Detail</Label>
 		     	</View>
-		     	<View left="0" onClick="lightBox" width="25%">
+		     	<View left="0" onClick="lightBox" width="auto">
 		         	<Label class="hsize" id="recepit" width="auto">Receipt</Label>
 		   		</View>
 		   		 

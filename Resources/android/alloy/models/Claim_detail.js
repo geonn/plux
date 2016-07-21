@@ -114,7 +114,7 @@ exports.definition = {
             },
             getClaimDetail: function(e) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE name like ? order by visitdate";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE name like ? order by visitdate DESC";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 console.log(sql + " " + e.name);
                 var res = db.execute(sql, e.name);

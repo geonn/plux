@@ -51,7 +51,7 @@ exports.definition = {
                  * debug use
                  
                 var row_count = res.fieldCount;
-                for(var a = 0; a < row_count; a++){
+               /** for(var a = 0; a < row_count; a++){
             		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
             	 }
             	*/

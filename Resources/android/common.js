@@ -45,6 +45,7 @@ exports.lightbox = function(data, win) {
     var img = Ti.UI.createImageView({
         image: data.img_path,
         zIndex: 100,
+        enableZoomControls: true,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE
     });

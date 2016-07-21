@@ -6,6 +6,10 @@ $.tc_area.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
+function closeWin(){
+	$.win.close();
+}
+
 function doSignup(){
 	var fullname = $.fullname.value;
 	var email = $.email.value;

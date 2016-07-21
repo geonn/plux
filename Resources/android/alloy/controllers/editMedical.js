@@ -193,63 +193,44 @@ function Controller() {
                 mediaTypes: [ Ti.Media.MEDIA_TYPE_PHOTO ],
                 saveToPhotoGallery: true
             }); else if (1 == e.index) {
-                var maximumImageCount = 20;
-                MediaPicker.show(function(e) {
-                    saveImage(e);
-                }, maximumImageCount, "photos", "Choose up to four images! Longlick image for preview.");
-                return;
+                Titanium.Media.openPhotoGallery({
+                    success: function(event) {
+                        var image = event.media;
+                        if (image.width > image.height) {
+                            var newWidth = 640;
+                            var ratio = 640 / image.width;
+                            var newHeight = image.height * ratio;
+                        } else {
+                            var newHeight = 640;
+                            var ratio = 640 / image.height;
+                            var newWidth = image.width * ratio;
+                        }
+                        image = image.imageAsResized(newWidth, newHeight);
+                        blobContainer = image;
+                        var param = {
+                            app_id: rec_id,
+                            medical_id: rec_id,
+                            u_id: Ti.App.Properties.getString("u_id"),
+                            caption: categoryType,
+                            Filedata: image
+                        };
+                        API.syncAttachments({
+                            param: param
+                        }, function(responseText) {
+                            var res = JSON.parse(responseText);
+                            if ("success" == res.status) {
+                                var record = res.data;
+                                medicalAttachmentModel.addFromServer(record[0].id, record);
+                            }
+                            loadImage();
+                        });
+                    },
+                    cancel: function() {},
+                    mediaTypes: [ Ti.Media.MEDIA_TYPE_PHOTO ]
+                });
             }
         });
         dialog.show();
-    }
-    function saveImage(items) {
-        var iterate = function(item) {
-            MediaPicker.getImageByURL({
-                key: item.url,
-                id: item.id,
-                success: function(e) {
-                    var image;
-                    if ("Ti.Blob" == e.image.apiName) image = e.image; else {
-                        var imageview = Ti.UI.createImageView({
-                            image: "file://" + e.image
-                        });
-                        image = imageview.toBlob();
-                    }
-                    if (image.width > image.height) {
-                        var newWidth = 640;
-                        var ratio = 640 / image.width;
-                        var newHeight = image.height * ratio;
-                    } else {
-                        var newHeight = 640;
-                        var ratio = 640 / image.height;
-                        var newWidth = image.width * ratio;
-                    }
-                    image = image.imageAsResized(newWidth, newHeight);
-                    blobContainer = image;
-                    var param = {
-                        app_id: rec_id,
-                        medical_id: rec_id,
-                        u_id: Ti.App.Properties.getString("u_id"),
-                        caption: categoryType,
-                        Filedata: image
-                    };
-                    API.syncAttachments({
-                        param: param
-                    }, function(responseText) {
-                        var res = JSON.parse(responseText);
-                        if ("success" == res.status) {
-                            var record = res.data;
-                            medicalAttachmentModel.addFromServer(record[0].id, record);
-                        }
-                        loadImage();
-                        console.log(items.length);
-                        items.length && iterate(items.splice(0, 1)[0]);
-                    });
-                }
-            });
-        };
-        console.log(items.length + "?total image picker");
-        items.length && iterate(items.splice(0, 1)[0]);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "editMedical";
@@ -542,8 +523,6 @@ function Controller() {
     var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
     var details = medicalRecordsModel.getRecordById(rec_id);
-    var MediaPickerModule = require("MediaPicker").MediaPicker;
-    var MediaPicker = new MediaPickerModule();
     loadMedicalInfo();
     var categoryType = "Blood Test";
     $.proceduceTextArea.addEventListener("focus", function() {});

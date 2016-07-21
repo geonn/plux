@@ -163,9 +163,13 @@ function Controller() {
         loading.finish();
     }
     function refresh_latest(param) {
+<<<<<<< HEAD
         console.log("refresh_latest");
         param.admin && Ti.App.Properties.setString("estimate_time", "0");
         console.log(param);
+=======
+        param.admin && Ti.App.Properties.setString("estimate_time", "0");
+>>>>>>> origin/master
         refresh(getLatestData);
     }
     function getPreviousData(param) {

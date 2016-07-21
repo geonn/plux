@@ -4,7 +4,7 @@ if(args.appcode.charAt(0) != "T"){
 	if(OS_IOS){
 		$.claimDetail.setRightNavButton(null);
 	}else{
-		//$.recepit.hide();
+		$.recepit.hide();
 	} 
 	
 }

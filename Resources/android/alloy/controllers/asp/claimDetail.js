@@ -157,7 +157,7 @@ function Controller() {
     });
     $.__views.__alloyId396.add($.__views.btnBack);
     $.__views.__alloyId397 = Ti.UI.createView({
-        width: "65%",
+        width: "70%",
         id: "__alloyId397"
     });
     $.__views.__alloyId395.add($.__views.__alloyId397);
@@ -175,7 +175,7 @@ function Controller() {
     $.__views.__alloyId397.add($.__views.pageTitle);
     $.__views.__alloyId398 = Ti.UI.createView({
         left: 0,
-        width: "25%",
+        width: "auto",
         id: "__alloyId398"
     });
     $.__views.__alloyId395.add($.__views.__alloyId398);
@@ -196,7 +196,7 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var arg_serial = "undefined" != typeof args.serial ? args.serial : 0;
-    "T" != args.appcode.charAt(0);
+    "T" != args.appcode.charAt(0) && $.recepit.hide();
     console.log(args.appcode);
     console.log(args.appcode.charAt(0));
     API.claimDetailBySeries({
