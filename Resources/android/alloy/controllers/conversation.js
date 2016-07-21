@@ -9,6 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function SendMessage() {
+        console.log("SendMessage");
         if ("" == $.message.value) return;
         var u_id = Ti.App.Properties.getString("u_id") || 0;
         API.callByPost({
@@ -27,9 +28,11 @@ function Controller() {
             Ti.App.fireEvent("web:sendMessage", {
                 room_id: room_id
             });
+            console.log("send api called, fireevent web:sendMessage done");
         });
     }
     function render_conversation(latest) {
+        console.log("render_conversation");
         !latest;
         for (var i = 0; i < data.length; i++) {
             var view_container = $.UI.create("View", {
@@ -142,7 +145,7 @@ function Controller() {
                     Ti.App.fireEvent("web:setRoom", {
                         room_id: room_id
                     });
-                }, 1e3);
+                }, 2e3);
             }
             callback && callback();
         });
