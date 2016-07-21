@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -423,4 +427,11 @@ function Controller() {
 
 var Alloy = require("alloy"), Backbone = Alloy.Backbone, _ = Alloy._;
 
+<<<<<<< HEAD
 module.exports = Controller;
+=======
+module.exports = Controller;
+=======
+getShopAttachment
+>>>>>>> origin/master
+>>>>>>> origin/master

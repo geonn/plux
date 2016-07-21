@@ -30,9 +30,15 @@ function Controller() {
     $.__views.rocket = Ti.UI.createWindow({
         backgroundColor: "#C41230",
         fullscreen: true,
+<<<<<<< HEAD
         theme: "Theme.NoActionBar",
         layout: "composite",
         id: "rocket"
+=======
+        layout: "composite",
+        id: "rocket",
+        navBarHidden: true
+>>>>>>> origin/master
     });
     $.__views.rocket && $.addTopLevelView($.__views.rocket);
     $.__views.overlay = Ti.UI.createView({
@@ -44,6 +50,7 @@ function Controller() {
         id: "overlay"
     });
     $.__views.rocket.add($.__views.overlay);
+<<<<<<< HEAD
     $.__views.rocketSmoke = Ti.UI.createImageView({
         width: 110,
         opacity: 0,
@@ -61,6 +68,15 @@ function Controller() {
         id: "rocketFlight"
     });
     $.__views.rocket.add($.__views.rocketFlight);
+=======
+    $.__views.__alloyId162 = Ti.UI.createImageView({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        image: "/images/logo_plux.png",
+        id: "__alloyId162"
+    });
+    $.__views.rocket.add($.__views.__alloyId162);
+>>>>>>> origin/master
     $.__views.loading_text = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -73,15 +89,19 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     $.start = function() {
+<<<<<<< HEAD
         $.rocketSmoke.opacity = .1;
         $.rocketFlight.opacity = 0;
         $.rocketFlight.top = null;
         $.rocketFlight.stop();
         $.rocketSmoke.start();
+=======
+>>>>>>> origin/master
         $.overlay.animate({
             opacity: .7,
             duration: 250
         });
+<<<<<<< HEAD
         $.rocketSmoke.animate({
             opacity: 1,
             duration: 500
@@ -101,6 +121,15 @@ function Controller() {
                 $.rocketFlight.stop();
                 _callback && _callback();
             });
+=======
+    };
+    $.finish = function(_callback) {
+        $.overlay.animate({
+            opacity: 0,
+            duration: 750
+        }, function() {
+            _callback && _callback();
+>>>>>>> origin/master
         });
     };
     API.loadAPIBySequence();

@@ -24,7 +24,6 @@
 
 ".container":{
 	backgroundColor: "#C41230",
-	theme:"Theme.NoActionBar",
 	layout: "composite"
 }
 
@@ -38,8 +37,9 @@
 "#rocketSmoke": {
 	width: 110,
 	opacity: 0,
-	duration: 0.02,
+	duration: 0.02, 
 	images:  "/images/logo_plux.png" 
+ 
 },
 "#rocketFlight": {
 	width: 110,

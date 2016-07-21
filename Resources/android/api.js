@@ -177,6 +177,10 @@ exports.loadAPIBySequence = function(ex, counter) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
+<<<<<<< HEAD
+=======
+            console.log(res);
+>>>>>>> origin/master
             if ("Success" == res.status || "success" == res.status) {
                 var arr = res.data;
                 model.saveArray(arr);
