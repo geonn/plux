@@ -37,7 +37,7 @@ function loadingViewFinish(){
 			$.index.win.open();
 		}
 		loadingView = null;
-	});
+	 
 }
 
 //API.loadCategoryList(); 
