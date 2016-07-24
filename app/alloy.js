@@ -15,72 +15,15 @@ var common = require('common');
 var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
+var socket = require('socket');
+socket.addEventListener("socket:message_alert", message_alert);
+
 
 var DBVersionControl = require('DBVersionControl');
 DBVersionControl.checkAndUpdate();
 
 if (OS_IOS) {
 	var TouchId = require("ti.touchid");
-	 /**var CoreMotion = require('ti.coremotion'); 
-	if (CoreMotion.isStepCountingAvailable()) { 
-	    CoreMotion.startStepCountingUpdates({stepCounts: 1}, function(e){setInterval(function(){ countStep(); }, 1000); });
-	} else {
-	    Ti.API.warn('This device does not support counting steps.');
-	} 
-	var isCountStepEventExists = true;
-	Ti.App.addEventListener('countStep',countStep );
-	Ti.App.iOS.registerBackgroundService({url:'services.js'});   
-	function countStep(){ 
-		var starts = new Date(new Date().getTime() - 1*1000);
-		//console.log('start: '+starts);
-		var ends  =new Date();
-		CoreMotion.queryStepCount({
-	        start: starts, 
-	        end: ends
-	    }, function (e) { 
-	    	var gCurH = Ti.App.Properties.getString('curH') || "";
-	    	var gStep = Ti.App.Properties.getString('step') || 0;
-	    	gStep = parseInt(gStep);
-	    	var myCur =  currentDateTime();
-			var d = myCur.split(":");  
-			var h = d[0].split(" ");  
-			if(gCurH != d[1] || gCurH == ""){
-				if(gStep > 0){
-					var stepDateTime = Ti.App.Properties.getString('stepDateTime' ); 
-					if(stepDateTime != "" ){
-						var splitDT = stepDateTime.split(" ");  
-						var splitTT = splitDT[1].split(":");
-						var lib_health = Alloy.createCollection('health'); 
-						lib_health.addHealthData({
-							date : splitDT[0],
-							time : splitTT[0]+":"+splitTT[1]+":00",
-							field1 : "",
-							field2 : "",
-							amount : gStep,
-							type : 10
-						});
-					}
-				}
-				Ti.App.Properties.setString('step',"0" );  
-				//Ti.App.Properties.setString('stepDateTime',"" ); 
-				Ti.App.Properties.setString('curH', d[1] );
-			} 
-			
-			if(e.numberOfSteps > 0){
-				gStep += e.numberOfSteps;
-				Ti.App.Properties.setString('stepDateTime',myCur ); 
-				Ti.App.Properties.setString('curH', d[1] );
-				Ti.App.Properties.setString('step',gStep );  
-			}
-	    	 
-	    });
-	    
-	    if(isCountStepEventExists){ 
-	    	Ti.App.removeEventListener('countStep',countStep );
-	    	isCountStepEventExists =false;
-	    }
-	    
-	} **/
 }
 
 Alloy.Globals.Map = require('ti.map');
@@ -358,6 +301,23 @@ function createIndicator(){
 	  width:Ti.UI.SIZE
 	});
 	return activityIndicator;
+}
+
+function message_alert(e){
+	var dialog = Ti.UI.createAlertDialog({
+		cancel: 1,
+		buttonNames: ['Cancel','OK'],
+		message: 'New message available. Do you want to read now?',
+		title: 'Confirmation'
+	});
+	dialog.addEventListener('click', function(ex){
+		if (ex.index === 0){
+			//Do nothing
+		}else{
+			nav.navigateWithArgs("conversation");
+		}
+	});
+	dialog.show();
 }
 
 if(OS_IOS){ 

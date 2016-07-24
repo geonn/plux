@@ -47,6 +47,7 @@ var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?us
 var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
 var getClinicLocator2 = "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
+var getRoomId = "http://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 

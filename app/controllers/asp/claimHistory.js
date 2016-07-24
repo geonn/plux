@@ -3,7 +3,6 @@ var arg_name = (typeof args.name != "undefined")?args.name:"%";
 var title = (arg_name == "%")?"All Claim Records":arg_name;
 var nav = require('navigation');
 if(Ti.Platform.osname == "android"){
-	 
 	$.pageTitle.text = title;
 }else{
 	$.claim_history.title = title;

@@ -1,5 +1,6 @@
 <Alloy> 
 	<Window id="win" title="" navBarHidden="true" class="container">
+		<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
 		<View id="main">
 			<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL" ></View>
 			<View width="Ti.UI.FILL">

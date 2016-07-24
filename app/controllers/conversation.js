@@ -18,7 +18,8 @@ function SendMessage(){
 		var res = JSON.parse(responseText);
 		$.message.value = "";
 		$.message.blur();
-		Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
+		socket.fireEvent("socket:sendMessage", {room_id: room_id});
+		//Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
 		});
 	
 	//var params = {u_id: u_id, to_id: to_id, message: $.message.value, type: "text", room_id: room_id};
@@ -156,8 +157,7 @@ function getConversationByRoomId(callback){
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
 		if(!room_id){
 			room_id = res.room_id;
-			loading.start();
-			setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
+			//setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
 		}
 		callback && callback();
 	});
@@ -180,11 +180,11 @@ function refresh(callback, firsttime){
 
 function refresh_latest(param){
 	console.log("refresh_latest");
-	if(param.admin){
+	/*if(typeof(param.admin) != "undefined"){
 		Ti.App.Properties.setString('estimate_time', "0");
 	}else{
 		
-	}
+	}*/
 	refresh(getLatestData);
 }
 
@@ -240,6 +240,8 @@ function closeWindow(){
 function init(){
 	$.win.add(loading.getView());
 	refresh(getPreviousData, true);
+	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
+	socket.event_onoff("socket:message_alert", false);
 }
 
 init();
@@ -247,6 +249,8 @@ init();
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
 $.win.addEventListener("close", function(){
+	socket.removeEventListener("socket:refresh_chatroom");
+	socket.event_onoff("socket:message_alert", true);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	$.destroy();
 	console.log("window close");
