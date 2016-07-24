@@ -30,15 +30,9 @@ function Controller() {
     $.__views.rocket = Ti.UI.createWindow({
         backgroundColor: "#C41230",
         fullscreen: true,
-<<<<<<< HEAD
-        theme: "Theme.NoActionBar",
-        layout: "composite",
-        id: "rocket"
-=======
         layout: "composite",
         id: "rocket",
         navBarHidden: true
->>>>>>> origin/master
     });
     $.__views.rocket && $.addTopLevelView($.__views.rocket);
     $.__views.overlay = Ti.UI.createView({
@@ -50,25 +44,6 @@ function Controller() {
         id: "overlay"
     });
     $.__views.rocket.add($.__views.overlay);
-<<<<<<< HEAD
-    $.__views.rocketSmoke = Ti.UI.createImageView({
-        width: 110,
-        opacity: 0,
-        duration: .02,
-        images: "/images/logo_plux.png",
-        id: "rocketSmoke"
-    });
-    $.__views.rocket.add($.__views.rocketSmoke);
-    $.__views.rocketFlight = Ti.UI.createImageView({
-        width: 110,
-        height: 130,
-        opacity: 0,
-        duration: .02,
-        images: "/images/logo_plux.png",
-        id: "rocketFlight"
-    });
-    $.__views.rocket.add($.__views.rocketFlight);
-=======
     $.__views.__alloyId162 = Ti.UI.createImageView({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -76,7 +51,6 @@ function Controller() {
         id: "__alloyId162"
     });
     $.__views.rocket.add($.__views.__alloyId162);
->>>>>>> origin/master
     $.__views.loading_text = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -89,39 +63,10 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     $.start = function() {
-<<<<<<< HEAD
-        $.rocketSmoke.opacity = .1;
-        $.rocketFlight.opacity = 0;
-        $.rocketFlight.top = null;
-        $.rocketFlight.stop();
-        $.rocketSmoke.start();
-=======
->>>>>>> origin/master
         $.overlay.animate({
             opacity: .7,
             duration: 250
         });
-<<<<<<< HEAD
-        $.rocketSmoke.animate({
-            opacity: 1,
-            duration: 500
-        });
-    };
-    $.finish = function(_callback) {
-        $.rocketSmoke.animate({
-            duration: 500,
-            delay: 500,
-            right: -500,
-            curve: Ti.UI.ANIMATION_CURVE_EASE_IN
-        }, function() {
-            $.overlay.animate({
-                opacity: 0,
-                duration: 750
-            }, function() {
-                $.rocketFlight.stop();
-                _callback && _callback();
-            });
-=======
     };
     $.finish = function(_callback) {
         $.overlay.animate({
@@ -129,7 +74,6 @@ function Controller() {
             duration: 750
         }, function() {
             _callback && _callback();
->>>>>>> origin/master
         });
     };
     API.loadAPIBySequence();

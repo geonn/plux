@@ -228,6 +228,14 @@ function Controller() {
         navBarHidden: true
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+    $.__views.socket = Ti.UI.createWebView({
+        width: Ti.UI.FILL,
+        zIndex: 100,
+        url: "/html/socket.html",
+        id: "socket",
+        height: 0
+    });
+    $.__views.win.add($.__views.socket);
     $.__views.main = Ti.UI.createView({
         id: "main"
     });

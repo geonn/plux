@@ -174,6 +174,23 @@ function createIndicator() {
     return activityIndicator;
 }
 
+function message_alert() {
+    var dialog = Ti.UI.createAlertDialog({
+        cancel: 1,
+        buttonNames: [ "Cancel", "OK" ],
+        message: "New message available. Do you want to read now?",
+        title: "Confirmation"
+    });
+    dialog.addEventListener("click", function(ex) {
+        0 === ex.index || nav.navigateWithArgs("conversation");
+        message_popup = false;
+    });
+    if (!message_popup) {
+        dialog.show();
+        message_popup = true;
+    }
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 var _ = require("underscore")._;
@@ -185,6 +202,10 @@ var API = require("api");
 var PUSH = require("push");
 
 var nav = require("navigation");
+
+var socket = require("socket");
+
+socket.addEventListener("socket:message_alert", message_alert);
 
 var DBVersionControl = require("DBVersionControl");
 
@@ -209,5 +230,7 @@ var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 Titanium.App.addEventListener("resumed", function() {});
 
 PUSH.registerPush();
+
+var message_popup = false;
 
 Alloy.createController("index");

@@ -120,6 +120,8 @@ var getAppointmentByDoctorPanel = "http://" + FREEJINI_DOMAIN + "/api/getAppoint
 
 var getClinicLocator2 = "http://" + FREEJINI_DOMAIN + "/api/getClinicLocator2?user=" + USER + "&key=" + KEY;
 
+var getRoomId = "http://" + FREEJINI_DOMAIN + "/api/getRoomId?user=" + USER + "&key=" + KEY;
+
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
@@ -162,7 +164,9 @@ var APILoadingList = [ {
 
 exports.loadAPIBySequence = function(ex, counter) {
     counter = "undefined" == typeof counter ? 0 : counter;
+    console.log(counter + " >= " + APILoadingList.length);
     if (counter >= APILoadingList.length) {
+        console.log("loadAPIBySequence");
         Ti.App.fireEvent("app:loadingViewFinish");
         return false;
     }
@@ -177,10 +181,7 @@ exports.loadAPIBySequence = function(ex, counter) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-<<<<<<< HEAD
-=======
             console.log(res);
->>>>>>> origin/master
             if ("Success" == res.status || "success" == res.status) {
                 var arr = res.data;
                 model.saveArray(arr);

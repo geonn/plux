@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 function __processArg(obj, key) {
     var arg = null;
     if (obj) {
@@ -27,7 +23,7 @@ function Controller() {
             JSON.parse(responseText);
             $.message.value = "";
             $.message.blur();
-            Ti.App.fireEvent("web:sendMessage", {
+            socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
         });
@@ -142,16 +138,7 @@ function Controller() {
             console.log(arr);
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
-            if (!room_id) {
-                room_id = res.room_id;
-                loading.start();
-                setTimeout(function() {
-                    Ti.App.fireEvent("web:setRoom", {
-                        room_id: room_id
-                    });
-                    loading.finish();
-                }, 2e3);
-            }
+            room_id || (room_id = res.room_id);
             callback && callback();
         });
     }
@@ -167,9 +154,8 @@ function Controller() {
         });
         loading.finish();
     }
-    function refresh_latest(param) {
+    function refresh_latest() {
         console.log("refresh_latest");
-        param.admin && Ti.App.Properties.setString("estimate_time", "0");
         refresh(getLatestData);
     }
     function getPreviousData(param) {
@@ -210,6 +196,8 @@ function Controller() {
     function init() {
         $.win.add(loading.getView());
         refresh(getPreviousData, true);
+        socket.addEventListener("socket:refresh_chatroom", refresh_latest);
+        socket.event_onoff("socket:message_alert", false);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "conversation";
@@ -237,14 +225,6 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.socket = Ti.UI.createWebView({
-        width: Ti.UI.FILL,
-        zIndex: 100,
-        url: "/html/index.html",
-        id: "socket",
-        height: 0
-    });
-    $.__views.win.add($.__views.socket);
     $.__views.__alloyId78 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -415,6 +395,8 @@ function Controller() {
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     $.win.addEventListener("close", function() {
+        socket.removeEventListener("socket:refresh_chatroom");
+        socket.event_onoff("socket:message_alert", true);
         Ti.App.removeEventListener("conversation:refresh", refresh_latest);
         $.destroy();
         console.log("window close");
@@ -427,11 +409,4 @@ function Controller() {
 
 var Alloy = require("alloy"), Backbone = Alloy.Backbone, _ = Alloy._;
 
-<<<<<<< HEAD
 module.exports = Controller;
-=======
-module.exports = Controller;
-=======
-getShopAttachment
->>>>>>> origin/master
->>>>>>> origin/master

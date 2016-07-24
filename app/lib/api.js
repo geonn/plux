@@ -82,7 +82,9 @@ var APILoadingList = [
 
 exports.loadAPIBySequence = function (ex, counter){ 
 	counter = (typeof counter == "undefined")?0:counter;
+	console.log(counter +" >= "+ APILoadingList.length);
 	if(counter >= APILoadingList.length){
+		console.log("loadAPIBySequence");
 		Ti.App.fireEvent('app:loadingViewFinish');
 		return false;
 	}

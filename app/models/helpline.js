@@ -29,10 +29,10 @@ exports.definition = {
 				var last_update = last_update || common.now();
 				if(latest){
 					var start_limit = "";
-					var sql_lastupdate = " AND created > '"+last_update+"'";
+					var sql_lastupdate = " AND created >= '"+last_update+"'";
 				}else{
 					var start_limit = " limit "+start+", 10";
-					var sql_lastupdate = " AND created < '"+anchor+"'";
+					var sql_lastupdate = " AND created <= '"+anchor+"'";
 				}
 				
 				var collection = this;

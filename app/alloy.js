@@ -303,6 +303,8 @@ function createIndicator(){
 	return activityIndicator;
 }
 
+var message_popup = false;
+
 function message_alert(e){
 	var dialog = Ti.UI.createAlertDialog({
 		cancel: 1,
@@ -316,8 +318,12 @@ function message_alert(e){
 		}else{
 			nav.navigateWithArgs("conversation");
 		}
+		message_popup = false;
 	});
-	dialog.show();
+	if(!message_popup){
+		dialog.show();
+		message_popup = true;
+	}
 }
 
 if(OS_IOS){ 
