@@ -17,8 +17,7 @@ var notificationModel = Alloy.createCollection('notification');
 notificationModel.addColumn("isRead", "TEXT"); 
 notificationModel.addColumn("status", "TEXT"); 
 
-function loadingViewFinish(){
-	loadingView.finish(function(){
+function loadingViewFinish(){ 
 		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 		 
 		if(isShowIntro	!= ""){
@@ -36,7 +35,7 @@ function loadingViewFinish(){
 			$.index.win.open();
 		}
 		loadingView = null;
-	});
+	 
 }
 
 //API.loadCategoryList(); 

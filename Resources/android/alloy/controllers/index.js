@@ -9,33 +9,20 @@ function __processArg(obj, key) {
 
 function Controller() {
     function loadingViewFinish() {
-<<<<<<< HEAD
         var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
         if ("" != isShowIntro) if ("" == u_id) {
+            console.log("login");
             var win = Alloy.createController("login").getView();
             win.open();
         } else {
+            console.log("home");
             var win = Alloy.createController("home").getView();
             win.open();
-        } else $.index.win.open();
-=======
-        loadingView.finish(function() {
-            var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
-            if ("" != isShowIntro) if ("" == u_id) {
-                console.log("login");
-                var win = Alloy.createController("login").getView();
-                win.open();
-            } else {
-                console.log("home");
-                var win = Alloy.createController("home").getView();
-                win.open();
-            } else {
-                console.log("firsttime");
-                $.index.win.open();
-            }
-            loadingView = null;
-        });
->>>>>>> origin/master
+        } else {
+            console.log("firsttime");
+            $.index.win.open();
+        }
+        loadingView = null;
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -74,12 +61,6 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     notificationModel.addColumn("isRead", "TEXT");
     notificationModel.addColumn("status", "TEXT");
-<<<<<<< HEAD
-    var loadingView = Alloy.createController("loader");
-    loadingView.getView().open();
-    loadingView.start();
-=======
->>>>>>> origin/master
     console.log(common.now() + "before");
     API.callByPost({
         url: "dateNow"
@@ -87,12 +68,9 @@ function Controller() {
         console.log(responseText + " wtf");
         common.sync_time(responseText);
         console.log(common.now() + "after");
-<<<<<<< HEAD
-=======
         loadingView = Alloy.createController("loader");
         loadingView.getView().open();
         loadingView.start();
->>>>>>> origin/master
     });
     var AppVersionControl = require("AppVersionControl");
     AppVersionControl.checkAndUpdate();
