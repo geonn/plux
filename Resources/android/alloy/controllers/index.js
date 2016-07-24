@@ -9,7 +9,10 @@ function __processArg(obj, key) {
 
 function Controller() {
     function loadingViewFinish() {
+<<<<<<< HEAD
 <<<<<<< 52e76f2fe4884a6b29007edb6ff83fc7ffc6cee6
+=======
+>>>>>>> origin/master
         var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
         if ("" != isShowIntro) if ("" == u_id) {
             console.log("login");
@@ -24,6 +27,7 @@ function Controller() {
             $.index.win.open();
         }
         loadingView = null;
+<<<<<<< HEAD
 =======
         console.log("anyone call you?");
         loadingView.finish(function() {
@@ -43,6 +47,8 @@ function Controller() {
             loadingView = null;
         });
 >>>>>>> minor issue fixed
+=======
+>>>>>>> origin/master
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
