@@ -309,8 +309,8 @@ function message_alert(e){
 	var dialog = Ti.UI.createAlertDialog({
 		cancel: 1,
 		buttonNames: ['Cancel','OK'],
-		message: 'New message available. Do you want to read now?',
-		title: 'Confirmation'
+		message: 'You got replied from helpdesk. Do you want to read now?',
+		title: 'Helpdesk replied'
 	});
 	dialog.addEventListener('click', function(ex){
 		if (ex.index === 0){

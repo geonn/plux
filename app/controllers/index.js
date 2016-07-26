@@ -19,7 +19,7 @@ notificationModel.addColumn("status", "TEXT");
 
 function loadingViewFinish(){
 	console.log("anyone call you?");
-	loadingView.finish(function(){
+//	loadingView.finish(function(){
 		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 		 
 		if(isShowIntro	!= ""){
