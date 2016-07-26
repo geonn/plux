@@ -303,7 +303,6 @@ exports.definition = {
 				}else{
 					var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE clinicType ='"+ClinicType.toUpperCase()+"' "+panel_sql+location_sql + " GROUP BY id ORDER BY state, postcode, clinicName";
 				}
-               //console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
@@ -344,7 +343,6 @@ exports.definition = {
 				}else{
 				 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE openHour LIKE '%24 HOURS%' "+corp_sql+location_sql+ "  GROUP BY id ";	
 				}
-                
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 

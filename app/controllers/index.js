@@ -37,7 +37,7 @@ function loadingViewFinish(){
 			$.index.win.open();
 		}
 		loadingView = null;
-	 
+	 });
 }
 
 //API.loadCategoryList(); 
@@ -46,12 +46,8 @@ function loadingViewFinish(){
 //API.loadClinicList(); 
 //API.loadDoctorPanel();
 //API.getDoctorList();
-console.log(common.now()+"before");
-
 API.callByPost({url: "dateNow"}, function(responseText){
-	console.log(responseText+" wtf");
 	common.sync_time(responseText);
-	console.log(common.now()+"after");
 	loadingView = Alloy.createController("loader");
 	loadingView.getView().open();
 	loadingView.start();

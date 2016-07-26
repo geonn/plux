@@ -5,7 +5,7 @@ var memno = Ti.App.Properties.getString('memno');
 var details;
 common.construct($);
 common.showLoading();
-
+doRefresh();
 function doRefresh(){
 	API.loadPanelList({clinicType:""});
 }

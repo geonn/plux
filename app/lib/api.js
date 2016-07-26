@@ -72,7 +72,7 @@ var APILoadingList = [
 	//{url: categoryUrl, model: "panelList", checkId: "10"},
 	//{url: leafletUrl, model: "leaflet", checkId: "11"},
 	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
-	{url: doctorListUrl, model: "doctors", checkId: "12"}
+	{url: doctorListUrl, model: "doctors", checkId: "12"},
 ];
 
 
