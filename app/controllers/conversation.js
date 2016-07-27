@@ -202,7 +202,7 @@ function getPreviousData(param){
 		$.estimate.parent.hide();
 	}
 	render_conversation(false);
-	start = start + 11;
+	start = start + 10;
 	if(typeof param.firsttime != "undefined"){ 
 		setTimeout(function(e){scrollToBottom();}, 500);
 	}else{

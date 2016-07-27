@@ -1070,7 +1070,7 @@ exports.loadClinicList = function (ex){
 exports.loadPanelList = function (ex){
 	var corp = Ti.App.Properties.getString('corpcode');
 	var url =  panelList+"?CORPCODE="+corp;
-	//console.log(url);
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({ 
 	     onload : function(e) { 
 	     	var res = JSON.parse(this.responseText);
