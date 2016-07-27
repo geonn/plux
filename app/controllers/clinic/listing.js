@@ -6,7 +6,7 @@ var details;
 common.construct($);
 common.showLoading();
 doRefresh();
-function doRefresh(){
+function doRefresh(){ 
 	API.loadPanelList({clinicType:""});
 }
 
@@ -95,7 +95,7 @@ function listing(){
 	common.hideLoading();
 }
 
-function init(){
+function init(){ 
 	details = library.getCountClinicType(corp); 
 	details24 = library.getCount24Hours(corp); 
 	var det24= { 

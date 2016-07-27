@@ -96,7 +96,7 @@ exports.definition = {
 		        db.execute(sql_query); 
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN ("+clinicCode+")";
 		        db.execute(sql_query);
-		        
+		        console.log(sql_query);
          		db.close();
 	            collection.trigger('sync');
 			},
@@ -244,7 +244,7 @@ exports.definition = {
                 return listArr;
 			},
 			getCountClinicType : function(corp){
-				var collection = this;
+				var collection = this; 
 				if(corp != ""){
 					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where panel=1 GROUP BY clinicType ";
 				}else{
@@ -482,9 +482,9 @@ exports.definition = {
 	                }else{*/
 	               	
 	               	var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, clinicName,clinicCode,clinicType,openHour, add1, add2, city,postcode, state, tel, latitude, longitude ) VALUES (?,?, ?, ?, ?, ?,?, ?,?,?,?,?, ?)";
-					db.execute(sql_query, entry.id, entry.clinicname, entry.cliniccode, entry.clinictype, entry.openhour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude); 					
+					db.execute(sql_query, entry.id, entry.clinicName, entry.clinicCode, entry.clinicType, entry.openHour, entry.add1, entry.add2, entry.city, entry.postcode, entry.state, entry.tel, entry.latitude, entry.longitude); 					
 				 	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET clinicName=?,clinicCode=?,clinicType=?,openHour=?,add1=?,add2=?, city=?, postcode=?, state=?, tel=?, latitude=?, longitude=? WHERE id=?";
-					db.execute(sql_query,entry.clinicname,entry.cliniccode, entry.clinictype,entry.openhour,entry.add1,entry.add2,entry.city, entry.postcode, entry.state,  entry.tel, entry.latitude, entry.longitude, entry.id);
+					db.execute(sql_query,entry.clinicName,entry.clinicCode, entry.clinicType,entry.openHour,entry.add1,entry.add2,entry.city, entry.postcode, entry.state,  entry.tel, entry.latitude, entry.longitude, entry.id);
 					
 	                 /* }*/
 		       		//console.log(sql_query);

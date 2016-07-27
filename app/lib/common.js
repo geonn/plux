@@ -386,6 +386,10 @@ exports.now = function(){
 	if (sec < 10){
 		sec = "0" + sec;
 	} 
+	if (hours < 10){
+		hours = "0" + hours;
+	} 
+	
 	if(dd<10) {
 	    dd='0'+dd;
 	} 
