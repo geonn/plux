@@ -58,20 +58,16 @@ function receivePush(e) {
 		};
 		target = e.target;
 		url = e.extra;
-	}  
-	console.log(e);
+	}   
 	console.log(target+" and redirect "+redirect); 
 	if(target == "conversation"){
 		if(redirect){
 			nav.navigateWithArgs("conversation");
 		}
-	}else if(target =="appointment"){
-		console.log("in appointment");
-		if(redirect){
-			console.log("redirect true");
+	}else if(target =="appointment"){ 
+		if(redirect){ 
 			nav.navigateWithArgs("appointment");
-		}else{
-			console.log("redirect false");
+		}else{ 
 			Ti.App.fireEvent("appointment:refresh");
 		}
 	}else{
