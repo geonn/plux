@@ -215,7 +215,7 @@ exports.getUserService = function(e){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {   
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 client.open("GET", url);
 	 // Send the request.
@@ -368,7 +368,7 @@ exports.getNearbyClinic = function(e){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {   
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 client.open("GET", url);
 	 // Send the request.
@@ -392,7 +392,7 @@ exports.checkAppVersion = function(callback_download){
 		onerror : function(e) {
 			console.log("error check version");
 		},
-		timeout : 6000  // in milliseconds
+		timeout : 60000  // in milliseconds
 	}); 
 	client.open("GET", url); 
 	client.send(); 
@@ -410,7 +410,7 @@ exports.syncHealthData = function(e){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {   
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
 	 client.open("POST", url);

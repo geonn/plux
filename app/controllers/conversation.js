@@ -8,18 +8,24 @@ var start = 0;
 /**
  * Send message
  */
+var sending = false;
 function SendMessage(){
-	if($.message.value == ""){
+	if($.message.value == "" || sending){
 		return;
 	}
+	sending = true;
+	$.message.editable = false;
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
 		$.message.value = "";
+		$.message.editable = true;
+		sending = false;
 		$.message.blur();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		//Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
+		
 		});
 	
 	//var params = {u_id: u_id, to_id: to_id, message: $.message.value, type: "text", room_id: room_id};
@@ -173,8 +179,9 @@ function refresh(callback, firsttime){
 	loading.start();
 	getConversationByRoomId(function(){
 		callback({firsttime: firsttime});
+		loading.finish();
 	});
-	loading.finish();
+	
 }
 
 function refresh_latest(param){

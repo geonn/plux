@@ -59,10 +59,13 @@ exports.definition = {
 				}
 				db.close();
 			},
-			getCheckerById : function(id){
+			getCheckerById : function(id, u_id){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "'" ;
-                
+				var addon = "";
+				if(typeof u_id != "undefined"){
+					addon = "AND u_id = "+u_id;
+				}
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' "+addon ;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

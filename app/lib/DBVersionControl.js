@@ -55,6 +55,7 @@ exports.checkAndUpdate = function(e){
 		claim_detail.addColumn("appcode", "TEXT");
 		dbVersion = '1.7';
 	}
+	
 	if(dbVersion == "1.7"){
 		var helpline = Alloy.createCollection('helpline'); 
 		helpline.resetTable();
