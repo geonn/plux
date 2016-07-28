@@ -28,8 +28,11 @@ exports.definition = {
 			getData: function(latest, last_update, start, anchor){
 				var last_update = last_update || common.now();
 				if(latest){
+					var a = last_update;
+					var b = a.split("  ");
+					 
 					var start_limit = "";
-					var sql_lastupdate = " AND created >= '"+last_update+"'";
+					var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
 				}else{
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";

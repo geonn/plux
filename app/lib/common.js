@@ -352,8 +352,7 @@ exports.resultPopUp = function(title, msg){
 	}); 
 };
 
-exports.sync_time = function(time){
-	console.log(time.trim());
+exports.sync_time = function(time){ 
 	var a = time.trim();
 	var b = a.split("  ");
 	var date = b[0].split("-");
@@ -362,10 +361,7 @@ exports.sync_time = function(time){
 	var now = new Date();
 	var s = Date.parse(s_date.toUTCString());
 	var l = Date.parse(now.toUTCString());
-	console.log(s_date);
-	console.log(now);
-	console.log(s);
-	console.log(l);
+	 
 	time_offset = s-l;
 	console.log(time_offset);
 };
@@ -399,6 +395,6 @@ exports.now = function(){
 	} 
 	
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
-	console.log("library date now: "+datetime);
+ 
 	return datetime ;
 };

@@ -142,7 +142,7 @@ function getConversationByRoomId(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(7, u_id);
 	var last_updated = isUpdate.updated || "";
-	
+	last_update = last_updated;
 	console.log(last_updated+" last_updated "+u_id);
 	
 	API.callByPost({url:"getHelplineMessage", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
@@ -212,13 +212,9 @@ function getPreviousData(param){
 }
 
 function getLatestData(){
-	var model = Alloy.createCollection("helpline");
-	console.log("geo :"+ last_update);
-	data = model.getData(true, last_update);
-	console.log("getLatestData");
-	console.log(data);
-	last_update = common.now();
-	console.log("done date : "+last_update);
+	var model = Alloy.createCollection("helpline"); 
+	data = model.getData(true, last_update); 
+	last_update = common.now(); 
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
