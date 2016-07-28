@@ -34,7 +34,7 @@ exports.definition = {
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";
 				}
-				
+				console.log(sql_lastupdate);
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id'); 
                 var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by created desc"+start_limit ; 

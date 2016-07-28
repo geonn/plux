@@ -399,5 +399,6 @@ exports.now = function(){
 	} 
 	
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
+	console.log("library date now: "+datetime);
 	return datetime ;
 };

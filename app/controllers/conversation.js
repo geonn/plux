@@ -213,10 +213,12 @@ function getPreviousData(param){
 
 function getLatestData(){
 	var model = Alloy.createCollection("helpline");
+	console.log("geo :"+ last_update);
 	data = model.getData(true, last_update);
 	console.log("getLatestData");
 	console.log(data);
 	last_update = common.now();
+	console.log("done date : "+last_update);
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
