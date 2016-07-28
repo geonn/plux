@@ -121,6 +121,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
+	     	counter++;
 	     	console.log("API getCategoryList fail, skip sync with server");
 	     	API.loadAPIBySequence(ex, counter);
 	     },
@@ -573,9 +574,8 @@ exports.resendVerificationEmail = function(){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
-	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	common.hideLoading();
-       		
 	     },
 	     timeout : 130000  // in milliseconds
 	 });
@@ -633,7 +633,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
-	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	common.hideLoading();
        		
 	     },
@@ -668,7 +668,7 @@ exports.doChangePassword = function(e, mainView) {
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
-	     	common.createAlert("Login Fail", "unexpected error");
+	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	common.hideLoading();
        		
 	     },
@@ -682,8 +682,8 @@ exports.doChangePassword = function(e, mainView) {
 
 exports.claimDetailBySeries = function(e){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
-	var retryTimes = defaultRetryTimes;
-	//console.log(url);
+	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
@@ -707,8 +707,9 @@ exports.claimDetailBySeries = function(e){
 	     	//console.log('error');
 	     	retryTimes --;
 	     	
-	     	if(retryTimes !== 0){
-	     		API.claimDetailBySeries({serial : e.serial});
+	     	if(retryTimes !== 0 && Titanium.Network.online){
+	     		_.extend(e, {retryTimes: retryTimes});
+	     		API.claimDetailBySeries(e);
 	     	}else{
 	     		Ti.App.fireEvent("load_claim_detail");
 	     	}
@@ -755,7 +756,7 @@ exports.getClaimDetail = function(e){
 	     //	console.log(ex);
 	     	retryTimes --;
 	     	
-	     	if(retryTimes !== 0){
+	     	if(retryTimes !== 0 && Titanium.Network.online){
 	     		API.getClaimDetail({empno : e.empno, corpcode : e.corpcode, retryTimes: retryTimes});
 	     	}else{
 	     		//Ti.App.fireEvent("data_loaded");
@@ -792,7 +793,7 @@ exports.claimInfo = function(e) {
 	     onerror : function(ex) {
 	     	retryTimes --;
 	     	
-	     	if(retryTimes !== 0){
+	     	if(retryTimes !== 0 && Titanium.Network.online){
 	     		API.claimInfo({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
 	     	}else{
 	     		Ti.App.fireEvent("data_loaded");
@@ -1178,9 +1179,9 @@ function contactServerByPost(url,records) {
 	client.send(records);
 	return client;
 };
-
+var callByPost_error_popup = false;
 exports.callByPost = function(e, onload, onerror){
-	
+	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
 		var url = eval(e.url);
@@ -1192,7 +1193,18 @@ exports.callByPost = function(e, onload, onerror){
 		};
 		
 		_result.onerror = function(ex) {  
-			API.callByPost(e, onload, onerror); 
+			if(retryTimes !== 0 && Titanium.Network.online){
+				_.extend(e, {retryTimes: retryTimes});
+				API.callByPost(e, onload, onerror); 
+			}else{
+				if(!callByPost_error_popup){
+					callByPost_error_popup = true;
+					common.createAlert("Error", "Unable connect to the server. Please try again later.", function(){
+						callByPost_error_popup = false;
+					});
+				}
+				onload('{"status":"error","error_message":"No internet connection."}');
+			}
 		};
 	}
 };

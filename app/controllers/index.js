@@ -47,7 +47,11 @@ function loadingViewFinish(){
 //API.loadDoctorPanel();
 //API.getDoctorList();
 API.callByPost({url: "dateNow"}, function(responseText){
-	common.sync_time(responseText);
+	var res = JSON.parse(responseText);
+	
+	if(res.status != "error"){
+		common.sync_time(res.data);
+	}
 	loadingView = Alloy.createController("loader");
 	loadingView.getView().open();
 	loadingView.start();

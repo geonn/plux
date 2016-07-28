@@ -149,10 +149,8 @@ function getConversationByRoomId(callback){
 		var model = Alloy.createCollection("helpline");
 		
 		var res = JSON.parse(responseText);
-		var arr = res.data || null;
+		var arr = res.data || undefined;
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		console.log("refresh save arr");
-		console.log(arr);
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
 		if(!room_id){
@@ -238,6 +236,9 @@ function closeWindow(){
 }
 
 function init(){
+	if(!Titanium.Network.online){
+		common.createAlert("Alert", "There is no internet connection.", closeWindow);
+	}
 	$.win.add(loading.getView());
 	refresh(getPreviousData, true);
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);

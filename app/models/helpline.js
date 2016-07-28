@@ -101,9 +101,6 @@ exports.definition = {
 	            collection.trigger('sync');
 			},
 			saveArray : function(arr){
-				console.log(typeof arr);
-				console.log(arr);
-				console.log(arr.length);
 				if(typeof arr == "undefined" || arr == "no room found"){
 					return;
 				}
