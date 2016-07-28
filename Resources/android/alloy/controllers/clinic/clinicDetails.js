@@ -56,6 +56,7 @@ function Controller() {
             }
             var longitude = e.coords.longitude;
             var latitude = e.coords.latitude;
+            console.log("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + details.latitude + "," + details.longitude);
             var url = "geo:" + latitude + "," + longitude + "?q=" + details.clinicName + " (" + details.add1 + "\r\n" + add2 + details.postcode + ", " + details.city + "\r\n" + details.state + ")";
             if (Ti.Android) try {
                 var waze_url = "waze://?ll=" + details.latitude + "," + details.longitude + "&navigate=yes";
@@ -79,6 +80,7 @@ function Controller() {
             } else Titanium.Platform.openURL("Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr=" + latitude + "," + longitude + "&daddr=" + details.latitude + "," + details.longitude);
             Titanium.Geolocation.removeEventListener("location", locationCallback);
         };
+        console.log("geo location");
         Titanium.Geolocation.addEventListener("location", locationCallback);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -460,10 +462,12 @@ function Controller() {
     var panel_id = args.panel_id || "";
     var panelListModel = Alloy.createCollection("panelList");
     var details = panelListModel.getPanelListById(panel_id);
+    var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
     var contacts = Ti.Contacts.getAllPeople();
     var isAddedToContact = "0";
     populateMap(200);
-    for (var i = 0; i < contacts.length; i++) {
+    console.log(contacts);
+    if (hasContactsPermissions && contacts.length > 0 && null != contacts) for (var i = 0; i < contacts.length; i++) {
         var phone = contacts[i].phone || "";
         var workPhone = phone.mobile;
         if (null != workPhone && workPhone[0] == details.tel) {

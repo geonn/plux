@@ -3,17 +3,24 @@ var Map = require('ti.map');
 var panel_id = args.panel_id || ""; 
 var panelListModel = Alloy.createCollection('panelList');  
 var details = panelListModel.getPanelListById(panel_id); 
+var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
 var contacts = Ti.Contacts.getAllPeople();  
 var isAddedToContact = "0";
 populateMap(200);
-for (var i = 0; i < contacts.length; i++) {
-	var phone = contacts[i].phone || "";  
-    var workPhone = phone.mobile; 
-    if(workPhone != null && workPhone[0] == details.tel ){
-    	isAddedToContact = "1";
-    	$.add2contact.title = "Already added to contact";
-    } 
-}  
+console.log(contacts);
+
+if (hasContactsPermissions) {
+	if(contacts.length > 0 && contacts != null){
+		for (var i = 0; i < contacts.length; i++) {
+			var phone = contacts[i].phone || "";  
+		    var workPhone = phone.mobile; 
+		    if(workPhone != null && workPhone[0] == details.tel ){
+		    	isAddedToContact = "1";
+		    	$.add2contact.title = "Already added to contact";
+		    } 
+		}  
+	}
+}
 var phoneArr = [];
 
 function populateMap(mapHeight){
@@ -153,7 +160,7 @@ function direction2here(){
 	    } 
 	    var longitude = e.coords.longitude;
 	    var latitude = e.coords.latitude; 
-	 	//console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+	 	 console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
 	     
 		var url = 'geo:'+latitude+','+longitude+"?q="+details.clinicName+" (" + details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state + ")";
 		  if (Ti.Android){
@@ -187,6 +194,8 @@ function direction2here(){
 	    
 	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 
 	};
+	
+	console.log("geo location");
 	Titanium.Geolocation.addEventListener('location', locationCallback); 
 }
 
