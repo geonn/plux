@@ -13,6 +13,7 @@ function SendMessage(){
 	if($.message.value == "" || sending){
 		return;
 	}
+	loading.start();
 	sending = true;
 	$.message.editable = false;
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
@@ -23,6 +24,7 @@ function SendMessage(){
 		$.message.editable = true;
 		sending = false;
 		$.message.blur();
+		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		//Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
 		
@@ -177,21 +179,27 @@ function scrollToBottom(){
  * */
 function refresh(callback, firsttime){
 	loading.start();
+	console.log("start refresh");
 	getConversationByRoomId(function(){
 		callback({firsttime: firsttime});
 		loading.finish();
+		refreshing = false;
 	});
 	
 }
-
+var refreshing = false;
 function refresh_latest(param){
-	console.log("refresh_latest");
+	console.log("refresh_latest "+refreshing);
 	/*if(typeof(param.admin) != "undefined"){
 		Ti.App.Properties.setString('estimate_time', "0");
 	}else{
 		
 	}*/
-	refresh(getLatestData);
+	if(!refreshing){
+		refreshing = true;
+		console.log("refresh_latest 2");
+		refresh(getLatestData);
+	}
 }
 
 function getPreviousData(param){ 

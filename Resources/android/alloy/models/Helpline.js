@@ -27,7 +27,8 @@ exports.definition = {
                 var last_update = last_update || common.now();
                 if (latest) {
                     var a = last_update;
-                    var b = a.split("  ");
+                    a = a.replace("  ", " ");
+                    var b = a.split(" ");
                     var start_limit = "";
                     var sql_lastupdate = " AND created > '" + b[0] + " " + b[1] + "'";
                 } else {
@@ -82,6 +83,8 @@ exports.definition = {
                 if ("undefined" == typeof arr || "no room found" == arr) return;
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                console.log("message add");
+                console.log(arr);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     entry.message = entry.message.replace("[br]", "\n");

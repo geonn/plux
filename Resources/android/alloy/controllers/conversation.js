@@ -9,7 +9,10 @@ function __processArg(obj, key) {
 
 function Controller() {
     function SendMessage() {
-        if ("" == $.message.value) return;
+        if ("" == $.message.value || sending) return;
+        loading.start();
+        sending = true;
+        $.message.editable = false;
         var u_id = Ti.App.Properties.getString("u_id") || 0;
         API.callByPost({
             url: "sendHelplineMessage",
@@ -22,7 +25,10 @@ function Controller() {
             Alloy.createCollection("helpline");
             JSON.parse(responseText);
             $.message.value = "";
+            $.message.editable = true;
+            sending = false;
             $.message.blur();
+            loading.finish();
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
@@ -147,16 +153,22 @@ function Controller() {
     }
     function refresh(callback, firsttime) {
         loading.start();
+        console.log("start refresh");
         getConversationByRoomId(function() {
             callback({
                 firsttime: firsttime
             });
+            loading.finish();
+            refreshing = false;
         });
-        loading.finish();
     }
     function refresh_latest() {
-        console.log("refresh_latest");
-        refresh(getLatestData);
+        console.log("refresh_latest " + refreshing);
+        if (!refreshing) {
+            refreshing = true;
+            console.log("refresh_latest 2");
+            refresh(getLatestData);
+        }
     }
     function getPreviousData(param) {
         start = parseInt(start);
@@ -391,6 +403,8 @@ function Controller() {
     var anchor = common.now();
     var last_update = common.now();
     var start = 0;
+    var sending = false;
+    var refreshing = false;
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     $.win.addEventListener("close", function() {

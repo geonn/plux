@@ -263,7 +263,7 @@ exports.getUserService = function(e) {
             }
         },
         onerror: function() {},
-        timeout: 6e3
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -384,7 +384,7 @@ exports.getNearbyClinic = function(e) {
             });
         },
         onerror: function() {},
-        timeout: 6e3
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -403,7 +403,7 @@ exports.checkAppVersion = function(callback_download) {
         onerror: function() {
             console.log("error check version");
         },
-        timeout: 6e3
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -416,7 +416,7 @@ exports.syncHealthData = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {},
         onerror: function() {},
-        timeout: 6e3
+        timeout: 6e4
     });
     client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     client.open("POST", url);
