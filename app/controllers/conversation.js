@@ -153,6 +153,7 @@ function getConversationByRoomId(callback){
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
+		console.log(res.last_updated+" where is the last update");
 		if(!room_id){
 			room_id = res.room_id;
 			//setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);

@@ -19,6 +19,9 @@ common.showLoading();
 init();
 
 function init(){
+	if(!Titanium.Network.online){
+		common.createAlert("Alert", "There is no internet connection.", closeWindow);
+	}
 	userMem =  usersModel.getUserByEmpNo();
 	userMem.forEach(function(entry) {  
 		claimName.push(entry.name);

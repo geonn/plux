@@ -828,7 +828,7 @@ exports.updateNotificationToken = function(e){
 		     // function called when an error occurs, including a timeout
 		     onerror : function(e) {
 		     },
-		     timeout : 50000  // in milliseconds
+		     timeout : 60000  // in milliseconds
 		 });
 		 // Prepare the connection.
 		 client.open("GET", url);
@@ -867,7 +867,7 @@ exports.loadLeaflet = function(ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -892,7 +892,7 @@ exports.getDoctorList = function(ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -941,7 +941,7 @@ exports.loadNewsFeed = function (ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -974,7 +974,7 @@ exports.loadCategoryList = function (ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -1016,7 +1016,7 @@ exports.loadDoctorPanel = function(ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -1057,7 +1057,7 @@ exports.loadClinicList = function (ex){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -1104,7 +1104,7 @@ exports.loadPanelList = function (ex){
 	     	 
 	     }, 
 	     onerror : function(e) { },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
@@ -1148,7 +1148,7 @@ function updateUserService(u_id, service_id, email, password){
 	     	 
 	     }, 
 	     onerror : function(e) { },
-	     timeout : 50000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -1158,7 +1158,7 @@ function updateUserService(u_id, service_id, email, password){
 
 function contactServerByGet(url) {  
 	var client = Ti.Network.createHTTPClient({
-		timeout : 5000
+		timeout : 60000
 	});
   	if(OS_ANDROID){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
@@ -1170,7 +1170,7 @@ function contactServerByGet(url) {
 
 function contactServerByPost(url,records) { 
 	var client = Ti.Network.createHTTPClient({
-		timeout : 5000
+		timeout : 60000
 	});
 	if(OS_ANDROID){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 

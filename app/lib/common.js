@@ -354,9 +354,11 @@ exports.resultPopUp = function(title, msg){
 
 exports.sync_time = function(time){ 
 	var a = time.trim();
-	var b = a.split("  ");
+	a = a.replace("  ", " ");
+	var b = a.split(" ");
 	var date = b[0].split("-");
 	var time = b[1].split(":");
+	console.log(time);
 	var s_date = new Date(date[0], date[1]-1, date[2],time[0],time[1],time[2]);
 	var now = new Date();
 	var s = Date.parse(s_date.toUTCString());
