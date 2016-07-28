@@ -205,6 +205,8 @@ var nav = require("navigation");
 
 var socket = require("socket");
 
+var room_id = 0;
+
 socket.addEventListener("socket:message_alert", message_alert);
 
 var DBVersionControl = require("DBVersionControl");

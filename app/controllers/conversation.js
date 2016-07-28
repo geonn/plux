@@ -1,10 +1,10 @@
 var args = arguments[0] || {};
 var dr_id = args.dr_id;
 var loading = Alloy.createController("loading");
-var room_id = 0;
 var anchor = common.now();
 var last_update = common.now();
 var start = 0;
+var room_set = false;
 /**
  * Send message
  */
@@ -162,10 +162,10 @@ function getConversationByRoomId(callback){
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
 		console.log(res.last_updated+" where is the last update");
-		if(!room_id){
+		/*if(!room_id){
 			room_id = res.room_id;
 			//setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
-		}
+		}*/
 		callback && callback();
 	});
 }
@@ -250,10 +250,22 @@ function closeWindow(){
 }
 
 function init(){
+	$.win.add(loading.getView());
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	$.win.add(loading.getView());
+	console.log(room_id+" room id");
+	if(room_id){
+		refresh(getPreviousData, true);
+		socket.addEventListener("socket:refresh_chatroom", refresh_latest);
+		socket.event_onoff("socket:message_alert", false);
+	}else{
+		loading.start();
+	}
+}
+
+function set_room(){
+	console.log("set room");
 	refresh(getPreviousData, true);
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
@@ -262,11 +274,12 @@ function init(){
 init();
 
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
-
+Ti.App.addEventListener("conversation:setRoom", set_room);
 $.win.addEventListener("close", function(){
 	socket.removeEventListener("socket:refresh_chatroom");
 	socket.event_onoff("socket:message_alert", true);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
+	Ti.App.removeEventListener('conversation:setRoom', set_room);
 	$.destroy();
 	console.log("window close");
 });

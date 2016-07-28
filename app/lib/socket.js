@@ -29,7 +29,9 @@ function webview_loaded(){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	API.callByPost({url:"getRoomId", params: {u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
+		room_id = res.data;
 		Ti.App.fireEvent("web:setRoom", {room_id: res.data});
+		Ti.App.fireEvent("conversation:setRoom", {room_id: room_id});
 	});
 }
 

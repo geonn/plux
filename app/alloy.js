@@ -16,6 +16,7 @@ var API = require('api');
 var PUSH = require('push');
 var nav = require('navigation');
 var socket = require('socket');
+var room_id = 0;
 socket.addEventListener("socket:message_alert", message_alert);
 
 
@@ -225,8 +226,6 @@ Titanium.App.addEventListener('resumed', function(e) {
 		Titanium.UI.iPhone.setAppBadge("0");
 	}
 });
-
-PUSH.registerPush();
 
 function parent(key, e){
 	// if key.value undefined mean it look for key only

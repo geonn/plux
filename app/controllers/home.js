@@ -5,6 +5,7 @@ var loading = Alloy.createController('loading');
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var notificationModel = Alloy.createCollection('notification'); 
 common.construct($);
+PUSH.registerPush();
 init();
 
 

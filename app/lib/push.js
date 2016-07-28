@@ -59,6 +59,7 @@ function receivePush(e) {
 		target = e.target;
 		url = e.extra;
 	}  
+	console.log(e);
 	console.log(target+" and redirect "+redirect); 
 	if(target == "conversation"){
 		if(redirect){

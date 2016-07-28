@@ -11,8 +11,12 @@ function webview_loaded() {
         }
     }, function(responseText) {
         var res = JSON.parse(responseText);
+        room_id = res.data;
         Ti.App.fireEvent("web:setRoom", {
             room_id: res.data
+        });
+        Ti.App.fireEvent("conversation:setRoom", {
+            room_id: room_id
         });
     });
 }
