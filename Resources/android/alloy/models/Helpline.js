@@ -114,6 +114,14 @@ exports.definition = {
                 }
                 fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
                 db.close();
+            },
+            resetTable: function() {
+                var collection = this;
+                var sql = "DELETE FROM " + collection.config.adapter.collection_name;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                db.execute(sql);
+                db.close();
+                collection.trigger("sync");
             }
         });
         return Collection;

@@ -377,11 +377,13 @@ exports.getNearbyClinic = function(e){
  
 exports.checkAppVersion = function(callback_download){
 	var appVersion = Ti.App.Properties.getString("appVersion");
-	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform=android";
+	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
+	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
+			console.log(result);
 			if(result.status == "error"){ 
 				callback_download && callback_download(result);
 			}

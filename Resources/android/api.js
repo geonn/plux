@@ -5,7 +5,7 @@ function updateUserService(u_id, service_id, email, password) {
             JSON.parse(this.responseText);
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -13,7 +13,7 @@ function updateUserService(u_id, service_id, email, password) {
 
 function contactServerByGet(url) {
     var client = Ti.Network.createHTTPClient({
-        timeout: 5e3
+        timeout: 6e4
     });
     client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     client.open("GET", url);
@@ -23,7 +23,7 @@ function contactServerByGet(url) {
 
 function contactServerByPost(url, records) {
     var client = Ti.Network.createHTTPClient({
-        timeout: 5e3
+        timeout: 6e4
     });
     client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     client.open("POST", url);
@@ -393,9 +393,11 @@ exports.getNearbyClinic = function(e) {
 exports.checkAppVersion = function(callback_download) {
     var appVersion = Ti.App.Properties.getString("appVersion");
     var url = checkAppVersionUrl + "&appVersion=" + appVersion + "&appPlatform=android";
+    console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
+            console.log(result);
             "error" == result.status && callback_download && callback_download(result);
         },
         onerror: function() {
@@ -713,7 +715,7 @@ exports.updateNotificationToken = function() {
                 "success" == res.status;
             },
             onerror: function() {},
-            timeout: 5e4
+            timeout: 6e4
         });
         client.open("GET", url);
         client.send();
@@ -745,7 +747,7 @@ exports.loadLeaflet = function() {
             });
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -762,7 +764,7 @@ exports.getDoctorList = function() {
             doctorsModel.saveArray(info);
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -797,7 +799,7 @@ exports.loadNewsFeed = function() {
             });
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -820,7 +822,7 @@ exports.loadCategoryList = function() {
             });
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -843,7 +845,7 @@ exports.loadDoctorPanel = function() {
             }
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -867,7 +869,7 @@ exports.loadClinicList = function() {
             }
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", url);
     client.send();
@@ -901,7 +903,7 @@ exports.loadPanelList = function(ex) {
             });
         },
         onerror: function() {},
-        timeout: 5e4
+        timeout: 6e4
     });
     client.open("GET", encodeURI(url));
     client.send();

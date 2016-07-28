@@ -9,7 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init() {
-        var data = usersModel.getClaimDetailBySeries({
+        var data = model.getClaimDetailBySeries({
             serial: arg_serial
         });
         $.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
@@ -23,6 +23,7 @@ function Controller() {
         var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
         appcode = data.appcode;
         "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
+        console.log(data);
         section.add(createTableViewRow("Consultation", "RM" + data.consultation_amt.toFixed(2)));
         section.add(createTableViewRow("Medication", "RM" + data.medication_amt.toFixed(2), data.medication));
         section.add(createTableViewRow("Injection", "RM" + data.injection_amt.toFixed(2), data.injection));
@@ -197,12 +198,10 @@ function Controller() {
     var args = arguments[0] || {};
     var arg_serial = "undefined" != typeof args.serial ? args.serial : 0;
     "T" != args.appcode.charAt(0) && $.recepit.hide();
-    console.log(args.appcode);
-    console.log(args.appcode.charAt(0));
     API.claimDetailBySeries({
         serial: arg_serial
     });
-    var usersModel = Alloy.createCollection("claim_detail");
+    var model = Alloy.createCollection("claim_detail");
     var appcode = "";
     common.construct($);
     common.showLoading();

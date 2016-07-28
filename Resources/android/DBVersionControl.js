@@ -1,5 +1,5 @@
 exports.checkAndUpdate = function() {
-    var dbVersion = Ti.App.Properties.getString("dbVersion") || 1;
+    var dbVersion = Ti.App.Properties.getString("dbVersion") || 1.8;
     if ("1.0" == dbVersion) {
         var panelList = Alloy.createCollection("panelList");
         panelList.addColumn("panel", "INTEGER");
@@ -38,6 +38,15 @@ exports.checkAndUpdate = function() {
         var claim_detail = Alloy.createCollection("claim_detail");
         claim_detail.addColumn("appcode", "TEXT");
         dbVersion = "1.7";
+    }
+    dbVersion = "1.7";
+    if ("1.7" == dbVersion) {
+        var helpline = Alloy.createCollection("helpline");
+        helpline.resetTable();
+        var checker = Alloy.createCollection("updateChecker");
+        checker.addColumn("u_id", "INTEGER");
+        checker.updateModule(7, "getHelplineMessage", "");
+        dbVersion = "1.8";
     }
     Ti.App.Properties.setString("dbVersion", dbVersion);
 };

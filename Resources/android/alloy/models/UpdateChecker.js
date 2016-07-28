@@ -4,6 +4,7 @@ exports.definition = {
     config: {
         columns: {
             id: "INTEGER",
+            u_id: "INTEGER",
             typeName: "TEXT",
             updated: "TEXT"
         },
@@ -18,6 +19,18 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
+            addColumn: function(newFieldName, colSpec) {
+                var collection = this;
+                var db = Ti.Database.open(collection.config.adapter.db_name);
+                var fieldExists = false;
+                resultSet = db.execute("PRAGMA TABLE_INFO(" + collection.config.adapter.collection_name + ")");
+                while (resultSet.isValidRow()) {
+                    resultSet.field(1) == newFieldName && (fieldExists = true);
+                    resultSet.next();
+                }
+                fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
+                db.close();
+            },
             getCheckerById: function(id) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "'";
@@ -33,13 +46,15 @@ exports.definition = {
                 collection.trigger("sync");
                 return arr;
             },
-            updateModule: function(id, typeName, updateDate) {
+            updateModule: function(id, typeName, updateDate, u_id) {
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=" + id;
+                var addon = "";
+                "undefined" != typeof u_id ? addon = " AND u_id = " + u_id : u_id = 0;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=" + id + addon;
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET updated='" + updateDate + "' WHERE id='" + id + "'" : "INSERT INTO " + collection.config.adapter.collection_name + " (id, typeName, updated) VALUES ('" + id + "','" + typeName + "','" + updateDate + "')";
+                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET updated='" + updateDate + "' WHERE id='" + id + "'" + addon : "INSERT INTO " + collection.config.adapter.collection_name + " (id, typeName, updated, u_id) VALUES ('" + id + "','" + typeName + "','" + updateDate + "', " + u_id + ")";
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");

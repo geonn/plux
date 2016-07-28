@@ -1,13 +1,13 @@
 /*********************
 *** DB VERSION CONTROL ***
 * 
-* Latest Version 1.1
+* Latest Version 1.8
 * 
 **********************/
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || 1.0;
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || 1.8;
 	 
 	if (dbVersion == '1.0') {
 	  // do 1.1 upgrade
@@ -54,6 +54,14 @@ exports.checkAndUpdate = function(e){
 		var claim_detail = Alloy.createCollection('claim_detail'); 
 		claim_detail.addColumn("appcode", "TEXT");
 		dbVersion = '1.7';
+	}
+	if(dbVersion == "1.7"){
+		var helpline = Alloy.createCollection('helpline'); 
+		helpline.resetTable();
+		var checker = Alloy.createCollection('updateChecker'); 
+		checker.addColumn("u_id", "INTEGER");
+		checker.updateModule(7, "getHelplineMessage", "");
+		dbVersion = '1.8';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

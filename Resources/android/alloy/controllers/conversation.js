@@ -137,6 +137,7 @@ function Controller() {
             Ti.App.Properties.setString("estimate_time", res.estimate_time);
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
+            console.log(res.last_updated + " where is the last update");
             room_id || (room_id = res.room_id);
             callback && callback();
         });

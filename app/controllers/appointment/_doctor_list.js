@@ -97,8 +97,6 @@ function refresh(){
 		render_doctor_list();
 		loading.finish();
 	});
-	
-	
 }
 
 function init(){

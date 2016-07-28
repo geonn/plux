@@ -52,10 +52,12 @@ function Controller() {
             url: "addFeedbackUrl",
             params: params
         }, function(responseText) {
-            JSON.parse(responseText);
-            common.hideLoading();
-            common.createAlert("Success", "Thanks for your feedback! ");
-            $.win.close();
+            var res = JSON.parse(responseText);
+            if ("success" == res.status) {
+                common.hideLoading();
+                common.createAlert("Success", "Thanks for your feedback! ");
+                $.win.close();
+            } else common.hideLoading();
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
