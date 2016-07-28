@@ -181,7 +181,7 @@ function displayRecords(listing){
 				var recTitle = $.UI.create('Label',{
 					classes: ['themeColor'],
 					text: title,
-					font:{fontSize:16},
+					font:{fontSize:14},
 					source: entry.id, 
 					width:'90%',
 					textAlign:'left',

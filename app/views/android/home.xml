@@ -15,29 +15,32 @@
 			    </View>
 				<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
 					<View layout="horizontal" width="Ti.UI.SIZE" top="239">
-						<ImageView onClick="navWindow" mod="eCard_list" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/> 
+						<!--<ImageView onClick="navWindow" mod="eCard_list" top="15" width="139" image="/images/btn/btn_asp_e_card_pass.png"/> -->
+							<ImageView onClick="navWindow" mod="profile" top="15"  width="139" image="/images/btn/btn_profile.png"/>
 							<ImageView onClick="navWindow" mod="myHealth" left="15" top="15" width="139" image="/images/btn/btn_my_health.png"/>
 							
 							
 							<ImageView onClick="navWindow" mod="myClaim" top="15" width="139" image="/images/btn/btn_my_claim_detail.png"/>
 							<ImageView onClick="navWindow" mod="claimSubmission" top="15" left="15" width="139" image="/images/btn/btn_claim_submission.png"/>
 							
-							<ImageView onClick="navWindow" mod="profile" top="15"  width="139" image="/images/btn/btn_profile.png"/>
+							<ImageView onClick="navWindow" mod="conversation" top="15"  width="139" image="/images/btn/btn_ask_me.png"/>
 							
 							<!--<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>-->
 							<ImageView onClick="navWindow" mod="hra" top="15" left="15" width="139" image="/images/btn/btn_hra.png"/>
 							
 							<ImageView onClick="navWindow" mod="myMedicalRecord" top="15" width="139" image="/images/btn/btn_my_medical_record.png"/>
+							
+							<ImageView onClick="navWindow" mod="feedback" top="15" left="15"  width="139" image="/images/btn/btn_feedback.png"/>
+							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
+							
 							<View class="hsize wsize">
 								<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
 								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
 									<Label id="notificationText" text="0" color="#ffffff" />
 								</View>
 							</View>
-							<ImageView onClick="navWindow" mod="conversation" top="15"  width="139" image="/images/btn/btn_ask_me.png"/>
-							<ImageView onClick="navWindow" mod="feedback" top="15" left="15"  width="139" image="/images/btn/btn_feedback.png"/>
-							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
-							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>		
+							<ImageView onClick="navWindow" mod="appointment" top="15" left="15" width="139" image="/images/btn/btn_appointment.png"/>
+								
 					</View>
 				</ScrollView>
 			</View>

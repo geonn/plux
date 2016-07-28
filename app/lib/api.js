@@ -124,7 +124,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	     	console.log("API getCategoryList fail, skip sync with server");
 	     	API.loadAPIBySequence(ex, counter);
 	     },
-	     timeout : 7000  // in milliseconds
+	     timeout : 70000  // in milliseconds
 	 });
 	 if(Ti.Platform.osname == "android"){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
@@ -188,7 +188,7 @@ exports.updateUserFromFB = function(e, mainView){
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
 		},
-		timeout : 7000  // in milliseconds
+		timeout : 70000  // in milliseconds
 	});
 	// Prepare the connection.
 	client.open("GET", url);
@@ -429,20 +429,17 @@ exports.removeHealthDataById = function(id){
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
 		},
-		timeout : 7000  // in milliseconds
+		timeout : 70000  // in milliseconds
 	}); 
 	client.open("GET", url); 
 	client.send(); 
 };
 
 exports.do_pluxLogin = function(data,mainView){
-	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password) ;
- 	 
-	var records = {};
-	records['version'] =  Ti.Platform.version;
-	records['os'] =  Ti.Platform.osname;
-	records['model'] =  Ti.Platform.model;
-	records['macaddress'] =  Ti.Platform.macaddress;   
+	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
+	
+ 	 console.log(url);
+	 
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
@@ -476,18 +473,18 @@ exports.do_pluxLogin = function(data,mainView){
 				}
 	       		API.updateNotificationToken();    
 				/*Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.win);  */
+				nav.closeWindow(mainView.win);  */ 
 				var win = Alloy.createController("home").getView();
-				win.open(); 
+				win.open();  
 			}
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
 		},
-		timeout : 7000  // in milliseconds
+		timeout : 70000  // in milliseconds
 	}); 
 	client.open("POST", url); 
-	client.send({list: JSON.stringify(records)}); 
+	client.send(); 
 };
 
 exports.do_signup = function(data,mainView){
@@ -514,7 +511,7 @@ exports.do_signup = function(data,mainView){
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
 		},
-		timeout : 7000  // in milliseconds
+		timeout : 70000  // in milliseconds
 	}); 
 	client.open("GET", url); 
 	client.send();  
@@ -640,7 +637,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     	common.hideLoading();
        		
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 70000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
@@ -675,7 +672,7 @@ exports.doChangePassword = function(e, mainView) {
 	     	common.hideLoading();
        		
 	     },
-	     timeout : 6000  // in milliseconds
+	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
@@ -716,7 +713,7 @@ exports.claimDetailBySeries = function(e){
 	     		Ti.App.fireEvent("load_claim_detail");
 	     	}
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 70000  // in milliseconds
 	});
 	
 	// Prepare the connection.
@@ -764,7 +761,7 @@ exports.getClaimDetail = function(e){
 	     		//Ti.App.fireEvent("data_loaded");
 	     	}
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 70000  // in milliseconds
 	});
 	
 	// Prepare the connection.
@@ -801,7 +798,7 @@ exports.claimInfo = function(e) {
 	     		Ti.App.fireEvent("data_loaded");
 	     	}
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 70000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
