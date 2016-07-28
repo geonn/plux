@@ -36,14 +36,8 @@ exports.definition = {
 				}
 				
 				var collection = this;
-				var u_id = Ti.App.Properties.getString('u_id');
-<<<<<<< HEAD
-                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by id desc"+start_limit ;
-            
-=======
-                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by created desc"+start_limit ;
-                console.log(sql);
->>>>>>> origin/master
+				var u_id = Ti.App.Properties.getString('u_id'); 
+                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by created desc"+start_limit ; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
