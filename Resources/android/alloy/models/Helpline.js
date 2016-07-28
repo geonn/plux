@@ -83,6 +83,8 @@ exports.definition = {
                 if ("undefined" == typeof arr || "no room found" == arr) return;
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                console.log("message add");
+                console.log(arr);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     entry.message = entry.message.replace("[br]", "\n");

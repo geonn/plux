@@ -113,6 +113,8 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
+                console.log("message add");
+                console.log(arr);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	entry.message = entry.message.replace("[br]", "\n");

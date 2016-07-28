@@ -10,6 +10,10 @@ function __processArg(obj, key) {
 function Controller() {
     function SendMessage() {
         if ("" == $.message.value || sending) return;
+<<<<<<< HEAD
+=======
+        loading.start();
+>>>>>>> origin/master
         sending = true;
         $.message.editable = false;
         var u_id = Ti.App.Properties.getString("u_id") || 0;
@@ -27,6 +31,7 @@ function Controller() {
             $.message.editable = true;
             sending = false;
             $.message.blur();
+            loading.finish();
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
@@ -151,16 +156,25 @@ function Controller() {
     }
     function refresh(callback, firsttime) {
         loading.start();
+        console.log("start refresh");
         getConversationByRoomId(function() {
             callback({
                 firsttime: firsttime
             });
             loading.finish();
+<<<<<<< HEAD
+=======
+            refreshing = false;
+>>>>>>> origin/master
         });
     }
     function refresh_latest() {
-        console.log("refresh_latest");
-        refresh(getLatestData);
+        console.log("refresh_latest " + refreshing);
+        if (!refreshing) {
+            refreshing = true;
+            console.log("refresh_latest 2");
+            refresh(getLatestData);
+        }
     }
     function getPreviousData(param) {
         start = parseInt(start);
@@ -396,6 +410,10 @@ function Controller() {
     var last_update = common.now();
     var start = 0;
     var sending = false;
+<<<<<<< HEAD
+=======
+    var refreshing = false;
+>>>>>>> origin/master
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     $.win.addEventListener("close", function() {
