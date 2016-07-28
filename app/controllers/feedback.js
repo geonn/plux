@@ -65,7 +65,7 @@ function submitFeedback(){
 	API.callByPost({url:"addFeedbackUrl", params: params}, function(responseText){ 
 		var res = JSON.parse(responseText); 
 		common.hideLoading();
-		common.resultPopUp("Success","Thanks for your feedback! " );
+		common.createAlert("Success","Thanks for your feedback! " );
 		$.win.close();
 	}); 
 	 
