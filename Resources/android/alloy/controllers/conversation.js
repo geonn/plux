@@ -10,10 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function SendMessage() {
         if ("" == $.message.value || sending) return;
-<<<<<<< HEAD
-=======
         loading.start();
->>>>>>> origin/master
         sending = true;
         $.message.editable = false;
         var u_id = Ti.App.Properties.getString("u_id") || 0;
@@ -161,10 +158,7 @@ function Controller() {
                 firsttime: firsttime
             });
             loading.finish();
-<<<<<<< HEAD
-=======
             refreshing = false;
->>>>>>> origin/master
         });
     }
     function refresh_latest() {
@@ -417,10 +411,7 @@ function Controller() {
     var last_update = common.now();
     var start = 0;
     var sending = false;
-<<<<<<< HEAD
-=======
     var refreshing = false;
->>>>>>> origin/master
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     Ti.App.addEventListener("conversation:setRoom", set_room);
