@@ -275,5 +275,12 @@ Titanium.App.addEventListener('resumed', function(e){
     syncFromServer();
 });
 
+$.win.addEventListener("close", function(){
+	Ti.App.removeEventListener('updateNotification', updateNotification); 
+	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
+	$.destroy();
+	console.log("window close");
+});
+
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 

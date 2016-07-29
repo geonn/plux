@@ -51,3 +51,9 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.asp_profile); 
 	}); 
 }
+
+$.asp_profile.addEventListener("close", function(){
+	Ti.App.removeEventListener('loadPage', loadPage);
+	$.destroy();
+	console.log("window close");
+});

@@ -116,3 +116,7 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.claimDetail); 
 	});
 }
+
+$.win.addEventListener("close", function(){
+	Ti.App.removeEventListener("load_claim_detail", init);
+});

@@ -138,3 +138,9 @@ function listing(e){
 			nav.navigateWithArgs("clinic/clinicDetails", {panel_id:e.rowData.source});
 		});
 }
+
+$.clinicNearby.addEventListener("close", function(){
+	Ti.App.removeEventListener('updateNearbyList' , listing);
+	$.destroy();
+	console.log("window close");
+});

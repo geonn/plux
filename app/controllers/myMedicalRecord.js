@@ -297,7 +297,7 @@ var searchResult = function(){
 };
 $.searchItem.addEventListener("return", searchResult);
 
-$.aView	.addEventListener('touchend', function(e){
+$.aView.addEventListener('touchend', function(e){
     $.searchItem.blur(); 
 });
 
@@ -306,3 +306,8 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.myMedicalRecord); 
 	}); 
 }
+$.myMedicalRecord.addEventListener("close", function(){
+	Ti.App.removeEventListener('displayRecords',displayRecords);
+	$.destroy();
+	console.log("window close");
+});

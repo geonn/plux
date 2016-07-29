@@ -178,3 +178,9 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.myClaim); 
 	});
 }
+
+$.myClaim.addEventListener("close", function(){
+	Ti.App.removeEventListener('loadPage', loadPage);		
+	Ti.App.removeEventListener("data_loaded", init);
+	$.destroy();
+});

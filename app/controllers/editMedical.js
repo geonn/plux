@@ -417,3 +417,10 @@ console.log(applicationDatDirectory);
 var filesInFolder = applicationDatDirectory.getDirectoryListing();
 console.log(filesInFolder);
 
+$.editRecWin.addEventListener("close", function(){
+	Ti.App.removeEventListener('refreshAttachment',loadImage );
+	$.destroy();
+	console.log("window close");
+});
+
+

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Claim Detail" id="claimDetail" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="Claim Detail" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton platform="ios" title="Receipt" id="recepit" onClick="lightBox"></RightNavButton>
 		<View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
          		<ActivityIndicator id="activityIndicator" />

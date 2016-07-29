@@ -16,18 +16,8 @@ function receivePush(e) {
     };
     target = e.target;
     url = e.extra;
-    console.log(e);
     console.log(target + " and redirect " + redirect);
-    if ("conversation" == target) redirect && nav.navigateWithArgs("conversation"); else if ("appointment" == target) {
-        console.log("in appointment");
-        if (redirect) {
-            console.log("redirect true");
-            nav.navigateWithArgs("appointment");
-        } else {
-            console.log("redirect false");
-            Ti.App.fireEvent("appointment:refresh");
-        }
-    } else {
+    if ("conversation" == target) redirect && nav.navigateWithArgs("conversation"); else if ("appointment" == target) redirect ? nav.navigateWithArgs("appointment") : Ti.App.fireEvent("appointment:refresh"); else {
         var notificationModel = Alloy.createCollection("notification");
         notificationModel.addData(param);
         var dialog = Ti.UI.createAlertDialog({

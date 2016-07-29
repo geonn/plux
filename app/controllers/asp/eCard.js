@@ -244,6 +244,7 @@ if(Ti.Platform.osname == "android"){
  
 $.eCard.addEventListener("close", function(){
 	console.log("close ecard");
+	Ti.App.removeEventListener('loadPage', init);
 	Ti.Gesture.removeEventListener('orientationchange', orientationchange);
 	clearInterval(genCode);
 });

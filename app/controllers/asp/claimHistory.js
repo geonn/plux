@@ -171,6 +171,10 @@ data.forEach(function(entry){
 	});
 });
 
+$.claim_history.addEventListener("close", function(){
+	
+});
+
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.claim_history); 

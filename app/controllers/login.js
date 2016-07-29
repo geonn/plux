@@ -200,3 +200,9 @@ if(Ti.Platform.osname == "android"){
 	});
 }
 
+$.win.addEventListener("close", function(){
+	Ti.App.removeEventListener('touchLogin', touchLogin);
+	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
+	$.destroy();
+	console.log("window close");
+});

@@ -109,12 +109,7 @@ function init(){
 }
 init();
 
-$.win.addEventListener('close',function(){
-	Ti.App.removeEventListener('aspClinic',listing);
-	details = null;
-	details24 = null;
-	det24 = null;
-});
+
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
@@ -123,6 +118,13 @@ if(Ti.Platform.osname == "android"){
 }
 
 Ti.App.addEventListener('aspClinic',init);
+
+$.win.addEventListener('close',function(){
+	Ti.App.removeEventListener('aspClinic',init);
+	details = null;
+	details24 = null;
+	det24 = null;
+});
 
 $.tblview.addEventListener('click', function(e){
 	var nav = require('navigation');

@@ -350,3 +350,9 @@ function downloadBrochure(content){
 		});
 	//});
 }
+
+$.win.addEventListener("close", function(){
+	Ti.App.removeEventListener('displayRecords', displayList);
+	$.destroy();
+	console.log("window close");
+});
