@@ -58,7 +58,5 @@ API.callByPost({url: "dateNow"}, function(responseText){
 });
 
 
-var AppVersionControl = require('AppVersionControl');
-AppVersionControl.checkAndUpdate();
 
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
