@@ -9,11 +9,8 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init() {
-<<<<<<< HEAD
         var AppVersionControl = require("AppVersionControl");
         AppVersionControl.checkAndUpdate();
-=======
->>>>>>> origin/master
         $.win.add(loading.getView());
         loading.start();
         syncFromServer();

@@ -209,6 +209,9 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.claimDetail);
     });
+    $.claimDetail.addEventListener("close", function() {
+        Ti.App.removeEventListener("load_claim_detail", init);
+    });
     __defers["$.__views.__alloyId398!click!lightBox"] && $.addListener($.__views.__alloyId398, "click", lightBox);
     _.extend($, exports);
 }
