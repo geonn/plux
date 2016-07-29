@@ -1,13 +1,13 @@
 /*********************
 *** APP VERSION CONTROL ***
 * 
-* Latest Version 1.1.3
+* Latest Version 1.1.4
 * 
 **********************/
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	Ti.App.Properties.setString("appVersion", "1.1.3");
+	Ti.App.Properties.setString("appVersion", "1.1.4");
 	API.checkAppVersion(callback_download);
 };
 
