@@ -10,10 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function SendMessage() {
         if ("" == $.message.value || sending) return;
-<<<<<<< HEAD
-=======
         loading.start();
->>>>>>> origin/master
         sending = true;
         $.message.editable = false;
         var u_id = Ti.App.Properties.getString("u_id") || 0;
@@ -147,6 +144,15 @@ function Controller() {
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
             console.log(res.last_updated + " where is the last update");
+            if (!room_id) {
+                Ti.App.fireEvent("web:setRoom", {
+                    room_id: res.data
+                });
+                Ti.App.fireEvent("conversation:setRoom", {
+                    room_id: res.data
+                });
+            }
+            room_id = res.room_id;
             callback && callback();
         });
     }
@@ -161,10 +167,7 @@ function Controller() {
                 firsttime: firsttime
             });
             loading.finish();
-<<<<<<< HEAD
-=======
             refreshing = false;
->>>>>>> origin/master
         });
     }
     function refresh_latest() {
@@ -212,15 +215,14 @@ function Controller() {
         $.win.add(loading.getView());
         Titanium.Network.online || common.createAlert("Alert", "There is no internet connection.", closeWindow);
         console.log(room_id + " room id");
+        refresh(getPreviousData, true);
         if (room_id) {
-            refresh(getPreviousData, true);
             socket.addEventListener("socket:refresh_chatroom", refresh_latest);
             socket.event_onoff("socket:message_alert", false);
-        } else loading.start();
+        }
     }
     function set_room() {
         console.log("set room");
-        refresh(getPreviousData, true);
         socket.addEventListener("socket:refresh_chatroom", refresh_latest);
         socket.event_onoff("socket:message_alert", false);
     }
@@ -417,10 +419,7 @@ function Controller() {
     var last_update = common.now();
     var start = 0;
     var sending = false;
-<<<<<<< HEAD
-=======
     var refreshing = false;
->>>>>>> origin/master
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     Ti.App.addEventListener("conversation:setRoom", set_room);

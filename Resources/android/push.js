@@ -16,6 +16,7 @@ function receivePush(e) {
     };
     target = e.target;
     url = e.extra;
+    console.log(e);
     console.log(target + " and redirect " + redirect);
     if ("conversation" == target) redirect && nav.navigateWithArgs("conversation"); else if ("appointment" == target) {
         console.log("in appointment");

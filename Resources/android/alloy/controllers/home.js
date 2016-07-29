@@ -458,6 +458,7 @@ function Controller() {
     var usersPluxModel = Alloy.createCollection("users_plux");
     var notificationModel = Alloy.createCollection("notification");
     common.construct($);
+    PUSH.registerPush();
     init();
     $.win.addEventListener("android:back", function() {
         var dialog = Ti.UI.createAlertDialog({

@@ -231,8 +231,6 @@ var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 Titanium.App.addEventListener("resumed", function() {});
 
-PUSH.registerPush();
-
 var message_popup = false;
 
 Alloy.createController("index");

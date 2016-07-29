@@ -162,10 +162,13 @@ function getConversationByRoomId(callback){
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
 		console.log(res.last_updated+" where is the last update");
-		/*if(!room_id){
-			room_id = res.room_id;
+		
+		if(!room_id){	//if room_id = 0 
+			Ti.App.fireEvent("web:setRoom", {room_id: res.data});
+			Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 			//setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
-		}*/
+		}
+		room_id = res.room_id;
 		callback && callback();
 	});
 }
@@ -255,18 +258,15 @@ function init(){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
 	console.log(room_id+" room id");
+	refresh(getPreviousData, true);
 	if(room_id){
-		refresh(getPreviousData, true);
 		socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 		socket.event_onoff("socket:message_alert", false);
-	}else{
-		loading.start();
 	}
 }
 
 function set_room(){
 	console.log("set room");
-	refresh(getPreviousData, true);
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
 }
