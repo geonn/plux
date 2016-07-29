@@ -538,11 +538,14 @@ function Controller() {
     console.log(applicationDatDirectory);
     var filesInFolder = applicationDatDirectory.getDirectoryListing();
     console.log(filesInFolder);
+<<<<<<< HEAD
     $.editRecWin.addEventListener("close", function() {
         Ti.App.removeEventListener("refreshAttachment", loadImage);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     __defers["$.__views.__alloyId97!click!showCategory"] && $.addListener($.__views.__alloyId97, "click", showCategory);
     __defers["$.__views.__alloyId100!click!deleteRecord"] && $.addListener($.__views.__alloyId100, "click", deleteRecord);
     _.extend($, exports);

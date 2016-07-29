@@ -104,6 +104,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
+<<<<<<< HEAD
     $.__views.win = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
@@ -113,6 +114,17 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+=======
+    $.__views.claimDetail = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        title: "Claim Detail",
+        id: "claimDetail",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C"
+    });
+    $.__views.claimDetail && $.addTopLevelView($.__views.claimDetail);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -122,7 +134,11 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.win.add($.__views.loadingBar);
+=======
+    $.__views.claimDetail.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -134,7 +150,11 @@ function Controller() {
         id: "main",
         layout: "vertical"
     });
+<<<<<<< HEAD
     $.__views.win.add($.__views.main);
+=======
+    $.__views.claimDetail.add($.__views.main);
+>>>>>>> origin/master
     $.__views.__alloyId395 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
@@ -209,7 +229,11 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.claimDetail);
     });
+<<<<<<< HEAD
     $.win.addEventListener("close", function() {
+=======
+    $.claimDetail.addEventListener("close", function() {
+>>>>>>> origin/master
         Ti.App.removeEventListener("load_claim_detail", init);
     });
     __defers["$.__views.__alloyId398!click!lightBox"] && $.addListener($.__views.__alloyId398, "click", lightBox);

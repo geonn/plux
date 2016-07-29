@@ -231,11 +231,14 @@ function Controller() {
     common.construct($);
     common.showLoading();
     Ti.App.addEventListener("updateNearbyList", listing);
+<<<<<<< HEAD
     $.clinicNearby.addEventListener("close", function() {
         Ti.App.removeEventListener("updateNearbyList", listing);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

@@ -29,6 +29,7 @@ function savedRecords(ex){
 				var arr = {
 					id: entry.app_id,
 					server_id: entry.id,
+					u_id: entry.u_id,
 					title: entry.title,
 					message: entry.message ,
 					clinic: entry.clinic,
@@ -42,6 +43,7 @@ function savedRecords(ex){
 				var arr = {
 					id: entry.app_id,
 					server_id: entry.id,
+					u_id: entry.u_id,
 					title: entry.title,
 					message: entry.message ,
 					clinic: entry.clinic,

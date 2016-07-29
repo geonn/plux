@@ -362,11 +362,14 @@ function Controller() {
     });
     var isDownloading = "0";
     var isDownloadLbl = "0";
+<<<<<<< HEAD
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("displayRecords", displayList);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

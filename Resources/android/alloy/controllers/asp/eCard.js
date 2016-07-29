@@ -367,7 +367,10 @@ function Controller() {
     });
     $.eCard.addEventListener("close", function() {
         console.log("close ecard");
+<<<<<<< HEAD
         Ti.App.removeEventListener("loadPage", init);
+=======
+>>>>>>> origin/master
         Ti.Gesture.removeEventListener("orientationchange", orientationchange);
         clearInterval(genCode);
     });

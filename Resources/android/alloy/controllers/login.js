@@ -322,12 +322,15 @@ function Controller() {
         });
         dialog.show();
     });
+<<<<<<< HEAD
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("touchLogin", touchLogin);
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);
     __defers["$.__views.registerAccountButton!touchend!doASPSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doASPSignup);

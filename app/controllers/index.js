@@ -8,7 +8,7 @@ appointmentModel.addColumn("doctor_name", "TEXT");
 appointmentModel.addColumn("specialty_name", "TEXT"); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecords');   
 medicalRecordsModel.addColumn("server_id", "TEXT"); 
-
+medicalRecordsModel.addColumn("u_id", "TEXT"); 
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');   
 medicalAttachmentModel.addColumn("img_path", "TEXT"); 
 medicalAttachmentModel.addColumn("server_id", "TEXT"); 
@@ -58,7 +58,5 @@ API.callByPost({url: "dateNow"}, function(responseText){
 });
 
 
-var AppVersionControl = require('AppVersionControl');
-AppVersionControl.checkAndUpdate();
 
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);

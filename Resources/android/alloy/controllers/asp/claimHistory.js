@@ -228,7 +228,10 @@ function Controller() {
             });
         });
     });
+<<<<<<< HEAD
     $.claim_history.addEventListener("close", function() {});
+=======
+>>>>>>> origin/master
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.claim_history);
     });

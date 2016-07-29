@@ -234,16 +234,28 @@ function Controller() {
     common.showLoading();
     doRefresh();
     init();
+<<<<<<< HEAD
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.win);
     });
     Ti.App.addEventListener("aspClinic", init);
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("aspClinic", init);
+=======
+    $.win.addEventListener("close", function() {
+        Ti.App.removeEventListener("aspClinic", listing);
+>>>>>>> origin/master
         details = null;
         details24 = null;
         det24 = null;
     });
+<<<<<<< HEAD
+=======
+    $.btnBack.addEventListener("click", function() {
+        nav.closeWindow($.win);
+    });
+    Ti.App.addEventListener("aspClinic", init);
+>>>>>>> origin/master
     $.tblview.addEventListener("click", function(e) {
         var nav = require("navigation");
         nav.navigateWithArgs("clinic/clinicList", {

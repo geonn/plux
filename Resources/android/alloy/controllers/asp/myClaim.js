@@ -334,11 +334,14 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myClaim);
     });
+<<<<<<< HEAD
     $.myClaim.addEventListener("close", function() {
         Ti.App.removeEventListener("loadPage", loadPage);
         Ti.App.removeEventListener("data_loaded", init);
         $.destroy();
     });
+=======
+>>>>>>> origin/master
     __defers["$.__views.__alloyId472!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId472, "touchend", resendVerificationEmail);
     __defers["$.__views.__alloyId473!touchend!checkStatus"] && $.addListener($.__views.__alloyId473, "touchend", checkStatus);
     _.extend($, exports);

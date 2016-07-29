@@ -235,11 +235,14 @@ function Controller() {
         console.log("close!!");
         nav.closeWindow($.asp_profile);
     });
+<<<<<<< HEAD
     $.asp_profile.addEventListener("close", function() {
         Ti.App.removeEventListener("loadPage", loadPage);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     __defers["$.__views.__alloyId497!touchend!changePassword"] && $.addListener($.__views.__alloyId497, "touchend", changePassword);
     __defers["$.__views.__alloyId499!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId499, "touchend", resendVerificationEmail);
     __defers["$.__views.__alloyId500!touchend!checkStatus"] && $.addListener($.__views.__alloyId500, "touchend", checkStatus);

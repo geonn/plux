@@ -30,6 +30,10 @@ function Controller() {
                     var arr = {
                         id: entry.app_id,
                         server_id: entry.id,
+<<<<<<< HEAD
+=======
+                        u_id: entry.u_id,
+>>>>>>> origin/master
                         title: entry.title,
                         message: entry.message,
                         clinic: entry.clinic,
@@ -41,6 +45,10 @@ function Controller() {
                     var arr = {
                         id: entry.app_id,
                         server_id: entry.id,
+<<<<<<< HEAD
+=======
+                        u_id: entry.u_id,
+>>>>>>> origin/master
                         title: entry.title,
                         message: entry.message,
                         clinic: entry.clinic,
@@ -431,11 +439,14 @@ function Controller() {
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myMedicalRecord);
     });
+<<<<<<< HEAD
     $.myMedicalRecord.addEventListener("close", function() {
         Ti.App.removeEventListener("displayRecords", displayRecords);
         $.destroy();
         console.log("window close");
     });
+=======
+>>>>>>> origin/master
     _.extend($, exports);
 }
 
