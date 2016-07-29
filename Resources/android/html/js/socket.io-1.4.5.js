@@ -2197,7 +2197,11 @@
                 this.subs = [];
                 this.opts = opts;
                 this.reconnection(false !== opts.reconnection);
+<<<<<<< HEAD
                 this.reconnectionAttempts(opts.reconnectionAttempts || 1/0);
+=======
+                this.reconnectionAttempts(opts.reconnectionAttempts || 1 / 0);
+>>>>>>> origin/master
                 this.reconnectionDelay(opts.reconnectionDelay || 1e3);
                 this.reconnectionDelayMax(opts.reconnectionDelayMax || 5e3);
                 this.randomizationFactor(opts.randomizationFactor || .5);

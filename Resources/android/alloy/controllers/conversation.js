@@ -144,6 +144,18 @@ function Controller() {
             model.saveArray(arr, callback);
             checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
             console.log(res.last_updated + " where is the last update");
+<<<<<<< HEAD
+=======
+            if (!room_id) {
+                Ti.App.fireEvent("web:setRoom", {
+                    room_id: res.data
+                });
+                Ti.App.fireEvent("conversation:setRoom", {
+                    room_id: res.data
+                });
+            }
+            room_id = res.room_id;
+>>>>>>> origin/master
             callback && callback();
         });
     }
@@ -206,6 +218,7 @@ function Controller() {
         $.win.add(loading.getView());
         Titanium.Network.online || common.createAlert("Alert", "There is no internet connection.", closeWindow);
         console.log(room_id + " room id");
+<<<<<<< HEAD
         if (room_id) {
             refresh(getPreviousData, true);
             socket.addEventListener("socket:refresh_chatroom", refresh_latest);
@@ -215,6 +228,16 @@ function Controller() {
     function set_room() {
         console.log("set room");
         refresh(getPreviousData, true);
+=======
+        refresh(getPreviousData, true);
+        if (room_id) {
+            socket.addEventListener("socket:refresh_chatroom", refresh_latest);
+            socket.event_onoff("socket:message_alert", false);
+        }
+    }
+    function set_room() {
+        console.log("set room");
+>>>>>>> origin/master
         socket.addEventListener("socket:refresh_chatroom", refresh_latest);
         socket.event_onoff("socket:message_alert", false);
     }
