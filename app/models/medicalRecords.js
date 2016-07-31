@@ -79,7 +79,7 @@ exports.definition = {
 			},
 			getRecordsList: function(){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE u_id="+Ti.App.Properties.getString('u_id')+" order by updated DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE u_id="+Ti.App.Properties.getString('u_id')+" order by created DESC";
                 console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
