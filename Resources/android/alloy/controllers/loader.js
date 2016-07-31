@@ -79,14 +79,11 @@ function Controller() {
     };
     API.loadAPIBySequence();
     Ti.App.addEventListener("app:update_loading_text", update_loading_text);
-<<<<<<< HEAD
     $.rocket.addEventListener("close", function() {
         Ti.App.removeEventListener("app:update_loading_text", update_loading_text);
         $.destroy();
         console.log("window close");
     });
-=======
->>>>>>> origin/master
     _.extend($, exports);
 }
 

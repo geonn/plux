@@ -1,7 +1,6 @@
-console.log('a');
+
 var MediaPickerModule = require('ti.mediapicker');
 var warned = false;
-console.log('a');
 var _env = {}
 _env.iOS = Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad';
 _env.ldf = _env.iOS ? 1 : Ti.Platform.displayCaps.logicalDensityFactor;
@@ -40,7 +39,7 @@ var _nav = {
 		}
 		this.stack = [];
 	}
-};console.log('a');
+};
 var _config = {
 	size: Ti.Platform.osname == 'ipad' ? 148 : (Ti.Platform.osname == 'iphone' ? 75 : 96),
 	dpi_warning: 1024,
@@ -49,7 +48,7 @@ var _lang = {
 	photos: 'Images',
 	videos: 'Videos', 
 }
-console.log('a');
+
 var Element = function(type, options) {
 	this.element = Ti.UI['create'+type](options);
 
@@ -596,7 +595,6 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 	
 	_nav.open(win_assetGroups);	
 };
-console.log('a');
 exports.MediaPicker.prototype.getImageByURL = function(opt) {
 	if (_env.iOS) MediaPickerModule.getImageByURL(opt);
 	else {

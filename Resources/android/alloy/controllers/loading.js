@@ -61,6 +61,7 @@ function Controller() {
         $.activityIndicator.show();
     };
     $.finish = function(_callback) {
+        console.log("hide loading");
         $.loadingBar.hide();
         $.activityIndicator.hide();
         _callback && _callback();

@@ -13,6 +13,7 @@ $.start = function() {
  * exposed function to finish the loading animation. Animates the rocket off the screen.
  */
 $.finish = function(_callback) {
+	console.log("hide loading");
 	$.loadingBar.hide();
 	$.activityIndicator.hide();
 	_callback && _callback();

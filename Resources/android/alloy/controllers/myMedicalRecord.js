@@ -8,236 +8,81 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function init() {
-        checkDataSync();
-        displayRecords("");
-    }
-    function checkDataSync() {
-        var param = {
-            u_id: Ti.App.Properties.getString("u_id")
-        };
-        API.checkMedicalDataSync({
-            param: param
-        }, savedRecords);
-    }
-    function savedRecords(ex) {
-        var result = ex.param;
-        var info = result.data;
-        if (info.length > 0) {
-            info.forEach(function(entry) {
-                var dataFromApp = medicalRecordsModel.getRecordById(entry.app_id);
-                if ("" != dataFromApp) {
-                    var arr = {
-                        id: entry.app_id,
-                        server_id: entry.id,
-<<<<<<< HEAD
-=======
-                        u_id: entry.u_id,
->>>>>>> origin/master
-                        title: entry.title,
-                        message: entry.message,
-                        clinic: entry.clinic,
-                        treatment: entry.treatment,
-                        updated: entry.updated
-                    };
-                    medicalRecordsModel.updateRecord(arr);
-                } else {
-                    var arr = {
-                        id: entry.app_id,
-                        server_id: entry.id,
-<<<<<<< HEAD
-=======
-                        u_id: entry.u_id,
->>>>>>> origin/master
-                        title: entry.title,
-                        message: entry.message,
-                        clinic: entry.clinic,
-                        treatment: entry.treatment,
-                        created: entry.created,
-                        updated: entry.updated
-                    };
-                    medicalRecordsModel.addRecordFromServer(arr);
-                }
-                var att = entry.attachment;
-                medicalAttachmentModel.removeRecordByRec(entry.app_id);
-                medicalAttachmentModel.addFromServer(entry.app_id, att);
+    function render_listing() {
+        var model = Alloy.createCollection("medicalRecordsV2");
+        var data = model.getData();
+        var row_data = [];
+        for (var i = 0; i < data.length; i++) {
+            var row = $.UI.create("TableViewRow", {
+                title: data[i].title + " " + data[i].message + " " + data[i].clinic,
+                id: data[i].id
             });
-            displayRecords("");
+            var container = $.UI.create("View", {
+                classes: [ "wfill", "hsize", "padding" ]
+            });
+            var left_info = $.UI.create("View", {
+                classes: [ "wfill", "hsize", "vert" ],
+                right: 30
+            });
+            var right_arrow = $.UI.create("ImageView", {
+                classes: [ "hsize" ],
+                image: "/images/btn-forward.png",
+                right: 10,
+                width: 15
+            });
+            var title = $.UI.create("Label", {
+                classes: [ "wfill", "hsize", "h4", "themeColor" ],
+                textAlign: "left",
+                text: data[i].title.replace(/["']/g, "&quot;")
+            });
+            var message = $.UI.create("Label", {
+                classes: [ "wfill", "h5" ],
+                height: 20,
+                textAlign: "left",
+                text: data[i].message.replace(/["']/g, "&quot;")
+            });
+            var clinic = $.UI.create("Label", {
+                classes: [ "wfill", "h5" ],
+                height: 20,
+                textAlign: "left",
+                text: data[i].clinic.replace(/["']/g, "&quot;")
+            });
+            var updated = $.UI.create("Label", {
+                classes: [ "wfill", "hsize", "h5" ],
+                textAlign: "left",
+                text: data[i].updated
+            });
+            left_info.add(title);
+            left_info.add(message);
+            left_info.add(clinic);
+            left_info.add(updated);
+            container.add(left_info);
+            container.add(right_arrow);
+            row.add(container);
+            row_data.push(row);
         }
-        syncToServer();
+        $.recordTable.data = row_data;
     }
-    function syncToServer() {
-        var unsyncList = medicalRecordsModel.getUnsyncList();
-        unsyncList.length > 0 && unsyncList.forEach(function(entry) {
-            if ("" != entry.title && "" != entry.message) {
-                var param = {
-                    app_id: entry.id,
-                    u_id: Ti.App.Properties.getString("u_id"),
-                    clinic: entry.clinic,
-                    title: entry.title,
-                    message: entry.message,
-                    treatment: entry.treatment,
-                    created: entry.created,
-                    updated: entry.updated
-                };
-                API.syncMedicalRecords({
-                    param: param
-                }, updatedRecords);
-                var attachments = medicalAttachmentModel.getUnuploadAttachment(entry.id);
-                attachments.length > 0 && attachments.forEach(function(att) {
-                    att.blob;
-                    var param = {
-                        app_id: att.id,
-                        medical_id: att.medical_id,
-                        u_id: Ti.App.Properties.getString("u_id"),
-                        caption: att.category,
-                        Filedata: Ti.Utils.base64decode(att.blob)
-                    };
-                    API.syncAttachments({
-                        param: param
-                    }, savedAttachment);
-                });
+    function refresh() {
+        loading.start();
+        API.callByPost({
+            url: "getMedicalRecords",
+            params: {
+                u_id: u_id
             }
+        }, function(responseText) {
+            var model = Alloy.createCollection("medicalRecordsV2");
+            var res = JSON.parse(responseText);
+            var arr = res.data || null;
+            console.log(arr);
+            model.saveArray(arr);
+            setTimeout(render_listing, 1e3);
+            loading.finish();
         });
     }
-    function savedAttachment(ex) {
-        var result = ex.param;
-        medicalAttachmentModel.updateFromServer(result.data);
-    }
-    function updatedRecords(ex) {
-        var result = ex.param;
-        var param = {
-            server_id: result.data.id,
-            id: result.data.app_id
-        };
-        medicalRecordsModel.updateFromServer(param);
-    }
-    function displayRecords(listing) {
-        ("" == listing || "displayRecords" == listing.type) && (listing = medicalRecordsModel.getRecordsList());
-        var data = [];
-        if (listing.length < 1) $.recordTable.setData(common.noRecord()); else {
-            listing.forEach(function(entry) {
-                var row = Titanium.UI.createTableViewRow({
-                    touchEnabled: true,
-                    height: 80,
-                    source: entry.id,
-                    backgroundSelectedColor: "#FFE1E1",
-                    backgroundGradient: {
-                        type: "linear",
-                        colors: [ "#FEFEFB", "#F7F7F6" ],
-                        startPoint: {
-                            x: 0,
-                            y: 0
-                        },
-                        endPoint: {
-                            x: 0,
-                            y: 80
-                        },
-                        backFillStart: false
-                    }
-                });
-                var tblView = Ti.UI.createView({
-                    layout: "horizontal",
-                    height: "80",
-                    width: "100%"
-                });
-                var leftView = Ti.UI.createView({
-                    layout: "vertical",
-                    height: "80",
-                    width: "80%"
-                });
-                var rightView = Ti.UI.createView({
-                    layout: "vertical",
-                    height: "80",
-                    width: "auto"
-                });
-                var title = entry.title;
-                "" != title && (title = title.replace(/["']/g, "&quot;"));
-                var clinic = entry.clinic;
-                "" != clinic && (clinic = clinic.replace(/["']/g, "&quot;"));
-                var message = entry.message;
-                "" != message && (message = message.replace(/["']/g, "&quot;"));
-                var recTitle = $.UI.create("Label", {
-                    classes: [ "themeColor" ],
-                    text: title,
-                    font: {
-                        fontSize: 14
-                    },
-                    source: entry.id,
-                    width: "90%",
-                    textAlign: "left",
-                    top: 5,
-                    left: 20,
-                    height: Ti.UI.SIZE
-                });
-                var recClinic = Titanium.UI.createLabel({
-                    text: clinic,
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    color: "#848484",
-                    textAlign: "left",
-                    width: "100%",
-                    left: 20,
-                    height: 15
-                });
-                var recMsg = Titanium.UI.createLabel({
-                    text: message,
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    color: "#848484",
-                    textAlign: "left",
-                    width: "100%",
-                    left: 20,
-                    height: 15
-                });
-                var updatedRecord = Titanium.UI.createLabel({
-                    text: timeFormat(entry.updated),
-                    source: entry.id,
-                    font: {
-                        fontSize: 12,
-                        fontWeight: "bold"
-                    },
-                    width: "auto",
-                    color: "#848484",
-                    textAlign: "left",
-                    left: 20,
-                    height: Ti.UI.SIZE
-                });
-                var rightForwardBtn = Titanium.UI.createImageView({
-                    image: "/images/btn-forward.png",
-                    source: entry.id,
-                    height: 20,
-                    top: 30,
-                    right: 20
-                });
-                row.addEventListener("click", function(e) {
-                    viewDetails(e.rowData.source);
-                });
-                leftView.add(recTitle);
-                leftView.add(recClinic);
-                leftView.add(recMsg);
-                leftView.add(updatedRecord);
-                rightView.add(rightForwardBtn);
-                tblView.add(leftView);
-                tblView.add(rightView);
-                row.add(tblView);
-                data.push(row);
-            });
-            $.recordTable.setData(data);
-            $.recordTable.setHeight(Ti.UI.FILL);
-        }
-        common.hideLoading();
-    }
-    function viewDetails(rec_id) {
-        nav.navigateWithArgs("editMedical", {
-            id: rec_id
-        });
+    function init() {
+        $.win.add(loading.getView());
+        refresh();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "myMedicalRecord";
@@ -255,15 +100,15 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    $.__views.myMedicalRecord = Ti.UI.createWindow({
+    $.__views.win = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         fullscreen: true,
         title: "My Medical Record",
-        id: "myMedicalRecord",
+        id: "win",
         backButtonTitle: "",
         navTintColor: "#CE1D1C"
     });
-    $.__views.myMedicalRecord && $.addTopLevelView($.__views.myMedicalRecord);
+    $.__views.win && $.addTopLevelView($.__views.win);
     $.__views.__alloyId168 = Ti.UI.createView({
         id: "__alloyId168"
     });
@@ -275,36 +120,11 @@ function Controller() {
         image: "/images/add.png"
     });
     $.__views.__alloyId168.add($.__views.newRecord);
-    $.__views.myMedicalRecord.rightNavButton = $.__views.__alloyId168;
+    $.__views.win.rightNavButton = $.__views.__alloyId168;
     $.__views.__alloyId169 = Ti.UI.createView({
         id: "__alloyId169"
     });
-    $.__views.myMedicalRecord.add($.__views.__alloyId169);
-    $.__views.loadingBar = Ti.UI.createView({
-        layout: "vertical",
-        id: "loadingBar",
-        height: 120,
-        width: 120,
-        borderRadius: 15,
-        backgroundColor: "#2E2E2E"
-    });
-    $.__views.__alloyId169.add($.__views.loadingBar);
-    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        top: 30,
-        left: 30,
-        width: 60,
-        id: "activityIndicator"
-    });
-    $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.loading = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        color: "#ffffff",
-        id: "loading",
-        top: 5,
-        text: "Loading"
-    });
-    $.__views.loadingBar.add($.__views.loading);
+    $.__views.win.add($.__views.__alloyId169);
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         height: Ti.UI.SIZE,
@@ -365,17 +185,15 @@ function Controller() {
         image: "/images/add.png"
     });
     $.__views.__alloyId173.add($.__views.newRecord);
-    $.__views.searchItem = Ti.UI.createSearchBar({
+    $.__views.__alloyId174 = Ti.UI.Android.createSearchView({
         tintColor: "#CE1D1C",
-        id: "searchItem",
-        showCancel: true,
-        text: "",
-        top: 0,
-        height: 50,
-        hintText: "Search medical data..."
+        backgroundColor: "#ffffff",
+        id: "__alloyId174"
     });
-    $.__views.aView.add($.__views.searchItem);
     $.__views.recordTable = Ti.UI.createTableView({
+        search: $.__views.__alloyId174,
+        backgroundRepeat: true,
+        backgroundImage: "/images/grey-patern-bg.png",
         id: "recordTable",
         top: 0,
         width: Ti.UI.FILL,
@@ -388,65 +206,15 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
-    var MRECORDS = require("medicalRecords");
-    MRECORDS.construct($);
-    common.construct($);
-    init();
-    Ti.App.addEventListener("displayRecords", displayRecords);
-    $.newRecord.addEventListener("click", function() {
-        medicalRecordsModel.addRecord({
-            title: "",
-            message: "",
-            message: "",
-            created: currentDateTime(),
-            updated: currentDateTime()
-        });
-        var lastRec = medicalRecordsModel.getLastId();
+    Alloy.createCollection("medicalAttachment");
+    var loading = Alloy.createController("loading");
+    var u_id = Ti.App.Properties.getString("u_id");
+    $.recordTable.addEventListener("click", function(e) {
         nav.navigateWithArgs("editMedical", {
-            id: lastRec.id
+            id: e.rowData.id
         });
     });
-    $.searchItem.addEventListener("focus", function() {
-        $.searchItem.showCancel = true;
-        $.recordTable.opacity = 1;
-        $.recordTable.height = "auto";
-    });
-    $.searchItem.addEventListener("blur", function() {
-        $.searchItem.showCancel = false;
-    });
-    $.searchItem.addEventListener("cancel", function() {
-        $.searchItem.blur();
-        var str = $.searchItem.getValue();
-        if ("" == str) {
-            $.recordTable.data = [];
-            displayRecords("");
-        }
-    });
-    var searchResult = function() {
-        common.showLoading();
-        $.searchItem.blur();
-        var str = $.searchItem.getValue();
-        var searchResult = medicalRecordsModel.searchRecord(str);
-        $.recordTable.data = [];
-        displayRecords(searchResult);
-    };
-    $.searchItem.addEventListener("return", searchResult);
-    $.aView.addEventListener("touchend", function() {
-        $.searchItem.blur();
-    });
-    $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.myMedicalRecord);
-    });
-<<<<<<< HEAD
-    $.myMedicalRecord.addEventListener("close", function() {
-        Ti.App.removeEventListener("displayRecords", displayRecords);
-        $.destroy();
-        console.log("window close");
-    });
-=======
->>>>>>> origin/master
+    init();
     _.extend($, exports);
 }
 

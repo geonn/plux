@@ -38,20 +38,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.claim_history.add($.__views.main);
-    $.__views.__alloyId399 = Ti.UI.createView({
+    $.__views.__alloyId400 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId399"
-    });
-    $.__views.main.add($.__views.__alloyId399);
-    $.__views.__alloyId400 = Ti.UI.createView({
-        left: 0,
-        width: "10%",
         id: "__alloyId400"
     });
-    $.__views.__alloyId399.add($.__views.__alloyId400);
+    $.__views.main.add($.__views.__alloyId400);
+    $.__views.__alloyId401 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId401"
+    });
+    $.__views.__alloyId400.add($.__views.__alloyId401);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -59,12 +59,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId400.add($.__views.btnBack);
-    $.__views.__alloyId401 = Ti.UI.createView({
+    $.__views.__alloyId401.add($.__views.btnBack);
+    $.__views.__alloyId402 = Ti.UI.createView({
         width: "90%",
-        id: "__alloyId401"
+        id: "__alloyId402"
     });
-    $.__views.__alloyId399.add($.__views.__alloyId401);
+    $.__views.__alloyId400.add($.__views.__alloyId402);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -76,7 +76,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId401.add($.__views.pageTitle);
+    $.__views.__alloyId402.add($.__views.pageTitle);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -228,10 +228,7 @@ function Controller() {
             });
         });
     });
-<<<<<<< HEAD
     $.claim_history.addEventListener("close", function() {});
-=======
->>>>>>> origin/master
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.claim_history);
     });

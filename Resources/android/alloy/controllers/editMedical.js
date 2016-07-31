@@ -9,9 +9,12 @@ function __processArg(obj, key) {
 
 function Controller() {
     function loadMedicalInfo() {
-        loadImage();
         var title = details.title;
-        "" != title && (title = title.replace(/&quot;/g, "'"));
+        if ("" != title) {
+            console.log(details);
+            console.log(title);
+            title = title.replace(/&quot;/g, "'");
+        }
         var clinic = details.clinic;
         "undefined" == clinic && (clinic = "");
         var treatment = details.treatment;
@@ -177,7 +180,6 @@ function Controller() {
                                 var record = res.data;
                                 medicalAttachmentModel.addFromServer(record[0].id, record);
                             }
-                            loadImage();
                         });
                     }
                 },
@@ -222,7 +224,6 @@ function Controller() {
                                 var record = res.data;
                                 medicalAttachmentModel.addFromServer(record[0].id, record);
                             }
-                            loadImage();
                         });
                     },
                     cancel: function() {},
@@ -516,18 +517,21 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    var rec_id = args.id || "";
+    var id = args.id || "";
     var MRECORDS = require("medicalRecords");
     MRECORDS.construct($);
     var clickTime = null;
     var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
-    var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    var details = medicalRecordsModel.getRecordById(rec_id);
+    var medicalRecordsModel = Alloy.createCollection("medicalRecordsV2");
+    var details = medicalRecordsModel.getDataById(id);
     loadMedicalInfo();
     var categoryType = "Blood Test";
     $.proceduceTextArea.addEventListener("focus", function() {});
     $.editRecWin.addEventListener("close", function() {
         backAndSave();
+        Ti.App.removeEventListener("refreshAttachment", loadImage);
+        $.destroy();
+        console.log("window close");
     });
     Ti.App.addEventListener("refreshAttachment", loadImage);
     $.saveRecord.addEventListener("click", saveRecord);
@@ -538,14 +542,6 @@ function Controller() {
     console.log(applicationDatDirectory);
     var filesInFolder = applicationDatDirectory.getDirectoryListing();
     console.log(filesInFolder);
-<<<<<<< HEAD
-    $.editRecWin.addEventListener("close", function() {
-        Ti.App.removeEventListener("refreshAttachment", loadImage);
-        $.destroy();
-        console.log("window close");
-    });
-=======
->>>>>>> origin/master
     __defers["$.__views.__alloyId97!click!showCategory"] && $.addListener($.__views.__alloyId97, "click", showCategory);
     __defers["$.__views.__alloyId100!click!deleteRecord"] && $.addListener($.__views.__alloyId100, "click", deleteRecord);
     _.extend($, exports);

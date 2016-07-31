@@ -4,10 +4,7 @@ exports.definition = {
     config: {
         columns: {
             id: "INTEGER PRIMARY KEY AUTOINCREMENT",
-<<<<<<< HEAD
-=======
             u_id: "TEXT",
->>>>>>> origin/master
             title: "TEXT",
             server_id: "TEXT",
             message: "TEXT",
@@ -67,12 +64,8 @@ exports.definition = {
             },
             getRecordsList: function() {
                 var collection = this;
-<<<<<<< HEAD
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + "  order by updated DESC";
-=======
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id=" + Ti.App.Properties.getString("u_id") + " order by updated DESC";
                 console.log(sql);
->>>>>>> origin/master
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -160,11 +153,7 @@ exports.definition = {
                 "" != treatment && (treatment = treatment.replace(/["']/g, "&quot;"));
                 var message = entry.message;
                 "" != message && (message = message.replace(/["']/g, "&quot;"));
-<<<<<<< HEAD
-                sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',  message='" + entry.message + "', clinic='" + clinic + "', treatment='" + treatment + "' WHERE id='" + entry.id + "' ";
-=======
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET title='" + entry.title + "',u_id='" + entry.u_id + "',   message='" + entry.message + "', clinic='" + clinic + "', treatment='" + treatment + "' WHERE id='" + entry.id + "' ";
->>>>>>> origin/master
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");

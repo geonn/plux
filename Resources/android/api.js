@@ -124,6 +124,8 @@ var getRoomId = "http://" + FREEJINI_DOMAIN + "/api/getRoomId?user=" + USER + "&
 
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
+var getMedicalRecords = "http://" + FREEJINI_DOMAIN + "/api/getMedicalRecords?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";

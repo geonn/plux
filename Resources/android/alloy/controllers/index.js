@@ -56,10 +56,7 @@ function Controller() {
     appointmentModel.addColumn("specialty_name", "TEXT");
     var medicalRecordsModel = Alloy.createCollection("medicalRecords");
     medicalRecordsModel.addColumn("server_id", "TEXT");
-<<<<<<< HEAD
-=======
     medicalRecordsModel.addColumn("u_id", "TEXT");
->>>>>>> origin/master
     var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
     medicalAttachmentModel.addColumn("img_path", "TEXT");
     medicalAttachmentModel.addColumn("server_id", "TEXT");
@@ -75,11 +72,6 @@ function Controller() {
         loadingView.getView().open();
         loadingView.start();
     });
-<<<<<<< HEAD
-    var AppVersionControl = require("AppVersionControl");
-    AppVersionControl.checkAndUpdate();
-=======
->>>>>>> origin/master
     Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     _.extend($, exports);
 }

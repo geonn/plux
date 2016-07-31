@@ -2,9 +2,9 @@ var args = arguments[0] || {};
 var rec_id = args.rec_id;
 var position = args.position;  
 //load model 
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment'); 
+var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
 var getAttImages = function(){
-	var items  = medicalAttachmentModel.getRecordByMecId(rec_id);
+	var items  = medicalAttachmentModel.getData(rec_id);
 	var counter = 0;
 	var imagepath, adImage, row = '';
 	var my_page = 0;
@@ -120,17 +120,17 @@ var getAttImages = function(){
 			if (e.index === e.source.cancel){
 			      //Do nothing
 			}
-			if (e.index === 1){ 
-				var imgDetails = medicalAttachmentModel.getRecordById(items[my_page].id);
+			if (e.index === 1){
 				var param = {  
-					"img_id" : imgDetails.server_id
+					"img_id" : items[my_page].id,
+					'status': 2
 				};
-			 
-			  
-				API.callByPost({url:"deleteAttachmentUrl", params: param}, function(responseText){ 
+			   console.log(param);
+				API.callByPost({url:"deleteAttachment", params: param}, function(responseText){ 
 					var res = JSON.parse(responseText);  
+					console.log(res);
 					if(res.status == "success"){  
-						medicalAttachmentModel.removeRecordById(items[my_page].id);
+						medicalAttachmentModel.saveArray(res.data);
 						getAttImages();
 						Ti.App.fireEvent('refreshAttachment'); 
 						$.attachment_Details.close({
@@ -140,17 +140,7 @@ var getAttImages = function(){
 						});
 						
 					}
-				}, function(){
-					medicalAttachmentModel.removeRecordById(items[my_page].id);
-						getAttImages();
-						Ti.App.fireEvent('refreshAttachment'); 
-						$.attachment_Details.close({
-							curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-							opacity: 0,
-							duration: 200
-						});
 				});
-				
 			}
 		});
 		dialog.show(); 
