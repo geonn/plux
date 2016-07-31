@@ -35,6 +35,7 @@ var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+
 var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
 var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var changeMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
 
 var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
 var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
@@ -49,16 +50,22 @@ var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointment
 var getClinicLocator2 = "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
 var getRoomId = "http://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
+var getMedicalRecords = "http://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY; 
+var addUpdateMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
+var getMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY;
+var addMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
+var deleteAttachment = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
-var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx"; 
-var checkBalanceUrl = "http://"+API_DOMAIN+"/balchk.aspx";  
+var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx";
+var checkBalanceUrl = "http://"+API_DOMAIN+"/balchk.aspx";
 var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
 var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
 var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
-var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx"; 
-var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";  
+var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx";
+var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";
+
 /**claim submmission***/
 var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
 var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
@@ -1113,20 +1120,6 @@ exports.loadPanelList = function (ex){
 	 // Send the request.
 	 client.send(); 
 };
-
-
-exports.callByPost = function(e, onload, onerror){
-	var url =  eval(e.url);
-	 console.log(url);
-	var _result = contactServerByPost(url, e.params || {});   
-	_result.onload = function(e) {   
-		onload && onload(this.responseText); 
-	};
-		
-	_result.onerror = function(e) { 
-		onerror && onerror(); 
-	};	
-};
  
 exports.callByGet  = function(e, onload, onerror){
 	var url =  eval(e.url) + "?"+e.params;
@@ -1188,6 +1181,7 @@ exports.callByPost = function(e, onload, onerror){
 	if(deviceToken != ""){  
 		var url = eval(e.url);
 		console.log(url);
+		console.log(e.params);
 		var _result = contactServerByPost(url, e.params || {});   
 		_result.onload = function(ex) { 
 			console.log('success callByPost');
@@ -1196,6 +1190,7 @@ exports.callByPost = function(e, onload, onerror){
 		
 		_result.onerror = function(ex) {  
 			if(retryTimes !== 0 && Titanium.Network.online){
+				retryTimes --;
 				_.extend(e, {retryTimes: retryTimes});
 				API.callByPost(e, onload, onerror); 
 			}else{

@@ -1,16 +1,11 @@
 <Alloy>
-	<Window title="My Medical Record" id="myMedicalRecord" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="My Medical Record" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
-	         	<ImageView left='10' id="newRecord" width="25" height="20" image="/images/add.png" />
-			         	
+	         	<ImageView left='10' onClick="newRecord" width="25" height="20" image="/images/add.png" />
 	        </View>
         </RightNavButton>
 	 	<View>
-		 	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
-	        	<ActivityIndicator  id="activityIndicator" />
-	        	<Label id="loading" top="5" text="Loading" color="#ffffff" />
-	        </View>
 			<View id="aView" height="Ti.UI.SIZE" top="0" layout="vertical"> 
 				<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 					<View left="0" width="20%">
@@ -20,12 +15,13 @@
 			     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
 			     	</View>
 			     	<View left="0" width="20%">
-			     		<ImageView left='10' id="newRecord"  width="25" height="20" image="/images/add.png" />
-			         	 
+			     		<ImageView left='10' id="newRecord" onClick="newRecord" width="25" height="20" image="/images/add.png" />
 			   		</View>
 			 	</View>
-				<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." /> 
-		 		<TableView id="recordTable" top="0" width="Ti.UI.FILL" height="Ti.UI.FILL"  contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
+		 		<TableView filterAtribute="filter" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" id="recordTable" top="0" width="Ti.UI.FILL" height="Ti.UI.FILL"  contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" >
+		 			<SearchBar tintColor="#CE1D1C" backgroundColor="#ffffff" id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." platform="ios" /> 
+		 			<SearchView  tintColor="#CE1D1C" backgroundColor="#ffffff" ns="Ti.UI.Android" platform="android"/>
+	 			</TableView>
 			</View> 
 		</View>
 	</Window>

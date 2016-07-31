@@ -34,7 +34,6 @@
 						</Toolbar>
 					</KeyboardToolbar>
 			 	</TextArea>
-			 	
 				<Label  class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Procedures</Label>
 			 	<TextArea id="proceduceTextArea" backgroundColor="#f6f6f6" color="#888" textAlign="left" hintText="Procedures" value="" width="Ti.UI.FILL" left="10" right="10" height="200" suppressReturn="false" >
 			 		<KeyboardToolbar platform="ios">

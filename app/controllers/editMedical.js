@@ -1,18 +1,19 @@
 var args = arguments[0] || {};
-var rec_id = args.id || "";
+var id = args.id || "";
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 var clickTime = null;
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment'); 
-var medicalRecordsModel = Alloy.createCollection('medicalRecords');
-var details = medicalRecordsModel.getRecordById(rec_id); 
+var skipUpdate = false;
+var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
+var medicalRecordsModel = Alloy.createCollection('medicalRecordsV2');
+
+var details = medicalRecordsModel.getDataById(id);
 if(OS_IOS){
 	var MediaPickerModule = require('MediaPicker').MediaPicker;
 	var MediaPicker = new MediaPickerModule();
 }
 
-			
-loadMedicalInfo(); 
+loadMedicalInfo();
  
 function loadMedicalInfo(){ 
 	loadImage(); 
@@ -39,8 +40,7 @@ function loadMedicalInfo(){
 } 
 
 function loadImage(){
-	var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
-	 
+	var recAttachment = medicalAttachmentModel.getData(id);
 	var counter = 0;
 	 
 	removeAllChildren($.attachment);
@@ -66,36 +66,32 @@ function saveRecord(){
 	var treatment = $.treatmentTextArea.value;
 
 	if(title.trim() == ""){
-		title = "Untitled - "+ currentDateTime();
+		title = "Untitled - "+ common.now();
 	}  
 	
 	/** save text information***/
 	var param = { 
-		app_id :rec_id,
+		id :id,
 		u_id : Ti.App.Properties.getString('u_id'),
 		clinic : clinic,
 		title : title,
 		message  : message,
 		treatment : treatment,
 		created : details.created,
-		updated : currentDateTime(),
+		updated : common.now(),
 	};    
-	API.syncMedicalRecords({param: param}, function(){
-		medicalRecordsModel.updateRecord({ 
-			id : rec_id,
+	API.callByPost({url: "addUpdateMedicalRecord", params: param}, function(){
+		medicalRecordsModel.saveArray([{ 
+			id : id,
 			title : title.trim(),
 			clinic  : clinic.trim(),
 			message : message.trim(),
 			treatment : treatment.trim(),  
-			updated : currentDateTime()
-		});  
+			updated : common.now()
+		}]);  
 		Ti.App.fireEvent('displayRecords');
 		nav.closeWindow($.editRecWin);
 	});
-	
-	// nav.navigationWindow("myHealth" );
-	
-	 
 } 
 function deleteRecord(){
 	
@@ -110,10 +106,20 @@ function deleteRecord(){
 		      //Do nothing
 		}
 		if (e.index === 1){ 
-			 medicalRecordsModel.removeRecordById(rec_id);
-			 medicalAttachmentModel.removeRecordByRec(rec_id);
-			 Ti.App.fireEvent('displayRecords');
-			 nav.closeWindow($.editRecWin);
+			var param = {  
+				"id" : id,
+				'status': 2
+			};
+			API.callByPost({url: "changeMedicalRecord", params: param}, function(responseText){
+				console.log(responseText);
+				var res = JSON.parse(responseText);  
+				
+				if(res.status == "success"){  
+					medicalRecordsModel.saveArray(res.data);
+					skipUpdate = true;
+					nav.closeWindow($.editRecWin);
+				}
+			});
 		}
 	});
 	dialog.show(); 
@@ -129,10 +135,10 @@ function backAndSave(){
 	var message    = $.proceduceTextArea.value;
 	var treatment  = $.treatmentTextArea.value;
 	if(title.trim() == "" && message.trim() == "" && treatment.trim() == ""){
-		var recAttachment = medicalAttachmentModel.getRecordByMecId(rec_id);
+		var recAttachment = medicalAttachmentModel.getRecordByMecId(id);
 		 
 		if(recAttachment.length == 0){
-			medicalRecordsModel.removeRecordById(rec_id);
+			medicalRecordsModel.removeRecordById(id);
 		}
 		
 	}else{
@@ -154,7 +160,7 @@ function attachedPhoto(image,position){
 		right: 5,
 		bottom:0
 	});
-		            
+	console.log(image);    
 	var iImage = Ti.UI.createImageView({
 		image : image,
 		position :position,
@@ -169,7 +175,7 @@ function attachedPhoto(image,position){
 	        return;
 	    };
 	    clickTime = currentTime; 
-		var page = Alloy.createController("attachmentDetails",{rec_id:rec_id,position:position}).getView(); 
+		var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position}).getView(); 
 	  	page.open();
 	  	page.animate({
 			curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
@@ -238,18 +244,19 @@ function takePhoto(){
 			            blobContainer = image; 
 			            
 						var param = { 
-						 		app_id : rec_id,
-						 		medical_id :rec_id,
-						 		u_id :Ti.App.Properties.getString('u_id'),
-						 		caption : categoryType,
-						 		Filedata : image,
+					 		medical_id :id,
+					 		u_id :Ti.App.Properties.getString('u_id'),
+					 		caption : categoryType,
+					 		Filedata : image,
 						};	
 						 
-						API.syncAttachments({param: param}, function(responseText){
+						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
-								var record = res.data;  
-								medicalAttachmentModel.addFromServer(record[0].id, record);
+								var model = Alloy.createCollection("medicalAttachmentV2");
+								var res = JSON.parse(responseText);
+								var arr = res.data || null;
+								model.saveArray(arr);
 							}
 							
 				            loadImage(); 
@@ -301,24 +308,23 @@ function takePhoto(){
 			            blobContainer = image; 
 			           	 
 						var param = { 
-						 		app_id : rec_id,
-						 		medical_id :rec_id,
-						 		u_id :Ti.App.Properties.getString('u_id'),
-						 		caption : categoryType,
-						 		Filedata : image,
+					 		medical_id :id,
+					 		u_id :Ti.App.Properties.getString('u_id'),
+					 		caption : categoryType,
+					 		Filedata : image,
 						};	
 						 
-						API.syncAttachments({param: param}, function(responseText){
+						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
-								var record = res.data;  
-								medicalAttachmentModel.addFromServer(record[0].id, record);
+								var model = Alloy.createCollection("medicalAttachmentV2");
+								var res = JSON.parse(responseText);
+								var arr = res.data || null;
+								model.saveArray(arr);
 							}
 							
 				            loadImage(); 
-						});	 
-						 	
-			           
+						});
 		            },
 		            cancel:function() {
 		               
@@ -339,61 +345,61 @@ function takePhoto(){
 
 }
 
-function saveImage(items){
-	var iterate = function(item) {
-		MediaPicker.getImageByURL({
-			key: item.url,
-			id: item.id,
-			success: function(e) {
-				var image;
-				if(e.image.apiName == 'Ti.Blob'){
-					image = e.image;
-				}else{
-					var imageview = Ti.UI.createImageView({
-						image: 'file://'+e.image
-					});
-					image = imageview.toBlob();
+function iterate(item){
+	MediaPicker.getImageByURL({
+		key: item.url,
+		id: item.id,
+		success: function(e) {
+			var image;
+			if(e.image.apiName == 'Ti.Blob'){
+				image = e.image;
+			}else{
+				var imageview = Ti.UI.createImageView({
+					image: 'file://'+e.image
+				});
+				image = imageview.toBlob();
+			}
+			
+			if(image.width > image.height){
+				var newWidth = 640;
+				var ratio =   640 / image.width;
+				var newHeight = image.height * ratio;
+			}else{
+				var newHeight = 640;
+				var ratio =   640 / image.height;
+				var newWidth = image.width * ratio;
+			} 
+			image = image.imageAsResized(newWidth, newHeight); 
+		    blobContainer = image; 
+		   	 
+		   	var param = { 
+		 		medical_id :id,
+		 		u_id :Ti.App.Properties.getString('u_id'),
+		 		caption : categoryType,
+		 		Filedata : image,
+			};	 
+			console.log(param);
+			API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
+				var res = JSON.parse(responseText);  
+				if(res.status == "success"){  
+					var model = Alloy.createCollection("medicalAttachmentV2");
+					var res = JSON.parse(responseText);
+					var arr = res.data || null;
+					console.log(responseText);
+					model.saveArray(arr);
 				}
 				
-				if(image.width > image.height){
-					var newWidth = 640;
-					var ratio =   640 / image.width;
-					var newHeight = image.height * ratio;
-				}else{
-					var newHeight = 640;
-					var ratio =   640 / image.height;
-					var newWidth = image.width * ratio;
-				} 
-				image = image.imageAsResized(newWidth, newHeight); 
-			    blobContainer = image; 
-			   	 
-				var param = { 
-				 		app_id : rec_id,
-				 		medical_id :rec_id,
-				 		u_id :Ti.App.Properties.getString('u_id'),
-				 		caption : categoryType,
-				 		Filedata : image,
-				};	
-				 
-				API.syncAttachments({param: param}, function(responseText){
-					var res = JSON.parse(responseText);  
-					if(res.status == "success"){  
-						var record = res.data;  
-						medicalAttachmentModel.addFromServer(record[0].id, record);
-					}
-					
-			        loadImage();
-			        console.log(items.length);
-			        if (items.length) iterate(items.splice(0,1)[0]);
-			        else{
-			        	
-			        }
-				});
-			}
-		});
-	};
+	            loadImage(); 
+			});
+		}
+	});
+}
+
+function saveImage(items){
 	console.log(items.length+"?total image picker");
-	if (items.length) iterate(items.splice(0,1)[0]);
+	for (var a = 0; items.length > a; a++){
+		iterate(items[a]);
+	}
 }
 
 $.proceduceTextArea.addEventListener('focus', function(){
@@ -401,7 +407,13 @@ $.proceduceTextArea.addEventListener('focus', function(){
 });
  
 $.editRecWin.addEventListener('close',function(){
-	backAndSave();
+	if(!skipUpdate){
+		backAndSave();
+	}
+	Ti.App.removeEventListener('refreshAttachment',loadImage );
+	$.destroy();
+	Ti.App.fireEvent("myMedicalRecord:refresh");
+	console.log("window close");
 });
 Ti.App.addEventListener('refreshAttachment',loadImage );
 $.saveRecord.addEventListener('click', saveRecord);
@@ -413,14 +425,6 @@ if(Ti.Platform.osname == "android"){
 }
 
 var applicationDatDirectory = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory);
-console.log(applicationDatDirectory);
 var filesInFolder = applicationDatDirectory.getDirectoryListing();
-console.log(filesInFolder);
-
-$.editRecWin.addEventListener("close", function(){
-	Ti.App.removeEventListener('refreshAttachment',loadImage );
-	$.destroy();
-	console.log("window close");
-});
 
 
