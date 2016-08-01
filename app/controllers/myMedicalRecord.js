@@ -20,7 +20,7 @@ function render_listing(){
 	var data = model.getData();
 	var row_data = [];
 	for (var i=0; i < data.length; i++) {
-		var row = $.UI.create("TableViewRow",{filter: data[i].title+" "+data[i].message+" "+data[i].clinic, id: data[i].id});
+		var row = $.UI.create("TableViewRow",{keyword: data[i].title+" "+data[i].message+" "+data[i].clinic, id: data[i].id});
 		var container = $.UI.create("View", {classes:['wfill','hsize','padding']});
 		var left_info = $.UI.create("View", {classes:['wfill','hsize','vert'], right: 30});
 		var right_arrow = $.UI.create("ImageView", {classes:['hsize'], image: "/images/btn-forward.png", right: 10, width: 15});
@@ -70,6 +70,7 @@ function refresh(){
 
 function init(){
 	$.win.add(loading.getView());
+	$.recordTable.search = $.searchItem;
 	refresh();
 }
 

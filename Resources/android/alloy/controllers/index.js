@@ -11,9 +11,16 @@ function Controller() {
     function loadingViewFinish() {
         console.log("anyone call you?");
         var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
-        if ("" != isShowIntro) if ("" == u_id) {
+        var isSignup2 = Ti.App.Properties.getString("signup2");
+        if ("" != isShowIntro) if ("" == u_id) if ("yes" == isSignup2) {
+            var win = Alloy.createController("asp/signup2").getView();
+            win.open();
+        } else {
             console.log("login");
             var win = Alloy.createController("login").getView();
+            win.open();
+        } else if ("yes" == isSignup2) {
+            var win = Alloy.createController("asp/signup2").getView();
             win.open();
         } else {
             console.log("home");

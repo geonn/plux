@@ -10,29 +10,13 @@ function __processArg(obj, key) {
 function Controller() {
     function doAspSignup() {
         common.showLoading();
-        var email = $.email.value;
-        var email2 = $.email2.value;
-        var password = $.password.value;
-        var name = $.email.value;
         var memno = $.memno.value;
         var empno = $.empno.value;
-        var mobileno = $.mobileno.value;
-        var view_agreement = view_agreement_box.children[0].children[0].checked;
-        if ("1" != view_agreement) {
-            common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP Plux member.");
-            return false;
-        }
         var params = {
-            email: email,
-            email2: email2,
-            password: password,
-            name: name,
             memno: memno,
-            empno: empno,
-            mobileno: mobileno,
-            agreets: view_agreement
+            empno: empno
         };
-        API.do_asp_signup(params, $);
+        API.do_asp_presignup(params, $);
     }
     function hideProductFormKeyboard(e) {
         var exception = [ "email", "password", "name", "memno", "empno", "mobileno" ];
@@ -40,12 +24,8 @@ function Controller() {
             console.log(e.source.id);
             return false;
         }
-        $.email.blur();
-        $.password.blur();
-        $.name.blur();
         $.memno.blur();
         $.empno.blur();
-        $.mobileno.blur();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/signup";
@@ -75,32 +55,32 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.aspSignUpWin && $.addTopLevelView($.__views.aspSignUpWin);
-    $.__views.__alloyId518 = Ti.UI.createView({
+    $.__views.__alloyId517 = Ti.UI.createView({
         top: 0,
         height: 50,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId518"
+        id: "__alloyId517"
     });
-    $.__views.aspSignUpWin.add($.__views.__alloyId518);
+    $.__views.aspSignUpWin.add($.__views.__alloyId517);
     $.__views.btnBack = Ti.UI.createView({
         left: 0,
         zIndex: 9,
         id: "btnBack",
         width: "20%"
     });
-    $.__views.__alloyId518.add($.__views.btnBack);
-    $.__views.__alloyId519 = Ti.UI.createImageView({
+    $.__views.__alloyId517.add($.__views.btnBack);
+    $.__views.__alloyId518 = Ti.UI.createImageView({
         left: 10,
         width: 25,
         height: 25,
         image: "/images/btn-back.png",
+        id: "__alloyId518"
+    });
+    $.__views.btnBack.add($.__views.__alloyId518);
+    $.__views.__alloyId519 = Ti.UI.createView({
         id: "__alloyId519"
     });
-    $.__views.btnBack.add($.__views.__alloyId519);
-    $.__views.__alloyId520 = Ti.UI.createView({
-        id: "__alloyId520"
-    });
-    $.__views.__alloyId518.add($.__views.__alloyId520);
+    $.__views.__alloyId517.add($.__views.__alloyId519);
     $.__views.titleLbl = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -109,11 +89,11 @@ function Controller() {
         id: "titleLbl",
         textAlign: "center"
     });
-    $.__views.__alloyId520.add($.__views.titleLbl);
-    $.__views.__alloyId521 = Ti.UI.createView({
-        id: "__alloyId521"
+    $.__views.__alloyId519.add($.__views.titleLbl);
+    $.__views.__alloyId520 = Ti.UI.createView({
+        id: "__alloyId520"
     });
-    $.__views.aspSignUpWin.add($.__views.__alloyId521);
+    $.__views.aspSignUpWin.add($.__views.__alloyId520);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -122,7 +102,7 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId521.add($.__views.loadingBar);
+    $.__views.__alloyId520.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -130,19 +110,19 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId522 = Ti.UI.createView({
+    $.__views.__alloyId521 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId522"
+        id: "__alloyId521"
     });
-    $.__views.__alloyId521.add($.__views.__alloyId522);
+    $.__views.__alloyId520.add($.__views.__alloyId521);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId522.add($.__views.main);
-    $.__views.__alloyId523 = Ti.UI.createImageView({
+    $.__views.__alloyId521.add($.__views.main);
+    $.__views.__alloyId522 = Ti.UI.createImageView({
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -150,94 +130,9 @@ function Controller() {
         bottom: "20dp",
         top: "20dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId523"
+        id: "__alloyId522"
     });
-    $.__views.main.add($.__views.__alloyId523);
-    $.__views.email = Ti.UI.createTextField({
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        height: "50dp",
-        font: {
-            fontSize: "14dp"
-        },
-        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: "90%",
-        backgroundColor: "#fff",
-        color: "#000000",
-        borderColor: "#cccccc",
-        paddingLeft: "20dp",
-        paddingRight: "20dp",
-        bottom: "5dp",
-        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-        id: "email",
-        hintText: "Enter Email",
-        value: ""
-    });
-    $.__views.main.add($.__views.email);
-    $.__views.email2 = Ti.UI.createTextField({
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        height: "50dp",
-        font: {
-            fontSize: "14dp"
-        },
-        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: "90%",
-        backgroundColor: "#fff",
-        color: "#000000",
-        borderColor: "#cccccc",
-        paddingLeft: "20dp",
-        paddingRight: "20dp",
-        bottom: "5dp",
-        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-        id: "email2",
-        hintText: "Secondary Email (Optional)",
-        value: ""
-    });
-    $.__views.main.add($.__views.email2);
-    $.__views.password = Ti.UI.createTextField({
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        height: "50dp",
-        font: {
-            fontSize: "14dp"
-        },
-        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: "90%",
-        backgroundColor: "#fff",
-        passwordMask: true,
-        color: "#000000",
-        borderColor: "#cccccc",
-        bottom: "5dp",
-        paddingLeft: "20dp",
-        paddingRight: "20dp",
-        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-        returnKeyType: Titanium.UI.RETURNKEY_DONE,
-        id: "password",
-        hintText: "Enter Password",
-        value: ""
-    });
-    $.__views.main.add($.__views.password);
-    $.__views.name = Ti.UI.createTextField({
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        height: "50dp",
-        font: {
-            fontSize: "14dp"
-        },
-        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: "90%",
-        backgroundColor: "#fff",
-        color: "#000000",
-        borderColor: "#cccccc",
-        paddingLeft: "20dp",
-        paddingRight: "20dp",
-        bottom: "5dp",
-        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-        id: "name",
-        hintText: "Enter Name",
-        value: ""
-    });
-    $.__views.main.add($.__views.name);
+    $.__views.main.add($.__views.__alloyId522);
     $.__views.memno = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -280,34 +175,6 @@ function Controller() {
         value: ""
     });
     $.__views.main.add($.__views.empno);
-    $.__views.mobileno = Ti.UI.createTextField({
-        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-        height: "50dp",
-        font: {
-            fontSize: "14dp"
-        },
-        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: "90%",
-        backgroundColor: "#fff",
-        color: "#000000",
-        borderColor: "#cccccc",
-        paddingLeft: "20dp",
-        paddingRight: "20dp",
-        bottom: "5dp",
-        keyboardType: Titanium.UI.KEYBOARD_DEFAULT,
-        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
-        id: "mobileno",
-        hintText: "Enter Mobile Number",
-        value: ""
-    });
-    $.__views.main.add($.__views.mobileno);
-    $.__views.tc_area = Ti.UI.createView({
-        id: "tc_area",
-        layout: "vertical",
-        height: Ti.UI.SIZE,
-        width: Ti.UI.FILL
-    });
-    $.__views.main.add($.__views.tc_area);
     $.__views.asp_sign_btn = Ti.UI.createButton({
         id: "asp_sign_btn",
         borderRadius: 5,
@@ -326,14 +193,6 @@ function Controller() {
     arguments[0] || {};
     Alloy.Globals.navMenu;
     common.construct($);
-    var view_agreement_box = common.CheckboxwithText("I have read and agree to the ", "Privacy Policy", {
-        name: "agreets"
-    }, "privacy");
-    var preset_email = Ti.App.Properties.getString("plux_email") || "";
-    var preset_password = Ti.App.Properties.getString("plux_password") || "";
-    $.email.value = preset_email;
-    $.email.password = preset_password;
-    $.tc_area.add(view_agreement_box);
     $.aspSignUpWin.addEventListener("click", hideProductFormKeyboard);
     $.btnBack.addEventListener("click", function() {
         $.aspSignUpWin.close();

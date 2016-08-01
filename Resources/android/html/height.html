@@ -17,17 +17,7 @@
  			color: #000;
  		}
  	</style>
-	<script>
-       
-            Ti.App.addEventListener("app:height",function(e) {
-              if(e.message != ""){
-              	loadChart(e.message);
-              }else{
-              	loadNoData(e.dataPeriod);
-              }
-            });
-             Ti.App.fireEvent('populateDataById',{ id: 5});
-        </script>
+	
         
 <script type="text/javascript">
  
@@ -73,4 +63,15 @@ function loadNoData(dataPeriod){
 <body>
 <div id="chartContainer" style="height: 200px; width: 100%;"></div>
 </body>
+<script>
+   
+        Ti.App.addEventListener("app:height",function(e) {
+          if(e.message != ""){
+          	loadChart(e.message);
+          }else{
+          	loadNoData(e.dataPeriod);
+          }
+        });
+         Ti.App.fireEvent('populateDataById',{ id: 5});
+    </script>
 </html>

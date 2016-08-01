@@ -147,6 +147,8 @@ var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachm
 
 var deleteAttachment = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?user=" + USER + "&key=" + KEY;
 
+var getHealthDataByUser = "http://" + FREEJINI_DOMAIN + "/api/getHealthDataByUser?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -164,6 +166,8 @@ var resendVerifUrl = "http://" + API_DOMAIN + "/sendveriemail.aspx";
 var getclaimDetailBySeriesUrl = "http://" + API_DOMAIN + "/claimdetails.aspx";
 
 var getclaimReimbUrl = "http://" + API_DOMAIN + "/ClaimReimb.aspx";
+
+var aspPreSignupUrl = "http://" + API_DOMAIN + "/presignup.aspx";
 
 var getclaimCategoryUrl = "http://" + API_DOMAIN + "/claimcategory.aspx";
 
@@ -525,6 +529,70 @@ exports.do_signup = function(data, mainView) {
     client.send();
 };
 
+exports.plux_signup = function(data, callback) {
+    var url = pluxSignUpUrl + "&fullname=" + data.fullname + "&email=" + data.email + "&password=" + data.password + "&password2=" + data.password;
+    ({
+        email: data.email,
+        password: data.password
+    });
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            common.hideLoading();
+            if ("error" == result.status) {
+                common.createAlert("Error", result.data);
+                return false;
+            }
+            Ti.App.Properties.setString("u_id", result.data.u_id);
+            Ti.App.Properties.setString("plux_email", result.data.email);
+            Ti.App.Properties.setString("asp_email", result.data.email);
+            Ti.App.Properties.setString("asp_password", data.password);
+            callback();
+        },
+        onerror: function() {},
+        timeout: 7e4
+    });
+    client.open("GET", url);
+    client.send();
+};
+
+exports.do_asp_presignup = function(data, mainView) {
+    var url = aspPreSignupUrl + "?MEMNO=" + data.memno + "&EMPNO=" + data.empno;
+    Ti.App.Properties.getString("u_id") || "";
+    console.log(url);
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            var result = JSON.parse(this.responseText);
+            res = result[0];
+            if (void 0 !== typeof res.message && null != res.message) {
+                common.createAlert("Error", res.message);
+                common.hideLoading();
+            } else {
+                {
+                    Alloy.createCollection("users");
+                }
+                Ti.App.Properties.setString("memno", res.memno);
+                Ti.App.Properties.setString("empno", res.empno);
+                Ti.App.Properties.setString("corpcode", res.corpcode);
+                Ti.App.Properties.setString("corpname", res.corpname);
+                Ti.App.Properties.setString("name", res.name);
+                Ti.App.Properties.setString("signup2", "yes");
+                common.hideLoading();
+                nav.closeWindow(mainView.aspSignUpWin);
+                var win = Alloy.createController("asp/signup2.js").getView();
+                win.open();
+            }
+        },
+        onerror: function(e) {
+            common.createAlert("Sign Up Fail", e.error);
+            common.hideLoading();
+        },
+        timeout: 6e4
+    });
+    client.open("GET", encodeURI(url));
+    client.send();
+};
+
 exports.do_asp_signup = function(data, mainView) {
     var url = aspSignupUrl + "?EMAIL=" + data.email + "&EMAIL2=" + data.email2 + "&PASSWORD=" + data.password + "&NAME=" + data.name + "&MEMNO=" + data.memno + "&EMPNO=" + data.empno + "&MOBILENO=" + data.password + "&SMSME=1&AGREETS=" + data.agreets;
     var u_id = Ti.App.Properties.getString("u_id") || "";
@@ -543,8 +611,24 @@ exports.do_asp_signup = function(data, mainView) {
                 Ti.App.Properties.setString("corpcode", res.corpcode);
                 Ti.App.Properties.setString("asp_email", data.email);
                 Ti.App.Properties.setString("asp_password", data.password);
-                updateUserService(u_id, 1, data.email, data.password);
                 usersModel.addUserData(result);
+                Ti.App.Properties.setString("signup2", "");
+                if ("" != u_id) {
+                    console.log(u_id + " " + data.email + " " + data.password);
+                    updateUserService(u_id, 1, data.email, data.password);
+                } else {
+                    var params = {
+                        fullname: data.name,
+                        email: data.email,
+                        password: data.password,
+                        agreets: 1
+                    };
+                    API.plux_signup(params, function() {
+                        u_id = Ti.App.Properties.getString("u_id") || "";
+                        console.log(u_id + " " + data.email + " " + data.password);
+                        updateUserService(u_id, 1, data.email, data.password);
+                    });
+                }
                 common.hideLoading();
                 nav.closeWindow(mainView.aspSignUpWin);
                 Ti.App.fireEvent("updateHeader");
@@ -936,8 +1020,6 @@ exports.callByGet = function(e, onload, onerror) {
     var url = eval(e.url) + "?" + e.params;
     console.log(url);
     var _result = contactServerByGet(encodeURI(url));
-<<<<<<< HEAD
-=======
     _result.onload = function() {
         onload && onload(this.responseText);
     };
@@ -949,7 +1031,6 @@ exports.callByGet = function(e, onload, onerror) {
 exports.callByPostImage = function(e, onload, getParam) {
     var url = eval(e.url) + e.params;
     var _result = contactServerByPostImage(url, e.image || {});
->>>>>>> origin/master
     _result.onload = function() {
         onload && onload(this.responseText);
     };

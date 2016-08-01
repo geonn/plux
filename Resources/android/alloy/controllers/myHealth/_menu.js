@@ -43,7 +43,7 @@ function Controller() {
         id: "typeWindowPopUp"
     });
     $.__views.typeWindowPopUp && $.addTopLevelView($.__views.typeWindowPopUp);
-    $.__views.__alloyId583 = Ti.UI.createView({
+    $.__views.__alloyId588 = Ti.UI.createView({
         right: 3,
         top: 48,
         width: "70%",
@@ -52,15 +52,15 @@ function Controller() {
         borderColor: "#FC7474",
         borderWidth: 1,
         layout: "vertical",
-        id: "__alloyId583"
+        id: "__alloyId588"
     });
-    $.__views.typeWindowPopUp.add($.__views.__alloyId583);
+    $.__views.typeWindowPopUp.add($.__views.__alloyId588);
     $.__views.popup_view = Ti.UI.createView({
         id: "popup_view",
         layout: "horizontal",
         width: "100%"
     });
-    $.__views.__alloyId583.add($.__views.popup_view);
+    $.__views.__alloyId588.add($.__views.popup_view);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

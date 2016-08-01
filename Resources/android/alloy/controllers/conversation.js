@@ -327,11 +327,7 @@ function Controller() {
         backgroundColor: "#ffffff",
         borderRadius: "5",
         zIndex: 10,
-<<<<<<< HEAD
-        width: 200,
-=======
         width: "80%",
->>>>>>> origin/master
         id: "__alloyId98"
     });
     $.__views.__alloyId97.add($.__views.__alloyId98);

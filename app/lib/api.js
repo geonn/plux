@@ -66,6 +66,7 @@ var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
 var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
 var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx";
 var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";
+var aspPreSignupUrl = "http://"+API_DOMAIN+"/presignup.aspx";
 
 /**claim submmission***/
 var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
@@ -477,8 +478,8 @@ exports.do_pluxLogin = function(data,mainView){
 					for (var i=0; i < result.data.user_service.length; i++) {
 					//	console.log(result.data.user_service[i]);
 					  if(result.data.user_service[i].service_id == 1){
-					  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
-		       			Ti.App.Properties.setString('asp_password', data.password);
+						  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
+			       			Ti.App.Properties.setString('asp_password', data.password);
 					  }
 					};
 				}
@@ -528,6 +529,81 @@ exports.do_signup = function(data,mainView){
 	client.send();  
 };
 
+exports.plux_signup = function(data, callback){
+	 
+	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
+  	var params = { 
+		email: data.email,
+		password: data.password 
+	};
+   
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) { 
+			var result = JSON.parse(this.responseText);
+			common.hideLoading(); 
+			if(result.status == "error"){
+				common.createAlert("Error", result.data);
+				return false;
+			}else{
+				Ti.App.Properties.setString('u_id', result.data.u_id); 
+				Ti.App.Properties.setString('plux_email',result.data.email);
+				Ti.App.Properties.setString('asp_email', result.data.email);
+		       	Ti.App.Properties.setString('asp_password', data.password);
+				callback();
+			}
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+		},
+		timeout : 70000  // in milliseconds
+	}); 
+	client.open("GET", url); 
+	client.send();  
+};
+
+exports.do_asp_presignup = function(data, mainView){
+	var url = aspPreSignupUrl+"?MEMNO="+data.memno+"&EMPNO="+data.empno;
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	console.log(url);
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var ret = []; 
+	       var result = JSON.parse(this.responseText);
+	       res = result[0];
+	       //console.log(res);
+	       if(typeof res.message !== undefined && res.message != null){
+	       		 common.createAlert("Error",res.message);
+	       		 common.hideLoading();
+	       }else{ 
+	       		var usersModel = Alloy.createCollection('users'); 
+	       		Ti.App.Properties.setString('memno', res.memno);
+	       		Ti.App.Properties.setString('empno', res.empno);
+	       		Ti.App.Properties.setString('corpcode', res.corpcode);
+	       		Ti.App.Properties.setString('corpname', res.corpname);
+	       		Ti.App.Properties.setString('name', res.name);
+	       		Ti.App.Properties.setString('signup2', "yes");
+	       		common.hideLoading();
+	       		 
+				nav.closeWindow(mainView.aspSignUpWin);
+				var win = Alloy.createController("asp/signup2.js").getView();
+				win.open(); 
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(e) { 
+	     	common.createAlert("Sign Up Fail", e.error);
+	     	common.hideLoading();
+	     },
+	     timeout : 60000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", encodeURI(url));
+	 // Send the request.
+	 client.send();
+};
+
 exports.do_asp_signup = function(data, mainView){
 	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
@@ -550,8 +626,25 @@ exports.do_asp_signup = function(data, mainView){
 	       		Ti.App.Properties.setString('asp_email', data.email);
 	       		Ti.App.Properties.setString('asp_password', data.password);
 	       		
-	       		updateUserService(u_id, 1, data.email, data.password);
 	       		usersModel.addUserData(result);
+	       		Ti.App.Properties.setString('signup2', "");
+	       		if(u_id != ""){
+	       			console.log(u_id+" "+data.email+" "+data.password);
+	       			updateUserService(u_id, 1, data.email, data.password);
+	       		}else{
+	       			var params = {
+						fullname: data.name,
+						email: data.email,
+						password: data.password,
+						agreets: 1
+					};
+					
+					API.plux_signup(params, function(e){
+						u_id = Ti.App.Properties.getString('u_id') || "";
+						console.log(u_id+" "+data.email+" "+data.password);
+						updateUserService(u_id, 1, data.email, data.password);
+					});
+	       		}
 	       		common.hideLoading();
 	       		 
 				nav.closeWindow(mainView.aspSignUpWin); 

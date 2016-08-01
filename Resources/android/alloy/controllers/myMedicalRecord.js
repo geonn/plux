@@ -33,7 +33,7 @@ function Controller() {
         var row_data = [];
         for (var i = 0; i < data.length; i++) {
             var row = $.UI.create("TableViewRow", {
-                filter: data[i].title + " " + data[i].message + " " + data[i].clinic,
+                keyword: data[i].title + " " + data[i].message + " " + data[i].clinic,
                 id: data[i].id
             });
             var container = $.UI.create("View", {
@@ -111,6 +111,7 @@ function Controller() {
     }
     function init() {
         $.win.add(loading.getView());
+        $.recordTable.search = $.searchItem;
         refresh();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -217,14 +218,14 @@ function Controller() {
     });
     $.__views.__alloyId189.add($.__views.newRecord);
     newRecord ? $.addListener($.__views.newRecord, "click", newRecord) : __defers["$.__views.newRecord!click!newRecord"] = true;
-    $.__views.__alloyId190 = Ti.UI.Android.createSearchView({
+    $.__views.searchItem = Ti.UI.Android.createSearchView({
+        id: "searchItem",
         tintColor: "#CE1D1C",
-        backgroundColor: "#ffffff",
-        id: "__alloyId190"
+        backgroundColor: "#ffffff"
     });
     $.__views.recordTable = Ti.UI.createTableView({
-        search: $.__views.__alloyId190,
-        filterAtribute: "filter",
+        search: $.__views.searchItem,
+        filterAtribute: "keyword",
         backgroundRepeat: true,
         backgroundImage: "/images/grey-patern-bg.png",
         id: "recordTable",

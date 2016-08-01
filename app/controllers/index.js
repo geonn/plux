@@ -15,22 +15,32 @@ medicalAttachmentModel.addColumn("server_id", "TEXT");
 
 var notificationModel = Alloy.createCollection('notification');   
 notificationModel.addColumn("isRead", "TEXT"); 
-notificationModel.addColumn("status", "TEXT"); 
+notificationModel.addColumn("status", "TEXT");
 
 function loadingViewFinish(){
 	console.log("anyone call you?");
 //	loadingView.finish(function(){
 		var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
-		 
+		var isSignup2 = Ti.App.Properties.getString('signup2');
 		if(isShowIntro	!= ""){
 			if(u_id == ""){ 
-				console.log('login');
-				var win = Alloy.createController("login").getView();
-				win.open(); 
+				if(isSignup2 == "yes"){
+					var win = Alloy.createController("asp/signup2").getView();
+					win.open(); 
+				}else{
+					console.log('login');
+					var win = Alloy.createController("login").getView();
+					win.open(); 
+				}
 			}else{
-				console.log('home');
-				var win = Alloy.createController("home").getView();
-				win.open(); 
+				if(isSignup2 == "yes"){
+					var win = Alloy.createController("asp/signup2").getView();
+					win.open(); 
+				}else{
+					console.log('home');
+					var win = Alloy.createController("home").getView();
+					win.open();
+				}
 			}
 		}else{ 
 			console.log('firsttime');

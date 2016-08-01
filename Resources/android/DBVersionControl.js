@@ -48,6 +48,9 @@ exports.checkAndUpdate = function() {
         dbVersion = "1.8";
     }
     if ("1.8" == dbVersion) {
+        var health = Alloy.createCollection("health");
+        health.addColumn("u_id", "INTEGER");
+        health.dropTable();
         var medicalRecordsModel = Alloy.createCollection("medicalRecords");
         medicalRecordsModel.addColumn("u_id", "TEXT");
         dbVersion = "1.9";
