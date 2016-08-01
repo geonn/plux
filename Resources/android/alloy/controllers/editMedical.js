@@ -176,15 +176,11 @@ function Controller() {
                     image = image.imageAsResized(newWidth, newHeight);
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         blobContainer = image;
-                        var param = {
-                            medical_id: id,
-                            u_id: Ti.App.Properties.getString("u_id"),
-                            caption: categoryType,
-                            Filedata: image
-                        };
-                        API.callByPost({
+                        var getStr = "&medical_id=" + id + "&u_id=" + Ti.App.Properties.getString("u_id") + "&caption=" + categoryType;
+                        API.callByPostImage({
                             url: "addMedicalAttachment",
-                            params: param
+                            params: getStr,
+                            image: image
                         }, function(responseText) {
                             var res = JSON.parse(responseText);
                             if ("success" == res.status) {
@@ -223,15 +219,17 @@ function Controller() {
                         }
                         image = image.imageAsResized(newWidth, newHeight);
                         blobContainer = image;
-                        var param = {
+                        ({
                             medical_id: id,
                             u_id: Ti.App.Properties.getString("u_id"),
                             caption: categoryType,
                             Filedata: image
-                        };
-                        API.callByPost({
+                        });
+                        var getStr = "&medical_id=" + id + "&u_id=" + Ti.App.Properties.getString("u_id") + "&caption=" + categoryType;
+                        API.callByPostImage({
                             url: "addMedicalAttachment",
-                            params: param
+                            params: getStr,
+                            image: image
                         }, function(responseText) {
                             var res = JSON.parse(responseText);
                             if ("success" == res.status) {
@@ -456,10 +454,10 @@ function Controller() {
     });
     $.__views.aView.add($.__views.proceduceTextArea);
     $.__views.__alloyId111 = Ti.UI.createView({
+        width: Ti.UI.FILL,
         bottom: 40,
-        height: Ti.UI.SIZE,
         layout: "horizontal",
-        width: "100%",
+        height: 50,
         id: "__alloyId111"
     });
     $.__views.editRecWin.add($.__views.__alloyId111);

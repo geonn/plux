@@ -32,10 +32,19 @@ function Controller() {
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
+            console.log("isShowWatingMsg out : " + isShowWatingMsg);
+            "0" == isShowWatingMsg && (refreshIntervalId = setInterval(function() {
+                $.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
+                $.estimate.parent.show();
+                isShowWatingMsg = "1";
+                console.log("isShowWatingMsg in : " + isShowWatingMsg);
+                clearInterval(refreshIntervalId);
+            }, 3e4));
         });
     }
     function render_conversation(latest) {
         !latest;
+        var last_uid;
         for (var i = 0; i < data.length; i++) {
             var view_container = $.UI.create("View", {
                 classes: [ "hsize", "wfill" ],
@@ -121,7 +130,15 @@ function Controller() {
                 view: view_container,
                 position: 1
             });
+            last_uid = data[i].sender_id;
         }
+        console.log("geo>> " + last_uid + "--" + Ti.App.Properties.getString("u_id") + "**" + isShowWatingMsg);
+        if (last_uid != Ti.App.Properties.getString("u_id")) {
+            $.estimate.parent.hide();
+            isShowWatingMsg = "0";
+            clearInterval(refreshIntervalId);
+        }
+        "1" == isShowWatingMsg && $.estimate.parent.show();
     }
     function getConversationByRoomId(callback) {
         var checker = Alloy.createCollection("updateChecker");
@@ -313,7 +330,7 @@ function Controller() {
         backgroundColor: "#ffffff",
         borderRadius: "5",
         zIndex: 10,
-        width: 200,
+        width: "80%",
         id: "__alloyId98"
     });
     $.__views.__alloyId97.add($.__views.__alloyId98);
@@ -418,6 +435,8 @@ function Controller() {
     var anchor = common.now();
     var last_update = common.now();
     var start = 0;
+    var isShowWatingMsg = "0";
+    var refreshIntervalId;
     var sending = false;
     var refreshing = false;
     init();

@@ -1174,6 +1174,30 @@ function contactServerByPost(url,records) {
 	client.send(records);
 	return client;
 };
+
+exports.callByPostImage = function(e, onload, getParam){
+	var url =  eval(e.url)+e.params;
+	var _result = contactServerByPostImage(url, e.image || {});   
+	_result.onload = function(e) {   
+		onload && onload(this.responseText); 
+	};
+		
+	_result.onerror = function(e) { 
+		onerror && onerror(); 
+	};	
+};
+
+function contactServerByPostImage(url,photo) { 
+	var client = Ti.Network.createHTTPClient({
+		timeout : 50000
+	});
+	 
+	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+	client.open("POST", url);
+	client.send({Filedata: photo}); 
+	return client;
+};
+
 var callByPost_error_popup = false;
 exports.callByPost = function(e, onload, onerror){
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
