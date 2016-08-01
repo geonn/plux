@@ -10,7 +10,8 @@ exports.definition = {
             treatment: "TEXT",
             clinic: "TEXT",
             created: "TEXT",
-            updated: "TEXT"
+            updated: "TEXT",
+            status: "INTEGER"
         },
         adapter: {
             type: "sql",
@@ -38,7 +39,7 @@ exports.definition = {
             getData: function() {
                 var collection = this;
                 var u_id = Ti.App.Properties.getString("u_id");
-                var sql = "SELECT * from " + collection.config.adapter.collection_name + " where u_id = ?";
+                var sql = "SELECT * from " + collection.config.adapter.collection_name + " where u_id = ? AND status != 2 order by updated desc";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, u_id);
                 var arr = [];
@@ -96,32 +97,6 @@ exports.definition = {
                 db.execute(sql, id);
                 db.close();
                 collection.trigger("sync");
-            },
-            searchRecord: function(query) {
-                var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE title LIKE '%" + query + "%' OR message LIKE '%" + query + "%'";
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                var res = db.execute(sql);
-                var listArr = [];
-                var count = 0;
-                while (res.isValidRow()) {
-                    listArr[count] = {
-                        id: res.fieldByName("id"),
-                        title: res.fieldByName("title"),
-                        message: res.fieldByName("message"),
-                        u_id: res.fieldByName("u_id"),
-                        treatment: res.fieldByName("treatment"),
-                        clinic: res.fieldByName("clinic"),
-                        created: res.fieldByName("created"),
-                        updated: res.fieldByName("updated")
-                    };
-                    res.next();
-                    count++;
-                }
-                res.close();
-                db.close();
-                collection.trigger("sync");
-                return listArr;
             },
             saveArray: function(arr) {
                 var collection = this;

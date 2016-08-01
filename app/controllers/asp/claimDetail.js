@@ -2,7 +2,7 @@ var args = arguments[0] || {};
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
 if(args.appcode.charAt(0) != "T"){
 	if(OS_IOS){
-		$.claimDetail.setRightNavButton(null);
+		$.win.setRightNavButton(null);
 	}else{
 		$.recepit.hide();
 	} 

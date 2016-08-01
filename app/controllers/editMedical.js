@@ -250,7 +250,7 @@ function takePhoto(){
 					 		Filedata : image,
 						};	
 						 
-						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
+						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");
@@ -314,7 +314,7 @@ function takePhoto(){
 					 		Filedata : image,
 						};	
 						 
-						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
+						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");
