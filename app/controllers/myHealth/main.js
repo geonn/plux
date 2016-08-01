@@ -247,36 +247,7 @@ $.moreHealth.addEventListener('click', function(e){
 	
 });
 
-function init(){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	var checker = Alloy.createCollection('updateChecker');
-	var isUpdate = checker.getCheckerById("14", u_id);
-	var last_updated ="";
-	 
-	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
-	}
-	
-	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText){
-		console.log(responseText);
-		var model2 = Alloy.createCollection("health");
-		var res2 = JSON.parse(responseText);
-		var arr2 = res2.data || null;
-		model2.saveArray(arr2);
-		$.bmiWebView.reload();
-		$.bloodPressureWebView.reload();
-		$.heartRateWebView.reload();
-		$.bodyTemperatureWebView.reload();
-		$.cholestrolWebView.reload();
-		$.glucoseWebView.reload();
-		$.cholestrolWebView.reload();
-		$.bodyTemperatureWebView.reload();
-		checker.updateModule(14,"getHealthDataByUser", res2.last_updated, u_id);
-	});
-}
-
-init();
-
+  
 $.myhealth.addEventListener("close", function(e){
 	Ti.App.removeEventListener('filterList',filterList);
 	Ti.App.removeEventListener('populateDataById',populateDataById);

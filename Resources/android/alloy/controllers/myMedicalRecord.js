@@ -249,6 +249,9 @@ function Controller() {
         });
     });
     init();
+    $.btnBack.addEventListener("click", function() {
+        $.win.close();
+    });
     Ti.App.addEventListener("myMedicalRecord:refresh", refresh);
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("myMedicalRecord:refresh", refresh);

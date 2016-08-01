@@ -76,6 +76,12 @@ function init(){
 
 init();
 
+if(OS_ANDROID){ 
+	$.btnBack.addEventListener('click', function(){ 
+		$.win.close(); 
+	});   
+}
+
 Ti.App.addEventListener('myMedicalRecord:refresh', refresh);
 
 $.win.addEventListener("close", function(){

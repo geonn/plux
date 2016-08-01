@@ -16,8 +16,9 @@ if(Ti.Platform.osname != "android"){
 /**********				init				*************/ 
 function init(){
 	
-var AppVersionControl = require('AppVersionControl');
-AppVersionControl.checkAndUpdate();
+	var AppVersionControl = require('AppVersionControl');
+	AppVersionControl.checkAndUpdate();
+	checkMyHealthData();
 	$.win.add(loading.getView());
 	loading.start();
 	syncFromServer(); 
@@ -91,6 +92,27 @@ function syncFromServer(){
 		
 	});
 	
+}
+
+function checkMyHealthData(){ 
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	var checker = Alloy.createCollection('updateChecker');
+	var isUpdate = checker.getCheckerById("14", u_id);
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}
+	
+	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText){
+		console.log(responseText);
+		var model2 = Alloy.createCollection("health");
+		var res2 = JSON.parse(responseText);
+		var arr2 = res2.data || null;
+		model2.saveArray(arr2);
+		
+		checker.updateModule(14,"getHealthDataByUser", res2.last_updated, u_id);
+	});
 }
 
 function updateNotification(){ 

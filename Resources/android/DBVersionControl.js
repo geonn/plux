@@ -47,6 +47,7 @@ exports.checkAndUpdate = function() {
         checker.updateModule(7, "getHelplineMessage", "");
         dbVersion = "1.8";
     }
+    dbVersion = "1.8";
     if ("1.8" == dbVersion) {
         var health = Alloy.createCollection("health");
         health.addColumn("u_id", "INTEGER");

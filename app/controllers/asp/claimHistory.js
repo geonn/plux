@@ -111,7 +111,7 @@ data.forEach(function(entry){
 		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: timeFormat(entry.visitdate),
-		right: 10,
+		right: 18,
 		classes: ['h5','hsize','wsize','right-align'],
 	}); 
  
@@ -138,7 +138,15 @@ data.forEach(function(entry){
 		claimType:entry.claimType,
 		text: "Claim Type: "+claim_type_text
 	});
-	
+	var forwardImg = $.UI.create('ImageView',{
+			classes : ['wsize', 'hsize'],
+			image : "/images/btn-forward.png",
+			width: 15,
+			zIndex: 10,
+			right:5  
+		});  
+		 
+	view_detail2.add(forwardImg);
 	/**var label_status = $.UI.create("Label",{
 		classes: ['mc'],
 		serial: entry.serial,
@@ -154,6 +162,7 @@ data.forEach(function(entry){
 	view_container.add(label_name); 
 	view_container.add(label_mc);
 	view_container.add(label_claimType);
+	view_container.add(view_detail2);
 	//view_container.add(label_status);
 	horzView.add(view_container);
 	row.add(horzView);
