@@ -32,12 +32,10 @@ function Controller() {
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
-            console.log("isShowWatingMsg out : " + isShowWatingMsg);
             "0" == isShowWatingMsg && (refreshIntervalId = setInterval(function() {
                 $.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
                 $.estimate.parent.show();
                 isShowWatingMsg = "1";
-                console.log("isShowWatingMsg in : " + isShowWatingMsg);
                 clearInterval(refreshIntervalId);
             }, 3e4));
         });
@@ -132,7 +130,6 @@ function Controller() {
             });
             last_uid = data[i].sender_id;
         }
-        console.log("geo>> " + last_uid + "--" + Ti.App.Properties.getString("u_id") + "**" + isShowWatingMsg);
         if (last_uid != Ti.App.Properties.getString("u_id")) {
             $.estimate.parent.hide();
             isShowWatingMsg = "0";

@@ -108,12 +108,12 @@ function createTableViewRow(text, value, dialog){
 function lightBox(){
 	var img_path = "https://tslip.aspmedic.com/"+appcode+".png";
 	console.log(img_path);
-	common.lightbox({img_path: img_path}, $.claimDetail);
+	common.lightbox({img_path: img_path}, $.win);
 }
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.claimDetail); 
+		nav.closeWindow($.win); 
 	});
 }
 
