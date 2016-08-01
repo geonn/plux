@@ -69,7 +69,7 @@ function Controller() {
             var updated = $.UI.create("Label", {
                 classes: [ "wfill", "hsize", "h5" ],
                 textAlign: "left",
-                text: data[i].updated
+                text: timeFormat(data[i].updated)
             });
             left_info.add(title);
             left_info.add(message);

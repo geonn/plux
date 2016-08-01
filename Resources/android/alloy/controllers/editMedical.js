@@ -26,8 +26,11 @@ function Controller() {
     }
     function loadImage() {
         var recAttachment = medicalAttachmentModel.getData(id);
+<<<<<<< HEAD
         console.log("loadImage" + id);
         console.log(recAttachment);
+=======
+>>>>>>> origin/master
         var counter = 0;
         removeAllChildren($.attachment);
         recAttachment.length > 0 && recAttachment.forEach(function(att) {
@@ -178,6 +181,7 @@ function Controller() {
                     image = image.imageAsResized(newWidth, newHeight);
                     if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
                         blobContainer = image;
+<<<<<<< HEAD
                         var param = {
                             medical_id: id,
                             u_id: Ti.App.Properties.getString("u_id"),
@@ -187,6 +191,13 @@ function Controller() {
                         API.callByPost({
                             url: "addMedicalAttachment",
                             params: param
+=======
+                        var getStr = "&medical_id=" + id + "&u_id=" + Ti.App.Properties.getString("u_id") + "&caption=" + categoryType;
+                        API.callByPostImage({
+                            url: "addMedicalAttachment",
+                            params: getStr,
+                            image: image
+>>>>>>> origin/master
                         }, function(responseText) {
                             console.log(responseText);
                             var res = JSON.parse(responseText);
@@ -226,16 +237,29 @@ function Controller() {
                         }
                         image = image.imageAsResized(newWidth, newHeight);
                         blobContainer = image;
+<<<<<<< HEAD
                         var param = {
+=======
+                        ({
+>>>>>>> origin/master
                             medical_id: id,
                             u_id: Ti.App.Properties.getString("u_id"),
                             caption: categoryType,
                             Filedata: image
+<<<<<<< HEAD
                         };
                         console.log("before add");
                         API.callByPost({
                             url: "addMedicalAttachment",
                             params: param
+=======
+                        });
+                        var getStr = "&medical_id=" + id + "&u_id=" + Ti.App.Properties.getString("u_id") + "&caption=" + categoryType;
+                        API.callByPostImage({
+                            url: "addMedicalAttachment",
+                            params: getStr,
+                            image: image
+>>>>>>> origin/master
                         }, function(responseText) {
                             console.log(responseText);
                             var res = JSON.parse(responseText);
@@ -461,10 +485,17 @@ function Controller() {
     });
     $.__views.aView.add($.__views.proceduceTextArea);
     $.__views.__alloyId111 = Ti.UI.createView({
+<<<<<<< HEAD
+=======
+        width: Ti.UI.FILL,
+>>>>>>> origin/master
         bottom: 40,
-        height: Ti.UI.SIZE,
         layout: "horizontal",
+<<<<<<< HEAD
         width: "100%",
+=======
+        height: 50,
+>>>>>>> origin/master
         id: "__alloyId111"
     });
     $.__views.editRecWin.add($.__views.__alloyId111);

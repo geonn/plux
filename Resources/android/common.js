@@ -187,7 +187,7 @@ exports.createCustomAlert = function(win, title, msg) {
     });
 };
 
-exports.CheckboxwithText = function(text, highlightText, checkboxspecs) {
+exports.CheckboxwithText = function(text, highlightText, checkboxspecs, urlLink) {
     var checkbox = this.createCheckbox({}, checkboxspecs);
     var label_sms = Titanium.UI.createLabel({
         text: text,
@@ -216,7 +216,8 @@ exports.CheckboxwithText = function(text, highlightText, checkboxspecs) {
     view_sms_box.add(label_sms);
     view_sms_box.add(label_privacy);
     label_privacy.addEventListener("touchend", function() {
-        nav.navigationWindow("tnc");
+        var win = Alloy.createController(urlLink).getView();
+        win.open();
     });
     return view_sms_box;
 };

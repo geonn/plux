@@ -257,7 +257,7 @@ function Controller() {
     common.construct($);
     var view_agreement_box = common.CheckboxwithText("Agree to all the ", "terms and conditions", {
         name: "agreets"
-    }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
+    }, "tnc");
     $.tc_area.add(view_agreement_box);
     $.win.addEventListener("click", hideProductFormKeyboard);
     __defers["$.__views.sign_btn!click!doSignup"] && $.addListener($.__views.sign_btn, "click", doSignup);

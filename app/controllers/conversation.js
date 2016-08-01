@@ -4,7 +4,9 @@ var loading = Alloy.createController("loading");
 var anchor = common.now();
 var last_update = common.now();
 var start = 0;
+var isShowWatingMsg = "0";
 var room_set = false;
+var refreshIntervalId;
 /**
  * Send message
  */
@@ -27,8 +29,17 @@ function SendMessage(){
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		//Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
+		 
+		if(isShowWatingMsg == "0"){
+			refreshIntervalId = setInterval(function(){
+				$.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
+				$.estimate.parent.show();
+				isShowWatingMsg = "1"; 
+				clearInterval(refreshIntervalId);
+			},30000); 
+		}
 		
-		});
+	});
 	
 	//var params = {u_id: u_id, to_id: to_id, message: $.message.value, type: "text", room_id: room_id};
 	//var messager = Alloy.createCollection('message');
@@ -43,11 +54,13 @@ function render_conversation(latest){
 		//$.chatroom.setContentOffset({y: 100});
 	}
 	var contain_height = 50;
+	var last_uid;
 	for (var i=0; i < data.length; i++) {
 		var view_container = $.UI.create("View",{
 			classes: ['hsize','wfill'],
 			m_id: data[i].id
 		});
+		
 		//console.log("message:"+data[i].message+", is_endUser:"+data[i].is_endUser +"=="+data[i].created);
 		/*var thumb_path = (data[i].u_id == u_id)?user_thumb_path:friend_thumb_path;
 		var imageview_thumb_path = $.UI.create("ImageView", {
@@ -114,6 +127,8 @@ function render_conversation(latest){
 			});
 			view_text_container.add(label_system_msg);
 		}
+		
+		
 		view_container.add(view_text_container);
 		view_container.addEventListener("longpress", function(e){
 			var m_id = parent({name: "m_id"}, e.source);
@@ -141,7 +156,17 @@ function render_conversation(latest){
 		}else{
 			$.inner_area.insertAt({view: view_container, position: 1});
 		}
-		
+		last_uid = data[i].sender_id;
+	}
+	 
+	if(last_uid != Ti.App.Properties.getString('u_id') ){
+		$.estimate.parent.hide();
+		isShowWatingMsg = "0";
+		clearInterval(refreshIntervalId);
+	}
+	 
+	if(isShowWatingMsg == "1"){
+		$.estimate.parent.show();
 	}
 }
 

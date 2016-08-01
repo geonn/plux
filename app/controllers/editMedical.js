@@ -243,17 +243,12 @@ function takePhoto(){
 					image = image.imageAsResized(newWidth, newHeight); 
 	                if(event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
 	                   //var nativePath = event.media.nativePath;  
-			            blobContainer = image; 
-			            
-						var param = { 
-					 		medical_id :id,
-					 		u_id :Ti.App.Properties.getString('u_id'),
-					 		caption : categoryType,
-					 		Filedata : image,
-						};	
-						 
-						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
-							console.log(responseText);
+
+			            blobContainer = image;  
+					 	var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType; 
+					  
+						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
+
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");
@@ -316,9 +311,10 @@ function takePhoto(){
 					 		caption : categoryType,
 					 		Filedata : image,
 						};	
-						console.log("before add");
-						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
-							console.log(responseText);
+
+						var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType;  
+						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
+
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");

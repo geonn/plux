@@ -31,6 +31,17 @@ function contactServerByPost(url, records) {
     return client;
 }
 
+function contactServerByPostImage(url, photo) {
+    var client = Ti.Network.createHTTPClient({
+        timeout: 5e4
+    });
+    client.open("POST", url);
+    client.send({
+        Filedata: photo
+    });
+    return client;
+}
+
 function onErrorCallback(e) {
     var common = require("common");
     common.createAlert("Error", e);
@@ -925,6 +936,20 @@ exports.callByGet = function(e, onload, onerror) {
     var url = eval(e.url) + "?" + e.params;
     console.log(url);
     var _result = contactServerByGet(encodeURI(url));
+<<<<<<< HEAD
+=======
+    _result.onload = function() {
+        onload && onload(this.responseText);
+    };
+    _result.onerror = function() {
+        onerror && onerror();
+    };
+};
+
+exports.callByPostImage = function(e, onload, getParam) {
+    var url = eval(e.url) + e.params;
+    var _result = contactServerByPostImage(url, e.image || {});
+>>>>>>> origin/master
     _result.onload = function() {
         onload && onload(this.responseText);
     };

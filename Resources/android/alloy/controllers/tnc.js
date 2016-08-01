@@ -230,7 +230,7 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
-        text: "Our privacy policy how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that PLUX can use such data in accordance with our privacy policy. We will ensure that at all times you use the Services, the Properties have a clearly labeled and easily accessible privacy policy that provides end users with clear and comprehensive information about cookies, device-specific information, location information and other information stored on, accessed on, or collected from end users’ devices in connection with the Services, including, as applicable, information about end users’ options for cookie management.  We will use commercially reasonable efforts to ensure that an end user gives consent to the storing and accessing of cookies, device-specific information, location information or other information on the end user's device in connection with the Services where such consent is required by law.",
+        text: "Our privacy policy how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that PLUX can use such medical data in accordance with our privacy policy. We will ensure that at all times you use the Services, the Properties have a clearly labeled and easily accessible privacy policy that provides end users with clear and comprehensive information about cookies, device-specific information, location information and other information stored on, accessed on, or collected from end users’ devices in connection with the Services, including, as applicable, information about end users’ options for cookie management.  We will use commercially reasonable efforts to ensure that an end user gives consent to the storing and accessing of cookies, device-specific information, location information or other information on the end user's device in connection with the Services where such consent is required by law.",
         bottom: 3,
         id: "__alloyId304"
     });
@@ -336,7 +336,7 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.win);
+        $.win.close();
     });
     _.extend($, exports);
 }

@@ -2,57 +2,35 @@ var args = arguments[0] || {};
 var Map = require('ti.map');
 var panel_id = args.panel_id || ""; 
 var panelListModel = Alloy.createCollection('panelList');  
-var details = panelListModel.getPanelListById(panel_id); 
 var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
-var contacts = Ti.Contacts.getAllPeople();  
+var contacts;
 var isAddedToContact = "0";
-populateMap(200);
-console.log(contacts);
-
-if (hasContactsPermissions) {
-	if(contacts.length > 0 && contacts != null){
-		for (var i = 0; i < contacts.length; i++) {
-			var phone = contacts[i].phone || "";  
-		    var workPhone = phone.mobile; 
-		    if(workPhone != null && workPhone[0] == details.tel ){
-		    	isAddedToContact = "1";
-		    	$.add2contact.title = "Already added to contact";
-		    } 
-		}  
-	}
-}
+var details = panelListModel.getPanelListById(panel_id); ;
 var phoneArr = [];
-
-function populateMap(mapHeight){
-	if(details.latitude != "" && details.longitude != "") {
-		
-		var mapview = Map.createView({
-		    mapType: Map.NORMAL_TYPE,
-		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
-		    animate:true,
-		    regionFit:true,
-		    height:mapHeight,
-		    top:0,
-		    userLocation:true
-		});
-		var merchantLoc = Map.createAnnotation({
-		    latitude: details.latitude,
-		    longitude: details.longitude, 
-		    title: details.clinicName,
-		    image: '/images/marker.png',
-		    animate : true, 
-		  //  subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-		    pincolor:Map.ANNOTATION_RED,
-		   
-		}); 
-		 
-		mapview.addAnnotation(merchantLoc);
-		$.clinicMap.height = mapHeight;
-		$.clinicMap.add(mapview);			
-	}
-}
-
-if(details != ""){   
+init();
+ 
+function init(){
+	setTimeout(function(){
+		contacts  = Ti.Contacts.getAllPeople(); 
+		if (hasContactsPermissions) {
+			if(contacts.length > 0 && contacts != null){
+				for (var i = 0; i < contacts.length; i++) {
+					var phone = contacts[i].phone || "";  
+				    var workPhone = phone.mobile; 
+				    if(workPhone != null && workPhone[0] == details.tel ){
+				    	isAddedToContact = "1";
+				    	$.add2contact.title = "Already added to contact";
+				    } 
+				}  
+			}
+		}
+		populateMap(200);
+	},1000);
+	
+	
+	
+	
+	if(details != ""){   
 	var operHour = details.openHour; 
 	var operHour_arr = operHour.split("[nl]"); 
 	var oh;
@@ -94,6 +72,40 @@ if(details != ""){
 	phoneArr.push(details.tel);
 }
  
+}
+
+
+
+function populateMap(mapHeight){
+	if(details.latitude != "" && details.longitude != "") {
+		
+		var mapview = Map.createView({
+		    mapType: Map.NORMAL_TYPE,
+		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
+		    animate:true,
+		    regionFit:true,
+		    height:mapHeight,
+		    top:0,
+		    userLocation:true
+		});
+		var merchantLoc = Map.createAnnotation({
+		    latitude: details.latitude,
+		    longitude: details.longitude, 
+		    title: details.clinicName,
+		    image: '/images/marker.png',
+		    animate : true, 
+		  //  subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
+		    pincolor:Map.ANNOTATION_RED,
+		   
+		}); 
+		 
+		mapview.addAnnotation(merchantLoc);
+		$.clinicMap.height = mapHeight;
+		$.clinicMap.add(mapview);			
+	}
+}
+
+
 function clickToCall(){
 	var tel = details.tel;
 	tel = tel.replace(/[+]/g, "");

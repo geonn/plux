@@ -328,7 +328,7 @@ function Controller() {
     common.construct($);
     var view_agreement_box = common.CheckboxwithText("I have read and agree to the ", "Privacy Policy", {
         name: "agreets"
-    }, "https://www.asp-medical-clinic.com.my/EmployeeReg.aspx");
+    }, "privacy");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
     var preset_password = Ti.App.Properties.getString("plux_password") || "";
     $.email.value = preset_email;

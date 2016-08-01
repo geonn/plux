@@ -47,7 +47,7 @@
 			 	</TextArea>
 			</ScrollView>
 		</View>
-		<View bottom="40" height="Ti.UI.SIZE"  layout="horizontal" width="100%"  >
+		<View bottom="40"   layout="horizontal" class="wfill" height="50" >
 				<ScrollView id="attachment" scrollType="horizontal" layout="horizontal" height="Ti.UI.SIZE" width="80%" /> 
 				<View width="auto" height="Ti.UI.SIZE" onClick="showCategory" >
 					<View backgroundColor="#CE1D1C" height="50" width="Ti.UI.FILL" right="0" ><Label id="addLbl" color="#ffffff" text="+" /></View>

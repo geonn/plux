@@ -28,7 +28,7 @@ function render_listing(){
 		var title = $.UI.create("Label", {classes: ['wfill','hsize','h4','themeColor'], textAlign: "left", text: data[i].title.replace(/["']/g, "&quot;")});
 		var message = $.UI.create("Label", {classes: ['wfill','h5'], height: 20, textAlign: "left", text: data[i].message.replace(/["']/g, "&quot;")});
 		var clinic = $.UI.create("Label", {classes: ['wfill','h5'], height: 20, textAlign: "left", text: data[i].clinic.replace(/["']/g, "&quot;")});
-		var updated = $.UI.create("Label", {classes: ['wfill','hsize','h5'], textAlign: "left", text: data[i].updated});
+		var updated = $.UI.create("Label", {classes: ['wfill','hsize','h5'], textAlign: "left", text: timeFormat(data[i].updated)});
 		
 		left_info.add(title);
 		left_info.add(message);

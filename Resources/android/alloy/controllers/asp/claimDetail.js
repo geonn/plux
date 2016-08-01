@@ -85,7 +85,7 @@ function Controller() {
         console.log(img_path);
         common.lightbox({
             img_path: img_path
-        }, $.claimDetail);
+        }, $.win);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/claimDetail";
@@ -207,7 +207,7 @@ function Controller() {
     common.showLoading();
     Ti.App.addEventListener("load_claim_detail", init);
     $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.claimDetail);
+        nav.closeWindow($.win);
     });
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("load_claim_detail", init);

@@ -8,6 +8,51 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function init() {
+        setTimeout(function() {
+            contacts = Ti.Contacts.getAllPeople();
+            if (hasContactsPermissions && contacts.length > 0 && null != contacts) for (var i = 0; i < contacts.length; i++) {
+                var phone = contacts[i].phone || "";
+                var workPhone = phone.mobile;
+                if (null != workPhone && workPhone[0] == details.tel) {
+                    isAddedToContact = "1";
+                    $.add2contact.title = "Already added to contact";
+                }
+            }
+            populateMap(200);
+        }, 1e3);
+        if ("" != details) {
+            var operHour = details.openHour;
+            var operHour_arr = operHour.split("[nl]");
+            var oh;
+            for (var i = 0; i < operHour_arr.length; i++) {
+                oh = operHour_arr[i].trim();
+                "" != oh && (oh += oh + "<br>\r\n");
+            }
+            $.clinicName.text = details.clinicName;
+            var add2 = details.add2;
+            "" != add2.trim() && (add2 += "\r\n");
+            $.clinicAddress.text = details.add1 + "\r\n" + add2 + details.postcode + ", " + details.city + "\r\n" + details.state;
+            $.clinicLocation.text = details.latitude + ", " + details.longitude;
+            for (var i = 0; i < operHour_arr.length; i++) {
+                var oh = operHour_arr[i].trim();
+                if ("" != oh) {
+                    oh = oh.replace(/&quot;/g, "'");
+                    var oper_label = $.UI.create("Label", {
+                        classes: [ "clinic_address" ],
+                        text: oh,
+                        width: "100%",
+                        height: Ti.UI.SIZE,
+                        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+                        bottom: 1
+                    });
+                    $.clinicOper.add(oper_label);
+                }
+            }
+            $.clinicTel.text = "TEL : " + details.tel;
+            phoneArr.push(details.tel);
+        }
+    }
     function populateMap(mapHeight) {
         if ("" != details.latitude && "" != details.longitude) {
             var mapview = Map.createView({
@@ -461,52 +506,12 @@ function Controller() {
     var Map = require("ti.map");
     var panel_id = args.panel_id || "";
     var panelListModel = Alloy.createCollection("panelList");
-    var details = panelListModel.getPanelListById(panel_id);
     var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
-    var contacts = Ti.Contacts.getAllPeople();
+    var contacts;
     var isAddedToContact = "0";
-    populateMap(200);
-    console.log(contacts);
-    if (hasContactsPermissions && contacts.length > 0 && null != contacts) for (var i = 0; i < contacts.length; i++) {
-        var phone = contacts[i].phone || "";
-        var workPhone = phone.mobile;
-        if (null != workPhone && workPhone[0] == details.tel) {
-            isAddedToContact = "1";
-            $.add2contact.title = "Already added to contact";
-        }
-    }
+    var details = panelListModel.getPanelListById(panel_id);
     var phoneArr = [];
-    if ("" != details) {
-        var operHour = details.openHour;
-        var operHour_arr = operHour.split("[nl]");
-        var oh;
-        for (var i = 0; i < operHour_arr.length; i++) {
-            oh = operHour_arr[i].trim();
-            "" != oh && (oh += oh + "<br>\r\n");
-        }
-        $.clinicName.text = details.clinicName;
-        var add2 = details.add2;
-        "" != add2.trim() && (add2 += "\r\n");
-        $.clinicAddress.text = details.add1 + "\r\n" + add2 + details.postcode + ", " + details.city + "\r\n" + details.state;
-        $.clinicLocation.text = details.latitude + ", " + details.longitude;
-        for (var i = 0; i < operHour_arr.length; i++) {
-            var oh = operHour_arr[i].trim();
-            if ("" != oh) {
-                oh = oh.replace(/&quot;/g, "'");
-                var oper_label = $.UI.create("Label", {
-                    classes: [ "clinic_address" ],
-                    text: oh,
-                    width: "100%",
-                    height: Ti.UI.SIZE,
-                    textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-                    bottom: 1
-                });
-                $.clinicOper.add(oper_label);
-            }
-        }
-        $.clinicTel.text = "TEL : " + details.tel;
-        phoneArr.push(details.tel);
-    }
+    init();
     var performAddressBookFunction = function() {
         var workAddress1 = {
             CountryCode: "my",

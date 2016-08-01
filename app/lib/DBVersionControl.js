@@ -64,11 +64,14 @@ exports.checkAndUpdate = function(e){
 		checker.updateModule(7, "getHelplineMessage", "");
 		dbVersion = '1.8';
 	}
-	dbVersion = '1.8';
+
 	if(dbVersion == "1.8"){
 		var health = Alloy.createCollection('health');
 		health.addColumn("u_id", "INTEGER");
 		health.dropTable();
+		var medicalRecordsModel = Alloy.createCollection('medicalRecords');   
+		medicalRecordsModel.addColumn("u_id", "TEXT"); 
+
 		dbVersion = '1.9';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);

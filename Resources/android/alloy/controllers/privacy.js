@@ -795,7 +795,7 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     $.btnBack.addEventListener("click", function() {
-        nav.closeWindow($.privacyWin);
+        $.privacyWin.close();
     });
     _.extend($, exports);
 }

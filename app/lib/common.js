@@ -235,8 +235,9 @@ exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 	view_sms_box.add(checkbox);
 	view_sms_box.add(label_sms);
 	view_sms_box.add(label_privacy);
-	label_privacy.addEventListener('touchend',function(){ 
-		nav.navigationWindow("tnc");
+	label_privacy.addEventListener('touchend',function(){  
+		var win = Alloy.createController(urlLink ).getView();  
+		win.open(); 
 	});
 	return view_sms_box;
 };

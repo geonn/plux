@@ -13,8 +13,7 @@ function autoLogin(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
 	var asp_password = Ti.App.Properties.getString('asp_password');
 	
-	if(asp_email){
-		console.log("auto login");
+	if(asp_email){ 
 		common.showLoading();
 		API.doLogin(asp_email, asp_password, $, args.target);
 	}
