@@ -48,7 +48,7 @@ exports.definition = {
 			getData: function(){
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from "+collection.config.adapter.collection_name+" where u_id = ? AND status != 2 order by updated desc"; 
+                var sql = "SELECT * from "+collection.config.adapter.collection_name+" where u_id = ? AND status != 2 order by created desc"; 
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){

@@ -17,23 +17,7 @@
  			color: #000;
  		}
  	</style>
-	<script>
-            
-            Ti.App.addEventListener("app:heartRateInfo",function(e) {
-              if(e.message != ""){
-              	loadChart(e.message);
-              }else{
-              	loadNoData(e.dataPeriod);
-              }
-           var height= (
-			    'innerHeight' in window? window.innerHeight :
-			    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
-			    document.body.clientHeight
-			);
-          Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height});
-            });
-             Ti.App.fireEvent('populateDataById',{ id: 3});
-        </script>
+	
         
 <script type="text/javascript">
  
@@ -79,5 +63,22 @@ function loadNoData(dataPeriod){
 </head>
 <body>
 <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+<script>
+            
+        Ti.App.addEventListener("app:heartRateInfo",function(e) {
+          if(e.message != ""){
+          	loadChart(e.message);
+          }else{
+          	loadNoData(e.dataPeriod);
+          }
+       var height= (
+		    'innerHeight' in window? window.innerHeight :
+		    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+		    document.body.clientHeight
+		);
+      Ti.App.fireEvent('graphLoaded', { id: 3, contentheight: height});
+        });
+         Ti.App.fireEvent('populateDataById',{ id: 3});
+    </script>
 </body>
 </html>

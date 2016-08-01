@@ -8,8 +8,8 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function __alloyId75() {
-        $.__views.attachment_Details.removeEventListener("open", __alloyId75);
+    function __alloyId90() {
+        $.__views.attachment_Details.removeEventListener("open", __alloyId90);
         if ($.__views.attachment_Details.activity) $.__views.attachment_Details.activity.actionBar.onHomeIconItemSelected = closeWindow; else {
             Ti.API.warn("You attempted to access an Activity on a lightweight Window or other");
             Ti.API.warn("UI component which does not have an Android activity. Android Activities");
@@ -48,16 +48,16 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.attachment_Details && $.addTopLevelView($.__views.attachment_Details);
-    $.__views.attachment_Details.addEventListener("open", __alloyId75);
-    $.__views.__alloyId77 = Ti.UI.createLabel({
+    $.__views.attachment_Details.addEventListener("open", __alloyId90);
+    $.__views.__alloyId92 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Close",
-        id: "__alloyId77"
+        id: "__alloyId92"
     });
-    closeWindow ? $.addListener($.__views.__alloyId77, "click", closeWindow) : __defers["$.__views.__alloyId77!click!closeWindow"] = true;
-    $.__views.attachment_Details.rightNavButton = $.__views.__alloyId77;
+    closeWindow ? $.addListener($.__views.__alloyId92, "click", closeWindow) : __defers["$.__views.__alloyId92!click!closeWindow"] = true;
+    $.__views.attachment_Details.rightNavButton = $.__views.__alloyId92;
     $.__views.albumView = Ti.UI.createView({
         id: "albumView",
         height: Ti.UI.SIZE,
@@ -69,9 +69,9 @@ function Controller() {
     var args = arguments[0] || {};
     var rec_id = args.rec_id;
     var position = args.position;
-    var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
+    var medicalAttachmentModel = Alloy.createCollection("medicalAttachmentV2");
     var getAttImages = function() {
-        var items = medicalAttachmentModel.getRecordByMecId(rec_id);
+        var items = medicalAttachmentModel.getData(rec_id);
         var counter = 0;
         var adImage, row = "";
         var my_page = 0;
@@ -162,17 +162,19 @@ function Controller() {
             dialog.addEventListener("click", function(e) {
                 e.index === e.source.cancel;
                 if (1 === e.index) {
-                    var imgDetails = medicalAttachmentModel.getRecordById(items[my_page].id);
                     var param = {
-                        img_id: imgDetails.server_id
+                        img_id: items[my_page].id,
+                        status: 2
                     };
+                    console.log(param);
                     API.callByPost({
-                        url: "deleteAttachmentUrl",
+                        url: "deleteAttachment",
                         params: param
                     }, function(responseText) {
                         var res = JSON.parse(responseText);
+                        console.log(res);
                         if ("success" == res.status) {
-                            medicalAttachmentModel.removeRecordById(items[my_page].id);
+                            medicalAttachmentModel.saveArray(res.data);
                             getAttImages();
                             Ti.App.fireEvent("refreshAttachment");
                             $.attachment_Details.close({
@@ -181,15 +183,6 @@ function Controller() {
                                 duration: 200
                             });
                         }
-                    }, function() {
-                        medicalAttachmentModel.removeRecordById(items[my_page].id);
-                        getAttImages();
-                        Ti.App.fireEvent("refreshAttachment");
-                        $.attachment_Details.close({
-                            curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-                            opacity: 0,
-                            duration: 200
-                        });
                     });
                 }
             });
@@ -205,7 +198,7 @@ function Controller() {
         });
     });
     getAttImages();
-    __defers["$.__views.__alloyId77!click!closeWindow"] && $.addListener($.__views.__alloyId77, "click", closeWindow);
+    __defers["$.__views.__alloyId92!click!closeWindow"] && $.addListener($.__views.__alloyId92, "click", closeWindow);
     _.extend($, exports);
 }
 

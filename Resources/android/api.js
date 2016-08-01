@@ -98,6 +98,8 @@ var suggestedAppointmentUrl = "http://" + FREEJINI_DOMAIN + "/api/suggestedAppoi
 
 var deleteAttachmentUrl = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?user=" + USER + "&key=" + KEY;
 
+var changeMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/changeMedicalRecord?user=" + USER + "&key=" + KEY;
+
 var addMessageUrl = "http://" + FREEJINI_DOMAIN + "/api/addMessage?user=" + USER + "&key=" + KEY;
 
 var getDoctorByPanel = "http://" + FREEJINI_DOMAIN + "/api/getDoctorByPanel?user=" + USER + "&key=" + KEY;
@@ -125,6 +127,14 @@ var getRoomId = "http://" + FREEJINI_DOMAIN + "/api/getRoomId?user=" + USER + "&
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
 var getMedicalRecords = "http://" + FREEJINI_DOMAIN + "/api/getMedicalRecords?user=" + USER + "&key=" + KEY;
+
+var addUpdateMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/addUpdateMedicalRecord?user=" + USER + "&key=" + KEY;
+
+var getMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/getMedicalAttachment?user=" + USER + "&key=" + KEY;
+
+var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachment?user=" + USER + "&key=" + KEY;
+
+var deleteAttachment = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?user=" + USER + "&key=" + KEY;
 
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
@@ -911,18 +921,6 @@ exports.loadPanelList = function(ex) {
     client.send();
 };
 
-exports.callByPost = function(e, onload, onerror) {
-    var url = eval(e.url);
-    console.log(url);
-    var _result = contactServerByPost(url, e.params || {});
-    _result.onload = function() {
-        onload && onload(this.responseText);
-    };
-    _result.onerror = function() {
-        onerror && onerror();
-    };
-};
-
 exports.callByGet = function(e, onload, onerror) {
     var url = eval(e.url) + "?" + e.params;
     console.log(url);
@@ -943,13 +941,16 @@ exports.callByPost = function(e, onload, onerror) {
     if ("" != deviceToken) {
         var url = eval(e.url);
         console.log(url);
+        console.log(e.params);
         var _result = contactServerByPost(url, e.params || {});
         _result.onload = function() {
             console.log("success callByPost");
+            console.log(this.responseText);
             onload && onload(this.responseText);
         };
         _result.onerror = function() {
             if (0 !== retryTimes && Titanium.Network.online) {
+                retryTimes--;
                 _.extend(e, {
                     retryTimes: retryTimes
                 });

@@ -33,25 +33,25 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.hra && $.addTopLevelView($.__views.hra);
-    $.__views.__alloyId137 = Ti.UI.createView({
+    $.__views.__alloyId152 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId137"
+        id: "__alloyId152"
     });
-    $.__views.hra.add($.__views.__alloyId137);
-    $.__views.__alloyId138 = Ti.UI.createView({
+    $.__views.hra.add($.__views.__alloyId152);
+    $.__views.__alloyId153 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId138"
+        id: "__alloyId153"
     });
-    $.__views.__alloyId137.add($.__views.__alloyId138);
-    $.__views.__alloyId139 = Ti.UI.createView({
+    $.__views.__alloyId152.add($.__views.__alloyId153);
+    $.__views.__alloyId154 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId139"
+        id: "__alloyId154"
     });
-    $.__views.__alloyId138.add($.__views.__alloyId139);
+    $.__views.__alloyId153.add($.__views.__alloyId154);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -59,12 +59,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId139.add($.__views.btnBack);
-    $.__views.__alloyId140 = Ti.UI.createView({
+    $.__views.__alloyId154.add($.__views.btnBack);
+    $.__views.__alloyId155 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId140"
+        id: "__alloyId155"
     });
-    $.__views.__alloyId138.add($.__views.__alloyId140);
+    $.__views.__alloyId153.add($.__views.__alloyId155);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -76,108 +76,108 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId140.add($.__views.pageTitle);
-    var __alloyId141 = [];
-    $.__views.__alloyId142 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId155.add($.__views.pageTitle);
+    var __alloyId156 = [];
+    $.__views.__alloyId157 = Ti.UI.createTableViewRow({
         color: "#606060",
         top: 5,
         bottom: 5,
         mod: "bmi",
         height: 40,
-        id: "__alloyId142"
+        id: "__alloyId157"
     });
-    __alloyId141.push($.__views.__alloyId142);
-    $.__views.__alloyId143 = Ti.UI.createLabel({
+    __alloyId156.push($.__views.__alloyId157);
+    $.__views.__alloyId158 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
         text: "BMI Calculator",
         textAlign: "left",
         left: 15,
-        id: "__alloyId143"
+        id: "__alloyId158"
     });
-    $.__views.__alloyId142.add($.__views.__alloyId143);
-    $.__views.__alloyId144 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId157.add($.__views.__alloyId158);
+    $.__views.__alloyId159 = Ti.UI.createTableViewRow({
         color: "#606060",
         top: 5,
         bottom: 5,
         mod: "whratio",
         height: 40,
-        id: "__alloyId144"
+        id: "__alloyId159"
     });
-    __alloyId141.push($.__views.__alloyId144);
-    $.__views.__alloyId145 = Ti.UI.createLabel({
+    __alloyId156.push($.__views.__alloyId159);
+    $.__views.__alloyId160 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
         text: "Waist-To-Hips Ratio Calculator",
         textAlign: "left",
         left: 15,
-        id: "__alloyId145"
+        id: "__alloyId160"
     });
-    $.__views.__alloyId144.add($.__views.__alloyId145);
-    $.__views.__alloyId146 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId159.add($.__views.__alloyId160);
+    $.__views.__alloyId161 = Ti.UI.createTableViewRow({
         color: "#606060",
         top: 5,
         bottom: 5,
         mod: "nutritional_profile",
         height: 40,
-        id: "__alloyId146"
+        id: "__alloyId161"
     });
-    __alloyId141.push($.__views.__alloyId146);
-    $.__views.__alloyId147 = Ti.UI.createLabel({
+    __alloyId156.push($.__views.__alloyId161);
+    $.__views.__alloyId162 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
         text: "Nutritional Profile",
         textAlign: "left",
         left: 15,
-        id: "__alloyId147"
+        id: "__alloyId162"
     });
-    $.__views.__alloyId146.add($.__views.__alloyId147);
-    $.__views.__alloyId148 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId161.add($.__views.__alloyId162);
+    $.__views.__alloyId163 = Ti.UI.createTableViewRow({
         color: "#606060",
         top: 5,
         bottom: 5,
         mod: "smokecost",
         height: 40,
-        id: "__alloyId148"
+        id: "__alloyId163"
     });
-    __alloyId141.push($.__views.__alloyId148);
-    $.__views.__alloyId149 = Ti.UI.createLabel({
+    __alloyId156.push($.__views.__alloyId163);
+    $.__views.__alloyId164 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
         text: "Smoking Cost Calculator",
         textAlign: "left",
         left: 15,
-        id: "__alloyId149"
+        id: "__alloyId164"
     });
-    $.__views.__alloyId148.add($.__views.__alloyId149);
-    $.__views.__alloyId150 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId163.add($.__views.__alloyId164);
+    $.__views.__alloyId165 = Ti.UI.createTableViewRow({
         color: "#606060",
         top: 5,
         bottom: 5,
         mod: "diabetes",
         height: 40,
-        id: "__alloyId150"
+        id: "__alloyId165"
     });
-    __alloyId141.push($.__views.__alloyId150);
-    $.__views.__alloyId151 = Ti.UI.createLabel({
+    __alloyId156.push($.__views.__alloyId165);
+    $.__views.__alloyId166 = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
         text: "Diabetes Risk Calculator",
         textAlign: "left",
         left: 15,
-        id: "__alloyId151"
+        id: "__alloyId166"
     });
-    $.__views.__alloyId150.add($.__views.__alloyId151);
+    $.__views.__alloyId165.add($.__views.__alloyId166);
     $.__views.menu = Ti.UI.createTableView({
-        data: __alloyId141,
+        data: __alloyId156,
         id: "menu"
     });
-    $.__views.__alloyId137.add($.__views.menu);
+    $.__views.__alloyId152.add($.__views.menu);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

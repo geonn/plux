@@ -1,10 +1,6 @@
-console.log("a");
-
 var MediaPickerModule = require("ti.mediapicker");
 
 var warned = false;
-
-console.log("a");
 
 var _env = {};
 
@@ -43,8 +39,6 @@ var _nav = {
     }
 };
 
-console.log("a");
-
 var _config = {
     size: 96,
     dpi_warning: 1024
@@ -54,8 +48,6 @@ var _lang = {
     photos: "Images",
     videos: "Videos"
 };
-
-console.log("a");
 
 var Element = function(type, options) {
     this.element = Ti.UI["create" + type](options);
@@ -601,8 +593,6 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
     });
     _nav.open(win_assetGroups);
 };
-
-console.log("a");
 
 exports.MediaPicker.prototype.getImageByURL = function(opt) {
     if (_env.iOS) MediaPickerModule.getImageByURL(opt); else {

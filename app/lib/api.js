@@ -55,6 +55,7 @@ var addUpdateMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRec
 var getMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY;
 var addMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
 var deleteAttachment = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
+var getHealthDataByUser = "http://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -1185,6 +1186,7 @@ exports.callByPost = function(e, onload, onerror){
 		var _result = contactServerByPost(url, e.params || {});   
 		_result.onload = function(ex) { 
 			console.log('success callByPost');
+			console.log(this.responseText);
 			onload && onload(this.responseText); 
 		};
 		

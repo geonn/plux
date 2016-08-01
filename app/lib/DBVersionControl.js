@@ -1,13 +1,13 @@
 /*********************
 *** DB VERSION CONTROL ***
 * 
-* Latest Version 1.8
+* Latest Version 1.9
 * 
 **********************/
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || 1.8;
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || 1.9;
 	 
 	if (dbVersion == '1.0') {
 	  // do 1.1 upgrade
@@ -63,6 +63,13 @@ exports.checkAndUpdate = function(e){
 		checker.addColumn("u_id", "INTEGER");
 		checker.updateModule(7, "getHelplineMessage", "");
 		dbVersion = '1.8';
+	}
+	dbVersion = '1.8';
+	if(dbVersion == "1.8"){
+		var health = Alloy.createCollection('health');
+		health.addColumn("u_id", "INTEGER");
+		health.dropTable();
+		dbVersion = '1.9';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

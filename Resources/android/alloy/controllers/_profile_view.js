@@ -64,21 +64,21 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-    $.__views.__alloyId6 = Ti.UI.createView({
+    $.__views.__alloyId21 = Ti.UI.createView({
         backgroundColor: "#fff",
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId6"
+        id: "__alloyId21"
     });
-    $.__views.main.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId21);
+    $.__views.__alloyId22 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
         backgroundColor: "#CE1D1C",
-        id: "__alloyId7"
+        id: "__alloyId22"
     });
-    $.__views.__alloyId6.add($.__views.__alloyId7);
-    $.__views.__alloyId8 = Ti.UI.createLabel({
+    $.__views.__alloyId21.add($.__views.__alloyId22);
+    $.__views.__alloyId23 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
@@ -88,9 +88,9 @@ function Controller() {
         bottom: 10,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "Personal Information",
-        id: "__alloyId8"
+        id: "__alloyId23"
     });
-    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId22.add($.__views.__alloyId23);
     $.__views.profile_data = Ti.UI.createView({
         id: "profile_data",
         layout: "vertical",
@@ -98,15 +98,15 @@ function Controller() {
         bottom: 10,
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId6.add($.__views.profile_data);
-    $.__views.__alloyId9 = Ti.UI.createView({
+    $.__views.__alloyId21.add($.__views.profile_data);
+    $.__views.__alloyId24 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
         width: Titanium.UI.FILL,
         backgroundColor: "#CE1D1C",
-        id: "__alloyId9"
+        id: "__alloyId24"
     });
-    $.__views.__alloyId6.add($.__views.__alloyId9);
-    $.__views.__alloyId10 = Ti.UI.createLabel({
+    $.__views.__alloyId21.add($.__views.__alloyId24);
+    $.__views.__alloyId25 = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
@@ -116,9 +116,9 @@ function Controller() {
         bottom: 10,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "My Health Records",
-        id: "__alloyId10"
+        id: "__alloyId25"
     });
-    $.__views.__alloyId9.add($.__views.__alloyId10);
+    $.__views.__alloyId24.add($.__views.__alloyId25);
     $.__views.my_health_records = Ti.UI.createView({
         id: "my_health_records",
         top: 10,
@@ -126,7 +126,7 @@ function Controller() {
         layout: "vertical",
         height: Ti.UI.SIZE
     });
-    $.__views.__alloyId6.add($.__views.my_health_records);
+    $.__views.__alloyId21.add($.__views.my_health_records);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

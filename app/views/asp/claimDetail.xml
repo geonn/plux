@@ -17,8 +17,6 @@
 		     	<View left="0" onClick="lightBox" width="auto">
 		         	<Label class="hsize" id="recepit" width="auto">Receipt</Label>
 		   		</View>
-		   		 
-			   		
 		 	</View>
 			<TableView id="tv">
 		    </TableView>

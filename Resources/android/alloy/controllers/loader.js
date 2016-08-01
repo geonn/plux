@@ -44,14 +44,14 @@ function Controller() {
         id: "overlay"
     });
     $.__views.rocket.add($.__views.overlay);
-    $.__views.__alloyId161 = Ti.UI.createImageView({
+    $.__views.__alloyId176 = Ti.UI.createImageView({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         borderRadius: 5,
         image: "/images/logo_plux.png",
-        id: "__alloyId161"
+        id: "__alloyId176"
     });
-    $.__views.rocket.add($.__views.__alloyId161);
+    $.__views.rocket.add($.__views.__alloyId176);
     $.__views.loading_text = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,

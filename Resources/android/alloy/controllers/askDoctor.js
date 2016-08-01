@@ -134,8 +134,8 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId68 = Ti.UI.createView({
-        id: "__alloyId68"
+    $.__views.__alloyId83 = Ti.UI.createView({
+        id: "__alloyId83"
     });
     $.__views.newRecord = Ti.UI.createImageView({
         left: 10,
@@ -144,9 +144,9 @@ function Controller() {
         height: 20,
         image: "/images/add.png"
     });
-    $.__views.__alloyId68.add($.__views.newRecord);
+    $.__views.__alloyId83.add($.__views.newRecord);
     navFindDoctor ? $.addListener($.__views.newRecord, "click", navFindDoctor) : __defers["$.__views.newRecord!click!navFindDoctor"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId68;
+    $.__views.win.rightNavButton = $.__views.__alloyId83;
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         height: Ti.UI.SIZE,
@@ -154,20 +154,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.aView);
-    $.__views.__alloyId69 = Ti.UI.createView({
+    $.__views.__alloyId84 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId69"
+        id: "__alloyId84"
     });
-    $.__views.aView.add($.__views.__alloyId69);
-    $.__views.__alloyId70 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId84);
+    $.__views.__alloyId85 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId70"
+        id: "__alloyId85"
     });
-    $.__views.__alloyId69.add($.__views.__alloyId70);
+    $.__views.__alloyId84.add($.__views.__alloyId85);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -175,12 +175,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId70.add($.__views.btnBack);
-    $.__views.__alloyId71 = Ti.UI.createView({
+    $.__views.__alloyId85.add($.__views.btnBack);
+    $.__views.__alloyId86 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId71"
+        id: "__alloyId86"
     });
-    $.__views.__alloyId69.add($.__views.__alloyId71);
+    $.__views.__alloyId84.add($.__views.__alloyId86);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -192,21 +192,21 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId71.add($.__views.pageTitle);
-    $.__views.__alloyId72 = Ti.UI.createView({
+    $.__views.__alloyId86.add($.__views.pageTitle);
+    $.__views.__alloyId87 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId72"
+        id: "__alloyId87"
     });
-    $.__views.__alloyId69.add($.__views.__alloyId72);
-    $.__views.__alloyId73 = Ti.UI.createImageView({
+    $.__views.__alloyId84.add($.__views.__alloyId87);
+    $.__views.__alloyId88 = Ti.UI.createImageView({
         width: 25,
         height: 20,
         image: "/images/add.png",
-        id: "__alloyId73"
+        id: "__alloyId88"
     });
-    $.__views.__alloyId72.add($.__views.__alloyId73);
-    navFindDoctor ? $.addListener($.__views.__alloyId73, "click", navFindDoctor) : __defers["$.__views.__alloyId73!click!navFindDoctor"] = true;
+    $.__views.__alloyId87.add($.__views.__alloyId88);
+    navFindDoctor ? $.addListener($.__views.__alloyId88, "click", navFindDoctor) : __defers["$.__views.__alloyId88!click!navFindDoctor"] = true;
     $.__views.conversation_list = Ti.UI.createScrollView({
         top: 10,
         left: 10,
@@ -236,7 +236,7 @@ function Controller() {
         Ti.App.removeEventListener("displayRecords", render_conversation_list);
     });
     __defers["$.__views.newRecord!click!navFindDoctor"] && $.addListener($.__views.newRecord, "click", navFindDoctor);
-    __defers["$.__views.__alloyId73!click!navFindDoctor"] && $.addListener($.__views.__alloyId73, "click", navFindDoctor);
+    __defers["$.__views.__alloyId88!click!navFindDoctor"] && $.addListener($.__views.__alloyId88, "click", navFindDoctor);
     _.extend($, exports);
 }
 

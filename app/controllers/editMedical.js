@@ -41,6 +41,8 @@ function loadMedicalInfo(){
 
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getData(id);
+	console.log("loadImage"+id);
+	console.log(recAttachment);
 	var counter = 0;
 	 
 	removeAllChildren($.attachment);
@@ -250,7 +252,8 @@ function takePhoto(){
 					 		Filedata : image,
 						};	
 						 
-						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
+						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
+							console.log(responseText);
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");
@@ -313,8 +316,9 @@ function takePhoto(){
 					 		caption : categoryType,
 					 		Filedata : image,
 						};	
-						 
-						API.callByPost({url: "addMedicalAttachment", param: param}, function(responseText){
+						console.log("before add");
+						API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
+							console.log(responseText);
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
 								var model = Alloy.createCollection("medicalAttachmentV2");

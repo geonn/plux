@@ -15,6 +15,8 @@ ID       type Name
 11		leafletUrl
 12		doctorListUrl
 13		getClinicLocator2
+14		getHealthDataByUser	|| u_id
+
 ************************************/
 
 exports.definition = {
