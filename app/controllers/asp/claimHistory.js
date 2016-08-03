@@ -86,7 +86,9 @@ data.forEach(function(entry){
 		serial: entry.serial,
 		appcode: entry.appcode,
 		claimType:entry.claimType,
-		text: "RM "+ (entry.amount).toFixed(2)
+		text: "RM "+ (entry.amount).toFixed(2),
+		right:20,
+		
 	});
 	
 	var view_detail2 = $.UI.create("View",{ 
@@ -111,7 +113,7 @@ data.forEach(function(entry){
 		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: timeFormat(entry.visitdate),
-		right: 23,
+		right: 10,
 		classes: ['h5','hsize','wsize','right-align'],
 	}); 
  
@@ -144,7 +146,7 @@ data.forEach(function(entry){
 			width: 15,
 			zIndex: 10,
 			right:5,
-			top:5 
+			top:2
 		});  
 		 
 	//
