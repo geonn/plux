@@ -106,28 +106,28 @@ function submitClaim(){
 	var mc            = $.mc.value;
 	var diagnosis     = $.diagnosis.value;
 	var glamount      = $.glamount.value;
-	var mode     = claimMode;
+	var mode     = claimMode; 
 	if(receiptNo.trim() == ""){
 		common.resultPopUp("Error", "Please fill in receipt number" );
 		return false;
 	}
 	
-	if(claimCategory.trim() == ""){
+	if(claimCategory  == ""){
 		common.resultPopUp("Error", "Please choose ONE category" );
 		return false;
 	}
 	
-	if(claimUnder.trim() == ""){
+	if(typeof claimUnder == "undefined"){
 		common.resultPopUp("Error", "Please choose ONE claim under" );
 		return false;
 	}
 	
-	if(receiptAmount.trim() == ""){
+	if(receiptAmount == ""){
 		common.resultPopUp("Error", "Please fill in receipt amount in RM" );
 		return false;
 	}
 	
-	if(dateVisit.trim() == ""){
+	if(dateVisit  == ""){
 		common.resultPopUp("Error", "Please choose date visit to clinic/hospital" );
 		return false;
 	}else{ 
@@ -135,7 +135,7 @@ function submitClaim(){
 		dateVisit = dateVisit[1]+"/"+dateVisit[0]+"/"+dateVisit[2];
 	}
 	
-	if(clinicName.trim() == ""){
+	if(clinicName == ""){
 		common.resultPopUp("Error", "Please fill in clinic/hospital to visit" );
 		return false;
 	}
@@ -147,7 +147,7 @@ function submitClaim(){
 	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+user.empno+"&CORPCODE="+user.corpcode+
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
-	
+	console.log(params);return false;
 	common.showLoading(); 
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){ 
 		var res = JSON.parse(responseText); 

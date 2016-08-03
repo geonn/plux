@@ -587,7 +587,7 @@ exports.do_asp_presignup = function(data, mainView){
 	       		common.hideLoading();
 	       		 
 				nav.closeWindow(mainView.aspSignUpWin);
-				var win = Alloy.createController("asp/signup2.js").getView();
+				var win = Alloy.createController("asp/signup2").getView();
 				win.open(); 
 	       }
 	     },
