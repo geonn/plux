@@ -52,7 +52,7 @@ data.forEach(function(entry){
 	});
 	 
 	var view_detail = $.UI.create("View",{
-		height: 40,
+		height: 25,
 		classes: ['wfill'], 
 		serial: entry.serial,
 		appcode: entry.appcode,
@@ -64,7 +64,7 @@ data.forEach(function(entry){
 		height: Ti.UI.SIZE,
 		serial: entry.serial,
 		appcode: entry.appcode,
-		height: 45,
+		height: 35,
 		top:0,
 		claimType:entry.claimType
 	});
@@ -111,7 +111,7 @@ data.forEach(function(entry){
 		appcode: entry.appcode,
 		claimType:entry.claimType,
 		text: timeFormat(entry.visitdate),
-		right: 18,
+		right: 23,
 		classes: ['h5','hsize','wsize','right-align'],
 	}); 
  
@@ -130,7 +130,7 @@ data.forEach(function(entry){
 		claimType:entry.claimType,
 		text: "MC Days: "+entry.mcdays
 	});
-	var claim_type_text = (entry.claimType == "Reimbursement")?entry.claimType:entry.claimType+" [Detail]";
+	var claim_type_text = (entry.claimType == "Reimbursement")?entry.claimType:entry.claimType+" [Details]";
 	var label_claimType = $.UI.create("Label",{
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
@@ -143,10 +143,11 @@ data.forEach(function(entry){
 			image : "/images/btn-forward.png",
 			width: 15,
 			zIndex: 10,
-			right:5  
+			right:5,
+			top:5 
 		});  
 		 
-	view_detail2.add(forwardImg);
+	//
 	/**var label_status = $.UI.create("Label",{
 		classes: ['mc'],
 		serial: entry.serial,
@@ -155,6 +156,7 @@ data.forEach(function(entry){
 	});**/
 	view_detail.add(labelClinicView);
 	view_detail.add(label_amount);
+	view_detail.add(forwardImg);
 	view_detail2.add(label_category);
 	view_detail2.add(label_date);
 	view_container.add(view_detail);
