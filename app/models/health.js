@@ -95,7 +95,7 @@ exports.definition = {
                 var u_id = Ti.App.Properties.getString('u_id'); 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ? ORDER BY date DESC ,time DESC";
-                console.log("getHealthAllListByType");
+               
                 var res = db.execute(sql, u_id);
                 var listArr = []; 
                 var count = 0;
@@ -203,8 +203,9 @@ exports.definition = {
 				var collection = this;
                 var u_id = Ti.App.Properties.getString('u_id');
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='"+type+"' GROUP BY date AND u_id = ? ORDER BY date DESC ,time DESC LIMIT 6";
-               console.log("getHealthListByType");
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ?  GROUP BY date   ORDER BY date DESC ,time DESC LIMIT 6";
+               console.log("getHealthListByType : "+u_id);
+                console.log(sql);
                 var res = db.execute(sql, u_id);
                 var listArr = []; 
                 var count = 0;
@@ -222,7 +223,8 @@ exports.definition = {
 					res.next();
 					count++;
 				} 
-				res.close();
+				console.log(listArr);
+				res.close(listArr);
                 db.close();
                 collection.trigger('sync'); 
                 return listArr;
