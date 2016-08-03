@@ -192,8 +192,8 @@ var categoryType = "Blood Test";
 function showCategory(){
 	var dialog = Titanium.UI.createOptionDialog({ 
 	    title: 'Choose a test category...', 
-	    options: ['Blood Test','X Ray', 'ECG/Stress test','Urine test','etc', 'Cancel'], 
-	    cancel: 5 //index of cancel button
+	    options: ['Blood Test','X Ray', 'ECG/Stress test','Urine test', 'Medication Records', 'Allergic History', 'etc', 'Cancel'], 
+	    cancel: 7 //index of cancel button
 	});
 
 	dialog.addEventListener('click', function(e) { 
@@ -201,11 +201,15 @@ function showCategory(){
 			categoryType = "Blood Test";
 		}else if(e.index == 1){
 			categoryType = "X Ray";
-		}else if(e.index == 1){
+		}else if(e.index == 2){
 			categoryType = "ECG/Stress test";
-		}else if(e.index == 1){
+		}else if(e.index == 3){
 			categoryType = "Urine test";
-		}else if(e.index == 1){
+		}else if(e.index == 4){
+			categoryType = "Medication Records";
+		}else if(e.index == 5){
+			categoryType = "Allergic History";
+		}else if(e.index == 6){
 			categoryType = "etc";
 		}
 		takePhoto();
