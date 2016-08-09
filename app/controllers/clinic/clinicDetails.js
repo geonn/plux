@@ -44,7 +44,7 @@ function init(){
 	$.clinicName.text = details.clinicName;
 	
 	var add2 =details.add2;
-	if(add2.trim() != ""){
+	if(add2 != ""){
 		add2 = add2  +"\r\n";
 	}
 	$.clinicAddress.text = details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state;

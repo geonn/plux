@@ -154,10 +154,7 @@ exports.updateUserFromFB = function(e, mainView){
 			var res = JSON.parse(this.responseText);
 			//console.log(res);
 			common.hideLoading();
-		    if(res.status == "success"){ 
-		    	console.log('success');
-		        API.syncHealthData({u_id:res.data.u_id});
-		        
+		    if(res.status == "success"){   
 		        var usersPluxModel = Alloy.createCollection('users_plux'); 
 				usersPluxModel.addUserData({
 					u_id: res.data.u_id,
@@ -182,6 +179,7 @@ exports.updateUserFromFB = function(e, mainView){
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
 	         	API.updateNotificationToken();   
+	         	API.syncHealthData({u_id:res.data.u_id});
 	         	Ti.App.fireEvent('updateHeader'); 
 	         	mainView.win.close();
 	         	if(typeof Alloy.Globals.navMenu != "undefined"){

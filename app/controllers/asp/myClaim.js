@@ -6,6 +6,7 @@ loadPage();
 
 function loadPage(){
 	user = usersModel.getPrincipleData();
+	console.log(user);
 	if(user.isver == "true"){
 		common.showLoading();
 		$.verifyContainer.hide();

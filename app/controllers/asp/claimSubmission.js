@@ -217,13 +217,12 @@ function changeVisitDate(e){
 		var dialog = Ti.UI.createOptionDialog({
 		  cancel: claimName.length -1,
 		  options: claimName,
-		  selectedIndex: 0,
 		  title: 'Choose Claim Under'
 		});
 		
 		dialog.show(); 
 		dialog.addEventListener("click", function(e){   
-			if(cancelBtn != e.index){ 
+			if(claimName.length =="1" || cancelBtn != e.index){ 
 				claimMemId = claimMemNo[e.index];
 				$.claim_under.text = claimName[e.index];  
 				$.claim_under.color = "#000000";

@@ -64,7 +64,7 @@ exports.definition = {
                 var u_id = Ti.App.Properties.getString('u_id'); 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name+" WHERE u_id = ?";
-                console.log("getHealthList");
+                console.log("getHealthList : "+u_id);
                 var res = db.execute(sql, u_id);
                 var listArr = []; 
                 var count = 0;

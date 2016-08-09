@@ -142,7 +142,7 @@ function render_conversation(latest){
 			  
 		  dialog.addEventListener('click', function(ex){
    			 if (ex.index === ex.source.cancel){
-   			 	console.log("cancel");
+   			 	 
    			 }if(ex.index == 0){
    			 	var model = Alloy.createCollection("helpline");
 				model.removeById(m_id);
@@ -186,8 +186,7 @@ function getConversationByRoomId(callback){
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
 		model.saveArray(arr, callback);
 		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
-		console.log(res.last_updated+" where is the last update");
-		
+		 
 		if(!room_id){	//if room_id = 0 
 			Ti.App.fireEvent("web:setRoom", {room_id: res.data});
 			Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
@@ -225,7 +224,7 @@ function refresh_latest(param){
 	}*/
 	if(!refreshing){
 		refreshing = true;
-		console.log("refresh_latest 2");
+		 
 		refresh(getLatestData);
 	}
 }
@@ -291,7 +290,7 @@ function init(){
 }
 
 function set_room(){
-	console.log("set room");
+	 
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
 }
@@ -306,5 +305,5 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	Ti.App.removeEventListener('conversation:setRoom', set_room);
 	$.destroy();
-	console.log("window close");
+	 
 });
