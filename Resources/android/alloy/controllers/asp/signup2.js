@@ -164,6 +164,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -186,6 +187,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -208,6 +210,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -230,6 +233,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -251,6 +255,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -273,6 +278,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
@@ -295,6 +301,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",

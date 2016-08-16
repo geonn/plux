@@ -342,6 +342,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "95%",
         backgroundColor: "#ffffff",
@@ -386,6 +387,7 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+        borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: Ti.UI.FILL,
         backgroundColor: "#f6f6f6",

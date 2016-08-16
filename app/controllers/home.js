@@ -6,8 +6,18 @@ var usersPluxModel = Alloy.createCollection('users_plux');
 var notificationModel = Alloy.createCollection('notification'); 
 common.construct($);
 PUSH.registerPush();
-init();
 
+var loadingView = Alloy.createController("loader");
+loadingView.getView().open();
+loadingView.start();
+	
+function loadingViewFinish(){
+	console.log("anyone call you?");
+//	loadingView.finish(function(){
+	init();
+	loadingView = null;
+	// });
+}
 
 if(Ti.Platform.osname != "android"){ 
 	Alloy.Globals.navMenu = $.navMenu;
@@ -302,9 +312,11 @@ Titanium.App.addEventListener('resumed', function(e){
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
+	Ti.App.removeEventListener('app:loadingViewFinish', loadingViewFinish);
 	$.destroy();
 	console.log("window close");
 });
 
+Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 
