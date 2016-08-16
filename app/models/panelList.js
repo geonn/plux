@@ -508,7 +508,7 @@ exports.definition = {
                 db.execute("BEGIN");
                 console.log(arr.length+" number of arr");
                 arr.forEach(function(entry) {
-                	console.log(entry.id+" "+entry.clinicName);
+                	//console.log(entry.id+" "+entry.clinicName);
                 	var keys = [];
                 	var questionmark = [];
                 	var eval_values = [];
@@ -531,7 +531,7 @@ exports.definition = {
 	                eval("db.execute(sql_query, "+without_pk_value.join()+","+_.first(eval_values)+")");
 				});
 				db.execute("COMMIT");
-				console.log(db.getRowsAffected()+" affected row");
+				 
 	            db.close();
 	            collection.trigger('sync');
 			},

@@ -102,6 +102,8 @@ function Controller() {
             var longitude = e.coords.longitude;
             var latitude = e.coords.latitude;
             console.log("http://maps.google.com/maps?saddr=" + latitude + "," + longitude + "&daddr=" + details.latitude + "," + details.longitude);
+            var add2 = details.add2;
+            "" != add2 && (add2 += "\r\n");
             var url = "geo:" + latitude + "," + longitude + "?q=" + details.clinicName + " (" + details.add1 + "\r\n" + add2 + details.postcode + ", " + details.city + "\r\n" + details.state + ")";
             if (Ti.Android) try {
                 var waze_url = "waze://?ll=" + details.latitude + "," + details.longitude + "&navigate=yes";

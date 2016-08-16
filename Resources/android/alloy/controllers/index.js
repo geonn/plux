@@ -8,8 +8,7 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function loadingViewFinish() {
-        console.log("anyone call you?");
+    function init() {
         var isShowIntro = Ti.App.Properties.getString("isShowIntro") || "";
         var isSignup2 = Ti.App.Properties.getString("signup2");
         if ("" != isShowIntro) if ("" == u_id) if ("yes" == isSignup2) {
@@ -30,7 +29,6 @@ function Controller() {
             console.log("firsttime");
             $.index.win.open();
         }
-        loadingView = null;
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -55,7 +53,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var u_id = Ti.App.Properties.getString("u_id") || "";
-    var loadingView;
     var appointmentModel = Alloy.createCollection("appointment");
     appointmentModel.addColumn("doctor_panel_id", "TEXT");
     appointmentModel.addColumn("clinic_name", "TEXT");
@@ -67,16 +64,13 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     notificationModel.addColumn("isRead", "TEXT");
     notificationModel.addColumn("status", "TEXT");
+    init();
     API.callByPost({
         url: "dateNow"
     }, function(responseText) {
         var res = JSON.parse(responseText);
         "error" != res.status && common.sync_time(res.data);
-        loadingView = Alloy.createController("loader");
-        loadingView.getView().open();
-        loadingView.start();
     });
-    Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     _.extend($, exports);
 }
 

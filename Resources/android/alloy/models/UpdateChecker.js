@@ -28,7 +28,10 @@ exports.definition = {
                     resultSet.field(1) == newFieldName && (fieldExists = true);
                     resultSet.next();
                 }
-                fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
+                if (!fieldExists) {
+                    db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
+                    resultSet.close();
+                }
                 db.close();
             },
             getCheckerById: function(id, u_id) {
@@ -36,6 +39,7 @@ exports.definition = {
                 var addon = "";
                 "undefined" != typeof u_id && (addon = "AND u_id = ?");
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? " + addon;
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if ("undefined" != typeof u_id) var res = db.execute(sql, id, u_id); else var res = db.execute(sql, id);
                 var arr = [];
@@ -43,6 +47,7 @@ exports.definition = {
                     typeName: res.fieldByName("typeName"),
                     updated: res.fieldByName("updated")
                 });
+                console.log(arr);
                 res.close();
                 db.close();
                 collection.trigger("sync");
@@ -57,6 +62,7 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET updated='" + updateDate + "' WHERE id='" + id + "'" + addon : "INSERT INTO " + collection.config.adapter.collection_name + " (id, typeName, updated, u_id) VALUES ('" + id + "','" + typeName + "','" + updateDate + "', " + u_id + ")";
+                res.close();
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");

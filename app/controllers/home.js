@@ -118,6 +118,7 @@ function checkMyHealthData(){
  
 		var model2 = Alloy.createCollection("health");
 		var res2 = JSON.parse(responseText);
+		console.log(res2);
 		var arr2 = res2.data || null;
 		model2.saveArray(arr2);
 		

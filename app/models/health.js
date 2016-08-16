@@ -258,8 +258,9 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN");
+                
                 if(arr.length > 0){
+                	db.execute("BEGIN");
 	                arr.forEach(function(entry) {
 	                	var keys = [];
 	                	var questionmark = [];

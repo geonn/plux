@@ -49,7 +49,7 @@ exports.definition = {
                 	db.file.setRemoteBackup(false);
                 }
 				var fieldExists = false;
-				resultSet = db.execute('PRAGMA TABLE_INFO(' + collection.config.adapter.collection_name + ')');
+				resultSet = db.execute('PRAGMA TABLE_INFO(' + collection.config.adapter.collection_name + ')'); 
 				while (resultSet.isValidRow()) {
 					if(resultSet.field(1)==newFieldName) {
 						fieldExists = true;
@@ -58,6 +58,7 @@ exports.definition = {
 				}  
 			 	if(!fieldExists) { 
 					db.execute('ALTER TABLE ' + collection.config.adapter.collection_name + ' ADD COLUMN '+newFieldName + ' ' + colSpec);
+					resultSet.close();
 				}
 				db.close();
 			},
@@ -68,6 +69,7 @@ exports.definition = {
 					addon = "AND u_id = ?";
 				}
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? "+addon ;
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -85,7 +87,7 @@ exports.definition = {
 					    updated: res.fieldByName('updated')
 					};
 				} 
-			 
+			 console.log(arr);
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -112,9 +114,10 @@ exports.definition = {
                 }else{
                 	sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (id, typeName, updated, u_id) VALUES ('"+id+"','"+typeName+"','"+updateDate+"', "+u_id+")" ;
 				}
-       
+       			res.close();
 	            db.execute(sql_query);
 	            db.close();
+	            
 	            collection.trigger('sync');
 			}
 		});

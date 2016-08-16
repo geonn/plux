@@ -8,6 +8,11 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function loadingViewFinish() {
+        console.log("anyone call you?");
+        init();
+        loadingView = null;
+    }
     function init() {
         var AppVersionControl = require("AppVersionControl");
         AppVersionControl.checkAndUpdate();
@@ -100,6 +105,7 @@ function Controller() {
         }, function(responseText) {
             var model2 = Alloy.createCollection("health");
             var res2 = JSON.parse(responseText);
+            console.log(res2);
             var arr2 = res2.data || null;
             model2.saveArray(arr2);
             checker.updateModule(14, "getHealthDataByUser", res2.last_updated, u_id);
@@ -482,7 +488,9 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     common.construct($);
     PUSH.registerPush();
-    init();
+    var loadingView = Alloy.createController("loader");
+    loadingView.getView().open();
+    loadingView.start();
     $.win.addEventListener("android:back", function() {
         var dialog = Ti.UI.createAlertDialog({
             cancel: 0,
@@ -501,9 +509,11 @@ function Controller() {
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("updateNotification", updateNotification);
         Ti.App.removeEventListener("updateHeader", refreshHeaderInfo);
+        Ti.App.removeEventListener("app:loadingViewFinish", loadingViewFinish);
         $.destroy();
         console.log("window close");
     });
+    Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     Ti.App.addEventListener("updateNotification", updateNotification);
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
     __defers["$.__views.__alloyId152!click!navWindow"] && $.addListener($.__views.__alloyId152, "click", navWindow);

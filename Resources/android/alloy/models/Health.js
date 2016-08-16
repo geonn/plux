@@ -206,8 +206,8 @@ exports.definition = {
             saveArray: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                db.execute("BEGIN");
                 if (arr.length > 0) {
+                    db.execute("BEGIN");
                     arr.forEach(function(entry) {
                         var keys = [];
                         var questionmark = [];
