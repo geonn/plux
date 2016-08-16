@@ -125,16 +125,11 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
-<<<<<<< HEAD
     $.__views.__alloyId579 = Ti.UI.createView({
-=======
-    $.__views.__alloyId567 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
         id: "__alloyId579"
     });
     $.__views.win_map.add($.__views.__alloyId579);
@@ -144,17 +139,6 @@ function Controller() {
         id: "__alloyId580"
     });
     $.__views.__alloyId579.add($.__views.__alloyId580);
-=======
-        id: "__alloyId567"
-    });
-    $.__views.win_map.add($.__views.__alloyId567);
-    $.__views.__alloyId568 = Ti.UI.createView({
-        left: 0,
-        width: "20%",
-        id: "__alloyId568"
-    });
-    $.__views.__alloyId567.add($.__views.__alloyId568);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -162,21 +146,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId580.add($.__views.btnBack);
     $.__views.__alloyId581 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId581"
     });
     $.__views.__alloyId579.add($.__views.__alloyId581);
-=======
-    $.__views.__alloyId568.add($.__views.btnBack);
-    $.__views.__alloyId569 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId569"
-    });
-    $.__views.__alloyId567.add($.__views.__alloyId569);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -188,7 +163,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId581.add($.__views.pageTitle);
     $.__views.__alloyId582 = Ti.UI.createView({
         right: 0,
@@ -196,15 +170,6 @@ function Controller() {
         id: "__alloyId582"
     });
     $.__views.__alloyId579.add($.__views.__alloyId582);
-=======
-    $.__views.__alloyId569.add($.__views.pageTitle);
-    $.__views.__alloyId570 = Ti.UI.createView({
-        right: 0,
-        width: "20%",
-        id: "__alloyId570"
-    });
-    $.__views.__alloyId567.add($.__views.__alloyId570);
->>>>>>> origin/master
     $.__views.btnList = Ti.UI.createImageView({
         right: 10,
         id: "btnList",
@@ -212,11 +177,7 @@ function Controller() {
         height: 25,
         image: "/images/list.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId582.add($.__views.btnList);
-=======
-    $.__views.__alloyId570.add($.__views.btnList);
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -233,25 +194,15 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
     $.__views.__alloyId583 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId571 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         text: "Loading",
-<<<<<<< HEAD
         id: "__alloyId583"
     });
     $.__views.loadingBar.add($.__views.__alloyId583);
-=======
-        id: "__alloyId571"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId571);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

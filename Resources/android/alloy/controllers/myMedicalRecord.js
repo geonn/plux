@@ -140,22 +140,14 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-<<<<<<< HEAD
     $.__views.__alloyId195 = Ti.UI.createView({
         id: "__alloyId195"
     });
     $.__views.__alloyId196 = Ti.UI.createImageView({
-=======
-    $.__views.__alloyId183 = Ti.UI.createView({
-        id: "__alloyId183"
-    });
-    $.__views.__alloyId184 = Ti.UI.createImageView({
->>>>>>> origin/master
         left: 10,
         width: 25,
         height: 20,
         image: "/images/add.png",
-<<<<<<< HEAD
         id: "__alloyId196"
     });
     $.__views.__alloyId195.add($.__views.__alloyId196);
@@ -165,35 +157,18 @@ function Controller() {
         id: "__alloyId197"
     });
     $.__views.win.add($.__views.__alloyId197);
-=======
-        id: "__alloyId184"
-    });
-    $.__views.__alloyId183.add($.__views.__alloyId184);
-    newRecord ? $.addListener($.__views.__alloyId184, "click", newRecord) : __defers["$.__views.__alloyId184!click!newRecord"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId183;
-    $.__views.__alloyId185 = Ti.UI.createView({
-        id: "__alloyId185"
-    });
-    $.__views.win.add($.__views.__alloyId185);
->>>>>>> origin/master
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         height: Ti.UI.SIZE,
         top: 0,
         layout: "vertical"
     });
-<<<<<<< HEAD
     $.__views.__alloyId197.add($.__views.aView);
     $.__views.__alloyId198 = Ti.UI.createView({
-=======
-    $.__views.__alloyId185.add($.__views.aView);
-    $.__views.__alloyId186 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
         id: "__alloyId198"
     });
     $.__views.aView.add($.__views.__alloyId198);
@@ -203,17 +178,6 @@ function Controller() {
         id: "__alloyId199"
     });
     $.__views.__alloyId198.add($.__views.__alloyId199);
-=======
-        id: "__alloyId186"
-    });
-    $.__views.aView.add($.__views.__alloyId186);
-    $.__views.__alloyId187 = Ti.UI.createView({
-        left: 0,
-        width: "20%",
-        id: "__alloyId187"
-    });
-    $.__views.__alloyId186.add($.__views.__alloyId187);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -221,21 +185,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId199.add($.__views.btnBack);
     $.__views.__alloyId200 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId200"
     });
     $.__views.__alloyId198.add($.__views.__alloyId200);
-=======
-    $.__views.__alloyId187.add($.__views.btnBack);
-    $.__views.__alloyId188 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId188"
-    });
-    $.__views.__alloyId186.add($.__views.__alloyId188);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -247,7 +202,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId200.add($.__views.pageTitle);
     $.__views.__alloyId201 = Ti.UI.createView({
         left: 0,
@@ -255,15 +209,6 @@ function Controller() {
         id: "__alloyId201"
     });
     $.__views.__alloyId198.add($.__views.__alloyId201);
-=======
-    $.__views.__alloyId188.add($.__views.pageTitle);
-    $.__views.__alloyId189 = Ti.UI.createView({
-        left: 0,
-        width: "20%",
-        id: "__alloyId189"
-    });
-    $.__views.__alloyId186.add($.__views.__alloyId189);
->>>>>>> origin/master
     $.__views.newRecord = Ti.UI.createImageView({
         left: 10,
         id: "newRecord",
@@ -271,11 +216,7 @@ function Controller() {
         height: 20,
         image: "/images/add.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId201.add($.__views.newRecord);
-=======
-    $.__views.__alloyId189.add($.__views.newRecord);
->>>>>>> origin/master
     newRecord ? $.addListener($.__views.newRecord, "click", newRecord) : __defers["$.__views.newRecord!click!newRecord"] = true;
     $.__views.searchItem = Ti.UI.Android.createSearchView({
         id: "searchItem",
@@ -317,11 +258,7 @@ function Controller() {
         $.destroy();
         console.log("window close");
     });
-<<<<<<< HEAD
     __defers["$.__views.__alloyId196!click!newRecord"] && $.addListener($.__views.__alloyId196, "click", newRecord);
-=======
-    __defers["$.__views.__alloyId184!click!newRecord"] && $.addListener($.__views.__alloyId184, "click", newRecord);
->>>>>>> origin/master
     __defers["$.__views.newRecord!click!newRecord"] && $.addListener($.__views.newRecord, "click", newRecord);
     _.extend($, exports);
 }

@@ -25,13 +25,8 @@ exports.definition = {
             getUserById: function(id) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? ";
                 var res = db.execute(sql, id);
-=======
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' ";
-                var res = db.execute(sql);
->>>>>>> origin/master
                 var listArr = [];
                 while (res.isValidRow()) {
                     listArr = {
@@ -53,11 +48,7 @@ exports.definition = {
             getUserByEmail: function(email) {
                 var collection = this;
                 var db1 = Ti.Database.open(collection.config.adapter.db_name);
-<<<<<<< HEAD
                 var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email= ? AND id != 'undefined' ", email);
-=======
-                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email='" + email + "' AND id != 'undefined' ");
->>>>>>> origin/master
                 var listArr = [];
                 while (res.isValidRow()) {
                     listArr = {
@@ -78,7 +69,6 @@ exports.definition = {
             },
             addUserData: function(entry) {
                 var collection = this;
-<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? ";
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -90,14 +80,6 @@ exports.definition = {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     db.execute(sql_query, entry.u_id, entry.fullname, entry.email, entry.status, entry.facebook_id, entry.facebook_url, entry.last_login);
                 }
-=======
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + entry.u_id + "' ";
-                var sql_query = "";
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                var res = db.execute(sql);
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET fullname='" + entry.fullname + "',  email='" + entry.email + "' , status='" + entry.status + "', facebook_id='" + entry.facebook_id + "', facebook_url='" + entry.facebook_url + "', last_login='" + entry.last_login + "' WHERE id='" + entry.u_id + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES ('" + entry.u_id + "', '" + entry.fullname + "','" + entry.email + "','" + entry.status + "', '" + entry.facebook_id + "',  '" + entry.facebook_url + "',  '" + entry.last_login + "')";
-                db.execute(sql_query);
->>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             }

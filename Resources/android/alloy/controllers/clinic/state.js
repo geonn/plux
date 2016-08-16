@@ -111,10 +111,6 @@ function Controller() {
     arguments[0] || {};
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelListByState();
-<<<<<<< HEAD
-    console.log(details);
-=======
->>>>>>> origin/master
     listing();
     _.extend($, exports);
 }

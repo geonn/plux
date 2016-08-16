@@ -80,7 +80,6 @@ exports.definition = {
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
-<<<<<<< HEAD
                 if (res.isValidRow()) {
                     sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name=?, gender=? , bloodType=? , birthDate=?, updated=? WHERE id=? ";
                     db.execute(sql_query, entry.name, entry.gender, entry.bloodType, entry.birthDate, currentDateTime(), entry.id);
@@ -88,10 +87,6 @@ exports.definition = {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(name, birthDate, gender, bloodType, isOwner,created,updated) VALUES (?,?,?,?,?,?,?)";
                     db.execute(sql_query, entry.name, entry.birthDate, entry.gender, entry.bloodType, 1, currentDateTime(), currentDateTime());
                 }
-=======
-                sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "', gender='" + entry.gender + "' , bloodType='" + entry.bloodType + "' , birthDate='" + entry.birthDate + "', updated='" + currentDateTime() + "' WHERE id='" + entry.id + "' " : "INSERT INTO " + collection.config.adapter.collection_name + "(name, birthDate, gender, bloodType, isOwner,created,updated) VALUES ('" + entry.name + "', '" + entry.birthDate + "','" + entry.gender + "','" + entry.bloodType + "','1', '" + currentDateTime() + "', '" + currentDateTime() + "')";
-                db.execute(sql_query);
->>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             }

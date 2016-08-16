@@ -73,16 +73,10 @@ exports.definition = {
             },
             getUserByMemno: function() {
                 var collection = this;
-<<<<<<< HEAD
                 var memno = Ti.App.Properties.getString("memno");
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE memno=?";
                 var res = db.execute(sql, memno);
-=======
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE memno='" + Ti.App.Properties.getString("memno") + "' ";
-                var res = db.execute(sql);
->>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),
@@ -107,14 +101,9 @@ exports.definition = {
             getUserByEmpNo: function() {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-<<<<<<< HEAD
                 var empno = Ti.App.Properties.getString("empno");
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE empno=?";
                 var res = db.execute(sql, empno);
-=======
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE empno='" + Ti.App.Properties.getString("empno") + "'";
-                var res = db.execute(sql);
->>>>>>> origin/master
                 var arr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -170,14 +159,9 @@ exports.definition = {
             getPrincipleData: function() {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-<<<<<<< HEAD
                 var memno = Ti.App.Properties.getString("memno");
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno=?";
                 var res = db.execute(sql, memno);
-=======
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno='" + Ti.App.Properties.getString("memno") + "'";
-                var res = db.execute(sql);
->>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),
@@ -206,7 +190,6 @@ exports.definition = {
                     var sql_query = "";
                     db = Ti.Database.open(collection.config.adapter.db_name);
                     var res = db.execute(sql);
-<<<<<<< HEAD
                     if (res.isValidRow()) {
                         sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name=?,  icno=? , relation=?, empno=?, corpcode=?, corpname=?, costcenter=?, dept=?, allergy=?, isver=?, verno=? WHERE memno=? ";
                         db.execute(sql_query, entry.name, entry.icno, entry.relation, entry.empno, entry.corpcode, entry.corpname, entry.costcenter, entry.dept, entry.allergy, entry.isver, entry.verno, entry.memno);
@@ -214,10 +197,6 @@ exports.definition = {
                         sql_query = "INSERT INTO " + collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES (?, ?,?,?, ?,  ?,  ?,  ?,  ?, ?, ?, ?)";
                         db.execute(sql_query, entry.name, entry.memno, entry.icno, entry.relation, entry.empno, entry.corpcode, entry.corpname, entry.costcenter, entry.dept, entry.allergy, entry.isver, entry.verno);
                     }
-=======
-                    sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET name='" + entry.name + "',  icno='" + entry.icno + "' , relation='" + entry.relation + "', empno='" + entry.empno + "', corpcode='" + entry.corpcode + "', corpname='" + entry.corpname + "', costcenter='" + entry.costcenter + "', dept='" + entry.dept + "', allergy='" + entry.allergy + "', isver='" + entry.isver + "', verno='" + entry.verno + "' WHERE memno='" + entry.memno + "' " : "INSERT INTO " + collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES ('" + entry.name + "', '" + entry.memno + "','" + entry.icno + "','" + entry.relation + "', '" + entry.empno + "',  '" + entry.corpcode + "',  '" + entry.corpname + "',  '" + entry.costcenter + "',  '" + entry.dept + "', '" + entry.allergy + "', '" + entry.isver + "', '" + entry.verno + "')";
-                    db.execute(sql_query);
->>>>>>> origin/master
                     db.close();
                     collection.trigger("sync");
                 });
