@@ -52,16 +52,15 @@ data.forEach(function(entry){
 	});
 	 
 	var view_detail = $.UI.create("View",{
-		height: 25,
+		height: 35,
 		classes: ['wfill'], 
 		serial: entry.serial,
-		appcode: entry.appcode,
+		appcode: entry.appcode, 
 		claimType:entry.claimType
 	});
 	
 	
-	var labelClinicView = $.UI.create("View",{ 
-		height: Ti.UI.SIZE,
+	var labelClinicView = $.UI.create("View",{  
 		serial: entry.serial,
 		appcode: entry.appcode,
 		height: 35,
@@ -94,7 +93,7 @@ data.forEach(function(entry){
 	var view_detail2 = $.UI.create("View",{ 
 		serial: entry.serial,
 		appcode: entry.appcode,
-		claimType:entry.claimType,
+		claimType:entry.claimType, 
 		classes: [ "hsize"]
 	});
 	
@@ -121,7 +120,7 @@ data.forEach(function(entry){
 		classes: ['h5','hsize','wfill','left-align'],
 		serial: entry.serial,
 		appcode: entry.appcode,
-		claimType:entry.claimType,
+		claimType:entry.claimType, 
 		text: "Claim Under: "+entry.name
 	});
 	
@@ -161,8 +160,7 @@ data.forEach(function(entry){
 	view_detail.add(forwardImg);
 	view_detail2.add(label_category);
 	view_detail2.add(label_date);
-	view_container.add(view_detail);
-	view_container.add(view_detail2);
+	view_container.add(view_detail); 
 	view_container.add(label_name); 
 	view_container.add(label_mc);
 	view_container.add(label_claimType);

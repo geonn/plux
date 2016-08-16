@@ -1,7 +1,6 @@
 var args = arguments[0] || {};
 var library = Alloy.createCollection('panelList');
-var details = library.getPanelListByState();
-console.log(details);
+var details = library.getPanelListByState(); 
 listing();
 
 

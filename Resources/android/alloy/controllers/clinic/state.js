@@ -111,7 +111,6 @@ function Controller() {
     arguments[0] || {};
     var library = Alloy.createCollection("panelList");
     var details = library.getPanelListByState();
-    console.log(details);
     listing();
     _.extend($, exports);
 }

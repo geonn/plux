@@ -105,7 +105,7 @@ function checkMyHealthData(){
 	}
 	
 	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText){
-		console.log(responseText);
+ 
 		var model2 = Alloy.createCollection("health");
 		var res2 = JSON.parse(responseText);
 		var arr2 = res2.data || null;

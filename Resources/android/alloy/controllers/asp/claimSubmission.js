@@ -68,6 +68,8 @@ function Controller() {
                 claimCategoryIdArr.push(entry.catID);
                 claimCategoryArr.push(entry.catDesc);
             });
+            claimCategoryIdArr.push("Cancel");
+            claimCategoryArr.push("Cancel");
             common.hideLoading();
             checkIfHaveData();
         });
@@ -114,8 +116,17 @@ function Controller() {
         var ser = "";
         "" != isEdit && (ser = "&SERIAL=" + claimSerial);
         var params = "RECNO=" + receiptNo + "&CATEGORY=" + claimCategory + "&MEMNO=" + claimUnder + "&EMPNO=" + user.empno + "&CORPCODE=" + user.corpcode + "&AMT=" + receiptAmount + "&VISITDT=" + dateVisit + "&NCLINIC=" + clinicName + "&REMARKS=" + remark + "&GSTAMT=" + gstAmount + "&MCDAYS=" + mc + "&DIAGNOSIS=" + diagnosis + "&GLAMT=" + glamount + "&MODE=" + mode + ser;
-        console.log(params);
-        return false;
+        common.showLoading();
+        API.callByGet({
+            url: "getclaimSubmissionUrl",
+            params: params
+        }, function(responseText) {
+            var res = JSON.parse(responseText);
+            common.hideLoading();
+            "02" == res[0]["code"] ? common.createAlert("Success", res[0]["message"], function() {
+                $.win.close();
+            }) : common.createAlert("Error", res[0]["message"]);
+        });
     }
     function changeVisitDate(e) {
         var pickerdate = e.value;

@@ -1,6 +1,5 @@
 var args = arguments[0] || {}; 
-var singleton = true;
-console.log('login');
+var singleton = true; 
 common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
@@ -203,6 +202,5 @@ if(Ti.Platform.osname == "android"){
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('touchLogin', touchLogin);
 	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
-	$.destroy();
-	console.log("window close");
+	$.destroy(); 
 });

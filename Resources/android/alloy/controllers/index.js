@@ -61,8 +61,8 @@ function Controller() {
     appointmentModel.addColumn("clinic_name", "TEXT");
     appointmentModel.addColumn("doctor_name", "TEXT");
     appointmentModel.addColumn("specialty_name", "TEXT");
-    var medicalRecordsModel = Alloy.createCollection("medicalRecords");
-    medicalRecordsModel.addColumn("server_id", "TEXT");
+    var checker = Alloy.createCollection("updateChecker");
+    checker.addColumn("u_id", "INTEGER");
     var medicalAttachmentModel = Alloy.createCollection("medicalAttachment");
     medicalAttachmentModel.addColumn("img_path", "TEXT");
     medicalAttachmentModel.addColumn("server_id", "TEXT");

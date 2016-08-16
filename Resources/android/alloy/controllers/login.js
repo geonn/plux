@@ -241,7 +241,6 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var singleton = true;
-    console.log("login");
     common.construct($);
     var usersPluxModel = Alloy.createCollection("users_plux");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
@@ -326,7 +325,6 @@ function Controller() {
         Ti.App.removeEventListener("touchLogin", touchLogin);
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
-        console.log("window close");
     });
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);

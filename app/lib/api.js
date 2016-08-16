@@ -114,7 +114,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var res = JSON.parse(this.responseText);
-	       console.log(res);
+	        
 	       if(res.status == "Success" || res.status == "success"){
 	       	/**reset current category**/
 			//library.resetCategory();
@@ -147,7 +147,7 @@ exports.loadAPIBySequence = function (ex, counter){
 
 exports.updateUserFromFB = function(e, mainView){ 
 	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
-	console.log('updateuserfromFB');
+	 
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
@@ -390,7 +390,7 @@ exports.checkAppVersion = function(callback_download){
 		// function called when the response data is available
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
-			console.log(result);
+		 
 			if(result.status == "error"){ 
 				callback_download && callback_download(result);
 			}
@@ -697,8 +697,7 @@ exports.doLogin = function(username, password, mainView, target) {
 	     onload : function(e) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText); 
-	       res = result[0]; 
-	        console.log(res);
+	       res = result[0];  
 	       if(typeof res.message !== undefined && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
@@ -940,8 +939,7 @@ exports.updateNotificationToken = function(e){
 };
 
 exports.loadLeaflet = function(ex){
-	var url = leafletUrl;
-	console.log(url);
+	var url = leafletUrl; 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -977,8 +975,7 @@ exports.loadLeaflet = function(ex){
 };
 
 exports.getDoctorList = function(ex){
-	var url = doctorListUrl;
-	console.log(url);
+	var url = doctorListUrl; 
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -1296,12 +1293,9 @@ exports.callByPost = function(e, onload, onerror){
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
 		var url = eval(e.url);
-		console.log(url);
-		console.log(e.params);
+		console.log(url); 
 		var _result = contactServerByPost(url, e.params || {});   
-		_result.onload = function(ex) { 
-			console.log('success callByPost');
-			console.log(this.responseText);
+		_result.onload = function(ex) {  
 			onload && onload(this.responseText); 
 		};
 		

@@ -126,14 +126,13 @@ function Controller() {
             bottom: 5
         });
         var view_detail = $.UI.create("View", {
-            height: 25,
+            height: 35,
             classes: [ "wfill" ],
             serial: entry.serial,
             appcode: entry.appcode,
             claimType: entry.claimType
         });
         var labelClinicView = $.UI.create("View", {
-            height: Ti.UI.SIZE,
             serial: entry.serial,
             appcode: entry.appcode,
             height: 35,
@@ -217,7 +216,6 @@ function Controller() {
         view_detail2.add(label_category);
         view_detail2.add(label_date);
         view_container.add(view_detail);
-        view_container.add(view_detail2);
         view_container.add(label_name);
         view_container.add(label_mc);
         view_container.add(label_claimType);

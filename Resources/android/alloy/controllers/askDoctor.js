@@ -69,7 +69,6 @@ function Controller() {
         var room_id = parent({
             name: "room_id"
         }, e.source);
-        console.log(room_id + " and " + dr_id);
         nav.navigateWithArgs("conversation", {
             dr_id: dr_id,
             room_id: room_id
