@@ -39,9 +39,15 @@ exports.definition = {
             },
             getCategoryById: function(id) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id =? ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, id);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),

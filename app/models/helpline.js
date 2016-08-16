@@ -116,6 +116,7 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
+
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];
@@ -152,9 +153,7 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                
-                console.log(typeof entry.message);
-                console.log(entry.message);
+                 
                 entry.message = entry.message.replace("[br]", "\n");
                 var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
 				db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);

@@ -41,9 +41,15 @@ exports.definition = {
             },
             getCategoryByTime: function(time) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE time <= ? order by time desc";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, time);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE time <= " + time + " order by time desc";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),

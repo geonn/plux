@@ -164,7 +164,7 @@ function render_conversation(latest){
 			  
 		  dialog.addEventListener('click', function(ex){
    			 if (ex.index === ex.source.cancel){
-   			 	console.log("cancel");
+
    			 }else if(ex.index == 0){
    			 	var model = Alloy.createCollection("helpline");
 				model.removeById(m_id);
@@ -345,7 +345,7 @@ function init(){
 }
 
 function set_room(){
-	console.log("set room");
+	 
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
 }
@@ -360,5 +360,5 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	Ti.App.removeEventListener('conversation:setRoom', set_room);
 	$.destroy();
-	console.log("window close");
+	 
 });

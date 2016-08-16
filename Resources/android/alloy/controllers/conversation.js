@@ -9,11 +9,15 @@ function __processArg(obj, key) {
 
 function Controller() {
     function SendMessage() {
+<<<<<<< HEAD
         var model = Alloy.createCollection("helpline");
+=======
+>>>>>>> origin/master
         if ("" == $.message.value || sending) return;
         loading.start();
         sending = true;
         $.message.editable = false;
+<<<<<<< HEAD
         var local_save = [ {
             u_id: u_id,
             sender_id: u_id,
@@ -25,15 +29,25 @@ function Controller() {
         } ];
         var id = model.saveArray(local_save);
         getLatestData();
+=======
+        var u_id = Ti.App.Properties.getString("u_id") || 0;
+>>>>>>> origin/master
         API.callByPost({
             url: "sendHelplineMessage",
             params: {
                 u_id: u_id,
                 message: $.message.value,
+<<<<<<< HEAD
                 is_endUser: 1,
                 app_id: id
             }
         }, function(responseText) {
+=======
+                is_endUser: 1
+            }
+        }, function(responseText) {
+            Alloy.createCollection("helpline");
+>>>>>>> origin/master
             JSON.parse(responseText);
             $.message.value = "";
             $.message.editable = true;
@@ -43,7 +57,10 @@ function Controller() {
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
+<<<<<<< HEAD
             console.log(isShowWatingMsg);
+=======
+>>>>>>> origin/master
             "0" == isShowWatingMsg && (refreshIntervalId = setInterval(function() {
                 $.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
                 $.estimate.parent.show();
@@ -54,7 +71,11 @@ function Controller() {
     }
     function render_conversation(latest) {
         !latest;
+<<<<<<< HEAD
         latest && data.reverse();
+=======
+        var last_uid;
+>>>>>>> origin/master
         for (var i = 0; i < data.length; i++) {
             var view_container = $.UI.create("View", {
                 classes: [ "hsize", "wfill" ],
@@ -84,7 +105,11 @@ function Controller() {
                     classes: [ "h7", "wfill", "hsize", "small_padding" ],
                     top: 0,
                     right: 15,
+<<<<<<< HEAD
                     text: timeFormat(data[i].created) + " " + status_text[data[i].status],
+=======
+                    text: timeFormat(data[i].created),
+>>>>>>> origin/master
                     textAlign: "right"
                 });
                 view_text_container.add(label_name);
@@ -125,7 +150,12 @@ function Controller() {
                     title: "Delete"
                 });
                 dialog.addEventListener("click", function(ex) {
+<<<<<<< HEAD
                     if (ex.index === ex.source.cancel) console.log("cancel"); else if (0 == ex.index) {
+=======
+                    ex.index === ex.source.cancel;
+                    if (0 == ex.index) {
+>>>>>>> origin/master
                         var model = Alloy.createCollection("helpline");
                         model.removeById(m_id);
                         $.inner_area.remove(message_box);
@@ -139,8 +169,13 @@ function Controller() {
                 view: view_container,
                 position: 1
             });
+<<<<<<< HEAD
         }
         console.log(last_uid + " != " + Ti.App.Properties.getString("u_id"));
+=======
+            last_uid = data[i].sender_id;
+        }
+>>>>>>> origin/master
         if (last_uid != Ti.App.Properties.getString("u_id")) {
             $.estimate.parent.hide();
             isShowWatingMsg = "0";
@@ -156,7 +191,11 @@ function Controller() {
         last_update = last_updated;
         console.log(last_updated + " last_updated " + u_id);
         API.callByPost({
+<<<<<<< HEAD
             url: "getHelplineMessageV2",
+=======
+            url: "getHelplineMessage",
+>>>>>>> origin/master
             params: {
                 u_id: u_id,
                 last_updated: last_updated
@@ -165,6 +204,7 @@ function Controller() {
             var model = Alloy.createCollection("helpline");
             var res = JSON.parse(responseText);
             var arr = res.data || void 0;
+<<<<<<< HEAD
             if (arr.length > 0 || retry >= 3) {
                 Ti.App.Properties.setString("estimate_time", res.estimate_time);
                 model.saveArray(arr, callback);
@@ -205,11 +245,31 @@ function Controller() {
             }
         }
     }
+=======
+            Ti.App.Properties.setString("estimate_time", res.estimate_time);
+            model.saveArray(arr, callback);
+            checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
+            if (!room_id) {
+                Ti.App.fireEvent("web:setRoom", {
+                    room_id: res.data
+                });
+                Ti.App.fireEvent("conversation:setRoom", {
+                    room_id: res.data
+                });
+            }
+            room_id = res.room_id;
+            callback && callback();
+        });
+    }
+>>>>>>> origin/master
     function scrollToBottom() {
         $.chatroom.scrollToBottom();
     }
     function refresh(callback, firsttime) {
+<<<<<<< HEAD
         retry = 0;
+=======
+>>>>>>> origin/master
         loading.start();
         console.log("start refresh");
         getConversationByRoomId(function() {
@@ -222,16 +282,23 @@ function Controller() {
     }
     function refresh_latest() {
         console.log("refresh_latest " + refreshing);
+<<<<<<< HEAD
         console.log(time_offset + " < " + common.now());
         if (!refreshing && time_offset < common.now()) {
             refreshing = true;
             refresh(getLatestData);
             time_offset = common.now();
+=======
+        if (!refreshing) {
+            refreshing = true;
+            refresh(getLatestData);
+>>>>>>> origin/master
         }
     }
     function getPreviousData(param) {
         start = parseInt(start);
         var model = Alloy.createCollection("helpline");
+<<<<<<< HEAD
         data = model.getData(false, start, anchor);
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         console.log(estimate_time + " estimate time");
@@ -239,6 +306,11 @@ function Controller() {
         last_id = data.length > 0 ? _.first(data)["id"] : last_id;
         last_uid = data.length > 0 ? _.first(data)["sender_id"] : last_uid;
         console.log(last_id + " why");
+=======
+        data = model.getData(false, "", start, anchor);
+        var estimate_time = Ti.App.Properties.getString("estimate_time");
+        console.log(estimate_time + " estimate time");
+>>>>>>> origin/master
         if ("0" != estimate_time) {
             $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
             $.estimate.parent.show();
@@ -251,17 +323,25 @@ function Controller() {
     }
     function getLatestData() {
         var model = Alloy.createCollection("helpline");
+<<<<<<< HEAD
         data = model.getData(true, "", "", last_id);
+=======
+        data = model.getData(true, last_update);
+        last_update = common.now();
+>>>>>>> origin/master
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         if (0 != estimate_time) {
             $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
             $.estimate.parent.show();
         } else $.estimate.parent.hide();
+<<<<<<< HEAD
         console.log("getlatestdata");
         console.log(data);
         last_id = data.length > 0 ? _.first(data)["id"] : last_id;
         last_uid = data.length > 0 ? _.first(data)["sender_id"] : last_uid;
         console.log(last_id);
+=======
+>>>>>>> origin/master
         render_conversation(true);
         setTimeout(function() {
             scrollToBottom();
@@ -281,7 +361,10 @@ function Controller() {
         }
     }
     function set_room() {
+<<<<<<< HEAD
         console.log("set room");
+=======
+>>>>>>> origin/master
         socket.addEventListener("socket:refresh_chatroom", refresh_latest);
         socket.event_onoff("socket:message_alert", false);
     }
@@ -311,6 +394,7 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+<<<<<<< HEAD
     $.__views.__alloyId105 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -319,10 +403,21 @@ function Controller() {
     });
     $.__views.win.add($.__views.__alloyId105);
     $.__views.__alloyId106 = Ti.UI.createView({
+=======
+    $.__views.__alloyId93 = Ti.UI.createView({
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId93"
+    });
+    $.__views.win.add($.__views.__alloyId93);
+    $.__views.__alloyId94 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId106"
     });
     $.__views.__alloyId105.add($.__views.__alloyId106);
@@ -332,6 +427,17 @@ function Controller() {
         id: "__alloyId107"
     });
     $.__views.__alloyId106.add($.__views.__alloyId107);
+=======
+        id: "__alloyId94"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId94);
+    $.__views.__alloyId95 = Ti.UI.createView({
+        left: 0,
+        width: "20%",
+        id: "__alloyId95"
+    });
+    $.__views.__alloyId94.add($.__views.__alloyId95);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -339,6 +445,7 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId107.add($.__views.btnBack);
     closeWindow ? $.addListener($.__views.btnBack, "click", closeWindow) : __defers["$.__views.btnBack!click!closeWindow"] = true;
     $.__views.__alloyId108 = Ti.UI.createView({
@@ -346,6 +453,15 @@ function Controller() {
         id: "__alloyId108"
     });
     $.__views.__alloyId106.add($.__views.__alloyId108);
+=======
+    $.__views.__alloyId95.add($.__views.btnBack);
+    closeWindow ? $.addListener($.__views.btnBack, "click", closeWindow) : __defers["$.__views.btnBack!click!closeWindow"] = true;
+    $.__views.__alloyId96 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId96"
+    });
+    $.__views.__alloyId94.add($.__views.__alloyId96);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -357,25 +473,43 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId108.add($.__views.pageTitle);
     $.__views.__alloyId109 = Ti.UI.createScrollView({
+=======
+    $.__views.__alloyId96.add($.__views.pageTitle);
+    $.__views.__alloyId97 = Ti.UI.createScrollView({
+>>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         contentHeight: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId109"
     });
     $.__views.__alloyId105.add($.__views.__alloyId109);
     $.__views.__alloyId110 = Ti.UI.createView({
+=======
+        id: "__alloyId97"
+    });
+    $.__views.__alloyId93.add($.__views.__alloyId97);
+    $.__views.__alloyId98 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         borderColor: "#dfe0e4",
         backgroundColor: "#ffffff",
         borderRadius: "5",
         zIndex: 10,
         width: "80%",
+<<<<<<< HEAD
         id: "__alloyId110"
     });
     $.__views.__alloyId109.add($.__views.__alloyId110);
+=======
+        id: "__alloyId98"
+    });
+    $.__views.__alloyId97.add($.__views.__alloyId98);
+>>>>>>> origin/master
     $.__views.estimate = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -389,7 +523,11 @@ function Controller() {
         },
         id: "estimate"
     });
+<<<<<<< HEAD
     $.__views.__alloyId110.add($.__views.estimate);
+=======
+    $.__views.__alloyId98.add($.__views.estimate);
+>>>>>>> origin/master
     $.__views.chatroom = Ti.UI.createScrollView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -400,7 +538,11 @@ function Controller() {
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId109.add($.__views.chatroom);
+=======
+    $.__views.__alloyId97.add($.__views.chatroom);
+>>>>>>> origin/master
     $.__views.inner_area = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -409,7 +551,11 @@ function Controller() {
         bottom: 20
     });
     $.__views.chatroom.add($.__views.inner_area);
+<<<<<<< HEAD
     $.__views.__alloyId111 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId99 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -423,6 +569,7 @@ function Controller() {
             fontSize: 14
         },
         text: "More",
+<<<<<<< HEAD
         m_id: "no",
         textAlign: "center",
         id: "__alloyId111"
@@ -430,14 +577,28 @@ function Controller() {
     $.__views.inner_area.add($.__views.__alloyId111);
     getPreviousData ? $.addListener($.__views.__alloyId111, "click", getPreviousData) : __defers["$.__views.__alloyId111!click!getPreviousData"] = true;
     $.__views.__alloyId112 = Ti.UI.createView({
+=======
+        textAlign: "center",
+        id: "__alloyId99"
+    });
+    $.__views.inner_area.add($.__views.__alloyId99);
+    getPreviousData ? $.addListener($.__views.__alloyId99, "click", getPreviousData) : __defers["$.__views.__alloyId99!click!getPreviousData"] = true;
+    $.__views.__alloyId100 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         backgroundColor: "white",
         bottom: 0,
+<<<<<<< HEAD
         id: "__alloyId112"
     });
     $.__views.__alloyId109.add($.__views.__alloyId112);
+=======
+        id: "__alloyId100"
+    });
+    $.__views.__alloyId97.add($.__views.__alloyId100);
+>>>>>>> origin/master
     $.__views.message = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "45dp",
@@ -453,8 +614,13 @@ function Controller() {
         bottom: 10,
         id: "message"
     });
+<<<<<<< HEAD
     $.__views.__alloyId112.add($.__views.message);
     $.__views.__alloyId113 = Ti.UI.createButton({
+=======
+    $.__views.__alloyId100.add($.__views.message);
+    $.__views.__alloyId101 = Ti.UI.createButton({
+>>>>>>> origin/master
         borderColor: "#CE1D1C",
         backgroundColor: "#ffffff",
         color: "#CE1D1C",
@@ -466,10 +632,17 @@ function Controller() {
         },
         title: "Send",
         right: 10,
+<<<<<<< HEAD
         id: "__alloyId113"
     });
     $.__views.__alloyId112.add($.__views.__alloyId113);
     SendMessage ? $.addListener($.__views.__alloyId113, "click", SendMessage) : __defers["$.__views.__alloyId113!click!SendMessage"] = true;
+=======
+        id: "__alloyId101"
+    });
+    $.__views.__alloyId100.add($.__views.__alloyId101);
+    SendMessage ? $.addListener($.__views.__alloyId101, "click", SendMessage) : __defers["$.__views.__alloyId101!click!SendMessage"] = true;
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -480,6 +653,7 @@ function Controller() {
     var start = 0;
     var isShowWatingMsg = "0";
     var refreshIntervalId;
+<<<<<<< HEAD
     var retry = 0;
     var u_id = Ti.App.Properties.getString("u_id") || 0;
     var user_model = Alloy.createCollection("users_plux");
@@ -490,6 +664,10 @@ function Controller() {
     var sending = false;
     var refreshing = false;
     var time_offset = common.now();
+=======
+    var sending = false;
+    var refreshing = false;
+>>>>>>> origin/master
     init();
     Ti.App.addEventListener("conversation:refresh", refresh_latest);
     Ti.App.addEventListener("conversation:setRoom", set_room);
@@ -499,11 +677,18 @@ function Controller() {
         Ti.App.removeEventListener("conversation:refresh", refresh_latest);
         Ti.App.removeEventListener("conversation:setRoom", set_room);
         $.destroy();
+<<<<<<< HEAD
         console.log("window close");
     });
     __defers["$.__views.btnBack!click!closeWindow"] && $.addListener($.__views.btnBack, "click", closeWindow);
     __defers["$.__views.__alloyId111!click!getPreviousData"] && $.addListener($.__views.__alloyId111, "click", getPreviousData);
     __defers["$.__views.__alloyId113!click!SendMessage"] && $.addListener($.__views.__alloyId113, "click", SendMessage);
+=======
+    });
+    __defers["$.__views.btnBack!click!closeWindow"] && $.addListener($.__views.btnBack, "click", closeWindow);
+    __defers["$.__views.__alloyId99!click!getPreviousData"] && $.addListener($.__views.__alloyId99, "click", getPreviousData);
+    __defers["$.__views.__alloyId101!click!SendMessage"] && $.addListener($.__views.__alloyId101, "click", SendMessage);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

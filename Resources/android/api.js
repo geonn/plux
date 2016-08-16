@@ -111,8 +111,11 @@ var deleteAttachmentUrl = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?u
 
 var changeMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/changeMedicalRecord?user=" + USER + "&key=" + KEY;
 
+<<<<<<< HEAD
 var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachment?user=" + USER + "&key=" + KEY;
 
+=======
+>>>>>>> origin/master
 var addMessageUrl = "http://" + FREEJINI_DOMAIN + "/api/addMessage?user=" + USER + "&key=" + KEY;
 
 var getDoctorByPanel = "http://" + FREEJINI_DOMAIN + "/api/getDoctorByPanel?user=" + USER + "&key=" + KEY;
@@ -127,8 +130,11 @@ var getWorkingHoursByDoctorPanel = "http://" + FREEJINI_DOMAIN + "/api/getWorkin
 
 var getHelplineMessage = "http://" + FREEJINI_DOMAIN + "/api/getHelplineMessage?user=" + USER + "&key=" + KEY;
 
+<<<<<<< HEAD
 var getHelplineMessageV2 = "http://" + FREEJINI_DOMAIN + "/api/getHelplineMessageV2?user=" + USER + "&key=" + KEY;
 
+=======
+>>>>>>> origin/master
 var sendHelplineMessage = "http://" + FREEJINI_DOMAIN + "/api/sendHelplineMessage?user=" + USER + "&key=" + KEY;
 
 var addFeedbackUrl = "http://" + FREEJINI_DOMAIN + "/api/addFeedback?user=" + USER + "&key=" + KEY;
@@ -147,16 +153,24 @@ var addUpdateMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/addUpdateMedica
 
 var getMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/getMedicalAttachment?user=" + USER + "&key=" + KEY;
 
+<<<<<<< HEAD
+=======
+var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachment?user=" + USER + "&key=" + KEY;
+
+>>>>>>> origin/master
 var deleteAttachment = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?user=" + USER + "&key=" + KEY;
 
 var getHealthDataByUser = "http://" + FREEJINI_DOMAIN + "/api/getHealthDataByUser?user=" + USER + "&key=" + KEY;
 
+<<<<<<< HEAD
 var getPersonalInfoRecords = "http://" + FREEJINI_DOMAIN + "/api/getPersonalInfoRecords?user=" + USER + "&key=" + KEY;
 
 var addUpdateRecords = "http://" + FREEJINI_DOMAIN + "/api/addUpdateRecords?user=" + USER + "&key=" + KEY;
 
 var changeRecordStatus = "http://" + FREEJINI_DOMAIN + "/api/changeRecordStatus?user=" + USER + "&key=" + KEY;
 
+=======
+>>>>>>> origin/master
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -216,7 +230,10 @@ exports.loadAPIBySequence = function(ex, counter) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
+<<<<<<< HEAD
             console.log(res);
+=======
+>>>>>>> origin/master
             if ("Success" == res.status || "success" == res.status) {
                 var arr = res.data;
                 model.saveArray(arr);
@@ -242,16 +259,22 @@ exports.loadAPIBySequence = function(ex, counter) {
 
 exports.updateUserFromFB = function(e, mainView) {
     var url = updateUserFromFB + "&email=" + e.email + "&fbid=" + e.fbid + "&link=" + e.link + "&name=" + e.name + "&gender=" + e.gender;
+<<<<<<< HEAD
     console.log("updateuserfromFB");
+=======
+>>>>>>> origin/master
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
             common.hideLoading();
             if ("success" == res.status) {
+<<<<<<< HEAD
                 console.log("success");
                 API.syncHealthData({
                     u_id: res.data.u_id
                 });
+=======
+>>>>>>> origin/master
                 var usersPluxModel = Alloy.createCollection("users_plux");
                 usersPluxModel.addUserData({
                     u_id: res.data.u_id,
@@ -269,6 +292,12 @@ exports.updateUserFromFB = function(e, mainView) {
                 Ti.App.Properties.setString("u_id", res.data.u_id);
                 Ti.App.Properties.setString("facebooklogin", 1);
                 API.updateNotificationToken();
+<<<<<<< HEAD
+=======
+                API.syncHealthData({
+                    u_id: res.data.u_id
+                });
+>>>>>>> origin/master
                 Ti.App.fireEvent("updateHeader");
                 mainView.win.close();
                 if ("undefined" != typeof Alloy.Globals.navMenu) {
@@ -432,7 +461,10 @@ exports.checkAppVersion = function(callback_download) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
+<<<<<<< HEAD
             console.log(result);
+=======
+>>>>>>> origin/master
             "error" == result.status && callback_download && callback_download(result);
         },
         onerror: function() {
@@ -678,7 +710,10 @@ exports.doLogin = function(username, password, mainView, target) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
+<<<<<<< HEAD
             console.log(res);
+=======
+>>>>>>> origin/master
             if (void 0 !== typeof res.message && null != res.message) {
                 common.createAlert("Error", res.message);
                 common.hideLoading();
@@ -839,7 +874,10 @@ exports.updateNotificationToken = function() {
 
 exports.loadLeaflet = function() {
     var url = leafletUrl;
+<<<<<<< HEAD
     console.log(url);
+=======
+>>>>>>> origin/master
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -870,7 +908,10 @@ exports.loadLeaflet = function() {
 
 exports.getDoctorList = function() {
     var url = doctorListUrl;
+<<<<<<< HEAD
     console.log(url);
+=======
+>>>>>>> origin/master
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
@@ -1055,11 +1096,16 @@ exports.callByPost = function(e, onload, onerror) {
     if ("" != deviceToken) {
         var url = eval(e.url);
         console.log(url);
+<<<<<<< HEAD
         console.log(e.params);
         var _result = contactServerByPost(url, e.params || {});
         _result.onload = function() {
             console.log("success callByPost");
             console.log(this.responseText);
+=======
+        var _result = contactServerByPost(url, e.params || {});
+        _result.onload = function() {
+>>>>>>> origin/master
             onload && onload(this.responseText);
         };
         _result.onerror = function() {

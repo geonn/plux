@@ -90,20 +90,35 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+<<<<<<< HEAD
     $.__views.__alloyId190 = Ti.UI.createView({
+=======
+    $.__views.__alloyId178 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId190"
     });
     $.__views.win.add($.__views.__alloyId190);
+=======
+        id: "__alloyId178"
+    });
+    $.__views.win.add($.__views.__alloyId178);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId190.add($.__views.pageTitle);
     $.__views.__alloyId191 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId178.add($.__views.pageTitle);
+    $.__views.__alloyId179 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -112,6 +127,7 @@ function Controller() {
         },
         text: "Login",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId191"
     });
     $.__views.pageTitle.add($.__views.__alloyId191);
@@ -119,6 +135,15 @@ function Controller() {
         id: "__alloyId192"
     });
     $.__views.win.add($.__views.__alloyId192);
+=======
+        id: "__alloyId179"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId179);
+    $.__views.__alloyId180 = Ti.UI.createView({
+        id: "__alloyId180"
+    });
+    $.__views.win.add($.__views.__alloyId180);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -127,7 +152,11 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId192.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId180.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 30,
         left: 30,
@@ -141,8 +170,13 @@ function Controller() {
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
+<<<<<<< HEAD
     $.__views.__alloyId192.add($.__views.main);
     $.__views.__alloyId193 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId180.add($.__views.main);
+    $.__views.__alloyId181 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -150,9 +184,15 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/logo_plux.png",
+<<<<<<< HEAD
         id: "__alloyId193"
     });
     $.__views.main.add($.__views.__alloyId193);
+=======
+        id: "__alloyId181"
+    });
+    $.__views.main.add($.__views.__alloyId181);
+>>>>>>> origin/master
     $.__views.email = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -241,7 +281,10 @@ function Controller() {
     _.extend($, $.__views);
     arguments[0] || {};
     var singleton = true;
+<<<<<<< HEAD
     console.log("login");
+=======
+>>>>>>> origin/master
     common.construct($);
     var usersPluxModel = Alloy.createCollection("users_plux");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
@@ -326,7 +369,10 @@ function Controller() {
         Ti.App.removeEventListener("touchLogin", touchLogin);
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
+<<<<<<< HEAD
         console.log("window close");
+=======
+>>>>>>> origin/master
     });
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);

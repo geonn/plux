@@ -95,8 +95,7 @@ exports.definition = {
               
 		        db.execute(sql_query); 
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN ("+clinicCode+")";
-		        db.execute(sql_query);
-		        console.log(sql_query);
+		        db.execute(sql_query); 
          		db.close();
 	            collection.trigger('sync');
 			},

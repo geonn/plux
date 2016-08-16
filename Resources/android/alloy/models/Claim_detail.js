@@ -61,9 +61,15 @@ exports.definition = {
             },
             getClaimDetailBySeries: function(e) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial = ?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, e.serial);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial = " + e.serial;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -168,9 +174,15 @@ exports.definition = {
             },
             getCategoryById: function(id) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id =? ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, id);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),
@@ -184,9 +196,15 @@ exports.definition = {
             save_claim_detail: function(serial, memno, name, relation, cliniccode, visitdate, amount, category, mcdays, clinicname, status, claimType, appcode) {
                 var collection = this;
                 var sql_query = "";
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial= ?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, serial);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial='" + serial + "'";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 if (res.isValidRow()) {
                     if (res.fieldByName("memno") != memno || res.fieldByName("name") != name || res.fieldByName("relation") != relation || res.fieldByName("cliniccode") != cliniccode || res.fieldByName("visitdate") != visitdate || res.fieldByName("amount") != amount || res.fieldByName("category") != category || res.fieldByName("mcdays") != mcdays || res.fieldByName("clinicname") != clinicname || res.fieldByName("status") != status || res.fieldByName("claimType") != claimType || res.fieldByName("appcode") != appcode) {
                         sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET memno = ?, name = ?, relation = ?, cliniccode = ?, visitdate = ?, amount = ?, category = ?, mcdays = ?, clinicname = ?, status = ?, claimType = ?, appcode = ? WHERE serial = ?";

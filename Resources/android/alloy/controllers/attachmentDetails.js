@@ -8,8 +8,13 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+<<<<<<< HEAD
     function __alloyId102() {
         $.__views.attachment_Details.removeEventListener("open", __alloyId102);
+=======
+    function __alloyId90() {
+        $.__views.attachment_Details.removeEventListener("open", __alloyId90);
+>>>>>>> origin/master
         if ($.__views.attachment_Details.activity) $.__views.attachment_Details.activity.actionBar.onHomeIconItemSelected = closeWindow; else {
             Ti.API.warn("You attempted to access an Activity on a lightweight Window or other");
             Ti.API.warn("UI component which does not have an Android activity. Android Activities");
@@ -48,16 +53,28 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.attachment_Details && $.addTopLevelView($.__views.attachment_Details);
+<<<<<<< HEAD
     $.__views.attachment_Details.addEventListener("open", __alloyId102);
     $.__views.__alloyId104 = Ti.UI.createLabel({
+=======
+    $.__views.attachment_Details.addEventListener("open", __alloyId90);
+    $.__views.__alloyId92 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Close",
+<<<<<<< HEAD
         id: "__alloyId104"
     });
     closeWindow ? $.addListener($.__views.__alloyId104, "click", closeWindow) : __defers["$.__views.__alloyId104!click!closeWindow"] = true;
     $.__views.attachment_Details.rightNavButton = $.__views.__alloyId104;
+=======
+        id: "__alloyId92"
+    });
+    closeWindow ? $.addListener($.__views.__alloyId92, "click", closeWindow) : __defers["$.__views.__alloyId92!click!closeWindow"] = true;
+    $.__views.attachment_Details.rightNavButton = $.__views.__alloyId92;
+>>>>>>> origin/master
     $.__views.albumView = Ti.UI.createView({
         id: "albumView",
         height: Ti.UI.SIZE,
@@ -198,7 +215,11 @@ function Controller() {
         });
     });
     getAttImages();
+<<<<<<< HEAD
     __defers["$.__views.__alloyId104!click!closeWindow"] && $.addListener($.__views.__alloyId104, "click", closeWindow);
+=======
+    __defers["$.__views.__alloyId92!click!closeWindow"] && $.addListener($.__views.__alloyId92, "click", closeWindow);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

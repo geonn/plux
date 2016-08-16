@@ -25,9 +25,15 @@ exports.definition = {
         _.extend(Collection.prototype, {
             getRecordsListByCategory: function(category) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE category = ? ORDER by id DESC";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, category);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE category ='" + category + "' ORDER by id DESC";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -50,9 +56,15 @@ exports.definition = {
             },
             getRecordsById: function(id) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id =? ";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, id);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id ='" + id + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var arr = [];
                 res.isValidRow() && (arr = {
                     id: res.fieldByName("id"),

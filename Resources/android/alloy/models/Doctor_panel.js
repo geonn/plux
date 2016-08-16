@@ -26,7 +26,11 @@ exports.definition = {
                 var collection = this;
                 var sql = "SELECT doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path, specialty.title as specialty, panelList.clinicName FROM " + collection.config.adapter.collection_name + " LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id LEFT OUTER JOIN panelList on panelList.id = doctor_panel.clinic_id LEFT OUTER JOIN specialty on doctor_panel.specialty_id = specialty.id where doctor_panel.specialty_id = ? ORDER BY doctor_panel.clinic_id";
                 sql = "select panel_table.*, specialty.title as specialty from (select doctor_table.*, panelList.clinicName from (select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctor_panel.specialty_id = ?) as doctor_table LEFT OUTER JOIN panelList on panelList.id = doctor_table.clinic_id) as panel_table LEFT OUTER JOIN specialty on panel_table.specialty_id = specialty.id";
+<<<<<<< HEAD
                 sql = "select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctors.status =1 AND doctor_panel.specialty_id = ?";
+=======
+                sql = "select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctor_panel.specialty_id = ?";
+>>>>>>> origin/master
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, specialty_id);
                 console.log(specialty_id + " " + sql);

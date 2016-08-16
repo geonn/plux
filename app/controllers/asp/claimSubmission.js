@@ -85,6 +85,11 @@ function getClaimCategory(){
 			claimCategoryIdArr.push(entry.catID);
 			claimCategoryArr.push( entry.catDesc); 
 		}); 
+		if(OS_ANDROID){
+			claimCategoryIdArr.push("Cancel");
+			claimCategoryArr.push( "Cancel"); 
+		}
+		
 	 	if(OS_IOS){
 			claimCategoryArr.push("Cancel"); 
 		}
@@ -147,16 +152,18 @@ function submitClaim(){
 	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+user.empno+"&CORPCODE="+user.corpcode+
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
-	console.log(params);return false;
+	//console.log(params);
 	common.showLoading(); 
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){ 
 		var res = JSON.parse(responseText); 
 		common.hideLoading();
 		if(res[0]['code'] == "02"){
-			common.resultPopUp("Success",res[0]['message'] );
-			$.win.close();
+			common.createAlert("Success",res[0]['message'],function(){
+				$.win.close();
+			} );
+			
 		}else{
-			common.resultPopUp("Error",res[0]['message'] );
+			common.createAlert("Error",res[0]['message'] );
 		} 
 	}); 
 }
@@ -217,13 +224,12 @@ function changeVisitDate(e){
 		var dialog = Ti.UI.createOptionDialog({
 		  cancel: claimName.length -1,
 		  options: claimName,
-		  selectedIndex: 0,
 		  title: 'Choose Claim Under'
 		});
 		
 		dialog.show(); 
 		dialog.addEventListener("click", function(e){   
-			if(cancelBtn != e.index){ 
+			if(claimName.length =="1" || cancelBtn != e.index){ 
 				claimMemId = claimMemNo[e.index];
 				$.claim_under.text = claimName[e.index];  
 				$.claim_under.color = "#000000";

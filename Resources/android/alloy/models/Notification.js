@@ -41,8 +41,13 @@ exports.definition = {
             getList: function(e) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no=? AND status=1 AND (expired !='' OR expired <=?) ORDER BY id DESC";
                 var res = db.execute(sql, e.member_no, currentDateTime());
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no='" + e.member_no + "' AND status=1 AND (expired !='' OR expired <='" + currentDateTime() + "') ORDER BY id DESC";
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -100,6 +105,7 @@ exports.definition = {
             },
             addData: function(entry) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? ";
                 var sql_query = "";
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -114,6 +120,17 @@ exports.definition = {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     db.execute(sql_query, entry.id, entry.member_no, entry.subject, entry.message, entry.url, "0", entry.expired, entry.status, entry.created, entry.updated);
                 }
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + entry.id + "' ";
+                var sql_query = "";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+                if (res.isValidRow()) sql_query = "push" == entry.from ? "UPDATE " + collection.config.adapter.collection_name + " SET member_no='" + entry.member_no + "', subject='" + entry.subject + "', message='" + entry.message + "' , url='" + entry.url + "' ,status='" + entry.status + "' ,  isRead='" + entry.isRead + "', expired='" + entry.expired + "', updated='" + entry.updated + "' WHERE id='" + entry.id + "' " : "UPDATE " + collection.config.adapter.collection_name + " SET member_no='" + entry.member_no + "', subject='" + entry.subject + "', message='" + entry.message + "' , url='" + entry.url + "' ,status='" + entry.status + "' ,  expired='" + entry.expired + "', updated='" + entry.updated + "' WHERE id='" + entry.id + "' "; else {
+                    sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    db.execute(sql_query, entry.id, entry.member_no, entry.subject, entry.message, entry.url, "0", entry.expired, entry.status, entry.created, entry.updated);
+                }
+                db.execute(sql_query);
+>>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             }

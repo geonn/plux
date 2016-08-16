@@ -77,8 +77,7 @@ function render_conversation_list(){
 
 function navToConversation(e){
 	var dr_id = parent({name: "dr_id"}, e.source);
-	var room_id = parent({name: "room_id"}, e.source);
-	console.log(room_id+" and "+dr_id);
+	var room_id = parent({name: "room_id"}, e.source); 
 	nav.navigateWithArgs("conversation", {dr_id : dr_id, room_id: room_id});
 }
 

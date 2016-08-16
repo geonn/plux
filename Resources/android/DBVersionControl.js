@@ -55,11 +55,14 @@ exports.checkAndUpdate = function() {
         medicalRecordsModel.addColumn("u_id", "TEXT");
         dbVersion = "1.9";
     }
+<<<<<<< HEAD
     if ("1.9" == dbVersion) {
         var helpline = Alloy.createCollection("helpline");
         helpline.addColumn("status", "INTEGER");
         helpline.V1_9DBupdate();
         dbVersion = "2.0";
     }
+=======
+>>>>>>> origin/master
     Ti.App.Properties.setString("dbVersion", dbVersion);
 };

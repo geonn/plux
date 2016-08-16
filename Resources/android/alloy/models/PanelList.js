@@ -75,7 +75,10 @@ exports.definition = {
                 db.execute(sql_query);
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN (" + clinicCode + ")";
                 db.execute(sql_query);
+<<<<<<< HEAD
                 console.log(sql_query);
+=======
+>>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             },
@@ -145,9 +148,15 @@ exports.definition = {
             },
             getPanelByState: function(state) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state=?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, state);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE state='" + state + "' ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -255,6 +264,7 @@ exports.definition = {
                 var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
                 var location_sql = null != clinicLocationSelection ? " AND state='" + clinicLocationSelection.toUpperCase() + "' " : "";
                 var panel_sql = "" != corp ? " AND panel=1" : "";
+<<<<<<< HEAD
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if ("" != searchKey) {
                     var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' AND (clinicName LIKE '%'|| ? ||'%' OR add1 LIKE '%'|| ? ||'%' OR city LIKE '%'|| ? ||'%' OR postcode LIKE '%'|| ? ||'%' OR state LIKE '%'|| ? ||'%') " + panel_sql + location_sql + "  GROUP BY id  ORDER BY state, postcode, clinicName";
@@ -263,6 +273,11 @@ exports.definition = {
                     var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' " + panel_sql + location_sql + " GROUP BY id ORDER BY state, postcode, clinicName";
                     var res = db.execute(sql);
                 }
+=======
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' AND (clinicName LIKE '%" + searchKey + "%' OR add1 LIKE '%" + searchKey + "%' OR city LIKE '%" + searchKey + "%' OR postcode LIKE '%" + searchKey + "%' OR state LIKE '%" + searchKey + "%') " + panel_sql + location_sql + "  GROUP BY id  ORDER BY state, postcode, clinicName"; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE clinicType ='" + ClinicType.toUpperCase() + "' " + panel_sql + location_sql + " GROUP BY id ORDER BY state, postcode, clinicName";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -294,6 +309,7 @@ exports.definition = {
                 var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
                 var location_sql = null != clinicLocationSelection ? " AND state='" + clinicLocationSelection.toUpperCase() + "' " : "";
                 var corp_sql = "" != corp ? "AND panel = 1" : "";
+<<<<<<< HEAD
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if ("" != searchKey) {
                     var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND (clinicName LIKE '%'|| ? ||'%' OR add1 LIKE '%'|| ? ||'%' OR city LIKE '%'|| ? ||'%' OR postcode LIKE '%'|| ? ||'%' OR state LIKE '%'|| ? ||'%') " + corp_sql + location_sql + "  GROUP BY id ";
@@ -302,6 +318,11 @@ exports.definition = {
                     var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' " + corp_sql + location_sql + "  GROUP BY id ";
                     var res = db.execute(sql);
                 }
+=======
+                if ("" != searchKey) var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' AND (clinicName LIKE '%" + searchKey + "%' OR add1 LIKE '%" + searchKey + "%' OR city LIKE '%" + searchKey + "%' OR postcode LIKE '%" + searchKey + "%' OR state LIKE '%" + searchKey + "%') " + corp_sql + location_sql + "  GROUP BY id "; else var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE openHour LIKE '%24 HOURS%' " + corp_sql + location_sql + "  GROUP BY id ";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -330,9 +351,15 @@ exports.definition = {
             },
             getPanelListById: function(id) {
                 var collection = this;
+<<<<<<< HEAD
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = ?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, id);
+=======
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = " + id;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql);
+>>>>>>> origin/master
                 var listArr;
                 var count = 0;
                 while (res.isValidRow()) {
@@ -440,9 +467,13 @@ exports.definition = {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
+<<<<<<< HEAD
                 console.log(arr.length + " number of arr");
                 arr.forEach(function(entry) {
                     console.log(entry.id + " " + entry.clinicName);
+=======
+                arr.forEach(function(entry) {
+>>>>>>> origin/master
                     var keys = [];
                     var questionmark = [];
                     var eval_values = [];
@@ -462,7 +493,10 @@ exports.definition = {
                     eval("db.execute(sql_query, " + without_pk_value.join() + "," + _.first(eval_values) + ")");
                 });
                 db.execute("COMMIT");
+<<<<<<< HEAD
                 console.log(db.getRowsAffected() + " affected row");
+=======
+>>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             },
