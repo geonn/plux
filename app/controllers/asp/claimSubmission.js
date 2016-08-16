@@ -68,7 +68,7 @@ function checkIfHaveData(){
 			//claimCategoryArr;
 		 	common.hideLoading(); 
 		}); 
-		//s$.saveBtn.visible = false;
+		$.saveBtn.visible = false;
 	} 
 }
 

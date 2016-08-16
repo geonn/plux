@@ -51,6 +51,7 @@ function Controller() {
                 $.category.color = "#000000";
                 common.hideLoading();
             });
+            $.saveBtn.visible = false;
         }
     }
     function getClaimCategory() {
