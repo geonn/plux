@@ -47,13 +47,13 @@ exports.definition = {
 			},
 			getCategoryById: function(id){ 
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id ='"+id+"' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id =? ";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, id);
                 var arr = []; 
                
                 if (res.isValidRow()){

@@ -9,7 +9,7 @@
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">PLUX Profile</Label>
 		     	</View>
 		 	</View>
-			<ScrollView id="profileData" height="Ti.UI.FILL" backgroundColor="#ffffff"></ScrollView>
+			<View id="profileData" class="wfill hfill" backgroundColor="#ffffff"></View>
 		</View>
 	</Window>
 </Alloy>

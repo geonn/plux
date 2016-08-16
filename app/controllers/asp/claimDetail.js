@@ -33,19 +33,19 @@ function init(){
 	
  	appcode = data.appcode;
 	if(totalAmount != ""){
-		section.add(createTableViewRow("Total Amount", "RM"+(data.amount).toFixed(2)));
+		section.add(createTableViewRow("Total Amount", "RM"+data.amount));
 	}
 	console.log(data);
-	section.add(createTableViewRow("Consultation", "RM"+(data.consultation_amt).toFixed(2)));
-	section.add(createTableViewRow("Medication", "RM"+(data.medication_amt).toFixed(2), data.medication));
-	section.add(createTableViewRow("Injection", "RM"+(data.injection_amt).toFixed(2), data.injection));
-	section.add(createTableViewRow("Lab Test", "RM"+(data.labtest_amt).toFixed(2), data.labtest));
-	section.add(createTableViewRow("X-Ray", "RM"+(data.xray_amt).toFixed(2), data.xray));
-	section.add(createTableViewRow("Surgical", "RM"+(data.surgical_amt).toFixed(2), data.surgical));
-	section.add(createTableViewRow("Extraction", "RM"+(data.extraction_amt).toFixed(2)));
-	section.add(createTableViewRow("Fillings", "RM"+(data.fillings_amt).toFixed(2)));
-	section.add(createTableViewRow("Scaling", "RM"+(data.scaling_amt).toFixed(2)));
-	section.add(createTableViewRow("Others", "RM"+(data.others_amt).toFixed(2)));
+	section.add(createTableViewRow("Consultation", "RM"+((data.consultation_amt == "null" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
+	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt)));
+	section.add(createTableViewRow("Injection", "RM"+((data.injection_amt == "null" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
+	section.add(createTableViewRow("Lab Test", "RM"+((data.labtest_amt == "null" || data.labtest_amt <= 0)?"0":data.labtest_amt), data.labtest));
+	section.add(createTableViewRow("X-Ray", "RM"+((data.xray_amt == "null" || data.xray_amt <= 0)?"0":data.xray_amt), data.xray));
+	section.add(createTableViewRow("Surgical", "RM"+((data.surgical_amt == "null" || data.surgical_amt <= 0)?"0":data.surgical_amt), data.surgical));
+	section.add(createTableViewRow("Extraction", "RM"+((data.extraction_amt == "null" || data.extraction_amt <= 0)?"0":data.extraction_amt)));
+	section.add(createTableViewRow("Fillings", "RM"+((data.fillings_amt == "null" || data.fillings_amt <= 0)?"0":data.fillings_amt)));
+	section.add(createTableViewRow("Scaling", "RM"+((data.scaling_amt == "null" || data.scaling_amt <= 0)?"0":data.scaling_amt)));
+	section.add(createTableViewRow("Others", "RM"+((data.others_amt == "null" || data.others_amt <= 0)?"0":data.others_amt)));
 	section.add(createTableViewRow("Bps", data.bps));
 	section.add(createTableViewRow("Bpd", data.bpd));
 	section.add(createTableViewRow("Pulse", data.pulse));

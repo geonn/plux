@@ -86,10 +86,11 @@ exports.definition = {
 			},
 			getUserByMemno : function(){
 				var collection = this; 
+				var memno = Ti.App.Properties.getString('memno');
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE memno='"+Ti.App.Properties.getString('memno')+"' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE memno=?";
                
-                var res = db.execute(sql);
+                var res = db.execute(sql, memno);
                 var arr = []; 
                
                 if (res.isValidRow()){
@@ -117,9 +118,10 @@ exports.definition = {
 			getUserByEmpNo : function(){
 				var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE empno='"+Ti.App.Properties.getString('empno')+"'";
+                var empno = Ti.App.Properties.getString('empno');
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE empno=?";
                
-                var res = db.execute(sql);
+                var res = db.execute(sql, empno);
                 var arr = []; 
                 var count = 0;
                  
@@ -180,9 +182,10 @@ exports.definition = {
 			getPrincipleData : function(){
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno='"+Ti.App.Properties.getString('memno')+"'";
+                var memno = Ti.App.Properties.getString('memno');
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE relation='PRINCIPLE' and memno=?";
                
-                var res = db.execute(sql);
+                var res = db.execute(sql, memno);
                 var arr = []; 
                
                 if (res.isValidRow()){
@@ -216,12 +219,14 @@ exports.definition = {
 	                var res = db.execute(sql);
 	             	//console.log(entry.memno);
 	                if (res.isValidRow()){
-	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name='"+entry.name+"',  icno='"+entry.icno+"' , relation='"+entry.relation+"', empno='"+entry.empno+"', corpcode='"+entry.corpcode+"', corpname='"+entry.corpname+"', costcenter='"+entry.costcenter+"', dept='"+entry.dept+"', allergy='"+entry.allergy+"', isver='"+entry.isver+"', verno='"+entry.verno+"' WHERE memno='" +entry.memno+"' ";
+	             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name=?,  icno=? , relation=?, empno=?, corpcode=?, corpname=?, costcenter=?, dept=?, allergy=?, isver=?, verno=? WHERE memno=? ";
+	             		db.execute(sql_query, entry.name, entry.icno, entry.relation, entry.empno, entry.corpcode, entry.corpname, entry.costcenter, entry.dept, entry.allergy, entry.isver, entry.verno, entry.memno);
 	                }else{
-	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES ('"+entry.name+"', '"+entry.memno +"','"+entry.icno+"','"+entry.relation+"', '"+ entry.empno +"',  '"+ entry.corpcode +"',  '"+ entry.corpname +"',  '"+ entry.costcenter +"',  '"+ entry.dept +"', '"+ entry.allergy +"', '"+ entry.isver +"', '"+ entry.verno +"')";
+	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES (?, ?,?,?, ?,  ?,  ?,  ?,  ?, ?, ?, ?)";
+	                	db.execute(sql_query, entry.name, entry.memno, entry.icno, entry.relation, entry.empno, entry.corpcode, entry.corpname, entry.costcenter, entry.dept, entry.allergy, entry.isver, entry.verno);
 					}
 					 
-	                db.execute(sql_query);
+	                
 	                db.close();
 	           		collection.trigger('sync');
 	            });

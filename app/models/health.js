@@ -94,9 +94,9 @@ exports.definition = {
 				var collection = this;
                 var u_id = Ti.App.Properties.getString('u_id'); 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ? ORDER BY date DESC ,time DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type=? AND u_id = ? ORDER BY date DESC ,time DESC";
                
-                var res = db.execute(sql, u_id);
+                var res = db.execute(sql, type, u_id);
                 var listArr = []; 
                 var count = 0;
                  
@@ -135,19 +135,19 @@ exports.definition = {
 				
 				if(gType =="2"){
 					var value2 = 0;
-					var sql2 = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(field2) as value2 FROM ' + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date LIMIT 6";
-                	var res2 = db.execute(sql2, u_id);
+					var sql2 = 'SELECT strftime("%Y-%m", date) as datemonth, AVG(field2) as value2 FROM ' + collection.config.adapter.collection_name +" WHERE type=? AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date LIMIT 6";
+                	var res2 = db.execute(sql2, type, u_id);
                 	if(res2.isValidRow()){
                 		value2 = res2.fieldByName('value2'); 
                 	}
 				}
 				
 				if(gType =="10"){
-	               	 var sql = 'SELECT strftime("%Y-%m", date) as datemonth, SUM('+theField+') as value FROM ' + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date  LIMIT 6";
+	               	 var sql = 'SELECT strftime("%Y-%m", date) as datemonth, SUM('+theField+') as value FROM ' + collection.config.adapter.collection_name +" WHERE type=? AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date  LIMIT 6";
 	            }else{
-	            	var sql = 'SELECT strftime("%Y-%m", date) as datemonth, AVG('+theField+') as value FROM ' + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date  LIMIT 6";
+	            	var sql = 'SELECT strftime("%Y-%m", date) as datemonth, AVG('+theField+') as value FROM ' + collection.config.adapter.collection_name +" WHERE type=? AND u_id = ? GROUP BY strftime(\"%Y-%m\", date) ORDER BY date  LIMIT 6";
 	            }
-                var res = db.execute(sql, u_id);
+                var res = db.execute(sql,type, u_id);
                 var listArr = []; 
                 var count = 0;
                 if(gType =="2"){
@@ -203,10 +203,10 @@ exports.definition = {
 				var collection = this;
                 var u_id = Ti.App.Properties.getString('u_id');
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type='"+type+"' AND u_id = ?  GROUP BY date   ORDER BY date DESC ,time DESC LIMIT 6";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE type=? AND u_id = ?  GROUP BY date   ORDER BY date DESC ,time DESC LIMIT 6";
                console.log("getHealthListByType : "+u_id);
                 console.log(sql);
-                var res = db.execute(sql, u_id);
+                var res = db.execute(sql, type, u_id);
                 var listArr = []; 
                 var count = 0;
                  
@@ -239,12 +239,14 @@ exports.definition = {
                 var res = db.execute(sql, u_id);
              
                 if (res.isValidRow()){
-             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET field1='"+entry.field1+"' , field2='"+entry.field2+"' , amount='"+entry.amount+"' WHERE date='" +entry.date+"' AND time='"+entry.time+"' ";
+             		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET field1=? , field2=? , amount=? WHERE date=? AND time=? ";
+                	db.execute(sql_query, entry.field1, entry.field2, entry.amount, entry.date, entry.time);
                 }else{
-                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created, u_id) VALUES ('"+entry.date+"', '"+entry.time +"','"+entry.type+"','"+entry.field1+"','"+entry.field2+"' ,'"+entry.amount+"', '"+ currentDateTime() +"', "+u_id+")";
+                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created, u_id) VALUES (?, ?,?,?,? ,?, ?, ?)";
+                	db.execute(sql_query, entry.date, entry.time, entry.type, entry.field1, entry.field2, entry.amount, currentDateTime(), u_id);
 				}
 				
-                db.execute(sql_query);
+                
 	            db.close();
 	            collection.trigger('sync');
 	            API.syncHealthData({u_id:Ti.App.Properties.getString('u_id')});

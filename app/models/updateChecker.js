@@ -16,7 +16,7 @@ ID       type Name
 12		doctorListUrl
 13		getClinicLocator2
 14		getHealthDataByUser	|| u_id
-
+15		getPersonalInfoRecords	|| u_id
 ************************************/
 
 exports.definition = {
@@ -65,14 +65,18 @@ exports.definition = {
 				var collection = this;
 				var addon = "";
 				if(typeof u_id != "undefined"){
-					addon = "AND u_id = "+u_id;
+					addon = "AND u_id = ?";
 				}
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' "+addon ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? "+addon ;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                if(typeof u_id != "undefined"){
+                	var res = db.execute(sql, id, u_id);
+                }else{
+                	var res = db.execute(sql, id);
+                }
                 var arr = []; 
                
                 if (res.isValidRow()){

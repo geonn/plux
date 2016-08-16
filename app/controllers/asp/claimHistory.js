@@ -15,9 +15,10 @@ data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{ 
 		height: 130, 
+		status: entry.status,
 	});
 	 
-	var statusColor = "#CE1D1C";
+	var statusColor = "#CE1D1C"; //rejected
 	if(entry.status == "Pending"){ //Pending 
 		statusColor = "#8A6500";
 	}else if(entry.status == "Approved"){ //Approved 
@@ -28,6 +29,7 @@ data.forEach(function(entry){
 		classes: ['horz', 'hsize','wfill'], 
 		serial: entry.serial ,
 		appcode: entry.appcode,
+		status: entry.status,
 	});
 	
 	var statustView = $.UI.create('View',{ 
@@ -173,7 +175,9 @@ data.forEach(function(entry){
 	$.tv.appendRow(row);
 	
 	view_container.addEventListener("click", function(e){
-		if(e.source.claimType == "Reimbursement"){ 
+		var status = parent({name: "status"}, e.source);
+		console.log(status+" status");
+		if(status == "Pending"){ 
 			nav.navigateWithArgs("asp/claimSubmission", {serial: e.source.serial, edit:1});
 			//common.createAlert('Claim Details', 'Sorry, the claim details is not available.');
 			return false;

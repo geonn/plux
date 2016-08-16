@@ -6,6 +6,7 @@ exports.definition = {
 		    "sender_id": "INTEGER",
 		    "message": "TEXT",
 		    "created": "DATE",
+		    "status":"INTEGER",		//1 - pending, 2 - sent, 3 - read
 		    "is_endUser": "INTEGER",
 		    "sender_name": "TEXT",
 		},
@@ -25,23 +26,26 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
-			getData: function(latest, last_update, start, anchor){
-				var last_update = last_update || common.now();
+			getData: function(latest, start, anchor, last_id){
+				//var last_update = last_update || common.now();
 				if(latest){
-					var a = last_update;
+					/*var a = last_update;
 					a = a.replace("  "," ");
 					var b = a.split(" ");
-					 
+					 */
 					var start_limit = "";
-					var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
+					//var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
+					var sql_lastupdate = "";
+					var sql_id = " AND id > "+last_id;
 				}else{
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";
+					var sql_id = "";
 				}
-				console.log(sql_lastupdate);
+				
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+" order by created desc"+start_limit ; 
+                var sql = "SELECT * from helpline where u_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -65,6 +69,7 @@ exports.definition = {
 					    u_id: res.fieldByName('u_id'),
 					    sender_id: res.fieldByName('sender_id'),
 					    message: res.fieldByName('message'),
+					    status: res.fieldByName('status'),
 					    created: res.fieldByName('created'),
 					    is_endUser: res.fieldByName('is_endUser'),
 					    sender_name: res.fieldByName('sender_name')
@@ -105,26 +110,40 @@ exports.definition = {
 	            collection.trigger('sync');
 			},
 			saveArray : function(arr){
-				if(typeof arr == "undefined" || arr == "no room found"){
-					return;
-				}
 				var collection = this;
+				
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                console.log("message add");
-                console.log(arr);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                	entry.message = entry.message.replace("[br]", "\n");
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
-					db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
+                	var keys = [];
+                	var questionmark = [];
+                	var eval_values = [];
+                	var update_questionmark = [];
+                	var update_value = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		keys = _.keys(entry);
+	                		questionmark.push("?");
+	                		eval_values.push("entry."+k);
+	                		update_questionmark.push(k+"=?");
+	                	}
+                	}
+                	var without_pk_list = _.rest(update_questionmark);
+	                var without_pk_value = _.rest(eval_values);
+	                
+	                var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+questionmark.join()+")";
+	                eval("db.execute(sql_query, "+eval_values.join()+")");
+	              
 				});
 				db.execute("COMMIT");
+				//console.log(db.getRowsAffected()+" affected row");
+	            var last_id = db.lastInsertRowId;
 	            db.close();
 	            collection.trigger('sync');
-	            
+	            return last_id;
 			},
 			saveRecord: function(entry){
 				var collection = this;
@@ -139,8 +158,10 @@ exports.definition = {
                 entry.message = entry.message.replace("[br]", "\n");
                 var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
 				db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
+	            var last_id = db.lastInsertRowId;
 	            db.close();
 	            collection.trigger('sync');
+	            return last_id;
 			},
 			addColumn : function( newFieldName, colSpec) {
 				var collection = this;
@@ -160,6 +181,28 @@ exports.definition = {
 					db.execute('ALTER TABLE ' + collection.config.adapter.collection_name + ' ADD COLUMN '+newFieldName + ' ' + colSpec);
 				}
 				db.close();
+			},
+			updateStatus: function(arr, status){
+				var collection = this;
+                var sql = "UPDATE helpline set status = ? WHERE id in(?)";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                db.execute(sql, status, arr);
+                db.close();
+                collection.trigger('sync');
+			},
+			V1_9DBupdate : function(){
+				var collection = this;
+                var sql = "UPDATE helpline set status = 2";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                db.execute(sql);
+                db.close();
+                collection.trigger('sync');
 			},
 			resetTable : function(){
 				var collection = this;

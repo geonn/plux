@@ -70,13 +70,13 @@ exports.definition = {
 			},
 			getClaimDetailBySeries: function(e){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE serial = "+e.serial;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE serial = ?";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, e.serial);
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){ 
@@ -191,13 +191,13 @@ exports.definition = {
 			},
 			getCategoryById: function(id){ 
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id ='"+id+"' ";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE id =? ";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, id);
                 var arr = []; 
                
                 if (res.isValidRow()){
@@ -215,14 +215,14 @@ exports.definition = {
 			save_claim_detail : function(serial,memno,name,relation,cliniccode,visitdate,amount,category,mcdays,clinicname, status, claimType, appcode){
 				var collection = this;
 				var sql_query =  "";
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial='"+ serial+"'";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE serial= ?";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
                 
-                var res = db.execute(sql);
+                var res = db.execute(sql, serial);
                  
                 if (res.isValidRow()){
                 	if(res.fieldByName('memno') != memno || res.fieldByName('name') != name || res.fieldByName('relation') != relation || res.fieldByName('cliniccode') != cliniccode || res.fieldByName('visitdate') != visitdate || res.fieldByName('amount') != amount || res.fieldByName('category') != category || res.fieldByName('mcdays') != mcdays || res.fieldByName('clinicname') != clinicname || res.fieldByName('status') != status || res.fieldByName('claimType') != claimType || res.fieldByName('appcode') != appcode){

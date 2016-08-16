@@ -21,7 +21,7 @@ function render_clinic_list(){
 		listing.forEach(function(entry) {
 			if(doctor_name != entry.doctor_name){
 				doctor_name = entry.doctor_name;
-				new_list[doctor_name] = {doctor_name: doctor_name, specialty:entry.specialty, doctor_img_path: entry.doctor_img_path, clinic: []};
+				new_list[doctor_name] = {doctor_name: doctor_name, doctor_id: entry.doctor_id, specialty:entry.specialty, doctor_img_path: entry.doctor_img_path, clinic: []};
 			}else{
 				doctor_name = entry.doctor_name;
 			}
@@ -29,12 +29,13 @@ function render_clinic_list(){
 		
 		listing.forEach(function(entry) {
 			var panel = Alloy.createCollection("panelList");
+			console.log(entry.clinic_id);
 			var clinic_dat = panel.getDataByID(entry.clinic_id);
+			console.log(clinic_dat);
 			new_list[entry.doctor_name].clinic.push({doctor_panel_id: entry.id, clinic_name: clinic_dat.clinicName, title: clinic_dat.clinicName});
 		});
 		
 		for(i in new_list){
-			
 	   		var row = $.UI.create("TableViewRow", {
 	   			classes: ['hsize', 'horz'],
 			    touchEnabled: true,
@@ -82,7 +83,6 @@ function render_clinic_list(){
 			row.add(tblRowView);
 			row.addEventListener("click", function(e){
 				var clinic = parent({name: "clinic"}, e.source);
-				
 				var arr = Array();
 				for (var i=0; i < clinic.length; i++) {
 					var row = $.UI.create("TableViewRow",{
@@ -136,7 +136,7 @@ function refresh(){
 		model.saveArray(arr);
 		checker.updateModule(6,"getDoctorPanelBySpecialty", res.last_updated, specialty_id);
 		listing = model.getData(specialty_id);
-		
+		console.log(listing);
 		render_clinic_list();
 	});
 	

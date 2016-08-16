@@ -73,6 +73,13 @@ exports.checkAndUpdate = function(e){
 
 		dbVersion = '1.9';
 	}
+	
+	if(dbVersion == "1.9"){
+		var helpline = Alloy.createCollection('helpline');
+		helpline.addColumn("status", "INTEGER");
+		helpline.V1_9DBupdate();
+		dbVersion = '2.0';
+	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };
 

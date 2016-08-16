@@ -62,7 +62,6 @@ exports.definition = {
 				};
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE `status` =1 "+addon+" group by specialty ORDER BY name ASC";
-                console.log("getDoctorListGroupBySpecialty "+sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

@@ -16,7 +16,7 @@
 	 		</View>
 	    	<ScrollView id="chatroom" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" class="wfill hfill" bottom="60" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL">
 	    		<View id="inner_area" class="wfill hsize vert" bottom="20">
-	    			<Label onClick="getPreviousData" class="wfill hsize box padding h5" textAlign="center">More</Label>
+	    			<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>
 	    		</View>
 			</ScrollView>
 		    <View backgroundColor="white" class="wfill horz hsize" bottom="0">

@@ -27,9 +27,9 @@ exports.definition = {
 			getUserById : function(id){
 				var collection = this; 
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+id+"' " ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? " ;
                
-                var res = db.execute(sql);
+                var res = db.execute(sql, id);
                 var listArr = [];  
                  
                 while (res.isValidRow()){ 
@@ -54,7 +54,7 @@ exports.definition = {
 				var collection = this;
                 var db1 = Ti.Database.open(collection.config.adapter.db_name); 
                 
-                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email='"+email+"' AND id != 'undefined' "); 
+                var res = db1.execute("SELECT * FROM " + collection.config.adapter.collection_name + " WHERE email= ? AND id != 'undefined' ", email); 
                 
                 var listArr = [];   
                 while (res.isValidRow()){ 
@@ -77,18 +77,20 @@ exports.definition = {
 			}, 
 			addUserData : function(entry) {
 				var collection = this; 
-	            var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" +entry.u_id+"' ";
+	            var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? ";
 	            var sql_query =  "";
 	            db = Ti.Database.open(collection.config.adapter.db_name);
-	            var res = db.execute(sql);
+	            var res = db.execute(sql, entry.u_id);
 	            //console.log(entry.memno);
 	            if (res.isValidRow()){
-	            	sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET fullname='"+entry.fullname+"',  email='"+entry.email+"' , status='"+entry.status+"', facebook_id='"+entry.facebook_id+"', facebook_url='"+entry.facebook_url+"', last_login='"+entry.last_login+"' WHERE id='" +entry.u_id+"' ";
+	            	sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET fullname=?,  email=? , status=?, facebook_id=?, facebook_url=?, last_login=? WHERE id=? ";
+	            	db.execute(sql_query,entry.fullname, entry.email, entry.status, entry.facebook_id, entry.facebook_url, entry.last_login, entry.u_id);
 	            }else{
-	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES ('"+entry.u_id+"', '"+entry.fullname +"','"+entry.email+"','"+entry.status+"', '"+ entry.facebook_id +"',  '"+ entry.facebook_url +"',  '"+ entry.last_login +"')";
+	            	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, fullname, email,status, facebook_id, facebook_url,last_login) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	            	db.execute(sql_query, entry.u_id, entry.fullname, entry.email, entry.status, entry.facebook_id, entry.facebook_url, entry.last_login);
 				}
 				 
-	            db.execute(sql_query);
+	            
 	            db.close();
 	           	collection.trigger('sync'); 
             } 

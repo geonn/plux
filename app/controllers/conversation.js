@@ -7,20 +7,39 @@ var start = 0;
 var isShowWatingMsg = "0";
 var room_set = false;
 var refreshIntervalId;
+var retry = 0;
+var u_id = Ti.App.Properties.getString('u_id') || 0;
+var user_model = Alloy.createCollection("users_plux");
+var user = user_model.getUserById(u_id);
+var last_id = 0;
+var last_uid;
+var status_text = ["", "Sending", "Sent", "Read"];
 /**
  * Send message
  */
 var sending = false;
 function SendMessage(){
+	var model = Alloy.createCollection("helpline");
 	if($.message.value == "" || sending){
 		return;
 	}
 	loading.start();
 	sending = true;
 	$.message.editable = false;
-	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1}}, function(responseText){
-		var model = Alloy.createCollection("helpline");
+	
+	var local_save = [{
+		"u_id": u_id,
+	    "sender_id": u_id,
+	    "message": $.message.value,
+	    "created": common.now(),
+	    "is_endUser": 1,
+	    "status": 1,
+	    "sender_name": user.fullname,
+	}];
+	var id = model.saveArray(local_save);
+	getLatestData();
+	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1, app_id: id}}, function(responseText){
+		
 		var res = JSON.parse(responseText);
 		$.message.value = "";
 		$.message.editable = true;
@@ -29,7 +48,7 @@ function SendMessage(){
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		//Ti.App.fireEvent("web:sendMessage", {room_id: room_id});
-		 
+		console.log(isShowWatingMsg);
 		if(isShowWatingMsg == "0"){
 			refreshIntervalId = setInterval(function(){
 				$.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
@@ -54,7 +73,10 @@ function render_conversation(latest){
 		//$.chatroom.setContentOffset({y: 100});
 	}
 	var contain_height = 50;
-	var last_uid;
+	
+	if(latest){
+		data.reverse();
+	}
 	for (var i=0; i < data.length; i++) {
 		var view_container = $.UI.create("View",{
 			classes: ['hsize','wfill'],
@@ -96,15 +118,15 @@ function render_conversation(latest){
 			var label_time = $.UI.create("Label", {
 				classes:['h7', 'wfill', 'hsize','small_padding'],
 				top:0,
+				
 				right:15,
-				text: timeFormat(data[i].created),
+				text: timeFormat(data[i].created)+" "+status_text[data[i].status],
 				textAlign: "right"
 			});
 			view_text_container.add(label_name);
 			view_text_container.add(label_message);
 			view_text_container.add(label_time);
 			if(data[i].is_endUser){
-				
 				view_text_container.setBackgroundColor("#F1FFE3");
 				view_text_container.setLeft(10);
 				//view_container.add(imageview_thumb_path);
@@ -143,7 +165,7 @@ function render_conversation(latest){
 		  dialog.addEventListener('click', function(ex){
    			 if (ex.index === ex.source.cancel){
    			 	console.log("cancel");
-   			 }if(ex.index == 0){
+   			 }else if(ex.index == 0){
    			 	var model = Alloy.createCollection("helpline");
 				model.removeById(m_id);
    			 	$.inner_area.remove(message_box);
@@ -156,9 +178,8 @@ function render_conversation(latest){
 		}else{
 			$.inner_area.insertAt({view: view_container, position: 1});
 		}
-		last_uid = data[i].sender_id;
 	}
-	 
+	console.log(last_uid+" != "+Ti.App.Properties.getString('u_id'));
 	if(last_uid != Ti.App.Properties.getString('u_id') ){
 		$.estimate.parent.hide();
 		isShowWatingMsg = "0";
@@ -178,24 +199,45 @@ function getConversationByRoomId(callback){
 	last_update = last_updated;
 	console.log(last_updated+" last_updated "+u_id);
 	
-	API.callByPost({url:"getHelplineMessage", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
+	API.callByPost({url:"getHelplineMessageV2", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
-		
 		var res = JSON.parse(responseText);
 		var arr = res.data || undefined;
-		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		model.saveArray(arr, callback);
-		checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
-		console.log(res.last_updated+" where is the last update");
-		
-		if(!room_id){	//if room_id = 0 
-			Ti.App.fireEvent("web:setRoom", {room_id: res.data});
-			Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
-			//setTimeout(function(e){Ti.App.fireEvent("web:setRoom", {room_id: room_id});loading.finish();}, 2000);
+		if(arr.length > 0 || retry >= 3){
+			Ti.App.Properties.setString('estimate_time', res.estimate_time);
+			model.saveArray(arr, callback);
+			checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
+			console.log(res.last_updated+" where is the last update");
+			
+			var update_id = _.pluck(arr, "id");
+			console.log(arr);
+			console.log(update_id);
+			updateStatus(update_id);
+			if(!room_id){	//if room_id = 0 
+				Ti.App.fireEvent("web:setRoom", {room_id: res.data});
+				Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
+			}
+			room_id = res.room_id;
+			callback && callback();
+		}else{
+			console.log(retry+" retry times");
+			getConversationByRoomId(callback);
+			retry ++;
 		}
-		room_id = res.room_id;
-		callback && callback();
 	});
+}
+
+function updateStatus(arr){
+	for (var i=0; i < arr.length; i++) {
+		var c = $.inner_area.getChildren();
+		for (var b=0; b < $.inner_area.children.length; b++) {
+			console.log($.inner_area.children[b].m_id+" "+arr[i]);
+			if($.inner_area.children[b].m_id == arr[i]){
+				var time = $.inner_area.children[b].children[0].children[2].text.split(" ");
+				$.inner_area.children[b].children[0].children[2].text = time[0]+time[1]+time[2]+" Sent";
+			}
+		};
+	};
 }
 
 function scrollToBottom(){
@@ -206,6 +248,7 @@ function scrollToBottom(){
  	Refresh
  * */
 function refresh(callback, firsttime){
+	retry = 0;
 	loading.start();
 	console.log("start refresh");
 	getConversationByRoomId(function(){
@@ -216,27 +259,33 @@ function refresh(callback, firsttime){
 	
 }
 var refreshing = false;
+var time_offset = common.now();
 function refresh_latest(param){
+	
 	console.log("refresh_latest "+refreshing);
 	/*if(typeof(param.admin) != "undefined"){
 		Ti.App.Properties.setString('estimate_time', "0");
 	}else{
 		
 	}*/
-	if(!refreshing){
+	console.log(time_offset+" < "+common.now());
+	if(!refreshing && time_offset < common.now()){
 		refreshing = true;
-		console.log("refresh_latest 2");
 		refresh(getLatestData);
+		time_offset = common.now();
 	}
 }
 
 function getPreviousData(param){ 
 	start = parseInt(start);
 	var model = Alloy.createCollection("helpline");
-	data = model.getData(false, "", start, anchor);
+	data = model.getData(false, start, anchor);
 	var estimate_time = Ti.App.Properties.getString('estimate_time');
 	console.log(estimate_time+" estimate time");
-	 
+	console.log(data);
+	last_id = (data.length > 0)?_.first(data)['id']:last_id;
+	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
+	console.log(last_id+" why");
 	if(estimate_time != "0"){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
 		$.estimate.parent.show();
@@ -257,8 +306,8 @@ function getPreviousData(param){
 
 function getLatestData(){
 	var model = Alloy.createCollection("helpline"); 
-	data = model.getData(true, last_update); 
-	last_update = common.now(); 
+	data = model.getData(true,"","", last_id); 
+	
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
 		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
@@ -266,6 +315,11 @@ function getLatestData(){
 	}else{
 		$.estimate.parent.hide();
 	}
+	console.log("getlatestdata");
+	console.log(data);
+	last_id = (data.length > 0)?_.first(data)['id']:last_id;
+	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
+	console.log(last_id);
 	render_conversation(true);
 	setTimeout(function(e){scrollToBottom();}, 500);
 }

@@ -44,13 +44,11 @@ function init(){
 	$.clinicName.text = details.clinicName;
 	
 	var add2 =details.add2;
-	if(add2.trim() != ""){
+	if(add2!= ""){
 		add2 = add2  +"\r\n";
 	}
 	$.clinicAddress.text = details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state;
-	//$.clinicAddress2.text = details.add2;
-	//$.clinicPostcode.text = details.postcode +", " + details.city;
-	//$.clinicState.text = details.state;
+
 	$.clinicLocation.text = details.latitude +", "+ details.longitude;
 	 
 	for(var i=0; i < operHour_arr.length; i++){
@@ -70,7 +68,7 @@ function init(){
  	} 
 	$.clinicTel.text = "TEL : " +details.tel  ; 
 	phoneArr.push(details.tel);
-}
+	}
  
 }
 

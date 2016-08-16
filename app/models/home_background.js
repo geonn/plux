@@ -49,13 +49,13 @@ exports.definition = {
 			},
 			getCategoryByTime: function(time){ 
                 var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE time <= "+time+" order by time desc";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE time <= ? order by time desc";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                var res = db.execute(sql);
+                var res = db.execute(sql, time);
                 var arr = []; 
                 if (res.isValidRow()){
 					arr = {
