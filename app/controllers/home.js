@@ -13,6 +13,7 @@ loadingView.start();
 	
 function loadingViewFinish(){
 	console.log("anyone call you?");
+	$.win.open();
 //	loadingView.finish(function(){
 	init();
 	loadingView = null;

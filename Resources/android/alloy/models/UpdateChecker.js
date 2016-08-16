@@ -34,10 +34,10 @@ exports.definition = {
             getCheckerById: function(id, u_id) {
                 var collection = this;
                 var addon = "";
-                "undefined" != typeof u_id && (addon = "AND u_id = ?");
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? " + addon;
+                "undefined" != typeof u_id && (addon = "AND u_id = " + u_id);
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='" + id + "' " + addon;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                if ("undefined" != typeof u_id) var res = db.execute(sql, id, u_id); else var res = db.execute(sql, id);
+                var res = db.execute(sql);
                 var arr = [];
                 res.isValidRow() && (arr = {
                     typeName: res.fieldByName("typeName"),
@@ -58,6 +58,7 @@ exports.definition = {
                 var res = db.execute(sql);
                 sql_query = res.isValidRow() ? "UPDATE " + collection.config.adapter.collection_name + " SET updated='" + updateDate + "' WHERE id='" + id + "'" + addon : "INSERT INTO " + collection.config.adapter.collection_name + " (id, typeName, updated, u_id) VALUES ('" + id + "','" + typeName + "','" + updateDate + "', " + u_id + ")";
                 db.execute(sql_query);
+                res.close();
                 db.close();
                 collection.trigger("sync");
             }

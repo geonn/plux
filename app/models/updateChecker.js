@@ -65,18 +65,15 @@ exports.definition = {
 				var collection = this;
 				var addon = "";
 				if(typeof u_id != "undefined"){
-					addon = "AND u_id = ?";
+					addon = "AND u_id = "+u_id;
 				}
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? "+addon ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' "+addon ;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                if(typeof u_id != "undefined"){
-                	var res = db.execute(sql, id, u_id);
-                }else{
-                	var res = db.execute(sql, id);
-                }
+                var res = db.execute(sql);
+
                 var arr = []; 
                
                 if (res.isValidRow()){
@@ -114,6 +111,7 @@ exports.definition = {
 				}
        
 	            db.execute(sql_query);
+	            res.close();
 	            db.close();
 	            collection.trigger('sync');
 			}

@@ -34,7 +34,6 @@ function init(){
 			}else{
 				console.log('home');
 				var win = Alloy.createController("home").getView();
-				win.open();
 			}
 		}
 	}else{ 
