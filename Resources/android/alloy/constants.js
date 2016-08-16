@@ -64,10 +64,7 @@ exports.BIND_TRANSFORM = 'dataTransform';
 exports.BIND_FUNCTION = 'dataFunction';
 exports.BIND_TRANSFORM_VAR = '__transform';
 exports.BIND_MODEL_VAR = '$model';
-<<<<<<< HEAD
-=======
 exports.BIND_INTERPOLATE = '/\\{([\\s\\S]+?)\\}/g';
->>>>>>> origin/master
 exports.MODEL_ELEMENTS = ['Alloy.Collection','Alloy.Model'];
 exports.MODEL_BINDING_EVENTS = 'fetch change destroy';
 exports.COLLECTION_BINDING_EVENTS = 'fetch destroy change add remove reset';
@@ -211,10 +208,6 @@ exports.IMPLICIT_NAMESPACES = {
 	PreviewAction: NS_TI_UI_IOS,
 	PreviewActionGroup: NS_TI_UI_IOS,
 	MenuPopup: NS_TI_UI_IOS,
-<<<<<<< HEAD
-	Stepper: NS_TI_UI_IOS,
-=======
->>>>>>> origin/master
 
 	// Ti.UI.iPad
 	Popover: NS_TI_UI_IPAD,

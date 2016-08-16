@@ -22,7 +22,6 @@ function Controller() {
         });
         var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
         appcode = data.appcode;
-<<<<<<< HEAD
         "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount));
         console.log(data);
         section.add(createTableViewRow("Consultation", "RM" + ("null" == data.consultation_amt || data.consultation_amt <= 0 ? "0" : data.consultation_amt)));
@@ -35,20 +34,6 @@ function Controller() {
         section.add(createTableViewRow("Fillings", "RM" + ("null" == data.fillings_amt || data.fillings_amt <= 0 ? "0" : data.fillings_amt)));
         section.add(createTableViewRow("Scaling", "RM" + ("null" == data.scaling_amt || data.scaling_amt <= 0 ? "0" : data.scaling_amt)));
         section.add(createTableViewRow("Others", "RM" + ("null" == data.others_amt || data.others_amt <= 0 ? "0" : data.others_amt)));
-=======
-        "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount.toFixed(2)));
-        console.log(data);
-        section.add(createTableViewRow("Consultation", "RM" + data.consultation_amt.toFixed(2)));
-        section.add(createTableViewRow("Medication", "RM" + data.medication_amt.toFixed(2), data.medication));
-        section.add(createTableViewRow("Injection", "RM" + data.injection_amt.toFixed(2), data.injection));
-        section.add(createTableViewRow("Lab Test", "RM" + data.labtest_amt.toFixed(2), data.labtest));
-        section.add(createTableViewRow("X-Ray", "RM" + data.xray_amt.toFixed(2), data.xray));
-        section.add(createTableViewRow("Surgical", "RM" + data.surgical_amt.toFixed(2), data.surgical));
-        section.add(createTableViewRow("Extraction", "RM" + data.extraction_amt.toFixed(2)));
-        section.add(createTableViewRow("Fillings", "RM" + data.fillings_amt.toFixed(2)));
-        section.add(createTableViewRow("Scaling", "RM" + data.scaling_amt.toFixed(2)));
-        section.add(createTableViewRow("Others", "RM" + data.others_amt.toFixed(2)));
->>>>>>> origin/master
         section.add(createTableViewRow("Bps", data.bps));
         section.add(createTableViewRow("Bpd", data.bpd));
         section.add(createTableViewRow("Pulse", data.pulse));
@@ -150,16 +135,11 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.main);
-<<<<<<< HEAD
     $.__views.__alloyId423 = Ti.UI.createView({
-=======
-    $.__views.__alloyId411 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
         id: "__alloyId423"
     });
     $.__views.main.add($.__views.__alloyId423);
@@ -169,17 +149,6 @@ function Controller() {
         id: "__alloyId424"
     });
     $.__views.__alloyId423.add($.__views.__alloyId424);
-=======
-        id: "__alloyId411"
-    });
-    $.__views.main.add($.__views.__alloyId411);
-    $.__views.__alloyId412 = Ti.UI.createView({
-        left: 0,
-        width: "10%",
-        id: "__alloyId412"
-    });
-    $.__views.__alloyId411.add($.__views.__alloyId412);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -187,21 +156,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId424.add($.__views.btnBack);
     $.__views.__alloyId425 = Ti.UI.createView({
         width: "70%",
         id: "__alloyId425"
     });
     $.__views.__alloyId423.add($.__views.__alloyId425);
-=======
-    $.__views.__alloyId412.add($.__views.btnBack);
-    $.__views.__alloyId413 = Ti.UI.createView({
-        width: "70%",
-        id: "__alloyId413"
-    });
-    $.__views.__alloyId411.add($.__views.__alloyId413);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -213,7 +173,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId425.add($.__views.pageTitle);
     $.__views.__alloyId426 = Ti.UI.createView({
         left: 0,
@@ -222,16 +181,6 @@ function Controller() {
     });
     $.__views.__alloyId423.add($.__views.__alloyId426);
     lightBox ? $.addListener($.__views.__alloyId426, "click", lightBox) : __defers["$.__views.__alloyId426!click!lightBox"] = true;
-=======
-    $.__views.__alloyId413.add($.__views.pageTitle);
-    $.__views.__alloyId414 = Ti.UI.createView({
-        left: 0,
-        width: "auto",
-        id: "__alloyId414"
-    });
-    $.__views.__alloyId411.add($.__views.__alloyId414);
-    lightBox ? $.addListener($.__views.__alloyId414, "click", lightBox) : __defers["$.__views.__alloyId414!click!lightBox"] = true;
->>>>>>> origin/master
     $.__views.recepit = Ti.UI.createLabel({
         width: "auto",
         height: Ti.UI.SIZE,
@@ -239,11 +188,7 @@ function Controller() {
         text: "Receipt",
         id: "recepit"
     });
-<<<<<<< HEAD
     $.__views.__alloyId426.add($.__views.recepit);
-=======
-    $.__views.__alloyId414.add($.__views.recepit);
->>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -267,11 +212,7 @@ function Controller() {
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("load_claim_detail", init);
     });
-<<<<<<< HEAD
     __defers["$.__views.__alloyId426!click!lightBox"] && $.addListener($.__views.__alloyId426, "click", lightBox);
-=======
-    __defers["$.__views.__alloyId414!click!lightBox"] && $.addListener($.__views.__alloyId414, "click", lightBox);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

@@ -8,10 +8,7 @@ exports.definition = {
             sender_id: "INTEGER",
             message: "TEXT",
             created: "DATE",
-<<<<<<< HEAD
             status: "INTEGER",
-=======
->>>>>>> origin/master
             is_endUser: "INTEGER",
             sender_name: "TEXT"
         },
@@ -27,7 +24,6 @@ exports.definition = {
     },
     extendCollection: function(Collection) {
         _.extend(Collection.prototype, {
-<<<<<<< HEAD
             getData: function(latest, start, anchor, last_id) {
                 if (latest) {
                     var start_limit = "";
@@ -41,24 +37,6 @@ exports.definition = {
                 var collection = this;
                 var u_id = Ti.App.Properties.getString("u_id");
                 var sql = "SELECT * from helpline where u_id = ? " + sql_lastupdate + sql_id + " order by created desc" + start_limit;
-=======
-            getData: function(latest, last_update, start, anchor) {
-                var last_update = last_update || common.now();
-                if (latest) {
-                    var a = last_update;
-                    a = a.replace("  ", " ");
-                    var b = a.split(" ");
-                    var start_limit = "";
-                    var sql_lastupdate = " AND created > '" + b[0] + " " + b[1] + "'";
-                } else {
-                    var start_limit = " limit " + start + ", 10";
-                    var sql_lastupdate = " AND created <= '" + anchor + "'";
-                }
-                console.log(sql_lastupdate);
-                var collection = this;
-                var u_id = Ti.App.Properties.getString("u_id");
-                var sql = "SELECT * from helpline where u_id = ? " + sql_lastupdate + " order by created desc" + start_limit;
->>>>>>> origin/master
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, u_id);
                 var arr = [];
@@ -69,10 +47,7 @@ exports.definition = {
                         u_id: res.fieldByName("u_id"),
                         sender_id: res.fieldByName("sender_id"),
                         message: res.fieldByName("message"),
-<<<<<<< HEAD
                         status: res.fieldByName("status"),
-=======
->>>>>>> origin/master
                         created: res.fieldByName("created"),
                         is_endUser: res.fieldByName("is_endUser"),
                         sender_name: res.fieldByName("sender_name")
@@ -104,15 +79,10 @@ exports.definition = {
                 collection.trigger("sync");
             },
             saveArray: function(arr) {
-<<<<<<< HEAD
-=======
-                if ("undefined" == typeof arr || "no room found" == arr) return;
->>>>>>> origin/master
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-<<<<<<< HEAD
                     var keys = [];
                     var questionmark = [];
                     var eval_values = [];
@@ -134,22 +104,10 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return last_id;
-=======
-                    entry.message = entry.message.replace("[br]", "\n");
-                    var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
-                    db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
-                });
-                db.execute("COMMIT");
-                db.close();
-                collection.trigger("sync");
->>>>>>> origin/master
             },
             saveRecord: function(entry) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-<<<<<<< HEAD
-                console.log(typeof entry.message);
-                console.log(entry.message);
                 entry.message = entry.message.replace("[br]", "\n");
                 var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
                 db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
@@ -157,13 +115,6 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
                 return last_id;
-=======
-                entry.message = entry.message.replace("[br]", "\n");
-                var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
-                db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
-                db.close();
-                collection.trigger("sync");
->>>>>>> origin/master
             },
             addColumn: function(newFieldName, colSpec) {
                 var collection = this;
@@ -177,7 +128,6 @@ exports.definition = {
                 fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
                 db.close();
             },
-<<<<<<< HEAD
             updateStatus: function(arr, status) {
                 var collection = this;
                 var sql = "UPDATE helpline set status = ? WHERE id in(?)";
@@ -194,8 +144,6 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
             },
-=======
->>>>>>> origin/master
             resetTable: function() {
                 var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name;

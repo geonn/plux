@@ -38,16 +38,11 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.claim_history.add($.__views.main);
-<<<<<<< HEAD
     $.__views.__alloyId427 = Ti.UI.createView({
-=======
-    $.__views.__alloyId415 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
         id: "__alloyId427"
     });
     $.__views.main.add($.__views.__alloyId427);
@@ -57,17 +52,6 @@ function Controller() {
         id: "__alloyId428"
     });
     $.__views.__alloyId427.add($.__views.__alloyId428);
-=======
-        id: "__alloyId415"
-    });
-    $.__views.main.add($.__views.__alloyId415);
-    $.__views.__alloyId416 = Ti.UI.createView({
-        left: 0,
-        width: "10%",
-        id: "__alloyId416"
-    });
-    $.__views.__alloyId415.add($.__views.__alloyId416);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -75,21 +59,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId428.add($.__views.btnBack);
     $.__views.__alloyId429 = Ti.UI.createView({
         width: "90%",
         id: "__alloyId429"
     });
     $.__views.__alloyId427.add($.__views.__alloyId429);
-=======
-    $.__views.__alloyId416.add($.__views.btnBack);
-    $.__views.__alloyId417 = Ti.UI.createView({
-        width: "90%",
-        id: "__alloyId417"
-    });
-    $.__views.__alloyId415.add($.__views.__alloyId417);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -101,11 +76,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId429.add($.__views.pageTitle);
-=======
-    $.__views.__alloyId417.add($.__views.pageTitle);
->>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -126,24 +97,16 @@ function Controller() {
     data = _.sortBy(data, "visitdate");
     data.forEach(function(entry) {
         var row = $.UI.create("TableViewRow", {
-<<<<<<< HEAD
             height: 130,
             status: entry.status
-=======
-            height: 130
->>>>>>> origin/master
         });
         var statusColor = "#CE1D1C";
         "Pending" == entry.status ? statusColor = "#8A6500" : "Approved" == entry.status && (statusColor = "#2C8A00");
         var horzView = $.UI.create("View", {
             classes: [ "horz", "hsize", "wfill" ],
             serial: entry.serial,
-<<<<<<< HEAD
             appcode: entry.appcode,
             status: entry.status
-=======
-            appcode: entry.appcode
->>>>>>> origin/master
         });
         var statustView = $.UI.create("View", {
             height: 130,
@@ -165,21 +128,13 @@ function Controller() {
             bottom: 5
         });
         var view_detail = $.UI.create("View", {
-<<<<<<< HEAD
-            height: 25,
-=======
             height: 35,
->>>>>>> origin/master
             classes: [ "wfill" ],
             serial: entry.serial,
             appcode: entry.appcode,
             claimType: entry.claimType
         });
         var labelClinicView = $.UI.create("View", {
-<<<<<<< HEAD
-            height: Ti.UI.SIZE,
-=======
->>>>>>> origin/master
             serial: entry.serial,
             appcode: entry.appcode,
             height: 35,
@@ -263,10 +218,6 @@ function Controller() {
         view_detail2.add(label_category);
         view_detail2.add(label_date);
         view_container.add(view_detail);
-<<<<<<< HEAD
-        view_container.add(view_detail2);
-=======
->>>>>>> origin/master
         view_container.add(label_name);
         view_container.add(label_mc);
         view_container.add(label_claimType);
@@ -275,15 +226,11 @@ function Controller() {
         row.add(horzView);
         $.tv.appendRow(row);
         view_container.addEventListener("click", function(e) {
-<<<<<<< HEAD
             var status = parent({
                 name: "status"
             }, e.source);
             console.log(status + " status");
             if ("Pending" == status) {
-=======
-            if ("Reimbursement" == e.source.claimType) {
->>>>>>> origin/master
                 nav.navigateWithArgs("asp/claimSubmission", {
                     serial: e.source.serial,
                     edit: 1
