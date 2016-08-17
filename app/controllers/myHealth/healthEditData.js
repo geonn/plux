@@ -31,15 +31,13 @@ function loadList(showDelete){
 		});	
 		var noDataLbl = $.UI.create('Label',{ 
 			text : "No records found", 
+			top:10,
 			classes : ['noData']
 		});	
-		var addDataView = Titanium.UI.createButton({ 
+		var addDataView = $.UI.create("Button", { 
 			title : "Add Data",
-			height:40,
-			width:120,
-			backgroundColor : "#CE1D1C",
-			color: "#ffffff",
-			top:30,
+			classes: ['button'],
+			top: 10,
 			borderRadius: 5
 		});	
 		

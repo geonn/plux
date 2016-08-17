@@ -210,6 +210,42 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
+			saveArray : function(arr){
+				var collection = this;
+				
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+                db.execute("BEGIN");
+                arr.forEach(function(entry) {
+                	var keys = [];
+                	var questionmark = [];
+                	var eval_values = [];
+                	var update_questionmark = [];
+                	var update_value = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		keys = _.keys(entry);
+	                		questionmark.push("?");
+	                		eval_values.push("entry."+k);
+	                		update_questionmark.push(k+"=?");
+	                	}
+                	}
+                	var without_pk_list = _.rest(update_questionmark);
+	                var without_pk_value = _.rest(eval_values);
+	                
+	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+questionmark.join()+")";
+	                eval("db.execute(sql_query, "+eval_values.join()+")");
+	                
+	                var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET "+without_pk_list.join()+" WHERE "+_.first(update_questionmark);
+	                eval("db.execute(sql_query, "+without_pk_value.join()+","+_.first(eval_values)+")");
+				});
+				db.execute("COMMIT");
+				//console.log(db.getRowsAffected()+" affected row");
+	            db.close();
+	            collection.trigger('sync');
+			},
 			addUserData : function(arr) {
 				var collection = this;
 				arr.forEach(function(entry) {
@@ -225,8 +261,8 @@ exports.definition = {
 	                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + " (name, memno, icno, relation, empno,corpcode,corpname,costcenter,dept, allergy, isver, verno) VALUES (?, ?,?,?, ?,  ?,  ?,  ?,  ?, ?, ?, ?)";
 	                	db.execute(sql_query, entry.name, entry.memno, entry.icno, entry.relation, entry.empno, entry.corpcode, entry.corpname, entry.costcenter, entry.dept, entry.allergy, entry.isver, entry.verno);
 					}
+					 db.close();
 	            });
-	            db.close();
            		collection.trigger('sync');
             } 
 		});

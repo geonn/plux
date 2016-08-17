@@ -13,7 +13,12 @@ loadingView.start();
 	
 function loadingViewFinish(){
 	console.log("anyone call you?");
-	$.win.open();
+	if(OS_IOS){
+		$.navMenu.open();
+	}else{
+		$.win.open();
+	}
+	
 //	loadingView.finish(function(){
 	init();
 	loadingView = null;

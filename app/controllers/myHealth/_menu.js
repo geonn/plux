@@ -49,14 +49,12 @@ var TheTable = Titanium.UI.createTableView({
 });
 
 var CustomData = [
-{ image:'images/me.png', title:"Me", source:'profile' },
 { image:'images/measurement.png', title:"Body Measurement", source:'measurement' }, 
-{ image:'images/vitals.png', title:"Vitals",  source:'vitals'},
-{ image:'images/vitals.png', title:"Core Motion",  source:'motion'}
+{ image:'images/vitals.png', title:"Vitals",  source:'vitals'}
 ];
  
 var data=[];
-
+console.log(CustomData.length+"number of row");
 for (var i = 0; i < CustomData.length; i++) {
 	var row = Titanium.UI.createTableViewRow({
 	    touchEnabled: true,

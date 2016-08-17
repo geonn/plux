@@ -518,7 +518,7 @@ exports.do_signup = function(data,mainView){
 				common.createAlert("Error", result.data);
 				return false;
 			}else{
-				nav.closeWindow(mainView.win);  
+				mainView.win.close();
   				Ti.App.fireEvent('loginAfterRegister',{params: params}); 
 			}
 		},

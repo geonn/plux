@@ -9,8 +9,6 @@ $.fullname.text ="Full Name : "+profile.fullname;
 $.email.text = "Email : "+profile.email;
 $.last_login = "Last Login : "+timeFormat(profile.last_login);
 
-
-
 function init(){
 	$.win.add(loading.getView());
 	$.addbox.hide();

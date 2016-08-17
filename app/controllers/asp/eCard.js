@@ -13,7 +13,7 @@ init();
 function init(){
 	var user = usersModel.getOwnerData(u_id); 
  	 
-	if(user.isver == "true"){ 
+	if(user.isver == "true" || user.isver > 0){ 
 	 
 		$.unverified.hide();
 		$.card.opacity = "1";

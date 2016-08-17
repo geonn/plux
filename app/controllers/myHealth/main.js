@@ -218,8 +218,8 @@ $.glucoseView.addEventListener('click',function(e){
 $.moreHealth.addEventListener('click', function(e){
 	if(Ti.Platform.osname == "android"){
 		var dialog = Ti.UI.createOptionDialog({
-		  cancel: 3,
-		  options: ['Me', 'Body Measurement', 'Vitals', 'Cancel'],
+		  cancel: 2,
+		  options: ['Body Measurement', 'Vitals', 'Cancel'],
 		  title: 'More'
 		});
 		
@@ -227,11 +227,9 @@ $.moreHealth.addEventListener('click', function(e){
 		
 		dialog.addEventListener("click", function(e){
 			if(e.index == 0){
-				nav.navigationWindow("myHealth/profile");
-			}else if(e.index == 1){
 				Ti.App.fireEvent('filterList',{category: "measurement"});
 				//API.loadCategory({types: "popular"});
-			}else if(e.index == 2){
+			}else if(e.index == 1){
 				Ti.App.fireEvent('filterList',{category: "vitals"});
 			}
 		});
