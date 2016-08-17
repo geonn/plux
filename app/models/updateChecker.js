@@ -69,7 +69,7 @@ exports.definition = {
 					addon = "AND u_id = ?";
 				}
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id = ? "+addon ;
-                console.log(sql);
+               // console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -87,7 +87,7 @@ exports.definition = {
 					    updated: res.fieldByName('updated')
 					};
 				} 
-			 console.log(arr);
+			 //console.log(arr);
 				res.close();
                 db.close();
                 collection.trigger('sync');
