@@ -507,10 +507,7 @@ exports.definition = {
                 }
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-<<<<<<< HEAD
-=======
-                	//console.log(entry.id+" "+entry.clinicName);
->>>>>>> origin/master
+
                 	var keys = [];
                 	var questionmark = [];
                 	var eval_values = [];
