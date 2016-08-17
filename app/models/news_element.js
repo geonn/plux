@@ -6,7 +6,7 @@ exports.definition = {
 		    "content": "TEXT",
 		    "type": "TEXT",
 		    "images": "TEXT",
-		    "position" : "TEXT"
+		    "position" : "INTEGER"
 		},
 		adapter: {
 			type: "sql",

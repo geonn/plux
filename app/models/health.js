@@ -257,9 +257,10 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN");
+                
                 if(arr.length > 0){
-                	
+
+                	db.execute("BEGIN");
 	                arr.forEach(function(entry) {
 	                	var keys = [];
 	                	var questionmark = [];
@@ -283,9 +284,9 @@ exports.definition = {
 		                var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET "+without_pk_list.join()+" WHERE "+_.first(update_questionmark);
 		                eval("db.execute(sql_query, "+without_pk_value.join()+","+_.first(eval_values)+")");
 					});
-					
+					db.execute("COMMIT");
 				}
-				db.execute("COMMIT");
+				
 				console.log(db.getRowsAffected()+" affected row");
 	            db.close();
 	            collection.trigger('sync');

@@ -59,10 +59,18 @@ exports.input_box = function(){
 		layout: "vertical"
 	});
 	view_inputbox.add(view_header);
-	view_inputbox.add(addForm("Your Age", "Picker", ['Please select','Less than 35', '35 to 49', '50 and above']));
-	view_inputbox.add(addForm("Your Waist Circumference", "Picker", ['Please select','Less than 35 Inches', '35 to 39 Inches', 'Greater than 39 Inches']));
-	view_inputbox.add(addForm("Daily Routine", "Picker", ['Please select','No regular exercise', 'Mild exercise', 'Moderate exercise', 'Regular exercise']));
-	view_inputbox.add(addForm("Family History of Diabetes", "Picker", ['Please select','No family history', 'One of my parent diabetic', 'Both of my parent diabetic']));
+	if(OS_IOS){
+		view_inputbox.add(addForm("Your Age", "Picker", [ 'Less than 35', '35 to 49', '50 and above','Cancel']));
+		view_inputbox.add(addForm("Your Waist Circumference", "Picker", [ 'Less than 35 Inches', '35 to 39 Inches', 'Greater than 39 Inches','Cancel']));
+		view_inputbox.add(addForm("Daily Routine", "Picker", [ 'No regular exercise', 'Mild exercise', 'Moderate exercise', 'Regular exercise','Cancel']));
+		view_inputbox.add(addForm("Family History of Diabetes", "Picker", [ 'No family history', 'One of my parent diabetic', 'Both of my parent diabetic','Cancel']));
+		
+	}else{
+		view_inputbox.add(addForm("Your Age", "Picker", ['Please select','Less than 35', '35 to 49', '50 and above']));
+		view_inputbox.add(addForm("Your Waist Circumference", "Picker", ['Please select','Less than 35 Inches', '35 to 39 Inches', 'Greater than 39 Inches']));
+		view_inputbox.add(addForm("Daily Routine", "Picker", ['Please select','No regular exercise', 'Mild exercise', 'Moderate exercise', 'Regular exercise']));
+		view_inputbox.add(addForm("Family History of Diabetes", "Picker", ['Please select','No family history', 'One of my parent diabetic', 'Both of my parent diabetic']));
+	}
 	
 	var button_submit = $.UI.create("Button",{
 		title: "Calculate",
@@ -207,15 +215,8 @@ function addForm(text, type, options){
 			view_picker.add(label_picker);
 			view_picker.add(picker);
 		}else{
-			var picker = $.UI.create("Picker", {
-				width: Ti.UI.FILL,
-				height: Ti.UI.SIZE,
-				counter: count,
-				row_value: 0,
-				bottom: 0
-			});
 			var label_picker_value = $.UI.create("Label", {
-				text: options[0],
+				text: "Please Select",
 				counter: count,
 				mod: 0,
 				width: Ti.UI.FILL,
@@ -232,31 +233,32 @@ function addForm(text, type, options){
 				borderRadius:10,
 				text: options[0],
 				counter: count,
+				row_value: 0,
 				height: Ti.UI.SIZE,
 			});
 			
 			view_border_pv.add(label_picker_value);
 			
-			label_picker_value.addEventListener("click", function(e){
+			label_picker_value.addEventListener("click", function(ex){
+				var cancelBtn = options.length -1;
+				var dialog = Ti.UI.createOptionDialog({
+				  cancel: options.length -1,
+				  options: options,
+				  counter: count,
+				  selectedIndex: 0,
+				  title: 'Choose one'
+				});
 				
-				var index = e.source.counter;
-				$.picker.add(form[index]); 
-				form[index].addEventListener("change", formEvent);
-			});
-			
-			function formEvent(ex){ 
-				form_label[ex.source.counter].text = ex.row.title;
-				$.picker.removeAllChildren();
-				ex.source.removeEventListener("change", formEvent);
-				form[ex.source.counter].setSelectedRow(0, ex.rowIndex);
-				form[ex.source.counter].row_value = ex.rowIndex; 
-			}
-			
-			for(var a = 0; a < options.length; a++){
-				var row = Ti.UI.createPickerRow({title: options[a]});
-				data.push(row);
-			}
-			picker.add(data);
+				dialog.show(); 
+				dialog.addEventListener("click", function(e){   
+					if(cancelBtn != e.index){ 
+						var index = e.index; 
+						form_label[ex.source.counter].text = options[index];
+					 	form[ex.source.counter].row_value = parseInt(index) + 1; 
+						console.log(ex.source.counter+"=="+options[index]);
+					}
+				});
+			}); 
 			
 			var view_picker = $.UI.create("View", {
 				width: Ti.UI.FILL,
@@ -267,8 +269,7 @@ function addForm(text, type, options){
 				bottom: 10,
 				layout: "vertical",
 			});
-			
-			form.push(picker);
+			form.push(view_border_pv);
 			form_label.push(label_picker_value);
 			
 			view_picker.add(label_picker);
