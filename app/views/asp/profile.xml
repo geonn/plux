@@ -2,7 +2,7 @@
 	<Window title="ASP Profile" backButtonTitle="" id="asp_profile" class="container" navTintColor="#CE1D1C">
 		<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
-		    	<Label top="5" text="Loading" color="#ffffff" />
+		    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
 		</View>
 		<View layout="vertical" width="Ti.UI.FILL" height="Ti.UI.FILL">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 

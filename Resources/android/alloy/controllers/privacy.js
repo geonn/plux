@@ -34,16 +34,26 @@ function Controller() {
         id: "privacyWin"
     });
     $.__views.privacyWin && $.addTopLevelView($.__views.privacyWin);
+<<<<<<< HEAD
     $.__views.__alloyId209 = Ti.UI.createView({
         layout: "vertical",
         id: "__alloyId209"
     });
     $.__views.privacyWin.add($.__views.__alloyId209);
     $.__views.__alloyId210 = Ti.UI.createView({
+=======
+    $.__views.__alloyId210 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId210"
+    });
+    $.__views.privacyWin.add($.__views.__alloyId210);
+    $.__views.__alloyId211 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId210"
     });
     $.__views.__alloyId209.add($.__views.__alloyId210);
@@ -53,6 +63,17 @@ function Controller() {
         id: "__alloyId211"
     });
     $.__views.__alloyId210.add($.__views.__alloyId211);
+=======
+        id: "__alloyId211"
+    });
+    $.__views.__alloyId210.add($.__views.__alloyId211);
+    $.__views.__alloyId212 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId212"
+    });
+    $.__views.__alloyId211.add($.__views.__alloyId212);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -60,13 +81,22 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId211.add($.__views.btnBack);
+=======
+    $.__views.__alloyId212.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId210.add($.__views.pageTitle);
     $.__views.__alloyId212 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId211.add($.__views.pageTitle);
+    $.__views.__alloyId213 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -75,17 +105,28 @@ function Controller() {
         },
         text: "Privacy Policy",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId212"
     });
     $.__views.pageTitle.add($.__views.__alloyId212);
+=======
+        id: "__alloyId213"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId213);
+>>>>>>> origin/master
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
+<<<<<<< HEAD
     $.__views.__alloyId209.add($.__views.main);
     $.__views.__alloyId213 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId210.add($.__views.main);
+    $.__views.__alloyId214 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#CC2228",
@@ -96,6 +137,7 @@ function Controller() {
         right: "10",
         text: "ENGLISH VERSION",
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId213"
     });
     $.__views.main.add($.__views.__alloyId213);
@@ -111,6 +153,8 @@ function Controller() {
         right: "10",
         text: "Dear Members,",
         bottom: 5,
+=======
+>>>>>>> origin/master
         id: "__alloyId214"
     });
     $.__views.main.add($.__views.__alloyId214);
@@ -124,7 +168,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: 'The Personal Data Protection Act 2010 has been enforced on 15 November 2013 by the Government to regulate the processing of personal data in commercial transactions. Under the Act, we, ASP Medical Clinic Sdn. Bhd. ("ASP") are required to serve you as our clients, members, Panel Clinics and Panel Hospitals a notice pertaining to your rights in respect of your personal data that is being processed or that is to be collected and further processed by us and the purposes for the data processing.',
+=======
+        text: "Dear Members,",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId215"
     });
@@ -139,8 +187,13 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: 'Consequently, please be informed that the personal data and other information (collectively referred to as "Personal Data") provided in your application as clients, members, Panel Clinics and Panel Hospitals inclusive any other services which relating thereto to ASP services is being, and will likely continue to be, used and processed by ASP for the following purposes:-',
         bottom: 3,
+=======
+        text: 'The Personal Data Protection Act 2010 has been enforced on 15 November 2013 by the Government to regulate the processing of personal data in commercial transactions. Under the Act, we, ASP Medical Clinic Sdn. Bhd. ("ASP") are required to serve you as our clients, members, Panel Clinics and Panel Hospitals a notice pertaining to your rights in respect of your personal data that is being processed or that is to be collected and further processed by us and the purposes for the data processing.',
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId216"
     });
     $.__views.main.add($.__views.__alloyId216);
@@ -154,7 +207,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- for the maintenance of customer database and customer service related processes;",
+=======
+        text: 'Consequently, please be informed that the personal data and other information (collectively referred to as "Personal Data") provided in your application as clients, members, Panel Clinics and Panel Hospitals inclusive any other services which relating thereto to ASP services is being, and will likely continue to be, used and processed by ASP for the following purposes:-',
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId217"
     });
@@ -169,7 +226,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- for billing and payment processing purposes",
+=======
+        text: "- for the maintenance of customer database and customer service related processes;",
+        bottom: 3,
+>>>>>>> origin/master
         id: "__alloyId218"
     });
     $.__views.main.add($.__views.__alloyId218);
@@ -183,7 +245,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- for contact purposes",
+=======
+        text: "- for billing and payment processing purposes",
+>>>>>>> origin/master
         id: "__alloyId219"
     });
     $.__views.main.add($.__views.__alloyId219);
@@ -197,7 +263,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- to respond to your enquiries",
+=======
+        text: "- for contact purposes",
+>>>>>>> origin/master
         id: "__alloyId220"
     });
     $.__views.main.add($.__views.__alloyId220);
@@ -211,7 +281,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- for administrative purposes",
+=======
+        text: "- to respond to your enquiries",
+>>>>>>> origin/master
         id: "__alloyId221"
     });
     $.__views.main.add($.__views.__alloyId221);
@@ -225,7 +299,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- to meet legal and statutory requirement",
+=======
+        text: "- for administrative purposes",
+>>>>>>> origin/master
         id: "__alloyId222"
     });
     $.__views.main.add($.__views.__alloyId222);
@@ -239,7 +317,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- for analysis and planning purposes including historical and statistical record",
+=======
+        text: "- to meet legal and statutory requirement",
+>>>>>>> origin/master
         id: "__alloyId223"
     });
     $.__views.main.add($.__views.__alloyId223);
@@ -253,7 +335,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- general operation and maintenance of the services provided by ASP",
+=======
+        text: "- for analysis and planning purposes including historical and statistical record",
+>>>>>>> origin/master
         id: "__alloyId224"
     });
     $.__views.main.add($.__views.__alloyId224);
@@ -267,7 +353,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Investigating complaints and suspected suspicious transaction.",
+=======
+        text: "- general operation and maintenance of the services provided by ASP",
+>>>>>>> origin/master
         id: "__alloyId225"
     });
     $.__views.main.add($.__views.__alloyId225);
@@ -281,14 +371,19 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "This information is necessary to us. If you do not provide all of the information as requested, we will not be able to keep complete information about you, thus affecting our capacity to accomplish the above stated purposes.",
         bottom: 5,
+=======
+        text: "- Investigating complaints and suspected suspicious transaction.",
+>>>>>>> origin/master
         id: "__alloyId226"
     });
     $.__views.main.add($.__views.__alloyId226);
     $.__views.__alloyId227 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#404040",
         font: {
             fontSize: "16",
@@ -297,6 +392,16 @@ function Controller() {
         left: "10",
         right: "10",
         text: "Disclosure of your information",
+=======
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
+        text: "This information is necessary to us. If you do not provide all of the information as requested, we will not be able to keep complete information about you, thus affecting our capacity to accomplish the above stated purposes.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId227"
     });
@@ -304,6 +409,7 @@ function Controller() {
     $.__views.__alloyId228 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#6E6E6E",
         font: {
             fontSize: "14"
@@ -313,6 +419,17 @@ function Controller() {
         right: "10",
         text: "We may disclose the Personal Data to the following parties for the purposes stated above:",
         bottom: 3,
+=======
+        color: "#404040",
+        font: {
+            fontSize: "16",
+            fontWeight: "bold"
+        },
+        left: "10",
+        right: "10",
+        text: "Disclosure of your information",
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId228"
     });
     $.__views.main.add($.__views.__alloyId228);
@@ -326,7 +443,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Our agents providing services relating to the purposes for which the Personal Data is collected;",
+=======
+        text: "We may disclose the Personal Data to the following parties for the purposes stated above:",
+        bottom: 3,
+>>>>>>> origin/master
         id: "__alloyId229"
     });
     $.__views.main.add($.__views.__alloyId229);
@@ -340,7 +462,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- In circumstances where delay or default payment has occurred, to our appointed lawyers, debt collection agencies, credit reporting agencies; and",
+=======
+        text: "- Our agents providing services relating to the purposes for which the Personal Data is collected;",
+>>>>>>> origin/master
         id: "__alloyId230"
     });
     $.__views.main.add($.__views.__alloyId230);
@@ -354,8 +480,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Any person who is under a duty of confidentiality who has undertaken to keep such data confidential.",
         bottom: 5,
+=======
+        text: "- In circumstances where delay or default payment has occurred, to our appointed lawyers, debt collection agencies, credit reporting agencies; and",
+>>>>>>> origin/master
         id: "__alloyId231"
     });
     $.__views.main.add($.__views.__alloyId231);
@@ -369,7 +499,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "We may also disclose the Personal Data if required to do so by law or in good faith, if such action is necessary to (i) comply with requirements of any law enforcement agency, court order, or legal process; or (ii) protect and defend rights or property of ASP and its personnel.",
+=======
+        text: "- Any person who is under a duty of confidentiality who has undertaken to keep such data confidential.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId232"
     });
@@ -377,6 +511,7 @@ function Controller() {
     $.__views.__alloyId233 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#404040",
         font: {
             fontSize: "16",
@@ -385,6 +520,16 @@ function Controller() {
         left: "10",
         right: "10",
         text: "Access, corrections and complaints",
+=======
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
+        text: "We may also disclose the Personal Data if required to do so by law or in good faith, if such action is necessary to (i) comply with requirements of any law enforcement agency, court order, or legal process; or (ii) protect and defend rights or property of ASP and its personnel.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId233"
     });
@@ -392,6 +537,7 @@ function Controller() {
     $.__views.__alloyId234 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#6E6E6E",
         font: {
             fontSize: "14"
@@ -401,6 +547,17 @@ function Controller() {
         right: "10",
         text: "If you would like to make any enquiries or complaints or request access or correction of your Personal Data, you may contact our IT Manager by calling them at 03-2022 2677 or faxing 03-2072 2699 from 9.00 am to 5.00 pm or you can email us at pdpa@asp-medical-clinic.com. Any request to access or correct the Personal Data may be subject to a fee and also to requirements under the Personal Data Protection Act 2010.",
         bottom: 3,
+=======
+        color: "#404040",
+        font: {
+            fontSize: "16",
+            fontWeight: "bold"
+        },
+        left: "10",
+        right: "10",
+        text: "Access, corrections and complaints",
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId234"
     });
     $.__views.main.add($.__views.__alloyId234);
@@ -414,7 +571,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "Where you elect to limit our rights to process your Personal Data, you may also contact the above mentioned IT Manager, in writing.",
+=======
+        text: "If you would like to make any enquiries or complaints or request access or correction of your Personal Data, you may contact our IT Manager by calling them at 03-2022 2677 or faxing 03-2072 2699 from 9.00 am to 5.00 pm or you can email us at pdpa@asp-medical-clinic.com. Any request to access or correct the Personal Data may be subject to a fee and also to requirements under the Personal Data Protection Act 2010.",
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId235"
     });
@@ -429,11 +590,16 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "In the event of any inconsistency or conflict between the English version and the Bahasa Malaysia version of this Personal Data Protection Notice to customer, the English version shall prevail.",
+=======
+        text: "Where you elect to limit our rights to process your Personal Data, you may also contact the above mentioned IT Manager, in writing.",
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId236"
     });
     $.__views.main.add($.__views.__alloyId236);
+<<<<<<< HEAD
     $.__views.__alloyId237 = Ti.UI.createView({
         width: Titanium.UI.FILL,
         height: 1,
@@ -453,10 +619,8 @@ function Controller() {
         text: "BAHASA MALAYSIA VERSION",
         top: 10,
         bottom: 10,
-        id: "__alloyId238"
-    });
-    $.__views.main.add($.__views.__alloyId238);
-    $.__views.__alloyId239 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId237 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#6E6E6E",
@@ -466,8 +630,43 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+        text: "In the event of any inconsistency or conflict between the English version and the Bahasa Malaysia version of this Personal Data Protection Notice to customer, the English version shall prevail.",
+        bottom: 3,
+        id: "__alloyId237"
+    });
+    $.__views.main.add($.__views.__alloyId237);
+    $.__views.__alloyId238 = Ti.UI.createView({
+        width: Titanium.UI.FILL,
+        height: 1,
+        backgroundColor: "#F6F6F6",
+>>>>>>> origin/master
+        id: "__alloyId238"
+    });
+    $.__views.main.add($.__views.__alloyId238);
+    $.__views.__alloyId239 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+<<<<<<< HEAD
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
         text: "Pelanggan yang dihargai,",
         bottom: 5,
+=======
+        color: "#CC2228",
+        font: {
+            fontSize: "18"
+        },
+        left: "10",
+        right: "10",
+        text: "BAHASA MALAYSIA VERSION",
+        top: 10,
+        bottom: 10,
+>>>>>>> origin/master
         id: "__alloyId239"
     });
     $.__views.main.add($.__views.__alloyId239);
@@ -481,7 +680,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: 'Akta Perlindungan Data Peribadi 2010 telah dikuatkuasakan oleh pihak Kerajaan pada 15 November 2013 untuk mengawal selia pemprosesan data dalam transaksi komersial. Di bawah peruntukan Akta ini, kami, ASP Medical Clinic Sdn. Bhd. ("ASP") dikehendaki untuk mengemukakan notis mengenai hak anda ke atas Data Peribadi anda yang telah diproses, yang akan diterima dan akan diproses di masa hadapan oleh pihak kami dan juga tujuan Data Peribadi tersebut dikumpulkan.',
+=======
+        text: "Pelanggan yang dihargai,",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId240"
     });
@@ -496,8 +699,13 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: 'Justeru itu, kami ingin memaklumkan bahawa data peribadi dan maklumat (selepas ini disebut sebagai "Data Peribadi tersebut") selainnya yang diberikan di dalam permohonan anda sebagai pelanggan, ahli, Klinik Panel dan Hospital Panel termasuklah perkhidmatan¬ lain yang berkaitan dengan ASP bagi maksud-maksud berikut:-',
         bottom: 3,
+=======
+        text: 'Akta Perlindungan Data Peribadi 2010 telah dikuatkuasakan oleh pihak Kerajaan pada 15 November 2013 untuk mengawal selia pemprosesan data dalam transaksi komersial. Di bawah peruntukan Akta ini, kami, ASP Medical Clinic Sdn. Bhd. ("ASP") dikehendaki untuk mengemukakan notis mengenai hak anda ke atas Data Peribadi anda yang telah diproses, yang akan diterima dan akan diproses di masa hadapan oleh pihak kami dan juga tujuan Data Peribadi tersebut dikumpulkan.',
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId241"
     });
     $.__views.main.add($.__views.__alloyId241);
@@ -511,7 +719,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- penyenggaraan pengkalan data pelanggan dan proses-proses yang berkaitan dengan perkhidmatan pelanggan",
+=======
+        text: 'Justeru itu, kami ingin memaklumkan bahawa data peribadi dan maklumat (selepas ini disebut sebagai "Data Peribadi tersebut") selainnya yang diberikan di dalam permohonan anda sebagai pelanggan, ahli, Klinik Panel dan Hospital Panel termasuklah perkhidmatan¬ lain yang berkaitan dengan ASP bagi maksud-maksud berikut:-',
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId242"
     });
@@ -526,7 +738,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- tujuan pengebilan dan proses pembayaran",
+=======
+        text: "- penyenggaraan pengkalan data pelanggan dan proses-proses yang berkaitan dengan perkhidmatan pelanggan",
+        bottom: 3,
+>>>>>>> origin/master
         id: "__alloyId243"
     });
     $.__views.main.add($.__views.__alloyId243);
@@ -540,7 +757,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- bagi menghubungi anda",
+=======
+        text: "- tujuan pengebilan dan proses pembayaran",
+>>>>>>> origin/master
         id: "__alloyId244"
     });
     $.__views.main.add($.__views.__alloyId244);
@@ -554,7 +775,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- bagi menjawab sebarang pertanyaan",
+=======
+        text: "- bagi menghubungi anda",
+>>>>>>> origin/master
         id: "__alloyId245"
     });
     $.__views.main.add($.__views.__alloyId245);
@@ -568,7 +793,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- tujuan pentadbiran",
+=======
+        text: "- bagi menjawab sebarang pertanyaan",
+>>>>>>> origin/master
         id: "__alloyId246"
     });
     $.__views.main.add($.__views.__alloyId246);
@@ -582,7 +811,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- memenuhi keperluan undang-undang dan badan-badan berkanun",
+=======
+        text: "- tujuan pentadbiran",
+>>>>>>> origin/master
         id: "__alloyId247"
     });
     $.__views.main.add($.__views.__alloyId247);
@@ -596,7 +829,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- bagi tujuan analisa dan perancangan termasuk penyimpanan rekod sejarah dan statistik",
+=======
+        text: "- memenuhi keperluan undang-undang dan badan-badan berkanun",
+>>>>>>> origin/master
         id: "__alloyId248"
     });
     $.__views.main.add($.__views.__alloyId248);
@@ -610,7 +847,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- bagi tujuan operasi dan penyenggaraan perkhidmatan yang disediakan oleh ASP",
+=======
+        text: "- bagi tujuan analisa dan perancangan termasuk penyimpanan rekod sejarah dan statistik",
+>>>>>>> origin/master
         id: "__alloyId249"
     });
     $.__views.main.add($.__views.__alloyId249);
@@ -624,7 +865,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- bagi tujuan siasatan sebarang aduan dan urusniaga yang disyaki.",
+=======
+        text: "- bagi tujuan operasi dan penyenggaraan perkhidmatan yang disediakan oleh ASP",
+>>>>>>> origin/master
         id: "__alloyId250"
     });
     $.__views.main.add($.__views.__alloyId250);
@@ -638,14 +883,19 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "Kami memerlukan Data Peribadi tersebut, sekiranya anda tidak membekalkan semua maklumat seperti yang diminta, kami tidak akan dapat menyimpan rekod lengkap mengenai anda, dan justeru itu akan menjejaskan keupayaan kami untuk mencapai maksud seperti di atas.",
         bottom: 5,
+=======
+        text: "- bagi tujuan siasatan sebarang aduan dan urusniaga yang disyaki.",
+>>>>>>> origin/master
         id: "__alloyId251"
     });
     $.__views.main.add($.__views.__alloyId251);
     $.__views.__alloyId252 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#404040",
         font: {
             fontSize: "16",
@@ -654,6 +904,16 @@ function Controller() {
         left: "10",
         right: "10",
         text: "Pendedahan Data Peribadi Anda",
+=======
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
+        text: "Kami memerlukan Data Peribadi tersebut, sekiranya anda tidak membekalkan semua maklumat seperti yang diminta, kami tidak akan dapat menyimpan rekod lengkap mengenai anda, dan justeru itu akan menjejaskan keupayaan kami untuk mencapai maksud seperti di atas.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId252"
     });
@@ -661,6 +921,7 @@ function Controller() {
     $.__views.__alloyId253 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#6E6E6E",
         font: {
             fontSize: "14"
@@ -670,6 +931,17 @@ function Controller() {
         right: "10",
         text: "Kami mungkin mendedahkan Data Peribadi tersebut kepada pihak-pihak berikut bagi tujuan seperti yang dinyatakan di atas:",
         bottom: 3,
+=======
+        color: "#404040",
+        font: {
+            fontSize: "16",
+            fontWeight: "bold"
+        },
+        left: "10",
+        right: "10",
+        text: "Pendedahan Data Peribadi Anda",
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId253"
     });
     $.__views.main.add($.__views.__alloyId253);
@@ -683,7 +955,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Ejen-ejen yang menyediakan perkhidmatan yang berkaitan dengan tujuan Data Peribadi tersebut dikumpul;",
+=======
+        text: "Kami mungkin mendedahkan Data Peribadi tersebut kepada pihak-pihak berikut bagi tujuan seperti yang dinyatakan di atas:",
+        bottom: 3,
+>>>>>>> origin/master
         id: "__alloyId254"
     });
     $.__views.main.add($.__views.__alloyId254);
@@ -697,7 +974,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Di dalam keadaan di mana kelewatan atau keingkaran pembayaran telah berlaku, Data Peribadi tersebut akan didedahkan kepada peguam yang dilantik oleh ASP, agensi kutipan hutang, dan agensi rujukan kredit; dan",
+=======
+        text: "- Ejen-ejen yang menyediakan perkhidmatan yang berkaitan dengan tujuan Data Peribadi tersebut dikumpul;",
+>>>>>>> origin/master
         id: "__alloyId255"
     });
     $.__views.main.add($.__views.__alloyId255);
@@ -711,8 +992,12 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "- Mana-mana individu di bawah kewajipan kerahsiaan yang telah mengakujanji untuk memastikan data tersebut dirahsiakan.",
         bottom: 5,
+=======
+        text: "- Di dalam keadaan di mana kelewatan atau keingkaran pembayaran telah berlaku, Data Peribadi tersebut akan didedahkan kepada peguam yang dilantik oleh ASP, agensi kutipan hutang, dan agensi rujukan kredit; dan",
+>>>>>>> origin/master
         id: "__alloyId256"
     });
     $.__views.main.add($.__views.__alloyId256);
@@ -726,7 +1011,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "Kami juga mungkin akan mendedahkan Data Peribadi anda jika dikehendaki berbuat demkian oleh undang-undang secara niat baik, jika tindakan tersebut adalah perlu bagi (i) mematuhi kehendak mana-mana agensi penguatkuasaan undang-undang, perintah mahkamah atau proses undang-undang; atau (ii) melindungi dan mempertahankan hak atau harta ASP dan kakitangan kami.",
+=======
+        text: "- Mana-mana individu di bawah kewajipan kerahsiaan yang telah mengakujanji untuk memastikan data tersebut dirahsiakan.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId257"
     });
@@ -734,6 +1023,7 @@ function Controller() {
     $.__views.__alloyId258 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#404040",
         font: {
             fontSize: "16",
@@ -742,6 +1032,16 @@ function Controller() {
         left: "10",
         right: "10",
         text: "Akses,Pembetulan dan Aduan",
+=======
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
+        text: "Kami juga mungkin akan mendedahkan Data Peribadi anda jika dikehendaki berbuat demkian oleh undang-undang secara niat baik, jika tindakan tersebut adalah perlu bagi (i) mematuhi kehendak mana-mana agensi penguatkuasaan undang-undang, perintah mahkamah atau proses undang-undang; atau (ii) melindungi dan mempertahankan hak atau harta ASP dan kakitangan kami.",
+>>>>>>> origin/master
         bottom: 5,
         id: "__alloyId258"
     });
@@ -749,6 +1049,7 @@ function Controller() {
     $.__views.__alloyId259 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
+<<<<<<< HEAD
         color: "#6E6E6E",
         font: {
             fontSize: "14"
@@ -758,6 +1059,17 @@ function Controller() {
         right: "10",
         text: "Jika anda ingin membuat sebarang pertanyaan,aduan atau permohonan untuk akses atau pembetulan ke atas Data Peribadi, anda boleh menghubungi Pegawai IT kami di lbu Pejabat ASP dengan menelefon kami di talian 03-2022 2677 atau fakskan kepada kami di talian 03-2072 2699 dari pukul 9.00 pagi sehingga 5.00 petang dan juga boleh diemelkan kepada kami di pdpa@asp-medical-clinic.com. Sebarang permintaan untuk mengakses atau membetulkan Data Peribadi anda akan tertakluk kepada bayaran dan juga keperluan di bawah Akta Perlindungan Data Peribadi 2010.",
         bottom: 3,
+=======
+        color: "#404040",
+        font: {
+            fontSize: "16",
+            fontWeight: "bold"
+        },
+        left: "10",
+        right: "10",
+        text: "Akses,Pembetulan dan Aduan",
+        bottom: 5,
+>>>>>>> origin/master
         id: "__alloyId259"
     });
     $.__views.main.add($.__views.__alloyId259);
@@ -771,7 +1083,11 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "Jika anda memilih untuk menghadkan hak kami untuk memproses Data Peribadi anda, anda boleh menghubungi Pegawai IT kami seperti yang dinyatakan di atas, secara bertulis.",
+=======
+        text: "Jika anda ingin membuat sebarang pertanyaan,aduan atau permohonan untuk akses atau pembetulan ke atas Data Peribadi, anda boleh menghubungi Pegawai IT kami di lbu Pejabat ASP dengan menelefon kami di talian 03-2022 2677 atau fakskan kepada kami di talian 03-2072 2699 dari pukul 9.00 pagi sehingga 5.00 petang dan juga boleh diemelkan kepada kami di pdpa@asp-medical-clinic.com. Sebarang permintaan untuk mengakses atau membetulkan Data Peribadi anda akan tertakluk kepada bayaran dan juga keperluan di bawah Akta Perlindungan Data Peribadi 2010.",
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId260"
     });
@@ -786,11 +1102,33 @@ function Controller() {
         left: "10",
         textAlign: "left",
         right: "10",
+<<<<<<< HEAD
         text: "Sekiranya terdapat sebarang perbezaan atau konflik di antara versi Bahasa lnggeris dan versi Bahasa Malaysia di dalam Notis Perlindungan Data Peribadi Pelanggan ini, versi Bahasa lnggeris harus digunapakai dan diterima.",
+=======
+        text: "Jika anda memilih untuk menghadkan hak kami untuk memproses Data Peribadi anda, anda boleh menghubungi Pegawai IT kami seperti yang dinyatakan di atas, secara bertulis.",
+>>>>>>> origin/master
         bottom: 3,
         id: "__alloyId261"
     });
     $.__views.main.add($.__views.__alloyId261);
+<<<<<<< HEAD
+=======
+    $.__views.__alloyId262 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        color: "#6E6E6E",
+        font: {
+            fontSize: "14"
+        },
+        left: "10",
+        textAlign: "left",
+        right: "10",
+        text: "Sekiranya terdapat sebarang perbezaan atau konflik di antara versi Bahasa lnggeris dan versi Bahasa Malaysia di dalam Notis Perlindungan Data Peribadi Pelanggan ini, versi Bahasa lnggeris harus digunapakai dan diterima.",
+        bottom: 3,
+        id: "__alloyId262"
+    });
+    $.__views.main.add($.__views.__alloyId262);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

@@ -38,11 +38,16 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.claim_history.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId425 = Ti.UI.createView({
+=======
+    $.__views.__alloyId427 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId425"
     });
     $.__views.main.add($.__views.__alloyId425);
@@ -52,6 +57,17 @@ function Controller() {
         id: "__alloyId426"
     });
     $.__views.__alloyId425.add($.__views.__alloyId426);
+=======
+        id: "__alloyId427"
+    });
+    $.__views.main.add($.__views.__alloyId427);
+    $.__views.__alloyId428 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId428"
+    });
+    $.__views.__alloyId427.add($.__views.__alloyId428);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -59,12 +75,21 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId426.add($.__views.btnBack);
     $.__views.__alloyId427 = Ti.UI.createView({
         width: "90%",
         id: "__alloyId427"
     });
     $.__views.__alloyId425.add($.__views.__alloyId427);
+=======
+    $.__views.__alloyId428.add($.__views.btnBack);
+    $.__views.__alloyId429 = Ti.UI.createView({
+        width: "90%",
+        id: "__alloyId429"
+    });
+    $.__views.__alloyId427.add($.__views.__alloyId429);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -76,7 +101,11 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId427.add($.__views.pageTitle);
+=======
+    $.__views.__alloyId429.add($.__views.pageTitle);
+>>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });

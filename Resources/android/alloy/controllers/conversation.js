@@ -310,6 +310,7 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+<<<<<<< HEAD
     $.__views.__alloyId103 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -318,10 +319,21 @@ function Controller() {
     });
     $.__views.win.add($.__views.__alloyId103);
     $.__views.__alloyId104 = Ti.UI.createView({
+=======
+    $.__views.__alloyId104 = Ti.UI.createView({
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId104"
+    });
+    $.__views.win.add($.__views.__alloyId104);
+    $.__views.__alloyId105 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId104"
     });
     $.__views.__alloyId103.add($.__views.__alloyId104);
@@ -331,6 +343,17 @@ function Controller() {
         id: "__alloyId105"
     });
     $.__views.__alloyId104.add($.__views.__alloyId105);
+=======
+        id: "__alloyId105"
+    });
+    $.__views.__alloyId104.add($.__views.__alloyId105);
+    $.__views.__alloyId106 = Ti.UI.createView({
+        left: 0,
+        width: "20%",
+        id: "__alloyId106"
+    });
+    $.__views.__alloyId105.add($.__views.__alloyId106);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -338,6 +361,7 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId105.add($.__views.btnBack);
     closeWindow ? $.addListener($.__views.btnBack, "click", closeWindow) : __defers["$.__views.btnBack!click!closeWindow"] = true;
     $.__views.__alloyId106 = Ti.UI.createView({
@@ -345,6 +369,15 @@ function Controller() {
         id: "__alloyId106"
     });
     $.__views.__alloyId104.add($.__views.__alloyId106);
+=======
+    $.__views.__alloyId106.add($.__views.btnBack);
+    closeWindow ? $.addListener($.__views.btnBack, "click", closeWindow) : __defers["$.__views.btnBack!click!closeWindow"] = true;
+    $.__views.__alloyId107 = Ti.UI.createView({
+        width: "60%",
+        id: "__alloyId107"
+    });
+    $.__views.__alloyId105.add($.__views.__alloyId107);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -356,25 +389,43 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId106.add($.__views.pageTitle);
     $.__views.__alloyId107 = Ti.UI.createScrollView({
+=======
+    $.__views.__alloyId107.add($.__views.pageTitle);
+    $.__views.__alloyId108 = Ti.UI.createScrollView({
+>>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         contentHeight: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId107"
     });
     $.__views.__alloyId103.add($.__views.__alloyId107);
     $.__views.__alloyId108 = Ti.UI.createView({
+=======
+        id: "__alloyId108"
+    });
+    $.__views.__alloyId104.add($.__views.__alloyId108);
+    $.__views.__alloyId109 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         borderColor: "#dfe0e4",
         backgroundColor: "#ffffff",
         borderRadius: "5",
         zIndex: 10,
         width: "80%",
+<<<<<<< HEAD
         id: "__alloyId108"
     });
     $.__views.__alloyId107.add($.__views.__alloyId108);
+=======
+        id: "__alloyId109"
+    });
+    $.__views.__alloyId108.add($.__views.__alloyId109);
+>>>>>>> origin/master
     $.__views.estimate = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -388,7 +439,11 @@ function Controller() {
         },
         id: "estimate"
     });
+<<<<<<< HEAD
     $.__views.__alloyId108.add($.__views.estimate);
+=======
+    $.__views.__alloyId109.add($.__views.estimate);
+>>>>>>> origin/master
     $.__views.chatroom = Ti.UI.createScrollView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -399,7 +454,11 @@ function Controller() {
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL
     });
+<<<<<<< HEAD
     $.__views.__alloyId107.add($.__views.chatroom);
+=======
+    $.__views.__alloyId108.add($.__views.chatroom);
+>>>>>>> origin/master
     $.__views.inner_area = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -408,7 +467,11 @@ function Controller() {
         bottom: 20
     });
     $.__views.chatroom.add($.__views.inner_area);
+<<<<<<< HEAD
     $.__views.__alloyId109 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId110 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -424,19 +487,33 @@ function Controller() {
         text: "More",
         m_id: "no",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId109"
     });
     $.__views.inner_area.add($.__views.__alloyId109);
     getPreviousData ? $.addListener($.__views.__alloyId109, "click", getPreviousData) : __defers["$.__views.__alloyId109!click!getPreviousData"] = true;
     $.__views.__alloyId110 = Ti.UI.createView({
+=======
+        id: "__alloyId110"
+    });
+    $.__views.inner_area.add($.__views.__alloyId110);
+    getPreviousData ? $.addListener($.__views.__alloyId110, "click", getPreviousData) : __defers["$.__views.__alloyId110!click!getPreviousData"] = true;
+    $.__views.__alloyId111 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         backgroundColor: "white",
         bottom: 0,
+<<<<<<< HEAD
         id: "__alloyId110"
     });
     $.__views.__alloyId107.add($.__views.__alloyId110);
+=======
+        id: "__alloyId111"
+    });
+    $.__views.__alloyId108.add($.__views.__alloyId111);
+>>>>>>> origin/master
     $.__views.message = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "45dp",
@@ -453,8 +530,13 @@ function Controller() {
         bottom: 10,
         id: "message"
     });
+<<<<<<< HEAD
     $.__views.__alloyId110.add($.__views.message);
     $.__views.__alloyId111 = Ti.UI.createButton({
+=======
+    $.__views.__alloyId111.add($.__views.message);
+    $.__views.__alloyId112 = Ti.UI.createButton({
+>>>>>>> origin/master
         borderColor: "#CE1D1C",
         backgroundColor: "#ffffff",
         color: "#CE1D1C",
@@ -466,10 +548,17 @@ function Controller() {
         },
         title: "Send",
         right: 10,
+<<<<<<< HEAD
         id: "__alloyId111"
     });
     $.__views.__alloyId110.add($.__views.__alloyId111);
     SendMessage ? $.addListener($.__views.__alloyId111, "click", SendMessage) : __defers["$.__views.__alloyId111!click!SendMessage"] = true;
+=======
+        id: "__alloyId112"
+    });
+    $.__views.__alloyId111.add($.__views.__alloyId112);
+    SendMessage ? $.addListener($.__views.__alloyId112, "click", SendMessage) : __defers["$.__views.__alloyId112!click!SendMessage"] = true;
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -501,8 +590,13 @@ function Controller() {
         $.destroy();
     });
     __defers["$.__views.btnBack!click!closeWindow"] && $.addListener($.__views.btnBack, "click", closeWindow);
+<<<<<<< HEAD
     __defers["$.__views.__alloyId109!click!getPreviousData"] && $.addListener($.__views.__alloyId109, "click", getPreviousData);
     __defers["$.__views.__alloyId111!click!SendMessage"] && $.addListener($.__views.__alloyId111, "click", SendMessage);
+=======
+    __defers["$.__views.__alloyId110!click!getPreviousData"] && $.addListener($.__views.__alloyId110, "click", getPreviousData);
+    __defers["$.__views.__alloyId112!click!SendMessage"] && $.addListener($.__views.__alloyId112, "click", SendMessage);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

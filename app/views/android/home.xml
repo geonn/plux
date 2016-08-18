@@ -11,7 +11,7 @@
 				</View>
 				<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
 			        <ActivityIndicator  id="activityIndicator" />
-			    	<Label top="5" text="Loading" color="#ffffff" />
+			    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
 			    </View>
 				<ScrollView id="scrollboard" width="Titanium.UI.FILL" height="Ti.UI.FILL" zIndex="3">
 					<View layout="horizontal" width="Ti.UI.SIZE" top="239">

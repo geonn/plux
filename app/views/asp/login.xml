@@ -3,7 +3,7 @@
 		<View>
         	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
-		    	<Label top="5" text="Loading" color="#ffffff" />
+		    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
 		    </View>
 		    <View layout="vertical">
 			    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android"> 

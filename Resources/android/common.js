@@ -113,7 +113,11 @@ exports.noRecord = function() {
 exports.showLoading = function() {
     mainView.loadingBar.opacity = "1";
     mainView.loadingBar.zIndex = "100";
+<<<<<<< HEAD
     mainView.loadingBar.height = "120";
+=======
+    mainView.loadingBar.height = Ti.UI.SIZE;
+>>>>>>> origin/master
     mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG;
     mainView.activityIndicator.show();
 };
