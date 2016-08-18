@@ -7,6 +7,11 @@
 	 left:30,
 	 width:60,
 },
+"#activityIndicator[platform=android]":{
+	left:30,
+	width:60,
+	top: 10,
+},
 ".line":{
 	width: Titanium.UI.FILL,
 	height: 1,

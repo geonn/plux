@@ -4,7 +4,7 @@
 	 	<View>
 		 	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
 	        	<ActivityIndicator  id="activityIndicator" />
-	        	<Label id="loading" top="5" text="Loading" color="#ffffff" />
+	        	<Label id="loading" top="5" bottom="10" text="Loading" color="#ffffff" />
 	        </View>
 			<View id="aView" height="Ti.UI.SIZE" top="0" layout="vertical"> 
 				<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
