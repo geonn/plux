@@ -5,7 +5,7 @@
 			<View id="main">
 				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL"></View>
 				<View layout="">
-					<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" image="/appicon-60@3x.png" zIndex="5" />
+					<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" zIndex="5" />
 					<View zIndex="4" id="myinfo_view" layout="horizontal" height="Ti.UI.SIZE" top="20" backgroundColor="#B3000000"> 
 						<!--<View height="40" id="fbloginView" />-->
 						<View layout="horizontal" left="110" width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
