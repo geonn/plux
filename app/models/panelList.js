@@ -14,7 +14,8 @@ exports.definition = {
 		    "longitude": "TEXT",
 		    "panel": "INTEGER",		
 		    "openHour": "TEXT",		// abaddon
-			"clinicType": "TEXT"
+			"clinicType": "TEXT",
+			"status": "INTEGER"
 		},
 		adapter: {
 			type: "sql",

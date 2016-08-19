@@ -80,6 +80,16 @@ exports.checkAndUpdate = function(e){
 		helpline.V1_9DBupdate();
 		dbVersion = '2.0';
 	}
+	
+	if(dbVersion == "2.0"){
+		var panelList = Alloy.createCollection('panelList');
+		panelList.addColumn("status", "INTEGER");
+		
+		var doctor_panel = Alloy.createCollection('doctor_panel');
+		doctor_panel.addColumn("status", "INTEGER");
+		
+		dbVersion = '2.1';
+	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };
 

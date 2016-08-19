@@ -136,7 +136,6 @@ function refresh(){
 		model.saveArray(arr);
 		checker.updateModule(6,"getDoctorPanelBySpecialty", res.last_updated, specialty_id);
 		listing = model.getData(specialty_id);
-		console.log(listing);
 		render_clinic_list();
 	});
 	

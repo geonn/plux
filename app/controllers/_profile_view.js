@@ -10,7 +10,7 @@ addField("Member No : ", profile.memno, $.profile_data);
 addField("IC : ", profile.icno, $.profile_data);
 addField("Relation : ", profile.relation, $.profile_data);
 
-addField("Allergies : ", profile.allergy, $.my_health_records);
+//addField("Allergies : ", profile.allergy, $.my_health_records);
 /**
 if(typeof profile.personal_health != "undefined"){
 	addField("Birthday", personal_health['birthDate'], $.my_health);
