@@ -166,18 +166,12 @@ function Controller() {
     });
     $.__views.win.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-<<<<<<< HEAD
-        top: 30,
-=======
         top: 10,
->>>>>>> origin/master
         left: 30,
         width: 60,
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-=======
     $.__views.__alloyId92 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -188,7 +182,6 @@ function Controller() {
         id: "__alloyId92"
     });
     $.__views.loadingBar.add($.__views.__alloyId92);
->>>>>>> origin/master
     $.__views.doctorView = Ti.UI.createView({
         layout: "vertical",
         id: "doctorView"

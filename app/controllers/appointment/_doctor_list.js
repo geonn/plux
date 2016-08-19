@@ -87,7 +87,7 @@ function refresh(){
 	var last_update = isUpdate.updated || ""; 
 	console.log(clinicId+" clinic id");
 	API.callByPost({url:"getDoctorByPanel", params: {last_updated: last_update, clinic_id:clinicId}}, function(responseText){
-		var model = Alloy.createCollection("panel");
+		var model = Alloy.createCollection("doctor_panel");
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		model.saveArray(arr);

@@ -29,9 +29,8 @@ function render_clinic_list(){
 		
 		listing.forEach(function(entry) {
 			var panel = Alloy.createCollection("panelList");
-			console.log(entry.clinic_id);
-			var clinic_dat = panel.getDataByID(entry.clinic_id);
-			console.log(clinic_dat);
+			 
+			var clinic_dat = panel.getDataByID(entry.clinic_id); 
 			new_list[entry.doctor_name].clinic.push({doctor_panel_id: entry.id, clinic_name: clinic_dat.clinicName, title: clinic_dat.clinicName});
 		});
 		
@@ -135,7 +134,7 @@ function refresh(){
 		var arr = res.data || null;
 		model.saveArray(arr);
 		checker.updateModule(6,"getDoctorPanelBySpecialty", res.last_updated, specialty_id);
-		listing = model.getData(specialty_id);
+		listing = model.getData(specialty_id); 
 		render_clinic_list();
 	});
 	

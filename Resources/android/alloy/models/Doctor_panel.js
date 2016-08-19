@@ -26,7 +26,7 @@ exports.definition = {
                 var collection = this;
                 var sql = "SELECT doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path, specialty.title as specialty, panelList.clinicName FROM " + collection.config.adapter.collection_name + " LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id LEFT OUTER JOIN panelList on panelList.id = doctor_panel.clinic_id LEFT OUTER JOIN specialty on doctor_panel.specialty_id = specialty.id where doctor_panel.specialty_id = ? ORDER BY doctor_panel.clinic_id";
                 sql = "select panel_table.*, specialty.title as specialty from (select doctor_table.*, panelList.clinicName from (select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctor_panel.specialty_id = ?) as doctor_table LEFT OUTER JOIN panelList on panelList.id = doctor_table.clinic_id) as panel_table LEFT OUTER JOIN specialty on panel_table.specialty_id = specialty.id";
-                sql = "select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctors.status =1 AND doctor_panel.specialty_id = ?";
+                sql = "select doctor_panel.*,doctors.status as status, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctors.status =1 AND doctor_panel.specialty_id = ?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql, specialty_id);
                 console.log(specialty_id + " " + sql);
@@ -39,12 +39,15 @@ exports.definition = {
                         doctor_id: res.fieldByName("doctor_id"),
                         doctor_img_path: res.fieldByName("doctor_img_path"),
                         doctor_name: res.fieldByName("doctor_name"),
+                        status: res.fieldByName("status"),
                         specialty_id: res.fieldByName("specialty_id"),
                         clinic_id: res.fieldByName("clinic_id")
                     };
                     res.next();
                     count++;
                 }
+                console.log("geo debug:");
+                console.log(arr);
                 res.close();
                 db.close();
                 collection.trigger("sync");
@@ -77,7 +80,6 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    console.log(entry);
                     var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, doctor_id, clinic_id, created, updated, specialty_id) VALUES (?,?,?,?,?,?)";
                     db.execute(sql_query, entry.id, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id);
                     var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET doctor_id=?, clinic_id=?, created=?, updated=?, specialty_id=? WHERE id=?";

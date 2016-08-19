@@ -28,9 +28,7 @@ function Controller() {
             });
             listing.forEach(function(entry) {
                 var panel = Alloy.createCollection("panelList");
-                console.log(entry.clinic_id);
                 var clinic_dat = panel.getDataByID(entry.clinic_id);
-                console.log(clinic_dat);
                 new_list[entry.doctor_name].clinic.push({
                     doctor_panel_id: entry.id,
                     clinic_name: clinic_dat.clinicName,
@@ -125,7 +123,6 @@ function Controller() {
             model.saveArray(arr);
             checker.updateModule(6, "getDoctorPanelBySpecialty", res.last_updated, specialty_id);
             listing = model.getData(specialty_id);
-            console.log(listing);
             render_clinic_list();
         });
     }
@@ -170,11 +167,7 @@ function Controller() {
         id: "clinic"
     });
     $.__views._clinic_list.add($.__views.clinic);
-<<<<<<< HEAD
-    $.__views.__alloyId362 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId364 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#cd1a19",
@@ -184,15 +177,9 @@ function Controller() {
         bottom: 10,
         text: "Select the panel",
         textAlign: "center",
-<<<<<<< HEAD
-        id: "__alloyId362"
-    });
-    $.__views.clinic.add($.__views.__alloyId362);
-=======
         id: "__alloyId364"
     });
     $.__views.clinic.add($.__views.__alloyId364);
->>>>>>> origin/master
     $.__views.clinic_list = Ti.UI.createTableView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,

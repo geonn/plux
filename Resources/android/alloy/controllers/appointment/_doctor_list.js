@@ -87,7 +87,7 @@ function Controller() {
                 clinic_id: clinicId
             }
         }, function(responseText) {
-            var model = Alloy.createCollection("panel");
+            var model = Alloy.createCollection("doctor_panel");
             var res = JSON.parse(responseText);
             var arr = res.data || null;
             model.saveArray(arr);

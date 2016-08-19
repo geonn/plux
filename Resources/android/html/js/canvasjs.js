@@ -184,11 +184,7 @@
         downloadLink.href = img;
         downloadLink.target = "_blank";
         if ("undefined" != typeof Blob && !!new Blob()) {
-<<<<<<< HEAD
             var imgData = img.replace(/^data:[a-z\/]*;base64,/, "");
-=======
-            var imgData = img.replace(/^data:[a-z/]*;base64,/, "");
->>>>>>> origin/master
             var byteString = atob(imgData);
             var buffer = new ArrayBuffer(byteString.length);
             var intArray = new Uint8Array(buffer);
