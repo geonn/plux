@@ -5,7 +5,7 @@ var usersPluxModel = Alloy.createCollection('users_plux');
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading'); 
 
-//closeBox();
+closeBox();
 $.email.value = preset_email;
 $.win.add(loading.getView());
 
