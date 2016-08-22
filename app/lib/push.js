@@ -64,7 +64,7 @@ function receivePush(e) {
 		if(redirect){
 			nav.navigateWithArgs("conversation");
 		}else{
-			Ti.App.fireEventListener('conversation:refresh');
+			Ti.App.fireEvent('conversation:refresh');
 		}
 	}else if(target =="appointment"){ 
 		if(redirect){ 
