@@ -187,10 +187,13 @@ exports.updateUserFromFB = function(e, mainView){
 	         	API.syncHealthData({u_id:res.data.u_id});
 	         	Ti.App.fireEvent('updateHeader'); 
 	         	mainView.win.close();
-	         	if(typeof Alloy.Globals.navMenu != "undefined"){
+	         	
+	         	if(typeof Alloy.Globals.navMenu != "undefined" && Alloy.Globals.navMenu != null){
+	         		console.log(Alloy.Globals.navMenu);
 	         		console.log(typeof Alloy.Globals.navMenu);
 					nav.closeWindow(mainView.win); 
 				}else{
+					console.log("yes! it is here");
 					var win = Alloy.createController("home").getView();
 					win.open();
 				}

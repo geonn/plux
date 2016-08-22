@@ -280,7 +280,15 @@ function logoutUser(){
 	}else{
 		Ti.App.Properties.setString('u_id',''); 
 		FACEBOOK.logout();
-		nav.navigateWithArgs("login", {});  
+		if(OS_IOS){
+			$.navMenu.close();
+			Alloy.Globals.navMenu = null;
+		}else{
+			$.win.close();
+		}
+		var win = Alloy.createController("login").getView();
+		win.open(); 
+		//nav.navigateWithArgs("login", {});  
 	}
 	 
 	refreshHeaderInfo(); 
