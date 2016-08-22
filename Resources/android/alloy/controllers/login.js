@@ -41,6 +41,9 @@ function Controller() {
         var win = Alloy.createController("asp/signup").getView();
         win.open();
     }
+    function closeBox() {
+        $.forgetPasswordBox.hide();
+    }
     function loginFacebook(e) {
         if (e.success) {
             loading.start();
@@ -247,6 +250,7 @@ function Controller() {
     var usersPluxModel = Alloy.createCollection("users_plux");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
     var loading = Alloy.createController("loading");
+    closeBox();
     $.email.value = preset_email;
     $.win.add(loading.getView());
     var isKeyboardFocus = 0;

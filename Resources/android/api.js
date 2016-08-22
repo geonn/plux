@@ -270,10 +270,12 @@ exports.updateUserFromFB = function(e, mainView) {
                 });
                 Ti.App.fireEvent("updateHeader");
                 mainView.win.close();
-                if ("undefined" != typeof Alloy.Globals.navMenu) {
+                if ("undefined" != typeof Alloy.Globals.navMenu && null != Alloy.Globals.navMenu) {
+                    console.log(Alloy.Globals.navMenu);
                     console.log(typeof Alloy.Globals.navMenu);
                     nav.closeWindow(mainView.win);
                 } else {
+                    console.log("yes! it is here");
                     var win = Alloy.createController("home").getView();
                     win.open();
                 }

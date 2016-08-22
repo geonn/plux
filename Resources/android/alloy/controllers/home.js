@@ -221,7 +221,9 @@ function Controller() {
         } else {
             Ti.App.Properties.setString("u_id", "");
             FACEBOOK.logout();
-            nav.navigateWithArgs("login", {});
+            $.win.close();
+            var win = Alloy.createController("login").getView();
+            win.open();
         }
         refreshHeaderInfo();
         loading.finish();
