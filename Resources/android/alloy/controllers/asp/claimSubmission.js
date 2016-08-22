@@ -15,6 +15,7 @@ function Controller() {
             claimName.push(entry.name);
             claimMemNo.push(entry.memno);
         });
+        claimName.push("Cancel");
         getClaimCategory();
     }
     function checkIfHaveData() {
@@ -51,7 +52,6 @@ function Controller() {
                 $.category.color = "#000000";
                 common.hideLoading();
             });
-            $.saveBtn.visible = false;
         }
     }
     function getClaimCategory() {

@@ -52,6 +52,7 @@ exports.definition = {
                         doctor_id: res.fieldByName("doctor_id"),
                         doctor_img_path: res.fieldByName("doctor_img_path"),
                         doctor_name: res.fieldByName("doctor_name"),
+                        status: res.fieldByName("status"),
                         specialty_id: res.fieldByName("specialty_id"),
                         status: res.fieldByName("status"),
                         clinic_id: res.fieldByName("clinic_id")
@@ -59,6 +60,8 @@ exports.definition = {
                     res.next();
                     count++;
                 }
+                console.log("geo debug:");
+                console.log(arr);
                 res.close();
                 db.close();
                 collection.trigger("sync");
@@ -91,7 +94,10 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
+<<<<<<< HEAD
                     console.log(entry);
+=======
+>>>>>>> origin/master
                     var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, doctor_id, clinic_id, created, updated, specialty_id, status) VALUES (?,?,?,?,?,?,?)";
                     db.execute(sql_query, entry.id, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id, entry.status);
                     var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET doctor_id=?, clinic_id=?, created=?, updated=?, specialty_id=?, status=? WHERE id=?";

@@ -50,7 +50,9 @@ exports.definition = {
                 // 
                 sql = "select panel_table.*, specialty.title as specialty from (select doctor_table.*, panelList.clinicName from (select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctor_panel.specialty_id = ?) as doctor_table LEFT OUTER JOIN panelList on panelList.id = doctor_table.clinic_id) as panel_table LEFT OUTER JOIN specialty on panel_table.specialty_id = specialty.id";
                 //sql = "select a.*, panelList.clinicName from (select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctor_panel.specialty_id = ?) as a LEFT OUTER JOIN panelList on panelList.id = a.clinic_id";
+ 
                 sql = "select doctor_panel.*, doctors.name as doctor_name, doctors.img_path as doctor_img_path from doctor_panel LEFT OUTER JOIN doctors ON doctors.id = doctor_panel.doctor_id where doctors.status =1 AND doctor_panel.status != 2 AND doctor_panel.specialty_id = ?";
+ 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -66,6 +68,7 @@ exports.definition = {
 					    doctor_id: res.fieldByName('doctor_id'),
 					    doctor_img_path: res.fieldByName('doctor_img_path'),
 					    doctor_name: res.fieldByName('doctor_name'),
+					    status: res.fieldByName('status'),
 					    specialty_id: res.fieldByName('specialty_id'),
 					    status: res.fieldByName("status"),
 					    clinic_id: res.fieldByName('clinic_id')
@@ -73,6 +76,8 @@ exports.definition = {
 					res.next();
 					count++;
 				}
+				console.log("geo debug:");
+				console.log(arr);
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -111,12 +116,12 @@ exports.definition = {
                 	db.file.setRemoteBackup(false);
                 }
                 db.execute("BEGIN");
-                arr.forEach(function(entry) {
-                	console.log(entry);
+                arr.forEach(function(entry) { 
 	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, doctor_id, clinic_id, created, updated, specialty_id, status) VALUES (?,?,?,?,?,?,?)";
 					db.execute(sql_query, entry.id, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id, entry.status);
 					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET doctor_id=?, clinic_id=?, created=?, updated=?, specialty_id=?, status=? WHERE id=?";
 					db.execute(sql_query, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id,  entry.status, entry.id);
+ 
 				});
 				db.execute("COMMIT");
 	            db.close();

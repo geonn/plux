@@ -28,9 +28,7 @@ function Controller() {
             });
             listing.forEach(function(entry) {
                 var panel = Alloy.createCollection("panelList");
-                console.log(entry.clinic_id);
                 var clinic_dat = panel.getDataByID(entry.clinic_id);
-                console.log(clinic_dat);
                 new_list[entry.doctor_name].clinic.push({
                     doctor_panel_id: entry.id,
                     clinic_name: clinic_dat.clinicName,

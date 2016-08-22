@@ -59,7 +59,7 @@ function Controller() {
         var time = datetime[1];
         var view_row = $.UI.create("View", {
             classes: [ "wfill", "box", "horz", "rounded" ],
-            height: 70,
+            height: 80,
             appointment_id: entry.id,
             doctor_panel_id: entry.doctor_panel_id,
             status: entry.status,
