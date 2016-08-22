@@ -5,6 +5,7 @@ var usersPluxModel = Alloy.createCollection('users_plux');
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading'); 
 
+//closeBox();
 $.email.value = preset_email;
 $.win.add(loading.getView());
 
@@ -57,6 +58,36 @@ function doASPSignup(){
 	win.open(); 
 	//var nav = require('navigation');
 	//nav.navigationWindow("asp/signup", 0);
+}
+
+function showForgetPassword(){
+	$.forgetPasswordBox.show();
+}
+
+function doForgotPassword(){
+	if($.box_value.value == ""){
+		closeBox();
+		$.box_value.value = "";
+		return;
+	}
+	loading.start();
+	params = {
+		email:$.box_value.value 
+	};
+	API.callByPost({url: "forgotPassword", params:params}, function(responseText){
+		alert("An email has been sent to your email address. Contact the system administrator if you do not received your password within the next few hour.");
+		closeBox();
+		$.box_value.value = "";
+		loading.finish();
+	});
+}
+
+function closeBox(){
+	$.forgetPasswordBox.hide();
+}
+
+function openBox(){
+	$.forgetPasswordBox.show();
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/

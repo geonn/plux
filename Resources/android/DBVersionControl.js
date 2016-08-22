@@ -61,5 +61,12 @@ exports.checkAndUpdate = function() {
         helpline.V1_9DBupdate();
         dbVersion = "2.0";
     }
+    if ("2.0" == dbVersion) {
+        var panelList = Alloy.createCollection("panelList");
+        panelList.addColumn("status", "INTEGER");
+        var doctor_panel = Alloy.createCollection("doctor_panel");
+        doctor_panel.addColumn("status", "INTEGER");
+        dbVersion = "2.1";
+    }
     Ti.App.Properties.setString("dbVersion", dbVersion);
 };

@@ -81,35 +81,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-<<<<<<< HEAD
-    $.__views.__alloyId269 = Ti.UI.createView({
-=======
     $.__views.__alloyId270 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: "100%",
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
-        id: "__alloyId269"
-    });
-    $.__views.win.add($.__views.__alloyId269);
-=======
         id: "__alloyId270"
     });
     $.__views.win.add($.__views.__alloyId270);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: Ti.UI.FILL
     });
-<<<<<<< HEAD
-    $.__views.__alloyId269.add($.__views.pageTitle);
-    $.__views.__alloyId270 = Ti.UI.createLabel({
-=======
     $.__views.__alloyId270.add($.__views.pageTitle);
     $.__views.__alloyId271 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -118,15 +103,6 @@ function Controller() {
         },
         text: "Sign Up",
         textAlign: "center",
-<<<<<<< HEAD
-        id: "__alloyId270"
-    });
-    $.__views.pageTitle.add($.__views.__alloyId270);
-    $.__views.__alloyId271 = Ti.UI.createView({
-        id: "__alloyId271"
-    });
-    $.__views.win.add($.__views.__alloyId271);
-=======
         id: "__alloyId271"
     });
     $.__views.pageTitle.add($.__views.__alloyId271);
@@ -134,7 +110,6 @@ function Controller() {
         id: "__alloyId272"
     });
     $.__views.win.add($.__views.__alloyId272);
->>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -143,22 +118,14 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
-<<<<<<< HEAD
-    $.__views.__alloyId271.add($.__views.loadingBar);
-    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        top: 30,
-=======
     $.__views.__alloyId272.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
->>>>>>> origin/master
         left: 30,
         width: 60,
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-<<<<<<< HEAD
-=======
     $.__views.__alloyId273 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -169,20 +136,14 @@ function Controller() {
         id: "__alloyId273"
     });
     $.__views.loadingBar.add($.__views.__alloyId273);
->>>>>>> origin/master
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-<<<<<<< HEAD
-    $.__views.__alloyId271.add($.__views.main);
-    $.__views.__alloyId272 = Ti.UI.createImageView({
-=======
     $.__views.__alloyId272.add($.__views.main);
     $.__views.__alloyId274 = Ti.UI.createImageView({
->>>>>>> origin/master
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -190,15 +151,9 @@ function Controller() {
         bottom: "10dp",
         top: "10dp",
         image: "/images/logo_plux.png",
-<<<<<<< HEAD
-        id: "__alloyId272"
-    });
-    $.__views.main.add($.__views.__alloyId272);
-=======
         id: "__alloyId274"
     });
     $.__views.main.add($.__views.__alloyId274);
->>>>>>> origin/master
     $.__views.fullname = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",

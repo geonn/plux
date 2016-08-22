@@ -17,7 +17,7 @@ function receivePush(e) {
     target = e.target;
     url = e.extra;
     console.log(target + " and redirect " + redirect);
-    if ("conversation" == target) redirect ? nav.navigateWithArgs("conversation") : Ti.App.fireEventListener("conversation:refresh"); else if ("appointment" == target) redirect ? nav.navigateWithArgs("appointment") : Ti.App.fireEvent("appointment:refresh"); else {
+    if ("conversation" == target) redirect ? nav.navigateWithArgs("conversation") : Ti.App.fireEvent("conversation:refresh"); else if ("appointment" == target) redirect ? nav.navigateWithArgs("appointment") : Ti.App.fireEvent("appointment:refresh"); else {
         var notificationModel = Alloy.createCollection("notification");
         notificationModel.addData(param);
         var dialog = Ti.UI.createAlertDialog({

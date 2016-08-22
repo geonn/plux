@@ -37,7 +37,7 @@ function init(){
 	}
 	console.log(data);
 	section.add(createTableViewRow("Consultation", "RM"+((data.consultation_amt == "null" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
-	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt)));
+	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt), data.medication));
 	section.add(createTableViewRow("Injection", "RM"+((data.injection_amt == "null" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
 	section.add(createTableViewRow("Lab Test", "RM"+((data.labtest_amt == "null" || data.labtest_amt <= 0)?"0":data.labtest_amt), data.labtest));
 	section.add(createTableViewRow("X-Ray", "RM"+((data.xray_amt == "null" || data.xray_amt <= 0)?"0":data.xray_amt), data.xray));

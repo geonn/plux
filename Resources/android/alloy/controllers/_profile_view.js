@@ -113,7 +113,6 @@ function Controller() {
     addField("Member No : ", profile.memno, $.profile_data);
     addField("IC : ", profile.icno, $.profile_data);
     addField("Relation : ", profile.relation, $.profile_data);
-    addField("Allergies : ", profile.allergy, $.my_health_records);
     init();
     _.extend($, exports);
 }

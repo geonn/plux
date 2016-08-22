@@ -16,7 +16,8 @@ exports.definition = {
             longitude: "TEXT",
             panel: "INTEGER",
             openHour: "TEXT",
-            clinicType: "TEXT"
+            clinicType: "TEXT",
+            status: "INTEGER"
         },
         adapter: {
             type: "sql",

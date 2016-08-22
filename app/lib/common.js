@@ -132,7 +132,9 @@ exports.noRecord = function(){
 exports.showLoading = function(){ 
 	mainView.loadingBar.opacity = "1";
 	mainView.loadingBar.zIndex = "100";
-	mainView.loadingBar.height = Ti.UI.SIZE;
+	if(OS_ANDROID){
+		mainView.loadingBar.height = Ti.UI.SIZE;
+	}
 	mainView.activityIndicator.style = Ti.UI.ActivityIndicatorStyle.BIG; 
 	mainView.activityIndicator.show();
 };

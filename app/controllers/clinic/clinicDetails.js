@@ -77,8 +77,8 @@ function init(){
 function populateMap(mapHeight){
 	if(details.latitude != "" && details.longitude != "") {
 		
-		var mapview = Map.createView({
-		    mapType: Map.NORMAL_TYPE,
+		var mapview = Alloy.Globals.Map.createView({
+		    mapType: Alloy.Globals.Map.NORMAL_TYPE,
 		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
 		    animate:true,
 		    regionFit:true,
@@ -86,7 +86,7 @@ function populateMap(mapHeight){
 		    top:0,
 		    userLocation:true
 		});
-		var merchantLoc = Map.createAnnotation({
+		var merchantLoc = Alloy.Globals.Map.createAnnotation({
 		    latitude: details.latitude,
 		    longitude: details.longitude, 
 		    title: details.clinicName,
@@ -96,7 +96,7 @@ function populateMap(mapHeight){
 		    pincolor:Map.ANNOTATION_RED,
 		   
 		}); 
-		 
+		console.log(mapHeight);
 		mapview.addAnnotation(merchantLoc);
 		$.clinicMap.height = mapHeight;
 		$.clinicMap.add(mapview);			

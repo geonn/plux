@@ -62,10 +62,11 @@ function refresh(callback){
 }
 
 function addRecord(){
-	$.box_value.value;
+	
 	var u_id = Ti.App.Properties.getString('u_id');
 	if($.box_value.value == ""){
 		closeBox();
+		$.box_value.value = "";
 		return;
 	}
 	loading.start();
@@ -79,6 +80,7 @@ function addRecord(){
 		model.saveArray(res.data);
 		refresh(render_personal_health);
 		closeBox();
+		$.box_value.value = "";
 		loading.finish();
 	});
 }
