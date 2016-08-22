@@ -27,6 +27,7 @@ function init(){
 		claimName.push(entry.name);
 		claimMemNo.push(entry.memno);
 	}); 
+	claimName.push("Cancel"); 
 	getClaimCategory(); 
 	if(OS_IOS){
 		claimName.push("Cancel");
@@ -68,7 +69,7 @@ function checkIfHaveData(){
 			//claimCategoryArr;
 		 	common.hideLoading(); 
 		}); 
-		$.saveBtn.visible = false;
+		//s$.saveBtn.visible = false;
 	} 
 }
 
