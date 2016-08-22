@@ -91,7 +91,11 @@ function closeWindow(win){
 	if(Ti.Platform.osname == "android"){ 
 		win.close(); 
 	}else{
-		Alloy.Globals.navMenu.closeWindow(win);
+		if(Alloy.Globals.navMenu != null){
+			Alloy.Globals.navMenu.closeWindow(win);
+		}else{
+			win.close();
+		}
 	}
 };
 

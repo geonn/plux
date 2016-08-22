@@ -75,7 +75,8 @@ function doForgotPassword(){
 		email:$.box_value.value 
 	};
 	API.callByPost({url: "forgotPassword", params:params}, function(responseText){
-		alert("An email has been sent to your email address. Contact the system administrator if you do not received your password within the next few hour.");
+		var res = JSON.parse(responseText);
+		alert(res.data);
 		closeBox();
 		$.box_value.value = "";
 		loading.finish();
