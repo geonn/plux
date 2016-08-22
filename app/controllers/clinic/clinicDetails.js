@@ -76,27 +76,35 @@ function init(){
 
 function populateMap(mapHeight){
 	if(details.latitude != "" && details.longitude != "") {
-		
+		var annotations = [
+		    Alloy.Globals.Map.createAnnotation({
+		        latitude:  details.latitude,
+		        longitude:details.longitude,
+		        title:details.clinicName, 
+		        animate: true,
+		        image: '/images/marker.png',
+		        //pincolor: Map.ANNOTATION_GREEN,
+		    }),
+		];
 		var mapview = Alloy.Globals.Map.createView({
 		    mapType: Alloy.Globals.Map.NORMAL_TYPE,
-		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:"0.005", longitudeDelta:"0.005"},
+		    region: {
+		    	latitude: details.latitude, 
+		    	longitude: details.longitude, 
+		    	latitudeDelta:"0.05", 
+		    	longitudeDelta:"0.05"
+		    },
 		    animate:true, 
 		    height:mapHeight,
 		    top:0, 
+		 
+		    regionFit:true,
+		    userLocation:false,
+		  
+		    annotations: annotations
 		}); 
-		var merchantLoc = Alloy.Globals.Map.createAnnotation({
-		    latitude: details.latitude,
-		    longitude: details.longitude, 
-		    title: details.clinicName,
-		    image: '/images/marker.png',
-		    animate : true, 
-		  //  subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-		    pincolor: Alloy.Globals.Map.ANNOTATION_RED,
-		   
-		}); 
-		console.log(mapHeight);
-		mapview.addAnnotation(merchantLoc);
-		$.clinicMap.height = mapHeight;
+	 
+	//	$.clinicMap.height = mapHeight;
 		$.clinicMap.add(mapview);			
 	}
 }
@@ -211,6 +219,7 @@ function direction2here(){
 }
 
 var showFull = false;
+ 
 $.showFullMap.addEventListener('click', function(){
 	if(showFull === false){
 		$.clinicDetailsView.visible =false;

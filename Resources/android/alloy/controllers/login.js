@@ -41,6 +41,30 @@ function Controller() {
         var win = Alloy.createController("asp/signup").getView();
         win.open();
     }
+    function showForgetPassword() {
+        $.forgetPasswordBox.show();
+    }
+    function doForgotPassword() {
+        if ("" == $.box_value.value) {
+            closeBox();
+            $.box_value.value = "";
+            return;
+        }
+        loading.start();
+        params = {
+            email: $.box_value.value
+        };
+        API.callByPost({
+            url: "forgotPassword",
+            params: params
+        }, function(responseText) {
+            var res = JSON.parse(responseText);
+            alert(res.data);
+            closeBox();
+            $.box_value.value = "";
+            loading.finish();
+        });
+    }
     function closeBox() {
         $.forgetPasswordBox.hide();
     }
@@ -138,6 +162,83 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+    $.__views.forgetPasswordBox = Ti.UI.createView({
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        borderColor: "#dfe0e4",
+        backgroundColor: "#FFFFFF",
+        id: "forgetPasswordBox",
+        zIndex: 10,
+        left: 10,
+        right: 10
+    });
+    $.__views.__alloyId191.add($.__views.forgetPasswordBox);
+    $.__views.__alloyId192 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "__alloyId192"
+    });
+    $.__views.forgetPasswordBox.add($.__views.__alloyId192);
+    $.__views.addbox_title = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#606060",
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10,
+        text: "Forgot Password",
+        id: "addbox_title",
+        verticalAlign: "center"
+    });
+    $.__views.__alloyId192.add($.__views.addbox_title);
+    $.__views.__alloyId193 = Ti.UI.createImageView({
+        height: 40,
+        image: "/images/cross.png",
+        right: 0,
+        id: "__alloyId193"
+    });
+    $.__views.__alloyId192.add($.__views.__alloyId193);
+    closeBox ? $.addListener($.__views.__alloyId193, "click", closeBox) : __defers["$.__views.__alloyId193!click!closeBox"] = true;
+    $.__views.box_value = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "45dp",
+        font: {
+            fontSize: "14dp"
+        },
+        borderWidth: "1px",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: Ti.UI.FILL,
+        backgroundColor: "#ffffff",
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10,
+        id: "box_value",
+        hintText: "Email"
+    });
+    $.__views.forgetPasswordBox.add($.__views.box_value);
+    $.__views.__alloyId194 = Ti.UI.createButton({
+        height: 40,
+        borderColor: "#C6C8CA",
+        textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+        backgroundColor: "#ED1C24",
+        borderRadius: 6,
+        color: "#ffffff",
+        width: Titanium.UI.FILL,
+        left: 10,
+        right: 10,
+        top: 10,
+        font: {
+            fontFamily: "Lato-Regular"
+        },
+        title: "Send",
+        bottom: 10,
+        id: "__alloyId194"
+    });
+    $.__views.forgetPasswordBox.add($.__views.__alloyId194);
+    doForgotPassword ? $.addListener($.__views.__alloyId194, "click", doForgotPassword) : __defers["$.__views.__alloyId194!click!doForgotPassword"] = true;
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
@@ -145,7 +246,7 @@ function Controller() {
         contentHeight: Ti.UI.SIZE
     });
     $.__views.__alloyId191.add($.__views.main);
-    $.__views.__alloyId192 = Ti.UI.createImageView({
+    $.__views.__alloyId195 = Ti.UI.createImageView({
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -153,9 +254,9 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId192"
+        id: "__alloyId195"
     });
-    $.__views.main.add($.__views.__alloyId192);
+    $.__views.main.add($.__views.__alloyId195);
     $.__views.email = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -242,6 +343,18 @@ function Controller() {
     });
     $.__views.main.add($.__views.registerAccountButton);
     doASPSignup ? $.addListener($.__views.registerAccountButton, "touchend", doASPSignup) : __defers["$.__views.registerAccountButton!touchend!doASPSignup"] = true;
+    $.__views.__alloyId196 = Ti.UI.createButton({
+        borderRadius: 5,
+        backgroundColor: "#7B7B7B",
+        title: "Forget Password",
+        width: "70%",
+        top: 5,
+        height: 40,
+        color: "#ffffff",
+        id: "__alloyId196"
+    });
+    $.__views.main.add($.__views.__alloyId196);
+    showForgetPassword ? $.addListener($.__views.__alloyId196, "touchend", showForgetPassword) : __defers["$.__views.__alloyId196!touchend!showForgetPassword"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -332,9 +445,12 @@ function Controller() {
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
     });
+    __defers["$.__views.__alloyId193!click!closeBox"] && $.addListener($.__views.__alloyId193, "click", closeBox);
+    __defers["$.__views.__alloyId194!click!doForgotPassword"] && $.addListener($.__views.__alloyId194, "click", doForgotPassword);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);
     __defers["$.__views.registerAccountButton!touchend!doASPSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doASPSignup);
+    __defers["$.__views.__alloyId196!touchend!showForgetPassword"] && $.addListener($.__views.__alloyId196, "touchend", showForgetPassword);
     _.extend($, exports);
 }
 

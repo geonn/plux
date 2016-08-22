@@ -17,12 +17,14 @@
 		     		<ImageView right='10' id="btnDirection" visible="false" width="25" height="25" image="/images/map.png" />
 		   		</View>
 		 </View>
+		 <View id="clinicMap" height="200" width="Ti.UI.FILL" >
+		 	<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" /> 
+		 </View>
+		 		
 		 <ScrollView layout="vertical" scrollType="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
  
 		 	<View class="box rounded padding wfill hsize horz" backgroundColor="#F5F5F5" bottom="0">
-		 		<View id="clinicMap" height="0" width="Ti.UI.FILL" >
-		 			<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" />
-		 		</View>
+		 		
 		 		<View class="box rounded wfill horz" backgroundColor="#ffffff" top="0" height="80">
 			 		<View width="32%" height="80" onClick="direction2here" layout="vertical">
 			 			<ImageView image="/images/map.png" width="40" height="40" top="5" />

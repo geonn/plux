@@ -109,41 +109,41 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId404 = Ti.UI.createView({
+    $.__views.__alloyId408 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId404"
+        id: "__alloyId408"
     });
-    $.__views.win.add($.__views.__alloyId404);
-    $.__views.__alloyId405 = Ti.UI.createView({
+    $.__views.win.add($.__views.__alloyId408);
+    $.__views.__alloyId409 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId405"
+        id: "__alloyId409"
     });
-    $.__views.__alloyId404.add($.__views.__alloyId405);
-    $.__views.__alloyId406 = Ti.UI.createView({
+    $.__views.__alloyId408.add($.__views.__alloyId409);
+    $.__views.__alloyId410 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId406"
+        id: "__alloyId410"
     });
-    $.__views.__alloyId405.add($.__views.__alloyId406);
-    $.__views.__alloyId407 = Ti.UI.createImageView({
+    $.__views.__alloyId409.add($.__views.__alloyId410);
+    $.__views.__alloyId411 = Ti.UI.createImageView({
         left: 10,
         width: 25,
         height: 25,
         image: "/images/btn-back.png",
-        id: "__alloyId407"
+        id: "__alloyId411"
     });
-    $.__views.__alloyId406.add($.__views.__alloyId407);
-    closeWindow ? $.addListener($.__views.__alloyId407, "click", closeWindow) : __defers["$.__views.__alloyId407!click!closeWindow"] = true;
-    $.__views.__alloyId408 = Ti.UI.createView({
+    $.__views.__alloyId410.add($.__views.__alloyId411);
+    closeWindow ? $.addListener($.__views.__alloyId411, "click", closeWindow) : __defers["$.__views.__alloyId411!click!closeWindow"] = true;
+    $.__views.__alloyId412 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId408"
+        id: "__alloyId412"
     });
-    $.__views.__alloyId405.add($.__views.__alloyId408);
+    $.__views.__alloyId409.add($.__views.__alloyId412);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -155,32 +155,32 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId408.add($.__views.pageTitle);
-    $.__views.__alloyId409 = Ti.UI.createView({
+    $.__views.__alloyId412.add($.__views.pageTitle);
+    $.__views.__alloyId413 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         backgroundColor: "#f0f5f8",
-        id: "__alloyId409"
+        id: "__alloyId413"
     });
-    $.__views.__alloyId404.add($.__views.__alloyId409);
-    $.__views.__alloyId410 = Ti.UI.createView({
+    $.__views.__alloyId408.add($.__views.__alloyId413);
+    $.__views.__alloyId414 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId410"
+        id: "__alloyId414"
     });
-    $.__views.__alloyId409.add($.__views.__alloyId410);
-    $.__views.__alloyId411 = Ti.UI.createView({
+    $.__views.__alloyId413.add($.__views.__alloyId414);
+    $.__views.__alloyId415 = Ti.UI.createView({
         top: 10,
         left: 10,
         right: 10,
         bottom: 10,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId411"
+        id: "__alloyId415"
     });
-    $.__views.__alloyId409.add($.__views.__alloyId411);
+    $.__views.__alloyId413.add($.__views.__alloyId415);
     $.__views.sub_back = Ti.UI.createImageView({
         left: 10,
         id: "sub_back",
@@ -188,7 +188,7 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId411.add($.__views.sub_back);
+    $.__views.__alloyId415.add($.__views.sub_back);
     $.__views.sub_title = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -202,33 +202,33 @@ function Controller() {
         bottom: 10,
         textAlign: "center"
     });
-    $.__views.__alloyId411.add($.__views.sub_title);
-    $.__views.__alloyId412 = Ti.UI.createView({
+    $.__views.__alloyId415.add($.__views.sub_title);
+    $.__views.__alloyId416 = Ti.UI.createView({
         backgroundColor: "#ececec",
         width: Ti.UI.FILL,
         height: 1,
-        id: "__alloyId412"
+        id: "__alloyId416"
     });
-    $.__views.__alloyId409.add($.__views.__alloyId412);
-    var __alloyId413 = [];
+    $.__views.__alloyId413.add($.__views.__alloyId416);
+    var __alloyId417 = [];
     $.__views._specialty_list = Alloy.createController("askDoctor/_specialty_list", {
         id: "_specialty_list"
     });
-    __alloyId413.push($.__views._specialty_list.getViewEx({
+    __alloyId417.push($.__views._specialty_list.getViewEx({
         recurse: true
     }));
     $.__views._doctor_list = Alloy.createController("askDoctor/_doctor_list", {
         id: "_doctor_list"
     });
-    __alloyId413.push($.__views._doctor_list.getViewEx({
+    __alloyId417.push($.__views._doctor_list.getViewEx({
         recurse: true
     }));
     $.__views.inner_box = Ti.UI.createScrollableView({
-        views: __alloyId413,
+        views: __alloyId417,
         id: "inner_box",
         scrollingEnabled: false
     });
-    $.__views.__alloyId404.add($.__views.inner_box);
+    $.__views.__alloyId408.add($.__views.inner_box);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -263,7 +263,7 @@ function Controller() {
         Ti.App.removeEventListener("askDoctor_index:movePrevious", movePrevious);
         Ti.App.removeEventListener("askDoctor_index:scrollToViewPage", scrollToViewPage);
     });
-    __defers["$.__views.__alloyId407!click!closeWindow"] && $.addListener($.__views.__alloyId407, "click", closeWindow);
+    __defers["$.__views.__alloyId411!click!closeWindow"] && $.addListener($.__views.__alloyId411, "click", closeWindow);
     _.extend($, exports);
 }
 
