@@ -94,10 +94,6 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-<<<<<<< HEAD
-                    console.log(entry);
-=======
->>>>>>> origin/master
                     var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, doctor_id, clinic_id, created, updated, specialty_id, status) VALUES (?,?,?,?,?,?,?)";
                     db.execute(sql_query, entry.id, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id, entry.status);
                     var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET doctor_id=?, clinic_id=?, created=?, updated=?, specialty_id=?, status=? WHERE id=?";

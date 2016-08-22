@@ -79,13 +79,11 @@ function populateMap(mapHeight){
 		
 		var mapview = Alloy.Globals.Map.createView({
 		    mapType: Alloy.Globals.Map.NORMAL_TYPE,
-		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:0.005, longitudeDelta:0.005},
-		    animate:true,
-		    regionFit:true,
+		    region: {latitude: details.latitude, longitude: details.longitude, latitudeDelta:"0.005", longitudeDelta:"0.005"},
+		    animate:true, 
 		    height:mapHeight,
-		    top:0,
-		    userLocation:true
-		});
+		    top:0, 
+		}); 
 		var merchantLoc = Alloy.Globals.Map.createAnnotation({
 		    latitude: details.latitude,
 		    longitude: details.longitude, 
@@ -93,7 +91,7 @@ function populateMap(mapHeight){
 		    image: '/images/marker.png',
 		    animate : true, 
 		  //  subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-		    pincolor:Map.ANNOTATION_RED,
+		    pincolor: Alloy.Globals.Map.ANNOTATION_RED,
 		   
 		}); 
 		console.log(mapHeight);
