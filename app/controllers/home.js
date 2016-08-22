@@ -320,11 +320,9 @@ if(Ti.Platform.osname == "android"){
 		dialog.show(); 
 	});
 }
-Titanium.App.addEventListener('resumed', function(e){ 
-    syncFromServer();
-});
 
 $.win.addEventListener("close", function(){
+	Ti.App.removeEventListener('resumed', syncFromServer);
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
 	Ti.App.removeEventListener('app:loadingViewFinish', loadingViewFinish);
@@ -332,6 +330,7 @@ $.win.addEventListener("close", function(){
 	console.log("window close");
 });
 
+Ti.App.addEventListener('resumed', syncFromServer);
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 

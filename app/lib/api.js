@@ -60,7 +60,7 @@ var getHealthDataByUser = "http://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?us
 var getPersonalInfoRecords = "http://"+FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
 var addUpdateRecords = "http://"+FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
 var changeRecordStatus = "http://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
-var forgotPassword = "http://"+FREEJINI_DOMAIN+"/api/forgotPassword?user="+USER+"&key="+KEY; 
+var doforgotPassword = "http://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
@@ -453,7 +453,7 @@ exports.removeHealthDataById = function(id){
 	client.send(); 
 };
 
-exports.do_pluxLogin = function(data,mainView){
+exports.do_pluxLogin = function(data, callback){
 	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
 	
  	console.log(url);
@@ -491,9 +491,8 @@ exports.do_pluxLogin = function(data,mainView){
 				}
 	       		API.updateNotificationToken();    
 				/*Ti.App.fireEvent('updateHeader');
-				nav.closeWindow(mainView.win);  */ 
-				var win = Alloy.createController("home").getView();
-				win.open();  
+				  */ 
+				callback();
 			}
 		},
 		// function called when an error occurs, including a timeout

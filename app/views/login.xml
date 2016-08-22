@@ -13,7 +13,7 @@
 			<TextField id="box_value" class="wfill padding" hintText="Email"></TextField>
 			<Button class="button" onClick="doForgotPassword" bottom="10">Send</Button>
 		</View>
-    	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+    	<View layout="vertical" zIndex="100" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 	        <ActivityIndicator  id="activityIndicator" />
 	    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
 	    </View>

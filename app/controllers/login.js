@@ -4,7 +4,7 @@ common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading'); 
-
+console.log("login open");
 closeBox();
 $.email.value = preset_email;
 $.win.add(loading.getView());
@@ -13,22 +13,28 @@ $.win.add(loading.getView());
 var isKeyboardFocus = 0;
 
 function doLogin() { 
-	common.showLoading();
+	loading.start();
 	var email = $.email.value;
 	var password = $.password.value;
 	
 	if(email == "" || password == ""){
 		common.createAlert('Authentication warning','Please fill in email and password');
-		common.hideLoading();
+		loading.finish();
 		return;
 	}
 	if(singleton){
-		//singleton = false;
+		singleton = false;
 		var params = { 
 			email: email,
 			password: password 
 		};
-		API.do_pluxLogin(params, $  );
+		API.do_pluxLogin(params, function(){
+			$.win.close();
+			singleton = true;
+			loading.finish();
+			var win = Alloy.createController("home").getView();
+			win.open();  
+		});
 	}
 }
 
@@ -74,7 +80,8 @@ function doForgotPassword(){
 	params = {
 		email:$.box_value.value 
 	};
-	API.callByPost({url: "forgotPassword", params:params}, function(responseText){
+	API.callByPost({url: "doforgotPassword", params:params}, function(responseText){
+		console.log(responseText);
 		var res = JSON.parse(responseText);
 		alert(res.data);
 		closeBox();
@@ -184,11 +191,9 @@ var touchLogin =  function(){
 		Ti.App.fireEvent('updateHeader'); 
 		//nav.closeWindow($.win); 
 		$.win.close();
-		if(typeof Alloy.Globals.navMenu == "undefined"){
-			var win = Alloy.createController("home").getView();
-			win.open();
-		}
 		
+		var win = Alloy.createController("home").getView();
+		win.open();
 	}
 };
 
@@ -200,11 +205,15 @@ var loginAfterRegister =  function(e){
 			email: email,
 			password: password 
 		};
-	API.do_pluxLogin(params, $  );
-	common.createAlert("Success", "Plux account registration successful!");
-	var win = Alloy.createController("home").getView();
-	win.open(); 
-	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
+	API.do_pluxLogin(params, function(){
+		$.win.close();
+		console.log("loginAfterRegister");
+		common.createAlert("Success", "Plux account registration successful!");
+		var win = Alloy.createController("home").getView();
+		win.open(); 
+		Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
+	});
+	
 };
 Ti.App.addEventListener('touchLogin', touchLogin);
 Ti.App.addEventListener('loginAfterRegister', loginAfterRegister);
@@ -232,6 +241,7 @@ if(Ti.Platform.osname == "android"){
 }
 
 $.win.addEventListener("close", function(){
+	console.log("window login close");
 	Ti.App.removeEventListener('touchLogin', touchLogin);
 	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
 	$.destroy(); 
