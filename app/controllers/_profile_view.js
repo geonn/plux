@@ -62,8 +62,8 @@ function addField(title_text, value_text, view){
 
 function init(){
 	$.win.add(loading.getView());
-	//$.addbox.hide();
-	//refresh(render_personal_health);
+	$.addbox.hide();
+	refresh(render_personal_health);
 }
 
 init();

@@ -47,6 +47,23 @@ if(Ti.Platform.osname == "android"){
 	}); 
 }
 
+$.moreBtn.addEventListener('click', function(e){
+	var dialog = Ti.UI.createOptionDialog({
+	  cancel: 1,
+	  options: ['Change Password', 'Cancel'],
+	  title: 'More'
+	});
+	
+	dialog.show();
+	
+	dialog.addEventListener("click", function(e){
+		if(e.index == 0){
+			changePassword();
+			//API.loadCategory({types: "popular"});
+		}
+	});
+});
+
 $.asp_profile.addEventListener("close", function(){
 	Ti.App.removeEventListener('loadPage', loadPage);
 	$.destroy();
