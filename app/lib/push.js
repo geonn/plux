@@ -67,10 +67,28 @@ function receivePush(e) {
 			Ti.App.fireEvent('conversation:refresh');
 		}
 	}else if(target =="appointment"){ 
-		if(redirect){ 
-			nav.navigateWithArgs("appointment");
-		}else{ 
+		var theWindow = Ti.App.Properties.getString('currentAppointmentWindow') || "";
+	 
+		if(theWindow == ""){  
+			var dialog = Ti.UI.createAlertDialog({
+				cancel: 1,
+				buttonNames: ['Cancel','OK'],
+				message: '[Appointment] New message available. Do you want to read now?',
+				title: 'Confirmation'
+			});
+			dialog.addEventListener('click', function(ex){
+				if (ex.index === 0){
+					//Do nothing
+				}
+				if (ex.index === 1){
+					nav.navigateWithArgs("appointment");
+				}
+			});	
+			dialog.show();  	
+		}else { 
+		 
 			Ti.App.fireEvent("appointment:refresh");
+			
 		}
 	}else{
 		var notificationModel = Alloy.createCollection('notification');  
@@ -105,8 +123,9 @@ function receivePush(e) {
 	return false;
 }
 
-function deviceTokenSuccess(ex) {
-    deviceToken = ex.deviceToken; 
+function deviceTokenSuccess(ev) {
+    deviceToken = ev.deviceToken;
+    console.log("deviceToken:"+ deviceToken); 
     Cloud.Users.login({
 	    login: 'geomilano',
 	    password: 'geonn2015'
@@ -133,8 +152,24 @@ function deviceTokenSuccess(ex) {
 					    }
 					});
 			    } else {
-			        alert('Error:\n' +
+			        console.log('Error:\n' +
 			            ((e.error && e.message) || JSON.stringify(e)));
+			            
+			         Cloud.PushNotifications.subscribe({
+					    channel: 'survey',
+					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
+					    device_token: deviceToken
+					}, function (ex) { 
+					    if (ex.success  ) { 
+					     
+					    	/** User device token**/
+			         		Ti.App.Properties.setString('deviceToken', deviceToken); 
+							API.updateNotificationToken();
+							 
+					    } else {
+					    	registerPush();
+					    }
+					});
 			    }
 			});
 
@@ -200,14 +235,26 @@ function getNotificationNumber(payload){
 	 
 }
 
-Ti.App.addEventListener("pause", function(e){
-	console.log('sleep');
-	redirect = false;
+Ti.App.addEventListener("pause", function(e){ 
+	var theWindow = Ti.App.Properties.getString('currentAppointmentWindow') || "";
+	if(theWindow == "1"){
+		redirect = false;
+	}else{
+		redirect = true;
+	}
+	console.log('sleep : '+ theWindow );
 });
 
 Ti.App.addEventListener("resumed", function(e){
-	console.log('resume');
-	redirect = false;
+	
+	var theWindow = Ti.App.Properties.getString('currentAppointmentWindow') || "";
+	if(theWindow == "1"){
+		redirect = false;
+	}else{
+		redirect = true;
+	}
+	console.log('resume : '+ theWindow );
+	
 });
 
 exports.setInApp = function(){

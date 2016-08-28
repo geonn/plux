@@ -6,7 +6,7 @@ var indicator_color = ["#ffffff", '#fccd03', '#CE1D1C', '#afdb00', '#3f99f9', 'b
 var status_text = ["", "Pending", "Rejected", "Accepted", "Suggestion", "Deleted"];
 var current_date = "";
 var loading = Alloy.createController("loading");
-
+Ti.App.Properties.setString('currentAppointmentWindow','1');
 init();
 
 function init(){
@@ -255,12 +255,18 @@ if(Ti.Platform.osname == "android"){
 	}); 
 }
 
+function init_render(){
+	loading.start();
+	render_appointment_list();
+}
+
 Ti.App.addEventListener('displayRecords', render_appointment_list);
-Ti.App.addEventListener('appointment:refresh', render_appointment_list);
+Ti.App.addEventListener('appointment:refresh', init_render);
 
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
 	$.destroy(); 
     Ti.App.removeEventListener('displayRecords', render_appointment_list);
-    Ti.App.removeEventListener('appointment:refresh', render_appointment_list);
+    Ti.App.removeEventListener('appointment:refresh', init_render);
+    Ti.App.Properties.setString('currentAppointmentWindow','');
 });
