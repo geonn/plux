@@ -200,7 +200,7 @@ function refreshHeaderInfo(){
 		$.myInfo.add(logoutBtn);
 		$.myInfo.add(title_view);
 		
-		$.logo.addEventListener('click',function(){ 
+		$.logo.addEventListener('click',function(){  
 			nav.navigationWindow("aboutUs");
 		});
 	}else{

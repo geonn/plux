@@ -112,21 +112,33 @@ function deviceTokenSuccess(ex) {
 	    password: 'geonn2015'
 	}, function (e) {
 		if (e.success) {
-			Cloud.PushNotifications.subscribe({
+			Cloud.PushNotifications.unsubscribe({
 			    channel: 'survey',
-			    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
 			    device_token: deviceToken
-			}, function (e) { 
-			    if (e.success  ) { 
-			     
-			    	/** User device token**/
-	         		Ti.App.Properties.setString('deviceToken', deviceToken); 
-					API.updateNotificationToken();
-					 
+			}, function (ey) {
+			    if (ey.success) { 
+			        Cloud.PushNotifications.subscribe({
+					    channel: 'survey',
+					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
+					    device_token: deviceToken
+					}, function (ex) { 
+					    if (ex.success  ) { 
+					     
+					    	/** User device token**/
+			         		Ti.App.Properties.setString('deviceToken', deviceToken); 
+							API.updateNotificationToken();
+							 
+					    } else {
+					    	registerPush();
+					    }
+					});
 			    } else {
-			    	registerPush();
+			        alert('Error:\n' +
+			            ((e.error && e.message) || JSON.stringify(e)));
 			    }
 			});
+
+			
 	    } else {
 	    	 
 	    }

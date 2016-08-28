@@ -35,7 +35,7 @@ function init(){
 	if(totalAmount != ""){
 		section.add(createTableViewRow("Total Amount", "RM"+data.amount));
 	}
-	//console.log(data);
+	console.log(data);
 	section.add(createTableViewRow("Consultation", "RM"+((data.consultation_amt == "null" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
 	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt), data.medication));
 	section.add(createTableViewRow("Injection", "RM"+((data.injection_amt == "null" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
@@ -65,14 +65,27 @@ function createTableViewRow(text, value, dialog){
 		width: Ti.UI.FILL,
 	});
 	
-	var view = $.UI.create("View",{
-		height: Ti.UI.SIZE,
-		width: Ti.UI.FILL,
-		top: 10,
-		bottom: 10,
-		left: 10,
-		right: 10	
-	});
+	if(text == "Clinic Name"){
+		var view = $.UI.create("View",{
+			layout:"vertical",
+			height: Ti.UI.SIZE,
+			width: Ti.UI.FILL,
+			top: 10,
+			bottom: 10,
+			left: 10,
+			right: 10	
+		});
+	}else{
+		var view = $.UI.create("View",{
+			height: Ti.UI.SIZE,
+			width: Ti.UI.FILL,
+			top: 10,
+			bottom: 10,
+			left: 10,
+			right: 10	
+		});
+	}
+	
 	
 	var label_text = $.UI.create("Label",{
 		classes: ['themeColor'],
