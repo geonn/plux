@@ -105,16 +105,15 @@ function createTableViewRow(text, value, dialog){
 	view.add(label_text);
 	view.add(label_value);
 	row.add(view);
-	if(dialog){
-		row.addEventListener("click", function(e){
-			var dialogs = Ti.UI.createAlertDialog({
-				message: dialog,
-				ok: 'Ok',
-				title: text
-			});
-			dialogs.show();
+	row.addEventListener("click", function(e){
+		var dialogs = Ti.UI.createAlertDialog({
+			message: dialog,
+			ok: 'Ok',
+			title: text
 		});
-	} 
+		dialogs.show();
+	});
+	
 	return row;
 }
 
