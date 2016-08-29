@@ -9,8 +9,10 @@ if(Ti.Platform.osname == "android"){
 }
 var claimDetailModel = Alloy.createCollection('claim_detail'); 
 var data = claimDetailModel.getClaimDetail({memno: args.memno, name: arg_name}); 
-data.reverse();
+
 data = _.sortBy(data, "visitdate");
+data.reverse();
+
 data.forEach(function(entry){
 	//console.log(entry);  
 	var row = $.UI.create("TableViewRow",{ 
