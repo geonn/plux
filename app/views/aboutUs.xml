@@ -14,7 +14,7 @@
 						<ImageView borderRadius="10" width="80" height="80" left="10" top="10" image="/images/logo_plux.png" />
 						<View class="vert wfill hsize" left="10" top="10">
 							<Label class=" themeColor wfill h4 bold left-align">PLUX</Label>
-							<Label class=" wfill h5 left-align">Version 1.1.7.5</Label>
+							<Label class=" wfill h5 left-align">Version 1.1.8</Label>
 							<Label class=" wfill h5 left-align">Copyright ©2016. All Rights Reserved.</Label>
 						</View> 
 						
