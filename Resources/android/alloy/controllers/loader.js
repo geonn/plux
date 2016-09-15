@@ -45,10 +45,9 @@ function Controller() {
     });
     $.__views.rocket.add($.__views.overlay);
     $.__views.__alloyId198 = Ti.UI.createImageView({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
+        width: 160,
         borderRadius: 5,
-        image: "/images/logo_plux.png",
+        image: "/images/DefaultIcon.png",
         id: "__alloyId198"
     });
     $.__views.rocket.add($.__views.__alloyId198);

@@ -20,7 +20,7 @@ function syncFromServer(){
 	 
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
-	}  
+	}
 	var param = { 
 		"member_no"	  : Ti.App.Properties.getString('memno'),
 		"last_updated" : last_updated
@@ -42,6 +42,7 @@ function syncFromServer(){
 						"isRead" : "0",
 						"status" : entry.status || "",
 						"expired" : entry.expired || "",
+						"detail": entry.detail || "",
 						"created" : entry.created,
 						"updated" : entry.updated,
 					};
@@ -61,17 +62,16 @@ function displayList(){
 	var data=[]; 
 	$.recordTable.setData(data);
 	var counter = 0; 
- 
 	if(notificationList.length < 1){
 		common.hideLoading(); 
 		$.recordTable.setData(common.noRecord());
 	}else{
 		notificationList.forEach(function(entry) {
-			 
 			var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
 			    height: Ti.UI.SIZE,
 			    source: entry.id,
+			    detail: entry.detail,
 			    title: entry.subject,
 			    url: entry.url,
 			    backgroundSelectedColor: "#FFE1E1", 
@@ -140,10 +140,14 @@ function displayList(){
 			});
 		 
 			row.add(contentView);
-			//row.add(rightForwardBtn); 
+			//row.add(rightForwardBtn);
 			if(entry.url != ""){
 				row.addEventListener('click', function(e) {
 					viewDetails(e.rowData);
+				});
+			}else if(entry.detail != ""){
+				row.addEventListener('click', function(e) {
+					loadHTML(e.rowData.detail);
 				});
 			}
 		 	
@@ -154,6 +158,11 @@ function displayList(){
 		$.recordTable.setData(data);
 	}
 	common.hideLoading(); 
+}
+
+function loadHTML(html){
+	var win = Alloy.createController("webview", {html: html}).getView();
+	win.open();
 }
 
 function viewDetails(msg){  

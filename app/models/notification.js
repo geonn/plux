@@ -7,6 +7,7 @@ exports.definition = {
 		    "member_no": "TEXT",
 		    "subject": "TEXT",
 		    "message" : "TEXT",
+		    "detail": "TEXT",
 		    "url" : "TEXT", 
 		    "expired" : "TEXT",
 		    "isRead" : "TEXT",
@@ -65,6 +66,7 @@ exports.definition = {
 					    member_no: res.fieldByName('member_no'),
 					    subject: res.fieldByName('subject'),
 					    message: res.fieldByName('message'),
+					    detail: res.fieldByName('detail'),
 					    url: res.fieldByName('url'), 
 					    isRead: res.fieldByName('isRead'),
 					    status: res.fieldByName('status'),
@@ -115,6 +117,8 @@ exports.definition = {
 	            collection.trigger('sync');
 			},
 			addData : function(entry) {
+				console.log("add data");
+				console.log(entry);
 				var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id=? ";
                 var sql_query =  "";
@@ -123,16 +127,16 @@ exports.definition = {
              
                 if (res.isValidRow()){  
                 	if(entry.from == "push"){
-                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=? ,  isRead=?, expired=?, updated=? WHERE id=? ";
-                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.isRead, entry.expired, entry.updated, entry.id);
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=? ,  isRead=?, expired=?, updated=?, detail=? WHERE id=? ";
+                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.isRead, entry.expired, entry.updated, entry.detail, entry.id);
                 	}else{
-                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=?,  expired=?, updated=? WHERE id=? ";
-                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.expired, entry.updated, entry.id);
+                		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=?,  expired=?, updated=?, detail=? WHERE id=? ";
+                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.expired, entry.updated, entry.detail, entry.id);
                 	}
              		
                 }else{
-                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
- 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, "0", entry.expired, entry.status, entry.created, entry.updated);
+                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,detail,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+ 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, "0", entry.expired, parseInt(entry.status), entry.detail, entry.created, entry.updated);
 				}
 				//console.log(sql_query);
                

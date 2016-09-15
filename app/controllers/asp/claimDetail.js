@@ -6,7 +6,6 @@ if(args.appcode.charAt(0) != "T"){
 	}else{
 		$.recepit.hide();
 	} 
-	
 }
 
 API.claimDetailBySeries({serial : arg_serial});
@@ -14,8 +13,6 @@ var model = Alloy.createCollection('claim_detail');
 var appcode = "";
 common.construct($); 
 common.showLoading();
-
-//var data = model.getClaimDetailBySeries({serial : arg_serial});
 
 Ti.App.addEventListener("load_claim_detail", init);
 
@@ -27,6 +24,14 @@ function init(){
 	$.tv.appendRow(createTableViewRow("Category", data.category));
 	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
 	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
+	
+	if(data.cliniccode == "QLAB"){
+		var attachment_button = $.UI.create("Button", {title: "Lab Test Result", classes:['wfill', 'hsize', 'padding'], borderColor: "red", color: "red", align: "center"});
+		var row = $.UI.create("TableViewRow", {classes: ['hsize']});
+		row.add(attachment_button);
+		attachment_button.addEventListener("click", openReport);
+		$.tv.appendRow(row);
+	}
 	var section = Ti.UI.createTableViewSection({headerTitle: "Amount"});
 	
 	var totalAmount = (typeof data.amount != "undefined")?data.amount:"";
@@ -35,7 +40,6 @@ function init(){
 	if(totalAmount != ""){
 		section.add(createTableViewRow("Total Amount", "RM"+data.amount));
 	}
-	console.log(data);
 	section.add(createTableViewRow("Consultation", "RM"+((data.consultation_amt == "null" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
 	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt), data.medication));
 	section.add(createTableViewRow("Injection", "RM"+((data.injection_amt == "null" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
@@ -54,7 +58,7 @@ function init(){
 }
 
 function createTableViewRow(text, value, dialog){
-	 
+	
 	if(text != ""){
 		text = (typeof text != "number")?text.replace(/^\s+|\s+$/g, ""):text;
 	}
@@ -117,9 +121,19 @@ function createTableViewRow(text, value, dialog){
 	return row;
 }
 
-function lightBox(){
+
+function openReport(){
+	var url = "https://qlab.aspmedic.com/"+appcode+".pdf";
+	var win = Alloy.createController("webview", {url: url}).getView();
+	win.open();
+}
+
+function openReceipt(){
 	var img_path = "https://tslip.aspmedic.com/"+appcode+".png";
-	console.log(img_path);
+	lightBox(img_path);
+}
+
+function lightBox(img_path){
 	common.lightbox({img_path: img_path}, $.win);
 }
 

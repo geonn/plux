@@ -8,6 +8,9 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function closeWindow() {
+        $.win.close();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "webview";
     this.args = arguments[0] || {};
@@ -24,14 +27,71 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
+    $.__views.win = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        width: Ti.UI.FILL,
+        height: Titanium.UI.FILL,
+        title: "Survey",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C",
+        id: "win"
+    });
+    $.__views.win && $.addTopLevelView($.__views.win);
+    $.__views.__alloyId338 = Ti.UI.createView({
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId338"
+    });
+    $.__views.win.add($.__views.__alloyId338);
+    $.__views.__alloyId339 = Ti.UI.createImageView({
+        width: 30,
+        height: 30,
+        right: 10,
+        image: "/images/cross.png",
+        id: "__alloyId339"
+    });
+    $.__views.__alloyId338.add($.__views.__alloyId339);
+    closeWindow ? $.addListener($.__views.__alloyId339, "click", closeWindow) : __defers["$.__views.__alloyId339!click!closeWindow"] = true;
+    $.__views.surveyView = Ti.UI.createWebView({
+        id: "surveyView",
+        height: "auto"
+    });
+    $.__views.__alloyId338.add($.__views.surveyView);
+    $.__views.defaultMsgView = Ti.UI.createView({
+        layout: "vertical",
+        height: "auto",
+        id: "defaultMsgView",
+        top: 5
+    });
+    $.__views.win.add($.__views.defaultMsgView);
+    $.__views.__alloyId340 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Titanium.UI.SIZE,
+        color: "#606060",
+        text: "Page not found.",
+        id: "__alloyId340"
+    });
+    $.__views.defaultMsgView.add($.__views.__alloyId340);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var url = args.url || "";
+    var HTMLcontent = args.html || "";
     if ("" != url) {
         $.surveyView.url = url;
         $.defaultMsgView.height = 0;
+    } else if ("" != HTMLcontent) {
+        HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
+        console.log(HTMLcontent);
+        HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
+        console.log(HTMLcontent);
+        $.surveyView.html = HTMLcontent;
+        $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;
+    __defers["$.__views.__alloyId339!click!closeWindow"] && $.addListener($.__views.__alloyId339, "click", closeWindow);
     _.extend($, exports);
 }
 

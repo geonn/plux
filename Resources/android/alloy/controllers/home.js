@@ -79,6 +79,7 @@ function Controller() {
                             url: entry.url || "",
                             status: entry.status || "",
                             expired: entry.expired || "",
+                            detail: entry.detail || "",
                             created: entry.created,
                             updated: entry.updated,
                             from: "home"

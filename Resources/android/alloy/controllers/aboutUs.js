@@ -132,7 +132,7 @@ function Controller() {
             fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        text: "Version 1.0.0",
+        text: "Version 1.1.8",
         id: "__alloyId55"
     });
     $.__views.__alloyId53.add($.__views.__alloyId55);
@@ -144,7 +144,7 @@ function Controller() {
             fontSize: 14
         },
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-        text: "Copyright ©2015. All Rights Reserved.",
+        text: "Copyright ©2016. All Rights Reserved.",
         id: "__alloyId56"
     });
     $.__views.__alloyId53.add($.__views.__alloyId56);

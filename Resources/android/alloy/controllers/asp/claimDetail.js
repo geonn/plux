@@ -17,6 +17,21 @@ function Controller() {
         $.tv.appendRow(createTableViewRow("Category", data.category));
         $.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
         $.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
+        if ("QLAB" == data.cliniccode) {
+            var attachment_button = $.UI.create("Button", {
+                title: "Lab Test Result",
+                classes: [ "wfill", "hsize", "padding" ],
+                borderColor: "red",
+                color: "red",
+                align: "center"
+            });
+            var row = $.UI.create("TableViewRow", {
+                classes: [ "hsize" ]
+            });
+            row.add(attachment_button);
+            attachment_button.addEventListener("click", openReport);
+            $.tv.appendRow(row);
+        }
         var section = Ti.UI.createTableViewSection({
             headerTitle: "Amount"
         });
@@ -45,7 +60,15 @@ function Controller() {
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL
         });
-        var view = $.UI.create("View", {
+        if ("Clinic Name" == text) var view = $.UI.create("View", {
+            layout: "vertical",
+            height: Ti.UI.SIZE,
+            width: Ti.UI.FILL,
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
+        }); else var view = $.UI.create("View", {
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL,
             top: 10,
@@ -69,7 +92,7 @@ function Controller() {
         view.add(label_text);
         view.add(label_value);
         row.add(view);
-        dialog && row.addEventListener("click", function() {
+        row.addEventListener("click", function() {
             var dialogs = Ti.UI.createAlertDialog({
                 message: dialog,
                 ok: "Ok",
@@ -79,9 +102,18 @@ function Controller() {
         });
         return row;
     }
-    function lightBox() {
+    function openReport() {
+        var url = "https://qlab.aspmedic.com/" + appcode + ".pdf";
+        var win = Alloy.createController("webview", {
+            url: url
+        }).getView();
+        win.open();
+    }
+    function openReceipt() {
         var img_path = "https://tslip.aspmedic.com/" + appcode + ".png";
-        console.log(img_path);
+        lightBox(img_path);
+    }
+    function lightBox(img_path) {
         common.lightbox({
             img_path: img_path
         }, $.win);
@@ -134,20 +166,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.main);
-    $.__views.__alloyId438 = Ti.UI.createView({
+    $.__views.__alloyId441 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId438"
+        id: "__alloyId441"
     });
-    $.__views.main.add($.__views.__alloyId438);
-    $.__views.__alloyId439 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId441);
+    $.__views.__alloyId442 = Ti.UI.createView({
         left: 0,
         width: "10%",
-        id: "__alloyId439"
+        id: "__alloyId442"
     });
-    $.__views.__alloyId438.add($.__views.__alloyId439);
+    $.__views.__alloyId441.add($.__views.__alloyId442);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -155,12 +187,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId439.add($.__views.btnBack);
-    $.__views.__alloyId440 = Ti.UI.createView({
+    $.__views.__alloyId442.add($.__views.btnBack);
+    $.__views.__alloyId443 = Ti.UI.createView({
         width: "70%",
-        id: "__alloyId440"
+        id: "__alloyId443"
     });
-    $.__views.__alloyId438.add($.__views.__alloyId440);
+    $.__views.__alloyId441.add($.__views.__alloyId443);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -172,14 +204,14 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId440.add($.__views.pageTitle);
-    $.__views.__alloyId441 = Ti.UI.createView({
+    $.__views.__alloyId443.add($.__views.pageTitle);
+    $.__views.__alloyId444 = Ti.UI.createView({
         left: 0,
         width: "auto",
-        id: "__alloyId441"
+        id: "__alloyId444"
     });
-    $.__views.__alloyId438.add($.__views.__alloyId441);
-    lightBox ? $.addListener($.__views.__alloyId441, "click", lightBox) : __defers["$.__views.__alloyId441!click!lightBox"] = true;
+    $.__views.__alloyId441.add($.__views.__alloyId444);
+    openReceipt ? $.addListener($.__views.__alloyId444, "click", openReceipt) : __defers["$.__views.__alloyId444!click!openReceipt"] = true;
     $.__views.recepit = Ti.UI.createLabel({
         width: "auto",
         height: Ti.UI.SIZE,
@@ -187,7 +219,7 @@ function Controller() {
         text: "Receipt",
         id: "recepit"
     });
-    $.__views.__alloyId441.add($.__views.recepit);
+    $.__views.__alloyId444.add($.__views.recepit);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -211,7 +243,7 @@ function Controller() {
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("load_claim_detail", init);
     });
-    __defers["$.__views.__alloyId441!click!lightBox"] && $.addListener($.__views.__alloyId441, "click", lightBox);
+    __defers["$.__views.__alloyId444!click!openReceipt"] && $.addListener($.__views.__alloyId444, "click", openReceipt);
     _.extend($, exports);
 }
 
