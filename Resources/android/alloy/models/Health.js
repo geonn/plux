@@ -41,7 +41,6 @@ exports.definition = {
                 var u_id = Ti.App.Properties.getString("u_id");
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id = ?";
-                console.log("getHealthList : " + u_id);
                 var res = db.execute(sql, u_id);
                 var listArr = [];
                 var count = 0;
@@ -96,7 +95,6 @@ exports.definition = {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var u_id = Ti.App.Properties.getString("u_id");
-                console.log("getHealthListByTypeInYear");
                 var theField = "amount";
                 ("6" == gType || "2" == gType) && (theField = "field1");
                 "5" == gType && (theField = "field2");
@@ -158,8 +156,6 @@ exports.definition = {
                 var u_id = Ti.App.Properties.getString("u_id");
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE type='" + type + "' AND u_id = ?  GROUP BY date   ORDER BY date DESC ,time DESC LIMIT 6";
-                console.log("getHealthListByType : " + u_id + " " + type);
-                console.log(sql);
                 var res = db.execute(sql, u_id);
                 var listArr = [];
                 var count = 0;
@@ -224,7 +220,6 @@ exports.definition = {
                     });
                     db.execute("COMMIT");
                 }
-                console.log(db.getRowsAffected() + " affected row");
                 db.close();
                 collection.trigger("sync");
             },
@@ -233,7 +228,6 @@ exports.definition = {
                 var u_id = Ti.App.Properties.getString("u_id");
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET u_id = ?";
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                console.log("updateUid");
                 db.execute(sql_query, u_id);
                 db.close();
                 collection.trigger("sync");

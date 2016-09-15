@@ -107,7 +107,7 @@ function createTableViewRow(text, value, dialog){
 	row.add(view);
 	row.addEventListener("click", function(e){
 		var dialogs = Ti.UI.createAlertDialog({
-			message: dialog,
+			message: dialog || "No record found",
 			ok: 'Ok',
 			title: text
 		});

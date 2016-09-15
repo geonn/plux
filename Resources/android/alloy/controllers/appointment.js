@@ -229,6 +229,10 @@ function Controller() {
         }
         return time[0] + ":" + time[1] + " " + ampm;
     }
+    function init_render() {
+        loading.start();
+        render_appointment_list();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "appointment";
     this.args = arguments[0] || {};
@@ -351,16 +355,18 @@ function Controller() {
     var status_text = [ "", "Pending", "Rejected", "Accepted", "Suggestion", "Deleted" ];
     var current_date = "";
     var loading = Alloy.createController("loading");
+    Ti.App.Properties.setString("currentAppointmentWindow", "1");
     init();
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.win);
     });
     Ti.App.addEventListener("displayRecords", render_appointment_list);
-    Ti.App.addEventListener("appointment:refresh", render_appointment_list);
+    Ti.App.addEventListener("appointment:refresh", init_render);
     $.win.addEventListener("close", function() {
         $.destroy();
         Ti.App.removeEventListener("displayRecords", render_appointment_list);
-        Ti.App.removeEventListener("appointment:refresh", render_appointment_list);
+        Ti.App.removeEventListener("appointment:refresh", init_render);
+        Ti.App.Properties.setString("currentAppointmentWindow", "");
     });
     __defers["$.__views.newRecord!click!new_appointment"] && $.addListener($.__views.newRecord, "click", new_appointment);
     __defers["$.__views.newRecord!click!new_appointment"] && $.addListener($.__views.newRecord, "click", new_appointment);

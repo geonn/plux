@@ -151,7 +151,7 @@ var cover = Ti.UI.createView({
 $.mainContainer.add(cover);
 
 $.card.addEventListener('click', function(e) {
-	console.log('card events');
+	 
     var t; 
     if (frontbackcounter%2 == 0) {
         //t = Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT;

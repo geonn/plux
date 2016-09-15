@@ -17,7 +17,22 @@ function receivePush(e) {
     target = e.target;
     url = e.extra;
     console.log(target + " and redirect " + redirect);
-    if ("conversation" == target) redirect ? nav.navigateWithArgs("conversation") : Ti.App.fireEvent("conversation:refresh"); else if ("appointment" == target) redirect ? nav.navigateWithArgs("appointment") : Ti.App.fireEvent("appointment:refresh"); else {
+    if ("conversation" == target) redirect ? nav.navigateWithArgs("conversation") : Ti.App.fireEvent("conversation:refresh"); else if ("appointment" == target) {
+        var theWindow = Ti.App.Properties.getString("currentAppointmentWindow") || "";
+        if ("" == theWindow) {
+            var dialog = Ti.UI.createAlertDialog({
+                cancel: 1,
+                buttonNames: [ "Cancel", "OK" ],
+                message: "[Appointment] New message available. Do you want to read now?",
+                title: "Confirmation"
+            });
+            dialog.addEventListener("click", function(ex) {
+                0 === ex.index;
+                1 === ex.index && nav.navigateWithArgs("appointment");
+            });
+            dialog.show();
+        } else Ti.App.fireEvent("appointment:refresh");
+    } else {
         var notificationModel = Alloy.createCollection("notification");
         notificationModel.addData(param);
         var dialog = Ti.UI.createAlertDialog({
@@ -41,22 +56,54 @@ function receivePush(e) {
     return false;
 }
 
-function deviceTokenSuccess(ex) {
-    deviceToken = ex.deviceToken;
+function deviceTokenSuccess(ev) {
+    deviceToken = ev.deviceToken;
+    console.log("deviceToken:" + deviceToken);
     Cloud.Users.login({
         login: "geomilano",
         password: "geonn2015"
     }, function(e) {
-        e.success && Cloud.PushNotifications.subscribe({
+        if (e.success) Cloud.PushNotifications.unsubscribe({
             channel: "survey",
-            type: "android",
             device_token: deviceToken
-        }, function(e) {
-            if (e.success) {
-                Ti.App.Properties.setString("deviceToken", deviceToken);
-                API.updateNotificationToken();
-            } else registerPush();
-        });
+        }, function(ey) {
+            console.log(ey);
+            ey.success ? Cloud.PushNotifications.subscribe({
+                channel: "survey",
+                type: "android",
+                device_token: deviceToken
+            }, function(ex) {
+                if (ex.success) {
+                    Ti.App.Properties.setString("deviceToken", deviceToken);
+                    API.updateNotificationToken();
+                } else registerPush();
+            }) : Cloud.PushNotifications.subscribe({
+                channel: "survey",
+                type: "android",
+                device_token: deviceToken
+            }, function(ex) {
+                if (ex.success) {
+                    Ti.App.Properties.setString("deviceToken", deviceToken);
+                    API.updateNotificationToken();
+                    console.log("geo7");
+                } else {
+                    console.log("geo8");
+                    registerPush();
+                }
+            });
+        }); else {
+            console.log("GEO NOT Error:\n" + (e.error && e.message || JSON.stringify(e)));
+            Cloud.PushNotifications.subscribe({
+                channel: "survey",
+                type: "android",
+                device_token: deviceToken
+            }, function(ex) {
+                if (ex.success) {
+                    Ti.App.Properties.setString("deviceToken", deviceToken);
+                    API.updateNotificationToken();
+                } else registerPush();
+            });
+        }
     });
 }
 
@@ -83,28 +130,37 @@ var CloudPush = require("ti.cloudpush");
 
 CloudPush.addEventListener("callback", function(evt) {
     var payload = JSON.parse(evt.payload);
+    Ti.API.info("call back notification");
     Ti.App.Payload = payload;
     receivePush(payload);
 });
 
-CloudPush.addEventListener("trayClickLaunchedApp", function() {
+CloudPush.addEventListener("trayClickLaunchedApp", function(evt) {
     redirect = true;
     app_status = "not_running";
+    var payload = JSON.parse(evt.payload);
+    Ti.App.Payload = payload;
+    Ti.API.info("Tray Click Launched App (app was not running)");
+    receivePush(payload);
 });
 
-CloudPush.addEventListener("trayClickFocusedApp", function() {
+CloudPush.addEventListener("trayClickFocusedApp", function(evt) {
     redirect = true;
     app_status = "running";
+    var payload = JSON.parse(evt.payload);
+    Ti.API.info("Tray Click Focused App (app was already running)");
+    receivePush(payload);
 });
 
 Ti.App.addEventListener("pause", function() {
-    console.log("sleep");
-    redirect = false;
+    var theWindow = Ti.App.Properties.getString("currentAppointmentWindow") || "";
+    redirect = "1" == theWindow ? false : true;
+    console.log("sleep : " + theWindow);
 });
 
 Ti.App.addEventListener("resumed", function() {
-    console.log("resume");
-    redirect = false;
+    var theWindow = Ti.App.Properties.getString("currentAppointmentWindow") || "";
+    redirect = "1" == theWindow ? false : true;
 });
 
 exports.setInApp = function() {

@@ -112,7 +112,7 @@ exports.definition = {
                     db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.expired, entry.updated, entry.id);
                 } else {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
-                    db.execute(sql_query, entry.id, entry.member_no, entry.subject, entry.message, entry.url, "0", entry.expired, entry.status, entry.created, entry.updated);
+                    db.execute(sql_query, entry.id, entry.member_no, entry.subject, entry.message, entry.url, "0", entry.expired, parseInt(entry.status), entry.created, entry.updated);
                 }
                 db.close();
                 collection.trigger("sync");
