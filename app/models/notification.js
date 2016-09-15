@@ -136,7 +136,7 @@ exports.definition = {
              		
                 }else{
                 	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,detail,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
- 					db.execute(sql_query, entry.id, entry.member_no, entry.subject , entry.message, entry.url, "0", entry.expired, parseInt(entry.status), entry.detail, entry.created, entry.updated);
+ 					db.execute(sql_query, parseInt(entry.id), entry.member_no, entry.subject , entry.message, entry.url, "0", entry.expired, parseInt(entry.status), entry.detail, entry.created, entry.updated);
 				}
 				//console.log(sql_query);
                
