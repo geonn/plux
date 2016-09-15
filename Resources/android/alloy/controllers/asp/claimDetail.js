@@ -38,6 +38,7 @@ function Controller() {
         var totalAmount = "undefined" != typeof data.amount ? data.amount : "";
         appcode = data.appcode;
         "" != totalAmount && section.add(createTableViewRow("Total Amount", "RM" + data.amount));
+        console.log(data);
         section.add(createTableViewRow("Consultation", "RM" + ("null" == data.consultation_amt || data.consultation_amt <= 0 ? "0" : data.consultation_amt)));
         section.add(createTableViewRow("Medication", "RM" + ("null" == data.medication_amt || data.medication_amt <= 0 ? "0" : data.medication_amt), data.medication));
         section.add(createTableViewRow("Injection", "RM" + ("null" == data.injection_amt || data.injection_amt <= 0 ? "0" : data.injection_amt), data.injection));
@@ -94,7 +95,7 @@ function Controller() {
         row.add(view);
         row.addEventListener("click", function() {
             var dialogs = Ti.UI.createAlertDialog({
-                message: dialog,
+                message: dialog || "No record found",
                 ok: "Ok",
                 title: text
             });
@@ -166,11 +167,16 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId441 = Ti.UI.createView({
+=======
+    $.__views.__alloyId439 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId441"
     });
     $.__views.main.add($.__views.__alloyId441);
@@ -180,6 +186,17 @@ function Controller() {
         id: "__alloyId442"
     });
     $.__views.__alloyId441.add($.__views.__alloyId442);
+=======
+        id: "__alloyId439"
+    });
+    $.__views.main.add($.__views.__alloyId439);
+    $.__views.__alloyId440 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId440"
+    });
+    $.__views.__alloyId439.add($.__views.__alloyId440);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -187,12 +204,21 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId442.add($.__views.btnBack);
     $.__views.__alloyId443 = Ti.UI.createView({
         width: "70%",
         id: "__alloyId443"
     });
     $.__views.__alloyId441.add($.__views.__alloyId443);
+=======
+    $.__views.__alloyId440.add($.__views.btnBack);
+    $.__views.__alloyId441 = Ti.UI.createView({
+        width: "70%",
+        id: "__alloyId441"
+    });
+    $.__views.__alloyId439.add($.__views.__alloyId441);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -204,6 +230,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId443.add($.__views.pageTitle);
     $.__views.__alloyId444 = Ti.UI.createView({
         left: 0,
@@ -212,6 +239,16 @@ function Controller() {
     });
     $.__views.__alloyId441.add($.__views.__alloyId444);
     openReceipt ? $.addListener($.__views.__alloyId444, "click", openReceipt) : __defers["$.__views.__alloyId444!click!openReceipt"] = true;
+=======
+    $.__views.__alloyId441.add($.__views.pageTitle);
+    $.__views.__alloyId442 = Ti.UI.createView({
+        left: 0,
+        width: "auto",
+        id: "__alloyId442"
+    });
+    $.__views.__alloyId439.add($.__views.__alloyId442);
+    lightBox ? $.addListener($.__views.__alloyId442, "click", lightBox) : __defers["$.__views.__alloyId442!click!lightBox"] = true;
+>>>>>>> origin/master
     $.__views.recepit = Ti.UI.createLabel({
         width: "auto",
         height: Ti.UI.SIZE,
@@ -219,7 +256,11 @@ function Controller() {
         text: "Receipt",
         id: "recepit"
     });
+<<<<<<< HEAD
     $.__views.__alloyId444.add($.__views.recepit);
+=======
+    $.__views.__alloyId442.add($.__views.recepit);
+>>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -243,7 +284,11 @@ function Controller() {
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("load_claim_detail", init);
     });
+<<<<<<< HEAD
     __defers["$.__views.__alloyId444!click!openReceipt"] && $.addListener($.__views.__alloyId444, "click", openReceipt);
+=======
+    __defers["$.__views.__alloyId442!click!lightBox"] && $.addListener($.__views.__alloyId442, "click", lightBox);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

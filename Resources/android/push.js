@@ -63,11 +63,20 @@ function deviceTokenSuccess(ev) {
         login: "geomilano",
         password: "geonn2015"
     }, function(e) {
+<<<<<<< HEAD
         e.success && Cloud.PushNotifications.unsubscribe({
             channel: "survey",
             device_token: deviceToken
         }, function(ey) {
             if (ey.success) Cloud.PushNotifications.subscribe({
+=======
+        if (e.success) Cloud.PushNotifications.unsubscribe({
+            channel: "survey",
+            device_token: deviceToken
+        }, function(ey) {
+            console.log(ey);
+            ey.success ? Cloud.PushNotifications.subscribe({
+>>>>>>> origin/master
                 channel: "survey",
                 type: "android",
                 device_token: deviceToken
@@ -76,6 +85,7 @@ function deviceTokenSuccess(ev) {
                     Ti.App.Properties.setString("deviceToken", deviceToken);
                     API.updateNotificationToken();
                 } else registerPush();
+<<<<<<< HEAD
             }); else {
                 console.log("Error:\n" + (e.error && e.message || JSON.stringify(e)));
                 Cloud.PushNotifications.subscribe({
@@ -90,6 +100,35 @@ function deviceTokenSuccess(ev) {
                 });
             }
         });
+=======
+            }) : Cloud.PushNotifications.subscribe({
+                channel: "survey",
+                type: "android",
+                device_token: deviceToken
+            }, function(ex) {
+                if (ex.success) {
+                    Ti.App.Properties.setString("deviceToken", deviceToken);
+                    API.updateNotificationToken();
+                    console.log("geo7");
+                } else {
+                    console.log("geo8");
+                    registerPush();
+                }
+            });
+        }); else {
+            console.log("GEO NOT Error:\n" + (e.error && e.message || JSON.stringify(e)));
+            Cloud.PushNotifications.subscribe({
+                channel: "survey",
+                type: "android",
+                device_token: deviceToken
+            }, function(ex) {
+                if (ex.success) {
+                    Ti.App.Properties.setString("deviceToken", deviceToken);
+                    API.updateNotificationToken();
+                } else registerPush();
+            });
+        }
+>>>>>>> origin/master
     });
 }
 
@@ -116,18 +155,26 @@ var CloudPush = require("ti.cloudpush");
 
 CloudPush.addEventListener("callback", function(evt) {
     var payload = JSON.parse(evt.payload);
+    Ti.API.info("call back notification");
     Ti.App.Payload = payload;
     receivePush(payload);
 });
 
-CloudPush.addEventListener("trayClickLaunchedApp", function() {
+CloudPush.addEventListener("trayClickLaunchedApp", function(evt) {
     redirect = true;
     app_status = "not_running";
+    var payload = JSON.parse(evt.payload);
+    Ti.App.Payload = payload;
+    Ti.API.info("Tray Click Launched App (app was not running)");
+    receivePush(payload);
 });
 
-CloudPush.addEventListener("trayClickFocusedApp", function() {
+CloudPush.addEventListener("trayClickFocusedApp", function(evt) {
     redirect = true;
     app_status = "running";
+    var payload = JSON.parse(evt.payload);
+    Ti.API.info("Tray Click Focused App (app was already running)");
+    receivePush(payload);
 });
 
 Ti.App.addEventListener("pause", function() {
@@ -139,7 +186,10 @@ Ti.App.addEventListener("pause", function() {
 Ti.App.addEventListener("resumed", function() {
     var theWindow = Ti.App.Properties.getString("currentAppointmentWindow") || "";
     redirect = "1" == theWindow ? false : true;
+<<<<<<< HEAD
     console.log("resume : " + theWindow);
+=======
+>>>>>>> origin/master
 });
 
 exports.setInApp = function() {

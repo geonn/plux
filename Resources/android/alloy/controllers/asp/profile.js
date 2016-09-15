@@ -77,18 +77,30 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId538 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId536 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
+<<<<<<< HEAD
         id: "__alloyId538"
     });
     $.__views.loadingBar.add($.__views.__alloyId538);
     $.__views.__alloyId540 = Ti.UI.createView({
         id: "__alloyId540"
+=======
+        id: "__alloyId536"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId536);
+    $.__views.__alloyId538 = Ti.UI.createView({
+        id: "__alloyId538"
+>>>>>>> origin/master
     });
     $.__views.moreBtn = Ti.UI.createImageView({
         right: 0,
@@ -96,6 +108,7 @@ function Controller() {
         width: 30,
         image: "/images/list.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId540.add($.__views.moreBtn);
     $.__views.asp_profile.rightNavButton = $.__views.__alloyId540;
     $.__views.__alloyId541 = Ti.UI.createView({
@@ -106,10 +119,23 @@ function Controller() {
     });
     $.__views.asp_profile.add($.__views.__alloyId541);
     $.__views.__alloyId542 = Ti.UI.createView({
+=======
+    $.__views.__alloyId538.add($.__views.moreBtn);
+    $.__views.asp_profile.rightNavButton = $.__views.__alloyId538;
+    $.__views.__alloyId539 = Ti.UI.createView({
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId539"
+    });
+    $.__views.asp_profile.add($.__views.__alloyId539);
+    $.__views.__alloyId540 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId542"
     });
     $.__views.__alloyId541.add($.__views.__alloyId542);
@@ -119,6 +145,17 @@ function Controller() {
         id: "__alloyId543"
     });
     $.__views.__alloyId542.add($.__views.__alloyId543);
+=======
+        id: "__alloyId540"
+    });
+    $.__views.__alloyId539.add($.__views.__alloyId540);
+    $.__views.__alloyId541 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId541"
+    });
+    $.__views.__alloyId540.add($.__views.__alloyId541);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -126,13 +163,22 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId543.add($.__views.btnBack);
+=======
+    $.__views.__alloyId541.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "90%"
     });
+<<<<<<< HEAD
     $.__views.__alloyId542.add($.__views.pageTitle);
     $.__views.__alloyId544 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId540.add($.__views.pageTitle);
+    $.__views.__alloyId542 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -141,6 +187,7 @@ function Controller() {
         },
         text: "ASP Profile",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId544"
     });
     $.__views.pageTitle.add($.__views.__alloyId544);
@@ -149,11 +196,22 @@ function Controller() {
         id: "__alloyId545"
     });
     $.__views.__alloyId542.add($.__views.__alloyId545);
+=======
+        id: "__alloyId542"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId542);
+    $.__views.__alloyId543 = Ti.UI.createView({
+        width: "10%",
+        id: "__alloyId543"
+    });
+    $.__views.__alloyId540.add($.__views.__alloyId543);
+>>>>>>> origin/master
     $.__views.moreBtn = Ti.UI.createImageView({
         id: "moreBtn",
         width: 30,
         image: "/images/list.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId545.add($.__views.moreBtn);
     $.__views.__alloyId546 = Ti.UI.createView({
         width: Ti.UI.FILL,
@@ -161,15 +219,31 @@ function Controller() {
         id: "__alloyId546"
     });
     $.__views.__alloyId541.add($.__views.__alloyId546);
+=======
+    $.__views.__alloyId543.add($.__views.moreBtn);
+    $.__views.__alloyId544 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId544"
+    });
+    $.__views.__alloyId539.add($.__views.__alloyId544);
+>>>>>>> origin/master
     $.__views.profileContainer = Ti.UI.createView({
         layout: "vertical",
         id: "profileContainer",
         visible: false
     });
+<<<<<<< HEAD
     $.__views.__alloyId546.add($.__views.profileContainer);
     var __alloyId547 = [];
     $.__views.main = Ti.UI.createScrollableView({
         views: __alloyId547,
+=======
+    $.__views.__alloyId544.add($.__views.profileContainer);
+    var __alloyId545 = [];
+    $.__views.main = Ti.UI.createScrollableView({
+        views: __alloyId545,
+>>>>>>> origin/master
         id: "main",
         height: "80%",
         backgroundColor: "#ffffff"
@@ -180,8 +254,13 @@ function Controller() {
         visible: false,
         layout: "vertical"
     });
+<<<<<<< HEAD
     $.__views.__alloyId546.add($.__views.verifyContainer);
     $.__views.__alloyId548 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId544.add($.__views.verifyContainer);
+    $.__views.__alloyId546 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: "40%",
         borderRadius: 10,
         height: Ti.UI.SIZE,
@@ -189,9 +268,15 @@ function Controller() {
         bottom: "30dp",
         top: "30dp",
         image: "/images/asp_logo.png",
+<<<<<<< HEAD
         id: "__alloyId548"
     });
     $.__views.verifyContainer.add($.__views.__alloyId548);
+=======
+        id: "__alloyId546"
+    });
+    $.__views.verifyContainer.add($.__views.__alloyId546);
+>>>>>>> origin/master
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "80dp",
@@ -204,7 +289,11 @@ function Controller() {
         id: "description"
     });
     $.__views.verifyContainer.add($.__views.description);
+<<<<<<< HEAD
     $.__views.__alloyId549 = Ti.UI.createButton({
+=======
+    $.__views.__alloyId547 = Ti.UI.createButton({
+>>>>>>> origin/master
         borderRadius: 5,
         backgroundColor: "#CE1D1C",
         title: "Resend Verification",
@@ -212,11 +301,19 @@ function Controller() {
         top: 10,
         height: 40,
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId549"
     });
     $.__views.verifyContainer.add($.__views.__alloyId549);
     resendVerificationEmail ? $.addListener($.__views.__alloyId549, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId549!touchend!resendVerificationEmail"] = true;
     $.__views.__alloyId550 = Ti.UI.createButton({
+=======
+        id: "__alloyId547"
+    });
+    $.__views.verifyContainer.add($.__views.__alloyId547);
+    resendVerificationEmail ? $.addListener($.__views.__alloyId547, "touchend", resendVerificationEmail) : __defers["$.__views.__alloyId547!touchend!resendVerificationEmail"] = true;
+    $.__views.__alloyId548 = Ti.UI.createButton({
+>>>>>>> origin/master
         borderRadius: 5,
         backgroundColor: "#7B7B7B",
         title: "Refresh",
@@ -224,10 +321,17 @@ function Controller() {
         top: 10,
         height: 40,
         color: "#ffffff",
+<<<<<<< HEAD
         id: "__alloyId550"
     });
     $.__views.verifyContainer.add($.__views.__alloyId550);
     checkStatus ? $.addListener($.__views.__alloyId550, "touchend", checkStatus) : __defers["$.__views.__alloyId550!touchend!checkStatus"] = true;
+=======
+        id: "__alloyId548"
+    });
+    $.__views.verifyContainer.add($.__views.__alloyId548);
+    checkStatus ? $.addListener($.__views.__alloyId548, "touchend", checkStatus) : __defers["$.__views.__alloyId548!touchend!checkStatus"] = true;
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -262,8 +366,13 @@ function Controller() {
         $.destroy();
         console.log("window close");
     });
+<<<<<<< HEAD
     __defers["$.__views.__alloyId549!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId549, "touchend", resendVerificationEmail);
     __defers["$.__views.__alloyId550!touchend!checkStatus"] && $.addListener($.__views.__alloyId550, "touchend", checkStatus);
+=======
+    __defers["$.__views.__alloyId547!touchend!resendVerificationEmail"] && $.addListener($.__views.__alloyId547, "touchend", resendVerificationEmail);
+    __defers["$.__views.__alloyId548!touchend!checkStatus"] && $.addListener($.__views.__alloyId548, "touchend", checkStatus);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

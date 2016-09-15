@@ -357,10 +357,10 @@ function Controller() {
     });
     $.__views.scrollboard.add($.__views.__alloyId161);
     $.__views.__alloyId162 = Ti.UI.createImageView({
-        mod: "profile",
+        mod: "eCard_list",
         top: 15,
         width: 139,
-        image: "/images/btn/btn_profile.png",
+        image: "/images/btn/btn_asp_e_card_pass.png",
         id: "__alloyId162"
     });
     $.__views.__alloyId161.add($.__views.__alloyId162);
@@ -395,20 +395,20 @@ function Controller() {
     $.__views.__alloyId161.add($.__views.__alloyId165);
     navWindow ? $.addListener($.__views.__alloyId165, "click", navWindow) : __defers["$.__views.__alloyId165!click!navWindow"] = true;
     $.__views.__alloyId166 = Ti.UI.createImageView({
-        mod: "conversation",
+        mod: "profile",
         top: 15,
         width: 139,
-        image: "/images/btn/btn_ask_me.png",
+        image: "/images/btn/btn_profile.png",
         id: "__alloyId166"
     });
     $.__views.__alloyId161.add($.__views.__alloyId166);
     navWindow ? $.addListener($.__views.__alloyId166, "click", navWindow) : __defers["$.__views.__alloyId166!click!navWindow"] = true;
     $.__views.__alloyId167 = Ti.UI.createImageView({
-        mod: "hra",
+        mod: "conversation",
         top: 15,
         left: 15,
         width: 139,
-        image: "/images/btn/btn_hra.png",
+        image: "/images/btn/btn_ask_me.png",
         id: "__alloyId167"
     });
     $.__views.__alloyId161.add($.__views.__alloyId167);
@@ -423,11 +423,11 @@ function Controller() {
     $.__views.__alloyId161.add($.__views.__alloyId168);
     navWindow ? $.addListener($.__views.__alloyId168, "click", navWindow) : __defers["$.__views.__alloyId168!click!navWindow"] = true;
     $.__views.__alloyId169 = Ti.UI.createImageView({
-        mod: "feedback",
+        mod: "hra",
         top: 15,
         left: 15,
         width: 139,
-        image: "/images/btn/btn_feedback.png",
+        image: "/images/btn/btn_hra.png",
         id: "__alloyId169"
     });
     $.__views.__alloyId161.add($.__views.__alloyId169);
@@ -441,22 +441,41 @@ function Controller() {
     });
     $.__views.__alloyId161.add($.__views.__alloyId170);
     navWindow ? $.addListener($.__views.__alloyId170, "click", navWindow) : __defers["$.__views.__alloyId170!click!navWindow"] = true;
-    $.__views.__alloyId171 = Ti.UI.createView({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
+    $.__views.__alloyId171 = Ti.UI.createImageView({
+        mod: "feedback",
+        top: 15,
+        left: 15,
+        width: 139,
+        image: "/images/btn/btn_feedback.png",
         id: "__alloyId171"
     });
     $.__views.__alloyId161.add($.__views.__alloyId171);
+    navWindow ? $.addListener($.__views.__alloyId171, "click", navWindow) : __defers["$.__views.__alloyId171!click!navWindow"] = true;
     $.__views.__alloyId172 = Ti.UI.createImageView({
+        mod: "appointment",
+        top: 15,
+        width: 139,
+        image: "/images/btn/btn_appointment.png",
+        id: "__alloyId172"
+    });
+    $.__views.__alloyId161.add($.__views.__alloyId172);
+    navWindow ? $.addListener($.__views.__alloyId172, "click", navWindow) : __defers["$.__views.__alloyId172!click!navWindow"] = true;
+    $.__views.__alloyId173 = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        id: "__alloyId173"
+    });
+    $.__views.__alloyId161.add($.__views.__alloyId173);
+    $.__views.__alloyId174 = Ti.UI.createImageView({
         mod: "notification",
         top: 15,
         left: 15,
         width: 139,
         image: "/images/btn/btn_notification.png",
-        id: "__alloyId172"
+        id: "__alloyId174"
     });
-    $.__views.__alloyId171.add($.__views.__alloyId172);
-    navWindow ? $.addListener($.__views.__alloyId172, "click", navWindow) : __defers["$.__views.__alloyId172!click!navWindow"] = true;
+    $.__views.__alloyId173.add($.__views.__alloyId174);
+    navWindow ? $.addListener($.__views.__alloyId174, "click", navWindow) : __defers["$.__views.__alloyId174!click!navWindow"] = true;
     $.__views.notificationIcon = Ti.UI.createView({
         width: 30,
         height: 30,
@@ -466,7 +485,7 @@ function Controller() {
         top: 20,
         right: 15
     });
-    $.__views.__alloyId171.add($.__views.notificationIcon);
+    $.__views.__alloyId173.add($.__views.notificationIcon);
     $.__views.notificationText = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -475,15 +494,6 @@ function Controller() {
         text: 0
     });
     $.__views.notificationIcon.add($.__views.notificationText);
-    $.__views.__alloyId173 = Ti.UI.createImageView({
-        mod: "appointment",
-        top: 15,
-        width: 139,
-        image: "/images/btn/btn_appointment.png",
-        id: "__alloyId173"
-    });
-    $.__views.__alloyId161.add($.__views.__alloyId173);
-    navWindow ? $.addListener($.__views.__alloyId173, "click", navWindow) : __defers["$.__views.__alloyId173!click!navWindow"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -529,8 +539,9 @@ function Controller() {
     __defers["$.__views.__alloyId168!click!navWindow"] && $.addListener($.__views.__alloyId168, "click", navWindow);
     __defers["$.__views.__alloyId169!click!navWindow"] && $.addListener($.__views.__alloyId169, "click", navWindow);
     __defers["$.__views.__alloyId170!click!navWindow"] && $.addListener($.__views.__alloyId170, "click", navWindow);
+    __defers["$.__views.__alloyId171!click!navWindow"] && $.addListener($.__views.__alloyId171, "click", navWindow);
     __defers["$.__views.__alloyId172!click!navWindow"] && $.addListener($.__views.__alloyId172, "click", navWindow);
-    __defers["$.__views.__alloyId173!click!navWindow"] && $.addListener($.__views.__alloyId173, "click", navWindow);
+    __defers["$.__views.__alloyId174!click!navWindow"] && $.addListener($.__views.__alloyId174, "click", navWindow);
     _.extend($, exports);
 }
 

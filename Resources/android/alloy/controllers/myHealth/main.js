@@ -115,8 +115,13 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.myhealth && $.addTopLevelView($.__views.myhealth);
+<<<<<<< HEAD
     $.__views.__alloyId763 = Ti.UI.createView({
         id: "__alloyId763"
+=======
+    $.__views.__alloyId761 = Ti.UI.createView({
+        id: "__alloyId761"
+>>>>>>> origin/master
     });
     $.__views.moreHealth = Ti.UI.createImageView({
         right: 0,
@@ -124,12 +129,21 @@ function Controller() {
         width: 30,
         image: "/images/health_love.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId763.add($.__views.moreHealth);
     $.__views.myhealth.rightNavButton = $.__views.__alloyId763;
     $.__views.__alloyId764 = Ti.UI.createView({
         id: "__alloyId764"
     });
     $.__views.myhealth.add($.__views.__alloyId764);
+=======
+    $.__views.__alloyId761.add($.__views.moreHealth);
+    $.__views.myhealth.rightNavButton = $.__views.__alloyId761;
+    $.__views.__alloyId762 = Ti.UI.createView({
+        id: "__alloyId762"
+    });
+    $.__views.myhealth.add($.__views.__alloyId762);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -138,7 +152,11 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId764.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId762.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
         left: 30,
@@ -146,27 +164,43 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId765 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId763 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
+<<<<<<< HEAD
         id: "__alloyId765"
     });
     $.__views.loadingBar.add($.__views.__alloyId765);
+=======
+        id: "__alloyId763"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId763);
+>>>>>>> origin/master
     $.__views.main = Ti.UI.createView({
         id: "main",
         layout: "vertical",
         backgroundColor: "#ffffff"
     });
+<<<<<<< HEAD
     $.__views.__alloyId764.add($.__views.main);
     $.__views.__alloyId766 = Ti.UI.createView({
+=======
+    $.__views.__alloyId762.add($.__views.main);
+    $.__views.__alloyId764 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: "100%",
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId766"
     });
     $.__views.main.add($.__views.__alloyId766);
@@ -176,6 +210,17 @@ function Controller() {
         id: "__alloyId767"
     });
     $.__views.__alloyId766.add($.__views.__alloyId767);
+=======
+        id: "__alloyId764"
+    });
+    $.__views.main.add($.__views.__alloyId764);
+    $.__views.__alloyId765 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId765"
+    });
+    $.__views.__alloyId764.add($.__views.__alloyId765);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -183,13 +228,22 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId767.add($.__views.btnBack);
+=======
+    $.__views.__alloyId765.add($.__views.btnBack);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "80%"
     });
+<<<<<<< HEAD
     $.__views.__alloyId766.add($.__views.pageTitle);
     $.__views.__alloyId768 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId764.add($.__views.pageTitle);
+    $.__views.__alloyId766 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -198,6 +252,7 @@ function Controller() {
         },
         text: "Health Info",
         textAlign: "center",
+<<<<<<< HEAD
         id: "__alloyId768"
     });
     $.__views.pageTitle.add($.__views.__alloyId768);
@@ -206,12 +261,26 @@ function Controller() {
         id: "__alloyId769"
     });
     $.__views.__alloyId766.add($.__views.__alloyId769);
+=======
+        id: "__alloyId766"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId766);
+    $.__views.__alloyId767 = Ti.UI.createView({
+        width: "10%",
+        id: "__alloyId767"
+    });
+    $.__views.__alloyId764.add($.__views.__alloyId767);
+>>>>>>> origin/master
     $.__views.moreHealth = Ti.UI.createImageView({
         id: "moreHealth",
         width: 30,
         image: "/images/health_love.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId769.add($.__views.moreHealth);
+=======
+    $.__views.__alloyId767.add($.__views.moreHealth);
+>>>>>>> origin/master
     $.__views.graphScrollView = Ti.UI.createScrollView({
         id: "graphScrollView",
         layout: "vertical",
@@ -244,35 +313,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.bmiView.add($.__views.bmiWebView);
+<<<<<<< HEAD
     $.__views.__alloyId770 = Ti.UI.createView({
+=======
+    $.__views.__alloyId768 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId770"
     });
     $.__views.bmiView.add($.__views.__alloyId770);
     $.__views.__alloyId771 = Ti.UI.createView({
+=======
+        id: "__alloyId768"
+    });
+    $.__views.bmiView.add($.__views.__alloyId768);
+    $.__views.__alloyId769 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId771"
     });
     $.__views.bmiView.add($.__views.__alloyId771);
     $.__views.__alloyId772 = Ti.UI.createLabel({
+=======
+        id: "__alloyId769"
+    });
+    $.__views.bmiView.add($.__views.__alloyId769);
+    $.__views.__alloyId770 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId772"
     });
     $.__views.__alloyId771.add($.__views.__alloyId772);
+=======
+        id: "__alloyId770"
+    });
+    $.__views.__alloyId769.add($.__views.__alloyId770);
+>>>>>>> origin/master
     $.__views.bmiDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -281,7 +374,11 @@ function Controller() {
         right: 0,
         id: "bmiDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId771.add($.__views.bmiDetailLabel);
+=======
+    $.__views.__alloyId769.add($.__views.bmiDetailLabel);
+>>>>>>> origin/master
     $.__views.bloodPressureView = Ti.UI.createView({
         id: "bloodPressureView",
         gType: 2,
@@ -305,35 +402,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.bloodPressureView.add($.__views.bloodPressureWebView);
+<<<<<<< HEAD
     $.__views.__alloyId773 = Ti.UI.createView({
+=======
+    $.__views.__alloyId771 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId773"
     });
     $.__views.bloodPressureView.add($.__views.__alloyId773);
     $.__views.__alloyId774 = Ti.UI.createView({
+=======
+        id: "__alloyId771"
+    });
+    $.__views.bloodPressureView.add($.__views.__alloyId771);
+    $.__views.__alloyId772 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId774"
     });
     $.__views.bloodPressureView.add($.__views.__alloyId774);
     $.__views.__alloyId775 = Ti.UI.createLabel({
+=======
+        id: "__alloyId772"
+    });
+    $.__views.bloodPressureView.add($.__views.__alloyId772);
+    $.__views.__alloyId773 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId775"
     });
     $.__views.__alloyId774.add($.__views.__alloyId775);
+=======
+        id: "__alloyId773"
+    });
+    $.__views.__alloyId772.add($.__views.__alloyId773);
+>>>>>>> origin/master
     $.__views.bloodPressureDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -342,7 +463,11 @@ function Controller() {
         right: 0,
         id: "bloodPressureDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId774.add($.__views.bloodPressureDetailLabel);
+=======
+    $.__views.__alloyId772.add($.__views.bloodPressureDetailLabel);
+>>>>>>> origin/master
     $.__views.heartRateView = Ti.UI.createView({
         id: "heartRateView",
         gType: 3,
@@ -366,35 +491,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.heartRateView.add($.__views.heartRateWebView);
+<<<<<<< HEAD
     $.__views.__alloyId776 = Ti.UI.createView({
+=======
+    $.__views.__alloyId774 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId776"
     });
     $.__views.heartRateView.add($.__views.__alloyId776);
     $.__views.__alloyId777 = Ti.UI.createView({
+=======
+        id: "__alloyId774"
+    });
+    $.__views.heartRateView.add($.__views.__alloyId774);
+    $.__views.__alloyId775 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId777"
     });
     $.__views.heartRateView.add($.__views.__alloyId777);
     $.__views.__alloyId778 = Ti.UI.createLabel({
+=======
+        id: "__alloyId775"
+    });
+    $.__views.heartRateView.add($.__views.__alloyId775);
+    $.__views.__alloyId776 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId778"
     });
     $.__views.__alloyId777.add($.__views.__alloyId778);
+=======
+        id: "__alloyId776"
+    });
+    $.__views.__alloyId775.add($.__views.__alloyId776);
+>>>>>>> origin/master
     $.__views.heartRateDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -403,7 +552,11 @@ function Controller() {
         right: 0,
         id: "heartRateDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId777.add($.__views.heartRateDetailLabel);
+=======
+    $.__views.__alloyId775.add($.__views.heartRateDetailLabel);
+>>>>>>> origin/master
     $.__views.glucoseView = Ti.UI.createView({
         id: "glucoseView",
         gType: 8,
@@ -427,35 +580,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.glucoseView.add($.__views.glucoseWebView);
+<<<<<<< HEAD
     $.__views.__alloyId779 = Ti.UI.createView({
+=======
+    $.__views.__alloyId777 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId779"
     });
     $.__views.glucoseView.add($.__views.__alloyId779);
     $.__views.__alloyId780 = Ti.UI.createView({
+=======
+        id: "__alloyId777"
+    });
+    $.__views.glucoseView.add($.__views.__alloyId777);
+    $.__views.__alloyId778 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId780"
     });
     $.__views.glucoseView.add($.__views.__alloyId780);
     $.__views.__alloyId781 = Ti.UI.createLabel({
+=======
+        id: "__alloyId778"
+    });
+    $.__views.glucoseView.add($.__views.__alloyId778);
+    $.__views.__alloyId779 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId781"
     });
     $.__views.__alloyId780.add($.__views.__alloyId781);
+=======
+        id: "__alloyId779"
+    });
+    $.__views.__alloyId778.add($.__views.__alloyId779);
+>>>>>>> origin/master
     $.__views.glucoseDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -464,7 +641,11 @@ function Controller() {
         right: 0,
         id: "glucoseDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId780.add($.__views.glucoseDetailLabel);
+=======
+    $.__views.__alloyId778.add($.__views.glucoseDetailLabel);
+>>>>>>> origin/master
     $.__views.cholestrolView = Ti.UI.createView({
         id: "cholestrolView",
         gType: 7,
@@ -488,35 +669,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.cholestrolView.add($.__views.cholestrolWebView);
+<<<<<<< HEAD
     $.__views.__alloyId782 = Ti.UI.createView({
+=======
+    $.__views.__alloyId780 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId782"
     });
     $.__views.cholestrolView.add($.__views.__alloyId782);
     $.__views.__alloyId783 = Ti.UI.createView({
+=======
+        id: "__alloyId780"
+    });
+    $.__views.cholestrolView.add($.__views.__alloyId780);
+    $.__views.__alloyId781 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId783"
     });
     $.__views.cholestrolView.add($.__views.__alloyId783);
     $.__views.__alloyId784 = Ti.UI.createLabel({
+=======
+        id: "__alloyId781"
+    });
+    $.__views.cholestrolView.add($.__views.__alloyId781);
+    $.__views.__alloyId782 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId784"
     });
     $.__views.__alloyId783.add($.__views.__alloyId784);
+=======
+        id: "__alloyId782"
+    });
+    $.__views.__alloyId781.add($.__views.__alloyId782);
+>>>>>>> origin/master
     $.__views.cholestrolDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -525,7 +730,11 @@ function Controller() {
         right: 0,
         id: "cholestrolDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId783.add($.__views.cholestrolDetailLabel);
+=======
+    $.__views.__alloyId781.add($.__views.cholestrolDetailLabel);
+>>>>>>> origin/master
     $.__views.bodyTemperatureView = Ti.UI.createView({
         id: "bodyTemperatureView",
         gType: 4,
@@ -549,35 +758,59 @@ function Controller() {
         disableBounce: true
     });
     $.__views.bodyTemperatureView.add($.__views.bodyTemperatureWebView);
+<<<<<<< HEAD
     $.__views.__alloyId785 = Ti.UI.createView({
+=======
+    $.__views.__alloyId783 = Ti.UI.createView({
+>>>>>>> origin/master
         height: 1,
         left: 10,
         right: 10,
         bottom: 0,
         backgroundColor: "#dfe0e4",
         width: Ti.UI.FILL,
+<<<<<<< HEAD
         id: "__alloyId785"
     });
     $.__views.bodyTemperatureView.add($.__views.__alloyId785);
     $.__views.__alloyId786 = Ti.UI.createView({
+=======
+        id: "__alloyId783"
+    });
+    $.__views.bodyTemperatureView.add($.__views.__alloyId783);
+    $.__views.__alloyId784 = Ti.UI.createView({
+>>>>>>> origin/master
         height: Ti.UI.SIZE,
         left: 10,
         right: 10,
         top: 10,
         bottom: 10,
+<<<<<<< HEAD
         id: "__alloyId786"
     });
     $.__views.bodyTemperatureView.add($.__views.__alloyId786);
     $.__views.__alloyId787 = Ti.UI.createLabel({
+=======
+        id: "__alloyId784"
+    });
+    $.__views.bodyTemperatureView.add($.__views.__alloyId784);
+    $.__views.__alloyId785 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#9197a3",
         text: "Latest",
         font: "fontSize: 12",
         left: 0,
+<<<<<<< HEAD
         id: "__alloyId787"
     });
     $.__views.__alloyId786.add($.__views.__alloyId787);
+=======
+        id: "__alloyId785"
+    });
+    $.__views.__alloyId784.add($.__views.__alloyId785);
+>>>>>>> origin/master
     $.__views.bodyTempDetailLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -586,7 +819,11 @@ function Controller() {
         right: 0,
         id: "bodyTempDetailLabel"
     });
+<<<<<<< HEAD
     $.__views.__alloyId786.add($.__views.bodyTempDetailLabel);
+=======
+    $.__views.__alloyId784.add($.__views.bodyTempDetailLabel);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

@@ -1,26 +1,34 @@
 var Cloud = require('ti.cloud'); 
 var app_status;
 var redirect = true;
-if(Ti.Platform.osname == "android"){ 
+if(OS_ANDROID){ 
 	var CloudPush = require('ti.cloudpush');
 	// notification callback function (important)
 	CloudPush.addEventListener('callback', function (evt) { 
 		var payload = JSON.parse(evt.payload);  
+		Ti.API.info('call back notification');  
 		Ti.App.Payload = payload;
-		// if trayClickLaunchedApp or trayClickFocusedApp set redirect as true
-		
+		// if trayClickLaunchedApp or trayClickFocusedApp set redirect as true 
 		receivePush(payload);
  
 	});
+	 
 	
 	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
 		redirect = true;
-		app_status = "not_running"; 
+		app_status = "not_running";
+		var payload = JSON.parse(evt.payload);   
+		Ti.App.Payload = payload;
+		Ti.API.info('Tray Click Launched App (app was not running)');  
+		receivePush(payload);
 	    //getNotificationNumber(Ti.App.Payload);
 	});
 	CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
 		redirect = true;
-		app_status = "running"; 
+		app_status = "running";
+		var payload = JSON.parse(evt.payload);   
+		Ti.API.info('Tray Click Focused App (app was already running)'); 
+		receivePush(payload);
 	}); 
 } 
 // Process incoming push notifications
@@ -129,13 +137,16 @@ function deviceTokenSuccess(ev) {
     Cloud.Users.login({
 	    login: 'geomilano',
 	    password: 'geonn2015'
-	}, function (e) {
+	}, function (e) { 
 		if (e.success) {
 			Cloud.PushNotifications.unsubscribe({
 			    channel: 'survey',
 			    device_token: deviceToken
 			}, function (ey) {
+			 
+				console.log(ey);
 			    if (ey.success) { 
+			    	 
 			        Cloud.PushNotifications.subscribe({
 					    channel: 'survey',
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
@@ -148,14 +159,36 @@ function deviceTokenSuccess(ev) {
 							API.updateNotificationToken();
 							 
 					    } else {
+					     
 					    	registerPush();
 					    }
 					});
 			    } else {
-			        console.log('Error:\n' +
-			            ((e.error && e.message) || JSON.stringify(e)));
-			            
+			       
 			         Cloud.PushNotifications.subscribe({
+					    channel: 'survey',
+					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
+					    device_token: deviceToken
+					}, function (ex) { 
+					    if (ex.success  ) { 
+					     
+					    	/** User device token**/
+			         		Ti.App.Properties.setString('deviceToken', deviceToken); 
+							API.updateNotificationToken();
+							 console.log("geo7");
+					    } else {
+					    	console.log("geo8");
+					    	registerPush();
+					    }
+					});
+			    }
+			});
+
+			
+	    } else {
+	    	  console.log('GEO NOT Error:\n' +
+			            ((e.error && e.message) || JSON.stringify(e)));
+			Cloud.PushNotifications.subscribe({
 					    channel: 'survey',
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
 					    device_token: deviceToken
@@ -170,12 +203,7 @@ function deviceTokenSuccess(ev) {
 					    	registerPush();
 					    }
 					});
-			    }
-			});
-
-			
-	    } else {
-	    	 
+			            
 	    }
 	});
 
@@ -253,7 +281,7 @@ Ti.App.addEventListener("resumed", function(e){
 	}else{
 		redirect = true;
 	}
-	console.log('resume : '+ theWindow );
+	
 	
 });
 
