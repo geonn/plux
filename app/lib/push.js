@@ -113,7 +113,7 @@ function receivePush(e) {
 			}
 		
 			if (ex.index === 1){
-				if(target == "claimDetail"){ 
+				if(target == "claimDetail" || target == "survey"){ 
 					nav.navigateWithArgs("asp/notification");
 				}
 				
