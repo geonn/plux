@@ -229,7 +229,7 @@ exports.definition = {
                 collection.trigger('sync'); 
                 return listArr;
 			},
-			addHealthData : function(entry) {
+			addHealthData : function(entry, callback) {
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id');
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE date='" +mysql_real_escape_string(entry.date)+"' AND time='"+mysql_real_escape_string(entry.time)+"' AND u_id = ?";
@@ -247,6 +247,7 @@ exports.definition = {
 				
                 db.execute(sql_query);
 	            db.close();
+	            callback();
 	            collection.trigger('sync');
 	            API.syncHealthData({u_id:Ti.App.Properties.getString('u_id')});
             },

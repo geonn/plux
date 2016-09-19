@@ -104,9 +104,11 @@ function doSaveRecords(){
 		field1 : field1, 
 		amount : field1,
 		type : formType
+	}, function(){
+		hd.loadInfo(formType);
 	});  
 	// nav.navigationWindow("myHealth" );
-	hd.loadInfo(formType);
+	
 	nav.closeWindow($.healthDHWin);
 }
 

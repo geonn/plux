@@ -115,9 +115,10 @@ function doSaveRecords(){
 		field2 : field2/100,
 		amount : amount.toFixed(2),
 		type : formType
+	}, function(){
+		hd.loadInfo(formType);
 	});  
 	// nav.navigationWindow("myHealth" );
-	hd.loadInfo(formType);
 	nav.closeWindow($.healthBmiWin);
 }
 

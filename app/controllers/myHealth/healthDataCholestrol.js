@@ -105,9 +105,10 @@ function doSaveRecords(){
 		field2 : field2,
 		amount : field1 + field2,
 		type : formType
+	}, function(){
+		hd.loadInfo(formType);
 	});  
 	// nav.navigationWindow("myHealth" );
-	hd.loadInfo(formType);
 	nav.closeWindow($.healthCholestrolWin);
 }
 

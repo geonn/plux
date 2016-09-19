@@ -120,8 +120,9 @@ function doSaveRecords(){
 		field2 : field2,
 		amount : amount.toFixed(2),
 		type : formType
-	});  
-	hd.loadInfo(formType);
+	}, function(){
+		hd.loadInfo(formType);
+	});
 	nav.closeWindow($.healthDBPWin); 
 }
 
