@@ -104,10 +104,17 @@ function Controller() {
     }
     function openReport() {
         var url = "https://qlab.aspmedic.com/" + appcode + ".pdf";
+<<<<<<< HEAD
         var PDF = require("pdf");
         PDF.createPdf(url, true, "", "", "", function(err, file) {
             PDF.android_launch(file);
         });
+=======
+        var win = Alloy.createController("webview", {
+            url: url
+        }).getView();
+        win.open();
+>>>>>>> origin/master
     }
     function openReceipt() {
         var img_path = "https://tslip.aspmedic.com/" + appcode + ".png";

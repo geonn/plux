@@ -57,10 +57,16 @@ function Controller() {
     $.__views.__alloyId339.add($.__views.__alloyId340);
     closeWindow ? $.addListener($.__views.__alloyId340, "click", closeWindow) : __defers["$.__views.__alloyId340!click!closeWindow"] = true;
     $.__views.surveyView = Ti.UI.createWebView({
+<<<<<<< HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
         id: "surveyView"
+=======
+        backgroundColor: "#f5f5f5",
+        id: "surveyView",
+        height: "auto"
+>>>>>>> origin/master
     });
     $.__views.__alloyId339.add($.__views.surveyView);
     $.__views.defaultMsgView = Ti.UI.createView({
@@ -88,7 +94,13 @@ function Controller() {
         $.defaultMsgView.height = 0;
     } else if ("" != HTMLcontent) {
         HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
+<<<<<<< HEAD
         HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
+=======
+        console.log(HTMLcontent);
+        HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
+        console.log(HTMLcontent);
+>>>>>>> origin/master
         $.surveyView.html = HTMLcontent;
         $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;

@@ -24,8 +24,8 @@ function init(){
 	$.tv.appendRow(createTableViewRow("Category", data.category));
 	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
 	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
-	
-	if(data.cliniccode == "QLAB"){
+	 
+	if(data.cliniccode == "QLAB"){ 
 		var attachment_button = $.UI.create("Button", {title: "Lab Test Result", classes:['wfill', 'hsize', 'padding'], borderColor: "red", color: "red", align: "center"});
 		var row = $.UI.create("TableViewRow", {classes: ['hsize']});
 		row.add(attachment_button);
