@@ -1,9 +1,9 @@
 var args = arguments[0] || {};
 var url = args.url || "";
 var HTMLcontent = args.html || "";
-if(url != ""){
-	$.surveyView.url = url;
-	$.defaultMsgView.height = 0;
+if(url != ""){ 
+ 	$.surveyView.url = url;  
+	$.defaultMsgView.height = 0; 
 }else{
 	if(HTMLcontent != ""){
 		HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
