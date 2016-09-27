@@ -124,8 +124,16 @@ function createTableViewRow(text, value, dialog){
 
 function openReport(){
 	var url = "https://qlab.aspmedic.com/"+appcode+".pdf";
-	var win = Alloy.createController("webview", {url: url}).getView();
-	win.open();
+	
+	if(OS_IOS){
+		var win = Alloy.createController("webview", {url: url}).getView();
+		win.open();
+	}else{
+		var PDF = require('pdf'); 
+		PDF.createPdf(url, true, "", "", "", function(err, file, base, url){
+			PDF.android_launch(file);
+		});
+	}
 }
 
 function openReceipt(){
