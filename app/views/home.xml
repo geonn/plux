@@ -34,9 +34,10 @@
 							<ImageView onClick="navWindow" mod="clinicLocator" top="15" width="139" image="/images/btn/btn_clinic_location.png"/>
 							<ImageView onClick="navWindow" mod="feedback" top="15" left="15"  width="139" image="/images/btn/btn_feedback.png"/>
 							
-							<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
+							<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
+						-->
 							<View class="hsize wsize">
-								<ImageView onClick="navWindow" mod="notification" top="15" left="15" width="139" image="/images/btn/btn_notification.png"/>
+								<ImageView onClick="navWindow" mod="notification" top="15"  width="139" image="/images/btn/btn_notification.png"/>
 								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
 									<Label id="notificationText" text="0" color="#ffffff" />
 								</View>

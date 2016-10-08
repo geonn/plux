@@ -7,7 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.2"; 
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.3"; 
 	if (dbVersion == '1.0') {
 	  // do 1.1 upgrade
 		var panelList = Alloy.createCollection('panelList'); 
@@ -96,6 +96,15 @@ exports.checkAndUpdate = function(e){
 		model.addColumn("detail", "TEXT");
 		
 		dbVersion = '2.2';
+	}
+	if(dbVersion == "2.2"){
+		var mav2_model = Alloy.createCollection('medicalAttachmentV2');
+		mav2_model.addColumn("format", "TEXT");
+		
+		var mrv2_model = Alloy.createCollection('medicalRecordsV2');
+		mrv2_model.addColumn("lab_report_id", "TEXT");
+		
+		dbVersion = '2.3';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

@@ -51,6 +51,7 @@ function receivePush(e) {
 		};
 		target = e.data.target;
 		url = e.data.extra;
+		detail = e.data.detail;
 	}else{
 		var param = {
 			"id": e.id || "",
@@ -66,6 +67,7 @@ function receivePush(e) {
 		};
 		target = e.target;
 		url = e.extra;
+		detail = e.detail;
 	}   
 	console.log(target+" and redirect "+redirect); 
 	if(target == "conversation"){
@@ -118,9 +120,17 @@ function receivePush(e) {
 				}
 				
 				if(target == "webview"){
-					nav.navigateWithArgs(target, {
-						url: url
-					});
+					if(url ==""){
+						nav.navigateWithArgs(target, {
+							html: detail
+						});
+					}else{
+						nav.navigateWithArgs(target, {
+							url: url
+						});
+					}
+					
+					
 				}
 			}
 		});

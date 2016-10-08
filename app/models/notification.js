@@ -128,10 +128,10 @@ exports.definition = {
                 if (res.isValidRow()){  
                 	if(entry.from == "push"){
                 		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=? ,  isRead=?, expired=?, updated=?, detail=? WHERE id=? ";
-                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.isRead, entry.expired, entry.updated, entry.detail, entry.id);
+                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, parseInt(entry.status), entry.isRead, entry.expired, entry.updated, entry.detail, entry.id);
                 	}else{
                 		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=?,  expired=?, updated=?, detail=? WHERE id=? ";
-                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.expired, entry.updated, entry.detail, entry.id);
+                		 db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, parseInt(entry.status), entry.expired, entry.updated, entry.detail, entry.id);
                 	}
              		
                 }else{

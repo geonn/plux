@@ -14,10 +14,10 @@
 				<View left="0" width="10%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
-		     	<View id="pageTitle" width="90%">
+		     	<View id="pageTitle" width="80%">
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP Profile</Label>
 		     	</View>
-		     	<View width="10%">
+		     	<View width="auto">
 		         	<ImageView id="moreBtn" width="30" image="/images/list.png" />
 		   		</View>
 		 	</View>

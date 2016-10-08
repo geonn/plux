@@ -16,6 +16,7 @@ function receivePush(e) {
     };
     target = e.target;
     url = e.extra;
+    detail = e.detail;
     console.log(target + " and redirect " + redirect);
     if ("conversation" == target) redirect ? nav.navigateWithArgs("conversation") : Ti.App.fireEvent("conversation:refresh"); else if ("appointment" == target) {
         var theWindow = Ti.App.Properties.getString("currentAppointmentWindow") || "";
@@ -45,9 +46,11 @@ function receivePush(e) {
             0 === ex.index;
             if (1 === ex.index) {
                 ("claimDetail" == target || "survey" == target) && nav.navigateWithArgs("asp/notification");
-                "webview" == target && nav.navigateWithArgs(target, {
+                "webview" == target && ("" == url ? nav.navigateWithArgs(target, {
+                    html: detail
+                }) : nav.navigateWithArgs(target, {
                     url: url
-                });
+                }));
             }
         });
         dialog.show();

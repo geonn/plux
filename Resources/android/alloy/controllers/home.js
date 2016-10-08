@@ -451,31 +451,21 @@ function Controller() {
     });
     $.__views.__alloyId161.add($.__views.__alloyId171);
     navWindow ? $.addListener($.__views.__alloyId171, "click", navWindow) : __defers["$.__views.__alloyId171!click!navWindow"] = true;
-    $.__views.__alloyId172 = Ti.UI.createImageView({
-        mod: "appointment",
-        top: 15,
-        width: 139,
-        image: "/images/btn/btn_appointment.png",
+    $.__views.__alloyId172 = Ti.UI.createView({
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
         id: "__alloyId172"
     });
     $.__views.__alloyId161.add($.__views.__alloyId172);
-    navWindow ? $.addListener($.__views.__alloyId172, "click", navWindow) : __defers["$.__views.__alloyId172!click!navWindow"] = true;
-    $.__views.__alloyId173 = Ti.UI.createView({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        id: "__alloyId173"
-    });
-    $.__views.__alloyId161.add($.__views.__alloyId173);
-    $.__views.__alloyId174 = Ti.UI.createImageView({
+    $.__views.__alloyId173 = Ti.UI.createImageView({
         mod: "notification",
         top: 15,
-        left: 15,
         width: 139,
         image: "/images/btn/btn_notification.png",
-        id: "__alloyId174"
+        id: "__alloyId173"
     });
-    $.__views.__alloyId173.add($.__views.__alloyId174);
-    navWindow ? $.addListener($.__views.__alloyId174, "click", navWindow) : __defers["$.__views.__alloyId174!click!navWindow"] = true;
+    $.__views.__alloyId172.add($.__views.__alloyId173);
+    navWindow ? $.addListener($.__views.__alloyId173, "click", navWindow) : __defers["$.__views.__alloyId173!click!navWindow"] = true;
     $.__views.notificationIcon = Ti.UI.createView({
         width: 30,
         height: 30,
@@ -485,7 +475,7 @@ function Controller() {
         top: 20,
         right: 15
     });
-    $.__views.__alloyId173.add($.__views.notificationIcon);
+    $.__views.__alloyId172.add($.__views.notificationIcon);
     $.__views.notificationText = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -540,8 +530,7 @@ function Controller() {
     __defers["$.__views.__alloyId169!click!navWindow"] && $.addListener($.__views.__alloyId169, "click", navWindow);
     __defers["$.__views.__alloyId170!click!navWindow"] && $.addListener($.__views.__alloyId170, "click", navWindow);
     __defers["$.__views.__alloyId171!click!navWindow"] && $.addListener($.__views.__alloyId171, "click", navWindow);
-    __defers["$.__views.__alloyId172!click!navWindow"] && $.addListener($.__views.__alloyId172, "click", navWindow);
-    __defers["$.__views.__alloyId174!click!navWindow"] && $.addListener($.__views.__alloyId174, "click", navWindow);
+    __defers["$.__views.__alloyId173!click!navWindow"] && $.addListener($.__views.__alloyId173, "click", navWindow);
     _.extend($, exports);
 }
 

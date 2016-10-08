@@ -6,7 +6,7 @@
         </RightNavButton>
         <View class="wfill hfill vert" backgroundColor="#f5f5f5">
 	        <ImageView width="30" height="30" right="10" image="/images/cross.png" onClick="closeWindow"></ImageView>
-	        <WebView backgroundColor="#f5f5f5" id="surveyView" class="wfill hfill"/>
+	        <WebView backgroundColor="#f5f5f5" id="surveyView" class=" wfill hfill"   />
 		</View>
 		<View layout="vertical" height="auto"  id="defaultMsgView" top="5"><Label>Page not found.</Label></View>
 	</Window>

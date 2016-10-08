@@ -17,10 +17,6 @@ function callback_download(e) {
 }
 
 exports.checkAndUpdate = function() {
-<<<<<<< HEAD
-    Ti.App.Properties.setString("appVersion", "1.1.8");
-=======
-    Ti.App.Properties.setString("appVersion", "1.1.9");
->>>>>>> origin/master
+    Ti.App.Properties.setString("appVersion", "1.1.97");
     API.checkAppVersion(callback_download);
 };

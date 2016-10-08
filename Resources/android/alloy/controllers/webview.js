@@ -39,36 +39,30 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId339 = Ti.UI.createView({
+    $.__views.__alloyId338 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
-        id: "__alloyId339"
+        id: "__alloyId338"
     });
-    $.__views.win.add($.__views.__alloyId339);
-    $.__views.__alloyId340 = Ti.UI.createImageView({
+    $.__views.win.add($.__views.__alloyId338);
+    $.__views.__alloyId339 = Ti.UI.createImageView({
         width: 30,
         height: 30,
         right: 10,
         image: "/images/cross.png",
-        id: "__alloyId340"
+        id: "__alloyId339"
     });
-    $.__views.__alloyId339.add($.__views.__alloyId340);
-    closeWindow ? $.addListener($.__views.__alloyId340, "click", closeWindow) : __defers["$.__views.__alloyId340!click!closeWindow"] = true;
+    $.__views.__alloyId338.add($.__views.__alloyId339);
+    closeWindow ? $.addListener($.__views.__alloyId339, "click", closeWindow) : __defers["$.__views.__alloyId339!click!closeWindow"] = true;
     $.__views.surveyView = Ti.UI.createWebView({
-<<<<<<< HEAD
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
         id: "surveyView"
-=======
-        backgroundColor: "#f5f5f5",
-        id: "surveyView",
-        height: "auto"
->>>>>>> origin/master
     });
-    $.__views.__alloyId339.add($.__views.surveyView);
+    $.__views.__alloyId338.add($.__views.surveyView);
     $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
@@ -76,35 +70,29 @@ function Controller() {
         top: 5
     });
     $.__views.win.add($.__views.defaultMsgView);
-    $.__views.__alloyId341 = Ti.UI.createLabel({
+    $.__views.__alloyId340 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Page not found.",
-        id: "__alloyId341"
+        id: "__alloyId340"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId341);
+    $.__views.defaultMsgView.add($.__views.__alloyId340);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var url = args.url || "";
-    var HTMLcontent = args.html || "";
+    var HTMLcontent = '<html><meta name="viewport" content="width=device-width, initial-scale=1.0">' + args.html + "</html>" || "";
     if ("" != url) {
         $.surveyView.url = url;
         $.defaultMsgView.height = 0;
     } else if ("" != HTMLcontent) {
         HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
-<<<<<<< HEAD
         HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
-=======
-        console.log(HTMLcontent);
-        HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
-        console.log(HTMLcontent);
->>>>>>> origin/master
         $.surveyView.html = HTMLcontent;
         $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;
-    __defers["$.__views.__alloyId340!click!closeWindow"] && $.addListener($.__views.__alloyId340, "click", closeWindow);
+    __defers["$.__views.__alloyId339!click!closeWindow"] && $.addListener($.__views.__alloyId339, "click", closeWindow);
     _.extend($, exports);
 }
 

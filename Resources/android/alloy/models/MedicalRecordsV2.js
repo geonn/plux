@@ -9,6 +9,7 @@ exports.definition = {
             u_id: "TEXT",
             treatment: "TEXT",
             clinic: "TEXT",
+            lab_report_id: "TEXT",
             created: "TEXT",
             updated: "TEXT",
             status: "INTEGER"

@@ -1,5 +1,5 @@
 exports.checkAndUpdate = function() {
-    var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.2";
+    var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.3";
     if ("1.0" == dbVersion) {
         var panelList = Alloy.createCollection("panelList");
         panelList.addColumn("panel", "INTEGER");
@@ -72,6 +72,13 @@ exports.checkAndUpdate = function() {
         var model = Alloy.createCollection("notification");
         model.addColumn("detail", "TEXT");
         dbVersion = "2.2";
+    }
+    if ("2.2" == dbVersion) {
+        var mav2_model = Alloy.createCollection("medicalAttachmentV2");
+        mav2_model.addColumn("format", "TEXT");
+        var mrv2_model = Alloy.createCollection("medicalRecordsV2");
+        mrv2_model.addColumn("lab_report_id", "TEXT");
+        dbVersion = "2.3";
     }
     Ti.App.Properties.setString("dbVersion", dbVersion);
 };

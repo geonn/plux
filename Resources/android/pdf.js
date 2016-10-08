@@ -94,10 +94,6 @@ exports.createPdf = function(url, cookies, inds, labels, indView, done) {
 };
 
 exports.android_launch = function(file) {
-<<<<<<< HEAD
-    console.log("android lanuch");
-=======
->>>>>>> origin/master
     var intent = Ti.Android.createIntent({
         action: Ti.Android.ACTION_VIEW,
         data: file.getNativePath(),

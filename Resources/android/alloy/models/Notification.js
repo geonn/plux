@@ -110,10 +110,10 @@ exports.definition = {
                 var res = db.execute(sql, entry.id);
                 if (res.isValidRow()) if ("push" == entry.from) {
                     sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=? ,  isRead=?, expired=?, updated=?, detail=? WHERE id=? ";
-                    db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.isRead, entry.expired, entry.updated, entry.detail, entry.id);
+                    db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, parseInt(entry.status), entry.isRead, entry.expired, entry.updated, entry.detail, entry.id);
                 } else {
                     sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET member_no=?, subject=?, message=? , url=? ,status=?,  expired=?, updated=?, detail=? WHERE id=? ";
-                    db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, entry.status, entry.expired, entry.updated, entry.detail, entry.id);
+                    db.execute(sql_query, entry.member_no, entry.subject, entry.message, entry.url, parseInt(entry.status), entry.expired, entry.updated, entry.detail, entry.id);
                 } else {
                     sql_query = "INSERT INTO " + collection.config.adapter.collection_name + "(id, member_no, subject, message, url,isRead, expired,status,detail,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     db.execute(sql_query, parseInt(entry.id), entry.member_no, entry.subject, entry.message, entry.url, "0", entry.expired, parseInt(entry.status), entry.detail, entry.created, entry.updated);

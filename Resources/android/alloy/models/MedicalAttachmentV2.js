@@ -7,6 +7,7 @@ exports.definition = {
             medical_id: "INTEGER",
             img_path: "TEXT",
             category: "TEXT",
+            format: "TEXT",
             created: "TEXT",
             updated: "TEXT",
             status: "INTEGET"
