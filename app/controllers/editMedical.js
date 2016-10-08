@@ -6,7 +6,7 @@ var clickTime = null;
 var skipUpdate = false;
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecordsV2');
-
+var PDF = require('pdf'); 
 var details = medicalRecordsModel.getDataById(id);
 if(OS_IOS){
 	var MediaPickerModule = require('MediaPicker').MediaPicker;
@@ -152,7 +152,11 @@ function backAndSave(){
 }
 
 function attachedPhoto(image,position){
-	
+	var getFormat = image.split(".");
+	var thumbImg =   image;
+	if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
+	    thumbImg ="/images/pdf_logo.png"; 
+    } 
 	var iView = Ti.UI.createView({
 		backgroundColor: "#D5D5D5",
 		height : 50,
@@ -162,9 +166,9 @@ function attachedPhoto(image,position){
 		right: 5,
 		bottom:0
 	});
-	console.log(image);    
+	
 	var iImage = Ti.UI.createImageView({
-		image : image,
+		image : thumbImg,
 		position :position,
 		width: Ti.UI.FILL
 	}); 
@@ -177,13 +181,20 @@ function attachedPhoto(image,position){
 	        return;
 	    };
 	    clickTime = currentTime; 
-		var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position}).getView(); 
-	  	page.open();
-	  	page.animate({
-			curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-			opacity: 1,
-			duration: 300
-		});
+	    console.log(image);    
+	     
+	    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
+	    	downloadPDF(image);
+	    }else{
+	    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position}).getView(); 
+	  		page.open();
+		  	page.animate({
+				curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+				opacity: 1,
+				duration: 300
+			});
+	    }
+		
 	});
 	return iView;	            
 }
@@ -348,6 +359,184 @@ function takePhoto(){
 	dialog.show();
 
 }
+
+
+var isDownloading = "0";
+var isDownloadLbl = "0";
+//ex.source.id,ex.source.leafLet,ex.source.url,ex.source.downloaded,ex.source.name
+//id,content,targetUrl,downloaded, title
+function downloadPDF(content){ 
+	//adImage.addEventListener( "click", function(){
+		var indView = Ti.UI.createView({
+			height : 100,
+			layout : "vertical",
+			backgroundColor : "#ffffff" ,
+			bottom: 5,
+			width : Ti.UI.SIZE
+		});
+		if(isDownloading == "1"){
+			var label = Ti.UI.createLabel({
+				color: '#CE1D1C',
+				font: { fontSize:10, fontWeight:"bold" },
+				text: 'Please wait until current downloading is done.',
+				bottom: 10,
+				width:"100%",
+				height:10,
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER 
+			});
+		 	
+		 	if(isDownloadLbl == "0"){
+		 		$.bigView.add(label);
+		 		
+		 		setTimeout(function(){
+		 			isDownloadLbl = "0";
+		 			$.bigView.remove(label);
+		 		},3000);
+		 	}
+			isDownloadLbl = "1";
+			return false;
+		}
+		isDownloading = "1";
+		var ind=Titanium.UI.createProgressBar({
+			width: "90%",
+			height:50,
+			min:0,
+			max:1,
+			value:0,
+			top: 5,
+			message:'Downloading '+content.title+'...',
+			font:{fontSize:12},
+			color:'#CE1D1C',
+		});
+		 
+		var label = Ti.UI.createLabel({
+			color: '#CE1D1C',
+			font: { fontSize:14, fontWeight:"bold" },
+			text: '0%',
+			top: 0,
+			width:"100%",
+			height:30,
+			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER 
+		});
+		
+		
+	  
+		if(content.isDownloaded == "1"){  
+			indView.remove(ind);
+			indView.remove(label); 
+			$.bigView.setVisible(false);
+			
+		}else{  
+			ind.show(); 
+			indView.add(ind);
+			indView.add(label); 
+			$.bigView.add(indView);
+			$.bigView.setVisible(true);
+		}
+							
+		PDF.createPdf(content,true, ind,label,indView,  function (err, file, base, url) {
+			if (err){
+				alert(err);
+			}else{ 
+				isDownloading = "0";
+				 
+			    indView.hide();  
+			    $.bigView.remove(indView); 
+			    
+				if(Ti.Platform.osname == "android"){
+					console.log("file return : "+file.getNativePath());
+					PDF.android_launch(file);
+				}else{
+					
+				var myModal = Ti.UI.createWindow({
+					title           : 'Read PDF',
+					backgroundColor : 'transparent',
+					fullscreen		:true
+				});
+				var leftBtn = Ti.UI.createButton({
+					title: "Close",
+					color: "#CE1D1C",
+					left: 15
+				});
+				var wrapperView    = Ti.UI.createView({
+					layout:"vertical",
+					height: Ti.UI.SIZE
+				}); 
+				// Full screen
+				var topView = Ti.UI.createView({  // Also full screen
+				    backgroundColor : '#EEEEEE',
+				    top         : 0,
+				    height		: 40
+				});
+				var containerView  = Ti.UI.createView({  // Set height appropriately
+				    height          : Ti.UI.SIZE,
+				    width			: Ti.UI.FILL,
+				    backgroundColor : 'transparent'
+				});
+				var webview = Ti.UI.createWebView({ 
+				   data: file.read(),
+				   height: Ti.UI.FILL,
+				   width: Ti.UI.FILL,
+				   backgroundColor:"#ffffff",
+				   bottom:10 
+				});
+				if(content != ""){
+					var rightBtn = Ti.UI.createButton({
+						title: "Delete",
+						color: "#CE1D1C",
+						right: 15
+					});
+					
+					rightBtn.addEventListener('click',function(rx){ 
+						var dialog = Ti.UI.createAlertDialog({
+							cancel: 0,
+							buttonNames: ['Cancel','Confirm'],
+							message: 'Are you sure want to delete?',
+							title: 'Message'
+						});
+						dialog.addEventListener('click', function(e){
+							if (e.index === e.source.cancel){
+							      //Do nothing
+							}
+							if (e.index === 1){
+								var param = { 
+									"status"	  : 2,
+									"id" : content.source
+								};
+								console.log(param);
+								API.callByPost({url:"deleteNotification", params: param}, function(responseText){
+									var res = JSON.parse(responseText);  
+									if(res.status == "success"){  
+										notificationModel.update_status(param);
+										displayList();
+										myModal.close({animated: true});
+									}
+								});
+							}
+						});
+						dialog.show();
+					});  
+					topView.add(rightBtn);
+				}
+				containerView.add(webview);
+				topView.add(leftBtn);
+				wrapperView.add(topView);
+				wrapperView.add(containerView); 
+				myModal.add(wrapperView); 
+				myModal.open({
+					modal : true
+				});
+				leftBtn.addEventListener('click',function(ex){
+					myModal.close({animated: true});
+				});
+					
+			    }
+			   } 
+		});
+	//});
+}
+
+
 
 function iterate(item){
 	MediaPicker.getImageByURL({

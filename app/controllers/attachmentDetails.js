@@ -1,6 +1,8 @@
 var args = arguments[0] || {};
 var rec_id = args.rec_id;
-var position = args.position;  
+var position = args.position; 
+
+ 
 //load model 
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
 var getAttImages = function(){
@@ -164,6 +166,7 @@ function closeWindow(){
 		duration: 200
 	});
 }
+
 /************************
 *******APP RUNNING*******
 *************************/

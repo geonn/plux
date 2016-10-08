@@ -109,6 +109,9 @@ function Controller() {
         Ti.App.fireEvent("displayRecords");
     }
     function attachedPhoto(image, position) {
+        var getFormat = image.split(".");
+        var thumbImg = image;
+        ("pdf" == getFormat[getFormat.length - 1] || "PDF" == getFormat[getFormat.length - 1]) && (thumbImg = "/images/pdf_logo.png");
         var iView = Ti.UI.createView({
             backgroundColor: "#D5D5D5",
             height: 50,
@@ -118,9 +121,8 @@ function Controller() {
             right: 5,
             bottom: 0
         });
-        console.log(image);
         var iImage = Ti.UI.createImageView({
-            image: image,
+            image: thumbImg,
             position: position,
             width: Ti.UI.FILL
         });
@@ -129,16 +131,19 @@ function Controller() {
             var currentTime = new Date();
             if (1e3 > currentTime - clickTime) return;
             clickTime = currentTime;
-            var page = Alloy.createController("attachmentDetails", {
-                rec_id: id,
-                position: position
-            }).getView();
-            page.open();
-            page.animate({
-                curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-                opacity: 1,
-                duration: 300
-            });
+            console.log(image);
+            if ("pdf" == getFormat[getFormat.length - 1] || "PDF" == getFormat[getFormat.length - 1]) downloadPDF(image); else {
+                var page = Alloy.createController("attachmentDetails", {
+                    rec_id: id,
+                    position: position
+                }).getView();
+                page.open();
+                page.animate({
+                    curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+                    opacity: 1,
+                    duration: 300
+                });
+            }
         });
         return iView;
     }
@@ -249,6 +254,84 @@ function Controller() {
             }
         });
         dialog.show();
+    }
+    function downloadPDF(content) {
+        var indView = Ti.UI.createView({
+            height: 100,
+            layout: "vertical",
+            backgroundColor: "#ffffff",
+            bottom: 5,
+            width: Ti.UI.SIZE
+        });
+        if ("1" == isDownloading) {
+            var label = Ti.UI.createLabel({
+                color: "#CE1D1C",
+                font: {
+                    fontSize: 10,
+                    fontWeight: "bold"
+                },
+                text: "Please wait until current downloading is done.",
+                bottom: 10,
+                width: "100%",
+                height: 10,
+                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+            });
+            if ("0" == isDownloadLbl) {
+                $.bigView.add(label);
+                setTimeout(function() {
+                    isDownloadLbl = "0";
+                    $.bigView.remove(label);
+                }, 3e3);
+            }
+            isDownloadLbl = "1";
+            return false;
+        }
+        isDownloading = "1";
+        var ind = Titanium.UI.createProgressBar({
+            width: "90%",
+            height: 50,
+            min: 0,
+            max: 1,
+            value: 0,
+            top: 5,
+            message: "Downloading " + content.title + "...",
+            font: {
+                fontSize: 12
+            },
+            color: "#CE1D1C"
+        });
+        var label = Ti.UI.createLabel({
+            color: "#CE1D1C",
+            font: {
+                fontSize: 14,
+                fontWeight: "bold"
+            },
+            text: "0%",
+            top: 0,
+            width: "100%",
+            height: 30,
+            textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+        });
+        if ("1" == content.isDownloaded) {
+            indView.remove(ind);
+            indView.remove(label);
+            $.bigView.setVisible(false);
+        } else {
+            ind.show();
+            indView.add(ind);
+            indView.add(label);
+            $.bigView.add(indView);
+            $.bigView.setVisible(true);
+        }
+        PDF.createPdf(content, true, ind, label, indView, function(err, file) {
+            if (err) alert(err); else {
+                isDownloading = "0";
+                indView.hide();
+                $.bigView.remove(indView);
+                console.log("file return : " + file.getNativePath());
+                PDF.android_launch(file);
+            }
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "editMedical";
@@ -457,6 +540,18 @@ function Controller() {
         suppressReturn: false
     });
     $.__views.aView.add($.__views.proceduceTextArea);
+    $.__views.bigView = Ti.UI.createScrollView({
+        id: "bigView",
+        zIndex: 99,
+        height: Ti.UI.SIZE,
+        layout: "vertical",
+        backgroundColor: "#ffffff",
+        opacity: .8,
+        bottom: 0,
+        width: "80%",
+        visible: false
+    });
+    $.__views.editRecWin.add($.__views.bigView);
     $.__views.__alloyId133 = Ti.UI.createView({
         width: Ti.UI.FILL,
         bottom: 40,
@@ -543,9 +638,12 @@ function Controller() {
     var skipUpdate = false;
     var medicalAttachmentModel = Alloy.createCollection("medicalAttachmentV2");
     var medicalRecordsModel = Alloy.createCollection("medicalRecordsV2");
+    var PDF = require("pdf");
     var details = medicalRecordsModel.getDataById(id);
     loadMedicalInfo();
     var categoryType = "Blood Test";
+    var isDownloading = "0";
+    var isDownloadLbl = "0";
     $.proceduceTextArea.addEventListener("focus", function() {});
     $.editRecWin.addEventListener("close", function() {
         skipUpdate || backAndSave();

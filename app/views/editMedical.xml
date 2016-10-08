@@ -47,6 +47,8 @@
 			 	</TextArea>
 			</ScrollView>
 		</View>
+		<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false">
+			</ScrollView>
 		<View bottom="40"   layout="horizontal" class="wfill" height="50" >
 				<ScrollView id="attachment" scrollType="horizontal" layout="horizontal" height="Ti.UI.SIZE" width="80%" /> 
 				<View width="auto" height="Ti.UI.SIZE" onClick="showCategory" >
