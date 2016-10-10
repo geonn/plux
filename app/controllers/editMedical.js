@@ -480,44 +480,7 @@ function downloadPDF(content){
 				   backgroundColor:"#ffffff",
 				   bottom:10 
 				});
-				if(content != ""){
-					var rightBtn = Ti.UI.createButton({
-						title: "Delete",
-						color: "#CE1D1C",
-						right: 15
-					});
-					
-					rightBtn.addEventListener('click',function(rx){ 
-						var dialog = Ti.UI.createAlertDialog({
-							cancel: 0,
-							buttonNames: ['Cancel','Confirm'],
-							message: 'Are you sure want to delete?',
-							title: 'Message'
-						});
-						dialog.addEventListener('click', function(e){
-							if (e.index === e.source.cancel){
-							      //Do nothing
-							}
-							if (e.index === 1){
-								var param = { 
-									"status"	  : 2,
-									"id" : content.source
-								};
-								console.log(param);
-								API.callByPost({url:"deleteNotification", params: param}, function(responseText){
-									var res = JSON.parse(responseText);  
-									if(res.status == "success"){  
-										notificationModel.update_status(param);
-										displayList();
-										myModal.close({animated: true});
-									}
-								});
-							}
-						});
-						dialog.show();
-					});  
-					topView.add(rightBtn);
-				}
+				 
 				containerView.add(webview);
 				topView.add(leftBtn);
 				wrapperView.add(topView);

@@ -4,6 +4,6 @@ iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=plux
 iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.plux.healthcare
 iosLaunchConfigurationAttributes/certificate=PLUX Healthcare (KFZ44PMRMC)
-iosLaunchConfigurationAttributes/keychain=/Users/geomilano/Library/Keychains/login.keychain
+iosLaunchConfigurationAttributes/keychain=
 iosLaunchConfigurationAttributes/sdk_version=10.0
 iosLaunchConfigurationAttributes/uuid=4e51c58c-775d-4d3a-84bf-fb014e26a0ea

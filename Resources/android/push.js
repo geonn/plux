@@ -46,11 +46,15 @@ function receivePush(e) {
             0 === ex.index;
             if (1 === ex.index) {
                 ("claimDetail" == target || "survey" == target) && nav.navigateWithArgs("asp/notification");
-                "webview" == target && ("" == url ? nav.navigateWithArgs(target, {
-                    html: detail
-                }) : nav.navigateWithArgs(target, {
+                if ("webview" == target) if ("" == url) {
+                    var htmlText = "<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style>" + decodeURIComponent(detail);
+                    htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, "<br />");
+                    nav.navigateWithArgs(target, {
+                        html: htmlText
+                    });
+                } else nav.navigateWithArgs(target, {
                     url: url
-                }));
+                });
             }
         });
         dialog.show();
