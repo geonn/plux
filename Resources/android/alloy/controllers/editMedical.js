@@ -26,10 +26,15 @@ function Controller() {
     }
     function loadImage() {
         var recAttachment = medicalAttachmentModel.getData(id);
+        console.log(details);
         console.log("loadImage" + id);
         console.log(recAttachment);
         var counter = 0;
         removeAllChildren($.attachment);
+        if ("" != details.lab_report_link) {
+            counter++;
+            $.attachment.add(attachedPhoto(details.lab_report_link, counter));
+        }
         recAttachment.length > 0 && recAttachment.forEach(function(att) {
             var myImage = att.img_path;
             $.attachment.add(attachedPhoto(myImage, counter));

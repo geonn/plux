@@ -52,9 +52,9 @@ var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointment
 var getClinicLocator2 = "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
 var getRoomId = "http://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
-var getMedicalRecords = "http://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY; 
+var getMedicalRecords = "http://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
 var addUpdateMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
-var getMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY;
+var getMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
 var deleteAttachment = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
 var getHealthDataByUser = "http://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
 var getPersonalInfoRecords = "http://"+FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 

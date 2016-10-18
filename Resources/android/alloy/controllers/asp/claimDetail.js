@@ -17,21 +17,6 @@ function Controller() {
         $.tv.appendRow(createTableViewRow("Category", data.category));
         $.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
         $.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
-        if ("QLAB" == data.cliniccode) {
-            var attachment_button = $.UI.create("Button", {
-                title: "Lab Test Result",
-                classes: [ "wfill", "hsize", "padding" ],
-                borderColor: "red",
-                color: "red",
-                align: "center"
-            });
-            var row = $.UI.create("TableViewRow", {
-                classes: [ "hsize" ]
-            });
-            row.add(attachment_button);
-            attachment_button.addEventListener("click", openReport);
-            $.tv.appendRow(row);
-        }
         var section = Ti.UI.createTableViewSection({
             headerTitle: "Amount"
         });
@@ -101,13 +86,6 @@ function Controller() {
             dialogs.show();
         });
         return row;
-    }
-    function openReport() {
-        var url = "https://qlab.aspmedic.com/" + appcode + ".pdf";
-        var PDF = require("pdf");
-        PDF.createPdf(url, true, "", "", "", function(err, file) {
-            PDF.android_launch(file);
-        });
     }
     function openReceipt() {
         var img_path = "https://tslip.aspmedic.com/" + appcode + ".png";

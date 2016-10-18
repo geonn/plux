@@ -141,11 +141,11 @@ var getRoomId = "http://" + FREEJINI_DOMAIN + "/api/getRoomId?user=" + USER + "&
 
 var dateNow = "http://plux.freejini.com.my/main/dateNow";
 
-var getMedicalRecords = "http://" + FREEJINI_DOMAIN + "/api/getMedicalRecords?user=" + USER + "&key=" + KEY;
+var getMedicalRecords = "http://" + FREEJINI_DOMAIN + "/api/getMedicalRecords?user=" + USER + "&key=" + KEY + "&version=2";
 
 var addUpdateMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/addUpdateMedicalRecord?user=" + USER + "&key=" + KEY;
 
-var getMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/getMedicalAttachment?user=" + USER + "&key=" + KEY;
+var getMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/getMedicalAttachment?user=" + USER + "&key=" + KEY + "&version=2";
 
 var deleteAttachment = "http://" + FREEJINI_DOMAIN + "/api/deleteAttachment?user=" + USER + "&key=" + KEY;
 

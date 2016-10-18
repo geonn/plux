@@ -8,6 +8,7 @@ exports.definition = {
 		    "treatment": "TEXT", 
 		    "clinic": "TEXT",
 		    "lab_report_id": "TEXT",
+		    "lab_report_link" : "TEXT",
 		    "created": "TEXT",
 		    "updated": "TEXT",
 		    "status": "INTEGER"
@@ -116,6 +117,7 @@ exports.definition = {
 					    u_id: res.fieldByName('u_id'),
 					    treatment: res.fieldByName('treatment'),
 					    clinic: res.fieldByName('clinic'),
+					    lab_report_link: res.fieldByName('lab_report_link'),
 					    created: res.fieldByName('created'),
 					    updated: res.fieldByName('updated')
 					};
