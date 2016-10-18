@@ -83,8 +83,6 @@ var defaultRetryTimes = 3;
 //API that call in sequence 
 var APILoadingList = [
 	{url: getClinicLocator2, model: "panelList", checkId: "13"},
-	//{url: categoryUrl, model: "panelList", checkId: "10"},
-	//{url: leafletUrl, model: "leaflet", checkId: "11"},
 	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
 	{url: doctorListUrl, model: "doctors", checkId: "12"},
 ];
@@ -110,7 +108,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	
 	var model = Alloy.createCollection(api['model']);
 	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
+		//last_updated = isUpdate.updated;
 	}
 	
 	 var url = api['url']+"&last_updated="+last_updated;

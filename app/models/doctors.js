@@ -176,6 +176,38 @@ exports.definition = {
 			}, 
 			saveArray : function(arr){
 				var collection = this;
+				db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+				var columns = collection.config.columns;
+				var keys = [];
+				var questionmark = [];
+				var eval_values = [];
+				var update_questionmark = [];
+				
+				for (var k in columns) {
+	                keys.push(k);
+            		questionmark.push("?");
+            		eval_values.push("entry."+k);
+            		update_questionmark.push(k+"=?");
+	            }
+	            db.execute("BEGIN");
+	            arr.forEach(function(entry) {
+                	var without_pk_list = _.rest(update_questionmark);
+	                var without_pk_value = _.rest(eval_values);
+	                
+	                var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+questionmark.join()+")";
+	                eval("db.execute(sql_query, "+eval_values.join()+")");
+	                
+				});
+	            db.execute("COMMIT");
+	            db.close();
+	            collection.trigger('sync');
+			},
+			/*
+			saveArray : function(arr){
+				var collection = this;
 				
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -192,8 +224,7 @@ exports.definition = {
 				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
-			}, 
-			 
+			},*/
 			resetDoctors : function(id){
 				var collection = this;
                 var sql = "DELETE FROM " + collection.config.adapter.collection_name ;
