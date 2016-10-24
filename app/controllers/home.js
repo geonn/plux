@@ -4,6 +4,18 @@ var usersModel = Alloy.createCollection('users');
 var loading = Alloy.createController('loading'); 
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var notificationModel = Alloy.createCollection('notification'); 
+var menu_info = [
+	{mod:"feedback", image:"/images/btn/btn_feedback.png"},
+	{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
+	{mod:"hra", image:"/images/btn/btn_hra.png"},
+	{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
+	{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
+	{mod:"profile", image:"/images/btn/btn_profile.png"},
+	{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
+	{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
+	{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
+	{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
+];
 common.construct($);
 PUSH.registerPush();
 
@@ -29,6 +41,55 @@ if(Ti.Platform.osname != "android"){
 	Alloy.Globals.navMenu = $.navMenu;
 }
 
+function checkserviceByCorpcode(){
+	var corpcode = Ti.App.Properties.getString('corpcode');
+	API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
+		var res = JSON.parse(responseText);  
+		if(res.status == "success"){  
+			var takeout = res.data;
+			for (var i=0; i < takeout.length; i++) {
+				//console.log(_.findIndex(menu_info, {mod: takeout[i]}));
+			  var index = findIndexInData(menu_info, "mod", takeout[i]);
+			  menu_info.splice(index, 1);
+			};
+			console.log(menu_info);
+		}
+		render_menu();
+	});
+}
+
+function findIndexInData(data, property, value) {
+    var result = -1;
+    data.some(function (item, i) {
+        if (item[property] === value) {
+            result = i;
+            return true;
+        }
+    });
+    return result;
+}
+
+function render_menu(){
+	var button_width = 139;
+	for (var i=0; i < menu_info.length; i++) {
+		var topR =10;
+		if(i == menu_info.length - 1 || i == menu_info.length - 2){
+			topR = 239;
+		}
+		var imageView_menu = $.UI.create("ImageView", {
+			mod: menu_info[i].mod,
+			width: button_width,
+			left: 5,
+			top: topR,
+			image: menu_info[i].image,
+		});
+		//var view = $.UI.create("View", {classes: ['wsize','hsize']});
+		//view.add(imageView_menu);
+		imageView_menu.addEventListener("click", navWindow);
+		$.scrollboard.insertAt({view: imageView_menu, position: 0});
+	}
+}
+
 /**********				init				*************/ 
 function init(){
 	
@@ -38,7 +99,7 @@ function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	syncFromServer(); 
-	
+	checkserviceByCorpcode();
 	refreshHeaderInfo(); 
 	
 	/** app home page background***/

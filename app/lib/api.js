@@ -37,6 +37,7 @@ var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointme
 var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
 var changeMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
 var addMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
+var getCorpPermission = "http://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
 
 var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
 var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;

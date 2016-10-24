@@ -1,18 +1,5 @@
 var args = {};
 var u_id = Ti.App.Properties.getString('u_id') || "";
-var appointmentModel = Alloy.createCollection('appointment');   
-appointmentModel.addColumn("doctor_panel_id", "TEXT"); 
-appointmentModel.addColumn("clinic_name", "TEXT"); 
-appointmentModel.addColumn("doctor_name", "TEXT"); 
-appointmentModel.addColumn("specialty_name", "TEXT"); 
-
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');   
-medicalAttachmentModel.addColumn("img_path", "TEXT"); 
-medicalAttachmentModel.addColumn("server_id", "TEXT"); 
-
-var notificationModel = Alloy.createCollection('notification');   
-notificationModel.addColumn("isRead", "TEXT"); 
-notificationModel.addColumn("status", "TEXT");
 
 function init(){
 	var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
