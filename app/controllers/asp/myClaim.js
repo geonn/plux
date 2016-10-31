@@ -27,7 +27,7 @@ function checkStatus(){
 	if(asp_email){
 		Ti.App.addEventListener('loadPage', loadPage);
 		common.showLoading();
-		API.doLogin(asp_email, asp_password, $, "refresh" );
+		API.doLogin(asp_email, asp_password, $, "refresh", "myClaim" );
 	}
 } 
 		

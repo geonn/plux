@@ -113,6 +113,8 @@ var changeMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/changeMedicalRecor
 
 var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachment?user=" + USER + "&key=" + KEY;
 
+var getCorpPermission = "http://" + FREEJINI_DOMAIN + "/api/getCorpPermission?user=" + USER + "&key=" + KEY;
+
 var addMessageUrl = "http://" + FREEJINI_DOMAIN + "/api/addMessage?user=" + USER + "&key=" + KEY;
 
 var getDoctorByPanel = "http://" + FREEJINI_DOMAIN + "/api/getDoctorByPanel?user=" + USER + "&key=" + KEY;
@@ -212,7 +214,7 @@ exports.loadAPIBySequence = function(ex, counter) {
     var isUpdate = checker.getCheckerById(api["checkId"]);
     var last_updated = "";
     var model = Alloy.createCollection(api["model"]);
-    "" != isUpdate && (last_updated = isUpdate.updated);
+    "" != isUpdate;
     var url = api["url"] + "&last_updated=" + last_updated;
     console.log(url);
     var client = Ti.Network.createHTTPClient({
@@ -692,10 +694,35 @@ exports.doLogin = function(username, password, mainView, target) {
                 usersModel.addUserData(result);
                 common.hideLoading();
                 API.updateNotificationToken();
+                Ti.App.fireEvent("updateMenu");
                 if ("refresh" != target) {
                     nav.closeWindow(mainView.aspLoginWin);
                     Ti.App.fireEvent("updateHeader");
-                    "" != target && "home" != target && nav.navigationWindow(target);
+                    var toRedirect = false;
+                    if ("" != target && "home" != target) {
+                        API.callByPost({
+                            url: "getCorpPermission",
+                            params: {
+                                corpcode: res.corpcode
+                            }
+                        }, function(responseText) {
+                            var res = JSON.parse(responseText);
+                            var splitRes = target.split("/");
+                            var myTarget = splitRes[0];
+                            splitRes.length > 1 && (myTarget = splitRes[1]);
+                            if ("success" == res.status) {
+                                var takeout = res.data;
+                                for (var i = 0; i < takeout.length; i++) if (myTarget == takeout[i]) {
+                                    common.createAlert("Error", "You are not allowed to view this section", function() {});
+                                    toRedirect = false;
+                                    return false;
+                                }
+                                nav.navigationWindow(target);
+                            }
+                        });
+                        console.log("toRedirect : " + toRedirect);
+                        true == toRedirect && nav.navigationWindow(target);
+                    }
                 } else Ti.App.fireEvent("loadPage");
                 API.loadPanelList({
                     clinicType: ""

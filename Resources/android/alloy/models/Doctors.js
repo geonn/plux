@@ -145,12 +145,23 @@ exports.definition = {
             saveArray: function(arr) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                var columns = collection.config.columns;
+                var keys = [];
+                var questionmark = [];
+                var eval_values = [];
+                var update_questionmark = [];
+                for (var k in columns) {
+                    keys.push(k);
+                    questionmark.push("?");
+                    eval_values.push("entry." + k);
+                    update_questionmark.push(k + "=?");
+                }
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
-                    var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (id, name,dr_code, email, mobile,status,specialty,qualification,introduction, created, updated, img_path) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-                    db.execute(sql_query, entry.id, entry.name, entry.dr_code, entry.email, entry.mobile, entry.status, entry.specialty, entry.qualification, entry.introduction, entry.created, entry.updated, entry.img_path);
-                    var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET name=?,dr_code=?, email=?,mobile=?,status=?,specialty=?,qualification=?,introduction=?,updated=?,img_path=? WHERE id=?";
-                    db.execute(sql_query, entry.name, entry.dr_code, entry.email, entry.mobile, entry.status, entry.specialty, entry.qualification, entry.introduction, entry.updated, entry.img_path, entry.id);
+                    var without_pk_list = _.rest(update_questionmark);
+                    var without_pk_value = _.rest(eval_values);
+                    var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + questionmark.join() + ")";
+                    eval("db.execute(sql_query, " + eval_values.join() + ")");
                 });
                 db.execute("COMMIT");
                 db.close();

@@ -692,7 +692,7 @@ exports.resendVerificationEmail = function(){
 	 client.send(); 
 };
 
-exports.doLogin = function(username, password, mainView, target) { 
+exports.doLogin = function(username, password, mainView, target, from) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password); 
  
@@ -718,13 +718,48 @@ exports.doLogin = function(username, password, mainView, target) {
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
 	       		common.hideLoading();
-	       		API.updateNotificationToken();   
+	       		API.updateNotificationToken();  
+	       		Ti.App.fireEvent('updateMenu');  
 	       		if(target != 'refresh'){
 	       			nav.closeWindow(mainView.aspLoginWin); 
-					Ti.App.fireEvent('updateHeader');
-					//console.log("["+target+"]");
+					Ti.App.fireEvent('updateHeader'); 
+					var toRedirect = false;
 					if(target != "" && target != "home"){
-						nav.navigationWindow(target);
+						API.callByPost({url:"getCorpPermission", params: {corpcode: res.corpcode}}, function(responseText){ 
+						var res = JSON.parse(responseText);  
+						 
+						var splitRes = target.split("/");
+					 
+						var myTarget = splitRes[0];
+						if(splitRes.length > 1){
+							myTarget = splitRes[1];
+						}
+					 
+						if(res.status == "success"){  
+							var takeout = res.data;
+							for (var i=0; i < takeout.length; i++) { 
+						 
+							  if(myTarget == takeout[i]){
+							  	common.createAlert("Error", "You are not allowed to view this section",function(){
+							  		
+							  	});
+							  	toRedirect = false;
+							  	return false;
+							  }
+							  
+							 
+							};
+							 
+							nav.navigationWindow(target);
+						 
+						}
+						 
+					});
+					console.log("toRedirect : "+toRedirect);
+						if(toRedirect ==true ){
+							nav.navigationWindow(target);
+						}
+						
 					}
 					
 	       		}else{

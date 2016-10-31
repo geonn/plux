@@ -4,27 +4,33 @@ var usersModel = Alloy.createCollection('users');
 var loading = Alloy.createController('loading'); 
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var notificationModel = Alloy.createCollection('notification'); 
-var menu_info = [
-	{mod:"feedback", image:"/images/btn/btn_feedback.png"},
-	{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
-	{mod:"hra", image:"/images/btn/btn_hra.png"},
-	{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
-	{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
-	{mod:"profile", image:"/images/btn/btn_profile.png"},
-	{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
-	{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
-	{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
-	{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
-];
+var menu_info;
+var new_menu;
+
 common.construct($);
 PUSH.registerPush();
 
 var loadingView = Alloy.createController("loader");
 loadingView.getView().open();
 loadingView.start();
-	
+
+function loadHomePageItem(){
+	menu_info   = new_menu = [
+		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
+		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
+		{mod:"hra", image:"/images/btn/btn_hra.png"},
+		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
+		{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
+		{mod:"profile", image:"/images/btn/btn_profile.png"},
+		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
+		{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
+		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
+		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
+	]; 
+}	
+
 function loadingViewFinish(){
-	console.log("anyone call you?");
+	 
 	if(OS_IOS){
 		$.navMenu.open();
 	}else{
@@ -43,19 +49,31 @@ if(Ti.Platform.osname != "android"){
 
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
-	API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
-		var res = JSON.parse(responseText);  
-		if(res.status == "success"){  
-			var takeout = res.data;
-			for (var i=0; i < takeout.length; i++) {
-				//console.log(_.findIndex(menu_info, {mod: takeout[i]}));
-			  var index = findIndexInData(menu_info, "mod", takeout[i]);
-			  menu_info.splice(index, 1);
-			};
-			console.log(menu_info);
-		}
+	 
+	new_menu = menu_info;
+	if(corpcode != "null"){
+		 
+		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
+			var res = JSON.parse(responseText);  
+			if(res.status == "success"){  
+				var takeout = res.data;
+				for (var i=0; i < takeout.length; i++) { 
+				  var index = findIndexInData(new_menu, "mod", takeout[i]);
+				  
+				  if(index >= 0){
+				  	new_menu.splice(index, 1);
+				  }
+				  
+				};
+				 
+			}
+			render_menu();
+		});
+	}else{
+		 
 		render_menu();
-	});
+	}
+	
 }
 
 function findIndexInData(data, property, value) {
@@ -71,17 +89,19 @@ function findIndexInData(data, property, value) {
 
 function render_menu(){
 	var button_width = 139;
-	for (var i=0; i < menu_info.length; i++) {
+	
+	removeAllChildren($.scrollboard);
+	for (var i=0; i < new_menu.length; i++) {
 		var topR =10;
-		if(i == menu_info.length - 1 || i == menu_info.length - 2){
+		if(i == new_menu.length - 1 || i == new_menu.length - 2){
 			topR = 239;
 		}
 		var imageView_menu = $.UI.create("ImageView", {
-			mod: menu_info[i].mod,
+			mod: new_menu[i].mod,
 			width: button_width,
 			left: 5,
 			top: topR,
-			image: menu_info[i].image,
+			image: new_menu[i].image,
 		});
 		//var view = $.UI.create("View", {classes: ['wsize','hsize']});
 		//view.add(imageView_menu);
@@ -95,6 +115,7 @@ function init(){
 	
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();
+	loadHomePageItem();
 	checkMyHealthData();
 	$.win.add(loading.getView());
 	loading.start();
@@ -186,7 +207,7 @@ function checkMyHealthData(){
  
 		var model2 = Alloy.createCollection("health");
 		var res2 = JSON.parse(responseText);
-		console.log(res2);
+		 
 		var arr2 = res2.data || null;
 		model2.saveArray(arr2);
 		
@@ -331,30 +352,39 @@ function navWindow(e){
 
 function logoutUser(){
 	loading.start();
-	var isCorpCode = Ti.App.Properties.getString('corpcode','');
-	
-	if(isCorpCode != "" ){
+	var isCorpCode = Ti.App.Properties.getString('corpcode');
+ 	removeAllChildren($.scrollboard);
+ 	loadHomePageItem(); 
+ 	new_menu = menu_info; 
+	render_menu();
+	 console.log("isCorpCode :" +isCorpCode);
+	if(isCorpCode != "" && isCorpCode != "null"  && isCorpCode != null){ console.log("isCorpCode : IN 1" );
 		Ti.App.Properties.removeProperty('memno');
 		Ti.App.Properties.removeProperty('empno');
 		Ti.App.Properties.removeProperty('corpcode'); 
 		Ti.App.Properties.removeProperty('asp_email');
-		Ti.App.Properties.removeProperty('asp_password');
-	}else{
+		Ti.App.Properties.removeProperty('asp_password'); 
+	}else{ console.log("isCorpCode : IN 2" );
 		Ti.App.Properties.setString('u_id',''); 
 		FACEBOOK.logout();
 		if(OS_IOS){
 			$.navMenu.close();
 			Alloy.Globals.navMenu = null;
 		}else{
+			console.log("isCorpCode : android 1" );
 			$.win.close();
 		}
+		console.log("isCorpCode : android 2" );
 		var win = Alloy.createController("login").getView();
 		win.open(); 
-		//nav.navigateWithArgs("login", {});  
+		console.log("isCorpCode : android 3" );
+		return; 
 	}
-	 
-	refreshHeaderInfo(); 
+	 console.log("refreshHeaderInfo : 1" );
+	refreshHeaderInfo();  
+	console.log("refreshHeaderInfo : 2" );
 	loading.finish();
+	console.log("FINISH" );
 }
 
 function setBackground(){
@@ -387,12 +417,14 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
+	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
 	Ti.App.removeEventListener('app:loadingViewFinish', loadingViewFinish);
 	$.destroy();
-	console.log("window close");
+	 
 });
 
 Ti.App.addEventListener('resumed', syncFromServer);
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
 Ti.App.addEventListener('updateNotification', updateNotification); 
+Ti.App.addEventListener('updateMenu', checkserviceByCorpcode); 
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 
