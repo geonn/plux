@@ -26,7 +26,10 @@ function doAspSignup(){
 	var memno = $.memno.value;
 	var empno = $.empno.value;
 	var mobileno = $.mobileno.value;
-	
+	var valid_email = ValidateEmail(email);
+	if(!valid_email){
+		return false;
+	}
 	if(password != repassword){
 		common.createAlert("Error", "Password does not match the confirm password.");
 		common.hideLoading();
@@ -52,6 +55,18 @@ function doAspSignup(){
 	};
 	 
 	API.do_asp_signup(params, $);
+}
+
+function ValidateEmail(mail)
+{
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+	if(mail.match(mailformat))  
+	{  
+		return true;  
+	}else{  
+		alert("You have entered an invalid email address!");  
+		return false;  
+	}  
 }
 
 function hideProductFormKeyboard(e){

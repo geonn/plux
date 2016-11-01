@@ -10,7 +10,7 @@ function loadPage(){
 		common.showLoading();
 		$.verifyContainer.hide();
 		$.claimContainer.show();
-		API.claimInfo({memno : user.icno, corpcode : user.corpcode});
+		API.claimInfo({memno : user.memno, corpcode : user.corpcode});
 		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
 	}else{ 
 		common.hideLoading();
