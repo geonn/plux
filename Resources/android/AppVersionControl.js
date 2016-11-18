@@ -17,6 +17,10 @@ function callback_download(e) {
 }
 
 exports.checkAndUpdate = function() {
+<<<<<<< Updated upstream
     Ti.App.Properties.setString("appVersion", "1.1.973");
+=======
+    Ti.App.Properties.setString("appVersion", "1.1.974");
+>>>>>>> Stashed changes
     API.checkAppVersion(callback_download);
 };
