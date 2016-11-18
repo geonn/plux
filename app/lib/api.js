@@ -73,7 +73,7 @@ var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
 var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx";
 var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";
 var aspPreSignupUrl = "http://"+API_DOMAIN+"/presignup.aspx";
-
+var ifins = "http://"+API_DOMAIN+"/ifins.aspx";
 /**claim submmission***/
 var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
 var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
@@ -577,7 +577,7 @@ exports.do_asp_presignup = function(data, mainView){
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       //console.log(res);
-	       if(typeof res.message !== undefined && res.message != null){
+	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
 	       }else{ 
@@ -619,7 +619,7 @@ exports.do_asp_signup = function(data, mainView){
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       //console.log(res);
-	       if(typeof res.message !== undefined && res.message != null){
+	       if(typeof res.message !== "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
 	       }else{ 
@@ -704,7 +704,7 @@ exports.doLogin = function(username, password, mainView, target, from) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText); 
 	       res = result[0];  
-	       if(typeof res.message !== undefined && res.message != null){
+	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
 	       }else{
@@ -832,7 +832,7 @@ exports.claimDetailBySeries = function(e){
 	       var res = JSON.parse(this.responseText);
 	       if(res.length == 0){
 	       	
-	       	}else if( typeof res[0].message !== "undefined" && res[0].message != null){
+	       	}else if( typeof res[0].message !== "undefined"){
 	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{
@@ -878,8 +878,8 @@ exports.getClaimDetail = function(e){
 	       var res = JSON.parse(this.responseText);
 	    
 	       if(res.length == 0){
-	       	
-	       }else if( typeof res[0].message !== "undefined" && res[0].message != null){
+	       console.log(typeof res[0].message);
+	       }else if( typeof res[0].message !== "undefined"){
 	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);
 	       }else{
@@ -921,8 +921,7 @@ exports.claimInfo = function(e) {
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       //console.log(res);
-	       if(typeof res[0].message !== undefined && res[0].message != null){
+	       if(typeof res[0].message != "undefined"){
 	       		common.createAlert(res[0].message);
 	       }else{
 	       		Ti.App.Properties.setString('balchk', this.responseText);
@@ -938,6 +937,48 @@ exports.claimInfo = function(e) {
 	     		API.claimInfo({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
 	     	}else{
 	     		Ti.App.fireEvent("data_loaded");
+	     	}
+	     },
+	     timeout : 70000  // in milliseconds
+	 });
+	 // Prepare the connection.
+	 client.open("GET", encodeURI(url));
+	 // Send the request.
+	 client.send(); 
+};
+
+exports.ifins = function(e) { 
+	var url = ifins+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
+ 	//var url = ifins+"?EMPNO=05152314&CORPCODE=IFMY";
+ 	console.log("ifins");
+ 	console.log(url);
+	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
+	var client = Ti.Network.createHTTPClient({
+	     // function called when the response data is available
+	     onload : function(e) {
+	       var ret = [];
+	       var res = JSON.parse(this.responseText);
+	       console.log(res);
+	       console.log("here");
+	       if(_.isEmpty(res)){
+		      console.log("empty!");
+	       }else{
+	       	   if(typeof res[0].message != "undefined"){
+		       		common.createAlert(res[0].message);
+		       }else{
+		       		Ti.App.Properties.setString('ifins', this.responseText);
+		       		Ti.App.fireEvent("ifins_loaded"); 
+		       }
+	       }
+	     },
+	     // function called when an error occurs, including a timeout
+	     onerror : function(ex) {
+	     	retryTimes --;
+	     	console.log(retryTimes+" ifins");
+	     	if(retryTimes !== 0 && Titanium.Network.online){
+	     		API.ifins({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
+	     	}else{
+	     		Ti.App.fireEvent("ifins_loaded");
 	     	}
 	     },
 	     timeout : 70000  // in milliseconds

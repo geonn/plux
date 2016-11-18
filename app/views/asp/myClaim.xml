@@ -22,6 +22,8 @@
 		        <View id="claimContainer" width="Ti.UI.FILL" height="Ti.UI.FILL" visible="false">
 					<ScrollView id="main" layout="vertical" backgroundColor="#E9E9E9" scrollType="vertical">
 						<Label id="date"></Label>
+						<View id="personal_claim" class="wfill hsize vert"></View>
+						<View id="insurance_info" class="wfill hsize vert"></View>
 						<!--<Require type="view" src="asp/_personal_claim_view"></Require>-->
 					</ScrollView>
 				</View>

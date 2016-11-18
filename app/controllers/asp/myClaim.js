@@ -12,6 +12,7 @@ function loadPage(){
 		$.claimContainer.show();
 		API.claimInfo({memno : user.memno, corpcode : user.corpcode});
 		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
+		API.ifins({empno : user.empno, corpcode : user.corpcode});
 	}else{ 
 		common.hideLoading();
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
@@ -32,6 +33,27 @@ function checkStatus(){
 } 
 		
 Ti.App.addEventListener("data_loaded", init);
+Ti.App.addEventListener('ifins_loaded', loadIfins);
+
+function loadIfins(){
+	var ifins = JSON.parse(Ti.App.Properties.getString('ifins'));
+	ifins = ifins[0];
+	console.log(ifins);
+	var container = $.UI.create("View", {classes:['wfill','hsize','vert','box', 'rounded'], left: 10, top: 0, right: 10});
+	var label_EmpIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'], text: "Employee Number: "+ifins.EmpIns});
+	var label_SpouseIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'], top:0, text: "Spouse Issured: "+ifins.SpouseIns});
+	var label_ChildIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Child Inssured: "+ifins.ChildIns});
+	var label_InsPlan = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Insurance Plan: "+ifins.InsPlan});
+	var label_Room = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Room: "+ifins.Room});
+	var label_AddIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Additional Information: "+ifins.AddIns});
+	container.add(label_EmpIns);
+	container.add(label_SpouseIns);
+	container.add(label_ChildIns);
+	container.add(label_InsPlan);
+	container.add(label_Room);
+	container.add(label_AddIns);
+	$.insurance_info.add(container);
+}
 
 function init(){
 	//var d = new Date();
@@ -79,7 +101,7 @@ function init(){
 	Object.keys(groups).map( function( group ){ 
 		//GenerateClaimBalanceTable({claim_data: groups[group], name: group});
 	    var personal_claim_view = Alloy.createController("asp/_personal_claim_view", {data: groups[group], name: group}).getView();
-	    $.main.add(personal_claim_view);
+	    $.personal_claim.add(personal_claim_view);
 	});
 	Ti.App.removeEventListener("data_loaded", init);
 	common.hideLoading();
@@ -180,6 +202,7 @@ if(Ti.Platform.osname == "android"){
 }
 
 $.myClaim.addEventListener("close", function(){
+	Ti.App.removeEventListener('ifinsPage', loadIfins);	
 	Ti.App.removeEventListener('loadPage', loadPage);		
 	Ti.App.removeEventListener("data_loaded", init);
 	$.destroy();
