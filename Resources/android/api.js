@@ -181,11 +181,8 @@ var getclaimReimbUrl = "http://" + API_DOMAIN + "/ClaimReimb.aspx";
 
 var aspPreSignupUrl = "http://" + API_DOMAIN + "/presignup.aspx";
 
-<<<<<<< Updated upstream
 var ifins = "http://" + API_DOMAIN + "/ifins.aspx";
 
-=======
->>>>>>> Stashed changes
 var getclaimCategoryUrl = "http://" + API_DOMAIN + "/claimcategory.aspx";
 
 var getclaimSubmissionUrl = "http://" + API_DOMAIN + "/ClaimSubmission.aspx";
@@ -578,11 +575,7 @@ exports.do_asp_presignup = function(data, mainView) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-<<<<<<< Updated upstream
             if ("undefined" != typeof res.message && null != res.message) {
-=======
-            if (void 0 !== typeof res.message && null != res.message) {
->>>>>>> Stashed changes
                 common.createAlert("Error", res.message);
                 common.hideLoading();
             } else {
@@ -619,11 +612,7 @@ exports.do_asp_signup = function(data, mainView) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-<<<<<<< Updated upstream
             if ("undefined" != typeof res.message && null != res.message) {
-=======
-            if (void 0 !== typeof res.message && null != res.message) {
->>>>>>> Stashed changes
                 common.createAlert("Error", res.message);
                 common.hideLoading();
             } else {
@@ -692,11 +681,7 @@ exports.doLogin = function(username, password, mainView, target) {
         onload: function() {
             var result = JSON.parse(this.responseText);
             res = result[0];
-<<<<<<< Updated upstream
             if ("undefined" != typeof res.message && null != res.message) {
-=======
-            if (void 0 !== typeof res.message && null != res.message) {
->>>>>>> Stashed changes
                 common.createAlert("Error", res.message);
                 common.hideLoading();
             } else {
@@ -786,11 +771,7 @@ exports.claimDetailBySeries = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-<<<<<<< Updated upstream
             0 == res.length || ("undefined" != typeof res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
-=======
-            0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
->>>>>>> Stashed changes
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_extra_detail(entry.serial, entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
             }));
@@ -819,17 +800,10 @@ exports.getClaimDetail = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-<<<<<<< Updated upstream
             0 == res.length ? console.log(typeof res[0].message) : "undefined" != typeof res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype, entry.appcode);
             });
-=======
-            0 == res.length || ("undefined" != typeof res[0].message && null != res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
-                var claim_detail_model = Alloy.createCollection("claim_detail");
-                claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype, entry.appcode);
-            }));
->>>>>>> Stashed changes
         },
         onerror: function() {
             retryTimes--;
@@ -851,11 +825,7 @@ exports.claimInfo = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-<<<<<<< Updated upstream
             if ("undefined" != typeof res[0].message) common.createAlert(res[0].message); else {
-=======
-            if (void 0 !== typeof res[0].message && null != res[0].message) common.createAlert(res[0].message); else {
->>>>>>> Stashed changes
                 Ti.App.Properties.setString("balchk", this.responseText);
                 Ti.App.Properties.setString("balchkUpdatedDate", currentDateTime());
                 Ti.App.fireEvent("data_loaded");
@@ -875,7 +845,6 @@ exports.claimInfo = function(e) {
     client.send();
 };
 
-<<<<<<< Updated upstream
 exports.ifins = function(e) {
     var url = ifins + "?EMPNO=" + e.empno + "&CORPCODE=" + e.corpcode;
     console.log("ifins");
@@ -906,8 +875,6 @@ exports.ifins = function(e) {
     client.send();
 };
 
-=======
->>>>>>> Stashed changes
 exports.updateNotificationToken = function() {
     var deviceToken = Ti.App.Properties.getString("deviceToken");
     var memno = Ti.App.Properties.getString("memno");

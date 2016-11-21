@@ -22,13 +22,10 @@ function Controller() {
                 empno: user.empno,
                 corpcode: user.corpcode
             });
-<<<<<<< Updated upstream
             API.ifins({
                 empno: user.empno,
                 corpcode: user.corpcode
             });
-=======
->>>>>>> Stashed changes
         } else {
             common.hideLoading();
             $.description.text = "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
@@ -46,7 +43,6 @@ function Controller() {
             API.doLogin(asp_email, asp_password, $, "refresh", "myClaim");
         }
     }
-<<<<<<< Updated upstream
     function loadIfins() {
         var ifins = JSON.parse(Ti.App.Properties.getString("ifins"));
         ifins = ifins[0];
@@ -94,8 +90,6 @@ function Controller() {
         container.add(label_AddIns);
         $.insurance_info.add(container);
     }
-=======
->>>>>>> Stashed changes
     function init() {
         var e = JSON.parse(Ti.App.Properties.getString("balchk"));
         if ("" == e) {
@@ -117,11 +111,7 @@ function Controller() {
                 data: groups[group],
                 name: group
             }).getView();
-<<<<<<< Updated upstream
             $.personal_claim.add(personal_claim_view);
-=======
-            $.main.add(personal_claim_view);
->>>>>>> Stashed changes
         });
         Ti.App.removeEventListener("data_loaded", init);
         common.hideLoading();
@@ -345,7 +335,6 @@ function Controller() {
         id: "date"
     });
     $.__views.main.add($.__views.date);
-<<<<<<< Updated upstream
     $.__views.personal_claim = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -360,8 +349,6 @@ function Controller() {
         id: "insurance_info"
     });
     $.__views.main.add($.__views.insurance_info);
-=======
->>>>>>> Stashed changes
     $.__views.verifyContainer = Ti.UI.createView({
         id: "verifyContainer",
         visible: false,
@@ -422,18 +409,12 @@ function Controller() {
     common.construct($);
     loadPage();
     Ti.App.addEventListener("data_loaded", init);
-<<<<<<< Updated upstream
     Ti.App.addEventListener("ifins_loaded", loadIfins);
-=======
->>>>>>> Stashed changes
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myClaim);
     });
     $.myClaim.addEventListener("close", function() {
-<<<<<<< Updated upstream
         Ti.App.removeEventListener("ifinsPage", loadIfins);
-=======
->>>>>>> Stashed changes
         Ti.App.removeEventListener("loadPage", loadPage);
         Ti.App.removeEventListener("data_loaded", init);
         $.destroy();
