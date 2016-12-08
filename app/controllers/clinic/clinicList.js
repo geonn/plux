@@ -2,35 +2,43 @@ var args = arguments[0] || {};
 var clinicType = args.clinicType || "CLINIC";
 var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode') || "";
-var list;
+var data, str="", counter = 0;
 var aspClinicArr = [];
 
 if(clinicType == "hours24"){
 	clinicType = "24 Hours";
 }
 
-Ti.App.Properties.setString('clinicTypeSelection', clinicType);  
-var clinicLocationSelection = Ti.App.Properties.getString('clinicLocationSelection'); 
-var clinicLocationSelection = (clinicLocationSelection != null )? clinicLocationSelection :"All";
-common.construct($); 
-common.showLoading();
+function init(){
+	init_dropbox();
+	refresh();
+}
 
-$.clinicTypeSelection.text = clinicType;
-$.clinicLocationSelection.text = clinicLocationSelection;
-if(OS_IOS){
-	$.clinicList.title = "Locator List";
-}else{
-	$.pageTitle.text =  "Locator List";
-} 
+init();
 
-setTimeout(function(){
-	loadData(corp);
-}, 1000);
+function init_dropbox(){
+	Ti.App.Properties.setString('clinicTypeSelection', clinicType);  
+	var clinicLocationSelection = Ti.App.Properties.getString('clinicLocationSelection'); 
+	var clinicLocationSelection = (clinicLocationSelection != null )? clinicLocationSelection :"All";
+	$.clinicTypeSelection.text = clinicType;
+	$.clinicLocationSelection.text = clinicLocationSelection;
+}
 
-function listing(){   
-	var data=[];  
-	$.clinicListTv.setData(data);
-   		var arr = list;
+function refresh(){
+	data = library.getData(clinicType, str, corp, counter);
+	counter = counter + 20;
+	listing({clear:false});
+	loading = false;
+}
+
+function listing(e){   
+	if(e.clear){
+		var dat=[];  
+		console.log('yes!!');
+		$.clinicListTv.setData(dat);
+	}
+	
+   		var arr = data;
    		var counter = 0; 
    		 
    		if(arr.length < 1){
@@ -50,8 +58,7 @@ function listing(){
 				color: "transparent"
 			   });
 			row.add(noRecord);
-			data.push(row);
-			$.clinicListTv.setData(data);
+			$.clinicListTv.appendRow(row);
 		}else{ 
 	   		arr.forEach(function(entry) {
 	   			var row = Titanium.UI.createTableViewRow({
@@ -122,12 +129,9 @@ function listing(){
 				
 				row.add(contentView);
 				row.add(rightForwardBtn); 
-			 
-				data.push(row);
+			 	$.clinicListTv.appendRow(row);
+				//dat.push(row);
 	   		});
-	   		
-	   		
-	   		$.clinicListTv.setData(data);
 	   		common.hideLoading();
 		}
 		
@@ -149,42 +153,14 @@ $.btnSearch.addEventListener('click', function(){
 	}
 }); 
 
-if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.clinicList); 
-	}); 
-} 
-	/***SEARCH FUNCTION***/
-	function searchResult(){
-		$.searchItem.blur(); 
-		common.showLoading();
-		var str = $.searchItem.getValue(); 
-		if(str != ""){
-			if(clinicType == "24 Hours"){  
-				list = library.getPanelBy24Hours(str, corp); 
-			}else{ 
-				list = library.getPanelByClinicType(clinicType, str, corp);     
-			}
-			listing();
-		}else{
-			loadData(corp);
-		}	
-	}
-	
-	$.searchItem.addEventListener("return", searchResult);
-
-	$.searchItem.addEventListener('focus', function f(e){
-		$.searchItem.removeEventListener('focus', f);
-	});
-	
-	$.searchItem.addEventListener('cancel', function(e){ 
-		$.searchItem.blur();
-		loadData(corp);
-	});
-	
-	$.searchItem.addEventListener('blur', function(e){
-		 
-	});
+function searchResult(){
+	$.searchItem.blur(); 
+	common.showLoading();
+	str = $.searchItem.getValue(); 
+	counter = 0;
+	data = library.getData(clinicType, str, corp, counter);
+	listing({clear: true});
+}
  
 function showTypeSelection(){
 	var clinicTypeList = library.getCountClinicType(corp); 
@@ -209,17 +185,14 @@ function showTypeSelection(){
 		
 		dialog.addEventListener("click", function(e){   
 			if(cancelBtn != e.index){
+				counter = 0;
 				dialog.selectedIndex = e.index;
 				$.clinicTypeSelection.text = clinicArr[e.index]; 
 				Ti.App.Properties.setString('clinicTypeSelection', clinicArr[e.index]);  
-				if(clinicArr[e.index] == "24 Hours"){   
-					list = library.getPanelBy24Hours("", corp);   
-				}else{
-					list = library.getPanelByClinicType(clinicArr[e.index],"", corp);   
-				}
-
+				
+				data = library.getData(clinicArr[e.index], str, corp, counter);
 				common.showLoading();
-				listing();
+				listing({clear:true});
 		 
 			}
 		});
@@ -256,15 +229,12 @@ function showLocationSelection(){
 				Ti.App.Properties.setString('clinicLocationSelection', clinicLocationArr[e.index]);  
 			}
 			
-				
 			//list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp); 
-			if(Ti.App.Properties.getString('clinicTypeSelection') == "24 Hours"){   
-				list = library.getPanelBy24Hours("", corp);   
-			}else{
-				list = library.getPanelByClinicType(Ti.App.Properties.getString('clinicTypeSelection'),"", corp);   
-			}
+			
+			counter = 0;
+			data = library.getData(Ti.App.Properties.getString('clinicTypeSelection'), str, corp, counter);
 			common.showLoading();
-			listing();    
+			listing({clear:true});    
 		}
 	});
 }
@@ -273,12 +243,53 @@ $.btnMap.addEventListener('click', function(){
 	nav.navigateWithArgs("clinic/clinicLocator", { clinicType: Ti.App.Properties.getString('clinicTypeSelection'), location: Ti.App.Properties.getString('clinicLocationSelection') });
 });
 
-function loadData(corp){
-	if(clinicType == "24 Hours"){ 
-		list = library.getPanelBy24Hours("", corp);   
-	}else{ 
-		list = library.getPanelByClinicType(clinicType,"", corp);   
-	} 
-	common.showLoading();
-	listing();
+if(Ti.Platform.osname == "android"){
+	$.btnBack.addEventListener('click', function(){ 
+		nav.closeWindow($.clinicList); 
+	}); 
 }
+	
+$.searchItem.addEventListener("return", searchResult);
+
+$.searchItem.addEventListener('focus', function f(e){
+	$.searchItem.removeEventListener('focus', f);
+});
+
+$.searchItem.addEventListener('cancel', function(e){ 
+	$.searchItem.blur();
+	counter = 0;
+	data = library.getData(clinicType, "", corp, counter);
+	listing({clear:true});
+});
+
+$.searchItem.addEventListener('blur', function(e){
+	 
+});
+var loading = false;
+var lastDistance = 0;
+$.clinicListTv.addEventListener("scroll", function(e){
+	if(Ti.Platform.osname == 'iphone'){
+		var offset = e.contentOffset.y;
+		var height = e.size.height;
+		var total = offset + height;
+		var theEnd = e.contentSize.height;
+		var distance = theEnd - total;
+
+	
+		if (distance < lastDistance){
+			var nearEnd = theEnd * .75;
+ 			if (!loading && (total >= nearEnd)){
+ 				loading = true;
+ 				refresh();
+ 			}
+		}
+		lastDistance = distance;
+	}
+	
+	if(Ti.Platform.osname == 'android' && !loading){
+		if((e.firstVisibleItem+e.visibleItemCount) == e.totalItemCount){
+			loading = true;
+			refresh();
+		}
+	}
+});

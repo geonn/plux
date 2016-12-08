@@ -43,6 +43,39 @@ exports.definition = {
                 fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
                 db.close();
             },
+            getData: function(type, corp, counter) {
+                var collection = this;
+                var corp_sql = "" != corp ? "AND panel = 1" : "";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicType = ? " + corp_sql + " limit " + counter + ", 20";
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var res = db.execute(sql, type);
+                var listArr = [];
+                var count = 0;
+                while (res.isValidRow()) {
+                    listArr[count] = {
+                        id: res.fieldByName("id"),
+                        clinicCode: res.fieldByName("clinicCode"),
+                        clinicName: res.fieldByName("clinicName"),
+                        clinicType: res.fieldByName("clinicType"),
+                        add1: res.fieldByName("add1"),
+                        add2: res.fieldByName("add2"),
+                        city: res.fieldByName("city"),
+                        postcode: res.fieldByName("postcode"),
+                        state: res.fieldByName("state"),
+                        panel: res.fieldByName("panel"),
+                        tel: res.fieldByName("tel"),
+                        openHour: res.fieldByName("openHour"),
+                        latitude: res.fieldByName("latitude"),
+                        longitude: res.fieldByName("longitude")
+                    };
+                    res.next();
+                    count++;
+                }
+                res.close();
+                db.close();
+                collection.trigger("sync");
+                return listArr;
+            },
             getDataByID: function(id) {
                 var collection = this;
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where id = '" + id + "'";

@@ -8,26 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function init() {
-        init_dropbox();
-        refresh();
-    }
-    function init_dropbox() {
-        Ti.App.Properties.setString("clinicTypeSelection", clinicType);
-        var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
-        var clinicLocationSelection = null != clinicLocationSelection ? clinicLocationSelection : "All";
-        $.clinicTypeSelection.text = clinicType;
-        $.clinicLocationSelection.text = clinicLocationSelection;
-    }
-    function refresh() {
-        data = library.getData(clinicType, corp, counter);
-        counter += 20;
-        listing();
-        loading = false;
-    }
     function listing() {
-        var dat = [];
-        var arr = data;
+        var data = [];
+        $.clinicListTv.setData(data);
+        var arr = list;
         if (arr.length < 1) {
             common.hideLoading();
             var noRecord = Ti.UI.createLabel({
@@ -48,7 +32,7 @@ function Controller() {
                 color: "transparent"
             });
             row.add(noRecord);
-            dat.push(row);
+            data.push(row);
             $.clinicListTv.setData(data);
         } else {
             arr.forEach(function(entry) {
@@ -116,9 +100,9 @@ function Controller() {
                 });
                 row.add(contentView);
                 row.add(rightForwardBtn);
-                dat.push(row);
+                data.push(row);
             });
-            $.clinicListTv.setData(dat);
+            $.clinicListTv.setData(data);
             common.hideLoading();
         }
         $.clinicListTv.addEventListener("click", function(e) {
@@ -132,7 +116,7 @@ function Controller() {
         common.showLoading();
         var str = $.searchItem.getValue();
         if ("" != str) {
-            data = "24 Hours" == clinicType ? library.getPanelBy24Hours(str, corp) : library.getPanelByClinicType(clinicType, str, corp);
+            list = "24 Hours" == clinicType ? library.getPanelBy24Hours(str, corp) : library.getPanelByClinicType(clinicType, str, corp);
             listing();
         } else loadData(corp);
     }
@@ -160,7 +144,7 @@ function Controller() {
                 dialog.selectedIndex = e.index;
                 $.clinicTypeSelection.text = clinicArr[e.index];
                 Ti.App.Properties.setString("clinicTypeSelection", clinicArr[e.index]);
-                data = "24 Hours" == clinicArr[e.index] ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicArr[e.index], "", corp);
+                list = "24 Hours" == clinicArr[e.index] ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicArr[e.index], "", corp);
                 common.showLoading();
                 listing();
             }
@@ -187,14 +171,19 @@ function Controller() {
                 dialog.selectedIndex = e.index;
                 $.clinicLocationSelection.text = clinicLocationArr[e.index];
                 "0" == e.index ? Ti.App.Properties.setString("clinicLocationSelection", null) : Ti.App.Properties.setString("clinicLocationSelection", clinicLocationArr[e.index]);
-                data = "24 Hours" == Ti.App.Properties.getString("clinicTypeSelection") ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(Ti.App.Properties.getString("clinicTypeSelection"), "", corp);
+                list = "24 Hours" == Ti.App.Properties.getString("clinicTypeSelection") ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(Ti.App.Properties.getString("clinicTypeSelection"), "", corp);
                 common.showLoading();
                 listing();
             }
         });
     }
+    function loadData(corp) {
+        list = "24 Hours" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
+        common.showLoading();
+        listing();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "clinic/clinicList";
+    this.__controllerPath = "clinic/clinicList_bak";
     this.args = arguments[0] || {};
     if (arguments[0]) {
         {
@@ -219,10 +208,10 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.clinicList && $.addTopLevelView($.__views.clinicList);
-    $.__views.__alloyId575 = Ti.UI.createView({
+    $.__views.__alloyId590 = Ti.UI.createView({
         layout: "horizontal",
         right: 5,
-        id: "__alloyId575"
+        id: "__alloyId590"
     });
     $.__views.btnMap = Ti.UI.createImageView({
         right: 10,
@@ -231,15 +220,15 @@ function Controller() {
         height: 25,
         image: "/images/map.png"
     });
-    $.__views.__alloyId575.add($.__views.btnMap);
+    $.__views.__alloyId590.add($.__views.btnMap);
     $.__views.btnSearch = Ti.UI.createImageView({
         id: "btnSearch",
         width: 25,
         height: 25,
         image: "/images/search.png"
     });
-    $.__views.__alloyId575.add($.__views.btnSearch);
-    $.__views.clinicList.rightNavButton = $.__views.__alloyId575;
+    $.__views.__alloyId590.add($.__views.btnSearch);
+    $.__views.clinicList.rightNavButton = $.__views.__alloyId590;
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -256,47 +245,47 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId576 = Ti.UI.createLabel({
+    $.__views.__alloyId591 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
-        id: "__alloyId576"
+        id: "__alloyId591"
     });
-    $.__views.loadingBar.add($.__views.__alloyId576);
+    $.__views.loadingBar.add($.__views.__alloyId591);
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
     $.__views.clinicList.add($.__views.panelListTbl);
-    $.__views.__alloyId577 = Ti.UI.createView({
+    $.__views.__alloyId592 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId577"
+        id: "__alloyId592"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId577);
-    $.__views.__alloyId578 = Ti.UI.createView({
+    $.__views.panelListTbl.add($.__views.__alloyId592);
+    $.__views.__alloyId593 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId578"
+        id: "__alloyId593"
     });
-    $.__views.__alloyId577.add($.__views.__alloyId578);
+    $.__views.__alloyId592.add($.__views.__alloyId593);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId578.add($.__views.btnBack);
-    $.__views.__alloyId579 = Ti.UI.createView({
+    $.__views.__alloyId593.add($.__views.btnBack);
+    $.__views.__alloyId594 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId579"
+        id: "__alloyId594"
     });
-    $.__views.__alloyId577.add($.__views.__alloyId579);
+    $.__views.__alloyId592.add($.__views.__alloyId594);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -308,20 +297,20 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId579.add($.__views.pageTitle);
-    $.__views.__alloyId580 = Ti.UI.createView({
+    $.__views.__alloyId594.add($.__views.pageTitle);
+    $.__views.__alloyId595 = Ti.UI.createView({
         right: 0,
         width: "20%",
-        id: "__alloyId580"
+        id: "__alloyId595"
     });
-    $.__views.__alloyId577.add($.__views.__alloyId580);
-    $.__views.__alloyId581 = Ti.UI.createView({
+    $.__views.__alloyId592.add($.__views.__alloyId595);
+    $.__views.__alloyId596 = Ti.UI.createView({
         layout: "horizontal",
         right: 5,
         top: 10,
-        id: "__alloyId581"
+        id: "__alloyId596"
     });
-    $.__views.__alloyId580.add($.__views.__alloyId581);
+    $.__views.__alloyId595.add($.__views.__alloyId596);
     $.__views.btnMap = Ti.UI.createImageView({
         right: 10,
         id: "btnMap",
@@ -329,14 +318,14 @@ function Controller() {
         height: 25,
         image: "/images/map.png"
     });
-    $.__views.__alloyId581.add($.__views.btnMap);
+    $.__views.__alloyId596.add($.__views.btnMap);
     $.__views.btnSearch = Ti.UI.createImageView({
         id: "btnSearch",
         width: 25,
         height: 25,
         image: "/images/search.png"
     });
-    $.__views.__alloyId581.add($.__views.btnSearch);
+    $.__views.__alloyId596.add($.__views.btnSearch);
     $.__views.searchItem = Ti.UI.createSearchBar({
         barColor: "#FFFFFF",
         tintColor: "#CE1D1C",
@@ -348,20 +337,20 @@ function Controller() {
         hintText: "Search Clinic"
     });
     $.__views.panelListTbl.add($.__views.searchItem);
-    $.__views.__alloyId582 = Ti.UI.createView({
+    $.__views.__alloyId597 = Ti.UI.createView({
         height: 50,
         layout: "horizontal",
         width: Ti.UI.FILL,
-        id: "__alloyId582"
+        id: "__alloyId597"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId582);
-    $.__views.__alloyId583 = Ti.UI.createView({
+    $.__views.panelListTbl.add($.__views.__alloyId597);
+    $.__views.__alloyId598 = Ti.UI.createView({
         width: "50%",
         height: Ti.UI.SIZE,
-        id: "__alloyId583"
+        id: "__alloyId598"
     });
-    $.__views.__alloyId582.add($.__views.__alloyId583);
-    showTypeSelection ? $.addListener($.__views.__alloyId583, "click", showTypeSelection) : __defers["$.__views.__alloyId583!click!showTypeSelection"] = true;
+    $.__views.__alloyId597.add($.__views.__alloyId598);
+    showTypeSelection ? $.addListener($.__views.__alloyId598, "click", showTypeSelection) : __defers["$.__views.__alloyId598!click!showTypeSelection"] = true;
     $.__views.clinicTypeSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -373,29 +362,29 @@ function Controller() {
         text: "Clinic Type",
         id: "clinicTypeSelection"
     });
-    $.__views.__alloyId583.add($.__views.clinicTypeSelection);
-    $.__views.__alloyId584 = Ti.UI.createImageView({
+    $.__views.__alloyId598.add($.__views.clinicTypeSelection);
+    $.__views.__alloyId599 = Ti.UI.createImageView({
         right: 10,
         width: 15,
         height: 15,
         image: "/images/btn-down.png",
-        id: "__alloyId584"
+        id: "__alloyId599"
     });
-    $.__views.__alloyId583.add($.__views.__alloyId584);
-    $.__views.__alloyId585 = Ti.UI.createView({
+    $.__views.__alloyId598.add($.__views.__alloyId599);
+    $.__views.__alloyId600 = Ti.UI.createView({
         width: 1,
         height: 50,
         backgroundColor: "#9E9E9E",
-        id: "__alloyId585"
+        id: "__alloyId600"
     });
-    $.__views.__alloyId582.add($.__views.__alloyId585);
-    $.__views.__alloyId586 = Ti.UI.createView({
+    $.__views.__alloyId597.add($.__views.__alloyId600);
+    $.__views.__alloyId601 = Ti.UI.createView({
         width: "49%",
         height: Ti.UI.SIZE,
-        id: "__alloyId586"
+        id: "__alloyId601"
     });
-    $.__views.__alloyId582.add($.__views.__alloyId586);
-    showLocationSelection ? $.addListener($.__views.__alloyId586, "click", showLocationSelection) : __defers["$.__views.__alloyId586!click!showLocationSelection"] = true;
+    $.__views.__alloyId597.add($.__views.__alloyId601);
+    showLocationSelection ? $.addListener($.__views.__alloyId601, "click", showLocationSelection) : __defers["$.__views.__alloyId601!click!showLocationSelection"] = true;
     $.__views.clinicLocationSelection = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -407,22 +396,22 @@ function Controller() {
         text: "Clinic Location",
         id: "clinicLocationSelection"
     });
-    $.__views.__alloyId586.add($.__views.clinicLocationSelection);
-    $.__views.__alloyId587 = Ti.UI.createImageView({
+    $.__views.__alloyId601.add($.__views.clinicLocationSelection);
+    $.__views.__alloyId602 = Ti.UI.createImageView({
         right: 10,
         width: 15,
         height: 15,
         image: "/images/btn-down.png",
-        id: "__alloyId587"
+        id: "__alloyId602"
     });
-    $.__views.__alloyId586.add($.__views.__alloyId587);
-    $.__views.__alloyId588 = Ti.UI.createView({
+    $.__views.__alloyId601.add($.__views.__alloyId602);
+    $.__views.__alloyId603 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: 1,
         backgroundColor: "#9E9E9E",
-        id: "__alloyId588"
+        id: "__alloyId603"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId588);
+    $.__views.panelListTbl.add($.__views.__alloyId603);
     $.__views.clinicListTv = Ti.UI.createTableView({
         id: "clinicListTv",
         layout: "vertical",
@@ -439,9 +428,19 @@ function Controller() {
     var clinicType = args.clinicType || "CLINIC";
     var library = Alloy.createCollection("panelList");
     var corp = Ti.App.Properties.getString("corpcode") || "";
-    var data, counter = 0;
+    var list;
     "hours24" == clinicType && (clinicType = "24 Hours");
-    init();
+    Ti.App.Properties.setString("clinicTypeSelection", clinicType);
+    var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
+    var clinicLocationSelection = null != clinicLocationSelection ? clinicLocationSelection : "All";
+    common.construct($);
+    common.showLoading();
+    $.clinicTypeSelection.text = clinicType;
+    $.clinicLocationSelection.text = clinicLocationSelection;
+    $.pageTitle.text = "Locator List";
+    setTimeout(function() {
+        loadData(corp);
+    }, 1e3);
     $.btnSearch.addEventListener("click", function() {
         var isVis = $.searchItem.getVisible();
         if (true === isVis) {
@@ -451,12 +450,6 @@ function Controller() {
             $.searchItem.visible = true;
             $.searchItem.height = 50;
         }
-    });
-    $.btnMap.addEventListener("click", function() {
-        nav.navigateWithArgs("clinic/clinicLocator", {
-            clinicType: Ti.App.Properties.getString("clinicTypeSelection"),
-            location: Ti.App.Properties.getString("clinicLocationSelection")
-        });
     });
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicList);
@@ -470,15 +463,14 @@ function Controller() {
         loadData(corp);
     });
     $.searchItem.addEventListener("blur", function() {});
-    var loading = false;
-    $.clinicListTv.addEventListener("scroll", function(e) {
-        if (true && !loading && e.firstVisibleItem + e.visibleItemCount == e.totalItemCount) {
-            loading = true;
-            refresh();
-        }
+    $.btnMap.addEventListener("click", function() {
+        nav.navigateWithArgs("clinic/clinicLocator", {
+            clinicType: Ti.App.Properties.getString("clinicTypeSelection"),
+            location: Ti.App.Properties.getString("clinicLocationSelection")
+        });
     });
-    __defers["$.__views.__alloyId583!click!showTypeSelection"] && $.addListener($.__views.__alloyId583, "click", showTypeSelection);
-    __defers["$.__views.__alloyId586!click!showLocationSelection"] && $.addListener($.__views.__alloyId586, "click", showLocationSelection);
+    __defers["$.__views.__alloyId598!click!showTypeSelection"] && $.addListener($.__views.__alloyId598, "click", showTypeSelection);
+    __defers["$.__views.__alloyId601!click!showLocationSelection"] && $.addListener($.__views.__alloyId601, "click", showLocationSelection);
     _.extend($, exports);
 }
 
