@@ -1,5 +1,6 @@
 var args = arguments[0] || {};
 var clinicType = args.clinicType || "CLINIC";
+var loading = Alloy.createController("loading");
 var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode') || "";
 var data, str="", counter = 0;
@@ -10,6 +11,7 @@ if(clinicType == "hours24"){
 }
 
 function init(){
+	$.win.add(loading.getView());
 	init_dropbox();
 	refresh();
 }
@@ -28,13 +30,12 @@ function refresh(){
 	data = library.getData(clinicType, str, corp, counter);
 	counter = counter + 20;
 	listing({clear:false});
-	loading = false;
+	load = false;
 }
 
 function listing(e){   
 	if(e.clear){
-		var dat=[];  
-		console.log('yes!!');
+		var dat=[];
 		$.clinicListTv.setData(dat);
 	}
 	
@@ -42,7 +43,7 @@ function listing(e){
    		var counter = 0; 
    		 
    		if(arr.length < 1 && e.clear){
-   			common.hideLoading();
+   			loading.finish();
 			var noRecord = Ti.UI.createLabel({ 
 			    text: "No clinic found", 
 			    color: '#CE1D1C', 
@@ -132,7 +133,7 @@ function listing(e){
 			 	$.clinicListTv.appendRow(row);
 				//dat.push(row);
 	   		});
-	   		common.hideLoading();
+	   		loading.finish();
 		}
 		
 		$.clinicListTv.addEventListener('click', function(e) { 
@@ -155,7 +156,7 @@ $.btnSearch.addEventListener('click', function(){
 
 function searchResult(){
 	$.searchItem.blur(); 
-	common.showLoading();
+	loading.show();
 	str = $.searchItem.getValue(); 
 	counter = 0;
 	data = library.getData(clinicType, str, corp, counter);
@@ -191,8 +192,7 @@ function showTypeSelection(){
 				Ti.App.Properties.setString('clinicTypeSelection', clinicTypeList[e.index].clinicType);  
 				
 				data = library.getData(clinicTypeList[e.index].clinicType, str, corp, counter);
-				console.log(data);
-				common.showLoading();
+				loading.start();
 				listing({clear:true});
 		 
 			}
@@ -234,7 +234,7 @@ function showLocationSelection(){
 			
 			counter = 0;
 			data = library.getData(Ti.App.Properties.getString('clinicTypeSelection'), str, corp, counter);
-			common.showLoading();
+			loading.start();
 			listing({clear:true});    
 		}
 	});
@@ -246,7 +246,7 @@ $.btnMap.addEventListener('click', function(){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.clinicList); 
+		nav.closeWindow($.win); 
 	}); 
 }
 	
@@ -266,7 +266,7 @@ $.searchItem.addEventListener('cancel', function(e){
 $.searchItem.addEventListener('blur', function(e){
 	 
 });
-var loading = false;
+var load = false;
 var lastDistance = 0;
 $.clinicListTv.addEventListener("scroll", function(e){
 	if(Ti.Platform.osname == 'iphone'){
@@ -279,17 +279,17 @@ $.clinicListTv.addEventListener("scroll", function(e){
 	
 		if (distance < lastDistance){
 			var nearEnd = theEnd * .75;
- 			if (!loading && (total >= nearEnd)){
- 				loading = true;
+ 			if (!load && (total >= nearEnd)){
+ 				load = true;
  				refresh();
  			}
 		}
 		lastDistance = distance;
 	}
 	
-	if(Ti.Platform.osname == 'android' && !loading){
+	if(Ti.Platform.osname == 'android' && !load){
 		if((e.firstVisibleItem+e.visibleItemCount) == e.totalItemCount){
-			loading = true;
+			load = true;
 			refresh();
 		}
 	}
