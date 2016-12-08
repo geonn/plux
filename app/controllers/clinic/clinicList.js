@@ -4,7 +4,7 @@ var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode') || "";
 var data, str="", counter = 0;
 var aspClinicArr = [];
-
+Ti.App.Properties.setString('clinicLocationSelection', null); 
 if(clinicType == "hours24"){
 	clinicType = "24 Hours";
 }
@@ -41,7 +41,7 @@ function listing(e){
    		var arr = data;
    		var counter = 0; 
    		 
-   		if(arr.length < 1){
+   		if(arr.length < 1 && e.clear){
    			common.hideLoading();
 			var noRecord = Ti.UI.createLabel({ 
 			    text: "No clinic found", 
