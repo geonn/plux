@@ -188,9 +188,10 @@ function showTypeSelection(){
 				counter = 0;
 				dialog.selectedIndex = e.index;
 				$.clinicTypeSelection.text = clinicArr[e.index]; 
-				Ti.App.Properties.setString('clinicTypeSelection', clinicArr[e.index]);  
+				Ti.App.Properties.setString('clinicTypeSelection', clinicTypeList[e.index].clinicType);  
 				
-				data = library.getData(clinicArr[e.index], str, corp, counter);
+				data = library.getData(clinicTypeList[e.index].clinicType, str, corp, counter);
+				console.log(data);
 				common.showLoading();
 				listing({clear:true});
 		 
