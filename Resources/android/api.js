@@ -680,8 +680,6 @@ exports.doLogin = function(username, password, mainView, target) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var result = JSON.parse(this.responseText);
-            console.log("login here");
-            console.log(result);
             res = result[0];
             if ("undefined" != typeof res.message && null != res.message) {
                 common.createAlert("Error", res.message);
@@ -703,7 +701,6 @@ exports.doLogin = function(username, password, mainView, target) {
                     nav.closeWindow(mainView.aspLoginWin);
                     Ti.App.fireEvent("updateHeader");
                     var toRedirect = false;
-                    console.log(target + " target here");
                     if ("" != target && "home" != target) {
                         API.callByPost({
                             url: "getCorpPermission",
@@ -712,8 +709,6 @@ exports.doLogin = function(username, password, mainView, target) {
                             }
                         }, function(responseText) {
                             var res = JSON.parse(responseText);
-                            console.log("getCorpPermission");
-                            console.log(res);
                             var splitRes = target.split("/");
                             var myTarget = splitRes[0];
                             splitRes.length > 1 && (myTarget = splitRes[1]);

@@ -43,12 +43,17 @@ exports.definition = {
                 fieldExists || db.execute("ALTER TABLE " + collection.config.adapter.collection_name + " ADD COLUMN " + newFieldName + " " + colSpec);
                 db.close();
             },
-            getData: function(type, corp, counter) {
+            getData: function(type, str, corp, counter) {
                 var collection = this;
-                var corp_sql = "" != corp ? "AND panel = 1" : "";
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where clinicType = ? " + corp_sql + " limit " + counter + ", 20";
+                var clinicLocationSelection = Ti.App.Properties.getString("clinicLocationSelection");
+                var location_sql = null != clinicLocationSelection ? " AND state='" + clinicLocationSelection.toUpperCase() + "' " : "";
+                var type_sql = "24 Hours" == type ? "openHour LIKE '%24 HOURS%' " : " clinicType = '" + type + "'";
+                var corp_sql = "" != corp ? " AND panel = 1" : "";
+                var str_sql = "" != str ? " AND (clinicName LIKE '%' || '" + str + "' ||'%' OR add1 LIKE '%'|| '" + str + "' ||'%' OR city LIKE '%'|| '" + str + "' ||'%' OR postcode LIKE '%'|| '" + str + "' ||'%' OR state LIKE '%'|| '" + str + "' ||'%')" : "";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where " + type_sql + corp_sql + str_sql + location_sql + " limit " + counter + ", 20";
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var res = db.execute(sql, type);
+                var res = db.execute(sql);
                 var listArr = [];
                 var count = 0;
                 while (res.isValidRow()) {
