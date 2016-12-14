@@ -17,6 +17,7 @@
 				<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
 				<TextField class="text_input" id="fullname" hintText="Enter Full Name" value="" /><!-- wongbh@live.com -->
 				<TextField class="text_input" id="email" hintText="Enter Email" value="" /><!-- wongbh@live.com -->
+				<TextField class="text_input" id="ic_no" hintText="Enter Your IC" keyboardType="Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD" value="" />
 				<TextField id="password" hintText="Enter Password" value="" />
 				<TextField id="confirm" hintText="Enter Confirm Password" value="" /><!--12345678 -->
 				<View id="tc_area" layout="vertical" height="Ti.UI.SIZE" width="Ti.UI.FILL"></View>

@@ -503,9 +503,9 @@ exports.do_pluxLogin = function(data, callback){
 	client.send(); 
 };
 
-exports.do_signup = function(data,mainView){
+exports.do_signup = function(data,mainView, callback){
 	 
-	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
+	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&ic_no="+data.ic_no+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
   	var params = { 
 			email: data.email,
 			password: data.password 
@@ -515,17 +515,18 @@ exports.do_signup = function(data,mainView){
 		// function called when the response data is available
 		onload : function(e) { 
 			var result = JSON.parse(this.responseText);
-			common.hideLoading(); 
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
-				return false;
+				callback(false);
 			}else{
+				console.log('success');
+				callback(true);
 				mainView.win.close();
-  				Ti.App.fireEvent('loginAfterRegister',{params: params}); 
 			}
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
+			console.log(e);
 		},
 		timeout : 70000  // in milliseconds
 	}); 
@@ -535,7 +536,7 @@ exports.do_signup = function(data,mainView){
 
 exports.plux_signup = function(data, callback){
 	 
-	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
+	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&ic_no="+data.ic_no+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
   	var params = { 
 		email: data.email,
 		password: data.password 
@@ -640,6 +641,7 @@ exports.do_asp_signup = function(data, mainView){
 						fullname: data.name,
 						email: data.email,
 						password: data.password,
+						ic_no: res.memno,
 						agreets: 1
 					};
 					

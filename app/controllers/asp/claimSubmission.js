@@ -28,11 +28,7 @@ function init(){
 		claimMemNo.push(entry.memno);
 	}); 
 	claimName.push("Cancel"); 
-	getClaimCategory(); 
-	if(OS_IOS){
-		claimName.push("Cancel");
-	}
-	 	 
+	getClaimCategory();	 	 
 }
 
 function checkIfHaveData(){
@@ -155,8 +151,9 @@ function submitClaim(){
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
 	//console.log(params);
 	common.showLoading(); 
-	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){ 
+	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){
 		var res = JSON.parse(responseText); 
+		console.log(res);
 		common.hideLoading();
 		if(res[0]['code'] == "02"){
 			common.createAlert("Success",res[0]['message'],function(){
@@ -196,7 +193,8 @@ function changeVisitDate(e){
  
     var year = pickerdate.getFullYear(); 
     selDate = day + "/" + month + "/" + year; 
-     
+    console.log("trigger!");
+    console.log(selDate); 
 	$.dateVisit.text = selDate ;  
 	$.dateVisit.color = "#000000" ;
 }
@@ -219,6 +217,8 @@ function changeVisitDate(e){
 			}
 		});
 	});
+	console.log("claimName");
+	console.log(claimName);
 	
 	$.tvrClaimUnder.addEventListener('click', function(){
 		var cancelBtn = claimName.length -1;
@@ -240,6 +240,7 @@ function changeVisitDate(e){
  
 
 function hideDatePicker(){
+	changeVisitDate($.dateVisitPicker);
 	$.dateVisitPicker.visible = false; 
 	$.dateToolbar.visible = false;
 	$.selectorView.height = 0;
