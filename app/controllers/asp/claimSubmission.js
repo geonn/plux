@@ -14,11 +14,13 @@ var claimCategoryId = 0;
 var claimMemId;
 var claimSerial;
 var claimMode = "INSERT";
+var loading = Alloy.createController('loading'); 
 common.construct($);
-common.showLoading();
 init();
 
 function init(){
+	loading.start();
+	$.win.add(loading.getView());
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
@@ -36,7 +38,7 @@ function checkIfHaveData(){
 		claimMode = "UPDATE";
 		claimSerial = serial;
 		var params = "SERIAL="+serial; 
-		common.showLoading();  
+		loading.start(); 
 		API.callByGet({url:"getclaimReimbUrl", params: params}, function(responseText){ 
 			var res = JSON.parse(responseText); 
 			claimMemId = res[0].memno;
@@ -63,7 +65,7 @@ function checkIfHaveData(){
 		 	$.category.color = "#000000"; 
 	 		//claimCategoryIdArr.push(entry.catID);
 			//claimCategoryArr;
-		 	common.hideLoading(); 
+		 	loading.finish(); 
 		}); 
 		//s$.saveBtn.visible = false;
 	} 
@@ -90,7 +92,7 @@ function getClaimCategory(){
 	 	if(OS_IOS){
 			claimCategoryArr.push("Cancel"); 
 		}
-		common.hideLoading();
+		loading.finish();
 		checkIfHaveData();
 	}); 
 }
@@ -150,11 +152,11 @@ function submitClaim(){
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
 	//console.log(params);
-	common.showLoading(); 
+	loading.start();
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){
 		var res = JSON.parse(responseText); 
 		console.log(res);
-		common.hideLoading();
+		loading.finish();
 		if(res[0]['code'] == "02"){
 			common.createAlert("Success",res[0]['message'],function(){
 				$.win.close();

@@ -26,9 +26,9 @@ function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
 	var asp_password = Ti.App.Properties.getString('asp_password');	 
 	if(asp_email){
-		Ti.App.addEventListener('loadPage', loadPage);
+		//Ti.App.addEventListener('loadPage', loadPage);
 		common.showLoading();
-		API.doLogin(asp_email, asp_password, $, "refresh", "myClaim" );
+		API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
 	}
 } 
 		
@@ -43,7 +43,7 @@ function loadIfins(){
 	var label_EmpIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'], text: "Employee Number: "+ifins.EmpIns});
 	var label_SpouseIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'], top:0, text: "Spouse Issured: "+ifins.SpouseIns});
 	var label_ChildIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Child Inssured: "+ifins.ChildIns});
-	var label_InsPlan = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Insurance Plan: "+ifins.InsPlan});
+	var label_InsPlan = $.UI.create("Label", {classes: ['wfill','hsize','padding', 'bold'],top:0, text: "Insurance Plan: "+ifins.InsPlan});
 	var label_Room = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Room: "+ifins.Room});
 	var label_AddIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Additional Information: "+ifins.AddIns});
 	container.add(label_EmpIns);
@@ -52,7 +52,16 @@ function loadIfins(){
 	container.add(label_InsPlan);
 	container.add(label_Room);
 	container.add(label_AddIns);
+	label_InsPlan.addEventListener("click", openPdf);
 	$.insurance_info.add(container);
+}
+
+function openPdf(){
+	var ifins = JSON.parse(Ti.App.Properties.getString('ifins'));
+	ifins = ifins[0];
+	console.log(encodeURI(ifins.InsPlanUrl));
+	 var win = Alloy.createController("webview", {url: encodeURI(ifins.InsPlanUrl)}).getView();
+	 win.open();
 }
 
 function init(){

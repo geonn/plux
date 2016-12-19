@@ -3,11 +3,12 @@ var singleton = true;
 common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
-var loading = Alloy.createController('loading'); 
+var loading = Alloy.createController('loading');
+$.win.add(loading.getView()); 
 console.log("login open");
 closeBox();
 $.email.value = preset_email;
-$.win.add(loading.getView());
+
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
@@ -28,12 +29,14 @@ function doLogin() {
 			email: email,
 			password: password 
 		};
-		API.do_pluxLogin(params, function(){
-			$.win.close();
+		API.do_pluxLogin(params, function(success){
+			if(success){
+				$.win.close();
+				var win = Alloy.createController("home").getView();
+				win.open();
+			}
 			singleton = true;
 			loading.finish();
-			var win = Alloy.createController("home").getView();
-			win.open();  
 		});
 	}
 }

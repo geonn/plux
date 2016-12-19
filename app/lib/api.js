@@ -461,9 +461,11 @@ exports.do_pluxLogin = function(data, callback){
 		// function called when the response data is available
 		onload : function(e) { 
 			var result = JSON.parse(this.responseText);
+			console.log(result);
 			common.hideLoading();  
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
+				callback(false);
 				return false;
 			}else{  
 				var usersPluxModel = Alloy.createCollection('users_plux'); 
@@ -491,7 +493,7 @@ exports.do_pluxLogin = function(data, callback){
 	       		API.updateNotificationToken();    
 				/*Ti.App.fireEvent('updateHeader');
 				  */ 
-				callback();
+				callback(true);
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -694,12 +696,10 @@ exports.resendVerificationEmail = function(){
 	 client.send(); 
 };
 
-exports.doLogin = function(username, password, mainView, target, from) { 
+exports.doLogin = function(username, password, mainView, target, callback) { 
 	var u_id = Ti.App.Properties.getString('u_id') || ""; 
 	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password); 
  
-	  console.log("asp login"+url);
-	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -719,9 +719,10 @@ exports.doLogin = function(username, password, mainView, target, from) {
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		updateUserService(u_id, 1,username, password);
 	       		usersModel.addUserData(result);
-	       		common.hideLoading();
 	       		API.updateNotificationToken();  
-	       		Ti.App.fireEvent('updateMenu');  
+	       		Ti.App.fireEvent('updateMenu');
+	       		
+	       		
 	       		if(target != 'refresh'){
 	       			nav.closeWindow(mainView.aspLoginWin); 
 					Ti.App.fireEvent('updateHeader'); 
@@ -765,7 +766,7 @@ exports.doLogin = function(username, password, mainView, target, from) {
 					}
 					
 	       		}else{
-	       			Ti.App.fireEvent('loadPage');
+	       			callback();
 	       		}
 				
 				//load Panel List

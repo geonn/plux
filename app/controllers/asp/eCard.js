@@ -7,7 +7,8 @@ common.construct($);
 var usersModel = Alloy.createCollection('users'); 
 var user = usersModel.getOwnerData(u_id); 
 var qrcode = require('qrcode');
-
+var loading = Alloy.createController('loading');
+$.win.add(loading.getView());
 init();
 
 function init(){
@@ -36,10 +37,22 @@ function checkStatus(){
 	var asp_password = Ti.App.Properties.getString('asp_password');	 
 	if(asp_email){
 		Ti.App.addEventListener('loadPage', init);
-		common.showLoading();
-		API.doLogin(asp_email, asp_password, $, "refresh" );
+		loading.start();
+		//API.doLogin(asp_email, asp_password, $, login_callback);
+		API.callByPost({url:"loginUrl", params: {LOGINID: asp_email, PASSWORD: asp_password}}, login_callback);
 	}
 } 
+
+function login_callback(responseText){
+	var res = JSON.parse(responseText); 
+	res = res[0];
+	if(typeof res.message != "undefined" && res.message != null){
+   		 common.createAlert("Error",res.message);
+   		 loading.finish();
+   }else{
+   	
+   }
+}
 
 var front = Ti.UI.createView({
     name:"front",
