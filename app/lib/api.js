@@ -1327,7 +1327,7 @@ function updateUserService(u_id, service_id, email, password){
 
 function contactServerByGet(url) {  
 	var client = Ti.Network.createHTTPClient({
-		timeout : 60000
+		timeout : 10000
 	});
   	if(OS_ANDROID){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  

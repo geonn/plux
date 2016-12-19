@@ -160,11 +160,13 @@ function submitClaim(){
 		if(res[0]['code'] == "02"){
 			common.createAlert("Success",res[0]['message'],function(){
 				$.win.close();
-			} );
-			
+			});
 		}else{
 			common.createAlert("Error",res[0]['message'] );
 		} 
+	}, function(responseText){
+		loading.finish();
+		common.createAlert("Error", "The Server is busy. Please try again later.");
 	}); 
 }
 
