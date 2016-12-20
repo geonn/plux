@@ -157,7 +157,6 @@ exports.updateUserFromFB = function(e, mainView){
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
 			//console.log(res);
-			common.hideLoading();
 		    if(res.status == "success"){   
 		        var usersPluxModel = Alloy.createCollection('users_plux'); 
 				usersPluxModel.addUserData({

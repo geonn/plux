@@ -1,5 +1,9 @@
 "Window":{
-	 backgroundColor: "#ffffff",
+	backgroundColor: "#ffffff",
+	fullscreen : true
+},
+"Window[platform=android]":{
+	backgroundColor: "#ffffff",
 	fullscreen : true,
 	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
 },

@@ -250,7 +250,6 @@ exports.updateUserFromFB = function(e, mainView) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            common.hideLoading();
             if ("success" == res.status) {
                 var usersPluxModel = Alloy.createCollection("users_plux");
                 usersPluxModel.addUserData({

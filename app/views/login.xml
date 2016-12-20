@@ -1,5 +1,5 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C"  title="Login" id="win" class="container" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN">
+	<Window navTintColor="#CE1D1C"  title="Login" id="win" class="container">
 		<LeftNavButton>
 	        <View left="0">
 	          
