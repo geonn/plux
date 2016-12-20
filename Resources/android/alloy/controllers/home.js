@@ -469,6 +469,7 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     var menu_info;
     var new_menu;
+    var loadingView = Alloy.createController("loader");
     common.construct($);
     PUSH.registerPush();
     console.log("start loader lo");
@@ -487,6 +488,14 @@ function Controller() {
         });
         dialog.show();
     });
+<<<<<<< Updated upstream
+=======
+    console.log("start loader lo");
+    setTimeout(function() {
+        loadingView.getView().open();
+        loadingView.start();
+    }, 500);
+>>>>>>> Stashed changes
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("resumed", syncFromServer);
         Ti.App.removeEventListener("updateNotification", updateNotification);
