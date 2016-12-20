@@ -461,8 +461,6 @@ exports.do_pluxLogin = function(data, callback){
 		// function called when the response data is available
 		onload : function(e) { 
 			var result = JSON.parse(this.responseText);
-			console.log(result);
-			common.hideLoading();  
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
 				callback(false);

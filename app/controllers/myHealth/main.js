@@ -5,9 +5,40 @@ var hd = require('healthData');
 common.construct($);
 hd.construct($);
 
-if(Ti.Platform.osname != "android"){
-	hd.stepsMotion();
+init();
+
+function init(){
+	checkMyHealthData();
 }
+
+function checkMyHealthData(){ 
+	var u_id = Ti.App.Properties.getString('u_id') || ""; 
+	var checker = Alloy.createCollection('updateChecker');
+	var isUpdate = checker.getCheckerById("14", u_id);
+	var last_updated ="";
+	 
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}
+	
+	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText){
+ 
+		var model2 = Alloy.createCollection("health");
+		var res2 = JSON.parse(responseText);
+		 
+		var arr2 = res2.data || null;
+		model2.saveArray(arr2);
+		
+		checker.updateModule(14,"getHealthDataByUser", res2.last_updated, u_id);
+		
+		if(Ti.Platform.osname != "android"){
+			hd.stepsMotion();
+		}
+		filterList({category: "all"});
+	});
+}
+
+
 
 function resetGraph(){
 	$.bmiView.setHeight("0");
@@ -127,10 +158,7 @@ Ti.App.addEventListener('populateDataById', populateDataById);
 function populateDataById(e){
 	hd.loadInfo(e.id,'','1');
 }
-
-
-
-filterList({category: "all"}); 
+ 
 /**if(Ti.Platform.osname != "android"){
 	$.stepsView.addEventListener('click',function(e){
 		nav.navigateWithArgs("myHealth/healthDataSummary",{gType: 10});

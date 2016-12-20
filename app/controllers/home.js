@@ -10,10 +10,6 @@ var new_menu;
 common.construct($);
 PUSH.registerPush();
 
-var loadingView = Alloy.createController("loader");
-loadingView.getView().open();
-loadingView.start();
-
 function loadHomePageItem(){
 	menu_info   = new_menu = [
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
@@ -36,10 +32,9 @@ function loadingViewFinish(){
 	}else{
 		$.win.open();
 	}
-	
 //	loadingView.finish(function(){
 	init();
-	loadingView = null;
+	//loadingView = null;
 	// });
 }
 
@@ -112,15 +107,17 @@ function render_menu(){
 
 /**********				init				*************/ 
 function init(){
-	
-	var AppVersionControl = require('AppVersionControl');
-	AppVersionControl.checkAndUpdate();
-	loadHomePageItem();
-	checkMyHealthData();
 	$.win.add(loading.getView());
 	loading.start();
-	syncFromServer(); 
+	loadHomePageItem();
 	checkserviceByCorpcode();
+	var AppVersionControl = require('AppVersionControl');
+	AppVersionControl.checkAndUpdate();
+	
+	//checkMyHealthData();
+	
+	syncFromServer(); 
+	
 	refreshHeaderInfo(); 
 	
 	/** app home page background***/
@@ -357,34 +354,30 @@ function logoutUser(){
  	loadHomePageItem(); 
  	new_menu = menu_info; 
 	render_menu();
-	 console.log("isCorpCode :" +isCorpCode);
-	if(isCorpCode != "" && isCorpCode != "null"  && isCorpCode != null){ console.log("isCorpCode : IN 1" );
+	if(isCorpCode != "" && isCorpCode != "null"  && isCorpCode != null){
 		Ti.App.Properties.removeProperty('memno');
 		Ti.App.Properties.removeProperty('empno');
 		Ti.App.Properties.removeProperty('corpcode'); 
 		Ti.App.Properties.removeProperty('asp_email');
 		Ti.App.Properties.removeProperty('asp_password'); 
-	}else{ console.log("isCorpCode : IN 2" );
+	}else{ 
 		Ti.App.Properties.setString('u_id',''); 
 		FACEBOOK.logout();
+		
+		var win = Alloy.createController("login").getView();
+		win.open(); 
+		
 		if(OS_IOS){
 			$.navMenu.close();
 			Alloy.Globals.navMenu = null;
 		}else{
-			console.log("isCorpCode : android 1" );
+			console.log("window sudah close");
 			$.win.close();
 		}
-		console.log("isCorpCode : android 2" );
-		var win = Alloy.createController("login").getView();
-		win.open(); 
-		console.log("isCorpCode : android 3" );
 		return; 
 	}
-	 console.log("refreshHeaderInfo : 1" );
 	refreshHeaderInfo();  
-	console.log("refreshHeaderInfo : 2" );
 	loading.finish();
-	console.log("FINISH" );
 }
 
 function setBackground(){
@@ -412,6 +405,11 @@ if(Ti.Platform.osname == "android"){
 		dialog.show(); 
 	});
 }
+	console.log("start loader lo");
+	var loadingView = Alloy.createController("loader");
+	loadingView.getView().open();
+	loadingView.start();
+
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);

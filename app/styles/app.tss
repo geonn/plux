@@ -1,6 +1,7 @@
 "Window":{
 	 backgroundColor: "#ffffff",
-	fullscreen : true	
+	fullscreen : true,
+	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
 },
 "#activityIndicator" : { 
 	 top:30,

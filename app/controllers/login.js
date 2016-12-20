@@ -4,7 +4,7 @@ common.construct($);
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading');
-$.win.add(loading.getView()); 
+$.win.add(loading.getView());
 console.log("login open");
 closeBox();
 $.email.value = preset_email;
@@ -30,10 +30,11 @@ function doLogin() {
 			password: password 
 		};
 		API.do_pluxLogin(params, function(success){
+			console.log(success+" success");
 			if(success){
-				$.win.close();
 				var win = Alloy.createController("home").getView();
-				win.open();
+				//win.open();
+				$.win.close();
 			}
 			singleton = true;
 			loading.finish();
