@@ -278,9 +278,7 @@ exports.updateUserFromFB = function(e, mainView) {
                     console.log(typeof Alloy.Globals.navMenu);
                     nav.closeWindow(mainView.win);
                 } else {
-                    console.log("yes! it is here");
-                    var win = Alloy.createController("home").getView();
-                    win.open();
+                    Alloy.createController("home").getView();
                 }
             }
         },
@@ -644,8 +642,9 @@ exports.do_asp_signup = function(data, mainView) {
                 common.hideLoading();
                 nav.closeWindow(mainView.aspSignUpWin);
                 Ti.App.fireEvent("updateHeader");
-                var win = Alloy.createController("home").getView();
-                win.open();
+                {
+                    Alloy.createController("home").getView();
+                }
             }
         },
         onerror: function(e) {

@@ -10,6 +10,12 @@ var new_menu;
 common.construct($);
 PUSH.registerPush();
 
+console.log("start loader lo");
+
+var loadingView = Alloy.createController("loader");
+loadingView.getView().open();
+loadingView.start();
+
 function loadHomePageItem(){
 	menu_info   = new_menu = [
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
@@ -32,10 +38,9 @@ function loadingViewFinish(){
 	}else{
 		$.win.open();
 	}
-//	loadingView.finish(function(){
-	init();
-	//loadingView = null;
-	// });
+	loadingView.finish(function(){
+		init();
+	});
 }
 
 if(Ti.Platform.osname != "android"){ 
@@ -405,11 +410,6 @@ if(Ti.Platform.osname == "android"){
 		dialog.show(); 
 	});
 }
-	console.log("start loader lo");
-	var loadingView = Alloy.createController("loader");
-	loadingView.getView().open();
-	loadingView.start();
-
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);

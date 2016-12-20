@@ -43,7 +43,9 @@ function Controller() {
     }
     function loadingViewFinish() {
         $.win.open();
-        init();
+        loadingView.finish(function() {
+            init();
+        });
     }
     function checkserviceByCorpcode() {
         var corpcode = Ti.App.Properties.getString("corpcode");
@@ -469,6 +471,10 @@ function Controller() {
     var new_menu;
     common.construct($);
     PUSH.registerPush();
+    console.log("start loader lo");
+    var loadingView = Alloy.createController("loader");
+    loadingView.getView().open();
+    loadingView.start();
     $.win.addEventListener("android:back", function() {
         var dialog = Ti.UI.createAlertDialog({
             cancel: 0,
@@ -481,10 +487,6 @@ function Controller() {
         });
         dialog.show();
     });
-    console.log("start loader lo");
-    var loadingView = Alloy.createController("loader");
-    loadingView.getView().open();
-    loadingView.start();
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("resumed", syncFromServer);
         Ti.App.removeEventListener("updateNotification", updateNotification);

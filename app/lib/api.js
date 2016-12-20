@@ -191,9 +191,7 @@ exports.updateUserFromFB = function(e, mainView){
 	         		console.log(typeof Alloy.Globals.navMenu);
 					nav.closeWindow(mainView.win); 
 				}else{
-					console.log("yes! it is here");
 					var win = Alloy.createController("home").getView();
-					win.open();
 				}
 				
 	         	//
@@ -656,7 +654,6 @@ exports.do_asp_signup = function(data, mainView){
 				Ti.App.fireEvent('updateHeader');
 				//nav.navigationWindow("home");
 				var win = Alloy.createController("home").getView();
-				win.open(); 
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
