@@ -25,6 +25,7 @@ function init(){
 			}
 		}
 		populateMap(200);
+		Ti.App.fireEvent("clinicList:loading_finish");
 	},1000);
 	
 	

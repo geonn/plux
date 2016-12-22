@@ -136,7 +136,8 @@ function listing(e){
 	   		loading.finish();
 		}
 		
-		$.clinicListTv.addEventListener('click', function(e) { 
+		$.clinicListTv.addEventListener('click', function(e) {
+			loading.start();
 			nav.navigateWithArgs("clinic/clinicDetails", {panel_id:e.rowData.source});
 		});
 }
@@ -155,8 +156,8 @@ $.btnSearch.addEventListener('click', function(){
 }); 
 
 function searchResult(){
-	$.searchItem.blur(); 
-	loading.show();
+	$.searchItem.blur();
+	loading.start();
 	str = $.searchItem.getValue(); 
 	counter = 0;
 	data = library.getData(clinicType, str, corp, counter);
@@ -249,6 +250,16 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.win); 
 	}); 
 }
+
+function loading_finish(){
+	loading.finish();
+}
+
+Ti.App.addEventListener("clinicList:loading_finish", loading_finish);
+
+$.win.addEventListener("close", function(e){
+	Ti.App.removeEventListener("clinicList:loading_finish", loading_finish);
+});
 	
 $.searchItem.addEventListener("return", searchResult);
 

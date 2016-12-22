@@ -126,6 +126,7 @@ function Controller() {
             loading.finish();
         }
         $.clinicListTv.addEventListener("click", function(e) {
+            loading.start();
             nav.navigateWithArgs("clinic/clinicDetails", {
                 panel_id: e.rowData.source
             });
@@ -133,7 +134,7 @@ function Controller() {
     }
     function searchResult() {
         $.searchItem.blur();
-        loading.show();
+        loading.start();
         str = $.searchItem.getValue();
         counter = 0;
         data = library.getData(clinicType, str, corp, counter);
@@ -203,6 +204,9 @@ function Controller() {
                 });
             }
         });
+    }
+    function loading_finish() {
+        loading.finish();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicList";
@@ -448,6 +452,10 @@ function Controller() {
     });
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.win);
+    });
+    Ti.App.addEventListener("clinicList:loading_finish", loading_finish);
+    $.win.addEventListener("close", function() {
+        Ti.App.removeEventListener("clinicList:loading_finish", loading_finish);
     });
     $.searchItem.addEventListener("return", searchResult);
     $.searchItem.addEventListener("focus", function f() {

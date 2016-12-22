@@ -20,6 +20,7 @@ function Controller() {
                 }
             }
             populateMap(200);
+            Ti.App.fireEvent("clinicList:loading_finish");
         }, 1e3);
         if ("" != details) {
             var operHour = details.openHour;
