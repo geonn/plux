@@ -6,8 +6,9 @@ var location = args.location || "";
 var details;
 common.construct($);
 
-initialized(); 
 function initialized(){ 
+	console.log("initialized");
+	$.mapview.removeEventListener("complete", initialized);
 	common.showLoading();
 	if(clinicType == "24 Hours"){  	
 		details = library.getPanelBy24Hours("", corp); 
@@ -37,8 +38,8 @@ function alerts(){
  
 var longitude;
 var latitude;   
-function init(e){   
-	 
+function init(e){ 
+	setCurLoc(e);
 	longitude = e.coords.longitude;
     latitude = e.coords.latitude;
     var altitude = e.coords.altitude;
@@ -47,18 +48,14 @@ function init(e){
     var speed = e.coords.speed;
     var timestamp = e.coords.timestamp;
     var altitudeAccuracy = e.coords.altitudeAccuracy;
-    
-	var Map = require('ti.map');
-	var mapview = Map.createView({
-        mapType: Map.NORMAL_TYPE,
-        region: {latitude: latitude, longitude: longitude, latitudeDelta:0.01, longitudeDelta:0.01},
-        animate:true,
-        regionFit:true,
-        userLocation:true
-    });
+    var count = 0; 
     
     if(details != ""){ 
+    	console.log(details.length+" how many marker");
+    	
 		details.forEach(function(entry) {
+			$.number_clinic.text = count+" of "+details.length;
+			
 			var detBtn =Ti.UI.createButton({
 			    backgroundImage: '/images/btn-forward.png',
 			    color: "red",
@@ -76,31 +73,33 @@ function init(e){
 			});      
 			viewRight.add(detBtn);
 			if(entry.latitude != "" && entry.longitude != ""){
-				var merchantLoc = Map.createAnnotation({
+				var merchantLoc = Alloy.Globals.Map.createAnnotation({
 				    latitude: entry.latitude,
 				    longitude: entry.longitude, 
 				    title: entry.clinicName,
 				    image: '/images/marker.png',
 				    animate : true, 
 				    subtitle: entry.add1 + ", "+entry.add2 + ", "+entry.city+ ", "+entry.postcode+ ", "+entry.state,
-				    pincolor:Map.ANNOTATION_RED,
+				    pincolor:Alloy.Globals.Map.ANNOTATION_RED,
 				    rightView: detBtn,
 				    panel_id: entry.id
 				    
 				}); 
-				mapview.addAnnotation(merchantLoc); 
+				$.mapview.addAnnotation(merchantLoc);
+				count++;
 				//if(Ti.Platform.osname == "android"){
 				 
 				//}
 			}
 		});
+		
 	}
 	common.hideLoading();
 	//mapview.addAnnotation(mountainView);
-	$.win_map.add(mapview);
+	
 	// Handle click events on any annotations on this map.
 	if(Ti.Platform.osname == "android"){
-		mapview.addEventListener('click', function(evt) {
+		$.mapview.addEventListener('click', function(evt) {
 			 nav.navigateWithArgs("clinic/clinicDetails", {panel_id:evt.annotation.panel_id});
 		    // Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.panel_id);
 		});
@@ -112,12 +111,14 @@ function setCurLoc(e){
         latitude: e.coords.latitude, longitude: e.coords.longitude,
         latitudeDelta:0.01, longitudeDelta:0.01
     };
-    mapview.setLocation(region);
+    $.mapview.setLocation(region);
 }
 
 $.btnList.addEventListener('click', function(){    
 	nav.navigateWithArgs("clinic/clinicNearby", {longitude:longitude, latitude:latitude, clinicType: clinicType });
 }); 
+
+$.mapview.addEventListener("complete", initialized);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 

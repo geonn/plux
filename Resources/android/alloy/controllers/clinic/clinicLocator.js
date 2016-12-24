@@ -9,6 +9,8 @@ function __processArg(obj, key) {
 
 function Controller() {
     function initialized() {
+        console.log("initialized");
+        $.mapview.removeEventListener("complete", initialized);
         common.showLoading();
         details = "24 Hours" == clinicType ? library.getPanelBy24Hours("", corp) : library.getPanelByClinicType(clinicType, "", corp);
         triggerPosition();
@@ -25,6 +27,7 @@ function Controller() {
         });
     }
     function init(e) {
+        setCurLoc(e);
         longitude = e.coords.longitude;
         latitude = e.coords.latitude;
         e.coords.altitude;
@@ -33,59 +36,60 @@ function Controller() {
         e.coords.speed;
         e.coords.timestamp;
         e.coords.altitudeAccuracy;
-        var Map = require("ti.map");
-        var mapview = Map.createView({
-            mapType: Map.NORMAL_TYPE,
-            region: {
-                latitude: latitude,
-                longitude: longitude,
-                latitudeDelta: .01,
-                longitudeDelta: .01
-            },
-            animate: true,
-            regionFit: true,
-            userLocation: true
-        });
-        "" != details && details.forEach(function(entry) {
-            var detBtn = Ti.UI.createButton({
-                backgroundImage: "/images/btn-forward.png",
-                color: "red",
-                height: 20,
-                width: 20,
-                panel_id: entry.id
-            });
-            var viewRight = Ti.UI.createView({
-                width: Ti.UI.SIZE,
-                height: Ti.UI.SIZE
-            });
-            detBtn.addEventListener("click", function(ex) {
-                nav.navigateWithArgs("clinic/clinicDetails", {
-                    panel_id: ex.source.panel_id
-                });
-            });
-            viewRight.add(detBtn);
-            if ("" != entry.latitude && "" != entry.longitude) {
-                var merchantLoc = Map.createAnnotation({
-                    latitude: entry.latitude,
-                    longitude: entry.longitude,
-                    title: entry.clinicName,
-                    image: "/images/marker.png",
-                    animate: true,
-                    subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
-                    pincolor: Map.ANNOTATION_RED,
-                    rightView: detBtn,
+        var count = 0;
+        if ("" != details) {
+            console.log(details.length + " how many marker");
+            details.forEach(function(entry) {
+                $.number_clinic.text = count + " of " + details.length;
+                var detBtn = Ti.UI.createButton({
+                    backgroundImage: "/images/btn-forward.png",
+                    color: "red",
+                    height: 20,
+                    width: 20,
                     panel_id: entry.id
                 });
-                mapview.addAnnotation(merchantLoc);
-            }
-        });
+                var viewRight = Ti.UI.createView({
+                    width: Ti.UI.SIZE,
+                    height: Ti.UI.SIZE
+                });
+                detBtn.addEventListener("click", function(ex) {
+                    nav.navigateWithArgs("clinic/clinicDetails", {
+                        panel_id: ex.source.panel_id
+                    });
+                });
+                viewRight.add(detBtn);
+                if ("" != entry.latitude && "" != entry.longitude) {
+                    var merchantLoc = Alloy.Globals.Map.createAnnotation({
+                        latitude: entry.latitude,
+                        longitude: entry.longitude,
+                        title: entry.clinicName,
+                        image: "/images/marker.png",
+                        animate: true,
+                        subtitle: entry.add1 + ", " + entry.add2 + ", " + entry.city + ", " + entry.postcode + ", " + entry.state,
+                        pincolor: Alloy.Globals.Map.ANNOTATION_RED,
+                        rightView: detBtn,
+                        panel_id: entry.id
+                    });
+                    $.mapview.addAnnotation(merchantLoc);
+                    count++;
+                }
+            });
+        }
         common.hideLoading();
-        $.win_map.add(mapview);
-        mapview.addEventListener("click", function(evt) {
+        $.mapview.addEventListener("click", function(evt) {
             nav.navigateWithArgs("clinic/clinicDetails", {
                 panel_id: evt.annotation.panel_id
             });
         });
+    }
+    function setCurLoc(e) {
+        var region = {
+            latitude: e.coords.latitude,
+            longitude: e.coords.longitude,
+            latitudeDelta: .01,
+            longitudeDelta: .01
+        };
+        $.mapview.setLocation(region);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "clinic/clinicLocator";
@@ -126,20 +130,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
-    $.__views.__alloyId605 = Ti.UI.createView({
+    $.__views.__alloyId597 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId605"
+        id: "__alloyId597"
     });
-    $.__views.win_map.add($.__views.__alloyId605);
-    $.__views.__alloyId606 = Ti.UI.createView({
+    $.__views.win_map.add($.__views.__alloyId597);
+    $.__views.__alloyId598 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId606"
+        id: "__alloyId598"
     });
-    $.__views.__alloyId605.add($.__views.__alloyId606);
+    $.__views.__alloyId597.add($.__views.__alloyId598);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -147,12 +151,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId606.add($.__views.btnBack);
-    $.__views.__alloyId607 = Ti.UI.createView({
+    $.__views.__alloyId598.add($.__views.btnBack);
+    $.__views.__alloyId599 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId607"
+        id: "__alloyId599"
     });
-    $.__views.__alloyId605.add($.__views.__alloyId607);
+    $.__views.__alloyId597.add($.__views.__alloyId599);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -164,13 +168,13 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId607.add($.__views.pageTitle);
-    $.__views.__alloyId608 = Ti.UI.createView({
+    $.__views.__alloyId599.add($.__views.pageTitle);
+    $.__views.__alloyId600 = Ti.UI.createView({
         right: 0,
         width: "20%",
-        id: "__alloyId608"
+        id: "__alloyId600"
     });
-    $.__views.__alloyId605.add($.__views.__alloyId608);
+    $.__views.__alloyId597.add($.__views.__alloyId600);
     $.__views.btnList = Ti.UI.createImageView({
         right: 10,
         id: "btnList",
@@ -178,7 +182,15 @@ function Controller() {
         height: 25,
         image: "/images/list.png"
     });
-    $.__views.__alloyId608.add($.__views.btnList);
+    $.__views.__alloyId600.add($.__views.btnList);
+    $.__views.mapview = (require("ti.map").createView || Ti.UI.createView)({
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "mapview",
+        regionFit: true,
+        userLocation: true
+    });
+    $.__views.win_map.add($.__views.mapview);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -195,16 +207,28 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId609 = Ti.UI.createLabel({
+    $.__views.__alloyId601 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
-        id: "__alloyId609"
+        id: "__alloyId601"
     });
-    $.__views.loadingBar.add($.__views.__alloyId609);
+    $.__views.loadingBar.add($.__views.__alloyId601);
+    $.__views.number_clinic = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10,
+        textAlign: "center",
+        id: "number_clinic"
+    });
+    $.__views.loadingBar.add($.__views.number_clinic);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -214,7 +238,6 @@ function Controller() {
     args.location || "";
     var details;
     common.construct($);
-    initialized();
     var longitude;
     var latitude;
     $.btnList.addEventListener("click", function() {
@@ -224,6 +247,7 @@ function Controller() {
             clinicType: clinicType
         });
     });
+    $.mapview.addEventListener("complete", initialized);
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.clinicLocator);
     });

@@ -18,7 +18,7 @@ var nav = require('navigation');
 var socket = require('socket');
 var room_id = 0;
 socket.addEventListener("socket:message_alert", message_alert);
-
+Alloy.Globals.Map =  (OS_IOS || OS_ANDROID) ? require('ti.map') : Ti.Map;
 
 var DBVersionControl = require('DBVersionControl');
 DBVersionControl.checkAndUpdate();

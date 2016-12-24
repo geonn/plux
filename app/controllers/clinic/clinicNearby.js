@@ -26,7 +26,7 @@ function loadClinic(){
 			aspClinicArr.push(d.id);
 		});
 	}
-	list = API.getNearbyClinic({longitude:longitude, latitude:latitude, clinicType: clinicType });
+	API.getNearbyClinic({longitude:longitude, latitude:latitude, clinicType: clinicType });
 }
 
 //listing();
@@ -57,7 +57,7 @@ function listing(e){
 			 });
 			$.clinicNearbySv.add(noRecord);
 		}else{
-
+			console.log(arr.length);
 	   		arr.forEach(function(entry) {
 	   			var isValid = aspClinicArr.indexOf(entry.id);  
 	   			if(isValid != "-1" || corp == ""){ 

@@ -15,10 +15,12 @@
 		         	<ImageView right='10' id="btnList" width="25" height="25" image="/images/list.png" />
 		   		</View>
 		 	</View>
+		 	<View class="wfill hfill" id="mapview" regionFit="true" module="ti.map" userLocation="true" />
 		</View>
 		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		    <ActivityIndicator  id="activityIndicator" />
 			<Label top="5" bottom="10" text="Loading" color="#ffffff" />
+			<Label class="padding wfill hsize" top="0" textAlign="center" color="#ffffff" id="number_clinic"></Label>
 		</View>
 	</Window>
 </Alloy>

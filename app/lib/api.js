@@ -373,6 +373,7 @@ exports.getNearbyClinic = function(e){
 	     	var res = JSON.parse(this.responseText); 
 	     	 
 	     	if(res.status == "success"){ 
+	     		console.log('data get!');
 	     		Ti.App.fireEvent("updateNearbyList", {data:res.data }); 
 	     	}
 	     },
@@ -875,7 +876,7 @@ exports.getClaimDetail = function(e){
 	       var res = JSON.parse(this.responseText);
 	    
 	       if(res.length == 0){
-	       console.log(typeof res[0].message);
+	      
 	       }else if( typeof res[0].message !== "undefined"){
 	       		//console.log('got error message');
 	       		common.createAlert(res[0].message);

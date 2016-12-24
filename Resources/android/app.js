@@ -209,6 +209,8 @@ var room_id = 0;
 
 socket.addEventListener("socket:message_alert", message_alert);
 
+Alloy.Globals.Map = require("ti.map");
+
 var DBVersionControl = require("DBVersionControl");
 
 DBVersionControl.checkAndUpdate();

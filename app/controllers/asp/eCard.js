@@ -106,6 +106,8 @@ var front_bg = Ti.UI.createImageView({
     font:{
     	fontSize: "11dp"
     },
+    left: 10,
+    right: 10,
     zIndex: 11,
     top: 0,
     bottom: 10
@@ -120,12 +122,12 @@ var back = Ti.UI.createImageView({
     name:"back",
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
+    left: 10,
+    right: 10,
     image:"/images/eCard-back.png",
     currentAngle: 10,
     top: 0,
 });
-
-
 
 var userIc = user.icno || "";	 
 
@@ -251,11 +253,11 @@ Ti.Gesture.addEventListener('orientationchange', orientationchange);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.eCard); 
+		nav.closeWindow($.win); 
 	}); 
 }
  
-$.eCard.addEventListener("close", function(){
+$.win.addEventListener("close", function(){
 	console.log("close ecard");
 	Ti.App.removeEventListener('loadPage', init);
 	Ti.Gesture.removeEventListener('orientationchange', orientationchange);

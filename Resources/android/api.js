@@ -416,9 +416,12 @@ exports.getNearbyClinic = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            "success" == res.status && Ti.App.fireEvent("updateNearbyList", {
-                data: res.data
-            });
+            if ("success" == res.status) {
+                console.log("data get!");
+                Ti.App.fireEvent("updateNearbyList", {
+                    data: res.data
+                });
+            }
         },
         onerror: function() {},
         timeout: 6e4
@@ -798,10 +801,10 @@ exports.getClaimDetail = function(e) {
     var client = Ti.Network.createHTTPClient({
         onload: function() {
             var res = JSON.parse(this.responseText);
-            0 == res.length ? console.log(typeof res[0].message) : "undefined" != typeof res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
+            0 == res.length || ("undefined" != typeof res[0].message ? common.createAlert(res[0].message) : res.forEach(function(entry) {
                 var claim_detail_model = Alloy.createCollection("claim_detail");
                 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype, entry.appcode);
-            });
+            }));
         },
         onerror: function() {
             retryTimes--;

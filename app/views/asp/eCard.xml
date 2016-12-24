@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="ASP eCARD" backButtonTitle="" layout="" backgroundColor="#fff" id="eCard" class="container" navTintColor="#CE1D1C">
+	<Window title="ASP eCARD" backButtonTitle="" layout="" backgroundColor="#fff" id="win" class="container" navTintColor="#CE1D1C">
 		<View id="mainContainer" height="Ti.UI.SIZE" width="Ti.UI.FILL" > 
 			<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
 		        <ActivityIndicator  id="activityIndicator" />
