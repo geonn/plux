@@ -221,7 +221,7 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
-        top: 10,
+        top: 0,
         left: 10,
         right: 10,
         bottom: 10,
