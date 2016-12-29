@@ -8,6 +8,9 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function closeWin() {
+        $.win.close();
+    }
     function doSignup() {
         var fullname = $.fullname.value;
         var email = $.email.value;
@@ -91,40 +94,51 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Titanium.UI.FILL,
         navTintColor: "#CE1D1C",
-        id: "win",
         title: "Plux Signup",
+        id: "win",
         layout: "vertical"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId276 = Ti.UI.createView({
-        layout: "horizontal",
+    $.__views.__alloyId268 = Ti.UI.createView({
+        top: 0,
         height: 50,
-        width: "100%",
-        backgroundColor: "#DEDEDE",
-        id: "__alloyId276"
+        backgroundColor: "#E8E8E8",
+        id: "__alloyId268"
     });
-    $.__views.win.add($.__views.__alloyId276);
-    $.__views.pageTitle = Ti.UI.createView({
-        id: "pageTitle",
-        width: Ti.UI.FILL
+    $.__views.win.add($.__views.__alloyId268);
+    $.__views.backButton = Ti.UI.createView({
+        left: 0,
+        zIndex: 9,
+        id: "backButton",
+        width: "20%"
     });
-    $.__views.__alloyId276.add($.__views.pageTitle);
-    $.__views.__alloyId277 = Ti.UI.createLabel({
+    $.__views.__alloyId268.add($.__views.backButton);
+    closeWin ? $.addListener($.__views.backButton, "click", closeWin) : __defers["$.__views.backButton!click!closeWin"] = true;
+    $.__views.__alloyId269 = Ti.UI.createImageView({
+        left: 10,
+        width: 25,
+        height: 25,
+        image: "/images/btn-back.png",
+        id: "__alloyId269"
+    });
+    $.__views.backButton.add($.__views.__alloyId269);
+    $.__views.__alloyId270 = Ti.UI.createView({
+        id: "__alloyId270"
+    });
+    $.__views.__alloyId268.add($.__views.__alloyId270);
+    $.__views.titleLbl = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
-        color: "#606060",
-        font: {
-            fontSize: "16dp"
-        },
-        text: "Sign Up",
-        textAlign: "center",
-        id: "__alloyId277"
+        color: "#CE1D1C",
+        text: "Sign Up PLUX",
+        id: "titleLbl",
+        textAlign: "center"
     });
-    $.__views.pageTitle.add($.__views.__alloyId277);
-    $.__views.__alloyId278 = Ti.UI.createView({
-        id: "__alloyId278"
+    $.__views.__alloyId270.add($.__views.titleLbl);
+    $.__views.__alloyId271 = Ti.UI.createView({
+        id: "__alloyId271"
     });
-    $.__views.win.add($.__views.__alloyId278);
+    $.__views.win.add($.__views.__alloyId271);
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -133,7 +147,7 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId278.add($.__views.loadingBar);
+    $.__views.__alloyId271.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
         left: 30,
@@ -141,34 +155,24 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId279 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        color: "#ffffff",
-        top: 5,
-        bottom: 10,
-        text: "Loading",
-        id: "__alloyId279"
-    });
-    $.__views.loadingBar.add($.__views.__alloyId279);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId278.add($.__views.main);
-    $.__views.__alloyId280 = Ti.UI.createImageView({
-        width: 120,
+    $.__views.__alloyId271.add($.__views.main);
+    $.__views.__alloyId272 = Ti.UI.createImageView({
         borderRadius: 10,
+        width: 120,
         height: 120,
         backgroundColor: "#ff0000",
         bottom: "10dp",
         top: "10dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId280"
+        id: "__alloyId272"
     });
-    $.__views.main.add($.__views.__alloyId280);
+    $.__views.main.add($.__views.__alloyId272);
     $.__views.fullname = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -213,6 +217,28 @@ function Controller() {
         value: ""
     });
     $.__views.main.add($.__views.email);
+    $.__views.ic_no = Ti.UI.createTextField({
+        verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+        height: "50dp",
+        font: {
+            fontSize: "14dp"
+        },
+        borderWidth: "1px",
+        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: "90%",
+        backgroundColor: "#fff",
+        color: "#000000",
+        borderColor: "#cccccc",
+        paddingLeft: "20dp",
+        paddingRight: "20dp",
+        bottom: "5dp",
+        keyboardType: Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD,
+        returnKeyType: Titanium.UI.RETURNKEY_NEXT,
+        id: "ic_no",
+        hintText: "Enter Your IC",
+        value: ""
+    });
+    $.__views.main.add($.__views.ic_no);
     $.__views.password = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -291,6 +317,7 @@ function Controller() {
     $.tc_area.add(view_agreement_box);
     $.win.add(loading.getView());
     $.win.addEventListener("click", hideProductFormKeyboard);
+    __defers["$.__views.backButton!click!closeWin"] && $.addListener($.__views.backButton, "click", closeWin);
     __defers["$.__views.sign_btn!click!doSignup"] && $.addListener($.__views.sign_btn, "click", doSignup);
     _.extend($, exports);
 }

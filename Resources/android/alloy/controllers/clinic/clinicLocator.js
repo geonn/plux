@@ -58,6 +58,8 @@ function Controller() {
                     });
                 });
                 viewRight.add(detBtn);
+                console.log("Ti.Platform.displayCaps.density: " + Ti.Platform.displayCaps.density);
+                console.log("Ti.Platform.displayCaps.dpi: " + Ti.Platform.displayCaps.dpi);
                 if ("" != entry.latitude && "" != entry.longitude) {
                     var merchantLoc = Alloy.Globals.Map.createAnnotation({
                         latitude: entry.latitude,
@@ -130,20 +132,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.clinicLocator.add($.__views.win_map);
-    $.__views.__alloyId597 = Ti.UI.createView({
+    $.__views.__alloyId585 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId597"
+        id: "__alloyId585"
     });
-    $.__views.win_map.add($.__views.__alloyId597);
-    $.__views.__alloyId598 = Ti.UI.createView({
+    $.__views.win_map.add($.__views.__alloyId585);
+    $.__views.__alloyId586 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId598"
+        id: "__alloyId586"
     });
-    $.__views.__alloyId597.add($.__views.__alloyId598);
+    $.__views.__alloyId585.add($.__views.__alloyId586);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -151,12 +153,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId598.add($.__views.btnBack);
-    $.__views.__alloyId599 = Ti.UI.createView({
+    $.__views.__alloyId586.add($.__views.btnBack);
+    $.__views.__alloyId587 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId599"
+        id: "__alloyId587"
     });
-    $.__views.__alloyId597.add($.__views.__alloyId599);
+    $.__views.__alloyId585.add($.__views.__alloyId587);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -168,13 +170,13 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId599.add($.__views.pageTitle);
-    $.__views.__alloyId600 = Ti.UI.createView({
+    $.__views.__alloyId587.add($.__views.pageTitle);
+    $.__views.__alloyId588 = Ti.UI.createView({
         right: 0,
         width: "20%",
-        id: "__alloyId600"
+        id: "__alloyId588"
     });
-    $.__views.__alloyId597.add($.__views.__alloyId600);
+    $.__views.__alloyId585.add($.__views.__alloyId588);
     $.__views.btnList = Ti.UI.createImageView({
         right: 10,
         id: "btnList",
@@ -182,7 +184,7 @@ function Controller() {
         height: 25,
         image: "/images/list.png"
     });
-    $.__views.__alloyId600.add($.__views.btnList);
+    $.__views.__alloyId588.add($.__views.btnList);
     $.__views.mapview = (require("ti.map").createView || Ti.UI.createView)({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -207,21 +209,21 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId601 = Ti.UI.createLabel({
+    $.__views.__alloyId589 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
-        id: "__alloyId601"
+        id: "__alloyId589"
     });
-    $.__views.loadingBar.add($.__views.__alloyId601);
+    $.__views.loadingBar.add($.__views.__alloyId589);
     $.__views.number_clinic = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
-        top: 10,
+        top: 0,
         left: 10,
         right: 10,
         bottom: 10,

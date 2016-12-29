@@ -348,11 +348,11 @@ function Controller() {
         height: Ti.UI.FILL
     });
     $.__views.main.add($.__views.daily_background);
-    $.__views.__alloyId159 = Ti.UI.createView({
+    $.__views.__alloyId155 = Ti.UI.createView({
         width: Ti.UI.FILL,
-        id: "__alloyId159"
+        id: "__alloyId155"
     });
-    $.__views.main.add($.__views.__alloyId159);
+    $.__views.main.add($.__views.__alloyId155);
     $.__views.logo = Ti.UI.createImageView({
         id: "logo",
         borderRadius: 10,
@@ -363,7 +363,7 @@ function Controller() {
         image: "/images/logo_plux.png",
         zIndex: 5
     });
-    $.__views.__alloyId159.add($.__views.logo);
+    $.__views.__alloyId155.add($.__views.logo);
     $.__views.myinfo_view = Ti.UI.createView({
         zIndex: 4,
         id: "myinfo_view",
@@ -372,7 +372,7 @@ function Controller() {
         top: 20,
         backgroundColor: "#B3000000"
     });
-    $.__views.__alloyId159.add($.__views.myinfo_view);
+    $.__views.__alloyId155.add($.__views.myinfo_view);
     $.__views.myInfo = Ti.UI.createView({
         layout: "horizontal",
         left: 110,
@@ -393,7 +393,7 @@ function Controller() {
         opacity: 0,
         backgroundColor: "#2E2E2E"
     });
-    $.__views.__alloyId159.add($.__views.loadingBar);
+    $.__views.__alloyId155.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
         left: 30,
@@ -401,16 +401,16 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId160 = Ti.UI.createLabel({
+    $.__views.__alloyId156 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
-        id: "__alloyId160"
+        id: "__alloyId156"
     });
-    $.__views.loadingBar.add($.__views.__alloyId160);
+    $.__views.loadingBar.add($.__views.__alloyId156);
     $.__views.scrollboard1 = Ti.UI.createScrollView({
         layout: "horizontal",
         id: "scrollboard1",
@@ -419,7 +419,7 @@ function Controller() {
         height: Ti.UI.FILL,
         zIndex: 3
     });
-    $.__views.__alloyId159.add($.__views.scrollboard1);
+    $.__views.__alloyId155.add($.__views.scrollboard1);
     $.__views.scrollboard = Ti.UI.createView({
         layout: "horizontal",
         id: "scrollboard",
@@ -427,21 +427,21 @@ function Controller() {
         zIndex: 3
     });
     $.__views.scrollboard1.add($.__views.scrollboard);
-    $.__views.__alloyId161 = Ti.UI.createView({
+    $.__views.__alloyId157 = Ti.UI.createView({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
-        id: "__alloyId161"
+        id: "__alloyId157"
     });
-    $.__views.scrollboard1.add($.__views.__alloyId161);
-    $.__views.__alloyId162 = Ti.UI.createImageView({
+    $.__views.scrollboard1.add($.__views.__alloyId157);
+    $.__views.__alloyId158 = Ti.UI.createImageView({
         mod: "notification",
         top: 15,
         width: 139,
         image: "/images/btn/btn_notification.png",
-        id: "__alloyId162"
+        id: "__alloyId158"
     });
-    $.__views.__alloyId161.add($.__views.__alloyId162);
-    navWindow ? $.addListener($.__views.__alloyId162, "click", navWindow) : __defers["$.__views.__alloyId162!click!navWindow"] = true;
+    $.__views.__alloyId157.add($.__views.__alloyId158);
+    navWindow ? $.addListener($.__views.__alloyId158, "click", navWindow) : __defers["$.__views.__alloyId158!click!navWindow"] = true;
     $.__views.notificationIcon = Ti.UI.createView({
         width: 30,
         height: 30,
@@ -451,7 +451,7 @@ function Controller() {
         top: 20,
         right: 15
     });
-    $.__views.__alloyId161.add($.__views.notificationIcon);
+    $.__views.__alloyId157.add($.__views.notificationIcon);
     $.__views.notificationText = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -500,7 +500,7 @@ function Controller() {
     Ti.App.addEventListener("updateNotification", updateNotification);
     Ti.App.addEventListener("updateMenu", checkserviceByCorpcode);
     Ti.App.addEventListener("updateHeader", refreshHeaderInfo);
-    __defers["$.__views.__alloyId162!click!navWindow"] && $.addListener($.__views.__alloyId162, "click", navWindow);
+    __defers["$.__views.__alloyId158!click!navWindow"] && $.addListener($.__views.__alloyId158, "click", navWindow);
     _.extend($, exports);
 }
 

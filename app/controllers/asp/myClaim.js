@@ -46,13 +46,15 @@ function loadIfins(){
 	var label_InsPlan = $.UI.create("Label", {classes: ['wfill','hsize','padding', 'bold'],top:0, text: "Insurance Plan: "+ifins.InsPlan});
 	var label_Room = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Room: "+ifins.Room});
 	var label_AddIns = $.UI.create("Label", {classes: ['wfill','hsize','padding'],top:0, text: "Additional Information: "+ifins.AddIns});
+	var icon_pdf = $.UI.create("ImageView", {classes: ['hsize'], width: 40, image: "/images/pdf_logo.png"});
 	container.add(label_EmpIns);
 	container.add(label_SpouseIns);
 	container.add(label_ChildIns);
-	container.add(label_InsPlan);
 	container.add(label_Room);
 	container.add(label_AddIns);
-	label_InsPlan.addEventListener("click", openPdf);
+	container.add(label_InsPlan);
+	container.add(icon_pdf);
+	icon_pdf.addEventListener("click", openPdf);
 	$.insurance_info.add(container);
 }
 

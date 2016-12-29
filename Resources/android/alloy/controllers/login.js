@@ -129,11 +129,11 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId190 = Ti.UI.createView({
+    $.__views.__alloyId182 = Ti.UI.createView({
         left: 0,
-        id: "__alloyId190"
+        id: "__alloyId182"
     });
-    $.__views.win.leftNavButton = $.__views.__alloyId190;
+    $.__views.win.leftNavButton = $.__views.__alloyId182;
     $.__views.forgetPasswordBox = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -146,12 +146,12 @@ function Controller() {
         right: 10
     });
     $.__views.win.add($.__views.forgetPasswordBox);
-    $.__views.__alloyId191 = Ti.UI.createView({
+    $.__views.__alloyId183 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId191"
+        id: "__alloyId183"
     });
-    $.__views.forgetPasswordBox.add($.__views.__alloyId191);
+    $.__views.forgetPasswordBox.add($.__views.__alloyId183);
     $.__views.addbox_title = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -164,15 +164,15 @@ function Controller() {
         id: "addbox_title",
         verticalAlign: "center"
     });
-    $.__views.__alloyId191.add($.__views.addbox_title);
-    $.__views.__alloyId192 = Ti.UI.createImageView({
+    $.__views.__alloyId183.add($.__views.addbox_title);
+    $.__views.__alloyId184 = Ti.UI.createImageView({
         height: 40,
         image: "/images/cross.png",
         right: 0,
-        id: "__alloyId192"
+        id: "__alloyId184"
     });
-    $.__views.__alloyId191.add($.__views.__alloyId192);
-    closeBox ? $.addListener($.__views.__alloyId192, "click", closeBox) : __defers["$.__views.__alloyId192!click!closeBox"] = true;
+    $.__views.__alloyId183.add($.__views.__alloyId184);
+    closeBox ? $.addListener($.__views.__alloyId184, "click", closeBox) : __defers["$.__views.__alloyId184!click!closeBox"] = true;
     $.__views.box_value = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "45dp",
@@ -191,7 +191,7 @@ function Controller() {
         hintText: "Email"
     });
     $.__views.forgetPasswordBox.add($.__views.box_value);
-    $.__views.__alloyId193 = Ti.UI.createButton({
+    $.__views.__alloyId185 = Ti.UI.createButton({
         height: 40,
         borderColor: "#C6C8CA",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -207,31 +207,31 @@ function Controller() {
         },
         title: "Send",
         bottom: 10,
-        id: "__alloyId193"
+        id: "__alloyId185"
     });
-    $.__views.forgetPasswordBox.add($.__views.__alloyId193);
-    doForgotPassword ? $.addListener($.__views.__alloyId193, "click", doForgotPassword) : __defers["$.__views.__alloyId193!click!doForgotPassword"] = true;
-    $.__views.__alloyId194 = Ti.UI.createView({
+    $.__views.forgetPasswordBox.add($.__views.__alloyId185);
+    doForgotPassword ? $.addListener($.__views.__alloyId185, "click", doForgotPassword) : __defers["$.__views.__alloyId185!click!doForgotPassword"] = true;
+    $.__views.__alloyId186 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId194"
+        id: "__alloyId186"
     });
-    $.__views.win.add($.__views.__alloyId194);
-    $.__views.__alloyId195 = Ti.UI.createView({
+    $.__views.win.add($.__views.__alloyId186);
+    $.__views.__alloyId187 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId195"
+        id: "__alloyId187"
     });
-    $.__views.__alloyId194.add($.__views.__alloyId195);
+    $.__views.__alloyId186.add($.__views.__alloyId187);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "90%"
     });
-    $.__views.__alloyId195.add($.__views.pageTitle);
-    $.__views.__alloyId196 = Ti.UI.createLabel({
+    $.__views.__alloyId187.add($.__views.pageTitle);
+    $.__views.__alloyId188 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -240,17 +240,17 @@ function Controller() {
         },
         text: "Login",
         textAlign: "center",
-        id: "__alloyId196"
+        id: "__alloyId188"
     });
-    $.__views.pageTitle.add($.__views.__alloyId196);
+    $.__views.pageTitle.add($.__views.__alloyId188);
     $.__views.main = Ti.UI.createScrollView({
         id: "main",
         layout: "vertical",
         height: "100%",
         contentHeight: Ti.UI.SIZE
     });
-    $.__views.__alloyId194.add($.__views.main);
-    $.__views.__alloyId197 = Ti.UI.createImageView({
+    $.__views.__alloyId186.add($.__views.main);
+    $.__views.__alloyId189 = Ti.UI.createImageView({
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -258,9 +258,9 @@ function Controller() {
         bottom: "20dp",
         top: "20dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId197"
+        id: "__alloyId189"
     });
-    $.__views.main.add($.__views.__alloyId197);
+    $.__views.main.add($.__views.__alloyId189);
     $.__views.email = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",
@@ -347,7 +347,7 @@ function Controller() {
     });
     $.__views.main.add($.__views.registerAccountButton);
     doASPSignup ? $.addListener($.__views.registerAccountButton, "touchend", doASPSignup) : __defers["$.__views.registerAccountButton!touchend!doASPSignup"] = true;
-    $.__views.__alloyId198 = Ti.UI.createButton({
+    $.__views.__alloyId190 = Ti.UI.createButton({
         borderRadius: 5,
         backgroundColor: "#7B7B7B",
         title: "Forget Password",
@@ -355,10 +355,10 @@ function Controller() {
         top: 5,
         height: 40,
         color: "#ffffff",
-        id: "__alloyId198"
+        id: "__alloyId190"
     });
-    $.__views.main.add($.__views.__alloyId198);
-    showForgetPassword ? $.addListener($.__views.__alloyId198, "touchend", showForgetPassword) : __defers["$.__views.__alloyId198!touchend!showForgetPassword"] = true;
+    $.__views.main.add($.__views.__alloyId190);
+    showForgetPassword ? $.addListener($.__views.__alloyId190, "touchend", showForgetPassword) : __defers["$.__views.__alloyId190!touchend!showForgetPassword"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -452,12 +452,12 @@ function Controller() {
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
     });
-    __defers["$.__views.__alloyId192!click!closeBox"] && $.addListener($.__views.__alloyId192, "click", closeBox);
-    __defers["$.__views.__alloyId193!click!doForgotPassword"] && $.addListener($.__views.__alloyId193, "click", doForgotPassword);
+    __defers["$.__views.__alloyId184!click!closeBox"] && $.addListener($.__views.__alloyId184, "click", closeBox);
+    __defers["$.__views.__alloyId185!click!doForgotPassword"] && $.addListener($.__views.__alloyId185, "click", doForgotPassword);
     __defers["$.__views.loginAccountButton!touchend!doLogin"] && $.addListener($.__views.loginAccountButton, "touchend", doLogin);
     __defers["$.__views.registerAccountButton!touchend!doSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doSignup);
     __defers["$.__views.registerAccountButton!touchend!doASPSignup"] && $.addListener($.__views.registerAccountButton, "touchend", doASPSignup);
-    __defers["$.__views.__alloyId198!touchend!showForgetPassword"] && $.addListener($.__views.__alloyId198, "touchend", showForgetPassword);
+    __defers["$.__views.__alloyId190!touchend!showForgetPassword"] && $.addListener($.__views.__alloyId190, "touchend", showForgetPassword);
     _.extend($, exports);
 }
 

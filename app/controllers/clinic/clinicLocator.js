@@ -72,6 +72,8 @@ function init(e){
 				nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
 			});      
 			viewRight.add(detBtn);
+			console.log('Ti.Platform.displayCaps.density: ' + Ti.Platform.displayCaps.density);
+			console.log('Ti.Platform.displayCaps.dpi: ' + Ti.Platform.displayCaps.dpi);
 			if(entry.latitude != "" && entry.longitude != ""){
 				var merchantLoc = Alloy.Globals.Map.createAnnotation({
 				    latitude: entry.latitude,
@@ -98,6 +100,7 @@ function init(e){
 	//mapview.addAnnotation(mountainView);
 	
 	// Handle click events on any annotations on this map.
+	
 	if(Ti.Platform.osname == "android"){
 		$.mapview.addEventListener('click', function(evt) {
 			 nav.navigateWithArgs("clinic/clinicDetails", {panel_id:evt.annotation.panel_id});

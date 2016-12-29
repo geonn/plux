@@ -169,57 +169,11 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
-    $.__views.__alloyId182 = Ti.UI.createView({
-        height: Ti.UI.FILL,
-        width: Ti.UI.FILL,
-        layout: "vertical",
-        id: "__alloyId182"
-    });
-    $.__views.leaftletWin.add($.__views.__alloyId182);
-    $.__views.__alloyId183 = Ti.UI.createView({
-        layout: "horizontal",
-        height: 50,
-        width: "100%",
-        backgroundColor: "#DEDEDE",
-        id: "__alloyId183"
-    });
-    $.__views.__alloyId182.add($.__views.__alloyId183);
-    $.__views.__alloyId184 = Ti.UI.createView({
-        left: 0,
-        width: "10%",
-        id: "__alloyId184"
-    });
-    $.__views.__alloyId183.add($.__views.__alloyId184);
-    $.__views.btnBack = Ti.UI.createImageView({
-        left: 10,
-        id: "btnBack",
-        width: 25,
-        height: 25,
-        image: "/images/btn-back.png"
-    });
-    $.__views.__alloyId184.add($.__views.btnBack);
-    $.__views.pageTitle = Ti.UI.createView({
-        id: "pageTitle",
-        width: Ti.UI.FILL
-    });
-    $.__views.__alloyId183.add($.__views.pageTitle);
-    $.__views.__alloyId185 = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#606060",
-        font: {
-            fontSize: "16dp"
-        },
-        text: "Health Info",
-        textAlign: "center",
-        id: "__alloyId185"
-    });
-    $.__views.pageTitle.add($.__views.__alloyId185);
     $.__views.brochureView = Ti.UI.createView({
         id: "brochureView",
         backgroundColor: "#828282"
     });
-    $.__views.__alloyId182.add($.__views.brochureView);
+    $.__views.leaftletWin.add($.__views.brochureView);
     $.__views.bigView = Ti.UI.createScrollView({
         id: "bigView",
         zIndex: 99,
@@ -232,17 +186,17 @@ function Controller() {
         visible: false
     });
     $.__views.brochureView.add($.__views.bigView);
-    $.__views.__alloyId186 = Ti.UI.createView({
+    $.__views.__alloyId178 = Ti.UI.createView({
         layout: "vertical",
-        id: "__alloyId186"
+        id: "__alloyId178"
     });
-    $.__views.brochureView.add($.__views.__alloyId186);
+    $.__views.brochureView.add($.__views.__alloyId178);
     $.__views.scrollview = Ti.UI.createScrollView({
         top: 15,
         id: "scrollview",
         layout: "vertical"
     });
-    $.__views.__alloyId186.add($.__views.scrollview);
+    $.__views.__alloyId178.add($.__views.scrollview);
     $.__views.mainView = Ti.UI.createView({
         id: "mainView",
         layout: "vertical",

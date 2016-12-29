@@ -45,13 +45,13 @@ function Controller() {
         id: "overlay"
     });
     $.__views.rocket.add($.__views.overlay);
-    $.__views.__alloyId187 = Ti.UI.createImageView({
+    $.__views.__alloyId179 = Ti.UI.createImageView({
         width: 160,
         borderRadius: 5,
         image: "/images/DefaultIcon.png",
-        id: "__alloyId187"
+        id: "__alloyId179"
     });
-    $.__views.rocket.add($.__views.__alloyId187);
+    $.__views.rocket.add($.__views.__alloyId179);
     $.__views.loading_text = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,

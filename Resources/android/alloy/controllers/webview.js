@@ -40,30 +40,30 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId329 = Ti.UI.createView({
+    $.__views.__alloyId321 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
-        id: "__alloyId329"
+        id: "__alloyId321"
     });
-    $.__views.win.add($.__views.__alloyId329);
-    $.__views.__alloyId330 = Ti.UI.createImageView({
+    $.__views.win.add($.__views.__alloyId321);
+    $.__views.__alloyId322 = Ti.UI.createImageView({
         width: 30,
         height: 30,
         right: 10,
         image: "/images/cross.png",
-        id: "__alloyId330"
+        id: "__alloyId322"
     });
-    $.__views.__alloyId329.add($.__views.__alloyId330);
-    closeWindow ? $.addListener($.__views.__alloyId330, "click", closeWindow) : __defers["$.__views.__alloyId330!click!closeWindow"] = true;
+    $.__views.__alloyId321.add($.__views.__alloyId322);
+    closeWindow ? $.addListener($.__views.__alloyId322, "click", closeWindow) : __defers["$.__views.__alloyId322!click!closeWindow"] = true;
     $.__views.surveyView = Ti.UI.createWebView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
         id: "surveyView"
     });
-    $.__views.__alloyId329.add($.__views.surveyView);
+    $.__views.__alloyId321.add($.__views.surveyView);
     $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
@@ -71,14 +71,14 @@ function Controller() {
         top: 5
     });
     $.__views.win.add($.__views.defaultMsgView);
-    $.__views.__alloyId331 = Ti.UI.createLabel({
+    $.__views.__alloyId323 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Page not found.",
-        id: "__alloyId331"
+        id: "__alloyId323"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId331);
+    $.__views.defaultMsgView.add($.__views.__alloyId323);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -93,7 +93,7 @@ function Controller() {
         $.surveyView.html = HTMLcontent;
         $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;
-    __defers["$.__views.__alloyId330!click!closeWindow"] && $.addListener($.__views.__alloyId330, "click", closeWindow);
+    __defers["$.__views.__alloyId322!click!closeWindow"] && $.addListener($.__views.__alloyId322, "click", closeWindow);
     _.extend($, exports);
 }
 

@@ -39,26 +39,26 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.myProfile && $.addTopLevelView($.__views.myProfile);
-    $.__views.__alloyId269 = Ti.UI.createView({
+    $.__views.__alloyId261 = Ti.UI.createView({
         layout: "vertical",
         height: "100%",
-        id: "__alloyId269"
+        id: "__alloyId261"
     });
-    $.__views.myProfile.add($.__views.__alloyId269);
-    $.__views.__alloyId270 = Ti.UI.createView({
+    $.__views.myProfile.add($.__views.__alloyId261);
+    $.__views.__alloyId262 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId270"
+        id: "__alloyId262"
     });
-    $.__views.__alloyId269.add($.__views.__alloyId270);
-    $.__views.__alloyId271 = Ti.UI.createView({
+    $.__views.__alloyId261.add($.__views.__alloyId262);
+    $.__views.__alloyId263 = Ti.UI.createView({
         left: 0,
         width: "10%",
-        id: "__alloyId271"
+        id: "__alloyId263"
     });
-    $.__views.__alloyId270.add($.__views.__alloyId271);
+    $.__views.__alloyId262.add($.__views.__alloyId263);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -66,13 +66,13 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId271.add($.__views.btnBack);
+    $.__views.__alloyId263.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView({
         id: "pageTitle",
         width: "90%"
     });
-    $.__views.__alloyId270.add($.__views.pageTitle);
-    $.__views.__alloyId272 = Ti.UI.createLabel({
+    $.__views.__alloyId262.add($.__views.pageTitle);
+    $.__views.__alloyId264 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -81,9 +81,9 @@ function Controller() {
         },
         text: "My Profile",
         textAlign: "center",
-        id: "__alloyId272"
+        id: "__alloyId264"
     });
-    $.__views.pageTitle.add($.__views.__alloyId272);
+    $.__views.pageTitle.add($.__views.__alloyId264);
     $.__views.description = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: "40dp",
@@ -96,22 +96,22 @@ function Controller() {
         id: "description",
         text: "Please choose profile of the below services"
     });
-    $.__views.__alloyId269.add($.__views.description);
+    $.__views.__alloyId261.add($.__views.description);
     $.__views.scrollboard = Ti.UI.createScrollView({
         id: "scrollboard",
         width: Titanium.UI.FILL,
         height: Ti.UI.FILL,
         zIndex: 3
     });
-    $.__views.__alloyId269.add($.__views.scrollboard);
-    $.__views.__alloyId273 = Ti.UI.createView({
+    $.__views.__alloyId261.add($.__views.scrollboard);
+    $.__views.__alloyId265 = Ti.UI.createView({
         layout: "horizontal",
         width: 293,
         top: 20,
-        id: "__alloyId273"
+        id: "__alloyId265"
     });
-    $.__views.scrollboard.add($.__views.__alloyId273);
-    $.__views.__alloyId274 = Ti.UI.createImageView({
+    $.__views.scrollboard.add($.__views.__alloyId265);
+    $.__views.__alloyId266 = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: 10,
         width: 120,
@@ -121,11 +121,11 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "30dp",
         image: "/images/logo_plux.png",
-        id: "__alloyId274"
+        id: "__alloyId266"
     });
-    $.__views.__alloyId273.add($.__views.__alloyId274);
-    navProfile ? $.addListener($.__views.__alloyId274, "click", navProfile) : __defers["$.__views.__alloyId274!click!navProfile"] = true;
-    $.__views.__alloyId275 = Ti.UI.createImageView({
+    $.__views.__alloyId265.add($.__views.__alloyId266);
+    navProfile ? $.addListener($.__views.__alloyId266, "click", navProfile) : __defers["$.__views.__alloyId266!click!navProfile"] = true;
+    $.__views.__alloyId267 = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: 10,
         width: 120,
@@ -135,18 +135,18 @@ function Controller() {
         backgroundColor: "#ff0000",
         bottom: "30dp",
         image: "/images/asp_logo.png",
-        id: "__alloyId275"
+        id: "__alloyId267"
     });
-    $.__views.__alloyId273.add($.__views.__alloyId275);
-    navProfile ? $.addListener($.__views.__alloyId275, "click", navProfile) : __defers["$.__views.__alloyId275!click!navProfile"] = true;
+    $.__views.__alloyId265.add($.__views.__alloyId267);
+    navProfile ? $.addListener($.__views.__alloyId267, "click", navProfile) : __defers["$.__views.__alloyId267!click!navProfile"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });
-    __defers["$.__views.__alloyId274!click!navProfile"] && $.addListener($.__views.__alloyId274, "click", navProfile);
-    __defers["$.__views.__alloyId275!click!navProfile"] && $.addListener($.__views.__alloyId275, "click", navProfile);
+    __defers["$.__views.__alloyId266!click!navProfile"] && $.addListener($.__views.__alloyId266, "click", navProfile);
+    __defers["$.__views.__alloyId267!click!navProfile"] && $.addListener($.__views.__alloyId267, "click", navProfile);
     _.extend($, exports);
 }
 
