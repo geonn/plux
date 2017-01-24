@@ -61,9 +61,18 @@ function loadIfins(){
 function openPdf(){
 	var ifins = JSON.parse(Ti.App.Properties.getString('ifins'));
 	ifins = ifins[0];
-	console.log(encodeURI(ifins.InsPlanUrl));
-	 var win = Alloy.createController("webview", {url: encodeURI(ifins.InsPlanUrl)}).getView();
-	 win.open();
+	console.log(encodeURI(ifins.InsPlanUrl)); 
+	 var url = encodeURI(ifins.InsPlanUrl); 
+	if(OS_IOS){
+		var win = Alloy.createController("webview", {url: url}).getView();
+		win.open();
+	}else{
+		var PDF = require('pdf'); 
+		PDF.createPdf(url, true, "", "", "", function(err, file, base, url){
+			PDF.android_launch(file);
+		});
+	}
+	
 }
 
 function init(){
