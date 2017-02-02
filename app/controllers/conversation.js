@@ -206,12 +206,8 @@ function getConversationByRoomId(callback){
 		if(arr.length > 0 || retry >= 3){
 			Ti.App.Properties.setString('estimate_time', res.estimate_time);
 			model.saveArray(arr, callback);
-			checker.updateModule(7, "getHelplineMessage", res.last_updated, u_id);
-			console.log(res.last_updated+" where is the last update");
-			
+			checker.updateModule(7, "getHelplineMessageV2", res.last_updated, u_id);
 			var update_id = _.pluck(arr, "id");
-			console.log(arr);
-			console.log(update_id);
 			updateStatus(update_id);
 			if(!room_id){	//if room_id = 0 
 				Ti.App.fireEvent("web:setRoom", {room_id: res.data});
@@ -255,6 +251,8 @@ function refresh(callback, firsttime){
 		callback({firsttime: firsttime});
 		loading.finish();
 		refreshing = false;
+		var model = Alloy.createCollection("helpline"); 
+		model.messageRead({u_id: u_id});
 	});
 	
 }
@@ -357,6 +355,7 @@ Ti.App.addEventListener("conversation:setRoom", set_room);
 $.win.addEventListener("close", function(){
 	socket.removeEventListener("socket:refresh_chatroom");
 	socket.event_onoff("socket:message_alert", true);
+	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	Ti.App.removeEventListener('conversation:setRoom', set_room);
 	$.destroy();

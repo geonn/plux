@@ -5,7 +5,7 @@ var loading = Alloy.createController('loading');
 var usersPluxModel = Alloy.createCollection('users_plux'); 
 var notificationModel = Alloy.createCollection('notification'); 
 var menu_info;
-var new_menu;
+var new_menu = [];
 
 common.construct($);
 PUSH.registerPush();
@@ -103,10 +103,21 @@ function render_menu(){
 			top: topR,
 			image: new_menu[i].image,
 		});
-		//var view = $.UI.create("View", {classes: ['wsize','hsize']});
-		//view.add(imageView_menu);
+		var view = $.UI.create("View", {classes: ['wsize','hsize']});
+		if(new_menu[i].mod == "conversation"){
+			var model = Alloy.createCollection("helpline");
+			var total = model.getUnread();
+			console.log(total+" total unread");
+			var view_notification = $.UI.create("View", { top:20, right:15, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
+			var label_notification = $.UI.create("Label", { text: total, color: "#ffffff"});
+			view_notification.add(label_notification);
+			view.add(imageView_menu);
+			view.add(view_notification);
+		}else{
+			view.add(imageView_menu);	
+		}
 		imageView_menu.addEventListener("click", navWindow);
-		$.scrollboard.insertAt({view: imageView_menu, position: 0});
+		$.scrollboard.insertAt({view: view, position: 0});
 	}
 }
 
@@ -120,8 +131,6 @@ function init(){
 	AppVersionControl.checkAndUpdate();
 	
 	//checkMyHealthData();
-	
-	syncFromServer(); 
 	
 	refreshHeaderInfo(); 
 	
@@ -152,6 +161,7 @@ function init(){
 }
 
 function syncFromServer(){
+	console.log("syncFromServer");
 	var checker = Alloy.createCollection('updateChecker'); 
 	var isUpdate = checker.getCheckerById("2");
 	var last_updated ="";
@@ -193,6 +203,18 @@ function syncFromServer(){
 		
 	});
 	
+	var u_id = Ti.App.Properties.getString('u_id') || 0;
+	var isUpdate = checker.getCheckerById(7, u_id);
+	var last_updated = isUpdate.updated || "";
+	var u_id = Ti.App.Properties.getString('u_id') || 0;
+	API.callByPost({url:"getHelplineMessageV2", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
+		var model = Alloy.createCollection("helpline");
+		var res = JSON.parse(responseText);
+		var arr = res.data || undefined;
+		model.saveArray(arr);
+		checker.updateModule("7","notificationList",res.last_updated, u_id); 
+		render_menu();
+	});
 }
 
 function checkMyHealthData(){ 
@@ -414,13 +436,14 @@ if(Ti.Platform.osname == "android"){
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
+	Ti.App.removeEventListener('render_menu', render_menu); 
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
 	Ti.App.removeEventListener('app:loadingViewFinish', loadingViewFinish);
 	$.destroy();
 	 
 });
-
+Ti.App.addEventListener('render_menu', render_menu);
 Ti.App.addEventListener('resumed', syncFromServer);
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
 Ti.App.addEventListener('updateNotification', updateNotification); 

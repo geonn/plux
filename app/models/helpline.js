@@ -26,6 +26,26 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
+			getUnread: function(e){
+				var collection = this;
+				var u_id = Ti.App.Properties.getString('u_id') || 0; 
+                var sql = "SELECT count(*) as total from helpline where u_id = ? AND status = 2 group by u_id"; 
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+            	
+            	var res = db.execute(sql, u_id);
+            	if(res.isValidRow()){
+            		var total = res.fieldByName('total');
+            		res.close();
+	                db.close();
+	                collection.trigger('sync');
+	                return total;
+            	}
+            	return 0;
+			},
 			getData: function(latest, start, anchor, last_id){
 				//var last_update = last_update || common.now();
 				if(latest){
@@ -103,15 +123,14 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-				var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET read=1 WHERE room_id=?";
-				db.execute(sql_query, entry.room_id);
-				console.log(db.getRowsAffected()+" "+entry.room_id+" read");
+				var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET status=3 WHERE u_id=?";
+				db.execute(sql_query, entry.u_id);
 	            db.close();
 	            collection.trigger('sync');
 			},
 			saveArray : function(arr){
 				var collection = this;
-				
+				console.log(arr.length+" how many insert");
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

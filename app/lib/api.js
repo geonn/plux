@@ -94,6 +94,7 @@ var APILoadingList = [
 **********************/
 
 exports.loadAPIBySequence = function (ex, counter){ 
+	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	counter = (typeof counter == "undefined")?0:counter;
 	console.log(counter +" >= "+ APILoadingList.length);
 	if(counter >= APILoadingList.length){
@@ -102,17 +103,26 @@ exports.loadAPIBySequence = function (ex, counter){
 		return false;
 	}
 	
+	
 	var api = APILoadingList[counter];
-	var checker = Alloy.createCollection('updateChecker'); 
-	var isUpdate = checker.getCheckerById(api['checkId']);
-	var last_updated ="";
-	
 	var model = Alloy.createCollection(api['model']);
-	if(isUpdate != "" ){
-		//last_updated = isUpdate.updated;
+	var url = api['url'];
+	var last_updated ="";
+	console.log('here');
+	if(api['model']=="helpline"){
+		url = url+"&u_id"+u_id;
+		var checker = Alloy.createCollection('updateChecker'); 
+		var isUpdate = checker.getCheckerById(api['checkId'], u_id);
+		console.log(isUpdate);
+		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
+	}else{
+		var checker = Alloy.createCollection('updateChecker'); 
+		var isUpdate = checker.getCheckerById(api['checkId']);
+		console.log(isUpdate);
+		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}
-	
-	 var url = api['url']+"&last_updated="+last_updated;
+	url = url+"&last_updated="+last_updated;
+	 
 	 console.log(url);
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available

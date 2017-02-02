@@ -7,11 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-<<<<<<< Updated upstream
 	Ti.App.Properties.setString("appVersion", "1.1.983");
-=======
-	Ti.App.Properties.setString("appVersion", "1.1.9821");
->>>>>>> Stashed changes
 	API.checkAppVersion(callback_download);
 };
 
