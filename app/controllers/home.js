@@ -431,6 +431,9 @@ if(Ti.Platform.osname == "android"){
 		});
 		dialog.show(); 
 	});
+	//
+Ti.Android.currentActivity.onResume = syncFromServer;
+	//Ti.Android.Activity.onResume(syncFromServer);
 }
 
 $.win.addEventListener("close", function(){
