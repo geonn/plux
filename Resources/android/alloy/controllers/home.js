@@ -40,32 +40,38 @@ function Controller() {
             mod: "eCard_list",
             image: "/images/btn/btn_asp_e_card_pass.png"
         } ];
+        console.log(menu_info.length + " loadHomePageItem");
     }
     function loadingViewFinish() {
         $.win.open();
-        loadingView.finish(function() {
-            init();
-        });
+        console.log("loadingViewFinish");
+        loadingView.finish(function() {});
+        init();
     }
     function checkserviceByCorpcode() {
         var corpcode = Ti.App.Properties.getString("corpcode");
         new_menu = menu_info;
-        "null" != corpcode ? API.callByPost({
-            url: "getCorpPermission",
-            params: {
-                corpcode: corpcode
-            }
-        }, function(responseText) {
-            var res = JSON.parse(responseText);
-            if ("success" == res.status) {
-                var takeout = res.data;
-                for (var i = 0; i < takeout.length; i++) {
-                    var index = findIndexInData(new_menu, "mod", takeout[i]);
-                    index >= 0 && new_menu.splice(index, 1);
+        console.log(menu_info.length);
+        console.log(new_menu.length + " new_menu checkserviceByCorpcode");
+        if ("null" != corpcode) {
+            console.log(corpcode + " corpcode");
+            API.callByPost({
+                url: "getCorpPermission",
+                params: {
+                    corpcode: corpcode
                 }
-            }
-            render_menu();
-        }) : render_menu();
+            }, function(responseText) {
+                var res = JSON.parse(responseText);
+                if ("success" == res.status) {
+                    var takeout = res.data;
+                    for (var i = 0; i < takeout.length; i++) {
+                        var index = findIndexInData(new_menu, "mod", takeout[i]);
+                        index >= 0 && new_menu.splice(index, 1);
+                    }
+                }
+                render_menu();
+            });
+        } else render_menu();
     }
     function findIndexInData(data, property, value) {
         var result = -1;
@@ -79,6 +85,7 @@ function Controller() {
     }
     function render_menu() {
         var button_width = 139;
+        console.log(new_menu.length + " new_menu number");
         removeAllChildren($.scrollboard);
         for (var i = 0; i < new_menu.length; i++) {
             var topR = 10;
@@ -121,6 +128,7 @@ function Controller() {
         }
     }
     function init() {
+        console.log("init start");
         $.win.add(loading.getView());
         loading.start();
         loadHomePageItem();

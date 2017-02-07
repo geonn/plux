@@ -29,6 +29,7 @@ function loadHomePageItem(){
 		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
 	]; 
+	console.log(menu_info.length+" loadHomePageItem");
 }	
 
 function loadingViewFinish(){
@@ -38,9 +39,11 @@ function loadingViewFinish(){
 	}else{
 		$.win.open();
 	}
+	console.log("loadingViewFinish");
 	loadingView.finish(function(){
-		init();
+		
 	});
+	init();
 }
 
 if(Ti.Platform.osname != "android"){ 
@@ -51,8 +54,10 @@ function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
 	 
 	new_menu = menu_info;
+	console.log(menu_info.length);
+	console.log(new_menu.length+" new_menu checkserviceByCorpcode");
 	if(corpcode != "null"){
-		 
+		 console.log(corpcode+" corpcode");
 		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
 			var res = JSON.parse(responseText);  
 			if(res.status == "success"){  
@@ -89,7 +94,7 @@ function findIndexInData(data, property, value) {
 
 function render_menu(){
 	var button_width = 139;
-	
+	console.log(new_menu.length+" new_menu number");
 	removeAllChildren($.scrollboard);
 	for (var i=0; i < new_menu.length; i++) {
 		var topR =10;
@@ -123,6 +128,7 @@ function render_menu(){
 
 /**********				init				*************/ 
 function init(){
+	console.log("init start");
 	$.win.add(loading.getView());
 	loading.start();
 	loadHomePageItem();

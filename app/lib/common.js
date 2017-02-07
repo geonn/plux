@@ -251,8 +251,12 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     checkboxspecs.height = checkboxspecs.height || 25;
     checkboxspecs.border = checkboxspecs.border || 1;
     checkboxspecs.borderColor = checkboxspecs.borderColor || "silver";
+    checkboxspecs.checked = false;
+    console.log(checkboxspecs.height * 1.5);
+    console.log(checkboxspecs.height * 0.5);
+    console.log(checkboxspecs.width * 0.5);
     var imageView = Ti.UI.createImageView({
-        image:image || "images/checkbox.gif",
+        image:"/images/checkbox.gif",
         height:checkboxspecs.height * 1.5,
         bottom:3 + checkboxspecs.height * 0.5,
         left:3 + checkboxspecs.width * 0.5,
@@ -276,6 +280,7 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     outerview.add(clickview);
 
     function togglecheck () {
+    	console.log(viw.checked+" ehre");
         if(!viw.checked) {
             viw.checked = true;
             imageView.opacity = 1; 

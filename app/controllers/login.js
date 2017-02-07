@@ -7,9 +7,7 @@ var loading = Alloy.createController('loading');
 $.win.add(loading.getView());
 console.log("login open");
 closeBox();
-$.email.value = preset_email;
-$.email.blur();
-$.password.blur();
+$.email.value = preset_email; 
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;

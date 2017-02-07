@@ -130,12 +130,11 @@ exports.definition = {
 			},
 			saveArray : function(arr){
 				var collection = this;
-				console.log(arr.length+" how many insert");
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-
+				if(typeof arr != "undefined"){return;}
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];

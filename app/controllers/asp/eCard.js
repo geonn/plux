@@ -26,7 +26,7 @@ function init(){
 		var a1 = Ti.UI.createAnimation();
 		a1.transform = t1;
 		 
-		$.unveriLbl.animate(a1);
+		//$.unveriLbl.animate(a1);
 		$.unverified.show();
 		$.card.opacity = "0.1";
 	}   
@@ -34,11 +34,13 @@ function init(){
 
 function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
-	var asp_password = Ti.App.Properties.getString('asp_password');	 
-	if(asp_email){
-		Ti.App.addEventListener('loadPage', init);
+	var asp_password = Ti.App.Properties.getString('asp_password');	
+	console.log(asp_email+" "+asp_password);
+	if(typeof asp_email != "undefined" && asp_email != ""){
+		
 		loading.start();
 		//API.doLogin(asp_email, asp_password, $, login_callback);
+		//API.doLogin(asp_email, asp_password, $, "refresh", login_callback);
 		API.callByPost({url:"loginUrl", params: {LOGINID: asp_email, PASSWORD: asp_password}}, login_callback);
 	}
 } 
@@ -250,6 +252,7 @@ function orientationchange(e){
 
 /**/
 Ti.Gesture.addEventListener('orientationchange', orientationchange);
+Ti.App.addEventListener('loadPage', init);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
