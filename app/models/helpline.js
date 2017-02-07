@@ -7,6 +7,7 @@ exports.definition = {
 		    "message": "TEXT",
 		    "created": "DATE",
 		    "status":"INTEGER",		//1 - pending, 2 - sent, 3 - read
+		    "format":"TEXT",
 		    "is_endUser": "INTEGER",
 		    "sender_name": "TEXT",
 		},
@@ -91,6 +92,7 @@ exports.definition = {
 					    message: res.fieldByName('message'),
 					    status: res.fieldByName('status'),
 					    created: res.fieldByName('created'),
+					    format: res.fieldByName("format"),
 					    is_endUser: res.fieldByName('is_endUser'),
 					    sender_name: res.fieldByName('sender_name')
 					};
@@ -134,7 +136,6 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-				if(typeof arr != "undefined"){return;}
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];
@@ -154,11 +155,16 @@ exports.definition = {
 	                var without_pk_value = _.rest(eval_values);
 	                
 	                var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+questionmark.join()+")";
+	                console.log(eval_values.join());
+	                if(typeof entry.id != "undefined"){
+	               	 console.log(entry.id);
+	                }
+	                console.log(entry.status);
 	                eval("db.execute(sql_query, "+eval_values.join()+")");
 	              
 				});
 				db.execute("COMMIT");
-				//console.log(db.getRowsAffected()+" affected row");
+				console.log(db.getRowsAffected()+" affected row");
 	            var last_id = db.lastInsertRowId;
 	            db.close();
 	            collection.trigger('sync');

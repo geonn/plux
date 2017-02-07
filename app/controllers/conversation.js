@@ -33,12 +33,12 @@ function SendMessage(){
 	    "message": $.message.value,
 	    "created": common.now(),
 	    "is_endUser": 1,
+	    "format": "text",
 	    "status": 1,
 	    "sender_name": user.fullname,
 	}];
 	var id = model.saveArray(local_save);
-	getLatestData();
-	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1, app_id: id}}, function(responseText){
+	API.callByPost({url: "sendHelplineMessage", params:{u_id: u_id, message: $.message.value, is_endUser:1, app_id: id }}, function(responseText){
 		
 		var res = JSON.parse(responseText);
 		$.message.value = "";
@@ -67,6 +67,12 @@ function SendMessage(){
 	
 }
 
+function navToWebview(e){
+	var url = parent({name:"url"}, e.source);
+	console.log(url);
+	var win = Alloy.createController("webview", {url: url}).getView();
+	win.open();
+}
 
 function render_conversation(latest){
 	if(!latest){
@@ -98,7 +104,8 @@ function render_conversation(latest){
 			var view_text_container = $.UI.create("View", {
 				classes:  ['hsize', 'vert', 'box','bigRounded'],
 				top: 2,
-				width: "75%"
+				width: "75%",
+				url: data[i].message
 			});
 			var label_name = $.UI.create("label",{
 				classes: ['h6','wfill', 'hsize', 'bold', 'small_padding'],
@@ -109,10 +116,12 @@ function render_conversation(latest){
 			
 			var ss = data[i].message;
 			var newText = ss.replace("[br]", "\r\n");
+			var text_color = (data[i].format == "link")?"blue":"#606060";
 			var label_message = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','small_padding'],
 				top: 0,
 				left:15,
+				color: text_color,
 				text: newText
 			});
 			var label_time = $.UI.create("Label", {
@@ -134,6 +143,9 @@ function render_conversation(latest){
 				view_text_container.setBackgroundColor("#FFFFE3");
 				//view_container.add(imageview_thumb_path);
 				view_text_container.setRight(10);
+			}
+			if(data[i].format == "link"){
+				view_text_container.addEventListener("click", navToWebview);
 			}
 			
 		}else{
@@ -199,7 +211,7 @@ function getConversationByRoomId(callback){
 	last_update = last_updated;
 	console.log(last_updated+" last_updated "+u_id);
 	
-	API.callByPost({url:"getHelplineMessageV2", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
+	API.callByPost({url:"getHelplineMessageV3", new:true, params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
 		var arr = res.data || undefined;

@@ -213,7 +213,7 @@ function syncFromServer(){
 	var isUpdate = checker.getCheckerById(7, u_id);
 	var last_updated = isUpdate.updated || "";
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	API.callByPost({url:"getHelplineMessageV2", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
+	API.callByPost({url:"getHelplineMessageV3", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
 		var arr = res.data || undefined;

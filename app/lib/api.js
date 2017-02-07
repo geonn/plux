@@ -47,6 +47,7 @@ var getDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+US
 var getWorkingHoursByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
 var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
 var getHelplineMessageV2 = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
+var getHelplineMessageV3 = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
 var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
 var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
