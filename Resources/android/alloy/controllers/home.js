@@ -536,7 +536,10 @@ function Controller() {
         });
         dialog.show();
     });
+<<<<<<< Updated upstream
     Ti.Android.currentActivity.onResume = syncFromServer;
+=======
+>>>>>>> Stashed changes
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("resumed", syncFromServer);
         Ti.App.removeEventListener("updateNotification", updateNotification);
