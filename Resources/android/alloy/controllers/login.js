@@ -371,8 +371,6 @@ function Controller() {
     console.log("login open");
     closeBox();
     $.email.value = preset_email;
-    $.email.blur();
-    $.password.blur();
     var isKeyboardFocus = 0;
     $.win.addEventListener("click", hideProductFormKeyboard);
     $.email.addEventListener("touchend", function() {
