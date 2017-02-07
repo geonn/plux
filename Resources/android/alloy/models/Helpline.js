@@ -94,8 +94,8 @@ exports.definition = {
             },
             saveArray: function(arr) {
                 var collection = this;
-                console.log(arr.length + " how many insert");
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                if ("undefined" != typeof arr) return;
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     var keys = [];

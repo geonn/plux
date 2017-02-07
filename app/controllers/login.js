@@ -9,7 +9,6 @@ console.log("login open");
 closeBox();
 $.email.value = preset_email;
 
-
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 

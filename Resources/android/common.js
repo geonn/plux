@@ -222,8 +222,9 @@ exports.CheckboxwithText = function(text, highlightText, checkboxspecs, urlLink)
     return view_sms_box;
 };
 
-exports.createCheckbox = function(specs, checkboxspecs, image) {
+exports.createCheckbox = function(specs, checkboxspecs) {
     function togglecheck() {
+        console.log(viw.checked + " ehre");
         if (viw.checked) {
             viw.checked = false;
             imageView.opacity = 0;
@@ -238,8 +239,12 @@ exports.createCheckbox = function(specs, checkboxspecs, image) {
     checkboxspecs.height = checkboxspecs.height || 25;
     checkboxspecs.border = checkboxspecs.border || 1;
     checkboxspecs.borderColor = checkboxspecs.borderColor || "silver";
+    checkboxspecs.checked = false;
+    console.log(1.5 * checkboxspecs.height);
+    console.log(.5 * checkboxspecs.height);
+    console.log(.5 * checkboxspecs.width);
     var imageView = Ti.UI.createImageView({
-        image: image || "images/checkbox.gif",
+        image: "/images/checkbox.gif",
         height: 1.5 * checkboxspecs.height,
         bottom: 3 + .5 * checkboxspecs.height,
         left: 3 + .5 * checkboxspecs.width,

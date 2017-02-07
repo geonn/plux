@@ -95,6 +95,22 @@
 	height: Ti.UI.SIZE
 }
 
+'.conthsize':{
+	contentHeight: Ti.UI.SIZE
+}
+
+'.contwsize':{
+	contentWidth: Ti.UI.SIZE
+}
+
+'.conthfill':{
+	contentHeight: Ti.UI.FILL
+}
+
+'.contwfill':{
+	contentWidth: Ti.UI.FILL
+}
+
 '.padding':{
 	top: 10,
 	left: 10,

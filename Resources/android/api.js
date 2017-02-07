@@ -620,6 +620,7 @@ exports.do_asp_presignup = function(data, mainView) {
 exports.do_asp_signup = function(data, mainView) {
     var url = aspSignupUrl + "?EMAIL=" + data.email + "&EMAIL2=" + data.email2 + "&PASSWORD=" + data.password + "&NAME=" + data.name + "&MEMNO=" + data.memno + "&EMPNO=" + data.empno + "&MOBILENO=" + data.password + "&SMSME=1&AGREETS=" + data.agreets;
     var u_id = Ti.App.Properties.getString("u_id") || "";
+    console.log("here");
     console.log(url);
     var client = Ti.Network.createHTTPClient({
         onload: function() {
@@ -655,11 +656,9 @@ exports.do_asp_signup = function(data, mainView) {
                     });
                 }
                 common.hideLoading();
+                nav.navigationWindow("home");
                 nav.closeWindow(mainView.aspSignUpWin);
                 Ti.App.fireEvent("updateHeader");
-                {
-                    Alloy.createController("home").getView();
-                }
             }
         },
         onerror: function(e) {

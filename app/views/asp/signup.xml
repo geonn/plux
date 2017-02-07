@@ -13,15 +13,12 @@
 		        <ActivityIndicator id="activityIndicator" />
 		    	<Label top="5" text="Loading" platform="ios"  color="#ffffff" />
 		    </View>
-		    <View layout="vertical">
-			  
-				<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-					<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
-					<TextField class="text_input" id="memno" hintText="Enter Member Number or IC Number" value="" /><!-- AGIL00012 -->
-					<TextField class="text_input" id="empno" hintText="Enter Employee Number" value="" /><!-- 00012 -->
-					<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
-				</ScrollView>
-			</View>
+			<ScrollView class="wfill hfill contwfill conthsize" id="main" layout="vertical" contentHeight="Ti.UI.SIZE">
+				<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
+				<TextField class="text_input" id="memno" hintText="Enter Member Number or IC Number" value="" /><!-- AGIL00012 -->
+				<TextField class="text_input" id="empno" hintText="Enter Employee Number" value="" /><!-- 00012 -->
+				<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
+			</ScrollView>
 		</View><!--
 		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
 			 <Label class="ftText">ASPplux</Label>
