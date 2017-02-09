@@ -20,11 +20,11 @@ function Controller() {
             message: $.message.value,
             created: common.now(),
             is_endUser: 1,
+            format: "text",
             status: 1,
             sender_name: user.fullname
         } ];
         var id = model.saveArray(local_save);
-        getLatestData();
         API.callByPost({
             url: "sendHelplineMessage",
             params: {
@@ -52,6 +52,16 @@ function Controller() {
             }, 3e4));
         });
     }
+    function navToWebview(e) {
+        var url = parent({
+            name: "url"
+        }, e.source);
+        console.log(url);
+        var win = Alloy.createController("webview", {
+            url: url
+        }).getView();
+        win.open();
+    }
     function render_conversation(latest) {
         !latest;
         latest && data.reverse();
@@ -64,7 +74,8 @@ function Controller() {
                 var view_text_container = $.UI.create("View", {
                     classes: [ "hsize", "vert", "box", "bigRounded" ],
                     top: 2,
-                    width: "75%"
+                    width: "75%",
+                    url: data[i].message
                 });
                 var label_name = $.UI.create("label", {
                     classes: [ "h6", "wfill", "hsize", "bold", "small_padding" ],
@@ -74,10 +85,12 @@ function Controller() {
                 });
                 var ss = data[i].message;
                 var newText = ss.replace("[br]", "\r\n");
+                var text_color = "link" == data[i].format ? "blue" : "#606060";
                 var label_message = $.UI.create("Label", {
                     classes: [ "h5", "wfill", "hsize", "small_padding" ],
                     top: 0,
                     left: 15,
+                    color: text_color,
                     text: newText
                 });
                 var label_time = $.UI.create("Label", {
@@ -97,6 +110,7 @@ function Controller() {
                     view_text_container.setBackgroundColor("#FFFFE3");
                     view_text_container.setRight(10);
                 }
+                "link" == data[i].format && view_text_container.addEventListener("click", navToWebview);
             } else {
                 var view_text_container = $.UI.create("View", {
                     classes: [ "wsize", "hsize", "box", "rounded" ],
@@ -156,7 +170,8 @@ function Controller() {
         last_update = last_updated;
         console.log(last_updated + " last_updated " + u_id);
         API.callByPost({
-            url: "getHelplineMessageV2",
+            url: "getHelplineMessageV3",
+            "new": true,
             params: {
                 u_id: u_id,
                 last_updated: last_updated
