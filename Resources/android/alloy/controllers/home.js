@@ -211,7 +211,7 @@ function Controller() {
         var last_updated = isUpdate.updated || "";
         var u_id = Ti.App.Properties.getString("u_id") || 0;
         API.callByPost({
-            url: "getHelplineMessageV2",
+            url: "getHelplineMessageV3",
             params: {
                 u_id: u_id,
                 last_updated: last_updated

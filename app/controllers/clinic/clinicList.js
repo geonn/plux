@@ -27,6 +27,7 @@ function init_dropbox(){
 }
 
 function refresh(){
+	console.log(clinicType+" "+str+" "+corp);
 	data = library.getData(clinicType, str, corp, counter);
 	counter = counter + 20;
 	listing({clear:false});

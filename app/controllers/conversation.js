@@ -117,6 +117,7 @@ function render_conversation(latest){
 			var ss = data[i].message;
 			var newText = ss.replace("[br]", "\r\n");
 			var text_color = (data[i].format == "link")?"blue":"#606060";
+			newText = (data[i].format == "link")?"Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:\n"+newText:newText;
 			var label_message = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','small_padding'],
 				top: 0,
