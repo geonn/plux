@@ -30,6 +30,11 @@ for (var i=0; i < args.data.length; i++) {
   if(totBal == "9999"){
   	textTotBal = "Unlimited";
   }
+  var corpcode = Ti.App.Properties.getString('corpcode'); 
+  console.log(args.data[i].benefittype+" "+i);
+  if(corpcode == "SANTECH" && args.data[i].benefittype == "MATERNITY"){
+  	textTotBal = "T&C Apply";
+  }
   var totalLimitLbl = $.UI.create("Label",{ 
   	classes: ['h5', 'themeColor'], 
   	right: 0,
@@ -46,7 +51,9 @@ for (var i=0; i < args.data.length; i++) {
   	 var balance = Math.ceil(((args.data[i].entidv-args.data[i].entidvbal)/args.data[i].entidv)*100);
   	// console.log(balance);
   	 view_container.add(generate_progressBar(balance+"%")); 
-  	if(args.data[i].entidv == "9999"){
+  	if(corpcode == "SANTECH" && args.data[i].benefittype == "MATERNITY"){
+  		view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "T&C Apply"));
+  	}else if(args.data[i].entidv == "9999"){
   	 	view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "Unlimited"));  
   	}else{
   		view_container.add(generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));  
