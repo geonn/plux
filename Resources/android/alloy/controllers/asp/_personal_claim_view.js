@@ -124,6 +124,9 @@ function Controller() {
         if (args.data[i].entshabal < 99999) var totBal = args.data[i].entshabal;
         var textTotBal = "RM " + totBal;
         "9999" == totBal && (textTotBal = "Unlimited");
+        var corpcode = Ti.App.Properties.getString("corpcode");
+        console.log(args.data[i].benefittype + " " + i);
+        "SANTECH" == corpcode && "MATERNITY" == args.data[i].benefittype && (textTotBal = "T&C Apply");
         var totalLimitLbl = $.UI.create("Label", {
             classes: [ "h5", "themeColor" ],
             right: 0,
@@ -137,7 +140,7 @@ function Controller() {
         if (args.data[i].entidvbal < 99999) {
             var balance = Math.ceil((args.data[i].entidv - args.data[i].entidvbal) / args.data[i].entidv * 100);
             view_container.add(generate_progressBar(balance + "%"));
-            view_container.add("9999" == args.data[i].entidv ? generate_description("Limit: ", args.data[i].entidvbal, "Unlimited") : generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));
+            view_container.add("SANTECH" == corpcode && "MATERNITY" == args.data[i].benefittype ? generate_description("Limit: ", args.data[i].entidvbal, "T&C Apply") : "9999" == args.data[i].entidv ? generate_description("Limit: ", args.data[i].entidvbal, "Unlimited") : generate_description("Limit: RM ", args.data[i].entidvbal, args.data[i].entidv));
         }
         if (args.data[i].entshabal < 99999) {
             var share_balance = Math.ceil((args.data[i].entsha - args.data[i].entshabal) / args.data[i].entsha * 100);

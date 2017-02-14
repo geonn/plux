@@ -86,10 +86,7 @@ function Controller() {
                 var ss = data[i].message;
                 var newText = ss.replace("[br]", "\r\n");
                 var text_color = "link" == data[i].format ? "blue" : "#606060";
-<<<<<<< HEAD
-                newText = "link" == data[i].format ? "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:\n" + newText : newText;
-=======
->>>>>>> origin/master
+                newText = "link" == data[i].format ? newText : newText;
                 var label_message = $.UI.create("Label", {
                     classes: [ "h5", "wfill", "hsize", "small_padding" ],
                     top: 0,
@@ -105,6 +102,15 @@ function Controller() {
                     textAlign: "right"
                 });
                 view_text_container.add(label_name);
+                if ("link" == data[i].format) {
+                    var label_message2 = $.UI.create("Label", {
+                        classes: [ "h5", "wfill", "hsize", "small_padding" ],
+                        top: 0,
+                        left: 15,
+                        text: "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:"
+                    });
+                    view_text_container.add(label_message2);
+                }
                 view_text_container.add(label_message);
                 view_text_container.add(label_time);
                 if (data[i].is_endUser) {
@@ -114,7 +120,7 @@ function Controller() {
                     view_text_container.setBackgroundColor("#FFFFE3");
                     view_text_container.setRight(10);
                 }
-                "link" == data[i].format && view_text_container.addEventListener("click", navToWebview);
+                "link" == data[i].format && label_message.addEventListener("click", navToWebview);
             } else {
                 var view_text_container = $.UI.create("View", {
                     classes: [ "wsize", "hsize", "box", "rounded" ],
