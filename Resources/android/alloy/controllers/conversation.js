@@ -86,11 +86,8 @@ function Controller() {
                 var ss = data[i].message;
                 var newText = ss.replace("[br]", "\r\n");
                 var text_color = "link" == data[i].format ? "blue" : "#606060";
-<<<<<<< HEAD
-                newText = "link" == data[i].format ? "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:\n" + newText : newText;
-=======
                 newText = "link" == data[i].format ? newText : newText;
->>>>>>> origin/master
+                console.log(data[i]);
                 var label_message = $.UI.create("Label", {
                     classes: [ "h5", "wfill", "hsize", "small_padding" ],
                     top: 0,
@@ -197,7 +194,7 @@ function Controller() {
             if (arr.length > 0 || retry >= 3) {
                 Ti.App.Properties.setString("estimate_time", res.estimate_time);
                 model.saveArray(arr, callback);
-                checker.updateModule(7, "getHelplineMessageV2", res.last_updated, u_id);
+                checker.updateModule(7, "getHelplineMessageV3", res.last_updated, u_id);
                 var update_id = _.pluck(arr, "id");
                 updateStatus(update_id);
                 if (!room_id) {

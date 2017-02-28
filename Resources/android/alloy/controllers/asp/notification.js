@@ -10,7 +10,7 @@ function __processArg(obj, key) {
 function Controller() {
     function init() {
         notificationModel.setAllAsRead({
-            member_no: Ti.App.Properties.getString("memno")
+            member_no: memno
         });
         displayList();
         syncFromServer();
@@ -21,7 +21,7 @@ function Controller() {
         var last_updated = "";
         "" != isUpdate && (last_updated = isUpdate.updated);
         var param = {
-            member_no: Ti.App.Properties.getString("memno"),
+            member_no: memno,
             last_updated: last_updated
         };
         API.callByPost({
@@ -31,8 +31,6 @@ function Controller() {
             var res = JSON.parse(responseText);
             if ("success" == res.status) {
                 var record = res.data;
-                console.log("notification get notification");
-                console.log(res.data);
                 if (record.length > 0) {
                     record.forEach(function(entry) {
                         var param = {
@@ -59,7 +57,7 @@ function Controller() {
     }
     function displayList() {
         notificationList = notificationModel.getList({
-            member_no: Ti.App.Properties.getString("memno")
+            member_no: memno
         });
         var data = [];
         $.recordTable.setData(data);
@@ -138,7 +136,6 @@ function Controller() {
                 "" != entry.url ? row.addEventListener("click", function(e) {
                     viewDetails(e.rowData);
                 }) : "" != entry.detail && row.addEventListener("click", function(e) {
-                    console.log(e.rowData.detail);
                     loadHTML(e.rowData.detail);
                 });
                 data.push(row);
@@ -365,6 +362,7 @@ function Controller() {
     var notificationModel = Alloy.createCollection("notification");
     var PDF = require("pdf");
     var notificationList;
+    var memno = Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no");
     common.construct($);
     common.showLoading();
     init();

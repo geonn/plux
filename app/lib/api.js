@@ -167,7 +167,7 @@ exports.updateUserFromFB = function(e, mainView){
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
-			//console.log(res);
+			 console.log(res);
 		    if(res.status == "success"){   
 		        var usersPluxModel = Alloy.createCollection('users_plux'); 
 				usersPluxModel.addUserData({
@@ -191,6 +191,8 @@ exports.updateUserFromFB = function(e, mainView){
 				}
 	         	/** User session**/
 	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
+	         	Ti.App.Properties.setString('ic_no', res.data.ic_no); 
+				//Ti.App.Properties.setString('memno', res.data.ic_no); 
 	         	Ti.App.Properties.setString('facebooklogin', 1);
 	         	API.updateNotificationToken();   
 	         	API.syncHealthData({u_id:res.data.u_id});
@@ -486,6 +488,8 @@ exports.do_pluxLogin = function(data, callback){
 					last_login: currentDateTime()
 				});
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
+				Ti.App.Properties.setString('ic_no', result.data.ic_no); 
+				//Ti.App.Properties.setString('memno', result.data.ic_no); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				
 				if(typeof result.data.user_service != "undefined"){

@@ -83,22 +83,16 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var url = args.url || "";
-    console.log("webview here!");
-    console.log(args.url);
     var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">' + args.html + "</html>" || "";
     if ("" != url) {
         $.surveyView.url = url;
         $.defaultMsgView.height = 0;
-    } else {
-        console.log(HTMLcontent);
-        if ("" != HTMLcontent) {
-            console.log("should be here");
-            HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
-            HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
-            $.surveyView.setHtml(HTMLcontent);
-            $.defaultMsgView.height = 0;
-        } else $.surveyView.height = 0;
-    }
+    } else if ("" != HTMLcontent) {
+        HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
+        HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
+        $.surveyView.setHtml(HTMLcontent);
+        $.defaultMsgView.height = 0;
+    } else $.surveyView.height = 0;
     __defers["$.__views.__alloyId322!click!closeWindow"] && $.addListener($.__views.__alloyId322, "click", closeWindow);
     _.extend($, exports);
 }

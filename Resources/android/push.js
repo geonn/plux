@@ -1,8 +1,6 @@
 function receivePush(e) {
     var target;
     var url;
-    console.log("push notification received");
-    console.log(e.data);
     var param;
     var param = {
         id: e.id || "",

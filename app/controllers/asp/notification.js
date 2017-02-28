@@ -3,12 +3,14 @@ var id = args.id || "";
 var notificationModel = Alloy.createCollection('notification');  
 var PDF = require('pdf'); 
 var notificationList;
+var memno = Ti.App.Properties.getString('memno') || Ti.App.Properties.getString('ic_no');
 common.construct($); 
 common.showLoading();
 init();
 
 function init(){ 
-	notificationModel.setAllAsRead({member_no: Ti.App.Properties.getString('memno') });
+	
+	notificationModel.setAllAsRead({member_no: memno });
 	displayList();
 	syncFromServer();
 } 
@@ -22,7 +24,7 @@ function syncFromServer(){
 		last_updated = isUpdate.updated;
 	}
 	var param = { 
-		"member_no"	  : Ti.App.Properties.getString('memno'),
+		"member_no"	  : memno,
 		"last_updated" : last_updated
 	};
  
@@ -58,7 +60,7 @@ function syncFromServer(){
 }
 
 function displayList(){  
-	notificationList = notificationModel.getList({member_no: Ti.App.Properties.getString('memno') });  
+	notificationList = notificationModel.getList({member_no: memno });  
 	var data=[]; 
 	$.recordTable.setData(data);
 	var counter = 0; 

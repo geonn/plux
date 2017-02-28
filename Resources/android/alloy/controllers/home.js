@@ -173,17 +173,16 @@ function Controller() {
         var last_updated = "";
         "" != isUpdate && (last_updated = isUpdate.updated);
         var param = {
-            member_no: Ti.App.Properties.getString("memno"),
+            member_no: Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no"),
             last_updated: last_updated
         };
+        console.log(param);
         API.callByPost({
             url: "getNotificationUrl",
             params: param
         }, function(responseText) {
             var res = JSON.parse(responseText);
             if ("success" == res.status) {
-                console.log("home get notification");
-                console.log(res.data);
                 var record = res.data;
                 if (record.length > 0) {
                     record.forEach(function(entry) {
@@ -322,7 +321,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "eCard" == e.source.mod || "eCard_list" == e.source.mod || "myClaim" == e.source.mod || "claimSubmission" == e.source.mod || "notification" == e.source.mod ? nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/listing", 1) : "conversation" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "eCard_list" == e.source.mod || "myClaim" == e.source.mod || "claimSubmission" == e.source.mod || "notification" == e.source.mod ? "notification" == e.source.mod ? nav.navigationWindow("asp/" + target) : nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/listing", 1) : "conversation" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         loading.start();
@@ -332,6 +331,7 @@ function Controller() {
         new_menu = menu_info;
         render_menu();
         if ("" == isCorpCode || "null" == isCorpCode || null == isCorpCode) {
+            Ti.App.Properties.removeProperty("memno");
             Ti.App.Properties.setString("u_id", "");
             FACEBOOK.logout();
             var win = Alloy.createController("login").getView();

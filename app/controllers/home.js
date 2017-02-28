@@ -176,7 +176,7 @@ function syncFromServer(){
 		last_updated = isUpdate.updated;
 	}  
 	var param = { 
-		"member_no"	  : Ti.App.Properties.getString('memno'),
+		"member_no"	  : Ti.App.Properties.getString('memno') || Ti.App.Properties.getString('ic_no'),
 		"last_updated" : last_updated
 	};
  
@@ -368,7 +368,12 @@ function refreshHeaderInfo(){
 function navWindow(e){
 	var target = e.source.mod;  
 	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" || e.source.mod == "notification" ){
-		nav.navigationWindow("asp/"+target, 1);  
+		if(e.source.mod =="notification"){
+			nav.navigationWindow("asp/"+target);  
+		}else{
+			nav.navigationWindow("asp/"+target, 1);  
+		}
+		
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
@@ -394,6 +399,7 @@ function logoutUser(){
 		Ti.App.Properties.removeProperty('asp_email');
 		Ti.App.Properties.removeProperty('asp_password'); 
 	}else{ 
+		Ti.App.Properties.removeProperty('memno');
 		Ti.App.Properties.setString('u_id',''); 
 		FACEBOOK.logout();
 		
