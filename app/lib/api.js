@@ -630,7 +630,7 @@ exports.do_asp_signup = function(data, mainView){
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
-	       //console.log(res);
+	       console.log(res);
 	       if(typeof res.message !== "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();

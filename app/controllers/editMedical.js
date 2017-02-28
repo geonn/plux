@@ -51,7 +51,7 @@ function loadImage(){
 	
 	if(details.lab_report_link != ""){ 
 	 	counter++;
-		$.attachment.add(attachedPhoto(details.lab_report_link, counter));
+		$.attachment.add(attachedPhoto(details.lab_report_link, counter,1));
 	}
 	if(recAttachment.length > 0){ 
 	 	recAttachment.forEach(function(att){ 
@@ -62,7 +62,7 @@ function loadImage(){
 	 		//	var myImage = Ti.Utils.base64decode(att.blob);
 	 		//}
 	 		 
-	 		$.attachment.add(attachedPhoto(myImage, counter));
+	 		$.attachment.add(attachedPhoto(myImage, counter,0));
 	 		counter++;  
 	 	}); 
 	 }
@@ -160,7 +160,7 @@ function backAndSave(){
 	//nav.closeWindow($.editRecWin);
 }
 
-function attachedPhoto(image,position){
+function attachedPhoto(image,position,isLink){
 	var getFormat = image.split(".");
 	var thumbImg =   image;
 	if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
@@ -195,7 +195,8 @@ function attachedPhoto(image,position){
 	    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
 	    	downloadPDF(image);
 	    }else{
-	    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position}).getView(); 
+	    	
+	    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position, isLink: isLink, image : image}).getView(); 
 	  		page.open();
 		  	page.animate({
 				curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
