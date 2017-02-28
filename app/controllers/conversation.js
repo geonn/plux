@@ -118,7 +118,7 @@ function render_conversation(latest){
 			var newText = ss.replace("[br]", "\r\n");
 			var text_color = (data[i].format == "link")?"blue":"#606060";
 			newText = (data[i].format == "link")?  newText:newText;
-			
+			console.log(data[i]);
 			
 			
 			var label_message = $.UI.create("Label", {
@@ -234,7 +234,7 @@ function getConversationByRoomId(callback){
 		if(arr.length > 0 || retry >= 3){
 			Ti.App.Properties.setString('estimate_time', res.estimate_time);
 			model.saveArray(arr, callback);
-			checker.updateModule(7, "getHelplineMessageV2", res.last_updated, u_id);
+			checker.updateModule(7, "getHelplineMessageV3", res.last_updated, u_id);
 			var update_id = _.pluck(arr, "id");
 			updateStatus(update_id);
 			if(!room_id){	//if room_id = 0 

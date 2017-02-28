@@ -1,8 +1,8 @@
 var args = arguments[0] || {};
 var rec_id = args.rec_id;
 var position = args.position; 
-
- 
+var isLink = args.isLink; 
+var attachedLink =  args.image; 
 //load model 
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
 var getAttImages = function(){
@@ -13,16 +13,69 @@ var getAttImages = function(){
 	   		
 	/***Set ads items***/
 	var the_view = [];
-	
-	for (var i=0; i< items.length; i++) {
-		//if(items[i].blob == ""){
-	 		var myImage = items[i].img_path;
-	 //	}else{
-	 //		var myImage = Ti.Utils.base64decode(items[i].blob);
-	 //	}
+	if(items.length > 0){ 
+		for (var i=0; i< items.length; i++) {
+			//if(items[i].blob == ""){
+		 		var myImage = items[i].img_path;
+		 //	}else{
+		 //		var myImage = Ti.Utils.base64decode(items[i].blob);
+		 //	}
+			
+			adImage = Ti.UI.createImageView({
+				image: myImage,
+				width:"100%",
+				top: 40,
+			});
+			
+			var scrollView = Ti.UI.createScrollView({
+				contentWidth: 'auto',
+			  	contentHeight: Ti.UI.SIZE,
+			   	maxZoomScale: 30,
+			    minZoomScale: 1,
+			    zoomScale: 1,
+			  	height: Ti.UI.FILL,
+			  	width: '100%'
+			});
+			
+			var close_label = Ti.UI.createLabel({
+				text: "Close",
+				top: 0,
+				right: 0,
+				height: 40,
+				width: Ti.UI.SIZE,
+				color: "#ffffff"
+			});
+			
+			close_label.addEventListener("click", closeWindow);
+			
+			var header = Ti.UI.createView({
+				width: Ti.UI.FILL,
+				height: 40,
+				top: 0,
+			});
+			
+			var img_caption = Ti.UI.createLabel({
+				text: items[i].category,
+				height: 40,
+				top: 0,
+				color: "#ffffff"
+			});
 		
+			row = $.UI.create('View', {classes: ["row"], id:"view"+counter});
+			
+			$.attachment_Details.title=items[i].category;
+			row.add(adImage);
+			header.add(img_caption);
+			header.add(close_label);
+			row.add(header);
+			scrollView.add(row);
+			the_view.push(scrollView); 
+			
+			counter++;
+		} 
+	}else{
 		adImage = Ti.UI.createImageView({
-			image: myImage,
+			image: attachedLink,
 			width:"100%",
 			top: 40,
 		});
@@ -54,26 +107,17 @@ var getAttImages = function(){
 			top: 0,
 		});
 		
-		var img_caption = Ti.UI.createLabel({
-			text: items[i].category,
-			height: 40,
-			top: 0,
-			color: "#ffffff"
-		});
+		 
 	
 		row = $.UI.create('View', {classes: ["row"], id:"view"+counter});
 		
-		$.attachment_Details.title=items[i].category;
-		row.add(adImage);
-		header.add(img_caption);
+		$.attachment_Details.title= "Medical Attachment";
+		row.add(adImage); 
 		header.add(close_label);
 		row.add(header);
 		scrollView.add(row);
 		the_view.push(scrollView); 
-		
-		counter++;
-	} 
-
+	}
 	var scrollableView = Ti.UI.createScrollableView({
 		  id: "scrollableView",
 		  views:the_view, 
@@ -94,7 +138,8 @@ var getAttImages = function(){
 		my_page =  scrollableView.currentPage;
 	});
 	
-	var deleteView = Ti.UI.createView({
+	if(!isLink){
+		var deleteView = Ti.UI.createView({
 		height 	: 40,
 		bottom	: 0,
 		width	: "100%",
@@ -149,6 +194,8 @@ var getAttImages = function(){
 		
 	});		 
 	$.attachment_Details.add(deleteView); 
+	}
+	
 };
 
 $.albumView.addEventListener('click', function(){
