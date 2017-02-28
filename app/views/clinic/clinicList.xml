@@ -22,7 +22,7 @@
 					</View>
 		   		</View>
 		 	</View>
-		 	<SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="searchItem" showCancel="true" text="" height="0" visible="false"  hintText="Search Clinic" />
+		 	<SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="searchItem" showCancel="true" text="" height="50"  hintText="Search Clinic" />
 		 	<View height="50"  layout="horizontal" width="Ti.UI.FILL">
 		 		<View width="50%" height="Ti.UI.SIZE" onClick="showTypeSelection">
 		 			<Label id="clinicTypeSelection" class="darkgreyText medium_font">Clinic Type</Label>

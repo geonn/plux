@@ -182,6 +182,8 @@ function Controller() {
         }, function(responseText) {
             var res = JSON.parse(responseText);
             if ("success" == res.status) {
+                console.log("home get notification");
+                console.log(res.data);
                 var record = res.data;
                 if (record.length > 0) {
                     record.forEach(function(entry) {

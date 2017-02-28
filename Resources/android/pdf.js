@@ -18,8 +18,7 @@ function isPdf(file) {
 
 function download(url, cookies, done) {
     var base = Ti.Utils.md5HexDigest(url) + ".pdf";
-    var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, base);
-    if (exists(file)) return done(null, file, base, url);
+    Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, base);
     var client = Ti.Network.createHTTPClient();
     client.onload = function(e) {
         try {

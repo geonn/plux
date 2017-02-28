@@ -162,7 +162,7 @@ function displayList(){
 
 function loadHTML(html){
 	
-	var htmlText ="<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style>"+decodeURIComponent(html);
+	var htmlText ="<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style><body>"+decodeURIComponent(html)+"</body>";
 	htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	 
 	var win = Alloy.createController("webview", {html: htmlText}).getView();

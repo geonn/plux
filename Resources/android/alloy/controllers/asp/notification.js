@@ -31,6 +31,8 @@ function Controller() {
             var res = JSON.parse(responseText);
             if ("success" == res.status) {
                 var record = res.data;
+                console.log("notification get notification");
+                console.log(res.data);
                 if (record.length > 0) {
                     record.forEach(function(entry) {
                         var param = {
@@ -136,6 +138,7 @@ function Controller() {
                 "" != entry.url ? row.addEventListener("click", function(e) {
                     viewDetails(e.rowData);
                 }) : "" != entry.detail && row.addEventListener("click", function(e) {
+                    console.log(e.rowData.detail);
                     loadHTML(e.rowData.detail);
                 });
                 data.push(row);
@@ -145,7 +148,7 @@ function Controller() {
         common.hideLoading();
     }
     function loadHTML(html) {
-        var htmlText = "<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style>" + decodeURIComponent(html);
+        var htmlText = "<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style><body>" + decodeURIComponent(html) + "</body>";
         htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, "<br />");
         var win = Alloy.createController("webview", {
             html: htmlText

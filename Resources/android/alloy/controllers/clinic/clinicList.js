@@ -334,8 +334,7 @@ function Controller() {
         id: "searchItem",
         showCancel: true,
         text: "",
-        height: 0,
-        visible: false,
+        height: 50,
         hintText: "Search Clinic"
     });
     $.__views.panelListTbl.add($.__views.searchItem);

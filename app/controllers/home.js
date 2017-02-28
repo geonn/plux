@@ -182,7 +182,7 @@ function syncFromServer(){
  
 	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
-		if(res.status == "success"){  
+		if(res.status == "success"){
 			var record = res.data;
 			if(record.length > 0){ 
 				record.forEach(function(entry) {

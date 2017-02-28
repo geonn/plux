@@ -52,9 +52,9 @@ function download (url, cookies, done) {
     base
   );
  
-  if (exists(file)) {  
+  /*if (exists(file)) {  
     return done(null, file, base, url);
-  }
+  }*/
  
   // Download pdf file
   var client = Ti.Network.createHTTPClient();
