@@ -176,7 +176,6 @@ function Controller() {
             member_no: Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no"),
             last_updated: last_updated
         };
-        console.log(param);
         API.callByPost({
             url: "getNotificationUrl",
             params: param
