@@ -320,7 +320,7 @@ function Controller() {
     }
     function navWindow(e) {
         var target = e.source.mod;
-        "eCard" == e.source.mod || "eCard_list" == e.source.mod || "myClaim" == e.source.mod || "claimSubmission" == e.source.mod || "notification" == e.source.mod ? "notification" == e.source.mod ? nav.navigationWindow("asp/" + target) : nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigateWithArgs("clinic/listing", 1) : "conversation" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
+        "eCard" == e.source.mod || "eCard_list" == e.source.mod || "myClaim" == e.source.mod || "claimSubmission" == e.source.mod || "notification" == e.source.mod ? "notification" == e.source.mod ? nav.navigationWindow("asp/" + target) : nav.navigationWindow("asp/" + target, 1) : "myHealth" == e.source.mod ? nav.navigationWindow(target + "/main") : "clinicLocator" == e.source.mod ? nav.navigationWindow("clinic/listing", 1) : "conversation" == e.source.mod ? nav.navigationWindow(target, 1) : nav.navigationWindow(target);
     }
     function logoutUser() {
         loading.start();

@@ -264,7 +264,14 @@ exports.definition = {
 					 db.close();
 	            });
            		collection.trigger('sync');
-            } 
+           },
+           resetData: function(){
+           	var collection = this;
+           	 db = Ti.Database.open(collection.config.adapter.db_name);
+            var res = db.execute("DELETE from "+collection.config.adapter.collection_name);
+            collection.trigger('sync');
+             db.close();
+           }
 		});
 
 		return Collection;

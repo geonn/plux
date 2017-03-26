@@ -377,7 +377,7 @@ function navWindow(e){
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
-		nav.navigateWithArgs("clinic/listing", 1);
+		nav.navigationWindow("clinic/listing", 1);
 	}else if(e.source.mod == "conversation"){
 		nav.navigationWindow(target, 1);
 	}else{

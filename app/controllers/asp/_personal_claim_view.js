@@ -34,6 +34,8 @@ for (var i=0; i < args.data.length; i++) {
   console.log(args.data[i].benefittype+" "+i);
   if(corpcode == "SANTECH" && args.data[i].benefittype == "MATERNITY"){
   	textTotBal = "T&C Apply";
+  }else if(corpcode == "SANTECH" && args.data[i].benefittype == "EXECUTIVE HEALTH SCREENING"){
+  	textTotBal = "As Charge";
   }
   var totalLimitLbl = $.UI.create("Label",{ 
   	classes: ['h5', 'themeColor'], 
@@ -53,6 +55,8 @@ for (var i=0; i < args.data.length; i++) {
   	 view_container.add(generate_progressBar(balance+"%")); 
   	if(corpcode == "SANTECH" && args.data[i].benefittype == "MATERNITY"){
   		view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "T&C Apply"));
+  	}else if(corpcode == "SANTECH" && args.data[i].benefittype == "EXECUTIVE HEALTH SCREENING"){
+  		view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "As Charge"));
   	}else if(args.data[i].entidv == "9999"){
   	 	view_container.add(generate_description("Limit: ", args.data[i].entidvbal , "Unlimited"));  
   	}else{

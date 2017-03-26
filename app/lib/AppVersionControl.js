@@ -7,17 +7,19 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	Ti.App.Properties.setString("appVersion", "1.1.986");
+	Ti.App.Properties.setString("appVersion", "1.1.987");
 
 	API.checkAppVersion(callback_download);
 };
 
 function callback_download(e){
+	var changelog = e.data.change_log.replace("[br]", "\n");
+	console.log(changelog);
 	var dialog = Ti.UI.createAlertDialog({
 	  cancel: 1,
 	  buttonNames: ['Download', 'Cancel'],
 	  title: "Latest version download",
-	  message: 'Latest version found : '+e.currentVersion
+	  message: 'Latest version found : '+e.currentVersion+"\n "+changelog
 	});
 	
 	dialog.show();
@@ -26,7 +28,7 @@ function callback_download(e){
 		if(ex.index == 0){
 			try {
 				console.log(e.data);
-				Ti.Platform.openURL(e.data);/*
+				Ti.Platform.openURL(e.data.url);/*
 				var intent = Ti.Android.createIntent({
 				    action: Ti.Android.ACTION_VIEW,
 				    data: "http://bit.ly/1U7Qmd8",

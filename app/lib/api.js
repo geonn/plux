@@ -10,7 +10,7 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
-var checkAppVersionUrl = "http://"+FREEJINI_DOMAIN+"/api/checkAppVersion?user="+USER+"&key="+KEY;
+var checkAppVersionUrl = "http://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
 var updateUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
 var getUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
@@ -729,6 +729,8 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString('asp_password',password);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		updateUserService(u_id, 1,username, password);
+	       		console.log(result);
+	       		usersModel.resetData();
 	       		usersModel.addUserData(result);
 	       		API.updateNotificationToken();  
 	       		Ti.App.fireEvent('updateMenu');

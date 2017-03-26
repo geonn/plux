@@ -373,8 +373,9 @@ exports.sync_time = function(time){
 };
 
 exports.now = function(){
-	var today = new Date();
-	today.setTime(today.getTime() + time_offset);
+	//var today = new Date();
+	var today = new Date(Date.now()+time_offset);
+	//today.setTime(today.getTime() + time_offset);
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; 
 	var yyyy = today.getFullYear();
