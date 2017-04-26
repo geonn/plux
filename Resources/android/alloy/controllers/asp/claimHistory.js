@@ -39,20 +39,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.claim_history.add($.__views.main);
-    $.__views.__alloyId416 = Ti.UI.createView({
+    $.__views.__alloyId434 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId416"
+        id: "__alloyId434"
     });
-    $.__views.main.add($.__views.__alloyId416);
-    $.__views.__alloyId417 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId434);
+    $.__views.__alloyId435 = Ti.UI.createView({
         left: 0,
         width: "10%",
-        id: "__alloyId417"
+        id: "__alloyId435"
     });
-    $.__views.__alloyId416.add($.__views.__alloyId417);
+    $.__views.__alloyId434.add($.__views.__alloyId435);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -60,12 +60,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId417.add($.__views.btnBack);
-    $.__views.__alloyId418 = Ti.UI.createView({
+    $.__views.__alloyId435.add($.__views.btnBack);
+    $.__views.__alloyId436 = Ti.UI.createView({
         width: "90%",
-        id: "__alloyId418"
+        id: "__alloyId436"
     });
-    $.__views.__alloyId416.add($.__views.__alloyId418);
+    $.__views.__alloyId434.add($.__views.__alloyId436);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -77,7 +77,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId418.add($.__views.pageTitle);
+    $.__views.__alloyId436.add($.__views.pageTitle);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -94,6 +94,7 @@ function Controller() {
         memno: args.memno,
         name: arg_name
     });
+    console.log(data);
     data = _.sortBy(data, "visitdate");
     data.reverse();
     data.forEach(function(entry) {

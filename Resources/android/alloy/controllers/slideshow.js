@@ -8,8 +8,8 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function __alloyId274() {
-        $.__views.win.removeEventListener("open", __alloyId274);
+    function __alloyId278() {
+        $.__views.win.removeEventListener("open", __alloyId278);
         if ($.__views.win.activity) {
             $.__views.win.activity.actionBar.displayHomeAsUp = true;
             $.__views.win.activity.actionBar.onHomeIconItemSelected = closeWindow;
@@ -88,7 +88,7 @@ function Controller() {
         navBarHidden: false
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.win.addEventListener("open", __alloyId274);
+    $.__views.win.addEventListener("open", __alloyId278);
     $.__views.image_container = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -96,36 +96,36 @@ function Controller() {
         backgroundColor: "#000"
     });
     $.__views.win.add($.__views.image_container);
-    $.__views.__alloyId275 = Ti.UI.createImageView({
+    $.__views.__alloyId279 = Ti.UI.createImageView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         image: "/images/gradient-bg.png",
-        id: "__alloyId275"
+        id: "__alloyId279"
     });
-    $.__views.win.add($.__views.__alloyId275);
-    $.__views.__alloyId276 = Ti.UI.createView({
+    $.__views.win.add($.__views.__alloyId279);
+    $.__views.__alloyId280 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId276"
+        id: "__alloyId280"
     });
-    $.__views.win.add($.__views.__alloyId276);
-    var __alloyId277 = [];
-    $.__views.__alloyId278 = Ti.UI.createView({
+    $.__views.win.add($.__views.__alloyId280);
+    var __alloyId281 = [];
+    $.__views.__alloyId282 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "composite",
-        id: "__alloyId278"
+        id: "__alloyId282"
     });
-    __alloyId277.push($.__views.__alloyId278);
-    $.__views.__alloyId279 = Ti.UI.createView({
+    __alloyId281.push($.__views.__alloyId282);
+    $.__views.__alloyId283 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         bottom: 0,
-        id: "__alloyId279"
+        id: "__alloyId283"
     });
-    $.__views.__alloyId278.add($.__views.__alloyId279);
-    $.__views.__alloyId280 = Ti.UI.createView({
+    $.__views.__alloyId282.add($.__views.__alloyId283);
+    $.__views.__alloyId284 = Ti.UI.createView({
         top: 10,
         left: 10,
         right: 10,
@@ -133,10 +133,10 @@ function Controller() {
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId280"
+        id: "__alloyId284"
     });
-    $.__views.__alloyId279.add($.__views.__alloyId280);
-    $.__views.__alloyId281 = Ti.UI.createLabel({
+    $.__views.__alloyId283.add($.__views.__alloyId284);
+    $.__views.__alloyId285 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
@@ -145,42 +145,6 @@ function Controller() {
         },
         text: "Welcome,",
         textAlign: "center",
-        id: "__alloyId281"
-    });
-    $.__views.__alloyId280.add($.__views.__alloyId281);
-    $.__views.__alloyId282 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#ffffff",
-        font: {
-            fontSize: 14
-        },
-        text: "a FREE app that automates most of the management, claims and tracking functions that are performed by companies’ HR departments",
-        textAlign: "center",
-        id: "__alloyId282"
-    });
-    $.__views.__alloyId280.add($.__views.__alloyId282);
-    $.__views.__alloyId283 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.FILL,
-        id: "__alloyId283"
-    });
-    __alloyId277.push($.__views.__alloyId283);
-    $.__views.__alloyId284 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        bottom: 0,
-        id: "__alloyId284"
-    });
-    $.__views.__alloyId283.add($.__views.__alloyId284);
-    $.__views.__alloyId285 = Ti.UI.createView({
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 20,
-        layout: "vertical",
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
         id: "__alloyId285"
     });
     $.__views.__alloyId284.add($.__views.__alloyId285);
@@ -189,47 +153,46 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 18
+            fontSize: 14
         },
-        text: "Doctor Appointment Booking",
+        text: "a FREE app that automates most of the management, claims and tracking functions that are performed by companies’ HR departments",
         textAlign: "center",
         id: "__alloyId286"
     });
-    $.__views.__alloyId285.add($.__views.__alloyId286);
-    $.__views.__alloyId287 = Ti.UI.createLabel({
+    $.__views.__alloyId284.add($.__views.__alloyId286);
+    $.__views.__alloyId287 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId287"
+    });
+    __alloyId281.push($.__views.__alloyId287);
+    $.__views.__alloyId288 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        bottom: 0,
+        id: "__alloyId288"
+    });
+    $.__views.__alloyId287.add($.__views.__alloyId288);
+    $.__views.__alloyId289 = Ti.UI.createView({
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 20,
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "__alloyId289"
+    });
+    $.__views.__alloyId288.add($.__views.__alloyId289);
+    $.__views.__alloyId290 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 14
+            fontSize: 18
         },
-        text: "Employees can choose from a panel of thousands of doctors for unparalleled convenience",
+        text: "Doctor Appointment Booking",
         textAlign: "center",
-        id: "__alloyId287"
-    });
-    $.__views.__alloyId285.add($.__views.__alloyId287);
-    $.__views.__alloyId288 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.FILL,
-        layout: "composite",
-        id: "__alloyId288"
-    });
-    __alloyId277.push($.__views.__alloyId288);
-    $.__views.__alloyId289 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        bottom: 0,
-        id: "__alloyId289"
-    });
-    $.__views.__alloyId288.add($.__views.__alloyId289);
-    $.__views.__alloyId290 = Ti.UI.createView({
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-        layout: "vertical",
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
         id: "__alloyId290"
     });
     $.__views.__alloyId289.add($.__views.__alloyId290);
@@ -238,39 +201,28 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
-            fontSize: 18
+            fontSize: 14
         },
-        text: "Smart Claims",
+        text: "Employees can choose from a panel of thousands of doctors for unparalleled convenience",
         textAlign: "center",
         id: "__alloyId291"
     });
-    $.__views.__alloyId290.add($.__views.__alloyId291);
-    $.__views.__alloyId292 = Ti.UI.createLabel({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        color: "#ffffff",
-        font: {
-            fontSize: 14
-        },
-        text: "Access details of entitlements, claims made, claims remaining, etc",
-        textAlign: "center",
-        id: "__alloyId292"
-    });
-    $.__views.__alloyId290.add($.__views.__alloyId292);
-    $.__views.__alloyId293 = Ti.UI.createView({
+    $.__views.__alloyId289.add($.__views.__alloyId291);
+    $.__views.__alloyId292 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId293"
+        layout: "composite",
+        id: "__alloyId292"
     });
-    __alloyId277.push($.__views.__alloyId293);
-    $.__views.__alloyId294 = Ti.UI.createView({
+    __alloyId281.push($.__views.__alloyId292);
+    $.__views.__alloyId293 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         bottom: 0,
-        id: "__alloyId294"
+        id: "__alloyId293"
     });
-    $.__views.__alloyId293.add($.__views.__alloyId294);
-    $.__views.__alloyId295 = Ti.UI.createView({
+    $.__views.__alloyId292.add($.__views.__alloyId293);
+    $.__views.__alloyId294 = Ti.UI.createView({
         top: 10,
         left: 10,
         right: 10,
@@ -278,6 +230,18 @@ function Controller() {
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
+        id: "__alloyId294"
+    });
+    $.__views.__alloyId293.add($.__views.__alloyId294);
+    $.__views.__alloyId295 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        font: {
+            fontSize: 18
+        },
+        text: "Smart Claims",
+        textAlign: "center",
         id: "__alloyId295"
     });
     $.__views.__alloyId294.add($.__views.__alloyId295);
@@ -286,14 +250,50 @@ function Controller() {
         height: Ti.UI.SIZE,
         color: "#ffffff",
         font: {
+            fontSize: 14
+        },
+        text: "Access details of entitlements, claims made, claims remaining, etc",
+        textAlign: "center",
+        id: "__alloyId296"
+    });
+    $.__views.__alloyId294.add($.__views.__alloyId296);
+    $.__views.__alloyId297 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        id: "__alloyId297"
+    });
+    __alloyId281.push($.__views.__alloyId297);
+    $.__views.__alloyId298 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        bottom: 0,
+        id: "__alloyId298"
+    });
+    $.__views.__alloyId297.add($.__views.__alloyId298);
+    $.__views.__alloyId299 = Ti.UI.createView({
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10,
+        layout: "vertical",
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        id: "__alloyId299"
+    });
+    $.__views.__alloyId298.add($.__views.__alloyId299);
+    $.__views.__alloyId300 = Ti.UI.createLabel({
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        color: "#ffffff",
+        font: {
             fontSize: 18
         },
         text: "Easy Clinic Locator",
         textAlign: "center",
-        id: "__alloyId296"
+        id: "__alloyId300"
     });
-    $.__views.__alloyId295.add($.__views.__alloyId296);
-    $.__views.__alloyId297 = Ti.UI.createLabel({
+    $.__views.__alloyId299.add($.__views.__alloyId300);
+    $.__views.__alloyId301 = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#ffffff",
@@ -302,26 +302,26 @@ function Controller() {
         },
         text: "Search through our panel of thousands of doctors, located all over Malaysia",
         textAlign: "center",
-        id: "__alloyId297"
+        id: "__alloyId301"
     });
-    $.__views.__alloyId295.add($.__views.__alloyId297);
+    $.__views.__alloyId299.add($.__views.__alloyId301);
     $.__views.slogan = Ti.UI.createScrollableView({
         width: Ti.UI.FILL,
-        views: __alloyId277,
+        views: __alloyId281,
         id: "slogan",
         height: "85%",
         pagingControlColor: "transparent",
         showPagingControl: true,
         disableBounce: true
     });
-    $.__views.__alloyId276.add($.__views.slogan);
-    $.__views.__alloyId298 = Ti.UI.createView({
+    $.__views.__alloyId280.add($.__views.slogan);
+    $.__views.__alloyId302 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
-        id: "__alloyId298"
+        id: "__alloyId302"
     });
-    $.__views.__alloyId276.add($.__views.__alloyId298);
-    $.__views.__alloyId299 = Ti.UI.createButton({
+    $.__views.__alloyId280.add($.__views.__alloyId302);
+    $.__views.__alloyId303 = Ti.UI.createButton({
         font: {
             fontWeight: "bold"
         },
@@ -333,10 +333,10 @@ function Controller() {
         color: "#CE1D1C",
         width: "60%",
         title: "Continue",
-        id: "__alloyId299"
+        id: "__alloyId303"
     });
-    $.__views.__alloyId298.add($.__views.__alloyId299);
-    do_continue ? $.addListener($.__views.__alloyId299, "click", do_continue) : __defers["$.__views.__alloyId299!click!do_continue"] = true;
+    $.__views.__alloyId302.add($.__views.__alloyId303);
+    do_continue ? $.addListener($.__views.__alloyId303, "click", do_continue) : __defers["$.__views.__alloyId303!click!do_continue"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -353,7 +353,7 @@ function Controller() {
         Ti.App.removeEventListener("slideshow:refresh", refresh);
         $.destroy();
     });
-    __defers["$.__views.__alloyId299!click!do_continue"] && $.addListener($.__views.__alloyId299, "click", do_continue);
+    __defers["$.__views.__alloyId303!click!do_continue"] && $.addListener($.__views.__alloyId303, "click", do_continue);
     _.extend($, exports);
 }
 

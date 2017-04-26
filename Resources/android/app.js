@@ -191,6 +191,14 @@ function message_alert() {
     }
 }
 
+function hinttextOnFocus(e) {
+    e.source.value == e.source._hintText && (e.source.value = "");
+}
+
+function hinttextOnBlur(e) {
+    "" == e.source.value && (e.source.value = e.source._hintText);
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 var _ = require("underscore")._;

@@ -120,6 +120,15 @@ exports.checkAndUpdate = function(e){
 		
 		dbVersion = '2.5';
 	}
+	if(dbVersion == "2.5"){
+		 
+		var mrv2_model = Alloy.createCollection('helpline');
+		mrv2_model.addColumn("dr_id", "INTEGER");
+		mrv2_model.setColumnValue("dr_id", 0);
+		
+		console.log('yes');
+		dbVersion = '2.6';
+	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };
 

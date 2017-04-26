@@ -11,21 +11,11 @@ function Controller() {
     function init() {
         $.win.add(loading.getView());
         loading.start();
-        API.syncAppointmentData(savedAppointment);
-        render_conversation_list();
-    }
-    function savedAppointment(ex) {
-        var result = ex.param;
-        if ("error" == result.status) {
-            common.createAlert("Error", result.data);
-            return false;
-        }
-        MessageModel.saveArray(result.data);
-        render_conversation_list();
     }
     function render_conversation_list() {
         $.conversation_list.removeAllChildren();
         MessageList = MessageModel.getDataGroupDrid();
+        console.log(MessageList);
         if (MessageList.length < 1) {
             var view_norecord = $.UI.create("View", {
                 classes: [ "wsize", "hsize", "box", "rounded" ]
@@ -75,9 +65,7 @@ function Controller() {
         });
     }
     function navFindDoctor() {
-        nav.navigateWithArgs("askDoctor/index", {
-            id: ""
-        });
+        nav.navigateWithArgs("askDoctor/forms");
     }
     function add_appointment_row(entry) {
         var view_row = $.UI.create("View", {

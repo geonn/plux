@@ -90,5 +90,12 @@ exports.checkAndUpdate = function() {
         mrv2_model.addColumn("format", "TEXT");
         dbVersion = "2.5";
     }
+    if ("2.5" == dbVersion) {
+        var mrv2_model = Alloy.createCollection("helpline");
+        mrv2_model.addColumn("dr_id", "INTEGER");
+        mrv2_model.setColumnValue("dr_id", 0);
+        console.log("yes");
+        dbVersion = "2.6";
+    }
     Ti.App.Properties.setString("dbVersion", dbVersion);
 };

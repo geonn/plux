@@ -1,19 +1,50 @@
 var args = arguments[0] || {};
 var newsFeedModel = Alloy.createCollection('health_news_feed'); 
-var categoryModel = Alloy.createCollection('category'); 
-var cateList = categoryModel.getCategoryList();
-displayHealthInfo();
+var categoryModel = Alloy.createCollection('categorys'); 
+
+function init(){
+	syncData({url: "grab_newsfeed", checkerId: 17, model: "health_news_feed", callback: displayHealthInfo});
+}
+init();
+function syncData(e){
+	var checker = Alloy.createCollection('updateChecker'); 
+	var u_id = Ti.App.Properties.getString('u_id') || 0;
+	var isUpdate = checker.getCheckerById(e.checkerId, u_id);
+	var last_updated = isUpdate.updated || "";
+	last_update = last_updated;
+	
+	var params = {u_id: u_id};
+	
+	if(isUpdate != ""){
+		params = _.extend(params,  {last_updated: isUpdate.updated});
+	}
+	
+	params = _.extend(params,  e.params);
+	
+	console.log(params);
+	API.callByPost({url: e.url, params: params}, function(responseText){
+		var model = Alloy.createCollection(e.model);
+		console.log(responseText);
+		var res = JSON.parse(responseText);
+		var arr = res.data || undefined;
+		var res = JSON.parse(responseText);
+				
+        model.saveArray(arr);
+        checker.updateModule(e.checkerId, e.model, res.last_updated, u_id);
+        e.callback();
+	});
+	
+}
 
 function displayHealthInfo(){  
+	var cateList = categoryModel.getCategoryList();
 	var tableData = []; 
 	for(var i=0; i < cateList.length ; i++){  
 		var newsList = newsFeedModel.getRecordsListByCategory(cateList[i].id);
-		 
 		if(newsList.length > 0){
 			var sectionNews = Ti.UI.createTableViewSection({ headerTitle: cateList[i].category });
 			var data=[]; 
 			for(var j=0; j < newsList.length; j++){
-			  
 				var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
 			    source: newsList[j].id, 
@@ -26,7 +57,6 @@ function displayHealthInfo(){
 				      backFillStart:false
 				    },
 			    });
-				
 				var row_view = Ti.UI.createView({
 					left: 5,
 			    	top: 5, 
@@ -36,20 +66,18 @@ function displayHealthInfo(){
 			    	width: Ti.UI.FILL,
 			    	layout: "horizontal",
 				});
-				
 				var tblView = Ti.UI.createView({
 					layout: "vertical",
 					height:"80",
 					width:"auto",
 				}); 
-				
 				var imageContainer = Ti.UI.createView({
 					height:80,
 					source: newsList[j].id, 
 					width:112 
 				});
 				
-				if(newsList[j].images == ""){
+				if(newsList[j].images == ""){console.log('b');
 					var leftImage = Ti.UI.createImageView({
 						image: "/images/warm-grey-bg.png", 
 						source: newsList[j].id, 
@@ -63,12 +91,11 @@ function displayHealthInfo(){
 						defaultImage: "/images/warm-grey-bg.png",
 						width:"90%"
 					});
-					var activityIndicator = common.showImageIndicator(); 
+					/*var activityIndicator = common.showImageIndicator(); console.log('c');
 					imageContainer.add(leftImage);
 					imageContainer.add(activityIndicator);
-					common.imageIndicatorEvent(leftImage,activityIndicator);
+					common.imageIndicatorEvent(leftImage,activityIndicator);*/
 				} 
-				  
 				var popUpTitle = Titanium.UI.createLabel({
 					text:newsList[j].title,
 					font:{fontSize:14, fontWeight:'bold'},
@@ -80,7 +107,6 @@ function displayHealthInfo(){
 					wordwrap: false,
 					ellipsize : true
 				});
-				
 				var category =  Titanium.UI.createLabel({
 					text:newsList[j].long_title,
 					source: newsList[j].id,
@@ -90,7 +116,6 @@ function displayHealthInfo(){
 					width: Ti.UI.FILL,
 					height: 30,
 				});
-				
 				var supplier =  Titanium.UI.createLabel({
 					text:newsList[j].updated,
 					source: newsList[j].id,
@@ -100,15 +125,13 @@ function displayHealthInfo(){
 					width: Ti.UI.FILL,
 					height: Ti.UI.SIZE,
 				}); 
-				 
 				row.addEventListener('click', function(e) {
 				 	viewDetails(e);
 				});
 			 	
 				tblView.add(popUpTitle);
 				tblView.add(category);
-			 	tblView.add(supplier);   
-			 	
+			 	tblView.add(supplier);  
 			 	row_view.add(imageContainer);
 			 	row_view.add(tblView);
 			 	row.add(row_view);
@@ -118,7 +141,6 @@ function displayHealthInfo(){
 			tableData.push(sectionNews);
 		} 
 	}
-	 
 	$.infoTable.setData(tableData); 
 } 
 function viewDetails(e){

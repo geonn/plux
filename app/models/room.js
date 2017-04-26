@@ -1,21 +1,17 @@
 exports.definition = {
 	config: {
 		columns: {
-		    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+		    "room_id": "INTEGER PRIMARY KEY",
 		    "u_id": "INTEGER",
-		    "sender_id": "INTEGER",
-		    "message": "TEXT",
-		    "created": "DATE",
-		    "status":"INTEGER",		//1 - pending, 2 - sent, 3 - read
-		    "format":"TEXT",
-		    "dr_id":"INTEGER",
-		    "is_endUser": "INTEGER",
-		    "sender_name": "TEXT",
+		  	"dr_id":"INTEGER",
+		  	"status":"INTEGER",		//1 - pending, 2 - sent, 3 - read
+		    "patient_name": "TEXT",
+		    "unread": "INTEGER",
 		},
 		adapter: {
 			type: "sql",
-			collection_name: "helpline",
-			idAttribute: "id"
+			collection_name: "room",
+			idAttribute: "room_id"
 		}
 	},
 	extendModel: function(Model) {
@@ -28,27 +24,48 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
-			getUnread: function(e){
+			getDataBydr_id: function(e){
 				var collection = this;
-				var u_id = Ti.App.Properties.getString('u_id') || 0; 
-                var sql = "SELECT count(*) as total from helpline where u_id = ? AND status = 2 group by u_id"; 
-                
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
+				var u_id = Ti.App.Properties.getString('u_id') || 0;
+                var sql = "SELECT * from room where dr_id = ? AND u_id = ?"; 
+                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
             	
-            	var res = db.execute(sql, u_id);
-            	if(res.isValidRow()){
-            		var total = res.fieldByName('total');
-            		res.close();
-	                db.close();
-	                collection.trigger('sync');
-	                return total;
-            	}
-            	return 0;
+            	var res = db.execute(sql, e.dr_id, u_id);
+               	var arr = [];
+                var count = 0;
+                 /**
+                 * debug use
+                 
+                var row_count = res.fieldCount;
+               /** for(var a = 0; a < row_count; a++){
+            		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+            	 }
+            	*/
+                var eval_column = "";
+            	for (var i=0; i < names.length; i++) {
+					eval_column = eval_column+names[i]+": res.fieldByName('"+names[i]+"'),";
+				};
+                while (res.isValidRow()){
+                	eval("arr[count] = {"+eval_column+"}");
+                	res.next();
+					count++;
+                }
+			 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
 			},
-			getData: function(latest, start, anchor, last_id, dr_id){
+			getData: function(latest, start, anchor, last_id, u_id){
 				//var last_update = last_update || common.now();
 				if(latest){
 					/*var a = last_update;
@@ -66,15 +83,15 @@ exports.definition = {
 				}
 				
 				var collection = this;
-				var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from helpline where u_id = ? AND dr_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
+				var dr_id = Ti.App.Properties.getString('dr_id'); 
+                var sql = "SELECT * from room where dr_id = ? "+sql_lastupdate+sql_id+" AND u_id=? order by created desc"+start_limit ; 
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
             	
-            	var res = db.execute(sql, u_id, dr_id);
+            	var res = db.execute(sql, dr_id, u_id);
                	var arr = [];
                 var count = 0;
                  /**
@@ -101,6 +118,48 @@ exports.definition = {
 					res.next();
 					count++;
 				} 
+			 
+				res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+			},
+			getUserData: function(){
+				
+				var collection = this;
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
+				var dr_id = Ti.App.Properties.getString('dr_id'); 
+                var sql = "SELECT * from room where dr_id = ? AND status = 2  order by created desc"; 
+                
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                	db.file.setRemoteBackup(false);
+                }
+            	
+            	var res = db.execute(sql, dr_id);
+               	var arr = [];
+                var count = 0;
+                 /**
+                 * debug use
+                 
+                var row_count = res.fieldCount;
+               /** for(var a = 0; a < row_count; a++){
+            		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+            	 }
+            	*/
+                var eval_column = "";
+            	for (var i=0; i < names.length; i++) {
+					eval_column = eval_column+names[i]+": res.fieldByName('"+names[i]+"'),";
+				};
+                while (res.isValidRow()){
+                	eval("arr[count] = {"+eval_column+"}");
+                	res.next();
+					count++;
+                }
 			 
 				res.close();
                 db.close();
@@ -140,8 +199,8 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-				var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET status=3 WHERE u_id=?";
-				db.execute(sql_query, entry.u_id);
+				var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET status=3 WHERE dr_id=?";
+				db.execute(sql_query, entry.dr_id);
 	            db.close();
 	            collection.trigger('sync');
 			},
@@ -152,6 +211,7 @@ exports.definition = {
 				for (var k in columns) {
 	                names.push(k);
 	            }
+	            console.log(arr);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -167,7 +227,6 @@ exports.definition = {
 	                	if (entry.hasOwnProperty(k)){
 	                		_.find(names, function(name){
 	                			if(name == k){
-	                				console.log(name+" "+k);
 	                				keys.push(k);
 			                		questionmark.push("?");
 			                		eval_values.push("entry."+k);
@@ -185,22 +244,6 @@ exports.definition = {
 				//console.log(db.getRowsAffected()+" affected row");
 	            db.close();
 	            collection.trigger('sync');
-			},
-			saveRecord: function(entry){
-				var collection = this;
-				
-                db = Ti.Database.open(collection.config.adapter.db_name);
-                if(Ti.Platform.osname != "android"){
-                	db.file.setRemoteBackup(false);
-                }
-                 
-                entry.message = entry.message.replace("[br]", "\n");
-                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
-				db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
-	            var last_id = db.lastInsertRowId;
-	            db.close();
-	            collection.trigger('sync');
-	            return last_id;
 			},
 			addColumn : function( newFieldName, colSpec) {
 				var collection = this;
@@ -223,7 +266,7 @@ exports.definition = {
 			},
 			updateStatus: function(arr, status){
 				var collection = this;
-                var sql = "UPDATE helpline set status = ? WHERE id in(?)";
+                var sql = "UPDATE conversation set status = ? WHERE id in(?)";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -234,7 +277,7 @@ exports.definition = {
 			},
 			V1_9DBupdate : function(){
 				var collection = this;
-                var sql = "UPDATE helpline set status = 2";
+                var sql = "UPDATE conversation set status = 2";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

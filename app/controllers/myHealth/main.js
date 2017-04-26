@@ -16,7 +16,7 @@ function checkMyHealthData(){
 	var checker = Alloy.createCollection('updateChecker');
 	var isUpdate = checker.getCheckerById("14", u_id);
 	var last_updated ="";
-	 
+	
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
 	}

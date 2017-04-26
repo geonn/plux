@@ -13,6 +13,7 @@ function render_doctor_list(){
 		docTable.setData(common.noRecord());
 	}else{
 		listing.forEach(function(entry) {
+			
 	   		var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
 			    height: Ti.UI.SIZE,
@@ -25,6 +26,7 @@ function render_doctor_list(){
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
+					dr_id: entry.id, 
 			}); 
 
 			var tblView = Ti.UI.createView({
@@ -35,7 +37,7 @@ function render_doctor_list(){
 			 
 			var docName = $.UI.create('Label',{
 				classes : ['medium_font','wfill','hsize','themeColor'],
-				text:  entry.name, 
+				text:  entry.name+" "+entry.id, 
 				textAlign:'left',
 				top:5,
 				left:15
@@ -62,8 +64,17 @@ function render_doctor_list(){
 function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
 		var dr_id = parent({name: "dr_id"}, e.source);
-	 	Ti.App.fireEvent("askDoctor_index:windowClose");
-	 	nav.navigateWithArgs("conversation", {dr_id : dr_id});
+		console.log(dr_id+" dr_id from doctor");
+	 	//Ti.App.fireEvent("askDoctor_index:windowClose");
+	 	var room_model = Alloy.createCollection('room');
+	 	var room = room_model.getDataBydr_id({dr_id: dr_id}); 
+	 	console.log(room);
+	 	if(room.length > 0 && room[0].status == 2){
+	 		nav.navigateWithArgs("conversation", {dr_id : dr_id});
+	 	}else{
+	 		nav.navigateWithArgs("askDoctor/forms", {dr_id : dr_id});
+	 	}
+	 	//
 	});
 }
 

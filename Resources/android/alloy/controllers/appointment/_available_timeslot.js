@@ -228,16 +228,16 @@ function Controller() {
         id: "inner_box"
     });
     $.__views._available_timeslot.add($.__views.inner_box);
-    $.__views.__alloyId352 = Ti.UI.createScrollView({
+    $.__views.__alloyId356 = Ti.UI.createScrollView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         contentWidth: Ti.UI.FILL,
         disableBounce: true,
         contentHeight: Ti.UI.SIZE,
         backgroundColor: "#d7d7d7",
-        id: "__alloyId352"
+        id: "__alloyId356"
     });
-    $.__views.inner_box.add($.__views.__alloyId352);
+    $.__views.inner_box.add($.__views.__alloyId356);
     $.__views.timeslot = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
@@ -246,7 +246,7 @@ function Controller() {
         top: 1,
         id: "timeslot"
     });
-    $.__views.__alloyId352.add($.__views.timeslot);
+    $.__views.__alloyId356.add($.__views.timeslot);
     exports.destroy = function() {};
     _.extend($, $.__views);
     Alloy.createCollection("panelList");

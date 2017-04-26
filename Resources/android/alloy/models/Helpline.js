@@ -10,6 +10,7 @@ exports.definition = {
             created: "DATE",
             status: "INTEGER",
             format: "TEXT",
+            dr_id: "INTEGER",
             is_endUser: "INTEGER",
             sender_name: "TEXT"
         },
@@ -40,7 +41,7 @@ exports.definition = {
                 }
                 return 0;
             },
-            getData: function(latest, start, anchor, last_id) {
+            getData: function(latest, start, anchor, last_id, dr_id) {
                 if (latest) {
                     var start_limit = "";
                     var sql_lastupdate = "";
@@ -52,9 +53,9 @@ exports.definition = {
                 }
                 var collection = this;
                 var u_id = Ti.App.Properties.getString("u_id");
-                var sql = "SELECT * from helpline where u_id = ? " + sql_lastupdate + sql_id + " order by created desc" + start_limit;
+                var sql = "SELECT * from helpline where u_id = ? AND dr_id = ? " + sql_lastupdate + sql_id + " order by created desc" + start_limit;
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                var res = db.execute(sql, u_id);
+                var res = db.execute(sql, u_id, dr_id);
                 var arr = [];
                 var count = 0;
                 while (res.isValidRow()) {
@@ -64,6 +65,7 @@ exports.definition = {
                         sender_id: res.fieldByName("sender_id"),
                         message: res.fieldByName("message"),
                         status: res.fieldByName("status"),
+                        dr_id: res.fieldByName("dr_id"),
                         created: res.fieldByName("created"),
                         format: res.fieldByName("format"),
                         is_endUser: res.fieldByName("is_endUser"),
@@ -86,6 +88,15 @@ exports.definition = {
                 db.close();
                 collection.trigger("sync");
             },
+            setColumnValue: function() {
+                var collection = this;
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                var sql_query = "UPDATE " + collection.config.adapter.collection_name + " set dr_id = 0";
+                db.execute(sql_query);
+                console.log(db.getRowsAffected() + " deleted");
+                db.close();
+                collection.trigger("sync");
+            },
             messageRead: function(entry) {
                 var collection = this;
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -96,6 +107,9 @@ exports.definition = {
             },
             saveArray: function(arr) {
                 var collection = this;
+                var columns = collection.config.columns;
+                var names = [];
+                for (var k in columns) names.push(k);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
@@ -104,26 +118,23 @@ exports.definition = {
                     var eval_values = [];
                     var update_questionmark = [];
                     var update_value = [];
-                    for (var k in entry) if (entry.hasOwnProperty(k)) {
-                        keys = _.keys(entry);
-                        questionmark.push("?");
-                        eval_values.push("entry." + k);
-                        update_questionmark.push(k + "=?");
-                    }
+                    for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
+                        if (name == k) {
+                            console.log(name + " " + k);
+                            keys.push(k);
+                            questionmark.push("?");
+                            eval_values.push("entry." + k);
+                            update_questionmark.push(k + "=?");
+                        }
+                    });
                     var without_pk_list = _.rest(update_questionmark);
                     var without_pk_value = _.rest(eval_values);
                     var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + questionmark.join() + ")";
-                    console.log(eval_values.join());
-                    "undefined" != typeof entry.id && console.log(entry.id);
-                    console.log(entry.status);
                     eval("db.execute(sql_query, " + eval_values.join() + ")");
                 });
                 db.execute("COMMIT");
-                console.log(db.getRowsAffected() + " affected row");
-                var last_id = db.lastInsertRowId;
                 db.close();
                 collection.trigger("sync");
-                return last_id;
             },
             saveRecord: function(entry) {
                 var collection = this;

@@ -17,6 +17,9 @@ ID       type Name
 13		getClinicLocator2
 14		getHealthDataByUser	|| u_id
 15		getPersonalInfoRecords	|| u_id
+16		getRoomList	|| u_id
+17		grab_newsfeed
+18		getCategoryList
 ************************************/
 
 exports.definition = {

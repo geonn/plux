@@ -325,6 +325,18 @@ function message_alert(e){
 	}
 }
 
+function hinttextOnFocus(e){
+	if(e.source.value == e.source._hintText){
+        e.source.value = "";
+    }
+}
+
+function hinttextOnBlur(e){
+	if(e.source.value==""){
+        e.source.value = e.source._hintText;
+    }
+}
+
 if(OS_IOS){ 
 	Titanium.UI.iPhone.setAppBadge("0"); 
 }

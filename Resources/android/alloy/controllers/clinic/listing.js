@@ -124,34 +124,34 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId599 = Ti.UI.createImageView({
+    $.__views.__alloyId617 = Ti.UI.createImageView({
         right: 10,
         width: 25,
         height: 25,
         image: "/images/icon_refresh.png",
-        id: "__alloyId599"
+        id: "__alloyId617"
     });
-    doRefresh ? $.addListener($.__views.__alloyId599, "click", doRefresh) : __defers["$.__views.__alloyId599!click!doRefresh"] = true;
-    $.__views.win.rightNavButton = $.__views.__alloyId599;
+    doRefresh ? $.addListener($.__views.__alloyId617, "click", doRefresh) : __defers["$.__views.__alloyId617!click!doRefresh"] = true;
+    $.__views.win.rightNavButton = $.__views.__alloyId617;
     $.__views.panelListTbl = Ti.UI.createView({
         id: "panelListTbl",
         layout: "vertical"
     });
     $.__views.win.add($.__views.panelListTbl);
-    $.__views.__alloyId600 = Ti.UI.createView({
+    $.__views.__alloyId618 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId600"
+        id: "__alloyId618"
     });
-    $.__views.panelListTbl.add($.__views.__alloyId600);
-    $.__views.__alloyId601 = Ti.UI.createView({
+    $.__views.panelListTbl.add($.__views.__alloyId618);
+    $.__views.__alloyId619 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId601"
+        id: "__alloyId619"
     });
-    $.__views.__alloyId600.add($.__views.__alloyId601);
+    $.__views.__alloyId618.add($.__views.__alloyId619);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -159,12 +159,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId601.add($.__views.btnBack);
-    $.__views.__alloyId602 = Ti.UI.createView({
+    $.__views.__alloyId619.add($.__views.btnBack);
+    $.__views.__alloyId620 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId602"
+        id: "__alloyId620"
     });
-    $.__views.__alloyId600.add($.__views.__alloyId602);
+    $.__views.__alloyId618.add($.__views.__alloyId620);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -176,22 +176,22 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId602.add($.__views.pageTitle);
-    $.__views.__alloyId603 = Ti.UI.createView({
+    $.__views.__alloyId620.add($.__views.pageTitle);
+    $.__views.__alloyId621 = Ti.UI.createView({
         right: 0,
         width: "20%",
-        id: "__alloyId603"
+        id: "__alloyId621"
     });
-    $.__views.__alloyId600.add($.__views.__alloyId603);
-    $.__views.__alloyId604 = Ti.UI.createImageView({
+    $.__views.__alloyId618.add($.__views.__alloyId621);
+    $.__views.__alloyId622 = Ti.UI.createImageView({
         right: 10,
         width: 25,
         height: 25,
         image: "/images/icon_refresh.png",
-        id: "__alloyId604"
+        id: "__alloyId622"
     });
-    $.__views.__alloyId603.add($.__views.__alloyId604);
-    doRefresh ? $.addListener($.__views.__alloyId604, "click", doRefresh) : __defers["$.__views.__alloyId604!click!doRefresh"] = true;
+    $.__views.__alloyId621.add($.__views.__alloyId622);
+    doRefresh ? $.addListener($.__views.__alloyId622, "click", doRefresh) : __defers["$.__views.__alloyId622!click!doRefresh"] = true;
     $.__views.tblview = Ti.UI.createTableView({
         id: "tblview",
         width: Ti.UI.FILL,
@@ -215,16 +215,16 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId605 = Ti.UI.createLabel({
+    $.__views.__alloyId623 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
-        id: "__alloyId605"
+        id: "__alloyId623"
     });
-    $.__views.loadingBar.add($.__views.__alloyId605);
+    $.__views.loadingBar.add($.__views.__alloyId623);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
@@ -252,8 +252,8 @@ function Controller() {
             clinicType: e.rowData.id
         });
     });
-    __defers["$.__views.__alloyId599!click!doRefresh"] && $.addListener($.__views.__alloyId599, "click", doRefresh);
-    __defers["$.__views.__alloyId604!click!doRefresh"] && $.addListener($.__views.__alloyId604, "click", doRefresh);
+    __defers["$.__views.__alloyId617!click!doRefresh"] && $.addListener($.__views.__alloyId617, "click", doRefresh);
+    __defers["$.__views.__alloyId622!click!doRefresh"] && $.addListener($.__views.__alloyId622, "click", doRefresh);
     _.extend($, exports);
 }
 

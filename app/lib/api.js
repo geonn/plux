@@ -14,8 +14,8 @@ var checkAppVersionUrl = "http://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user
 var updateUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
 var getUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
 var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
-var newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
-var categoryUrl     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
+var grab_newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
+var getCategoryList     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var pluxLoginUrl    = "http://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
@@ -38,6 +38,8 @@ var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user=
 var changeMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
 var addMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
 var getCorpPermission = "http://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
+var getMessage = "http://"+FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
+var sendMessage = "http://"+FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
 
 var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
 var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
@@ -63,9 +65,10 @@ var getPersonalInfoRecords = "http://"+FREEJINI_DOMAIN+"/api/getPersonalInfoReco
 var addUpdateRecords = "http://"+FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
 var changeRecordStatus = "http://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
 var doforgotPassword = "http://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
+var getRoomList = "http://"+FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
 
 var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
-var loginUrl        = "http://"+API_DOMAIN+"/login.aspx"; 
+var loginUrl        = "http://"+API_DOMAIN+"/login.aspx";
 var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx";
 var checkBalanceUrl = "http://"+API_DOMAIN+"/balchk.aspx";
 var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
@@ -87,6 +90,8 @@ var APILoadingList = [
 	{url: getClinicLocator2, model: "panelList", checkId: "13"},
 	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
 	{url: doctorListUrl, model: "doctors", checkId: "12"},
+	{url: grab_newsfeed, model: "health_news_feed", checkId: "17"},
+	{url: getCategoryList, model: "categorys", checkId: "18"}
 ];
 
 
@@ -1390,7 +1395,8 @@ exports.callByPost = function(e, onload, onerror){
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
-		var url = eval(e.url);
+		
+		var url = (typeof e.new != "undefined")?"http://"+API_DOMAIN+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		console.log(url); 
 		var _result = contactServerByPost(url, e.params || {});   
 		_result.onload = function(ex) {  
@@ -1398,6 +1404,7 @@ exports.callByPost = function(e, onload, onerror){
 		};
 		
 		_result.onerror = function(ex) {  
+			console.log(ex);
 			if(retryTimes !== 0 && Titanium.Network.online){
 				retryTimes --;
 				_.extend(e, {retryTimes: retryTimes});

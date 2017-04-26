@@ -22,7 +22,8 @@ function Controller() {
                 });
                 var tblRowView = Ti.UI.createView({
                     height: Ti.UI.SIZE,
-                    width: Ti.UI.FILL
+                    width: Ti.UI.FILL,
+                    dr_id: entry.id
                 });
                 var tblView = Ti.UI.createView({
                     layout: "vertical",
@@ -31,7 +32,7 @@ function Controller() {
                 });
                 var docName = $.UI.create("Label", {
                     classes: [ "medium_font", "wfill", "hsize", "themeColor" ],
-                    text: entry.name,
+                    text: entry.name + " " + entry.id,
                     textAlign: "left",
                     top: 5,
                     left: 15
@@ -59,8 +60,15 @@ function Controller() {
             var dr_id = parent({
                 name: "dr_id"
             }, e.source);
-            Ti.App.fireEvent("askDoctor_index:windowClose");
-            nav.navigateWithArgs("conversation", {
+            console.log(dr_id + " dr_id from doctor");
+            var room_model = Alloy.createCollection("room");
+            var room = room_model.getDataBydr_id({
+                dr_id: dr_id
+            });
+            console.log(room);
+            room.length > 0 && 2 == room[0].status ? nav.navigateWithArgs("conversation", {
+                dr_id: dr_id
+            }) : nav.navigateWithArgs("askDoctor/forms", {
                 dr_id: dr_id
             });
         });

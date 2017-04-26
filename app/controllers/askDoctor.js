@@ -11,8 +11,8 @@ init();
 function init(){
 	$.win.add(loading.getView());
 	loading.start();
-	API.syncAppointmentData(savedAppointment);
-	render_conversation_list();
+	//API.syncAppointmentData(savedAppointment);
+	//render_conversation_list();
 }
 
 function savedAppointment(ex){ 
@@ -30,6 +30,7 @@ function savedAppointment(ex){
 function render_conversation_list(){ 
 	$.conversation_list.removeAllChildren();
 	MessageList = MessageModel.getDataGroupDrid(); 
+	console.log(MessageList);
 	var data=[];
 	var counter = 0;  
 	if(MessageList.length < 1){
@@ -82,7 +83,7 @@ function navToConversation(e){
 }
 
 function navFindDoctor(){ 
-	nav.navigateWithArgs("askDoctor/index",{id : ""});
+	nav.navigateWithArgs("askDoctor/forms");
 }
 
 /*

@@ -8,7 +8,44 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function init() {
+        syncData({
+            url: "grab_newsfeed",
+            checkerId: 17,
+            model: "health_news_feed",
+            callback: displayHealthInfo
+        });
+    }
+    function syncData(e) {
+        var checker = Alloy.createCollection("updateChecker");
+        var u_id = Ti.App.Properties.getString("u_id") || 0;
+        var isUpdate = checker.getCheckerById(e.checkerId, u_id);
+        var last_updated = isUpdate.updated || "";
+        last_update = last_updated;
+        var params = {
+            u_id: u_id
+        };
+        "" != isUpdate && (params = _.extend(params, {
+            last_updated: isUpdate.updated
+        }));
+        params = _.extend(params, e.params);
+        console.log(params);
+        API.callByPost({
+            url: e.url,
+            params: params
+        }, function(responseText) {
+            var model = Alloy.createCollection(e.model);
+            console.log(responseText);
+            var res = JSON.parse(responseText);
+            var arr = res.data || void 0;
+            var res = JSON.parse(responseText);
+            model.saveArray(arr);
+            checker.updateModule(e.checkerId, e.model, res.last_updated, u_id);
+            e.callback();
+        });
+    }
     function displayHealthInfo() {
+        console.log("displayHealthInfo");
         var tableData = [];
         for (var i = 0; i < cateList.length; i++) {
             var newsList = newsFeedModel.getRecordsListByCategory(cateList[i].id);
@@ -149,13 +186,80 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    $.__views.healthInfo = Ti.UI.createWindow({
+        backgroundColor: "#ffffff",
+        fullscreen: true,
+        windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN,
+        title: "Health Info",
+        backButtonTitle: "",
+        navTintColor: "#CE1D1C",
+        id: "healthInfo"
+    });
+    $.__views.healthInfo && $.addTopLevelView($.__views.healthInfo);
+    $.__views.__alloyId155 = Ti.UI.createView({
+        height: Ti.UI.FILL,
+        width: Ti.UI.FILL,
+        layout: "vertical",
+        id: "__alloyId155"
+    });
+    $.__views.healthInfo.add($.__views.__alloyId155);
+    $.__views.__alloyId156 = Ti.UI.createView({
+        layout: "horizontal",
+        height: 50,
+        width: "100%",
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId156"
+    });
+    $.__views.__alloyId155.add($.__views.__alloyId156);
+    $.__views.__alloyId157 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId157"
+    });
+    $.__views.__alloyId156.add($.__views.__alloyId157);
+    $.__views.btnBack = Ti.UI.createImageView({
+        left: 10,
+        id: "btnBack",
+        width: 25,
+        height: 25,
+        image: "/images/btn-back.png"
+    });
+    $.__views.__alloyId157.add($.__views.btnBack);
+    $.__views.pageTitle = Ti.UI.createView({
+        id: "pageTitle",
+        width: Ti.UI.FILL
+    });
+    $.__views.__alloyId156.add($.__views.pageTitle);
+    $.__views.__alloyId158 = Ti.UI.createLabel({
+        width: Titanium.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#606060",
+        font: {
+            fontSize: "16dp"
+        },
+        text: "Health Info",
+        textAlign: "center",
+        id: "__alloyId158"
+    });
+    $.__views.pageTitle.add($.__views.__alloyId158);
+    $.__views.main = Ti.UI.createView({
+        backgroundColor: "#ffffff",
+        height: Titanium.UI.FILL,
+        width: Titanium.UI.FILL,
+        id: "main"
+    });
+    $.__views.__alloyId155.add($.__views.main);
+    $.__views.infoTable = Ti.UI.createTableView({
+        id: "infoTable"
+    });
+    $.__views.main.add($.__views.infoTable);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
     var newsFeedModel = Alloy.createCollection("health_news_feed");
     var categoryModel = Alloy.createCollection("category");
     var cateList = categoryModel.getCategoryList();
-    displayHealthInfo();
+    init();
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.healthInfoWindow);
     });

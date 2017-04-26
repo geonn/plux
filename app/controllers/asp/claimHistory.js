@@ -9,7 +9,7 @@ if(Ti.Platform.osname == "android"){
 }
 var claimDetailModel = Alloy.createCollection('claim_detail'); 
 var data = claimDetailModel.getClaimDetail({memno: args.memno, name: arg_name}); 
-
+console.log(data);
 data = _.sortBy(data, "visitdate");
 data.reverse();
 

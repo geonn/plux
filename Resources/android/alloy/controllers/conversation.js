@@ -20,15 +20,24 @@ function Controller() {
             message: $.message.value,
             created: common.now(),
             is_endUser: 1,
+            dr_id: dr_id,
             format: "text",
             status: 1,
             sender_name: user.fullname
         } ];
         var id = model.saveArray(local_save);
+        console.log({
+            u_id: u_id,
+            dr_id: dr_id,
+            message: $.message.value,
+            is_endUser: 1,
+            app_id: id
+        });
         API.callByPost({
-            url: "sendHelplineMessage",
+            url: "sendMessage",
             params: {
                 u_id: u_id,
+                dr_id: dr_id,
                 message: $.message.value,
                 is_endUser: 1,
                 app_id: id
@@ -40,10 +49,10 @@ function Controller() {
             sending = false;
             $.message.blur();
             loading.finish();
+            console.log(room_id + " room id that fire");
             socket.fireEvent("socket:sendMessage", {
                 room_id: room_id
             });
-            console.log(isShowWatingMsg);
             "0" == isShowWatingMsg && (refreshIntervalId = setInterval(function() {
                 $.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
                 $.estimate.parent.show();
@@ -179,39 +188,41 @@ function Controller() {
         var isUpdate = checker.getCheckerById(7, u_id);
         var last_updated = isUpdate.updated || "";
         last_update = last_updated;
-        console.log(last_updated + " last_updated " + u_id);
+        console.log({
+            u_id: u_id,
+            dr_id: dr_id,
+            last_updated: last_updated
+        });
         API.callByPost({
-            url: "getHelplineMessageV3",
-            "new": true,
+            url: "getMessage",
             params: {
                 u_id: u_id,
+                dr_id: dr_id,
                 last_updated: last_updated
             }
         }, function(responseText) {
             var model = Alloy.createCollection("helpline");
+            console.log("check here " + room_id);
             var res = JSON.parse(responseText);
             var arr = res.data || void 0;
-            if (arr.length > 0 || retry >= 3) {
-                Ti.App.Properties.setString("estimate_time", res.estimate_time);
+            if (arr.length > 0) {
                 model.saveArray(arr, callback);
-                checker.updateModule(7, "getHelplineMessageV3", res.last_updated, u_id);
                 var update_id = _.pluck(arr, "id");
                 updateStatus(update_id);
-                if (!room_id) {
-                    Ti.App.fireEvent("web:setRoom", {
-                        room_id: res.data
-                    });
-                    Ti.App.fireEvent("conversation:setRoom", {
-                        room_id: res.data
-                    });
-                }
-                room_id = res.room_id;
-                callback && callback();
-            } else {
-                console.log(retry + " retry times");
-                getConversationByRoomId(callback);
-                retry++;
             }
+            Ti.App.Properties.setString("estimate_time", res.estimate_time);
+            checker.updateModule(7, "getMessage", res.last_updated, u_id);
+            if (!room_id) {
+                console.log(res);
+                Ti.App.fireEvent("web:setRoom", {
+                    room_id: res.room_id
+                });
+                set_room({
+                    room_id: res.data
+                });
+            }
+            room_id = res.room_id;
+            callback && callback();
         });
     }
     function updateStatus(arr) {
@@ -259,10 +270,11 @@ function Controller() {
     function getPreviousData(param) {
         start = parseInt(start);
         var model = Alloy.createCollection("helpline");
-        data = model.getData(false, start, anchor);
+        console.log(dr_id + " dr_id");
+        data = model.getData(false, start, anchor, "", dr_id);
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         console.log(estimate_time + " estimate time");
-        console.log(data);
+        console.log(data.length);
         last_id = data.length > 0 ? _.first(data)["id"] : last_id;
         last_uid = data.length > 0 ? _.first(data)["sender_id"] : last_uid;
         console.log(last_id + " why");
@@ -278,14 +290,14 @@ function Controller() {
     }
     function getLatestData() {
         var model = Alloy.createCollection("helpline");
-        data = model.getData(true, "", "", last_id);
+        data = model.getData(true, "", "", last_id, dr_id);
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         if (0 != estimate_time) {
             $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
             $.estimate.parent.show();
         } else $.estimate.parent.hide();
         console.log("getlatestdata");
-        console.log(data);
+        console.log(data.length);
         last_id = data.length > 0 ? _.first(data)["id"] : last_id;
         last_uid = data.length > 0 ? _.first(data)["sender_id"] : last_uid;
         console.log(last_id);
@@ -308,6 +320,7 @@ function Controller() {
         }
     }
     function set_room() {
+        console.log("set_room");
         socket.addEventListener("socket:refresh_chatroom", refresh_latest);
         socket.event_onoff("socket:message_alert", false);
     }
@@ -501,7 +514,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    args.dr_id;
+    var dr_id = args.dr_id || 0;
     var loading = Alloy.createController("loading");
     var anchor = common.now();
     var last_update = common.now();
@@ -515,6 +528,7 @@ function Controller() {
     var last_id = 0;
     var last_uid;
     var status_text = [ "", "Sending", "Sent", "Read" ];
+    var room_id = 0;
     var sending = false;
     var refreshing = false;
     var time_offset = common.now();

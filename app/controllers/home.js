@@ -26,8 +26,10 @@ function loadHomePageItem(){
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
 		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
 		{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
+		{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
 		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
+		{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
 	]; 
 	console.log(menu_info.length+" loadHomePageItem");
 }	
@@ -59,7 +61,9 @@ function checkserviceByCorpcode(){
 	if(corpcode != "null"){
 		 console.log(corpcode+" corpcode");
 		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
-			var res = JSON.parse(responseText);  
+			var res = JSON.parse(responseText); 
+			console.log('why no response?');
+			console.log(res); 
 			if(res.status == "success"){  
 				var takeout = res.data;
 				for (var i=0; i < takeout.length; i++) { 
@@ -367,6 +371,7 @@ function refreshHeaderInfo(){
  
 function navWindow(e){
 	var target = e.source.mod;  
+	console.log(target+" target");
 	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" || e.source.mod == "notification" ){
 		if(e.source.mod =="notification"){
 			nav.navigationWindow("asp/"+target);  
@@ -381,6 +386,7 @@ function navWindow(e){
 	}else if(e.source.mod == "conversation"){
 		nav.navigationWindow(target, 1);
 	}else{
+		console.log(target+" target");
 		nav.navigationWindow(target);
 	}	
 }

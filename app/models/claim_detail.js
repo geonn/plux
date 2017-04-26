@@ -130,7 +130,7 @@ exports.definition = {
 			},
 			getClaimDetail: function(e){
 				var collection = this;
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE name like ? order by visitdate DESC";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name +" WHERE name = ? order by visitdate DESC";
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){

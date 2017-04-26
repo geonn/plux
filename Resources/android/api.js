@@ -67,9 +67,9 @@ var getUserServiceUrl = "http://" + FREEJINI_DOMAIN + "/api/getUserService?user=
 
 var updateToken = "http://" + FREEJINI_DOMAIN + "/api/updateToken?user=" + USER + "&key=" + KEY;
 
-var newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER + "&key=" + KEY;
+var grab_newsfeed = "http://" + FREEJINI_DOMAIN + "/api/grab_newsfeed?user=" + USER + "&key=" + KEY;
 
-var categoryUrl = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + USER + "&key=" + KEY;
+var getCategoryList = "http://" + FREEJINI_DOMAIN + "/api/getCategoryList?user=" + USER + "&key=" + KEY;
 
 var leafletUrl = "http://" + FREEJINI_DOMAIN + "/api/getBrochure?user=" + USER + "&key=" + KEY;
 
@@ -114,6 +114,10 @@ var changeMedicalRecord = "http://" + FREEJINI_DOMAIN + "/api/changeMedicalRecor
 var addMedicalAttachment = "http://" + FREEJINI_DOMAIN + "/api/addMedicalAttachment?user=" + USER + "&key=" + KEY;
 
 var getCorpPermission = "http://" + FREEJINI_DOMAIN + "/api/getCorpPermission?user=" + USER + "&key=" + KEY;
+
+var getMessage = "http://" + FREEJINI_DOMAIN + "/api/getMessage?user=" + USER + "&key=" + KEY;
+
+var sendMessage = "http://" + FREEJINI_DOMAIN + "/api/sendMessage?user=" + USER + "&key=" + KEY;
 
 var addMessageUrl = "http://" + FREEJINI_DOMAIN + "/api/addMessage?user=" + USER + "&key=" + KEY;
 
@@ -163,6 +167,8 @@ var changeRecordStatus = "http://" + FREEJINI_DOMAIN + "/api/changeRecordStatus?
 
 var doforgotPassword = "http://" + FREEJINI_DOMAIN + "/api/doforgotPassword?user=" + USER + "&key=" + KEY;
 
+var getRoomList = "http://" + FREEJINI_DOMAIN + "/api/getRoomList?user=" + USER + "&key=" + KEY;
+
 var panelList = "http://" + API_DOMAIN + "/panellist.aspx";
 
 var loginUrl = "http://" + API_DOMAIN + "/login.aspx";
@@ -203,6 +209,14 @@ var APILoadingList = [ {
     url: doctorListUrl,
     model: "doctors",
     checkId: "12"
+}, {
+    url: grab_newsfeed,
+    model: "health_news_feed",
+    checkId: "17"
+}, {
+    url: getCategoryList,
+    model: "category",
+    checkId: "18"
 } ];
 
 exports.loadAPIBySequence = function(ex, counter) {
@@ -1128,13 +1142,14 @@ exports.callByPost = function(e, onload, onerror) {
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var deviceToken = Ti.App.Properties.getString("deviceToken");
     if ("" != deviceToken) {
-        var url = eval(e.url);
+        var url = "undefined" != typeof e.new ? "http://" + API_DOMAIN + "/api/" + e.url + "?user=" + USER + "&key=" + KEY : eval(e.url);
         console.log(url);
         var _result = contactServerByPost(url, e.params || {});
         _result.onload = function() {
             onload && onload(this.responseText);
         };
-        _result.onerror = function() {
+        _result.onerror = function(ex) {
+            console.log(ex);
             if (0 !== retryTimes && Titanium.Network.online) {
                 retryTimes--;
                 _.extend(e, {
