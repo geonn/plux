@@ -3,6 +3,7 @@ var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
 var loading = Alloy.createController('loading'); 
 var usersPluxModel = Alloy.createCollection('users_plux'); 
+
 var notificationModel = Alloy.createCollection('notification'); 
 var menu_info;
 var new_menu = [];
@@ -18,6 +19,7 @@ loadingView.start();
 
 function loadHomePageItem(){
 	menu_info   = new_menu = [
+		{mod:"inpatient_record", image:"/images/test.png"},
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"hra", image:"/images/btn/btn_hra.png"},
@@ -52,6 +54,7 @@ if(Ti.Platform.osname != "android"){
 	Alloy.Globals.navMenu = $.navMenu;
 }
 
+console.log("Empno"+Ti.App.Properties.getString("empno")+" corpcode:"+Ti.App.Properties.getString("corpcode"));
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
 	 
@@ -136,6 +139,7 @@ function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	loadHomePageItem();
+	loadInpatientRecord();
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();
@@ -169,7 +173,22 @@ function init(){
 	},2000);
 	
 }
-
+function loadInpatientRecord(e){
+	var empno = Ti.App.Properties.getString("empno");
+	var corpcode = Ti.App.Properties.getString("corpcode");	
+	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
+		var model = Alloy.createCollection("inpatient_record");
+		console.log(responseText);
+		var res = JSON.parse(responseText);
+		var arr = res || undefined;
+		model.resetInpatientRecord();		
+		model.saveArray(arr);
+        var model = null;
+        var res = null;
+        var arr = null;
+	});
+	
+}
 function syncFromServer(){
 	console.log("syncFromServer");
 	var checker = Alloy.createCollection('updateChecker'); 

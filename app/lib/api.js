@@ -78,6 +78,7 @@ var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx";
 var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";
 var aspPreSignupUrl = "http://"+API_DOMAIN+"/presignup.aspx";
 var ifins = "http://"+API_DOMAIN+"/ifins.aspx";
+var ipinv = "http://"+API_DOMAIN+"/ipinv.aspx";
 /**claim submmission***/
 var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
 var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
@@ -164,7 +165,6 @@ exports.loadAPIBySequence = function (ex, counter){
 	 // Send the request.
 	client.send();
 };
-
 exports.updateUserFromFB = function(e, mainView){ 
 	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
 	 
@@ -1314,6 +1314,7 @@ exports.loadPanelList = function (ex){
 };
  
 exports.callByGet  = function(e, onload, onerror){
+	console.log("callbyget");
 	var url =  eval(e.url) + "?"+e.params;
 	console.log(url);
 	var _result = contactServerByGet(encodeURI(url));   

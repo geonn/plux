@@ -1,0 +1,17 @@
+<Alloy>
+	<Window title="Inpatient Detail" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View height="Ti.UI.FILL" width="Ti.UI.FILL" layout="vertical">
+			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="Ti.UI.FILL">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Inpatient Detail</Label>
+		     	</View> 
+		 	</View> 
+			<View id="main">
+				<!-- This section for design  -->
+			</View>
+		</View>
+	</Window>
+</Alloy>
