@@ -5,5 +5,5 @@ iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.plux.healthcare
 iosLaunchConfigurationAttributes/certificate=Lau Yik Onn (QNZHVK326T)
 iosLaunchConfigurationAttributes/keychain=
-iosLaunchConfigurationAttributes/sdk_version=10.2
+iosLaunchConfigurationAttributes/sdk_version=10.3
 iosLaunchConfigurationAttributes/uuid=09095be3-45ff-45af-895e-25a2628a32ec

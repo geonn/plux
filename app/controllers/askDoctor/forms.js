@@ -37,7 +37,8 @@ function sendMessage(){
 	loading.start();
 	sending = true;
 	$.message.editable = false;
-	var gender_text = (gender != "")?"Gender: "+gender+"\n":"";
+	var gender_text = (gender != "")?"Gender: "+gender+"\r\n":"";
+	var app_id = Math.random().toString(36).substr(2, 10);
 	var local_save = [{
 		"u_id": u_id,
 	    "sender_id": u_id,
@@ -46,14 +47,15 @@ function sendMessage(){
 	    "is_endUser": 1,
 	    "dr_id": dr_id,
 	    "format": "text",
+	    "app_id": app_id,
 	    "status": 1,
 	    "sender_name": user.fullname,
 	}];
 	
 	var id = model.saveArray(local_save);
-	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: id });
-	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: id }}, function(responseText){
-		
+	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: app_id });
+	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: app_id }}, function(responseText){
+		socket.fireEvent("doctor:refresh_patient_list");
 		var res = JSON.parse(responseText);
 		$.message.value = "";
 		$.message.editable = true;

@@ -76,7 +76,7 @@ function getClaimCategory(){
 		panelCategory = JSON.parse(responseText); 
 		
 		if(panelCategory.length < 1){
-			common.createAlert("Error", "Your are not allowed to submit claim" );
+			common.createAlert("Error", "You are not allowed to submit claim" );
 			nav.closeWindow($.win); 
 			return false;
 		}

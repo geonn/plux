@@ -20,15 +20,16 @@ var room_id = 0;
  */
 var sending = false;
 function SendMessage(){
-	var model = Alloy.createCollection("helpline");
+	var model_name = (dr_id == 0)?"helpline":"chat";
+	var model = Alloy.createCollection(model_name);
 	if($.message.value == "" || sending){
 		return;
 	}
 	loading.start();
 	sending = true;
 	$.message.editable = false;
-	
-	var local_save = [{
+	var app_id = Math.random().toString(36).substr(2, 10);
+	var local_save = {
 		"u_id": u_id,
 	    "sender_id": u_id,
 	    "message": $.message.value,
@@ -37,19 +38,24 @@ function SendMessage(){
 	    "dr_id": dr_id,
 	    "format": "text",
 	    "status": 1,
+	    "app_id": app_id,
 	    "sender_name": user.fullname,
-	}];
-	var id = model.saveArray(local_save);
-	console.log({u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: id });
-	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: id }}, function(responseText){
-		
+	};
+	if(dr_id > 0){
+		local_save = _.extend(local_save, {id: app_id});
+	}
+	console.log(local_save);
+	var id = model.saveArray([local_save]);
+	app_id = (dr_id == 0)?id:app_id;
+	console.log({u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: app_id });
+	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: app_id }}, function(responseText){
+		console.log(responseText);
 		var res = JSON.parse(responseText);
 		$.message.value = "";
 		$.message.editable = true;
 		sending = false;
 		$.message.blur();
 		loading.finish();
-		console.log(room_id+" room id that fire");
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		if(isShowWatingMsg == "0"){
 			refreshIntervalId = setInterval(function(){
@@ -119,9 +125,8 @@ function render_conversation(latest){
 			var ss = data[i].message;
 			var newText = ss.replace("[br]", "\r\n");
 			var text_color = (data[i].format == "link")?"blue":"#606060";
-			newText = (data[i].format == "link")?  newText:newText;
+			newText = (data[i].format == "link")?newText:newText;
 			console.log(data[i]);
-			
 			
 			var label_message = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','small_padding'],
@@ -196,7 +201,8 @@ function render_conversation(latest){
    			 if (ex.index === ex.source.cancel){
 
    			 }else if(ex.index == 0){
-   			 	var model = Alloy.createCollection("helpline");
+   			 	var model_name = (dr_id == 0)?"helpline":"chat";
+   			 	var model = Alloy.createCollection(model_name);
 				model.removeById(m_id);
    			 	$.inner_area.remove(message_box);
    			 }
@@ -222,28 +228,34 @@ function render_conversation(latest){
 }
 
 function getConversationByRoomId(callback){
+	var url = (dr_id == 0)?"getHelplineMessageV3":"getMessage";
+	var model_name = (dr_id == 0)?"helpline":"chat";
+	var checker_id = (dr_id == 0)?7:19;
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	var isUpdate = checker.getCheckerById(7, u_id);
+	var isUpdate = checker.getCheckerById(checker_id, u_id);
 	var last_updated = isUpdate.updated || "";
 	last_update = last_updated;
 	console.log({u_id: u_id, dr_id: dr_id, last_updated: last_updated});
-	API.callByPost({url:"getMessage", params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
-		var model = Alloy.createCollection("helpline");
+	
+	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
+		
+		var model = Alloy.createCollection(model_name);
 		console.log('check here '+room_id);
 		var res = JSON.parse(responseText);
 		var arr = res.data || undefined;
 		if(arr.length > 0){
+			console.log(arr);
 			model.saveArray(arr, callback);
 			var update_id = _.pluck(arr, "id");
-			updateStatus(update_id);
+			//updateStatus(update_id);
 		}
 		Ti.App.Properties.setString('estimate_time', res.estimate_time);
-		checker.updateModule(7, "getMessage", res.last_updated, u_id);
+		checker.updateModule(checker_id, url, res.last_updated, u_id);
 		if(!room_id){	//if room_id = 0 
 			console.log(res);
 			Ti.App.fireEvent("web:setRoom", {room_id: res.room_id});
-			set_room({room_id: res.data});
+			setup_socket();
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
@@ -279,7 +291,8 @@ function refresh(callback, firsttime){
 		callback({firsttime: firsttime});
 		loading.finish();
 		refreshing = false;
-		var model = Alloy.createCollection("helpline"); 
+		var model_name = (dr_id == 0)?"helpline":"chat";
+		var model = Alloy.createCollection(model_name); 
 		model.messageRead({u_id: u_id});
 	});
 	
@@ -304,13 +317,15 @@ function refresh_latest(param){
 
 function getPreviousData(param){ 
 	start = parseInt(start);
-	var model = Alloy.createCollection("helpline");
+	var model_name = (dr_id == 0)?"helpline":"chat";
+	var model = Alloy.createCollection(model_name);
 	console.log(dr_id+" dr_id");
 	data = model.getData(false, start, anchor,"", dr_id);
 	var estimate_time = Ti.App.Properties.getString('estimate_time');
 	console.log(estimate_time+" estimate time");
 	console.log(data.length);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
+	last_update = (data.length > 0)?_.last(data)['created']:last_update;
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
 	console.log(last_id+" why");
 	if(estimate_time != "0"){
@@ -332,8 +347,10 @@ function getPreviousData(param){
 }
 
 function getLatestData(){
-	var model = Alloy.createCollection("helpline"); 
-	data = model.getData(true,"","", last_id, dr_id); 
+	var model_name = (dr_id == 0)?"helpline":"chat";
+	var model = Alloy.createCollection(model_name); 
+	console.log(last_id+" last id");
+	data = model.getData(true,"","", (dr_id == 0)?last_id:last_update, dr_id); 
 	
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
@@ -345,6 +362,7 @@ function getLatestData(){
 	console.log("getlatestdata");
 	console.log(data.length);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
+	last_update = (data.length > 0)?_.first(data)['created']:last_update;
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
 	console.log(last_id);
 	render_conversation(true);
@@ -371,8 +389,8 @@ function init(){
 	}
 }
 
-function set_room(){
-	console.log("set_room");
+function setup_socket(){
+	console.log("setup_socket");
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
 }
@@ -380,13 +398,13 @@ function set_room(){
 init();
 
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
-Ti.App.addEventListener("conversation:setRoom", set_room);
 $.win.addEventListener("close", function(){
+	
+	Ti.App.fireEvent("socket:leave_room", {room_id: room_id});
 	socket.removeEventListener("socket:refresh_chatroom");
 	socket.event_onoff("socket:message_alert", true);
 	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
-	Ti.App.removeEventListener('conversation:setRoom', set_room);
 	$.destroy();
 	 
 });

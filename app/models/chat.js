@@ -1,7 +1,7 @@
 exports.definition = {
 	config: {
 		columns: {
-		    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+		    "id": "TEXT PRIMARY KEY",
 		    "u_id": "INTEGER",
 		    "sender_id": "INTEGER",
 		    "message": "TEXT",
@@ -14,7 +14,7 @@ exports.definition = {
 		},
 		adapter: {
 			type: "sql",
-			collection_name: "helpline",
+			collection_name: "chat",
 			idAttribute: "id"
 		}
 	},
@@ -31,7 +31,7 @@ exports.definition = {
 			getUnread: function(e){
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id') || 0; 
-                var sql = "SELECT count(*) as total from helpline where u_id = ? AND status = 2 group by u_id"; 
+                var sql = "SELECT count(*) as total from chat where u_id = ? AND status = 2 group by u_id"; 
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
@@ -48,30 +48,27 @@ exports.definition = {
             	}
             	return 0;
 			},
-			getData: function(latest, start, anchor, last_id, dr_id){
+			getData: function(latest, start, anchor, last_updated, dr_id){
 				//var last_update = last_update || common.now();
+				
 				if(latest){
-					/*var a = last_update;
-					a = a.replace("  "," ");
-					var b = a.split(" ");
-					 */
+					var a = last_updated;
+					last_updated = a.replace("  "," ");
+					console.log(last_updated+" last_updated");
 					var start_limit = "";
 					//var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
 					var sql_lastupdate = "";
-					var sql_id = " AND id > "+last_id;
+					var sql_id = " AND created > '"+last_updated+"'";
 				}else{
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";
 					var sql_id = "";
 				}
 				
-				dr_id = (dr_id === 0)?"":dr_id;
-				
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from helpline where u_id = ? AND dr_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
-                console.log(sql+" "+dr_id+" "+u_id);
-                
+                var sql = "SELECT * from chat where u_id = ? AND dr_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
+                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -185,7 +182,7 @@ exports.definition = {
 	                eval("db.execute(sql_query, "+eval_values.join()+")");
 				});
 				db.execute("COMMIT");
-				console.log(db.getRowsAffected()+" affected row");
+				//console.log(db.getRowsAffected()+" affected row");
 	            db.close();
 	            collection.trigger('sync');
 			},
@@ -226,7 +223,7 @@ exports.definition = {
 			},
 			updateStatus: function(arr, status){
 				var collection = this;
-                var sql = "UPDATE helpline set status = ? WHERE id in(?)";
+                var sql = "UPDATE chat set status = ? WHERE id in(?)";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -237,7 +234,7 @@ exports.definition = {
 			},
 			V1_9DBupdate : function(){
 				var collection = this;
-                var sql = "UPDATE helpline set status = 2";
+                var sql = "UPDATE chat set status = 2";
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

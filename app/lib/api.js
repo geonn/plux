@@ -90,7 +90,6 @@ var APILoadingList = [
 	{url: getClinicLocator2, model: "panelList", checkId: "13"},
 	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
 	{url: doctorListUrl, model: "doctors", checkId: "12"},
-	{url: grab_newsfeed, model: "health_news_feed", checkId: "17"},
 	{url: getCategoryList, model: "categorys", checkId: "18"}
 ];
 
@@ -1102,7 +1101,7 @@ exports.getDoctorList = function(ex){
 };
 
 exports.loadNewsFeed = function (ex){
-	var url = newsfeed+'&date=01-01-2015'; 
+	var url = newsfeed; 
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available

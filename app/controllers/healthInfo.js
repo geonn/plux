@@ -3,13 +3,13 @@ var newsFeedModel = Alloy.createCollection('health_news_feed');
 var categoryModel = Alloy.createCollection('categorys'); 
 
 function init(){
-	syncData({url: "grab_newsfeed", checkerId: 17, model: "health_news_feed", callback: displayHealthInfo});
+	syncData({url: "grab_newsfeed", checkerId: "17", model: "health_news_feed", callback: displayHealthInfo});
 }
 init();
 function syncData(e){
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	var isUpdate = checker.getCheckerById(e.checkerId, u_id);
+	var isUpdate = checker.getCheckerById(e.checkerId);
 	var last_updated = isUpdate.updated || "";
 	last_update = last_updated;
 	
@@ -24,12 +24,13 @@ function syncData(e){
 	console.log(params);
 	API.callByPost({url: e.url, params: params}, function(responseText){
 		var model = Alloy.createCollection(e.model);
-		console.log(responseText);
-		var res = JSON.parse(responseText);
-		var arr = res.data || undefined;
+		var news_element = Alloy.createCollection("news_element");
+		var arr = res.data;
 		var res = JSON.parse(responseText);
 				
         model.saveArray(arr);
+        news_element.saveArray(res.element);
+        
         checker.updateModule(e.checkerId, e.model, res.last_updated, u_id);
         e.callback();
 	});
@@ -76,26 +77,15 @@ function displayHealthInfo(){
 					source: newsList[j].id, 
 					width:112 
 				});
+				console.log(newsList[j].images+" what path or not!!");
+				var leftImage = Ti.UI.createImageView({
+					image: newsList[j].images, 
+					source: newsList[j].id, 
+					defaultImage: "/images/warm-grey-bg.png",
+					width:"90%"
+				});
+				imageContainer.add(leftImage);
 				
-				if(newsList[j].images == ""){console.log('b');
-					var leftImage = Ti.UI.createImageView({
-						image: "/images/warm-grey-bg.png", 
-						source: newsList[j].id, 
-						width:"100%"
-					});
-					imageContainer.add(leftImage);
-				}else{
-					var leftImage = Ti.UI.createImageView({
-						image: newsList[j].images, 
-						source: newsList[j].id, 
-						defaultImage: "/images/warm-grey-bg.png",
-						width:"90%"
-					});
-					/*var activityIndicator = common.showImageIndicator(); console.log('c');
-					imageContainer.add(leftImage);
-					imageContainer.add(activityIndicator);
-					common.imageIndicatorEvent(leftImage,activityIndicator);*/
-				} 
 				var popUpTitle = Titanium.UI.createLabel({
 					text:newsList[j].title,
 					font:{fontSize:14, fontWeight:'bold'},
