@@ -135,6 +135,7 @@ exports.definition = {
               
 		        db.execute(sql_query); 
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN ("+clinicCode+")";
+                console.log(clinicCode);
 		        db.execute(sql_query); 
          		db.close();
 	            collection.trigger('sync');
@@ -251,9 +252,9 @@ exports.definition = {
 			getCountClinicType : function(corp){
 				var collection = this; 
 				if(corp != ""){
-					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where panel=1 AND status = 1 GROUP BY clinicType ";
+					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where openHour NOT LIKE '%24 HOURS%' AND panel=1 AND status = 1 GROUP BY clinicType ";
 				}else{
-                var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" WHERE status = 1 GROUP BY clinicType ";
+                var sql = "SELECT openHour NOT LIKE '%24 HOURS%' AND clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" WHERE status = 1 GROUP BY clinicType ";
                }
 				 
                 db = Ti.Database.open(collection.config.adapter.db_name);

@@ -13,3 +13,15 @@ app/assets/images/icon_referesh.png
 tiapp.xml
 
 tiapp.xml
+Resources/android/alloy/controllers/askDoctor/find_doctor.js
+Resources/android/alloy/controllers/askDoctor/forms.js
+Resources/android/alloy/controllers/inpatient_detail.js
+Resources/android/alloy/controllers/inpatient_record.js
+Resources/android/alloy/models/Categorys.js
+Resources/android/alloy/models/Inpatient_record.js
+Resources/android/alloy/models/Room.js
+Resources/android/alloy/styles/askDoctor/find_doctor.js
+Resources/android/alloy/styles/askDoctor/forms.js
+Resources/android/alloy/styles/inpatient_detail.js
+Resources/android/alloy/styles/inpatient_record.js
+Resources/android/images/test.png

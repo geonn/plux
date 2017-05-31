@@ -23,8 +23,7 @@
 		 		
 		 <ScrollView layout="vertical" scrollType="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
  
-		 	<View class="box rounded padding wfill hsize horz" backgroundColor="#F5F5F5" bottom="0">
-		 		
+		 	<View class="box rounded padding wfill hsize vert" bottom="0">
 		 		<View class="box rounded wfill horz" backgroundColor="#ffffff" top="0" height="80">
 			 		<View width="32%" height="80" onClick="direction2here" layout="vertical">
 			 			<ImageView image="/images/map.png" width="40" height="40" top="5" />
@@ -41,23 +40,22 @@
 			 			<Label class="darkgreyText small_font center"  width="Ti.UI.FILL" top="5">Add To Contact</Label>
 			 		</View>
 			 	</View>
-		 		<View layout="vertical" id="clinicDetailsView" width="Ti.UI.FILL" height="Ti.UI.SIZE">
-			 		<Label id="clinicName" class="clinic_name" top="10" bottom="10"/>
+		 		<View class="wfill hsize vert padding" id="clinicDetailsView">
+			 		<Label id="clinicName" class="wfill hsize " top="10" bottom="10"></Label>
  
-			 		<Label text="Address" class="clinic_address clinicLabelTitle" />
-				 	<Label id="clinicAddress" class="clinic_address" bottom="10" /> 
+			 		<Label text="Address" class="wfill hsize bold" />
+				 	<Label id="clinicAddress" class="wfill hsize " bottom="10" /> 
 				 	
-				 	<Label text="Coordinate" class="clinic_address clinicLabelTitle" />
-				 	<Label id="clinicLocation" class="clinic_address"  bottom="10"   />
+				 	<Label text="Coordinate" class="wfill hsize bold" />
+				 	<Label id="clinicLocation" class="wfill hsize"  bottom="10"   />
 				 	
-				 	<Label text="Telephone/Mobile" class="clinic_address clinicLabelTitle" />
-				 	<Label id="clinicTel" class="clinic_address"  bottom="10"   />
+				 	<Label text="Telephone/Mobile" class="wfill hsize bold" />
+				 	<Label id="clinicTel" class="wfill hsize"  bottom="10"   />
 				 	
-				 	<Label text="Operation Hours" class="clinic_address clinicLabelTitle" />
-				 	<View layout="vertical" height="Ti.UI.SIZE" left="0" right="5" width="Ti.UI.FILL" id="clinicOper" class="clinic_address" bottom="10"  />
+				 	<Label text="Operation Hours" class="wfill hsize bold" />
+				 	<View class="wfill hsize vert" left="0" right="5" bottom="10" id="clinicOper" />
 			 	</View>
 			 </View>
- 
 		 </ScrollView>
 		 </View>
 	</Window>

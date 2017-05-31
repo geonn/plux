@@ -2,11 +2,12 @@ var args = arguments[0] || {};
 var news_id = args.news_id;
 var newsFeedModel = Alloy.createCollection('health_news_feed'); 
 var newsElementModel = Alloy.createCollection('news_element'); 
-var categoryModel = Alloy.createCollection('category');
+var categoryModel = Alloy.createCollection('categorys');
 
 var news    = newsFeedModel.getRecordsById(news_id);
 var details = newsElementModel.getListByNews(news_id); 
 var pageCate = categoryModel.getCategoryById(news.category);
+console.log(news);
 if(OS_IOS){
 	$.news.title = pageCate.category;
 }
