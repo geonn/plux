@@ -8,7 +8,7 @@ ID       type Name
 4 		getDoctorByPanel
 5		getSpecialtylist
 6		getDoctorPanelBySpecialty
-7		getHelplineMessage
+7		getHelplineMessageV3 || u_id
 8		getDcotroPanel
 9		getAppointmentByDoctorPanel
 10		categoryUrl
@@ -20,6 +20,7 @@ ID       type Name
 16		getRoomList	|| u_id
 17		grab_newsfeed
 18		getCategoryList
+19		getMessage || u_id
 ************************************/
 
 exports.definition = {

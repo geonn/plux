@@ -15,15 +15,10 @@
 				    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
 				    </View>
 					<ScrollView id="scrollboard1" width="293" contentWidth="293" height="Ti.UI.FILL" class="horz" zIndex="3">
-							<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
-						-->
-							<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
-							<View class="hsize wsize">
-								<ImageView onClick="navWindow" mod="notification" top="15"  width="139" image="/images/btn/btn_notification.png"/>
-								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
-									<Label id="notificationText" text="0" color="#ffffff" />
-								</View>
-							</View>
+						<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
+					-->
+						<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
+						
 					</ScrollView>
 				</View>
 			</View>
@@ -46,14 +41,8 @@
 				<ScrollView id="scrollboard1" width="293" contentWidth="293" height="Ti.UI.FILL" class="horz" zIndex="3">
 							<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
 						-->
-							<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
-							<View class="hsize wsize">
-								<ImageView onClick="navWindow" mod="notification" top="15"  width="139" image="/images/btn/btn_notification.png"/>
-								<View width="30" height="30" borderRadius="15" id="notificationIcon" backgroundColor="#CE1D1C" top="20" right="15" >
-									<Label id="notificationText" text="0" color="#ffffff" />
-								</View>
-							</View>
-					</ScrollView>
+						<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
+				</ScrollView>
 			</View>
 		</View>
 	</Window> 

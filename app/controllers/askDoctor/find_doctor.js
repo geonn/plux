@@ -6,7 +6,7 @@ function init(){
 	syncData({url: "getRoomList", checkerId: 16, model: "room"});
 	$.win.add(loading.getView());
 	loading.start();
-	$.sub_back.hide();
+	//$.sub_back.hide();
 }
 
 init();
@@ -88,8 +88,8 @@ function loadingFinish(){
 	loading.finish();
 }
 
-$.inner_box.addEventListener("scrollend", update_subheader);
-$.sub_back.addEventListener("click", movePrevious);
+//$.inner_box.addEventListener("scrollend", update_subheader);
+//$.sub_back.addEventListener("click", movePrevious);
 
 Ti.App.addEventListener("update_specialty", update_specialty);
 Ti.App.addEventListener("selectClinic", selectClinic);

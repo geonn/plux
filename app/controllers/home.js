@@ -11,8 +11,6 @@ var new_menu = [];
 common.construct($);
 PUSH.registerPush();
 
-console.log("start loader lo");
-
 var loadingView = Alloy.createController("loader");
 loadingView.getView().open();
 loadingView.start();
@@ -20,7 +18,9 @@ loadingView.start();
 function loadHomePageItem(){
 	menu_info   = new_menu = [
 		{mod:"inpatient_record", image:"/images/test.png"},
+		{mod:"notification", image:"/images/btn/btn_notification.png"},
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
+		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"hra", image:"/images/btn/btn_hra.png"},
 		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
@@ -28,10 +28,10 @@ function loadHomePageItem(){
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
 		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
 		{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
-		{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
+		//{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
 		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
-		{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
+		//{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
 	]; 
 	console.log(menu_info.length+" loadHomePageItem");
 }	
@@ -99,6 +99,7 @@ function findIndexInData(data, property, value) {
     return result;
 }
 
+var notification_number_label = $.UI.create("Label", {id:"notificationText", text: 0, color: "#ffffff"});
 function render_menu(){
 	var button_width = 139;
 	console.log(new_menu.length+" new_menu number");
@@ -123,6 +124,13 @@ function render_menu(){
 			var view_notification = $.UI.create("View", { top:20, right:15, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
 			var label_notification = $.UI.create("Label", { text: total, color: "#ffffff"});
 			view_notification.add(label_notification);
+			view.add(imageView_menu);
+			view.add(view_notification);
+		}else if(new_menu[i].mod == "notification"){
+			var total = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
+			console.log(total+" total unread");
+			var view_notification = $.UI.create("View", { top:20, right:15, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
+			view_notification.add(notification_number_label);
 			view.add(imageView_menu);
 			view.add(view_notification);
 		}else{
@@ -174,8 +182,8 @@ function init(){
 	
 }
 function loadInpatientRecord(e){
-	var empno = Ti.App.Properties.getString("empno_1");
-	var corpcode = Ti.App.Properties.getString("corpcode_1");	
+	var empno = Ti.App.Properties.getString("empno");
+	var corpcode = Ti.App.Properties.getString("corpcode");
 	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
 		var model = Alloy.createCollection("inpatient_record");
 		console.log(responseText);
@@ -270,18 +278,13 @@ function checkMyHealthData(){
 
 function updateNotification(){ 
 	var ismemno = Ti.App.Properties.getString('memno') || ""; 
-	if(ismemno != ""){
-		var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
-		//console.log("gotNotification : "+gotNotification);
-		if(parseInt(gotNotification) > 0){
-			$.notificationText.text = gotNotification;
-		}else{
-			$.notificationIcon.visible = false;
-		}
+	var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
+	//console.log("gotNotification : "+gotNotification);
+	if(parseInt(gotNotification) > 0){
+		notification_number_label.text = gotNotification;
 	}else{
-		$.notificationIcon.visible = false;
-	} 
-	 
+		notification_number_label.text = 0;
+	}
 }
 
 function refreshHeaderInfo(){
@@ -391,7 +394,7 @@ function refreshHeaderInfo(){
 function navWindow(e){
 	var target = e.source.mod;  
 	console.log(target+" target");
-	if(e.source.mod == "eCard" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" || e.source.mod == "notification" ){
+	if(e.source.mod == "eCard" || e.source.mod == "benefit" || e.source.mod == "eCard_list" || e.source.mod == "myClaim" || e.source.mod == "claimSubmission" || e.source.mod == "notification" ){
 		if(e.source.mod =="notification"){
 			nav.navigationWindow("asp/"+target);  
 		}else{
@@ -401,7 +404,33 @@ function navWindow(e){
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
-		nav.navigationWindow("clinic/listing", 1);
+		var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS);
+		console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
+		
+		if(hasLocationPermissions){
+			contacts({callback: function(){
+					console.log('why not calling');
+					nav.navigationWindow("clinic/listing", 1);
+				}
+			});
+			//nav.navigationWindow("clinic/listing", 1);
+		}else{
+			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
+				if (e.success) {
+					nav.navigationWindow("clinic/listing", 1);
+				}else if (OS_ANDROID) {
+					alert('You denied permission for now, forever or the dialog did not show at all because it you denied forever before.');
+				}else{
+					Ti.UI.createAlertDialog({
+					title: 'You denied permission.',
+						// We also end up here if the NSLocationAlwaysUsageDescription is missing from tiapp.xml in which case e.error will say so
+						message: e.error
+					}).show();
+	
+				}
+			});
+		}
+		
 	}else if(e.source.mod == "conversation"){
 		nav.navigationWindow(target, 1);
 	}else{
@@ -472,6 +501,68 @@ if(Ti.Platform.osname == "android"){
 Ti.Android.currentActivity.onResume = syncFromServer;
 	//Ti.Android.Activity.onResume(syncFromServer);
 }
+
+function contacts(ex) {
+
+	// The new cross-platform way to check permissions
+	var hasContactsPermissions = Ti.Contacts.hasContactsPermissions();
+
+	if (hasContactsPermissions) {
+
+		// We have to actually use a Ti.Contacts method for the permissions to be generated
+		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
+		if (OS_IOS) {
+			
+		}
+
+		ex.callback();
+	}
+
+	// On iOS we can get information on the reason why we might not have permission
+	if (OS_IOS) {
+
+		// Map constants to names
+		var map = {};
+		map[Ti.Contacts.AUTHORIZATION_AUTHORIZED] = 'AUTHORIZATION_AUTHORIZED';
+		map[Ti.Contacts.AUTHORIZATION_DENIED] = 'AUTHORIZATION_DENIED';
+		map[Ti.Contacts.AUTHORIZATION_RESTRICTED] = 'AUTHORIZATION_RESTRICTED';
+		map[Ti.Contacts.AUTHORIZATION_UNKNOWN] = 'AUTHORIZATION_UNKNOWN';
+
+		// Available since Ti 2.1.3 and always returns AUTHORIZATION_AUTHORIZED on iOS<6 and Android
+		var contactsAuthorization = Ti.Contacts.contactsAuthorization;
+		console.log('Ti.Contacts.contactsAuthorization', 'Ti.Contacts.' + map[contactsAuthorization]);
+
+		if (contactsAuthorization === Ti.Contacts.AUTHORIZATION_RESTRICTED) {
+			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
+
+		} else if (contactsAuthorization === Ti.Calendar.AUTHORIZATION_DENIED) {
+			return dialogs.confirm({
+				title: 'You denied permission before',
+				message: 'We don\'t request again as that won\'t show the dialog anyway. Instead, press Yes to open the Settings App to grant permission there.',
+				callback: editPermissions
+			});
+		}
+	}
+
+	// The new cross-platform way to request permissions
+	Ti.Contacts.requestContactsPermissions(function(e) {
+		console.log('Ti.Contacts.requestContactsPermissions', e);
+
+		if (e.success) {
+
+			// Instead, probably call the same method you call if hasContactsPermissions() is true
+			ex.callback();
+		} else if (OS_ANDROID) {
+			alert('You don\'t have the required uses-permissions in tiapp.xml or you denied permission for now, forever or the dialog did not show at all because you denied forever before.');
+
+		} else {
+
+			// We already check AUTHORIZATION_DENIED earlier so we can be sure it was denied now and not before
+			alert('You denied permission.');
+		}
+	});
+}
+
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);

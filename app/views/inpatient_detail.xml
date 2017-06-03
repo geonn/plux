@@ -8,7 +8,7 @@
 		     	<View id="pageTitle" width="Ti.UI.FILL">
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Inpatient Detail</Label>
 		     	</View> 
-		 	</View> 
+		 	</View>
 			<ScrollView class="vert" id="main">
 				<View class="horz wfill hsize padding-bottom" left="10" right="10" top="10">
 					<Label class="hsize h4" width="26%" text="Invoice No."></Label>

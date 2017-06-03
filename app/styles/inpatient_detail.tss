@@ -55,10 +55,8 @@
 		fontSize: "11dp",
 	}
 }
-
 ".border": {
 	borderWidth: "1",
 	borderColor: "#DEDEDE",
 	borderRadius: "5",
 }
-

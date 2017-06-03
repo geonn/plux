@@ -1,5 +1,6 @@
 var panelListModel = Alloy.createCollection('doctors');    
-var listing = [];   
+var listing = [];
+var online_doctor = [];   
 var specialty = "";
 
 function render_doctor_list(){
@@ -13,6 +14,16 @@ function render_doctor_list(){
 		docTable.setData(common.noRecord());
 	}else{
 		listing.forEach(function(entry) {
+			var icon_status = "/images/icons/icon_offline.png";
+			console.log('check here');
+			console.log(online_doctor);
+			online_doctor.forEach(function(doc) {
+				if(doc == null){
+					return;
+				}
+				console.log(doc.dr_id+" = "+entry.id);
+				icon_status = (doc.dr_id == entry.id)?"/images/icons/icon_online.png":"/images/icons/icon_offline.png";
+			});
 			
 	   		var row = Titanium.UI.createTableViewRow({
 			    touchEnabled: true,
@@ -22,11 +33,12 @@ function render_doctor_list(){
 			    backgroundSelectedColor: "#ECFFF9",
 		 
 			}); 
-			
+			var image_status = $.UI.create("ImageView", {image: icon_status, classes:['wsize'], height: 20, left:10});
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
-					dr_id: entry.id, 
+					dr_id: entry.id,
+					layout: "horizontal",
 			}); 
 
 			var tblView = Ti.UI.createView({
@@ -37,7 +49,7 @@ function render_doctor_list(){
 			 
 			var docName = $.UI.create('Label',{
 				classes : ['medium_font','wfill','hsize','themeColor'],
-				text:  entry.name+" "+entry.id, 
+				text:  entry.name, 
 				textAlign:'left',
 				top:5,
 				left:15
@@ -49,6 +61,7 @@ function render_doctor_list(){
 				textAlign:'left', 
 				left:15,  
 			});	
+			tblRowView.add(image_status);
 			tblView.add(docName); 
 			tblView.add(docSpecialty);
 			tblRowView.add(tblView);
@@ -68,7 +81,7 @@ function addClinicAction(vw){
 	 	//Ti.App.fireEvent("askDoctor_index:windowClose");
 	 	var room_model = Alloy.createCollection('room');
 	 	var room = room_model.getDataBydr_id({dr_id: dr_id}); 
-	 	console.log(room);
+	 	
 	 	if(room.length > 0 && room[0].status == 2){
 	 		nav.navigateWithArgs("conversation", {dr_id : dr_id});
 	 	}else{
@@ -83,13 +96,19 @@ $.update_doctor_list = function(e){
 	refresh();
 };
 
-function refresh(){
-	listing = panelListModel.getDoctorList([{key: "specialty", value: specialty}]);
+function refresh(e){
+	if(typeof e != "undefined"){
+		online_doctor = e.name_list;
+	}
+	//[{key: "specialty", value: specialty}]
+	listing = panelListModel.getDoctorList([]);
 	render_doctor_list();
 }
 
 function init(){
-	//refresh();
+	socket.addEventListener("controller:getDoctorList", refresh);
+	socket.fireEvent("socket:getDoctorList");
+	refresh();
 }
 
 init();

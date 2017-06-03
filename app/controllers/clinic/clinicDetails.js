@@ -7,6 +7,8 @@ var contacts;
 var isAddedToContact = "0";
 var details = panelListModel.getPanelListById(panel_id); ;
 var phoneArr = [];
+var longitude;
+var latitude;
 init();
  
 function init(){
@@ -27,52 +29,58 @@ function init(){
 		populateMap(200);
 		Ti.App.fireEvent("clinicList:loading_finish");
 	},1000);
-	
-	
-	
+	console.log("details here");
+	console.log(details);
 	
 	if(details != ""){   
-	var operHour = details.openHour; 
-	var operHour_arr = operHour.split("[nl]"); 
-	var oh;
-	for(var i=0; i < operHour_arr.length; i++){
- 		oh = operHour_arr[i].trim();
- 		if(oh != ""){ 
- 			oh += oh+"<br>\r\n";
- 		}
- 	}
- 	  
-	$.clinicName.text = details.clinicName;
+		var operHour = details.openHour; 
+		var operHour_arr = operHour.split("[nl]"); 
+		var oh;
+		for(var i=0; i < operHour_arr.length; i++){
+	 		oh = operHour_arr[i].trim();
+	 		if(oh != ""){ 
+	 			oh += oh+"<br>\r\n";
+	 		}
+	 	}
+	 	  
+		$.clinicName.text = details.clinicName;
+		
+		var add2 =details.add2;
+		if(add2!= ""){
+			add2 = add2  +"\r\n";
+		}
+		$.clinicAddress.text = details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state;
 	
-	var add2 =details.add2;
-	if(add2!= ""){
-		add2 = add2  +"\r\n";
-	}
-	$.clinicAddress.text = details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state;
-
-	$.clinicLocation.text = details.latitude +", "+ details.longitude;
-	 
-	for(var i=0; i < operHour_arr.length; i++){
- 		var oh = operHour_arr[i].trim();
- 		if(oh != ""){ 
-			oh = oh.replace(/&quot;/g,"'"); 
- 			var oper_label = $.UI.create('Label', {
-				classes : ['clinic_address'],  
-				text: oh,  
-				width: "100%",   
-				height: Ti.UI.SIZE, 
-				textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT, 
-				bottom: 1
-			});
-			$.clinicOper.add(oper_label);
- 		} 
- 	} 
-	$.clinicTel.text = "TEL : " +details.tel  ; 
-	phoneArr.push(details.tel);
+		$.clinicLocation.text = details.latitude +", "+ details.longitude;
+		 
+		for(var i=0; i < operHour_arr.length; i++){
+	 		var oh = operHour_arr[i].trim();
+	 		if(oh != ""){ 
+				oh = oh.replace(/&quot;/g,"'"); 
+	 			var oper_label = $.UI.create('Label', {
+					classes : ['wfill', 'hsize'],  
+					text: oh,
+					textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT, 
+					bottom: 1
+				});
+				$.clinicOper.add(oper_label);
+	 		} 
+	 	} 
+		$.clinicTel.text = "TEL : " +details.tel  ; 
+		phoneArr.push(details.tel);
 	}
  
 }
 
+function zoomMap(mapHeight){
+	$.clinicMap.height = mapHeight;
+	mapview.setHeight(mapHeight);
+}
+
+function PixelsToDPUnits(ThePixels)
+{
+  return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
+}
 
 
 function populateMap(mapHeight){
@@ -87,7 +95,7 @@ function populateMap(mapHeight){
 		        //pincolor: Map.ANNOTATION_GREEN,
 		    }),
 		];
-		var mapview = Alloy.Globals.Map.createView({
+		mapview = Alloy.Globals.Map.createView({
 		    mapType: Alloy.Globals.Map.NORMAL_TYPE,
 		    region: {
 		    	latitude: details.latitude, 
@@ -167,56 +175,51 @@ function addToContact(){
 }
 
 $.btnDirection.addEventListener('click',direction2here );
-function direction2here(){
-	 
-	var locationCallback = function(e) {
-	    if(!e.success || e.error) {
-	    	alert("Please enable location services");
-	        Ti.API.info('error:' + JSON.stringify(e.error));
-	        return;
-	    } 
-	    var longitude = e.coords.longitude;
-	    var latitude = e.coords.latitude; 
-	 	 console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
-	    var add2 =details.add2;
-		if(add2!= ""){
-			add2 = add2  +"\r\n";
-		} 
-		var url = 'geo:'+latitude+','+longitude+"?q="+details.clinicName+" (" + details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state + ")";
-		  if (Ti.Android){
-				try {
-				   	var waze_url = 'waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes';
-				   	var intent = Ti.Android.createIntent({
-						action: Ti.Android.ACTION_VIEW,
-						data: waze_url
-					});
-					Ti.Android.currentActivity.startActivity(intent); 
-				} catch (ex) { 
-				  	try {
-						Ti.API.info('Trying to Launch via Intent');
-						var intent = Ti.Android.createIntent({
-							action: Ti.Android.ACTION_VIEW,
-							data: url
-						});
-						Ti.Android.currentActivity.startActivity(intent);
-					} catch (e){
-						Ti.API.info('Caught Error launching intent: '+e);
-						exports.Install();
-					}
-				} 
-			}else{
 
-				Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
-				
-	   	 	}
-				
-				
-	    
-	   	Titanium.Geolocation.removeEventListener('location', locationCallback); 
-	};
-	
+function locationCallback(e){
+	if(!e.success || e.error) {
+    	alert("Please enable location services");
+        Ti.API.info('error:' + JSON.stringify(e.error));
+        return;
+    } 
+	longitude = e.coords.longitude;
+    latitude = e.coords.latitude; 
+}
+
+function direction2here(){
+ 	console.log('http://maps.google.com/maps?saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+    var add2 =details.add2;
+	if(add2!= ""){
+		add2 = add2  +"\r\n";
+	} 
+	var url = 'geo:'+latitude+','+longitude+"?q="+details.clinicName+" (" + details.add1 + "\r\n"+ add2 +  details.postcode +", " + details.city +"\r\n"+  details.state + ")";
+  if (Ti.Android){
+		try {
+		   	var waze_url = 'waze://?ll='+details.latitude+','+details.longitude+'&navigate=yes';
+		   	var intent = Ti.Android.createIntent({
+				action: Ti.Android.ACTION_VIEW,
+				data: waze_url
+			});
+			Ti.Android.currentActivity.startActivity(intent); 
+		} catch (ex) { 
+		  	try {
+				Ti.API.info('Trying to Launch via Intent');
+				var intent = Ti.Android.createIntent({
+					action: Ti.Android.ACTION_VIEW,
+					data: url
+				});
+				Ti.Android.currentActivity.startActivity(intent);
+			} catch (e){
+				Ti.API.info('Caught Error launching intent: '+e);
+				exports.Install();
+			}
+		} 
+	}else{
+
+		Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&saddr='+latitude+','+longitude+'&daddr='+details.latitude+','+details.longitude);
+		
+ 	}
 	console.log("geo location");
-	Titanium.Geolocation.addEventListener('location', locationCallback); 
 }
 
 var showFull = false;
@@ -229,7 +232,9 @@ $.showFullMap.addEventListener('click', function(){
 		$.showFullMap.image =  "/images/zoom_out.png";
 		$.btnDirection.visible = true;
 		showFull = true;
-		populateMap(Titanium.Platform.displayCaps.platformHeight);
+		console.log(Titanium.Platform.displayCaps.platformHeight+" Titanium.Platform.displayCaps.platformHeight");
+		var pheight = (OS_IOS)?Titanium.Platform.displayCaps.platformHeight:PixelsToDPUnits(Titanium.Platform.displayCaps.platformHeight);
+		zoomMap(pheight);
 	}else{
 		$.clinicDetailsView.visible =true;
 		$.btnDirection.visible = false;
@@ -237,10 +242,8 @@ $.showFullMap.addEventListener('click', function(){
 		$.clinicMap.height = 200;
 		$.showFullMap.image =  "/images/zoom_in.png";
 		showFull = false; 
-		populateMap(200);
+		zoomMap(200);
 	}
-	
-	
 });
 
 if(Ti.Platform.osname == "android"){
@@ -248,3 +251,8 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.panelDetails); 
 	}); 
 }
+Titanium.Geolocation.addEventListener('location', locationCallback); 
+$.panelDetails.addEventListener("close", function(){
+	$.destroy(); 
+    Titanium.Geolocation.removeEventListener('location', locationCallback);
+});
