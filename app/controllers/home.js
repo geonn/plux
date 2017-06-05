@@ -17,11 +17,8 @@ loadingView.start();
 
 function loadHomePageItem(){
 	menu_info   = new_menu = [
-<<<<<<< HEAD
 		{mod:"inpatient_record", image:"/images/test.png"},
-=======
 		{mod:"notification", image:"/images/btn/btn_notification.png"},
->>>>>>> 6ef7403d5af7b3f3ade54ed40058bb95a4a0ea5e
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
