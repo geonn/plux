@@ -17,7 +17,6 @@ loadingView.start();
 
 function loadHomePageItem(){
 	menu_info   = new_menu = [
-		{mod:"inpatient_record", image:"/images/test.png"},
 		{mod:"notification", image:"/images/btn/btn_notification.png"},
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
@@ -26,6 +25,7 @@ function loadHomePageItem(){
 		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
 		{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
+		{mod:"inpatient_record", image:"/images/btn/inpatient.png"},
 		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
 		{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
 		//{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
