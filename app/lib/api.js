@@ -732,6 +732,10 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString('asp_email', username);
 	       		Ti.App.Properties.setString('asp_password',password);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
+	       		Ti.App.Properties.setString("empno_1",res.empno);
+	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);
+	       		console.log("tipt:"+JSON.stringify(res));
+	       		console.log("empno:"+Ti.App.Properties.getString("empno")+" "+Ti.App.Properties.getString("corpcode"));	       		
 	       		updateUserService(u_id, 1,username, password);
 	       		console.log(result);
 	       		usersModel.resetData();
@@ -1315,7 +1319,7 @@ exports.loadPanelList = function (ex){
 exports.callByGet  = function(e, onload, onerror){
 	console.log("callbyget");
 	var url =  eval(e.url) + "?"+e.params;
-	console.log(url);
+	console.log("url:"+url);
 	var _result = contactServerByGet(encodeURI(url));   
 	_result.onload = function(e) {   
 		onload && onload(this.responseText); 

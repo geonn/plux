@@ -183,7 +183,7 @@ function init(){
 }
 function loadInpatientRecord(e){
 	var empno = Ti.App.Properties.getString("empno");
-	var corpcode = Ti.App.Properties.getString("corpcode");	
+	var corpcode = Ti.App.Properties.getString("corpcode");
 	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
 		var model = Alloy.createCollection("inpatient_record");
 		console.log(responseText);

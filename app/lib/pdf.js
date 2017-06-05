@@ -156,8 +156,10 @@ function pdf (url, cookies, inds, labels,indView, done) {
 	    	}else{
 	    		done(err, file, base, url);
 	    	}
-	    } 
+	    }
+	    Ti.App.fireEvent("inpatient_detail:pdfOneTime");
   	});
+  	
 }
  
 exports.createPdf = function(url, cookies, inds, labels,indView, done){
