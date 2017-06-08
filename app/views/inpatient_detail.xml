@@ -11,62 +11,62 @@
 		 	</View>
 			<ScrollView class="vert" id="main">
 				<View class="horz wfill hsize padding-bottom" left="10" right="10" top="10">
-					<Label class="hsize h4" width="26%" text="Invoice No."></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="invno" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Invoice No."></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="invno" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="NRIC/Passport No."></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="nric" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="NRIC/Passport No."></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="nric" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Patient Name:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="name" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Patient Name:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="name" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Relation:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="relation" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Relation:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="relation" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Clinic Name:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="hospitalname" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Clinic Name:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="hospitalname" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Admission Date:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="admdt" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Admission Date:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="admdt" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Discharged Date:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="disdt" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Discharged Date:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="disdt" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Diagnosis:"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="diagnosis" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Diagnosis:"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="diagnosis" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wfill hsize padding-bottom" left="10" right="10">
-					<Label class="hsize h4" width="26%" text="Total Amount(RM):"></Label>
-					<View class="vert border hsize" width="72%">
-						<Label class="wfill hsize h4 padding" id="amount" left="5" right="5"></Label>
+					<Label class="hsize h5 themeColor" width="32%" text="Total Amount(RM):"></Label>
+					<View class="vert border hsize" width="68%">
+						<Label class="wfill hsize h6 padding" id="amount" left="5" right="5"></Label>
 					</View>
 				</View>
 				<View class="horz wsize hsize padding-bottom border" id="pdfurl" borderWidth="3" backgroundColor="#E51B2D" right="25">
-					<ImageView width="70" height="70" image="/images/pdficon.png"></ImageView>
-					<Label class="hsize h4" width="130" color="#fff" text="Download Payment Notice" right="10"></Label>
+					<ImageView width="60" height="60" image="/images/pdficon.png"></ImageView>
+					<Label class="hsize h6" width="130" color="#fff" text="Download Payment Notice" right="10"></Label>
 				</View>
 			</ScrollView>
 		</View>
