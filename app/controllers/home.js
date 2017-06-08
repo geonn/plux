@@ -16,7 +16,7 @@ loadingView.getView().open();
 loadingView.start();
 
 function loadHomePageItem(){
-	menu_info   = new_menu = [
+	menu_info  =  [
 		{mod:"notification", image:"/images/btn/btn_notification.png"},
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
@@ -57,7 +57,7 @@ if(Ti.Platform.osname != "android"){
 console.log("Empno"+Ti.App.Properties.getString("empno")+" corpcode:"+Ti.App.Properties.getString("corpcode"));
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
-	 
+	loadHomePageItem();
 	new_menu = menu_info;
 	console.log(menu_info.length);
 	console.log(new_menu.length+" new_menu checkserviceByCorpcode");
@@ -126,6 +126,13 @@ function render_menu(){
 			view_notification.add(label_notification);
 			view.add(imageView_menu);
 			view.add(view_notification);
+			if(total > 0){
+				popup({message:'You got replied from helpdesk. Do you want to read now?', title:"Helpdesk replied", 
+					callback: function(){
+						nav.navigationWindow("conversation", 1);
+					}
+				});
+			}
 		}else if(new_menu[i].mod == "notification"){
 			var total = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
 			console.log(total+" total unread");

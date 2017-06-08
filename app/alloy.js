@@ -304,18 +304,18 @@ function createIndicator(){
 
 var message_popup = false;
 
-function message_alert(e){
+function popup(e){
 	var dialog = Ti.UI.createAlertDialog({
 		cancel: 1,
 		buttonNames: ['Cancel','OK'],
-		message: 'You got replied from helpdesk. Do you want to read now?',
-		title: 'Helpdesk replied'
+		message: e.message,
+		title: e.title
 	});
 	dialog.addEventListener('click', function(ex){
 		if (ex.index === 0){
 			//Do nothing
 		}else{
-			nav.navigateWithArgs("conversation");
+			e.callback();
 		}
 		message_popup = false;
 	});
@@ -323,6 +323,14 @@ function message_alert(e){
 		dialog.show();
 		message_popup = true;
 	}
+}
+
+function message_alert(e){
+	popup({message:'You got replied from helpdesk. Do you want to read now?', title:"Helpdesk replied", 
+		callback: function(){
+			nav.navigateWithArgs("conversation");
+		}
+	});
 }
 
 function hinttextOnFocus(e){
