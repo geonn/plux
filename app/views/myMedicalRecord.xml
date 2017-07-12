@@ -22,7 +22,7 @@
 		 			<SearchBar tintColor="#CE1D1C" backgroundColor="#ffffff" id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." platform="ios" /> 
 		 			<SearchView id="searchItem" tintColor="#CE1D1C" backgroundColor="#ffffff" ns="Ti.UI.Android" platform="android"/>
 	 			</TableView>
-			</View> 
+			</View>
 		</View>
 	</Window>
 </Alloy>

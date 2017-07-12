@@ -1,14 +1,11 @@
 <Alloy>
-	<Window title="My Claim Details" id="myClaim" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="My Claim Details" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
 	         	<!--<ImageView right='0' id="setting" width='30' image="/btn/btn_history_icon.png" />-->
 	        </View>
         </RightNavButton>
-         <View layout="vertical" id="loadingBar" height="120" zIndex="12" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
-         		<ActivityIndicator id="activityIndicator" />
-         		<Label top="5" bottom="10" text="Loading" color="#ffffff" />
-         </View>
+        
         <View layout="vertical" backgroundColor="#F6F6F6" height="100%" >
         	<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="10%">

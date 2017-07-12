@@ -21,7 +21,7 @@
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-	var socket = io("http://103.3.173.207:3500");
+	var socket = io("http://103.3.173.207:3501");
 	var room_id = 0;
 	socket.on('connect', function () {
 		Ti.App.fireEvent("id connected "+socket.id);
@@ -54,7 +54,7 @@ Ti.App.addEventListener("socket:add_event", function(ex) {
 });*/      
 	Ti.App.addEventListener("socket:getDoctorList", function(){
   	  	socket.emit('socket:getDoctorList', socket.id);
-  	  	Ti.App.fireEvent("socket:getDoctorList"+e.room_id+" room id");
+  	  	Ti.App.fireEvent("socket:getDoctorList room id");
 	});
 	Ti.App.addEventListener("web:setRoom", function(e){
 		room_id = e.room_id;

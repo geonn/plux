@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="My Claim History" id="claim_history" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="My Claim History" id="win" backButtonTitle="" navTintColor="#CE1D1C">
 		<View id="main" layout="vertical">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="10%">

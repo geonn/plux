@@ -34,8 +34,6 @@ function loadMedicalInfo(){
 	var treatment = treatment;
 	$.titleRecord.value= title;
 	$.clinicRecord.value= clinic;
-	$.proceduceTextArea.value= message ;
-	$.treatmentTextArea.value= treatment ;
 	$.lastUpdated.text = "Last updated: " +timeFormat(details.updated);
 } 
 
@@ -46,12 +44,12 @@ function loadImage(){
 	console.log(recAttachment);
 	var counter = 0;
 	 
-	removeAllChildren($.attachment);
+	$.attachment.views = [];
 	
 	
 	if(details.lab_report_link != ""){ 
 	 	counter++;
-		$.attachment.add(attachedPhoto(details.lab_report_link, counter,1));
+		$.attachment.addView(attachedPhoto(details.lab_report_link, counter,1));
 	}
 	if(recAttachment.length > 0){ 
 	 	recAttachment.forEach(function(att){ 
@@ -62,7 +60,7 @@ function loadImage(){
 	 		//	var myImage = Ti.Utils.base64decode(att.blob);
 	 		//}
 	 		 
-	 		$.attachment.add(attachedPhoto(myImage, counter,0));
+	 		$.attachment.addView(attachedPhoto(myImage, counter,0, att));
 	 		counter++;  
 	 	}); 
 	 }
@@ -73,8 +71,6 @@ function loadImage(){
 function saveRecord(){
 	var title      = $.titleRecord.value; 
 	var clinic      = $.clinicRecord.value; 
-	var message   = $.proceduceTextArea.value;
-	var treatment = $.treatmentTextArea.value;
 
 	if(title.trim() == ""){
 		title = "Untitled - "+ common.now();
@@ -86,8 +82,6 @@ function saveRecord(){
 		u_id : Ti.App.Properties.getString('u_id'),
 		clinic : clinic,
 		title : title,
-		message  : message,
-		treatment : treatment,
 		created : details.created,
 		updated : common.now(),
 	};    
@@ -95,9 +89,7 @@ function saveRecord(){
 		medicalRecordsModel.saveArray([{ 
 			id : id,
 			title : title.trim(),
-			clinic  : clinic.trim(),
-			message : message.trim(),
-			treatment : treatment.trim(),  
+			clinic  : clinic.trim(), 
 			updated : common.now()
 		}]);  
 		Ti.App.fireEvent('displayRecords');
@@ -142,10 +134,8 @@ function hideKeyboard(){
 }
 
 function backAndSave(){
-	var title      = $.titleRecord.value; 
-	var message    = $.proceduceTextArea.value;
-	var treatment  = $.treatmentTextArea.value;
-	if(title.trim() == "" && message.trim() == "" && treatment.trim() == ""){
+	var title = $.titleRecord.value; 
+	if(title.trim() == ""){
 		var recAttachment = medicalAttachmentModel.getRecordByMecId(id);
 		 
 		if(recAttachment.length == 0){
@@ -160,27 +150,28 @@ function backAndSave(){
 	//nav.closeWindow($.editRecWin);
 }
 
-function attachedPhoto(image,position,isLink){
+function attachedPhoto(image,position,isLink, image_record){
 	var getFormat = image.split(".");
 	var thumbImg =   image;
+	var pWidth = (OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
+	
 	if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
 	    thumbImg ="/images/pdf_logo.png"; 
     } 
-	var iView = Ti.UI.createView({
-		backgroundColor: "#D5D5D5",
-		height : 50,
-		position : position,
-		width: 50,
-		left:5,
-		right: 5,
-		bottom:0
-	});
 	
+	var iView = $.UI.create("View", {width: pWidth, height: pWidth, position: position, backgroundColor: "#cccccc"});
+	var text_category = (isLink)?"Attachment":image_record.category;
+	var label_category = $.UI.create("Label", {classes:['wfill',' hsize', 'padding'], color: "#ffffff", text: text_category});
+	var view_label = $.UI.create("View", {classes: ['wfill', 'hsize'], backgroundColor: "#80000000", bottom:0, zIndex: 2});
+	view_label.add(label_category);
 	var iImage = Ti.UI.createImageView({
 		image : thumbImg,
 		position :position,
+		enableZoomControls:true,
 		width: Ti.UI.FILL
 	}); 
+	
+	iView.add(view_label);
 	iView.add(iImage);
 	
 	iView.addEventListener('click',function(e){
@@ -195,14 +186,14 @@ function attachedPhoto(image,position,isLink){
 	    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
 	    	downloadPDF(image);
 	    }else{
-	    	
+	    	/*
 	    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position, isLink: isLink, image : image}).getView(); 
 	  		page.open();
 		  	page.animate({
 				curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
 				opacity: 1,
 				duration: 300
-			});
+			});*/
 	    }
 		
 	});
@@ -567,10 +558,6 @@ function saveImage(items){
 		iterate(items[a]);
 	}
 }
-
-$.proceduceTextArea.addEventListener('focus', function(){
-	//$.proceduceTextArea.setHeight("70%");
-});
  
 $.editRecWin.addEventListener('close',function(){
 	if(!skipUpdate){

@@ -31,7 +31,6 @@ function render_listing(){
 		var updated = $.UI.create("Label", {classes: ['wfill','hsize','h5'], textAlign: "left", text: timeFormat(data[i].updated)});
 		
 		left_info.add(title);
-		left_info.add(message);
 		left_info.add(clinic);
 		left_info.add(updated);
 		container.add(left_info);

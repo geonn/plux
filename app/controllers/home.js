@@ -31,7 +31,8 @@ function loadHomePageItem(){
 		//{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
 		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
-		//{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
+		//{mod: "appointment/index", image:"/images/btn/btn_appointment.png"},
+		{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
 	]; 
 	console.log(menu_info.length+" loadHomePageItem");
 }	
@@ -154,7 +155,7 @@ function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	loadHomePageItem();
-	loadInpatientRecord();
+	
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();
@@ -188,22 +189,7 @@ function init(){
 	},2000);
 	
 }
-function loadInpatientRecord(e){
-	var empno = Ti.App.Properties.getString("empno");
-	var corpcode = Ti.App.Properties.getString("corpcode");
-	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
-		var model = Alloy.createCollection("inpatient_record");
-		console.log(responseText);
-		var res = JSON.parse(responseText);
-		var arr = res || undefined;
-		model.resetInpatientRecord();		
-		model.saveArray(arr);
-        var model = null;
-        var res = null;
-        var arr = null;
-	});
-	
-}
+
 function syncFromServer(){
 	console.log("syncFromServer");
 	var checker = Alloy.createCollection('updateChecker'); 

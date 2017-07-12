@@ -1,24 +1,27 @@
 var args = arguments[0] || {};  
 var usersModel = Alloy.createCollection('users');
+var loading = Alloy.createController("loading");
+
 common.construct($);
 
 loadPage();
 
 function loadPage(){
+	$.win.add(loading.getView());
+	loading.start();
 	user = usersModel.getPrincipleData();
 	if(user.isver == "true" || user.isver > 0){
-		common.showLoading();
 		$.verifyContainer.hide();
 		$.claimContainer.show();
 		API.claimInfo({memno : user.memno, corpcode : user.corpcode});
-		API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
+		//API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
 		API.ifins({empno : user.empno, corpcode : user.corpcode});
 	}else{ 
-		common.hideLoading();
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
 		$.verifyContainer.show();
 		$.claimContainer.hide();
 	}
+	loading.finish();
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
   
@@ -27,7 +30,7 @@ function checkStatus(){
 	var asp_password = Ti.App.Properties.getString('asp_password');	 
 	if(asp_email){
 		//Ti.App.addEventListener('loadPage', loadPage);
-		common.showLoading();
+		loading.start();
 		API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
 	}
 } 
@@ -124,7 +127,7 @@ function init(){
 	    $.personal_claim.add(personal_claim_view);
 	});
 	Ti.App.removeEventListener("data_loaded", init);
-	common.hideLoading();
+	loading.finish()
 }
 
 function GenerateClaimBalanceTable(balance_groups){
@@ -217,11 +220,11 @@ function GenerateClaimBalanceTable(balance_groups){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.myClaim); 
+		nav.closeWindow($.win); 
 	});
 }
 
-$.myClaim.addEventListener("close", function(){
+$.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('ifinsPage', loadIfins);	
 	Ti.App.removeEventListener('loadPage', loadPage);		
 	Ti.App.removeEventListener("data_loaded", init);

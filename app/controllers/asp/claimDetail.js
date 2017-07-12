@@ -1,5 +1,6 @@
 var args = arguments[0] || {}; 
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
+var loading = Alloy.createController("loading");
 if(args.appcode.charAt(0) != "T"){
 	if(OS_IOS){
 		$.win.setRightNavButton(null);
@@ -11,13 +12,16 @@ if(args.appcode.charAt(0) != "T"){
 API.claimDetailBySeries({serial : arg_serial});
 var model = Alloy.createCollection('claim_detail'); 
 var appcode = "";
-common.construct($); 
-common.showLoading();
+common.construct($);
 
 Ti.App.addEventListener("load_claim_detail", init);
 
 function init(){ 
-	var data = model.getClaimDetailBySeries({serial : arg_serial});  
+	$.win.add(loading.getView());
+	loading.start();
+	//var data = model.getClaimDetailBySeries({serial : arg_serial});  
+	var data = args.record;
+	console.log(data);
 	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
 	//$.tv.appendRow(createTableViewRow("Patient Name", data.name));
 	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
@@ -41,21 +45,21 @@ function init(){
 	if(totalAmount != ""){
 		section.add(createTableViewRow("Total Amount", "RM"+data.amount));
 	}
-	section.add(createTableViewRow("Consultation", "RM"+((data.consultation_amt == "null" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
-	section.add(createTableViewRow("Medication", "RM"+((data.medication_amt == "null" || data.medication_amt <= 0)?"0":data.medication_amt), data.medication));
-	section.add(createTableViewRow("Injection", "RM"+((data.injection_amt == "null" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
-	section.add(createTableViewRow("Lab Test", "RM"+((data.labtest_amt == "null" || data.labtest_amt <= 0)?"0":data.labtest_amt), data.labtest));
-	section.add(createTableViewRow("X-Ray", "RM"+((data.xray_amt == "null" || data.xray_amt <= 0)?"0":data.xray_amt), data.xray));
-	section.add(createTableViewRow("Surgical", "RM"+((data.surgical_amt == "null" || data.surgical_amt <= 0)?"0":data.surgical_amt), data.surgical));
-	section.add(createTableViewRow("Extraction", "RM"+((data.extraction_amt == "null" || data.extraction_amt <= 0)?"0":data.extraction_amt)));
-	section.add(createTableViewRow("Fillings", "RM"+((data.fillings_amt == "null" || data.fillings_amt <= 0)?"0":data.fillings_amt)));
-	section.add(createTableViewRow("Scaling", "RM"+((data.scaling_amt == "null" || data.scaling_amt <= 0)?"0":data.scaling_amt)));
-	section.add(createTableViewRow("Others", "RM"+((data.others_amt == "null" || data.others_amt <= 0)?"0":data.others_amt)));
+	section.add(createTableViewRow("Consultation", "RM"+((typeof data.consultation_amt == "undefined" || data.consultation_amt <= 0)?"0":data.consultation_amt)));
+	section.add(createTableViewRow("Medication", "RM"+((typeof data.medication_amt == "undefined" || data.medication_amt <= 0)?"0":data.medication_amt), data.medication));
+	section.add(createTableViewRow("Injection", "RM"+((typeof data.injection_amt == "undefined" || data.injection_amt <= 0)?"0":data.injection_amt), data.injection));
+	section.add(createTableViewRow("Lab Test", "RM"+((typeof data.labtest_amt == "undefined" || data.labtest_amt <= 0)?"0":data.labtest_amt), data.labtest));
+	section.add(createTableViewRow("X-Ray", "RM"+((typeof data.xray_amt == "undefined" || data.xray_amt <= 0)?"0":data.xray_amt), data.xray));
+	section.add(createTableViewRow("Surgical", "RM"+((typeof data.surgical_amt == "undefined" || data.surgical_amt <= 0)?"0":data.surgical_amt), data.surgical));
+	section.add(createTableViewRow("Extraction", "RM"+((typeof data.extraction_amt == "undefined" || data.extraction_amt <= 0)?"0":data.extraction_amt)));
+	section.add(createTableViewRow("Fillings", "RM"+((typeof data.fillings_amt == "undefined" || data.fillings_amt <= 0)?"0":data.fillings_amt)));
+	section.add(createTableViewRow("Scaling", "RM"+((typeof data.scaling_amt == "undefined" || data.scaling_amt <= 0)?"0":data.scaling_amt)));
+	section.add(createTableViewRow("Others", "RM"+((typeof data.others_amt == "undefined" || data.others_amt <= 0)?"0":data.others_amt)));
 	section.add(createTableViewRow("Bps", data.bps));
 	section.add(createTableViewRow("Bpd", data.bpd));
 	section.add(createTableViewRow("Pulse", data.pulse));
 	$.tv.appendSection(section);
-	common.hideLoading();
+	loading.finish();
 }
 
 function createTableViewRow(text, value, dialog){

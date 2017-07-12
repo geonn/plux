@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 var appointment_id = args.id || 0;
-var page_container = [{title: "SELECT A SPECIALTY"},{title: "SELECT A DOCTOR"},{title: "SELECT A DOCTOR"}, {title: "SELECT AN AVAILABLE TIME"}, {title: "CREATE THIS APPOINTMENT"}];
+var page_container = [{title: "SELECT A SPECIALTY"},{title: "SELECT A DOCTOR"}, {title: "SELECT AN AVAILABLE TIME"}, {title: "CREATE THIS APPOINTMENT"}];
 var loading = Alloy.createController("loading");
 
 function init(){

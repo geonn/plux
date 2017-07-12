@@ -1,11 +1,36 @@
 var args = arguments[0] || {};
 var newsFeedModel = Alloy.createCollection('health_news_feed'); 
 var categoryModel = Alloy.createCollection('categorys'); 
+var loading = Alloy.createController("loading");
 
 function init(){
+	$.win.add(loading.getView());
+	refresh();
 	displayInpatientRecord();
 }
+
 init();
+
+
+
+function refresh(){
+	loading.start();
+	var empno = Ti.App.Properties.getString("empno");
+	var corpcode = Ti.App.Properties.getString("corpcode");
+	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
+		var model = Alloy.createCollection("inpatient_record");
+		console.log(responseText);
+		var res = JSON.parse(responseText);
+		var arr = res || undefined;
+		model.resetInpatientRecord();		
+		model.saveArray(arr);
+        var model = null;
+        var res = null;
+        var arr = null;
+        displayInpatientRecord();
+        loading.finish();
+	});
+}
 
 function displayInpatientRecord(){  
 	var tableData = []; 

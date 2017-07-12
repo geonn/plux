@@ -94,7 +94,9 @@ exports.definition = {
 			},
 			saveArray : function(arr){
 				var collection = this;
-				
+				if(arr == null){
+					return;
+				}
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);

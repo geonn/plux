@@ -4,6 +4,7 @@ var loading = Alloy.createController("loading");
 
 function init(){
 	syncData({url: "getRoomList", checkerId: 16, model: "room"});
+	syncData({url: "doctorListUrl", checkerId: 12, model: "doctors"});
 	$.win.add(loading.getView());
 	loading.start();
 	//$.sub_back.hide();

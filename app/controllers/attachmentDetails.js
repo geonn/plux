@@ -126,17 +126,7 @@ var getAttImages = function(){
 	});
 	
 	$.albumView.add(scrollableView);
-	scrollableView.scrollToView(position, true); 
-	 
-	scrollableView.addEventListener('scrollend', function(e) {
-		if((scrollableView.currentPage+1) === items.length){
-			if(scrollableView.currentPage === my_page){
-				scrollableView.currentPage=0;
-			}
-		}
-		
-		my_page =  scrollableView.currentPage;
-	});
+	
 	
 	if(!isLink){
 		var deleteView = Ti.UI.createView({
