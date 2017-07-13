@@ -57,6 +57,9 @@ function SendMessage(){
 		$.message.blur();
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
+		if(dr_id === 0){
+			socket.fireEvent("doctor:refresh_patient_list");
+		}
 		if(isShowWatingMsg == "0"){
 			refreshIntervalId = setInterval(function(){
 				$.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";

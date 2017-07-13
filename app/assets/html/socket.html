@@ -21,7 +21,7 @@
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-	var socket = io("http://103.3.173.207:3501");
+	var socket = io("http://103.3.173.207:3500");
 	var room_id = 0;
 	socket.on('connect', function () {
 		Ti.App.fireEvent("id connected "+socket.id);
