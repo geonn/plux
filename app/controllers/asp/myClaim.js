@@ -3,12 +3,13 @@ var usersModel = Alloy.createCollection('users');
 var loading = Alloy.createController("loading");
 
 common.construct($);
-
+$.win.add(loading.getView());
+loading.start();
+	
 loadPage();
 
 function loadPage(){
-	$.win.add(loading.getView());
-	loading.start();
+	
 	user = usersModel.getPrincipleData();
 	if(user.isver == "true" || user.isver > 0){
 		$.verifyContainer.hide();
@@ -20,8 +21,9 @@ function loadPage(){
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
 		$.verifyContainer.show();
 		$.claimContainer.hide();
+		loading.finish();
 	}
-	loading.finish();
+	
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
   

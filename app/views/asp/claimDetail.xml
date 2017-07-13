@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Claim Detail" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="Claim Detail" id="win" backButtonTitle="" navTintColor="#CE1D1C">
 		<RightNavButton platform="ios" title="Receipt" id="recepit" onClick="openReceipt"></RightNavButton>
 		
 		<View id="main" layout="vertical">
