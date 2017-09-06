@@ -62,7 +62,7 @@ function sendMessage(){
 		sending = false;
 		$.message.blur();
 		loading.finish();
-		nav.navigateWithArgs("conversation", {dr_id : dr_id});
+		nav.navigateWithArgs("conversation", {dr_id : dr_id, record: args.record});
 	});
 }
 

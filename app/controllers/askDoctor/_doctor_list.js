@@ -33,18 +33,20 @@ function render_doctor_list(){
 			    backgroundSelectedColor: "#ECFFF9",
 		 
 			}); 
-			var image_status = $.UI.create("ImageView", {image: icon_status, classes:['wsize'], height: 20, left:10});
+			var image_status = $.UI.create("ImageView", {image: icon_status, classes:['hsize'], width: 40, right:10});
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
 					dr_id: entry.id,
+					record: entry,
 					layout: "horizontal",
+					right: 40,	
 			}); 
-
+			var image_doctor_avatar = $.UI.create("ImageView", {image: entry.img_path, classes:['wsize'], height: 40, left:10});
 			var tblView = Ti.UI.createView({
 					layout: "vertical",
 					height:Ti.UI.SIZE, 
-					width:"auto" 
+					width:"auto",
 			}); 
 			 
 			var docName = $.UI.create('Label',{
@@ -61,12 +63,14 @@ function render_doctor_list(){
 				textAlign:'left', 
 				left:15,  
 			});	
-			tblRowView.add(image_status);
+			tblRowView.add(image_doctor_avatar);
 			tblView.add(docName); 
 			tblView.add(docSpecialty);
 			tblRowView.add(tblView);
+			
 			addClinicAction(tblRowView);
 			row.add(tblRowView);
+			row.add(image_status);
 			data.push(row);	   
 		});
 		docTable.setData(data);  
@@ -77,15 +81,16 @@ function render_doctor_list(){
 function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
 		var dr_id = parent({name: "dr_id"}, e.source);
+		var record = parent({name: "record"}, e.source);
 		console.log(dr_id+" dr_id from doctor");
 	 	//Ti.App.fireEvent("askDoctor_index:windowClose");
 	 	var room_model = Alloy.createCollection('room');
 	 	var room = room_model.getDataBydr_id({dr_id: dr_id}); 
 	 	
 	 	if(room.length > 0 && room[0].status == 2){
-	 		nav.navigateWithArgs("conversation", {dr_id : dr_id});
+	 		nav.navigateWithArgs("conversation", {dr_id : dr_id, record: record});
 	 	}else{
-	 		nav.navigateWithArgs("askDoctor/forms", {dr_id : dr_id});
+	 		nav.navigateWithArgs("askDoctor/forms", {dr_id : dr_id, record: record});
 	 	}
 	 	//
 	});

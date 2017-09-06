@@ -1359,6 +1359,20 @@ function contactServerByGet(url) {
 	return client;
 };
 
+function contactServerByPostVideo(url,params) { 
+	var client = Ti.Network.createHTTPClient({
+		timeout : 50000
+	});
+	 
+	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+	client.open("POST", url);
+	client.onsendstream = function(e) {
+	    console.log( Math.floor(e.progress * 100) + "%");
+	};
+	client.send(params); 
+	return client;
+};
+
 function contactServerByPost(url,records) { 
 	var client = Ti.Network.createHTTPClient({
 		timeout : 60000
@@ -1402,7 +1416,12 @@ exports.callByPost = function(e, onload, onerror){
 		
 		var url = (typeof e.new != "undefined")?"http://"+API_DOMAIN+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		console.log(url); 
-		var _result = contactServerByPost(url, e.params || {});   
+		console.log(e.type+"  e.type");
+		if(e.type == "voice"){
+			var _result = contactServerByPostVideo(url, e.params || {});  
+		}else{
+			var _result = contactServerByPost(url, e.params || {});  
+		}
 		_result.onload = function(ex) {  
 			onload && onload(this.responseText); 
 		};

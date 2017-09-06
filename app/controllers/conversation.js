@@ -15,48 +15,44 @@ var last_id = 0;
 var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
 var room_id = 0;
-/**
- * Send message
- */
-var sending = false;
-function SendMessage(){
+var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
+
+function saveLocal(param){
 	var model_name = (dr_id == 0)?"helpline":"chat";
 	var model = Alloy.createCollection(model_name);
-	if($.message.value == "" || sending){
-		return;
-	}
-	loading.start();
-	sending = true;
-	$.message.editable = false;
 	var app_id = Math.random().toString(36).substr(2, 10);
 	var local_save = {
 		"u_id": u_id,
 	    "sender_id": u_id,
-	    "message": $.message.value,
+	    "message": param.message,
 	    "created": common.now(),
 	    "is_endUser": 1,
 	    "dr_id": dr_id,
-	    "format": "text",
+	    "format": param.format,
 	    "status": 1,
 	    "app_id": app_id,
 	    "sender_name": user.fullname,
 	};
+	
 	if(dr_id > 0){
 		local_save = _.extend(local_save, {id: app_id});
 	}
-	console.log(local_save);
 	var id = model.saveArray([local_save]);
 	app_id = (dr_id == 0)?id:app_id;
-	console.log({u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: app_id });
-	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: $.message.value, is_endUser:1, app_id: app_id }}, function(responseText){
+	var api_param = {u_id: u_id, dr_id: dr_id, message: param.message, is_endUser:1, app_id: app_id };
+	if(param.format == "voice"){
+		_.extend(api_param, {media: param.format, Filedata: param.filedata});
+	}
+	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
 		console.log(responseText);
 		var res = JSON.parse(responseText);
-		$.message.value = "";
-		$.message.editable = true;
+		$.message_bar.value = "";
+		$.message_bar.editable = true;
 		sending = false;
-		$.message.blur();
+		$.message_bar.blur();
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
+		refresh_latest();
 		if(dr_id === 0){
 			socket.fireEvent("doctor:refresh_patient_list");
 		}
@@ -70,12 +66,21 @@ function SendMessage(){
 		}
 		
 	});
+}
+
+/**
+ * Send message
+ */
+var sending = false;
+function SendMessage(){
+	if($.message_bar.value == "" || sending)
+		return;
+	loading.start();
+	sending = true;
+	$.message_bar.editable = false;
 	
-	//var params = {u_id: u_id, to_id: to_id, message: $.message.value, type: "text", room_id: room_id};
-	//var messager = Alloy.createCollection('message');
 	
-	//messager.saveRecord(params);
-	
+	saveLocal({message: $.message_bar.value,format:"text"});
 }
 
 function navToWebview(e){
@@ -100,17 +105,6 @@ function render_conversation(latest){
 			m_id: data[i].id
 		});
 		
-		//console.log("message:"+data[i].message+", is_endUser:"+data[i].is_endUser +"=="+data[i].created);
-		/*var thumb_path = (data[i].u_id == u_id)?user_thumb_path:friend_thumb_path;
-		var imageview_thumb_path = $.UI.create("ImageView", {
-			top: 10,
-			width: 50,
-			height: "auto",
-			defaultImage: "/images/default/small_item.png",
-			left: 10,
-			image: thumb_path
-		});
-		*/
 		if(data[i].sender_id){
 			var view_text_container = $.UI.create("View", {
 				classes:  ['hsize', 'vert', 'box','bigRounded'],
@@ -147,7 +141,7 @@ function render_conversation(latest){
 				text: timeFormat(data[i].created)+" "+status_text[data[i].status],
 				textAlign: "right"
 			});
-			view_text_container.add(label_name);
+			
 			if (data[i].format == "link"){
 				var label_message2 = $.UI.create("Label", {
 					classes:['h5', 'wfill', 'hsize','small_padding'],
@@ -155,10 +149,24 @@ function render_conversation(latest){
 					left:15, 
 					text: "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:"
 				});
+				view_text_container.add(label_name);
 				view_text_container.add(label_message2);
+				view_text_container.add(label_message);
+			}else if(data[i].format == "voice"){
+				var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
+				console.log(newText);
+				player.setUrl(newText);
+				//download_video(player, newText);
+				var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
+				view.add(player.getView());
+				view_text_container.add(label_name);
+				view_text_container.add(view);
+			}else{
+				view_text_container.add(label_name);
+				view_text_container.add(label_message);
 			}
 			
-			view_text_container.add(label_message);
+			
 			
 			view_text_container.add(label_time);
 			if(data[i].is_endUser){
@@ -167,8 +175,23 @@ function render_conversation(latest){
 				//view_container.add(imageview_thumb_path);
 			}else{
 				view_text_container.setBackgroundColor("#FFFFE3");
-				//view_container.add(imageview_thumb_path);
-				view_text_container.setRight(10);
+				//
+				if(typeof args.record != "undefined"){
+					var imageview_thumb_path = $.UI.create("ImageView", {
+						top: 10,
+						width: 50,
+						height: "auto",
+						defaultImage: "/images/default/small_item.png",
+						right: 10,
+						image: args.record.img_path
+					});
+					view_container.add(imageview_thumb_path);
+					view_text_container.width = "60%";
+					view_text_container.setRight(60);
+				}else{
+					view_text_container.setRight(10);
+				}
+				
 			}
 			if(data[i].format == "link"){
 				label_message.addEventListener("click", navToWebview);
@@ -304,6 +327,9 @@ var refreshing = false;
 var time_offset = common.now();
 function refresh_latest(param){
 	
+	var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
+	player.play();
+	
 	console.log("refresh_latest "+refreshing);
 	/*if(typeof(param.admin) != "undefined"){
 		Ti.App.Properties.setString('estimate_time', "0");
@@ -372,6 +398,15 @@ function getLatestData(){
 	setTimeout(function(e){scrollToBottom();}, 500);
 }
 
+
+function switchIcon(e){
+	if(e.source.value != ""){
+		$.enter_icon.right = 10;
+	}else{
+		$.enter_icon.right = -50;
+	}
+}
+
 /**
  * Closes the Window
  */
@@ -380,9 +415,19 @@ function closeWindow(){
 }
 
 function init(){
+	
+	var mic = voice_recorder.getView();
+	$.action_btn.add(mic);
 	$.win.add(loading.getView());
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
+	}
+	var model_name = (dr_id == 0)?"helpline":"chat";
+	if(dr_id > 0){
+		$.win.title = "Ask Doctor - "+args.record.name;
+		if(OS_ANDROID){
+			$.pageTitle.text = "Ask Doctor - "+args.record.name;
+		}
 	}
 	console.log(room_id+" room id");
 	refresh(getPreviousData, true);

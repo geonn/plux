@@ -237,6 +237,7 @@ function syncFromServer(){
 	var isUpdate = checker.getCheckerById(7, u_id);
 	var last_updated = isUpdate.updated || "";
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
+	console.log(u_id+" u_id what ");
 	API.callByPost({url:"getHelplineMessageV3", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("helpline");
 		var res = JSON.parse(responseText);
@@ -425,7 +426,14 @@ function navWindow(e){
 		}
 		
 	}else if(e.source.mod == "conversation"){
-		nav.navigationWindow(target, 1);
+		if (!require('ti.permissions').hasPermission('android.permission.RECORD_AUDIO'))
+		require('ti.permissions').requestPermissions(['android.permission.RECORD_AUDIO'], function(e) {
+		    if (e.success != 0)
+		       nav.navigationWindow(target, 1);
+		    else
+		       console.log("Permissions denied");
+		});
+		
 	}else{
 		console.log(target+" target");
 		nav.navigationWindow(target);

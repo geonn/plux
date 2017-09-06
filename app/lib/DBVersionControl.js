@@ -7,7 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.5"; 
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.6"; 
 	if (dbVersion == '1.0') {
 	  // do 1.1 upgrade
 		var panelList = Alloy.createCollection('panelList'); 
@@ -126,7 +126,6 @@ exports.checkAndUpdate = function(e){
 		mrv2_model.addColumn("dr_id", "INTEGER");
 		mrv2_model.setColumnValue("dr_id", 0);
 		
-		console.log('yes');
 		dbVersion = '2.6';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);

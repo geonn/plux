@@ -126,7 +126,7 @@ function submitClaim(){
 		return false;
 	}
 	
-	if(receiptAmount == ""){
+	if(receiptAmount == "" || receiptAmount <= 0){
 		common.resultPopUp("Error", "Please fill in receipt amount in RM" );
 		return false;
 	}

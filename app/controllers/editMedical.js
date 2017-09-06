@@ -327,7 +327,8 @@ function takePhoto(){
 					 		caption : categoryType,
 					 		Filedata : image,
 						};	
-
+						console.log('check blob');
+console.log(image);
 						var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType;  
 						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
 
