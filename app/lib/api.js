@@ -468,7 +468,7 @@ exports.removeHealthDataById = function(id){
 };
 
 exports.do_pluxLogin = function(data, callback){
-	var url = pluxLoginUrl +"&email="+encodeURIComponent(data.email)+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
+	var url = pluxLoginUrl +"&email="+data.email+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
 	
  	console.log(url);
 	 

@@ -426,13 +426,7 @@ function navWindow(e){
 		}
 		
 	}else if(e.source.mod == "conversation"){
-		if (!require('ti.permissions').hasPermission('android.permission.RECORD_AUDIO'))
-		require('ti.permissions').requestPermissions(['android.permission.RECORD_AUDIO'], function(e) {
-		    if (e.success != 0)
-		       nav.navigationWindow(target, 1);
-		    else
-		       console.log("Permissions denied");
-		});
+		 nav.navigationWindow(target, 1);
 		
 	}else{
 		console.log(target+" target");
