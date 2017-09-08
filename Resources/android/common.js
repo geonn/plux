@@ -22,6 +22,21 @@ exports.createAlert = function(tt, msg, callback) {
     });
 };
 
+exports.createAlert1 = function(tt, msg, callback, yes) {
+    var y = "undefined" != typeof yes ? yes : "ok";
+    var box = Titanium.UI.createAlertDialog({
+        title: tt,
+        ok: y,
+        cancel: 1,
+        buttonNames: [ "Ok", "Cancel" ],
+        message: msg
+    });
+    box.show();
+    _.isFunction(callback) && box.addEventListener("click", function(e) {
+        e.index == e.source.cancel || callback();
+    });
+};
+
 exports.lightbox = function(data, win) {
     var mask = Ti.UI.createImageView({
         image: "/images/transparent-bg.png",

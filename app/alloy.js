@@ -46,7 +46,16 @@ function ucwords(str) {
             return $1.toUpperCase();
 	});
 }
-
+Titanium.Network.addEventListener('change',function(e){
+	if(!e.online){
+		setTimeout(function(){
+			common.createAlert1("Warning","Now that your phone does not have a network,\n This issue will affect your experience.\n Would you like to leave plux?",function(){
+			     var activity = Titanium.Android.currentActivity;
+			     activity.finish();			
+			});			
+		},1000);
+	}
+});
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {

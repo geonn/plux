@@ -249,6 +249,15 @@ FACEBOOK.forceDialogAuth = true;
 
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
+Titanium.Network.addEventListener("change", function(e) {
+    e.online || setTimeout(function() {
+        common.createAlert1("Warning", "Now that your phone does not have a network,\n This issue will affect your experience.\n Would you like to leave plux?", function() {
+            var activity = Titanium.Android.currentActivity;
+            activity.finish();
+        });
+    }, 1e3);
+});
+
 Titanium.App.addEventListener("resumed", function(e) {});
 
 var message_popup = false;

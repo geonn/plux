@@ -353,6 +353,24 @@ function Controller() {
         $.win.close();
     }
     function init() {
+        Ti.Android.hasPermission("android.permission.RECORD_AUDIO") ? checkingInternalPermission() : setTimeout(function() {
+            Ti.Android.requestPermissions("android.permission.RECORD_AUDIO", function(e) {
+                e.success ? checkingInternalPermission() : common.createAlert("Warning", "You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.", function(e) {
+                    closeWindow();
+                });
+            });
+        }, 1e3);
+    }
+    function checkingInternalPermission() {
+        Titanium.Filesystem.hasStoragePermissions() ? second_init() : setTimeout(function() {
+            Titanium.Filesystem.requestStoragePermissions(function(e) {
+                e.success ? second_init() : common.createAlert("Warning", "You don't have file storage permission!!!\nYou can go to setting enabled the permission.", function(e) {
+                    closeWindow();
+                });
+            });
+        }, 1e3);
+    }
+    function second_init() {
         var mic = voice_recorder.getView();
         $.action_btn.add(mic);
         $.win.add(loading.getView());

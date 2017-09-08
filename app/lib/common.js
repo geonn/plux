@@ -21,7 +21,25 @@ exports.createAlert = function(tt,msg, callback){
 	    		callback && callback();
 	    	}
 	    }
-  });
+  	});
+};
+exports.createAlert1 = function(tt,msg, callback, yes){
+	var y = (typeof yes != "undefined")?yes:"ok";
+	var box = Titanium.UI.createAlertDialog({
+		title: tt,
+		ok: y,
+		cancel: 1,
+		buttonNames: ['Ok','Cancel'],
+		message: msg
+	});
+	box.show();
+	_.isFunction(callback) && box.addEventListener('click', function(e){
+		if(e.index == e.source.cancel){
+			
+		}else{
+			callback();
+		}
+	});
 };
 
 exports.lightbox = function(data, win){
