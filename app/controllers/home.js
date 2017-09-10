@@ -17,13 +17,13 @@ loadingView.start();
 
 function loadHomePageItem(){
 	menu_info  =  [
-		{mod:"notification", image:"/images/btn/btn_notification.png"},
+		
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"hra", image:"/images/btn/btn_hra.png"},
 		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
-		{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
+		
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
 		{mod:"inpatient_record", image:"/images/btn/inpatient.png"},
 		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
@@ -33,6 +33,8 @@ function loadHomePageItem(){
 		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
 		//{mod: "appointment/index", image:"/images/btn/btn_appointment.png"},
 		{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
+		{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
+		{mod:"notification", image:"/images/btn/btn_notification.png"},
 	]; 
 	console.log(menu_info.length+" loadHomePageItem");
 }	
@@ -114,15 +116,14 @@ function render_menu(){
 			mod: new_menu[i].mod,
 			width: button_width,
 			left: 5,
-			top: topR,
 			image: new_menu[i].image,
 		});
-		var view = $.UI.create("View", {classes: ['wsize','hsize']});
+		var view = $.UI.create("View", {classes: ['wsize','hsize'], top: topR});
 		if(new_menu[i].mod == "conversation"){
 			var model = Alloy.createCollection("helpline");
 			var total = model.getUnread();
 			console.log(total+" total unread");
-			var view_notification = $.UI.create("View", { top:20, right:15, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
+			var view_notification = $.UI.create("View", { top:10, right:5, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
 			var label_notification = $.UI.create("Label", { text: total, color: "#ffffff"});
 			view_notification.add(label_notification);
 			view.add(imageView_menu);
@@ -135,9 +136,10 @@ function render_menu(){
 				});
 			}
 		}else if(new_menu[i].mod == "notification"){
-			var total = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
-			console.log(total+" total unread");
-			var view_notification = $.UI.create("View", { top:20, right:15, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
+			var memno = (Ti.App.Properties.getString('memno')!="")?Ti.App.Properties.getString('memno'):Ti.App.Properties.getString('ic_no');
+			var total = notificationModel.getCountUnread({member_no: memno });  
+			console.log(total+" total unread"+memno);
+			var view_notification = $.UI.create("View", { top:10, right:5, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
 			view_notification.add(notification_number_label);
 			view.add(imageView_menu);
 			view.add(view_notification);

@@ -1,9 +1,4 @@
-".container": {
-	backgroundColor:"#FFFFF6",
-	layout: 'vertical',
-	width: Ti.UI.FILL,
-	fullscreen: true,
-},
+
 ".title_header":{
 	font: {
         fontSize: '18'
