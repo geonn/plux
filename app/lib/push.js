@@ -6,30 +6,12 @@ if(OS_ANDROID){
 	// notification callback function (important)
 	CloudPush.addEventListener('callback', function (evt) { 
 		var payload = JSON.parse(evt.payload);  
-		Ti.API.info('call back notification');  
+		console.log('call back notification');  
 		Ti.App.Payload = payload;
 		// if trayClickLaunchedApp or trayClickFocusedApp set redirect as true 
 		receivePush(payload);
  
 	});
-	 
-	
-	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
-		redirect = true;
-		app_status = "not_running";
-		var payload = JSON.parse(evt.payload);   
-		Ti.App.Payload = payload;
-		Ti.API.info('Tray Click Launched App (app was not running)');  
-		receivePush(payload);
-	    //getNotificationNumber(Ti.App.Payload);
-	});
-	CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
-		redirect = true;
-		app_status = "running";
-		var payload = JSON.parse(evt.payload);   
-		Ti.API.info('Tray Click Focused App (app was already running)'); 
-		receivePush(payload);
-	}); 
 } 
 // Process incoming push notifications
 function receivePush(e) {   
@@ -104,7 +86,7 @@ function receivePush(e) {
 		var notificationModel = Alloy.createCollection('notification');  
 	    notificationModel.addData(param); 
 		var dialog = Ti.UI.createAlertDialog({
-			cancel: 1,
+			cancel: 0,
 			buttonNames: ['Cancel','OK'],
 			message: 'New message available. Do you want to read now?',
 			title: 'Confirmation'
@@ -184,7 +166,7 @@ function deviceTokenSuccess(ev) {
 					    device_token: deviceToken
 					}, function (ex) { 
 					    if (ex.success  ) { 
-					     
+					     	console.log(deviceToken+" deviceToken second");
 					    	/** User device token**/
 			         		Ti.App.Properties.setString('deviceToken', deviceToken); 
 							API.updateNotificationToken();
@@ -206,6 +188,7 @@ function deviceTokenSuccess(ev) {
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios', 
 					    device_token: deviceToken
 					}, function (ex) { 
+						console.log(ex);
 					    if (ex.success  ) { 
 					     
 					    	/** User device token**/

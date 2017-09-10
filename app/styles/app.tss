@@ -1,11 +1,16 @@
 "Window":{
 	backgroundColor: "#ffffff",
-	fullscreen : true
+	orientationModes :[
+        Ti.UI.PORTRAIT
+    ]
 },
 "Window[platform=android]":{
 	backgroundColor: "#ffffff",
-	fullscreen : true,
+	fullscreen : false,
 	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
+},
+"Window[platform=ios]":{
+	fullscreen : true,
 },
 "#activityIndicator" : { 
 	 top:30,

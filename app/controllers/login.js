@@ -41,21 +41,6 @@ function doLogin() {
 	}
 }
 
-function hideProductFormKeyboard(e){
-	if (e.source.id != 'TextField'  ) {
-    	 
-    	if(e.source.id == 'email'){
-			return false;
-		}
-		if(e.source.id == 'password'){
-			return false;
-		} 
-		 
-		$.email.blur();
-		$.password.blur(); 
-	}
-}; 
-
 function doSignup(){
 	var win = Alloy.createController("signup").getView();
 	win.open(); 
@@ -101,22 +86,6 @@ function openBox(){
 	$.forgetPasswordBox.show();
 }
 
-/** To fixed keyboard hide/show when textfield is activate**/
-$.win.addEventListener('click',hideProductFormKeyboard);
-
-$.email.addEventListener('touchend', function(e){
-    $.email.focus();
-    isKeyboardFocus = 1;
-});
-$.password.addEventListener('touchend', function(e){
-    $.password.focus();
-    isKeyboardFocus = 1;
-});
-
-$.email.addEventListener("return", function(){
-	$.password.focus();
-});
-
 $.password.addEventListener("return", function(){
 	doLogin();
 });
@@ -125,11 +94,12 @@ $.password.addEventListener("return", function(){
 if (Ti.Platform.name === 'android') {
     $.win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: $.win});
 }
+/*
 $.fbloginView.add(FACEBOOK.createLoginButton({
     top : 10,
    	readPermissions: ['email','public_profile','user_friends'],
     style : FACEBOOK.BUTTON_STYLE_WIDE
-}));  
+}));  */
   
 function loginFacebook(e){
 	if (e.success) { 
@@ -209,12 +179,13 @@ var loginAfterRegister =  function(e){
 			password: password 
 		};
 	API.do_pluxLogin(params, function(){
-		$.win.close();
+		
 		console.log("loginAfterRegister");
 		common.createAlert("Success", "Plux account registration successful!");
 		var win = Alloy.createController("home").getView();
 		win.open(); 
 		Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
+		$.win.close();
 	});
 	
 };

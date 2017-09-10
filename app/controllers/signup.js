@@ -71,21 +71,3 @@ function doSignup(){
 		loading.finish();
 	});
 }
-
-function hideProductFormKeyboard(e){
-	var exception = ["email", "password"];
-
-	if(exception.indexOf(e.source.id) >= 0){ 
-		return false;
-	} 
-	
-	$.email.blur();
-	$.password.blur();
-}; 
-
-/*$.doSignup.addEventListener("click", function(){
-	nav.navigationWindow("asp/signup", 0);
-});*/
-
-/** To fixed keyboard hide/show when textfield is activate**/
-$.win.addEventListener('click',hideProductFormKeyboard);

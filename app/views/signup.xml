@@ -19,7 +19,7 @@
 				<TextField class="text_input" id="email" hintText="Enter Email" value="" /><!-- wongbh@live.com -->
 				<TextField class="text_input" id="ic_no" hintText="Enter Your IC" keyboardType="Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD" value="" />
 				<TextField id="password" hintText="Enter Password" value="" />
-				<TextField id="confirm" hintText="Enter Confirm Password" value="" /><!--12345678 -->
+				<TextField  id="confirm" hintText="Enter Confirm Password" value="" /><!--12345678 -->
 				<View id="tc_area" layout="vertical" height="Ti.UI.SIZE" width="Ti.UI.FILL"></View>
 				<Button id="sign_btn" onClick="doSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="60%" top="20" height="40" bottom="20" color="#ffffff" />
 			</ScrollView>
