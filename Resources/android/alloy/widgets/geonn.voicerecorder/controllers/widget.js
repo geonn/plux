@@ -20,27 +20,29 @@ function Controller() {
         $.text_area.width = Ti.UI.SIZE;
         $.timer.show();
         $.timer_text.show();
-        audioRecorder.startRecording({
-            outputFormat: audioRecorder.OutputFormat_MPEG_4,
-            audioEncoder: audioRecorder.AudioEncoder_AMR_NB,
-            directoryName: "plux",
-            fileName: "tempfile",
-            success: function(e) {
-                console.log("response is => " + JSON.stringify(e));
-                var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
-                var audioFile = Ti.Filesystem.getFile(audioDir.resolve(), e.fileName);
-                console.log("audioFile.nativePath = " + audioFile.nativePath);
-                cancel_record || args.record_callback({
-                    message: "",
-                    format: "voice",
-                    filedata: audioFile.read()
-                });
-            },
-            error: function(d) {
-                alert("error => " + d.message);
-                console.log("error is => " + JSON.stringify(d));
-            }
-        });
+        setTimeout(function() {
+            audioRecorder.startRecording({
+                outputFormat: audioRecorder.OutputFormat_MPEG_4,
+                audioEncoder: audioRecorder.AudioEncoder_AMR_NB,
+                directoryName: "plux",
+                fileName: "tempfile",
+                success: function(e) {
+                    console.log("response is => " + JSON.stringify(e));
+                    var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
+                    var audioFile = Ti.Filesystem.getFile(audioDir.resolve(), e.fileName);
+                    console.log("audioFile.nativePath = " + audioFile.nativePath);
+                    cancel_record || args.record_callback({
+                        message: "",
+                        format: "voice",
+                        filedata: audioFile.read()
+                    });
+                },
+                error: function(d) {
+                    alert("error => " + d.message);
+                    console.log("error is => " + JSON.stringify(d));
+                }
+            });
+        }, 1e3);
     }
     function stopRecording() {
         var sec = timer.stop();

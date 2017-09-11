@@ -23,8 +23,9 @@ function startRecording(){
 		console.log('here!!!');
 		audioRecorder.start();
 	}else{
+		setTimeout(function(){
 		audioRecorder.startRecording(
-			{
+			{ 
 				outputFormat : audioRecorder.OutputFormat_MPEG_4,
 				audioEncoder : audioRecorder.AudioEncoder_AMR_NB,
 				directoryName : "plux",
@@ -45,7 +46,8 @@ function startRecording(){
 					console.log("error is => " + JSON.stringify(d));
 				}
 			}
-		);
+		);			
+		},1000);
 	}
 }
 
