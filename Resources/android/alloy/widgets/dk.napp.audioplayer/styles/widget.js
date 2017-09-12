@@ -10,11 +10,11 @@ module.exports = [ {
     key: "Window",
     style: {
         backgroundColor: "#ffffff",
-        fullscreen: true
+        orientationModes: [ Ti.UI.PORTRAIT ]
     }
 }, {
     isApi: true,
-    priority: 1000.0007,
+    priority: 1000.0008,
     key: "Label",
     style: {
         width: Titanium.UI.SIZE,
@@ -23,14 +23,14 @@ module.exports = [ {
     }
 }, {
     isApi: true,
-    priority: 1000.0009,
+    priority: 1000.001,
     key: "ListItem",
     style: {
         color: "#000"
     }
 }, {
     isApi: true,
-    priority: 1000.0016,
+    priority: 1000.0017,
     key: "TextField",
     style: {
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
@@ -49,12 +49,12 @@ module.exports = [ {
     key: "Window",
     style: {
         backgroundColor: "#ffffff",
-        fullscreen: true,
+        fullscreen: false,
         windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
     }
 }, {
     isApi: true,
-    priority: 1101.0014999999999,
+    priority: 1101.0016,
     key: "TableViewRow",
     style: {
         color: "#606060",
@@ -63,7 +63,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0005,
+    priority: 10000.0006,
     key: "line",
     style: {
         width: Titanium.UI.FILL,
@@ -72,7 +72,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0006,
+    priority: 10000.0007,
     key: "hr",
     style: {
         width: Titanium.UI.FILL,
@@ -81,7 +81,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0008,
+    priority: 10000.0009,
     key: "padding",
     style: {
         top: 10,
@@ -91,7 +91,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.001,
+    priority: 10000.0011,
     key: "big_font",
     style: {
         font: {
@@ -100,7 +100,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0011,
+    priority: 10000.0012,
     key: "normal_font",
     style: {
         font: {
@@ -109,7 +109,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0012,
+    priority: 10000.0013,
     key: "medium_font",
     style: {
         font: {
@@ -118,7 +118,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0013,
+    priority: 10000.0014,
     key: "small_font",
     style: {
         font: {
@@ -127,77 +127,77 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0017,
+    priority: 10000.0018,
     key: "vert",
     style: {
         layout: "vertical"
     }
 }, {
     isClass: true,
-    priority: 10000.0018,
+    priority: 10000.0019,
     key: "horz",
     style: {
         layout: "horizontal"
     }
 }, {
     isClass: true,
-    priority: 10000.0019,
+    priority: 10000.002,
     key: "wfill",
     style: {
         width: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.002,
+    priority: 10000.0021,
     key: "wsize",
     style: {
         width: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0021,
+    priority: 10000.0022,
     key: "hfill",
     style: {
         height: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0022,
+    priority: 10000.0023,
     key: "hsize",
     style: {
         height: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0023,
+    priority: 10000.0024,
     key: "conthsize",
     style: {
         contentHeight: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0024,
+    priority: 10000.0025,
     key: "contwsize",
     style: {
         contentWidth: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0025,
+    priority: 10000.0026,
     key: "conthfill",
     style: {
         contentHeight: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0026,
+    priority: 10000.0027,
     key: "contwfill",
     style: {
         contentWidth: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0027,
+    priority: 10000.0028,
     key: "small_padding",
     style: {
         top: 4,
@@ -207,7 +207,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0028,
+    priority: 10000.0029,
     key: "box",
     style: {
         borderColor: "#dfe0e4",
@@ -215,7 +215,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0029,
+    priority: 10000.003,
     key: "small_button",
     style: {
         borderColor: "#CE1D1C",
@@ -230,35 +230,35 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.003,
+    priority: 10000.0031,
     key: "rounded",
     style: {
         borderRadius: "5"
     }
 }, {
     isClass: true,
-    priority: 10000.0031,
+    priority: 10000.0032,
     key: "bigRounded",
     style: {
         borderRadius: "20"
     }
 }, {
     isClass: true,
-    priority: 10000.0032,
+    priority: 10000.0033,
     key: "greyText",
     style: {
         color: "#9E9E9E"
     }
 }, {
     isClass: true,
-    priority: 10000.0033,
+    priority: 10000.0034,
     key: "center",
     style: {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
     }
 }, {
     isClass: true,
-    priority: 10000.0034,
+    priority: 10000.0035,
     key: "darkgreyText",
     style: {
         color: "#626262",
@@ -268,35 +268,35 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0035,
+    priority: 10000.0036,
     key: "bottom",
     style: {
         bottom: 0
     }
 }, {
     isClass: true,
-    priority: 10000.0036,
+    priority: 10000.0037,
     key: "top",
     style: {
         top: 0
     }
 }, {
     isClass: true,
-    priority: 10000.0037,
+    priority: 10000.0038,
     key: "right",
     style: {
         right: 0
     }
 }, {
     isClass: true,
-    priority: 10000.0038,
+    priority: 10000.0039,
     key: "left",
     style: {
         left: 0
     }
 }, {
     isClass: true,
-    priority: 10000.0039,
+    priority: 10000.004,
     key: "h1",
     style: {
         font: {
@@ -305,7 +305,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.004,
+    priority: 10000.0041,
     key: "h2",
     style: {
         font: {
@@ -314,7 +314,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0041,
+    priority: 10000.0042,
     key: "h3",
     style: {
         font: {
@@ -323,7 +323,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0042,
+    priority: 10000.0043,
     key: "h4",
     style: {
         font: {
@@ -332,7 +332,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0043,
+    priority: 10000.0044,
     key: "h5",
     style: {
         font: {
@@ -341,7 +341,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0044,
+    priority: 10000.0045,
     key: "h6",
     style: {
         font: {
@@ -350,7 +350,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0045,
+    priority: 10000.0046,
     key: "h7",
     style: {
         font: {
@@ -359,21 +359,21 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0046,
+    priority: 10000.0047,
     key: "font_light_grey",
     style: {
         color: "#9197a3 "
     }
 }, {
     isClass: true,
-    priority: 10000.0047,
+    priority: 10000.0048,
     key: "font_dark_grey",
     style: {
         color: "#C8C8CD"
     }
 }, {
     isClass: true,
-    priority: 10000.0048,
+    priority: 10000.0049,
     key: "black-line",
     style: {
         backgroundColor: "#525252",
@@ -382,7 +382,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0049,
+    priority: 10000.005,
     key: "gray-line",
     style: {
         backgroundColor: "#ececec",
@@ -391,14 +391,14 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.005,
+    priority: 10000.0051,
     key: "grey-background",
     style: {
         backgroundColor: "#F4F4F4"
     }
 }, {
     isClass: true,
-    priority: 10000.0051,
+    priority: 10000.0052,
     key: "white-line",
     style: {
         backgroundColor: "#fff",
@@ -407,7 +407,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0052,
+    priority: 10000.0053,
     key: "bold",
     style: {
         font: {
@@ -416,70 +416,70 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0053,
+    priority: 10000.0054,
     key: "left-align",
     style: {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
     }
 }, {
     isClass: true,
-    priority: 10000.0054,
+    priority: 10000.0055,
     key: "right-align",
     style: {
         textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT
     }
 }, {
     isClass: true,
-    priority: 10000.0055,
+    priority: 10000.0056,
     key: "whiteColor",
     style: {
         color: "#ffffff"
     }
 }, {
     isClass: true,
-    priority: 10000.0056,
+    priority: 10000.0057,
     key: "themeColor",
     style: {
         color: "#CE1D1C"
     }
 }, {
     isClass: true,
-    priority: 10000.0057,
+    priority: 10000.0058,
     key: "themeBg",
     style: {
         backgroundColor: "#CE1D1C"
     }
 }, {
     isClass: true,
-    priority: 10000.0058,
+    priority: 10000.0059,
     key: "padding-top",
     style: {
         top: 10
     }
 }, {
     isClass: true,
-    priority: 10000.0059,
+    priority: 10000.006,
     key: "padding-left",
     style: {
         left: 10
     }
 }, {
     isClass: true,
-    priority: 10000.006,
+    priority: 10000.0061,
     key: "padding-right",
     style: {
         right: 10
     }
 }, {
     isClass: true,
-    priority: 10000.0061,
+    priority: 10000.0062,
     key: "padding-bottom",
     style: {
         bottom: 10
     }
 }, {
     isClass: true,
-    priority: 10000.0062,
+    priority: 10000.0063,
     key: "button",
     style: {
         height: 40,
@@ -498,7 +498,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10101.0014,
+    priority: 10101.0015,
     key: "navbtn",
     style: {
         font: {
@@ -508,7 +508,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0003,
+    priority: 100000.0004,
     key: "activityIndicator",
     style: {
         top: 30,
@@ -564,7 +564,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100101.0004,
+    priority: 100101.0005,
     key: "activityIndicator",
     style: {
         left: 30,

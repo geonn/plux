@@ -15,12 +15,13 @@ function __processArg(obj, key) {
 
 function Controller() {
     function startRecording() {
-        cancel_record = false;
-        timer.start($.timer);
-        $.text_area.width = Ti.UI.SIZE;
-        $.timer.show();
-        $.timer_text.show();
-        setTimeout(function() {
+        if (recordChecking) {
+            recordChecking = false;
+            cancel_record = false;
+            timer.start($.timer);
+            $.text_area.width = Ti.UI.SIZE;
+            $.timer.show();
+            $.timer_text.show();
             audioRecorder.startRecording({
                 outputFormat: audioRecorder.OutputFormat_MPEG_4,
                 audioEncoder: audioRecorder.AudioEncoder_AMR_NB,
@@ -38,19 +39,25 @@ function Controller() {
                     });
                 },
                 error: function(d) {
-                    alert("error => " + d.message);
-                    console.log("error is => " + JSON.stringify(d));
+                    $.text_area.width = 0;
+                    $.timer_text.hide();
+                    $.timer.hide();
                 }
             });
-        }, 1e3);
+        }
     }
     function stopRecording() {
-        var sec = timer.stop();
-        1 >= sec && (cancel_record = true);
-        audioRecorder.stopRecording();
-        $.text_area.width = 0;
-        $.timer_text.hide();
-        $.timer.hide();
+        try {
+            recordChecking = true;
+            var sec = timer.stop();
+            1 >= sec && (cancel_record = true);
+            audioRecorder.stopRecording();
+        } catch (err) {} finally {
+            audioRecorder.stopRecording();
+            $.text_area.width = 0;
+            $.timer_text.hide();
+            $.timer.hide();
+        }
     }
     function init() {
         $.timer.hide();
@@ -68,6 +75,7 @@ function Controller() {
         });
         img_mic.addEventListener("touchstart", startRecording);
         img_mic.addEventListener("touchend", stopRecording);
+        img_mic.addEventListener("touchcancel", stopRecording);
         $.container.add(img_mic);
     }
     new (require("/alloy/widget"))("geonn.voicerecorder");
@@ -120,6 +128,7 @@ function Controller() {
     var audioRecorder;
     var cancel_record = false;
     audioRecorder = require("titutorial.audiorecorder");
+    var recordChecking = true;
     init();
     exports.addEventListener = $.on;
     exports.removeEventListener = $.off;

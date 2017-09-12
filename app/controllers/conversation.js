@@ -104,6 +104,8 @@ function render_conversation(latest){
 			classes: ['hsize','wfill'],
 			m_id: data[i].id
 		});
+		console.log("asdf:"+JSON.stringify(data[i]));
+		
 		
 		if(data[i].sender_id){
 			var view_text_container = $.UI.create("View", {
@@ -265,7 +267,6 @@ function getConversationByRoomId(callback){
 	console.log({u_id: u_id, dr_id: dr_id, last_updated: last_updated});
 	
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
-		
 		var model = Alloy.createCollection(model_name);
 		console.log('check here '+room_id);
 		var res = JSON.parse(responseText);
