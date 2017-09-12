@@ -76,11 +76,7 @@ function navigationWebview(webview, title){
 function navigateWithArgs(target, args){
 	var win = Alloy.createController(target, args).getView(); 
 	 
-	if(Ti.Platform.osname == "android"){ 
-		if(target == "login"){
-			 
-			win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: win});
-		}
+	if(Ti.Platform.osname == "android"){
 		win.open(); 
 	}else{
 		Alloy.Globals.navMenu.openWindow(win,{animated:true});

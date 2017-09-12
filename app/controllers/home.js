@@ -451,8 +451,7 @@ function logoutUser(){
 		Ti.App.Properties.removeProperty('asp_password'); 
 	}else{ 
 		Ti.App.Properties.removeProperty('memno');
-		Ti.App.Properties.setString('u_id',''); 
-		FACEBOOK.logout();
+		Ti.App.Properties.setString('u_id','');
 		
 		var win = Alloy.createController("login").getView();
 		win.open(); 

@@ -90,45 +90,6 @@ $.password.addEventListener("return", function(){
 	doLogin();
 });
 
-/*** Facebook login***/ 
-if (Ti.Platform.name === 'android') {
-    $.win.fbProxy = FACEBOOK.createActivityWorker({lifecycleContainer: $.win});
-}
-/*
-$.fbloginView.add(FACEBOOK.createLoginButton({
-    top : 10,
-   	readPermissions: ['email','public_profile','user_friends'],
-    style : FACEBOOK.BUTTON_STYLE_WIDE
-}));  */
-  
-function loginFacebook(e){
-	if (e.success) { 
-		loading.start();
-		//common.showLoading();
-	    FACEBOOK.requestWithGraphPath('me', { 'fields': 'id, email,name,link'}, 'GET', function(e) {
-		    if (e.success) {  
-		    	var fbRes = JSON.parse(e.result); 
-		     	Ti.App.Properties.setString('plux_email',fbRes.email);
-		     	API.updateUserFromFB({
-			       	email: fbRes.email,
-			       	fbid: fbRes.id,
-			       	link: fbRes.link,
-			       	name: fbRes.name,
-			       	gender:fbRes.gender,
-			    }, $);
-			   
-		    }
-		}); 
-		FACEBOOK.removeEventListener('login', loginFacebook); 
-	}  else if (e.error) {
-		loading.finish();
-	} else if (e.cancelled) {
-		loading.finish();  
-	}  	 
-} 
-	 
-FACEBOOK.addEventListener('login', loginFacebook); 
-
 if (Ti.Platform.osname == 'iphone') {
 	var email = $.email.value;
 	var userData = usersPluxModel.getUserByEmail(email);
