@@ -15,6 +15,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function startRecording() {
+<<<<<<< HEAD
         cancel_record = false;
         timer.start($.timer);
         $.text_area.width = Ti.UI.SIZE;
@@ -49,6 +50,51 @@ function Controller() {
         $.text_area.width = 0;
         $.timer_text.hide();
         $.timer.hide();
+=======
+        if (recordChecking) {
+            recordChecking = false;
+            cancel_record = false;
+            timer.start($.timer);
+            $.text_area.width = Ti.UI.SIZE;
+            $.timer.show();
+            $.timer_text.show();
+            audioRecorder.startRecording({
+                outputFormat: audioRecorder.OutputFormat_MPEG_4,
+                audioEncoder: audioRecorder.AudioEncoder_AMR_NB,
+                directoryName: "plux",
+                fileName: "tempfile",
+                success: function(e) {
+                    console.log("response is => " + JSON.stringify(e));
+                    var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
+                    var audioFile = Ti.Filesystem.getFile(audioDir.resolve(), e.fileName);
+                    console.log("audioFile.nativePath = " + audioFile.nativePath);
+                    cancel_record || args.record_callback({
+                        message: "",
+                        format: "voice",
+                        filedata: audioFile.read()
+                    });
+                },
+                error: function(d) {
+                    $.text_area.width = 0;
+                    $.timer_text.hide();
+                    $.timer.hide();
+                }
+            });
+        }
+    }
+    function stopRecording() {
+        try {
+            recordChecking = true;
+            var sec = timer.stop();
+            1 >= sec && (cancel_record = true);
+            audioRecorder.stopRecording();
+        } catch (err) {} finally {
+            audioRecorder.stopRecording();
+            $.text_area.width = 0;
+            $.timer_text.hide();
+            $.timer.hide();
+        }
+>>>>>>> origin/master
     }
     function init() {
         $.timer.hide();
@@ -66,6 +112,10 @@ function Controller() {
         });
         img_mic.addEventListener("touchstart", startRecording);
         img_mic.addEventListener("touchend", stopRecording);
+<<<<<<< HEAD
+=======
+        img_mic.addEventListener("touchcancel", stopRecording);
+>>>>>>> origin/master
         $.container.add(img_mic);
     }
     new (require("/alloy/widget"))("geonn.voicerecorder");
@@ -118,6 +168,10 @@ function Controller() {
     var audioRecorder;
     var cancel_record = false;
     audioRecorder = require("titutorial.audiorecorder");
+<<<<<<< HEAD
+=======
+    var recordChecking = true;
+>>>>>>> origin/master
     init();
     exports.addEventListener = $.on;
     exports.removeEventListener = $.off;

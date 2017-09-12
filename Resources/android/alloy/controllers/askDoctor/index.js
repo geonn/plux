@@ -19,20 +19,35 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+<<<<<<< HEAD
     var __alloyId448 = [];
     $.__views.__alloyId449 = Alloy.createController("askDoctor/find_doctor", {
         id: "__alloyId449"
     });
     $.__views.tab1 = Ti.UI.createTab({
         window: $.__views.__alloyId449.getViewEx({
+=======
+    var __alloyId419 = [];
+    $.__views.__alloyId420 = Alloy.createController("askDoctor/find_doctor", {
+        id: "__alloyId420"
+    });
+    $.__views.tab1 = Ti.UI.createTab({
+        window: $.__views.__alloyId420.getViewEx({
+>>>>>>> origin/master
             recurse: true
         }),
         id: "tab1",
         title: "Find Doctor"
     });
+<<<<<<< HEAD
     __alloyId448.push($.__views.tab1);
     $.__views.index = Ti.UI.createTabGroup({
         tabs: __alloyId448,
+=======
+    __alloyId419.push($.__views.tab1);
+    $.__views.index = Ti.UI.createTabGroup({
+        tabs: __alloyId419,
+>>>>>>> origin/master
         backgroundColor: "white",
         id: "index"
     });

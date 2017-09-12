@@ -49,6 +49,7 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.aspSignUpWin && $.addTopLevelView($.__views.aspSignUpWin);
+<<<<<<< HEAD
     $.__views.__alloyId570 = Ti.UI.createView({
         top: 0,
         height: 50,
@@ -56,18 +57,33 @@ function Controller() {
         id: "__alloyId570"
     });
     $.__views.aspSignUpWin.add($.__views.__alloyId570);
+=======
+    $.__views.__alloyId568 = Ti.UI.createView({
+        top: 0,
+        height: 50,
+        backgroundColor: "#DEDEDE",
+        id: "__alloyId568"
+    });
+    $.__views.aspSignUpWin.add($.__views.__alloyId568);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createView({
         left: 0,
         zIndex: 9,
         id: "btnBack",
         width: "20%"
     });
+<<<<<<< HEAD
     $.__views.__alloyId570.add($.__views.btnBack);
     $.__views.__alloyId571 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId568.add($.__views.btnBack);
+    $.__views.__alloyId569 = Ti.UI.createImageView({
+>>>>>>> origin/master
         left: 10,
         width: 25,
         height: 25,
         image: "/images/btn-back.png",
+<<<<<<< HEAD
         id: "__alloyId571"
     });
     $.__views.btnBack.add($.__views.__alloyId571);
@@ -75,6 +91,15 @@ function Controller() {
         id: "__alloyId572"
     });
     $.__views.__alloyId570.add($.__views.__alloyId572);
+=======
+        id: "__alloyId569"
+    });
+    $.__views.btnBack.add($.__views.__alloyId569);
+    $.__views.__alloyId570 = Ti.UI.createView({
+        id: "__alloyId570"
+    });
+    $.__views.__alloyId568.add($.__views.__alloyId570);
+>>>>>>> origin/master
     $.__views.titleLbl = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -83,11 +108,19 @@ function Controller() {
         id: "titleLbl",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId572.add($.__views.titleLbl);
     $.__views.__alloyId573 = Ti.UI.createView({
         id: "__alloyId573"
     });
     $.__views.aspSignUpWin.add($.__views.__alloyId573);
+=======
+    $.__views.__alloyId570.add($.__views.titleLbl);
+    $.__views.__alloyId571 = Ti.UI.createView({
+        id: "__alloyId571"
+    });
+    $.__views.aspSignUpWin.add($.__views.__alloyId571);
+>>>>>>> origin/master
     $.__views.loadingBar = Ti.UI.createView({
         layout: "vertical",
         id: "loadingBar",
@@ -96,7 +129,11 @@ function Controller() {
         borderRadius: 15,
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId573.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId571.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
         left: 30,
@@ -112,8 +149,13 @@ function Controller() {
         id: "main",
         layout: "vertical"
     });
+<<<<<<< HEAD
     $.__views.__alloyId573.add($.__views.main);
     $.__views.__alloyId574 = Ti.UI.createImageView({
+=======
+    $.__views.__alloyId571.add($.__views.main);
+    $.__views.__alloyId572 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: 120,
         borderRadius: 10,
         height: 120,
@@ -121,9 +163,15 @@ function Controller() {
         bottom: "20dp",
         top: "20dp",
         image: "/images/asp_logo.png",
+<<<<<<< HEAD
         id: "__alloyId574"
     });
     $.__views.main.add($.__views.__alloyId574);
+=======
+        id: "__alloyId572"
+    });
+    $.__views.main.add($.__views.__alloyId572);
+>>>>>>> origin/master
     $.__views.memno = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "50dp",

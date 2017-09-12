@@ -33,30 +33,52 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
+<<<<<<< HEAD
     $.__views.__alloyId358 = Ti.UI.createView({
+=======
+    $.__views.__alloyId326 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
+<<<<<<< HEAD
         id: "__alloyId358"
     });
     $.__views.win.add($.__views.__alloyId358);
     $.__views.__alloyId359 = Ti.UI.createImageView({
+=======
+        id: "__alloyId326"
+    });
+    $.__views.win.add($.__views.__alloyId326);
+    $.__views.__alloyId327 = Ti.UI.createImageView({
+>>>>>>> origin/master
         width: 30,
         height: 30,
         right: 10,
         image: "/images/cross.png",
+<<<<<<< HEAD
         id: "__alloyId359"
     });
     $.__views.__alloyId358.add($.__views.__alloyId359);
     closeWindow ? $.addListener($.__views.__alloyId359, "click", closeWindow) : __defers["$.__views.__alloyId359!click!closeWindow"] = true;
+=======
+        id: "__alloyId327"
+    });
+    $.__views.__alloyId326.add($.__views.__alloyId327);
+    closeWindow ? $.addListener($.__views.__alloyId327, "click", closeWindow) : __defers["$.__views.__alloyId327!click!closeWindow"] = true;
+>>>>>>> origin/master
     $.__views.surveyView = Ti.UI.createWebView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
         id: "surveyView"
     });
+<<<<<<< HEAD
     $.__views.__alloyId358.add($.__views.surveyView);
+=======
+    $.__views.__alloyId326.add($.__views.surveyView);
+>>>>>>> origin/master
     $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
@@ -64,14 +86,24 @@ function Controller() {
         top: 5
     });
     $.__views.win.add($.__views.defaultMsgView);
+<<<<<<< HEAD
     $.__views.__alloyId360 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId328 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Page not found.",
+<<<<<<< HEAD
         id: "__alloyId360"
     });
     $.__views.defaultMsgView.add($.__views.__alloyId360);
+=======
+        id: "__alloyId328"
+    });
+    $.__views.defaultMsgView.add($.__views.__alloyId328);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -86,7 +118,11 @@ function Controller() {
         $.surveyView.setHtml(HTMLcontent);
         $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;
+<<<<<<< HEAD
     __defers["$.__views.__alloyId359!click!closeWindow"] && $.addListener($.__views.__alloyId359, "click", closeWindow);
+=======
+    __defers["$.__views.__alloyId327!click!closeWindow"] && $.addListener($.__views.__alloyId327, "click", closeWindow);
+>>>>>>> origin/master
     _.extend($, exports);
 }
 

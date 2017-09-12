@@ -40,6 +40,7 @@ function Controller() {
         id: "overlay"
     });
     $.__views.rocket.add($.__views.overlay);
+<<<<<<< HEAD
     $.__views.__alloyId216 = Ti.UI.createImageView({
         width: 160,
         borderRadius: 5,
@@ -47,6 +48,15 @@ function Controller() {
         id: "__alloyId216"
     });
     $.__views.rocket.add($.__views.__alloyId216);
+=======
+    $.__views.__alloyId184 = Ti.UI.createImageView({
+        width: 160,
+        borderRadius: 5,
+        image: "/images/DefaultIcon.png",
+        id: "__alloyId184"
+    });
+    $.__views.rocket.add($.__views.__alloyId184);
+>>>>>>> origin/master
     $.__views.loading_text = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,

@@ -49,12 +49,21 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId16 = Ti.UI.createView({
         backgroundColor: "#ddd",
         height: Ti.UI.SIZE,
         id: "__alloyId16"
     });
     $.__views.main.add($.__views.__alloyId16);
+=======
+    $.__views.__alloyId329 = Ti.UI.createView({
+        backgroundColor: "#ddd",
+        height: Ti.UI.SIZE,
+        id: "__alloyId329"
+    });
+    $.__views.main.add($.__views.__alloyId329);
+>>>>>>> origin/master
     $.__views.name = Ti.UI.createLabel({
         width: Titanium.UI.FILL,
         height: 30,
@@ -70,7 +79,11 @@ function Controller() {
         wordWrap: false,
         ellipsize: true
     });
+<<<<<<< HEAD
     $.__views.__alloyId16.add($.__views.name);
+=======
+    $.__views.__alloyId329.add($.__views.name);
+>>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

@@ -213,11 +213,16 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.main);
+<<<<<<< HEAD
     $.__views.__alloyId465 = Ti.UI.createView({
+=======
+    $.__views.__alloyId463 = Ti.UI.createView({
+>>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
+<<<<<<< HEAD
         id: "__alloyId465"
     });
     $.__views.main.add($.__views.__alloyId465);
@@ -227,6 +232,17 @@ function Controller() {
         id: "__alloyId466"
     });
     $.__views.__alloyId465.add($.__views.__alloyId466);
+=======
+        id: "__alloyId463"
+    });
+    $.__views.main.add($.__views.__alloyId463);
+    $.__views.__alloyId464 = Ti.UI.createView({
+        left: 0,
+        width: "10%",
+        id: "__alloyId464"
+    });
+    $.__views.__alloyId463.add($.__views.__alloyId464);
+>>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -234,12 +250,21 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
+<<<<<<< HEAD
     $.__views.__alloyId466.add($.__views.btnBack);
     $.__views.__alloyId467 = Ti.UI.createView({
         width: "90%",
         id: "__alloyId467"
     });
     $.__views.__alloyId465.add($.__views.__alloyId467);
+=======
+    $.__views.__alloyId464.add($.__views.btnBack);
+    $.__views.__alloyId465 = Ti.UI.createView({
+        width: "90%",
+        id: "__alloyId465"
+    });
+    $.__views.__alloyId463.add($.__views.__alloyId465);
+>>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -251,7 +276,11 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
+<<<<<<< HEAD
     $.__views.__alloyId467.add($.__views.pageTitle);
+=======
+    $.__views.__alloyId465.add($.__views.pageTitle);
+>>>>>>> origin/master
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });

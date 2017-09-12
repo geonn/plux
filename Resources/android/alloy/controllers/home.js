@@ -453,11 +453,19 @@ function Controller() {
         height: Ti.UI.FILL
     });
     $.__views.main.add($.__views.daily_background);
+<<<<<<< HEAD
     $.__views.__alloyId157 = Ti.UI.createView({
         width: Ti.UI.FILL,
         id: "__alloyId157"
     });
     $.__views.main.add($.__views.__alloyId157);
+=======
+    $.__views.__alloyId125 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        id: "__alloyId125"
+    });
+    $.__views.main.add($.__views.__alloyId125);
+>>>>>>> origin/master
     $.__views.logo = Ti.UI.createImageView({
         id: "logo",
         borderRadius: 10,
@@ -468,7 +476,11 @@ function Controller() {
         image: "/images/logo_plux.png",
         zIndex: 5
     });
+<<<<<<< HEAD
     $.__views.__alloyId157.add($.__views.logo);
+=======
+    $.__views.__alloyId125.add($.__views.logo);
+>>>>>>> origin/master
     $.__views.myinfo_view = Ti.UI.createView({
         zIndex: 4,
         id: "myinfo_view",
@@ -477,7 +489,11 @@ function Controller() {
         top: 20,
         backgroundColor: "#B3000000"
     });
+<<<<<<< HEAD
     $.__views.__alloyId157.add($.__views.myinfo_view);
+=======
+    $.__views.__alloyId125.add($.__views.myinfo_view);
+>>>>>>> origin/master
     $.__views.myInfo = Ti.UI.createView({
         layout: "horizontal",
         left: 110,
@@ -498,7 +514,11 @@ function Controller() {
         opacity: 0,
         backgroundColor: "#2E2E2E"
     });
+<<<<<<< HEAD
     $.__views.__alloyId157.add($.__views.loadingBar);
+=======
+    $.__views.__alloyId125.add($.__views.loadingBar);
+>>>>>>> origin/master
     $.__views.activityIndicator = Ti.UI.createActivityIndicator({
         top: 10,
         left: 30,
@@ -506,16 +526,26 @@ function Controller() {
         id: "activityIndicator"
     });
     $.__views.loadingBar.add($.__views.activityIndicator);
+<<<<<<< HEAD
     $.__views.__alloyId158 = Ti.UI.createLabel({
+=======
+    $.__views.__alloyId126 = Ti.UI.createLabel({
+>>>>>>> origin/master
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
         top: 5,
         bottom: 10,
         text: "Loading",
+<<<<<<< HEAD
         id: "__alloyId158"
     });
     $.__views.loadingBar.add($.__views.__alloyId158);
+=======
+        id: "__alloyId126"
+    });
+    $.__views.loadingBar.add($.__views.__alloyId126);
+>>>>>>> origin/master
     $.__views.scrollboard1 = Ti.UI.createScrollView({
         layout: "horizontal",
         id: "scrollboard1",
@@ -524,7 +554,11 @@ function Controller() {
         height: Ti.UI.FILL,
         zIndex: 3
     });
+<<<<<<< HEAD
     $.__views.__alloyId157.add($.__views.scrollboard1);
+=======
+    $.__views.__alloyId125.add($.__views.scrollboard1);
+>>>>>>> origin/master
     $.__views.scrollboard = Ti.UI.createView({
         layout: "horizontal",
         id: "scrollboard",
