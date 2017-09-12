@@ -60,7 +60,6 @@ function Controller() {
         id: "main"
     });
     $.__views.personalClaimVw.add($.__views.main);
-<<<<<<< HEAD
     $.__views.__alloyId450 = Ti.UI.createView({
         layout: "horizontal",
         width: Ti.UI.FILL,
@@ -68,15 +67,6 @@ function Controller() {
         id: "__alloyId450"
     });
     $.__views.main.add($.__views.__alloyId450);
-=======
-    $.__views.__alloyId579 = Ti.UI.createView({
-        layout: "horizontal",
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        id: "__alloyId579"
-    });
-    $.__views.main.add($.__views.__alloyId579);
->>>>>>> origin/master
     $.__views.name = Ti.UI.createLabel({
         width: "85%",
         height: Ti.UI.SIZE,
@@ -89,11 +79,7 @@ function Controller() {
         top: 5,
         zIndex: 10
     });
-<<<<<<< HEAD
     $.__views.__alloyId450.add($.__views.name);
-=======
-    $.__views.__alloyId579.add($.__views.name);
->>>>>>> origin/master
     $.__views.more = Ti.UI.createImageView({
         id: "more",
         image: "/images/btn-forward.png",
@@ -103,7 +89,6 @@ function Controller() {
         width: "20dp",
         height: "20dp"
     });
-<<<<<<< HEAD
     $.__views.__alloyId450.add($.__views.more);
     $.__views.__alloyId451 = Ti.UI.createView({
         height: 15,
@@ -111,15 +96,6 @@ function Controller() {
         id: "__alloyId451"
     });
     $.__views.main.add($.__views.__alloyId451);
-=======
-    $.__views.__alloyId579.add($.__views.more);
-    $.__views.__alloyId580 = Ti.UI.createView({
-        height: 15,
-        width: Ti.UI.FILL,
-        id: "__alloyId580"
-    });
-    $.__views.main.add($.__views.__alloyId580);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

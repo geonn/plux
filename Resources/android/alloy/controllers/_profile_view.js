@@ -171,21 +171,12 @@ function Controller() {
         right: 10
     });
     $.__views.win.add($.__views.addbox);
-<<<<<<< HEAD
     $.__views.__alloyId34 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         id: "__alloyId34"
     });
     $.__views.addbox.add($.__views.__alloyId34);
-=======
-    $.__views.__alloyId347 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        id: "__alloyId347"
-    });
-    $.__views.addbox.add($.__views.__alloyId347);
->>>>>>> origin/master
     $.__views.addbox_title = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -198,7 +189,6 @@ function Controller() {
         id: "addbox_title",
         verticalAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId34.add($.__views.addbox_title);
     $.__views.__alloyId35 = Ti.UI.createImageView({
         height: 40,
@@ -208,17 +198,6 @@ function Controller() {
     });
     $.__views.__alloyId34.add($.__views.__alloyId35);
     closeBox ? $.addListener($.__views.__alloyId35, "click", closeBox) : __defers["$.__views.__alloyId35!click!closeBox"] = true;
-=======
-    $.__views.__alloyId347.add($.__views.addbox_title);
-    $.__views.__alloyId348 = Ti.UI.createImageView({
-        height: 40,
-        image: "/images/cross.png",
-        right: 0,
-        id: "__alloyId348"
-    });
-    $.__views.__alloyId347.add($.__views.__alloyId348);
-    closeBox ? $.addListener($.__views.__alloyId348, "click", closeBox) : __defers["$.__views.__alloyId348!click!closeBox"] = true;
->>>>>>> origin/master
     $.__views.box_value = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: "45dp",
@@ -237,11 +216,7 @@ function Controller() {
         hintText: "New record"
     });
     $.__views.addbox.add($.__views.box_value);
-<<<<<<< HEAD
     $.__views.__alloyId36 = Ti.UI.createButton({
-=======
-    $.__views.__alloyId349 = Ti.UI.createButton({
->>>>>>> origin/master
         height: 40,
         borderColor: "#C6C8CA",
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -257,24 +232,15 @@ function Controller() {
         },
         title: "Add",
         bottom: 10,
-<<<<<<< HEAD
         id: "__alloyId36"
     });
     $.__views.addbox.add($.__views.__alloyId36);
     addRecord ? $.addListener($.__views.__alloyId36, "click", addRecord) : __defers["$.__views.__alloyId36!click!addRecord"] = true;
     $.__views.__alloyId37 = Ti.UI.createView({
-=======
-        id: "__alloyId349"
-    });
-    $.__views.addbox.add($.__views.__alloyId349);
-    addRecord ? $.addListener($.__views.__alloyId349, "click", addRecord) : __defers["$.__views.__alloyId349!click!addRecord"] = true;
-    $.__views.__alloyId350 = Ti.UI.createView({
->>>>>>> origin/master
         backgroundColor: "#fff",
         top: 0,
         height: Ti.UI.SIZE,
         layout: "vertical",
-<<<<<<< HEAD
         id: "__alloyId37"
     });
     $.__views.win.add($.__views.__alloyId37);
@@ -286,19 +252,6 @@ function Controller() {
     });
     $.__views.__alloyId37.add($.__views.__alloyId38);
     $.__views.__alloyId39 = Ti.UI.createLabel({
-=======
-        id: "__alloyId350"
-    });
-    $.__views.win.add($.__views.__alloyId350);
-    $.__views.__alloyId351 = Ti.UI.createView({
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.FILL,
-        backgroundColor: "#CE1D1C",
-        id: "__alloyId351"
-    });
-    $.__views.__alloyId350.add($.__views.__alloyId351);
-    $.__views.__alloyId352 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
@@ -308,15 +261,9 @@ function Controller() {
         bottom: 10,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "Personal Information",
-<<<<<<< HEAD
         id: "__alloyId39"
     });
     $.__views.__alloyId38.add($.__views.__alloyId39);
-=======
-        id: "__alloyId352"
-    });
-    $.__views.__alloyId351.add($.__views.__alloyId352);
->>>>>>> origin/master
     $.__views.profile_data = Ti.UI.createView({
         id: "profile_data",
         layout: "vertical",
@@ -324,7 +271,6 @@ function Controller() {
         bottom: 10,
         height: Ti.UI.SIZE
     });
-<<<<<<< HEAD
     $.__views.__alloyId37.add($.__views.profile_data);
     $.__views.__alloyId40 = Ti.UI.createView({
         height: Titanium.UI.SIZE,
@@ -334,17 +280,6 @@ function Controller() {
     });
     $.__views.__alloyId37.add($.__views.__alloyId40);
     $.__views.__alloyId41 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId350.add($.__views.profile_data);
-    $.__views.__alloyId353 = Ti.UI.createView({
-        height: Titanium.UI.SIZE,
-        width: Titanium.UI.FILL,
-        backgroundColor: "#CE1D1C",
-        id: "__alloyId353"
-    });
-    $.__views.__alloyId350.add($.__views.__alloyId353);
-    $.__views.__alloyId354 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Titanium.UI.FILL,
         height: Titanium.UI.SIZE,
         color: "#ffffff",
@@ -354,32 +289,18 @@ function Controller() {
         bottom: 10,
         textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
         text: "My Health Records",
-<<<<<<< HEAD
         id: "__alloyId41"
     });
     $.__views.__alloyId40.add($.__views.__alloyId41);
     $.__views.__alloyId42 = Ti.UI.createImageView({
-=======
-        id: "__alloyId354"
-    });
-    $.__views.__alloyId353.add($.__views.__alloyId354);
-    $.__views.__alloyId355 = Ti.UI.createImageView({
->>>>>>> origin/master
         width: Ti.UI.SIZE,
         image: "/images/white-add.png",
         height: 40,
         right: 0,
-<<<<<<< HEAD
         id: "__alloyId42"
     });
     $.__views.__alloyId40.add($.__views.__alloyId42);
     openBox ? $.addListener($.__views.__alloyId42, "click", openBox) : __defers["$.__views.__alloyId42!click!openBox"] = true;
-=======
-        id: "__alloyId355"
-    });
-    $.__views.__alloyId353.add($.__views.__alloyId355);
-    openBox ? $.addListener($.__views.__alloyId355, "click", openBox) : __defers["$.__views.__alloyId355!click!openBox"] = true;
->>>>>>> origin/master
     $.__views.my_health = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
@@ -388,7 +309,6 @@ function Controller() {
         top: 10,
         bottom: 10
     });
-<<<<<<< HEAD
     $.__views.__alloyId37.add($.__views.my_health);
     $.__views.__alloyId43 = Ti.UI.createView({
         width: Ti.UI.FILL,
@@ -397,16 +317,6 @@ function Controller() {
     });
     $.__views.my_health.add($.__views.__alloyId43);
     $.__views.__alloyId44 = Ti.UI.createView({
-=======
-    $.__views.__alloyId350.add($.__views.my_health);
-    $.__views.__alloyId356 = Ti.UI.createView({
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        id: "__alloyId356"
-    });
-    $.__views.my_health.add($.__views.__alloyId356);
-    $.__views.__alloyId357 = Ti.UI.createView({
->>>>>>> origin/master
         top: 10,
         left: 10,
         right: 10,
@@ -415,30 +325,18 @@ function Controller() {
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         horizontalWrap: false,
-<<<<<<< HEAD
         id: "__alloyId44"
     });
     $.__views.__alloyId43.add($.__views.__alloyId44);
-=======
-        id: "__alloyId357"
-    });
-    $.__views.__alloyId356.add($.__views.__alloyId357);
->>>>>>> origin/master
     $.__views.firstTab = Ti.UI.createView({
         id: "firstTab",
         tab: 1,
         height: 40,
         width: "50%"
     });
-<<<<<<< HEAD
     $.__views.__alloyId44.add($.__views.firstTab);
     switchListing ? $.addListener($.__views.firstTab, "click", switchListing) : __defers["$.__views.firstTab!click!switchListing"] = true;
     $.__views.__alloyId45 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId357.add($.__views.firstTab);
-    switchListing ? $.addListener($.__views.firstTab, "click", switchListing) : __defers["$.__views.firstTab!click!switchListing"] = true;
-    $.__views.__alloyId358 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#CE1D1C",
@@ -447,47 +345,27 @@ function Controller() {
         },
         text: "Medication Records",
         v: "label",
-<<<<<<< HEAD
         id: "__alloyId45"
     });
     $.__views.firstTab.add($.__views.__alloyId45);
     switchListing ? $.addListener($.__views.__alloyId45, "click", switchListing) : __defers["$.__views.__alloyId45!click!switchListing"] = true;
     $.__views.__alloyId46 = Ti.UI.createImageView({
-=======
-        id: "__alloyId358"
-    });
-    $.__views.firstTab.add($.__views.__alloyId358);
-    switchListing ? $.addListener($.__views.__alloyId358, "click", switchListing) : __defers["$.__views.__alloyId358!click!switchListing"] = true;
-    $.__views.__alloyId359 = Ti.UI.createImageView({
->>>>>>> origin/master
         width: Ti.UI.SIZE,
         v: "label",
         height: 40,
         image: "/images/icons/dotted.png",
-<<<<<<< HEAD
         id: "__alloyId46"
     });
     $.__views.__alloyId44.add($.__views.__alloyId46);
-=======
-        id: "__alloyId359"
-    });
-    $.__views.__alloyId357.add($.__views.__alloyId359);
->>>>>>> origin/master
     $.__views.secondTab = Ti.UI.createView({
         tab: 2,
         id: "secondTab",
         height: 40,
         width: "50%"
     });
-<<<<<<< HEAD
     $.__views.__alloyId44.add($.__views.secondTab);
     switchListing ? $.addListener($.__views.secondTab, "click", switchListing) : __defers["$.__views.secondTab!click!switchListing"] = true;
     $.__views.__alloyId47 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId357.add($.__views.secondTab);
-    switchListing ? $.addListener($.__views.secondTab, "click", switchListing) : __defers["$.__views.secondTab!click!switchListing"] = true;
-    $.__views.__alloyId360 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#606060",
@@ -496,17 +374,10 @@ function Controller() {
         },
         text: "Allergic History",
         v: "label",
-<<<<<<< HEAD
         id: "__alloyId47"
     });
     $.__views.secondTab.add($.__views.__alloyId47);
     switchListing ? $.addListener($.__views.__alloyId47, "click", switchListing) : __defers["$.__views.__alloyId47!click!switchListing"] = true;
-=======
-        id: "__alloyId360"
-    });
-    $.__views.secondTab.add($.__views.__alloyId360);
-    switchListing ? $.addListener($.__views.__alloyId360, "click", switchListing) : __defers["$.__views.__alloyId360!click!switchListing"] = true;
->>>>>>> origin/master
     $.__views.tblview = Ti.UI.createTableView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -528,7 +399,6 @@ function Controller() {
     addField("IC : ", profile.icno, $.profile_data);
     addField("Relation : ", profile.relation, $.profile_data);
     init();
-<<<<<<< HEAD
     __defers["$.__views.__alloyId35!click!closeBox"] && $.addListener($.__views.__alloyId35, "click", closeBox);
     __defers["$.__views.__alloyId36!click!addRecord"] && $.addListener($.__views.__alloyId36, "click", addRecord);
     __defers["$.__views.__alloyId42!click!openBox"] && $.addListener($.__views.__alloyId42, "click", openBox);
@@ -536,15 +406,6 @@ function Controller() {
     __defers["$.__views.__alloyId45!click!switchListing"] && $.addListener($.__views.__alloyId45, "click", switchListing);
     __defers["$.__views.secondTab!click!switchListing"] && $.addListener($.__views.secondTab, "click", switchListing);
     __defers["$.__views.__alloyId47!click!switchListing"] && $.addListener($.__views.__alloyId47, "click", switchListing);
-=======
-    __defers["$.__views.__alloyId348!click!closeBox"] && $.addListener($.__views.__alloyId348, "click", closeBox);
-    __defers["$.__views.__alloyId349!click!addRecord"] && $.addListener($.__views.__alloyId349, "click", addRecord);
-    __defers["$.__views.__alloyId355!click!openBox"] && $.addListener($.__views.__alloyId355, "click", openBox);
-    __defers["$.__views.firstTab!click!switchListing"] && $.addListener($.__views.firstTab, "click", switchListing);
-    __defers["$.__views.__alloyId358!click!switchListing"] && $.addListener($.__views.__alloyId358, "click", switchListing);
-    __defers["$.__views.secondTab!click!switchListing"] && $.addListener($.__views.secondTab, "click", switchListing);
-    __defers["$.__views.__alloyId360!click!switchListing"] && $.addListener($.__views.__alloyId360, "click", switchListing);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

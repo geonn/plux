@@ -354,7 +354,6 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.editRecWin && $.addTopLevelView($.__views.editRecWin);
-<<<<<<< HEAD
     $.__views.__alloyId123 = Ti.UI.createView({
         layout: "vertical",
         bottom: 90,
@@ -362,20 +361,10 @@ function Controller() {
     });
     $.__views.editRecWin.add($.__views.__alloyId123);
     $.__views.__alloyId124 = Ti.UI.createView({
-=======
-    $.__views.__alloyId91 = Ti.UI.createView({
-        layout: "vertical",
-        bottom: 90,
-        id: "__alloyId91"
-    });
-    $.__views.editRecWin.add($.__views.__alloyId91);
-    $.__views.__alloyId92 = Ti.UI.createView({
->>>>>>> origin/master
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-<<<<<<< HEAD
         id: "__alloyId124"
     });
     $.__views.__alloyId123.add($.__views.__alloyId124);
@@ -385,17 +374,6 @@ function Controller() {
         id: "__alloyId125"
     });
     $.__views.__alloyId124.add($.__views.__alloyId125);
-=======
-        id: "__alloyId92"
-    });
-    $.__views.__alloyId91.add($.__views.__alloyId92);
-    $.__views.__alloyId93 = Ti.UI.createView({
-        left: 0,
-        width: "20%",
-        id: "__alloyId93"
-    });
-    $.__views.__alloyId92.add($.__views.__alloyId93);
->>>>>>> origin/master
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -403,21 +381,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-<<<<<<< HEAD
     $.__views.__alloyId125.add($.__views.btnBack);
     $.__views.__alloyId126 = Ti.UI.createView({
         width: "60%",
         id: "__alloyId126"
     });
     $.__views.__alloyId124.add($.__views.__alloyId126);
-=======
-    $.__views.__alloyId93.add($.__views.btnBack);
-    $.__views.__alloyId94 = Ti.UI.createView({
-        width: "60%",
-        id: "__alloyId94"
-    });
-    $.__views.__alloyId92.add($.__views.__alloyId94);
->>>>>>> origin/master
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -429,7 +398,6 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-<<<<<<< HEAD
     $.__views.__alloyId126.add($.__views.pageTitle);
     $.__views.__alloyId127 = Ti.UI.createView({
         left: 0,
@@ -437,15 +405,6 @@ function Controller() {
         id: "__alloyId127"
     });
     $.__views.__alloyId124.add($.__views.__alloyId127);
-=======
-    $.__views.__alloyId94.add($.__views.pageTitle);
-    $.__views.__alloyId95 = Ti.UI.createView({
-        left: 0,
-        width: "20%",
-        id: "__alloyId95"
-    });
-    $.__views.__alloyId92.add($.__views.__alloyId95);
->>>>>>> origin/master
     $.__views.saveRecord = Ti.UI.createButton({
         font: {
             fontSize: "10dp"
@@ -454,11 +413,7 @@ function Controller() {
         id: "saveRecord",
         title: "Done"
     });
-<<<<<<< HEAD
     $.__views.__alloyId127.add($.__views.saveRecord);
-=======
-    $.__views.__alloyId95.add($.__views.saveRecord);
->>>>>>> origin/master
     $.__views.titleRecord = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: 40,
@@ -474,7 +429,6 @@ function Controller() {
         borderColor: "#ffffff",
         hintText: "Medical Problem"
     });
-<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.titleRecord);
     $.__views.__alloyId128 = Ti.UI.createView({
         height: 1,
@@ -483,29 +437,14 @@ function Controller() {
         id: "__alloyId128"
     });
     $.__views.__alloyId123.add($.__views.__alloyId128);
-=======
-    $.__views.__alloyId91.add($.__views.titleRecord);
-    $.__views.__alloyId96 = Ti.UI.createView({
-        height: 1,
-        width: "100%",
-        backgroundColor: "#CE1D1C",
-        id: "__alloyId96"
-    });
-    $.__views.__alloyId91.add($.__views.__alloyId96);
->>>>>>> origin/master
     $.__views.aView = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         id: "aView"
     });
-<<<<<<< HEAD
     $.__views.__alloyId123.add($.__views.aView);
     $.__views.__alloyId129 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId91.add($.__views.aView);
-    $.__views.__alloyId97 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#CE1D1C",
@@ -517,15 +456,9 @@ function Controller() {
         left: 10,
         top: 10,
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-<<<<<<< HEAD
         id: "__alloyId129"
     });
     $.__views.aView.add($.__views.__alloyId129);
-=======
-        id: "__alloyId97"
-    });
-    $.__views.aView.add($.__views.__alloyId97);
->>>>>>> origin/master
     $.__views.clinicRecord = Ti.UI.createTextField({
         verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
         height: 40,
@@ -544,22 +477,14 @@ function Controller() {
         hintText: "Please fill in Clinic/Hospital/Specialist"
     });
     $.__views.aView.add($.__views.clinicRecord);
-<<<<<<< HEAD
     var __alloyId130 = [];
-=======
-    var __alloyId98 = [];
->>>>>>> origin/master
     $.__views.attachment = Ti.UI.createScrollableView({
         layout: "horizontal",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         contentHeight: Ti.UI.SIZE,
         contentWidth: Ti.UI.FILL,
-<<<<<<< HEAD
         views: __alloyId130,
-=======
-        views: __alloyId98,
->>>>>>> origin/master
         backgroundColor: "#cccccc",
         id: "attachment",
         showPagingControl: true
@@ -577,16 +502,11 @@ function Controller() {
         visible: false
     });
     $.__views.editRecWin.add($.__views.bigView);
-<<<<<<< HEAD
     $.__views.__alloyId131 = Ti.UI.createView({
-=======
-    $.__views.__alloyId99 = Ti.UI.createView({
->>>>>>> origin/master
         width: Ti.UI.FILL,
         bottom: 40,
         layout: "horizontal",
         height: 50,
-<<<<<<< HEAD
         id: "__alloyId131"
     });
     $.__views.editRecWin.add($.__views.__alloyId131);
@@ -598,32 +518,13 @@ function Controller() {
     $.__views.__alloyId131.add($.__views.__alloyId132);
     showCategory ? $.addListener($.__views.__alloyId132, "click", showCategory) : __defers["$.__views.__alloyId132!click!showCategory"] = true;
     $.__views.__alloyId133 = Ti.UI.createView({
-=======
-        id: "__alloyId99"
-    });
-    $.__views.editRecWin.add($.__views.__alloyId99);
-    $.__views.__alloyId100 = Ti.UI.createView({
-        width: "auto",
-        height: Ti.UI.SIZE,
-        id: "__alloyId100"
-    });
-    $.__views.__alloyId99.add($.__views.__alloyId100);
-    showCategory ? $.addListener($.__views.__alloyId100, "click", showCategory) : __defers["$.__views.__alloyId100!click!showCategory"] = true;
-    $.__views.__alloyId101 = Ti.UI.createView({
->>>>>>> origin/master
         backgroundColor: "#CE1D1C",
         height: 50,
         width: Ti.UI.FILL,
         right: 0,
-<<<<<<< HEAD
         id: "__alloyId133"
     });
     $.__views.__alloyId132.add($.__views.__alloyId133);
-=======
-        id: "__alloyId101"
-    });
-    $.__views.__alloyId100.add($.__views.__alloyId101);
->>>>>>> origin/master
     $.__views.addLbl = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -631,35 +532,22 @@ function Controller() {
         id: "addLbl",
         text: "+"
     });
-<<<<<<< HEAD
     $.__views.__alloyId133.add($.__views.addLbl);
     $.__views.__alloyId134 = Ti.UI.createView({
-=======
-    $.__views.__alloyId101.add($.__views.addLbl);
-    $.__views.__alloyId102 = Ti.UI.createView({
->>>>>>> origin/master
         height: 40,
         layout: "horizontal",
         bottom: 0,
         width: "100%",
         backgroundColor: "#EEEEEE",
-<<<<<<< HEAD
         id: "__alloyId134"
     });
     $.__views.editRecWin.add($.__views.__alloyId134);
     $.__views.__alloyId135 = Ti.UI.createButton({
-=======
-        id: "__alloyId102"
-    });
-    $.__views.editRecWin.add($.__views.__alloyId102);
-    $.__views.__alloyId103 = Ti.UI.createButton({
->>>>>>> origin/master
         backgroundImage: "/images/btn-remove.png",
         textAlign: "left",
         left: 15,
         width: 30,
         height: 30,
-<<<<<<< HEAD
         id: "__alloyId135"
     });
     $.__views.__alloyId134.add($.__views.__alloyId135);
@@ -670,18 +558,6 @@ function Controller() {
         id: "__alloyId136"
     });
     $.__views.__alloyId134.add($.__views.__alloyId136);
-=======
-        id: "__alloyId103"
-    });
-    $.__views.__alloyId102.add($.__views.__alloyId103);
-    deleteRecord ? $.addListener($.__views.__alloyId103, "click", deleteRecord) : __defers["$.__views.__alloyId103!click!deleteRecord"] = true;
-    $.__views.__alloyId104 = Ti.UI.createView({
-        width: "auto",
-        height: Ti.UI.FILL,
-        id: "__alloyId104"
-    });
-    $.__views.__alloyId102.add($.__views.__alloyId104);
->>>>>>> origin/master
     $.__views.lastUpdated = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
@@ -693,11 +569,7 @@ function Controller() {
         textAlign: "right",
         right: 10
     });
-<<<<<<< HEAD
     $.__views.__alloyId136.add($.__views.lastUpdated);
-=======
-    $.__views.__alloyId104.add($.__views.lastUpdated);
->>>>>>> origin/master
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
@@ -728,13 +600,8 @@ function Controller() {
     });
     var applicationDatDirectory = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory);
     applicationDatDirectory.getDirectoryListing();
-<<<<<<< HEAD
     __defers["$.__views.__alloyId132!click!showCategory"] && $.addListener($.__views.__alloyId132, "click", showCategory);
     __defers["$.__views.__alloyId135!click!deleteRecord"] && $.addListener($.__views.__alloyId135, "click", deleteRecord);
-=======
-    __defers["$.__views.__alloyId100!click!showCategory"] && $.addListener($.__views.__alloyId100, "click", showCategory);
-    __defers["$.__views.__alloyId103!click!deleteRecord"] && $.addListener($.__views.__alloyId103, "click", deleteRecord);
->>>>>>> origin/master
     _.extend($, exports);
 }
 

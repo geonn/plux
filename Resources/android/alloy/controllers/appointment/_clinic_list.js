@@ -159,11 +159,7 @@ function Controller() {
         id: "clinic"
     });
     $.__views._clinic_list.add($.__views.clinic);
-<<<<<<< HEAD
     $.__views.__alloyId390 = Ti.UI.createLabel({
-=======
-    $.__views.__alloyId400 = Ti.UI.createLabel({
->>>>>>> origin/master
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         color: "#cd1a19",
@@ -173,15 +169,9 @@ function Controller() {
         bottom: 10,
         text: "Select the panel",
         textAlign: "center",
-<<<<<<< HEAD
         id: "__alloyId390"
     });
     $.__views.clinic.add($.__views.__alloyId390);
-=======
-        id: "__alloyId400"
-    });
-    $.__views.clinic.add($.__views.__alloyId400);
->>>>>>> origin/master
     $.__views.clinic_list = Ti.UI.createTableView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
