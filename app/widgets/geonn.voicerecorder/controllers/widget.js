@@ -11,8 +11,10 @@ if(OS_ANDROID){
 	audioRecorder = Titanium.Media.createAudioRecorder ({compression : Ti.Media.AUDIO_FORMAT_AAC, format: Titanium.Media.AUDIO_FILEFORMAT_MP4});
 }
 
-
+var recordChecking = true;
 function startRecording(){
+	if(recordChecking){
+	recordChecking = false;
 	//$.message_bar.animate({right: 200, duration: 30});
 	cancel_record = false;
 	timer.start($.timer);
@@ -23,8 +25,9 @@ function startRecording(){
 		console.log('here!!!');
 		audioRecorder.start();
 	}else{
+		//setTimeout(function(){
 		audioRecorder.startRecording(
-			{
+			{ 
 				outputFormat : audioRecorder.OutputFormat_MPEG_4,
 				audioEncoder : audioRecorder.AudioEncoder_AMR_NB,
 				directoryName : "plux",
@@ -41,31 +44,48 @@ function startRecording(){
 					}
 				},
 				error : function(d) {
-					alert("error => " + d.message);
-					console.log("error is => " + JSON.stringify(d));
+				$.text_area.width = 0;
+				$.timer_text.hide();
+				$.timer.hide();								
+					// alert("error => " + d.message);
+					// console.log("error is => " + JSON.stringify(d));
 				}
 			}
-		);
+		);			
+	//},1000);
+	}		
 	}
 }
 
 function stopRecording(){
-	var sec = timer.stop();
-	if(sec <= 1){
-		cancel_record = true;	
+	try{
+		recordChecking = true;
+		var sec = timer.stop();
+		if(sec <= 1){
+			cancel_record = true;	
+		}
+		if(OS_IOS){
+			var audioFile = audioRecorder.stop();
+			console.log(audioFile);
+			if(sec > 1)
+				args.record_callback({message: "", format:"voice", filedata: audioFile.read()});
+		}else{
+			audioRecorder.stopRecording();
+		}
+
+	}catch(err){
+		
 	}
-	if(OS_IOS){
-		var audioFile = audioRecorder.stop();
-		console.log(audioFile);
-		if(sec > 1)
-			args.record_callback({message: "", format:"voice", filedata: audioFile.read()});
-	}else{
-		audioRecorder.stopRecording();
+	finally{
+		if(OS_ANDROID){
+			audioRecorder.stopRecording();
+		}
+
+		//$.message_bar.animate({right: 50, duration: 30});
+		$.text_area.width = 0;
+		$.timer_text.hide();
+		$.timer.hide();				
 	}
-	//$.message_bar.animate({right: 50, duration: 30});
-	$.text_area.width = 0;
-	$.timer_text.hide();
-	$.timer.hide();
 }
 
 // call dispose when done
@@ -77,6 +97,7 @@ function init() {
 	var img_mic = $.UI.create("ImageView", {image: WPATH('images/icon_mic.png'), top: 10, bottom:10, zIndex:3, right: 10, height: 30, width: 30});
 	img_mic.addEventListener("touchstart", startRecording);
 	img_mic.addEventListener("touchend", stopRecording);
+	img_mic.addEventListener("touchcancel",stopRecording);
 	$.container.add(img_mic);
 };
 
