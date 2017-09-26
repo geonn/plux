@@ -254,14 +254,20 @@ exports.definition = {
 				if(corp != ""){
 					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where openHour NOT LIKE '%24 HOURS%' AND panel=1 AND status = 1 GROUP BY clinicType ";
 				}else{
-                var sql = "SELECT openHour NOT LIKE '%24 HOURS%' AND clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" WHERE status = 1 GROUP BY clinicType ";
+                var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" WHERE openHour NOT LIKE '%24 HOURS%' AND status = 1 GROUP BY clinicType ";
                }
-				 
+				console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = []; 
                 var count = 0;
                 while (res.isValidRow()){ 
+                	var row_count = res.fieldCount;
+                	 
+                	 for(var a = 0; a < row_count; a++){
+                		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+                	 }
+                	 
 					listArr[count] = {  
 					    clinicType: res.fieldByName('clinicType'),
 					    total: res.fieldByName('total')  

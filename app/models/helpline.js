@@ -28,7 +28,7 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
-			getUnread: function(e){
+			getCountUnread: function(e){
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id') || 0; 
                 var sql = "SELECT count(*) as total from helpline where u_id = ? AND status = 2 group by u_id"; 

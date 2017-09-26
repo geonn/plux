@@ -10,9 +10,7 @@ function init(){
 	$.email.value	= Ti.App.Properties.getString('plux_email') || "";
 	
 	if(u_id != ""){
-		var usersPluxModel = Alloy.createCollection('users_plux'); 
-		var plux_user = usersPluxModel.getUserById(u_id); 
-		$.name.value	= plux_user.fullname;
+		$.name.value	= Ti.App.Properties.getString('fullname') || "";
 	}
 	
 	

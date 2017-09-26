@@ -25,16 +25,6 @@ for (var i=0; i < data.length; i++) {
   	$.main.addView(profile_view);
 };
 
-function checkStatus(){
-	var asp_email = Ti.App.Properties.getString('asp_email');
-	var asp_password = Ti.App.Properties.getString('asp_password');	 
-	if(asp_email){
-		Ti.App.addEventListener('loadPage', loadPage);
-		common.showLoading();
-		API.doLogin(asp_email, asp_password, $, "refresh", loadPage );
-	}
-} 
-
 function changePassword(){
 	var nav = require('navigation');
 	nav.navigationWindow("asp/changePassword", 0);

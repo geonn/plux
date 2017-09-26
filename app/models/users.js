@@ -120,7 +120,7 @@ exports.definition = {
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var empno = Ti.App.Properties.getString('empno');
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE empno=?";
-               
+                console.log(sql+" "+empno);
                 var res = db.execute(sql, empno);
                 var arr = []; 
                 var count = 0;

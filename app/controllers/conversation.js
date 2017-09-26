@@ -9,8 +9,6 @@ var room_set = false;
 var refreshIntervalId;
 var retry = 0;
 var u_id = Ti.App.Properties.getString('u_id') || 0;
-var user_model = Alloy.createCollection("users_plux");
-var user = user_model.getUserById(u_id);
 var last_id = 0;
 var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
@@ -31,7 +29,7 @@ function saveLocal(param){
 	    "format": param.format,
 	    "status": 1,
 	    "app_id": app_id,
-	    "sender_name": user.fullname,
+	    "sender_name": Ti.App.Properties.getString('fullname') || ""
 	};
 	
 	if(dr_id > 0){

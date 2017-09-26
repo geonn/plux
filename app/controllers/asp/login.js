@@ -4,20 +4,8 @@ var singleton = true;
 common.construct($);
 
 $.username.value = Ti.App.Properties.getString('asp_email') || "";
-$.password.value = Ti.App.Properties.getString('asp_password') || "";
-autoLogin();
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
-
-function autoLogin(){
-	var asp_email = Ti.App.Properties.getString('asp_email');
-	var asp_password = Ti.App.Properties.getString('asp_password');
-	
-	if(asp_email){ 
-		common.showLoading();
-		API.doLogin(asp_email, asp_password, $, args.target);
-	}
-}
 
 function doLogin(asp_email, asp_password) { 
 	common.showLoading();

@@ -1,16 +1,14 @@
 var args = arguments[0] || {};
 var appointment_id = args.appointment_id || "";
-var userModel = Alloy.createCollection('users_plux');
 var appointmentModel = Alloy.createCollection('appointment');
-var user = userModel.getUserById(Ti.App.Properties.getString('u_id'));
 var panelListModel = Alloy.createCollection('panelList');
 var selectedClinic, specialty, doctor_panel_id; 
 var appointmentDatetime; 
 var toolbar;
 var duration = parseInt(Ti.App.Properties.getString('timeblock')) || 30;
 
-$.patient_name.text = user.fullname;
-$.patient_email.text = user.email;
+$.patient_name.text = Ti.App.Properties.getString('fullname') || "";
+$.patient_email.text = Ti.App.Properties.getString('plux_email') || "";
 var dpView = Titanium.UI.createView({
 		layout: "vertical",
 		height: 200,
