@@ -200,7 +200,6 @@ exports.IMPLICIT_NAMESPACES = {
 	NavigationWindow: NS_TI_UI_IOS,
 	SplitWindow: NS_TI_UI_IOS,
 	TabbedBar: NS_TI_UI_IOS,
-	Toolbar: NS_TI_UI_IOS,
 	PreviewContext: NS_TI_UI_IOS,
 	PreviewAction: NS_TI_UI_IOS,
 	PreviewActionGroup: NS_TI_UI_IOS,
@@ -231,6 +230,11 @@ exports.IMPLICIT_NAMESPACES = {
 
 	// Ti.UI.iPad.Popover
 	ContentView: 'Ti.UI.iPad.Popover',
+
+	DrawerLayout: 'Ti.UI.Android',
+	LeftView: 'Ti.UI.Android.DrawerLayout',
+	CenterView: 'Ti.UI.Android.DrawerLayout',
+	RightView: 'Ti.UI.Android.DrawerLayout',
 
 	// Table and List proxy properties
 	FooterView: '_ProxyProperty._Lists',

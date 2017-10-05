@@ -124,20 +124,20 @@ function Controller() {
         layout: "vertical"
     });
     $.__views.win.add($.__views.main);
-    $.__views.__alloyId461 = Ti.UI.createView({
+    $.__views.__alloyId459 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId461"
+        id: "__alloyId459"
     });
-    $.__views.main.add($.__views.__alloyId461);
-    $.__views.__alloyId462 = Ti.UI.createView({
+    $.__views.main.add($.__views.__alloyId459);
+    $.__views.__alloyId460 = Ti.UI.createView({
         left: 0,
         width: "10%",
-        id: "__alloyId462"
+        id: "__alloyId460"
     });
-    $.__views.__alloyId461.add($.__views.__alloyId462);
+    $.__views.__alloyId459.add($.__views.__alloyId460);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -145,12 +145,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId462.add($.__views.btnBack);
-    $.__views.__alloyId463 = Ti.UI.createView({
+    $.__views.__alloyId460.add($.__views.btnBack);
+    $.__views.__alloyId461 = Ti.UI.createView({
         width: "70%",
-        id: "__alloyId463"
+        id: "__alloyId461"
     });
-    $.__views.__alloyId461.add($.__views.__alloyId463);
+    $.__views.__alloyId459.add($.__views.__alloyId461);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -162,14 +162,14 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId463.add($.__views.pageTitle);
-    $.__views.__alloyId464 = Ti.UI.createView({
+    $.__views.__alloyId461.add($.__views.pageTitle);
+    $.__views.__alloyId462 = Ti.UI.createView({
         left: 0,
         width: "auto",
-        id: "__alloyId464"
+        id: "__alloyId462"
     });
-    $.__views.__alloyId461.add($.__views.__alloyId464);
-    openReceipt ? $.addListener($.__views.__alloyId464, "click", openReceipt) : __defers["$.__views.__alloyId464!click!openReceipt"] = true;
+    $.__views.__alloyId459.add($.__views.__alloyId462);
+    openReceipt ? $.addListener($.__views.__alloyId462, "click", openReceipt) : __defers["$.__views.__alloyId462!click!openReceipt"] = true;
     $.__views.recepit = Ti.UI.createLabel({
         width: "auto",
         height: Ti.UI.SIZE,
@@ -177,7 +177,7 @@ function Controller() {
         text: "Receipt",
         id: "recepit"
     });
-    $.__views.__alloyId464.add($.__views.recepit);
+    $.__views.__alloyId462.add($.__views.recepit);
     $.__views.tv = Ti.UI.createTableView({
         id: "tv"
     });
@@ -201,7 +201,7 @@ function Controller() {
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("load_claim_detail", init);
     });
-    __defers["$.__views.__alloyId464!click!openReceipt"] && $.addListener($.__views.__alloyId464, "click", openReceipt);
+    __defers["$.__views.__alloyId462!click!openReceipt"] && $.addListener($.__views.__alloyId462, "click", openReceipt);
     _.extend($, exports);
 }
 

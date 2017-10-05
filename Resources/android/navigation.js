@@ -39,9 +39,6 @@ function navigationWebview(webview, title) {
 
 function navigateWithArgs(target, args) {
     var win = Alloy.createController(target, args).getView();
-    "login" == target && (win.fbProxy = FACEBOOK.createActivityWorker({
-        lifecycleContainer: win
-    }));
     win.open();
 }
 

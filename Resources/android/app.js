@@ -237,16 +237,6 @@ var TouchId;
 
 Alloy.Globals.Map = require("ti.map");
 
-var FACEBOOK = require("facebook");
-
-FACEBOOK.appid = "684687638302896";
-
-FACEBOOK.permissions = [ "email", "public_profile", "user_friends" ];
-
-FACEBOOK.initialize(1e3);
-
-FACEBOOK.forceDialogAuth = true;
-
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 Titanium.Network.addEventListener("change", function(e) {

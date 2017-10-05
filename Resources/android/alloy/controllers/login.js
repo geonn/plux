@@ -70,27 +70,6 @@ function Controller() {
     function closeBox() {
         $.forgetPasswordBox.hide();
     }
-    function loginFacebook(e) {
-        if (e.success) {
-            loading.start();
-            FACEBOOK.requestWithGraphPath("me", {
-                fields: "id, email,name,link"
-            }, "GET", function(e) {
-                if (e.success) {
-                    var fbRes = JSON.parse(e.result);
-                    Ti.App.Properties.setString("plux_email", fbRes.email);
-                    API.updateUserFromFB({
-                        email: fbRes.email,
-                        fbid: fbRes.id,
-                        link: fbRes.link,
-                        name: fbRes.name,
-                        gender: fbRes.gender
-                    }, $);
-                }
-            });
-            FACEBOOK.removeEventListener("login", loginFacebook);
-        } else e.error ? loading.finish() : e.cancelled && loading.finish();
-    }
     require("/alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
     this.args = arguments[0] || {};
@@ -351,10 +330,6 @@ function Controller() {
     $.password.addEventListener("return", function() {
         doLogin();
     });
-    $.win.fbProxy = FACEBOOK.createActivityWorker({
-        lifecycleContainer: $.win
-    });
-    FACEBOOK.addEventListener("login", loginFacebook);
     var touchLogin = function() {
         var email = $.email.value;
         var userData = usersPluxModel.getUserByEmail(email);

@@ -385,7 +385,6 @@ function Controller() {
         if ("" == isCorpCode || "null" == isCorpCode || null == isCorpCode) {
             Ti.App.Properties.removeProperty("memno");
             Ti.App.Properties.setString("u_id", "");
-            FACEBOOK.logout();
             var win = Alloy.createController("login").getView();
             win.open();
             console.log("window sudah close");
