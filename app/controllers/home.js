@@ -1,10 +1,8 @@
 var args = arguments[0] || {};
 var expandmode = false;
 var usersModel = Alloy.createCollection('users'); 
-var loading = Alloy.createController('loading'); 
-var usersPluxModel = Alloy.createCollection('users_plux'); 
+var loading = Alloy.createController('loading');
 
-var notificationModel = Alloy.createCollection('notification'); 
 var menu_info;
 var new_menu = [];
 
@@ -17,26 +15,25 @@ loadingView.start();
 
 function loadHomePageItem(){
 	menu_info  =  [
-		
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
-		{mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"},
-		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"hra", image:"/images/btn/btn_hra.png"},
-		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
-		
-		{mod:"profile", image:"/images/btn/btn_profile.png"},
-		{mod:"inpatient_record", image:"/images/btn/inpatient.png"},
-		{mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"},
-		{mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"},
-		//{mod:"healthInfo", image:"/images/btn/btn_healthInfo.png"},
 		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
-		{mod: "eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"},
-		//{mod: "appointment/index", image:"/images/btn/btn_appointment.png"},
-		{mod: "askDoctor/find_doctor", image:"/images/btn/btn_ask_doctor.png"},
-		{mod:"conversation", image:"/images/btn/btn_ask_me.png"},
-		{mod:"notification", image:"/images/btn/btn_notification.png"},
+		{mod:"profile", image:"/images/btn/btn_profile.png"},
+		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
+		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
 	]; 
-	console.log(menu_info.length+" loadHomePageItem");
+	console.log(Ti.App.Properties.getString('memno')+" Ti.App.Properties.getString('memno')");
+	var memno = Ti.App.Properties.getString('memno') || ""; 
+	if(memno !=""){
+		menu_info.push({mod:"benefit", image:"/images/btn/btn_my_claim_detail.png"});
+		menu_info.push({mod:"askDoctor/find_doctor", image:"/images/btn/btn_ask_me.png"});
+		menu_info.push({mod:"eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"});
+		menu_info.push({mod:"inpatient_record", image:"/images/btn/inpatient.png"});
+		menu_info.push({mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"});
+		menu_info.push({mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"});
+		menu_info.push({mod:"conversation", image:"/images/btn/btn_ask_me.png"});
+	}
+	menu_info.push({mod:"notification", image:"/images/btn/btn_notification.png"});
 }	
 
 function loadingViewFinish(){
@@ -102,7 +99,8 @@ function findIndexInData(data, property, value) {
     return result;
 }
 
-var notification_number_label = $.UI.create("Label", {id:"notificationText", text: 0, color: "#ffffff"});
+var label_notification = $.UI.create("Label", {id:"notificationText", text: 0, color: "#ffffff"});
+var label_helpline = $.UI.create("Label", { text: 0, text:0, color: "#ffffff"});
 function render_menu(){
 	var button_width = 139;
 	console.log(new_menu.length+" new_menu number");
@@ -121,11 +119,11 @@ function render_menu(){
 		var view = $.UI.create("View", {classes: ['wsize','hsize'], top: topR});
 		if(new_menu[i].mod == "conversation"){
 			var model = Alloy.createCollection("helpline");
-			var total = model.getUnread();
+			var total = model.getCountUnread();
 			console.log(total+" total unread");
 			var view_notification = $.UI.create("View", { top:10, right:5, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
-			var label_notification = $.UI.create("Label", { text: total, color: "#ffffff"});
-			view_notification.add(label_notification);
+			label_helpline.text = total;
+			view_notification.add(label_helpline);
 			view.add(imageView_menu);
 			view.add(view_notification);
 			if(total > 0){
@@ -136,11 +134,13 @@ function render_menu(){
 				});
 			}
 		}else if(new_menu[i].mod == "notification"){
-			var memno = (Ti.App.Properties.getString('memno')!="")?Ti.App.Properties.getString('memno'):Ti.App.Properties.getString('ic_no');
-			var total = notificationModel.getCountUnread({member_no: memno });  
+			var memno = Ti.App.Properties.getString('memno') || Ti.App.Properties.getString('ic_no');
+			var notificationModel = Alloy.createCollection('notificationV2'); 
+			var total = notificationModel.getCountUnread();  
 			console.log(total+" total unread"+memno);
 			var view_notification = $.UI.create("View", { top:10, right:5, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
-			view_notification.add(notification_number_label);
+			label_notification.text = total;
+			view_notification.add(label_notification);
 			view.add(imageView_menu);
 			view.add(view_notification);
 		}else{
@@ -185,6 +185,7 @@ function init(){
 		};
 	}
 	setBackground();
+	syncFromServer();
 	loading.finish();
 	setTimeout(function(){
 		PUSH.setInApp();
@@ -194,59 +195,49 @@ function init(){
 
 function syncFromServer(){
 	console.log("syncFromServer");
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == 0){
+		return;
+	}
 	var checker = Alloy.createCollection('updateChecker'); 
-	var isUpdate = checker.getCheckerById("2");
+	var isUpdate = checker.getCheckerById(2, u_id);
 	var last_updated ="";
-	 
+	
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
 	}  
 	var param = { 
-		"member_no"	  : Ti.App.Properties.getString('memno') || Ti.App.Properties.getString('ic_no'),
+		"u_id"	  : u_id,
 		"last_updated" : last_updated
 	};
  
-	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
+	API.callByPost({url:"getNotificationUrlV2", new:true, params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){
-			var record = res.data;
-			if(record.length > 0){ 
-				record.forEach(function(entry) {
-					var param = {
-						"id": entry.id || "",
-						"member_no": entry.member_no || "",
-						"subject":entry.subject || "",
-						"message" : entry.message || "",
-						"status" : entry.status || 1,
-						"url" : entry.url || "", 
-						"status" : entry.status || "",
-						"expired" : entry.expired || "",
-						"detail" : entry.detail || "",
-						"created" : entry.created,
-						"updated" : entry.updated,
-						"from" : "home"
-					};
-					notificationModel.addData(param);
-				});
-				 checker.updateModule("2","notificationList",res.last_updated); 
-				 updateNotification(); 
-			}
+			var arr = res.data;
+			var notificationModel = Alloy.createCollection('notificationV2'); 
+			notificationModel.saveArray(arr);
+		 	checker.updateModule(2, "notificationList",res.last_updated, u_id); 
+		 	updateNotification({target: "notification"}); 
 		}
-		
 	});
 	
-	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(7, u_id);
-	var last_updated = isUpdate.updated || "";
-	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	console.log(u_id+" u_id what ");
-	API.callByPost({url:"getHelplineMessageV3", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){
-		var model = Alloy.createCollection("helpline");
-		var res = JSON.parse(responseText);
-		var arr = res.data || undefined;
-		model.saveArray(arr);
-		checker.updateModule("7","notificationList",res.last_updated, u_id); 
-		render_menu();
+	var last_updated ="";
+	
+	if(isUpdate != "" ){
+		last_updated = isUpdate.updated;
+	}
+ 
+	API.callByPost({url:"getHelplineMessageV3", params: {u_id: u_id, last_updated: last_updated}}, function(responseText){ 
+		var res = JSON.parse(responseText);  
+		if(res.status == "success"){
+			var arr = res.data;
+			var model = Alloy.createCollection("helpline");
+			model.saveArray(arr);
+		 	checker.updateModule(7,"helpline",res.last_updated, u_id); 
+		 	updateNotification({target: "helpline"}); 
+		}
 	});
 }
 
@@ -272,118 +263,56 @@ function checkMyHealthData(){
 	});
 }
 
-function updateNotification(){ 
-	var ismemno = Ti.App.Properties.getString('memno') || ""; 
-	var gotNotification = notificationModel.getCountUnread({member_no: Ti.App.Properties.getString('memno') });  
-	//console.log("gotNotification : "+gotNotification);
-	if(parseInt(gotNotification) > 0){
-		notification_number_label.text = gotNotification;
-	}else{
-		notification_number_label.text = 0;
-	}
+function updateNotification(e){
+	var model = Alloy.createCollection("helpline"); 
+	var unread_no = model.getCountUnread(); 
+	eval("label_"+e.target+".text = unread_no");
 }
 
 function refreshHeaderInfo(){
-	var auth = require("auth_login");
+	var memno = Ti.App.Properties.getString('memno') || ""; 
+	
 	removeAllChildren($.myInfo); 
 	var u_id = Ti.App.Properties.getString('u_id');
-	 
-	//
-	//if(!auth.checkLogin()){  
-	if(!auth.checkLogin()){  
-		$.logo.image = "/images/logo_plux.png";
-		var plux_user = usersPluxModel.getUserById(u_id); 
+	
+	$.logo.image = (memno == "")?"/images/logo_plux.png":"/images/asp_logo.png";
+	var logoutBtn = Ti.UI.createButton({
+		backgroundImage : "/images/btn-logout.png",
+		width: 40,
+		height: 40,
+		left: 5,
+		right: 5,
+		zIndex: 20,
+	});
+	logoutBtn.addEventListener('click', function(){
+		var dialog = Ti.UI.createAlertDialog({
+			cancel: 0,
+			buttonNames: ['Cancel','Confirm'],
+			message: 'Would you like to logout?',
+			title: 'Logout'
+		});
+		dialog.addEventListener('click', function(e){
+			if (e.index === 1){
+				logoutUser();
+			}
+		});
+		dialog.show(); 
+	});
 		 
-		var logoutBtn = Ti.UI.createButton({
-			backgroundImage : "/images/btn-logout.png",
-			width: 40,
-			height: 40,
-			left: 5,
-			right: 5,
-			zIndex: 20,
-		});
-		logoutBtn.addEventListener('click', function(){
-			var dialog = Ti.UI.createAlertDialog({
-				cancel: 0,
-				buttonNames: ['Cancel','Confirm'],
-				message: 'Would you like to logout?',
-				title: 'Logout PLUX'
-			});
-			dialog.addEventListener('click', function(e){
-				if (e.index === e.source.cancel){
-				      //Do nothing
-				}
-				if (e.index === 1){
-					logoutUser();
-				}
-			});
-			dialog.show(); 
-		});
-		 
-		var title_view = $.UI.create("View", {
-			width: "auto",
-			height: Ti.UI.FILL,
-		});
+	var title_view = $.UI.create("View", {
+		width: "auto",
+		height: Ti.UI.FILL,
+	});
+	var fullname = Ti.App.Properties.getString('fullname') || ""; 
+	var welcomeText = "Welcome "+fullname || "";
+	var welcomeTitle = $.UI.create('Label',{
+		text: welcomeText,
+		classes :['welcome_text']
+	});
 		
-		var welcomeText = (plux_user.fullname != "undefined")?"Welcome, "+plux_user.fullname:"Welcome";
-		var welcomeTitle = $.UI.create('Label',{
-			text: welcomeText,
-			classes :['welcome_text']
-		});
-		
-		title_view.add(welcomeTitle);
-		$.myInfo.add(logoutBtn);
-		$.myInfo.add(title_view);
-		
-		$.logo.addEventListener('click',function(){  
-			nav.navigationWindow("aboutUs");
-		});
-	}else{
-		$.logo.image = "/images/asp_logo.png";
-		var me = usersModel.getUserByMemno();
-		var button_view = $.UI.create("View", {
-			width: Ti.UI.SIZE,
-			height: Ti.UI.FILL,
-		});
-		var logoutBtn = Ti.UI.createButton({
-			backgroundImage : "/images/btn-logout.png",
-			width: 40,
-			height: 40,
-			left: 5,
-			right: 5,
-		});
-		logoutBtn.addEventListener('click', function(){
-			var dialog = Ti.UI.createAlertDialog({
-				cancel: 0,
-				buttonNames: ['Cancel','Confirm'],
-				message: 'Would you like to logout?',
-				title: 'Logout PLUX'
-			});
-			dialog.addEventListener('click', function(e){
-				if (e.index === e.source.cancel){
-				      //Do nothing
-				}
-				if (e.index === 1){
-					logoutUser();
-				}
-			});
-			dialog.show(); 
-		});
-		var title_view = $.UI.create("View", {
-			width: "auto",
-			height: Ti.UI.FILL,
-		});
-		var welcomeTitle = $.UI.create('Label',{
-			text: "Welcome, "+me.name,
-			classes :['welcome_text']
-		});
-		
-		title_view.add(welcomeTitle);
-		button_view.add(logoutBtn);
-		
-		$.myInfo.add(button_view);
-		$.myInfo.add(title_view);
-	}
+	title_view.add(welcomeTitle);
+	$.myInfo.add(logoutBtn);
+	$.myInfo.add(title_view);
 }	 
 
  
@@ -406,14 +335,14 @@ function navWindow(e){
 		if(hasLocationPermissions){
 			contacts({callback: function(){
 					console.log('why not calling');
-					nav.navigationWindow("clinic/listing", 1);
+					nav.navigationWindow("clinic/listing");
 				}
 			});
 			//nav.navigationWindow("clinic/listing", 1);
 		}else{
 			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 				if (e.success) {
-					nav.navigationWindow("clinic/listing", 1);
+					nav.navigationWindow("clinic/listing");
 				}else if (OS_ANDROID) {
 					alert('You denied permission for now, forever or the dialog did not show at all because it you denied forever before.');
 				}else{
@@ -437,36 +366,28 @@ function navWindow(e){
 }
 
 function logoutUser(){
-	loading.start();
-	var isCorpCode = Ti.App.Properties.getString('corpcode');
- 	removeAllChildren($.scrollboard);
- 	loadHomePageItem(); 
- 	new_menu = menu_info; 
-	render_menu();
-	if(isCorpCode != "" && isCorpCode != "null"  && isCorpCode != null){
-		Ti.App.Properties.removeProperty('memno');
-		Ti.App.Properties.removeProperty('empno');
-		Ti.App.Properties.removeProperty('corpcode'); 
-		Ti.App.Properties.removeProperty('asp_email');
-		Ti.App.Properties.removeProperty('asp_password'); 
-	}else{ 
-		Ti.App.Properties.removeProperty('memno');
-		Ti.App.Properties.setString('u_id','');
-		
-		var win = Alloy.createController("login").getView();
-		win.open(); 
-		
-		if(OS_IOS){
-			$.navMenu.close();
-			Alloy.Globals.navMenu = null;
-		}else{
-			console.log("window sudah close");
-			$.win.close();
-		}
-		return; 
+	Ti.App.Properties.removeProperty('fullname');
+	Ti.App.Properties.removeProperty('plux_user_status');
+	Ti.App.Properties.removeProperty('last_login'); 
+	Ti.App.Properties.removeProperty('u_id');
+	Ti.App.Properties.removeProperty('ic_no');
+	Ti.App.Properties.removeProperty('plux_email');
+	Ti.App.Properties.removeProperty('memno');
+	Ti.App.Properties.removeProperty('empno');
+	Ti.App.Properties.removeProperty('corpcode');
+	Ti.App.Properties.removeProperty('cardno');
+	Ti.App.Properties.removeProperty("dependent");
+	
+	var win = Alloy.createController("login").getView();
+	win.open(); 
+	
+	if(OS_IOS){
+		$.navMenu.close();
+		Alloy.Globals.navMenu = null;
+	}else{
+		console.log("window sudah close");
+		$.win.close();
 	}
-	refreshHeaderInfo();  
-	loading.finish();
 }
 
 function setBackground(){

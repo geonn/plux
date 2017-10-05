@@ -188,7 +188,7 @@ Ti.App.addEventListener('displayRecords', displayList);
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
 	$.destroy();
-	Ti.App.fireEvent("updateNotification");
+	Ti.App.fireEvent("updateNotification", {target: "notification"});
     Ti.App.removeEventListener('displayRecords', displayList);
 });
 

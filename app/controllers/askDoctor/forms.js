@@ -2,8 +2,6 @@ var args = arguments[0] || {};
 var dr_id = args.dr_id || 0; 
 var u_id = parseInt(Ti.App.Properties.getString('u_id'));
 var gender = "";
-var user_model = Alloy.createCollection("users_plux");
-var user = user_model.getUserById(u_id);
 var loading = Alloy.createController("loading");
 
 function init(){
@@ -49,7 +47,7 @@ function sendMessage(){
 	    "format": "text",
 	    "app_id": app_id,
 	    "status": 1,
-	    "sender_name": user.fullname,
+	    "sender_name": Ti.App.Properties.getString('fullname') || "",
 	}];
 	
 	var id = model.saveArray(local_save);

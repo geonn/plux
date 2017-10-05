@@ -13,8 +13,27 @@ if(OS_ANDROID){
  
 	});
 } 
+
+function receivePush(e){
+	var target;
+	var extra; 
+	if(OS_IOS){ 
+		Titanium.UI.iPhone.setAppBadge("0"); 
+		target = e.data.target; 
+		extra = e.data.extra;	
+	}else{ 
+		target = e.target;
+		extra = e.extra;
+	}
+	eval("var current_id = Ti.App.Properties.getString('"+target+"') || 0");
+	if(current_id == extra){
+		eval("Ti.App.fireEvent('"+target+":refresh')");
+	}
+	Ti.App.fireEvent("syncFromServer");
+}
+
 // Process incoming push notifications
-function receivePush(e) {   
+function receivePush_bak(e) {   
 	var target;
 	var url;
 	if(OS_IOS){

@@ -1,7 +1,7 @@
 function navigationWindow (target, checkAuth, callback, param){
 	if(checkAuth == 1){
-		var auth = require("auth_login");
-		if(!auth.checkLogin()){ 
+		var memno = Ti.App.Properties.getString('memno') || ""; 
+		if(memno == ""){ 
 			var win = Alloy.createController("asp/login", {target: target}).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 

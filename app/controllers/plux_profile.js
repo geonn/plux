@@ -1,11 +1,9 @@
 var args = arguments[0] || {}; 
-var usersModel = Alloy.createCollection('users_plux');
 var u_id = Ti.App.Properties.getString('u_id'); 
-var data = usersModel.getUserById(u_id);
 var loading = Alloy.createController("loading");
 
 function render_profile(){
-	$.profileData.add(Alloy.createController("_plux_profile_view", {profile_data: data}).getView());
+	$.profileData.add(Alloy.createController("_plux_profile_view").getView());
 }
 
 function refresh(){

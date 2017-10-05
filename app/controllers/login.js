@@ -1,7 +1,6 @@
 var args = arguments[0] || {}; 
 var singleton = true; 
 common.construct($);
-var usersPluxModel = Alloy.createCollection('users_plux'); 
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading');
 $.win.add(loading.getView());
@@ -90,47 +89,6 @@ $.password.addEventListener("return", function(){
 	doLogin();
 });
 
-if (Ti.Platform.osname == 'iphone') {
-	var email = $.email.value;
-	var userData = usersPluxModel.getUserByEmail(email);
-	if(userData && email != ""){ 
-		TouchId.authenticate({
-		    reason: "Please place finger print to login PLUX Healthcare",
-		    callback: authCB
-		});
-	}
-}
-
-function authCB(e){ 
-	if(e.success == "1"){
-		var email = $.email.value;
-		if(email.trim() == ""){
-		 	alert( "Email or user not found. Please login manually."); 
-		}else{
-			Ti.App.fireEvent('touchLogin');
-		}
-		
-	}
-}
-
-var touchLogin =  function(){
-	var email = $.email.value;
-	var userData = usersPluxModel.getUserByEmail(email);
-	 
-	if(userData && email != ""){ 
-		Ti.App.removeEventListener('touchLogin', touchLogin);
-		API.getUserService({u_id : userData.id});
-		Ti.App.Properties.setString('u_id', userData.id); 
-		Ti.App.Properties.setString('plux_email',userData.email);
-		Ti.App.fireEvent('updateHeader'); 
-		//nav.closeWindow($.win); 
-		$.win.close();
-		
-		var win = Alloy.createController("home").getView();
-		win.open();
-	}
-};
-
 var loginAfterRegister =  function(e){
 	var email = e.params.email; 
 	var password = e.params.password; 
@@ -150,7 +108,6 @@ var loginAfterRegister =  function(e){
 	});
 	
 };
-Ti.App.addEventListener('touchLogin', touchLogin);
 Ti.App.addEventListener('loginAfterRegister', loginAfterRegister);
 
 if(Ti.Platform.osname == "android"){
@@ -177,7 +134,6 @@ if(Ti.Platform.osname == "android"){
 
 $.win.addEventListener("close", function(){
 	console.log("window login close");
-	Ti.App.removeEventListener('touchLogin', touchLogin);
 	Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
 	$.destroy(); 
 });

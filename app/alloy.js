@@ -9,6 +9,12 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+/*
+ remove asp_password for security issues.
+ * */
+Ti.App.Properties.removeProperty('asp_password');
+
 var _ = require('underscore')._;
 
 var common = require('common');
@@ -23,10 +29,6 @@ Alloy.Globals.Map =  (OS_IOS || OS_ANDROID) ? require('ti.map') : Ti.Map;
 var DBVersionControl = require('DBVersionControl');
 DBVersionControl.checkAndUpdate();
 
-if (OS_IOS) {
-	var TouchId = require("ti.touchid");
-}
-
 Alloy.Globals.Map = require('ti.map');
 
 //constant variable
@@ -39,6 +41,7 @@ function ucwords(str) {
             return $1.toUpperCase();
 	});
 }
+/*
 Titanium.Network.addEventListener('change',function(e){
 	if(!e.online){
 		setTimeout(function(){
@@ -48,7 +51,7 @@ Titanium.Network.addEventListener('change',function(e){
 			});			
 		},1000);
 	}
-});
+});*/
 //MYSQL ESCAPE STRING
 function mysql_real_escape_string (str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {

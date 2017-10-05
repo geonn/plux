@@ -24,16 +24,17 @@ function loadPage(){
 		loading.finish();
 	}
 	
-	Ti.App.removeEventListener('loadPage',loadPage);
 }
   
 function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
-	var asp_password = Ti.App.Properties.getString('asp_password');	 
-	if(asp_email){
+	if(typeof asp_email != "undefined" && asp_email != ""){
 		//Ti.App.addEventListener('loadPage', loadPage);
 		loading.start();
-		API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
+		loadPage();
+		//API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
+	}else{
+		common.createAlert("Error", "Please login your ASP account", function(e){$.win.close();});
 	}
 } 
 		

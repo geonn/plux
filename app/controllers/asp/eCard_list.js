@@ -3,9 +3,7 @@ var loading = Alloy.createController("loading");
 var data = [];
 
 function navToEcard(e){
-	var id = parent({name: "source"}, e.source);
-	console.log(id);
-	nav.navigateWithArgs("asp/eCard", {u_id: id});  
+	nav.navigateWithArgs("asp/eCard", {user: e.user});  
 }
 
 /*
@@ -25,7 +23,7 @@ function render_ecard_list(){
 	 	
 	 	var rowView = $.UI.create('View',{
 			classes: ['wfill', 'hfill'], 
-			source: data[i].id 
+			source: data[i]
 		});
 		
 		var Label_name = $.UI.create('Label',{
@@ -34,6 +32,7 @@ function render_ecard_list(){
 			font:{fontSize:14},
 			source: data[i].id,
 			textAlign:'left',
+			touchEnable: false
 		}); 
 		
 		var forwardImg = $.UI.create('ImageView',{
@@ -41,7 +40,8 @@ function render_ecard_list(){
 			image : "/images/btn-forward.png",
 			width: 15,
 			zIndex: 10,
-			right:5 
+			right:5,
+			touchEnable: false
 		});  
 		
 		rowView.add(Label_name);
@@ -57,8 +57,10 @@ function render_ecard_list(){
  * */
 function refresh(){
 	loading.start();
-	var usersModel = Alloy.createCollection('users'); 
-	data = usersModel.getUserByEmpNo();
+	var dependent = Ti.App.Properties.getString('dependent');
+	console.log(dependent);
+	data = JSON.parse(dependent);
+	
 	render_ecard_list();
 	loading.finish();
 }

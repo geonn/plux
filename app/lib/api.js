@@ -173,23 +173,11 @@ exports.updateUserFromFB = function(e, mainView){
 			var res = JSON.parse(this.responseText);
 			 console.log(res);
 		    if(res.status == "success"){   
-		        var usersPluxModel = Alloy.createCollection('users_plux'); 
-				usersPluxModel.addUserData({
-					u_id: res.data.u_id,
-					fullname: res.data.fullname,
-					email: res.data.email,
-					status: res.data.status,
-					facebook_id: res.data.facebook_id,
-					facebook_url: res.data.facebook_url,
-					last_login: currentDateTime()
-				}); 
-				
 				if(typeof res.data.user_service != "undefined"){
 					for (var i=0; i < res.data.user_service.length; i++) {
 					//console.log(res.data.user_service[i]);
 					  if(res.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
-		       			Ti.App.Properties.setString('asp_password', res.data.user_service[i].password);
 					  }
 					};
 				}
@@ -236,7 +224,6 @@ exports.getUserService = function(e){
 				 
 				if(res.data[i].service_id == 1){
 				  	Ti.App.Properties.setString('asp_email', res.data[i].email);
-	       			Ti.App.Properties.setString('asp_password', res.data[i].password);
 				 }
 			}
 	     },
@@ -481,29 +468,23 @@ exports.do_pluxLogin = function(data, callback){
 				callback(false);
 				return false;
 			}else{  
-				var usersPluxModel = Alloy.createCollection('users_plux'); 
-				usersPluxModel.addUserData({
-					u_id: result.data.u_id,
-					fullname: result.data.fullname,
-					email: result.data.email,
-					status: result.data.status,
-					facebook_id: result.data.facebook_id,
-					facebook_url: result.data.facebook_url,
-					last_login: currentDateTime()
-				});
+				console.log('check result');
+				console.log(result.data);
+				Ti.App.Properties.setString('fullname', result.data.fullname); 
+				Ti.App.Properties.setString('plux_user_status', result.data.status); 
+				Ti.App.Properties.setString('last_login', currentDateTime()); 
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
-				Ti.App.Properties.setString('ic_no', result.data.ic_no); 
-				//Ti.App.Properties.setString('memno', result.data.ic_no); 
+				Ti.App.Properties.setString('ic_no', result.data.ic_no);
 				Ti.App.Properties.setString('plux_email',result.data.email);
-				
 				if(typeof result.data.user_service != "undefined"){
-					for (var i=0; i < result.data.user_service.length; i++) {
-					//	console.log(result.data.user_service[i]);
-					  if(result.data.user_service[i].service_id == 1){
-						  	Ti.App.Properties.setString('asp_email', result.data.user_service[i].email);
-			       			Ti.App.Properties.setString('asp_password', data.password);
-					  }
-					};
+					console.log(result.data.user_service.memno+" result.data.user_service.memno");
+					Ti.App.Properties.setString('memno', result.data.user_service[0].memno);
+		       		Ti.App.Properties.setString('empno', result.data.user_service[0].empno);
+		       		Ti.App.Properties.setString('corpcode', result.data.user_service[0].corpcode);
+		       		Ti.App.Properties.setString('cardno', result.data.user_service[0].cardno);
+				}
+				if(typeof result.dependent != "undefined"){
+					Ti.App.Properties.setString('dependent', JSON.stringify(result.dependent));
 				}
 	       		API.updateNotificationToken();    
 				/*Ti.App.fireEvent('updateHeader');
@@ -571,7 +552,6 @@ exports.plux_signup = function(data, callback){
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				Ti.App.Properties.setString('asp_email', result.data.email);
-		       	Ti.App.Properties.setString('asp_password', data.password);
 				callback();
 			}
 		},
@@ -648,7 +628,6 @@ exports.do_asp_signup = function(data, mainView){
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
 	       		Ti.App.Properties.setString('asp_email', data.email);
-	       		Ti.App.Properties.setString('asp_password', data.password);
 	       		
 	       		usersModel.addUserData(result);
 	       		Ti.App.Properties.setString('signup2', "");
@@ -730,7 +709,6 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
 	       		Ti.App.Properties.setString('asp_email', username);
-	       		Ti.App.Properties.setString('asp_password',password);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		Ti.App.Properties.setString("empno_1",res.empno);
 	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);

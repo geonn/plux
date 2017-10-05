@@ -4,16 +4,14 @@ var noThumbColors   = ['#555555','#cccccc'];
 var noThumbColors2  = ['#ff0000','#000'];
 var frontbackcounter = 0;
 common.construct($);
-var usersModel = Alloy.createCollection('users'); 
-var user = usersModel.getOwnerData(u_id); 
+var user = args.user;
 var qrcode = require('qrcode');
 var loading = Alloy.createController('loading');
 $.win.add(loading.getView());
 init();
 
 function init(){
-	var user = usersModel.getOwnerData(u_id); 
- 	 
+ 	console.log(user);
 	if(user.isver == "true" || user.isver > 0){ 
 	 
 		$.unverified.hide();
@@ -34,14 +32,14 @@ function init(){
 
 function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
-	var asp_password = Ti.App.Properties.getString('asp_password');	
-	console.log(asp_email+" "+asp_password);
 	if(typeof asp_email != "undefined" && asp_email != ""){
-		
 		loading.start();
+		// need call login api to get updated info!
 		//API.doLogin(asp_email, asp_password, $, login_callback);
 		//API.doLogin(asp_email, asp_password, $, "refresh", login_callback);
-		API.callByPost({url:"loginUrl", params: {LOGINID: asp_email, PASSWORD: asp_password}}, login_callback);
+		//API.callByPost({url:"loginUrl", params: {LOGINID: asp_email, PASSWORD: asp_password}}, login_callback);
+	}else{
+		common.createAlert("Error", "Please login your ASP account", function(e){$.win.close();});
 	}
 } 
 

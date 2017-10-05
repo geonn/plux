@@ -1,13 +1,11 @@
 var args = arguments[0] || {};
-var profile = args.profile_data;
 var model = Alloy.createCollection("personal_info");
 var loading = Alloy.createController("loading");
-var personal_health = profile.personal_health;
 var personal_health_type = "Medication Records";	//Allergic History and Medication Records
 
-$.fullname.text ="Full Name : "+profile.fullname;
-$.email.text = "Email : "+profile.email;
-$.last_login = "Last Login : "+timeFormat(profile.last_login);
+$.fullname.text ="Full Name : "+Ti.App.Properties.getString('fullname') || "";
+$.email.text = "Email : "+Ti.App.Properties.getString('plux_email') || "";
+$.last_login = "Last Login : "+i.App.Properties.getString('last_login') || "";
 
 function init(){
 	$.win.add(loading.getView());
