@@ -16,11 +16,11 @@ var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
 
 function saveLocal(param){
-	var model_name = (dr_id == 0)?"helpline":"chat";
-	var model = Alloy.createCollection(model_name);
+	var model = Alloy.createCollection("chat");
 	var app_id = Math.random().toString(36).substr(2, 10);
 	var local_save = {
 		"u_id": u_id,
+		"id": app_id,
 	    "sender_id": u_id,
 	    "message": param.message,
 	    "created": common.now(),
@@ -31,12 +31,8 @@ function saveLocal(param){
 	    "app_id": app_id,
 	    "sender_name": Ti.App.Properties.getString('fullname') || ""
 	};
-	
-	if(dr_id > 0){
-		local_save = _.extend(local_save, {id: app_id});
-	}
+	console.log(local_save);
 	var id = model.saveArray([local_save]);
-	app_id = (dr_id == 0)?id:app_id;
 	var api_param = {u_id: u_id, dr_id: dr_id, message: param.message, is_endUser:1, app_id: app_id };
 	if(param.format == "voice"){
 		_.extend(api_param, {media: param.format, Filedata: param.filedata});
@@ -93,7 +89,7 @@ function render_conversation(latest){
 		//$.chatroom.setContentOffset({y: 100});
 	}
 	var contain_height = 50;
-	
+	console.log(data);
 	if(latest){
 		data.reverse();
 	}
@@ -166,8 +162,6 @@ function render_conversation(latest){
 				view_text_container.add(label_message);
 			}
 			
-			
-			
 			view_text_container.add(label_time);
 			if(data[i].is_endUser){
 				view_text_container.setBackgroundColor("#F1FFE3");
@@ -227,8 +221,8 @@ function render_conversation(latest){
    			 if (ex.index === ex.source.cancel){
 
    			 }else if(ex.index == 0){
-   			 	var model_name = (dr_id == 0)?"helpline":"chat";
-   			 	var model = Alloy.createCollection(model_name);
+   			 	
+   			 	var model = Alloy.createCollection("chat");
 				model.removeById(m_id);
    			 	$.inner_area.remove(message_box);
    			 }
@@ -255,7 +249,6 @@ function render_conversation(latest){
 
 function getConversationByRoomId(callback){
 	var url = (dr_id == 0)?"getHelplineMessageV3":"getMessage";
-	var model_name = (dr_id == 0)?"helpline":"chat";
 	var checker_id = (dr_id == 0)?7:19;
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
@@ -265,7 +258,7 @@ function getConversationByRoomId(callback){
 	console.log({u_id: u_id, dr_id: dr_id, last_updated: last_updated});
 	
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
-		var model = Alloy.createCollection(model_name);
+		var model = Alloy.createCollection("chat");
 		console.log('check here '+room_id);
 		var res = JSON.parse(responseText);
 		var arr = res.data || undefined;
@@ -302,8 +295,20 @@ function updateStatus(arr){
 }
 
 function scrollToBottom(){
+	console.log("is that possible here?");
+	console.log(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1));
+	
+	var pHeight = (OS_IOS)?Ti.Platform.displayCaps.platformHeight:Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1);
+	console.log($.inner_area.rect.height - pHeight + 110);
+	//$.chatroom.setContentOffset({y: $.inner_area.rect.height - pHeight + 110});
 	$.chatroom.scrollToBottom();
 }
+
+$.chatroom.addEventListener("scroll", function (e){
+	var theEnd = $.inner_area.rect.height;
+	var total = (OS_ANDROID)?pixelToDp(e.y)+e.source.rect.height: e.y+e.source.rect.height;
+	var nearEnd = theEnd * 0.1;
+});
 
 /*
  	Refresh
@@ -316,8 +321,7 @@ function refresh(callback, firsttime){
 		callback({firsttime: firsttime});
 		loading.finish();
 		refreshing = false;
-		var model_name = (dr_id == 0)?"helpline":"chat";
-		var model = Alloy.createCollection(model_name); 
+		var model = Alloy.createCollection("chat"); 
 		model.messageRead({u_id: u_id});
 	});
 	
@@ -344,9 +348,9 @@ function refresh_latest(param){
 }
 
 function getPreviousData(param){ 
-	start = parseInt(start);
-	var model_name = (dr_id == 0)?"helpline":"chat";
-	var model = Alloy.createCollection(model_name);
+	console.log(console.log(typeof start));
+	start = (typeof start != "undefined")? start : 0;
+	var model = Alloy.createCollection("chat");
 	console.log(dr_id+" dr_id");
 	data = model.getData(false, start, anchor,"", dr_id);
 	var estimate_time = Ti.App.Properties.getString('estimate_time');
@@ -375,10 +379,8 @@ function getPreviousData(param){
 }
 
 function getLatestData(){
-	var model_name = (dr_id == 0)?"helpline":"chat";
-	var model = Alloy.createCollection(model_name); 
-	console.log(last_id+" last id");
-	data = model.getData(true,"","", (dr_id == 0)?last_id:last_update, dr_id); 
+	var model = Alloy.createCollection("chat");
+	data = model.getData(true,"","", last_update, dr_id); 
 	
 	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
 	if(estimate_time != 0){
@@ -414,20 +416,24 @@ function closeWindow(){
 }
 
 function init(){
-	if(Ti.Android.hasPermission("android.permission.RECORD_AUDIO")){
-		checkingInternalPermission();		    	
+	if(OS_IOS){
+		second_init();
 	}else{
-		setTimeout(function(){
-			Ti.Android.requestPermissions("android.permission.RECORD_AUDIO", function(e) {
-			    if (e.success) {
-					checkingInternalPermission();		    	
-			    } else {
-					common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
-						closeWindow();
-					});
-			    }
-			}); 			
-		},1000);		
+		if(Ti.Android.hasPermission("android.permission.RECORD_AUDIO")){
+			checkingInternalPermission();		    	
+		}else{
+			setTimeout(function(){
+				Ti.Android.requestPermissions("android.permission.RECORD_AUDIO", function(e) {
+				    if (e.success) {
+						checkingInternalPermission();		    	
+				    } else {
+						common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
+							closeWindow();
+						});
+				    }
+				}); 			
+			},1000);		
+		}
 	}
 }
 function checkingInternalPermission(){
@@ -454,7 +460,6 @@ function second_init(){
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	var model_name = (dr_id == 0)?"helpline":"chat";
 	if(dr_id > 0){
 		$.win.title = "Ask Doctor - "+args.record.name;
 		if(OS_ANDROID){

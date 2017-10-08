@@ -9,228 +9,63 @@ function __processArg(obj, key) {
 
 function Controller() {
     function init() {
+        $.win.add(loading.getView());
+        loading.start();
         notificationModel.setAllAsRead({
-            member_no: memno
+            u_id: u_id
         });
         displayList();
-        syncFromServer();
-    }
-    function syncFromServer() {
-        var checker = Alloy.createCollection("updateChecker");
-        var isUpdate = checker.getCheckerById("2");
-        var last_updated = "";
-        "" != isUpdate && (last_updated = isUpdate.updated);
-        var param = {
-            member_no: memno,
-            last_updated: last_updated
-        };
-        API.callByPost({
-            url: "getNotificationUrl",
-            params: param
-        }, function(responseText) {
-            var res = JSON.parse(responseText);
-            if ("success" == res.status) {
-                var record = res.data;
-                if (record.length > 0) {
-                    record.forEach(function(entry) {
-                        var param = {
-                            id: entry.id || "",
-                            member_no: entry.member_no || "",
-                            subject: entry.subject || "",
-                            message: entry.message || "",
-                            status: entry.status || 1,
-                            url: entry.url || "",
-                            isRead: "0",
-                            status: entry.status || "",
-                            expired: entry.expired || "",
-                            detail: entry.detail || "",
-                            created: entry.created,
-                            updated: entry.updated
-                        };
-                        notificationModel.addData(param);
-                    });
-                    checker.updateModule("2", "notificationList", res.last_updated);
-                    displayList();
-                }
-            }
-        });
     }
     function displayList() {
         notificationList = notificationModel.getList({
-            member_no: memno
+            u_id: u_id
         });
         var data = [];
         $.recordTable.setData(data);
-        if (notificationList.length < 1) {
-            common.hideLoading();
-            $.recordTable.setData(common.noRecord());
-        } else {
+        if (notificationList.length < 1) loading.finish(); else {
             notificationList.forEach(function(entry) {
-                var row = Titanium.UI.createTableViewRow({
-                    touchEnabled: true,
-                    height: Ti.UI.SIZE,
-                    source: entry.id,
-                    detail: entry.detail,
-                    title: entry.subject,
-                    url: entry.url,
-                    backgroundSelectedColor: "#FFE1E1",
-                    color: "transparent"
+                var row = $.UI.create("TableViewRow", {
+                    classes: [ "hsize", "wfill" ],
+                    record: entry,
+                    backgroundSelectedColor: "#FFE1E1"
                 });
                 var contentView = $.UI.create("View", {
-                    classes: [ "vert", "hsize", "wfill" ],
-                    source: entry.id,
-                    url: entry.url,
-                    title: entry.subject,
-                    top: 10,
-                    bottom: 10
+                    classes: [ "vert", "hsize", "wfill", "padding" ],
+                    touchEnabled: false
                 });
-                var clinicLbl = $.UI.create("Label", {
-                    classes: [ "themeColor", "h5", "bold" ],
-                    text: entry.subject || "",
-                    font: {
-                        fontSize: 14
-                    },
-                    source: entry.id,
-                    title: entry.subject,
-                    url: entry.url,
-                    textAlign: "left",
-                    left: 15,
-                    width: "80%",
-                    height: Ti.UI.SIZE
+                var label_subject = $.UI.create("Label", {
+                    classes: [ "themeColor", "wfill", "h5", "bold", "hsize" ],
+                    maxLines: 3,
+                    touchEnabled: false,
+                    text: entry.subject || ""
                 });
-                contentView.add(clinicLbl);
-                var msgLbl = $.UI.create("Label", {
-                    classes: [ "h6", "hsize" ],
-                    text: entry.message,
-                    source: entry.id,
-                    url: entry.url,
-                    title: entry.subject,
-                    textAlign: "left",
-                    left: 15,
-                    width: "85%"
+                var label_message = $.UI.create("Label", {
+                    classes: [ "h6", "wfill", "hsize" ],
+                    maxLines: 3,
+                    touchEnabled: false,
+                    text: entry.content || ""
                 });
-                contentView.add(msgLbl);
                 var updated = entry.updated;
                 updated = updated.replace("  ", " ");
-                var appLbl = $.UI.create("Label", {
-                    classes: [ "h6" ],
-                    text: "Last Updated : " + monthFormat(updated),
-                    source: entry.id,
-                    url: entry.url,
-                    title: entry.subject,
-                    textAlign: "left",
-                    left: 15,
-                    width: "85%",
-                    height: Ti.UI.SIZE
+                var label_updated_time = $.UI.create("Label", {
+                    classes: [ "themeColor", "wfill", "h6", "hsize" ],
+                    touchEnabled: false,
+                    text: "Last Updated : " + monthFormat(updated)
                 });
-                contentView.add(appLbl);
-                Titanium.UI.createImageView({
-                    image: "/images/btn-forward.png",
-                    source: entry.id,
-                    title: entry.subject,
-                    url: entry.url,
-                    width: 15,
-                    right: 20
-                });
+                contentView.add(label_subject);
+                contentView.add(label_message);
+                contentView.add(label_updated_time);
                 row.add(contentView);
-                "" != entry.url ? row.addEventListener("click", function(e) {
-                    viewDetails(e.rowData);
-                }) : "" != entry.detail && row.addEventListener("click", function(e) {
-                    loadHTML(e.rowData.detail);
+                row.addEventListener("click", function(e) {
+                    var source = e.source.record;
+                    console.log(source);
+                    nav.navigationWindow(source.target, "", "", source);
                 });
                 data.push(row);
             });
             $.recordTable.setData(data);
         }
-        common.hideLoading();
-    }
-    function loadHTML(html) {
-        var htmlText = "<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style><body>" + decodeURIComponent(html) + "</body>";
-        htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, "<br />");
-        nav.navigateWithArgs("webview", {
-            html: htmlText
-        });
-    }
-    function viewDetails(msg) {
-        downloadBrochure(msg);
-    }
-    function downloadBrochure(content) {
-        var indView = Ti.UI.createView({
-            height: 100,
-            layout: "vertical",
-            backgroundColor: "#ffffff",
-            bottom: 5,
-            width: Ti.UI.SIZE
-        });
-        if ("1" == isDownloading) {
-            var label = Ti.UI.createLabel({
-                color: "#CE1D1C",
-                font: {
-                    fontSize: 10,
-                    fontWeight: "bold"
-                },
-                text: "Please wait until current downloading is done.",
-                bottom: 10,
-                width: "100%",
-                height: 10,
-                textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-            });
-            if ("0" == isDownloadLbl) {
-                $.bigView.add(label);
-                setTimeout(function() {
-                    isDownloadLbl = "0";
-                    $.bigView.remove(label);
-                }, 3e3);
-            }
-            isDownloadLbl = "1";
-            return false;
-        }
-        isDownloading = "1";
-        var ind = Titanium.UI.createProgressBar({
-            width: "90%",
-            height: 50,
-            min: 0,
-            max: 1,
-            value: 0,
-            top: 5,
-            message: "Downloading " + content.title + "...",
-            font: {
-                fontSize: 12
-            },
-            color: "#CE1D1C"
-        });
-        var label = Ti.UI.createLabel({
-            color: "#CE1D1C",
-            font: {
-                fontSize: 14,
-                fontWeight: "bold"
-            },
-            text: "0%",
-            top: 0,
-            width: "100%",
-            height: 30,
-            textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-        });
-        if ("1" == content.isDownloaded) {
-            indView.remove(ind);
-            indView.remove(label);
-            $.bigView.setVisible(false);
-        } else {
-            ind.show();
-            indView.add(ind);
-            indView.add(label);
-            $.bigView.add(indView);
-            $.bigView.setVisible(true);
-        }
-        PDF.createPdf(content.url, true, ind, label, indView, function(err, file, base, url) {
-            if (err) alert(err); else {
-                isDownloading = "0";
-                indView.hide();
-                $.bigView.remove(indView);
-                console.log("file return : " + file.getNativePath());
-                PDF.android_launch(file);
-            }
-        });
+        loading.finish();
     }
     require("/alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "asp/notification";
@@ -253,57 +88,31 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId553 = Ti.UI.createView({
-        id: "__alloyId553"
+    $.__views.__alloyId548 = Ti.UI.createView({
+        id: "__alloyId548"
     });
-    $.__views.win.add($.__views.__alloyId553);
-    $.__views.loadingBar = Ti.UI.createView({
-        layout: "vertical",
-        id: "loadingBar",
-        height: 120,
-        width: 120,
-        borderRadius: 15,
-        backgroundColor: "#2E2E2E"
-    });
-    $.__views.__alloyId553.add($.__views.loadingBar);
-    $.__views.activityIndicator = Ti.UI.createActivityIndicator({
-        top: 10,
-        left: 30,
-        width: 60,
-        id: "activityIndicator"
-    });
-    $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.loading = Ti.UI.createLabel({
-        width: Titanium.UI.SIZE,
-        height: Titanium.UI.SIZE,
-        color: "#ffffff",
-        id: "loading",
-        top: 5,
-        bottom: 10,
-        text: "Loading"
-    });
-    $.__views.loadingBar.add($.__views.loading);
+    $.__views.win.add($.__views.__alloyId548);
     $.__views.aView = Ti.UI.createView({
         id: "aView",
         height: Ti.UI.SIZE,
         top: 0,
         layout: "vertical"
     });
-    $.__views.__alloyId553.add($.__views.aView);
-    $.__views.__alloyId554 = Ti.UI.createView({
+    $.__views.__alloyId548.add($.__views.aView);
+    $.__views.__alloyId549 = Ti.UI.createView({
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId554"
+        id: "__alloyId549"
     });
-    $.__views.aView.add($.__views.__alloyId554);
-    $.__views.__alloyId555 = Ti.UI.createView({
+    $.__views.aView.add($.__views.__alloyId549);
+    $.__views.__alloyId550 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId555"
+        id: "__alloyId550"
     });
-    $.__views.__alloyId554.add($.__views.__alloyId555);
+    $.__views.__alloyId549.add($.__views.__alloyId550);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -311,12 +120,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId555.add($.__views.btnBack);
-    $.__views.__alloyId556 = Ti.UI.createView({
+    $.__views.__alloyId550.add($.__views.btnBack);
+    $.__views.__alloyId551 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId556"
+        id: "__alloyId551"
     });
-    $.__views.__alloyId554.add($.__views.__alloyId556);
+    $.__views.__alloyId549.add($.__views.__alloyId551);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -328,7 +137,7 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId556.add($.__views.pageTitle);
+    $.__views.__alloyId551.add($.__views.pageTitle);
     $.__views.recordTable = Ti.UI.createTableView({
         width: "100%",
         height: Ti.UI.FILL,
@@ -348,17 +157,16 @@ function Controller() {
         width: "80%",
         visible: false
     });
-    $.__views.__alloyId553.add($.__views.bigView);
+    $.__views.__alloyId548.add($.__views.bigView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     args.id || "";
-    var notificationModel = Alloy.createCollection("notification");
-    var PDF = require("pdf");
+    var notificationModel = Alloy.createCollection("notificationV2");
+    require("pdf");
     var notificationList;
-    var memno = Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no");
-    common.construct($);
-    common.showLoading();
+    var u_id = Ti.App.Properties.getString("u_id");
+    var loading = Alloy.createController("loading");
     init();
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.win);
@@ -366,11 +174,12 @@ function Controller() {
     Ti.App.addEventListener("displayRecords", displayList);
     $.win.addEventListener("close", function() {
         $.destroy();
-        Ti.App.fireEvent("updateNotification");
+        Ti.App.fireEvent("updateNotification", {
+            target: "notification",
+            model: "notificationV2"
+        });
         Ti.App.removeEventListener("displayRecords", displayList);
     });
-    var isDownloading = "0";
-    var isDownloadLbl = "0";
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("displayRecords", displayList);
         $.destroy();

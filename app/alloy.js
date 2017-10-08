@@ -19,7 +19,6 @@ var _ = require('underscore')._;
 
 var common = require('common');
 var API = require('api');
-var PUSH = require('push');
 var nav = require('navigation');
 var socket = require('socket');
 var room_id = 0;
@@ -352,4 +351,21 @@ function hinttextOnBlur(e){
 
 if(OS_IOS){ 
 	Titanium.UI.iPhone.setAppBadge("0"); 
+}
+
+var win;
+
+Ti.App.addEventListener("pause", function(e){
+	win = Ti.UI.createWindow({backgroundColor: "red"});
+	win.open();
+});
+
+Ti.App.addEventListener("resumed", function(e){
+	if(typeof win != null && win != null){
+		win.close();
+	}
+});
+
+function pixelToDp(px) {
+    return ( parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160));
 }

@@ -1,4 +1,5 @@
 function navigationWindow (target, checkAuth, callback, param){
+	console.log(target+" nav to ");
 	if(checkAuth == 1){
 		var memno = Ti.App.Properties.getString('memno') || ""; 
 		if(memno == ""){ 
@@ -22,6 +23,7 @@ function navigationWindow (target, checkAuth, callback, param){
 			}
 			
 		}else{
+			console.log("auth checked going to "+target);
 			var win = Alloy.createController(target).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
@@ -44,7 +46,7 @@ function navigationWindow (target, checkAuth, callback, param){
 				Alloy.Globals.navMenu.openWindow(win,{animated:true});
 			}
 		}else if(typeof param !== undefined && param !== null){
-			 
+			console.log("here pls"); 
 			var win = Alloy.createController(target, param).getView();
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
@@ -52,6 +54,7 @@ function navigationWindow (target, checkAuth, callback, param){
 				Alloy.Globals.navMenu.openWindow(win,{animated:true});
 			}
 		}else{ 
+			console.log("no!!");
 			var win = Alloy.createController(target).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 

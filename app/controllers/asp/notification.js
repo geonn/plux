@@ -1,18 +1,19 @@
 var args = arguments[0] || {};
 var id = args.id || "";
-var notificationModel = Alloy.createCollection('notification');  
+var notificationModel = Alloy.createCollection('notificationV2');  
 var PDF = require('pdf'); 
 var notificationList;
-var memno = Ti.App.Properties.getString('memno') || Ti.App.Properties.getString('ic_no');
-common.construct($); 
-common.showLoading();
+var u_id = Ti.App.Properties.getString('u_id');
+
+var loading = Alloy.createController('loading');
 init();
 
 function init(){ 
-	
-	notificationModel.setAllAsRead({member_no: memno });
+	$.win.add(loading.getView());
+	loading.start();
+	notificationModel.setAllAsRead({u_id: u_id });
 	displayList();
-	syncFromServer();
+	//syncFromServer();
 } 
 
 function syncFromServer(){
@@ -60,90 +61,34 @@ function syncFromServer(){
 }
 
 function displayList(){  
-	notificationList = notificationModel.getList({member_no: memno });  
+	notificationList = notificationModel.getList({u_id: u_id });  
 	var data=[]; 
 	$.recordTable.setData(data);
 	var counter = 0; 
 	if(notificationList.length < 1){
-		common.hideLoading(); 
-		$.recordTable.setData(common.noRecord());
+		loading.finish(); 
 	}else{
 		notificationList.forEach(function(entry) {
-			var row = Titanium.UI.createTableViewRow({
-			    touchEnabled: true,
-			    height: Ti.UI.SIZE,
-			    source: entry.id,
-			    detail: entry.detail,
-			    title: entry.subject,
-			    url: entry.url,
-			    backgroundSelectedColor: "#FFE1E1", 
-				color: "transparent", 
-			   });
-		 
-			var contentView = $.UI.create('View',{
-				classes: ['vert','hsize','wfill'], 
-				source: entry.id,
-				url: entry.url,
-				title: entry.subject,
-				top: 10,
-				bottom: 10
-			});
-			  
-			var clinicLbl = $.UI.create('Label',{
-				classes : ['themeColor', 'h5', 'bold'],
-				text:entry.subject || "",
-				font:{fontSize:14},
-				source: entry.id, 
-				title: entry.subject,
-				url: entry.url,
-				textAlign:'left',   
-				left:15, 
-				width:"80%",
-				height:Ti.UI.SIZE
-			}); 
-			contentView.add(clinicLbl);
-			
-			
-			 var msgLbl =  $.UI.create('Label',{ 
-				classes: ['h6', 'hsize'],
-				text:  entry.message, 
-				source: entry.id, 
-				url: entry.url,
-				title: entry.subject,
-				textAlign:'left', 
-				left:15, 
-				width: "85%", 
-			}); 
-			 
-			contentView.add(msgLbl);
-			
+			var row = $.UI.create("TableViewRow", {classes:['hsize','wfill'], record: entry, backgroundSelectedColor: "#FFE1E1"});
+			var contentView = $.UI.create('View', {classes: ['vert','hsize','wfill', 'padding'], touchEnabled: false});
+			var label_subject = $.UI.create("Label", {classes:['themeColor', 'wfill', 'h5', 'bold', 'hsize'], maxLines:3, touchEnabled: false, text: entry.subject || ""});
+			var label_message = $.UI.create("Label", {classes:['h6', 'wfill', 'hsize'], maxLines:3, touchEnabled: false, text: entry.content || "" });
 			var updated = entry.updated;
 			updated = updated.replace("  "," ");
-			var appLbl =  $.UI.create('Label',{ 
-				classes: ['h6'],
-				text:  "Last Updated : "+monthFormat(updated), 
-				source: entry.id, 
-				url: entry.url,
-				title: entry.subject,
-				textAlign:'left', 
-				left:15, 
-				width: "85%",
-				height:Ti.UI.SIZE
-			}); 
-			contentView.add(appLbl);
+			var label_updated_time = $.UI.create("Label", {classes:['themeColor', 'wfill', 'h6', 'hsize'], touchEnabled: false, text: "Last Updated : "+monthFormat(updated)});
+			contentView.add(label_subject);
+			contentView.add(label_message);
+			contentView.add(label_updated_time);
 			
-			var rightForwardBtn =  Titanium.UI.createImageView({
-				image:"/images/btn-forward.png",
-				source: entry.id,
-				title: entry.subject,
-				url: entry.url,
-				width:15,
-				right:20 
-			});
-		 
+			//var rightForwardBtn =  $.UI.create("ImageView", {image:"/images/btn-forward.png", width:15, right:10 });
 			row.add(contentView);
+			row.addEventListener("click", function(e){
+				var source = e.source.record;
+				console.log(source);
+				nav.navigationWindow(source.target,"","", source);
+			});
 			//row.add(rightForwardBtn);
-			if(entry.url != ""){
+			/*if(entry.url != ""){
 				row.addEventListener('click', function(e) {
 					viewDetails(e.rowData);
 				});
@@ -151,7 +96,7 @@ function displayList(){
 				row.addEventListener('click', function(e) {
 					loadHTML(e.rowData.detail);
 				});
-			}
+			}*/
 		 	
 			data.push(row);
 		});
@@ -159,7 +104,7 @@ function displayList(){
 		
 		$.recordTable.setData(data);
 	}
-	common.hideLoading(); 
+	loading.finish();
 }
 
 function loadHTML(html){
@@ -188,7 +133,7 @@ Ti.App.addEventListener('displayRecords', displayList);
 /** close all editProfile eventListener when close the page**/
 $.win.addEventListener("close", function(){
 	$.destroy();
-	Ti.App.fireEvent("updateNotification", {target: "notification"});
+	Ti.App.fireEvent("updateNotification", {target: "notification", model: "notificationV2"});
     Ti.App.removeEventListener('displayRecords', displayList);
 });
 

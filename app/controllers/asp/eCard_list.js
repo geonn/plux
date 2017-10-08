@@ -3,7 +3,9 @@ var loading = Alloy.createController("loading");
 var data = [];
 
 function navToEcard(e){
-	nav.navigateWithArgs("asp/eCard", {user: e.user});  
+	console.log('navToEcard');
+	console.log(e.source);
+	nav.navigateWithArgs("asp/eCard", {user: e.source.user});  
 }
 
 /*
@@ -16,39 +18,39 @@ function render_ecard_list(){
 		var row = Titanium.UI.createTableViewRow({
 		    touchEnabled: true,
 		    height: 50,
-		    source: data[i].id,
+		    user: data[i],
 		    backgroundSelectedColor: "#FFE1E1", 
 			color: "transparent", 
 		   });
 	 	
 	 	var rowView = $.UI.create('View',{
+	 		touchEnabled: false,
 			classes: ['wfill', 'hfill'], 
-			source: data[i]
+			
 		});
 		
 		var Label_name = $.UI.create('Label',{
+			touchEnabled: false,
 			classes : ['themeColor', 'h5', 'bold', 'padding', 'hfill'],
 			text: data[i].name || "",
 			font:{fontSize:14},
-			source: data[i].id,
 			textAlign:'left',
-			touchEnable: false
 		}); 
 		
 		var forwardImg = $.UI.create('ImageView',{
+			touchEnabled: false,
 			classes : ['wsize', 'hsize'],
 			image : "/images/btn-forward.png",
 			width: 15,
 			zIndex: 10,
 			right:5,
-			touchEnable: false
 		});  
 		
 		rowView.add(Label_name);
 		rowView.add(forwardImg);
 		row.add(rowView);
 		$.inner_box.appendRow(row);
-		rowView.addEventListener("click", navToEcard);
+		row.addEventListener("click", navToEcard);
 	}
 }
 
@@ -58,7 +60,6 @@ function render_ecard_list(){
 function refresh(){
 	loading.start();
 	var dependent = Ti.App.Properties.getString('dependent');
-	console.log(dependent);
 	data = JSON.parse(dependent);
 	
 	render_ecard_list();

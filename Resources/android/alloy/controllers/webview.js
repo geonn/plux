@@ -11,6 +11,10 @@ function Controller() {
     function closeWindow() {
         $.win.close();
     }
+    function nl2br(str, is_xhtml) {
+        var breakTag = is_xhtml || "undefined" == typeof is_xhtml ? "<br />" : "<br>";
+        return (str + "").replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, "$1" + breakTag + "$2");
+    }
     require("/alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "webview";
     this.args = arguments[0] || {};
@@ -33,30 +37,30 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId358 = Ti.UI.createView({
+    $.__views.__alloyId356 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
-        id: "__alloyId358"
+        id: "__alloyId356"
     });
-    $.__views.win.add($.__views.__alloyId358);
-    $.__views.__alloyId359 = Ti.UI.createImageView({
+    $.__views.win.add($.__views.__alloyId356);
+    $.__views.__alloyId357 = Ti.UI.createImageView({
         width: 30,
         height: 30,
         right: 10,
         image: "/images/cross.png",
-        id: "__alloyId359"
+        id: "__alloyId357"
     });
-    $.__views.__alloyId358.add($.__views.__alloyId359);
-    closeWindow ? $.addListener($.__views.__alloyId359, "click", closeWindow) : __defers["$.__views.__alloyId359!click!closeWindow"] = true;
+    $.__views.__alloyId356.add($.__views.__alloyId357);
+    closeWindow ? $.addListener($.__views.__alloyId357, "click", closeWindow) : __defers["$.__views.__alloyId357!click!closeWindow"] = true;
     $.__views.surveyView = Ti.UI.createWebView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
         id: "surveyView"
     });
-    $.__views.__alloyId358.add($.__views.surveyView);
+    $.__views.__alloyId356.add($.__views.surveyView);
     $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
@@ -64,29 +68,31 @@ function Controller() {
         top: 5
     });
     $.__views.win.add($.__views.defaultMsgView);
-    $.__views.__alloyId360 = Ti.UI.createLabel({
+    $.__views.__alloyId358 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Page not found.",
-        id: "__alloyId360"
+        id: "__alloyId358"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId360);
+    $.__views.defaultMsgView.add($.__views.__alloyId358);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     var url = args.url || "";
-    var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">' + args.html + "</html>" || "";
+    console.log(args);
+    var content = "" != args.content ? args.content : args.subject;
+    var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">' + content + "</html>" || "";
     if ("" != url) {
         $.surveyView.url = url;
         $.defaultMsgView.height = 0;
     } else if ("" != HTMLcontent) {
         HTMLcontent = HTMLcontent.replace(/\[\[/g, "<");
         HTMLcontent = HTMLcontent.replace(/\]\]/g, ">");
-        $.surveyView.setHtml(HTMLcontent);
+        $.surveyView.setHtml(nl2br(HTMLcontent));
         $.defaultMsgView.height = 0;
     } else $.surveyView.height = 0;
-    __defers["$.__views.__alloyId359!click!closeWindow"] && $.addListener($.__views.__alloyId359, "click", closeWindow);
+    __defers["$.__views.__alloyId357!click!closeWindow"] && $.addListener($.__views.__alloyId357, "click", closeWindow);
     _.extend($, exports);
 }
 

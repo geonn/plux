@@ -1,11 +1,9 @@
 var args = arguments[0] || {};
-var model = Alloy.createCollection("personal_info");
 var loading = Alloy.createController("loading");
 var personal_health_type = "Medication Records";	//Allergic History and Medication Records
-
 $.fullname.text ="Full Name : "+Ti.App.Properties.getString('fullname') || "";
 $.email.text = "Email : "+Ti.App.Properties.getString('plux_email') || "";
-$.last_login = "Last Login : "+i.App.Properties.getString('last_login') || "";
+$.last_login = "Last Login : "+Ti.App.Properties.getString('last_login') || "";
 
 function init(){
 	$.win.add(loading.getView());
@@ -15,9 +13,9 @@ function init(){
 
 init();
 
-function render_personal_health(){
+function render_personal_health(arr){
 	console.log(personal_health_type+" before call");
-	var listing = model.getData(personal_health_type);
+	var listing = (typeof arr != "undefined")?arr:args.records; //model.getData(personal_health_type);
 	var arr = [];
 	if(listing.length <= 0){
 		listing.push({val: "No records found"});
@@ -35,26 +33,12 @@ function render_personal_health(){
 }
 
 function refresh(callback){
-	var u_id = Ti.App.Properties.getString('u_id');
 	
-	var checker = Alloy.createCollection('updateChecker');
-	var isUpdate = checker.getCheckerById("15", u_id);
-	var last_updated ="";
-	 
-	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
-	}
-	loading.start();
-	
-	API.callByPost({url:"getPersonalInfoRecords", params: {last_updated: last_updated, u_id: u_id}}, function(responseText){
-		
+	var u_id = Ti.App.Properties.getString('u_id') || 0;
+	API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
-		console.log(res);
-		model.saveArray(arr);
-		checker.updateModule(15,"getPersonalInfoRecords", res.last_updated, u_id);
-		
-		callback();
+		callback(arr);
 		loading.finish();
 	});
 }
@@ -75,7 +59,6 @@ function addRecord(){
 	};
 	API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
 		var res = JSON.parse(responseText);
-		model.saveArray(res.data);
 		refresh(render_personal_health);
 		closeBox();
 		$.box_value.value = "";
@@ -131,7 +114,6 @@ $.tblview.addEventListener("longpress", function(e){
 			loading.start();
 			API.callByPost({url: "changeRecordStatus", params:params}, function(responseText){
 				var res = JSON.parse(responseText);
-				model.saveArray(res.data);
 				refresh(render_personal_health);
 				closeBox();
 				loading.finish();

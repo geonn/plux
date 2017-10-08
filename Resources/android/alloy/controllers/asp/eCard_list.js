@@ -9,12 +9,10 @@ function __processArg(obj, key) {
 
 function Controller() {
     function navToEcard(e) {
-        var id = parent({
-            name: "source"
-        }, e.source);
-        console.log(id);
+        console.log("navToEcard");
+        console.log(e.source);
         nav.navigateWithArgs("asp/eCard", {
-            u_id: id
+            user: e.source.user
         });
     }
     function render_ecard_list() {
@@ -23,24 +21,25 @@ function Controller() {
             var row = Titanium.UI.createTableViewRow({
                 touchEnabled: true,
                 height: 50,
-                source: data[i].id,
+                user: data[i],
                 backgroundSelectedColor: "#FFE1E1",
                 color: "transparent"
             });
             var rowView = $.UI.create("View", {
-                classes: [ "wfill", "hfill" ],
-                source: data[i].id
+                touchEnabled: false,
+                classes: [ "wfill", "hfill" ]
             });
             var Label_name = $.UI.create("Label", {
+                touchEnabled: false,
                 classes: [ "themeColor", "h5", "bold", "padding", "hfill" ],
                 text: data[i].name || "",
                 font: {
                     fontSize: 14
                 },
-                source: data[i].id,
                 textAlign: "left"
             });
             var forwardImg = $.UI.create("ImageView", {
+                touchEnabled: false,
                 classes: [ "wsize", "hsize" ],
                 image: "/images/btn-forward.png",
                 width: 15,
@@ -51,13 +50,13 @@ function Controller() {
             rowView.add(forwardImg);
             row.add(rowView);
             $.inner_box.appendRow(row);
-            rowView.addEventListener("click", navToEcard);
+            row.addEventListener("click", navToEcard);
         }
     }
     function refresh() {
         loading.start();
-        var usersModel = Alloy.createCollection("users");
-        data = usersModel.getUserByEmpNo();
+        var dependent = Ti.App.Properties.getString("dependent");
+        data = JSON.parse(dependent);
         render_ecard_list();
         loading.finish();
     }
@@ -86,28 +85,28 @@ function Controller() {
         navTintColor: "#CE1D1C"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId519 = Ti.UI.createView({
+    $.__views.__alloyId514 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
-        id: "__alloyId519"
+        id: "__alloyId514"
     });
-    $.__views.win.add($.__views.__alloyId519);
-    $.__views.__alloyId520 = Ti.UI.createView({
+    $.__views.win.add($.__views.__alloyId514);
+    $.__views.__alloyId515 = Ti.UI.createView({
         top: 0,
         layout: "horizontal",
         height: 50,
         width: Ti.UI.FILL,
         backgroundColor: "#DEDEDE",
-        id: "__alloyId520"
+        id: "__alloyId515"
     });
-    $.__views.__alloyId519.add($.__views.__alloyId520);
-    $.__views.__alloyId521 = Ti.UI.createView({
+    $.__views.__alloyId514.add($.__views.__alloyId515);
+    $.__views.__alloyId516 = Ti.UI.createView({
         left: 0,
         width: "20%",
-        id: "__alloyId521"
+        id: "__alloyId516"
     });
-    $.__views.__alloyId520.add($.__views.__alloyId521);
+    $.__views.__alloyId515.add($.__views.__alloyId516);
     $.__views.btnBack = Ti.UI.createImageView({
         left: 10,
         id: "btnBack",
@@ -115,12 +114,12 @@ function Controller() {
         height: 25,
         image: "/images/btn-back.png"
     });
-    $.__views.__alloyId521.add($.__views.btnBack);
-    $.__views.__alloyId522 = Ti.UI.createView({
+    $.__views.__alloyId516.add($.__views.btnBack);
+    $.__views.__alloyId517 = Ti.UI.createView({
         width: "60%",
-        id: "__alloyId522"
+        id: "__alloyId517"
     });
-    $.__views.__alloyId520.add($.__views.__alloyId522);
+    $.__views.__alloyId515.add($.__views.__alloyId517);
     $.__views.pageTitle = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -132,16 +131,16 @@ function Controller() {
         id: "pageTitle",
         textAlign: "center"
     });
-    $.__views.__alloyId522.add($.__views.pageTitle);
-    $.__views.__alloyId523 = Ti.UI.createImageView({
+    $.__views.__alloyId517.add($.__views.pageTitle);
+    $.__views.__alloyId518 = Ti.UI.createImageView({
         width: Ti.UI.SIZE,
         top: 10,
         left: 10,
         right: 10,
         image: "/images/eCard-front.png",
-        id: "__alloyId523"
+        id: "__alloyId518"
     });
-    $.__views.__alloyId519.add($.__views.__alloyId523);
+    $.__views.__alloyId514.add($.__views.__alloyId518);
     $.__views.inner_box = Ti.UI.createTableView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -151,7 +150,7 @@ function Controller() {
         contentHeight: Ti.UI.SIZE,
         separatorColor: "#375540"
     });
-    $.__views.__alloyId519.add($.__views.inner_box);
+    $.__views.__alloyId514.add($.__views.inner_box);
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};

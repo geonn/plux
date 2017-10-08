@@ -15,36 +15,37 @@
 					<View id="tvrReceiptNo"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View  class="horz wfill " height="45"  textAlign="right" >
 							<Label text="Receipt Number" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receipt_no" bottom='5' right='5' textAlign="right" hintText="Receipt Number" /> 
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receipt_no" bottom='5' right='5' textAlign="right" maxLength="30" hintText="Receipt Number" /> 
 						</View>
+						<View class="gray-line" />
 					</View> 
-					<View class="gray-line" />
 					<View id="tvrCategory"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View  class="horz wfill " height="45"  textAlign="right" >
 							<Label text="Category" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<View width="auto"  class="right-align hsize" >
+							<View skip_checking="1" width="auto"  class="right-align hsize" >
 								<Label text="Choose Category" class="wfill padding padding-right font_dark_grey h6 right-align" top="12"  id="category"    /> 
 							</View>
 							
 						</View>
+						<View class="gray-line" />
 					</View> 
-					<View class="gray-line" />
 					
 					<View id="tvrClaimUnder"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill" height="45"  textAlign="right" >
 							<Label text="Claim Under" top="12" width="35%" class="h5 padding-left themeColor"  />  
-							<View width="auto"  class="right-align hsize" >
+							<View skip_checking="1" width="auto"  class="right-align hsize" >
 								<Label text="Choose Claim Under" class="wfill padding padding-right font_dark_grey h6 right-align" top="12"  id="claim_under"    />  
 							</View>
 							
 						</View>
+						<View class="gray-line" />
 					</View> 
-					<View class="gray-line" />
+					
 					
 					<View id="tvrReceiptAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="Receipt Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receiptAmount" bottom='5' right='5' textAlign="right" horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="Receipt amount in RM" >
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receiptAmount" bottom='5' right='5' textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="Receipt amount in RM" >
 								<KeyboardToolbar platform="ios">
 										<Toolbar>
 											<Items> 
@@ -55,14 +56,12 @@
 									</KeyboardToolbar>
 							</TextField>
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
-					
-					
 					<View id="tvrDateVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" onClick="showVisitPicker">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="Date of Visit" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<View width="auto"  class="right-align hsize" >
+							<View skip_checking="1" width="auto"  class="right-align hsize" >
 								<Label text="Date of visit a clinic" class="wfill padding padding-right font_dark_grey h6 right-align" top="12"  id="dateVisit"    />  
 							</View> 
 						</View>
@@ -72,17 +71,15 @@
 					<View id="tvrClinicVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="Clinic/Hospital Name" top="12" width="40%" class="h5 padding-left themeColor"  /> 
-							<View width="auto"  class="right-align hsize" >
-								<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="clinicName" top="5" bottom='5' right='5' textAlign="right" hintText="Clinic/Hospital Name" /> 
-							</View>  
+							
+							<TextField maxLength="40" class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="clinicName" top="5" bottom='5' right='5' textAlign="right" hintText="Clinic/Hospital Name" />  
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
-					
 					<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="85" textAlign="right" >
+						<View class="horz wfill " id="view_remark" height="85" textAlign="right" >
 							<Label text="Remark" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="remark"   bottom='5' right='5' textAlign="right" hintText="Claim remark" >
+							<TextField class="h6" borderColor="#ffffff" compulsory="0" backgroundColor="#ffffff" id="remark"   bottom='5' right='5' textAlign="right" hintText="Claim remark" >
 								<KeyboardToolbar platform="ios">
 										<Toolbar>
 											<Items> 
@@ -93,27 +90,25 @@
 									</KeyboardToolbar>
 							</TextField>
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
-					
 					<View id="tvrGstAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="GST Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<View width="auto"  class="right-align hsize" >
-								<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="gstAmount"  bottom='5' right='5'  textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD"  hintText="GST Amount (If applicable)" >
-									<KeyboardToolbar platform="ios">
-										<Toolbar>
-											<Items> 
-												<FlexSpace/>
-												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
-											</Items>
-										</Toolbar>
-									</KeyboardToolbar>
-								</TextField>
-							</View>
+							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="gstAmount"  bottom='5' right='5'  textAlign="right"  horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD"  hintText="GST Amount (If applicable)" >
+								<KeyboardToolbar platform="ios">
+									<Toolbar>
+										<Items> 
+											<FlexSpace/>
+											<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png" textAlign="right" right="5" width="20" height="20"  />
+										</Items>
+									</Toolbar>
+								</KeyboardToolbar>
+							</TextField>
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
+					
 					
 					<View id="tvrMc"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
@@ -129,16 +124,18 @@
 									</KeyboardToolbar>
 							</TextField>
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
+					
 					
 					<View id="tvrDiagnosis"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
 							<Label text="Diagnosis" top="12" width="35%" class="h5 padding-left themeColor"  /> 
 							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="diagnosis"  bottom='5' right='5' textAlign="right" hintText="Diagnosis" />
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" /> 
+					
 					
 					<View id="tvrGlAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
 						<View class="horz wfill " height="45" textAlign="right" >
@@ -154,8 +151,9 @@
 									</KeyboardToolbar>
 							</TextField>
 						</View>
+						<View class="gray-line" /> 
 					</View> 
-					<View class="gray-line" />  
+					 
 					<View class="wfill hsize" top="10"> 
 						<Button onClick="submitClaim"  id="saveBtn" title="Submit Claim" borderRadius="5" backgroundColor="#7B7B7B"    width="70%"  height="40" color="#ffffff" ></Button> 
 					</View> 

@@ -9,6 +9,7 @@ exports.definition = {
 		    "url" : "TEXT", 
 		    "is_read" : "TEXT",
 		    "extra" : "TEXT",
+		    "app_param": "TEXT",
 		    "content" : "TEXT",
 		    "target" : "TEXT",
 		    "created" : "TEXT",
@@ -58,9 +59,9 @@ exports.definition = {
 	                names.push(k);
 	            }
                 db = Ti.Database.open(collection.config.adapter.db_name); 
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE member_no=? AND status=1 AND (expired !='' OR expired <=?) ORDER BY id DESC" ;
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id=? AND status=1 ORDER BY id DESC" ;
                 
-                var res = db.execute(sql, e.member_no, currentDateTime());
+                var res = db.execute(sql, e.u_id);
                 var arr = []; 
                 var count = 0;
                 
@@ -81,7 +82,7 @@ exports.definition = {
 			},
 			getCountUnread : function(e){
 				var collection = this;
-                var u_id = Ti.App.Properties.getString('u_id')
+                var u_id = Ti.App.Properties.getString('u_id');
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT COUNT(*) AS total FROM " + collection.config.adapter.collection_name + " WHERE u_id=? and is_read='0'" ;
                console.log(sql);
@@ -114,6 +115,7 @@ exports.definition = {
 			},
 			saveArray : function(arr){ // 4th version of save array
 				var collection = this;
+				console.log(arr);
 				var columns = collection.config.columns;
 				var names = [];
 				for (var k in columns) {
@@ -148,6 +150,7 @@ exports.definition = {
 	                eval("db.execute(sql_query, "+eval_values.join()+")");
 				});
 				db.execute("COMMIT");
+				console.log(db.getRowsAffected()+" affected row");
 	            db.close();
 	            collection.trigger('sync');
 			},

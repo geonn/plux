@@ -27,7 +27,7 @@ function genderSelect(e){
 }
 var sending = false;
 function sendMessage(){
-	var model = Alloy.createCollection("helpline");
+	var model = Alloy.createCollection("chat");
 	if($.message.value == "" || sending || $.message.value == $.message._hintText){
 		alert("Please write something about your condition.");
 		return;

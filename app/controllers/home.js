@@ -1,13 +1,11 @@
 var args = arguments[0] || {};
 var expandmode = false;
-var usersModel = Alloy.createCollection('users'); 
 var loading = Alloy.createController('loading');
 
 var menu_info;
 var new_menu = [];
 
 common.construct($);
-PUSH.registerPush();
 
 var loadingView = Alloy.createController("loader");
 loadingView.getView().open();
@@ -25,8 +23,8 @@ function loadHomePageItem(){
 	console.log(Ti.App.Properties.getString('memno')+" Ti.App.Properties.getString('memno')");
 	var memno = Ti.App.Properties.getString('memno') || ""; 
 	if(memno !=""){
-		menu_info.push({mod:"benefit", image:"/images/btn/btn_my_claim_detail.png"});
-		menu_info.push({mod:"askDoctor/find_doctor", image:"/images/btn/btn_ask_me.png"});
+		menu_info.push({mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"});
+		menu_info.push({mod:"askDoctor/find_doctor", image:"/images/btn/btn_doctor.png"});
 		menu_info.push({mod:"eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"});
 		menu_info.push({mod:"inpatient_record", image:"/images/btn/inpatient.png"});
 		menu_info.push({mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"});
@@ -118,7 +116,7 @@ function render_menu(){
 		});
 		var view = $.UI.create("View", {classes: ['wsize','hsize'], top: topR});
 		if(new_menu[i].mod == "conversation"){
-			var model = Alloy.createCollection("helpline");
+			var model = Alloy.createCollection("chat");
 			var total = model.getCountUnread();
 			console.log(total+" total unread");
 			var view_notification = $.UI.create("View", { top:10, right:5, borderRadius: 15, backgroundColor: "#CE1D1C", width: 30, height: 30});
@@ -186,14 +184,12 @@ function init(){
 	}
 	setBackground();
 	syncFromServer();
-	loading.finish();
-	setTimeout(function(){
-		PUSH.setInApp();
-	},2000);
-	
+	var PUSH = require('push');
+	PUSH.registerPush();
 }
 
 function syncFromServer(){
+	loading.start();
 	console.log("syncFromServer");
 	var u_id = Ti.App.Properties.getString('u_id') || "";
 	if(u_id == 0){
@@ -211,14 +207,15 @@ function syncFromServer(){
 		"last_updated" : last_updated
 	};
  
-	API.callByPost({url:"getNotificationUrlV2", new:true, params: param}, function(responseText){ 
+	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){
 			var arr = res.data;
 			var notificationModel = Alloy.createCollection('notificationV2'); 
 			notificationModel.saveArray(arr);
 		 	checker.updateModule(2, "notificationList",res.last_updated, u_id); 
-		 	updateNotification({target: "notification"}); 
+		 	updateNotification({target: "notification", model: "notificationV2"}); 
+		 	loading.finish();
 		}
 	});
 	
@@ -233,10 +230,11 @@ function syncFromServer(){
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){
 			var arr = res.data;
-			var model = Alloy.createCollection("helpline");
+			var model = Alloy.createCollection("chat");
 			model.saveArray(arr);
 		 	checker.updateModule(7,"helpline",res.last_updated, u_id); 
-		 	updateNotification({target: "helpline"}); 
+		 	updateNotification({target: "helpline", model:"chat"}); 
+		 	loading.finish();
 		}
 	});
 }
@@ -264,7 +262,9 @@ function checkMyHealthData(){
 }
 
 function updateNotification(e){
-	var model = Alloy.createCollection("helpline"); 
+	console.log("updateNotification");
+	console.log(e);
+	var model = Alloy.createCollection(e.model); 
 	var unread_no = model.getCountUnread(); 
 	eval("label_"+e.target+".text = unread_no");
 }
@@ -300,8 +300,8 @@ function refreshHeaderInfo(){
 	});
 		 
 	var title_view = $.UI.create("View", {
-		width: "auto",
-		height: Ti.UI.FILL,
+		classes:['wfill','hsize'],
+		left: 50
 	});
 	var fullname = Ti.App.Properties.getString('fullname') || ""; 
 	var welcomeText = "Welcome "+fullname || "";
@@ -315,6 +315,9 @@ function refreshHeaderInfo(){
 	$.myInfo.add(title_view);
 }	 
 
+function redirect(e){
+	nav.navigationWindow(e.target,"","", e.app_param);
+} 
  
 function navWindow(e){
 	var target = e.source.mod;  
@@ -329,7 +332,7 @@ function navWindow(e){
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
-		var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS);
+		var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
 		console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
 		
 		if(hasLocationPermissions){
@@ -340,7 +343,9 @@ function navWindow(e){
 			});
 			//nav.navigationWindow("clinic/listing", 1);
 		}else{
-			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
+			console.log("permission request");
+			
+			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
 				if (e.success) {
 					nav.navigationWindow("clinic/listing");
 				}else if (OS_ANDROID) {
@@ -483,8 +488,10 @@ function contacts(ex) {
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);
+	Ti.App.removeEventListener('syncFromServer', syncFromServer);
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
 	Ti.App.removeEventListener('render_menu', render_menu); 
+	Ti.App.removeEventListener('redirect', redirect); 
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
 	Ti.App.removeEventListener('app:loadingViewFinish', loadingViewFinish);
@@ -492,7 +499,9 @@ $.win.addEventListener("close", function(){
 	 
 });
 Ti.App.addEventListener('render_menu', render_menu);
+Ti.App.addEventListener("redirect", redirect);
 Ti.App.addEventListener('resumed', syncFromServer);
+Ti.App.addEventListener('syncFromServer', syncFromServer);
 Ti.App.addEventListener('app:loadingViewFinish', loadingViewFinish);
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateMenu', checkserviceByCorpcode); 

@@ -3,6 +3,8 @@ var arg_name = (typeof args.name != "undefined")?args.name:"%";
 var title = (arg_name == "%")?"All Claim Records":arg_name;
 var nav = require('navigation');
 var loading = Alloy.createController("loading");
+var corpcode = Ti.App.Properties.getString('corpcode');
+var empno = Ti.App.Properties.getString('empno');
 
 if(Ti.Platform.osname == "android"){
 	$.pageTitle.text = title;
@@ -13,9 +15,8 @@ if(Ti.Platform.osname == "android"){
 function init(){
 	$.win.add(loading.getView());
 	loading.start();
-	var usersModel = Alloy.createCollection('users');
-	user = usersModel.getPrincipleData();
-	API.callByGet({url: "getClaimDetailUrl", params: "EMPNO="+user.empno+"&CORPCODE="+user.corpcode+"&PERIOD=ALL"}, function(responseText){
+	
+	API.callByGet({url: "getClaimDetailUrl", params: "EMPNO="+empno+"&CORPCODE="+corpcode+"&PERIOD=ALL"}, function(responseText){
 		var res = JSON.parse(responseText);
 		   if(res.length == 0){
 		   }else if( typeof res[0].message !== "undefined"){
@@ -215,6 +216,7 @@ function render(data){
 				//common.createAlert('Claim Details', 'Sorry, the claim details is not available.');
 				return false;
 			}else{ 
+				console.log(e.source.record);
 				nav.navigateWithArgs("asp/claimDetail", {serial: e.source.serial, appcode: e.source.appcode, record: e.source.record});
 			}
 			

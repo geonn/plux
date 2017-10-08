@@ -11,11 +11,7 @@ function Controller() {
     function init() {
         u_id = Ti.App.Properties.getString("u_id") || "";
         $.email.value = Ti.App.Properties.getString("plux_email") || "";
-        if ("" != u_id) {
-            var usersPluxModel = Alloy.createCollection("users_plux");
-            var plux_user = usersPluxModel.getUserById(u_id);
-            $.name.value = plux_user.fullname;
-        }
+        "" != u_id && ($.name.value = Ti.App.Properties.getString("fullname") || "");
     }
     function submitFeedback() {
         var name = $.name.value;

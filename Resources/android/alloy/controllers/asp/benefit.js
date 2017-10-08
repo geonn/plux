@@ -29,14 +29,14 @@ function Controller() {
         id: "win"
     });
     $.__views.win && $.addTopLevelView($.__views.win);
-    $.__views.__alloyId452 = Ti.UI.createView({
+    $.__views.__alloyId450 = Ti.UI.createView({
         layout: "vertical",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         backgroundColor: "#f5f5f5",
-        id: "__alloyId452"
+        id: "__alloyId450"
     });
-    $.__views.win.add($.__views.__alloyId452);
+    $.__views.win.add($.__views.__alloyId450);
     $.__views.surveyView = Ti.UI.createWebView({
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
@@ -44,7 +44,7 @@ function Controller() {
         id: "surveyView",
         url: "http://flexi.freejini.com.my/"
     });
-    $.__views.__alloyId452.add($.__views.surveyView);
+    $.__views.__alloyId450.add($.__views.surveyView);
     $.__views.defaultMsgView = Ti.UI.createView({
         layout: "vertical",
         height: "auto",
@@ -52,14 +52,14 @@ function Controller() {
         top: 5
     });
     $.__views.win.add($.__views.defaultMsgView);
-    $.__views.__alloyId453 = Ti.UI.createLabel({
+    $.__views.__alloyId451 = Ti.UI.createLabel({
         width: Titanium.UI.SIZE,
         height: Titanium.UI.SIZE,
         color: "#606060",
         text: "Page not found.",
-        id: "__alloyId453"
+        id: "__alloyId451"
     });
-    $.__views.defaultMsgView.add($.__views.__alloyId453);
+    $.__views.defaultMsgView.add($.__views.__alloyId451);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

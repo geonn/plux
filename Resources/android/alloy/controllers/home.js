@@ -13,46 +13,57 @@ function Controller() {
             mod: "feedback",
             image: "/images/btn/btn_feedback.png"
         }, {
-            mod: "benefit",
-            image: "/images/btn/btn_flexi_benefit.png"
-        }, {
-            mod: "clinicLocator",
-            image: "/images/btn/btn_clinic_location.png"
-        }, {
             mod: "hra",
             image: "/images/btn/btn_hra.png"
-        }, {
-            mod: "myMedicalRecord",
-            image: "/images/btn/btn_my_medical_record.png"
-        }, {
-            mod: "profile",
-            image: "/images/btn/btn_profile.png"
-        }, {
-            mod: "inpatient_record",
-            image: "/images/btn/inpatient.png"
-        }, {
-            mod: "claimSubmission",
-            image: "/images/btn/btn_claim_submission.png"
-        }, {
-            mod: "myClaim",
-            image: "/images/btn/btn_my_claim_detail.png"
         }, {
             mod: "myHealth",
             image: "/images/btn/btn_my_health.png"
         }, {
-            mod: "eCard_list",
-            image: "/images/btn/btn_asp_e_card_pass.png"
+            mod: "profile",
+            image: "/images/btn/btn_profile.png"
         }, {
-            mod: "askDoctor/find_doctor",
-            image: "/images/btn/btn_ask_doctor.png"
+            mod: "clinicLocator",
+            image: "/images/btn/btn_clinic_location.png"
         }, {
-            mod: "conversation",
-            image: "/images/btn/btn_ask_me.png"
-        }, {
+            mod: "myMedicalRecord",
+            image: "/images/btn/btn_my_medical_record.png"
+        } ];
+        console.log(Ti.App.Properties.getString("memno") + " Ti.App.Properties.getString('memno')");
+        var memno = Ti.App.Properties.getString("memno") || "";
+        if ("" != memno) {
+            menu_info.push({
+                mod: "benefit",
+                image: "/images/btn/btn_flexi_benefit.png"
+            });
+            menu_info.push({
+                mod: "askDoctor/find_doctor",
+                image: "/images/btn/btn_doctor.png"
+            });
+            menu_info.push({
+                mod: "eCard_list",
+                image: "/images/btn/btn_asp_e_card_pass.png"
+            });
+            menu_info.push({
+                mod: "inpatient_record",
+                image: "/images/btn/inpatient.png"
+            });
+            menu_info.push({
+                mod: "claimSubmission",
+                image: "/images/btn/btn_claim_submission.png"
+            });
+            menu_info.push({
+                mod: "myClaim",
+                image: "/images/btn/btn_my_claim_detail.png"
+            });
+            menu_info.push({
+                mod: "conversation",
+                image: "/images/btn/btn_ask_me.png"
+            });
+        }
+        menu_info.push({
             mod: "notification",
             image: "/images/btn/btn_notification.png"
-        } ];
-        console.log(menu_info.length + " loadHomePageItem");
+        });
     }
     function loadingViewFinish() {
         $.win.open();
@@ -116,8 +127,8 @@ function Controller() {
                 top: topR
             });
             if ("conversation" == new_menu[i].mod) {
-                var model = Alloy.createCollection("helpline");
-                var total = model.getUnread();
+                var model = Alloy.createCollection("chat");
+                var total = model.getCountUnread();
                 console.log(total + " total unread");
                 var view_notification = $.UI.create("View", {
                     top: 10,
@@ -127,11 +138,8 @@ function Controller() {
                     width: 30,
                     height: 30
                 });
-                var label_notification = $.UI.create("Label", {
-                    text: total,
-                    color: "#ffffff"
-                });
-                view_notification.add(label_notification);
+                label_helpline.text = total;
+                view_notification.add(label_helpline);
                 view.add(imageView_menu);
                 view.add(view_notification);
                 total > 0 && popup({
@@ -142,10 +150,9 @@ function Controller() {
                     }
                 });
             } else if ("notification" == new_menu[i].mod) {
-                var memno = "" != Ti.App.Properties.getString("memno") ? Ti.App.Properties.getString("memno") : Ti.App.Properties.getString("ic_no");
-                var total = notificationModel.getCountUnread({
-                    member_no: memno
-                });
+                var memno = Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no");
+                var notificationModel = Alloy.createCollection("notificationV2");
+                var total = notificationModel.getCountUnread();
                 console.log(total + " total unread" + memno);
                 var view_notification = $.UI.create("View", {
                     top: 10,
@@ -155,7 +162,8 @@ function Controller() {
                     width: 30,
                     height: 30
                 });
-                view_notification.add(notification_number_label);
+                label_notification.text = total;
+                view_notification.add(label_notification);
                 view.add(imageView_menu);
                 view.add(view_notification);
             } else view.add(imageView_menu);
@@ -200,56 +208,45 @@ function Controller() {
             }
         }
         setBackground();
-        loading.finish();
-        setTimeout(function() {
-            PUSH.setInApp();
-        }, 2e3);
+        syncFromServer();
+        var PUSH = require("push");
+        PUSH.registerPush();
     }
     function syncFromServer() {
+        loading.start();
         console.log("syncFromServer");
+        var u_id = Ti.App.Properties.getString("u_id") || "";
+        if (0 == u_id) return;
         var checker = Alloy.createCollection("updateChecker");
-        var isUpdate = checker.getCheckerById("2");
+        var isUpdate = checker.getCheckerById(2, u_id);
         var last_updated = "";
         "" != isUpdate && (last_updated = isUpdate.updated);
         var param = {
-            member_no: Ti.App.Properties.getString("memno") || Ti.App.Properties.getString("ic_no"),
+            u_id: u_id,
             last_updated: last_updated
         };
         API.callByPost({
-            url: "getNotificationUrl",
+            url: "getNotificationV2",
+            domain: "FREEJINI_DOMAIN",
+            "new": true,
             params: param
         }, function(responseText) {
             var res = JSON.parse(responseText);
             if ("success" == res.status) {
-                var record = res.data;
-                if (record.length > 0) {
-                    record.forEach(function(entry) {
-                        var param = {
-                            id: entry.id || "",
-                            member_no: entry.member_no || "",
-                            subject: entry.subject || "",
-                            message: entry.message || "",
-                            status: entry.status || 1,
-                            url: entry.url || "",
-                            status: entry.status || "",
-                            expired: entry.expired || "",
-                            detail: entry.detail || "",
-                            created: entry.created,
-                            updated: entry.updated,
-                            from: "home"
-                        };
-                        notificationModel.addData(param);
-                    });
-                    checker.updateModule("2", "notificationList", res.last_updated);
-                    updateNotification();
-                }
+                var arr = res.data;
+                var notificationModel = Alloy.createCollection("notificationV2");
+                notificationModel.saveArray(arr);
+                checker.updateModule(2, "notificationList", res.last_updated, u_id);
+                updateNotification({
+                    target: "notification",
+                    model: "notificationV2"
+                });
+                loading.finish();
             }
         });
-        var u_id = Ti.App.Properties.getString("u_id") || 0;
         var isUpdate = checker.getCheckerById(7, u_id);
-        var last_updated = isUpdate.updated || "";
-        var u_id = Ti.App.Properties.getString("u_id") || 0;
-        console.log(u_id + " u_id what ");
+        var last_updated = "";
+        "" != isUpdate && (last_updated = isUpdate.updated);
         API.callByPost({
             url: "getHelplineMessageV3",
             params: {
@@ -257,148 +254,127 @@ function Controller() {
                 last_updated: last_updated
             }
         }, function(responseText) {
-            var model = Alloy.createCollection("helpline");
             var res = JSON.parse(responseText);
-            var arr = res.data || void 0;
-            model.saveArray(arr);
-            checker.updateModule("7", "notificationList", res.last_updated, u_id);
-            render_menu();
+            if ("success" == res.status) {
+                var arr = res.data;
+                var model = Alloy.createCollection("chat");
+                model.saveArray(arr);
+                checker.updateModule(7, "helpline", res.last_updated, u_id);
+                updateNotification({
+                    target: "helpline",
+                    model: "chat"
+                });
+                loading.finish();
+            }
         });
     }
-    function updateNotification() {
-        Ti.App.Properties.getString("memno") || "";
-        var gotNotification = notificationModel.getCountUnread({
-            member_no: Ti.App.Properties.getString("memno")
+    function checkMyHealthData() {
+        var u_id = Ti.App.Properties.getString("u_id") || "";
+        var checker = Alloy.createCollection("updateChecker");
+        var isUpdate = checker.getCheckerById("14", u_id);
+        var last_updated = "";
+        "" != isUpdate && (last_updated = isUpdate.updated);
+        API.callByPost({
+            url: "getHealthDataByUser",
+            params: {
+                u_id: u_id,
+                last_updated: last_updated
+            }
+        }, function(responseText) {
+            var model2 = Alloy.createCollection("health");
+            var res2 = JSON.parse(responseText);
+            var arr2 = res2.data || null;
+            model2.saveArray(arr2);
+            checker.updateModule(14, "getHealthDataByUser", res2.last_updated, u_id);
         });
-        parseInt(gotNotification) > 0 ? notification_number_label.text = gotNotification : notification_number_label.text = 0;
+    }
+    function updateNotification(e) {
+        console.log("updateNotification");
+        console.log(e);
+        var model = Alloy.createCollection(e.model);
+        var unread_no = model.getCountUnread();
+        eval("label_" + e.target + ".text = unread_no");
     }
     function refreshHeaderInfo() {
-        var auth = require("auth_login");
+        var memno = Ti.App.Properties.getString("memno") || "";
         removeAllChildren($.myInfo);
-        var u_id = Ti.App.Properties.getString("u_id");
-        if (auth.checkLogin()) {
-            $.logo.image = "/images/asp_logo.png";
-            var me = usersModel.getUserByMemno();
-            var button_view = $.UI.create("View", {
-                width: Ti.UI.SIZE,
-                height: Ti.UI.FILL
+        Ti.App.Properties.getString("u_id");
+        $.logo.image = "" == memno ? "/images/logo_plux.png" : "/images/asp_logo.png";
+        var logoutBtn = Ti.UI.createButton({
+            backgroundImage: "/images/btn-logout.png",
+            width: 40,
+            height: 40,
+            left: 5,
+            right: 5,
+            zIndex: 20
+        });
+        logoutBtn.addEventListener("click", function() {
+            var dialog = Ti.UI.createAlertDialog({
+                cancel: 0,
+                buttonNames: [ "Cancel", "Confirm" ],
+                message: "Would you like to logout?",
+                title: "Logout"
             });
-            var logoutBtn = Ti.UI.createButton({
-                backgroundImage: "/images/btn-logout.png",
-                width: 40,
-                height: 40,
-                left: 5,
-                right: 5
+            dialog.addEventListener("click", function(e) {
+                1 === e.index && logoutUser();
             });
-            logoutBtn.addEventListener("click", function() {
-                var dialog = Ti.UI.createAlertDialog({
-                    cancel: 0,
-                    buttonNames: [ "Cancel", "Confirm" ],
-                    message: "Would you like to logout?",
-                    title: "Logout PLUX"
-                });
-                dialog.addEventListener("click", function(e) {
-                    e.index === e.source.cancel;
-                    1 === e.index && logoutUser();
-                });
-                dialog.show();
-            });
-            var title_view = $.UI.create("View", {
-                width: "auto",
-                height: Ti.UI.FILL
-            });
-            var welcomeTitle = $.UI.create("Label", {
-                text: "Welcome, " + me.name,
-                classes: [ "welcome_text" ]
-            });
-            title_view.add(welcomeTitle);
-            button_view.add(logoutBtn);
-            $.myInfo.add(button_view);
-            $.myInfo.add(title_view);
-        } else {
-            $.logo.image = "/images/logo_plux.png";
-            var plux_user = usersPluxModel.getUserById(u_id);
-            var logoutBtn = Ti.UI.createButton({
-                backgroundImage: "/images/btn-logout.png",
-                width: 40,
-                height: 40,
-                left: 5,
-                right: 5,
-                zIndex: 20
-            });
-            logoutBtn.addEventListener("click", function() {
-                var dialog = Ti.UI.createAlertDialog({
-                    cancel: 0,
-                    buttonNames: [ "Cancel", "Confirm" ],
-                    message: "Would you like to logout?",
-                    title: "Logout PLUX"
-                });
-                dialog.addEventListener("click", function(e) {
-                    e.index === e.source.cancel;
-                    1 === e.index && logoutUser();
-                });
-                dialog.show();
-            });
-            var title_view = $.UI.create("View", {
-                width: "auto",
-                height: Ti.UI.FILL
-            });
-            var welcomeText = "undefined" != plux_user.fullname ? "Welcome, " + plux_user.fullname : "Welcome";
-            var welcomeTitle = $.UI.create("Label", {
-                text: welcomeText,
-                classes: [ "welcome_text" ]
-            });
-            title_view.add(welcomeTitle);
-            $.myInfo.add(logoutBtn);
-            $.myInfo.add(title_view);
-            $.logo.addEventListener("click", function() {
-                nav.navigationWindow("aboutUs");
-            });
-        }
+            dialog.show();
+        });
+        var title_view = $.UI.create("View", {
+            classes: [ "wfill", "hsize" ],
+            left: 50
+        });
+        var fullname = Ti.App.Properties.getString("fullname") || "";
+        var welcomeText = "Welcome " + fullname || "";
+        var welcomeTitle = $.UI.create("Label", {
+            text: welcomeText,
+            classes: [ "welcome_text" ]
+        });
+        title_view.add(welcomeTitle);
+        $.myInfo.add(logoutBtn);
+        $.myInfo.add(title_view);
+    }
+    function redirect(e) {
+        nav.navigationWindow(e.target, "", "", e.app_param);
     }
     function navWindow(e) {
         var target = e.source.mod;
         console.log(target + " target");
         if ("eCard" == e.source.mod || "benefit" == e.source.mod || "eCard_list" == e.source.mod || "myClaim" == e.source.mod || "claimSubmission" == e.source.mod || "notification" == e.source.mod) "notification" == e.source.mod ? nav.navigationWindow("asp/" + target) : nav.navigationWindow("asp/" + target, 1); else if ("myHealth" == e.source.mod) nav.navigationWindow(target + "/main"); else if ("clinicLocator" == e.source.mod) {
-            var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS);
+            var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
             console.log("Ti.Geolocation.hasLocationPermissions", hasLocationPermissions);
-            hasLocationPermissions ? contacts({
+            if (hasLocationPermissions) contacts({
                 callback: function() {
                     console.log("why not calling");
-                    nav.navigationWindow("clinic/listing", 1);
+                    nav.navigationWindow("clinic/listing");
                 }
-            }) : Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
-                e.success ? nav.navigationWindow("clinic/listing", 1) : alert("You denied permission for now, forever or the dialog did not show at all because it you denied forever before.");
-            });
+            }); else {
+                console.log("permission request");
+                Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
+                    e.success ? nav.navigationWindow("clinic/listing") : alert("You denied permission for now, forever or the dialog did not show at all because it you denied forever before.");
+                });
+            }
         } else if ("conversation" == e.source.mod) nav.navigationWindow(target, 1); else {
             console.log(target + " target");
             nav.navigationWindow(target);
         }
     }
     function logoutUser() {
-        loading.start();
-        var isCorpCode = Ti.App.Properties.getString("corpcode");
-        removeAllChildren($.scrollboard);
-        loadHomePageItem();
-        new_menu = menu_info;
-        render_menu();
-        if ("" == isCorpCode || "null" == isCorpCode || null == isCorpCode) {
-            Ti.App.Properties.removeProperty("memno");
-            Ti.App.Properties.setString("u_id", "");
-            FACEBOOK.logout();
-            var win = Alloy.createController("login").getView();
-            win.open();
-            console.log("window sudah close");
-            $.win.close();
-            return;
-        }
+        Ti.App.Properties.removeProperty("fullname");
+        Ti.App.Properties.removeProperty("plux_user_status");
+        Ti.App.Properties.removeProperty("last_login");
+        Ti.App.Properties.removeProperty("u_id");
+        Ti.App.Properties.removeProperty("ic_no");
+        Ti.App.Properties.removeProperty("plux_email");
         Ti.App.Properties.removeProperty("memno");
         Ti.App.Properties.removeProperty("empno");
         Ti.App.Properties.removeProperty("corpcode");
-        Ti.App.Properties.removeProperty("asp_email");
-        Ti.App.Properties.removeProperty("asp_password");
-        refreshHeaderInfo();
-        loading.finish();
+        Ti.App.Properties.removeProperty("cardno");
+        Ti.App.Properties.removeProperty("dependent");
+        var win = Alloy.createController("login").getView();
+        win.open();
+        console.log("window sudah close");
+        $.win.close();
     }
     function setBackground() {
         var home_background = Alloy.createCollection("home_background");
@@ -419,12 +395,13 @@ function Controller() {
     this.__controllerPath = "home";
     this.args = arguments[0] || {};
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        var __parentSymbol = __processArg(arguments[0], "__parentSymbol");
+        var $model = __processArg(arguments[0], "$model");
+        var __itemTemplate = __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.win = Ti.UI.createWindow({
         backgroundColor: "#ffffff",
         orientationModes: [ Ti.UI.PORTRAIT ],
@@ -534,21 +511,23 @@ function Controller() {
     $.__views.scrollboard1.add($.__views.scrollboard);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    arguments[0] || {};
-    var usersModel = Alloy.createCollection("users");
+    var args = arguments[0] || {};
+    var expandmode = false;
     var loading = Alloy.createController("loading");
-    var usersPluxModel = Alloy.createCollection("users_plux");
-    var notificationModel = Alloy.createCollection("notification");
     var menu_info;
     var new_menu = [];
     common.construct($);
-    PUSH.registerPush();
     var loadingView = Alloy.createController("loader");
     loadingView.getView().open();
     loadingView.start();
     console.log("Empno" + Ti.App.Properties.getString("empno") + " corpcode:" + Ti.App.Properties.getString("corpcode"));
-    var notification_number_label = $.UI.create("Label", {
+    var label_notification = $.UI.create("Label", {
         id: "notificationText",
+        text: 0,
+        color: "#ffffff"
+    });
+    var label_helpline = $.UI.create("Label", {
+        text: 0,
         text: 0,
         color: "#ffffff"
     });
@@ -567,15 +546,19 @@ function Controller() {
     Ti.Android.currentActivity.onResume = syncFromServer;
     $.win.addEventListener("close", function() {
         Ti.App.removeEventListener("resumed", syncFromServer);
+        Ti.App.removeEventListener("syncFromServer", syncFromServer);
         Ti.App.removeEventListener("updateNotification", updateNotification);
         Ti.App.removeEventListener("render_menu", render_menu);
+        Ti.App.removeEventListener("redirect", redirect);
         Ti.App.removeEventListener("updateHeader", refreshHeaderInfo);
         Ti.App.removeEventListener("updateMenu", checkserviceByCorpcode);
         Ti.App.removeEventListener("app:loadingViewFinish", loadingViewFinish);
         $.destroy();
     });
     Ti.App.addEventListener("render_menu", render_menu);
+    Ti.App.addEventListener("redirect", redirect);
     Ti.App.addEventListener("resumed", syncFromServer);
+    Ti.App.addEventListener("syncFromServer", syncFromServer);
     Ti.App.addEventListener("app:loadingViewFinish", loadingViewFinish);
     Ti.App.addEventListener("updateNotification", updateNotification);
     Ti.App.addEventListener("updateMenu", checkserviceByCorpcode);

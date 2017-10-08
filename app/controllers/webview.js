@@ -1,6 +1,8 @@
 var args = arguments[0] || {};
 var url = args.url || "";
-var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">'+ args.html+"</html>" || "";
+console.log(args);
+var content = (args.content != "")?args.content:args.subject;
+var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">'+ content+"</html>" || "";
 if(url != ""){ 
  	$.surveyView.url = url;  
 	$.defaultMsgView.height = 0; 
@@ -8,7 +10,7 @@ if(url != ""){
 	if(HTMLcontent != ""){
 		HTMLcontent = HTMLcontent.replace(/\[\[/g, "<"); 
 		HTMLcontent = HTMLcontent.replace(/\]\]/g, ">"); 
-		$.surveyView.setHtml(HTMLcontent);
+		$.surveyView.setHtml(nl2br(HTMLcontent));
 		$.defaultMsgView.height = 0;	
 	}else{
 		$.surveyView.height = 0;
@@ -17,4 +19,9 @@ if(url != ""){
 
 function closeWindow(){
 	$.win.close();
+}
+
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }

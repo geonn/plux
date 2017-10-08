@@ -476,6 +476,7 @@ exports.do_pluxLogin = function(data, callback){
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('ic_no', result.data.ic_no);
 				Ti.App.Properties.setString('plux_email',result.data.email);
+				Ti.App.Properties.setString('isver', result.data.isver);
 				if(typeof result.data.user_service != "undefined"){
 					console.log(result.data.user_service.memno+" result.data.user_service.memno");
 					Ti.App.Properties.setString('memno', result.data.user_service[0].memno);
@@ -578,8 +579,7 @@ exports.do_asp_presignup = function(data, mainView){
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
-	       }else{ 
-	       		var usersModel = Alloy.createCollection('users'); 
+	       }else{  
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
@@ -623,13 +623,11 @@ exports.do_asp_signup = function(data, mainView){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
 	       }else{ 
-	       		var usersModel = Alloy.createCollection('users'); 
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
 	       		Ti.App.Properties.setString('asp_email', data.email);
 	       		
-	       		usersModel.addUserData(result);
 	       		Ti.App.Properties.setString('signup2', "");
 	       		if(u_id != ""){
 	       			console.log(u_id+" "+data.email+" "+data.password);
@@ -645,7 +643,6 @@ exports.do_asp_signup = function(data, mainView){
 					
 					API.plux_signup(params, function(e){
 						u_id = Ti.App.Properties.getString('u_id') || "";
-						console.log(u_id+" "+data.email+" "+data.password);
 						updateUserService(u_id, 1, data.email, data.password);
 					});
 	       		}
@@ -703,8 +700,7 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
-	       }else{
-	       		var usersModel = Alloy.createCollection('users'); 
+	       }else{ 
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
@@ -716,8 +712,6 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		console.log("empno:"+Ti.App.Properties.getString("empno")+" "+Ti.App.Properties.getString("corpcode"));	       		
 	       		updateUserService(u_id, 1,username, password);
 	       		console.log(result);
-	       		usersModel.resetData();
-	       		usersModel.addUserData(result);
 	       		API.updateNotificationToken();  
 	       		Ti.App.fireEvent('updateMenu');
 	       		
@@ -823,7 +817,7 @@ exports.doChangePassword = function(e, mainView) {
 	 client.send(); 
 }; 
 
-exports.claimDetailBySeries = function(e){
+exports.claimDetailBySeries = function(e, callback){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	console.log(url);
@@ -832,18 +826,9 @@ exports.claimDetailBySeries = function(e){
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       if(res.length == 0){
-	       	
-	       	}else if( typeof res[0].message !== "undefined"){
-	       		//console.log('got error message');
-	       		common.createAlert(res[0].message);
-	       }else{
-       			res.forEach(function(entry) {
-       				 var claim_detail_model = Alloy.createCollection('claim_detail');
-       				 claim_detail_model.save_claim_extra_detail(entry.serial,entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse);
-       			});
-	       }
-	       Ti.App.fireEvent("load_claim_detail");
+	       
+	       callback(res[0]);
+	       //Ti.App.fireEvent("load_claim_detail");
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
@@ -1391,8 +1376,8 @@ exports.callByPost = function(e, onload, onerror){
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
-		
-		var url = (typeof e.new != "undefined")?"http://"+API_DOMAIN+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
+		var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
+		var url = (typeof e.new != "undefined")?"http://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		console.log(url); 
 		console.log(e.type+"  e.type");
 		if(e.type == "voice"){

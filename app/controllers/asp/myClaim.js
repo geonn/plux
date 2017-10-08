@@ -1,5 +1,4 @@
 var args = arguments[0] || {};  
-var usersModel = Alloy.createCollection('users');
 var loading = Alloy.createController("loading");
 
 common.construct($);
@@ -9,14 +8,17 @@ loading.start();
 loadPage();
 
 function loadPage(){
-	
-	user = usersModel.getPrincipleData();
-	if(user.isver == "true" || user.isver > 0){
+	var isver = Ti.App.Properties.getString('isver');
+	var corpcode = Ti.App.Properties.getString('corpcode');
+	var memno = Ti.App.Properties.getString('memno');
+	var empno = Ti.App.Properties.getString('empno');
+	console.log(isver+" "+corpcode+" "+memno+" "+empno);
+	if(isver == "true" || isver > 0){
 		$.verifyContainer.hide();
 		$.claimContainer.show();
-		API.claimInfo({memno : user.memno, corpcode : user.corpcode});
+		API.claimInfo({memno : memno, corpcode : corpcode});
 		//API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
-		API.ifins({empno : user.empno, corpcode : user.corpcode});
+		API.ifins({empno : empno, corpcode : corpcode});
 	}else{ 
 		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
 		$.verifyContainer.show();

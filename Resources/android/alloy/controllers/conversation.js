@@ -9,11 +9,11 @@ function __processArg(obj, key) {
 
 function Controller() {
     function saveLocal(param) {
-        var model_name = 0 == dr_id ? "helpline" : "chat";
-        var model = Alloy.createCollection(model_name);
+        var model = Alloy.createCollection("chat");
         var app_id = Math.random().toString(36).substr(2, 10);
         var local_save = {
             u_id: u_id,
+            id: app_id,
             sender_id: u_id,
             message: param.message,
             created: common.now(),
@@ -22,13 +22,10 @@ function Controller() {
             format: param.format,
             status: 1,
             app_id: app_id,
-            sender_name: user.fullname
+            sender_name: Ti.App.Properties.getString("fullname") || ""
         };
-        dr_id > 0 && (local_save = _.extend(local_save, {
-            id: app_id
-        }));
-        var id = model.saveArray([ local_save ]);
-        app_id = 0 == dr_id ? id : app_id;
+        console.log(local_save);
+        model.saveArray([ local_save ]);
         var api_param = {
             u_id: u_id,
             dr_id: dr_id,
@@ -87,6 +84,7 @@ function Controller() {
     }
     function render_conversation(latest) {
         !latest;
+        console.log(data);
         latest && data.reverse();
         for (var i = 0; i < data.length; i++) {
             var view_container = $.UI.create("View", {
@@ -203,8 +201,7 @@ function Controller() {
                 });
                 dialog.addEventListener("click", function(ex) {
                     if (ex.index === ex.source.cancel) ; else if (0 == ex.index) {
-                        var model_name = 0 == dr_id ? "helpline" : "chat";
-                        var model = Alloy.createCollection(model_name);
+                        var model = Alloy.createCollection("chat");
                         model.removeById(m_id);
                         $.inner_area.remove(message_box);
                     }
@@ -228,7 +225,6 @@ function Controller() {
     }
     function getConversationByRoomId(callback) {
         var url = 0 == dr_id ? "getHelplineMessageV3" : "getMessage";
-        var model_name = 0 == dr_id ? "helpline" : "chat";
         var checker_id = 0 == dr_id ? 7 : 19;
         var checker = Alloy.createCollection("updateChecker");
         var u_id = Ti.App.Properties.getString("u_id") || 0;
@@ -248,7 +244,7 @@ function Controller() {
                 last_updated: last_updated
             }
         }, function(responseText) {
-            var model = Alloy.createCollection(model_name);
+            var model = Alloy.createCollection("chat");
             console.log("check here " + room_id);
             var res = JSON.parse(responseText);
             var arr = res.data || void 0;
@@ -271,6 +267,10 @@ function Controller() {
         });
     }
     function scrollToBottom() {
+        console.log("is that possible here?");
+        console.log(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1));
+        var pHeight = Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1);
+        console.log($.inner_area.rect.height - pHeight + 110);
         $.chatroom.scrollToBottom();
     }
     function refresh(callback, firsttime) {
@@ -283,8 +283,7 @@ function Controller() {
             });
             loading.finish();
             refreshing = false;
-            var model_name = 0 == dr_id ? "helpline" : "chat";
-            var model = Alloy.createCollection(model_name);
+            var model = Alloy.createCollection("chat");
             model.messageRead({
                 u_id: u_id
             });
@@ -304,9 +303,9 @@ function Controller() {
         }
     }
     function getPreviousData(param) {
-        start = parseInt(start);
-        var model_name = 0 == dr_id ? "helpline" : "chat";
-        var model = Alloy.createCollection(model_name);
+        console.log(console.log(typeof start));
+        start = "undefined" != typeof start ? start : 0;
+        var model = Alloy.createCollection("chat");
         console.log(dr_id + " dr_id");
         data = model.getData(false, start, anchor, "", dr_id);
         var estimate_time = Ti.App.Properties.getString("estimate_time");
@@ -327,10 +326,8 @@ function Controller() {
         }, 500);
     }
     function getLatestData() {
-        var model_name = 0 == dr_id ? "helpline" : "chat";
-        var model = Alloy.createCollection(model_name);
-        console.log(last_id + " last id");
-        data = model.getData(true, "", "", 0 == dr_id ? last_id : last_update, dr_id);
+        var model = Alloy.createCollection("chat");
+        data = model.getData(true, "", "", last_update, dr_id);
         var estimate_time = Ti.App.Properties.getString("estimate_time");
         if (0 != estimate_time) {
             $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
@@ -589,8 +586,6 @@ function Controller() {
     var refreshIntervalId;
     var retry = 0;
     var u_id = Ti.App.Properties.getString("u_id") || 0;
-    var user_model = Alloy.createCollection("users_plux");
-    var user = user_model.getUserById(u_id);
     var last_id = 0;
     var last_uid;
     var status_text = [ "", "Sending", "Sent", "Read" ];
@@ -599,6 +594,10 @@ function Controller() {
         record_callback: saveLocal
     });
     var sending = false;
+    $.chatroom.addEventListener("scroll", function(e) {
+        $.inner_area.rect.height;
+        pixelToDp(e.y) + e.source.rect.height;
+    });
     var refreshing = false;
     var time_offset = common.now();
     init();

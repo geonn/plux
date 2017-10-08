@@ -70,27 +70,6 @@ function Controller() {
     function closeBox() {
         $.forgetPasswordBox.hide();
     }
-    function loginFacebook(e) {
-        if (e.success) {
-            loading.start();
-            FACEBOOK.requestWithGraphPath("me", {
-                fields: "id, email,name,link"
-            }, "GET", function(e) {
-                if (e.success) {
-                    var fbRes = JSON.parse(e.result);
-                    Ti.App.Properties.setString("plux_email", fbRes.email);
-                    API.updateUserFromFB({
-                        email: fbRes.email,
-                        fbid: fbRes.id,
-                        link: fbRes.link,
-                        name: fbRes.name,
-                        gender: fbRes.gender
-                    }, $);
-                }
-            });
-            FACEBOOK.removeEventListener("login", loginFacebook);
-        } else e.error ? loading.finish() : e.cancelled && loading.finish();
-    }
     require("/alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "login";
     this.args = arguments[0] || {};
@@ -341,7 +320,6 @@ function Controller() {
     arguments[0] || {};
     var singleton = true;
     common.construct($);
-    var usersPluxModel = Alloy.createCollection("users_plux");
     var preset_email = Ti.App.Properties.getString("plux_email") || "";
     var loading = Alloy.createController("loading");
     $.win.add(loading.getView());
@@ -351,26 +329,6 @@ function Controller() {
     $.password.addEventListener("return", function() {
         doLogin();
     });
-    $.win.fbProxy = FACEBOOK.createActivityWorker({
-        lifecycleContainer: $.win
-    });
-    FACEBOOK.addEventListener("login", loginFacebook);
-    var touchLogin = function() {
-        var email = $.email.value;
-        var userData = usersPluxModel.getUserByEmail(email);
-        if (userData && "" != email) {
-            Ti.App.removeEventListener("touchLogin", touchLogin);
-            API.getUserService({
-                u_id: userData.id
-            });
-            Ti.App.Properties.setString("u_id", userData.id);
-            Ti.App.Properties.setString("plux_email", userData.email);
-            Ti.App.fireEvent("updateHeader");
-            $.win.close();
-            var win = Alloy.createController("home").getView();
-            win.open();
-        }
-    };
     var loginAfterRegister = function(e) {
         var email = e.params.email;
         var password = e.params.password;
@@ -387,7 +345,6 @@ function Controller() {
             $.win.close();
         });
     };
-    Ti.App.addEventListener("touchLogin", touchLogin);
     Ti.App.addEventListener("loginAfterRegister", loginAfterRegister);
     $.win.addEventListener("android:back", function(e) {
         var dialog = Ti.UI.createAlertDialog({
@@ -407,7 +364,6 @@ function Controller() {
     });
     $.win.addEventListener("close", function() {
         console.log("window login close");
-        Ti.App.removeEventListener("touchLogin", touchLogin);
         Ti.App.removeEventListener("loginAfterRegister", loginAfterRegister);
         $.destroy();
     });

@@ -136,7 +136,7 @@ console.log(totalDisplayDuration+" totalDisplayDuration");
 		timer = setInterval(function() {
 			var currentTime = Math.round(audioPlayer.time);
 			console.log(getDuration()+" "+audioPlayer.time);
-			if(audioPlayer.time >= getDuration())
+			if(audioPlayer.time == 0)
 				stopTimer();
 			$.scrubBar.value = currentTime;
 

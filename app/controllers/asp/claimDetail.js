@@ -8,25 +8,24 @@ if(args.appcode.charAt(0) != "T"){
 		$.recepit.hide();
 	} 
 }
-
-API.claimDetailBySeries({serial : arg_serial});
+$.win.add(loading.getView());
+loading.start();
+API.claimDetailBySeries({serial : arg_serial}, init);
 var model = Alloy.createCollection('claim_detail'); 
 var appcode = "";
 common.construct($);
 
-Ti.App.addEventListener("load_claim_detail", init);
-
-function init(){ 
-	$.win.add(loading.getView());
-	loading.start();
+function init(data){ 
+	
 	//var data = model.getClaimDetailBySeries({serial : arg_serial});  
-	var data = args.record;
+	
 	console.log(data);
-	$.tv.appendRow(createTableViewRow("Clinic Name", data.clinicname));
+	console.log(args);
+	$.tv.appendRow(createTableViewRow("Clinic Name", args.record.clinicname));
 	//$.tv.appendRow(createTableViewRow("Patient Name", data.name));
-	$.tv.appendRow(createTableViewRow("Date Visit", data.visitdate));
-	$.tv.appendRow(createTableViewRow("Category", data.category));
-	$.tv.appendRow(createTableViewRow("MC Days", data.mcdays));
+	$.tv.appendRow(createTableViewRow("Date Visit", args.record.visitdate));
+	$.tv.appendRow(createTableViewRow("Category", args.record.category));
+	$.tv.appendRow(createTableViewRow("MC Days", args.record.mcdays));
 	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
 	 
 	/**if(data.cliniccode == "QLAB"){ 
@@ -157,5 +156,4 @@ if(Ti.Platform.osname == "android"){
 }
 
 $.win.addEventListener("close", function(){
-	Ti.App.removeEventListener("load_claim_detail", init);
 });

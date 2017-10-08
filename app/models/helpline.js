@@ -65,7 +65,7 @@ exports.definition = {
 					var sql_id = "";
 				}
 				
-				dr_id = (dr_id === 0)?"":dr_id;
+				dr_id = (dr_id === 0)?0:dr_id;
 				
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id'); 
@@ -155,6 +155,7 @@ exports.definition = {
 				for (var k in columns) {
 	                names.push(k);
 	            }
+	            console.log(names);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -182,6 +183,7 @@ exports.definition = {
                 	var without_pk_list = _.rest(update_questionmark);
 	                var without_pk_value = _.rest(eval_values);
 	                var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+questionmark.join()+")";
+	                console.log(sql_query);
 	                eval("db.execute(sql_query, "+eval_values.join()+")");
 				});
 				db.execute("COMMIT");

@@ -1,6 +1,5 @@
 var args = arguments[0] || {};
 
-
 function navProfile(e){
 	var target = e.source.mod; 
 	

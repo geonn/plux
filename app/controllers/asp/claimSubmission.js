@@ -1,8 +1,9 @@
 var args = arguments[0] || {};
 var isEdit = args.edit || "";
 var serial = args.serial || "";
-var usersModel = Alloy.createCollection('users');
-var user = usersModel.getPrincipleData();
+var corpcode = Ti.App.Properties.getString('corpcode');
+var empno = Ti.App.Properties.getString('empno');
+var name = Ti.App.Properties.getString('fullname');
 var claimCategoryArr = [];
 var claimCategoryIdArr = [];
 var claimName = [];
@@ -24,13 +25,23 @@ function init(){
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	userMem =  usersModel.getUserByEmpNo();
+	var dependent = Ti.App.Properties.getString('dependent');
+	userMem = JSON.parse(dependent);
 	userMem.forEach(function(entry) {  
 		claimName.push(entry.name);
 		claimMemNo.push(entry.memno);
 	}); 
 	claimName.push("Cancel"); 
 	getClaimCategory();	 	 
+	customize_setting();
+}
+
+function customize_setting(){
+	if(corpcode == "IFMY" || corpcode == "IFLP"){
+		$.view_remark.children[0].text = "Diagnosis / Illness";
+		$.view_remark.children[0].hintText = "Diagnosis / Illness";
+	}
+	loading.finish();
 }
 
 function checkIfHaveData(){
@@ -41,8 +52,7 @@ function checkIfHaveData(){
 		loading.start(); 
 		API.callByGet({url:"getclaimReimbUrl", params: params}, function(responseText){ 
 			var res = JSON.parse(responseText); 
-			claimMemId = res[0].memno;
-			var claimer = usersModel.getUserByMemno(res[0].memno); 
+			claimMemId = res[0].memno; 
 		 	$.receiptAmount.value = res[0].amt || "";
 		 	$.diagnosis.value = res[0].diagnosis || "";
 		 	$.glamount.value = res[0].glamt || 0;
@@ -56,7 +66,7 @@ function checkIfHaveData(){
 			dateVisit = dateVisit[1]+"/"+dateVisit[0]+"/"+dateVisit[2];
 		 	$.dateVisit.text = dateVisit;
 		 	$.dateVisit.color = "#000000";
-		 	$.claim_under.text = claimer.name;
+		 	$.claim_under.text = name;
 		 	$.claim_under.color = "#000000";
 		 	 
 		 	a = claimCategoryIdArr.indexOf(res[0].category);
@@ -72,7 +82,7 @@ function checkIfHaveData(){
 }
 
 function getClaimCategory(){  
-	API.callByGet({url:"getclaimCategoryUrl", params: "CORPCODE="+user.corpcode }, function(responseText){ 
+	API.callByGet({url:"getclaimCategoryUrl", params: "CORPCODE="+corpcode }, function(responseText){ 
 		panelCategory = JSON.parse(responseText); 
 		
 		if(panelCategory.length < 1){
@@ -111,6 +121,13 @@ function submitClaim(){
 	var diagnosis     = $.diagnosis.value;
 	var glamount      = $.glamount.value;
 	var mode     = claimMode; 
+	
+	if(corpcode == "IFMY" || corpcode == "IFLP"){
+		if(remark == ""){
+			common.resultPopUp("Error", "Please fill in Diagnosis / Illness." );
+			return false;
+		}
+	}
 	if(receiptNo.trim() == ""){
 		common.resultPopUp("Error", "Please fill in receipt number" );
 		return false;
@@ -143,15 +160,25 @@ function submitClaim(){
 		common.resultPopUp("Error", "Please fill in clinic/hospital to visit" );
 		return false;
 	}
+	/*
+	var fields = $.table.getChildren();
+	for (var i=0; i < fields.length; i++) {
+		if(fields[i].children[0].children[1].skip_checking == 1){
+			console.log(fields[i].children[0].children[1].skip_checking+" yes");
+		}else{
+			console.log(fields[i].children[0].children[1].skip_checking);
+			console.log(fields[i].children[0].children[1].id+" "+fields[i].children[0].children[1].value.length+" "+fields[i].children[0].children[1].value);
+		}
+	};*/
 	
 	var ser = "";
 	if(isEdit != ""){ 
 		ser = "&SERIAL="+claimSerial;
 	}
-	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+user.empno+"&CORPCODE="+user.corpcode+
+	var params = "RECNO="+receiptNo+"&CATEGORY="+claimCategory+"&MEMNO="+claimUnder+"&EMPNO="+empno+"&CORPCODE="+corpcode+
 				 "&AMT="+receiptAmount+"&VISITDT="+dateVisit+"&NCLINIC="+clinicName+"&REMARKS="+remark+"&GSTAMT="+gstAmount+
 				 "&MCDAYS="+mc+"&DIAGNOSIS="+diagnosis+"&GLAMT="+glamount+"&MODE="+mode +ser;
-	//console.log(params);
+	console.log(params);
 	loading.start();
 	API.callByGet({url:"getclaimSubmissionUrl", params: params}, function(responseText){
 		var res = JSON.parse(responseText); 

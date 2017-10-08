@@ -17,10 +17,11 @@ if(OS_ANDROID){
 function receivePush(e){
 	var target;
 	var extra; 
+	var data = (OS_IOS)?e.data:e;
 	if(OS_IOS){ 
 		Titanium.UI.iPhone.setAppBadge("0"); 
 		target = e.data.target; 
-		extra = e.data.extra;	
+		extra = e.data.extra;
 	}else{ 
 		target = e.target;
 		extra = e.extra;
@@ -29,7 +30,15 @@ function receivePush(e){
 	if(current_id == extra){
 		eval("Ti.App.fireEvent('"+target+":refresh')");
 	}
-	Ti.App.fireEvent("syncFromServer");
+	
+	console.log(redirect+" true or false");
+	if(redirect){
+		Ti.App.fireEvent("redirect", data);
+	}else{
+		Ti.App.fireEvent("syncFromServer");
+		var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
+		player.play();
+	}
 }
 
 // Process incoming push notifications
@@ -221,13 +230,14 @@ function deviceTokenSuccess(ev) {
 			            
 	    }
 	});
-
+	redirect = false;
     
 }
 
 
 function deviceTokenError(e) {
     alert('Failed to register for push notifications! ' + e.error);
+    redirect = false;
 }
 
 function registerPush(){
