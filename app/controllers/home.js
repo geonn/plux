@@ -364,6 +364,13 @@ function navWindow(e){
 	}else if(e.source.mod == "conversation"){
 		 nav.navigationWindow(target, 1);
 		
+	}else if(e.source.mod == "profile"){
+		var empno = Ti.App.Properties.getString('empno');
+		if(typeof empno != "undefined" && empno != ""){
+			nav.navigationWindow("asp/profile", 1);  
+		}else{
+			nav.navigationWindow("plux_profile"); 
+		}
 	}else{
 		console.log(target+" target");
 		nav.navigationWindow(target);
