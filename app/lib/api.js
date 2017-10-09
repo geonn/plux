@@ -10,78 +10,78 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
-var checkAppVersionUrl = "http://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
-var updateUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
-var getUserServiceUrl = "http://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
-var updateToken     = "http://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
-var grab_newsfeed        = "http://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
-var getCategoryList     = "http://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
-var leafletUrl      = "http://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
-var updateUserFromFB = "http://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
-var pluxLoginUrl    = "http://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
-var pluxSignUpUrl   = "http://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
-var healthDataUrl   = "http://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
-var removeHealthDataUrl = "http://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
-var clinicListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
-var nearbyClinicUrl = "http://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
-var doctorListUrl 	= "http://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
-var addAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
-var syncAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
-var deleteAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
-var syncMedicalUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
-var checkMedicalDataUrl = "http://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
-var syncAttachmentssUrl = "http://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
-var getNotificationUrl = "http://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
-var deleteNotification = "http://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
-var suggestedAppointmentUrl = "http://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
-var deleteAttachmentUrl = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
-var changeMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
-var addMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
-var getCorpPermission = "http://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
-var getMessage = "http://"+FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
-var sendMessage = "http://"+FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
+var checkAppVersionUrl = "https://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
+var updateUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
+var getUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
+var updateToken     = "https://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
+var grab_newsfeed        = "https://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
+var getCategoryList     = "https://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
+var leafletUrl      = "https://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
+var updateUserFromFB = "https://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
+var pluxLoginUrl    = "https://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
+var pluxSignUpUrl   = "https://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
+var healthDataUrl   = "https://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
+var removeHealthDataUrl = "https://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
+var clinicListUrl 	= "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
+var nearbyClinicUrl = "https://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
+var doctorListUrl 	= "https://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
+var addAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
+var syncAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
+var deleteAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
+var syncMedicalUrl = "https://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
+var checkMedicalDataUrl = "https://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
+var syncAttachmentssUrl = "https://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
+var getNotificationUrl = "https://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
+var deleteNotification = "https://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
+var suggestedAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
+var deleteAttachmentUrl = "https://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var changeMedicalRecord = "https://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
+var addMedicalAttachment = "https://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
+var getCorpPermission = "https://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
+var getMessage = "https://"+FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
+var sendMessage = "https://"+FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
 
-var addMessageUrl = "http://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
-var getDoctorByPanel = "http://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
-var getSpecialtylist = "http://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
-var getDoctorPanelBySpecialty = "http://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
-var getDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+USER+"&key="+KEY;
-var getWorkingHoursByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
-var getHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
-var getHelplineMessageV2 = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
-var getHelplineMessageV3 = "http://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
-var sendHelplineMessage = "http://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
-var addFeedbackUrl = "http://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
-var getAppointmentByDoctorPanel = "http://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
-var getClinicLocator2 = "http://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
-var getRoomId = "http://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
-var dateNow = "http://plux.freejini.com.my/main/dateNow";
-var getMedicalRecords = "http://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
-var addUpdateMedicalRecord = "http://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
-var getMedicalAttachment = "http://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
-var deleteAttachment = "http://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
-var getHealthDataByUser = "http://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
-var getPersonalInfoRecords = "http://"+FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
-var addUpdateRecords = "http://"+FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
-var changeRecordStatus = "http://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
-var doforgotPassword = "http://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
-var getRoomList = "http://"+FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
+var addMessageUrl = "https://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
+var getDoctorByPanel = "https://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
+var getSpecialtylist = "https://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
+var getDoctorPanelBySpecialty = "https://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
+var getDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+USER+"&key="+KEY;
+var getWorkingHoursByDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
+var getHelplineMessage = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
+var getHelplineMessageV2 = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
+var getHelplineMessageV3 = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
+var sendHelplineMessage = "https://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
+var addFeedbackUrl = "https://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
+var getAppointmentByDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
+var getClinicLocator2 = "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
+var getRoomId = "https://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
+var dateNow = "https://plux.freejini.com.my/main/dateNow";
+var getMedicalRecords = "https://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
+var addUpdateMedicalRecord = "https://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
+var getMedicalAttachment = "https://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
+var deleteAttachment = "https://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
+var getHealthDataByUser = "https://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
+var getPersonalInfoRecords = "https://"+FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
+var addUpdateRecords = "https://"+FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
+var changeRecordStatus = "https://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
+var doforgotPassword = "https://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
+var getRoomList = "https://"+FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
 
-var panelList       = "http://"+API_DOMAIN+"/panellist.aspx"; 
-var loginUrl        = "http://"+API_DOMAIN+"/login.aspx";
-var changePasswordUrl= "http://"+API_DOMAIN+"/chgpwd.aspx";
-var checkBalanceUrl = "http://"+API_DOMAIN+"/balchk.aspx";
-var getClaimDetailUrl = "http://"+API_DOMAIN+"/claim.aspx";
-var aspSignupUrl 	= "http://"+API_DOMAIN+"/signup.aspx";
-var resendVerifUrl  = "http://"+API_DOMAIN+"/sendveriemail.aspx";
-var getclaimDetailBySeriesUrl = "http://"+API_DOMAIN+"/claimdetails.aspx";
-var getclaimReimbUrl = "http://"+API_DOMAIN+"/ClaimReimb.aspx";
-var aspPreSignupUrl = "http://"+API_DOMAIN+"/presignup.aspx";
-var ifins = "http://"+API_DOMAIN+"/ifins.aspx";
-var ipinv = "http://"+API_DOMAIN+"/ipinv.aspx";
+var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
+var loginUrl        = "https://"+API_DOMAIN+"/login.aspx";
+var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx";
+var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";
+var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
+var aspSignupUrl 	= "https://"+API_DOMAIN+"/signup.aspx";
+var resendVerifUrl  = "https://"+API_DOMAIN+"/sendveriemail.aspx";
+var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx";
+var getclaimReimbUrl = "https://"+API_DOMAIN+"/ClaimReimb.aspx";
+var aspPreSignupUrl = "https://"+API_DOMAIN+"/presignup.aspx";
+var ifins = "https://"+API_DOMAIN+"/ifins.aspx";
+var ipinv = "https://"+API_DOMAIN+"/ipinv.aspx";
 /**claim submmission***/
-var getclaimCategoryUrl = "http://"+API_DOMAIN+"/claimcategory.aspx"; 
-var getclaimSubmissionUrl = "http://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
+var getclaimCategoryUrl = "https://"+API_DOMAIN+"/claimcategory.aspx"; 
+var getclaimSubmissionUrl = "https://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
 
 //configuration 
 var defaultRetryTimes = 3;
@@ -1241,33 +1241,35 @@ exports.loadPanelList = function (ex){
 	     	var res = JSON.parse(this.responseText);
 	     	var library = Alloy.createCollection('panelList');
 			var codeStr = "";
-			
-			res.cliniccode.forEach(function(entry) {
-				codeStr += '"'+entry+'",'; 
-			});
-			codeStr = codeStr.substr(0, codeStr.length-1); 
-			//set panel = 1 
-			library.updatePanelList(codeStr);
-			
-			if(ex.clinicType == ""){
-				details = library.getPanelListCount(codeStr);
-				details24 = library.getPanelListBy24Hours(codeStr);
+			console.log(this.responseText);
+				if(res[0].code != "00"){
+					console.log(res.code);
+				res.cliniccode.forEach(function(entry) {
+					codeStr += '"'+entry+'",'; 
+				});
+				codeStr = codeStr.substr(0, codeStr.length-1); 
+				//set panel = 1 
+				library.updatePanelList(codeStr);
 				
-				var det24= { 
-					clinicType: "hours24",
-					total: details24.length 
-				};
-				details.push(det24); 
-			}else{
-				if(ex.clinicType == "hours24"){
-					details = library.getPanelListBy24Hours(codeStr); 
+				if(ex.clinicType == ""){
+					details = library.getPanelListCount(codeStr);
+					details24 = library.getPanelListBy24Hours(codeStr);
+					
+					var det24= { 
+						clinicType: "hours24",
+						total: details24.length 
+					};
+					details.push(det24); 
 				}else{
-					details = library.getPanelListByCode(codeStr,ex.clinicType);
-				}
-				
-			} 
-			 
-	     	Ti.App.fireEvent('aspClinic', {details:details});
+					if(ex.clinicType == "hours24"){
+						details = library.getPanelListBy24Hours(codeStr); 
+					}else{
+						details = library.getPanelListByCode(codeStr,ex.clinicType);
+					}
+					
+				} 
+				Ti.App.fireEvent('aspClinic', {details:details});
+			}
 	     	 
 	     }, 
 	     onerror : function(e) { },
@@ -1377,7 +1379,7 @@ exports.callByPost = function(e, onload, onerror){
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
 		var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
-		var url = (typeof e.new != "undefined")?"http://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
+		var url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		console.log(url); 
 		console.log(e.type+"  e.type");
 		if(e.type == "voice"){
