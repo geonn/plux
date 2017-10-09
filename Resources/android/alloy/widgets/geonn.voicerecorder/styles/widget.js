@@ -45,7 +45,7 @@ module.exports = [ {
     }
 }, {
     isApi: true,
-    priority: 1000.0069,
+    priority: 1000.007,
     key: "Label",
     style: {
         width: Titanium.UI.SIZE,
@@ -507,49 +507,49 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.007,
+    priority: 10000.0071,
     key: "vert",
     style: {
         layout: "vertical"
     }
 }, {
     isClass: true,
-    priority: 10000.0071,
+    priority: 10000.0072,
     key: "horz",
     style: {
         layout: "horizontal"
     }
 }, {
     isClass: true,
-    priority: 10000.0072,
+    priority: 10000.0073,
     key: "wfill",
     style: {
         width: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0073,
+    priority: 10000.0074,
     key: "wsize",
     style: {
         width: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0074,
+    priority: 10000.0075,
     key: "hfill",
     style: {
         height: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0075,
+    priority: 10000.0076,
     key: "hsize",
     style: {
         height: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0076,
+    priority: 10000.0077,
     key: "h1",
     style: {
         font: {
@@ -558,7 +558,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0077,
+    priority: 10000.0078,
     key: "h2",
     style: {
         font: {
@@ -567,7 +567,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0078,
+    priority: 10000.0079,
     key: "h3",
     style: {
         font: {
@@ -576,7 +576,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0079,
+    priority: 10000.008,
     key: "h4",
     style: {
         font: {
@@ -585,7 +585,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.008,
+    priority: 10000.0081,
     key: "h5",
     style: {
         font: {
@@ -594,7 +594,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0081,
+    priority: 10000.0082,
     key: "h6",
     style: {
         font: {
@@ -603,7 +603,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0082,
+    priority: 10000.0083,
     key: "h7",
     style: {
         font: {
@@ -612,35 +612,35 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0083,
+    priority: 10000.0084,
     key: "conthsize",
     style: {
         contentHeight: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0084,
+    priority: 10000.0085,
     key: "contwsize",
     style: {
         contentWidth: Ti.UI.SIZE
     }
 }, {
     isClass: true,
-    priority: 10000.0085,
+    priority: 10000.0086,
     key: "conthfill",
     style: {
         contentHeight: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0086,
+    priority: 10000.0087,
     key: "contwfill",
     style: {
         contentWidth: Ti.UI.FILL
     }
 }, {
     isClass: true,
-    priority: 10000.0087,
+    priority: 10000.0088,
     key: "padding",
     style: {
         top: 10,
@@ -650,7 +650,7 @@ module.exports = [ {
     }
 }, {
     isClass: true,
-    priority: 10000.0088,
+    priority: 10000.0089,
     key: "small_padding",
     style: {
         top: 4,
