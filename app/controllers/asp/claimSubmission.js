@@ -77,7 +77,7 @@ function checkIfHaveData(){
 			//claimCategoryArr;
 		 	loading.finish(); 
 		}); 
-		//s$.saveBtn.visible = false;
+		$.saveBtn.visible = false;
 	} 
 }
 
