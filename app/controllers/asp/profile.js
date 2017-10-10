@@ -56,7 +56,7 @@ function checkStatus(){
 	var asp_email = Ti.App.Properties.getString('asp_email');
 	if(typeof asp_email != "undefined" && asp_email != ""){
 		//Ti.App.addEventListener('loadPage', loadPage);
-		loading.start();
+		//loading.start();
 		loadPage();
 		//API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
 	}else{

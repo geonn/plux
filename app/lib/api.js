@@ -1241,8 +1241,8 @@ exports.loadPanelList = function (ex){
 	     	var res = JSON.parse(this.responseText);
 	     	var library = Alloy.createCollection('panelList');
 			var codeStr = "";
-			console.log(this.responseText);
-				if(res[0].code != "00"){
+			console.log(res);
+				if(res.code != "00"){
 					console.log(res.code);
 				res.cliniccode.forEach(function(entry) {
 					codeStr += '"'+entry+'",'; 
