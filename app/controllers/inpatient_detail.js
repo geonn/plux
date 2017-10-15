@@ -1,7 +1,6 @@
 var args = arguments[0] || {};
 var param = args.params || 0;
-var model = Alloy.createCollection("inpatient_record");
-var data = model.getRecordsById(param);
+var data =args.params;
 var loading = Alloy.createController("loading");
 var bol = true;
 //****all of this value for design***
@@ -47,5 +46,6 @@ function closeWindow(){
 
 $.win.addEventListener('close',function(e){
 	closeWindow();
+	Ti.App.removeEventListener("inpatient_detail:pdfOneTime",pdfOneTime);
 });
 

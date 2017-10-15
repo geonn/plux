@@ -38,6 +38,10 @@ module.exports = [ {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#222222",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: Ti.UI.FILL,
@@ -45,7 +49,11 @@ module.exports = [ {
     }
 }, {
     isApi: true,
+<<<<<<< HEAD
     priority: 1000.007,
+=======
+    priority: 1000.0069,
+>>>>>>> origin/master
     key: "Label",
     style: {
         width: Titanium.UI.SIZE,
@@ -507,49 +515,77 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0071,
+=======
+    priority: 10000.007,
+>>>>>>> origin/master
     key: "vert",
     style: {
         layout: "vertical"
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0072,
+=======
+    priority: 10000.0071,
+>>>>>>> origin/master
     key: "horz",
     style: {
         layout: "horizontal"
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0073,
+=======
+    priority: 10000.0072,
+>>>>>>> origin/master
     key: "wfill",
     style: {
         width: Ti.UI.FILL
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0074,
+=======
+    priority: 10000.0073,
+>>>>>>> origin/master
     key: "wsize",
     style: {
         width: Ti.UI.SIZE
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0075,
+=======
+    priority: 10000.0074,
+>>>>>>> origin/master
     key: "hfill",
     style: {
         height: Ti.UI.FILL
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0076,
+=======
+    priority: 10000.0075,
+>>>>>>> origin/master
     key: "hsize",
     style: {
         height: Ti.UI.SIZE
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0077,
+=======
+    priority: 10000.0076,
+>>>>>>> origin/master
     key: "h1",
     style: {
         font: {
@@ -558,7 +594,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0078,
+=======
+    priority: 10000.0077,
+>>>>>>> origin/master
     key: "h2",
     style: {
         font: {
@@ -567,7 +607,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0079,
+=======
+    priority: 10000.0078,
+>>>>>>> origin/master
     key: "h3",
     style: {
         font: {
@@ -576,7 +620,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.008,
+=======
+    priority: 10000.0079,
+>>>>>>> origin/master
     key: "h4",
     style: {
         font: {
@@ -585,7 +633,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0081,
+=======
+    priority: 10000.008,
+>>>>>>> origin/master
     key: "h5",
     style: {
         font: {
@@ -594,7 +646,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0082,
+=======
+    priority: 10000.0081,
+>>>>>>> origin/master
     key: "h6",
     style: {
         font: {
@@ -603,7 +659,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0083,
+=======
+    priority: 10000.0082,
+>>>>>>> origin/master
     key: "h7",
     style: {
         font: {
@@ -612,35 +672,55 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0084,
+=======
+    priority: 10000.0083,
+>>>>>>> origin/master
     key: "conthsize",
     style: {
         contentHeight: Ti.UI.SIZE
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0085,
+=======
+    priority: 10000.0084,
+>>>>>>> origin/master
     key: "contwsize",
     style: {
         contentWidth: Ti.UI.SIZE
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0086,
+=======
+    priority: 10000.0085,
+>>>>>>> origin/master
     key: "conthfill",
     style: {
         contentHeight: Ti.UI.FILL
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0087,
+=======
+    priority: 10000.0086,
+>>>>>>> origin/master
     key: "contwfill",
     style: {
         contentWidth: Ti.UI.FILL
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0088,
+=======
+    priority: 10000.0087,
+>>>>>>> origin/master
     key: "padding",
     style: {
         top: 10,
@@ -650,7 +730,11 @@ module.exports = [ {
     }
 }, {
     isClass: true,
+<<<<<<< HEAD
     priority: 10000.0089,
+=======
+    priority: 10000.0088,
+>>>>>>> origin/master
     key: "small_padding",
     style: {
         top: 4,

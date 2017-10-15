@@ -1070,6 +1070,7 @@ exports.loadPanelList = function(ex) {
             var res = JSON.parse(this.responseText);
             var library = Alloy.createCollection("panelList");
             var codeStr = "";
+<<<<<<< HEAD
             console.log(res);
             if ("00" != res.code) {
                 console.log(res.code);
@@ -1091,6 +1092,26 @@ exports.loadPanelList = function(ex) {
                     details: details
                 });
             }
+=======
+            console.log(this.responseText);
+            res.cliniccode.forEach(function(entry) {
+                codeStr += '"' + entry + '",';
+            });
+            codeStr = codeStr.substr(0, codeStr.length - 1);
+            library.updatePanelList(codeStr);
+            if ("" == ex.clinicType) {
+                details = library.getPanelListCount(codeStr);
+                details24 = library.getPanelListBy24Hours(codeStr);
+                var det24 = {
+                    clinicType: "hours24",
+                    total: details24.length
+                };
+                details.push(det24);
+            } else "hours24" == ex.clinicType ? details = library.getPanelListBy24Hours(codeStr) : details = library.getPanelListByCode(codeStr, ex.clinicType);
+            Ti.App.fireEvent("aspClinic", {
+                details: details
+            });
+>>>>>>> origin/master
         },
         onerror: function(e) {},
         timeout: 6e4
@@ -1129,8 +1150,16 @@ exports.callByPost = function(e, onload, onerror) {
     var retryTimes = "undefined" != typeof e.retryTimes ? e.retryTimes : defaultRetryTimes;
     var deviceToken = Ti.App.Properties.getString("deviceToken");
     if ("" != deviceToken) {
+<<<<<<< HEAD
         var domain = "undefined" != typeof e.domain ? eval(e.domain) : API_DOMAIN;
         var url = "undefined" != typeof e["new"] ? "https://" + domain + "/api/" + e.url + "?user=" + USER + "&key=" + KEY : eval(e.url);
+=======
+        var url = "";
+        if ("undefined" != typeof e.fullurl) url = e.url; else {
+            var domain = "undefined" != typeof e.domain ? eval(e.domain) : API_DOMAIN;
+            url = "undefined" != typeof e["new"] ? "https://" + domain + "/api/" + e.url + "?user=" + USER + "&key=" + KEY : eval(e.url);
+        }
+>>>>>>> origin/master
         console.log(url);
         console.log(e.type + "  e.type");
         if ("voice" == e.type) var _result = contactServerByPostVideo(url, e.params || {}); else var _result = contactServerByPost(url, e.params || {});

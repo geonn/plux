@@ -420,6 +420,10 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#222222",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "95%",
@@ -465,6 +469,10 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#222222",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: Ti.UI.FILL,

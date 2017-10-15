@@ -73,20 +73,34 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			saveArray : function(arr){
+			saveArray : function(arr){ // 5th version of save array by adrian
 				var collection = this;
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN"); 
                 arr.forEach(function(entry) {
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, title, status, created, updated) VALUES (?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.title, entry.status, entry.created, entry.updated);
-					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET title=?, status=?, created=?, updated=? WHERE id=?";
-					db.execute(sql_query, entry.title, entry.status, entry.created, entry.updated, entry.id);
+                	var keys = [];
+                	var eval_values = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		_.find(names, function(name){
+	                			if(name == k){
+	                				keys.push(k);
+			                		eval_values.push("'"+entry[k]+"'");
+	                			}
+	                		});
+	                	}
+                	}
+		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
+		            console.log(sql_query);
+		            db.execute(sql_query);
 				});
-				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
 			},

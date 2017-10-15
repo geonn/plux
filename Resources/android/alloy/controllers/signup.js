@@ -166,11 +166,18 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#000000",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
+<<<<<<< HEAD
         color: "#000000",
+=======
+>>>>>>> origin/master
         borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
@@ -188,11 +195,18 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#000000",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
+<<<<<<< HEAD
         color: "#000000",
+=======
+>>>>>>> origin/master
         borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
@@ -210,11 +224,18 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#000000",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
+<<<<<<< HEAD
         color: "#000000",
+=======
+>>>>>>> origin/master
         borderColor: "#cccccc",
         paddingLeft: "20dp",
         paddingRight: "20dp",
@@ -232,12 +253,19 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#000000",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
         passwordMask: true,
+<<<<<<< HEAD
         color: "#000000",
+=======
+>>>>>>> origin/master
         borderColor: "#cccccc",
         bottom: "5dp",
         paddingLeft: "20dp",
@@ -255,12 +283,19 @@ function Controller() {
         font: {
             fontSize: "14dp"
         },
+<<<<<<< HEAD
+=======
+        color: "#000000",
+>>>>>>> origin/master
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: "90%",
         backgroundColor: "#fff",
         passwordMask: true,
+<<<<<<< HEAD
         color: "#000000",
+=======
+>>>>>>> origin/master
         borderColor: "#cccccc",
         bottom: "5dp",
         paddingLeft: "20dp",

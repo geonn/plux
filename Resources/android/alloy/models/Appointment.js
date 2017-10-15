@@ -79,6 +79,7 @@ exports.definition = {
             },
             saveArray: function(arr) {
                 var collection = this;
+<<<<<<< HEAD
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
@@ -88,6 +89,25 @@ exports.definition = {
                     db.execute(sql_query, entry.doctor_panel_id, entry.clinic_name, entry.doctor_name, entry.remark, entry.status, entry.start_date, entry.end_date, entry.duration, entry.suggested_date, entry.updated, entry.specialty_name, entry.id);
                 });
                 db.execute("COMMIT");
+=======
+                var columns = collection.config.columns;
+                var names = [];
+                for (var k in columns) names.push(k);
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                arr.forEach(function(entry) {
+                    var keys = [];
+                    var eval_values = [];
+                    for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
+                        if (name == k) {
+                            keys.push(k);
+                            eval_values.push("'" + entry[k] + "'");
+                        }
+                    });
+                    var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + eval_values.join() + ")";
+                    console.log(sql_query);
+                    db.execute(sql_query);
+                });
+>>>>>>> origin/master
                 db.close();
                 collection.trigger("sync");
             },

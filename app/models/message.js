@@ -206,22 +206,36 @@ exports.definition = {
 	            db.close();
 	            collection.trigger('sync');
 			},
-			saveArray : function(arr){
+			saveArray : function(arr){ // 5th version of save array by adrian
 				var collection = this;
-				
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN");
                 arr.forEach(function(entry) {
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (u_id, dr_id, message, type,room_id, created, sender_is_doctor) VALUES (?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.u_id, entry.dr_id, entry.message, entry.type, entry.room_id, entry.created, entry.sender_is_doctor);
+                	var keys = [];
+                	var eval_values = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		_.find(names, function(name){
+	                			if(name == k){
+	                				keys.push(k);
+			                		eval_values.push("'"+entry[k]+"'");
+	                			}
+	                		});
+	                	}
+                	}
+		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
+		            console.log(sql_query);
+		            db.execute(sql_query);
 				});
-				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
-	            
 			},
 			saveRecord: function(entry){
 				var collection = this;

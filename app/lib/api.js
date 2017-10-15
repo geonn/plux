@@ -1241,9 +1241,7 @@ exports.loadPanelList = function (ex){
 	     	var res = JSON.parse(this.responseText);
 	     	var library = Alloy.createCollection('panelList');
 			var codeStr = "";
-			console.log(res);
-				if(res.code != "00"){
-					console.log(res.code);
+			console.log(this.responseText);
 				res.cliniccode.forEach(function(entry) {
 					codeStr += '"'+entry+'",'; 
 				});
@@ -1269,8 +1267,6 @@ exports.loadPanelList = function (ex){
 					
 				} 
 				Ti.App.fireEvent('aspClinic', {details:details});
-			}
-	     	 
 	     }, 
 	     onerror : function(e) { },
 	     timeout : 60000  // in milliseconds
@@ -1378,8 +1374,13 @@ exports.callByPost = function(e, onload, onerror){
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){  
-		var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
-		var url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
+		var url = "";
+		if(typeof e.fullurl != "undefined"){
+			url = e.url; 
+		}else{
+			var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
+			url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
+		}
 		console.log(url); 
 		console.log(e.type+"  e.type");
 		if(e.type == "voice"){
