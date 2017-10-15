@@ -5,5 +5,5 @@ iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.plux.healthcare
 iosLaunchConfigurationAttributes/certificate=PLUX Healthcare (KFZ44PMRMC)
 iosLaunchConfigurationAttributes/keychain=
-iosLaunchConfigurationAttributes/sdk_version=10.3.1
+iosLaunchConfigurationAttributes/sdk_version=11.0
 iosLaunchConfigurationAttributes/uuid=92f8dcfe-7d6f-462a-9763-d51caa70e2cb
