@@ -101,22 +101,34 @@ exports.definition = {
                 collection.trigger('sync');
                 return listArr;
 			},
-			saveArray : function(arr){
+			saveArray : function(arr){ // 5th version of save array by adrian
 				var collection = this;
-				
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN"); 
-               	arr.forEach(function(entry) {
-		            var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, u_id, doctor_panel_id, clinic_name, doctor_name,remark, status,start_date,end_date, duration,suggested_date, created, updated, specialty_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.u_id, entry.doctor_panel_id, entry.clinic_name, entry.doctor_name, entry.remark,entry.status ,entry.start_date, entry.end_date,entry.duration,entry.suggested_date, entry.created,entry.updated, entry.specialty_name);
-				 	var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET doctor_panel_id=?, clinic_name=?, doctor_name=?, remark=?,status=?,start_date=?,end_date=?, duration=?, suggested_date=?,updated=?, specialty_name=? WHERE id=?";
-				 	 
-					db.execute(sql_query, entry.doctor_panel_id, entry.clinic_name, entry.doctor_name, entry.remark, entry.status,entry.start_date,entry.end_date,entry.duration,entry.suggested_date,entry.updated, entry.specialty_name, entry.id);
+                arr.forEach(function(entry) {
+                	var keys = [];
+                	var eval_values = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		_.find(names, function(name){
+	                			if(name == k){
+	                				keys.push(k);
+			                		eval_values.push("'"+entry[k]+"'");
+	                			}
+	                		});
+	                	}
+                	}
+		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
+		            console.log(sql_query);
+		            db.execute(sql_query);
 				});
-				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
 			},

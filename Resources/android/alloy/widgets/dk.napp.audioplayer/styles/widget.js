@@ -38,6 +38,7 @@ module.exports = [ {
         font: {
             fontSize: "14dp"
         },
+        color: "#222222",
         borderWidth: "1px",
         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: Ti.UI.FILL,
@@ -517,7 +518,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0065,
+    priority: 100000.0064,
     key: "wrap",
     style: {
         width: Ti.UI.FILL,
@@ -525,7 +526,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0066,
+    priority: 100000.0065,
     key: "playStopBtn",
     style: {
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
@@ -541,7 +542,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0067,
+    priority: 100000.0066,
     key: "time",
     style: {
         font: {
@@ -552,7 +553,7 @@ module.exports = [ {
     }
 }, {
     isId: true,
-    priority: 100000.0068,
+    priority: 100000.0067,
     key: "scrubBar",
     style: {
         top: "40dp",

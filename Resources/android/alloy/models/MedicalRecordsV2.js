@@ -103,29 +103,23 @@ exports.definition = {
             },
             saveArray: function(arr) {
                 var collection = this;
-                if (null == arr) return;
+                var columns = collection.config.columns;
+                var names = [];
+                for (var k in columns) names.push(k);
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     var keys = [];
-                    var questionmark = [];
                     var eval_values = [];
-                    var update_questionmark = [];
-                    var update_value = [];
-                    for (var k in entry) if (entry.hasOwnProperty(k)) {
-                        keys = _.keys(entry);
-                        questionmark.push("?");
-                        eval_values.push("entry." + k);
-                        update_questionmark.push(k + "=?");
-                    }
-                    var without_pk_list = _.rest(update_questionmark);
-                    var without_pk_value = _.rest(eval_values);
-                    var sql_query = "INSERT OR IGNORE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + questionmark.join() + ")";
-                    eval("db.execute(sql_query, " + eval_values.join() + ")");
-                    var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET " + without_pk_list.join() + " WHERE " + _.first(update_questionmark);
-                    eval("db.execute(sql_query, " + without_pk_value.join() + "," + _.first(eval_values) + ")");
+                    for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
+                        if (name == k) {
+                            keys.push(k);
+                            eval_values.push("'" + entry[k] + "'");
+                        }
+                    });
+                    var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + eval_values.join() + ")";
+                    console.log(sql_query);
+                    db.execute(sql_query);
                 });
-                db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             }

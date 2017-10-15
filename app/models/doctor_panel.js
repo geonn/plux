@@ -109,21 +109,34 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			saveArray : function(arr){
+			saveArray : function(arr){ // 5th version of save array by adrian
 				var collection = this;
+				var columns = collection.config.columns;
+				var names = [];
+				for (var k in columns) {
+	                names.push(k);
+	            }
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                db.execute("BEGIN");
-                arr.forEach(function(entry) { 
-	                var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (id, doctor_id, clinic_id, created, updated, specialty_id, status) VALUES (?,?,?,?,?,?,?)";
-					db.execute(sql_query, entry.id, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id, entry.status);
-					var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" SET doctor_id=?, clinic_id=?, created=?, updated=?, specialty_id=?, status=? WHERE id=?";
-					db.execute(sql_query, entry.doctor_id, entry.clinic_id, entry.created, entry.updated, entry.specialty_id,  entry.status, entry.id);
- 
+                arr.forEach(function(entry) {
+                	var keys = [];
+                	var eval_values = [];
+                	for(var k in entry){
+	                	if (entry.hasOwnProperty(k)){
+	                		_.find(names, function(name){
+	                			if(name == k){
+	                				keys.push(k);
+			                		eval_values.push("'"+entry[k]+"'");
+	                			}
+	                		});
+	                	}
+                	}
+		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
+		            console.log(sql_query);
+		            db.execute(sql_query);
 				});
-				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
 			},

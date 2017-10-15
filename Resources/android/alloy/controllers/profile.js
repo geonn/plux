@@ -106,42 +106,44 @@ function Controller() {
         id: "__alloyId302"
     });
     $.__views.scrollboard.add($.__views.__alloyId302);
-    $.__views.__alloyId303 = Ti.UI.createImageView({
+    $.__views.plux_logo = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: 10,
         width: 120,
         left: 15,
         height: 120,
+        id: "plux_logo",
         mod: "plux",
         backgroundColor: "#ff0000",
         bottom: "30dp",
-        image: "/images/logo_plux.png",
-        id: "__alloyId303"
+        image: "/images/logo_plux.png"
     });
-    $.__views.__alloyId302.add($.__views.__alloyId303);
-    navProfile ? $.addListener($.__views.__alloyId303, "click", navProfile) : __defers["$.__views.__alloyId303!click!navProfile"] = true;
-    $.__views.__alloyId304 = Ti.UI.createImageView({
+    $.__views.__alloyId302.add($.__views.plux_logo);
+    navProfile ? $.addListener($.__views.plux_logo, "click", navProfile) : __defers["$.__views.plux_logo!click!navProfile"] = true;
+    $.__views.asp_logo = Ti.UI.createImageView({
         top: "30dp",
         borderRadius: 10,
         width: 120,
         left: 15,
         height: 120,
+        id: "asp_logo",
         mod: "asp",
         backgroundColor: "#ff0000",
         bottom: "30dp",
-        image: "/images/asp_logo.png",
-        id: "__alloyId304"
+        image: "/images/asp_logo.png"
     });
-    $.__views.__alloyId302.add($.__views.__alloyId304);
-    navProfile ? $.addListener($.__views.__alloyId304, "click", navProfile) : __defers["$.__views.__alloyId304!click!navProfile"] = true;
+    $.__views.__alloyId302.add($.__views.asp_logo);
+    navProfile ? $.addListener($.__views.asp_logo, "click", navProfile) : __defers["$.__views.asp_logo!click!navProfile"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
+    var asp_email = Ti.App.Properties.getString("asp_email");
+    "undefined" != typeof asp_email && "" != asp_email ? $.asp_logo.hide() : $.plux_logo.hide();
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });
-    __defers["$.__views.__alloyId303!click!navProfile"] && $.addListener($.__views.__alloyId303, "click", navProfile);
-    __defers["$.__views.__alloyId304!click!navProfile"] && $.addListener($.__views.__alloyId304, "click", navProfile);
+    __defers["$.__views.plux_logo!click!navProfile"] && $.addListener($.__views.plux_logo, "click", navProfile);
+    __defers["$.__views.asp_logo!click!navProfile"] && $.addListener($.__views.asp_logo, "click", navProfile);
     _.extend($, exports);
 }
 

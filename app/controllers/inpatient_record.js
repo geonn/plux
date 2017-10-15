@@ -1,12 +1,9 @@
 var args = arguments[0] || {};
-var newsFeedModel = Alloy.createCollection('health_news_feed'); 
-var categoryModel = Alloy.createCollection('categorys'); 
 var loading = Alloy.createController("loading");
 
 function init(){
 	$.win.add(loading.getView());
 	refresh();
-	displayInpatientRecord();
 }
 
 init();
@@ -18,26 +15,18 @@ function refresh(){
 	var empno = Ti.App.Properties.getString("empno");
 	var corpcode = Ti.App.Properties.getString("corpcode");
 	API.callByGet({url:"ipinv",params:"EMPNO="+empno+"&CORPCODE="+corpcode}, function(responseText){
-		var model = Alloy.createCollection("inpatient_record");
 		console.log(responseText);
 		var res = JSON.parse(responseText);
 		var arr = res || undefined;
-		model.resetInpatientRecord();		
-		model.saveArray(arr);
-        var model = null;
-        var res = null;
-        var arr = null;
-        displayInpatientRecord();
+        displayInpatientRecord(arr);
         loading.finish();
 	});
 }
 
-function displayInpatientRecord(){  
-	var tableData = []; 
- 	var model = Alloy.createCollection("inpatient_record"); 
- 	var data = model.getAllRecords();
+function displayInpatientRecord(data){  
+	var tableData = [];
  	for(var i = 0;i < data.length;i++){
-   		var row = $.UI.create("TableViewRow",{classes:['hsize','wfill'],source:data[i].invno});		
+   		var row = $.UI.create("TableViewRow",{classes:['hsize','wfill'],source:data[i]});		
  		var container = $.UI.create("View",{classes:['wfill','hsize','vert','padding']});
  		var titlebar = $.UI.create("View",{classes:['wfill','hsize']});
   		var title = $.UI.create("Label",{classes:['wsize','hsize','bold'],text:data[i].hospitalname,ellipsize: true,wordWrap:false,left:"0"});

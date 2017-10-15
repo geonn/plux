@@ -266,7 +266,11 @@ function updateNotification(e){
 	console.log(e);
 	var model = Alloy.createCollection(e.model); 
 	var unread_no = model.getCountUnread(); 
-	eval("label_"+e.target+".text = unread_no");
+	if(e.target == "helpline"){
+		label_helpline.text = unread_no;
+	}else{
+		label_notification.text = unread_no;
+	}
 }
 
 function refreshHeaderInfo(){

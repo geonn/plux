@@ -112,32 +112,20 @@ exports.definition = {
                 var columns = collection.config.columns;
                 var names = [];
                 for (var k in columns) names.push(k);
-                console.log(names);
                 db = Ti.Database.open(collection.config.adapter.db_name);
-                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     var keys = [];
-                    var questionmark = [];
                     var eval_values = [];
-                    var update_questionmark = [];
-                    var update_value = [];
                     for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
                         if (name == k) {
-                            console.log(name + " " + k);
                             keys.push(k);
-                            questionmark.push("?");
-                            eval_values.push("entry." + k);
-                            update_questionmark.push(k + "=?");
+                            eval_values.push("'" + entry[k] + "'");
                         }
                     });
-                    var without_pk_list = _.rest(update_questionmark);
-                    var without_pk_value = _.rest(eval_values);
-                    var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + questionmark.join() + ")";
+                    var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + eval_values.join() + ")";
                     console.log(sql_query);
-                    eval("db.execute(sql_query, " + eval_values.join() + ")");
+                    db.execute(sql_query);
                 });
-                db.execute("COMMIT");
-                console.log(db.getRowsAffected() + " affected row");
                 db.close();
                 collection.trigger("sync");
             },
