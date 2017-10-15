@@ -9,8 +9,7 @@ function init(){
 			if(isSignup2 == "yes"){
 				var win = Alloy.createController("asp/signup2").getView();
 				win.open(); 
-			}else{
-				console.log('login');
+			}else{ 
 				var win = Alloy.createController("login").getView();
 				win.open(); 
 			}
@@ -18,13 +17,11 @@ function init(){
 			if(isSignup2 == "yes"){
 				var win = Alloy.createController("asp/signup2").getView();
 				win.open(); 
-			}else{
-				console.log('home');
+			}else{ 
 				var win = Alloy.createController("home").getView();
 			}
 		}
-	}else{ 
-		console.log('firsttime');
+	}else{  
 		$.index.win.open();
 	}
 }
