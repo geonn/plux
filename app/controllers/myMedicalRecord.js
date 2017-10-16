@@ -43,24 +43,8 @@ function render_listing(){
 
 $.recordTable.addEventListener("click", function(e){
 	loading.start();
-	API.callByPost({url: "http://plux.freejini.com.my/main/tnc2", fullurl: true, params:{u_id: u_id}}, function(responseText){
-		console.log(responseText);
-		 var dialog = Ti.UI.createAlertDialog({
-		    cancel: 1,
-		    buttonNames: ['Agree', 'Cancel'],
-		    message: responseText,
-		    title: 'Terms & Conditions'
-		  });
-		dialog.addEventListener('click', function(ex) {
-		    if (e.index === e.source.cancel) {
-		    	console.log('The cancel button was clicked');
-		    }else{
-		    	nav.navigateWithArgs("editMedical", {id: e.rowData.id}); 
-		    }
-	    });
-	    dialog.show();
-	    loading.finish();
-  });
+	nav.navigateWithArgs("editMedical", {id: e.rowData.id}); 
+	
 });
 
 function refresh(){
