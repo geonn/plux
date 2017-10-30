@@ -136,11 +136,42 @@ function Controller() {
         iView.add(view_label);
         iView.add(iImage);
         iView.addEventListener("click", function(e) {
-            var currentTime = new Date();
-            if (1e3 > currentTime - clickTime) return;
-            clickTime = currentTime;
-            console.log(image);
-            ("pdf" == getFormat[getFormat.length - 1] || "PDF" == getFormat[getFormat.length - 1]) && downloadPDF(image);
+            API.callByPost({
+                url: "https://plux.freejini.com.my/main/tnc2",
+                fullurl: true,
+                params: {}
+            }, function(responseText) {
+                console.log(responseText);
+                var dialog = Ti.UI.createAlertDialog({
+                    cancel: 1,
+                    buttonNames: [ "Agree", "Cancel" ],
+                    message: responseText,
+                    title: "PLUX Healthcare Terms of Service"
+                });
+                dialog.addEventListener("click", function(ex) {
+                    if (ex.index === ex.source.cancel) console.log("The cancel button was clicked"); else {
+                        var currentTime = new Date();
+                        if (1e3 > currentTime - clickTime) return;
+                        clickTime = currentTime;
+                        console.log(image);
+                        if ("pdf" == getFormat[getFormat.length - 1] || "PDF" == getFormat[getFormat.length - 1]) downloadPDF(image); else {
+                            var page = Alloy.createController("attachmentDetails", {
+                                rec_id: id,
+                                position: position,
+                                isLink: isLink,
+                                image: image
+                            }).getView();
+                            page.open();
+                            page.animate({
+                                curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+                                opacity: 1,
+                                duration: 300
+                            });
+                        }
+                    }
+                });
+                dialog.show();
+            });
         });
         return iView;
     }

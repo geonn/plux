@@ -175,26 +175,44 @@ function attachedPhoto(image,position,isLink, image_record){
 	iView.add(iImage);
 	
 	iView.addEventListener('click',function(e){
-		// double click prevention
-	    var currentTime = new Date();
-	    if (currentTime - clickTime < 1000) {
-	        return;
-	    };
-	    clickTime = currentTime; 
-	    console.log(image);    
-	     
-	    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
-	    	downloadPDF(image);
-	    }else{
-	    	/*
-	    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position, isLink: isLink, image : image}).getView(); 
-	  		page.open();
-		  	page.animate({
-				curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
-				opacity: 1,
-				duration: 300
-			});*/
-	    }
+		API.callByPost({url: "https://plux.freejini.com.my/main/tnc2", fullurl: true, params:{}}, function(responseText){
+		console.log(responseText);
+		 var dialog = Ti.UI.createAlertDialog({
+		    cancel: 1,
+		    buttonNames: ['Agree', 'Cancel'],
+		    message: responseText,
+		    title: 'PLUX Healthcare Terms of Service'
+		  });
+		dialog.addEventListener('click', function(ex) {
+		    if (ex.index === ex.source.cancel) {
+		    	console.log('The cancel button was clicked');
+		    }else{
+		    	// double click prevention
+			    var currentTime = new Date();
+			    if (currentTime - clickTime < 1000) {
+			        return;
+			    };
+			    clickTime = currentTime; 
+			    console.log(image);    
+			     
+			    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
+			    	downloadPDF(image);
+			    }else{
+			   
+			    	var page = Alloy.createController("attachmentDetails",{rec_id:id,position:position, isLink: isLink, image : image}).getView(); 
+			  		page.open();
+				  	page.animate({
+						curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+						opacity: 1,
+						duration: 300
+					}); 
+			    }
+		    }
+	    });
+	    dialog.show();
+	   
+  		});
+		
 		
 	});
 	return iView;	            

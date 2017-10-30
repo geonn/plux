@@ -51,7 +51,6 @@ exports.definition = {
                 var corp_sql = "" != corp ? " AND panel = 1" : "";
                 var str_sql = "" != str ? " AND (clinicName LIKE '%' || '" + str + "' ||'%' OR add1 LIKE '%'|| '" + str + "' ||'%' OR city LIKE '%'|| '" + str + "' ||'%' OR postcode LIKE '%'|| '" + str + "' ||'%' OR state LIKE '%'|| '" + str + "' ||'%')" : "";
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where " + type_sql + corp_sql + str_sql + location_sql + " AND status = 1 limit " + counter + ", 20";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];
@@ -113,7 +112,6 @@ exports.definition = {
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=0";
                 db.execute(sql_query);
                 sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET panel=1 WHERE clinicCode IN (" + clinicCode + ")";
-                console.log(clinicCode);
                 db.execute(sql_query);
                 db.close();
                 collection.trigger("sync");
@@ -223,7 +221,6 @@ exports.definition = {
             getCountClinicType: function(corp) {
                 var collection = this;
                 if ("" != corp) var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name + " where openHour NOT LIKE '%24 HOURS%' AND panel=1 AND status = 1 GROUP BY clinicType "; else var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name + " WHERE openHour NOT LIKE '%24 HOURS%' AND status = 1 GROUP BY clinicType ";
-                console.log(sql);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var res = db.execute(sql);
                 var listArr = [];

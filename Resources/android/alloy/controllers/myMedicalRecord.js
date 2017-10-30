@@ -240,27 +240,8 @@ function Controller() {
     var u_id = Ti.App.Properties.getString("u_id");
     $.recordTable.addEventListener("click", function(e) {
         loading.start();
-        API.callByPost({
-            url: "http://plux.freejini.com.my/main/tnc2",
-            fullurl: true,
-            params: {
-                u_id: u_id
-            }
-        }, function(responseText) {
-            console.log(responseText);
-            var dialog = Ti.UI.createAlertDialog({
-                cancel: 1,
-                buttonNames: [ "Agree", "Cancel" ],
-                message: responseText,
-                title: "Terms & Conditions"
-            });
-            dialog.addEventListener("click", function(ex) {
-                e.index === e.source.cancel ? console.log("The cancel button was clicked") : nav.navigateWithArgs("editMedical", {
-                    id: e.rowData.id
-                });
-            });
-            dialog.show();
-            loading.finish();
+        nav.navigateWithArgs("editMedical", {
+            id: e.rowData.id
         });
     });
     init();
