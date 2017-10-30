@@ -21,6 +21,7 @@
  
 function loadChart(data){
 	//Ti.API.info(data);
+	alert("loadChart");
 	var chart = new CanvasJS.Chart("chartContainer", {
 		theme: "theme1",//theme1
 		title:{
@@ -64,7 +65,7 @@ function loadNoData(dataPeriod){
  
 </head>
 <body>
-<div id="chartContainer" style="height: 200px; width: 100%;"></div>
+<div id="chartContainer" style="height: 200px; width: 100%;"><p>asdasdasdas</p></div>
 </body>
 <script>
 Ti.App.addEventListener("app:bmiInfo",function(e) { 
@@ -78,9 +79,6 @@ Ti.App.addEventListener("app:bmiInfo",function(e) {
     document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
     document.body.clientHeight
 );
-Ti.App.fireEvent('graphLoaded', { id: 1, contentheight: height});
-  
 });
-Ti.App.fireEvent('populateDataById',{ id: 1});
 </script>
 </html>

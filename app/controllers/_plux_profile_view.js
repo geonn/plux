@@ -75,9 +75,9 @@ function openBox(){
 }
 
 function switchListing(e){
-	var tab = parent({name: "tab"}, e.source);
-	var text = children({name: "v", value:"label"}, $.firstTab);
-	var secondtext = children({name: "v", value:"label"}, $.secondTab);
+	var tab = e.source.tab;
+	var text = $.firstTab.children[0];
+	var secondtext = $.secondTab.children[0];
 	
 	if(tab == 1){
 		personal_health_type = "Medication Records";

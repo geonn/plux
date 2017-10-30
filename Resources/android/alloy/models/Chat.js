@@ -48,7 +48,7 @@ exports.definition = {
                     console.log(last_updated + " last_updated");
                     var start_limit = "";
                     var sql_lastupdate = "";
-                    var sql_id = " AND created >= '" + last_updated + "'";
+                    var sql_id = " AND created > '" + last_updated + "'";
                 } else {
                     var start_limit = " limit " + start + ", 10";
                     var sql_lastupdate = " AND created <= '" + anchor + "'";
@@ -115,19 +115,27 @@ exports.definition = {
                 var names = [];
                 for (var k in columns) names.push(k);
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                console.log(arr.length + " number of arr to save into " + collection.config.adapter.db_name);
+                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     var keys = [];
                     var eval_values = [];
                     for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
                         if (name == k) {
                             keys.push(k);
-                            eval_values.push("'" + entry[k] + "'");
+                            console.log(typeof entry[k] + " " + entry[k]);
+                            if ("string" == typeof entry[k]) {
+                                entry[k] = null == entry[k] ? "" : entry[k];
+                                entry[k] = entry[k].replace(/"/g, "'");
+                                eval_values.push('"' + entry[k] + '"');
+                            } else "number" == typeof entry[k] ? eval_values.push(entry[k]) : eval_values.push('"' + entry[k] + '"');
                         }
                     });
                     var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + eval_values.join() + ")";
                     console.log(sql_query);
                     db.execute(sql_query);
                 });
+                db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             },

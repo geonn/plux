@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var loginId = Ti.App.Properties.getString('asp_email');
+var loginId = Ti.App.Properties.getString('plux_email');
 $.description.text = "You are about to change password for "+loginId;
 function submitPassword(){
 	common.showLoading();

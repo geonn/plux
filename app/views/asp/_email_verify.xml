@@ -1,0 +1,13 @@
+<Alloy>
+	<Window id="win" title="Verify Your Email" backButtonTitle="" backgroundColor="#fff" navTintColor="#CE1D1C">
+		<View class="vert">
+			<ImageView width="40%" class="wsize" borderRadius="10" backgroundColor="#ff0000" top="30dp" image="/images/asp_logo.png"></ImageView>
+			<Label class="label" left="20" right="20" bottom="20" top="20">
+				You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.
+			</Label>
+			<Button borderRadius="5" backgroundColor="#CE1D1C" onTouchend="resendVerificationEmail" title="Resend Verification"  width="70%" top="10" height="40" color="#ffffff" />
+			<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="checkStatus" title="Refresh"  width="70%" top="10" height="40" color="#ffffff" />
+			<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="closeWindow" title="Back"  width="70%" top="10" height="40" color="#ffffff" />
+		</View>
+	</Window>
+</Alloy>

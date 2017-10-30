@@ -28,6 +28,7 @@ exports.definition = {
 		columns: {
 		    "id": "INTEGER",
 		    "u_id": "INTEGER",
+		    "extra": "TEXT",
 		    "typeName": "TEXT",
 		    "updated": "TEXT"
 		},
@@ -66,11 +67,14 @@ exports.definition = {
 				}
 				db.close();
 			},
-			getCheckerById : function(id, u_id){
+			getCheckerById : function(id, u_id, extra){
 				var collection = this;
 				var addon = "";
 				if(typeof u_id != "undefined"){
-					addon = "AND u_id = "+u_id;
+					addon = " AND u_id = "+u_id;
+				}
+				if(typeof extra != "undefined"){
+					addon += " AND extra = "+extra;
 				}
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id='"+ id+ "' "+addon ;
 
@@ -94,7 +98,7 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			},
-			updateModule : function (id,typeName, updateDate, u_id){
+			updateModule : function (id,typeName, updateDate, u_id, extra){
 				var collection = this;
 				var addon = "";
 				if(typeof u_id != "undefined"){
@@ -102,6 +106,11 @@ exports.definition = {
 				}else{
 					u_id = 0;
 				}
+				
+				if(typeof extra != "undefined"){
+					addon += " AND extra = "+extra;
+				}
+				
                 var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE id="+ id+addon ;
                 var sql_query =  "";
                 db = Ti.Database.open(collection.config.adapter.db_name);

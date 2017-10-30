@@ -75,8 +75,6 @@ function loadNoData(dataPeriod){
     document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
     document.body.clientHeight
 );
-  Ti.App.fireEvent('graphLoaded', { id: 4, contentheight: height});
     });
-     Ti.App.fireEvent('populateDataById',{ id: 4});
 </script>
 </html>

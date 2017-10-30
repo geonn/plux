@@ -1,6 +1,21 @@
 function navigationWindow (target, checkAuth, callback, param){
 	console.log(target+" nav to ");
 	if(checkAuth == 1){
+		var isver = Ti.App.Properties.getString('isver');
+		console.log(isver+" isver no");
+		
+		if(isver == "true" || isver > 0){
+			
+		}else{
+			var win = Alloy.createController("asp/_email_verify", {callback: function(e){navigationWindow (target, checkAuth, callback, param);} }).getView(); 
+			if(Ti.Platform.osname == "android"){ 
+				win.open(); 
+			}else{
+				Alloy.Globals.navMenu.openWindow(win,{animated:true});
+			}
+			return;
+		}
+		
 		var memno = Ti.App.Properties.getString('memno') || ""; 
 		if(memno == ""){ 
 			var win = Alloy.createController("asp/login", {target: target}).getView(); 

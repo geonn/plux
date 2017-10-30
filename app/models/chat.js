@@ -58,7 +58,7 @@ exports.definition = {
 					var start_limit = "";
 					//var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
 					var sql_lastupdate = "";
-					var sql_id = " AND created >= '"+last_updated+"'";
+					var sql_id = " AND created > '"+last_updated+"'";
 				}else{
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";
@@ -145,7 +145,7 @@ exports.definition = {
 	            db.close();
 	            collection.trigger('sync');
 			},
-			saveArray : function(arr){ // 5th version of save array by adrian
+			saveArray : function(arr){ // 5.1th version of save array by onn
 				var collection = this;
 				var columns = collection.config.columns;
 				var names = [];
@@ -156,6 +156,8 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
+                console.log(arr.length+" number of arr to save into "+ collection.config.adapter.db_name);
+                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];
                 	var eval_values = [];
@@ -164,7 +166,18 @@ exports.definition = {
 	                		_.find(names, function(name){
 	                			if(name == k){
 	                				keys.push(k);
-			                		eval_values.push("'"+entry[k]+"'");
+	                				console.log(typeof entry[k]+" "+entry[k]);
+	                				
+	                				if(typeof entry[k] == "string"){
+	                					entry[k] = (entry[k] == null)?"":entry[k];
+	                					entry[k] = entry[k].replace(/"/g, "'");
+	                					eval_values.push("\""+entry[k]+"\"");
+	                				}else if(typeof entry[k] == "number"){
+	                					eval_values.push(entry[k]);
+	                				}else{
+	                					eval_values.push("\""+entry[k]+"\"");
+	                				}
+			                		
 	                			}
 	                		});
 	                	}
@@ -173,6 +186,7 @@ exports.definition = {
 		            console.log(sql_query);
 		            db.execute(sql_query);
 				});
+				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
 			},

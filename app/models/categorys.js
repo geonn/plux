@@ -69,7 +69,7 @@ exports.definition = {
                 collection.trigger('sync');
                 return arr;
 			}, 
-			saveArray : function(arr){ // 5th version of save array by adrian
+			saveArray : function(arr){ // 5.1th version of save array by onn
 				var collection = this;
 				var columns = collection.config.columns;
 				var names = [];
@@ -88,7 +88,9 @@ exports.definition = {
 	                		_.find(names, function(name){
 	                			if(name == k){
 	                				keys.push(k);
-			                		eval_values.push("'"+entry[k]+"'");
+	                				entry[k] = (entry[k] == null)?"":entry[k];
+	                				entry[k] = entry[k].replace(/'/g, "\\'");
+			                		eval_values.push("\""+entry[k]+"\"");
 	                			}
 	                		});
 	                	}

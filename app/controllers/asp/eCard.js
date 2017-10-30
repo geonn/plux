@@ -13,33 +13,7 @@ init();
 function init(){
  	console.log(user);
 	if(user.isver == "true" || user.isver > 0){ 
-	 
-		$.unverified.hide();
 		$.card.opacity = "1";
-		
-	}else{
-		var t1 = Ti.UI.create2DMatrix({ 
-		    rotate: 335
-		});
-		var a1 = Ti.UI.createAnimation();
-		a1.transform = t1;
-		 
-		//$.unveriLbl.animate(a1);
-		$.unverified.show();
-		$.card.opacity = "0.1";
-	}   
-} 
-
-function checkStatus(){
-	var asp_email = Ti.App.Properties.getString('asp_email');
-	if(typeof asp_email != "undefined" && asp_email != ""){
-		loading.start();
-		// need call login api to get updated info!
-		//API.doLogin(asp_email, asp_password, $, login_callback);
-		//API.doLogin(asp_email, asp_password, $, "refresh", login_callback);
-		//API.callByPost({url:"loginUrl", params: {LOGINID: asp_email, PASSWORD: asp_password}}, login_callback);
-	}else{
-		common.createAlert("Error", "Please login your ASP account", function(e){$.win.close();});
 	}
 } 
 
@@ -110,7 +84,6 @@ var front_bg = Ti.UI.createImageView({
     right: 10,
     zIndex: 11,
     top: 0,
-    bottom: 10
 });
 
 front.add(front_bg);

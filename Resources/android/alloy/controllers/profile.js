@@ -137,8 +137,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     arguments[0] || {};
-    var asp_email = Ti.App.Properties.getString("asp_email");
-    "undefined" != typeof asp_email && "" != asp_email ? $.asp_logo.hide() : $.plux_logo.hide();
     $.btnBack.addEventListener("click", function() {
         nav.closeWindow($.myProfile);
     });

@@ -15,7 +15,7 @@ function loadHomePageItem(){
 	menu_info  =  [
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
 		{mod:"hra", image:"/images/btn/btn_hra.png"},
-		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
+		//{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
@@ -336,13 +336,18 @@ function navWindow(e){
 	}else if(e.source.mod == "myHealth"){
 		nav.navigationWindow(target+"/main"); 
 	}else if(e.source.mod == "clinicLocator"){
+		var memno = Ti.App.Properties.getString('memno') || ""; 
 		var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
 		console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
 		
 		if(hasLocationPermissions){
 			contacts({callback: function(){
 					console.log('why not calling');
-					nav.navigationWindow("clinic/listing");
+					if(memno == ""){
+						nav.navigationWindow("clinic/listing");
+					}else{
+						nav.navigationWindow("clinic/listing", 1);
+					}
 				}
 			});
 			//nav.navigationWindow("clinic/listing", 1);
@@ -351,7 +356,11 @@ function navWindow(e){
 			
 			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
 				if (e.success) {
-					nav.navigationWindow("clinic/listing");
+					if(memno == ""){
+						nav.navigationWindow("clinic/listing");
+					}else{
+						nav.navigationWindow("clinic/listing", 1);
+					}
 				}else if (OS_ANDROID) {
 					alert('You denied permission for now, forever or the dialog did not show at all because it you denied forever before.');
 				}else{
@@ -367,7 +376,6 @@ function navWindow(e){
 		
 	}else if(e.source.mod == "conversation"){
 		 nav.navigationWindow(target, 1);
-		
 	}else if(e.source.mod == "profile"){
 		var empno = Ti.App.Properties.getString('empno');
 		if(typeof empno != "undefined" && empno != ""){

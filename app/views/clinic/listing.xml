@@ -1,10 +1,10 @@
 <Alloy>
-	<Window title="Clinic Type List" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+	<Window title="Clinic Type List" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C" >
 		<RightNavButton>
 			<ImageView right='10'  onClick="doRefresh" width="25" height="25" image="/images/icon_refresh.png" /> 
 			 
 		</RightNavButton>
-		<View id="panelListTbl" layout="vertical">
+		<View id="panelListTbl" class="vert">
 	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
@@ -18,9 +18,5 @@
 		 	</View>
 		 	<TableView id="tblview" width="Ti.UI.FILL" height="Ti.UI.FILL" top="0"></TableView>
 	 	</View>
-		<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
-		    <ActivityIndicator  id="activityIndicator" />
-			<Label top="5" bottom="10" text="Loading" color="#ffffff" />
-		</View>
 	</Window>
 </Alloy>

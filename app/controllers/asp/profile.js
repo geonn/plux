@@ -7,13 +7,8 @@ function loadPage(){
 	var memno = Ti.App.Properties.getString('memno');
 	var empno = Ti.App.Properties.getString('empno');
 	if(isver == "true" || isver > 0){ 
-		$.verifyContainer.hide();
 		$.profileContainer.show();
-	} else{
-		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
-		$.verifyContainer.show();
-		$.profileContainer.hide();
-	}
+	} 
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
 var data = JSON.parse(Ti.App.Properties.getString('dependent'));
@@ -51,18 +46,6 @@ $.moreBtn.addEventListener('click', function(e){
 		}
 	});
 });
-
-function checkStatus(){
-	var asp_email = Ti.App.Properties.getString('asp_email');
-	if(typeof asp_email != "undefined" && asp_email != ""){
-		//Ti.App.addEventListener('loadPage', loadPage);
-		//loading.start();
-		loadPage();
-		//API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
-	}else{
-		common.createAlert("Error", "Please login your ASP account", function(e){$.win.close();});
-	}
-}
 
 $.asp_profile.addEventListener("close", function(){
 	Ti.App.removeEventListener('loadPage', loadPage);

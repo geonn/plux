@@ -52,7 +52,9 @@ exports.definition = {
                 var eval_column = "";
                 for (var i = 0; i < names.length; i++) eval_column = eval_column + names[i] + ": res.fieldByName('" + names[i] + "'),";
                 while (res.isValidRow()) {
-                    eval("arr[count] = {" + eval_column + "}");
+                    var row_data = {};
+                    for (var i = 0; i < names.length; i++) row_data[names[i]] = res.fieldByName(names[i]);
+                    arr[count] = row_data;
                     res.next();
                     count++;
                 }
@@ -100,19 +102,24 @@ exports.definition = {
                 var names = [];
                 for (var k in columns) names.push(k);
                 db = Ti.Database.open(collection.config.adapter.db_name);
+                console.log(arr.length + " number of arr to save into " + collection.config.adapter.db_name);
+                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                     var keys = [];
                     var eval_values = [];
                     for (var k in entry) entry.hasOwnProperty(k) && _.find(names, function(name) {
                         if (name == k) {
                             keys.push(k);
-                            eval_values.push("'" + entry[k] + "'");
+                            entry[k] = null == entry[k] ? "" : entry[k];
+                            entry[k] = entry[k].replace(/'/g, "\\'");
+                            eval_values.push('"' + entry[k] + '"');
                         }
                     });
                     var sql_query = "INSERT OR REPLACE INTO " + collection.config.adapter.collection_name + " (" + keys.join() + ") VALUES (" + eval_values.join() + ")";
                     console.log(sql_query);
                     db.execute(sql_query);
                 });
+                db.execute("COMMIT");
                 db.close();
                 collection.trigger("sync");
             },

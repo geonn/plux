@@ -122,14 +122,8 @@ function Controller() {
         var tab = parent({
             name: "tab"
         }, e.source);
-        var text = children({
-            name: "v",
-            value: "label"
-        }, $.firstTab);
-        var secondtext = children({
-            name: "v",
-            value: "label"
-        }, $.secondTab);
+        var text = $.firstTab.children[0];
+        var secondtext = $.secondTab.children[0];
         if (1 == tab) {
             personal_health_type = "Medication Records";
             text.color = "#CE1D1C";

@@ -212,13 +212,13 @@ var getclaimSubmissionUrl = "https://" + API_DOMAIN + "/ClaimSubmission.aspx";
 var defaultRetryTimes = 3;
 
 var APILoadingList = [ {
-    url: getClinicLocator2,
-    model: "panelList",
-    checkId: "13"
-}, {
     url: getDoctorPanel,
     model: "doctor_panel",
     checkId: "8"
+}, {
+    url: getClinicLocator2,
+    model: "panelList",
+    checkId: "13"
 }, {
     url: doctorListUrl,
     model: "doctors",
@@ -252,6 +252,7 @@ exports.loadAPIBySequence = function(ex, counter) {
     } else {
         var checker = Alloy.createCollection("updateChecker");
         var isUpdate = checker.getCheckerById(api["checkId"]);
+        console.log(api["checkId"] + " api['checkId']");
         console.log(isUpdate);
         last_updated = "undefined" != typeof isUpdate.updated ? isUpdate.updated : "";
     }
@@ -1132,7 +1133,7 @@ exports.callByPost = function(e, onload, onerror) {
             url = "undefined" != typeof e["new"] ? "https://" + domain + "/api/" + e.url + "?user=" + USER + "&key=" + KEY : eval(e.url);
         }
         console.log(url);
-        console.log(e.type + "  e.type");
+        console.log(e.params || {});
         if ("voice" == e.type) var _result = contactServerByPostVideo(url, e.params || {}); else var _result = contactServerByPost(url, e.params || {});
         _result.onload = function(ex) {
             onload && onload(this.responseText);

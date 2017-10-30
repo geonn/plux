@@ -69,11 +69,11 @@ exports.populateData = function(e){
 	info = loadInfo(10,"","1");
 };
 
-exports.loadInfo = function(gType,dataPeriod,showDetailsLabel){
-	loadInfo(gType,dataPeriod,showDetailsLabel);
+exports.loadInfo = function(gType,dataPeriod,showDetailsLabel, LatestLabel){
+	loadInfo(gType,dataPeriod,showDetailsLabel, LatestLabel);
 };
 
-function loadInfo(gType,dataPeriod,showDetailsLabel){
+function loadInfo(gType,dataPeriod,showDetailsLabel, LatestLabel){
 	var info = [];
 	var info2 = [];
 	var loadType= gType;
@@ -83,7 +83,7 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 	if(dataPeriod == "year"){
 		
 		var info_details = lib_health.getHealthListByTypeInYear(loadType,gType); 
-		 
+		
 		info_details.forEach(function(entry) {
 			var rec = {};
 			var convert = (entry.date).split('-'); 
@@ -92,11 +92,15 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			rec['label'] = newDate;
 			
 			if(gType == "2" || gType == "7"){
-				rec['y'] = parseFloat(entry.value); 
+				//rec['y'] = parseFloat(entry.value); 
+				rec['y'] = _.isNumber(entry.value)?entry.value:0;
 				// For second records
 				var rec2 = {};
 				rec2['label'] = newDate;
-				rec2['y'] = parseFloat(entry.value2);
+				if(entry.value2 == NaN){
+					entry.value2 = 0;
+				}
+				rec2['y'] = _.isNumber(entry.value2)?entry.value2:0;
 				info2.push(rec2);
 			}else if(gType == "6"){
 				rec['y'] = parseFloat(entry.value);
@@ -112,7 +116,9 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 			var info_details = lib_health.getSteps();  
 			
 		}else{
+			console.log("info_details");
 			var info_details = lib_health.getHealthListByType(loadType);  
+			console.log(info_details);
 		}
 		
 		info_details.reverse();	 
@@ -133,11 +139,11 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 				rec['label'] = newDate;
 				
 				if(gType == "2" || gType == "7" ){
-					rec['y'] = parseFloat(entry.field1); 
+					rec['y'] =_.isNumber(entry.field1)?entry.field1:0;
 					// For second records
 					var rec2 = {};
 					rec2['label'] = newDate;
-					rec2['y'] = parseFloat(entry.field2);
+					rec2['y'] = _.isNumber(entry.field2)?entry.field2:0;
 					info2.push(rec2); 
 					latestData = "-";
 				}else if(gType == "6"){
@@ -155,101 +161,52 @@ function loadInfo(gType,dataPeriod,showDetailsLabel){
 		}else{
 			latestData = "";
 		}
-		
 	} 
 	if(gType == 1){ 
 		setTimeout(function(){
 			Ti.App.fireEvent('app:bmiInfo',{ message:  info, dataPeriod:dataPeriod }); 
-		}, 950);
-		
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.bmiDetailLabel.text = latestData|| "N/A";
-		}
+		}, 2000);
 	}
 	if(gType == 2){ 
 		setTimeout(function(){
 			Ti.App.fireEvent('app:bloodPressureInfo',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
-		}, 650);
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.bloodPressureDetailLabel.text = latestData ||  "N/A";
-		}
+		}, 2000);
 	}
 	if(gType == 3){
 		setTimeout(function(){
 			Ti.App.fireEvent('app:heartRateInfo',{ message:  info, dataPeriod:dataPeriod });
-		}, 750);
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.heartRateDetailLabel.text = latestData ||  "N/A";
-		}
+		}, 2000);
 	}
 	if(gType == 4){ 
 		setTimeout(function(){
 			Ti.App.fireEvent('app:bodyTemperatureInfo',{ message:  info, dataPeriod:dataPeriod });
-		}, 1000);
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
-		}
+		}, 2000);
 	}
-	/*if(gType == 5){
-		Ti.App.fireEvent('app:height',{ message:  info, dataPeriod:dataPeriod });
-		if(showDetailsLabel == "1"){
-			mainView.heightDetailLabel.text = latestData+" CM"|| "N/A";
-		}
-	}
-	if(gType == 6){
-		Ti.App.fireEvent('app:weight',{ message:  info, dataPeriod:dataPeriod });
-		if(showDetailsLabel == "1"){
-			mainView.weightDetailLabel.text = latestData +" KG"|| "N/A";
-		}
-	}*/
 	if(gType == 7){ 
 		setTimeout(function(){
+			console.log(info);
+			console.log(info2);
 			Ti.App.fireEvent('app:cholestrol',{ message:  info,message2:  info2, dataPeriod:dataPeriod });
-		}, 1250);
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.cholestrolDetailLabel.text = "-";
-		}
+		}, 2000);
 	}
 	if(gType == 8){ 
 		setTimeout(function(){
 			Ti.App.fireEvent('app:bloodGlucose',{ message:  info, dataPeriod:dataPeriod });
-		}, 1500);
-		
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.bodyTempDetailLabel.text = latestData ||   "N/A";
-		}
+		}, 2000);
 	}
 	if(gType == 10){
 		setTimeout(function(){
 			Ti.App.fireEvent('app:steps',{ message:  info, dataPeriod:dataPeriod });
-		}, 1750);
+		}, 2000);
 		
 		if(latestData != ""){
 			latestData = latestData  +" Steps";
 		}
-		if(showDetailsLabel == "1"){
-			var text = latestData|| "N/A";
-			Ti.App.fireEvent('loadLatest',{gType: gType, text: text});
-			//mainView.stepsDetailLabel.text = latestData || "N/A";
-		}
 	} 
+	var text = latestData|| "N/A";
+	if(typeof LatestLabel != "undefined"){
+		LatestLabel.text = text;
+	}
 	return info;
 }
 

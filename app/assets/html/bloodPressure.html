@@ -78,18 +78,16 @@ function loadNoData(dataPeriod){
 </body>
 <script>
 Ti.App.addEventListener("app:bloodPressureInfo",function(e) {
-      if(e.message != ""){
-      	loadChart(e.message,e.message2);
-      }else{
-      	loadNoData(e.dataPeriod);
-      }
-       var height= (
-	    'innerHeight' in window? window.innerHeight :
-	    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
-	    document.body.clientHeight
-	);
- Ti.App.fireEvent('graphLoaded', { id: 2, contentheight: height});
+  if(e.message != ""){
+  	loadChart(e.message,e.message2);
+  }else{
+  	loadNoData(e.dataPeriod);
+  }
+   var height= (
+    'innerHeight' in window? window.innerHeight :
+    document.compatMode!=='BackCompat'? document.documentElement.clientHeight :
+    document.body.clientHeight
+);
 });
-    Ti.App.fireEvent('populateDataById',{ id: 2});
 </script>
 </html>

@@ -3,7 +3,7 @@ var args = arguments[0] || {};
 var singleton = true;
 common.construct($);
 
-$.username.value = Ti.App.Properties.getString('asp_email') || "";
+$.username.value = "";
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 

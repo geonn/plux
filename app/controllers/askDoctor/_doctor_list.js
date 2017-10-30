@@ -33,7 +33,7 @@ function render_doctor_list(){
 			    backgroundSelectedColor: "#ECFFF9",
 		 
 			}); 
-			var image_status = $.UI.create("ImageView", {image: icon_status, classes:['hsize'], width: 40, right:10});
+			var image_status = $.UI.create("ImageView", {image: icon_status, touchEnabled: false, classes:['hsize'], width: 40, right:10});
 			var tblRowView = Ti.UI.createView({ 
 					height:Ti.UI.SIZE, 
 					width:Ti.UI.FILL,
@@ -42,16 +42,18 @@ function render_doctor_list(){
 					layout: "horizontal",
 					right: 40,	
 			}); 
-			var image_doctor_avatar = $.UI.create("ImageView", {image: entry.img_path, classes:['wsize'], height: 40, left:10});
+			var image_doctor_avatar = $.UI.create("ImageView", {image: entry.img_path, touchEnabled: false, classes:['wsize'], height: 40, left:10});
 			var tblView = Ti.UI.createView({
 					layout: "vertical",
 					height:Ti.UI.SIZE, 
+					touchEnabled: false,
 					width:"auto",
 			}); 
 			 
 			var docName = $.UI.create('Label',{
 				classes : ['medium_font','wfill','hsize','themeColor'],
 				text:  entry.name, 
+				touchEnabled: false,
 				textAlign:'left',
 				top:5,
 				left:15
@@ -59,6 +61,7 @@ function render_doctor_list(){
 			var docSpecialty = $.UI.create('Label',{
 				classes : ['small_font','wfill','hsize'],
 				text:  entry.specialty, 
+				touchEnabled: false,
 				color: "#848484", 
 				textAlign:'left', 
 				left:15,  
@@ -80,13 +83,14 @@ function render_doctor_list(){
  
 function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
-		var dr_id = parent({name: "dr_id"}, e.source);
-		var record = parent({name: "record"}, e.source);
+		var dr_id = e.source.dr_id;
+		var record = e.source.dr_id;
 		console.log(dr_id+" dr_id from doctor");
 	 	//Ti.App.fireEvent("askDoctor_index:windowClose");
 	 	var room_model = Alloy.createCollection('room');
 	 	var room = room_model.getDataBydr_id({dr_id: dr_id}); 
-	 	
+	 	console.log(dr_id+" and check room");
+	 	console.log(room);
 	 	if(room.length > 0 && room[0].status == 2){
 	 		nav.navigateWithArgs("conversation", {dr_id : dr_id, record: record});
 	 	}else{

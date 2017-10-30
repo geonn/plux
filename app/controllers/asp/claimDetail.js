@@ -19,14 +19,12 @@ function init(data){
 	
 	//var data = model.getClaimDetailBySeries({serial : arg_serial});  
 	
-	console.log(data);
-	console.log(args);
-	$.tv.appendRow(createTableViewRow("Clinic Name", args.record.clinicname));
+	$.tv.appendRow(createTableViewRow("Clinic Name", args.record.clinicname || ""));
 	//$.tv.appendRow(createTableViewRow("Patient Name", data.name));
-	$.tv.appendRow(createTableViewRow("Date Visit", args.record.visitdate));
-	$.tv.appendRow(createTableViewRow("Category", args.record.category));
-	$.tv.appendRow(createTableViewRow("MC Days", args.record.mcdays));
-	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis));
+	$.tv.appendRow(createTableViewRow("Date Visit", args.record.visitdate || ""));
+	$.tv.appendRow(createTableViewRow("Category", args.record.category || ""));
+	$.tv.appendRow(createTableViewRow("MC Days", args.record.mcdays || ""));
+	$.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis || ""));
 	 
 	/**if(data.cliniccode == "QLAB"){ 
 		var attachment_button = $.UI.create("Button", {title: "Lab Test Result", classes:['wfill', 'hsize', 'padding'], borderColor: "red", color: "red", align: "center"});

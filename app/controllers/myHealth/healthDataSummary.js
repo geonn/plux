@@ -83,3 +83,7 @@ if(Ti.Platform.osname == "android"){
 		nav.closeWindow($.dashboard); 
 	}); 
 }
+
+webview.addEventListener("load", function(e){
+	loadGraph("month"); 
+});

@@ -14,32 +14,16 @@ function loadPage(){
 	var empno = Ti.App.Properties.getString('empno');
 	console.log(isver+" "+corpcode+" "+memno+" "+empno);
 	if(isver == "true" || isver > 0){
-		$.verifyContainer.hide();
 		$.claimContainer.show();
 		API.claimInfo({memno : memno, corpcode : corpcode});
 		//API.getClaimDetail({empno : user.empno, corpcode : user.corpcode});
 		API.ifins({empno : empno, corpcode : corpcode});
 	}else{ 
-		$.description.text= "You need to verify your account in order to view claim details. If you didn't received verification email, please click 'Resend Verification' button below.";
-		$.verifyContainer.show();
-		$.claimContainer.hide();
 		loading.finish();
 	}
 	
 }
-  
-function checkStatus(){
-	var asp_email = Ti.App.Properties.getString('asp_email');
-	if(typeof asp_email != "undefined" && asp_email != ""){
-		//Ti.App.addEventListener('loadPage', loadPage);
-		loading.start();
-		loadPage();
-		//API.doLogin(asp_email, asp_password, $, "refresh", loadPage);
-	}else{
-		common.createAlert("Error", "Please login your ASP account", function(e){$.win.close();});
-	}
-} 
-		
+	
 Ti.App.addEventListener("data_loaded", init);
 Ti.App.addEventListener('ifins_loaded', loadIfins);
 
@@ -132,7 +116,7 @@ function init(){
 	    $.personal_claim.add(personal_claim_view);
 	});
 	Ti.App.removeEventListener("data_loaded", init);
-	loading.finish()
+	loading.finish();
 }
 
 function GenerateClaimBalanceTable(balance_groups){
@@ -161,8 +145,8 @@ function GenerateClaimBalanceTable(balance_groups){
 		Object.keys(tmp_group).map( function( b ){
 			
 			var view_line = $.UI.create("View",{
-					classes: ['line']
-				});
+				classes: ['line']
+			});
 			
 			var view_header = $.UI.create("View", {
 				width: Ti.UI.FILL,

@@ -14,7 +14,7 @@
  remove asp_password for security issues.
  * */
 Ti.App.Properties.removeProperty('asp_password');
-
+Ti.App.Properties.removeProperty('is_ver');
 var _ = require('underscore')._;
 
 var common = require('common');
@@ -231,8 +231,10 @@ Titanium.App.addEventListener('resumed', function(e) {
 	}
 });
 
-function parent(key, e){
+function parent(keys, ex){
 	// if key.value undefined mean it look for key only
+	var key = keys;
+	var e = ex;
 	if(typeof key.value != "undefined"){
 		if(eval("e."+key.name+"") != key.value){
 			if(eval("e.parent."+key.name+"") != key.value){
@@ -248,16 +250,16 @@ function parent(key, e){
 	    		return e;
 	    }
 	}else{
-		if(eval("typeof e."+key.name) == "undefined"){
+		if(eval("typeof e."+key.name+"") == "undefined"){
 			
 			if(eval("typeof e.parent."+key.name+"") == "undefined"){
 				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
 	    			console.log("key not found");
 	    		}else{
-	    			return eval("e.parent.parent."+key.name);
+	    			return eval("e.parent.parent."+key.name+"");
 	    		}
 	    	}else{
-	    		return eval("e.parent."+key.name);
+	    		return eval("e.parent."+key.name+"");
 	    	}
 	    }else{
 	    		return eval("e."+key.name);
@@ -265,18 +267,20 @@ function parent(key, e){
 	}
 }
 
-function children(key, e){
-	if(eval("e."+key.name+"") != key.value){
+function children(keys, ex){
+	var e = ex;
+	var key = keys;
+	if(eval("e."+key.name) != key.value){
 		for (var i=0; i < e.children.length; i++) {
-			if(eval("e.children[i]."+key.name+"") == key.value){
+			if(eval("e.children[i]."+key.name) == key.value){
 		  		return e.children[i];
 		 	}
 			for (var a=0; a < e.children[i].children.length; a++) {
-			  if(eval("e.children[i].children[a]."+key.name+"") == key.value){
+			  if(eval("e.children[i].children[a]."+key.name) == key.value){
 			  	return e.children[i].children[a];
 			  }
 			  for (var c=0; c < e.children[i].children[a].children.length; c++) {
-				  if(eval("e.children[i].children[a].children[c]."+key.name+"") == key.value){
+				  if(eval("e.children[i].children[a].children[c]."+key.name) == key.value){
 				  	return e.children[i].children[a].children[c];
 				  }
 				};

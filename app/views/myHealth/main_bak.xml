@@ -1,0 +1,113 @@
+<Alloy>
+	<Window title="MY HEALTH RECORD" id="myhealth" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<RightNavButton>
+	        <View>
+	         	<ImageView right='0' id="moreHealth" width='30' image="/images/health_love.png" />
+	        </View>
+        </RightNavButton>
+        <View>
+        	<View layout="vertical" id="loadingBar" height="120" width="120" borderRadius="15"  backgroundColor="#2E2E2E" >
+		        <ActivityIndicator  id="activityIndicator" />
+		    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
+		    </View>
+			<View id="main" layout="vertical" backgroundColor="#ffffff">
+				<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+					<View left="0" width="10%">
+			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+			   		</View>
+			     	<View id="pageTitle" width="80%">
+			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Info</Label>
+			     	</View>
+			     	<View width="10%">
+			         	<ImageView id="moreHealth" width="30" image="/images/health_love.png" />
+			   		</View>
+			 	</View> 
+				<!--<ListView defaultItemTemplate="Titanium.UI.LIST_ITEM_TEMPLATE_SETTINGS">
+					<ListSection title="Health Data">
+						 <ListItem title="Body Measurements" mod="Body Measurements" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
+						 <ListItem title="Me" mod="Me" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE"/>
+						 <ListItem title="Vitals" mod="Vitals" accessoryType="Titanium.UI.LIST_ACCESSORY_TYPE_DISCLOSURE" />
+					</ListSection>
+				</ListView>
+			-->
+				<ScrollView id="graphScrollView" layout="vertical" height="auto" width="100%" backgroundColor="#EBEBEB" contentWidth="Ti.UI.FILL" >
+					<!--<View id="stepsView" gType="10" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false" platform="ios">
+						<WebView id="stepsWebView" height="230" width="100%" url="/html/steps.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="stepsDetailLabel" />
+						</View>
+				</View>-->
+					<View id="bmiView" gType="1" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="bmiWebView" height="230" width="Ti.UI.FILL" url="/html/bmi.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bmiDetailLabel" />
+						</View>
+					</View>
+					<View id="bloodPressureView" gType="2" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="bloodPressureWebView" height="230" width="Ti.UI.FILL" url="/html/bloodPressure.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bloodPressureDetailLabel" />
+						</View>
+					</View>
+					<View id="heartRateView" gType="3" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="heartRateWebView" height="230" width="Ti.UI.FILL" url="/html/heartRate.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="heartRateDetailLabel" />
+						</View>
+					</View>
+					<View id="glucoseView" gType="8" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="glucoseWebView" height="230" width="Ti.UI.FILL" url="/html/glucose.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="glucoseDetailLabel" />
+						</View>
+					</View>
+					<View id="cholestrolView" gType="7" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="cholestrolWebView" height="230" width="Ti.UI.FILL" url="/html/cholestrol.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="cholestrolDetailLabel" />
+						</View>
+					</View>
+					<View id="bodyTemperatureView" gType="4" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="bodyTemperatureWebView" height="230" width="Ti.UI.FILL" url="/html/bodyTemperature.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="bodyTempDetailLabel" />
+						</View>
+					</View>
+					
+					<!--
+					<View id="heightView" height="Ti.UI.SIZE" layout="vertical" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="heightWebView" height="Ti.UI.SIZE" width="100%" url="/html/height.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="heightDetailLabel" />
+						</View>
+					</View>
+					<View id="weightView" height="Ti.UI.SIZE" layout="vertical" bottom="10" left="10" right="10" top="10" borderColor="#dfe0e4" width="Ti.UI.FILL" backgroundColor="#FFFFFF" visible="false">
+						<WebView id="weightWebView" height="Ti.UI.SIZE" width="100%" url="/html/weight.html" disableBounce='true' touchEnabled="false"></WebView>
+						<View height="1" left="10" right="10" bottom="0" backgroundColor="#dfe0e4" width="Ti.UI.FILL" />
+						<View height="Ti.UI.SIZE" left="10" right="10" top="10" bottom="10">
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" left="0">Latest</Label>
+							<Label color="#9197a3" font="fontSize: 12" width="Ti.UI.SIZE" height="Ti.UI.SIZE" right="0" id="weightDetailLabel" />
+						</View>
+					</View>
+					-->
+				</ScrollView>
+			</View>
+		</View>
+	</Window>
+</Alloy>

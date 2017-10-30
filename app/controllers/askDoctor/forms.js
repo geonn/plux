@@ -18,7 +18,6 @@ function genderSelect(e){
 	  gender_child[i].children[0].color = "#606060";
 	};
 	
-	//var gender = parent({name: "gender"}, e.source);
 	console.log(gender);
 	gender = e.source.gender;
 	

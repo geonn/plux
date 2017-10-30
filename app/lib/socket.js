@@ -2,7 +2,7 @@ var function_array = [];
 var function_onoff_array = [];
 
 exports.fireEvent = function(name, params){
-	eval("Ti.App.fireEvent('"+name+"', params)");
+	Ti.App.fireEvent(name, params);
 };
 
 exports.event_onoff = function(name, bool){

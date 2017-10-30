@@ -1,12 +1,12 @@
 var args = arguments[0] || {}; 
+var loading = Alloy.createController("loading");
 var library = Alloy.createCollection('panelList'); 
 var corp = Ti.App.Properties.getString('corpcode') || "";
 var memno = Ti.App.Properties.getString('memno');
 var details;
-common.construct($);
-common.showLoading();
 doRefresh();
 function doRefresh(){ 
+	loading.start();
 	API.loadPanelList({clinicType:""});
 }
 
@@ -91,11 +91,11 @@ function listing(){
 			$.tblview.setData(data);
 		}
 		
-	
-	common.hideLoading();
+	loading.finish();
 }
 
 function init(){ 
+	$.win.add(loading.getView());
 	details = library.getCountClinicType(corp); 
 	details24 = library.getCount24Hours(corp); 
 	var det24= { 
@@ -107,9 +107,6 @@ function init(){
 	//details.push(det24);
 	listing();
 }
-init();
-
-
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 

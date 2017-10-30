@@ -19,12 +19,6 @@
 						<View height="Ti.UI.SIZE" width="Ti.UI.FILL" top="0" id="card"></View>
 						<View height="Ti.UI.SIZE" width="Ti.UI.FILL" layout="vertical" bottom="50" id="qrCode"></View>
 					</View>
-					<View class="wfill hfill" backgroundColor="#ffffff" id="unverified" visible="false" layout="vertical" zIndex="10"  >
-						<ImageView width="100" height="100" borderRadius="10" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/asp_logo.png"></ImageView>
-						<Label id="unveriLbl" class="label">You need to verify your account in order to use eCard.</Label>
-						<Button borderRadius="5" backgroundColor="#CE1D1C" onTouchend="resendVerificationEmail" title="Resend Verification"  width="70%" top="10" height="40" color="#ffffff" />
-						<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="checkStatus" title="Refresh" width="70%" top="10" height="40" color="#ffffff" />
-					</View>
 				</View>
 			</View>
 		</View>

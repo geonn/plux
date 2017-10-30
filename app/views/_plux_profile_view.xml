@@ -30,11 +30,11 @@
 				<View class="hsize wfill">
 					<View class="padding wfill hsize horz" horizontalWrap="false">
 						<View id="firstTab" tab="1" onClick="switchListing" height="40" width="50%">
-							<Label class="wsize hsize h5" color="#CE1D1C" v="label" onClick="switchListing">Medication Records</Label>
+							<Label touchEnabled="false" class="wsize hsize h5" color="#CE1D1C" v="label" onClick="switchListing">Medication Records</Label>
 						</View>
 						<ImageView v="label" class="wsize" height="40" image="/images/icons/dotted.png"></ImageView>
 						<View tab="2" id="secondTab"  onClick="switchListing" height="40" width="50%">
-							<Label class="wsize hsize h5" v="label" onClick="switchListing">Allergic History</Label>
+							<Label touchEnabled="false" class="wsize hsize h5" v="label" onClick="switchListing">Allergic History</Label>
 						</View>
 					</View>
 				</View>

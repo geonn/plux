@@ -88,8 +88,9 @@ var defaultRetryTimes = 3;
 
 //API that call in sequence 
 var APILoadingList = [
-	{url: getClinicLocator2, model: "panelList", checkId: "13"},
+	
 	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
+	{url: getClinicLocator2, model: "panelList", checkId: "13"},
 	{url: doctorListUrl, model: "doctors", checkId: "12"},
 	{url: getCategoryList, model: "categorys", checkId: "18"}
 ];
@@ -124,6 +125,7 @@ exports.loadAPIBySequence = function (ex, counter){
 	}else{
 		var checker = Alloy.createCollection('updateChecker'); 
 		var isUpdate = checker.getCheckerById(api['checkId']);
+		console.log(api['checkId']+" api['checkId']");
 		console.log(isUpdate);
 		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}
@@ -1382,7 +1384,7 @@ exports.callByPost = function(e, onload, onerror){
 			url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
 		console.log(url); 
-		console.log(e.type+"  e.type");
+		console.log(e.params || {});
 		if(e.type == "voice"){
 			var _result = contactServerByPostVideo(url, e.params || {});  
 		}else{

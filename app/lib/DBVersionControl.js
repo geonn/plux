@@ -7,7 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.7"; 
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.8"; 
 	
 	if(dbVersion == "1.5"){
 		
@@ -99,6 +99,12 @@ exports.checkAndUpdate = function(e){
 		Ti.App.Properties.removeProperty('u_id');
 		
 		dbVersion = '2.7';
+	}
+	if(dbVersion == "2.7"){
+		var mrv2_model = Alloy.createCollection('updateChecker');
+		mrv2_model.addColumn("extra", "TEXT");
+		
+		dbVersion = '2.8';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

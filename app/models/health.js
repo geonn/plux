@@ -251,7 +251,7 @@ exports.definition = {
 	            collection.trigger('sync');
 	            API.syncHealthData({u_id:Ti.App.Properties.getString('u_id')});
             },
-            saveArray : function(arr){ // 5th version of save array by adrian
+            saveArray : function(arr){ // 5.1th version of save array by onn
 				var collection = this;
 				var columns = collection.config.columns;
 				var names = [];
@@ -262,6 +262,8 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
+                console.log(arr.length+" number of arr to save into "+ collection.config.adapter.db_name);
+                db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];
                 	var eval_values = [];
@@ -270,7 +272,9 @@ exports.definition = {
 	                		_.find(names, function(name){
 	                			if(name == k){
 	                				keys.push(k);
-			                		eval_values.push("'"+entry[k]+"'");
+	                				entry[k] = (entry[k] == null)?"":entry[k];
+	                				entry[k] = entry[k].replace(/'/g, "\\'");
+			                		eval_values.push("\""+entry[k]+"\"");
 	                			}
 	                		});
 	                	}
@@ -279,6 +283,7 @@ exports.definition = {
 		            console.log(sql_query);
 		            db.execute(sql_query);
 				});
+				db.execute("COMMIT");
 	            db.close();
 	            collection.trigger('sync');
 			},

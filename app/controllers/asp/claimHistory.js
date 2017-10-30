@@ -53,7 +53,6 @@ function render(data){
 			classes: ['horz', 'hsize','wfill'], 
 			serial: entry.serial ,
 			appcode: entry.appcode,
-			status: entry.status,
 		});
 		
 		var statustView = $.UI.create('View',{ 
@@ -67,6 +66,7 @@ function render(data){
 			
 		var view_container = $.UI.create("View",{
 			classes: ['vert','hsize'],
+			status: entry.status,
 			width: "auto",
 			record: entry,
 			claimType:entry.claimType,
@@ -209,7 +209,7 @@ function render(data){
 		$.tv.appendRow(row);
 		
 		view_container.addEventListener("click", function(e){
-			var status = parent({name: "status"}, e.source);
+			var status = e.source.status;
 			console.log(status+" status");
 			if(status == "Pending"){ 
 				nav.navigateWithArgs("asp/claimSubmission", {serial: e.source.serial, edit:1});
