@@ -35,58 +35,15 @@ if(args.pauseIcon){
 	pauseIcon = WPATH("/images/pause_button.png");
 }
 
-$.scrubBar.thumbImage = "/images/player_indicator.png";
-// show by default
-$.scrubBar.show();
-
-$.scrubBar.addEventListener('touchstart', function(e) {
-	sliderTouched = true;
-
-	if (audioPlayer.playing) {
-		sliderIsPausingPlayback = true;
-		stopTimer();
-		audioPlayer.pause();
-	}
-});
-
-$.scrubBar.addEventListener('touchend', function(e) {
-
-	// always set the new time
-	audioPlayer.setTime($.scrubBar.value);
-
-	// if paused
-	if (audioPlayer.paused) {
-		if (sliderIsPausingPlayback) {
-			audioPlayer.play();
-			startTimer();
-		}
-	}
-
-	// reset logic
-	sliderTouched = false;
-	sliderIsPausingPlayback = false;
-});
-
 function onPlayStopBtnClicked() {
 
 	// If both are false, playback is stopped.
+	console.log(audioPlayer.playing+" audioPlayer.playing");
 	if (audioPlayer.playing) {
 		audioPlayer.pause();
-
-		stopTimer();
-		console.log("why cant change to play");
 		$.playStopBtn.image = playIcon;
-
 	} else {
 		audioPlayer.play();
-
-		// set the max value of the slider
-		$.scrubBar.max = getDuration();
-
-		// start the timer
-		startTimer();
-
-		// update the icon
 		$.playStopBtn.image = pauseIcon;
 	}
 }
@@ -124,62 +81,7 @@ function updateTimeLabel() {
 	// calc the duration - only once started
 	totalDisplayDuration = prettifyTime(getDuration() / 1000);
 
-	$.time.text = prettifyTime(Math.round(audioPlayer.time) / 1000) + " / " + totalDisplayDuration;
-}
-
-function startTimer() {
-	// twice pr second
-	if (!timerIsActive) {
-		// calc the duration - only once started
-		totalDisplayDuration = prettifyTime(getDuration() / 1000);
-console.log(totalDisplayDuration+" totalDisplayDuration");
-		timer = setInterval(function() {
-			var currentTime = Math.round(audioPlayer.time);
-			console.log(getDuration()+" "+audioPlayer.time);
-			if(audioPlayer.time == 0)
-				stopTimer();
-			$.scrubBar.value = currentTime;
-
-			$.time.text = prettifyTime(currentTime / 1000) + " / " + totalDisplayDuration;
-		}, 500);
-	}
-
-	timerIsActive = true;
-}
-
-function stopTimer(e) {
-	console.log(timer);
-	console.log("stop timer");
-	clearInterval(timer);
-	timerIsActive = false;
-	$.playStopBtn.image = playIcon;
-}
-
-if (OS_IOS) {
-	// iOS only events
-	audioPlayer.addEventListener('interrupted', function(e) {
-		//Ti.API.debug('[AudioPlayerWidget]' + e.type);
-		stopTimer();
-	});
-
-	audioPlayer.addEventListener('resume', function(e) {
-		//Ti.API.debug('[AudioPlayerWidget]' + e.type);
-		startTimer();
-	});
-
-} else if (OS_ANDROID) {
-	// Android only events
-	audioPlayer.addEventListener('change', function(e) {
-		Ti.API.debug("[AudioPlayerWidget] State: " + e.description + ' (' + e.state + ')');
-		// state handling
-		if (e.state == Ti.Media.Sound.STATE_PLAYING) {
-			startTimer();
-		} else if (e.state == Ti.Media.Sound.STATE_PAUSED) {
-			stopTimer();
-		} else if (e.state == Ti.Media.Sound.STATE_STOPPED) {
-			stopTimer();
-		}
-	});
+	$.time.text = totalDisplayDuration;
 }
 
 exports.setUrl = function(url) {
@@ -220,6 +122,14 @@ function set_url(url){
 	
 	// update the icon
 	$.playStopBtn.image = playIcon;
+	audioPlayer.addEventListener('change', function(e) {
+		console.log("[AudioPlayerWidget] State: " + e.description + ' (' + e.state + ')');
+	});
+	if(OS_ANDROID){
+		audioPlayer.addEventListener("complete", function(e){
+			$.playStopBtn.image = playIcon;
+		});
+	}
 }
 
 exports.updatePlayIcon = function(icon) {
@@ -232,7 +142,7 @@ exports.updatePauseIcon = function(icon) {
 
 // call dispose when done
 exports.dispose = function() {
-	Ti.API.debug("[AudioPlayerWidget] was disposed, idleTimer reset to = " + idleTimer);
+	console.log("[AudioPlayerWidget] was disposed, idleTimer reset to = " + idleTimer);
 
 	// always stop the player
 	audioPlayer.stop();

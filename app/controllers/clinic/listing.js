@@ -4,7 +4,9 @@ var library = Alloy.createCollection('panelList');
 var corp = Ti.App.Properties.getString('corpcode') || "";
 var memno = Ti.App.Properties.getString('memno');
 var details;
+$.win.add(loading.getView());
 doRefresh();
+
 function doRefresh(){ 
 	loading.start();
 	API.loadPanelList({clinicType:""});
@@ -94,8 +96,7 @@ function listing(){
 	loading.finish();
 }
 
-function init(){ 
-	$.win.add(loading.getView());
+function init(){
 	details = library.getCountClinicType(corp); 
 	details24 = library.getCount24Hours(corp); 
 	var det24= { 

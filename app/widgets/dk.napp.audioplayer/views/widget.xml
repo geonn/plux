@@ -2,8 +2,8 @@
 	<View id="wrap" layout="vertical" >
 		<View width="Ti.UI.FILL" height="30">
 			<ImageView top="0" height="30" width="30" left="10" right="10" zIndex="10" id="playStopBtn" onClick="onPlayStopBtnClicked"></ImageView>
-			<Slider top="4" height="30" left='50' width="auto" right="10" id="scrubBar" />
+			<Label left="50" id="time" />
 		</View>
-		<Label left="10" id="time" />
+		
 	</View>
 </Alloy>

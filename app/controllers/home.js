@@ -184,8 +184,8 @@ function init(){
 	}
 	setBackground();
 	syncFromServer();
-	var PUSH = require('push');
-	PUSH.registerPush();
+	//var PUSH = require('push');
+	//PUSH.registerPush();
 }
 
 function syncFromServer(){
