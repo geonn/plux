@@ -7,16 +7,20 @@ function init(){
 	if(isShowIntro	!= ""){
 		if(u_id == ""){ 
 			if(isSignup2 == "yes"){
-				var win = Alloy.createController("asp/signup2").getView();
+				var win = Alloy.createController("login").getView();
 				win.open(); 
+				var win2 = Alloy.createController("asp/signup2").getView();
+				win2.open(); 
 			}else{ 
 				var win = Alloy.createController("login").getView();
 				win.open(); 
 			}
 		}else{
 			if(isSignup2 == "yes"){
-				var win = Alloy.createController("asp/signup2").getView();
+				var win = Alloy.createController("login").getView();
 				win.open(); 
+				var win2 = Alloy.createController("asp/signup2").getView();
+				win2.open(); 
 			}else{ 
 				var win = Alloy.createController("home").getView();
 			}

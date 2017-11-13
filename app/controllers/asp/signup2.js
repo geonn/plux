@@ -28,6 +28,7 @@ function doAspSignup(){
 	var mobileno = $.mobileno.value;
 	var valid_email = ValidateEmail(email);
 	if(!valid_email){
+		common.hideLoading();
 		return false;
 	}
 	if(password != repassword){

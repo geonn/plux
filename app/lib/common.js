@@ -246,7 +246,7 @@ exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 		}
 	});
 	var view_sms_box =  Titanium.UI.createView({
-		width: Ti.UI.FILL,
+		borderWidth: 1,
 		height: Ti.UI.SIZE,
 		layout: "horizontal"
 	});
@@ -265,14 +265,11 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     if(typeof checkboxspecs != "object")
         checkboxspecs = {};
     checkboxspecs.width = checkboxspecs.width || 25;
-    checkboxspecs.backgroundColor = checkboxspecs.unCheckedColor || "white";
+    checkboxspecs.backgroundColor = checkboxspecs.unCheckedColor || "#ffffff";
     checkboxspecs.height = checkboxspecs.height || 25;
-    checkboxspecs.border = checkboxspecs.border || 1;
-    checkboxspecs.borderColor = checkboxspecs.borderColor || "silver";
+    checkboxspecs.borderWidth = 1;
+    checkboxspecs.borderColor = checkboxspecs.borderColor || "#cccccc";
     checkboxspecs.checked = false;
-    console.log(checkboxspecs.height * 1.5);
-    console.log(checkboxspecs.height * 0.5);
-    console.log(checkboxspecs.width * 0.5);
     var imageView = Ti.UI.createImageView({
         image:"/images/checkbox.gif",
         height:checkboxspecs.height * 1.5,
