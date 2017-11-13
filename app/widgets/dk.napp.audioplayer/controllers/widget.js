@@ -5,7 +5,7 @@
  */
 
 var args = arguments[0] || {};
-var audioPlayer = Ti.Media.createSound();
+var audioPlayer;// = Ti.Media.createAudioPlayer();
 var timer;
 // save off current idle timer state
 Ti.App.idleTimerDisabled = true;
@@ -53,6 +53,7 @@ function onPlayStopBtnClicked() {
  */
 function getDuration() {
 	if (OS_IOS) {
+		console.log(audioPlayer.duration+" "+audioPlayer.time);
 		console.log('should get this '+Math.ceil(audioPlayer.duration * 1000));
 		return Math.ceil(audioPlayer.duration * 1000);
 	}
@@ -85,6 +86,7 @@ function updateTimeLabel() {
 }
 
 exports.setUrl = function(url) {
+
 	var filename = url.split('/').pop();
 	var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, filename);	
 	if(file.exists()){
@@ -108,28 +110,42 @@ exports.setUrl = function(url) {
 function set_url(url){
 	console.log(url+" here url");
 	try{
-		audioPlayer = Ti.Media.createSound({
-			url : url,
-			allowBackground : true
-		});
+		if(OS_IOS){
+			audioPlayer = Ti.Media.createSound({
+				url : url,
+				allowBackground : true
+			});
+		}else{
+			audioPlayer = Ti.Media.createAudioPlayer({
+				url : url,
+				allowBackground : true
+			});
+		}
 	}catch(e){
 		console.log(e.message);
 	}
 	audioPlayer.play();
 	audioPlayer.stop();
+	
+	console.log(audioPlayer.time+" "+audioPlayer.duration);
 	// new sound - update the display
 	updateTimeLabel();
 	
 	// update the icon
 	$.playStopBtn.image = playIcon;
+	
 	audioPlayer.addEventListener('change', function(e) {
-		console.log("[AudioPlayerWidget] State: " + e.description + ' (' + e.state + ')');
+		console.log('State: ' + e.description + ' (' + e.state + ')');
+	    Ti.API.info('State: ' + e.description + ' (' + e.state + ')');
+	    updateTimeLabel();
+	    if(e.state == 7){	//7 = stopped
+	    	$.playStopBtn.image = playIcon;
+	    }
 	});
-	if(OS_ANDROID){
-		audioPlayer.addEventListener("complete", function(e){
-			$.playStopBtn.image = playIcon;
-		});
-	}
+
+	audioPlayer.addEventListener("complete", function(e){
+		$.playStopBtn.image = playIcon;
+	});
 }
 
 exports.updatePlayIcon = function(icon) {
