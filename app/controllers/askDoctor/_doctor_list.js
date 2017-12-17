@@ -107,6 +107,8 @@ $.update_doctor_list = function(e){
 
 function refresh(e){
 	if(typeof e != "undefined"){
+		console.log("socket refresh");
+		console.log(e.name_list);
 		online_doctor = e.name_list;
 	}
 	//[{key: "specialty", value: specialty}]
