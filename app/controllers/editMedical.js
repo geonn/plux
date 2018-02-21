@@ -12,6 +12,7 @@ if(OS_IOS){
 	var MediaPickerModule = require('MediaPicker').MediaPicker;
 	var MediaPicker = new MediaPickerModule();
 }
+var editable_textfield;
 
 loadMedicalInfo();
  
@@ -30,12 +31,28 @@ function loadMedicalInfo(){
 	if(treatment == "undefined"){
 		treatment= "";
 	}
-	var message = details.message;
 	var treatment = treatment;
+	console.log(details.editable+" details.editable");
+	if(details.editable){
+		editable_textfield = $.UI.create("TextArea", {classes:['wfill', 'padding'], backgroundColor: "#f6f6f6", borderColor: "#f6f6f6", height: 150, value: details.message, hintText: "Remark"});
+		$.message.add(editable_textfield);	
+	}else{
+		var content = details.message;
+		content = content.replace(/\[\[/g, "<"); 
+		content = content.replace(/\]\]/g, ">"); 
+		var webview = $.UI.create("WebView", {classes:['wfill', 'padding'], backgroundColor: "#f6f6f6", height: 150, html: nl2br(content)});
+		$.message.add(webview);
+		editable_textfield = null;
+	}
 	$.titleRecord.value= title;
 	$.clinicRecord.value= clinic;
 	$.lastUpdated.text = "Last updated: " +timeFormat(details.updated);
 } 
+
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
 
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getData(id);
@@ -85,6 +102,10 @@ function saveRecord(){
 		created : details.created,
 		updated : common.now(),
 	};    
+	if(editable_textfield != null){
+		_.extend(param, {message: editable_textfield.value});
+	}
+	console.log(param);
 	API.callByPost({url: "addUpdateMedicalRecord", params: param}, function(){
 		medicalRecordsModel.saveArray([{ 
 			id : id,

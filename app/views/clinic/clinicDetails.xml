@@ -21,7 +21,7 @@
 		 	<ImageView right='10' top='10' id="showFullMap" zIndex="99" width="25" height="25" image="/images/zoom_in.png" /> 
 		 </View>
 		 		
-		 <ScrollView layout="vertical" scrollType="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" top="0">
+		 <ScrollView layout="vertical" scrollType="vertical" backgroundColor="#ffffff" height="Ti.UI.FILL" width="Ti.UI.FILL" class="contwfill conthsize" top="0">
  
 		 	<View class="box rounded padding wfill hsize vert" bottom="0">
 		 		<View class="box rounded wfill horz" backgroundColor="#ffffff" top="0" height="80">

@@ -184,8 +184,8 @@ function init(){
 	}
 	setBackground();
 	syncFromServer();
-	//var PUSH = require('push');
-	//PUSH.registerPush();
+	var PUSH = require('push');
+	PUSH.registerPush();
 }
 
 function syncFromServer(){
@@ -320,6 +320,7 @@ function refreshHeaderInfo(){
 }	 
 
 function redirect(e){
+	console.log(e.target);
 	nav.navigationWindow(e.target,"","", e.app_param);
 } 
  
@@ -334,13 +335,53 @@ function navWindow(e){
 		}
 		
 	}else if(e.source.mod == "myHealth"){
-		nav.navigationWindow(target+"/main"); 
+		nav.navigationWindow(target+"/index"); 
 	}else if(e.source.mod == "clinicLocator"){
 		var memno = Ti.App.Properties.getString('memno') || ""; 
-		var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
-		console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
-		
-		if(hasLocationPermissions){
+		//var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
+		//console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
+		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
+			if (e.success) {
+				contacts({callback: function(){
+					console.log('why not calling');
+						if(memno == ""){
+							nav.navigationWindow("clinic/listing");
+						}else{
+							nav.navigationWindow("clinic/listing", 1);
+						}
+					}
+				});
+			}else{
+				var dialog = Ti.UI.createAlertDialog({
+					message : 'You do not have location permissions enabled shake locate needs these to work.',
+					ok : 'Got it',
+					title : 'Important'
+				});
+	
+				dialog.addEventListener('click', function(e) {
+	
+					if (OS_IOS) {
+	
+						Ti.Platform.openURL('app-settings:');
+	
+					}
+	
+					if (OS_ANDROID) {
+	
+						var intent = Ti.Android.createIntent({
+							action : 'android.settings.APPLICATION_SETTINGS',
+						});
+						intent.addFlags(Ti.Android.FLAG_ACTIVITY_NEW_TASK);
+						Ti.Android.currentActivity.startActivity(intent);
+	
+					}
+	
+				});
+	
+				dialog.show();
+			}
+		});
+		/*if(hasLocationPermissions){
 			contacts({callback: function(){
 					console.log('why not calling');
 					if(memno == ""){
@@ -372,7 +413,7 @@ function navWindow(e){
 	
 				}
 			});
-		}
+		}*/
 		
 	}else if(e.source.mod == "conversation"){
 		 nav.navigationWindow(target, 1);
@@ -501,6 +542,67 @@ function contacts(ex) {
 			// We already check AUTHORIZATION_DENIED earlier so we can be sure it was denied now and not before
 			alert('You denied permission.');
 		}
+	});
+}
+
+function requestLocationPermissions(authorizationType, callback) {
+
+	// FIXME: Always returns false on Android 6
+	// https://jira.appcelerator.org/browse/TIMOB-23135
+	if (OS_IOS && !Ti.Geolocation.locationServicesEnabled) {
+		return callback({
+			success : false,
+			error : 'Location Services Disabled'
+		});
+	}
+
+	// Permissions already granted
+	if (Ti.Geolocation.hasLocationPermissions(authorizationType)) {
+		return callback({
+			success : true
+		});
+	}
+
+	// On iOS we can determine why we do not have permission
+	if (OS_IOS) {
+
+		if (Ti.Geolocation.locationServicesAuthorization === Ti.Geolocation.AUTHORIZATION_RESTRICTED) {
+			return callback({
+				success : false,
+				error : 'Your device policy does not allow Geolocation'
+			});
+
+		} else if (Ti.Geolocation.locationServicesAuthorization === Ti.Geolocation.AUTHORIZATION_DENIED) {
+
+			dialogs.confirm({
+				title : 'You denied permission before',
+				message : 'Tap Yes to open the Settings app to restore permissions, then try again.',
+				callback : function() {
+					Ti.Platform.openURL(Ti.App.iOS.applicationOpenSettingsURL);
+				}
+			});
+
+			// return success:false without an error since we've informed the user already
+			return callback({
+				success : false
+			});
+		}
+	}
+
+	// Request permission
+	Ti.Geolocation.requestLocationPermissions(authorizationType, function(e) {
+
+		if (!e.success) {
+			return callback({
+				success : false,
+				error : e.error || 'Failed to request Location Permissions'
+			});
+		}
+
+		callback({
+			success : true
+		});
+
 	});
 }
 

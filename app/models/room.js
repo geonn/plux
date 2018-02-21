@@ -50,16 +50,18 @@ exports.definition = {
             		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
             	 }
             	*/
-                var eval_column = "";
-            	for (var i=0; i < names.length; i++) {
-					eval_column = eval_column+names[i]+": res.fieldByName('"+names[i]+"'),";
-				};
-                while (res.isValidRow()){
-                	eval("arr[count] = {"+eval_column+"}");
-                	res.next();
+            	while (res.isValidRow()){
+					arr[count] = {
+					    room_id: res.fieldByName('room_id'),
+					    u_id: res.fieldByName('u_id'),
+					    dr_id: res.fieldByName('dr_id'),
+					    status: res.fieldByName('status'),
+					    patient_name: res.fieldByName('patient_name'),
+					    unread: res.fieldByName('unread'),
+					};
+					res.next();
 					count++;
-                }
-			 
+				} 
 				res.close();
                 db.close();
                 collection.trigger('sync');

@@ -84,7 +84,7 @@ function render_doctor_list(){
 function addClinicAction(vw){
 	vw.addEventListener('click', function(e){
 		var dr_id = e.source.dr_id;
-		var record = e.source.dr_id;
+		var record = e.source.record;
 		console.log(dr_id+" dr_id from doctor");
 	 	//Ti.App.fireEvent("askDoctor_index:windowClose");
 	 	var room_model = Alloy.createCollection('room');

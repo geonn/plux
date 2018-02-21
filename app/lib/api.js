@@ -10,6 +10,7 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
+var syncHealthData = "https://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
 var checkAppVersionUrl = "https://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
 var updateUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
 var getUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;

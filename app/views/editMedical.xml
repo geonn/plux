@@ -21,8 +21,11 @@
 			<View height="1" width="100%" backgroundColor="#CE1D1C" />
 			<View id="aView" class="wfill hfill vert" > 
 				<Label class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
-				<TextField top="0" left="10" right="10" id="clinicRecord" backgroundColor="#f6f6f6" borderColor="#f6f6f6" height="40" hintText="Please fill in Clinic/Hospital/Specialist" width="Ti.UI.FILL"/> 
-				<ScrollableView backgroundColor="#cccccc" id="attachment" showPagingControl="true" class="horz wfill hsize contwfill conthsize" />
+				<TextField top="0" left="10" right="10" id="clinicRecord" backgroundColor="#f6f6f6" borderColor="#f6f6f6" height="40" hintText="Please fill in Clinic/Hospital/Specialist" width="Ti.UI.FILL"/>
+				 <View class="wfill hsize" id="message">
+				 	
+				 </View>
+				<ScrollableView backgroundColor="#cccccc" id="attachment" showPagingControl="true" class="horz wfill hfill contwfill conthsize" />
 			</View>
 		</View>
 		<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false">

@@ -14,9 +14,9 @@
 	 			<Label id="estimate" class="wfill hsize padding h5" color="#f63d3d" > 
 	 			</Label>
 	 		</View>
-	    	<ScrollView id="chatroom" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL">
-	    		<View id="inner_area" class="wfill hsize vert" bottom="20">
-	    			<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>
+	    	<ScrollView id="chatroom" onScroll="scrollChecker" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" transform="Ti.UI.create2DMatrix().rotate(180)">
+	    		<View id="inner_area" class="wfill hsize vert" bottom="20" >
+	    			<!--<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>-->
 	    		</View>
 			</ScrollView>
 		    <View backgroundColor="white" class="wfill hsize" height="50" bottom="0" id='bottom_bar'>

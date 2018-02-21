@@ -1,0 +1,39 @@
+<Alloy>
+	<Collection src="health"/>
+	<Window title="MY HEALTH RECORD" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
+		<View class="hfill wfill vert" width="Ti.UI.FILL" layout="vertical" id="main" backgroundColor="#ffffff">
+			<View class='wfill horz' height="50" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="80%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Info</Label>
+		     	</View>
+		 	</View>
+			<ScrollView id="container" class="wfill hfill contwfill conthsize vert" backgroundColor="#" >
+				<View class="wsize hsize rounded box horz" top="10" id="day_month">
+					<View class='wsize hsize' backgroundColor="#ddd" onClick="changeDateSorting" perior_type="day">
+						<Label class='wsize hsize padding h5' touchEnabled="false" left="20" right="20">Day</Label>
+					</View>
+					<View class='wsize hsize' onClick="changeDateSorting" perior_type="month">
+						<Label class='wsize hsize padding h5' touchEnabled="false" left="20" right="20">Month</Label>
+					</View>
+				</View>
+				<View class="wfill hsize" top="10">
+					<ImageView image='/images/btn-back.png' left="10" width="20" action="minus" onClick="adjust_date_indicator"></ImageView>
+					<Label class='wfill hsize h4' textAlign="center" left="40" right="40" id="date_indicator"></Label>
+					<ImageView image='/images/btn-forward.png' right="10" width="20" action="plus" onClick="adjust_date_indicator"></ImageView>
+				</View>
+				<WebView url="/html/graph.html" id="webview" class="wfill" height="230"></WebView>
+				<TableView dataCollection="health" dataTransform="transformFunction">
+					<TableViewRow>
+						<View class='wfill hsize padding vert'>
+							<Label class='wfill hsize h5' text="{main_title}"></Label>
+							<Label class="wfill hsize h6" text="{sub_title}"></Label>
+						</View>
+					</TableViewRow>
+				</TableView>
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

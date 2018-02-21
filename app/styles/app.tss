@@ -141,6 +141,7 @@
 
 ".small_button":{
 	borderColor: "#CE1D1C",
+	borderWidth: 1,
 	backgroundColor: "#ffffff",
 	color: "#CE1D1C",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
@@ -273,6 +274,12 @@
 }
 '.themeColor' : {
 	color: "#CE1D1C"
+}
+'.purple' : {
+	color: "#933ec5",	
+}
+'.purple_border' : {
+	borderColor: "#933ec5",	
 }
 '.themeBg' : {
 	backgroundColor: "#CE1D1C"
