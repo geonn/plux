@@ -10,10 +10,6 @@
 	     	</View>
 	 	</View>
 	 	<ScrollView class="wfill hfill" contentHeight="Ti.UI.FILL" contentWidth="Ti.UI.FILL">
-	 		<View backgroundColor="#ffffff" zIndex="10" width="80%" class="hsize box rounded">
-	 			<Label id="estimate" class="wfill hsize padding h5" color="#f63d3d" > 
-	 			</Label>
-	 		</View>
 	    	<ScrollView id="chatroom" onScroll="scrollChecker" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" transform="Ti.UI.create2DMatrix().rotate(180)">
 	    		<View id="inner_area" class="wfill hsize vert" bottom="20" >
 	    			<!--<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>-->

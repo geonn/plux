@@ -56,25 +56,30 @@ function render_menu(latest){
 		var view_container = $.UI.create("View", {classes:['vert', 'rounded'], width: cell_width, height: 175, top:top, left: left, backgroundColor: "#ffffff", record: menus[i]});
 		var label_title = $.UI.create("Label", {classes:['wsize','hsize','h5'], textAlign: "center", top:10, text: menus[i].title, touchEnabled: false});
 		var image_icon = $.UI.create("ImageView", {width: 50, height:50, top:10, bottom:10, image: menus[i].icon, touchEnabled: false});
-		var main_title = 0;
+		var main_title = "";
 		if(found.length > 0){
 			for (var j=0; j < menus[i].fields.length; j++) {
-				console.log(menus[i].fields[j].length+" menus[i].fields[j].length");
+				console.log(found[0]);
 				if(menus[i].fields[j].graph_display){
-					main_title += (j == 0)?found[0]['field'+(j+1)]:"/"+found[0]['field'+(j+1)];
+					main_title += (j == 0)?found[0]['field'+(j+1)]||0:"/"+found[0]['field'+(j+1)]||0;
 				}
 			};
 		}
-		var label_latest = $.UI.create("Label", {classes:['wfill','hsize','h6'], textAlign: "center", color: menus[i].color,  text: main_title+" \n"+menus[i].measurement, touchEnabled: false});
-		var button_record = $.UI.create("Button", {classes:['small_button','rounded','padding'], borderColor: menus[i].color, color: menus[i].color, width: Ti.UI.FILL, title: "Record", record: menus[i]});
-		view_container.add(label_title);
-		view_container.add(image_icon);
-		view_container.add(label_latest);
-		view_container.add(button_record);
-		$.menu.add(view_container);
-		view_container.addEventListener('click', navToGraph);
-		button_record.addEventListener('click', navToAdd);
-		
+		main_title = (main_title == "")?0:main_title;
+		console.log(typeof $.menu.children[i]+" typoef $.menu.children[i]");
+		if(typeof $.menu.children[i] != "undefined"){
+			$.menu.children[i].children[2].text = main_title+" \n"+menus[i].measurement;
+		}else{
+			var label_latest = $.UI.create("Label", {classes:['wfill','hsize','h6'], textAlign: "center", color: menus[i].color,  text: main_title+" \n"+menus[i].measurement, touchEnabled: false});
+			var button_record = $.UI.create("Button", {classes:['small_button','rounded','padding'], borderColor: menus[i].color, color: menus[i].color, width: Ti.UI.FILL, title: "Record", record: menus[i]});
+			view_container.add(label_title);
+			view_container.add(image_icon);
+			view_container.add(label_latest);
+			view_container.add(button_record);
+			$.menu.add(view_container);
+			view_container.addEventListener('click', navToGraph);
+			button_record.addEventListener('click', navToAdd);
+		}
 		odd_counter++;
 	};
 }
@@ -108,10 +113,10 @@ function refresh(){
 	});
 }
   
-//Ti.API.addEventListener("myHealth:render_menu", render_menu);
-  
+Ti.App.addEventListener("myHealth:render_menu", render_menu);
+
 $.win.addEventListener("close", function(e){
-	//Ti.API.removeEventListener("myHealth:render_menu", render_menu);
+	Ti.App.removeEventListener("myHealth:render_menu", render_menu);
 });
 
 if(Ti.Platform.osname == "android"){

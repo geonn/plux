@@ -4,7 +4,6 @@ var loading = Alloy.createController("loading");
 var anchor = common.now();
 var last_update = common.now();
 var start = 0;
-var isShowWatingMsg = "0";
 var room_set = false;
 var refreshIntervalId;
 var retry = 0;
@@ -51,15 +50,6 @@ function saveLocal(param){
 		if(dr_id === 0){
 			socket.fireEvent("doctor:refresh_patient_list");
 		}
-		if(isShowWatingMsg == "0"){
-			refreshIntervalId = setInterval(function(){
-				$.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
-				$.estimate.parent.show();
-				isShowWatingMsg = "1"; 
-				clearInterval(refreshIntervalId);
-			},30000); 
-		}
-		
 	});
 }
 
@@ -261,15 +251,7 @@ function render_conversation(latest){
 		}
 	}
 	console.log(last_uid+" != "+Ti.App.Properties.getString('u_id'));
-	if(last_uid != Ti.App.Properties.getString('u_id') ){
-		$.estimate.parent.hide();
-		isShowWatingMsg = "0";
-		clearInterval(refreshIntervalId);
-	}
-	 
-	if(isShowWatingMsg == "1"){
-		$.estimate.parent.show();
-	}
+	
 }
 
 
@@ -313,7 +295,6 @@ function getConversationByRoomId(callback){
 			var update_id = _.pluck(arr, "id");
 			//updateStatus(update_id);
 		}
-		Ti.App.Properties.setString('estimate_time', res.estimate_time);
 		checker.updateModule(checker_id, url, res.last_updated, u_id);
 		if(!room_id){	//if room_id = 0 
 			console.log(res);
@@ -381,11 +362,7 @@ function refresh_latest(param){
 	player.play();
 	
 	console.log("refresh_latest "+refreshing);
-	/*if(typeof(param.admin) != "undefined"){
-		Ti.App.Properties.setString('estimate_time', "0");
-	}else{
-		
-	}*/
+
 	console.log(time_offset+" < "+common.now());
 	if(!refreshing && time_offset < common.now()){
 		refreshing = true;
@@ -400,19 +377,11 @@ function getPreviousData(param){
 	var model = Alloy.createCollection("chat");
 	console.log(dr_id+" dr_id");
 	data = model.getData(false, start, anchor,"", dr_id);
-	var estimate_time = Ti.App.Properties.getString('estimate_time');
-	console.log(estimate_time+" estimate time");
 	console.log(data.length+" data length");
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	last_update = (data.length > 0)?_.last(data)['created']:last_update;
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
 	console.log(last_id+" why");
-	if(estimate_time != "0"){
-		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
-		$.estimate.parent.show();
-	}else{
-		$.estimate.parent.hide();
-	}
 	render_conversation(false);
 	start = start + 10;
 }
@@ -421,13 +390,6 @@ function getLatestData(){
 	var model = Alloy.createCollection("chat");
 	data = model.getData(true,"","", last_update, dr_id); 
 	
-	var estimate_time = Ti.App.Properties.getString('estimate_time'); 
-	if(estimate_time != 0){
-		$.estimate.text = "Our support will serve you soon. Estimate "+estimate_time+" minute left";
-		$.estimate.parent.show();
-	}else{
-		$.estimate.parent.hide();
-	}
 	console.log("getlatestdata");
 	console.log(data.length);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;

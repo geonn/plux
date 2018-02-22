@@ -194,7 +194,7 @@ function SaveRecord(){
 }
   
 $.win.addEventListener("close", function(e){
-	Ti.API.fireEvent("myHealth:render_menu");
+	Ti.App.fireEvent("myHealth:render_menu");
 });
 
 if(Ti.Platform.osname == "android"){
