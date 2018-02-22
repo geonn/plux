@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,11 +29,24 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.specialty_container = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "specialty_container" });
+
+
+
+
+
+
+  $.__views.specialty_container = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "specialty_container" });
+
   $.__views.specialty_container && $.addTopLevelView($.__views.specialty_container);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
+
 
   var listing = [];
 
@@ -50,14 +66,14 @@ function Controller() {
           touchEnabled: true,
           specialty_id: entry.id,
           specialty_name: entry.title,
-          backgroundSelectedColor: "#ECFFF9"
-        });
+          backgroundSelectedColor: "#ECFFF9" });
+
 
         var label_specialty = $.UI.create('Label', {
           classes: ['medium_font', 'wfill', 'hsize', 'themeColor', 'padding'],
           text: entry.title,
-          textAlign: 'left'
-        });
+          textAlign: 'left' });
+
         row.add(label_specialty);
         update_specialty_to_form(row);
         data.push(row);
@@ -102,6 +118,14 @@ function Controller() {
   }
 
   init();
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

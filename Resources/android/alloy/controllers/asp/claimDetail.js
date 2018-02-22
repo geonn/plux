@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,31 +29,61 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Claim Detail", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Claim Detail", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.main = Ti.UI.createView({ id: "main", layout: "vertical" });
+  $.__views.main = Ti.UI.createView(
+  { id: "main", layout: "vertical" });
+
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId218 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId218" });
+    $.__views.__alloyId218 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId218" });
+
     $.__views.main.add($.__views.__alloyId218);
-    $.__views.__alloyId219 = Ti.UI.createView({ left: 0, width: "10%", id: "__alloyId219" });
+    $.__views.__alloyId219 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId219" });
+
     $.__views.__alloyId218.add($.__views.__alloyId219);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId219.add($.__views.btnBack);
-    $.__views.__alloyId220 = Ti.UI.createView({ width: "70%", id: "__alloyId220" });
+    $.__views.__alloyId220 = Ti.UI.createView(
+    { width: "70%", id: "__alloyId220" });
+
     $.__views.__alloyId218.add($.__views.__alloyId220);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Claim Detail', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Claim Detail', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId220.add($.__views.pageTitle);
-    $.__views.__alloyId221 = Ti.UI.createView({ left: 0, width: "auto", id: "__alloyId221" });
+    $.__views.__alloyId221 = Ti.UI.createView(
+    { left: 0, width: "auto", id: "__alloyId221" });
+
     $.__views.__alloyId218.add($.__views.__alloyId221);
-    openReceipt ? $.addListener($.__views.__alloyId221, 'click', openReceipt) : __defers['$.__views.__alloyId221!click!openReceipt'] = true;$.__views.recepit = Ti.UI.createLabel({ width: "auto", height: Ti.UI.SIZE, color: "#606060", text: 'Receipt', id: "recepit" });
+    openReceipt ? $.addListener($.__views.__alloyId221, 'click', openReceipt) : __defers['$.__views.__alloyId221!click!openReceipt'] = true;$.__views.recepit = Ti.UI.createLabel(
+    { width: "auto", height: Ti.UI.SIZE, color: "#606060", text: 'Receipt', id: "recepit" });
+
     $.__views.__alloyId221.add($.__views.recepit);
   }
-  $.__views.tv = Ti.UI.createTableView({ id: "tv" });
+  $.__views.tv = Ti.UI.createTableView(
+  { id: "tv" });
+
   $.__views.main.add($.__views.tv);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var arg_serial = typeof args.serial != "undefined" ? args.serial : 0;
@@ -71,12 +104,22 @@ function Controller() {
 
   function init(data) {
 
+
+
     $.tv.appendRow(createTableViewRow("Clinic Name", args.record.clinicname || ""));
 
     $.tv.appendRow(createTableViewRow("Date Visit", args.record.visitdate || ""));
     $.tv.appendRow(createTableViewRow("Category", args.record.category || ""));
     $.tv.appendRow(createTableViewRow("MC Days", args.record.mcdays || ""));
     $.tv.appendRow(createTableViewRow("Diagnosis", data.diagnosis || ""));
+
+
+
+
+
+
+
+
 
     var section = Ti.UI.createTableViewSection({ headerTitle: "Amount" });
 
@@ -111,8 +154,8 @@ function Controller() {
 
     var row = $.UI.create("TableViewRow", {
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
-    });
+      width: Ti.UI.FILL });
+
 
     if (text == "Clinic Name") {
       var view = $.UI.create("View", {
@@ -122,8 +165,8 @@ function Controller() {
         top: 10,
         bottom: 10,
         left: 10,
-        right: 10
-      });
+        right: 10 });
+
     } else {
       var view = $.UI.create("View", {
         height: Ti.UI.SIZE,
@@ -131,8 +174,8 @@ function Controller() {
         top: 10,
         bottom: 10,
         left: 10,
-        right: 10
-      });
+        right: 10 });
+
     }
 
     var label_text = $.UI.create("Label", {
@@ -140,15 +183,15 @@ function Controller() {
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE,
       left: 0,
-      text: text
-    });
+      text: text });
+
 
     var label_value = $.UI.create("Label", {
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE,
       right: 0,
-      text: value
-    });
+      text: value });
+
 
     view.add(label_text);
     view.add(label_value);
@@ -157,8 +200,8 @@ function Controller() {
       var dialogs = Ti.UI.createAlertDialog({
         message: dialog || "No record found",
         ok: 'Ok',
-        title: text
-      });
+        title: text });
+
       dialogs.show();
     });
 
@@ -196,9 +239,15 @@ function Controller() {
 
   $.win.addEventListener("close", function () {});
 
+
+
+
+
   if (true) {
-    __defers['$.__views.__alloyId221!click!openReceipt'] && $.addListener($.__views.__alloyId221, 'click', openReceipt);
-  }
+    __defers['$.__views.__alloyId221!click!openReceipt'] && $.addListener($.__views.__alloyId221, 'click', openReceipt);}
+
+
+
 
   _.extend($, exports);
 }

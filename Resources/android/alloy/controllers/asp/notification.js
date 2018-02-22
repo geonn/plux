@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,31 +29,61 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Notification", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Notification", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId301 = Ti.UI.createView({ id: "__alloyId301" });
+  $.__views.__alloyId301 = Ti.UI.createView(
+  { id: "__alloyId301" });
+
   $.__views.win.add($.__views.__alloyId301);
-  $.__views.aView = Ti.UI.createView({ id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
+  $.__views.aView = Ti.UI.createView(
+  { id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
+
   $.__views.__alloyId301.add($.__views.aView);
   if (true) {
-    $.__views.__alloyId302 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId302" });
+    $.__views.__alloyId302 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId302" });
+
     $.__views.aView.add($.__views.__alloyId302);
-    $.__views.__alloyId303 = Ti.UI.createView({ left: 0, width: "20%", id: "__alloyId303" });
+    $.__views.__alloyId303 = Ti.UI.createView(
+    { left: 0, width: "20%", id: "__alloyId303" });
+
     $.__views.__alloyId302.add($.__views.__alloyId303);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId303.add($.__views.btnBack);
-    $.__views.__alloyId304 = Ti.UI.createView({ width: "60%", id: "__alloyId304" });
+    $.__views.__alloyId304 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId304" });
+
     $.__views.__alloyId302.add($.__views.__alloyId304);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Notification', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Notification', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId304.add($.__views.pageTitle);
   }
-  $.__views.recordTable = Ti.UI.createTableView({ width: "100%", height: Ti.UI.FILL, id: "recordTable", top: 0, separatorColor: "#375540" });
+  $.__views.recordTable = Ti.UI.createTableView(
+  { width: "100%", height: Ti.UI.FILL, id: "recordTable", top: 0, separatorColor: "#375540" });
+
   $.__views.aView.add($.__views.recordTable);
-  $.__views.bigView = Ti.UI.createScrollView({ id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
+  $.__views.bigView = Ti.UI.createScrollView(
+  { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
+
   $.__views.__alloyId301.add($.__views.bigView);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var id = args.id || "";
@@ -67,6 +100,7 @@ function Controller() {
     loading.start();
     notificationModel.setAllAsRead({ u_id: u_id });
     displayList();
+
   }
 
   function syncFromServer() {
@@ -79,8 +113,8 @@ function Controller() {
     }
     var param = {
       "member_no": memno,
-      "last_updated": last_updated
-    };
+      "last_updated": last_updated };
+
 
     API.callByPost({ url: "getNotificationUrl", params: param }, function (responseText) {
       var res = JSON.parse(responseText);
@@ -100,8 +134,8 @@ function Controller() {
               "expired": entry.expired || "",
               "detail": entry.detail || "",
               "created": entry.created,
-              "updated": entry.updated
-            };
+              "updated": entry.updated };
+
             notificationModel.addData(param);
           });
           checker.updateModule("2", "notificationList", res.last_updated);
@@ -131,12 +165,22 @@ function Controller() {
         contentView.add(label_message);
         contentView.add(label_updated_time);
 
+
         row.add(contentView);
         row.addEventListener("click", function (e) {
           var source = e.source.record;
           console.log(source);
           nav.navigationWindow(source.target, "", "", source);
         });
+
+
+
+
+
+
+
+
+
 
 
         data.push(row);
@@ -153,12 +197,14 @@ function Controller() {
     htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
     nav.navigateWithArgs("webview", {
-      html: htmlText
-    });
+      html: htmlText });
+
   }
 
   function viewDetails(msg) {
+
     downloadBrochure(msg);
+
   }
 
   if ('android' == "android") {
@@ -178,14 +224,16 @@ function Controller() {
   var isDownloading = "0";
   var isDownloadLbl = "0";
 
+
   function downloadBrochure(content) {
+
     var indView = Ti.UI.createView({
       height: 100,
       layout: "vertical",
       backgroundColor: "#ffffff",
       bottom: 5,
-      width: Ti.UI.SIZE
-    });
+      width: Ti.UI.SIZE });
+
     if (isDownloading == "1") {
       var label = Ti.UI.createLabel({
         color: '#CE1D1C',
@@ -194,8 +242,8 @@ function Controller() {
         bottom: 10,
         width: "100%",
         height: 10,
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-      });
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER });
+
 
       if (isDownloadLbl == "0") {
         $.bigView.add(label);
@@ -218,8 +266,8 @@ function Controller() {
       top: 5,
       message: 'Downloading ' + content.title + '...',
       font: { fontSize: 12 },
-      color: '#CE1D1C'
-    });
+      color: '#CE1D1C' });
+
 
     var label = Ti.UI.createLabel({
       color: '#CE1D1C',
@@ -228,8 +276,8 @@ function Controller() {
       top: 0,
       width: "100%",
       height: 30,
-      textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-    });
+      textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER });
+
 
     if (content.isDownloaded == "1") {
       indView.remove(ind);
@@ -260,56 +308,58 @@ function Controller() {
           var myModal = Ti.UI.createWindow({
             title: 'Read PDF',
             backgroundColor: 'transparent',
-            fullscreen: true
-          });
+            fullscreen: true });
+
           var leftBtn = Ti.UI.createButton({
             title: "Close",
             color: "#CE1D1C",
-            left: 15
-          });
+            left: 15 });
+
           var wrapperView = Ti.UI.createView({
             layout: "vertical",
-            height: Ti.UI.SIZE
-          });
+            height: Ti.UI.SIZE });
+
 
           var topView = Ti.UI.createView({
             backgroundColor: '#EEEEEE',
             top: 0,
-            height: 40
-          });
+            height: 40 });
+
           var containerView = Ti.UI.createView({
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL,
-            backgroundColor: 'transparent'
-          });
+            backgroundColor: 'transparent' });
+
           var webview = Ti.UI.createWebView({
             data: file.read(),
             height: Ti.UI.FILL,
             width: Ti.UI.FILL,
             backgroundColor: "#ffffff",
-            bottom: 10
-          });
+            bottom: 10 });
+
           if (content.url != "") {
             var rightBtn = Ti.UI.createButton({
               title: "Delete",
               color: "#CE1D1C",
-              right: 15
-            });
+              right: 15 });
+
 
             rightBtn.addEventListener('click', function (rx) {
               var dialog = Ti.UI.createAlertDialog({
                 cancel: 0,
                 buttonNames: ['Cancel', 'Confirm'],
                 message: 'Are you sure want to delete?',
-                title: 'Message'
-              });
+                title: 'Message' });
+
               dialog.addEventListener('click', function (e) {
-                if (e.index === e.source.cancel) {}
+                if (e.index === e.source.cancel) {
+
+                }
                 if (e.index === 1) {
                   var param = {
                     "status": 2,
-                    "id": content.source
-                  };
+                    "id": content.source };
+
                   console.log(param);
                   API.callByPost({ url: "deleteNotification", params: param }, function (responseText) {
                     var res = JSON.parse(responseText);
@@ -331,14 +381,15 @@ function Controller() {
           wrapperView.add(containerView);
           myModal.add(wrapperView);
           myModal.open({
-            modal: true
-          });
+            modal: true });
+
           leftBtn.addEventListener('click', function (ex) {
             myModal.close({ animated: true });
           });
         }
       }
     });
+
   }
 
   $.win.addEventListener("close", function () {
@@ -346,6 +397,14 @@ function Controller() {
     $.destroy();
     console.log("window close");
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

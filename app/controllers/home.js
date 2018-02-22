@@ -14,8 +14,8 @@ loadingView.start();
 function loadHomePageItem(){
 	menu_info  =  [
 		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
-		{mod:"hra", image:"/images/btn/btn_hra.png"},
-		//{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
+		//{mod:"hra", image:"/images/btn/btn_hra.png"},
+		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
 		{mod:"profile", image:"/images/btn/btn_profile.png"},
 		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
 		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},

@@ -1,7 +1,26 @@
 
+
+
+
+
 var Alloy = require('/alloy'),
-    _ = Alloy._,
-    Backbone = Alloy.Backbone;
+_ = Alloy._,
+Backbone = Alloy.Backbone;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Ti.App.Properties.removeProperty('asp_password');
 Ti.App.Properties.removeProperty('is_ver');
@@ -20,14 +39,27 @@ DBVersionControl.checkAndUpdate();
 
 Alloy.Globals.Map = require('ti.map');
 
+
 var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
 function ucwords(str) {
 	str = str.toLowerCase();
-	return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function ($1) {
+	return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+	function ($1) {
 		return $1.toUpperCase();
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
 
 function mysql_real_escape_string(str) {
 	return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
@@ -49,6 +81,8 @@ function mysql_real_escape_string(str) {
 			case "\\":
 			case "%":
 				return "\\" + char;}
+
+
 	});
 }
 
@@ -124,8 +158,16 @@ function currentDateTime() {
 
 function nl2br(str, is_xhtml) {
 	var breakTag = is_xhtml || typeof is_xhtml === 'undefined' ? '<br />' : '<br>';
-	str.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
+	str.replace(/\\n/g, "\\n").
+	replace(/\\'/g, "\\'").
+	replace(/\\"/g, '\\"').
+	replace(/\\&/g, "\\&").
+	replace(/\\r/g, "\\r").
+	replace(/\\t/g, "\\t").
+	replace(/\\b/g, "\\b").
+	replace(/\\f/g, "\\f");
 	return str;
+
 }
 
 function validateEmail(email) {
@@ -147,7 +189,12 @@ function DPUnitsToPixels(TheDPUnits) {
 
 function monthFormat(datetime) {
 
-	var monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	var monthNames = [
+	"Jan", "Feb", "Mar",
+	"April", "May", "June", "Jul",
+	"Aug", "Sep", "Oct",
+	"Nov", "Dec"];
+
 
 	var timeStamp = datetime.split(" ");
 	var newFormat;
@@ -175,13 +222,17 @@ function monthFormat(datetime) {
 	return newFormat;
 }
 
+
 function removeAllChildren(viewObject) {
+
 	var children = viewObject.children.slice(0);
 
 	for (var i = 0; i < children.length; ++i) {
 		viewObject.remove(children[i]);
 	}
 }
+
+
 
 Titanium.App.addEventListener('resumed', function (e) {
 	if (false) {
@@ -190,6 +241,7 @@ Titanium.App.addEventListener('resumed', function (e) {
 });
 
 function parent(keys, ex) {
+
 	var key = keys;
 	var e = ex;
 	if (typeof key.value != "undefined") {
@@ -252,7 +304,8 @@ function createIndicator() {
 	var style;
 	if ('android' === 'iPhone OS') {
 		style = Ti.UI.ActivityIndicatorStyle.DARK;
-	} else {
+	} else
+	{
 		style = Ti.UI.ActivityIndicatorStyle.DARK;
 	}
 	var activityIndicator = Ti.UI.createActivityIndicator({
@@ -261,8 +314,8 @@ function createIndicator() {
 		message: 'Loading...',
 		style: style,
 		height: Ti.UI.SIZE,
-		width: Ti.UI.SIZE
-	});
+		width: Ti.UI.SIZE });
+
 	return activityIndicator;
 }
 
@@ -273,10 +326,12 @@ function popup(e) {
 		cancel: 1,
 		buttonNames: ['Cancel', 'OK'],
 		message: e.message,
-		title: e.title
-	});
+		title: e.title });
+
 	dialog.addEventListener('click', function (ex) {
-		if (ex.index === 0) {} else {
+		if (ex.index === 0) {
+
+		} else {
 			e.callback();
 		}
 		message_popup = false;
@@ -291,8 +346,8 @@ function message_alert(e) {
 	popup({ message: 'You got replied from helpdesk. Do you want to read now?', title: "Helpdesk replied",
 		callback: function () {
 			nav.navigateWithArgs("conversation");
-		}
-	});
+		} });
+
 }
 
 function hinttextOnFocus(e) {

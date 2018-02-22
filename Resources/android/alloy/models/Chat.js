@@ -69,7 +69,7 @@ exports.definition = {
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id');
 				var sql = "SELECT * from chat where u_id = ? AND dr_id = ? " + sql_lastupdate + sql_id + " order by created desc" + start_limit;
-				console.log(sql);
+				console.log(sql + " uid" + u_id + " dr_id " + dr_id);
 				db = Ti.Database.open(collection.config.adapter.db_name);
 				if ("android" != "android") {
 					db.file.setRemoteBackup(false);

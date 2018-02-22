@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,15 +29,31 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.main = Ti.UI.createScrollView({ borderColor: "#cccccc", height: Titanium.UI.SIZE, top: "10dp", left: "10dp", right: "10dp", id: "main", layout: "vertical" });
+
+
+
+
+
+
+  $.__views.main = Ti.UI.createScrollView(
+  { borderColor: "#cccccc", height: Titanium.UI.SIZE, top: "10dp", left: "10dp", right: "10dp", id: "main", layout: "vertical" });
+
   $.__views.main && $.addTopLevelView($.__views.main);
-  $.__views.__alloyId16 = Ti.UI.createView({ backgroundColor: "#ddd", height: Ti.UI.SIZE, id: "__alloyId16" });
+  $.__views.__alloyId16 = Ti.UI.createView(
+  { backgroundColor: "#ddd", height: Ti.UI.SIZE, id: "__alloyId16" });
+
   $.__views.main.add($.__views.__alloyId16);
-  $.__views.name = Ti.UI.createLabel({ width: Titanium.UI.FILL, height: 30, color: "#606060", font: { fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, id: "name", wordWrap: false, ellipsize: true });
+  $.__views.name = Ti.UI.createLabel(
+  { width: Titanium.UI.FILL, height: 30, color: "#606060", font: { fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, id: "name", wordWrap: false, ellipsize: true });
+
   $.__views.__alloyId16.add($.__views.name);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var data = args.claim_data;
@@ -45,17 +64,17 @@ function Controller() {
     var benefit_view = $.UI.create("View", {
       classes: ["padding"],
       height: Titanium.UI.SIZE,
-      bottom: 0
-    });
+      bottom: 0 });
+
     var benefit_label = $.UI.create("Label", {
       classes: ["benefit_label"],
       height: Titanium.UI.SIZE,
-      text: data[a]['benefittype']
-    });
+      text: data[a]['benefittype'] });
+
     benefit_view.add(benefit_label);
     var line = $.UI.create("View", {
-      classes: ["line"]
-    });
+      classes: ["line"] });
+
     $.main.add(benefit_view);
     $.main.add(line);
 
@@ -67,6 +86,7 @@ function Controller() {
 
     if (data[a]['entidvbal'] != 99999) {
       var view = create_field("RM" + data[a]['entidvbal'], "Personal " + data[a]['entTitle']);
+
     }
 
     if (data[a]['entsha'] != 99999) {
@@ -77,6 +97,7 @@ function Controller() {
 
     if (data[a]['entshabal'] != 99999) {
       var view = create_field("RM" + data[a]['entshabal'], "Shared " + data[a]['entTitle']);
+
     }
 
     if (data[a]['maxperclaim'] != 99999) {
@@ -93,6 +114,7 @@ function Controller() {
 
     if (data[a]['vstidvbal'] != 99999) {
       var view = create_field(data[a]['vstidvbal'], "Visitation " + data[a]['vstTitle']);
+
     }
 
     if (data[a]['vstsha'] != 99999) {
@@ -103,6 +125,7 @@ function Controller() {
 
     if (data[a]['vstshabal'] != 99999) {
       var view = create_field(data[a]['vstshabal'], "Visitation Shared " + data[a]['vstTitle']);
+
     }
   }
 
@@ -110,21 +133,21 @@ function Controller() {
     var view = $.UI.create("View", {
       classes: ["small_padding"],
       height: Titanium.UI.SIZE,
-      width: Ti.UI.FILL
-    });
+      width: Ti.UI.FILL });
+
 
     var entidv_label = $.UI.create("Label", {
       text: title,
       height: Titanium.UI.SIZE,
-      left: 0
-    });
+      left: 0 });
+
 
     var entidv_val_label = $.UI.create("Label", {
       text: key,
       right: 0,
       height: Titanium.UI.SIZE,
-      color: "#CE1D1C"
-    });
+      color: "#CE1D1C" });
+
     view.add(entidv_label);
     view.add(entidv_val_label);
 
@@ -135,6 +158,14 @@ function Controller() {
     var nav = require('navigation');
     nav.navigateWithArgs("asp/claimHistory", { name: name });
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

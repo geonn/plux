@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,11 +29,23 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.panelClinicTbl = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Panel", id: "panelClinicTbl", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.panelClinicTbl = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Panel", id: "panelClinicTbl", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.panelClinicTbl && $.addTopLevelView($.__views.panelClinicTbl);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var library = Alloy.createCollection('panelList');
@@ -40,8 +55,9 @@ function Controller() {
   function listing() {
     var TheTable = Titanium.UI.createTableView({
       width: '100%',
-      height: 'auto'
-    });
+      height: 'auto' });
+
+
 
     var data = [];
 
@@ -55,8 +71,8 @@ function Controller() {
         textAlign: 'center',
         font: { fontSize: 14, fontStyle: 'italic' },
         top: 15,
-        width: Ti.UI.SIZE
-      });
+        width: Ti.UI.SIZE });
+
       $.panelClinicTbl.add(noRecord);
     } else {
 
@@ -72,8 +88,8 @@ function Controller() {
             colors: ['#FEFEFB', '#F7F7F6'],
             startPoint: { x: 0, y: 0 },
             endPoint: { x: 0, y: 70 },
-            backFillStart: false }
-        });
+            backFillStart: false } });
+
 
         var stateLbl = Titanium.UI.createLabel({
           text: entry.state,
@@ -84,15 +100,21 @@ function Controller() {
           textAlign: 'left',
           top: 12,
           left: 20,
-          height: 25
-        });
+          height: 25 });
+
 
         var rightForwardBtn = Titanium.UI.createImageView({
           image: "/images/btn-forward.png",
           source: entry.state,
           width: 15,
-          right: 20
-        });
+          right: 20 });
+
+
+
+
+
+
+
 
         row.add(stateLbl);
         row.add(rightForwardBtn);
@@ -107,6 +129,14 @@ function Controller() {
       nav.navigateWithArgs("clinic/listing", { state: e.rowData.source });
     });
   }
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

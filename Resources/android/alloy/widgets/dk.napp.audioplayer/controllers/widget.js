@@ -1,10 +1,13 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
 
 function WPATH(s) {
   var index = s.lastIndexOf('/');
-  var path = index === -1 ? 'dk.napp.audioplayer/' + s : s.substring(0, index) + '/dk.napp.audioplayer/' + s.substring(index + 1);
+  var path = index === -1 ?
+  'dk.napp.audioplayer/' + s :
+  s.substring(0, index) + '/dk.napp.audioplayer/' + s.substring(index + 1);
 
   return path.indexOf('/') !== 0 ? '/' + path : path;
 }
@@ -33,17 +36,41 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.wrap = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "wrap", layout: "vertical" });
+
+
+
+
+
+
+  $.__views.wrap = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "wrap", layout: "vertical" });
+
   $.__views.wrap && $.addTopLevelView($.__views.wrap);
-  $.__views.__alloyId0 = Ti.UI.createView({ width: Ti.UI.FILL, height: 30, id: "__alloyId0" });
+  $.__views.__alloyId0 = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: 30, id: "__alloyId0" });
+
   $.__views.wrap.add($.__views.__alloyId0);
-  $.__views.playStopBtn = Ti.UI.createImageView({ textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT, backgroundColor: "transparent", font: { fontSize: "24dp", fontFamily: "FontAwesome" }, color: "#000", top: 0, width: 30, height: 30, left: 10, right: 10, zIndex: 10, id: "playStopBtn" });
+  $.__views.playStopBtn = Ti.UI.createImageView(
+  { textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT, backgroundColor: "transparent", font: { fontSize: "24dp", fontFamily: "FontAwesome" }, color: "#000", top: 0, width: 30, height: 30, left: 10, right: 10, zIndex: 10, id: "playStopBtn" });
+
   $.__views.__alloyId0.add($.__views.playStopBtn);
-  onPlayStopBtnClicked ? $.addListener($.__views.playStopBtn, 'click', onPlayStopBtnClicked) : __defers['$.__views.playStopBtn!click!onPlayStopBtnClicked'] = true;$.__views.time = Ti.UI.createLabel({ width: Ti.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", font: { fontSize: "14dp" }, right: 0, left: 50, id: "time" });
+  onPlayStopBtnClicked ? $.addListener($.__views.playStopBtn, 'click', onPlayStopBtnClicked) : __defers['$.__views.playStopBtn!click!onPlayStopBtnClicked'] = true;$.__views.time = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", font: { fontSize: "14dp" }, right: 0, left: 50, id: "time" });
+
   $.__views.__alloyId0.add($.__views.time);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
+
+
+
+
+
+
 
   var args = arguments[0] || {};
   var audioPlayer;
@@ -59,6 +86,7 @@ function Controller() {
   var playIcon;
   var pauseIcon;
 
+
   _.each(args.styles, function (value, property) {
     if (typeof value === 'object') {
       $[property].applyProperties(value);
@@ -66,6 +94,7 @@ function Controller() {
     }
   });
   delete args.styles;
+
 
   if (args.playIcon) {
     playIcon = WPATH("/images/play_button.png");
@@ -75,6 +104,8 @@ function Controller() {
   }
 
   function onPlayStopBtnClicked() {
+
+
     console.log(audioPlayer.playing + " audioPlayer.playing");
     if (audioPlayer.playing) {
       audioPlayer.pause();
@@ -85,6 +116,9 @@ function Controller() {
     }
   }
 
+
+
+
   function getDuration() {
     if (false) {
       console.log(audioPlayer.duration + " " + audioPlayer.time);
@@ -93,6 +127,11 @@ function Controller() {
     }
     return Math.ceil(audioPlayer.duration);
   }
+
+
+
+
+
 
   function prettifyTime(time) {
     console.log(time + " time");
@@ -108,6 +147,7 @@ function Controller() {
   }
 
   function updateTimeLabel() {
+
     totalDisplayDuration = prettifyTime(getDuration() / 1000);
 
     $.time.text = totalDisplayDuration;
@@ -122,13 +162,14 @@ function Controller() {
     } else {
       var xhr = Titanium.Network.createHTTPClient({
         onload: function () {
+
           var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
           f.write(this.responseData);
           Ti.App.fireEvent('graphic_downloaded', { filepath: f.nativePath });
           set_url(f.nativePath);
         },
-        timeout: 10000
-      });
+        timeout: 10000 });
+
       xhr.open('GET', url);
       xhr.send();
     }
@@ -140,13 +181,13 @@ function Controller() {
       if (false) {
         audioPlayer = Ti.Media.createSound({
           url: url,
-          allowBackground: true
-        });
+          allowBackground: true });
+
       } else {
         audioPlayer = Ti.Media.createAudioPlayer({
           url: url,
-          allowBackground: true
-        });
+          allowBackground: true });
+
       }
     } catch (e) {
       console.log(e.message);
@@ -158,6 +199,7 @@ function Controller() {
 
     updateTimeLabel();
 
+
     $.playStopBtn.image = playIcon;
 
     audioPlayer.addEventListener('change', function (e) {
@@ -165,6 +207,7 @@ function Controller() {
       Ti.API.info('State: ' + e.description + ' (' + e.state + ')');
       updateTimeLabel();
       if (e.state == 7) {
+
         $.playStopBtn.image = playIcon;
       }
     });
@@ -182,23 +225,34 @@ function Controller() {
     pauseIcon = icon;
   };
 
+
   exports.dispose = function () {
     console.log("[AudioPlayerWidget] was disposed, idleTimer reset to = " + idleTimer);
 
+
     audioPlayer.stop();
+
 
     if (true) {
       audioPlayer.release();
     }
 
+
     Ti.App.idleTimerDisabled = idleTimer;
   };
+
 
   exports.addEventListener = $.on;
   exports.removeEventListener = $.off;
   exports.fireEvent = $.trigger;
 
+
+
+
+
   __defers['$.__views.playStopBtn!click!onPlayStopBtnClicked'] && $.addListener($.__views.playStopBtn, 'click', onPlayStopBtnClicked);
+
+
 
   _.extend($, exports);
 }

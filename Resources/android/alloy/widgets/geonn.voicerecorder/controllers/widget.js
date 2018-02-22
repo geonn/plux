@@ -1,10 +1,13 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
 
 function WPATH(s) {
   var index = s.lastIndexOf('/');
-  var path = index === -1 ? 'geonn.voicerecorder/' + s : s.substring(0, index) + '/geonn.voicerecorder/' + s.substring(index + 1);
+  var path = index === -1 ?
+  'geonn.voicerecorder/' + s :
+  s.substring(0, index) + '/geonn.voicerecorder/' + s.substring(index + 1);
 
   return path.indexOf('/') !== 0 ? '/' + path : path;
 }
@@ -33,17 +36,35 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.container = Ti.UI.createView({ width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "container", backgroundColor: "#ffffff" });
+
+
+
+
+
+
+  $.__views.container = Ti.UI.createView(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "container", backgroundColor: "#ffffff" });
+
   $.__views.container && $.addTopLevelView($.__views.container);
-  $.__views.text_area = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "text_area" });
+  $.__views.text_area = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "text_area" });
+
   $.__views.container.add($.__views.text_area);
-  $.__views.timer_text = Ti.UI.createLabel({ width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", text: 'Recording', id: "timer_text", right: 110 });
+  $.__views.timer_text = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", text: 'Recording', id: "timer_text", right: 110 });
+
   $.__views.text_area.add($.__views.timer_text);
-  $.__views.timer = Ti.UI.createLabel({ width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", text: '0:00', id: "timer", right: 50 });
+  $.__views.timer = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", text: '0:00', id: "timer", right: 50 });
+
   $.__views.text_area.add($.__views.timer);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var timer = require(WPATH("timer"));
@@ -72,12 +93,14 @@ function Controller() {
         console.log('here!!!');
         audioRecorder.start();
       } else {
+
         audioRecorder.startRecording({
           outputFormat: audioRecorder.OutputFormat_MPEG_4,
           audioEncoder: audioRecorder.AudioEncoder_AMR_NB,
           directoryName: "plux",
           fileName: "tempfile",
           success: function (e) {
+
             console.log("response is => " + JSON.stringify(e));
 
             var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
@@ -91,8 +114,11 @@ function Controller() {
             $.text_area.width = 0;
             $.timer_text.hide();
             $.timer.hide();
-          }
-        });
+
+
+          } });
+
+
       }
     }
   }
@@ -116,11 +142,13 @@ function Controller() {
         audioRecorder.stopRecording();
       }
 
+
       $.text_area.width = 0;
       $.timer_text.hide();
       $.timer.hide();
     }
   }
+
 
   function init() {
     $.timer.hide();
@@ -136,9 +164,18 @@ function Controller() {
 
   init();
 
+
   exports.addEventListener = $.on;
   exports.removeEventListener = $.off;
   exports.fireEvent = $.trigger;
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

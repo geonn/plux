@@ -26,11 +26,12 @@ function receivePush(e) {
 		extra = e.extra;
 	}
 	eval("var current_id = Ti.App.Properties.getString('" + target + "') || 0");
+	console.log(current_id + " " + extra);
 	if (current_id == extra) {
 		eval("Ti.App.fireEvent('" + target + ":refresh')");
 	}
 
-	console.log(redirect + " true or false");
+	console.log(redirect + " true or false" + target);
 	if (redirect) {
 		Ti.App.fireEvent("redirect", data);
 	} else {
@@ -250,26 +251,6 @@ function registerPush() {
 }
 
 function getNotificationNumber(payload) {}
-
-Ti.App.addEventListener("pause", function (e) {
-	var theWindow = Ti.App.Properties.getString('currentAppointmentWindow') || "";
-	if (theWindow == "1") {
-		redirect = false;
-	} else {
-		redirect = true;
-	}
-	console.log('sleep : ' + theWindow);
-});
-
-Ti.App.addEventListener("resumed", function (e) {
-
-	var theWindow = Ti.App.Properties.getString('currentAppointmentWindow') || "";
-	if (theWindow == "1") {
-		redirect = false;
-	} else {
-		redirect = true;
-	}
-});
 
 exports.setInApp = function () {
 	console.log('In App');

@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,29 +29,57 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.healthInfo = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Info", backButtonTitle: "", navTintColor: "#CE1D1C", id: "healthInfo" });
+
+
+
+
+
+
+  $.__views.healthInfo = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Info", backButtonTitle: "", navTintColor: "#CE1D1C", id: "healthInfo" });
+
   $.__views.healthInfo && $.addTopLevelView($.__views.healthInfo);
-  $.__views.__alloyId439 = Ti.UI.createView({ height: Ti.UI.FILL, width: Ti.UI.FILL, layout: "vertical", id: "__alloyId439" });
-  $.__views.healthInfo.add($.__views.__alloyId439);
+  $.__views.__alloyId438 = Ti.UI.createView(
+  { height: Ti.UI.FILL, width: Ti.UI.FILL, layout: "vertical", id: "__alloyId438" });
+
+  $.__views.healthInfo.add($.__views.__alloyId438);
   if (true) {
-    $.__views.__alloyId440 = Ti.UI.createView({ layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId440" });
+    $.__views.__alloyId439 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId439" });
+
+    $.__views.__alloyId438.add($.__views.__alloyId439);
+    $.__views.__alloyId440 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId440" });
+
     $.__views.__alloyId439.add($.__views.__alloyId440);
-    $.__views.__alloyId441 = Ti.UI.createView({ left: 0, width: "10%", id: "__alloyId441" });
-    $.__views.__alloyId440.add($.__views.__alloyId441);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
-    $.__views.__alloyId441.add($.__views.btnBack);
-    $.__views.pageTitle = Ti.UI.createView({ id: "pageTitle", width: Ti.UI.FILL });
-    $.__views.__alloyId440.add($.__views.pageTitle);
-    $.__views.__alloyId442 = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId442" });
-    $.__views.pageTitle.add($.__views.__alloyId442);
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
+    $.__views.__alloyId440.add($.__views.btnBack);
+    $.__views.pageTitle = Ti.UI.createView(
+    { id: "pageTitle", width: Ti.UI.FILL });
+
+    $.__views.__alloyId439.add($.__views.pageTitle);
+    $.__views.__alloyId441 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId441" });
+
+    $.__views.pageTitle.add($.__views.__alloyId441);
   }
-  $.__views.main = Ti.UI.createView({ backgroundColor: "#ffffff", height: Titanium.UI.FILL, width: Titanium.UI.FILL, id: "main" });
-  $.__views.__alloyId439.add($.__views.main);
-  $.__views.infoTable = Ti.UI.createTableView({ id: "infoTable" });
+  $.__views.main = Ti.UI.createView(
+  { backgroundColor: "#ffffff", height: Titanium.UI.FILL, width: Titanium.UI.FILL, id: "main" });
+
+  $.__views.__alloyId438.add($.__views.main);
+  $.__views.infoTable = Ti.UI.createTableView(
+  { id: "infoTable" });
+
   $.__views.main.add($.__views.infoTable);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var newsFeedModel = Alloy.createCollection('health_news_feed');
@@ -106,9 +137,9 @@ function Controller() {
               colors: ['#fff', '#F7F7F6'],
               startPoint: { x: 0, y: 0 },
               endPoint: { x: "100%", y: 0 },
-              backFillStart: false
-            }
-          });
+              backFillStart: false } });
+
+
           var row_view = Ti.UI.createView({
             left: 5,
             top: 5,
@@ -116,25 +147,25 @@ function Controller() {
             bottom: 5,
             height: 80,
             width: Ti.UI.FILL,
-            layout: "horizontal"
-          });
+            layout: "horizontal" });
+
           var tblView = Ti.UI.createView({
             layout: "vertical",
             height: "80",
-            width: "auto"
-          });
+            width: "auto" });
+
           var imageContainer = Ti.UI.createView({
             height: 80,
             source: newsList[j].id,
-            width: 112
-          });
+            width: 112 });
+
           console.log(newsList[j].images + " what path or not!!");
           var leftImage = Ti.UI.createImageView({
             image: newsList[j].images,
             source: newsList[j].id,
             defaultImage: "/images/warm-grey-bg.png",
-            width: "90%"
-          });
+            width: "90%" });
+
           imageContainer.add(leftImage);
 
           var popUpTitle = Titanium.UI.createLabel({
@@ -146,8 +177,8 @@ function Controller() {
             height: Ti.UI.SIZE,
             textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
             wordwrap: false,
-            ellipsize: true
-          });
+            ellipsize: true });
+
           var category = Titanium.UI.createLabel({
             text: newsList[j].long_title,
             source: newsList[j].id,
@@ -155,8 +186,8 @@ function Controller() {
             color: "#848484",
             textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
             width: Ti.UI.FILL,
-            height: 30
-          });
+            height: 30 });
+
           var supplier = Titanium.UI.createLabel({
             text: newsList[j].updated,
             source: newsList[j].id,
@@ -164,8 +195,8 @@ function Controller() {
             color: "#848484",
             textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
             width: Ti.UI.FILL,
-            height: Ti.UI.SIZE
-          });
+            height: Ti.UI.SIZE });
+
           row.addEventListener('click', function (e) {
             viewDetails(e);
           });
@@ -187,8 +218,8 @@ function Controller() {
   function viewDetails(e) {
     var nav = require('navigation');
     nav.navigateWithArgs("news", {
-      news_id: e.source.source
-    });
+      news_id: e.source.source });
+
   }
 
   if ('android' == "android") {
@@ -196,6 +227,14 @@ function Controller() {
       nav.closeWindow($.healthInfoWindow);
     });
   }
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

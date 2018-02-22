@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,9 +29,19 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
+
+
+
+
+
+
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var rec_id = args.id || "";
@@ -83,8 +96,8 @@ function Controller() {
       id: rec_id,
       title: title,
       message: message,
-      updated: currentDateTime()
-    });
+      updated: currentDateTime() });
+
 
     Ti.App.fireEvent('displayRecords');
     nav.closeWindow($.editRecWin);
@@ -96,10 +109,12 @@ function Controller() {
       cancel: 1,
       buttonNames: ['Cancel', 'Confirm'],
       message: 'Are you sure want to delete this records?',
-      title: 'Delete Confirmation'
-    });
+      title: 'Delete Confirmation' });
+
     dialog.addEventListener('click', function (e) {
-      if (e.index === e.source.cancel) {}
+      if (e.index === e.source.cancel) {
+
+      }
       if (e.index === 1) {
         medicalRecordsModel.removeRecordById(rec_id);
         medicalAttachmentModel.removeRecordByRec(rec_id);
@@ -129,6 +144,7 @@ function Controller() {
     }
 
     Ti.App.fireEvent('displayRecords');
+
   }
 
   function attachedPhoto(image, position) {
@@ -139,13 +155,13 @@ function Controller() {
       position: position,
       width: 50,
       left: 5,
-      right: 5
-    });
+      right: 5 });
+
 
     var iImage = Ti.UI.createImageView({
       image: image,
-      position: position
-    });
+      position: position });
+
     iView.add(iImage);
 
     iView.addEventListener('click', function (e) {
@@ -155,12 +171,14 @@ function Controller() {
           cancel: 1,
           buttonNames: ['Agree', 'Cancel'],
           message: responseText,
-          title: 'Terms & Conditions'
-        });
+          title: 'Terms & Conditions' });
+
         dialog.addEventListener('click', function (ex) {
           if (e.index === ex.source.cancel) {
             console.log('The cancel button was clicked');
           } else {
+
+
             var currentTime = new Date();
             if (currentTime - clickTime < 1000) {
               return;
@@ -172,8 +190,8 @@ function Controller() {
             page.animate({
               curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
               opacity: 1,
-              duration: 300
-            });
+              duration: 300 });
+
           }
         });
         dialog.show();
@@ -190,9 +208,12 @@ function Controller() {
       options: ['Camera', 'Photo Gallery', 'Cancel'],
       cancel: 2 });
 
+
     dialog.addEventListener('click', function (e) {
 
       if (e.index == 0) {
+
+
         Titanium.Media.showCamera({
           success: function (event) {
             var image = event.media;
@@ -207,17 +228,22 @@ function Controller() {
               var newWidth = image.width * ratio;
             }
 
+
             if (event.mediaType == Ti.Media.MEDIA_TYPE_PHOTO) {
+
               blobContainer = image;
               medicalAttachmentModel.addAttachment({
                 medical_id: rec_id,
-                blob: Ti.Utils.base64encode(image)
-              });
+                blob: Ti.Utils.base64encode(image) });
+
               loadImage();
             }
           },
-          cancel: function () {},
+          cancel: function () {
+
+          },
           error: function (error) {
+
             var a = Titanium.UI.createAlertDialog({ title: 'Camera' });
 
             if (error.code == Titanium.Media.NO_CAMERA) {
@@ -226,15 +252,19 @@ function Controller() {
               a.setMessage('Unexpected error: ' + error.code);
             }
 
+
             a.show();
           },
           allowImageEditing: true,
           mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO],
-          saveToPhotoGallery: true
-        });
+          saveToPhotoGallery: true });
+
       } else if (e.index == 1) {
+
+
         Titanium.Media.openPhotoGallery({
           success: function (event) {
+
             var image = event.media;
 
             if (image.width > image.height) {
@@ -251,16 +281,17 @@ function Controller() {
             blobContainer = image;
             medicalAttachmentModel.addAttachment({
               medical_id: rec_id,
-              blob: Ti.Utils.base64encode(image)
-            });
+              blob: Ti.Utils.base64encode(image) });
+
             loadImage();
           },
           cancel: function () {},
 
-          mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO]
-        });
+          mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO] });
+
       } else {}
     });
+
 
     dialog.show();
   }
@@ -273,6 +304,14 @@ function Controller() {
   });
   Ti.App.addEventListener('refreshAttachment', loadImage);
   $.saveRecord.addEventListener('click', saveRecord);
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

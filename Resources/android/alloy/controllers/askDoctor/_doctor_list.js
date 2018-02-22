@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,11 +29,23 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.doctorContainer = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+
+
+
+
+
+
+  $.__views.doctorContainer = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+
   $.__views.doctorContainer && $.addTopLevelView($.__views.doctorContainer);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var panelListModel = Alloy.createCollection('doctors');
   var listing = [];
@@ -64,9 +79,9 @@ function Controller() {
           height: Ti.UI.SIZE,
           dr_id: entry.id,
 
-          backgroundSelectedColor: "#ECFFF9"
+          backgroundSelectedColor: "#ECFFF9" });
 
-        });
+
         var image_status = $.UI.create("ImageView", { image: icon_status, touchEnabled: false, classes: ['hsize'], width: 40, right: 10 });
         var tblRowView = Ti.UI.createView({
           height: Ti.UI.SIZE,
@@ -74,15 +89,15 @@ function Controller() {
           dr_id: entry.id,
           record: entry,
           layout: "horizontal",
-          right: 40
-        });
+          right: 40 });
+
         var image_doctor_avatar = $.UI.create("ImageView", { image: entry.img_path, touchEnabled: false, classes: ['wsize'], height: 40, left: 10 });
         var tblView = Ti.UI.createView({
           layout: "vertical",
           height: Ti.UI.SIZE,
           touchEnabled: false,
-          width: "auto"
-        });
+          width: "auto" });
+
 
         var docName = $.UI.create('Label', {
           classes: ['medium_font', 'wfill', 'hsize', 'themeColor'],
@@ -90,16 +105,16 @@ function Controller() {
           touchEnabled: false,
           textAlign: 'left',
           top: 5,
-          left: 15
-        });
+          left: 15 });
+
         var docSpecialty = $.UI.create('Label', {
           classes: ['small_font', 'wfill', 'hsize'],
           text: entry.specialty,
           touchEnabled: false,
           color: "#848484",
           textAlign: 'left',
-          left: 15
-        });
+          left: 15 });
+
         tblRowView.add(image_doctor_avatar);
         tblView.add(docName);
         tblView.add(docSpecialty);
@@ -118,7 +133,7 @@ function Controller() {
   function addClinicAction(vw) {
     vw.addEventListener('click', function (e) {
       var dr_id = e.source.dr_id;
-      var record = e.source.dr_id;
+      var record = e.source.record;
       console.log(dr_id + " dr_id from doctor");
 
       var room_model = Alloy.createCollection('room');
@@ -130,6 +145,7 @@ function Controller() {
       } else {
         nav.navigateWithArgs("askDoctor/forms", { dr_id: dr_id, record: record });
       }
+
     });
   }
 
@@ -140,6 +156,8 @@ function Controller() {
 
   function refresh(e) {
     if (typeof e != "undefined") {
+      console.log("socket refresh");
+      console.log(e.name_list);
       online_doctor = e.name_list;
     }
 
@@ -154,6 +172,14 @@ function Controller() {
   }
 
   init();
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

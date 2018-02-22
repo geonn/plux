@@ -149,7 +149,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel, LatestLabel) {
 					rec['y'] = parseFloat(entry.amount);
 					latestData = entry.amount;
 				}
-				info.push(rec);
+				var new_rec = [{ v: entry.date }, parseFloat(entry.amount)];
+				info.push(new_rec);
 			});
 		} else {
 			latestData = "";
@@ -157,6 +158,8 @@ function loadInfo(gType, dataPeriod, showDetailsLabel, LatestLabel) {
 	}
 	if (gType == 1) {
 		setTimeout(function () {
+			console.log("see what i get");
+			console.log(info);
 			Ti.App.fireEvent('app:bmiInfo', { message: info, dataPeriod: dataPeriod });
 		}, 2000);
 	}

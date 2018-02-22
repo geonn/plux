@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
 		var arg = null;
@@ -26,11 +29,21 @@ function Controller() {
 		var exports = {};
 		var __defers = {};
 
+
+
+
+
+
+
 		$.__views.index = Alloy.createController('slideshow', { id: "index" });
 		$.__views.index && $.addTopLevelView($.__views.index);
 		exports.destroy = function () {};
 
+
+
+
 		_.extend($, $.__views);
+
 
 		var args = {};
 		var u_id = Ti.App.Properties.getString('u_id') || "";
@@ -73,6 +86,14 @@ function Controller() {
 						common.sync_time(res.data);
 				}
 		});
+
+
+
+
+
+
+
+
 
 		_.extend($, exports);
 }

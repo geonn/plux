@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,19 +29,39 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views._available_timeslot = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f0f5f8", id: "_available_timeslot" });
+
+
+
+
+
+
+  $.__views._available_timeslot = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f0f5f8", id: "_available_timeslot" });
+
   $.__views._available_timeslot && $.addTopLevelView($.__views._available_timeslot);
-  $.__views.date_bar = Ti.UI.createScrollView({ layout: "horizontal", width: Ti.UI.FILL, height: 80, showVerticalScrollIndicator: false, scrollType: "horizontal", contentWidth: "auto", contentHeight: Ti.UI.FILL, backgroundColor: "#d7d7d7", id: "date_bar" });
+  $.__views.date_bar = Ti.UI.createScrollView(
+  { layout: "horizontal", width: Ti.UI.FILL, height: 80, showVerticalScrollIndicator: false, scrollType: "horizontal", contentWidth: "auto", contentHeight: Ti.UI.FILL, backgroundColor: "#d7d7d7", id: "date_bar" });
+
   $.__views._available_timeslot.add($.__views.date_bar);
-  $.__views.inner_box = Ti.UI.createView({ top: 10, left: 9, right: 9, bottom: 10, layout: "vertical", width: 301, height: Ti.UI.FILL, id: "inner_box" });
+  $.__views.inner_box = Ti.UI.createView(
+  { top: 10, left: 9, right: 9, bottom: 10, layout: "vertical", width: 301, height: Ti.UI.FILL, id: "inner_box" });
+
   $.__views._available_timeslot.add($.__views.inner_box);
-  $.__views.__alloyId180 = Ti.UI.createScrollView({ width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId180" });
+  $.__views.__alloyId180 = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId180" });
+
   $.__views.inner_box.add($.__views.__alloyId180);
-  $.__views.timeslot = Ti.UI.createView({ layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, left: 1, top: 1, id: "timeslot" });
+  $.__views.timeslot = Ti.UI.createView(
+  { layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, left: 1, top: 1, id: "timeslot" });
+
   $.__views.__alloyId180.add($.__views.timeslot);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var panelListModel = Alloy.createCollection('panelList');
   var listing = [];
@@ -96,17 +119,17 @@ function Controller() {
         height: 80,
         view_element: "view_date_box",
         date_s: dateArray[i],
-        classes: ['gap', active_view]
-      });
+        classes: ['gap', active_view] });
+
       var label_day_month = $.UI.create("Label", {
         classes: ['wsize', 'hsize', 'h6', active_label],
         text: day + ", " + month,
-        top: 10
-      });
+        top: 10 });
+
       var label_date = $.UI.create("Label", {
         text: date,
-        classes: ['wsize', 'hsize', 'h5', 'bold', active_label]
-      });
+        classes: ['wsize', 'hsize', 'h5', 'bold', active_label] });
+
       view_date_box.add(label_day_month);
       view_date_box.add(label_date);
       $.date_bar.add(view_date_box);
@@ -136,15 +159,25 @@ function Controller() {
     var appointmentModel = Alloy.createCollection('appointment');
     var booked_time = new Array();
 
+
+
+
     while (working_hour_begin + timeblock < working_hour_end) {
       var time_key = Math.floor(working_hour_begin / timeblock);
       workingHourArray[time_key] = working_hour_begin;
       working_hour_begin = working_hour_begin + timeblock;
     }
 
+
+
+
+
     var start_date = selected_date.getFullYear() + "-" + ("0" + (parseInt(selected_date.getMonth()) + 1)).slice(-2) + "-" + ("0" + selected_date.getDate()).slice(-2) + " 00:00:00";
     var end_date = selected_date.getFullYear() + "-" + ("0" + (parseInt(selected_date.getMonth()) + 1)).slice(-2) + "-" + ("0" + selected_date.getDate()).slice(-2) + " 23:59:59";
     var appointmentList = appointmentModel.getAppointmentList({ u_id: u_id, clinicId: clinicId, specialty: specialty, start_date: start_date, end_date: end_date });
+
+
+
 
     for (var i = 0; i < appointmentList.length; i++) {
       var datetime = appointmentList[i].start_date;
@@ -159,21 +192,26 @@ function Controller() {
       }
     };
 
+
+
+
     workingHourArray = _.omit(workingHourArray, booked_time);
     console.log(workingHourArray);
+
+
 
     for (key in workingHourArray) {
       var view_time_box = $.UI.create("View", {
         width: cell_width,
         date_s: selected_date.getFullYear() + "-" + ("0" + (parseInt(selected_date.getMonth()) + 1)).slice(-2) + "-" + ("0" + selected_date.getDate()).slice(-2) + " " + convertMinuteToHour(workingHourArray[key]),
-        classes: ["hsize", 'time_gap']
-      });
+        classes: ["hsize", 'time_gap'] });
+
 
       var label_time = $.UI.create("Label", {
         textAlign: "center",
         text: convertMinuteToHour(workingHourArray[key]),
-        classes: ['wfill', 'hsize', 'h5', 'padding']
-      });
+        classes: ['wfill', 'hsize', 'h5', 'padding'] });
+
 
       view_time_box.add(label_time);
       $.timeslot.add(view_time_box);
@@ -193,10 +231,12 @@ function Controller() {
     var childrens = $.date_bar.getChildren();
 
     for (var i = 0; i < childrens.length; i++) {
+
       childrens[i].backgroundColor = "#FFFFFF";
       var child_child = childrens[i].getChildren();
       for (var j = 0; j < child_child.length; j++) {
         child_child[j].color = "#000000";
+
       };
     };
 
@@ -206,6 +246,7 @@ function Controller() {
     var active_children = select_view.getChildren();
     for (var k = 0; k < active_children.length; k++) {
       active_children[k].color = "#FFFFFF";
+
     };
     selected_date = sdate;
     render_available_timeslot();
@@ -213,6 +254,7 @@ function Controller() {
   }
 
   function refresh() {
+
     render_date_bar();
     render_available_timeslot();
   }
@@ -222,6 +264,14 @@ function Controller() {
   }
 
   init();
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
 	var arg = null;
@@ -26,21 +29,43 @@ function Controller() {
 	var exports = {};
 	var __defers = {};
 
-	$.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Notification Details", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
+
+
+
+
+
+
+	$.__views.win = Ti.UI.createWindow(
+	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Notification Details", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
+
 	$.__views.win && $.addTopLevelView($.__views.win);
-	$.__views.__alloyId828 = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId828" });
-	$.__views.win.add($.__views.__alloyId828);
-	$.__views.__alloyId829 = Ti.UI.createImageView({ width: 30, height: 30, right: 10, image: "/images/cross.png", id: "__alloyId829" });
-	$.__views.__alloyId828.add($.__views.__alloyId829);
-	closeWindow ? $.addListener($.__views.__alloyId829, 'click', closeWindow) : __defers['$.__views.__alloyId829!click!closeWindow'] = true;$.__views.surveyView = Ti.UI.createWebView({ width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView" });
-	$.__views.__alloyId828.add($.__views.surveyView);
-	$.__views.defaultMsgView = Ti.UI.createView({ layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
+	$.__views.__alloyId865 = Ti.UI.createView(
+	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId865" });
+
+	$.__views.win.add($.__views.__alloyId865);
+	$.__views.__alloyId866 = Ti.UI.createImageView(
+	{ width: 30, height: 30, right: 10, image: "/images/cross.png", id: "__alloyId866" });
+
+	$.__views.__alloyId865.add($.__views.__alloyId866);
+	closeWindow ? $.addListener($.__views.__alloyId866, 'click', closeWindow) : __defers['$.__views.__alloyId866!click!closeWindow'] = true;$.__views.surveyView = Ti.UI.createWebView(
+	{ width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView" });
+
+	$.__views.__alloyId865.add($.__views.surveyView);
+	$.__views.defaultMsgView = Ti.UI.createView(
+	{ layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
+
 	$.__views.win.add($.__views.defaultMsgView);
-	$.__views.__alloyId830 = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId830" });
-	$.__views.defaultMsgView.add($.__views.__alloyId830);
+	$.__views.__alloyId867 = Ti.UI.createLabel(
+	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId867" });
+
+	$.__views.defaultMsgView.add($.__views.__alloyId867);
 	exports.destroy = function () {};
 
+
+
+
 	_.extend($, $.__views);
+
 
 	var args = arguments[0] || {};
 	var url = args.url || "";
@@ -70,7 +95,13 @@ function Controller() {
 		return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 	}
 
-	__defers['$.__views.__alloyId829!click!closeWindow'] && $.addListener($.__views.__alloyId829, 'click', closeWindow);
+
+
+
+
+	__defers['$.__views.__alloyId866!click!closeWindow'] && $.addListener($.__views.__alloyId866, 'click', closeWindow);
+
+
 
 	_.extend($, exports);
 }

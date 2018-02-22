@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,9 +29,19 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
+
+
+
+
+
+
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var medicalRecordsModel = Alloy.createCollection('medicalRecords');
@@ -45,8 +58,8 @@ function Controller() {
 
   function checkDataSync() {
     var param = {
-      u_id: Ti.App.Properties.getString('u_id')
-    };
+      u_id: Ti.App.Properties.getString('u_id') };
+
     API.checkMedicalDataSync({ param: param }, savedRecords);
   }
 
@@ -66,8 +79,8 @@ function Controller() {
             message: entry.message,
             clinic: entry.clinic,
             treatment: entry.treatment,
-            updated: entry.updated
-          };
+            updated: entry.updated };
+
 
           medicalRecordsModel.updateRecord(arr);
         } else {
@@ -80,8 +93,8 @@ function Controller() {
             clinic: entry.clinic,
             treatment: entry.treatment,
             created: entry.created,
-            updated: entry.updated
-          };
+            updated: entry.updated };
+
 
           medicalRecordsModel.addRecordFromServer(arr);
         }
@@ -102,6 +115,7 @@ function Controller() {
     if (unsyncList.length > 0) {
       unsyncList.forEach(function (entry) {
         if (entry.title != "" && entry.message != "") {
+
           var param = {
             app_id: entry.id,
             u_id: Ti.App.Properties.getString('u_id'),
@@ -110,9 +124,10 @@ function Controller() {
             message: entry.message,
             treatment: entry.treatment,
             created: entry.created,
-            updated: entry.updated
-          };
+            updated: entry.updated };
+
           API.syncMedicalRecords({ param: param }, updatedRecords);
+
 
           var attachments = medicalAttachmentModel.getUnuploadAttachment(entry.id);
 
@@ -124,12 +139,13 @@ function Controller() {
                 medical_id: att.medical_id,
                 u_id: Ti.App.Properties.getString('u_id'),
                 caption: att.category,
-                Filedata: Ti.Utils.base64decode(att.blob)
-              };
+                Filedata: Ti.Utils.base64decode(att.blob) };
+
 
               API.syncAttachments({ param: param }, savedAttachment);
             });
           }
+
         }
       });
     }
@@ -145,8 +161,8 @@ function Controller() {
 
     var param = {
       server_id: result.data.id,
-      id: result.data.app_id
-    };
+      id: result.data.app_id };
+
 
     medicalRecordsModel.updateFromServer(param);
   }
@@ -173,24 +189,24 @@ function Controller() {
             colors: ['#FEFEFB', '#F7F7F6'],
             startPoint: { x: 0, y: 0 },
             endPoint: { x: 0, y: 80 },
-            backFillStart: false }
-        });
+            backFillStart: false } });
+
 
         var tblView = Ti.UI.createView({
           layout: "horizontal",
           height: "80",
-          width: "100%"
-        });
+          width: "100%" });
+
         var leftView = Ti.UI.createView({
           layout: "vertical",
           height: "80",
-          width: "80%"
-        });
+          width: "80%" });
+
         var rightView = Ti.UI.createView({
           layout: "vertical",
           height: "80",
-          width: "auto"
-        });
+          width: "auto" });
+
 
         var title = entry.title;
         if (title != "") {
@@ -216,8 +232,8 @@ function Controller() {
           textAlign: 'left',
           top: 5,
           left: 20,
-          height: Ti.UI.SIZE
-        });
+          height: Ti.UI.SIZE });
+
 
         var recClinic = Titanium.UI.createLabel({
           text: clinic,
@@ -227,8 +243,8 @@ function Controller() {
           textAlign: 'left',
           width: '100%',
           left: 20,
-          height: 15
-        });
+          height: 15 });
+
 
         var recMsg = Titanium.UI.createLabel({
           text: message,
@@ -238,8 +254,8 @@ function Controller() {
           textAlign: 'left',
           width: '100%',
           left: 20,
-          height: 15
-        });
+          height: 15 });
+
 
         var updatedRecord = Titanium.UI.createLabel({
           text: timeFormat(entry.updated),
@@ -249,16 +265,16 @@ function Controller() {
           color: "#848484",
           textAlign: 'left',
           left: 20,
-          height: Ti.UI.SIZE
-        });
+          height: Ti.UI.SIZE });
+
 
         var rightForwardBtn = Titanium.UI.createImageView({
           image: "/images/btn-forward.png",
           source: entry.id,
           height: 20,
           top: 30,
-          right: 20
-        });
+          right: 20 });
+
 
         row.addEventListener('click', function (e) {
           viewDetails(e.rowData.source);
@@ -292,6 +308,7 @@ function Controller() {
     var lastRec = medicalRecordsModel.getLastId();
     nav.navigateWithArgs("editMedical", { id: lastRec.id });
   });
+
 
   $.searchItem.addEventListener('focus', function (e) {
     $.searchItem.showCancel = true;
@@ -337,6 +354,14 @@ function Controller() {
     $.destroy();
     console.log("window close");
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

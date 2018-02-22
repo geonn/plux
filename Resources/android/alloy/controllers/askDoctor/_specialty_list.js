@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,11 +29,23 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.specialty_container = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "specialty_container" });
+
+
+
+
+
+
+  $.__views.specialty_container = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "specialty_container" });
+
   $.__views.specialty_container && $.addTopLevelView($.__views.specialty_container);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var doctors_model = Alloy.createCollection('doctors');
   var clinicId = 0;
@@ -54,23 +69,23 @@ function Controller() {
             height: Ti.UI.SIZE,
             specialty: entry.specialty,
 
-            backgroundSelectedColor: "#ECFFF9"
+            backgroundSelectedColor: "#ECFFF9" });
 
-          });
+
           var tblRowView = Ti.UI.createView({
             height: Ti.UI.SIZE,
             width: Ti.UI.FILL,
             top: 10,
             bottom: 10,
-            specialty: entry.specialty
-          });
+            specialty: entry.specialty });
+
 
           var tblView = Ti.UI.createView({
             layout: "vertical",
             height: Ti.UI.SIZE,
             specialty: entry.specialty,
-            width: "auto"
-          });
+            width: "auto" });
+
 
           var label_specialty = $.UI.create('Label', {
             classes: ['medium_font', 'wfill', 'hsize', 'themeColor'],
@@ -78,8 +93,8 @@ function Controller() {
             textAlign: 'left',
             specialty: entry.specialty,
             top: 5,
-            left: 15
-          });
+            left: 15 });
+
           tblView.add(label_specialty);
           tblRowView.add(tblView);
           update_specialty_to_form(tblRowView);
@@ -118,6 +133,14 @@ function Controller() {
   }
 
   init();
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

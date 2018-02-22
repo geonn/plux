@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,17 +29,34 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.typeWindowPopUp = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, opacity: 0, id: "typeWindowPopUp" });
+
+
+
+
+
+
+  $.__views.typeWindowPopUp = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, opacity: 0, id: "typeWindowPopUp" });
+
   $.__views.typeWindowPopUp && $.addTopLevelView($.__views.typeWindowPopUp);
-  $.__views.__alloyId514 = Ti.UI.createView({ right: 3, top: 48, width: "70%", height: 90, borderRadius: 5, borderColor: "#FC7474", borderWidth: 1, layout: "vertical", id: "__alloyId514" });
-  $.__views.typeWindowPopUp.add($.__views.__alloyId514);
-  $.__views.popup_view = Ti.UI.createView({ id: "popup_view", layout: "horizontal", width: "100%" });
-  $.__views.__alloyId514.add($.__views.popup_view);
+  $.__views.__alloyId513 = Ti.UI.createView(
+  { right: 3, top: 48, width: "70%", height: 90, borderRadius: 5, borderColor: "#FC7474", borderWidth: 1, layout: "vertical", id: "__alloyId513" });
+
+  $.__views.typeWindowPopUp.add($.__views.__alloyId513);
+  $.__views.popup_view = Ti.UI.createView(
+  { id: "popup_view", layout: "horizontal", width: "100%" });
+
+  $.__views.__alloyId513.add($.__views.popup_view);
   exports.destroy = function () {};
+
+
+
 
   _.extend($, $.__views);
 
+
   var args = arguments[0] || {};
+
 
   var hideWin = 1;
 
@@ -45,8 +65,8 @@ function Controller() {
       $.typeWindowPopUp.close({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         opacity: 0,
-        duration: 200
-      });
+        duration: 200 });
+
     }
     hideWin = 1;
   });
@@ -59,14 +79,15 @@ function Controller() {
     } else if (evt.source.source == "motion") {
       nav.navigationWindow("myHealth/workout");
     } else {
+
       Ti.App.fireEvent('filterList', { category: evt.source.source });
     }
 
     $.typeWindowPopUp.close({
       curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
       opacity: 0,
-      duration: 500
-    });
+      duration: 500 });
+
   }
 
   $.typeWindowPopUp.addEventListener("close", function () {
@@ -74,11 +95,13 @@ function Controller() {
     hideWin = null;
   });
 
+
+
   var TheTable = Titanium.UI.createTableView({
     width: '100%',
     separatorColor: '#FC7474',
-    scrollable: false
-  });
+    scrollable: false });
+
 
   var CustomData = [{ image: 'images/measurement.png', title: "Body Measurement", source: 'measurement' }, { image: 'images/vitals.png', title: "Vitals", source: 'vitals' }];
 
@@ -95,8 +118,8 @@ function Controller() {
         colors: ['#FEFEFB', '#F7F7F6'],
         startPoint: { x: 0, y: 0 },
         endPoint: { x: 0, y: 45 },
-        backFillStart: false }
-    });
+        backFillStart: false } });
+
 
     var leftImage = Titanium.UI.createImageView({
       image: CustomData[i].image,
@@ -104,8 +127,8 @@ function Controller() {
       width: 25,
       height: 25,
       left: 10,
-      top: 10
-    });
+      top: 10 });
+
 
     var popUpTitle = Titanium.UI.createLabel({
       text: CustomData[i].title,
@@ -116,8 +139,8 @@ function Controller() {
       textAlign: 'left',
       top: 8,
       left: 40,
-      height: 25
-    });
+      height: 25 });
+
 
     row.addEventListener('touchend', function (e) {
       navByType(e);
@@ -131,6 +154,14 @@ function Controller() {
 
   TheTable.setData(data);
   $.popup_view.add(TheTable);
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,21 +29,43 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.personalClaimVw = Ti.UI.createView({ top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personalClaimVw" });
+
+
+
+
+
+
+  $.__views.personalClaimVw = Ti.UI.createView(
+  { top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personalClaimVw" });
+
   $.__views.personalClaimVw && $.addTopLevelView($.__views.personalClaimVw);
-  $.__views.main = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, borderColor: "#dfe0e4", backgroundColor: "#FFFFFF", borderRadius: "5", id: "main" });
+  $.__views.main = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, borderColor: "#dfe0e4", backgroundColor: "#FFFFFF", borderRadius: "5", id: "main" });
+
   $.__views.personalClaimVw.add($.__views.main);
-  $.__views.__alloyId207 = Ti.UI.createView({ layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId207" });
+  $.__views.__alloyId207 = Ti.UI.createView(
+  { layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId207" });
+
   $.__views.main.add($.__views.__alloyId207);
-  $.__views.name = Ti.UI.createLabel({ width: "85%", height: Ti.UI.SIZE, color: "#CE1D1C", font: { fontSize: 18 }, id: "name", left: 10, top: 5, zIndex: 10 });
+  $.__views.name = Ti.UI.createLabel(
+  { width: "85%", height: Ti.UI.SIZE, color: "#CE1D1C", font: { fontSize: 18 }, id: "name", left: 10, top: 5, zIndex: 10 });
+
   $.__views.__alloyId207.add($.__views.name);
-  $.__views.more = Ti.UI.createImageView({ id: "more", image: "/images/btn-forward.png", right: 8, top: 8, zIndex: 10, width: "20dp", height: "20dp" });
+  $.__views.more = Ti.UI.createImageView(
+  { id: "more", image: "/images/btn-forward.png", right: 8, top: 8, zIndex: 10, width: "20dp", height: "20dp" });
+
   $.__views.__alloyId207.add($.__views.more);
-  $.__views.__alloyId208 = Ti.UI.createView({ height: 15, width: Ti.UI.FILL, id: "__alloyId208" });
+  $.__views.__alloyId208 = Ti.UI.createView(
+  { height: 15, width: Ti.UI.FILL, id: "__alloyId208" });
+
   $.__views.main.add($.__views.__alloyId208);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   $.name.text = args.name;
@@ -48,19 +73,19 @@ function Controller() {
   for (var i = 0; i < args.data.length; i++) {
     var view_container = $.UI.create("View", {
       classes: ['padding', 'wfill', 'hsize', 'vert'],
-      top: 5
-    });
+      top: 5 });
+
 
     var typeHeaderView = $.UI.create("View", {
-      classes: ['wfill', 'hsize', 'horz']
-    });
+      classes: ['wfill', 'hsize', 'horz'] });
+
 
     var label_type = $.UI.create("Label", {
       classes: ['font_medium'],
       left: 0,
       width: "65%",
-      text: args.data[i].benefittype + " Balance "
-    });
+      text: args.data[i].benefittype + " Balance " });
+
 
     if (args.data[i].entidvbal < 99999) {
       var totBal = args.data[i].entidvbal;
@@ -86,8 +111,8 @@ function Controller() {
       right: 0,
       width: "35%",
       textAlign: "right",
-      text: textTotBal
-    });
+      text: textTotBal });
+
 
     typeHeaderView.add(label_type);
     typeHeaderView.add(totalLimitLbl);
@@ -117,6 +142,7 @@ function Controller() {
       } else {
         view_container.add(generate_description("Shared Limit: RM ", args.data[i].entshabal, args.data[i].entsha));
       }
+
     }
 
     if (args.data[i].benefittype != "SPECIALIST") {
@@ -155,13 +181,13 @@ function Controller() {
 
   function generate_progressBar(filled) {
     var view_progressBar = $.UI.create("View", {
-      classes: ['progressBar']
-    });
+      classes: ['progressBar'] });
+
 
     var view_progressBarFill = $.UI.create("View", {
       classes: ['progressBarFill'],
-      width: filled
-    });
+      width: filled });
+
 
     view_progressBar.add(view_progressBarFill);
     return view_progressBar;
@@ -169,12 +195,12 @@ function Controller() {
 
   function generate_description(desc, balance, limit) {
     var view_desc = $.UI.create("View", {
-      classes: ['wfill', 'hsize', 'horz']
-    });
+      classes: ['wfill', 'hsize', 'horz'] });
+
 
     var label_balance = $.UI.create("Label", {
-      text: desc + limit
-    });
+      text: desc + limit });
+
 
     view_desc.add(label_balance);
 
@@ -185,6 +211,14 @@ function Controller() {
     var nav = require('navigation');
     nav.navigateWithArgs("asp/claimHistory", { name: args.name });
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

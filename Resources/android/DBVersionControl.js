@@ -1,6 +1,6 @@
 
 exports.checkAndUpdate = function (e) {
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.8";
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || "2.9";
 
 	if (dbVersion == "1.5") {
 
@@ -98,6 +98,15 @@ exports.checkAndUpdate = function (e) {
 		mrv2_model.addColumn("extra", "TEXT");
 
 		dbVersion = '2.8';
+	}
+	if (dbVersion == "2.8") {
+		var mrv2_model = Alloy.createCollection('health');
+		mrv2_model.addColumn("field3", "TEXT");
+		mrv2_model.addColumn("field4", "TEXT");
+		mrv2_model.addColumn("remark", "TEXT");
+		var medicalRecordsV2_model = Alloy.createCollection('medicalRecordsV2');
+		medicalRecordsV2_model.addColumn("editable", "INTEGER");
+		dbVersion = '2.9';
 	}
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

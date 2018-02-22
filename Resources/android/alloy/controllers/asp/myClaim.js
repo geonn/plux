@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,38 +29,76 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim Details", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim Details", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId283 = Ti.UI.createView({ id: "__alloyId283" });
-  $.__views.win.rightNavButton = $.__views.__alloyId283;$.__views.__alloyId284 = Ti.UI.createView({ layout: "vertical", backgroundColor: "#F6F6F6", height: "100%", id: "__alloyId284" });
+  $.__views.__alloyId283 = Ti.UI.createView(
+  { id: "__alloyId283" });
+
+  $.__views.win.rightNavButton = $.__views.__alloyId283;$.__views.__alloyId284 = Ti.UI.createView(
+  { layout: "vertical", backgroundColor: "#F6F6F6", height: "100%", id: "__alloyId284" });
+
   $.__views.win.add($.__views.__alloyId284);
   if (true) {
-    $.__views.__alloyId285 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId285" });
+    $.__views.__alloyId285 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId285" });
+
     $.__views.__alloyId284.add($.__views.__alloyId285);
-    $.__views.__alloyId286 = Ti.UI.createView({ left: 0, width: "10%", id: "__alloyId286" });
+    $.__views.__alloyId286 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId286" });
+
     $.__views.__alloyId285.add($.__views.__alloyId286);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId286.add($.__views.btnBack);
-    $.__views.pageTitle = Ti.UI.createView({ id: "pageTitle", width: "90%" });
+    $.__views.pageTitle = Ti.UI.createView(
+    { id: "pageTitle", width: "90%" });
+
     $.__views.__alloyId285.add($.__views.pageTitle);
-    $.__views.__alloyId287 = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId287" });
+    $.__views.__alloyId287 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId287" });
+
     $.__views.pageTitle.add($.__views.__alloyId287);
   }
-  $.__views.__alloyId288 = Ti.UI.createView({ height: Ti.UI.FILL, width: Ti.UI.FILL, id: "__alloyId288" });
+  $.__views.__alloyId288 = Ti.UI.createView(
+  { height: Ti.UI.FILL, width: Ti.UI.FILL, id: "__alloyId288" });
+
   $.__views.__alloyId284.add($.__views.__alloyId288);
-  $.__views.claimContainer = Ti.UI.createView({ id: "claimContainer", width: Ti.UI.FILL, height: Ti.UI.FILL, visible: false });
+  $.__views.claimContainer = Ti.UI.createView(
+  { id: "claimContainer", width: Ti.UI.FILL, height: Ti.UI.FILL, visible: false });
+
   $.__views.__alloyId288.add($.__views.claimContainer);
-  $.__views.main = Ti.UI.createScrollView({ backgroundColor: "#E9E9E9", id: "main", layout: "vertical", scrollType: "vertical" });
+  $.__views.main = Ti.UI.createScrollView(
+  { backgroundColor: "#E9E9E9", id: "main", layout: "vertical", scrollType: "vertical" });
+
   $.__views.claimContainer.add($.__views.main);
-  $.__views.date = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#CE1D1C", font: { fontSize: "16dp" }, top: "10dp", id: "date" });
+  $.__views.date = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#CE1D1C", font: { fontSize: "16dp" }, top: "10dp", id: "date" });
+
   $.__views.main.add($.__views.date);
-  $.__views.personal_claim = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personal_claim" });
+  $.__views.personal_claim = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personal_claim" });
+
   $.__views.main.add($.__views.personal_claim);
-  $.__views.insurance_info = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "insurance_info" });
+  $.__views.insurance_info = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "insurance_info" });
+
   $.__views.main.add($.__views.insurance_info);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var loading = Alloy.createController("loading");
@@ -128,6 +169,7 @@ function Controller() {
 
   function init() {
 
+
     var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     var e = JSON.parse(Ti.App.Properties.getString('balchk'));
@@ -146,12 +188,29 @@ function Controller() {
       var val = e[i];
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       groups[val.name] = groups[val.name] || [];
       groups[val.name].push(val);
     }
 
     GenerateClaimBalanceTable(balance_groups);
     Object.keys(groups).map(function (group) {
+
       var personal_claim_view = Alloy.createController("asp/_personal_claim_view", { data: groups[group], name: group }).getView();
       $.personal_claim.add(personal_claim_view);
     });
@@ -165,15 +224,15 @@ function Controller() {
       var view_title = $.UI.create("View", {
         backgroundColor: "#CE1D1C",
         height: Ti.UI.SIZE,
-        width: Ti.UI.FILL
-      });
+        width: Ti.UI.FILL });
+
 
       var label_title = $.UI.create("Label", {
         classes: ['title'],
         color: "#ffffff",
         height: Titanium.UI.SIZE,
-        text: claim_balance_name[group]
-      });
+        text: claim_balance_name[group] });
+
 
       view_title.add(label_title);
       $.view_balance.add(view_title);
@@ -185,38 +244,38 @@ function Controller() {
       Object.keys(tmp_group).map(function (b) {
 
         var view_line = $.UI.create("View", {
-          classes: ['line']
-        });
+          classes: ['line'] });
+
 
         var view_header = $.UI.create("View", {
           width: Ti.UI.FILL,
           height: Ti.UI.SIZE,
           left: 10,
           right: 10,
-          layout: "horizontal"
-        });
+          layout: "horizontal" });
+
 
         var label_name = $.UI.create("Label", {
           height: Ti.UI.SIZE,
           wordWrap: false,
           ellipsize: true,
           font: {
-            fontSize: "16dp"
-          },
+            fontSize: "16dp" },
+
           width: "70%",
-          text: b
-        });
+          text: b });
+
 
         var label_balance_limit = $.UI.create("Label", {
           height: Ti.UI.SIZE,
           wordWrap: false,
           ellipsize: true,
           font: {
-            fontSize: "12dp"
-          },
+            fontSize: "12dp" },
+
           width: "30%",
-          text: "balance / limit"
-        });
+          text: "balance / limit" });
+
         view_header.add(label_name);
         view_header.add(label_balance_limit);
         $.view_balance.add(view_line);
@@ -225,18 +284,18 @@ function Controller() {
           var view_category = $.UI.create("View", {
             width: Ti.UI.FILL,
             height: Ti.UI.SIZE,
-            layout: "horizontal"
-          });
+            layout: "horizontal" });
+
 
           var label_category = $.UI.create("Label", {
             classes: ['subtitle'],
-            text: tmp_group[b][c]['benefittype']
-          });
+            text: tmp_group[b][c]['benefittype'] });
+
 
           var label_amount = $.UI.create("Label", {
             classes: ['subvalue'],
-            text: "RM " + tmp_group[b][c][group]
-          });
+            text: "RM " + tmp_group[b][c][group] });
+
           view_category.add(label_category);
           view_category.add(label_amount);
 
@@ -258,6 +317,14 @@ function Controller() {
     Ti.App.removeEventListener("data_loaded", init);
     $.destroy();
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

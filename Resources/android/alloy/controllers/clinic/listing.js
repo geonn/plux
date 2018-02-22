@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,33 +29,64 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "Clinic Type List", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "Clinic Type List", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId396 = Ti.UI.createImageView({ right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId396" });
-  doRefresh ? $.addListener($.__views.__alloyId396, 'click', doRefresh) : __defers['$.__views.__alloyId396!click!doRefresh'] = true;$.__views.win.rightNavButton = $.__views.__alloyId396;$.__views.panelListTbl = Ti.UI.createView({ layout: "vertical", id: "panelListTbl" });
+  $.__views.__alloyId396 = Ti.UI.createImageView(
+  { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId396" });
+
+  doRefresh ? $.addListener($.__views.__alloyId396, 'click', doRefresh) : __defers['$.__views.__alloyId396!click!doRefresh'] = true;$.__views.win.rightNavButton = $.__views.__alloyId396;$.__views.panelListTbl = Ti.UI.createView(
+  { layout: "vertical", id: "panelListTbl" });
+
   $.__views.win.add($.__views.panelListTbl);
   if (true) {
-    $.__views.__alloyId397 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId397" });
+    $.__views.__alloyId397 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId397" });
+
     $.__views.panelListTbl.add($.__views.__alloyId397);
-    $.__views.__alloyId398 = Ti.UI.createView({ left: 0, width: "20%", id: "__alloyId398" });
+    $.__views.__alloyId398 = Ti.UI.createView(
+    { left: 0, width: "20%", id: "__alloyId398" });
+
     $.__views.__alloyId397.add($.__views.__alloyId398);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId398.add($.__views.btnBack);
-    $.__views.__alloyId399 = Ti.UI.createView({ width: "60%", id: "__alloyId399" });
+    $.__views.__alloyId399 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId399" });
+
     $.__views.__alloyId397.add($.__views.__alloyId399);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Clinic Type List', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Clinic Type List', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId399.add($.__views.pageTitle);
-    $.__views.__alloyId400 = Ti.UI.createView({ right: 0, width: "20%", id: "__alloyId400" });
+    $.__views.__alloyId400 = Ti.UI.createView(
+    { right: 0, width: "20%", id: "__alloyId400" });
+
     $.__views.__alloyId397.add($.__views.__alloyId400);
-    $.__views.__alloyId401 = Ti.UI.createImageView({ right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId401" });
+    $.__views.__alloyId401 = Ti.UI.createImageView(
+    { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId401" });
+
     $.__views.__alloyId400.add($.__views.__alloyId401);
-    doRefresh ? $.addListener($.__views.__alloyId401, 'click', doRefresh) : __defers['$.__views.__alloyId401!click!doRefresh'] = true;
-  }
-  $.__views.tblview = Ti.UI.createTableView({ id: "tblview", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0 });
+    doRefresh ? $.addListener($.__views.__alloyId401, 'click', doRefresh) : __defers['$.__views.__alloyId401!click!doRefresh'] = true;}
+  $.__views.tblview = Ti.UI.createTableView(
+  { id: "tblview", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0 });
+
   $.__views.panelListTbl.add($.__views.tblview);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var loading = Alloy.createController("loading");
@@ -82,8 +116,8 @@ function Controller() {
         textAlign: 'center',
         font: { fontSize: 14, fontStyle: 'italic' },
         top: 15,
-        width: Ti.UI.SIZE
-      });
+        width: Ti.UI.SIZE });
+
       $.panelListTbl.add(noRecord);
     } else {
 
@@ -97,17 +131,19 @@ function Controller() {
           height: 70,
           id: entry.clinicType,
           backgroundSelectedColor: "#FFE1E1",
-          backgroundColor: "#ffffff"
-        });
+          backgroundColor: "#ffffff" });
+
 
         var clinicImg = entry.clinicType;
+
+
 
         var leftImage = Titanium.UI.createView({
           backgroundImage: "/images/" + clinicImg + ".png",
           width: 50,
           height: 50,
-          left: 10
-        });
+          left: 10 });
+
 
         var popUpTitle = Titanium.UI.createLabel({
           text: myClinicType,
@@ -117,8 +153,8 @@ function Controller() {
           width: '65%',
           textAlign: 'left',
           left: 70,
-          height: 25
-        });
+          height: 25 });
+
 
         var totalPanel = Titanium.UI.createLabel({
           text: entry.total,
@@ -127,15 +163,15 @@ function Controller() {
           width: 'auto',
           color: "#848484",
           right: 50,
-          height: 25
-        });
+          height: 25 });
+
 
         var rightForwardBtn = Titanium.UI.createImageView({
           image: "/images/btn-forward.png",
           source: entry.clinicType,
           width: 15,
-          right: 20
-        });
+          right: 20 });
+
 
         row.add(leftImage);
         row.add(popUpTitle);
@@ -155,8 +191,8 @@ function Controller() {
     details24 = library.getCount24Hours(corp);
     var det24 = {
       clinicType: "hours24",
-      total: details24.total
-    };
+      total: details24.total };
+
 
     details.splice(1, 0, det24);
 
@@ -184,9 +220,15 @@ function Controller() {
     nav.navigateWithArgs("clinic/clinicList", { clinicType: e.rowData.id });
   });
 
+
+
+
+
   __defers['$.__views.__alloyId396!click!doRefresh'] && $.addListener($.__views.__alloyId396, 'click', doRefresh);if (true) {
-    __defers['$.__views.__alloyId401!click!doRefresh'] && $.addListener($.__views.__alloyId401, 'click', doRefresh);
-  }
+    __defers['$.__views.__alloyId401!click!doRefresh'] && $.addListener($.__views.__alloyId401, 'click', doRefresh);}
+
+
+
 
   _.extend($, exports);
 }

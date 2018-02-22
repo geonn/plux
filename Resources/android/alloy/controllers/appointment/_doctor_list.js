@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,11 +29,23 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.doctorContainer = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+
+
+
+
+
+
+  $.__views.doctorContainer = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+
   $.__views.doctorContainer && $.addTopLevelView($.__views.doctorContainer);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var panelListModel = Alloy.createCollection('panelList');
   var listing = [];
@@ -51,42 +66,42 @@ function Controller() {
         var row = Titanium.UI.createTableViewRow({
           touchEnabled: true,
           height: Ti.UI.SIZE,
-          backgroundSelectedColor: "#ECFFF9"
-        });
+          backgroundSelectedColor: "#ECFFF9" });
+
 
         var tblRowView = Ti.UI.createView({
           height: Ti.UI.SIZE,
-          width: Ti.UI.FILL
-        });
+          width: Ti.UI.FILL });
+
 
         var tblView = Ti.UI.createView({
           layout: "vertical",
           height: Ti.UI.SIZE,
-          width: "auto"
-        });
+          width: "auto" });
+
 
         var docName = $.UI.create('Label', {
           classes: ['medium_font', 'wfill', 'hsize', 'themeColor'],
           text: entry.clinic_id,
           textAlign: 'left',
           top: 5,
-          left: 15
-        });
+          left: 15 });
+
         var docSpecialty = $.UI.create('Label', {
           classes: ['small_font', 'wfill', 'hsize'],
           text: entry.doctor_id,
           color: "#848484",
           textAlign: 'left',
-          left: 15
-        });
+          left: 15 });
+
         var docContact = $.UI.create('Label', {
           classes: ['small_font', 'wfill', 'hsize'],
           text: "Tel : " + entry.id,
           color: "#848484",
           textAlign: 'left',
           bottom: 5,
-          left: 15
-        });
+          left: 15 });
+
         tblView.add(docName);
         tblView.add(docSpecialty);
         tblView.add(docContact);
@@ -134,10 +149,19 @@ function Controller() {
   }
 
   function init() {
+
     console.log('init');
   }
 
   init();
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

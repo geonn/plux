@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,21 +29,43 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.leaftletWin = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Leaflet", backButtonTitle: "", id: "leaftletWin", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.leaftletWin = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Leaflet", backButtonTitle: "", id: "leaftletWin", navTintColor: "#CE1D1C" });
+
   $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
-  $.__views.brochureView = Ti.UI.createView({ id: "brochureView", backgroundColor: "#828282" });
+  $.__views.brochureView = Ti.UI.createView(
+  { id: "brochureView", backgroundColor: "#828282" });
+
   $.__views.leaftletWin.add($.__views.brochureView);
-  $.__views.bigView = Ti.UI.createScrollView({ id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
+  $.__views.bigView = Ti.UI.createScrollView(
+  { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
+
   $.__views.brochureView.add($.__views.bigView);
-  $.__views.__alloyId501 = Ti.UI.createView({ layout: "vertical", id: "__alloyId501" });
-  $.__views.brochureView.add($.__views.__alloyId501);
-  $.__views.scrollview = Ti.UI.createScrollView({ top: 15, id: "scrollview", layout: "vertical" });
-  $.__views.__alloyId501.add($.__views.scrollview);
-  $.__views.mainView = Ti.UI.createView({ id: "mainView", layout: "vertical", height: Ti.UI.SIZE, width: "100%" });
+  $.__views.__alloyId500 = Ti.UI.createView(
+  { layout: "vertical", id: "__alloyId500" });
+
+  $.__views.brochureView.add($.__views.__alloyId500);
+  $.__views.scrollview = Ti.UI.createScrollView(
+  { top: 15, id: "scrollview", layout: "vertical" });
+
+  $.__views.__alloyId500.add($.__views.scrollview);
+  $.__views.mainView = Ti.UI.createView(
+  { id: "mainView", layout: "vertical", height: Ti.UI.SIZE, width: "100%" });
+
   $.__views.scrollview.add($.__views.mainView);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var PDF = require('pdf');
@@ -55,8 +80,8 @@ function Controller() {
           bottom: 0,
           right: 5,
           height: 200,
-          width: "30%"
-        });
+          width: "30%" });
+
 
         var leafImage = Ti.UI.createImageView({
           id: leaflist[i].id,
@@ -68,8 +93,8 @@ function Controller() {
           downloaded: leaflist[i].isDownloaded,
           defaultImage: "/images/warm-grey-bg.png",
           bottom: 0,
-          width: 90
-        });
+          width: 90 });
+
         var activityIndicator = common.showImageIndicator();
 
         downloadBrochure(leafImage, leaflist[i]);
@@ -83,15 +108,15 @@ function Controller() {
             bottom: 0,
             layout: "vertical",
             height: 220,
-            width: "100%"
-          });
+            width: "100%" });
+
           var innerView = Ti.UI.createView({
             layout: "horizontal",
             height: Ti.UI.SIZE,
             width: "100%",
             left: "5%",
-            right: "5%"
-          });
+            right: "5%" });
+
 
           innerView.add(leafView);
           containerView.add(innerView);
@@ -101,8 +126,8 @@ function Controller() {
           if ((i + 1) % 3 == 0) {
             var lineImg = Ti.UI.createImageView({
               image: '/images/div.png',
-              width: "100%"
-            });
+              width: "100%" });
+
             innerView.add(lineImg);
           }
         }
@@ -112,6 +137,7 @@ function Controller() {
   var isDownloading = "0";
   var isDownloadLbl = "0";
 
+
   function downloadBrochure(adImage, content) {
     adImage.addEventListener("click", function () {
       var indView = Ti.UI.createView({
@@ -119,8 +145,8 @@ function Controller() {
         layout: "vertical",
         backgroundColor: "#ffffff",
         bottom: 5,
-        width: Ti.UI.SIZE
-      });
+        width: Ti.UI.SIZE });
+
       if (isDownloading == "1") {
         var label = Ti.UI.createLabel({
           color: '#CE1D1C',
@@ -129,8 +155,8 @@ function Controller() {
           bottom: 10,
           width: "100%",
           height: 10,
-          textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-        });
+          textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER });
+
 
         if (isDownloadLbl == "0") {
           $.bigView.add(label);
@@ -153,8 +179,8 @@ function Controller() {
         top: 5,
         message: 'Downloading ' + content.title + '...',
         font: { fontSize: 12 },
-        color: '#CE1D1C'
-      });
+        color: '#CE1D1C' });
+
 
       var label = Ti.UI.createLabel({
         color: '#CE1D1C',
@@ -163,8 +189,8 @@ function Controller() {
         top: 0,
         width: "100%",
         height: 30,
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
-      });
+        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER });
+
 
       if (content.isDownloaded == "1") {
         indView.remove(ind);
@@ -195,47 +221,47 @@ function Controller() {
             var myModal = Ti.UI.createWindow({
               title: 'Read PDF',
               backgroundColor: 'transparent',
-              fullscreen: true
-            });
+              fullscreen: true });
+
             var leftBtn = Ti.UI.createButton({
               title: "Close",
               color: "#CE1D1C",
-              left: 15
-            });
+              left: 15 });
+
             var wrapperView = Ti.UI.createView({
               layout: "vertical",
-              height: Ti.UI.SIZE
-            });
+              height: Ti.UI.SIZE });
+
 
             var topView = Ti.UI.createView({
               backgroundColor: '#EEEEEE',
               top: 0,
-              height: 40
-            });
+              height: 40 });
+
             var containerView = Ti.UI.createView({
               height: Ti.UI.SIZE,
               width: Ti.UI.FILL,
-              backgroundColor: 'transparent'
-            });
+              backgroundColor: 'transparent' });
+
             var webview = Ti.UI.createWebView({
               data: file.read(),
               height: Ti.UI.FILL,
               width: Ti.UI.FILL,
               backgroundColor: "#ffffff",
-              bottom: 10
-            });
+              bottom: 10 });
+
             if (content.url != "") {
               var rightBtn = Ti.UI.createButton({
                 title: "Details",
                 color: "#CE1D1C",
-                right: 15
-              });
+                right: 15 });
+
               rightBtn.addEventListener('click', function (rx) {
                 var BackBtn = Ti.UI.createButton({
                   title: "Back",
                   color: "#CE1D1C",
-                  right: 15
-                });
+                  right: 15 });
+
                 BackBtn.addEventListener('click', function (sa) {
                   BackBtn.setVisible(false);
                   rightBtn.setVisible(true);
@@ -254,8 +280,8 @@ function Controller() {
             wrapperView.add(containerView);
             myModal.add(wrapperView);
             myModal.open({
-              modal: true
-            });
+              modal: true });
+
             leftBtn.addEventListener('click', function (ex) {
               myModal.close({ animated: true });
             });
@@ -270,6 +296,14 @@ function Controller() {
       nav.closeWindow($.leaftletWin);
     });
   }
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

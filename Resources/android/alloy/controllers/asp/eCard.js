@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,41 +29,81 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#fff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP eCARD", backButtonTitle: "", layout: "", id: "win", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#fff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP eCARD", backButtonTitle: "", layout: "", id: "win", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.mainContainer = Ti.UI.createView({ id: "mainContainer", height: Ti.UI.SIZE, width: Ti.UI.FILL });
+  $.__views.mainContainer = Ti.UI.createView(
+  { id: "mainContainer", height: Ti.UI.SIZE, width: Ti.UI.FILL });
+
   $.__views.win.add($.__views.mainContainer);
-  $.__views.loadingBar = Ti.UI.createView({ layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+  $.__views.loadingBar = Ti.UI.createView(
+  { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+
   $.__views.mainContainer.add($.__views.loadingBar);
-  $.__views.activityIndicator = Ti.UI.createActivityIndicator({ top: 10, left: 30, width: 60, id: "activityIndicator" });
+  $.__views.activityIndicator = Ti.UI.createActivityIndicator(
+  { top: 10, left: 30, width: 60, id: "activityIndicator" });
+
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId265 = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId265" });
+  $.__views.__alloyId265 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId265" });
+
   $.__views.loadingBar.add($.__views.__alloyId265);
-  $.__views.main = Ti.UI.createView({ id: "main", layout: "vertical" });
+  $.__views.main = Ti.UI.createView(
+  { id: "main", layout: "vertical" });
+
   $.__views.mainContainer.add($.__views.main);
   if (true) {
-    $.__views.__alloyId266 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId266" });
+    $.__views.__alloyId266 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId266" });
+
     $.__views.main.add($.__views.__alloyId266);
-    $.__views.__alloyId267 = Ti.UI.createView({ left: 0, width: "10%", id: "__alloyId267" });
+    $.__views.__alloyId267 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId267" });
+
     $.__views.__alloyId266.add($.__views.__alloyId267);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId267.add($.__views.btnBack);
-    $.__views.__alloyId268 = Ti.UI.createView({ width: "90%", id: "__alloyId268" });
+    $.__views.__alloyId268 = Ti.UI.createView(
+    { width: "90%", id: "__alloyId268" });
+
     $.__views.__alloyId266.add($.__views.__alloyId268);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP eCARD', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP eCARD', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId268.add($.__views.pageTitle);
   }
-  $.__views.__alloyId269 = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId269" });
+  $.__views.__alloyId269 = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId269" });
+
   $.__views.main.add($.__views.__alloyId269);
-  $.__views.card_container = Ti.UI.createView({ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "card_container" });
+  $.__views.card_container = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "card_container" });
+
   $.__views.__alloyId269.add($.__views.card_container);
-  $.__views.card = Ti.UI.createView({ height: Ti.UI.SIZE, width: Ti.UI.FILL, top: 0, id: "card" });
+  $.__views.card = Ti.UI.createView(
+  { height: Ti.UI.SIZE, width: Ti.UI.FILL, top: 0, id: "card" });
+
   $.__views.card_container.add($.__views.card);
-  $.__views.qrCode = Ti.UI.createView({ height: Ti.UI.SIZE, width: Ti.UI.FILL, layout: "vertical", bottom: 50, id: "qrCode" });
+  $.__views.qrCode = Ti.UI.createView(
+  { height: Ti.UI.SIZE, width: Ti.UI.FILL, layout: "vertical", bottom: 50, id: "qrCode" });
+
   $.__views.card_container.add($.__views.qrCode);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var u_id = args.u_id || 0;
@@ -95,8 +138,8 @@ function Controller() {
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
     top: 0,
-    currentAngle: 10
-  });
+    currentAngle: 10 });
+
 
   var memno_text = Ti.UI.createLabel({
     text: user.memno,
@@ -106,10 +149,10 @@ function Controller() {
     left: "20dp",
     zIndex: 12,
     font: {
-      fontSize: "14dp"
-    },
-    color: "#ffffff"
-  });
+      fontSize: "14dp" },
+
+    color: "#ffffff" });
+
   var name_text = Ti.UI.createLabel({
     text: user.name,
     width: Ti.UI.SIZE,
@@ -118,10 +161,10 @@ function Controller() {
     left: "20dp",
     zIndex: 12,
     font: {
-      fontSize: "14dp"
-    },
-    color: "#ffffff"
-  });
+      fontSize: "14dp" },
+
+    color: "#ffffff" });
+
   var ic_text = Ti.UI.createLabel({
     text: user.ic,
     width: Ti.UI.SIZE,
@@ -130,23 +173,23 @@ function Controller() {
     right: "20dp",
     zIndex: 12,
     font: {
-      fontSize: "14dp"
-    },
-    color: "#ffffff"
-  });
+      fontSize: "14dp" },
+
+    color: "#ffffff" });
+
 
   var front_bg = Ti.UI.createImageView({
     width: Ti.UI.FILL,
     height: Ti.UI.SIZE,
     image: "/images/eCard-front.png",
     font: {
-      fontSize: "11dp"
-    },
+      fontSize: "11dp" },
+
     left: 10,
     right: 10,
     zIndex: 11,
-    top: 0
-  });
+    top: 0 });
+
 
   front.add(front_bg);
   front.add(name_text);
@@ -161,8 +204,8 @@ function Controller() {
     right: 10,
     image: "/images/eCard-back.png",
     currentAngle: 10,
-    top: 0
-  });
+    top: 0 });
+
 
   var userIc = user.icno || "";
 
@@ -171,20 +214,21 @@ function Controller() {
     var dateTimeNow = currentDateTime();
     var userQR = qrcode.QRCode({
       typeNumber: 10,
-      errorCorrectLevel: 'M'
-    });
+      errorCorrectLevel: 'M' });
+
 
     var qrcodeView = userQR.createQRCodeView({
       width: 200,
       height: 200,
       margin: 4,
-      text: user.name + "||" + user.id + "||" + user.icno + "||" + user.memno + "||" + user.empno + "||" + user.relation + "||" + user.corpcode + "||" + user.corpname + "||" + user.costcenter + "||" + user.dept + "||" + user.allergy + "||" + user.isver + "||" + user.verno + "||" + dateTimeNow + "||" + Ti.App.Properties.getString('cardno')
+      text: user.name + "||" + user.id + "||" + user.icno + "||" + user.memno + "||" + user.empno + "||" + user.relation + "||" + user.corpcode + "||" + user.corpname + "||" + user.costcenter + "||" + user.dept + "||" + user.allergy + "||" + user.isver + "||" + user.verno + "||" + dateTimeNow + "||" + Ti.App.Properties.getString('cardno') });
 
-    });
+
 
     $.qrCode.removeAllChildren();
     $.qrCode.add(qrcodeView);
   }, 1000);
+
 
   $.card.add(front);
 
@@ -194,22 +238,27 @@ function Controller() {
     backgroundColor: "#ffffff",
     opacity: "0.5",
     zIndex: 100,
-    top: 0
-  });
+    top: 0 });
+
   $.mainContainer.add(cover);
 
   $.card.addEventListener('click', function (e) {
 
     var t;
     if (frontbackcounter % 2 == 0) {
+
+
       rotate_box($.card, frontbackcounter % 2);
     } else {
+
+
       rotate_box($.card, frontbackcounter % 2);
     }
     frontbackcounter++;
   });
 
   function rotate_box(view_selected, back2front) {
+
     if ('android' == "android") {
       var matrix2d = Ti.UI.create2DMatrix();
       var m_front_to_back = matrix2d.scale(0);
@@ -220,8 +269,8 @@ function Controller() {
     var a_front_to_back = Ti.UI.createAnimation({
       transform: m_front_to_back,
       duration: 200,
-      box: view_selected
-    });
+      box: view_selected });
+
     view_selected.animate(a_front_to_back);
     a_front_to_back.addEventListener('complete', function () {
       Ti.API.info('showFront: Animating the back to the front.');
@@ -237,19 +286,20 @@ function Controller() {
       var a_back_to_front = Ti.UI.createAnimation({
         transform: m_front_to_back,
         duration: 200,
-        curve: Ti.UI.ANIMATION_CURVE_EASE_OUT
-      });
+        curve: Ti.UI.ANIMATION_CURVE_EASE_OUT });
+
       var back = Ti.UI.createImageView({
         name: "back",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         image: "/images/eCard-back.png",
         currentAngle: 10,
-        top: 0
-      });
+        top: 0 });
+
       if (back2front) {
         view_selected.remove(view_selected.children[1]);
       } else {
+
         view_selected.add(back);
       }
       view_selected.animate(a_back_to_front);
@@ -260,10 +310,13 @@ function Controller() {
     Ti.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);
     Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
     if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight) {
+
       name_text.top = "160dp";
       name_text.left = "80dp";
       memno_text.top = "125dp";
       memno_text.left = "80dp";
+
+
     } else {
       name_text.top = "125dp";
       name_text.left = "20dp";
@@ -271,6 +324,7 @@ function Controller() {
       memno_text.left = "20dp";
     }
   }
+
 
   Ti.Gesture.addEventListener('orientationchange', orientationchange);
   Ti.App.addEventListener('loadPage', init);
@@ -287,6 +341,14 @@ function Controller() {
     Ti.Gesture.removeEventListener('orientationchange', orientationchange);
     clearInterval(genCode);
   });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

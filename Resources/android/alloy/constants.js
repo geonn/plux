@@ -47,7 +47,7 @@ exports.SKIP_EVENT_HANDLING = ['Ti.UI.ListItem', 'Alloy.Abstract.ItemTemplate'];
 exports.ADAPTERS = ['localStorage', 'properties', 'sql'];
 exports.CONTROLLER_NODES = ['Alloy.Require', 'Alloy.Widget'];
 exports.DEFAULT_BACKBONE_VERSION = '0.9.2';
-exports.SUPPORTED_BACKBONE_VERSIONS = ['0.9.2', '1.1.2'];
+exports.SUPPORTED_BACKBONE_VERSIONS = ['0.9.2', '1.1.2', '1.3.3'];
 
 // property names
 exports.CLASS_PROPERTY = 'classes';
@@ -67,6 +67,13 @@ exports.BIND_MODEL_VAR = '$model';
 exports.MODEL_ELEMENTS = ['Alloy.Collection', 'Alloy.Model'];
 exports.MODEL_BINDING_EVENTS = 'fetch change destroy';
 exports.COLLECTION_BINDING_EVENTS = 'fetch destroy change add remove reset';
+
+// Constants for properties shared between ActionBar and Toolbar on Android
+exports.BACKGROUND_IMAGE = 'backgroundImage';
+exports.DISPLAY_HOME_AS_UP = 'displayHomeAsUp';
+exports.HOME_BUTTON_ENABLED = 'homeButtonEnabled';
+exports.NAVIGATION_MODE = 'navigationMode';
+exports.ON_HOME_ICON_ITEM_SELECTED = 'onHomeIconItemSelected';
 
 // Listings for supported platforms and commands
 exports.INSTALL_TYPES = ['plugin'];

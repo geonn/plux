@@ -13,6 +13,9 @@ exports.definition = {
 			"type": "TEXT",
 			"field1": "TEXT",
 			"field2": "TEXT",
+			"field3": "TEXT",
+			"field4": "TEXT",
+			"remark": "TEXT",
 			"amount": "TEXT",
 			"created": "TEXT"
 		},
@@ -47,12 +50,47 @@ exports.definition = {
 				}
 				db.close();
 			},
-			getHealthList: function () {
+			getData: function () {
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id');
 				db = Ti.Database.open(collection.config.adapter.db_name);
-				var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id = ?";
+				var sql = "SELECT *, strftime(date, '%d-%m-%Y') as newdate FROM " + collection.config.adapter.collection_name + " WHERE u_id = ?";
 
+				var res = db.execute(sql, u_id);
+				var listArr = [];
+				var count = 0;
+
+				while (res.isValidRow()) {
+					listArr[count] = {
+						id: res.fieldByName('id'),
+						u_id: res.fieldByName("u_id"),
+						date: res.fieldByName('date'),
+						newdate: res.fieldByName('newdate'),
+						time: res.fieldByName('time'),
+						type: res.fieldByName('type'),
+						field1: res.fieldByName('field1'),
+						field2: res.fieldByName('field2'),
+						field3: res.fieldByName('field3'),
+						field4: res.fieldByName('field4'),
+						remark: res.fieldByName('remark'),
+						amount: res.fieldByName('amount'),
+						created: res.fieldByName('created')
+					};
+					res.next();
+					count++;
+				}
+				res.close();
+				db.close();
+				collection.trigger('sync');
+
+				return listArr;
+			},
+			getLatestByType: function (e) {
+				var collection = this;
+				var u_id = Ti.App.Properties.getString('u_id');
+
+				db = Ti.Database.open(collection.config.adapter.db_name);
+				var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE u_id = ? group by type order by date desc";
 				var res = db.execute(sql, u_id);
 				var listArr = [];
 				var count = 0;
@@ -66,6 +104,99 @@ exports.definition = {
 						type: res.fieldByName('type'),
 						field1: res.fieldByName('field1'),
 						field2: res.fieldByName('field2'),
+						field3: res.fieldByName('field3'),
+						field4: res.fieldByName('field4'),
+						remark: res.fieldByName('remark'),
+						amount: res.fieldByName('amount'),
+						created: res.fieldByName('created')
+					};
+					res.next();
+					count++;
+				}
+				res.close();
+				db.close();
+				collection.trigger('sync');
+
+				return listArr;
+			},
+			getDataGroupByMonth: function (e) {
+				var collection = this;
+				var type = e.type;
+				var select_year = e.select_year + "";
+				var u_id = Ti.App.Properties.getString('u_id');
+
+				db = Ti.Database.open(collection.config.adapter.db_name);
+				var sql = "SELECT *, strftime('%m', date) as day FROM " + collection.config.adapter.collection_name + " WHERE u_id = ? AND `type` = ? AND strftime('%Y', date) = ? group by strftime('%Y-%m', date)";
+
+				var library = Alloy.Collections.instance("health");
+				library.fetch({ query: {
+						statement: sql,
+						params: [u_id, type, select_year]
+					}
+				});
+
+				var res = db.execute(sql, u_id, type, select_year);
+				var listArr = [];
+				var count = 0;
+
+				while (res.isValidRow()) {
+					listArr[count] = {
+						id: res.fieldByName('id'),
+						u_id: res.fieldByName("u_id"),
+						date: res.fieldByName('date'),
+						day: res.fieldByName('day'),
+						time: res.fieldByName('time'),
+						type: res.fieldByName('type'),
+						field1: res.fieldByName('field1'),
+						field2: res.fieldByName('field2'),
+						field3: res.fieldByName('field3'),
+						field4: res.fieldByName('field4'),
+						remark: res.fieldByName('remark'),
+						amount: res.fieldByName('amount'),
+						created: res.fieldByName('created')
+					};
+					res.next();
+					count++;
+				}
+				res.close();
+				db.close();
+				collection.trigger('sync');
+
+				return listArr;
+			},
+			getDataGroupByDay: function (e) {
+				var collection = this;
+				var type = e.type;
+				var select_month = e.select_month + "";
+				var u_id = Ti.App.Properties.getString('u_id');
+
+				db = Ti.Database.open(collection.config.adapter.db_name);
+				var sql = "SELECT *, strftime('%d', date) as day FROM " + collection.config.adapter.collection_name + " WHERE u_id = ? AND `type` = ? AND strftime('%Y-%m', date) = ? group by strftime('%Y-%m-%d', date)";
+
+				var library = Alloy.Collections.instance("health");
+				library.fetch({ query: {
+						statement: sql,
+						params: [u_id, type, select_month]
+					}
+				});
+
+				var res = db.execute(sql, u_id, type, select_month);
+				var listArr = [];
+				var count = 0;
+
+				while (res.isValidRow()) {
+					listArr[count] = {
+						id: res.fieldByName('id'),
+						u_id: res.fieldByName("u_id"),
+						date: res.fieldByName('date'),
+						day: res.fieldByName('day'),
+						time: res.fieldByName('time'),
+						type: res.fieldByName('type'),
+						field1: res.fieldByName('field1'),
+						field2: res.fieldByName('field2'),
+						field3: res.fieldByName('field3'),
+						field4: res.fieldByName('field4'),
+						remark: res.fieldByName('remark'),
 						amount: res.fieldByName('amount'),
 						created: res.fieldByName('created')
 					};
@@ -259,7 +390,6 @@ exports.definition = {
 								if (name == k) {
 									keys.push(k);
 									entry[k] = entry[k] == null ? "" : entry[k];
-									entry[k] = entry[k].replace(/'/g, "\\'");
 									eval_values.push("\"" + entry[k] + "\"");
 								}
 							});

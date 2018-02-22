@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,27 +29,53 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.main = Ti.UI.createView({ id: "main", layout: "vertical" });
+  $.__views.main = Ti.UI.createView(
+  { id: "main", layout: "vertical" });
+
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId222 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId222" });
+    $.__views.__alloyId222 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId222" });
+
     $.__views.main.add($.__views.__alloyId222);
-    $.__views.__alloyId223 = Ti.UI.createView({ left: 0, width: "10%", id: "__alloyId223" });
+    $.__views.__alloyId223 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId223" });
+
     $.__views.__alloyId222.add($.__views.__alloyId223);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId223.add($.__views.btnBack);
-    $.__views.__alloyId224 = Ti.UI.createView({ width: "90%", id: "__alloyId224" });
+    $.__views.__alloyId224 = Ti.UI.createView(
+    { width: "90%", id: "__alloyId224" });
+
     $.__views.__alloyId222.add($.__views.__alloyId224);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim History', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim History', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId224.add($.__views.pageTitle);
   }
-  $.__views.tv = Ti.UI.createTableView({ id: "tv" });
+  $.__views.tv = Ti.UI.createTableView(
+  { id: "tv" });
+
   $.__views.main.add($.__views.tv);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var arg_name = typeof args.name != "undefined" ? args.name : "%";
@@ -69,6 +98,7 @@ function Controller() {
     API.callByGet({ url: "getClaimDetailUrl", params: "EMPNO=" + empno + "&CORPCODE=" + corpcode + "&PERIOD=ALL" }, function (responseText) {
       var res = JSON.parse(responseText);
       if (res.length == 0) {} else if (typeof res[0].message !== "undefined") {
+
         common.createAlert(res[0].message);
       } else {
         render(res);
@@ -84,31 +114,34 @@ function Controller() {
     data.reverse();
 
     data.forEach(function (entry) {
+
       var row = $.UI.create("TableViewRow", {
         height: 130,
-        status: entry.status
-      });
+        status: entry.status });
+
 
       var statusColor = "#CE1D1C";
       if (entry.status == "Pending") {
+
         statusColor = "#8A6500";
       } else if (entry.status == "Approved") {
+
         statusColor = "#2C8A00";
       }
 
       var horzView = $.UI.create('View', {
         classes: ['horz', 'hsize', 'wfill'],
         serial: entry.serial,
-        appcode: entry.appcode
-      });
+        appcode: entry.appcode });
+
 
       var statustView = $.UI.create('View', {
         height: 130,
         serial: entry.serial,
         appcode: entry.appcode,
         width: 10,
-        backgroundColor: statusColor
-      });
+        backgroundColor: statusColor });
+
       horzView.add(statustView);
 
       var view_container = $.UI.create("View", {
@@ -122,8 +155,8 @@ function Controller() {
         top: 5,
         right: 5,
         left: 5,
-        bottom: 5
-      });
+        bottom: 5 });
+
 
       var view_detail = $.UI.create("View", {
         height: 35,
@@ -131,8 +164,8 @@ function Controller() {
         serial: entry.serial,
         touchEnabled: false,
         appcode: entry.appcode,
-        claimType: entry.claimType
-      });
+        claimType: entry.claimType });
+
 
       var labelClinicView = $.UI.create("View", {
         serial: entry.serial,
@@ -140,8 +173,8 @@ function Controller() {
         touchEnabled: false,
         height: 35,
         top: 0,
-        claimType: entry.claimType
-      });
+        claimType: entry.claimType });
+
 
       var label_clinic = $.UI.create("Label", {
         classes: ['h5', 'bold'],
@@ -152,8 +185,8 @@ function Controller() {
         width: "70%",
         serial: entry.serial,
         appcode: entry.appcode,
-        touchEnabled: false
-      });
+        touchEnabled: false });
+
       labelClinicView.add(label_clinic);
 
       var label_amount = $.UI.create("Label", {
@@ -163,17 +196,17 @@ function Controller() {
         claimType: entry.claimType,
         text: "RM " + entry.amount.toFixed(2),
         right: 20,
-        touchEnabled: false
+        touchEnabled: false });
 
-      });
+
 
       var view_detail2 = $.UI.create("View", {
         serial: entry.serial,
         appcode: entry.appcode,
         claimType: entry.claimType,
         touchEnabled: false,
-        classes: ["hsize"]
-      });
+        classes: ["hsize"] });
+
 
       var label_category = $.UI.create("Label", {
         classes: ['h5', 'hsize', 'wsize', 'left-align'],
@@ -182,8 +215,8 @@ function Controller() {
         left: 0,
         touchEnabled: false,
         claimType: entry.claimType,
-        text: "Category: " + entry.category
-      });
+        text: "Category: " + entry.category });
+
 
       var label_date = $.UI.create("Label", {
         serial: entry.serial,
@@ -192,8 +225,8 @@ function Controller() {
         touchEnabled: false,
         text: timeFormat(entry.visitdate),
         right: 10,
-        classes: ['h5', 'hsize', 'wsize', 'right-align']
-      });
+        classes: ['h5', 'hsize', 'wsize', 'right-align'] });
+
 
       var label_name = $.UI.create("Label", {
         classes: ['h5', 'hsize', 'wfill', 'left-align'],
@@ -201,8 +234,8 @@ function Controller() {
         touchEnabled: false,
         appcode: entry.appcode,
         claimType: entry.claimType,
-        text: "Claim Under: " + entry.name
-      });
+        text: "Claim Under: " + entry.name });
+
 
       var label_mc = $.UI.create("Label", {
         classes: ['mc'],
@@ -210,8 +243,8 @@ function Controller() {
         touchEnabled: false,
         appcode: entry.appcode,
         claimType: entry.claimType,
-        text: "MC Days: " + entry.mcdays
-      });
+        text: "MC Days: " + entry.mcdays });
+
       var claim_type_text = entry.claimType == "Reimbursement" ? entry.claimType : entry.claimtype + " [Details]";
       var label_claimType = $.UI.create("Label", {
         classes: ['h5', 'hsize', 'wfill', 'left-align'],
@@ -219,8 +252,8 @@ function Controller() {
         appcode: entry.appcode,
         claimType: entry.claimType,
         touchEnabled: false,
-        text: "Claim Type: " + claim_type_text
-      });
+        text: "Claim Type: " + claim_type_text });
+
       var forwardImg = $.UI.create('ImageView', {
         classes: ['wsize', 'hsize'],
         image: "/images/btn-forward.png",
@@ -228,8 +261,15 @@ function Controller() {
         zIndex: 10,
         touchEnabled: false,
         right: 5,
-        top: 2
-      });
+        top: 2 });
+
+
+
+
+
+
+
+
 
       view_detail.add(labelClinicView);
       view_detail.add(label_amount);
@@ -268,6 +308,14 @@ function Controller() {
       nav.closeWindow($.win);
     });
   }
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }

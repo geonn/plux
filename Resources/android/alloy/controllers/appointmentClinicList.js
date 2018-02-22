@@ -1,6 +1,9 @@
 var Alloy = require('/alloy'),
-    Backbone = Alloy.Backbone,
-    _ = Alloy._;
+Backbone = Alloy.Backbone,
+_ = Alloy._;
+
+
+
 
 function __processArg(obj, key) {
   var arg = null;
@@ -26,33 +29,65 @@ function Controller() {
   var exports = {};
   var __defers = {};
 
-  $.__views.win = Ti.UI.createWindow({ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: true, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Appointment Clinic List", id: "win" });
+
+
+
+
+
+
+  $.__views.win = Ti.UI.createWindow(
+  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: true, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Appointment Clinic List", id: "win" });
+
   $.__views.win && $.addTopLevelView($.__views.win);
   if (true) {
-    $.__views.__alloyId141 = Ti.UI.createView({ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId141" });
+    $.__views.__alloyId141 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId141" });
+
     $.__views.win.add($.__views.__alloyId141);
-    $.__views.__alloyId142 = Ti.UI.createView({ left: 0, width: "20%", id: "__alloyId142" });
+    $.__views.__alloyId142 = Ti.UI.createView(
+    { left: 0, width: "20%", id: "__alloyId142" });
+
     $.__views.__alloyId141.add($.__views.__alloyId142);
-    $.__views.btnBack = Ti.UI.createImageView({ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+    $.__views.btnBack = Ti.UI.createImageView(
+    { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
+
     $.__views.__alloyId142.add($.__views.btnBack);
-    $.__views.__alloyId143 = Ti.UI.createView({ width: "60%", id: "__alloyId143" });
+    $.__views.__alloyId143 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId143" });
+
     $.__views.__alloyId141.add($.__views.__alloyId143);
-    $.__views.pageTitle = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Doctor List', id: "pageTitle", textAlign: "center" });
+    $.__views.pageTitle = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Doctor List', id: "pageTitle", textAlign: "center" });
+
     $.__views.__alloyId143.add($.__views.pageTitle);
   }
-  $.__views.loadingBar = Ti.UI.createView({ layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+  $.__views.loadingBar = Ti.UI.createView(
+  { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+
   $.__views.win.add($.__views.loadingBar);
-  $.__views.activityIndicator = Ti.UI.createActivityIndicator({ top: 10, left: 30, width: 60, id: "activityIndicator" });
+  $.__views.activityIndicator = Ti.UI.createActivityIndicator(
+  { top: 10, left: 30, width: 60, id: "activityIndicator" });
+
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId144 = Ti.UI.createLabel({ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId144" });
+  $.__views.__alloyId144 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId144" });
+
   $.__views.loadingBar.add($.__views.__alloyId144);
-  $.__views.doctorView = Ti.UI.createView({ layout: "vertical", id: "doctorView" });
+  $.__views.doctorView = Ti.UI.createView(
+  { layout: "vertical", id: "doctorView" });
+
   $.__views.win.add($.__views.doctorView);
-  $.__views.doctorContainer = Ti.UI.createView({ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+  $.__views.doctorContainer = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+
   $.__views.doctorView.add($.__views.doctorContainer);
   exports.destroy = function () {};
 
+
+
+
   _.extend($, $.__views);
+
 
   var args = arguments[0] || {};
   var panelListModel = Alloy.createCollection('panelList');
@@ -66,13 +101,13 @@ function Controller() {
   var listing = [];
   listing = panelListModel.getPanelListTest();
   var bigContainer = $.UI.create('View', {
-    classes: ['hfill', 'wfill', 'vert']
-  });
+    classes: ['hfill', 'wfill', 'vert'] });
+
 
   var docContainer = Ti.UI.createScrollView({
     width: Ti.UI.FILL,
-    height: Ti.UI.FILL
-  });
+    height: Ti.UI.FILL });
+
 
   bigContainer.add(separateHozLine());
   bigContainer.add(docContainer);
@@ -93,24 +128,24 @@ function Controller() {
           source: entry.id,
           clinicName: entry.clinicName,
 
-          backgroundSelectedColor: "#ECFFF9"
+          backgroundSelectedColor: "#ECFFF9" });
 
-        });
+
 
         var tblRowView = Ti.UI.createView({
           height: Ti.UI.SIZE,
           width: Ti.UI.FILL,
           clinicName: entry.clinicName,
-          source: entry.id
-        });
+          source: entry.id });
+
 
         var tblView = Ti.UI.createView({
           layout: "vertical",
           height: Ti.UI.SIZE,
           source: entry.id,
           clinicName: entry.clinicName,
-          width: "auto"
-        });
+          width: "auto" });
+
 
         var docName = $.UI.create('Label', {
           classes: ['medium_font', 'wfill', 'hsize', 'themeColor'],
@@ -119,8 +154,8 @@ function Controller() {
           textAlign: 'left',
           clinicName: entry.clinicName,
           top: 5,
-          left: 15
-        });
+          left: 15 });
+
         var docSpecialty = $.UI.create('Label', {
           classes: ['small_font', 'wfill', 'hsize'],
           text: entry.clinicType,
@@ -128,8 +163,8 @@ function Controller() {
           clinicName: entry.clinicName,
           color: "#848484",
           textAlign: 'left',
-          left: 15
-        });
+          left: 15 });
+
         var docContact = $.UI.create('Label', {
           classes: ['small_font', 'wfill', 'hsize'],
           text: "Tel : " + entry.tel,
@@ -138,8 +173,8 @@ function Controller() {
           color: "#848484",
           textAlign: 'left',
           bottom: 5,
-          left: 15
-        });
+          left: 15 });
+
         tblView.add(docName);
         tblView.add(docSpecialty);
         tblView.add(docContact);
@@ -168,19 +203,31 @@ function Controller() {
     return seperatorLine = Titanium.UI.createView({
       backgroundColor: "#D5D5D5",
       height: 1,
-      width: Ti.UI.FILL
-    });
+      width: Ti.UI.FILL });
+
   }
 
   setTimeout(function () {
     createDoctorList();
   }, 600);
 
+
+
   function closeWin() {
     $.win.close();
   }
 
-  $.win.addEventListener("close", function () {});
+  $.win.addEventListener("close", function () {
+
+  });
+
+
+
+
+
+
+
+
 
   _.extend($, exports);
 }
