@@ -124,6 +124,33 @@ function render_menu(){
 			view_notification.add(label_helpline);
 			view.add(imageView_menu);
 			view.add(view_notification);
+			var image_helpline = $.UI.create("ImageView", {image: "/images/icons/helpline.png", bottom:0, right:0, height: 25, width: 100, bubbleParent: false });
+			image_helpline.addEventListener('click', function(e){
+				console.log('call now');
+				var dialog = Ti.UI.createAlertDialog({
+				    cancel: 2,
+				    buttonNames: ['Call', 'Save Contact', 'Cancel'],
+					message: 'Welcome to helpline service.',
+				  	title: 'Helpline'
+				});
+				dialog.addEventListener('click', function(e) {
+				    if (e.index == 0) {
+				    	Titanium.Platform.openURL('tel:6046091611');
+				    }else if(e.index == 1){
+				    	var person = Ti.Contacts.createPerson({
+					        firstName: 'ASP',
+					        lastName: 'HELPDESK',
+					        phone: {
+					             work: ['6046091611']
+					        }
+					    });
+					    alert("ASP HELDESK CONTACT SAVED");
+				    }
+				});
+				dialog.show();
+				
+			});
+			view.add(image_helpline);
 			if(total > 0){
 				popup({message:'You got replied from helpdesk. Do you want to read now?', title:"Helpdesk replied", 
 					callback: function(){
