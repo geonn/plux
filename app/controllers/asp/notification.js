@@ -11,7 +11,7 @@ init();
 function init(){ 
 	$.win.add(loading.getView());
 	loading.start();
-	notificationModel.setAllAsRead({u_id: u_id });
+	//notificationModel.setAllAsRead({u_id: u_id });
 	displayList();
 	//syncFromServer();
 } 
@@ -69,7 +69,10 @@ function displayList(){
 		loading.finish(); 
 	}else{
 		notificationList.forEach(function(entry) {
-			var row = $.UI.create("TableViewRow", {classes:['hsize','wfill'], record: entry, backgroundSelectedColor: "#FFE1E1"});
+			console.log(entry.is_read+" entry.is_read");
+			var unread_bg = (entry.is_read == 1)?"#ffffff":"#cccccc";
+			console.log(unread_bg);
+			var row = $.UI.create("TableViewRow", {classes:['hsize','wfill'], record: entry, backgroundSelectedColor: "#FFE1E1", backgroundColor: unread_bg});
 			var contentView = $.UI.create('View', {classes: ['vert','hsize','wfill', 'padding'], touchEnabled: false});
 			var label_subject = $.UI.create("Label", {classes:['themeColor', 'wfill', 'h5', 'bold', 'hsize'], maxLines:3, touchEnabled: false, text: entry.subject || ""});
 			var label_message = $.UI.create("Label", {classes:['h6', 'wfill', 'hsize'], maxLines:3, touchEnabled: false, text: entry.content || "" });
@@ -84,7 +87,9 @@ function displayList(){
 			row.add(contentView);
 			row.addEventListener("click", function(e){
 				var source = e.source.record;
+				e.source.backgroundColor = "#ffffff";
 				console.log(source);
+				notificationModel.setRead(e.source.record.id);
 				nav.navigationWindow(source.target,"","", source);
 			});
 			//row.add(rightForwardBtn);

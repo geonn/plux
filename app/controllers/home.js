@@ -297,6 +297,9 @@ function updateNotification(e){
 		label_helpline.text = unread_no;
 	}else{
 		label_notification.text = unread_no;
+		if(OS_IOS){ 
+			Titanium.UI.iPhone.setAppBadge(unread_no); 
+		}
 	}
 }
 

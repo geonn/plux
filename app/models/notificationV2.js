@@ -110,6 +110,14 @@ exports.definition = {
 				db.close();
 	            collection.trigger('sync');
 			},
+			setRead: function(id){
+				var collection = this;
+				db = Ti.Database.open(collection.config.adapter.db_name);
+				var sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET is_read=1 WHERE id=? ";
+				db.execute(sql_query, id); 
+				db.close();
+	            collection.trigger('sync');
+			},
 			update_status: function(entry){
 				var collection = this;
 				db = Ti.Database.open(collection.config.adapter.db_name);

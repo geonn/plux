@@ -11,6 +11,7 @@ function init(){
 	$.date_text.text = moment(new Date()).format("ddd, MMM DD, YYYY, hh:mm A");
 	//refresh();
 }
+
 function render_field_type(){
 	fields = fields.reverse();
 	console.log(fields.length+" fields.length");
