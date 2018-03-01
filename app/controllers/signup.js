@@ -48,7 +48,7 @@ function doSignup(){
 	}
 	 
 	if(view_agreement != "1"){
-		common.createAlert("Error", "You must agree to all the terms and conditions to register as Plux member.");
+		common.createAlert("Error", "You must agree to all the terms and conditions to register as ASP member.");
 		return false;
 	}
 	 

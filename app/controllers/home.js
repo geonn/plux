@@ -124,7 +124,7 @@ function render_menu(){
 			view_notification.add(label_helpline);
 			view.add(imageView_menu);
 			view.add(view_notification);
-			var image_helpline = $.UI.create("ImageView", {image: "/images/icons/helpline.png", bottom:0, right:0, height: 25, width: 100, bubbleParent: false });
+			var image_helpline = $.UI.create("ImageView", {image: "/images/icons/helpline.png", bottom:0, right:0, height: 40, width: 118, bubbleParent: false });
 			image_helpline.addEventListener('click', function(e){
 				console.log('call now');
 				var dialog = Ti.UI.createAlertDialog({
@@ -500,7 +500,7 @@ if(Ti.Platform.osname == "android"){
 			cancel: 0,
 			buttonNames: ['Cancel','Confirm'],
 			message: 'Would you like to logout?',
-			title: 'Logout PLUX'
+			title: 'Logout ASP'
 		});
 		dialog.addEventListener('click', function(e){ 
 			if (e.index == 1){ 

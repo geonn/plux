@@ -1,20 +1,19 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" title="About PLUX" id="win" class="container" layout="vertical"> 
+	<Window navTintColor="#CE1D1C" title="About ASP HEALTHCARE" id="win" class="container" layout="vertical"> 
 		    <View layout="vertical">
 			    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android"> 
 					<View left="0" width="10%">
 			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 			   		</View>
 			     	<View id="pageTitle" width="Ti.UI.FILL">
-			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">About PLUX</Label>
+			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">About ASP Healthcare</Label>
 			     	</View> 
 			 	</View> 
 				<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
 					<View class=" wfill horz" height="95"  >
 						<ImageView borderRadius="10" width="80" height="80" left="10" top="10" image="/images/logo_plux.png" />
 						<View class="vert wfill hsize" left="10" top="10">
-							<Label class=" themeColor wfill h4 bold left-align">PLUX</Label>
-							<Label class=" wfill h5 left-align">Version 1.1.8</Label>
+							<Label class=" themeColor wfill h4 bold left-align">About ASP Healthcare</Label>
 							<Label class=" wfill h5 left-align">Copyright ©2016. All Rights Reserved.</Label>
 						</View> 
 						

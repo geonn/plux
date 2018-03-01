@@ -115,7 +115,7 @@ if(Ti.Platform.osname == "android"){
 		var dialog = Ti.UI.createAlertDialog({
 			    cancel: 1,
 			    buttonNames: ['Cancel','Confirm'],
-			    message: 'Would you like to exit Plux?',
+			    message: 'Would you like to exit APP?',
 			    title: 'Exit app'
 			});
 			dialog.addEventListener('click', function(e){

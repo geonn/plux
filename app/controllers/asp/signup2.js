@@ -40,7 +40,7 @@ function doAspSignup(){
 	//var view_sms = view_sms_box.children[0].children[0].checked;
 	var view_agreement = view_agreement_box.children[0].children[0].checked;
 	if(view_agreement != "1"){
-		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP Plux member.");
+		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
 		common.hideLoading();
 		return false;
 	}

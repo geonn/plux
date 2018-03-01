@@ -162,6 +162,7 @@ function searchResult(){
 	str = $.searchItem.getValue(); 
 	counter = 0;
 	data = library.getData(clinicType, str, corp, counter);
+	console.log(data);
 	listing({clear: true});
 }
  

@@ -202,7 +202,7 @@ function attachedPhoto(image,position,isLink, image_record){
 		    cancel: 1,
 		    buttonNames: ['Agree', 'Cancel'],
 		    message: responseText,
-		    title: 'PLUX Healthcare Terms of Service'
+		    title: 'ASP Healthcare Terms of Service'
 		  });
 		dialog.addEventListener('click', function(ex) {
 		    if (ex.index === ex.source.cancel) {

@@ -153,7 +153,7 @@ var performAddressBookFunction = function(){
 };
 
 var addressBookDisallowed = function(){
-	common.createAlert("Cannot Access Contact Book", "You need allow APLUX to access your contact book.");
+	common.createAlert("Cannot Access Contact Book", "You need allow us to access your contact book.");
 };
 	
 function addToContact(){

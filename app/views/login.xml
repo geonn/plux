@@ -20,7 +20,7 @@
 		     	</View>
 		 	</View>
 			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView width="120" borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/logo_plux.png"></ImageView>
+				<ImageView width="120" borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
 				<TextField id="email" hintText="Enter Email" value="" /><!--asplux@corpdemo.com -->
 				<TextField id="password" hintText="Enter Password" value="" /><!--asplux123 -->
 				<Button id="loginAccountButton" borderRadius="5" backgroundColor="#CC2228" onTouchend="doLogin" title="Login"  width="70%" top="20" height="40" color="#ffffff" />
