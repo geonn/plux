@@ -39,48 +39,40 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Me - Helpline", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId402 = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId402" });
+  $.__views.__alloyId401 = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId401" });
 
-  $.__views.win.add($.__views.__alloyId402);
+  $.__views.win.add($.__views.__alloyId401);
   if (true) {
+    $.__views.__alloyId402 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId402" });
+
+    $.__views.__alloyId401.add($.__views.__alloyId402);
     $.__views.__alloyId403 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId403" });
+    { left: 0, width: "20%", id: "__alloyId403" });
 
     $.__views.__alloyId402.add($.__views.__alloyId403);
-    $.__views.__alloyId404 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId404" });
-
-    $.__views.__alloyId403.add($.__views.__alloyId404);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId404.add($.__views.btnBack);
-    closeWindow ? $.addListener($.__views.btnBack, 'click', closeWindow) : __defers['$.__views.btnBack!click!closeWindow'] = true;$.__views.__alloyId405 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId405" });
+    $.__views.__alloyId403.add($.__views.btnBack);
+    closeWindow ? $.addListener($.__views.btnBack, 'click', closeWindow) : __defers['$.__views.btnBack!click!closeWindow'] = true;$.__views.__alloyId404 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId404" });
 
-    $.__views.__alloyId403.add($.__views.__alloyId405);
+    $.__views.__alloyId402.add($.__views.__alloyId404);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Ask Me - Helpline', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId405.add($.__views.pageTitle);
+    $.__views.__alloyId404.add($.__views.pageTitle);
   }
-  $.__views.__alloyId406 = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.FILL, contentWidth: Ti.UI.FILL, id: "__alloyId406" });
+  $.__views.__alloyId405 = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.FILL, contentWidth: Ti.UI.FILL, id: "__alloyId405" });
 
-  $.__views.__alloyId402.add($.__views.__alloyId406);
-  $.__views.__alloyId407 = Ti.UI.createView(
-  { height: Ti.UI.SIZE, borderColor: "#dfe0e4", backgroundColor: "#ffffff", borderRadius: "5", zIndex: 10, width: "80%", id: "__alloyId407" });
-
-  $.__views.__alloyId406.add($.__views.__alloyId407);
-  $.__views.estimate = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#f63d3d", top: 10, left: 10, right: 10, bottom: 10, font: { fontSize: 14 }, id: "estimate" });
-
-  $.__views.__alloyId407.add($.__views.estimate);
+  $.__views.__alloyId401.add($.__views.__alloyId405);
   $.__views.chatroom = Ti.UI.createScrollView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "chatroom", backgroundRepeat: true, backgroundImage: "/images/grey-patern-bg.png", bottom: 50, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, transform: Ti.UI.create2DMatrix().rotate(180) });
 
-  $.__views.__alloyId406.add($.__views.chatroom);
+  $.__views.__alloyId405.add($.__views.chatroom);
   scrollChecker ? $.addListener($.__views.chatroom, 'scroll', scrollChecker) : __defers['$.__views.chatroom!scroll!scrollChecker'] = true;$.__views.inner_area = Ti.UI.createView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "inner_area", bottom: 20 });
 
@@ -88,7 +80,7 @@ function Controller() {
   $.__views.bottom_bar = Ti.UI.createView(
   { width: Ti.UI.FILL, height: 50, backgroundColor: "white", bottom: 0, id: "bottom_bar" });
 
-  $.__views.__alloyId406.add($.__views.bottom_bar);
+  $.__views.__alloyId405.add($.__views.bottom_bar);
   $.__views.message_bar = Ti.UI.createTextField(
   { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: 40, font: "fontSize: 40", color: "#222222", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: Ti.UI.FILL, backgroundColor: "#ffffff", top: 4, left: 5, right: 50, bottom: 4, id: "message_bar", borderColor: "#ccc" });
 
@@ -115,7 +107,6 @@ function Controller() {
   var anchor = common.now();
   var last_update = common.now();
   var start = 0;
-  var isShowWatingMsg = "0";
   var room_set = false;
   var refreshIntervalId;
   var retry = 0;
@@ -161,14 +152,6 @@ function Controller() {
       socket.fireEvent("socket:sendMessage", { room_id: room_id });
       if (dr_id === 0) {
         socket.fireEvent("doctor:refresh_patient_list");
-      }
-      if (isShowWatingMsg == "0") {
-        refreshIntervalId = setInterval(function () {
-          $.estimate.text = "Our helpdesk seem busy in others line, please wait for 5-10 min. Sorry for inconvenience caused.";
-          $.estimate.parent.show();
-          isShowWatingMsg = "1";
-          clearInterval(refreshIntervalId);
-        }, 30000);
       }
     });
   }
@@ -366,15 +349,6 @@ function Controller() {
       }
     }
     console.log(last_uid + " != " + Ti.App.Properties.getString('u_id'));
-    if (last_uid != Ti.App.Properties.getString('u_id')) {
-      $.estimate.parent.hide();
-      isShowWatingMsg = "0";
-      clearInterval(refreshIntervalId);
-    }
-
-    if (isShowWatingMsg == "1") {
-      $.estimate.parent.show();
-    }
   }
 
   var data_loading = false;
@@ -417,7 +391,6 @@ function Controller() {
         var update_id = _.pluck(arr, "id");
 
       }
-      Ti.App.Properties.setString('estimate_time', res.estimate_time);
       checker.updateModule(checker_id, url, res.last_updated, u_id);
       if (!room_id) {
 
@@ -486,10 +459,6 @@ function Controller() {
 
     console.log("refresh_latest " + refreshing);
 
-
-
-
-
     console.log(time_offset + " < " + common.now());
     if (!refreshing && time_offset < common.now()) {
       refreshing = true;
@@ -504,19 +473,11 @@ function Controller() {
     var model = Alloy.createCollection("chat");
     console.log(dr_id + " dr_id");
     data = model.getData(false, start, anchor, "", dr_id);
-    var estimate_time = Ti.App.Properties.getString('estimate_time');
-    console.log(estimate_time + " estimate time");
     console.log(data.length + " data length");
     last_id = data.length > 0 ? _.first(data)['id'] : last_id;
     last_update = data.length > 0 ? _.last(data)['created'] : last_update;
     last_uid = data.length > 0 ? _.first(data)['sender_id'] : last_uid;
     console.log(last_id + " why");
-    if (estimate_time != "0") {
-      $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
-      $.estimate.parent.show();
-    } else {
-      $.estimate.parent.hide();
-    }
     render_conversation(false);
     start = start + 10;
   }
@@ -525,13 +486,6 @@ function Controller() {
     var model = Alloy.createCollection("chat");
     data = model.getData(true, "", "", last_update, dr_id);
 
-    var estimate_time = Ti.App.Properties.getString('estimate_time');
-    if (estimate_time != 0) {
-      $.estimate.text = "Our support will serve you soon. Estimate " + estimate_time + " minute left";
-      $.estimate.parent.show();
-    } else {
-      $.estimate.parent.hide();
-    }
     console.log("getlatestdata");
     console.log(data.length);
     last_id = data.length > 0 ? _.first(data)['id'] : last_id;

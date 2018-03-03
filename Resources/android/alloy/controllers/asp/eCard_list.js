@@ -39,40 +39,40 @@ function Controller() {
   { backgroundColor: "#fff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "ASP eCARD", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId270 = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId270" });
+  $.__views.__alloyId269 = Ti.UI.createView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId269" });
 
-  $.__views.win.add($.__views.__alloyId270);
+  $.__views.win.add($.__views.__alloyId269);
   if (true) {
+    $.__views.__alloyId270 = Ti.UI.createView(
+    { top: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId270" });
+
+    $.__views.__alloyId269.add($.__views.__alloyId270);
     $.__views.__alloyId271 = Ti.UI.createView(
-    { top: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId271" });
+    { left: 0, width: "20%", id: "__alloyId271" });
 
     $.__views.__alloyId270.add($.__views.__alloyId271);
-    $.__views.__alloyId272 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId272" });
-
-    $.__views.__alloyId271.add($.__views.__alloyId272);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId272.add($.__views.btnBack);
-    $.__views.__alloyId273 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId273" });
+    $.__views.__alloyId271.add($.__views.btnBack);
+    $.__views.__alloyId272 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId272" });
 
-    $.__views.__alloyId271.add($.__views.__alloyId273);
+    $.__views.__alloyId270.add($.__views.__alloyId272);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'eCard List', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId273.add($.__views.pageTitle);
+    $.__views.__alloyId272.add($.__views.pageTitle);
   }
-  $.__views.__alloyId274 = Ti.UI.createImageView(
-  { width: Ti.UI.SIZE, top: 10, left: 10, right: 10, image: "/images/eCard-front.png", id: "__alloyId274" });
+  $.__views.__alloyId273 = Ti.UI.createImageView(
+  { width: Ti.UI.SIZE, top: 10, left: 10, right: 10, image: "/images/eCard-front.png", id: "__alloyId273" });
 
-  $.__views.__alloyId270.add($.__views.__alloyId274);
+  $.__views.__alloyId269.add($.__views.__alloyId273);
   $.__views.inner_box = Ti.UI.createTableView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "inner_box", top: 0, contentWidth: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, separatorColor: "#375540" });
 
-  $.__views.__alloyId270.add($.__views.inner_box);
+  $.__views.__alloyId269.add($.__views.inner_box);
   exports.destroy = function () {};
 
 

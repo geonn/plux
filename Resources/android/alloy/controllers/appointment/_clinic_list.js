@@ -47,10 +47,10 @@ function Controller() {
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, zIndex: 10, bottom: 0, backgroundColor: "#e1e2e2", id: "clinic" });
 
   $.__views._clinic_list.add($.__views.clinic);
-  $.__views.__alloyId130 = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#cd1a19", top: 10, left: 10, right: 10, bottom: 10, text: 'Select the panel', textAlign: "center", id: "__alloyId130" });
+  $.__views.__alloyId129 = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#cd1a19", top: 10, left: 10, right: 10, bottom: 10, text: 'Select the panel', textAlign: "center", id: "__alloyId129" });
 
-  $.__views.clinic.add($.__views.__alloyId130);
+  $.__views.clinic.add($.__views.__alloyId129);
   $.__views.clinic_list = Ti.UI.createTableView(
   { width: Ti.UI.FILL, height: Ti.UI.SIZE, backgroundColor: "#e1e2e2", id: "clinic_list" });
 

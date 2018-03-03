@@ -47,14 +47,14 @@ function Controller() {
   { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
 
   $.__views.brochureView.add($.__views.bigView);
-  $.__views.__alloyId500 = Ti.UI.createView(
-  { layout: "vertical", id: "__alloyId500" });
+  $.__views.__alloyId498 = Ti.UI.createView(
+  { layout: "vertical", id: "__alloyId498" });
 
-  $.__views.brochureView.add($.__views.__alloyId500);
+  $.__views.brochureView.add($.__views.__alloyId498);
   $.__views.scrollview = Ti.UI.createScrollView(
   { top: 15, id: "scrollview", layout: "vertical" });
 
-  $.__views.__alloyId500.add($.__views.scrollview);
+  $.__views.__alloyId498.add($.__views.scrollview);
   $.__views.mainView = Ti.UI.createView(
   { id: "mainView", layout: "vertical", height: Ti.UI.SIZE, width: "100%" });
 

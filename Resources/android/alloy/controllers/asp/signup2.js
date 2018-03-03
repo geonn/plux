@@ -39,50 +39,50 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Profile Setup", id: "aspSignUpWin", layout: "vertical" });
 
   $.__views.aspSignUpWin && $.addTopLevelView($.__views.aspSignUpWin);
-  $.__views.__alloyId320 = Ti.UI.createView(
-  { top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId320" });
+  $.__views.__alloyId319 = Ti.UI.createView(
+  { top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId319" });
 
-  $.__views.aspSignUpWin.add($.__views.__alloyId320);
+  $.__views.aspSignUpWin.add($.__views.__alloyId319);
   $.__views.btnBack = Ti.UI.createView(
   { left: 0, zIndex: 9, id: "btnBack", width: "20%" });
 
-  $.__views.__alloyId320.add($.__views.btnBack);
-  $.__views.__alloyId321 = Ti.UI.createImageView(
-  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId321" });
+  $.__views.__alloyId319.add($.__views.btnBack);
+  $.__views.__alloyId320 = Ti.UI.createImageView(
+  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId320" });
 
-  $.__views.btnBack.add($.__views.__alloyId321);
-  $.__views.__alloyId322 = Ti.UI.createView(
-  { id: "__alloyId322" });
+  $.__views.btnBack.add($.__views.__alloyId320);
+  $.__views.__alloyId321 = Ti.UI.createView(
+  { id: "__alloyId321" });
 
-  $.__views.__alloyId320.add($.__views.__alloyId322);
+  $.__views.__alloyId319.add($.__views.__alloyId321);
   $.__views.titleLbl = Ti.UI.createLabel(
   { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#CE1D1C", text: 'Profile Setup', id: "titleLbl", textAlign: "center" });
 
-  $.__views.__alloyId322.add($.__views.titleLbl);
-  $.__views.__alloyId323 = Ti.UI.createView(
-  { id: "__alloyId323" });
+  $.__views.__alloyId321.add($.__views.titleLbl);
+  $.__views.__alloyId322 = Ti.UI.createView(
+  { id: "__alloyId322" });
 
-  $.__views.aspSignUpWin.add($.__views.__alloyId323);
+  $.__views.aspSignUpWin.add($.__views.__alloyId322);
   $.__views.loadingBar = Ti.UI.createView(
   { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
-  $.__views.__alloyId323.add($.__views.loadingBar);
+  $.__views.__alloyId322.add($.__views.loadingBar);
   $.__views.activityIndicator = Ti.UI.createActivityIndicator(
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId324 = Ti.UI.createView(
-  { layout: "vertical", id: "__alloyId324" });
+  $.__views.__alloyId323 = Ti.UI.createView(
+  { layout: "vertical", id: "__alloyId323" });
 
-  $.__views.__alloyId323.add($.__views.__alloyId324);
+  $.__views.__alloyId322.add($.__views.__alloyId323);
   $.__views.main = Ti.UI.createScrollView(
   { id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
 
-  $.__views.__alloyId324.add($.__views.main);
-  $.__views.__alloyId325 = Ti.UI.createImageView(
-  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId325" });
+  $.__views.__alloyId323.add($.__views.main);
+  $.__views.__alloyId324 = Ti.UI.createImageView(
+  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId324" });
 
-  $.__views.main.add($.__views.__alloyId325);
+  $.__views.main.add($.__views.__alloyId324);
   $.__views.name = Ti.UI.createTextField(
   { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, editable: false, id: "name", hintText: "Enter Name", value: "" });
 
@@ -169,7 +169,7 @@ function Controller() {
 
     var view_agreement = view_agreement_box.children[0].children[0].checked;
     if (view_agreement != "1") {
-      common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP Plux member.");
+      common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
       common.hideLoading();
       return false;
     }

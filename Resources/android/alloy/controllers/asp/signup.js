@@ -39,34 +39,34 @@ function Controller() {
 	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "ASP Signup", id: "aspSignUpWin", layout: "vertical" });
 
 	$.__views.aspSignUpWin && $.addTopLevelView($.__views.aspSignUpWin);
-	$.__views.__alloyId315 = Ti.UI.createView(
-	{ top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId315" });
+	$.__views.__alloyId314 = Ti.UI.createView(
+	{ top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId314" });
 
-	$.__views.aspSignUpWin.add($.__views.__alloyId315);
+	$.__views.aspSignUpWin.add($.__views.__alloyId314);
 	$.__views.btnBack = Ti.UI.createView(
 	{ left: 0, zIndex: 9, id: "btnBack", width: "20%" });
 
-	$.__views.__alloyId315.add($.__views.btnBack);
-	$.__views.__alloyId316 = Ti.UI.createImageView(
-	{ left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId316" });
+	$.__views.__alloyId314.add($.__views.btnBack);
+	$.__views.__alloyId315 = Ti.UI.createImageView(
+	{ left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId315" });
 
-	$.__views.btnBack.add($.__views.__alloyId316);
-	$.__views.__alloyId317 = Ti.UI.createView(
-	{ id: "__alloyId317" });
+	$.__views.btnBack.add($.__views.__alloyId315);
+	$.__views.__alloyId316 = Ti.UI.createView(
+	{ id: "__alloyId316" });
 
-	$.__views.__alloyId315.add($.__views.__alloyId317);
+	$.__views.__alloyId314.add($.__views.__alloyId316);
 	$.__views.titleLbl = Ti.UI.createLabel(
 	{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#CE1D1C", text: 'ASP Sign Up', id: "titleLbl", textAlign: "center" });
 
-	$.__views.__alloyId317.add($.__views.titleLbl);
-	$.__views.__alloyId318 = Ti.UI.createView(
-	{ id: "__alloyId318" });
+	$.__views.__alloyId316.add($.__views.titleLbl);
+	$.__views.__alloyId317 = Ti.UI.createView(
+	{ id: "__alloyId317" });
 
-	$.__views.aspSignUpWin.add($.__views.__alloyId318);
+	$.__views.aspSignUpWin.add($.__views.__alloyId317);
 	$.__views.loadingBar = Ti.UI.createView(
 	{ layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
-	$.__views.__alloyId318.add($.__views.loadingBar);
+	$.__views.__alloyId317.add($.__views.loadingBar);
 	$.__views.activityIndicator = Ti.UI.createActivityIndicator(
 	{ top: 10, left: 30, width: 60, id: "activityIndicator" });
 
@@ -74,11 +74,11 @@ function Controller() {
 	$.__views.main = Ti.UI.createScrollView(
 	{ width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "main", layout: "vertical" });
 
-	$.__views.__alloyId318.add($.__views.main);
-	$.__views.__alloyId319 = Ti.UI.createImageView(
-	{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId319" });
+	$.__views.__alloyId317.add($.__views.main);
+	$.__views.__alloyId318 = Ti.UI.createImageView(
+	{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId318" });
 
-	$.__views.main.add($.__views.__alloyId319);
+	$.__views.main.add($.__views.__alloyId318);
 	$.__views.memno = Ti.UI.createTextField(
 	{ verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "memno", hintText: "Enter Member Number or IC Number", value: "" });
 

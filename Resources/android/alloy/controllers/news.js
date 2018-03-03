@@ -44,32 +44,32 @@ function Controller() {
 
 		$.__views.news.add($.__views.main);
 		if (true) {
-				$.__views.__alloyId747 = Ti.UI.createView(
-				{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId747" });
+				$.__views.__alloyId745 = Ti.UI.createView(
+				{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId745" });
 
-				$.__views.main.add($.__views.__alloyId747);
-				$.__views.__alloyId748 = Ti.UI.createView(
-				{ left: 0, width: "20%", id: "__alloyId748" });
+				$.__views.main.add($.__views.__alloyId745);
+				$.__views.__alloyId746 = Ti.UI.createView(
+				{ left: 0, width: "20%", id: "__alloyId746" });
 
-				$.__views.__alloyId747.add($.__views.__alloyId748);
+				$.__views.__alloyId745.add($.__views.__alloyId746);
 				$.__views.btnBack = Ti.UI.createImageView(
 				{ left: 10, id: "btnBack", height: 25, image: "/images/btn-back.png" });
 
-				$.__views.__alloyId748.add($.__views.btnBack);
-				$.__views.__alloyId749 = Ti.UI.createView(
-				{ width: "60%", id: "__alloyId749" });
+				$.__views.__alloyId746.add($.__views.btnBack);
+				$.__views.__alloyId747 = Ti.UI.createView(
+				{ width: "60%", id: "__alloyId747" });
 
-				$.__views.__alloyId747.add($.__views.__alloyId749);
+				$.__views.__alloyId745.add($.__views.__alloyId747);
 				$.__views.pageTitle = Ti.UI.createLabel(
 				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Article', id: "pageTitle", textAlign: "center" });
 
-				$.__views.__alloyId749.add($.__views.pageTitle);
+				$.__views.__alloyId747.add($.__views.pageTitle);
 		}
-		var __alloyId751 = [];
+		var __alloyId749 = [];
 		$.__views.myContentView = Ti.UI.createScrollView(
 		{ height: Titanium.UI.FILL, width: Titanium.UI.FILL, layout: "vertical", id: "myContentView", contentHeight: "auto", contentWidth: Ti.UI.FILL });
 
-		__alloyId751.push($.__views.myContentView);
+		__alloyId749.push($.__views.myContentView);
 		$.__views.newsTitle = Ti.UI.createLabel(
 		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#1C1C1C", wordWrap: true, font: { fontSize: "20dp" }, left: "10dp", right: "10dp", bottom: "10dp", top: "10dp", id: "newsTitle" });
 
@@ -82,10 +82,10 @@ function Controller() {
 		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#9E9E9E", font: { fontSize: "10dp" }, left: "8dp", top: "8dp", id: "newsDate" });
 
 		$.__views.myContentView.add($.__views.newsDate);
-		$.__views.__alloyId750 = Ti.UI.createScrollableView(
-		{ views: __alloyId751, showPagingControl: false, id: "__alloyId750" });
+		$.__views.__alloyId748 = Ti.UI.createScrollableView(
+		{ views: __alloyId749, showPagingControl: false, id: "__alloyId748" });
 
-		$.__views.main.add($.__views.__alloyId750);
+		$.__views.main.add($.__views.__alloyId748);
 		exports.destroy = function () {};
 
 

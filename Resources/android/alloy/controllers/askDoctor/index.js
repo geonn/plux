@@ -35,12 +35,12 @@ function Controller() {
 
 
 
-	var __alloyId199 = [];$.__views.__alloyId200 = Alloy.createController('askDoctor/find_doctor', { id: "__alloyId200" });
+	var __alloyId198 = [];$.__views.__alloyId199 = Alloy.createController('askDoctor/find_doctor', { id: "__alloyId199" });
 	$.__views.tab1 = Ti.UI.createTab(
-	{ window: $.__views.__alloyId200.getViewEx({ recurse: true }), id: "tab1", title: "Find Doctor" });
+	{ window: $.__views.__alloyId199.getViewEx({ recurse: true }), id: "tab1", title: "Find Doctor" });
 
-	__alloyId199.push($.__views.tab1);$.__views.index = Ti.UI.createTabGroup(
-	{ tabs: __alloyId199, backgroundColor: "white", id: "index" });
+	__alloyId198.push($.__views.tab1);$.__views.index = Ti.UI.createTabGroup(
+	{ tabs: __alloyId198, backgroundColor: "white", id: "index" });
 
 	$.__views.index && $.addTopLevelView($.__views.index);
 	exports.destroy = function () {};

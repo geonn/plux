@@ -60,9 +60,9 @@ exports.definition = {
 				var location_sql = clinicLocationSelection != null ? " AND state='" + clinicLocationSelection.toUpperCase() + "' " : "";
 				var type_sql = type == "24 Hours" ? "openHour LIKE '%24 HOURS%' " : " clinicType = '" + type + "'";
 				var corp_sql = corp != "" ? " AND panel = 1" : "";
-				var str_sql = str != "" ? " AND (clinicName LIKE '%' || '" + str + "' ||'%' OR add1 LIKE '%'|| '" + str + "' ||'%' OR city LIKE '%'|| '" + str + "' ||'%' OR postcode LIKE '%'|| '" + str + "' ||'%' OR state LIKE '%'|| '" + str + "' ||'%')" : "";
+				var str_sql = str != "" ? " AND (clinicName LIKE '%' || '" + str + "' ||'%' OR add1 LIKE '%'|| '" + str + "' ||'%' OR add2 LIKE '%'|| '" + str + "' ||'%' OR city LIKE '%'|| '" + str + "' ||'%' OR postcode LIKE '%'|| '" + str + "' ||'%' OR state LIKE '%'|| '" + str + "' ||'%')" : "";
 				var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " where " + type_sql + corp_sql + str_sql + location_sql + " AND status = 1 limit " + counter + ", 20";
-
+				console.log(sql);
 				db = Ti.Database.open(collection.config.adapter.db_name);
 				var res = db.execute(sql);
 				var listArr = [];

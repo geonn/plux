@@ -39,8 +39,8 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "attachment_Details", title: "Attachment", navTintColor: "#CE1D1C" });
 
   $.__views.attachment_Details && $.addTopLevelView($.__views.attachment_Details);
-  function __alloyId327() {
-    $.__views.attachment_Details.removeEventListener('open', __alloyId327);
+  function __alloyId326() {
+    $.__views.attachment_Details.removeEventListener('open', __alloyId326);
     if ($.__views.attachment_Details.activity) {
       $.__views.attachment_Details.activity.actionBar.onHomeIconItemSelected = closeWindow;
     } else {
@@ -49,11 +49,11 @@ function Controller() {
       Ti.API.warn('are valid with only windows in TabGroups or heavyweight Windows.');
     }
   }
-  $.__views.attachment_Details.addEventListener('open', __alloyId327);
-  $.__views.__alloyId329 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Close', id: "__alloyId329" });
+  $.__views.attachment_Details.addEventListener('open', __alloyId326);
+  $.__views.__alloyId328 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Close', id: "__alloyId328" });
 
-  closeWindow ? $.addListener($.__views.__alloyId329, 'click', closeWindow) : __defers['$.__views.__alloyId329!click!closeWindow'] = true;$.__views.attachment_Details.rightNavButton = $.__views.__alloyId329;$.__views.albumView = Ti.UI.createView(
+  closeWindow ? $.addListener($.__views.__alloyId328, 'click', closeWindow) : __defers['$.__views.__alloyId328!click!closeWindow'] = true;$.__views.attachment_Details.rightNavButton = $.__views.__alloyId328;$.__views.albumView = Ti.UI.createView(
   { id: "albumView", height: Ti.UI.SIZE, bottom: 40 });
 
   $.__views.attachment_Details.add($.__views.albumView);
@@ -276,7 +276,7 @@ function Controller() {
 
 
 
-  __defers['$.__views.__alloyId329!click!closeWindow'] && $.addListener($.__views.__alloyId329, 'click', closeWindow);
+  __defers['$.__views.__alloyId328!click!closeWindow'] && $.addListener($.__views.__alloyId328, 'click', closeWindow);
 
 
 

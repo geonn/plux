@@ -45,10 +45,10 @@ function Controller() {
 
 		$.__views.loadingBar.add($.__views.activityIndicator);
 	}
-	$.__views.__alloyId502 = Ti.UI.createLabel(
-	{ width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", textAlign: "center", top: 5, text: "Loading", id: "__alloyId502" });
+	$.__views.__alloyId500 = Ti.UI.createLabel(
+	{ width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", textAlign: "center", top: 5, text: "Loading", id: "__alloyId500" });
 
-	$.__views.loadingBar.add($.__views.__alloyId502);
+	$.__views.loadingBar.add($.__views.__alloyId500);
 	exports.destroy = function () {};
 
 

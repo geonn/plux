@@ -47,14 +47,14 @@ function Controller() {
   { top: 10, left: 9, right: 9, bottom: 10, layout: "vertical", width: 301, height: Ti.UI.FILL, id: "inner_box" });
 
   $.__views._available_timeslot.add($.__views.inner_box);
-  $.__views.__alloyId129 = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId129" });
+  $.__views.__alloyId128 = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId128" });
 
-  $.__views.inner_box.add($.__views.__alloyId129);
+  $.__views.inner_box.add($.__views.__alloyId128);
   $.__views.timeslot = Ti.UI.createView(
   { layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, left: 1, top: 1, id: "timeslot" });
 
-  $.__views.__alloyId129.add($.__views.timeslot);
+  $.__views.__alloyId128.add($.__views.timeslot);
   exports.destroy = function () {};
 
 

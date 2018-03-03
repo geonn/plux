@@ -40,26 +40,26 @@ function Controller() {
 
   $.__views.win && $.addTopLevelView($.__views.win);
   if (true) {
+    $.__views.__alloyId140 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId140" });
+
+    $.__views.win.add($.__views.__alloyId140);
     $.__views.__alloyId141 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId141" });
+    { left: 0, width: "20%", id: "__alloyId141" });
 
-    $.__views.win.add($.__views.__alloyId141);
-    $.__views.__alloyId142 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId142" });
-
-    $.__views.__alloyId141.add($.__views.__alloyId142);
+    $.__views.__alloyId140.add($.__views.__alloyId141);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId142.add($.__views.btnBack);
-    $.__views.__alloyId143 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId143" });
+    $.__views.__alloyId141.add($.__views.btnBack);
+    $.__views.__alloyId142 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId142" });
 
-    $.__views.__alloyId141.add($.__views.__alloyId143);
+    $.__views.__alloyId140.add($.__views.__alloyId142);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Doctor List', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId143.add($.__views.pageTitle);
+    $.__views.__alloyId142.add($.__views.pageTitle);
   }
   $.__views.loadingBar = Ti.UI.createView(
   { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
@@ -69,10 +69,10 @@ function Controller() {
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId144 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId144" });
+  $.__views.__alloyId143 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId143" });
 
-  $.__views.loadingBar.add($.__views.__alloyId144);
+  $.__views.loadingBar.add($.__views.__alloyId143);
   $.__views.doctorView = Ti.UI.createView(
   { layout: "vertical", id: "doctorView" });
 

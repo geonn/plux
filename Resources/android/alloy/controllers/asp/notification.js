@@ -39,35 +39,35 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Notification", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId301 = Ti.UI.createView(
-  { id: "__alloyId301" });
+  $.__views.__alloyId300 = Ti.UI.createView(
+  { id: "__alloyId300" });
 
-  $.__views.win.add($.__views.__alloyId301);
+  $.__views.win.add($.__views.__alloyId300);
   $.__views.aView = Ti.UI.createView(
   { id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
 
-  $.__views.__alloyId301.add($.__views.aView);
+  $.__views.__alloyId300.add($.__views.aView);
   if (true) {
+    $.__views.__alloyId301 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId301" });
+
+    $.__views.aView.add($.__views.__alloyId301);
     $.__views.__alloyId302 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId302" });
+    { left: 0, width: "20%", id: "__alloyId302" });
 
-    $.__views.aView.add($.__views.__alloyId302);
-    $.__views.__alloyId303 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId303" });
-
-    $.__views.__alloyId302.add($.__views.__alloyId303);
+    $.__views.__alloyId301.add($.__views.__alloyId302);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId303.add($.__views.btnBack);
-    $.__views.__alloyId304 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId304" });
+    $.__views.__alloyId302.add($.__views.btnBack);
+    $.__views.__alloyId303 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId303" });
 
-    $.__views.__alloyId302.add($.__views.__alloyId304);
+    $.__views.__alloyId301.add($.__views.__alloyId303);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Notification', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId304.add($.__views.pageTitle);
+    $.__views.__alloyId303.add($.__views.pageTitle);
   }
   $.__views.recordTable = Ti.UI.createTableView(
   { width: "100%", height: Ti.UI.FILL, id: "recordTable", top: 0, separatorColor: "#375540" });
@@ -76,7 +76,7 @@ function Controller() {
   $.__views.bigView = Ti.UI.createScrollView(
   { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
 
-  $.__views.__alloyId301.add($.__views.bigView);
+  $.__views.__alloyId300.add($.__views.bigView);
   exports.destroy = function () {};
 
 
@@ -98,7 +98,7 @@ function Controller() {
   function init() {
     $.win.add(loading.getView());
     loading.start();
-    notificationModel.setAllAsRead({ u_id: u_id });
+
     displayList();
 
   }
@@ -154,7 +154,10 @@ function Controller() {
       loading.finish();
     } else {
       notificationList.forEach(function (entry) {
-        var row = $.UI.create("TableViewRow", { classes: ['hsize', 'wfill'], record: entry, backgroundSelectedColor: "#FFE1E1" });
+        console.log(entry.is_read + " entry.is_read");
+        var unread_bg = entry.is_read == 1 ? "#ffffff" : "#cccccc";
+        console.log(unread_bg);
+        var row = $.UI.create("TableViewRow", { classes: ['hsize', 'wfill'], record: entry, backgroundSelectedColor: "#FFE1E1", backgroundColor: unread_bg });
         var contentView = $.UI.create('View', { classes: ['vert', 'hsize', 'wfill', 'padding'], touchEnabled: false });
         var label_subject = $.UI.create("Label", { classes: ['themeColor', 'wfill', 'h5', 'bold', 'hsize'], maxLines: 3, touchEnabled: false, text: entry.subject || "" });
         var label_message = $.UI.create("Label", { classes: ['h6', 'wfill', 'hsize'], maxLines: 3, touchEnabled: false, text: entry.content || "" });
@@ -169,7 +172,9 @@ function Controller() {
         row.add(contentView);
         row.addEventListener("click", function (e) {
           var source = e.source.record;
+          e.source.backgroundColor = "#ffffff";
           console.log(source);
+          notificationModel.setRead(e.source.record.id);
           nav.navigationWindow(source.target, "", "", source);
         });
 

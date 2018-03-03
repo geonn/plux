@@ -362,10 +362,6 @@ function hinttextOnBlur(e) {
 	}
 }
 
-if (false) {
-	Titanium.UI.iPhone.setAppBadge("0");
-}
-
 var win;
 
 Ti.App.addEventListener("pause", function (e) {

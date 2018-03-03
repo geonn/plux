@@ -39,26 +39,26 @@ function Controller() {
 	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Notification Details", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
 	$.__views.win && $.addTopLevelView($.__views.win);
-	$.__views.__alloyId865 = Ti.UI.createView(
-	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId865" });
+	$.__views.__alloyId863 = Ti.UI.createView(
+	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId863" });
 
-	$.__views.win.add($.__views.__alloyId865);
-	$.__views.__alloyId866 = Ti.UI.createImageView(
-	{ width: 30, height: 30, right: 10, image: "/images/cross.png", id: "__alloyId866" });
+	$.__views.win.add($.__views.__alloyId863);
+	$.__views.__alloyId864 = Ti.UI.createImageView(
+	{ width: 30, height: 30, right: 10, image: "/images/cross.png", id: "__alloyId864" });
 
-	$.__views.__alloyId865.add($.__views.__alloyId866);
-	closeWindow ? $.addListener($.__views.__alloyId866, 'click', closeWindow) : __defers['$.__views.__alloyId866!click!closeWindow'] = true;$.__views.surveyView = Ti.UI.createWebView(
+	$.__views.__alloyId863.add($.__views.__alloyId864);
+	closeWindow ? $.addListener($.__views.__alloyId864, 'click', closeWindow) : __defers['$.__views.__alloyId864!click!closeWindow'] = true;$.__views.surveyView = Ti.UI.createWebView(
 	{ width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView" });
 
-	$.__views.__alloyId865.add($.__views.surveyView);
+	$.__views.__alloyId863.add($.__views.surveyView);
 	$.__views.defaultMsgView = Ti.UI.createView(
 	{ layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
 	$.__views.win.add($.__views.defaultMsgView);
-	$.__views.__alloyId867 = Ti.UI.createLabel(
-	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId867" });
+	$.__views.__alloyId865 = Ti.UI.createLabel(
+	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId865" });
 
-	$.__views.defaultMsgView.add($.__views.__alloyId867);
+	$.__views.defaultMsgView.add($.__views.__alloyId865);
 	exports.destroy = function () {};
 
 
@@ -99,7 +99,7 @@ function Controller() {
 
 
 
-	__defers['$.__views.__alloyId866!click!closeWindow'] && $.addListener($.__views.__alloyId866, 'click', closeWindow);
+	__defers['$.__views.__alloyId864!click!closeWindow'] && $.addListener($.__views.__alloyId864, 'click', closeWindow);
 
 
 

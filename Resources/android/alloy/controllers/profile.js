@@ -39,52 +39,52 @@ function Controller() {
 	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "My Profile", id: "myProfile", layout: "vertical" });
 
 	$.__views.myProfile && $.addTopLevelView($.__views.myProfile);
-	$.__views.__alloyId809 = Ti.UI.createView(
-	{ layout: "vertical", height: "100%", id: "__alloyId809" });
+	$.__views.__alloyId807 = Ti.UI.createView(
+	{ layout: "vertical", height: "100%", id: "__alloyId807" });
 
-	$.__views.myProfile.add($.__views.__alloyId809);
+	$.__views.myProfile.add($.__views.__alloyId807);
 	if (true) {
-		$.__views.__alloyId810 = Ti.UI.createView(
-		{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId810" });
+		$.__views.__alloyId808 = Ti.UI.createView(
+		{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId808" });
 
-		$.__views.__alloyId809.add($.__views.__alloyId810);
-		$.__views.__alloyId811 = Ti.UI.createView(
-		{ left: 0, width: "10%", id: "__alloyId811" });
+		$.__views.__alloyId807.add($.__views.__alloyId808);
+		$.__views.__alloyId809 = Ti.UI.createView(
+		{ left: 0, width: "10%", id: "__alloyId809" });
 
-		$.__views.__alloyId810.add($.__views.__alloyId811);
+		$.__views.__alloyId808.add($.__views.__alloyId809);
 		$.__views.btnBack = Ti.UI.createImageView(
 		{ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-		$.__views.__alloyId811.add($.__views.btnBack);
+		$.__views.__alloyId809.add($.__views.btnBack);
 		$.__views.pageTitle = Ti.UI.createView(
 		{ id: "pageTitle", width: "90%" });
 
-		$.__views.__alloyId810.add($.__views.pageTitle);
-		$.__views.__alloyId812 = Ti.UI.createLabel(
-		{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Profile', textAlign: "center", id: "__alloyId812" });
+		$.__views.__alloyId808.add($.__views.pageTitle);
+		$.__views.__alloyId810 = Ti.UI.createLabel(
+		{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Profile', textAlign: "center", id: "__alloyId810" });
 
-		$.__views.pageTitle.add($.__views.__alloyId812);
+		$.__views.pageTitle.add($.__views.__alloyId810);
 	}
 	$.__views.description = Ti.UI.createLabel(
 	{ width: Titanium.UI.FILL, height: "40dp", color: "#6E6E6E", top: "10dp", textAlign: "center", font: { fontSize: "14dp" }, id: "description", text: "Please choose profile of the below services" });
 
-	$.__views.__alloyId809.add($.__views.description);
+	$.__views.__alloyId807.add($.__views.description);
 	$.__views.scrollboard = Ti.UI.createScrollView(
 	{ id: "scrollboard", width: Titanium.UI.FILL, height: Ti.UI.FILL, zIndex: 3 });
 
-	$.__views.__alloyId809.add($.__views.scrollboard);
-	$.__views.__alloyId813 = Ti.UI.createView(
-	{ layout: "horizontal", width: 293, top: 20, id: "__alloyId813" });
+	$.__views.__alloyId807.add($.__views.scrollboard);
+	$.__views.__alloyId811 = Ti.UI.createView(
+	{ layout: "horizontal", width: 293, top: 20, id: "__alloyId811" });
 
-	$.__views.scrollboard.add($.__views.__alloyId813);
+	$.__views.scrollboard.add($.__views.__alloyId811);
 	$.__views.plux_logo = Ti.UI.createImageView(
 	{ top: "30dp", borderRadius: 10, width: 120, left: 15, height: 120, id: "plux_logo", mod: "plux", backgroundColor: "#ff0000", bottom: "30dp", image: "/images/logo_plux.png" });
 
-	$.__views.__alloyId813.add($.__views.plux_logo);
+	$.__views.__alloyId811.add($.__views.plux_logo);
 	navProfile ? $.addListener($.__views.plux_logo, 'click', navProfile) : __defers['$.__views.plux_logo!click!navProfile'] = true;$.__views.asp_logo = Ti.UI.createImageView(
 	{ top: "30dp", borderRadius: 10, width: 120, left: 15, height: 120, id: "asp_logo", mod: "asp", backgroundColor: "#ff0000", bottom: "30dp", image: "/images/asp_logo.png" });
 
-	$.__views.__alloyId813.add($.__views.asp_logo);
+	$.__views.__alloyId811.add($.__views.asp_logo);
 	navProfile ? $.addListener($.__views.asp_logo, 'click', navProfile) : __defers['$.__views.asp_logo!click!navProfile'] = true;exports.destroy = function () {};
 
 

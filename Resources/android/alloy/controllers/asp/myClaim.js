@@ -39,43 +39,43 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim Details", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId283 = Ti.UI.createView(
-  { id: "__alloyId283" });
+  $.__views.__alloyId282 = Ti.UI.createView(
+  { id: "__alloyId282" });
 
-  $.__views.win.rightNavButton = $.__views.__alloyId283;$.__views.__alloyId284 = Ti.UI.createView(
-  { layout: "vertical", backgroundColor: "#F6F6F6", height: "100%", id: "__alloyId284" });
+  $.__views.win.rightNavButton = $.__views.__alloyId282;$.__views.__alloyId283 = Ti.UI.createView(
+  { layout: "vertical", backgroundColor: "#F6F6F6", height: "100%", id: "__alloyId283" });
 
-  $.__views.win.add($.__views.__alloyId284);
+  $.__views.win.add($.__views.__alloyId283);
   if (true) {
+    $.__views.__alloyId284 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId284" });
+
+    $.__views.__alloyId283.add($.__views.__alloyId284);
     $.__views.__alloyId285 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId285" });
+    { left: 0, width: "10%", id: "__alloyId285" });
 
     $.__views.__alloyId284.add($.__views.__alloyId285);
-    $.__views.__alloyId286 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId286" });
-
-    $.__views.__alloyId285.add($.__views.__alloyId286);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId286.add($.__views.btnBack);
+    $.__views.__alloyId285.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView(
     { id: "pageTitle", width: "90%" });
 
-    $.__views.__alloyId285.add($.__views.pageTitle);
-    $.__views.__alloyId287 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId287" });
+    $.__views.__alloyId284.add($.__views.pageTitle);
+    $.__views.__alloyId286 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId286" });
 
-    $.__views.pageTitle.add($.__views.__alloyId287);
+    $.__views.pageTitle.add($.__views.__alloyId286);
   }
-  $.__views.__alloyId288 = Ti.UI.createView(
-  { height: Ti.UI.FILL, width: Ti.UI.FILL, id: "__alloyId288" });
+  $.__views.__alloyId287 = Ti.UI.createView(
+  { height: Ti.UI.FILL, width: Ti.UI.FILL, id: "__alloyId287" });
 
-  $.__views.__alloyId284.add($.__views.__alloyId288);
+  $.__views.__alloyId283.add($.__views.__alloyId287);
   $.__views.claimContainer = Ti.UI.createView(
   { id: "claimContainer", width: Ti.UI.FILL, height: Ti.UI.FILL, visible: false });
 
-  $.__views.__alloyId288.add($.__views.claimContainer);
+  $.__views.__alloyId287.add($.__views.claimContainer);
   $.__views.main = Ti.UI.createScrollView(
   { backgroundColor: "#E9E9E9", id: "main", layout: "vertical", scrollType: "vertical" });
 

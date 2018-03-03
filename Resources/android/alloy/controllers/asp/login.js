@@ -39,56 +39,56 @@ function Controller() {
 		{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Login", id: "aspLoginWin", layout: "vertical" });
 
 		$.__views.aspLoginWin && $.addTopLevelView($.__views.aspLoginWin);
-		$.__views.__alloyId275 = Ti.UI.createView(
-		{ id: "__alloyId275" });
+		$.__views.__alloyId274 = Ti.UI.createView(
+		{ id: "__alloyId274" });
 
-		$.__views.aspLoginWin.add($.__views.__alloyId275);
+		$.__views.aspLoginWin.add($.__views.__alloyId274);
 		$.__views.loadingBar = Ti.UI.createView(
 		{ layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
-		$.__views.__alloyId275.add($.__views.loadingBar);
+		$.__views.__alloyId274.add($.__views.loadingBar);
 		$.__views.activityIndicator = Ti.UI.createActivityIndicator(
 		{ top: 10, left: 30, width: 60, id: "activityIndicator" });
 
 		$.__views.loadingBar.add($.__views.activityIndicator);
-		$.__views.__alloyId276 = Ti.UI.createLabel(
-		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId276" });
+		$.__views.__alloyId275 = Ti.UI.createLabel(
+		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId275" });
 
-		$.__views.loadingBar.add($.__views.__alloyId276);
-		$.__views.__alloyId277 = Ti.UI.createView(
-		{ layout: "vertical", id: "__alloyId277" });
+		$.__views.loadingBar.add($.__views.__alloyId275);
+		$.__views.__alloyId276 = Ti.UI.createView(
+		{ layout: "vertical", id: "__alloyId276" });
 
-		$.__views.__alloyId275.add($.__views.__alloyId277);
+		$.__views.__alloyId274.add($.__views.__alloyId276);
 		if (true) {
+				$.__views.__alloyId277 = Ti.UI.createView(
+				{ layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId277" });
+
+				$.__views.__alloyId276.add($.__views.__alloyId277);
 				$.__views.__alloyId278 = Ti.UI.createView(
-				{ layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId278" });
+				{ left: 0, width: "10%", id: "__alloyId278" });
 
 				$.__views.__alloyId277.add($.__views.__alloyId278);
-				$.__views.__alloyId279 = Ti.UI.createView(
-				{ left: 0, width: "10%", id: "__alloyId279" });
-
-				$.__views.__alloyId278.add($.__views.__alloyId279);
 				$.__views.btnBack = Ti.UI.createImageView(
 				{ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-				$.__views.__alloyId279.add($.__views.btnBack);
+				$.__views.__alloyId278.add($.__views.btnBack);
 				$.__views.pageTitle = Ti.UI.createView(
 				{ id: "pageTitle", width: Ti.UI.FILL });
 
-				$.__views.__alloyId278.add($.__views.pageTitle);
-				$.__views.__alloyId280 = Ti.UI.createLabel(
-				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP Login', textAlign: "center", id: "__alloyId280" });
+				$.__views.__alloyId277.add($.__views.pageTitle);
+				$.__views.__alloyId279 = Ti.UI.createLabel(
+				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP Login', textAlign: "center", id: "__alloyId279" });
 
-				$.__views.pageTitle.add($.__views.__alloyId280);
+				$.__views.pageTitle.add($.__views.__alloyId279);
 		}
 		$.__views.main = Ti.UI.createScrollView(
 		{ id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
 
-		$.__views.__alloyId277.add($.__views.main);
-		$.__views.__alloyId281 = Ti.UI.createImageView(
-		{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "50dp", top: "50dp", image: "/images/asp_logo.png", id: "__alloyId281" });
+		$.__views.__alloyId276.add($.__views.main);
+		$.__views.__alloyId280 = Ti.UI.createImageView(
+		{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "50dp", top: "50dp", image: "/images/asp_logo.png", id: "__alloyId280" });
 
-		$.__views.main.add($.__views.__alloyId281);
+		$.__views.main.add($.__views.__alloyId280);
 		$.__views.username = Ti.UI.createTextField(
 		{ verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "username", hintText: "Enter Username", value: "" });
 

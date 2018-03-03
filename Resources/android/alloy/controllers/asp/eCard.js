@@ -51,44 +51,44 @@ function Controller() {
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId265 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId265" });
+  $.__views.__alloyId264 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId264" });
 
-  $.__views.loadingBar.add($.__views.__alloyId265);
+  $.__views.loadingBar.add($.__views.__alloyId264);
   $.__views.main = Ti.UI.createView(
   { id: "main", layout: "vertical" });
 
   $.__views.mainContainer.add($.__views.main);
   if (true) {
+    $.__views.__alloyId265 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId265" });
+
+    $.__views.main.add($.__views.__alloyId265);
     $.__views.__alloyId266 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId266" });
+    { left: 0, width: "10%", id: "__alloyId266" });
 
-    $.__views.main.add($.__views.__alloyId266);
-    $.__views.__alloyId267 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId267" });
-
-    $.__views.__alloyId266.add($.__views.__alloyId267);
+    $.__views.__alloyId265.add($.__views.__alloyId266);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId267.add($.__views.btnBack);
-    $.__views.__alloyId268 = Ti.UI.createView(
-    { width: "90%", id: "__alloyId268" });
+    $.__views.__alloyId266.add($.__views.btnBack);
+    $.__views.__alloyId267 = Ti.UI.createView(
+    { width: "90%", id: "__alloyId267" });
 
-    $.__views.__alloyId266.add($.__views.__alloyId268);
+    $.__views.__alloyId265.add($.__views.__alloyId267);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP eCARD', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId268.add($.__views.pageTitle);
+    $.__views.__alloyId267.add($.__views.pageTitle);
   }
-  $.__views.__alloyId269 = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId269" });
+  $.__views.__alloyId268 = Ti.UI.createView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId268" });
 
-  $.__views.main.add($.__views.__alloyId269);
+  $.__views.main.add($.__views.__alloyId268);
   $.__views.card_container = Ti.UI.createView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "card_container" });
 
-  $.__views.__alloyId269.add($.__views.card_container);
+  $.__views.__alloyId268.add($.__views.card_container);
   $.__views.card = Ti.UI.createView(
   { height: Ti.UI.SIZE, width: Ti.UI.FILL, top: 0, id: "card" });
 

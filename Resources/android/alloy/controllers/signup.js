@@ -39,34 +39,34 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Plux Signup", id: "win", layout: "vertical" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId814 = Ti.UI.createView(
-  { top: 0, height: 50, backgroundColor: "#E8E8E8", id: "__alloyId814" });
+  $.__views.__alloyId812 = Ti.UI.createView(
+  { top: 0, height: 50, backgroundColor: "#E8E8E8", id: "__alloyId812" });
 
-  $.__views.win.add($.__views.__alloyId814);
+  $.__views.win.add($.__views.__alloyId812);
   $.__views.backButton = Ti.UI.createView(
   { left: 0, zIndex: 9, id: "backButton", width: "20%" });
 
-  $.__views.__alloyId814.add($.__views.backButton);
-  closeWin ? $.addListener($.__views.backButton, 'click', closeWin) : __defers['$.__views.backButton!click!closeWin'] = true;$.__views.__alloyId815 = Ti.UI.createImageView(
-  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId815" });
+  $.__views.__alloyId812.add($.__views.backButton);
+  closeWin ? $.addListener($.__views.backButton, 'click', closeWin) : __defers['$.__views.backButton!click!closeWin'] = true;$.__views.__alloyId813 = Ti.UI.createImageView(
+  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId813" });
 
-  $.__views.backButton.add($.__views.__alloyId815);
-  $.__views.__alloyId816 = Ti.UI.createView(
-  { id: "__alloyId816" });
+  $.__views.backButton.add($.__views.__alloyId813);
+  $.__views.__alloyId814 = Ti.UI.createView(
+  { id: "__alloyId814" });
 
-  $.__views.__alloyId814.add($.__views.__alloyId816);
+  $.__views.__alloyId812.add($.__views.__alloyId814);
   $.__views.titleLbl = Ti.UI.createLabel(
   { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#CE1D1C", text: 'Sign Up PLUX', id: "titleLbl", textAlign: "center" });
 
-  $.__views.__alloyId816.add($.__views.titleLbl);
-  $.__views.__alloyId817 = Ti.UI.createView(
-  { id: "__alloyId817" });
+  $.__views.__alloyId814.add($.__views.titleLbl);
+  $.__views.__alloyId815 = Ti.UI.createView(
+  { id: "__alloyId815" });
 
-  $.__views.win.add($.__views.__alloyId817);
+  $.__views.win.add($.__views.__alloyId815);
   $.__views.loadingBar = Ti.UI.createView(
   { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
-  $.__views.__alloyId817.add($.__views.loadingBar);
+  $.__views.__alloyId815.add($.__views.loadingBar);
   $.__views.activityIndicator = Ti.UI.createActivityIndicator(
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
@@ -74,11 +74,11 @@ function Controller() {
   $.__views.main = Ti.UI.createScrollView(
   { id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
 
-  $.__views.__alloyId817.add($.__views.main);
-  $.__views.__alloyId818 = Ti.UI.createImageView(
-  { borderRadius: 10, width: 120, height: 120, backgroundColor: "#ff0000", bottom: "10dp", top: "10dp", image: "/images/logo_plux.png", id: "__alloyId818" });
+  $.__views.__alloyId815.add($.__views.main);
+  $.__views.__alloyId816 = Ti.UI.createImageView(
+  { borderRadius: 10, width: 120, height: 120, backgroundColor: "#ff0000", bottom: "10dp", top: "10dp", image: "/images/logo_plux.png", id: "__alloyId816" });
 
-  $.__views.main.add($.__views.__alloyId818);
+  $.__views.main.add($.__views.__alloyId816);
   $.__views.fullname = Ti.UI.createTextField(
   { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "fullname", hintText: "Enter Full Name", value: "" });
 
@@ -165,7 +165,7 @@ function Controller() {
     }
 
     if (view_agreement != "1") {
-      common.createAlert("Error", "You must agree to all the terms and conditions to register as Plux member.");
+      common.createAlert("Error", "You must agree to all the terms and conditions to register as ASP member.");
       return false;
     }
 

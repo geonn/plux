@@ -39,50 +39,50 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Appointment", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId95 = Ti.UI.createView(
-  { id: "__alloyId95" });
+  $.__views.__alloyId94 = Ti.UI.createView(
+  { id: "__alloyId94" });
 
   $.__views.newRecord = Ti.UI.createImageView(
   { left: 10, id: "newRecord", width: 25, height: 20, image: "/images/add.png" });
 
-  $.__views.__alloyId95.add($.__views.newRecord);
-  new_appointment ? $.addListener($.__views.newRecord, 'click', new_appointment) : __defers['$.__views.newRecord!click!new_appointment'] = true;$.__views.win.rightNavButton = $.__views.__alloyId95;$.__views.__alloyId96 = Ti.UI.createView(
-  { id: "__alloyId96" });
+  $.__views.__alloyId94.add($.__views.newRecord);
+  new_appointment ? $.addListener($.__views.newRecord, 'click', new_appointment) : __defers['$.__views.newRecord!click!new_appointment'] = true;$.__views.win.rightNavButton = $.__views.__alloyId94;$.__views.__alloyId95 = Ti.UI.createView(
+  { id: "__alloyId95" });
 
-  $.__views.win.add($.__views.__alloyId96);
+  $.__views.win.add($.__views.__alloyId95);
   $.__views.aView = Ti.UI.createView(
   { id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
 
-  $.__views.__alloyId96.add($.__views.aView);
+  $.__views.__alloyId95.add($.__views.aView);
   if (true) {
+    $.__views.__alloyId96 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId96" });
+
+    $.__views.aView.add($.__views.__alloyId96);
     $.__views.__alloyId97 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId97" });
+    { left: 0, width: "20%", id: "__alloyId97" });
 
-    $.__views.aView.add($.__views.__alloyId97);
-    $.__views.__alloyId98 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId98" });
-
-    $.__views.__alloyId97.add($.__views.__alloyId98);
+    $.__views.__alloyId96.add($.__views.__alloyId97);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId98.add($.__views.btnBack);
-    $.__views.__alloyId99 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId99" });
+    $.__views.__alloyId97.add($.__views.btnBack);
+    $.__views.__alloyId98 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId98" });
 
-    $.__views.__alloyId97.add($.__views.__alloyId99);
+    $.__views.__alloyId96.add($.__views.__alloyId98);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Appointment', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId99.add($.__views.pageTitle);
-    $.__views.__alloyId100 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId100" });
+    $.__views.__alloyId98.add($.__views.pageTitle);
+    $.__views.__alloyId99 = Ti.UI.createView(
+    { left: 0, width: "20%", id: "__alloyId99" });
 
-    $.__views.__alloyId97.add($.__views.__alloyId100);
+    $.__views.__alloyId96.add($.__views.__alloyId99);
     $.__views.newRecord = Ti.UI.createImageView(
     { id: "newRecord", width: 25, height: 20, image: "/images/add.png" });
 
-    $.__views.__alloyId100.add($.__views.newRecord);
+    $.__views.__alloyId99.add($.__views.newRecord);
     new_appointment ? $.addListener($.__views.newRecord, 'click', new_appointment) : __defers['$.__views.newRecord!click!new_appointment'] = true;}
   $.__views.appointment_list = Ti.UI.createScrollView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, id: "appointment_list" });

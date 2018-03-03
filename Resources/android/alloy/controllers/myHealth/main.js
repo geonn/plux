@@ -39,46 +39,46 @@ function Controller() {
   { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId686 = Ti.UI.createView(
-  { id: "__alloyId686" });
+  $.__views.__alloyId684 = Ti.UI.createView(
+  { id: "__alloyId684" });
 
   $.__views.moreHealth = Ti.UI.createImageView(
   { right: 0, id: "moreHealth", width: 30, image: "/images/health_love.png" });
 
-  $.__views.__alloyId686.add($.__views.moreHealth);
-  $.__views.win.rightNavButton = $.__views.__alloyId686;$.__views.main = Ti.UI.createView(
+  $.__views.__alloyId684.add($.__views.moreHealth);
+  $.__views.win.rightNavButton = $.__views.__alloyId684;$.__views.main = Ti.UI.createView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "main", backgroundColor: "#ffffff" });
 
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId687 = Ti.UI.createView(
-    { layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId687" });
+    $.__views.__alloyId685 = Ti.UI.createView(
+    { layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId685" });
 
-    $.__views.main.add($.__views.__alloyId687);
-    $.__views.__alloyId688 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId688" });
+    $.__views.main.add($.__views.__alloyId685);
+    $.__views.__alloyId686 = Ti.UI.createView(
+    { left: 0, width: "10%", id: "__alloyId686" });
 
-    $.__views.__alloyId687.add($.__views.__alloyId688);
+    $.__views.__alloyId685.add($.__views.__alloyId686);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId688.add($.__views.btnBack);
+    $.__views.__alloyId686.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView(
     { id: "pageTitle", width: "80%" });
 
-    $.__views.__alloyId687.add($.__views.pageTitle);
-    $.__views.__alloyId689 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId689" });
+    $.__views.__alloyId685.add($.__views.pageTitle);
+    $.__views.__alloyId687 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId687" });
 
-    $.__views.pageTitle.add($.__views.__alloyId689);
-    $.__views.__alloyId690 = Ti.UI.createView(
-    { width: "10%", id: "__alloyId690" });
+    $.__views.pageTitle.add($.__views.__alloyId687);
+    $.__views.__alloyId688 = Ti.UI.createView(
+    { width: "10%", id: "__alloyId688" });
 
-    $.__views.__alloyId687.add($.__views.__alloyId690);
+    $.__views.__alloyId685.add($.__views.__alloyId688);
     $.__views.moreHealth = Ti.UI.createImageView(
     { id: "moreHealth", width: 30, image: "/images/health_love.png" });
 
-    $.__views.__alloyId690.add($.__views.moreHealth);
+    $.__views.__alloyId688.add($.__views.moreHealth);
   }
   $.__views.graphScrollView = Ti.UI.createScrollView(
   { id: "graphScrollView", layout: "vertical", height: "auto", width: "100%", backgroundColor: "#EBEBEB", contentWidth: Ti.UI.FILL });

@@ -43,10 +43,10 @@ function Controller() {
 	{ width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, left: 0, backgroundColor: "#CB2228", id: "overlay" });
 
 	$.__views.rocket.add($.__views.overlay);
-	$.__views.__alloyId501 = Ti.UI.createImageView(
-	{ width: 160, borderRadius: 5, image: "/images/DefaultIcon.png", id: "__alloyId501" });
+	$.__views.__alloyId499 = Ti.UI.createImageView(
+	{ width: 160, borderRadius: 5, image: "/images/DefaultIcon.png", id: "__alloyId499" });
 
-	$.__views.rocket.add($.__views.__alloyId501);
+	$.__views.rocket.add($.__views.__alloyId499);
 	$.__views.loading_text = Ti.UI.createLabel(
 	{ width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#ffffff", id: "loading_text", bottom: 50 });
 

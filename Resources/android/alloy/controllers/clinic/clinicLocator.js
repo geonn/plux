@@ -47,34 +47,34 @@ function Controller() {
 
   $.__views.clinicLocator.add($.__views.win_map);
   if (true) {
+    $.__views.__alloyId381 = Ti.UI.createView(
+    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId381" });
+
+    $.__views.win_map.add($.__views.__alloyId381);
     $.__views.__alloyId382 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId382" });
+    { left: 0, width: "20%", id: "__alloyId382" });
 
-    $.__views.win_map.add($.__views.__alloyId382);
-    $.__views.__alloyId383 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId383" });
-
-    $.__views.__alloyId382.add($.__views.__alloyId383);
+    $.__views.__alloyId381.add($.__views.__alloyId382);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId383.add($.__views.btnBack);
-    $.__views.__alloyId384 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId384" });
+    $.__views.__alloyId382.add($.__views.btnBack);
+    $.__views.__alloyId383 = Ti.UI.createView(
+    { width: "60%", id: "__alloyId383" });
 
-    $.__views.__alloyId382.add($.__views.__alloyId384);
+    $.__views.__alloyId381.add($.__views.__alloyId383);
     $.__views.pageTitle = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Clinic Locator', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId384.add($.__views.pageTitle);
-    $.__views.__alloyId385 = Ti.UI.createView(
-    { right: 0, width: "20%", id: "__alloyId385" });
+    $.__views.__alloyId383.add($.__views.pageTitle);
+    $.__views.__alloyId384 = Ti.UI.createView(
+    { right: 0, width: "20%", id: "__alloyId384" });
 
-    $.__views.__alloyId382.add($.__views.__alloyId385);
+    $.__views.__alloyId381.add($.__views.__alloyId384);
     $.__views.btnList = Ti.UI.createImageView(
     { right: 10, id: "btnList", width: 25, height: 25, image: "/images/list.png" });
 
-    $.__views.__alloyId385.add($.__views.btnList);
+    $.__views.__alloyId384.add($.__views.btnList);
   }
   $.__views.mapview = (require("ti.map").createView || Ti.UI.createView)(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "mapview", regionFit: true, userLocation: true });
@@ -88,10 +88,10 @@ function Controller() {
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId386 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId386" });
+  $.__views.__alloyId385 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId385" });
 
-  $.__views.loadingBar.add($.__views.__alloyId386);
+  $.__views.loadingBar.add($.__views.__alloyId385);
   $.__views.number_clinic = Ti.UI.createLabel(
   { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", top: 0, left: 10, right: 10, bottom: 10, textAlign: "center", id: "number_clinic" });
 

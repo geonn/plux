@@ -39,22 +39,22 @@ function Controller() {
 	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Flexi-Benefit", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
 	$.__views.win && $.addTopLevelView($.__views.win);
-	$.__views.__alloyId209 = Ti.UI.createView(
-	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId209" });
+	$.__views.__alloyId208 = Ti.UI.createView(
+	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId208" });
 
-	$.__views.win.add($.__views.__alloyId209);
+	$.__views.win.add($.__views.__alloyId208);
 	$.__views.surveyView = Ti.UI.createWebView(
 	{ width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView", url: "http://flexi.freejini.com.my/" });
 
-	$.__views.__alloyId209.add($.__views.surveyView);
+	$.__views.__alloyId208.add($.__views.surveyView);
 	$.__views.defaultMsgView = Ti.UI.createView(
 	{ layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
 	$.__views.win.add($.__views.defaultMsgView);
-	$.__views.__alloyId210 = Ti.UI.createLabel(
-	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId210" });
+	$.__views.__alloyId209 = Ti.UI.createLabel(
+	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId209" });
 
-	$.__views.defaultMsgView.add($.__views.__alloyId210);
+	$.__views.defaultMsgView.add($.__views.__alloyId209);
 	exports.destroy = function () {};
 
 

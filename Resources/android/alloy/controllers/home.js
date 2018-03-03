@@ -52,18 +52,18 @@ function Controller() {
     { id: "daily_background", width: Ti.UI.FILL, height: Ti.UI.FILL });
 
     $.__views.main.add($.__views.daily_background);
-    $.__views.__alloyId442 = Ti.UI.createView(
-    { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId442" });
+    $.__views.__alloyId440 = Ti.UI.createView(
+    { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId440" });
 
-    $.__views.main.add($.__views.__alloyId442);
+    $.__views.main.add($.__views.__alloyId440);
     $.__views.logo = Ti.UI.createImageView(
     { id: "logo", borderRadius: 10, width: 100, height: 100, top: 10, left: 10, image: "/images/logo_plux.png", zIndex: 5 });
 
-    $.__views.__alloyId442.add($.__views.logo);
+    $.__views.__alloyId440.add($.__views.logo);
     $.__views.myinfo_view = Ti.UI.createView(
     { zIndex: 4, id: "myinfo_view", left: 110, width: Ti.UI.FILL, height: Ti.UI.SIZE, top: 20, backgroundColor: "#B3000000" });
 
-    $.__views.__alloyId442.add($.__views.myinfo_view);
+    $.__views.__alloyId440.add($.__views.myinfo_view);
     $.__views.myInfo = Ti.UI.createView(
     { width: Ti.UI.FILL, top: 10, bottom: 10, height: 60, id: "myInfo" });
 
@@ -71,19 +71,19 @@ function Controller() {
     $.__views.loadingBar = Ti.UI.createView(
     { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, top: 0, opacity: 0, backgroundColor: "#2E2E2E" });
 
-    $.__views.__alloyId442.add($.__views.loadingBar);
+    $.__views.__alloyId440.add($.__views.loadingBar);
     $.__views.activityIndicator = Ti.UI.createActivityIndicator(
     { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
     $.__views.loadingBar.add($.__views.activityIndicator);
-    $.__views.__alloyId443 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId443" });
+    $.__views.__alloyId441 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId441" });
 
-    $.__views.loadingBar.add($.__views.__alloyId443);
+    $.__views.loadingBar.add($.__views.__alloyId441);
     $.__views.scrollboard1 = Ti.UI.createScrollView(
     { layout: "horizontal", id: "scrollboard1", width: 293, contentWidth: 293, height: Ti.UI.FILL, zIndex: 3 });
 
-    $.__views.__alloyId442.add($.__views.scrollboard1);
+    $.__views.__alloyId440.add($.__views.scrollboard1);
     $.__views.scrollboard = Ti.UI.createView(
     { layout: "horizontal", id: "scrollboard", height: Ti.UI.SIZE, zIndex: 3 });
 
@@ -213,7 +213,7 @@ function Controller() {
         view_notification.add(label_helpline);
         view.add(imageView_menu);
         view.add(view_notification);
-        var image_helpline = $.UI.create("ImageView", { image: "/images/icons/helpline.png", bottom: 0, right: 0, height: 25, width: 100, bubbleParent: false });
+        var image_helpline = $.UI.create("ImageView", { image: "/images/icons/helpline.png", bottom: 0, right: 0, height: 40, width: 118, bubbleParent: false });
         image_helpline.addEventListener('click', function (e) {
           console.log('call now');
           var dialog = Ti.UI.createAlertDialog({
@@ -381,6 +381,9 @@ function Controller() {
       label_helpline.text = unread_no;
     } else {
       label_notification.text = unread_no;
+      if (false) {
+        Titanium.UI.iPhone.setAppBadge(unread_no);
+      }
     }
   }
 
@@ -575,7 +578,7 @@ function Controller() {
         cancel: 0,
         buttonNames: ['Cancel', 'Confirm'],
         message: 'Would you like to logout?',
-        title: 'Logout PLUX' });
+        title: 'Logout ASP' });
 
       dialog.addEventListener('click', function (e) {
         if (e.index == 1) {
