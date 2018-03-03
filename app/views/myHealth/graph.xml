@@ -1,5 +1,4 @@
 <Alloy>
-	<Collection src="health"/>
 	<Window title="MY HEALTH RECORD" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
 		<View class="hfill wfill vert" width="Ti.UI.FILL" layout="vertical" id="main" backgroundColor="#ffffff">
 			<View class='wfill horz' height="50" backgroundColor="#DEDEDE" platform="android" > 
@@ -25,13 +24,7 @@
 					<ImageView image='/images/btn-forward.png' right="10" width="20" action="plus" onClick="adjust_date_indicator"></ImageView>
 				</View>
 				<WebView url="/html/graph.html" id="webview" class="wfill" height="230"></WebView>
-				<TableView dataCollection="health" dataTransform="transformFunction">
-					<TableViewRow>
-						<View class='wfill hsize padding vert'>
-							<Label class='wfill hsize h5' text="{main_title}"></Label>
-							<Label class="wfill hsize h6" text="{sub_title}"></Label>
-						</View>
-					</TableViewRow>
+				<TableView id="tbl">
 				</TableView>
 			</ScrollView>
 		</View>

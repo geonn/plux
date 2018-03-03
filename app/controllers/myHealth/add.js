@@ -1,7 +1,6 @@
 var args = arguments[0] || {};
-var fields = args.fields;
+//var fields = args.fields;
 var moment = require('alloy/moment');
-console.log(fields);
 init();
 
 function init(){
@@ -13,11 +12,8 @@ function init(){
 }
 
 function render_field_type(){
-	fields = fields.reverse();
-	console.log(fields.length+" fields.length");
+	var fields = args.fields;//.reverse();
 	for (var i=0; i < fields.length; i++) {
-		console.log(i+" i value");
-		console.log(fields[i]);
 		var view_container = $.UI.create("View", {classes:['padding','wsize','hsize','vert'], top: 0, bottom:0});
 		var view_left = $.UI.create("View", {classes:['wfill','small_padding'], height:40, top:10, bottom:10});
 		var label_title = $.UI.create("Label", {classes:['wsize','hsize','h4'], left:0, text: fields[i].name});
@@ -36,7 +32,6 @@ function render_field_type(){
 				view_right.add(img_down);
 				view_right.addEventListener("click", openPicker);
 			}else{
-				console.log("1");
 				var view_right = $.UI.create("View", {classes:['wsize','hsize'], right:0, value: default_value, record: fields[i]});
 				if(fields[i].type == "number"){
 					var min = (typeof fields[i].min_range != "undefined")?fields[i].min_range:0;
@@ -45,7 +40,6 @@ function render_field_type(){
 				}else if(fields[i].type == "string"){
 					var options = fields[i].options;
 				}
-				console.log("1");
 				var picker = $.UI.create("Picker", {bubbleParent: false});
 				for (var j=0; j < options.length; j++) {
 					var picker_row = $.UI.create("PickerRow", {title: options[j]});
@@ -55,13 +49,8 @@ function render_field_type(){
 						picker.setSelectedRow(0, j, false);
 					}
 				};
-				console.log("after this add");
 				picker.addEventListener("change", function(e){
-					console.log(e.source.parent);
-					console.log(e.source.parent.value);
-					console.log(e.row.title);
 					e.source.parent.value = e.row.title;
-					console.log(e.source.parent.value);
 				});
 				view_right.add(picker);
 				view_left.add(view_right);
@@ -73,12 +62,9 @@ function render_field_type(){
 			var textfield_value = $.UI.create("TextField", {classes:['hsize','wfill'], value: default_value, left: 80, });
 			view_left.add(textfield_value);
 		}
-		console.log("2");
 		view_container.add(view_left);
 		view_container.add(view_hr);
-		console.log("2");
-		$.container.insertAt({view: view_container, position:1});
-		console.log("2");
+		$.container.add(view_container);
 	};
 }
 
@@ -170,8 +156,8 @@ function SaveRecord(){
 		    created : moment(new Date()).format("YYYY-MM-DD HH:MM:SS")
 	};
 	var all_field = $.container.getChildren();
-	all_field.shift();
-	all_field.pop();
+	//all_field.shift();
+	//all_field.pop();
 	for (var i=0; i < all_field.length; i++) {
 		if(all_field.length - 1 > i){
 			console.log(all_field[i].children[0].children[1]);

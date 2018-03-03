@@ -69,18 +69,40 @@ function refresh(e){
 		};
 		data_arranged.push(temp_arr);
 	}
+	console.log('data for render graph');
 	console.log(data_arranged);
 	console.log(temp_graph_arr);
+	render_tableview(data);
 	Ti.App.fireEvent("graph:load_data", {data: data_arranged, fields: temp_graph_arr});//data: data});
 }
 
-function transformFunction(model){
-	var transform = model.toJSON();
+function render_tableview(data){
+	var arr = [];
+	for (var i=0; i < data.length; i++) {
+		var transformData = transformFunction(data[i]);
+		var row = $.UI.create("TableViewRow");
+		var view_container = $.UI.create("View", {classes:['wfill','hsize','padding','vert']});
+		var label_title = $.UI.create("Label", {classes:['wfill','hsize','h5'], text: transformData.main_title});
+		var label_subtitle = $.UI.create("Label", {classes:['wfill','hsize','h6'], text: transformData.sub_title});
+		view_container.add(label_title);
+		view_container.add(label_subtitle);
+		row.add(view_container);
+		arr.push(row);
+	};
+	console.log("what data inside");
+	console.log(arr);
+	$.tbl.setData(arr);
+}
+
+function transformFunction(transform){
+
 	var main_title = "";
+	console.log(transform);
 	for (var k=0; k < field_graph.length; k++) {
 		main_title += (k == 0)?transform['field'+(k+1)]:"/"+transform['field'+(k+1)];
 	}
 	main_title += " "+args.measurement;
+	console.log(main_title);
     transform.main_title = main_title;
     transform.sub_title = moment(transform.date).format("DD-MM-YYYY hh:mm A");
     return transform;

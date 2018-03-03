@@ -182,14 +182,14 @@ exports.definition = {
                 
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 var sql = "SELECT *, strftime('%d', date) as day FROM " + collection.config.adapter.collection_name+" WHERE u_id = ? AND `type` = ? AND strftime('%Y-%m', date) = ? group by strftime('%Y-%m-%d', date)";
-                 
+                console.log("getDataGroupByDay sql"); 
                 var library = Alloy.Collections.instance("health");
                 library.fetch({query: {
 					statement: sql,
 					params: [u_id, type, select_month]
 					}
 				}); 
-                 
+                  console.log("getDataGroupByDay called");
                 var res = db.execute(sql, u_id, type, select_month);
                 var listArr = []; 
                 var count = 0;
