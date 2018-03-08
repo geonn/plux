@@ -252,7 +252,7 @@ exports.definition = {
 			getCountClinicType : function(corp){
 				var collection = this; 
 				if(corp != ""){
-					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where openHour NOT LIKE '%24 HOURS%' AND panel=1 AND status = 1 GROUP BY clinicType ";
+					var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" where panel=1 AND status = 1 GROUP BY clinicType ";
 				}else{
                 var sql = "SELECT clinicType, count(DISTINCT(id)) as total FROM " + collection.config.adapter.collection_name +" WHERE openHour NOT LIKE '%24 HOURS%' AND status = 1 GROUP BY clinicType ";
                }

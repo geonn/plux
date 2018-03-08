@@ -6,7 +6,7 @@ init();
 function init(){
 	var model = Alloy.createCollection("health");
 	render_field_type();
-	$.date_text.value = moment(new Date()).format("YYYY-MM-DD HH:MM:SS");
+	$.date_text.value = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
 	$.date_text.text = moment(new Date()).format("ddd, MMM DD, YYYY, hh:mm A");
 	//refresh();
 }
@@ -142,7 +142,7 @@ function showDatePicker(e){
 function updateLabelDate(e){
 	var value = (OS_IOS)?e.source.value:e.value;
 	console.log(value+" value");
-	$.date_text.value = moment(value).format("YYYY-MM-DD HH:MM");
+	$.date_text.value = moment(value).format("YYYY-MM-DD");
 	$.date_text.text = moment(value).format("ddd, MMM DD, YYYY, hh:mm A");
 }
 
@@ -153,7 +153,7 @@ function SaveRecord(){
 			u_id: u_id,
 		    date: $.date_text.value,
 		    type: args.type,
-		    created : moment(new Date()).format("YYYY-MM-DD HH:MM:SS")
+		    created : moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
 	};
 	var all_field = $.container.getChildren();
 	//all_field.shift();

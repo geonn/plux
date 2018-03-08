@@ -38,9 +38,11 @@ function init(){
 	//refresh();
 }
 
-function render_menu(latest){
+function render_menu(){
 	var model = Alloy.createCollection("health");
 	var latest = model.getLatestByType();
+	console.log('latest data');
+	console.log(latest);
 	var pw = Ti.Platform.displayCaps.platformWidth;
 	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
 	var pwidth = (OS_IOS)?pw:parseInt(pw / (ldf || 1), 10);
@@ -50,8 +52,6 @@ function render_menu(latest){
 	for (var i=0; i < menus.length; i++) {
 		var found = _.where(latest, {type: menus[i].type});
 		var top = Math.floor(i/2)*180+5;
-		console.log("see what i found"+ i);
-		console.log(found);
 		var left = (odd_counter % 2)?cell_width+10:5;
 		var view_container = $.UI.create("View", {classes:['vert', 'rounded'], width: cell_width, height: 175, top:top, left: left, backgroundColor: "#ffffff", record: menus[i]});
 		var label_title = $.UI.create("Label", {classes:['wsize','hsize','h5'], textAlign: "center", top:10, text: menus[i].title, touchEnabled: false});

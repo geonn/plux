@@ -10,6 +10,8 @@ if(url != ""){
 	if(HTMLcontent != ""){
 		HTMLcontent = HTMLcontent.replace(/\[\[/g, "<"); 
 		HTMLcontent = HTMLcontent.replace(/\]\]/g, ">"); 
+		HTMLcontent = HTMLcontent.replace(/\\'/g, "'");
+		console.log(HTMLcontent);
 		$.surveyView.setHtml(nl2br(HTMLcontent));
 		$.defaultMsgView.height = 0;	
 	}else{
