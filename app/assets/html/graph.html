@@ -4,17 +4,18 @@
     <script type="text/javascript" src="loader.js"></script>
     <script type="text/javascript">
 
-Ti.App.addEventListener("graph:load_data",function(e) { 
-  loadChart(e);
-});
+Ti.App.addEventListener("graph:load_data", loadChart);
       
 var raw_data;
 var fields;
-var column_type;
+var hAxis;
+var vAxis;
+
 function loadChart(b){
 	raw_data =  b.data;
 	fields = b.fields;
-	column_type = b.column_type;
+	hAxis = b.hAxis;
+	vAxis = b.vAxis;
 	google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawBasic);
 }
@@ -47,9 +48,13 @@ if(typeof raw_data == "undefined"){
         	position: "bottom"
         },
         width: (data.getNumberOfRows() > 7)?data.getNumberOfRows() * 50: "100%",
+        hAxis: {
+        	title: hAxis
+        },
         vAxis: {
-          title: 'Popularity'
+        	title: vAxis
         }
+        
       };
 
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

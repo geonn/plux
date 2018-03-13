@@ -73,7 +73,7 @@ function refresh(e){
 	console.log(data_arranged);
 	console.log(temp_graph_arr);
 	render_tableview(data);
-	Ti.App.fireEvent("graph:load_data", {data: data_arranged, fields: temp_graph_arr});//data: data});
+	Ti.App.fireEvent("graph:load_data", {data: data_arranged, fields: temp_graph_arr, hAxis: perior_type, vAxis: args.measurement});//data: data});
 }
 
 function render_tableview(data){

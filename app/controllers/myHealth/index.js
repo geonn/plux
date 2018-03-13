@@ -25,9 +25,9 @@ var menus = [
 		{name: "Medication", type: "string", tool: "picker", options:["None", "Taken","Not Taken"], default_value: "None", graph_display: false},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
-	{title: "WEIGHT", type:"6", icon: "/images/icons/weight.png", measurement: "KG/Body Fat %", color: "#933ec5", fields:[
+	{title: "WEIGHT", type:"6", icon: "/images/icons/weight.png", measurement: "KG", color: "#933ec5", fields:[
 		{name: "Weight", type: "number", tool: "picker", max_range: 300, min_range: 0, default_value: 70, graph_display: true},
-		{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
+		//{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
 ];
