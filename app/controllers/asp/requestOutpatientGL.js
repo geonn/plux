@@ -3,10 +3,6 @@ var corpcode = Ti.App.Properties.getString('corpcode');
 var empno = Ti.App.Properties.getString('empno');
 var memno = Ti.App.Properties.getString('memno');
 var name = Ti.App.Properties.getString('fullname');
-var dependent = JSON.parse(Ti.App.Properties.getString('dependent'));
-console.log("check here dependent");
-console.log(dependent);
-console.log(dependent.name);
 var loading = Alloy.createController('loading'); 
 var error_message = "";
 
