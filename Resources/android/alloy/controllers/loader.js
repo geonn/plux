@@ -44,7 +44,7 @@ function Controller() {
 
 	$.__views.rocket.add($.__views.overlay);
 	$.__views.__alloyId499 = Ti.UI.createImageView(
-	{ width: 160, borderRadius: 5, image: "/images/DefaultIcon.png", id: "__alloyId499" });
+	{ width: 160, borderRadius: 5, image: "/images/asp_logo.png", id: "__alloyId499" });
 
 	$.__views.rocket.add($.__views.__alloyId499);
 	$.__views.loading_text = Ti.UI.createLabel(

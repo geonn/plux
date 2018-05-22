@@ -195,7 +195,7 @@ function Controller() {
     console.log(data_arranged);
     console.log(temp_graph_arr);
     render_tableview(data);
-    Ti.App.fireEvent("graph:load_data", { data: data_arranged, fields: temp_graph_arr });
+    Ti.App.fireEvent("graph:load_data", { data: data_arranged, fields: temp_graph_arr, hAxis: perior_type, vAxis: args.measurement });
   }
 
   function render_tableview(data) {
