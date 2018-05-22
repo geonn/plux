@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 	var arg = null;
 	if (obj) {
 		arg = obj[key] || null;
-		delete obj[key];
 	}
 	return arg;
 }
@@ -36,7 +35,7 @@ function Controller() {
 
 
 	$.__views.loadingBar = Ti.UI.createView(
-	{ layout: "vertical", zIndex: 200, id: "loadingBar", height: 120, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+	{ borderWidth: 0, layout: "vertical", zIndex: 200, id: "loadingBar", height: 120, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
 	$.__views.loadingBar && $.addTopLevelView($.__views.loadingBar);
 	if (true) {
@@ -45,10 +44,10 @@ function Controller() {
 
 		$.__views.loadingBar.add($.__views.activityIndicator);
 	}
-	$.__views.__alloyId500 = Ti.UI.createLabel(
-	{ width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", textAlign: "center", top: 5, text: "Loading", id: "__alloyId500" });
+	$.__views.__alloyId723 = Ti.UI.createLabel(
+	{ width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", textAlign: "center", top: 5, text: "Loading", id: "__alloyId723" });
 
-	$.__views.loadingBar.add($.__views.__alloyId500);
+	$.__views.loadingBar.add($.__views.__alloyId723);
 	exports.destroy = function () {};
 
 

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,7 +35,7 @@ function Controller() {
 
 
   $.__views._available_timeslot = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f0f5f8", id: "_available_timeslot" });
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f0f5f8", id: "_available_timeslot" });
 
   $.__views._available_timeslot && $.addTopLevelView($.__views._available_timeslot);
   $.__views.date_bar = Ti.UI.createScrollView(
@@ -44,17 +43,17 @@ function Controller() {
 
   $.__views._available_timeslot.add($.__views.date_bar);
   $.__views.inner_box = Ti.UI.createView(
-  { top: 10, left: 9, right: 9, bottom: 10, layout: "vertical", width: 301, height: Ti.UI.FILL, id: "inner_box" });
+  { borderWidth: 0, top: 10, left: 9, right: 9, bottom: 10, layout: "vertical", width: 301, height: Ti.UI.FILL, id: "inner_box" });
 
   $.__views._available_timeslot.add($.__views.inner_box);
-  $.__views.__alloyId128 = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId128" });
+  $.__views.__alloyId140 = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, disableBounce: true, contentHeight: Ti.UI.SIZE, backgroundColor: "#d7d7d7", id: "__alloyId140" });
 
-  $.__views.inner_box.add($.__views.__alloyId128);
+  $.__views.inner_box.add($.__views.__alloyId140);
   $.__views.timeslot = Ti.UI.createView(
-  { layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, left: 1, top: 1, id: "timeslot" });
+  { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, left: 1, top: 1, id: "timeslot" });
 
-  $.__views.__alloyId128.add($.__views.timeslot);
+  $.__views.__alloyId140.add($.__views.timeslot);
   exports.destroy = function () {};
 
 

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 	var arg = null;
 	if (obj) {
 		arg = obj[key] || null;
-		delete obj[key];
 	}
 	return arg;
 }
@@ -36,39 +35,39 @@ function Controller() {
 
 
 	$.__views.plux_profile = Ti.UI.createWindow(
-	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "PLUX Profile", id: "plux_profile", backButtonTitle: "", navTintColor: "#CE1D1C" });
+	{ backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "PLUX Profile", id: "plux_profile", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
 	$.__views.plux_profile && $.addTopLevelView($.__views.plux_profile);
-	$.__views.__alloyId737 = Ti.UI.createView(
-	{ layout: "vertical", id: "__alloyId737" });
+	$.__views.__alloyId971 = Ti.UI.createView(
+	{ borderWidth: 0, layout: "vertical", id: "__alloyId971" });
 
-	$.__views.plux_profile.add($.__views.__alloyId737);
+	$.__views.plux_profile.add($.__views.__alloyId971);
 	if (true) {
-		$.__views.__alloyId738 = Ti.UI.createView(
-		{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId738" });
+		$.__views.__alloyId972 = Ti.UI.createView(
+		{ borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId972" });
 
-		$.__views.__alloyId737.add($.__views.__alloyId738);
-		$.__views.__alloyId739 = Ti.UI.createView(
-		{ left: 0, width: "10%", id: "__alloyId739" });
+		$.__views.__alloyId971.add($.__views.__alloyId972);
+		$.__views.__alloyId973 = Ti.UI.createView(
+		{ borderWidth: 0, left: 0, width: "10%", id: "__alloyId973" });
 
-		$.__views.__alloyId738.add($.__views.__alloyId739);
+		$.__views.__alloyId972.add($.__views.__alloyId973);
 		$.__views.btnBack = Ti.UI.createImageView(
 		{ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-		$.__views.__alloyId739.add($.__views.btnBack);
+		$.__views.__alloyId973.add($.__views.btnBack);
 		$.__views.pageTitle = Ti.UI.createView(
-		{ id: "pageTitle", width: "90%" });
+		{ borderWidth: 0, id: "pageTitle", width: "90%" });
 
-		$.__views.__alloyId738.add($.__views.pageTitle);
-		$.__views.__alloyId740 = Ti.UI.createLabel(
-		{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'PLUX Profile', textAlign: "center", id: "__alloyId740" });
+		$.__views.__alloyId972.add($.__views.pageTitle);
+		$.__views.__alloyId974 = Ti.UI.createLabel(
+		{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'PLUX Profile', textAlign: "center", id: "__alloyId974" });
 
-		$.__views.pageTitle.add($.__views.__alloyId740);
+		$.__views.pageTitle.add($.__views.__alloyId974);
 	}
 	$.__views.profileData = Ti.UI.createView(
-	{ width: Ti.UI.FILL, height: Ti.UI.FILL, id: "profileData", backgroundColor: "#ffffff" });
+	{ borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "profileData", backgroundColor: "#ffffff" });
 
-	$.__views.__alloyId737.add($.__views.profileData);
+	$.__views.__alloyId971.add($.__views.profileData);
 	exports.destroy = function () {};
 
 

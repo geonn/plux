@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 		var arg = null;
 		if (obj) {
 				arg = obj[key] || null;
-				delete obj[key];
 		}
 		return arg;
 }
@@ -36,73 +35,73 @@ function Controller() {
 
 
 		$.__views.aspLoginWin = Ti.UI.createWindow(
-		{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Login", id: "aspLoginWin", layout: "vertical" });
+		{ backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Login", id: "aspLoginWin", layout: "vertical" });
 
 		$.__views.aspLoginWin && $.addTopLevelView($.__views.aspLoginWin);
-		$.__views.__alloyId274 = Ti.UI.createView(
-		{ id: "__alloyId274" });
+		$.__views.__alloyId387 = Ti.UI.createView(
+		{ borderWidth: 0, id: "__alloyId387" });
 
-		$.__views.aspLoginWin.add($.__views.__alloyId274);
+		$.__views.aspLoginWin.add($.__views.__alloyId387);
 		$.__views.loadingBar = Ti.UI.createView(
-		{ layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+		{ borderWidth: 0, layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
-		$.__views.__alloyId274.add($.__views.loadingBar);
+		$.__views.__alloyId387.add($.__views.loadingBar);
 		$.__views.activityIndicator = Ti.UI.createActivityIndicator(
 		{ top: 10, left: 30, width: 60, id: "activityIndicator" });
 
 		$.__views.loadingBar.add($.__views.activityIndicator);
-		$.__views.__alloyId275 = Ti.UI.createLabel(
-		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId275" });
+		$.__views.__alloyId388 = Ti.UI.createLabel(
+		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId388" });
 
-		$.__views.loadingBar.add($.__views.__alloyId275);
-		$.__views.__alloyId276 = Ti.UI.createView(
-		{ layout: "vertical", id: "__alloyId276" });
+		$.__views.loadingBar.add($.__views.__alloyId388);
+		$.__views.__alloyId389 = Ti.UI.createView(
+		{ borderWidth: 0, layout: "vertical", id: "__alloyId389" });
 
-		$.__views.__alloyId274.add($.__views.__alloyId276);
+		$.__views.__alloyId387.add($.__views.__alloyId389);
 		if (true) {
-				$.__views.__alloyId277 = Ti.UI.createView(
-				{ layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId277" });
+				$.__views.__alloyId390 = Ti.UI.createView(
+				{ borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId390" });
 
-				$.__views.__alloyId276.add($.__views.__alloyId277);
-				$.__views.__alloyId278 = Ti.UI.createView(
-				{ left: 0, width: "10%", id: "__alloyId278" });
+				$.__views.__alloyId389.add($.__views.__alloyId390);
+				$.__views.__alloyId391 = Ti.UI.createView(
+				{ borderWidth: 0, left: 0, width: "10%", id: "__alloyId391" });
 
-				$.__views.__alloyId277.add($.__views.__alloyId278);
+				$.__views.__alloyId390.add($.__views.__alloyId391);
 				$.__views.btnBack = Ti.UI.createImageView(
 				{ left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-				$.__views.__alloyId278.add($.__views.btnBack);
+				$.__views.__alloyId391.add($.__views.btnBack);
 				$.__views.pageTitle = Ti.UI.createView(
-				{ id: "pageTitle", width: Ti.UI.FILL });
+				{ borderWidth: 0, id: "pageTitle", width: Ti.UI.FILL });
 
-				$.__views.__alloyId277.add($.__views.pageTitle);
-				$.__views.__alloyId279 = Ti.UI.createLabel(
-				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP Login', textAlign: "center", id: "__alloyId279" });
+				$.__views.__alloyId390.add($.__views.pageTitle);
+				$.__views.__alloyId392 = Ti.UI.createLabel(
+				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'ASP Login', textAlign: "center", id: "__alloyId392" });
 
-				$.__views.pageTitle.add($.__views.__alloyId279);
+				$.__views.pageTitle.add($.__views.__alloyId392);
 		}
 		$.__views.main = Ti.UI.createScrollView(
 		{ id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
 
-		$.__views.__alloyId276.add($.__views.main);
-		$.__views.__alloyId280 = Ti.UI.createImageView(
-		{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "50dp", top: "50dp", image: "/images/asp_logo.png", id: "__alloyId280" });
+		$.__views.__alloyId389.add($.__views.main);
+		$.__views.__alloyId393 = Ti.UI.createImageView(
+		{ width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "50dp", top: "50dp", image: "/images/asp_logo.png", id: "__alloyId393" });
 
-		$.__views.main.add($.__views.__alloyId280);
+		$.__views.main.add($.__views.__alloyId393);
 		$.__views.username = Ti.UI.createTextField(
-		{ verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "username", hintText: "Enter Username", value: "" });
+		{ borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: "90%", height: "50dp", font: { fontSize: "14dp" }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "username", hintText: "Enter Username", value: "" });
 
 		$.__views.main.add($.__views.username);
 		$.__views.password = Ti.UI.createTextField(
-		{ verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", passwordMask: true, borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_DONE, id: "password", hintText: "Enter Password", value: "" });
+		{ borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: "90%", height: "50dp", font: { fontSize: "14dp" }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#fff", passwordMask: true, borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_DONE, id: "password", hintText: "Enter Password", value: "" });
 
 		$.__views.main.add($.__views.password);
 		$.__views.loginAccountButton = Ti.UI.createButton(
-		{ id: "loginAccountButton", borderRadius: 5, backgroundColor: "#CC2228", title: "Login", width: "70%", top: 20, height: 40, color: "#ffffff" });
+		{ borderRadius: 5, backgroundColor: "#CC2228", height: 40, color: "#ffffff", width: "70%", id: "loginAccountButton", title: "Login", top: 20 });
 
 		$.__views.main.add($.__views.loginAccountButton);
 		doLogin ? $.addListener($.__views.loginAccountButton, 'touchend', doLogin) : __defers['$.__views.loginAccountButton!touchend!doLogin'] = true;$.__views.registerAccountButton = Ti.UI.createButton(
-		{ id: "registerAccountButton", borderRadius: 5, backgroundColor: "#7B7B7B", title: "Register for ASP", width: "70%", top: 5, height: 40, color: "#ffffff" });
+		{ borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", id: "registerAccountButton", title: "Register for ASP", top: 5 });
 
 		$.__views.main.add($.__views.registerAccountButton);
 		doASPSignup ? $.addListener($.__views.registerAccountButton, 'touchend', doASPSignup) : __defers['$.__views.registerAccountButton!touchend!doASPSignup'] = true;exports.destroy = function () {};
@@ -116,20 +115,21 @@ function Controller() {
 		var args = arguments[0] || {};
 
 		var singleton = true;
-		common.construct($);
+		var loading = Alloy.createController("loading");
+		$.win.add(loading.getView());
 
 		$.username.value = "";
 
 		var isKeyboardFocus = 0;
 
 		function doLogin(asp_email, asp_password) {
-				common.showLoading();
+				loading.start();
 				var username = $.username.value;
 				var password = $.password.value;
 
 				if (username == "" || password == "") {
 						common.createAlert('Authentication warning', 'Please fill in username and password');
-						common.hideLoading();
+						loading.finish();
 						return;
 				}
 				if (singleton) {

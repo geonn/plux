@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,57 +35,57 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Me - Helpline", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Me - Helpline", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId401 = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId401" });
+  $.__views.__alloyId577 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId577" });
 
-  $.__views.win.add($.__views.__alloyId401);
+  $.__views.win.add($.__views.__alloyId577);
   if (true) {
-    $.__views.__alloyId402 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId402" });
+    $.__views.__alloyId578 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId578" });
 
-    $.__views.__alloyId401.add($.__views.__alloyId402);
-    $.__views.__alloyId403 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId403" });
+    $.__views.__alloyId577.add($.__views.__alloyId578);
+    $.__views.__alloyId579 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId579" });
 
-    $.__views.__alloyId402.add($.__views.__alloyId403);
+    $.__views.__alloyId578.add($.__views.__alloyId579);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId403.add($.__views.btnBack);
-    closeWindow ? $.addListener($.__views.btnBack, 'click', closeWindow) : __defers['$.__views.btnBack!click!closeWindow'] = true;$.__views.__alloyId404 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId404" });
+    $.__views.__alloyId579.add($.__views.btnBack);
+    closeWindow ? $.addListener($.__views.btnBack, 'click', closeWindow) : __defers['$.__views.btnBack!click!closeWindow'] = true;$.__views.__alloyId580 = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId580" });
 
-    $.__views.__alloyId402.add($.__views.__alloyId404);
+    $.__views.__alloyId578.add($.__views.__alloyId580);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Ask Me - Helpline', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Ask Me - Helpline', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId404.add($.__views.pageTitle);
+    $.__views.__alloyId580.add($.__views.pageTitle);
   }
-  $.__views.__alloyId405 = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.FILL, contentWidth: Ti.UI.FILL, id: "__alloyId405" });
+  $.__views.__alloyId581 = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.FILL, contentWidth: Ti.UI.FILL, id: "__alloyId581" });
 
-  $.__views.__alloyId401.add($.__views.__alloyId405);
+  $.__views.__alloyId577.add($.__views.__alloyId581);
   $.__views.chatroom = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "chatroom", backgroundRepeat: true, backgroundImage: "/images/grey-patern-bg.png", bottom: 50, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, transform: Ti.UI.create2DMatrix().rotate(180) });
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "chatroom", backgroundColor: "#f5f5f5", bottom: 50, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, transform: Ti.UI.create2DMatrix().rotate(180) });
 
-  $.__views.__alloyId405.add($.__views.chatroom);
+  $.__views.__alloyId581.add($.__views.chatroom);
   scrollChecker ? $.addListener($.__views.chatroom, 'scroll', scrollChecker) : __defers['$.__views.chatroom!scroll!scrollChecker'] = true;$.__views.inner_area = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "inner_area", bottom: 20 });
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "inner_area", bottom: 20 });
 
   $.__views.chatroom.add($.__views.inner_area);
   $.__views.bottom_bar = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: 50, backgroundColor: "white", bottom: 0, id: "bottom_bar" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: 50, backgroundColor: "white", bottom: 0, id: "bottom_bar" });
 
-  $.__views.__alloyId405.add($.__views.bottom_bar);
+  $.__views.__alloyId581.add($.__views.bottom_bar);
   $.__views.message_bar = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: 40, font: "fontSize: 40", color: "#222222", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: Ti.UI.FILL, backgroundColor: "#ffffff", top: 4, left: 5, right: 50, bottom: 4, id: "message_bar", borderColor: "#ccc" });
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: "fontSize: 40", color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", top: 4, left: 5, right: 50, bottom: 4, id: "message_bar", hintText: "Type a message..." });
 
   $.__views.bottom_bar.add($.__views.message_bar);
   switchIcon ? $.addListener($.__views.message_bar, 'change', switchIcon) : __defers['$.__views.message_bar!change!switchIcon'] = true;$.__views.action_btn = Ti.UI.createView(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "action_btn", right: 0 });
+  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "action_btn", right: 0 });
 
   $.__views.bottom_bar.add($.__views.action_btn);
   $.__views.enter_icon = Ti.UI.createImageView(
@@ -177,7 +176,6 @@ function Controller() {
   }
 
   function addRow(row, latest) {
-    console.log(row);
     var view_container = $.UI.create("View", {
       classes: ['hsize', 'wfill'],
       id: row.id });
@@ -185,7 +183,7 @@ function Controller() {
 
     if (row.sender_id) {
       var view_text_container = $.UI.create("View", {
-        classes: ['hsize', 'vert', 'box', 'bigRounded'],
+        classes: ['hsize', 'vert', 'rounded'],
         top: 5,
         width: "75%",
         transform: Ti.UI.create2DMatrix().rotate(180),
@@ -246,11 +244,17 @@ function Controller() {
 
       view_text_container.add(label_time);
       if (row.is_endUser) {
-        view_text_container.setBackgroundColor("#F1FFE3");
+        view_text_container.setBackgroundColor("#22262f");
+        label_name.color = "#fff";
+        label_message.color = "#fff";
+        label_time.color = "#fff";
         view_text_container.setLeft(10);
 
+
       } else {
-        view_text_container.setBackgroundColor("#FFFFE3");
+        view_text_container.borderWidth = 1;
+        view_text_container.borderColor = "#e9e9e9";
+        view_text_container.setBackgroundColor("#ffffff");
 
         if (typeof args.record != "undefined") {
           var imageview_thumb_path = $.UI.create("ImageView", {
@@ -318,7 +322,7 @@ function Controller() {
     var inner_area = $.inner_area.getChildren();
     for (var i = 0; i < inner_area.length; i++) {
       console.log(row.id + " compare " + inner_area[i].id);
-      if (inner_area[i].id == row.id) {
+      if (inner_area[i].id == row.id && !row.sender_id) {
         found = true;
         console.log(inner_area[i].children[0]);
         console.log(inner_area[i].children[0].children.length);

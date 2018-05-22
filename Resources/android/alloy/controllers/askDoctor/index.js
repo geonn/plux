@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 	var arg = null;
 	if (obj) {
 		arg = obj[key] || null;
-		delete obj[key];
 	}
 	return arg;
 }
@@ -35,12 +34,12 @@ function Controller() {
 
 
 
-	var __alloyId198 = [];$.__views.__alloyId199 = Alloy.createController('askDoctor/find_doctor', { id: "__alloyId199" });
+	var __alloyId210 = [];$.__views.__alloyId211 = Alloy.createController('askDoctor/find_doctor', { id: "__alloyId211" });
 	$.__views.tab1 = Ti.UI.createTab(
-	{ window: $.__views.__alloyId199.getViewEx({ recurse: true }), id: "tab1", title: "Find Doctor" });
+	{ window: $.__views.__alloyId211.getViewEx({ recurse: true }), id: "tab1", title: "Find Doctor" });
 
-	__alloyId198.push($.__views.tab1);$.__views.index = Ti.UI.createTabGroup(
-	{ tabs: __alloyId198, backgroundColor: "white", id: "index" });
+	__alloyId210.push($.__views.tab1);$.__views.index = Ti.UI.createTabGroup(
+	{ tabs: __alloyId210, backgroundColor: "white", id: "index" });
 
 	$.__views.index && $.addTopLevelView($.__views.index);
 	exports.destroy = function () {};

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,7 +35,7 @@ function Controller() {
 
 
   $.__views.panelClinicTbl = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Panel", id: "panelClinicTbl", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Panel", id: "panelClinicTbl", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.panelClinicTbl && $.addTopLevelView($.__views.panelClinicTbl);
   exports.destroy = function () {};

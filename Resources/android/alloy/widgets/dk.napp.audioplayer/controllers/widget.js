@@ -16,7 +16,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -43,19 +42,19 @@ function Controller() {
 
 
   $.__views.wrap = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "wrap", layout: "vertical" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "wrap", layout: "vertical" });
 
   $.__views.wrap && $.addTopLevelView($.__views.wrap);
   $.__views.__alloyId0 = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: 30, id: "__alloyId0" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: 30, id: "__alloyId0" });
 
   $.__views.wrap.add($.__views.__alloyId0);
   $.__views.playStopBtn = Ti.UI.createImageView(
-  { textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT, backgroundColor: "transparent", font: { fontSize: "24dp", fontFamily: "FontAwesome" }, color: "#000", top: 0, width: 30, height: 30, left: 10, right: 10, zIndex: 10, id: "playStopBtn" });
+  { textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT, backgroundColor: "transparent", font: { fontSize: "24dp", fontFamily: "FontAwesome" }, color: "#fff", top: 0, width: 30, height: 30, left: 10, right: 10, zIndex: 10, id: "playStopBtn" });
 
   $.__views.__alloyId0.add($.__views.playStopBtn);
   onPlayStopBtnClicked ? $.addListener($.__views.playStopBtn, 'click', onPlayStopBtnClicked) : __defers['$.__views.playStopBtn!click!onPlayStopBtnClicked'] = true;$.__views.time = Ti.UI.createLabel(
-  { width: Ti.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", font: { fontSize: "14dp" }, right: 0, left: 50, id: "time" });
+  { width: Ti.UI.SIZE, height: Titanium.UI.SIZE, color: "#fff", font: { fontSize: "14dp" }, right: 0, left: 50, id: "time" });
 
   $.__views.__alloyId0.add($.__views.time);
   exports.destroy = function () {};

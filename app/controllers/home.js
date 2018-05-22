@@ -14,51 +14,7 @@ var new_menu = [
 	{mod:"clinicLocator", is_asp:0, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/modern-interior-design-lobby-at-dental-clinic-.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/man-running-in-a-gym-on-a-treadmill-concept-for-exercising-fitness-and-healthy-lifestyle.jpg"},
 ];
-$.shadow_header.hide();
-/*var loadingView = Alloy.createController("loader");
-loadingView.getView().open();
-<<<<<<< HEAD
-loadingView.start();
-
-function loadHomePageItem(){
-	menu_info  =  [
-		{mod:"feedback", image:"/images/btn/btn_feedback.png"},
-		//{mod:"hra", image:"/images/btn/btn_hra.png"},
-		{mod: "myHealth", image:"/images/btn/btn_my_health.png"},
-		{mod:"profile", image:"/images/btn/btn_profile.png"},
-		{mod:"clinicLocator", image:"/images/btn/btn_clinic_location.png"},
-		{mod:"myMedicalRecord", image:"/images/btn/btn_my_medical_record.png"},
-	]; 
-	console.log(Ti.App.Properties.getString('memno')+" Ti.App.Properties.getString('memno')");
-	var memno = Ti.App.Properties.getString('memno') || ""; 
-	if(memno !=""){
-		menu_info.push({mod:"benefit", image:"/images/btn/btn_flexi_benefit.png"});
-		menu_info.push({mod:"askDoctor/find_doctor", image:"/images/btn/btn_doctor.png"});
-		menu_info.push({mod:"eCard_list", image:"/images/btn/btn_asp_e_card_pass.png"});
-		menu_info.push({mod:"inpatient_record", image:"/images/btn/inpatient.png"});
-		menu_info.push({mod:"claimSubmission", image:"/images/btn/btn_claim_submission.png"});
-		menu_info.push({mod:"myClaim", image:"/images/btn/btn_my_claim_detail.png"});
-		menu_info.push({mod:"conversation", image:"/images/btn/btn_ask_me.png"});
-	}
-	menu_info.push({mod:"notification", image:"/images/btn/btn_notification.png"});
-}	
-
-function loadingViewFinish(){
-	 
-	if(OS_IOS){
-		$.navMenu.open();
-	}else{
-		$.win.open();
-	}
-	console.log("loadingViewFinish");
-	loadingView.finish(function(){
-		
-	});
-	init();
-}
-=======
-loadingView.start();*/
->>>>>>> origin/master
+$.shadow_header.hide(); 
 
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');

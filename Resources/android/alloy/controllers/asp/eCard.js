@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -40,61 +39,49 @@ function Controller() {
 
   $.__views.win && $.addTopLevelView($.__views.win);
   $.__views.mainContainer = Ti.UI.createView(
-  { id: "mainContainer", height: Ti.UI.SIZE, width: Ti.UI.FILL });
+  { borderWidth: 0, id: "mainContainer", height: Ti.UI.SIZE, width: Ti.UI.FILL });
 
   $.__views.win.add($.__views.mainContainer);
-  $.__views.loadingBar = Ti.UI.createView(
-  { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
-
-  $.__views.mainContainer.add($.__views.loadingBar);
-  $.__views.activityIndicator = Ti.UI.createActivityIndicator(
-  { top: 10, left: 30, width: 60, id: "activityIndicator" });
-
-  $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId264 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId264" });
-
-  $.__views.loadingBar.add($.__views.__alloyId264);
   $.__views.main = Ti.UI.createView(
-  { id: "main", layout: "vertical" });
+  { borderWidth: 0, id: "main", layout: "vertical" });
 
   $.__views.mainContainer.add($.__views.main);
   if (true) {
-    $.__views.__alloyId265 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId265" });
+    $.__views.__alloyId380 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId380" });
 
-    $.__views.main.add($.__views.__alloyId265);
-    $.__views.__alloyId266 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId266" });
+    $.__views.main.add($.__views.__alloyId380);
+    $.__views.__alloyId381 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId381" });
 
-    $.__views.__alloyId265.add($.__views.__alloyId266);
+    $.__views.__alloyId380.add($.__views.__alloyId381);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId266.add($.__views.btnBack);
-    $.__views.__alloyId267 = Ti.UI.createView(
-    { width: "90%", id: "__alloyId267" });
+    $.__views.__alloyId381.add($.__views.btnBack);
+    $.__views.__alloyId382 = Ti.UI.createView(
+    { borderWidth: 0, width: "90%", id: "__alloyId382" });
 
-    $.__views.__alloyId265.add($.__views.__alloyId267);
+    $.__views.__alloyId380.add($.__views.__alloyId382);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'ASP eCARD', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'ASP eCARD', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId267.add($.__views.pageTitle);
+    $.__views.__alloyId382.add($.__views.pageTitle);
   }
-  $.__views.__alloyId268 = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId268" });
+  $.__views.__alloyId383 = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId383" });
 
-  $.__views.main.add($.__views.__alloyId268);
+  $.__views.main.add($.__views.__alloyId383);
   $.__views.card_container = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "card_container" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "card_container" });
 
-  $.__views.__alloyId268.add($.__views.card_container);
+  $.__views.__alloyId383.add($.__views.card_container);
   $.__views.card = Ti.UI.createView(
-  { height: Ti.UI.SIZE, width: Ti.UI.FILL, top: 0, id: "card" });
+  { borderWidth: 0, height: Ti.UI.SIZE, width: Ti.UI.FILL, top: 0, id: "card" });
 
   $.__views.card_container.add($.__views.card);
   $.__views.qrCode = Ti.UI.createView(
-  { height: Ti.UI.SIZE, width: Ti.UI.FILL, layout: "vertical", bottom: 50, id: "qrCode" });
+  { borderWidth: 0, height: Ti.UI.SIZE, width: Ti.UI.FILL, layout: "vertical", bottom: 50, id: "qrCode" });
 
   $.__views.card_container.add($.__views.qrCode);
   exports.destroy = function () {};
@@ -214,7 +201,7 @@ function Controller() {
     var dateTimeNow = currentDateTime();
     var userQR = qrcode.QRCode({
       typeNumber: 10,
-      errorCorrectLevel: 'M' });
+      errorCorrectLevel: 'L' });
 
 
     var qrcodeView = userQR.createQRCodeView({

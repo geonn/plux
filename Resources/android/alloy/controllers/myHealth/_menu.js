@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,17 +35,17 @@ function Controller() {
 
 
   $.__views.typeWindowPopUp = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, opacity: 0, id: "typeWindowPopUp" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, opacity: 0, id: "typeWindowPopUp" });
 
   $.__views.typeWindowPopUp && $.addTopLevelView($.__views.typeWindowPopUp);
-  $.__views.__alloyId511 = Ti.UI.createView(
-  { right: 3, top: 48, width: "70%", height: 90, borderRadius: 5, borderColor: "#FC7474", borderWidth: 1, layout: "vertical", id: "__alloyId511" });
+  $.__views.__alloyId745 = Ti.UI.createView(
+  { borderWidth: 1, right: 3, top: 48, width: "70%", height: 90, borderRadius: 5, borderColor: "#FC7474", layout: "vertical", id: "__alloyId745" });
 
-  $.__views.typeWindowPopUp.add($.__views.__alloyId511);
+  $.__views.typeWindowPopUp.add($.__views.__alloyId745);
   $.__views.popup_view = Ti.UI.createView(
-  { id: "popup_view", layout: "horizontal", width: "100%" });
+  { borderWidth: 0, id: "popup_view", layout: "horizontal", width: "100%" });
 
-  $.__views.__alloyId511.add($.__views.popup_view);
+  $.__views.__alloyId745.add($.__views.popup_view);
   exports.destroy = function () {};
 
 

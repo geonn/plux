@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,34 +35,34 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
   $.__views.main = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "main", backgroundColor: "#ffffff" });
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "main", backgroundColor: "#ffffff" });
 
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId667 = Ti.UI.createView(
-    { layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId667" });
+    $.__views.__alloyId901 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId901" });
 
-    $.__views.main.add($.__views.__alloyId667);
-    $.__views.__alloyId668 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId668" });
+    $.__views.main.add($.__views.__alloyId901);
+    $.__views.__alloyId902 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId902" });
 
-    $.__views.__alloyId667.add($.__views.__alloyId668);
+    $.__views.__alloyId901.add($.__views.__alloyId902);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId668.add($.__views.btnBack);
+    $.__views.__alloyId902.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView(
-    { id: "pageTitle", width: "80%" });
+    { borderWidth: 0, id: "pageTitle", width: "80%" });
 
-    $.__views.__alloyId667.add($.__views.pageTitle);
-    $.__views.__alloyId669 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId669" });
+    $.__views.__alloyId901.add($.__views.pageTitle);
+    $.__views.__alloyId903 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId903" });
 
-    $.__views.pageTitle.add($.__views.__alloyId669);
+    $.__views.pageTitle.add($.__views.__alloyId903);
   }
   $.__views.menu = Ti.UI.createScrollView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "menu", backgroundColor: "#EBEBEB" });

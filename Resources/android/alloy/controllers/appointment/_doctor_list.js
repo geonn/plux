@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,7 +35,7 @@ function Controller() {
 
 
   $.__views.doctorContainer = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "doctorContainer" });
 
   $.__views.doctorContainer && $.addTopLevelView($.__views.doctorContainer);
   exports.destroy = function () {};

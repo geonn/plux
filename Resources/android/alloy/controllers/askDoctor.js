@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,50 +35,50 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Doctor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Doctor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId145 = Ti.UI.createView(
-  { id: "__alloyId145" });
+  $.__views.__alloyId157 = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId157" });
 
   $.__views.newRecord = Ti.UI.createImageView(
   { left: 10, id: "newRecord", width: 25, height: 20, image: "/images/add.png" });
 
-  $.__views.__alloyId145.add($.__views.newRecord);
-  navFindDoctor ? $.addListener($.__views.newRecord, 'click', navFindDoctor) : __defers['$.__views.newRecord!click!navFindDoctor'] = true;$.__views.win.rightNavButton = $.__views.__alloyId145;$.__views.aView = Ti.UI.createView(
-  { id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
+  $.__views.__alloyId157.add($.__views.newRecord);
+  navFindDoctor ? $.addListener($.__views.newRecord, 'click', navFindDoctor) : __defers['$.__views.newRecord!click!navFindDoctor'] = true;$.__views.win.rightNavButton = $.__views.__alloyId157;$.__views.aView = Ti.UI.createView(
+  { borderWidth: 0, id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
 
   $.__views.win.add($.__views.aView);
   if (true) {
-    $.__views.__alloyId146 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId146" });
+    $.__views.__alloyId158 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId158" });
 
-    $.__views.aView.add($.__views.__alloyId146);
-    $.__views.__alloyId147 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId147" });
+    $.__views.aView.add($.__views.__alloyId158);
+    $.__views.__alloyId159 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId159" });
 
-    $.__views.__alloyId146.add($.__views.__alloyId147);
+    $.__views.__alloyId158.add($.__views.__alloyId159);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId147.add($.__views.btnBack);
-    $.__views.__alloyId148 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId148" });
+    $.__views.__alloyId159.add($.__views.btnBack);
+    $.__views.__alloyId160 = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId160" });
 
-    $.__views.__alloyId146.add($.__views.__alloyId148);
+    $.__views.__alloyId158.add($.__views.__alloyId160);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Ask Doctor', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Ask Doctor', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId148.add($.__views.pageTitle);
-    $.__views.__alloyId149 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId149" });
+    $.__views.__alloyId160.add($.__views.pageTitle);
+    $.__views.__alloyId161 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId161" });
 
-    $.__views.__alloyId146.add($.__views.__alloyId149);
-    $.__views.__alloyId150 = Ti.UI.createImageView(
-    { width: 25, height: 20, image: "/images/add.png", id: "__alloyId150" });
+    $.__views.__alloyId158.add($.__views.__alloyId161);
+    $.__views.__alloyId162 = Ti.UI.createImageView(
+    { width: 25, height: 20, image: "/images/add.png", id: "__alloyId162" });
 
-    $.__views.__alloyId149.add($.__views.__alloyId150);
-    navFindDoctor ? $.addListener($.__views.__alloyId150, 'click', navFindDoctor) : __defers['$.__views.__alloyId150!click!navFindDoctor'] = true;}
+    $.__views.__alloyId161.add($.__views.__alloyId162);
+    navFindDoctor ? $.addListener($.__views.__alloyId162, 'click', navFindDoctor) : __defers['$.__views.__alloyId162!click!navFindDoctor'] = true;}
   $.__views.conversation_list = Ti.UI.createScrollView(
   { top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentWidth: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, id: "conversation_list" });
 
@@ -362,7 +361,7 @@ function Controller() {
 
 
   __defers['$.__views.newRecord!click!navFindDoctor'] && $.addListener($.__views.newRecord, 'click', navFindDoctor);if (true) {
-    __defers['$.__views.__alloyId150!click!navFindDoctor'] && $.addListener($.__views.__alloyId150, 'click', navFindDoctor);}
+    __defers['$.__views.__alloyId162!click!navFindDoctor'] && $.addListener($.__views.__alloyId162, 'click', navFindDoctor);}
 
 
 

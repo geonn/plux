@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,46 +35,46 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "Clinic Type List", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "Clinic Type List", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId395 = Ti.UI.createImageView(
-  { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId395" });
+  $.__views.__alloyId571 = Ti.UI.createImageView(
+  { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId571" });
 
-  doRefresh ? $.addListener($.__views.__alloyId395, 'click', doRefresh) : __defers['$.__views.__alloyId395!click!doRefresh'] = true;$.__views.win.rightNavButton = $.__views.__alloyId395;$.__views.panelListTbl = Ti.UI.createView(
-  { layout: "vertical", id: "panelListTbl" });
+  doRefresh ? $.addListener($.__views.__alloyId571, 'click', doRefresh) : __defers['$.__views.__alloyId571!click!doRefresh'] = true;$.__views.win.rightNavButton = $.__views.__alloyId571;$.__views.panelListTbl = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", id: "panelListTbl" });
 
   $.__views.win.add($.__views.panelListTbl);
   if (true) {
-    $.__views.__alloyId396 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId396" });
+    $.__views.__alloyId572 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId572" });
 
-    $.__views.panelListTbl.add($.__views.__alloyId396);
-    $.__views.__alloyId397 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId397" });
+    $.__views.panelListTbl.add($.__views.__alloyId572);
+    $.__views.__alloyId573 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId573" });
 
-    $.__views.__alloyId396.add($.__views.__alloyId397);
+    $.__views.__alloyId572.add($.__views.__alloyId573);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId397.add($.__views.btnBack);
-    $.__views.__alloyId398 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId398" });
+    $.__views.__alloyId573.add($.__views.btnBack);
+    $.__views.__alloyId574 = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId574" });
 
-    $.__views.__alloyId396.add($.__views.__alloyId398);
+    $.__views.__alloyId572.add($.__views.__alloyId574);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Clinic Type List', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Clinic Type List', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId398.add($.__views.pageTitle);
-    $.__views.__alloyId399 = Ti.UI.createView(
-    { right: 0, width: "20%", id: "__alloyId399" });
+    $.__views.__alloyId574.add($.__views.pageTitle);
+    $.__views.__alloyId575 = Ti.UI.createView(
+    { borderWidth: 0, right: 0, width: "20%", id: "__alloyId575" });
 
-    $.__views.__alloyId396.add($.__views.__alloyId399);
-    $.__views.__alloyId400 = Ti.UI.createImageView(
-    { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId400" });
+    $.__views.__alloyId572.add($.__views.__alloyId575);
+    $.__views.__alloyId576 = Ti.UI.createImageView(
+    { right: 10, width: 25, height: 25, image: "/images/icon_refresh.png", id: "__alloyId576" });
 
-    $.__views.__alloyId399.add($.__views.__alloyId400);
-    doRefresh ? $.addListener($.__views.__alloyId400, 'click', doRefresh) : __defers['$.__views.__alloyId400!click!doRefresh'] = true;}
+    $.__views.__alloyId575.add($.__views.__alloyId576);
+    doRefresh ? $.addListener($.__views.__alloyId576, 'click', doRefresh) : __defers['$.__views.__alloyId576!click!doRefresh'] = true;}
   $.__views.tblview = Ti.UI.createTableView(
   { id: "tblview", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0 });
 
@@ -224,8 +223,8 @@ function Controller() {
 
 
 
-  __defers['$.__views.__alloyId395!click!doRefresh'] && $.addListener($.__views.__alloyId395, 'click', doRefresh);if (true) {
-    __defers['$.__views.__alloyId400!click!doRefresh'] && $.addListener($.__views.__alloyId400, 'click', doRefresh);}
+  __defers['$.__views.__alloyId571!click!doRefresh'] && $.addListener($.__views.__alloyId571, 'click', doRefresh);if (true) {
+    __defers['$.__views.__alloyId576!click!doRefresh'] && $.addListener($.__views.__alloyId576, 'click', doRefresh);}
 
 
 

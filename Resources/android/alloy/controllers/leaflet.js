@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,27 +35,27 @@ function Controller() {
 
 
   $.__views.leaftletWin = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Leaflet", backButtonTitle: "", id: "leaftletWin", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Health Leaflet", backButtonTitle: "", id: "leaftletWin", navTintColor: "#CE1D1C" });
 
   $.__views.leaftletWin && $.addTopLevelView($.__views.leaftletWin);
   $.__views.brochureView = Ti.UI.createView(
-  { id: "brochureView", backgroundColor: "#828282" });
+  { borderWidth: 0, id: "brochureView", backgroundColor: "#828282" });
 
   $.__views.leaftletWin.add($.__views.brochureView);
   $.__views.bigView = Ti.UI.createScrollView(
   { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
 
   $.__views.brochureView.add($.__views.bigView);
-  $.__views.__alloyId498 = Ti.UI.createView(
-  { layout: "vertical", id: "__alloyId498" });
+  $.__views.__alloyId721 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", id: "__alloyId721" });
 
-  $.__views.brochureView.add($.__views.__alloyId498);
+  $.__views.brochureView.add($.__views.__alloyId721);
   $.__views.scrollview = Ti.UI.createScrollView(
   { top: 15, id: "scrollview", layout: "vertical" });
 
-  $.__views.__alloyId498.add($.__views.scrollview);
+  $.__views.__alloyId721.add($.__views.scrollview);
   $.__views.mainView = Ti.UI.createView(
-  { id: "mainView", layout: "vertical", height: Ti.UI.SIZE, width: "100%" });
+  { borderWidth: 0, id: "mainView", layout: "vertical", height: Ti.UI.SIZE, width: "100%" });
 
   $.__views.scrollview.add($.__views.mainView);
   exports.destroy = function () {};

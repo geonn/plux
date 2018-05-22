@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 	var arg = null;
 	if (obj) {
 		arg = obj[key] || null;
-		delete obj[key];
 	}
 	return arg;
 }
@@ -36,25 +35,25 @@ function Controller() {
 
 
 	$.__views.win = Ti.UI.createWindow(
-	{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Flexi-Benefit", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
+	{ backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Flexi-Benefit", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
 	$.__views.win && $.addTopLevelView($.__views.win);
-	$.__views.__alloyId208 = Ti.UI.createView(
-	{ layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId208" });
+	$.__views.__alloyId224 = Ti.UI.createView(
+	{ borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId224" });
 
-	$.__views.win.add($.__views.__alloyId208);
+	$.__views.win.add($.__views.__alloyId224);
 	$.__views.surveyView = Ti.UI.createWebView(
 	{ width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView", url: "http://flexi.freejini.com.my/" });
 
-	$.__views.__alloyId208.add($.__views.surveyView);
+	$.__views.__alloyId224.add($.__views.surveyView);
 	$.__views.defaultMsgView = Ti.UI.createView(
-	{ layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
+	{ borderWidth: 0, layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
 	$.__views.win.add($.__views.defaultMsgView);
-	$.__views.__alloyId209 = Ti.UI.createLabel(
-	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#606060", text: 'Page not found.', id: "__alloyId209" });
+	$.__views.__alloyId225 = Ti.UI.createLabel(
+	{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", text: 'Page not found.', id: "__alloyId225" });
 
-	$.__views.defaultMsgView.add($.__views.__alloyId209);
+	$.__views.defaultMsgView.add($.__views.__alloyId225);
 	exports.destroy = function () {};
 
 

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,51 +35,51 @@ function Controller() {
 
 
   $.__views.clinicNearby = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Clinic Nearby", id: "clinicNearby", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Clinic Nearby", id: "clinicNearby", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.clinicNearby && $.addTopLevelView($.__views.clinicNearby);
   $.__views.win_map = Ti.UI.createView(
-  { id: "win_map", layout: "vertical" });
+  { borderWidth: 0, id: "win_map", layout: "vertical" });
 
   $.__views.clinicNearby.add($.__views.win_map);
   if (true) {
-    $.__views.__alloyId390 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId390" });
+    $.__views.__alloyId550 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId550" });
 
-    $.__views.win_map.add($.__views.__alloyId390);
-    $.__views.__alloyId391 = Ti.UI.createView(
-    { left: 0, width: "20%", id: "__alloyId391" });
+    $.__views.win_map.add($.__views.__alloyId550);
+    $.__views.__alloyId551 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId551" });
 
-    $.__views.__alloyId390.add($.__views.__alloyId391);
+    $.__views.__alloyId550.add($.__views.__alloyId551);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId391.add($.__views.btnBack);
-    $.__views.__alloyId392 = Ti.UI.createView(
-    { width: "60%", id: "__alloyId392" });
+    $.__views.__alloyId551.add($.__views.btnBack);
+    $.__views.__alloyId552 = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId552" });
 
-    $.__views.__alloyId390.add($.__views.__alloyId392);
+    $.__views.__alloyId550.add($.__views.__alloyId552);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Clinic Nearby', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Clinic Nearby', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId392.add($.__views.pageTitle);
+    $.__views.__alloyId552.add($.__views.pageTitle);
   }
   $.__views.clinicNearbySv = Ti.UI.createScrollView(
   { id: "clinicNearbySv" });
 
   $.__views.win_map.add($.__views.clinicNearbySv);
   $.__views.loadingBar = Ti.UI.createView(
-  { layout: "vertical", id: "loadingBar", height: 120, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+  { borderWidth: 0, layout: "vertical", id: "loadingBar", height: 120, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
 
   $.__views.clinicNearby.add($.__views.loadingBar);
   $.__views.activityIndicator = Ti.UI.createActivityIndicator(
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.__alloyId393 = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId393" });
+  $.__views.__alloyId553 = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", top: 5, bottom: 10, text: "Loading", id: "__alloyId553" });
 
-  $.__views.loadingBar.add($.__views.__alloyId393);
+  $.__views.loadingBar.add($.__views.__alloyId553);
   exports.destroy = function () {};
 
 

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -40,11 +39,11 @@ function Controller() {
 
   $.__views.main && $.addTopLevelView($.__views.main);
   $.__views.__alloyId16 = Ti.UI.createView(
-  { backgroundColor: "#ddd", height: Ti.UI.SIZE, id: "__alloyId16" });
+  { borderWidth: 0, backgroundColor: "#ddd", height: Ti.UI.SIZE, id: "__alloyId16" });
 
   $.__views.main.add($.__views.__alloyId16);
   $.__views.name = Ti.UI.createLabel(
-  { width: Titanium.UI.FILL, height: 30, color: "#606060", font: { fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, id: "name", wordWrap: false, ellipsize: true });
+  { width: Titanium.UI.FILL, height: 30, color: "#111111", font: { fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, id: "name", wordWrap: false, ellipsize: true });
 
   $.__views.__alloyId16.add($.__views.name);
   exports.destroy = function () {};

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 		var arg = null;
 		if (obj) {
 				arg = obj[key] || null;
-				delete obj[key];
 		}
 		return arg;
 }
@@ -36,40 +35,40 @@ function Controller() {
 
 
 		$.__views.news = Ti.UI.createWindow(
-		{ backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "", backButtonTitle: "", id: "news", navTintColor: "#CE1D1C" });
+		{ backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "", backButtonTitle: "", id: "news", navTintColor: "#CE1D1C" });
 
 		$.__views.news && $.addTopLevelView($.__views.news);
 		$.__views.main = Ti.UI.createView(
-		{ backgroundColor: "#ffffff", height: Titanium.UI.FILL, width: Titanium.UI.FILL, id: "main", layout: "vertical" });
+		{ borderWidth: 0, backgroundColor: "#ffffff", height: Titanium.UI.FILL, width: Titanium.UI.FILL, id: "main", layout: "vertical" });
 
 		$.__views.news.add($.__views.main);
 		if (true) {
-				$.__views.__alloyId732 = Ti.UI.createView(
-				{ layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId732" });
+				$.__views.__alloyId966 = Ti.UI.createView(
+				{ borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId966" });
 
-				$.__views.main.add($.__views.__alloyId732);
-				$.__views.__alloyId733 = Ti.UI.createView(
-				{ left: 0, width: "20%", id: "__alloyId733" });
+				$.__views.main.add($.__views.__alloyId966);
+				$.__views.__alloyId967 = Ti.UI.createView(
+				{ borderWidth: 0, left: 0, width: "20%", id: "__alloyId967" });
 
-				$.__views.__alloyId732.add($.__views.__alloyId733);
+				$.__views.__alloyId966.add($.__views.__alloyId967);
 				$.__views.btnBack = Ti.UI.createImageView(
 				{ left: 10, id: "btnBack", height: 25, image: "/images/btn-back.png" });
 
-				$.__views.__alloyId733.add($.__views.btnBack);
-				$.__views.__alloyId734 = Ti.UI.createView(
-				{ width: "60%", id: "__alloyId734" });
+				$.__views.__alloyId967.add($.__views.btnBack);
+				$.__views.__alloyId968 = Ti.UI.createView(
+				{ borderWidth: 0, width: "60%", id: "__alloyId968" });
 
-				$.__views.__alloyId732.add($.__views.__alloyId734);
+				$.__views.__alloyId966.add($.__views.__alloyId968);
 				$.__views.pageTitle = Ti.UI.createLabel(
-				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Article', id: "pageTitle", textAlign: "center" });
+				{ width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Health Article', id: "pageTitle", textAlign: "center" });
 
-				$.__views.__alloyId734.add($.__views.pageTitle);
+				$.__views.__alloyId968.add($.__views.pageTitle);
 		}
-		var __alloyId736 = [];
+		var __alloyId970 = [];
 		$.__views.myContentView = Ti.UI.createScrollView(
 		{ height: Titanium.UI.FILL, width: Titanium.UI.FILL, layout: "vertical", id: "myContentView", contentHeight: "auto", contentWidth: Ti.UI.FILL });
 
-		__alloyId736.push($.__views.myContentView);
+		__alloyId970.push($.__views.myContentView);
 		$.__views.newsTitle = Ti.UI.createLabel(
 		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#1C1C1C", wordWrap: true, font: { fontSize: "20dp" }, left: "10dp", right: "10dp", bottom: "10dp", top: "10dp", id: "newsTitle" });
 
@@ -82,10 +81,10 @@ function Controller() {
 		{ width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#9E9E9E", font: { fontSize: "10dp" }, left: "8dp", top: "8dp", id: "newsDate" });
 
 		$.__views.myContentView.add($.__views.newsDate);
-		$.__views.__alloyId735 = Ti.UI.createScrollableView(
-		{ views: __alloyId736, showPagingControl: false, id: "__alloyId735" });
+		$.__views.__alloyId969 = Ti.UI.createScrollableView(
+		{ views: __alloyId970, showPagingControl: false, id: "__alloyId969" });
 
-		$.__views.main.add($.__views.__alloyId735);
+		$.__views.main.add($.__views.__alloyId969);
 		exports.destroy = function () {};
 
 

@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,78 +35,86 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Plux Signup", id: "win", layout: "vertical" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Plux Signup", id: "win" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId799 = Ti.UI.createView(
-  { top: 0, height: 50, backgroundColor: "#E8E8E8", id: "__alloyId799" });
+  $.__views.__alloyId1033 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId1033" });
 
-  $.__views.win.add($.__views.__alloyId799);
+  $.__views.win.add($.__views.__alloyId1033);
+  $.__views.__alloyId1034 = Ti.UI.createView(
+  { borderWidth: 0, top: 0, height: 50, backgroundColor: "#E8E8E8", id: "__alloyId1034" });
+
+  $.__views.__alloyId1033.add($.__views.__alloyId1034);
   $.__views.backButton = Ti.UI.createView(
-  { left: 0, zIndex: 9, id: "backButton", width: "20%" });
+  { borderWidth: 0, left: 0, zIndex: 9, id: "backButton", width: "20%" });
 
-  $.__views.__alloyId799.add($.__views.backButton);
-  closeWin ? $.addListener($.__views.backButton, 'click', closeWin) : __defers['$.__views.backButton!click!closeWin'] = true;$.__views.__alloyId800 = Ti.UI.createImageView(
-  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId800" });
+  $.__views.__alloyId1034.add($.__views.backButton);
+  closeWin ? $.addListener($.__views.backButton, 'click', closeWin) : __defers['$.__views.backButton!click!closeWin'] = true;$.__views.__alloyId1035 = Ti.UI.createImageView(
+  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId1035" });
 
-  $.__views.backButton.add($.__views.__alloyId800);
-  $.__views.__alloyId801 = Ti.UI.createView(
-  { id: "__alloyId801" });
+  $.__views.backButton.add($.__views.__alloyId1035);
+  $.__views.__alloyId1036 = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId1036" });
 
-  $.__views.__alloyId799.add($.__views.__alloyId801);
+  $.__views.__alloyId1034.add($.__views.__alloyId1036);
   $.__views.titleLbl = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#CE1D1C", text: 'Sign Up PLUX', id: "titleLbl", textAlign: "center" });
+  { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#A52430", text: 'Signup', id: "titleLbl", textAlign: "center" });
 
-  $.__views.__alloyId801.add($.__views.titleLbl);
-  $.__views.__alloyId802 = Ti.UI.createView(
-  { id: "__alloyId802" });
+  $.__views.__alloyId1036.add($.__views.titleLbl);
+  $.__views.__alloyId1037 = Ti.UI.createImageView(
+  { borderRadius: 10, width: 120, height: 120, backgroundColor: "#ff0000", bottom: "10dp", top: "10dp", image: "/images/logo_plux.png", id: "__alloyId1037" });
 
-  $.__views.win.add($.__views.__alloyId802);
-  $.__views.loadingBar = Ti.UI.createView(
-  { layout: "vertical", id: "loadingBar", height: 0, width: 120, borderRadius: 15, backgroundColor: "#2E2E2E" });
+  $.__views.__alloyId1033.add($.__views.__alloyId1037);
+  $.__views.forms = Ti.UI.createScrollView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "forms" });
 
-  $.__views.__alloyId802.add($.__views.loadingBar);
-  $.__views.activityIndicator = Ti.UI.createActivityIndicator(
-  { top: 10, left: 30, width: 60, id: "activityIndicator" });
+  $.__views.__alloyId1033.add($.__views.forms);
+  $.__views.fullname = Ti.UI.createView(
+  { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "fullname", value: "" });
 
-  $.__views.loadingBar.add($.__views.activityIndicator);
-  $.__views.main = Ti.UI.createScrollView(
-  { id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
+  $.__views.forms.add($.__views.fullname);
+  $.__views.__alloyId1038 = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, hintText: "Full Name *", required: 1, left: 5, value: "", id: "__alloyId1038" });
 
-  $.__views.__alloyId802.add($.__views.main);
-  $.__views.__alloyId803 = Ti.UI.createImageView(
-  { borderRadius: 10, width: 120, height: 120, backgroundColor: "#ff0000", bottom: "10dp", top: "10dp", image: "/images/logo_plux.png", id: "__alloyId803" });
+  $.__views.fullname.add($.__views.__alloyId1038);
+  textFieldOnBlur ? $.addListener($.__views.__alloyId1038, 'change', textFieldOnBlur) : __defers['$.__views.__alloyId1038!change!textFieldOnBlur'] = true;$.__views.email = Ti.UI.createView(
+  { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "email", value: "" });
 
-  $.__views.main.add($.__views.__alloyId803);
-  $.__views.fullname = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "fullname", hintText: "Enter Full Name", value: "" });
+  $.__views.forms.add($.__views.email);
+  $.__views.__alloyId1039 = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, hintText: "Email *", required: 1, left: 5, value: "", id: "__alloyId1039" });
 
-  $.__views.main.add($.__views.fullname);
-  $.__views.email = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "email", hintText: "Enter Email", value: "" });
+  $.__views.email.add($.__views.__alloyId1039);
+  textFieldOnBlur ? $.addListener($.__views.__alloyId1039, 'change', textFieldOnBlur) : __defers['$.__views.__alloyId1039!change!textFieldOnBlur'] = true;$.__views.ic_no = Ti.UI.createView(
+  { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "ic_no", value: "" });
 
-  $.__views.main.add($.__views.email);
-  $.__views.ic_no = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", borderColor: "#cccccc", paddingLeft: "20dp", paddingRight: "20dp", bottom: "5dp", keyboardType: Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD, returnKeyType: Titanium.UI.RETURNKEY_NEXT, id: "ic_no", hintText: "Enter Your IC", value: "" });
+  $.__views.forms.add($.__views.ic_no);
+  $.__views.__alloyId1040 = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, hintText: "IC / Passport *", required: 1, left: 5, value: "", id: "__alloyId1040" });
 
-  $.__views.main.add($.__views.ic_no);
-  $.__views.password = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", passwordMask: true, borderColor: "#cccccc", bottom: "5dp", paddingLeft: "20dp", paddingRight: "20dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_DONE, id: "password", hintText: "Enter Password", value: "" });
+  $.__views.ic_no.add($.__views.__alloyId1040);
+  textFieldOnBlur ? $.addListener($.__views.__alloyId1040, 'change', textFieldOnBlur) : __defers['$.__views.__alloyId1040!change!textFieldOnBlur'] = true;$.__views.password = Ti.UI.createView(
+  { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "password", value: "" });
 
-  $.__views.main.add($.__views.password);
-  $.__views.confirm = Ti.UI.createTextField(
-  { verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER, height: "50dp", font: { fontSize: "14dp" }, color: "#000000", borderWidth: "1px", borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, width: "90%", backgroundColor: "#fff", passwordMask: true, borderColor: "#cccccc", bottom: "5dp", paddingLeft: "20dp", paddingRight: "20dp", keyboardType: Titanium.UI.KEYBOARD_DEFAULT, returnKeyType: Titanium.UI.RETURNKEY_DONE, id: "confirm", hintText: "Enter Confirm Password", value: "" });
+  $.__views.forms.add($.__views.password);
+  $.__views.__alloyId1041 = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Password *", required: 1, left: 5, value: "", id: "__alloyId1041" });
 
-  $.__views.main.add($.__views.confirm);
-  $.__views.tc_area = Ti.UI.createView(
-  { id: "tc_area", layout: "vertical", height: Ti.UI.SIZE, width: Ti.UI.FILL });
+  $.__views.password.add($.__views.__alloyId1041);
+  textFieldOnBlur ? $.addListener($.__views.__alloyId1041, 'change', textFieldOnBlur) : __defers['$.__views.__alloyId1041!change!textFieldOnBlur'] = true;$.__views.password2 = Ti.UI.createView(
+  { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "password2", value: "" });
 
-  $.__views.main.add($.__views.tc_area);
-  $.__views.sign_btn = Ti.UI.createButton(
-  { id: "sign_btn", borderRadius: 5, backgroundColor: "#CC2228", title: "Sign Up", width: "60%", top: 20, height: 40, bottom: 20, color: "#ffffff" });
+  $.__views.forms.add($.__views.password2);
+  $.__views.__alloyId1042 = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Confirm Password *", required: 1, left: 5, value: "", id: "__alloyId1042" });
 
-  $.__views.main.add($.__views.sign_btn);
-  doSignup ? $.addListener($.__views.sign_btn, 'click', doSignup) : __defers['$.__views.sign_btn!click!doSignup'] = true;exports.destroy = function () {};
+  $.__views.password2.add($.__views.__alloyId1042);
+  textFieldOnBlur ? $.addListener($.__views.__alloyId1042, 'change', textFieldOnBlur) : __defers['$.__views.__alloyId1042!change!textFieldOnBlur'] = true;$.__views.sign_btn = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#CC2228", height: 40, color: "#ffffff", width: "70%", id: "sign_btn", title: "Sign Up", top: 10, bottom: 10 });
+
+  $.__views.forms.add($.__views.sign_btn);
+  doSubmit ? $.addListener($.__views.sign_btn, 'click', doSubmit) : __defers['$.__views.sign_btn!click!doSubmit'] = true;exports.destroy = function () {};
 
 
 
@@ -117,13 +124,13 @@ function Controller() {
 
   var args = arguments[0] || {};
   var nav = Alloy.Globals.navMenu;
-  common.construct($);
   var loading = Alloy.createController('loading');
-  var view_agreement_box = common.CheckboxwithText("Agree to all the ", "terms and conditions", { name: "agreets" }, "tnc");
-  $.tc_area.add(view_agreement_box);
+  var error_message = "";
+
 
   var isKeyboardFocus = 0;
   $.win.add(loading.getView());
+
   function closeWin() {
     $.win.close();
   }
@@ -187,11 +194,71 @@ function Controller() {
     });
   }
 
+  function textFieldOnBlur(e) {
+    checkRequired(e.source);
+  }
+
+  function checkRequired(obj) {
+    console.log(obj.value + " check value" + obj.required);
+    if (obj.required && obj.value == "") {
+      error_message += obj.hintText + " cannot be empty\n";
+      obj.parent.backgroundColor = "#e8534c";
+    } else {
+      obj.parent.backgroundColor = "#55a939";
+    }
+  }
+
+  function doSubmit() {
+    var forms_arr = $.forms.getChildren();
+    var params = {};
+    var error_message = "";
+    for (var i = 0; i < forms_arr.length - 1; i++) {
+
+      console.log(forms_arr[i].id + " " + forms_arr[i].children[0].value);
+      if (forms_arr[i].format == "photo" && forms_arr[i].children[2].attached) {
+        _.extend(params, { Filedata: forms_arr[i].children[2].filedata });
+      } else if (forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached) {
+        error_message += "Please upload your referral letter\n";
+      } else {
+        console.log(forms_arr[i].children[0].value + " " + forms_arr[i].children[0].required);
+        if (forms_arr[i].children[0].required && forms_arr[i].children[0].value == "") {
+          console.log(_.isUndefined(forms_arr[i].children[0].value) + " _.isEmpty(forms_arr[i].children[0].value)");
+          error_message += forms_arr[i].children[0].hintText + " cannot be empty\n";
+        } else {
+          params[forms_arr[i].id] = forms_arr[i].children[0].value.trim();
+        }
+      }
+      if (forms_arr[i].id == "password2") {
+        if (forms_arr[i].children[0].value != forms_arr[i - 1].children[0].value) {
+          error_message += "Your password are not match\n";
+        }
+      }
+    };
+    if (error_message != "") {
+      alert(error_message);
+      return;
+    }
+    params["agreets"] = 1;
+    console.log(params);
+    loading.start();
+    API.callByPost({ url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params }, function (responseText) {
+      console.log(responseText);
+      var result = JSON.parse(responseText);
+      if (result.status == "error") {
+        common.createAlert("Error", result.data);
+      } else {
+        $.win.close();
+        Ti.App.fireEvent('loginAfterRegister', { params: params });
+        loading.finish();
+      }
+    });
+  }
 
 
 
 
-  __defers['$.__views.backButton!click!closeWin'] && $.addListener($.__views.backButton, 'click', closeWin);__defers['$.__views.sign_btn!click!doSignup'] && $.addListener($.__views.sign_btn, 'click', doSignup);
+
+  __defers['$.__views.backButton!click!closeWin'] && $.addListener($.__views.backButton, 'click', closeWin);__defers['$.__views.__alloyId1038!change!textFieldOnBlur'] && $.addListener($.__views.__alloyId1038, 'change', textFieldOnBlur);__defers['$.__views.__alloyId1039!change!textFieldOnBlur'] && $.addListener($.__views.__alloyId1039, 'change', textFieldOnBlur);__defers['$.__views.__alloyId1040!change!textFieldOnBlur'] && $.addListener($.__views.__alloyId1040, 'change', textFieldOnBlur);__defers['$.__views.__alloyId1041!change!textFieldOnBlur'] && $.addListener($.__views.__alloyId1041, 'change', textFieldOnBlur);__defers['$.__views.__alloyId1042!change!textFieldOnBlur'] && $.addListener($.__views.__alloyId1042, 'change', textFieldOnBlur);__defers['$.__views.sign_btn!click!doSubmit'] && $.addListener($.__views.sign_btn, 'click', doSubmit);
 
 
 

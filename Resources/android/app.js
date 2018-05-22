@@ -232,14 +232,6 @@ function removeAllChildren(viewObject) {
 	}
 }
 
-
-
-Titanium.App.addEventListener('resumed', function (e) {
-	if (false) {
-		Titanium.UI.iPhone.setAppBadge("0");
-	}
-});
-
 function parent(keys, ex) {
 
 	var key = keys;

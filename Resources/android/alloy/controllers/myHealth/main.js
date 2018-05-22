@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,49 +35,49 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId671 = Ti.UI.createView(
-  { id: "__alloyId671" });
+  $.__views.__alloyId905 = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId905" });
 
   $.__views.moreHealth = Ti.UI.createImageView(
   { right: 0, id: "moreHealth", width: 30, image: "/images/health_love.png" });
 
-  $.__views.__alloyId671.add($.__views.moreHealth);
-  $.__views.win.rightNavButton = $.__views.__alloyId671;$.__views.main = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "main", backgroundColor: "#ffffff" });
+  $.__views.__alloyId905.add($.__views.moreHealth);
+  $.__views.win.rightNavButton = $.__views.__alloyId905;$.__views.main = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "main", backgroundColor: "#ffffff" });
 
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId672 = Ti.UI.createView(
-    { layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId672" });
+    $.__views.__alloyId906 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId906" });
 
-    $.__views.main.add($.__views.__alloyId672);
-    $.__views.__alloyId673 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId673" });
+    $.__views.main.add($.__views.__alloyId906);
+    $.__views.__alloyId907 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId907" });
 
-    $.__views.__alloyId672.add($.__views.__alloyId673);
+    $.__views.__alloyId906.add($.__views.__alloyId907);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId673.add($.__views.btnBack);
+    $.__views.__alloyId907.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView(
-    { id: "pageTitle", width: "80%" });
+    { borderWidth: 0, id: "pageTitle", width: "80%" });
 
-    $.__views.__alloyId672.add($.__views.pageTitle);
-    $.__views.__alloyId674 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId674" });
+    $.__views.__alloyId906.add($.__views.pageTitle);
+    $.__views.__alloyId908 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId908" });
 
-    $.__views.pageTitle.add($.__views.__alloyId674);
-    $.__views.__alloyId675 = Ti.UI.createView(
-    { width: "10%", id: "__alloyId675" });
+    $.__views.pageTitle.add($.__views.__alloyId908);
+    $.__views.__alloyId909 = Ti.UI.createView(
+    { borderWidth: 0, width: "10%", id: "__alloyId909" });
 
-    $.__views.__alloyId672.add($.__views.__alloyId675);
+    $.__views.__alloyId906.add($.__views.__alloyId909);
     $.__views.moreHealth = Ti.UI.createImageView(
     { id: "moreHealth", width: 30, image: "/images/health_love.png" });
 
-    $.__views.__alloyId675.add($.__views.moreHealth);
+    $.__views.__alloyId909.add($.__views.moreHealth);
   }
   $.__views.graphScrollView = Ti.UI.createScrollView(
   { id: "graphScrollView", layout: "vertical", height: "auto", width: "100%", backgroundColor: "#EBEBEB", contentWidth: Ti.UI.FILL });

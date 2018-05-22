@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,39 +35,39 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
   $.__views.main = Ti.UI.createView(
-  { id: "main", layout: "vertical" });
+  { borderWidth: 0, id: "main", layout: "vertical" });
 
   $.__views.win.add($.__views.main);
   if (true) {
-    $.__views.__alloyId221 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId221" });
+    $.__views.__alloyId316 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId316" });
 
-    $.__views.main.add($.__views.__alloyId221);
-    $.__views.__alloyId222 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId222" });
+    $.__views.main.add($.__views.__alloyId316);
+    $.__views.__alloyId317 = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId317" });
 
-    $.__views.__alloyId221.add($.__views.__alloyId222);
+    $.__views.__alloyId316.add($.__views.__alloyId317);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId222.add($.__views.btnBack);
-    $.__views.__alloyId223 = Ti.UI.createView(
-    { width: "90%", id: "__alloyId223" });
+    $.__views.__alloyId317.add($.__views.btnBack);
+    $.__views.__alloyId318 = Ti.UI.createView(
+    { borderWidth: 0, width: "90%", id: "__alloyId318" });
 
-    $.__views.__alloyId221.add($.__views.__alloyId223);
+    $.__views.__alloyId316.add($.__views.__alloyId318);
     $.__views.pageTitle = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim History', id: "pageTitle", textAlign: "center" });
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'My Claim History', id: "pageTitle", textAlign: "center" });
 
-    $.__views.__alloyId223.add($.__views.pageTitle);
+    $.__views.__alloyId318.add($.__views.pageTitle);
   }
-  $.__views.tv = Ti.UI.createTableView(
-  { id: "tv" });
+  $.__views.listing = Ti.UI.createScrollView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "listing" });
 
-  $.__views.main.add($.__views.tv);
+  $.__views.main.add($.__views.listing);
   exports.destroy = function () {};
 
 
@@ -95,210 +94,107 @@ function Controller() {
     $.win.add(loading.getView());
     loading.start();
 
-    API.callByGet({ url: "getClaimDetailUrl", params: "EMPNO=" + empno + "&CORPCODE=" + corpcode + "&PERIOD=ALL" }, function (responseText) {
-      var res = JSON.parse(responseText);
-      if (res.length == 0) {} else if (typeof res[0].message !== "undefined") {
+    API.callByGet({ url: "claim.aspx", params: "EMPNO=" + empno + "&CORPCODE=" + corpcode + "&PERIOD=ALL" }, {
+      onload: function (responseText) {
+        var res = JSON.parse(responseText);
+        if (res.length == null || res.length <= 0) {} else if (typeof res[0] !== "undefined" && typeof res[0].message !== "undefined") {
 
-        common.createAlert(res[0].message);
-      } else {
-        render(res);
-      }
-      loading.finish();
-    });
+          common.createAlert(res[0].message);
+        } else {
+          render(res || []);
+        }
+      }, onfinish: function () {
+        loading.finish();
+      }, onerror: function () {
+        $.win.close();
+      } });
+
   }
 
   init();
 
   function render(data) {
+    var pWidth = (false ? Ti.Platform.displayCaps.platformWidth : parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10)) - 20;
+
     data = _.sortBy(data, "visitdate");
     data.reverse();
+    for (var i = 0; i < data.length; i++) {
+      var left_indicator_bg_color = data[i].status == "Pending" ? "#fba81c" : data[i].status == "Approved" ? "#55a939" : "#e8534c";
+      var row = $.UI.create("View", { classes: ['wfill', 'padding', 'rounded'], bottom: 0, height: 120, backgroundColor: left_indicator_bg_color, record: data[i] });
+      var view_container = $.UI.create("View", { classes: ['wfill', 'hfill'], touchEnabled: false, backgroundColor: "#fff", left: 5 });
+      row.add(view_container);
 
-    data.forEach(function (entry) {
+      var view_left_container = $.UI.create("View", { classes: ['hfill'], touchEnabled: false, width: "30%", left: 0, top: 10, bottom: 10 });
+      view_container.add(view_left_container);
+      var view_cutoff = $.UI.create("View", { zIndex: 100, touchEnabled: false, width: 30, height: 30, borderRadius: 15, backgroundColor: "#535a74", top: -20, left: Math.floor(pWidth * 0.30) - 15 });
+      var view_cutoff2 = $.UI.create("View", { zIndex: 100, touchEnabled: false, width: 30, height: 30, borderRadius: 15, backgroundColor: "#535a74", bottom: -20, left: Math.floor(pWidth * 0.30) - 15 });
+      view_container.add(view_cutoff);
+      view_container.add(view_cutoff2);
+      var view_amount = $.UI.create("View", { classes: ['wfill', 'vert'], touchEnabled: false, height: 60, top: 0 });
+      var view_date = $.UI.create("View", { classes: ['wfill', 'vert'], touchEnabled: false, height: 40, left: 10, bottom: 0 });
+      view_left_container.add(view_amount);
+      view_left_container.add(view_date);
 
-      var row = $.UI.create("TableViewRow", {
-        height: 130,
-        status: entry.status });
+      var label_amount = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h4', 'bold'], touchEnabled: false, left: 10, right: 10, minimumFontSize: 10, text: "RM " + data[i].amount });
+      view_amount.add(label_amount);
 
+      var label_date_title = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6'], touchEnabled: false, text: "DATE" });
+      var label_date = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, text: data[i].visitdate });
+      view_date.add(label_date_title);
+      view_date.add(label_date);
 
-      var statusColor = "#CE1D1C";
-      if (entry.status == "Pending") {
+      var view_separator = $.UI.create("View", { classes: ['hfill'], touchEnabled: false, width: 1, left: "30%", top: 10, bottom: 10, backgroundColor: "#eeeeee" });
+      view_container.add(view_separator);
+      var view_right_container = $.UI.create("View", { classes: ['hfill'], touchEnabled: false, width: "70%", left: "30%", right: 10, bottom: 10, top: 10 });
+      view_container.add(view_right_container);
 
-        statusColor = "#8A6500";
-      } else if (entry.status == "Approved") {
+      var view_right_top = $.UI.create("View", { classes: ['wfill', 'vert', 'padding'], touchEnabled: false, top: 0, bottom: 0, height: 60 });
+      view_right_container.add(view_right_top);
 
-        statusColor = "#2C8A00";
-      }
+      var label_clinic = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].clinicname });
+      var label_claimUnder_title = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6'], touchEnabled: false, top: 5, text: "CLAIM UNDER" });
+      var label_claimUnder = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].name });
+      view_right_top.add(label_clinic);
+      view_right_top.add(label_claimUnder_title);
+      view_right_top.add(label_claimUnder);
 
-      var horzView = $.UI.create('View', {
-        classes: ['horz', 'hsize', 'wfill'],
-        serial: entry.serial,
-        appcode: entry.appcode });
+      var view_right_bottom = $.UI.create("View", { classes: ['vert'], touchEnabled: false, width: "50%", left: 10, bottom: 0, height: 40 });
+      view_right_container.add(view_right_bottom);
+      var label_type_title = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6'], touchEnabled: false, text: "CLAIM TYPE" });
+      var label_type = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].claimtype });
+      view_right_bottom.add(label_type_title);
+      view_right_bottom.add(label_type);
 
+      var view_right_bottom2 = $.UI.create("View", { classes: ['vert'], touchEnabled: false, width: "32%", left: "53%", bottom: 0, height: 40 });
+      view_right_container.add(view_right_bottom2);
 
-      var statustView = $.UI.create('View', {
-        height: 130,
-        serial: entry.serial,
-        appcode: entry.appcode,
-        width: 10,
-        backgroundColor: statusColor });
+      var label_category_title = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6'], touchEnabled: false, text: "CATEGORY" });
+      var label_category = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].category });
+      view_right_bottom2.add(label_category_title);
+      view_right_bottom2.add(label_category);
 
-      horzView.add(statustView);
+      var view_right_bottom3 = $.UI.create("View", { classes: ['vert'], touchEnabled: false, width: "15%", left: "86%", bottom: 0, height: 40 });
+      view_right_container.add(view_right_bottom3);
 
-      var view_container = $.UI.create("View", {
-        classes: ['vert', 'hsize'],
-        status: entry.status,
-        width: "auto",
-        record: entry,
-        claimType: entry.claimType,
-        serial: entry.serial,
-        appcode: entry.appcode,
-        top: 5,
-        right: 5,
-        left: 5,
-        bottom: 5 });
+      var label_mc_title = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6'], touchEnabled: false, text: "MC" });
+      var label_mc = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h6', 'bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].mcdays });
+      view_right_bottom3.add(label_mc_title);
+      view_right_bottom3.add(label_mc);
 
-
-      var view_detail = $.UI.create("View", {
-        height: 35,
-        classes: ['wfill'],
-        serial: entry.serial,
-        touchEnabled: false,
-        appcode: entry.appcode,
-        claimType: entry.claimType });
-
-
-      var labelClinicView = $.UI.create("View", {
-        serial: entry.serial,
-        appcode: entry.appcode,
-        touchEnabled: false,
-        height: 35,
-        top: 0,
-        claimType: entry.claimType });
-
-
-      var label_clinic = $.UI.create("Label", {
-        classes: ['h5', 'bold'],
-        text: entry.clinicname,
-        claimType: entry.claimType,
-        top: 0,
-        left: 0,
-        width: "70%",
-        serial: entry.serial,
-        appcode: entry.appcode,
-        touchEnabled: false });
-
-      labelClinicView.add(label_clinic);
-
-      var label_amount = $.UI.create("Label", {
-        classes: ['amount', 'bold'],
-        serial: entry.serial,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        text: "RM " + entry.amount.toFixed(2),
-        right: 20,
-        touchEnabled: false });
-
-
-
-      var view_detail2 = $.UI.create("View", {
-        serial: entry.serial,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        touchEnabled: false,
-        classes: ["hsize"] });
-
-
-      var label_category = $.UI.create("Label", {
-        classes: ['h5', 'hsize', 'wsize', 'left-align'],
-        serial: entry.serial,
-        appcode: entry.appcode,
-        left: 0,
-        touchEnabled: false,
-        claimType: entry.claimType,
-        text: "Category: " + entry.category });
-
-
-      var label_date = $.UI.create("Label", {
-        serial: entry.serial,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        touchEnabled: false,
-        text: timeFormat(entry.visitdate),
-        right: 10,
-        classes: ['h5', 'hsize', 'wsize', 'right-align'] });
-
-
-      var label_name = $.UI.create("Label", {
-        classes: ['h5', 'hsize', 'wfill', 'left-align'],
-        serial: entry.serial,
-        touchEnabled: false,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        text: "Claim Under: " + entry.name });
-
-
-      var label_mc = $.UI.create("Label", {
-        classes: ['mc'],
-        serial: entry.serial,
-        touchEnabled: false,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        text: "MC Days: " + entry.mcdays });
-
-      var claim_type_text = entry.claimType == "Reimbursement" ? entry.claimType : entry.claimtype + " [Details]";
-      var label_claimType = $.UI.create("Label", {
-        classes: ['h5', 'hsize', 'wfill', 'left-align'],
-        serial: entry.serial,
-        appcode: entry.appcode,
-        claimType: entry.claimType,
-        touchEnabled: false,
-        text: "Claim Type: " + claim_type_text });
-
-      var forwardImg = $.UI.create('ImageView', {
-        classes: ['wsize', 'hsize'],
-        image: "/images/btn-forward.png",
-        width: 15,
-        zIndex: 10,
-        touchEnabled: false,
-        right: 5,
-        top: 2 });
-
-
-
-
-
-
-
-
-
-      view_detail.add(labelClinicView);
-      view_detail.add(label_amount);
-      view_detail.add(forwardImg);
-      view_detail2.add(label_category);
-      view_detail2.add(label_date);
-      view_container.add(view_detail);
-      view_container.add(label_name);
-      view_container.add(label_mc);
-      view_container.add(label_claimType);
-      view_container.add(view_detail2);
-
-      horzView.add(view_container);
-      row.add(horzView);
-      $.tv.appendRow(row);
-
-      view_container.addEventListener("click", function (e) {
-        var status = e.source.status;
-        console.log(status + " status");
-        if (status == "Pending") {
-          nav.navigateWithArgs("asp/claimSubmission", { serial: e.source.serial, edit: 1 });
-
-          return false;
-        } else {
-          console.log(e.source.record);
-          nav.navigateWithArgs("asp/claimDetail", { serial: e.source.serial, appcode: e.source.appcode, record: e.source.record });
-        }
+      row.addEventListener("click", function (e) {
+        nav.navigateWithArgs("asp/claimDetail", e.source.record);
       });
-    });
+
+      $.listing.add(row);
+    };
+    if (data.length <= 0) {
+      var row = $.UI.create("View", { classes: ['wfill', 'hsize', 'padding', 'rounded'], bottom: 0, backgroundColor: "#fff" });
+      var view_container = $.UI.create("View", { classes: ['wfill', 'hsize', 'padding'], touchEnabled: false });
+      var label = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h5'], textAlign: "center", text: "No record found" });
+      row.add(view_container);
+      view_container.add(label);
+      $.listing.add(row);
+    }
   }
 
   $.win.addEventListener("close", function () {});

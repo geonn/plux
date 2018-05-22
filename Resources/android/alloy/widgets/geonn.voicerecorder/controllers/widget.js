@@ -16,7 +16,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -43,11 +42,11 @@ function Controller() {
 
 
   $.__views.container = Ti.UI.createView(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "container", backgroundColor: "#ffffff" });
+  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, id: "container", backgroundColor: "#ffffff" });
 
   $.__views.container && $.addTopLevelView($.__views.container);
   $.__views.text_area = Ti.UI.createView(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "text_area" });
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "text_area" });
 
   $.__views.container.add($.__views.text_area);
   $.__views.timer_text = Ti.UI.createLabel(

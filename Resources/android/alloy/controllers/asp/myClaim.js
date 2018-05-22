@@ -9,7 +9,6 @@ function __processArg(obj, key) {
   var arg = null;
   if (obj) {
     arg = obj[key] || null;
-    delete obj[key];
   }
   return arg;
 }
@@ -36,62 +35,182 @@ function Controller() {
 
 
   $.__views.win = Ti.UI.createWindow(
-  { backgroundColor: "#ffffff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim Details", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim Details", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views.win && $.addTopLevelView($.__views.win);
-  $.__views.__alloyId282 = Ti.UI.createView(
-  { id: "__alloyId282" });
+  $.__views.__alloyId395 = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId395" });
 
-  $.__views.win.rightNavButton = $.__views.__alloyId282;$.__views.__alloyId283 = Ti.UI.createView(
-  { layout: "vertical", backgroundColor: "#F6F6F6", height: "100%", id: "__alloyId283" });
+  $.__views.win.rightNavButton = $.__views.__alloyId395;$.__views.__alloyId396 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId396" });
 
-  $.__views.win.add($.__views.__alloyId283);
+  $.__views.win.add($.__views.__alloyId396);
   if (true) {
-    $.__views.__alloyId284 = Ti.UI.createView(
-    { layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId284" });
+    $.__views.__alloyId397 = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId397" });
 
-    $.__views.__alloyId283.add($.__views.__alloyId284);
-    $.__views.__alloyId285 = Ti.UI.createView(
-    { left: 0, width: "10%", id: "__alloyId285" });
+    $.__views.__alloyId396.add($.__views.__alloyId397);
+    $.__views.__alloyId398 = Ti.UI.createView(
+    { borderWidth: 0, height: Ti.UI.FILL, left: 0, width: "10%", id: "__alloyId398" });
 
-    $.__views.__alloyId284.add($.__views.__alloyId285);
+    $.__views.__alloyId397.add($.__views.__alloyId398);
     $.__views.btnBack = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views.__alloyId285.add($.__views.btnBack);
+    $.__views.__alloyId398.add($.__views.btnBack);
     $.__views.pageTitle = Ti.UI.createView(
-    { id: "pageTitle", width: "90%" });
+    { borderWidth: 0, height: Ti.UI.FILL, id: "pageTitle", width: "90%" });
 
-    $.__views.__alloyId284.add($.__views.pageTitle);
-    $.__views.__alloyId286 = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#606060", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId286" });
+    $.__views.__alloyId397.add($.__views.pageTitle);
+    $.__views.__alloyId399 = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: "16dp" }, text: 'My Claim Details', textAlign: "center", id: "__alloyId399" });
 
-    $.__views.pageTitle.add($.__views.__alloyId286);
+    $.__views.pageTitle.add($.__views.__alloyId399);
   }
-  $.__views.__alloyId287 = Ti.UI.createView(
-  { height: Ti.UI.FILL, width: Ti.UI.FILL, id: "__alloyId287" });
-
-  $.__views.__alloyId283.add($.__views.__alloyId287);
   $.__views.claimContainer = Ti.UI.createView(
-  { id: "claimContainer", width: Ti.UI.FILL, height: Ti.UI.FILL, visible: false });
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "claimContainer", visible: false });
 
-  $.__views.__alloyId287.add($.__views.claimContainer);
+  $.__views.__alloyId396.add($.__views.claimContainer);
   $.__views.main = Ti.UI.createScrollView(
-  { backgroundColor: "#E9E9E9", id: "main", layout: "vertical", scrollType: "vertical" });
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "main", scrollType: "vertical" });
 
   $.__views.claimContainer.add($.__views.main);
   $.__views.date = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#CE1D1C", font: { fontSize: "16dp" }, top: "10dp", id: "date" });
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#eeeeee", id: "date", top: 10 });
 
   $.__views.main.add($.__views.date);
   $.__views.personal_claim = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personal_claim" });
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "personal_claim" });
 
   $.__views.main.add($.__views.personal_claim);
   $.__views.insurance_info = Ti.UI.createView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "insurance_info" });
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", id: "insurance_info", backgroundColor: "#ba65ca" });
 
   $.__views.main.add($.__views.insurance_info);
+  $.__views.__alloyId400 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, backgroundColor: "#ffffff", top: 5, id: "__alloyId400" });
+
+  $.__views.insurance_info.add($.__views.__alloyId400);
+  $.__views.__alloyId401 = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId401" });
+
+  $.__views.__alloyId400.add($.__views.__alloyId401);
+  $.__views.__alloyId402 = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 14, fontWeight: "bold" }, text: 'INSURANCE INFO', left: 10, id: "__alloyId402" });
+
+  $.__views.__alloyId401.add($.__views.__alloyId402);
+  $.__views.InsPlanUrl = Ti.UI.createView(
+  { borderWidth: 2, borderColor: "#e8534c", backgroundColor: "#FFFFFF", zIndex: 10, top: 10, width: 60, height: 60, borderRadius: 30, right: 10, id: "InsPlanUrl" });
+
+  $.__views.__alloyId401.add($.__views.InsPlanUrl);
+  openPdf ? $.addListener($.__views.InsPlanUrl, 'click', openPdf) : __defers['$.__views.InsPlanUrl!click!openPdf'] = true;$.__views.__alloyId403 = Ti.UI.createImageView(
+  { touchEnabled: false, width: 60, height: 60, image: "/images/pdficon.png", id: "__alloyId403" });
+
+  $.__views.InsPlanUrl.add($.__views.__alloyId403);
+  $.__views.__alloyId404 = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId404" });
+
+  $.__views.__alloyId400.add($.__views.__alloyId404);
+  $.__views.__alloyId405 = Ti.UI.createView(
+  { borderWidth: 0, width: 30, height: 30, zIndex: 2, left: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId405" });
+
+  $.__views.__alloyId404.add($.__views.__alloyId405);
+  $.__views.__alloyId406 = Ti.UI.createView(
+  { borderWidth: 0, width: Titanium.UI.FILL, height: 1, backgroundColor: "#eee", id: "__alloyId406" });
+
+  $.__views.__alloyId404.add($.__views.__alloyId406);
+  $.__views.__alloyId407 = Ti.UI.createView(
+  { borderWidth: 0, width: 30, height: 30, zIndex: 2, right: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId407" });
+
+  $.__views.__alloyId404.add($.__views.__alloyId407);
+  $.__views.__alloyId408 = Ti.UI.createView(
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId408" });
+
+  $.__views.__alloyId400.add($.__views.__alloyId408);
+  $.__views.__alloyId409 = Ti.UI.createView(
+  { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 40, id: "__alloyId409" });
+
+  $.__views.__alloyId408.add($.__views.__alloyId409);
+  $.__views.__alloyId410 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: "45%", height: Ti.UI.FILL, top: 5, id: "__alloyId410" });
+
+  $.__views.__alloyId409.add($.__views.__alloyId410);
+  $.__views.__alloyId411 = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12 }, text: 'EMPLOYEE INSURED', left: 0, id: "__alloyId411" });
+
+  $.__views.__alloyId410.add($.__views.__alloyId411);
+  $.__views.EmpIns = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12, fontWeight: "bold" }, left: 0, id: "EmpIns", minimumFontSize: 10 });
+
+  $.__views.__alloyId410.add($.__views.EmpIns);
+  $.__views.__alloyId412 = Ti.UI.createView(
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, height: Ti.UI.FILL, width: 1, backgroundColor: "#eeeeee", id: "__alloyId412" });
+
+  $.__views.__alloyId409.add($.__views.__alloyId412);
+  $.__views.__alloyId413 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: "45%", height: Ti.UI.FILL, top: 5, id: "__alloyId413" });
+
+  $.__views.__alloyId409.add($.__views.__alloyId413);
+  $.__views.__alloyId414 = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12 }, text: 'SPOUSE INSURED', left: 0, id: "__alloyId414" });
+
+  $.__views.__alloyId413.add($.__views.__alloyId414);
+  $.__views.SpouseIns = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12, fontWeight: "bold" }, left: 0, id: "SpouseIns", minimumFontSize: 10 });
+
+  $.__views.__alloyId413.add($.__views.SpouseIns);
+  $.__views.__alloyId415 = Ti.UI.createView(
+  { borderWidth: 0, width: Titanium.UI.FILL, height: 1, backgroundColor: "#eee", id: "__alloyId415" });
+
+  $.__views.__alloyId408.add($.__views.__alloyId415);
+  $.__views.__alloyId416 = Ti.UI.createView(
+  { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 40, id: "__alloyId416" });
+
+  $.__views.__alloyId408.add($.__views.__alloyId416);
+  $.__views.__alloyId417 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: "45%", height: Ti.UI.FILL, top: 5, id: "__alloyId417" });
+
+  $.__views.__alloyId416.add($.__views.__alloyId417);
+  $.__views.__alloyId418 = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12 }, text: 'CHILD INSURED', left: 0, id: "__alloyId418" });
+
+  $.__views.__alloyId417.add($.__views.__alloyId418);
+  $.__views.ChildIns = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12, fontWeight: "bold" }, left: 0, id: "ChildIns", minimumFontSize: 10 });
+
+  $.__views.__alloyId417.add($.__views.ChildIns);
+  $.__views.__alloyId419 = Ti.UI.createView(
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, height: Ti.UI.FILL, width: 1, backgroundColor: "#eeeeee", id: "__alloyId419" });
+
+  $.__views.__alloyId416.add($.__views.__alloyId419);
+  $.__views.__alloyId420 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: "45%", height: Ti.UI.FILL, top: 5, id: "__alloyId420" });
+
+  $.__views.__alloyId416.add($.__views.__alloyId420);
+  $.__views.__alloyId421 = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12 }, text: 'INSURANCE PLAN', left: 0, id: "__alloyId421" });
+
+  $.__views.__alloyId420.add($.__views.__alloyId421);
+  $.__views.InsPlan = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12, fontWeight: "bold" }, left: 0, id: "InsPlan", minimumFontSize: 10 });
+
+  $.__views.__alloyId420.add($.__views.InsPlan);
+  $.__views.__alloyId422 = Ti.UI.createView(
+  { borderWidth: 0, width: Titanium.UI.FILL, height: 1, backgroundColor: "#eee", id: "__alloyId422" });
+
+  $.__views.__alloyId408.add($.__views.__alloyId422);
+  $.__views.__alloyId423 = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.SIZE, height: 40, top: 5, id: "__alloyId423" });
+
+  $.__views.__alloyId408.add($.__views.__alloyId423);
+  $.__views.__alloyId424 = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12 }, text: 'ADDITIONAL INFORMATION', id: "__alloyId424" });
+
+  $.__views.__alloyId423.add($.__views.__alloyId424);
+  $.__views.AddIns = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontSize: 12, fontWeight: "bold" }, id: "AddIns", minimumFontSize: 10 });
+
+  $.__views.__alloyId423.add($.__views.AddIns);
   exports.destroy = function () {};
 
 
@@ -103,13 +222,13 @@ function Controller() {
   var args = arguments[0] || {};
   var loading = Alloy.createController("loading");
 
-  common.construct($);
   $.win.add(loading.getView());
   loading.start();
 
   loadPage();
 
   function loadPage() {
+    $.insurance_info.hide();
     var isver = Ti.App.Properties.getString('isver');
     var corpcode = Ti.App.Properties.getString('corpcode');
     var memno = Ti.App.Properties.getString('memno');
@@ -117,49 +236,65 @@ function Controller() {
     console.log(isver + " " + corpcode + " " + memno + " " + empno);
     if (isver == "true" || isver > 0) {
       $.claimContainer.show();
-      API.claimInfo({ memno: memno, corpcode: corpcode });
 
-      API.ifins({ empno: empno, corpcode: corpcode });
+      callbyget({ url: "balchk.aspx", params: "MEMNO=" + memno + "&CORPCODE=" + corpcode, callback: init });
+      var params = "EMPNO=" + empno + "&CORPCODE=" + corpcode;
+      callbyget({ url: "ifins.aspx", params: params, callback: loadIfins });
+
     } else {
       loading.finish();
     }
   }
 
-  Ti.App.addEventListener("data_loaded", init);
-  Ti.App.addEventListener('ifins_loaded', loadIfins);
+  function callbyget(e) {
+    API.callByGet({ url: e.url, params: e.params }, {
+      onload: function (responseText) {
+        var res = JSON.parse(responseText);
+        if (res.length == null || res.length <= 0) {
+          if (e.url == "balchk.aspx") {
+            var row = $.UI.create("View", { classes: ['wfill', 'hsize', 'padding', 'rounded'], bottom: 0, backgroundColor: "#fff" });
+            var view_container = $.UI.create("View", { classes: ['wfill', 'hsize', 'padding'], touchEnabled: false });
+            var label = $.UI.create("Label", { classes: ['wfill', 'hsize', 'h5'], textAlign: "center", text: "No Entitlement found" });
+            row.add(view_container);
+            view_container.add(label);
+            $.personal_claim.add(row);
+          }
+        } else if (typeof res[0] !== "undefined" && typeof res[0].message !== "undefined") {
 
-  function loadIfins() {
-    var ifins = JSON.parse(Ti.App.Properties.getString('ifins'));
-    ifins = ifins[0];
-    console.log(ifins);
-    var container = $.UI.create("View", { classes: ['wfill', 'hsize', 'vert', 'box', 'rounded'], left: 10, top: 0, right: 10 });
-    var label_EmpIns = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding'], text: "Employee Number: " + ifins.EmpIns });
-    var label_SpouseIns = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding'], top: 0, text: "Spouse Issured: " + ifins.SpouseIns });
-    var label_ChildIns = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding'], top: 0, text: "Child Inssured: " + ifins.ChildIns });
-    var label_InsPlan = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding', 'bold'], top: 0, text: "Insurance Plan: " + ifins.InsPlan });
-    var label_Room = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding'], top: 0, text: "Room: " + ifins.Room });
-    var label_AddIns = $.UI.create("Label", { classes: ['wfill', 'hsize', 'padding'], top: 0, text: "Additional Information: " + ifins.AddIns });
-    var icon_pdf = $.UI.create("ImageView", { classes: ['hsize'], width: 40, image: "/images/pdf_logo.png" });
-    container.add(label_EmpIns);
-    container.add(label_SpouseIns);
-    container.add(label_ChildIns);
-    container.add(label_Room);
-    container.add(label_AddIns);
-    container.add(label_InsPlan);
-    container.add(icon_pdf);
-    icon_pdf.addEventListener("click", openPdf);
-    $.insurance_info.add(container);
+          common.createAlert(res[0].message);
+        } else {
+          e.callback(res || []);
+        }
+      }, onfinish: function () {
+        if (e.url == "balchk.aspx") {
+          loading.finish();
+        }
+      }, onerror: function () {
+        $.win.close();
+      } });
+
   }
 
-  function openPdf() {
-    var ifins = JSON.parse(Ti.App.Properties.getString('ifins'));
+  Ti.App.addEventListener("data_loaded", init);
+
+  function loadIfins(ifins) {
     ifins = ifins[0];
-    console.log(encodeURI(ifins.InsPlanUrl));
+    console.log(ifins);
+    $.EmpIns.text = ifins.EmpIns;
+    $.SpouseIns.text = ifins.SpouseIns;
+    $.ChildIns.text = ifins.ChildIns;
+    $.InsPlan.text = ifins.InsPlan;
+    $.AddIns.text = ifins.AddIns;
+    $.InsPlanUrl.InsPlanUrl = ifins.InsPlanUrl;
+    $.insurance_info.show();
+  }
+
+  function openPdf(e) {
     if (false) {
-      var win = Alloy.createController("webview", { url: encodeURI(ifins.InsPlanUrl) }).getView();
+      var win = Alloy.createController("webview", { url: encodeURI(e.source.InsPlanUrl) }).getView();
       win.open();
     } else {
-      var url = ifins.InsPlanUrl;
+      var url = e.source.InsPlanUrl;
       var PDF = require('pdf');
       PDF.createPdf(url, true, "", "", "", function (err, file, base, url) {
         PDF.android_launch(file);
@@ -167,19 +302,15 @@ function Controller() {
     }
   }
 
-  function init() {
-
+  function init(e) {
 
     var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    var e = JSON.parse(Ti.App.Properties.getString('balchk'));
 
     if (e == "") {
       alert("No records found");
       return false;
     }
-    var updated_date = currentDateTime();
-    $.date.text = timeFormat(updated_date);
+    $.date.text = timeFormat(currentDateTime());
 
     var groups = {};
     var balance_groups = {};
@@ -187,122 +318,15 @@ function Controller() {
     for (var i = 0; i < e.length; i++) {
       var val = e[i];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       groups[val.name] = groups[val.name] || [];
       groups[val.name].push(val);
     }
 
-    GenerateClaimBalanceTable(balance_groups);
     Object.keys(groups).map(function (group) {
-
       var personal_claim_view = Alloy.createController("asp/_personal_claim_view", { data: groups[group], name: group }).getView();
       $.personal_claim.add(personal_claim_view);
     });
-    Ti.App.removeEventListener("data_loaded", init);
     loading.finish();
-  }
-
-  function GenerateClaimBalanceTable(balance_groups) {
-    var claim_balance_name = { "entidvbal": "Claim Balance", "entshabal": "Claim Shared Balance", "vstidvbal": "Visitation Balance", "vstshabal": "Visitation Shared Balance" };
-    Object.keys(balance_groups).map(function (group) {
-      var view_title = $.UI.create("View", {
-        backgroundColor: "#CE1D1C",
-        height: Ti.UI.SIZE,
-        width: Ti.UI.FILL });
-
-
-      var label_title = $.UI.create("Label", {
-        classes: ['title'],
-        color: "#ffffff",
-        height: Titanium.UI.SIZE,
-        text: claim_balance_name[group] });
-
-
-      view_title.add(label_title);
-      $.view_balance.add(view_title);
-      var tmp_group = {};
-      for (var a = 0; balance_groups[group].length > a; a++) {
-        tmp_group[balance_groups[group][a]['name']] = tmp_group[balance_groups[group][a]['name']] || [];
-        tmp_group[balance_groups[group][a]['name']].push(balance_groups[group][a]);
-      }
-      Object.keys(tmp_group).map(function (b) {
-
-        var view_line = $.UI.create("View", {
-          classes: ['line'] });
-
-
-        var view_header = $.UI.create("View", {
-          width: Ti.UI.FILL,
-          height: Ti.UI.SIZE,
-          left: 10,
-          right: 10,
-          layout: "horizontal" });
-
-
-        var label_name = $.UI.create("Label", {
-          height: Ti.UI.SIZE,
-          wordWrap: false,
-          ellipsize: true,
-          font: {
-            fontSize: "16dp" },
-
-          width: "70%",
-          text: b });
-
-
-        var label_balance_limit = $.UI.create("Label", {
-          height: Ti.UI.SIZE,
-          wordWrap: false,
-          ellipsize: true,
-          font: {
-            fontSize: "12dp" },
-
-          width: "30%",
-          text: "balance / limit" });
-
-        view_header.add(label_name);
-        view_header.add(label_balance_limit);
-        $.view_balance.add(view_line);
-        $.view_balance.add(view_header);
-        for (var c = 0; tmp_group[b].length > c; c++) {
-          var view_category = $.UI.create("View", {
-            width: Ti.UI.FILL,
-            height: Ti.UI.SIZE,
-            layout: "horizontal" });
-
-
-          var label_category = $.UI.create("Label", {
-            classes: ['subtitle'],
-            text: tmp_group[b][c]['benefittype'] });
-
-
-          var label_amount = $.UI.create("Label", {
-            classes: ['subvalue'],
-            text: "RM " + tmp_group[b][c][group] });
-
-          view_category.add(label_category);
-          view_category.add(label_amount);
-
-          $.view_balance.add(view_category);
-        }
-      });
-    });
   }
 
   if ('android' == "android") {
@@ -312,9 +336,6 @@ function Controller() {
   }
 
   $.win.addEventListener("close", function () {
-    Ti.App.removeEventListener('ifinsPage', loadIfins);
-    Ti.App.removeEventListener('loadPage', loadPage);
-    Ti.App.removeEventListener("data_loaded", init);
     $.destroy();
   });
 
@@ -322,7 +343,7 @@ function Controller() {
 
 
 
-
+  __defers['$.__views.InsPlanUrl!click!openPdf'] && $.addListener($.__views.InsPlanUrl, 'click', openPdf);
 
 
 
