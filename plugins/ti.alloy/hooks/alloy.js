@@ -152,16 +152,9 @@ exports.init = function (logger, config, cli, appc) {
 						cmd.map(function(a) {
 							if (/^[^"].* .*[^"]/.test(a)) return '"' + a + '"'; return a;
 						}).join(' ') + '"'].join(' ')], {
-<<<<<<< Updated upstream
 						stdio: 'inherit',
 						windowsVerbatimArguments: true
 					});
-=======
-							stdio: 'inherit',
-							windowsVerbatimArguments: true
-						}
-					);
->>>>>>> Stashed changes
 				} else {
 					logger.info(__('Executing Alloy compile: %s', cmd.join(' ').cyan));
 					child = spawn(cmd.shift(), cmd);
