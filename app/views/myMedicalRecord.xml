@@ -1,28 +1,25 @@
 <Alloy>
-	<Window title="My Medical Record" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<Window title="My Medical Record" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
 		<RightNavButton>
 	        <View>
 	         	<ImageView left='10' onClick="newRecord" width="25" height="20" image="/images/add.png" />
 	        </View>
         </RightNavButton>
-	 	<View>
-			<View id="aView" height="Ti.UI.SIZE" top="0" layout="vertical"> 
-				<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
-					<View left="0" width="20%">
-			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
-			   		</View>
-			     	<View width="60%">
-			     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
-			     	</View>
-			     	<View left="0" width="20%">
-			     		<ImageView left='10' id="newRecord" onClick="newRecord" width="25" height="20" image="/images/add.png" />
-			   		</View>
-			 	</View>
-		 		<TableView filterAtribute="keyword" backgroundRepeat="true" backgroundImage="/images/grey-patern-bg.png" id="recordTable" top="0" width="Ti.UI.FILL" height="Ti.UI.FILL"  contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" >
-		 			<SearchBar tintColor="#CE1D1C" backgroundColor="#ffffff" id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search medical data..." platform="ios" /> 
-		 			<SearchView id="searchItem" tintColor="#CE1D1C" backgroundColor="#ffffff" ns="Ti.UI.Android" platform="android"/>
-	 			</TableView>
-			</View>
+		<View class="wfill hfill vert"> 
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
+		     	</View>
+		     	<View left="0" width="20%">
+		     		<ImageView left='10' id="newRecord" onClick="newRecord" width="25" height="20" image="/images/add.png" />
+		   		</View>
+		 	</View>
+	 		<ScrollView class="wfill hfill vert contwfill conthsize" id="listing">
+            </ScrollView>
 		</View>
+		<View class="wfill hfill" id="mask" onClick="closeBox" backgroundColor="#90000000" zIndex="2"></View>
 	</Window>
 </Alloy>

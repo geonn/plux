@@ -1,11 +1,13 @@
 "Window":{
-	backgroundColor: "#ffffff",
+	//backgroundColor: "#f0f1f5",
+	backgroundColor: "#535a74",
 	orientationModes :[
         Ti.UI.PORTRAIT
     ]
 },
 "Window[platform=android]":{
-	backgroundColor: "#ffffff",
+	//backgroundColor: "#f0f1f5",
+	backgroundColor: "#535a74",
 	fullscreen : false,
 	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
 },
@@ -35,7 +37,10 @@
 "Label":{
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
-	color: "#606060"
+	color: "#111111"
+},
+"View":{
+	borderWidth: 0
 },
 ".padding":{
 	top: 10,
@@ -69,17 +74,29 @@
 	top:10,
 	bottom:10,
 },
-"TextField":{
-	verticalAlign: Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
-	height:'45dp',
-	 font:{
-		fontSize: '14dp'
-	},
-	color: "#222222",
-	borderWidth: "1px",
-	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-	width: Ti.UI.FILL,
-	backgroundColor: "#ffffff",
+'TextField': {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+    padding: { left: 10, right: 10, bottom:5, top:5 },
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    font:{
+    	fontSize: 14,
+    },
+    height: 40,
+    color: "#000000",
+    hintTextColor: "#000000",
+    backgroundColor: "#ffffff"
+}
+'.field': {
+    padding: { left: 10, right: 10, bottom:10, top:10 },
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    font:{
+    	fontSize: 14,
+    },
+    height: 40,
+    color: "#000000",
+    backgroundColor: "#ffffff"
 }
 
 '.vert':{
@@ -140,10 +157,10 @@
 }
 
 ".small_button":{
-	borderColor: "#CE1D1C",
+	borderColor: "#A52430",
 	borderWidth: 1,
 	backgroundColor: "#ffffff",
-	color: "#CE1D1C",
+	color: "#A52430",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
@@ -273,7 +290,19 @@
 	color: "#ffffff"
 }
 '.themeColor' : {
-	color: "#CE1D1C"
+	color: "#A52430"
+}
+'.bgred' : {
+	backgroundColor: "#e8534c"
+}
+'.bgorange':{
+	backgroundColor: "#fba81c"
+}
+'.bggreen':{
+	backgroundColor: "#55a939"
+}
+'.bgblue':{
+	backgroundColor: "#2056A6"
 }
 '.purple' : {
 	color: "#933ec5",	
@@ -282,7 +311,7 @@
 	borderColor: "#933ec5",	
 }
 '.themeBg' : {
-	backgroundColor: "#CE1D1C"
+	backgroundColor: "#A52430"
 }, 
 ".padding-top":{
 	top: 10
@@ -295,19 +324,23 @@
 }, 
 ".padding-bottom":{
 	bottom: 10
-}, 
-'.button': {
-	height: 40,
-	borderColor: "#C6C8CA",
-	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-	backgroundColor: "#ED1C24",
-	borderRadius: 6,
-	color: "#ffffff",
-	width: Titanium.UI.FILL,
-	left: 10,
-	right: 10,
-	top: 10,
-	font: {
-		fontFamily: 'Lato-Regular',
-	}
 },
+
+'Button': {
+	borderRadius: 5,
+	backgroundColor: "#CC2228",
+	height: 40,
+	color: "#ffffff",
+	width: Ti.UI.FILL,
+},
+'.combo_box':{
+	width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+	height: 40,
+    left: 10,
+    right: 10,
+    bottom: 10, 
+    borderWidth: 0,
+    hintTextColor: "#E89114",
+    backgroundColor: "#ffffff"
+}

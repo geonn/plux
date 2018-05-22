@@ -10,7 +10,7 @@
         fontSize: "24dp",
         fontFamily: "FontAwesome"
    	},
-   	color: "#000",
+   	color: "#fff",
 	top: 0,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE

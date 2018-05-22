@@ -9,11 +9,8 @@
 		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Inpatient Record</Label>
 		     	</View> 
 		 	</View> 
-			<View id="main">
-			  	<TableView id="infoTable">
-		             
-		        </TableView>
-			</View>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="listing">
+            </ScrollView>
 		</View>
 	</Window>
 </Alloy>

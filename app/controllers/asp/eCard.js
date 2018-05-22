@@ -109,7 +109,7 @@ var genCode = setInterval(function(){
 	var dateTimeNow = currentDateTime();
 	var userQR = qrcode.QRCode({
 		typeNumber: 10,
-		errorCorrectLevel: 'M'
+		errorCorrectLevel: 'L'
 	});
 	
 	var qrcodeView = userQR.createQRCodeView({

@@ -1,6 +1,9 @@
 var args = arguments[0] || {};
 var nav = Alloy.Globals.navMenu;
-common.construct($);
+var loading = Alloy.createController("loading");
+$.win.add(loading.getView());
+
+var error_message = "";
 //var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
 var view_agreement_box = common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"privacy");
 
@@ -8,17 +11,13 @@ var memno = Ti.App.Properties.getString('memno');
 var empno = Ti.App.Properties.getString('empno');
 var name = Ti.App.Properties.getString('name');
 
-$.name.value = name;
-$.memno.value = memno;
-$.empno.value = empno;
-
-//$.tc_area.add(view_sms_box);
-$.tc_area.add(view_agreement_box);
+//$.view_agreement.add(view_sms_box);
+$.view_agreement.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
 function doAspSignup(){
-	common.showLoading();
+	loading.start();
 	var email = $.email.value;
 	var password = $.password.value;
 	var repassword = $.repassword.value;
@@ -28,12 +27,12 @@ function doAspSignup(){
 	var mobileno = $.mobileno.value;
 	var valid_email = ValidateEmail(email);
 	if(!valid_email){
-		common.hideLoading();
+		loading.finish();
 		return false;
 	}
 	if(password != repassword){
 		common.createAlert("Error", "Password does not match the confirm password.");
-		common.hideLoading();
+		loading.finish();
 		return false;
 	}
 	
@@ -41,7 +40,7 @@ function doAspSignup(){
 	var view_agreement = view_agreement_box.children[0].children[0].checked;
 	if(view_agreement != "1"){
 		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
-		common.hideLoading();
+		loading.finish();
 		return false;
 	}
 	var params = {
@@ -54,8 +53,18 @@ function doAspSignup(){
 		//smsme: view_sms,
 		agreets: view_agreement
 	};
+	
 	 
-	API.do_asp_signup(params, $);
+	API.do_asp_signup(params, {
+	       onload: function(){
+	           nav.navigationWindow("home");
+               nav.closeWindow(mainView.aspSignUpWin); 
+               Ti.App.fireEvent('updateHeader');
+	       },
+           finish: function(){
+               loading.finish();
+           }	      
+    });
 }
 
 function ValidateEmail(mail)
@@ -70,30 +79,108 @@ function ValidateEmail(mail)
 	}  
 }
 
-function hideProductFormKeyboard(e){
-	var exception = ["email", "password", "name", "memno", "empno", "mobileno"];
+function textFieldOnBlur(e){
+    checkRequired(e.source);
+}
 
-	if(exception.indexOf(e.source.id) >= 0){
-		console.log(e.source.id);
-		return false;
-	} 
-	
-	$.email.blur();
-	$.password.blur();
-	$.name.blur();
-	$.memno.blur();
-	$.empno.blur();
-	$.mobileno.blur();
-}; 
+function checkRequired(obj){
+    console.log(obj.value+" check value"+obj.required);
+    if(obj.required && obj.value == ""){
+        error_message += obj.hintText+" cannot be empty\n";
+        obj.parent.backgroundColor = "#e8534c";
+    }else{
+        obj.parent.backgroundColor = "#55a939";
+    }
+}
 
-/*$.doSignup.addEventListener("click", function(){
-	nav.navigationWindow("asp/signup", 0);
-});*/
+function openAndroidHome(){
+    console.log('openAndroidHome');
+    var win = Alloy.createController("home").getView();
+    win.open();
+    $.win.close();
+}
 
-/** To fixed keyboard hide/show when textfield is activate**/
-$.aspSignUpWin.addEventListener('click',hideProductFormKeyboard);
+function doSubmit(){
+    var forms_arr = $.forms.getChildren();
+    var params = {};
+    var error_message = "";
+    for (var i=0; i < forms_arr.length - 1; i++) {
+        
+        console.log(forms_arr[i].id+" "+forms_arr[i].children[0].value);
+        if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
+            _.extend(params, {Filedata: forms_arr[i].children[2].filedata});
+        }else if(forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached){
+            error_message += "Please upload your referral letter\n";
+        }else if(forms_arr[i].skip != "1"){
+            console.log(forms_arr[i].skip+" check skip");
+            console.log(forms_arr[i].children[0].value+" "+forms_arr[i].children[0].required);
+            if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
+                console.log(_.isUndefined(forms_arr[i].children[0].value)+" _.isEmpty(forms_arr[i].children[0].value)");
+                error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
+            }else{
+                console.log(forms_arr[i].children[0].value);
+                console.log(forms_arr[i].children[0].id);
+                params[forms_arr[i].id] = forms_arr[i].children[0].value.trim();
+            }
+        }
+        if(forms_arr[i].id == "password2"){
+            if(forms_arr[i].children[0].value != forms_arr[i-1].children[0].value){
+                error_message += "Your password are not match\n";
+            }
+        }
+    };
+    if(error_message != ""){
+        alert(error_message);
+        return;
+    }
+    var view_agreement = view_agreement_box.children[0].children[0].checked;
+    if(view_agreement != "1"){
+        common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
+        loading.finish();
+        return false;
+    }
+    params['agreets'] = view_agreement;
+    params['name'] = name;
+    params['memno'] = memno;
+    params['empno'] = empno;
+    
+    console.log(params);
+    loading.start();
+    
+    API.do_asp_signup(params, {
+       onload: function(){
+           if(OS_IOS){
+                var navMenu = Titanium.UI.iOS.createNavigationWindow();
+                var win = Alloy.createController("home").getView();
+                navMenu.window = win;
+                Alloy.Globals.navMenu = navMenu;
+                console.log(Alloy.Globals.navMenu);
+                Alloy.Globals.navMenu.open();
+                $.win.close();
+            }else{
+                openAndroidHome();
+            }
+            
+       },
+       finish: function(){
+           loading.finish();
+       }          
+    });
+    
+    return;
+    API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
+            console.log(responseText);
+            var result = JSON.parse(responseText);
+            if(result.status == "error"){
+                common.createAlert("Error", result.data);
+            }else{
+                $.win.close();
+                Ti.App.fireEvent('loginAfterRegister',{params: params}); 
+                loading.finish();
+            }
+    });
+}
 
- 
 $.btnBack.addEventListener('click', function(){ 
-	$.aspSignUpWin.close(); 
+	$.win.close(); 
 });  

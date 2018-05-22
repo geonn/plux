@@ -1,6 +1,6 @@
 <Alloy>
 	<Window title="Claim Submission" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-		<View id="main" layout="vertical">
+		<View class="wfill hfill vert">
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="10%">
 		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
@@ -9,169 +9,67 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Submission</Label>
 		     	</View>
 		 	</View>
-		 	<Label text="Please fill in below info to claim from ASP" class="wfill padding padding-right h5" top="10"    />  
-		 	 
-			<ScrollView id="table" class="wfill hfill vert" top="10" bottom="10" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  backgroundColor="#ffffff"  >
-					<View id="tvrReceiptNo"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View  class="horz wfill " height="45"   >
-							<Label text="Receipt Number" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receipt_no" bottom='5' right='5'  maxLength="30" hintText="Receipt Number" /> 
-						</View>
-						<View class="gray-line" />
-					</View> 
-					<View id="tvrCategory"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View  class="horz wfill " height="45"   >
-							<Label text="Category" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<View skip_checking="1" width="auto"  class=" hsize" >
-								<Label text="Choose Category" class="wfill padding padding-right font_dark_grey h6 " top="12"  id="category"    /> 
-							</View>
-							
-						</View>
-						<View class="gray-line" />
-					</View> 
-					
-					<View id="tvrClaimUnder"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill" height="45"   >
-							<Label text="Claim Under" top="12" width="35%" class="h5 padding-left themeColor"  />  
-							<View skip_checking="1" width="auto"  class=" hsize" >
-								<Label text="Choose Claim Under" class="wfill padding padding-right font_dark_grey h6 " top="12"  id="claim_under"    />  
-							</View>
-							
-						</View>
-						<View class="gray-line" />
-					</View> 
-					
-					
-					<View id="tvrReceiptAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="Receipt Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="receiptAmount" bottom='5' right='5'   horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="Receipt amount in RM" >
-								<KeyboardToolbar platform="ios">
-										<Toolbar>
-											<Items> 
-												<FlexSpace/>
-												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png"  right="5" width="20" height="20"  />
-											</Items>
-										</Toolbar>
-									</KeyboardToolbar>
-							</TextField>
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					<View id="tvrDateVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff" onClick="showVisitPicker">
-						<View class="horz wfill " height="45"  >
-							<Label text="Date of Visit" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<View skip_checking="1" width="auto"  class=" hsize" >
-								<Label text="Date of visit a clinic" class="wfill padding padding-right font_dark_grey h6 " top="12"  id="dateVisit"    />  
-							</View> 
-						</View>
-					</View> 
-					<View class="gray-line" /> 
-					
-					<View id="tvrClinicVisit"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="Clinic/Hospital Name" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							
-							<TextField maxLength="40" class="h6 wfill" borderColor="#ffffff" backgroundColor="#ffffff" id="clinicName" top="5" bottom='5' right='5'  hintText="Clinic/Hospital Name" />  
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					<View id="tvrRemark"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " id="view_remark" height="85"  >
-							<Label text="Remark" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" compulsory="0" backgroundColor="#ffffff" id="remark"   bottom='5' right='5'  hintText="Claim remark" >
-								<KeyboardToolbar platform="ios">
-										<Toolbar>
-											<Items> 
-												<FlexSpace/>
-												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png"  right="5" width="20" height="20"  />
-											</Items>
-										</Toolbar>
-									</KeyboardToolbar>
-							</TextField>
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					<View id="tvrGstAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="GST Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="gstAmount"  bottom='5' right='5'    horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD"  hintText="GST Amount (If applicable)" >
-								<KeyboardToolbar platform="ios">
-									<Toolbar>
-										<Items> 
-											<FlexSpace/>
-											<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png"  right="5" width="20" height="20"  />
-										</Items>
-									</Toolbar>
-								</KeyboardToolbar>
-							</TextField>
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					
-					
-					<View id="tvrMc"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="MC Issued" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="mc"  bottom='5' right='5'  horizontalWrap="true" keyboardType="Ti.UI.KEYBOARD_NUMBER_PAD" hintText="MC Issued (Days)" >
-								<KeyboardToolbar platform="ios">
-										<Toolbar>
-											<Items> 
-												<FlexSpace/>
-												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png"  right="5" width="20" height="20"  />
-											</Items>
-										</Toolbar>
-									</KeyboardToolbar>
-							</TextField>
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					
-					
-					<View id="tvrDiagnosis"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="Diagnosis" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="diagnosis"  bottom='5' right='5'  hintText="Diagnosis" />
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					
-					
-					<View id="tvrGlAmount"  height="Ti.UI.SIZE" layout="vertical" selectedBackgroundColor="#ffffff">
-						<View class="horz wfill " height="45"  >
-							<Label text="GL Amount" top="12" width="35%" class="h5 padding-left themeColor"  /> 
-							<TextField class="h6" borderColor="#ffffff" backgroundColor="#ffffff" id="glamount" bottom='5' right='5'   horizontalWrap="true" keyboardType="Titanium.UI.KEYBOARD_DECIMAL_PAD" hintText="GL Amount (If applicable)" >
-								<KeyboardToolbar platform="ios">
-										<Toolbar>
-											<Items> 
-												<FlexSpace/>
-												<Button onClick="hideKeyboard" backgroundImage="/images/btn-down.png"  right="5" width="20" height="20"  />
-											</Items>
-										</Toolbar>
-									</KeyboardToolbar>
-							</TextField>
-						</View>
-						<View class="gray-line" /> 
-					</View> 
-					 
-					<View class="wfill hsize" top="10"> 
-						<Button onClick="submitClaim"  id="saveBtn" title="Submit Claim" borderRadius="5" backgroundColor="#7B7B7B"    width="70%"  height="40" color="#ffffff" ></Button> 
-					</View> 
-			</ScrollView> 
-				 
-		</View>  
-		<Toolbar platform="ios" bottom="200" extendBackground="true" borderTop="true" borderBottom="false" id="dateToolbar" visible="false">
-				<Items>  
-					<Button onClick="hideDatePicker" title="DONE" style="Titanium.UI.iPhone.SystemButtonStyle.DONE"   />
-				</Items>
-			</Toolbar>
-			<View height="0" bottom="200" id="selectorView" bottom="0"  zIndex="99"> 
-				<Picker id="dateVisitPicker"
-				          onChange="changeVisitDate" 
-				          type="Ti.UI.PICKER_TYPE_DATE"  
-				          height="200"
-				           visible="false"> 
-				 </Picker> 
-			</View>	  
+	 	    <Label class="wfill hsize padding h5" color="#ffffff">Please fill in below info to claim from ASP</Label>
+		 	<Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
+               
+                <View backgroundColor="#fba81c" id="RECNO" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Receipt Number *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View class="combo_box rounded" id="CATEGORY" backgroundColor="#fba81c" onClick="popout" option_key="catID" option_name="catDesc" touchEnabled="false" opacity="0.5" onPostlayout="loadComboBox" url="claimcategory.aspx">
+                    <View class="field" required="1" hintText="Category" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Category *</Label>
+                    </View>
+                </View>
+                <View class="combo_box rounded" id="MEMNO" backgroundColor="#fba81c" onClick="popout" option_key="memno" option_name="name" touchEnabled="false" opacity="0.5" onPostlayout="loadComboBox" url="claimunder.aspx">
+                    <View class="field" required="1" hintText="Claim Under" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Claim Under *</Label>
+                    </View>
+                </View>
+                <View backgroundColor="#fba81c" id="AMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Receipt Amount (RM) *" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View class="combo_box rounded" id="VISITDT" backgroundColor="#fba81c" onClick="datePicker">
+                    <View class="field" required="1" hintText="Date Visit" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Date Visit *</Label>
+                    </View>
+                </View>
+                <View backgroundColor="#fba81c" id="NCLINIC" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="40" hintText="Clinic / Hospital Name *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="REMARKS" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Remarks / Illness" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="GSTAMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="GST Amount" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="MCDAYS" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="MC Issued (Days)" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="DIAGNOSIS" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Diagnosis" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="GLAMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="GL Amount (If applicable)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <!--
+                
+                
+                <TextField id="clinic_name" hintText="Medical Provider" required="1" value=""></TextField>
+                <TextField id="amount" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" hintText="Amount" required="1" value=""></TextField>
+                
+                <View class="combo_box" required="1" onClick="popout" value="" option_name="name" hintText="Claim Under" option_key="id" touchEnabled="false" opacity="0.5" id="claim_under" onPostlayout="loadComboBox" url="api/getEmployeeFamilyList">
+                    <Label class="wfill hsize padding"  touchEnabled="false">Claim Under</Label>
+                </View>
+                <View class="combo_box" required="1" onClick="datePicker" value="" hintText="Date Visit" id="visit_date">
+                    <Label class="wfill hsize padding"  touchEnabled="false">Date Visit</Label>
+                </View>
+                <TextArea id="remark" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Remark / Non Panel Visit" required="0" value="Remark / Non Panel Visit"></TextArea>
+                <TextArea id="diagnosis" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Diagnosis" required="0" value="Diagnosis"></TextArea>
+                <TextArea id="itemised" required="0" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Itemised" required="0" value="Itemised"></TextArea>-->
+                <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
+                
+            </ScrollView>
+		</View>
 	</Window>
 </Alloy>

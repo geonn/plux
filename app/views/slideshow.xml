@@ -14,14 +14,6 @@
 		    		</View>
 	    		</View>
 	    	</View>
-	    	<View class="wfill hfill">
-	    		<View class="wfill hsize" bottom="0">
-		    		<View class="wfill hsize padding vert" bottom="20">
-		    			<Label class="wfill hsize h4 whiteColor" textAlign="center">Doctor Appointment Booking</Label>
-		    			<Label class="wfill hsize h5 whiteColor" textAlign="center">Employees can choose from a panel of thousands of doctors for unparalleled convenience</Label>
-		    		</View>
-	    		</View>
-	    	</View>
 	    	<View class="wfill hfill" layout="composite">
 	    		<View class="wfill hsize" bottom="0">
 		    		<View class="wfill hsize padding vert">

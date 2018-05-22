@@ -1,20 +1,21 @@
 var args = arguments[0] || {};
 //var nav = Alloy.Globals.navMenu;
 var singleton = true;
-common.construct($);
+var loading = Alloy.createController("loading");
+$.win.add(loading.getView());
 
 $.username.value = "";
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
 function doLogin(asp_email, asp_password) { 
-	common.showLoading();
+	loading.start();
 	var username = $.username.value;
 	var password = $.password.value;
 	
 	if(username == "" || password == ""){
 		common.createAlert('Authentication warning','Please fill in username and password');
-		common.hideLoading();
+		loading.finish();
 		return;
 	}
 	if(singleton){

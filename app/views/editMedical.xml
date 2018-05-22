@@ -1,8 +1,8 @@
 <Alloy>
 	<Window id="editRecWin" title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 		<RightNavButton platform="ios">
-	        <View>
-	         	<Button id="saveRecord" title="Done" />
+	        <View class="wsize hsize">
+	         	<Button id="saveRecord" title="Done" width="20%" />
 	        </View>
         </RightNavButton>
 	 	<View layout="vertical" bottom="90">
@@ -14,7 +14,7 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
 		     	</View>
 		     	<View left="0" width="20%">
-		         	<Button class="navbtn" id="saveRecord" title="Done" />
+		         	<Button class="navbtn" width="Ti.UI.SIZE" id="saveRecord" title="Done" />
 		   		</View>
 		 	</View>
 	 		<TextField top="0"  id="titleRecord" height="40" borderColor="#ffffff" hintText="Medical Problem" width="95%"/> 

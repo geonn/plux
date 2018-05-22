@@ -7,12 +7,90 @@ $.win.add(loading.getView());
 console.log("login open");
 closeBox();
 $.email.value = preset_email; 
+$.mask.hide();
+$.signup_pop.hide();
 
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
-function doLogin() { 
+function doLogin(){
+    var forms_arr = $.forms.getChildren();
+    var params = {};
+    var error_message = "";
+    for (var i=0; i < forms_arr.length; i++) {
+        console.log(forms_arr[i].id+" "+forms_arr[i].children[0].value);
+        if(forms_arr[i].required && forms_arr[i].children[0].value == ""){
+            console.log(_.isUndefined(forms_arr[i].children[0].value)+" _.isEmpty(forms_arr[i].value)");
+            error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
+        }
+        params[forms_arr[i].id] = forms_arr[i].children[0].value;
+    };
+    if(error_message != ""){
+        alert(error_message);
+        return;
+    }
+    _.extend(params, {
+        version: Ti.Platform.version,
+        os: Ti.Platform.osname,
+        model: Ti.Platform.model,
+        macaddress: Ti.Platform.macaddress
+    });
+    console.log(params);
+    loading.start();
+    api_login(params);
+    
+}
+
+function openAndroidHome(){
+    console.log('openAndroidHome');
+    var win = Alloy.createController("home").getView();
+    win.open();
+    $.win.close();
+}
+
+
+function api_login(params){
+    API.callByPost({url: "pluxLoginUrl", params: params}, 
+        function(responseText){
+            console.log(responseText);
+        var result = JSON.parse(responseText);
+        console.log(result);
+        if(result.status == "success"){
+            _.each(result.data, function(value, key){
+                Ti.App.Properties.setString(key, value);
+            });
+            if(typeof result.data.user_service != "undefined"){
+                console.log('yes?');
+               _.each(result.data.user_service[0], function(value, key){
+                    Ti.App.Properties.setString(key, value);
+                }); 
+            }
+            console.log(typeof result.dependent+' typeof result.dependent');
+            if(typeof result.dependent != "undefined"){
+               Ti.App.Properties.setString("dependent", JSON.stringify(result.dependent[0]));
+            }
+            if(OS_IOS){
+                var navMenu = Titanium.UI.iOS.createNavigationWindow();
+                var win = Alloy.createController("home").getView();
+                navMenu.window = win;
+                Alloy.Globals.navMenu = navMenu;
+                console.log(Alloy.Globals.navMenu);
+                Alloy.Globals.navMenu.open();
+            }else{
+                openAndroidHome();
+            }
+            $.win.close();
+        }else{
+            alert(result.data);
+        }
+        loading.finish();
+        
+    });
+}
+
+function doLogin_old() { 
 	loading.start();
+	
 	var email = $.email.value;
 	var password = $.password.value;
 	
@@ -40,10 +118,14 @@ function doLogin() {
 	}
 }
 
+function popSignUp(){
+    $.signup_pop.show();
+    $.mask.show();
+}
+
 function doSignup(){
 	var win = Alloy.createController("signup").getView();
-	win.open(); 
-	//nav.navigationWindow("signup", 0);
+	win.open();
 }
 
 function doASPSignup(){
@@ -54,18 +136,18 @@ function doASPSignup(){
 }
 
 function showForgetPassword(){
+    $.mask.show();
 	$.forgetPasswordBox.show();
 }
 
 function doForgotPassword(){
-	if($.box_value.value == ""){
+	if($.box_value.children[0].value == ""){
 		closeBox();
-		$.box_value.value = "";
 		return;
 	}
 	loading.start();
 	params = {
-		email:$.box_value.value 
+		email:$.box_value.children[0].value 
 	};
 	API.callByPost({url: "doforgotPassword", params:params}, function(responseText){
 		console.log(responseText);
@@ -79,6 +161,8 @@ function doForgotPassword(){
 
 function closeBox(){
 	$.forgetPasswordBox.hide();
+	$.signup_pop.hide();
+	$.mask.hide();
 }
 
 function openBox(){
@@ -90,24 +174,45 @@ $.password.addEventListener("return", function(){
 });
 
 var loginAfterRegister =  function(e){
+    Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
 	var email = e.params.email; 
 	var password = e.params.password; 
 	
 	var params = { 
-			email: email,
-			password: password 
-		};
-	API.do_pluxLogin(params, function(){
-		
-		console.log("loginAfterRegister");
-		common.createAlert("Success", "Plux account registration successful!");
-		var win = Alloy.createController("home").getView();
-		win.open(); 
-		Ti.App.removeEventListener('loginAfterRegister', loginAfterRegister);
-		$.win.close();
-	});
-	
+		email: email,
+		password: password 
+	};
+	_.extend(params, {
+        version: Ti.Platform.version,
+        os: Ti.Platform.osname,
+        model: Ti.Platform.model,
+        macaddress: Ti.Platform.macaddress
+    });
+	api_login(params);	
 };
+/*
+function textFieldOnFocus(e){
+    e.source.parent.backgroundColor = "#ffffff";
+    if(e.source.value == e.source.hintText){
+        e.source.value = "";
+        //e.source.color = "#06141c";
+    }
+}
+*/
+function textFieldOnBlur(e){
+    console.log(e.source.value+" "+e.source.required);
+    if(e.source.required && e.source.value == ""){
+        //error_message += forms_arr[i].hintText+" cannot be empty\n";
+        e.source.parent.backgroundColor = "#e8534c";
+    }else{
+        e.source.parent.backgroundColor = "#55a939";
+    }
+    /*if(e.source.value==""){
+        e.source.value = e.source.hintText;
+        //e.source.color = "#06141c";
+    }*/
+}
+
 Ti.App.addEventListener('loginAfterRegister', loginAfterRegister);
 
 if(Ti.Platform.osname == "android"){

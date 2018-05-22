@@ -30,14 +30,29 @@
 }
 
 '.progressBar':{ 
-	backgroundColor: "#C0C0C0",
-	borderRadius: 8,
+	backgroundGradient:{
+		type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: [ { color: '#191c23', offset: 0.0}, { color: '#444c5f', offset: 0.8 },{ color: '#2d2d2f', offset: 0.9 }, { color: '#2d2d2f', offset: 1.0 } ],
+	},
+	backgroundColor: "#22262f",
+	borderRadius: 9,
+	borderWidth: 1,
+	borderColor: "#131a22",
 	width: Ti.UI.FILL,
-	height: 15,
+	height: 18,
 	layout: "horizontal",
 }
 
 '.progressBarFill':{
-	height: 15,
+	height: 18,
+	borderRadius: 9,
+	backgroundGradient:{
+		type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: [ { color: '#14769b', offset: 0.0}, { color: '#3da7d1', offset: 0.8 },{ color: '#92c9dd', offset: 0.9 }, { color: '#92c9dd', offset: 1.0 } ],
+	},
 	backgroundColor: "#CE1D1C",
 }
