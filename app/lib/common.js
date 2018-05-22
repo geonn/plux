@@ -9,19 +9,16 @@ exports.deconstruct = function(){
 };
 
 exports.createAlert = function(tt,msg, callback){
+    console.log(typeof callback);
 	var box = Titanium.UI.createAlertDialog({
 		title: tt,
 		ok: 'OK',
 		message: msg
 	});
-	box.show();
 	box.addEventListener('click', function(e){ 
-	    if (e.index == 0){ 
-	    	if(typeof callback == "function"){
-	    		callback && callback();
-	    	}
-	    }
+	    _.isFunction(callback) && callback();
   	});
+  	box.show();
 };
 exports.createAlert1 = function(tt,msg, callback, yes){
 	var y = (typeof yes != "undefined")?yes:"ok";
@@ -231,6 +228,7 @@ exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 		text: text,
 		width: "auto",
 		height: Ti.UI.SIZE,
+		color: "#fff",
 		font:{
 			fontSize: 12
 		}
@@ -246,15 +244,17 @@ exports.CheckboxwithText = function(text,highlightText, checkboxspecs, urlLink){
 		}
 	});
 	var view_sms_box =  Titanium.UI.createView({
-		borderWidth: 1,
+		borderWidth: 0,
 		height: Ti.UI.SIZE,
+		id:"view_sms_box",
+		value: "0",
 		layout: "horizontal"
 	});
 	view_sms_box.add(checkbox);
 	view_sms_box.add(label_sms);
 	view_sms_box.add(label_privacy);
 	label_privacy.addEventListener('touchend',function(){  
-		var win = Alloy.createController(urlLink ).getView();  
+		var win = Alloy.createController(urlLink).getView();  
 		win.open(); 
 	});
 	return view_sms_box;
@@ -267,7 +267,7 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     checkboxspecs.width = checkboxspecs.width || 25;
     checkboxspecs.backgroundColor = checkboxspecs.unCheckedColor || "#ffffff";
     checkboxspecs.height = checkboxspecs.height || 25;
-    checkboxspecs.borderWidth = 1;
+    checkboxspecs.borderWidth = 0;
     checkboxspecs.borderColor = checkboxspecs.borderColor || "#cccccc";
     checkboxspecs.checked = false;
     var imageView = Ti.UI.createImageView({
@@ -277,17 +277,19 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
         left:3 + checkboxspecs.width * 0.5,
         opacity:0
     }) ;
-
+    console.log(checkboxspecs);
     var viw = Ti.UI.createView(checkboxspecs);
     specs.width =  checkboxspecs.width * 1.5;
     specs.height = checkboxspecs.height * 1.5;
 
     var outerview = Ti.UI.createView({
         width: specs.width * 1.5,
-        height: specs.height * 1.5,
+        id: "outerview",
+        height: specs.height * 1.5
     });
     var clickview = Ti.UI.createView({
         width:checkboxspecs.width,
+        value: 0,
         height:checkboxspecs.height
     });
     outerview.add(viw);
@@ -298,10 +300,13 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     	console.log(viw.checked+" ehre");
         if(!viw.checked) {
             viw.checked = true;
+            console.log(viw.parent.parent.id+" what id");
+            viw.parent.parent.value = "1";
             imageView.opacity = 1; 
         }
         else {
             viw.checked = false;
+            viw.parent.parent.value = "0"; 
             imageView.opacity = 0; 
         }           
     }

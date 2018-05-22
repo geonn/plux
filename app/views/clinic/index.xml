@@ -1,0 +1,47 @@
+<Alloy>
+    <Window title="Clinic Locator" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+        <View class="wfill hfill vert">
+		    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+                <View left="0" width="10%">
+                    <ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+                </View>
+                <View id="pageTitle" width="Ti.UI.FILL">
+                    <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
+                </View> 
+            </View>
+			<View id="parent" class="wfill hfill" backgroundColor="#ffffff">
+				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
+			</View>
+		</View>
+		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" borderWidth="1" left="20" top="70" onClick="openCategory">
+			<ImageView id="filter_icon" width="0" height="20"></ImageView>
+			<Label class='wsize hsize padding h6' id="filter_text">Looking For...</Label>
+		</View>
+		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
+			<TableView onClick="setFilter" backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" left="0" bottom="10" id="filter_list">
+			</TableView>
+			<View class="wfill hfill" onClick="openCategory"></View>
+		</View>
+		<View class="wfill hsize" backgroundColor="#ffffff" bottom="0" id="detail">
+			<Label class="wsize hsize h4 fa-angle-double-down" onClick="closeView" right="10" top="10" zIndex="100"></Label>
+			<View class="wfill hsize vert">
+				<View class="wfill hsize horz padding">
+					<View class="hsize vert" top="0" width="auto">
+						<Label class="h5 bold wfill hsize" id="name"></Label>
+						<Label class="h5 wfill hsize" id="address"></Label>
+						<Label class="h5 bold wfill hsize" top="5">WORKING HOUR:</Label>
+						<Label class="h5 wfill hsize" id="openHour"></Label>
+					</View>
+				</View>
+				<View class="wfill hsize">
+					<View width="50%" left="0" class="hsize" backgroundColor="#CC2228">
+					    <Label class='wfill hsize h5 padding' color="#ffffff" onClick="getDirection" textAlign="center">DIRECTION</Label>
+					</View>
+					<View width="50%" right="0" class="hsize" backgroundColor="#CC2228" onClick="call">
+					    <Label class='wfill hsize h5 padding' color="#ffffff" textAlign="center">CALL</Label>
+					</View>
+				</View>
+			</View>
+		</View>
+	</Window>
+</Alloy>

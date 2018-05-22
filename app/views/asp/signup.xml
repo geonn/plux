@@ -1,31 +1,26 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" title="ASP Signup" id="aspSignUpWin" class="container" layout="vertical">
-		<View  top="0" height="50" backgroundColor="#DEDEDE"> 
-				<View left="0" zIndex="9" id="btnBack" width="20%"  >
-					<ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
-				</View>
-				<View >
-					<Label id="titleLbl"  class='hsize themeColor' textAlign="center">ASP Sign Up</Label>
-			   </View>
-			</View>
-		<View>
-        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
-		        <ActivityIndicator id="activityIndicator" />
-		    	<Label top="5" text="Loading" platform="ios"  color="#ffffff" />
-		    </View>
-			<ScrollView class="wfill hfill contwfill conthsize" id="main" layout="vertical" contentHeight="Ti.UI.SIZE">
-				<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
-				<TextField class="text_input" id="memno" hintText="Enter Member Number or IC Number" value="" /><!-- AGIL00012 -->
-				<TextField class="text_input" id="empno" hintText="Enter Employee Number" value="" /><!-- 00012 -->
-				<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
-			</ScrollView>
-		</View><!--
-		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
-			 <Label class="ftText">ASPplux</Label>
-			 <Label class="ftText">|</Label>
-			 <Label class="ftText">Privacy & Terms</Label>
-			 <Label class="ftText">|</Label>
-			 <Label class="ftText">Help</Label>
-		</View>-->
+	<Window navTintColor="#CE1D1C" title="ASP Signup" id="win" class="wfill hfill">
+	    <View class="wfill hfill vert">
+    	     <View top="0" height="50" backgroundColor="#DEDEDE"> 
+    		     <View left="0" zIndex="9" id="btnBack" width="20%"  >
+    			 <ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
+    		  </View>
+    		  <View >
+    			 <Label id="titleLbl"  class='hsize themeColor' textAlign="center">ASP Sign Up</Label>
+    		   </View>
+    		</View>
+    		<ScrollView class="wfill hfill contwfill conthsize vert" id="main">
+    			<ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
+    			<View class="wfill hsize vert" id="forms">
+        			<View required="1" backgroundColor="#fba81c" id="memno" value="" class="wfill hsize padding rounded" top="0">
+                        <TextField  hintText="Member Number or IC Number" onFocus="textFieldOnFocus" onBlur="textFieldOnBlur"  left="5" value=""></TextField>
+                    </View>
+                    <View required="1" backgroundColor="#fba81c" id="empno" value="" class="wfill hsize padding rounded" top="0">
+                        <TextField  hintText="Employee Number" onFocus="textFieldOnFocus" onBlur="textFieldOnBlur"  left="5" value=""></TextField>
+                    </View>
+    			</View>
+    			<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
+    		</ScrollView>
+		</View>
 	</Window>
 </Alloy>

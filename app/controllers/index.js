@@ -17,12 +17,27 @@ function init(){
 			}
 		}else{
 			if(isSignup2 == "yes"){
+				
 				var win = Alloy.createController("login").getView();
 				win.open(); 
 				var win2 = Alloy.createController("asp/signup2").getView();
 				win2.open(); 
 			}else{ 
-				var win = Alloy.createController("home").getView();
+				
+				if(OS_IOS){
+				    console.log("index home chekcin");
+					var navMenu = Titanium.UI.iOS.createNavigationWindow();
+					var win = Alloy.createController("home").getView();
+					navMenu.window = win;
+					Alloy.Globals.navMenu = navMenu;
+					console.log("stoped?");
+					console.log(Alloy.Globals.navMenu);
+					Alloy.Globals.navMenu.open();
+				}else{
+					console.log('start home');
+					var win = Alloy.createController("home").getView();
+					win.open();
+				}
 			}
 		}
 	}else{  

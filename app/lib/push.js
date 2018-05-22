@@ -19,7 +19,6 @@ function receivePush(e){
 	var extra; 
 	var data = (OS_IOS)?e.data:e;
 	if(OS_IOS){ 
-		Titanium.UI.iPhone.setAppBadge("0"); 
 		target = e.data.target; 
 		extra = e.data.extra;
 	}else{ 
@@ -47,7 +46,6 @@ function receivePush_bak(e) {
 	var target;
 	var url;
 	if(OS_IOS){
-		Titanium.UI.iPhone.setAppBadge("0"); 
 		var param = {
 			"id": e.data.id || "",
 			"member_no": e.data.mem_no || "",

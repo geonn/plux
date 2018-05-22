@@ -223,14 +223,6 @@ function removeAllChildren(viewObject){
     }
 }
 
-
-
-Titanium.App.addEventListener('resumed', function(e) {
-	if (OS_IOS) {
-		Titanium.UI.iPhone.setAppBadge("0");
-	}
-});
-
 function parent(keys, ex){
 	// if key.value undefined mean it look for key only
 	var key = keys;

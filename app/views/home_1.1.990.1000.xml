@@ -1,0 +1,49 @@
+<Alloy>
+	<NavigationWindow id="navMenu" platform="ios">
+		<Window id="win" title="" navBarHidden="true" class="container">
+			<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
+			<View id="main">
+				<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL"></View>
+				<View class='wfill hfill'>
+					<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" zIndex="5" />
+					<View zIndex="4" id="myinfo_view" left="110" class="wfill hsize horz" top="20" backgroundColor="#B3000000"> 
+						<!--<View height="40" id="fbloginView" />-->
+						<View left="" width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
+					</View>
+					<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
+				        <ActivityIndicator  id="activityIndicator" />
+				    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
+				    </View>
+					<ScrollView id="scrollboard1" width="293" contentWidth="293" height="Ti.UI.FILL" class="horz" zIndex="3">
+						<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
+					-->
+						<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
+						
+					</ScrollView>
+				</View>
+			</View>
+		</Window>
+	</NavigationWindow>
+	<Window id="win" title="" navBarHidden="true" class="container" platform="android">
+		<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
+		<View id="main">
+			<View id="daily_background" width="Ti.UI.FILL" height="Ti.UI.FILL" ></View>
+			<View class="wfill hfill">
+				<ImageView id="logo" borderRadius="10" width="100" height="100" top="10" left="10" image="/images/logo_plux.png" zIndex="5" />
+				<View zIndex="4" id="myinfo_view" left="110" width="Ti.UI.FILL" height="Ti.UI.SIZE" top="20" backgroundColor="#B3000000"> 
+					<!--<View height="40" id="fbloginView" />-->
+					<View width="Ti.UI.FILL" top="10" bottom="10" height="60" id="myInfo" />
+				</View>
+				<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" top="0" opacity="0" backgroundColor="#2E2E2E" >
+			        <ActivityIndicator  id="activityIndicator" />
+			    	<Label top="5" bottom="10" text="Loading" color="#ffffff" />
+			    </View>
+				<ScrollView id="scrollboard1" width="293" contentWidth="293" height="Ti.UI.FILL" class="horz" zIndex="3">
+							<!--<ImageView onClick="navWindow" mod="appointment" top="15"  width="139" image="/images/btn/btn_appointment.png"/> 
+						-->
+						<View id="scrollboard" height="Ti.UI.SIZE" class="horz" zIndex="3"></View>
+				</ScrollView>
+			</View>
+		</View>
+	</Window> 
+</Alloy>

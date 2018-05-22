@@ -76,7 +76,6 @@ function navToWebview(e){
 }
 
 function addRow(row, latest){
-	console.log(row);
 	var view_container = $.UI.create("View",{
 		classes: ['hsize','wfill'],
 		id: row.id
@@ -84,7 +83,7 @@ function addRow(row, latest){
 	
 	if(row.sender_id){
 		var view_text_container = $.UI.create("View", {
-			classes:  ['hsize', 'vert', 'box','bigRounded'],
+			classes:  ['hsize', 'vert', 'rounded'],
 			top: 5,
 			width: "75%",
 			transform: Ti.UI.create2DMatrix().rotate(180),
@@ -145,11 +144,17 @@ function addRow(row, latest){
 		
 		view_text_container.add(label_time);
 		if(row.is_endUser){
-			view_text_container.setBackgroundColor("#F1FFE3");
+			view_text_container.setBackgroundColor("#22262f");
+			label_name.color = "#fff";
+			label_message.color = "#fff";
+			label_time.color = "#fff";
 			view_text_container.setLeft(10);
+			
 			//view_container.add(imageview_thumb_path);
 		}else{
-			view_text_container.setBackgroundColor("#FFFFE3");
+		    view_text_container.borderWidth = 1;
+		    view_text_container.borderColor = "#e9e9e9";
+			view_text_container.setBackgroundColor("#ffffff");
 			//
 			if(typeof args.record != "undefined"){
 				var imageview_thumb_path = $.UI.create("ImageView", {
@@ -220,7 +225,7 @@ function updateRow(row, latest){
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
 		console.log(row.id+" compare "+inner_area[i].id);
-		if(inner_area[i].id == row.id){
+		if(inner_area[i].id == row.id && !row.sender_id){
 			found = true;
 			console.log(inner_area[i].children[0]);
 			console.log(inner_area[i].children[0].children.length);

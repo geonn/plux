@@ -14,7 +14,7 @@
         fontWeight: "bold"
     },
     
-    color: '#404040',
+    color: '#fff',
     left: '10',
     right: '10'
 },
@@ -24,7 +24,7 @@
         fontSize: '14'
     },
     
-    color: '#6E6E6E',
+    color: '#fff',
     left: '10',
     textAlign: "left",
     right: '10'

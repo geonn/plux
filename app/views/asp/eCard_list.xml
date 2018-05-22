@@ -1,6 +1,6 @@
 <Alloy>
-	<Window id="win" title="ASP eCARD" backButtonTitle="" backgroundColor="#fff" navTintColor="#CE1D1C">
-		<View class="hfill wfill vert">
+	<Window id="win" title="ASP eCARD" backButtonTitle="" navTintColor="#CE1D1C">
+		<View class="hfill wfill vert" id="main">
 			<View top="0" layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
 					<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
@@ -9,8 +9,14 @@
 					<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">eCard List</Label>
 				</View>
 			</View>
-			<ImageView class="wfill wsize" top="10" left="10" right="10" image="/images/eCard-front.png"></ImageView>
-			<TableView class="wfill hfill" id="inner_box" top="0" contentWidth="Ti.UI.FILL" contentHeight="Ti.UI.SIZE"  separatorColor="#375540" />
 		</View>
+		<!-- 
+		<View class="wfill hsize" top="170" right="10" id="tool_miku" onClick="nextTip">
+		    <View class="wfill hsize rounded" left="10" right="120" top="0" backgroundColor="#FFFFFF">
+		        <Label id="tooltop_message" class="wsize hsize padding h5">Welcome to ASP HEALTHCARE, I'm ASP assistant to guide you the ECard feature</Label>
+		    </View>
+		    <ImageView width="120" right="0" top="0" class='hsize' image="/images/welcome_miku.png"></ImageView>
+		</View>
+		-->
 	</Window>
 </Alloy>

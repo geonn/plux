@@ -4,6 +4,8 @@ var loading = Alloy.createController("loading");
 var u_id = Ti.App.Properties.getString('u_id'); 
 
 function newRecord(){
+    nav.navigateWithArgs("addMedicalRecord"); 
+    /*
 	loading.start();
 	API.callByPost({url: "addUpdateMedicalRecord", params:{title: "untitled - "+ common.now(), u_id: u_id}}, function(responseText){
 		var model = Alloy.createCollection("medicalRecordsV2");
@@ -12,49 +14,143 @@ function newRecord(){
 		model.saveArray(arr);
 		loading.finish();
 		nav.navigateWithArgs("editMedical", {id: arr[0].id}); 
-	});
+	});*/
 }
 
-function render_listing(){
-	var model = Alloy.createCollection("medicalRecordsV2");
-	var data = model.getData();
-	var row_data = [];
+function render_listing(data){
+    $.listing.removeAllChildren();
 	for (var i=0; i < data.length; i++) {
-		var row = $.UI.create("TableViewRow",{keyword: data[i].title+" "+data[i].message+" "+data[i].clinic, id: data[i].id});
-		var container = $.UI.create("View", {classes:['wfill','hsize','padding']});
-		var left_info = $.UI.create("View", {classes:['wfill','hsize','vert'], right: 30});
-		var right_arrow = $.UI.create("ImageView", {classes:['hsize'], image: "/images/btn-forward.png", right: 10, width: 15});
-		
-		var title = $.UI.create("Label", {classes: ['wfill','hsize','h4','themeColor'], textAlign: "left", text: data[i].title.replace(/["']/g, "&quot;")});
-		var message = $.UI.create("Label", {classes: ['wfill','h5'], height: 20, textAlign: "left", text: data[i].message.replace(/["']/g, "&quot;")});
-		var clinic = $.UI.create("Label", {classes: ['wfill','h5'], height: 20, textAlign: "left", text: data[i].clinic.replace(/["']/g, "&quot;")});
-		var updated = $.UI.create("Label", {classes: ['wfill','hsize','h5'], textAlign: "left", text: timeFormat(data[i].updated)});
-		
-		left_info.add(title);
-		left_info.add(clinic);
-		left_info.add(updated);
-		container.add(left_info);
-		container.add(right_arrow);
-		row.add(container);
-		row_data.push(row);
+	    var left_indicator_bg_color = "#55a939";
+		var row = $.UI.create("View", {classes:['wfill','padding','hsize','rounded'], bottom: 0, backgroundColor: left_indicator_bg_color, record: data[i]});
+        var view_container = $.UI.create("View", {classes:['wfill','hsize', 'vert'], touchEnabled: false, backgroundColor: "#fff", left: 5});
+        var view_container_bottom = $.UI.create("View", {classes:['wfill','hsize'], touchEnabled: false,});
+        var view_left_content = $.UI.create("View", {classes:['hsize','vert'], touchEnabled: false, width: "60%", left: 10, bottom:10});
+        var label_title = $.UI.create("Label", {classes:['wfill','hsize','h6'], left:10, top:10, touchEnabled: false, text: "TITLE"});
+        var label_title_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], left: 10, touchEnabled: false, minimumFontSize: 10, text: data[i].title});
+        view_container.add(label_title);
+        view_container.add(label_title_value);
+        
+        var label_category = $.UI.create("Label", {classes:['wfill','hsize','h6'], touchEnabled: false, top:5, text: "CATEGORY"});
+        var label_category_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].category});
+        view_left_content.add(label_category);
+        view_left_content.add(label_category_value);
+        
+        var view_right_container = $.UI.create("View", {classes:['hsize', 'vert'], touchEnabled: false, width: "40%", right: 10, bottom:10});
+        var label_updated = $.UI.create("Label", {classes:['wfill','hsize','h6'], touchEnabled: false, top:5, text: "DATE"});
+        var label_updated_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], touchEnabled: false, minimumFontSize: 10, text: data[i].updated});
+        view_right_container.add(label_updated);
+        view_right_container.add(label_updated_value);
+        
+        view_container_bottom.add(view_right_container);
+        view_container_bottom.add(view_left_content);
+        view_container.add(view_container_bottom);
+        row.add(view_container);
+        
+        var delete_button = $.UI.create("Label", {classes:['h5'], text: "X", top: 5, right: 5, width: 20, height: 20, bubbleParent: false});
+        row.add(delete_button);
+        
+        delete_button.addEventListener("click", deleteRecord);
+        row.addEventListener("click", openAttachment);
+        $.listing.add(row);
 	};
-	$.recordTable.data = row_data;
 }
 
-$.recordTable.addEventListener("click", function(e){
-	loading.start();
-	nav.navigateWithArgs("editMedical", {id: e.rowData.id}); 
-	
-});
+function openAttachment(e){
+    console.log(e.source.record);  
+    var file_format = e.source.record.attachment.substr(-3);
+    if(file_format == "pdf"){
+        openURLPDF(e.source.record);
+    }else{
+        $.mask.show();
+        var html = "<html><head><meta name='viewport' content='initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes' /></head><body><img width='100%' height='auto' src='"+e.source.record.attachment+"'/></body></html>";
+        if(OS_IOS){
+            var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
+        }else{
+            var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
+        }
+        $.win.add(webview);   
+    }
+}
+
+function openURLPDF(e) {
+    loading.start();
+    var filename = e.attachment.split("/");
+    filename = filename[filename.length - 1];
+    console.log(filename);
+    var appFile;
+    
+    if(OS_ANDROID) {
+        appFile = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, filename); 
+    } else {
+        appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
+    }
+    var appfilepath = appFile.nativePath;
+    
+    //Check if file has been downloaded yet
+    if(appFile.exists()===false) {
+        var xhr = Ti.Network.createHTTPClient();
+        xhr.onload = function() {
+            appFile.write(this.responseData);
+            viewPDF(appfilepath);
+        };
+        xhr.onerror = function() {
+            alert("Cannot retrieve PDF form web site");
+        };
+        xhr.timeout = 10000;
+        xhr.open("GET", e.attachment);
+        xhr.send();
+    
+    } else {
+        viewPDF(appfilepath);   
+    }
+}
+
+function viewPDF(appfilepath) {
+    if(OS_ANDROID) {
+        try{
+            Ti.Android.currentActivity.startActivity(Ti.Android.createIntent({
+                action: Ti.Android.ACTION_VIEW,
+                type: 'application/pdf',
+                data: appfilepath
+            }));
+        } catch(e) {
+            Ti.API.info('error trying to launch activity, e = '+e);
+            alert('No PDF apps installed!');
+        }
+    } else {
+        docViewer = Ti.UI.iOS.createDocumentViewer({url:appfilepath});
+        docViewer.show();
+    }
+    loading.finish();
+}
+
+function deleteRecord(e){
+    
+    console.log(e.source.parent.record);
+    
+    API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
+        var res = JSON.parse(responseText);
+        console.log(res);
+        refresh();
+    });
+}
+
+function closeBox(){
+    $.mask.hide();
+    $.win.remove($.win.children[$.win.children.length - 1]);
+}
 
 function refresh(){
 	loading.start();
 	
-	API.callByPost({url: "getMedicalRecords", params:{u_id: u_id}}, function(responseText){
-		
-		var model = Alloy.createCollection("medicalRecordsV2");
+	API.callByPost({url: "getMedicalAttachmentList", new: true, domain: "FREEJINI_DOMAIN", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
-		var arr = res.data || null;
+        var arr = res.data || [];
+        console.log(arr);
+        render_listing(arr);
+        loading.finish();
+		/*var model = Alloy.createCollection("medicalRecordsV2");
+		
 		model.saveArray(arr);
 		
 		API.callByPost({url: "getMedicalAttachment", params:{u_id: u_id}}, function(responseText){
@@ -63,16 +159,17 @@ function refresh(){
 			var arr2 = res2.data || null;
 			model2.saveArray(arr2);
 			
-			render_listing();
+			
 			loading.finish();
-		});
+		});*/
 	});
 }
 
 function init(){
 	$.win.add(loading.getView());
-	$.recordTable.search = $.searchItem;
 	refresh();
+	
+	$.mask.hide();
 }
 
 init();
@@ -80,7 +177,7 @@ init();
 if(OS_ANDROID){ 
 	$.btnBack.addEventListener('click', function(){ 
 		$.win.close(); 
-	});   
+	});
 }
 
 Ti.App.addEventListener('myMedicalRecord:refresh', refresh);

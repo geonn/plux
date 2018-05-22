@@ -1,35 +1,33 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C"  title="Plux Signup" id="win" class="container" layout="vertical">
-		<View  top="0" height="50" backgroundColor="#E8E8E8"> 
-				<View left="0" zIndex="9" id="backButton" width="20%" onClick="closeWin">
-					<ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
-				</View>
-				<View >
-					<Label id="titleLbl"  class='hsize themeColor' textAlign="center">Sign Up PLUX</Label>
-			   </View>
-			</View>
-		<View>
-        	<View layout="vertical" id="loadingBar" height="0" width="120" borderRadius="15" backgroundColor="#2E2E2E" >
-		        <ActivityIndicator id="activityIndicator" />
-		    	<Label top="5" text="Loading" platform="ios"  color="#ffffff" />
-		    </View>
-			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-				<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
-				<TextField class="text_input" id="fullname" hintText="Enter Full Name" value="" /><!-- wongbh@live.com -->
-				<TextField class="text_input" id="email" hintText="Enter Email" value="" /><!-- wongbh@live.com -->
-				<TextField class="text_input" id="ic_no" hintText="Enter Your IC" keyboardType="Titanium.UI.KEYBOARD_TYPE_NUMBER_PAD" value="" />
-				<TextField id="password" hintText="Enter Password" value="" />
-				<TextField  id="confirm" hintText="Enter Confirm Password" value="" /><!--12345678 -->
-				<View id="tc_area" layout="vertical" height="Ti.UI.SIZE" width="Ti.UI.FILL"></View>
-				<Button id="sign_btn" onClick="doSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="60%" top="20" height="40" bottom="20" color="#ffffff" />
-			</ScrollView>
-		</View><!--
-		<View height="5%" id="footer" layout="horizontal" verticalAlign="middle">
-			 <Label class="ftText">ASPplux</Label>
-			 <Label class="ftText">|</Label>
-			 <Label class="ftText">Privacy & Terms</Label>
-			 <Label class="ftText">|</Label>
-			 <Label class="ftText">Help</Label>
-		</View>-->
+	<Window navTintColor="#CE1D1C"  title="Plux Signup" id="win">
+	    <View class="wfill hfill vert">
+    		<View  top="0" height="50" backgroundColor="#E8E8E8"> 
+    			<View left="0" zIndex="9" id="backButton" width="20%" onClick="closeWin">
+    				<ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
+    			</View>
+    			<View >
+    				<Label id="titleLbl"  class='hsize themeColor' textAlign="center">Signup</Label>
+    		   </View>
+    		</View>
+    		<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
+    		<ScrollView class='vert hfill wfill conthsize contwfill' id="forms">
+    			<View backgroundColor="#fba81c" id="fullname" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Full Name *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="email" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Email *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="ic_no" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="IC / Passport *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="password" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" passwordMask="true" hintText="Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="password2" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" passwordMask="true" hintText="Confirm Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+    			<Button id="sign_btn" onClick="doSubmit" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="10" height="40" bottom="10" color="#ffffff" />
+    		</ScrollView>
+		</View>
 	</Window>
 </Alloy>

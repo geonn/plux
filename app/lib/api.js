@@ -41,6 +41,7 @@ var addMedicalAttachment = "https://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment
 var getCorpPermission = "https://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
 var getMessage = "https://"+FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
 var sendMessage = "https://"+FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
+var getClinicLocator3 = "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator3?user="+USER+"&key="+KEY;
 
 var addMessageUrl = "https://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
 var getDoctorByPanel = "https://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
@@ -68,6 +69,7 @@ var changeRecordStatus = "https://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?use
 var doforgotPassword = "https://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
 var getRoomList = "https://"+FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
 
+var claimunder  = "https://"+API_DOMAIN+"/claimunder.aspx"; 
 var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
 var loginUrl        = "https://"+API_DOMAIN+"/login.aspx";
 var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx";
@@ -536,7 +538,7 @@ exports.do_signup = function(data,mainView, callback){
 	client.send();  
 };
 
-exports.plux_signup = function(data, callback){
+exports.plux_signup = function(data){
 	 
 	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&ic_no="+data.ic_no+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
   	var params = { 
@@ -548,7 +550,7 @@ exports.plux_signup = function(data, callback){
 		// function called when the response data is available
 		onload : function(e) { 
 			var result = JSON.parse(this.responseText);
-			common.hideLoading(); 
+			
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
 				return false;
@@ -556,7 +558,8 @@ exports.plux_signup = function(data, callback){
 				Ti.App.Properties.setString('u_id', result.data.u_id); 
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				Ti.App.Properties.setString('asp_email', result.data.email);
-				callback();
+				u_id = Ti.App.Properties.getString('u_id') || "";
+                updateUserService(u_id, 1, data.email, data.password);
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -568,7 +571,7 @@ exports.plux_signup = function(data, callback){
 	client.send();  
 };
 
-exports.do_asp_presignup = function(data, mainView){
+exports.do_asp_presignup = function(data, handle){
 	var url = aspPreSignupUrl+"?MEMNO="+data.memno+"&EMPNO="+data.empno;
 	var u_id = Ti.App.Properties.getString('u_id') || "";
 	console.log(url);
@@ -581,7 +584,7 @@ exports.do_asp_presignup = function(data, mainView){
 	       //console.log(res);
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
-	       		 common.hideLoading();
+	       		 handle.finish();
 	       }else{  
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
@@ -589,17 +592,14 @@ exports.do_asp_presignup = function(data, mainView){
 	       		Ti.App.Properties.setString('corpname', res.corpname);
 	       		Ti.App.Properties.setString('name', res.name);
 	       		Ti.App.Properties.setString('signup2', "yes");
-	       		common.hideLoading();
-	       		 
-				nav.closeWindow(mainView.aspSignUpWin);
-				var win = Alloy.createController("asp/signup2").getView();
-				win.open(); 
+	       		handle.finish();
+	       		handle.callback();
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
 	     	common.createAlert("Sign Up Fail", e.error);
-	     	common.hideLoading();
+	     	handle.finish();
 	     },
 	     timeout : 60000  // in milliseconds
 	 });
@@ -609,7 +609,7 @@ exports.do_asp_presignup = function(data, mainView){
 	 client.send();
 };
 
-exports.do_asp_signup = function(data, mainView){
+exports.do_asp_signup = function(data, handler){
 	
 	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
@@ -624,7 +624,7 @@ exports.do_asp_signup = function(data, mainView){
 	       console.log(res);
 	       if(typeof res.message !== "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
-	       		 common.hideLoading();
+	       		 handler.finish();
 	       }else{ 
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
@@ -636,7 +636,7 @@ exports.do_asp_signup = function(data, mainView){
 	       			console.log(u_id+" "+data.email+" "+data.password);
 	       			updateUserService(u_id, 1, data.email, data.password);
 	       		}else{
-	       			var params = {
+	       			/*var params = {
 						fullname: data.name,
 						email: data.email,
 						password: data.password,
@@ -644,22 +644,15 @@ exports.do_asp_signup = function(data, mainView){
 						agreets: 1
 					};
 					
-					API.plux_signup(params, function(e){
-						u_id = Ti.App.Properties.getString('u_id') || "";
-						updateUserService(u_id, 1, data.email, data.password);
-					});
+					API.plux_signup(params);*/
 	       		}
-	       		common.hideLoading();
-	       		 
-				nav.navigationWindow("home");
-				nav.closeWindow(mainView.aspSignUpWin); 
-				Ti.App.fireEvent('updateHeader');
+	       		handler.onload();
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
 	     	common.createAlert("Sign Up Fail", e.error);
-	     	common.hideLoading();
+	     	loading.finish();
 	     },
 	     timeout : 60000  // in milliseconds
 	 });
@@ -849,131 +842,6 @@ exports.claimDetailBySeries = function(e, callback){
 	});
 	
 	// Prepare the connection.
-	 client.open("GET", encodeURI(url));
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.getClaimDetail = function(e){
-	
-	var url = getClaimDetailUrl+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode+"&PERIOD=ALL";
- 
-	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	console.log('getClaimDetail');
-	console.log(url);
-	var client = Ti.Network.createHTTPClient({
-		// function called when the response data is available
-	     onload : function(e) {
-	       var ret = [];
-	       var res = JSON.parse(this.responseText);
-	    
-	       if(res.length == 0){
-	      
-	       }else if( typeof res[0].message !== "undefined"){
-	       		//console.log('got error message');
-	       		common.createAlert(res[0].message);
-	       }else{
-       			res.forEach(function(entry) {
-       				 var claim_detail_model = Alloy.createCollection('claim_detail');
-       				  
-       				 claim_detail_model.save_claim_detail(entry.serial, entry.memno, entry.name, entry.relation, entry.cliniccode, entry.visitdate, entry.amount, entry.category, entry.mcdays, entry.clinicname, entry.status, entry.claimtype, entry.appcode);
-       				 /* API update - removed the details portion to increase the Apps Response time
-       				  * entry.diagnosis, entry.consultation_amt, entry.medication, entry.medication_amt, entry.injection, entry.injection_amt, entry.labtest, entry.labtest_amt, entry.xray, entry.xray_amt, entry.surgical, entry.surgical_amt, entry.extraction_amt, entry.fillings_amt, entry.scaling_amt, entry.others_amt, entry.bps, entry.bpd, entry.pulse, */
-       			});
-	       }
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(ex) {
-	     //	console.log(ex);
-	     	retryTimes --;
-	     	
-	     	if(retryTimes !== 0 && Titanium.Network.online){
-	     		API.getClaimDetail({empno : e.empno, corpcode : e.corpcode, retryTimes: retryTimes});
-	     	}else{
-	     		//Ti.App.fireEvent("data_loaded");
-	     	}
-	     },
-	     timeout : 70000  // in milliseconds
-	});
-	
-	// Prepare the connection.
-	 client.open("GET", encodeURI(url));
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.claimInfo = function(e) { 
-	var url = checkBalanceUrl+"?MEMNO="+e.memno+"&CORPCODE="+e.corpcode;
- 	
-	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) {
-	       var ret = [];
-	       var res = JSON.parse(this.responseText);
-	       if(typeof res[0].message != "undefined"){
-	       		common.createAlert(res[0].message);
-	       }else{
-	       		Ti.App.Properties.setString('balchk', this.responseText);
-	       		Ti.App.Properties.setString('balchkUpdatedDate', currentDateTime());
-	       		Ti.App.fireEvent("data_loaded"); 
-	       }
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(ex) {
-	     	retryTimes --;
-	     	
-	     	if(retryTimes !== 0 && Titanium.Network.online){
-	     		API.claimInfo({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
-	     	}else{
-	     		Ti.App.fireEvent("data_loaded");
-	     	}
-	     },
-	     timeout : 70000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", encodeURI(url));
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.ifins = function(e) { 
-	var url = ifins+"?EMPNO="+e.empno+"&CORPCODE="+e.corpcode;
- 	//var url = ifins+"?EMPNO=05152314&CORPCODE=IFMY";
- 	console.log("ifins");
- 	console.log(url);
-	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) {
-	       var ret = [];
-	       var res = JSON.parse(this.responseText);
-	       console.log(res);
-	       console.log("here");
-	       if(_.isEmpty(res)){
-		      console.log("empty!");
-	       }else{
-	       	   if(typeof res[0].message != "undefined"){
-		       		common.createAlert(res[0].message);
-		       }else{
-		       		Ti.App.Properties.setString('ifins', this.responseText);
-		       		Ti.App.fireEvent("ifins_loaded"); 
-		       }
-	       }
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(ex) {
-	     	retryTimes --;
-	     	console.log(retryTimes+" ifins");
-	     	if(retryTimes !== 0 && Titanium.Network.online){
-	     		API.ifins({memno : e.memno, corpcode : e.corpcode, retryTimes: retryTimes});
-	     	}else{
-	     		Ti.App.fireEvent("ifins_loaded");
-	     	}
-	     },
-	     timeout : 70000  // in milliseconds
-	 });
-	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
 	 // Send the request.
 	 client.send(); 
@@ -1280,17 +1148,57 @@ exports.loadPanelList = function (ex){
 	 client.send(); 
 };
  
-exports.callByGet  = function(e, onload, onerror){
-	console.log("callbyget");
-	var url =  eval(e.url) + "?"+e.params;
-	console.log("url:"+url);
+exports.callByGet  = function(e, handler){
+	var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
+    var url = (e.fullurl)?e.url:"https://"+domain+e.url+"?user="+USER+"&key="+KEY;
+	url =  url+"&"+e.params;
+	console.log("callbyget: "+url);
 	var _result = contactServerByGet(encodeURI(url));   
 	_result.onload = function(e) {   
-		onload && onload(this.responseText); 
+	    if(e.skipJSON){
+            _.isFunction(handler.onload) && handler.onload(this.responseText); 
+            _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
+            return ;
+        }
+        try{
+            JSON.parse(this.responseText);
+        }
+        catch(e){
+            console.log(this.responseText);
+            console.log('callbypost JSON exception');
+            console.log(e);
+            common.createAlert("Whoops","There is a problem with the server, please try again later.", handler.onerror);
+            //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
+            //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
+            return;
+        }
+        _.isFunction(handler.onload) && handler.onload(this.responseText); 
+        _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
 	};
 		
-	_result.onerror = function(e) { 
-		onerror && onerror(); 
+	_result.onerror = function(ex) { 
+		if(ex.code == "-1009"){       //The Internet connection appears to be offline.
+            common.createAlert("Error", ex.error, handler.onerror);
+            return;
+        }
+        if(_.isNumber(e.retry_times)){
+            console.log(e.retry_times);
+            e.retry_times --;
+            if(e.retry_times > 0){
+                API.callByGet(e, handler);
+            }else{
+                console.log('onerror msg');
+                console.log(ex);
+                common.createAlert("Error", ex.error, handler.onerror);
+                //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
+                //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
+            }
+        }else{
+            console.log('onerror msg without no');
+            console.log(ex);
+            e.retry_times = 2;
+            API.callByGet(e, handler);
+        } 
 	};	
 };
 
@@ -1341,9 +1249,9 @@ function contactServerByPost(url,records) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 60000
 	});
-	if(OS_ANDROID){
+	/*if(OS_ANDROID){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
-	 }
+	 }*/
 	client.open("POST", url);
 	client.send(records);
 	return client;
@@ -1382,6 +1290,7 @@ exports.callByPost = function(e, onload, onerror){
 			url = e.url; 
 		}else{
 			var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
+			console.log(typeof e.new+" typeof e.new");
 			url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
 		console.log(url); 
@@ -1408,7 +1317,7 @@ exports.callByPost = function(e, onload, onerror){
 						callByPost_error_popup = false;
 					});
 				}
-				onload('{"status":"error","error_message":"No internet connection."}');
+				onload(JSON.stringify(ex));
 			}
 		};
 	}
@@ -1416,7 +1325,7 @@ exports.callByPost = function(e, onload, onerror){
 
 
 
-function onErrorCallback(e) {
+function onerrorCallback(e) {
 	var common = require('common');
 	// Handle your errors in here
 	common.createAlert("Error", e);

@@ -353,7 +353,7 @@ var qrcode = function() {
 			for (var i = 0; i < rsBlocks.length; i += 1) {
 				totalDataCount += rsBlocks[i].dataCount;
 			}
-
+            console.log(totalDataCount * 8+" totalDataCount * 8");
 			if (buffer.getLengthInBits() > totalDataCount * 8) {
 				throw new Error('code length overflow. ('
 					+ buffer.getLengthInBits()
@@ -1054,7 +1054,19 @@ var qrcode = function() {
 			[2, 86, 68, 2, 87, 69],
 			[4, 69, 43, 1, 70, 44],
 			[6, 43, 19, 2, 44, 20],
-			[6, 43, 15, 2, 44, 16]
+			
+            [4, 101, 81],
+             [1, 80, 50, 4, 81, 51],
+             [4, 50, 22, 4, 51, 23],
+             [3, 36, 12, 8, 37, 13],
+             [2, 116, 92, 2, 117, 93],
+             [6, 58, 36, 2, 59, 37],
+             [4, 46, 20, 6, 47, 21],
+             [7, 42, 14, 4, 43, 15],
+             [4, 133, 107],
+             [8, 59, 37, 1, 60, 38],
+             [8, 44, 20, 4, 45, 21],
+             [12, 33, 11, 4, 34, 12],
 		];
 
 		var qrRSBlock = function(totalCount, dataCount) {
@@ -1067,7 +1079,8 @@ var qrcode = function() {
 		var _this = {};
 
 		var getRsBlockTable = function(typeNumber, errorCorrectLevel) {
-
+console.log(errorCorrectLevel);
+console.log("errorCorrectLevel "+ QRErrorCorrectLevel.M);
 			switch(errorCorrectLevel) {
 			case QRErrorCorrectLevel.L :
 				return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];

@@ -9,8 +9,8 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Claim History</Label>
 		     	</View>
 		 	</View>
-			<TableView id="tv">
-		    </TableView>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="listing">
+		    </ScrollView>
 		</View>
 	</Window>
 </Alloy>
