@@ -9,6 +9,7 @@ var type = "CLINIC";
 var pin_data = [
 	{type: "CLINIC", name: "CLINIC", icon: "/images/icons/CLINIC.png"},
 	{type: "HOSPITAL", name: "HOSPITAL", icon: "/images/icons/HOSPITAL.png"},
+	{type: "DENTAL", name: "DENTAL", icon: "/images/icons/DENTAL.png"},
 	{type: "OPTICAL", name: "OPTICAL", icon: "/images/icons/OPTICAL.png"},
 	{type: "PHYSIOTHERAPHY", name: "PHYSIOTHERAPHY", icon:"/images/icons/CLINIC.png"},
 	{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/SPECIALIST.png"},
@@ -56,6 +57,7 @@ function setFilter(e){
 	//$.filter_icon.image = "/images/icons/pin_"+e.source.record.pin_number+".png";
 	$.filter_icon.image = e.source.record.icon;
 	$.filter_text.text = e.source.record.name;
+	isRefresh = 1;
 	openCategory();
 	type = e.source.record.type;
 	$.mapview.removeAllAnnotations();
@@ -254,3 +256,7 @@ function openCategory(){
 	});
 }
 console.log('last');
+
+function closeWindow(){
+    $.win.close();
+}
