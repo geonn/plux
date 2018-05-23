@@ -14,10 +14,7 @@ var new_menu = [
 	{mod:"clinicLocator", is_asp:0, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/modern-interior-design-lobby-at-dental-clinic-.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/man-running-in-a-gym-on-a-treadmill-concept-for-exercising-fitness-and-healthy-lifestyle.jpg"},
 ];
-$.shadow_header.hide();
-/*var loadingView = Alloy.createController("loader");
-loadingView.getView().open();
-loadingView.start();*/
+$.shadow_header.hide(); 
 
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
