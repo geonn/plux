@@ -7,8 +7,6 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	Ti.App.Properties.setString("appVersion", "1.1.993");
-
 	API.checkAppVersion(callback_download);
 };
 

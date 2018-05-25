@@ -397,7 +397,7 @@ exports.getNearbyClinic = function(e){
 };
  
 exports.checkAppVersion = function(callback_download){
-	var appVersion = Ti.App.Properties.getString("appVersion");
+	var appVersion = Ti.App.version;
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
 	console.log(url);
 	var client = Ti.Network.createHTTPClient({
