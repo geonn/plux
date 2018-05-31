@@ -70,40 +70,40 @@
                                 <Label class='hsize h5 bold' width='48%' textAlign="left" right="0" id="amount" minimumFontSize="10">RM </Label>
                             </View>
                             <View class="wfill hsize horz" height="40">
-                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                <View class="wsize hfill vert" width="45%" top="5">
                                     <Label class='wsize hsize h6' touchEnabled="false" left="0">CONSULTATION</Label>
                                     <Label class='wsize hsize h6 bold' left="0" touchEnabled="false" id="consultation_amt" minimumFontSize="10">RM </Label>
                                 </View>
                                 <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
-                                <View class="wsize hfill vert" width="45%" top="5">
-                                    <Label class='wsize hsize h6' left="0">MEDICATION</Label>
-                                    <Label class='wsize hsize h6 bold' left="0" id="medication_amt" minimumFontSize="10">RM </Label>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">MEDICATION</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="medication_amt" minimumFontSize="10">RM </Label>
                                 </View>
                             </View>
                             <View class="wfill hsize horz" height="40">
-                                <View class="wsize hfill vert" width="45%" top="5">
-                                    <Label class='wsize hsize h6' left="0">INJECTION</Label>
-                                    <Label class='wsize hsize h6 bold' left="0" id="injection_amt" minimumFontSize="10">RM </Label>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">INJECTION</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="injection_amt" minimumFontSize="10">RM </Label>
                                 </View>
                                 <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
-                                <View class="wsize hfill vert" width="45%" top="5">
-                                    <Label class='wsize hsize h6' left="0">LAB TEST</Label>
-                                    <Label class='wsize hsize h6 bold' left="0" id="labtest_amt" minimumFontSize="10">RM </Label>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">LAB TEST</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="labtest_amt" minimumFontSize="10">RM </Label>
                                 </View>
                             </View>
                             <View class="wfill hsize horz" height="40">
-                                <View class="wsize hfill vert" width="45%" top="5">
-                                    <Label class='wsize hsize h6' left="0">X-RAY</Label>
-                                    <Label class='wsize hsize h6 bold' id='xray_amt' left="0" minimumFontSize="10">RM </Label>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">X-RAY</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" id='xray_amt' left="0" minimumFontSize="10">RM </Label>
                                 </View>
                                 <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
-                                <View class="wsize hfill vert" width="45%" top="5">
-                                    <Label class='wsize hsize h6' left="0">SURGICAL</Label>
-                                    <Label class='wsize hsize h6 bold' left="0" id='surgical_amt' minimumFontSize="10">RM </Label>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">SURGICAL</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id='surgical_amt' minimumFontSize="10">RM </Label>
                                 </View>
                             </View>
                             <View class="wfill hsize horz" height="40">
-                                <View class="wsize hfill vert" width="45%" top="5">
+                                <View class="wsize hfill vert" width="45%" top="5" >
                                     <Label class='wsize hsize h6' left="0">EXTRACTION</Label>
                                     <Label class='wsize hsize h6 bold' left="0" id='extraction_amt' minimumFontSize="10">RM </Label>
                                 </View>

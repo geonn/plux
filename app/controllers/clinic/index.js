@@ -16,7 +16,10 @@ var pin_data = [
 	{type: "24HOURS", name: "24HOURS", icon: "/images/icons/24HOURS.png"},
 ];
 
-
+if(OS_ANDROID){
+    $.filter_button.top = 70;
+    $.quening_button.top = 70;
+}
 $.mapview.height = platformHeight - 50;
 
 var distance = function(lat1, lon1, lat2, lon2) {
@@ -214,8 +217,11 @@ function init(){
 	$.win.add(loading.getView());
 	$.view_category.width = platformWidth;
 	$.view_category.left = -platformWidth;
+	$.view_queue.width = platformWidth;
+    $.view_queue.right = -platformWidth;
 	console.log("init 1");
 	loadPinCategory();
+	loadQueue();
 }
 
 init();
@@ -226,9 +232,9 @@ function loadPinCategory(){
 	var arr_filter = [];
 	for (var i=0; i < pin_data.length; i++) {
 		var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin_data[i]});
-		var row = $.UI.create("View", {classes:['wsize','hsize'], left: 0, touchEnabled: false});
+		var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
 		var img_pin = $.UI.create("ImageView", {width: 30, height: 30, left:10, image: pin_data[i].icon, touchEnabled: false});
-		var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize'], left: 50, text: pin_data[i].name, touchEnabled: false});
+		var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], text: pin_data[i].name, touchEnabled: false});
 		row.add(img_pin);
 		row.add(lab_category_name);
 		tvr.add(row);
@@ -236,6 +242,28 @@ function loadPinCategory(){
 	};
 	$.filter_list.setData(arr_filter);
 	loading.finish();
+}
+
+function loadQueue(){
+    API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {}}, function(responseText){
+           
+        console.log(responseText);
+        var result = JSON.parse(responseText);
+        var data = result.data;
+            
+        var arr_filter = [];
+        for (var key in data){
+            var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize']});
+            var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
+            
+            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 50, text: key+" : "+data[key], touchEnabled: false});
+            row.add(lab_category_name);
+            tvr.add(row);
+            arr_filter.push(tvr);
+        }
+        $.queue_list.setData(arr_filter);
+        loading.finish();
+    });
 }
 
 var show_category = false;
@@ -255,7 +283,21 @@ function openCategory(){
 		duration: duration
 	});
 }
-console.log('last');
+
+function openQueueList(){
+    if (show_category){
+        moveTo = -platformWidth;
+        show_category=false;
+    }else{
+        moveTo="0";
+        show_category=true;
+    }
+    
+    $.view_queue.animate({
+        right:moveTo,
+        duration: duration
+    });
+}
 
 function closeWindow(){
     $.win.close();

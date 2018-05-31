@@ -2,17 +2,17 @@ var args = arguments[0] || {};
 var expandmode = false;
 var loading = Alloy.createController('loading');
 var new_menu = [
-	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/female-call-center-service-operator-at-work-.jpg"},
-	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/claims-ring-binder-on-office-desktop-with-office-supplies-.jpg"},
-	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/summons-paper-on-the-table-in-doctor-s-office.jpg"},
-	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/young-female-nurse-starting-iv-on-male-inpatient.jpg"},
+	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation.jpg"},
+	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/myClaim.jpg"},
+	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/claimSubmission.jpg"},
+	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record.jpg"},
 	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL.jpg"},
-	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/happy-family-at-home.jpg"},
-	{mod:"askDoctor/find_doctor", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/confident-female-doctor.jpg"},
-	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/woman-dentist-working-at-her-patients-teeth-.jpg"},
-	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/red-blood-in-test-tube-on-white-blank-with-results-in-colums-the-results-are-written-in-english-.jpg"},
-	{mod:"clinicLocator", is_asp:0, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/modern-interior-design-lobby-at-dental-clinic-.jpg"},
-	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/man-running-in-a-gym-on-a-treadmill-concept-for-exercising-fitness-and-healthy-lifestyle.jpg"},
+	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list.jpg"},
+	{mod:"askDoctor/find_doctor", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor.jpg"},
+	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit.jpg"},
+	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord.jpg"},
+	{mod:"clinicLocator", is_asp:0, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator.jpg"},
+	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth.jpg"},
 ];
 $.shadow_header.hide(); 
 
@@ -246,15 +246,11 @@ function navWindow(e){
 		//console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
 		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 			if (e.success) {
-				contacts({callback: function(){
-					console.log('why not calling');
-						if(memno == ""){
-							nav.navigationWindow("clinic/index");
-						}else{
-							nav.navigationWindow("clinic/index", 1);
-						}
-					}
-				});
+				if(memno == ""){
+                    nav.navigationWindow("clinic/index");
+                }else{
+                    nav.navigationWindow("clinic/index", 1);
+                }
 			}else{
 				var dialog = Ti.UI.createAlertDialog({
 					message : 'You do not have location permissions enabled shake locate needs these to work.',
@@ -396,32 +392,6 @@ function contacts(ex) {
 		ex.callback();
 	}
 
-	// On iOS we can get information on the reason why we might not have permission
-	if (OS_IOS) {
-
-		// Map constants to names
-		var map = {};
-		map[Ti.Contacts.AUTHORIZATION_AUTHORIZED] = 'AUTHORIZATION_AUTHORIZED';
-		map[Ti.Contacts.AUTHORIZATION_DENIED] = 'AUTHORIZATION_DENIED';
-		map[Ti.Contacts.AUTHORIZATION_RESTRICTED] = 'AUTHORIZATION_RESTRICTED';
-		map[Ti.Contacts.AUTHORIZATION_UNKNOWN] = 'AUTHORIZATION_UNKNOWN';
-
-		// Available since Ti 2.1.3 and always returns AUTHORIZATION_AUTHORIZED on iOS<6 and Android
-		var contactsAuthorization = Ti.Contacts.contactsAuthorization;
-		console.log('Ti.Contacts.contactsAuthorization', 'Ti.Contacts.' + map[contactsAuthorization]);
-
-		if (contactsAuthorization === Ti.Contacts.AUTHORIZATION_RESTRICTED) {
-			return alert('Because permission are restricted by some policy which you as user cannot change, we don\'t request as that might also cause issues.');
-
-		} else if (contactsAuthorization === Ti.Calendar.AUTHORIZATION_DENIED) {
-			return dialogs.confirm({
-				title: 'You denied permission before',
-				message: 'We don\'t request again as that won\'t show the dialog anyway. Instead, press Yes to open the Settings App to grant permission there.',
-				callback: editPermissions
-			});
-		}
-	}
-
 	// The new cross-platform way to request permissions
 	Ti.Contacts.requestContactsPermissions(function(e) {
 		console.log('Ti.Contacts.requestContactsPermissions', e);
@@ -431,7 +401,7 @@ function contacts(ex) {
 			// Instead, probably call the same method you call if hasContactsPermissions() is true
 			ex.callback();
 		} else if (OS_ANDROID) {
-			alert('You don\'t have the required uses-permissions in tiapp.xml or you denied permission for now, forever or the dialog did not show at all because you denied forever before.');
+			alert('You have denied permission before.');
 
 		} else {
 

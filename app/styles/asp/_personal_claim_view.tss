@@ -34,7 +34,8 @@
 		type: 'linear',
         startPoint: { x: '50%', y: '100%' },
         endPoint: { x: '50%', y: '0%' },
-        colors: [ { color: '#191c23', offset: 0.0}, { color: '#444c5f', offset: 0.8 },{ color: '#2d2d2f', offset: 0.9 }, { color: '#2d2d2f', offset: 1.0 } ],
+        
+        colors: [ { color: '#bababa', offset: 0.0}, { color: '#bababa', offset: 0.25 },{ color: '#ffffff', offset: 0.75 }, { color: '#bababa', offset: 1.0 } ],
 	},
 	backgroundColor: "#22262f",
 	borderRadius: 9,
@@ -52,7 +53,7 @@
 		type: 'linear',
         startPoint: { x: '50%', y: '100%' },
         endPoint: { x: '50%', y: '0%' },
-        colors: [ { color: '#14769b', offset: 0.0}, { color: '#3da7d1', offset: 0.8 },{ color: '#92c9dd', offset: 0.9 }, { color: '#92c9dd', offset: 1.0 } ],
+        colors: [ { color: '#c4302a', offset: 0.0}, { color: '#c4302a', offset: 0.25 },{ color: '#fe3e35', offset: 0.75 }, { color: '#c4302a', offset: 1.0 } ],
 	},
 	backgroundColor: "#CE1D1C",
 }
