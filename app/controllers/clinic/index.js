@@ -17,8 +17,8 @@ var pin_data = [
 ];
 
 if(OS_ANDROID){
-    $.filter_button.top = 70;
-    $.quening_button.top = 70;
+    $.filter_button.top = 120;
+    $.quening_button.top = 120;
 }
 $.mapview.height = platformHeight - 50;
 
@@ -79,7 +79,7 @@ function centerMap(e){
 		return;
 	}
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	var corpcode = "LHDN";//Ti.App.Properties.getString('corpcode') || "";
+	var corpcode = Ti.App.Properties.getString('corpcode') || "";
 	var bounds = getMapBounds($.mapview.region);
 	var zoom_distance = distance(bounds.northWest.lat, bounds.northWest.lng, bounds.southEast.lat, bounds.southEast.lng);
 	console.log(last_zoom_distance+" "+zoom_distance);
@@ -199,14 +199,6 @@ function render_annotation(annotation){
 	$.mapview.addAnnotation(ann);
 }
 
-
-$.win.addEventListener("close", function(){
-	$.destroy();
-});
-
-$.mapview.addEventListener("regionchanged", throttle_centerMap);
-$.mapview.addEventListener("click", pinClicked);
-
 function closeView(){
 	$.detail.hide();
 }
@@ -242,6 +234,11 @@ function loadPinCategory(){
 	};
 	$.filter_list.setData(arr_filter);
 	loading.finish();
+}
+
+function doSearch(e){
+    console.log(e.value);
+    nav.navigationWindow("clinic/search","","",{keyword: e.value});
 }
 
 function loadQueue(){
@@ -299,6 +296,22 @@ function openQueueList(){
     });
 }
 
+function navToClinic(e){
+    $.mapview.region =  {latitude: e.latitude, longitude:e.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
+}
+
 function closeWindow(){
     $.win.close();
 }
+
+$.win.addEventListener("close", function(){
+    Ti.App.removeEventListener("clinic/index:navTo", navToClinic);
+    $.destroy();
+});
+
+$.mapview.addEventListener("regionchanged", throttle_centerMap);
+$.mapview.addEventListener("click", pinClicked);
+
+Ti.App.addEventListener("clinic/index:navTo", navToClinic);
+
+

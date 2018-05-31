@@ -25,9 +25,7 @@
 					</View>
 				</View>
 				<ScrollableView class='wfill padding' height="100" backgroundColor="#f0f1f5" bubbleParent="false">
-					<ImageView class='wfill hsize' image="https://previews.123rf.com/images/kurhan/kurhan1511/kurhan151100176/47331368-group-of-medical-doctors-health-care-concept-background-.jpg"></ImageView>
-					<ImageView class='wfill hsize' image="https://previews.123rf.com/images/kurhan/kurhan1511/kurhan151100176/47331368-group-of-medical-doctors-health-care-concept-background-.jpg"></ImageView>
-					<ImageView class='wfill hsize' image="https://previews.123rf.com/images/kurhan/kurhan1511/kurhan151100176/47331368-group-of-medical-doctors-health-care-concept-background-.jpg"></ImageView>
+					<ImageView class='wfill hsize' image="http://plux.freejini.com.my/public/banners/pureTouch_001.JPG"></ImageView>
 				</ScrollableView>
 				<View id="menu" class='wfill hsize horz'></View>
 			</ScrollView>

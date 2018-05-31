@@ -379,7 +379,7 @@ exports.resultPopUp = function(title, msg){
 };
 
 exports.sync_time = function(time){ 
-	var a = time.trim();
+	var a = (typeof time != "undefined")?time.trim():new Date();
 	a = a.replace("  ", " ");
 	var b = a.split(" ");
 	var date = b[0].split("-");

@@ -9,15 +9,16 @@
                     <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
                 </View> 
             </View>
-			<View id="parent" class="wfill hfill" backgroundColor="#ffffff">
+            <SearchBar onReturn="doSearch" backgroundColor="#fff" height="40"></SearchBar>
+			<View id="parent" class="wfill hfill" top="20" backgroundColor="#ffffff">
 				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
 			</View>
 		</View>
-		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="filter_button" borderWidth="1" left="20" top="20" onClick="openCategory">
+		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="filter_button" borderWidth="1" left="20" top="70" onClick="openCategory">
 			<ImageView id="filter_icon" width="0" height="20"></ImageView>
 			<Label class='wsize hsize padding h6' id="filter_text">Looking For...</Label>
 		</View>
-		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="quening_button" borderWidth="1" right="20" top="20" onClick="openQueueList">
+		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="quening_button" borderWidth="1" right="20" top="70" onClick="openQueueList">
             <Label class='wsize hsize padding h6' id="filter_text">Clinic Queue</Label>
         </View>
 		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
