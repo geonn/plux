@@ -127,12 +127,13 @@ function viewPDF(appfilepath) {
 function deleteRecord(e){
     
     console.log(e.source.parent.record);
-    
-    API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
-        var res = JSON.parse(responseText);
-        console.log(res);
-        refresh();
-    });
+    popup({title: "Delete",message: "Are you sure to delete this record?",callback: function(){
+        API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
+            var res = JSON.parse(responseText);
+            console.log(res);
+            refresh();
+        });
+    }});
 }
 
 function closeBox(){

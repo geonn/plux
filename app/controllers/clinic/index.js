@@ -20,7 +20,7 @@ if(OS_ANDROID){
     $.filter_button.top = 120;
     $.quening_button.top = 120;
 }
-$.mapview.height = platformHeight - 50;
+$.mapview.height = platformHeight - 90;
 
 var distance = function(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295;    // Math.PI / 180
@@ -42,7 +42,7 @@ var saveCurLoc = function(e) {
     	Ti.App.Properties.setString('latitude', e.coords.latitude);
     	Ti.App.Properties.setString('longitude', e.coords.longitude);
     	$.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
-    	throttle_centerMap({filter: true});
+    	setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
        //console.log(Ti.App.Properties.getString('latitude') + "=="+ Ti.App.Properties.getString('longitude'));
     }
     Ti.Geolocation.removeEventListener('location',saveCurLoc);
@@ -148,11 +148,11 @@ function getMapBounds(region) {
 var voucher = false;
 var marker = false;
 function pinClicked(e){
-	console.log(e.annotation.record.latitude+" "+e.annotation.record.longitude);
-	marker = e.annotation.record;
-	$.name.text = e.annotation.record.clinicName;
-	$.address.text = e.annotation.record.add1+" "+e.annotation.record.add2+" "+e.annotation.record.city+" "+e.annotation.record.postcode+" "+e.annotation.record.state;
-	$.openHour.text = e.annotation.record.openHour.replace(/\[nl\]/g, "\n");
+    var pin = (typeof e.annotation != "undefined")?e.annotation:e;
+	marker = pin.record;
+	$.name.text = pin.record.clinicName;
+	$.address.text = pin.record.add1+" "+pin.record.add2+" "+pin.record.city+" "+pin.record.postcode+" "+pin.record.state;
+	$.openHour.text = pin.record.openHour.replace(/\[nl\]/g, "\n");
 	$.detail.show();
 }
 
@@ -297,6 +297,7 @@ function openQueueList(){
 }
 
 function navToClinic(e){
+    pinClicked({record: e});
     $.mapview.region =  {latitude: e.latitude, longitude:e.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
 }
 
