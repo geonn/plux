@@ -86,7 +86,7 @@ function centerMap(e){
 	var compare_zoom_distance = (last_zoom_distance.toFixed(1) !=  zoom_distance.toFixed(1))?true:false;
 	last_zoom_distance = zoom_distance;
 	var dist = distance($.mapview.region.latitude, $.mapview.region.longitude, compare_lat, compare_long);
-	if(compare_zoom_distance > 0.1){
+	if(compare_zoom_distance > 0.1 || e.filter){
 		console.log(dist+" zoom dist");
 		annotations = [];
 	}
@@ -106,7 +106,18 @@ function centerMap(e){
 				console.log(typeof found+" typeof found");
 				console.log(found.length);
 				if(found.length <= 0){
-					var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, image: "images/icons/"+data[i].clinicType+".png", title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i]};
+					var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i]
+					, customView: Ti.UI.createView({
+                        width : 30,
+                        height : 30,
+                        children : [Ti.UI.createView({
+                            top : 0,
+                            width : 30,
+                            height : 30,
+                            backgroundImage : "images/icons/"+data[i].clinicType+".png"
+                        })]
+                    })
+					};
 					annotations.push(pin);
 					render_annotation(pin);
 				}
@@ -226,7 +237,7 @@ function loadPinCategory(){
 		var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin_data[i]});
 		var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
 		var img_pin = $.UI.create("ImageView", {width: 30, height: 30, left:10, image: pin_data[i].icon, touchEnabled: false});
-		var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], text: pin_data[i].name, touchEnabled: false});
+		var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 50, text: pin_data[i].name, touchEnabled: false});
 		row.add(img_pin);
 		row.add(lab_category_name);
 		tvr.add(row);
@@ -238,6 +249,7 @@ function loadPinCategory(){
 
 function doSearch(e){
     console.log(e.value);
+    e.source.blur();
     nav.navigationWindow("clinic/search","","",{keyword: e.value});
 }
 
