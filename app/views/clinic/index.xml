@@ -19,7 +19,7 @@
 			<Label class='wsize hsize padding h6' id="filter_text">Looking For...</Label>
 		</View>
 		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="quening_button" borderWidth="1" right="20" top="70" onClick="openQueueList">
-            <Label class='wsize hsize padding h6' id="filter_text">Clinic Queue</Label>
+            <Label class='wsize hsize padding h6'>Clinic Queue</Label>
         </View>
 		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
 			<TableView onClick="setFilter" backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" left="0" bottom="10" id="filter_list">

@@ -283,6 +283,7 @@ function openCategory(){
 		moveTo = -platformWidth;
 		show_category=false;
 	}else{
+	    $.detail.hide();
 		moveTo="0";
 		show_category=true;
 	}
@@ -310,7 +311,25 @@ function openQueueList(){
 
 function navToClinic(e){
     pinClicked({record: e});
-    $.mapview.region =  {latitude: e.latitude, longitude:e.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
+    $.mapview.removeAllAnnotations();
+    var pin = {id: e.id, latitude: e.latitude, longitude: e.longitude, title: e.clinicName, subtitle: e.add1+e.add2, record: e
+    , customView: Ti.UI.createView({
+        width : 30,
+        height : 30,
+        children : [Ti.UI.createView({
+            top : 0,
+            width : 30,
+            height : 30,
+            backgroundImage : "images/icons/"+e.clinicType+".png"
+        })]
+    })
+    };
+    annotations.push(pin);
+    render_annotation(pin);
+    console.log("check here");
+    console.log(e.latitude);
+    console.log(parseFloat(e.latitude)-0.004);
+    $.mapview.region =  {latitude: parseFloat(e.latitude)-0.004, longitude:e.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
 }
 
 function closeWindow(){
