@@ -254,18 +254,19 @@ function doSearch(e){
 }
 
 function loadQueue(){
-    API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {}}, function(responseText){
+    var corpcode = Ti.App.Properties.getString('corpcode') || "";
+    API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {corpcode: corpcode}}, function(responseText){
            
         console.log(responseText);
         var result = JSON.parse(responseText);
-        var data = result.data;
+        var data = result.data || [];
             
         var arr_filter = [];
         for (var key in data){
             var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize']});
             var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
             
-            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 50, text: key+" : "+data[key], touchEnabled: false});
+            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 10, text: key+" : "+data[key], touchEnabled: false});
             row.add(lab_category_name);
             tvr.add(row);
             arr_filter.push(tvr);
