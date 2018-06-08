@@ -74,7 +74,7 @@ var annotations = [];
 
 var throttle_centerMap = _.throttle(centerMap, 2000);
 function centerMap(e){
-	if(skip <= 0){
+	if(skip <= 0 || typeof ($.mapview.region.latitude) == "undefined"){
 		skip++;
 		return;
 	}
@@ -106,18 +106,23 @@ function centerMap(e){
 				console.log(typeof found+" typeof found");
 				console.log(found.length);
 				if(found.length <= 0){
-					var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i]
-					, customView: Ti.UI.createView({
-                        width : 30,
-                        height : 30,
-                        children : [Ti.UI.createView({
-                            top : 0,
+				    if(OS_IOS){
+    					var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i]
+    					, customView: Ti.UI.createView({
                             width : 30,
                             height : 30,
-                            backgroundImage : "images/icons/"+data[i].clinicType+".png"
-                        })]
-                    })
-					};
+                            children : [Ti.UI.createView({
+                                top : 0,
+                                width : 30,
+                                height : 30,
+                                backgroundImage : "images/icons/"+data[i].clinicType+".png"
+                            })]
+                        })
+    					};
+					}else{
+					    
+					    var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i], image: "images/icons/"+data[i].clinicType+".png"};
+					}
 					annotations.push(pin);
 					render_annotation(pin);
 				}
@@ -159,6 +164,7 @@ function getMapBounds(region) {
 var voucher = false;
 var marker = false;
 function pinClicked(e){
+    $.search.blur();
     var pin = (typeof e.annotation != "undefined")?e.annotation:e;
 	marker = pin.record;
 	$.name.text = pin.record.clinicName;
@@ -280,6 +286,7 @@ var show_category = false;
 var duration = 200;
 function openCategory(){
 	console.log('openCategory');
+	$.search.blur();
 	if (show_category){
 		moveTo = -platformWidth;
 		show_category=false;
@@ -296,6 +303,7 @@ function openCategory(){
 }
 
 function openQueueList(){
+    $.search.blur();
     if (show_category){
         moveTo = -platformWidth;
         show_category=false;
