@@ -1,6 +1,6 @@
 var args = arguments[0] || {};  
 var loading = Alloy.createController("loading");
-
+console.log($.win);
 $.win.add(loading.getView());
 loading.start();
 	
@@ -98,13 +98,12 @@ function init(e){
 	var balance_user_groups = {}; 
 	for(var i=0; i < e.length; i++){
 		var val = e[i];
-		
 		groups[val.name] = groups[val.name] || [];
    	    groups[val.name].push( val );
 	}
 	
 	Object.keys(groups).map( function( group ){
-	    var personal_claim_view = Alloy.createController("asp/_personal_claim_view", {data: groups[group], name: group}).getView();
+	    var personal_claim_view = Alloy.createController("asp/_personal_claim_view", {data: groups[group], name: group, category: groups[group]['category']}).getView();
 	    $.personal_claim.add(personal_claim_view);
 	});
 	loading.finish();

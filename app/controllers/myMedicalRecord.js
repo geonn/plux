@@ -50,9 +50,49 @@ function render_listing(data){
         row.add(delete_button);
         
         delete_button.addEventListener("click", deleteRecord);
-        row.addEventListener("click", openAttachment);
+        row.addEventListener("click", recordClicked);
         $.listing.add(row);
 	};
+}
+
+function recordClicked(e){
+    if(typeof e.source.record.validation_code !="undefined" && e.source.record.validation_code != "" && e.source.record.category == "Lab report"){
+        keyInPin(e.source.record.validation_code, e);
+    }else{
+        openAttachment(e);
+    }
+}
+
+function keyInPin(ic, ex){
+    console.log(ic);
+    var view = $.UI.create("View", {classes:['wfill','hsize','vert'],left:10, right:10, zIndex: 9, backgroundColor: "#ccc"});
+    var text = $.UI.create("Label", {classes:['wfill','hsize','h6','padding'], text: "Please key in your IC / Passport to open this file."});
+    var textfield = $.UI.create("TextField", {classes:['wfill','padding'],top:0, height: 30});
+    var ok_button = $.UI.create("Button", {classes:['wfill',"padding"], borderRadius:0, top:0, bottom:10, height: 50, title: "Ok"}); 
+    var mask = $.UI.create("View",{
+        zIndex: 8,
+        classes:['wfill','hfill'],
+        backgroundColor: "#80000000"
+    });
+    mask.addEventListener("click", function(){
+        $.win.remove(mask);
+        $.win.remove(view);
+    });
+    ok_button.addEventListener("click", function(e){
+        console.log(textfield.value+" "+ic);
+        if(textfield.value == ic){
+            openAttachment(ex);
+        }else{
+            alert("NRIC / Passport is not match");
+        }
+        $.win.remove(mask);
+        $.win.remove(view);
+    });
+    view.add(text);
+    view.add(textfield);
+    view.add(ok_button);
+    $.win.add(mask);
+    $.win.add(view);
 }
 
 function openAttachment(e){
@@ -61,14 +101,15 @@ function openAttachment(e){
     if(file_format == "pdf"){
         openURLPDF(e.source.record);
     }else{
-        $.mask.show();
-        var html = "<html><head><meta name='viewport' content='initial-scale=1.0, width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes' /></head><body><img width='100%' height='auto' src='"+e.source.record.attachment+"'/></body></html>";
+        var html = "<img width='100%' height='auto' src='"+e.source.record.attachment+"'/>";
         if(OS_IOS){
-            var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
+            nav.navigationWindow("webview/","","", {url: e.source.record.attachment, title: e.source.record.category});
+            //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
         }else{
-            var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
+            nav.navigationWindow("webview/","","", {content: html, title: e.source.record.category});
+            //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
         }
-        $.win.add(webview);   
+        //$.win.add(webview);   
     }
 }
 

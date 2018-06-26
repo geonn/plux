@@ -13,7 +13,8 @@ var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
 var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
-console.log(args);
+$.call.hide();
+
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");
 	var app_id = Math.random().toString(36).substr(2, 10);
@@ -30,24 +31,22 @@ function saveLocal(param){
 	    "app_id": app_id,
 	    "sender_name": Ti.App.Properties.getString('fullname') || ""
 	};
-	console.log("save dr_id"+dr_id);
-	console.log(local_save);
 	var id = model.saveArray([local_save]);
 	var api_param = {u_id: u_id, dr_id: dr_id, message: param.message, is_endUser:1, app_id: app_id };
 	if(param.format == "voice"){
 		_.extend(api_param, {media: param.format, Filedata: param.filedata});
 	}
-	getLatestData();
+	getLatestData(true);
 	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
-		console.log(responseText);
+		
 		var res = JSON.parse(responseText);
 		$.message_bar.value = "";
 		$.message_bar.editable = true;
-		sending = false;
 		$.message_bar.blur();
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		if(dr_id === 0){
+		    console.log(dr_id+" doctor:refresh_patient_list");
 			socket.fireEvent("doctor:refresh_patient_list");
 		}
 	});
@@ -56,21 +55,33 @@ function saveLocal(param){
 /**
  * Send message
  */
+var interval;
 var sending = false;
 function SendMessage(){
+    console.log("SendMessage");
 	if($.message_bar.value == "" || sending)
 		return;
 	loading.start();
 	sending = true;
 	$.message_bar.editable = false;
-	
-	
+	startTimer();
 	saveLocal({message: $.message_bar.value,format:"text"});
+}
+
+function startTimer(){
+    interval = setTimeout(function(){
+        $.call.show();
+        if(OS_ANDROID){
+            $.call.top = 50;
+        }else{
+            $.call.top = 0;
+        }
+    }, 10000);
 }
 
 function navToWebview(e){
 	var url = parent({name:"url"}, e.source);
-	console.log(url);
+	console.log("navToWebview "+url);
 	var win = Alloy.createController("webview", {url: url}).getView();
 	win.open();
 }
@@ -78,7 +89,8 @@ function navToWebview(e){
 function addRow(row, latest){
 	var view_container = $.UI.create("View",{
 		classes: ['hsize','wfill'],
-		id: row.id
+		id: row.id,
+		status: row.status
 	});
 	
 	if(row.sender_id){
@@ -130,7 +142,6 @@ function addRow(row, latest){
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
-			console.log(newText);
 			player.setUrl(newText);
 			//download_video(player, newText);
 			var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
@@ -224,12 +235,12 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		console.log(row.id+" compare "+inner_area[i].id);
-		if(inner_area[i].id == row.id && !row.sender_id){
+		console.log("inner_area[i].status "+inner_area[i].status+" row.status "+row.status);
+		if(inner_area[i].id == row.id && inner_area[i].status != row.status){
 			found = true;
-			console.log(inner_area[i].children[0]);
-			console.log(inner_area[i].children[0].children.length);
-			console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
+			//console.log(inner_area[i].children[0]);
+			//console.log(inner_area[i].children[0].children.length);
+			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
 			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
 		}
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
@@ -239,24 +250,32 @@ function updateRow(row, latest){
 	}
 }
 
-function render_conversation(latest){
-	if(!latest){
+function render_conversation(latest, local){
+    console.log("render_conversation");
+    console.log(latest+" latest and local "+local);
+	if(latest && local != true){
+	    if(sending){
+	        sending = false;
+	        console.log("sending set false");
+	    }else{
+	        console.log("clear interval");
+	        clearInterval(interval);
+	        $.call.hide();
+	    }
 		//$.chatroom.setContentOffset({y: 100});
 	}
 	var contain_height = 50;
-	console.log(data);
 	if(latest){
 		data.reverse();
 	}
 	for (var i=0; i < data.length; i++) {
+	    
 		if(data[i].is_endUser && data[i].status > 1 ){
 			updateRow(data[i], latest);
 		}else{
 			addRow(data[i], latest);
 		}
 	}
-	console.log(last_uid+" != "+Ti.App.Properties.getString('u_id'));
-	
 }
 
 
@@ -264,7 +283,6 @@ var data_loading = false;
 function scrollChecker(e){
 	var total = (OS_ANDROID)?pixelToDp(e.y): e.y;
 	var nearEnd = ($.inner_area.rect.height-$.chatroom.rect.height) - 200;
-	console.log(total+" "+nearEnd);
 	if(total >= nearEnd && !data_loading){
 		data_loading = true;
 		getPreviousData({});
@@ -279,7 +297,12 @@ function scrollChecker(e){
 	}	
 }
 
+function callHelpdesk(){
+    Titanium.Platform.openURL('tel: 6046091611');
+}
+
 function getConversationByRoomId(callback){
+    console.log("getConversationByRoomId");
 	var url = (dr_id == 0)?"getHelplineMessageV3":"getMessage";
 	var checker_id = (dr_id == 0)?7:19;
 	var checker = Alloy.createCollection('updateChecker'); 
@@ -287,28 +310,26 @@ function getConversationByRoomId(callback){
 	var isUpdate = checker.getCheckerById(checker_id, u_id);
 	var last_updated = isUpdate.updated || "";
 	last_update = last_updated;
-	console.log({u_id: u_id, dr_id: dr_id, last_updated: last_updated});
-	
+	console.log(last_update+" last update updated from checker");
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("chat");
-		console.log('check here room id'+room_id);
+		
 		var res = JSON.parse(responseText);
-		var arr = res.data || undefined;
+		console.log(res.last_updated+" from server");
+		var arr = res.data || [];
 		if(arr.length > 0){
-			console.log(arr);
 			model.saveArray(arr, callback);
 			var update_id = _.pluck(arr, "id");
 			//updateStatus(update_id);
 		}
 		checker.updateModule(checker_id, url, res.last_updated, u_id);
 		if(!room_id){	//if room_id = 0 
-			console.log(res);
 			Ti.App.fireEvent("web:setRoom", {room_id: res.room_id});
 			setup_socket();
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
-		console.log(room_id+" roomid real");
+		
 		callback && callback();
 	});
 }
@@ -317,23 +338,13 @@ function updateStatus(arr){
 	for (var i=0; i < arr.length; i++) {
 		var c = $.inner_area.getChildren();
 		for (var b=0; b < $.inner_area.children.length; b++) {
-			console.log($.inner_area.children[b].m_id+" "+arr[i]);
+			
 			if($.inner_area.children[b].m_id == arr[i]){
 				var time = $.inner_area.children[b].children[0].children[2].text.split(" ");
 				$.inner_area.children[b].children[0].children[2].text = time[0]+time[1]+time[2]+" Sent";
 			}
 		};
 	};
-}
-
-function scrollToBottom(){
-	console.log("is that possible here?");
-	console.log(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1));
-	
-	var pHeight = (OS_IOS)?Ti.Platform.displayCaps.platformHeight:Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1);
-	console.log($.inner_area.rect.height - pHeight + 110);
-	//$.chatroom.setContentOffset({y: $.inner_area.rect.height - pHeight + 110});
-	$.chatroom.scrollToBottom();
 }
 
 $.chatroom.addEventListener("scroll", function (e){
@@ -348,7 +359,7 @@ $.chatroom.addEventListener("scroll", function (e){
 function refresh(callback, firsttime){
 	retry = 0;
 	loading.start();
-	console.log("start refresh");
+	console.log("refresh");
 	getConversationByRoomId(function(){
 		callback({firsttime: firsttime});
 		loading.finish();
@@ -361,14 +372,10 @@ function refresh(callback, firsttime){
 var refreshing = false;
 var time_offset = common.now();
 function refresh_latest(param){
-	console.log('check here');
-	console.log(param);
 	var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
 	player.play();
 	
 	console.log("refresh_latest "+refreshing);
-
-	console.log(time_offset+" < "+common.now());
 	if(!refreshing && time_offset < common.now()){
 		refreshing = true;
 		refresh(getLatestData);
@@ -377,31 +384,29 @@ function refresh_latest(param){
 }
 
 function getPreviousData(param){ 
-	console.log(console.log(typeof start));
+	console.log("getPreviousData ");
 	start = (typeof start != "undefined")? start : 0;
 	var model = Alloy.createCollection("chat");
-	console.log(dr_id+" dr_id");
 	data = model.getData(false, start, anchor,"", dr_id);
-	console.log(data.length+" data length");
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
-	last_update = (data.length > 0)?_.last(data)['created']:last_update;
+	//last_update = (data.length > 0)?_.last(data)['created']:last_update;
+	console.log(last_update+" first time is use it own");
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
-	console.log(last_id+" why");
-	render_conversation(false);
+	render_conversation(false, false);
 	start = start + 10;
 }
 
-function getLatestData(){
+function getLatestData(local){
+    console.log("getLatestData");
 	var model = Alloy.createCollection("chat");
 	data = model.getData(true,"","", last_update, dr_id); 
-	
-	console.log("getlatestdata");
-	console.log(data.length);
+	console.log(data);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	last_update = (data.length > 0)?_.first(data)['created']:last_update;
+	console.log(last_update+" from app");
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
-	console.log(last_id);
-	render_conversation(true);
+	console.log(local);
+	render_conversation(true, local);
 	//setTimeout(function(e){scrollToBottom();}, 500);
 }
 
@@ -422,9 +427,11 @@ function closeWindow(){
 }
 
 function init(){
+    console.log("init");
 	if(OS_IOS){
 		second_init();
 	}else{
+	    $.win.setWindowSoftInputMode(Ti.UI.Android.SOFT_INPUT_ADJUST_PAN);
 		if(Ti.Android.hasPermission("android.permission.RECORD_AUDIO")){
 			checkingInternalPermission();		    	
 		}else{
@@ -443,6 +450,7 @@ function init(){
 	}
 }
 function checkingInternalPermission(){
+    console.log("checkingInternalPermission");
 	if(Titanium.Filesystem.hasStoragePermissions()){
 		second_init();		    	
 	}else{
@@ -460,6 +468,7 @@ function checkingInternalPermission(){
 	}
 }
 function second_init(){
+    console.log("second_init");
 	var mic = voice_recorder.getView();
 	$.action_btn.add(mic);
 	$.win.add(loading.getView());
@@ -467,7 +476,6 @@ function second_init(){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
 	if(dr_id > 0){
-		console.log(args.record);
 		$.win.title = "Ask Doctor - "+args.record.name;
 		if(OS_ANDROID){
 			$.pageTitle.text = "Ask Doctor - "+args.record.name;

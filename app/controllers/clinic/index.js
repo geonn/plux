@@ -13,7 +13,7 @@ var pin_data = [
 	{type: "OPTICAL", name: "OPTICAL", icon: "/images/icons/OPTICAL.png"},
 	{type: "PHYSIOTHERAPHY", name: "PHYSIOTHERAPHY", icon:"/images/icons/CLINIC.png"},
 	{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/SPECIALIST.png"},
-	{type: "24HOURS", name: "24HOURS", icon: "/images/icons/24HOURS.png"},
+	{type: "24 HOURS", name: "24 HOURS", icon: "/images/icons/24HOURS.png"},
 ];
 
 if(OS_ANDROID){
@@ -236,21 +236,31 @@ function init(){
 init();
 
 function loadPinCategory(){
-	loading.start();
-	console.log(pin_data.length);
-	var arr_filter = [];
-	for (var i=0; i < pin_data.length; i++) {
-		var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin_data[i]});
-		var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
-		var img_pin = $.UI.create("ImageView", {width: 30, height: 30, left:10, image: pin_data[i].icon, touchEnabled: false});
-		var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 50, text: pin_data[i].name, touchEnabled: false});
-		row.add(img_pin);
-		row.add(lab_category_name);
-		tvr.add(row);
-		arr_filter.push(tvr);
-	};
-	$.filter_list.setData(arr_filter);
-	loading.finish();
+    loading.start();
+    var corpcode = Ti.App.Properties.getString('corpcode') || "";
+    var u_id = Ti.App.Properties.getString('u_id') || "";
+    var arr_filter = [];
+    API.callByPost({url: "getClinicLocatorCategory", domain: "FREEJINI_DOMAIN", new: true, params: {corpcode: corpcode, u_id: u_id, isRefresh:1}}, function(responseText){
+        
+        var result = JSON.parse(responseText);
+        var data = result.data || [];
+            
+        for (var i=0; i < data.length; i++) {
+            console.log(data[i]+' data[i]');
+            var pin = _.where(pin_data, {type: data[i]});
+            console.log(pin);
+            var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin[0]});
+            var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
+            var img_pin = $.UI.create("ImageView", {width: 30, height: 30, left:10, image: pin[0].icon, touchEnabled: false});
+            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 50, text: pin[0].name, touchEnabled: false});
+            row.add(img_pin);
+            row.add(lab_category_name);
+            tvr.add(row);
+            arr_filter.push(tvr);
+        };
+        $.filter_list.setData(arr_filter);
+        loading.finish();
+    });
 }
 
 function doSearch(e){

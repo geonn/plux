@@ -779,10 +779,10 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	 client.send(); 
 }; 
 
-exports.doChangePassword = function(e, mainView) { 
-	 
-	var url = changePasswordUrl+"?LOGINID="+e.username+"&NEW_PASSWORD="+e.password; 
-	//console.log(url);
+exports.doChangePassword = function(e, mainView, onfinish) { 
+    var LOGINID = Ti.App.Properties.getString('email');
+	var url = changePasswordUrl+"?LOGINID="+LOGINID+"&NEW_PASSWORD="+e.password; 
+	
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -793,9 +793,10 @@ exports.doChangePassword = function(e, mainView) {
 	        //console.log(res);
 	        if(res.code == "99"){ //success
 	        	common.createAlert("Done", res.message);
-	        	nav.closeWindow(mainView.changePasswordWin); 
+	        	nav.closeWindow(mainView.win); 
 	        }else{
 	        	common.createAlert("Error", res.message);
+	        	onfinish();
 	        	return false;
 	        }
 	       	
@@ -803,7 +804,7 @@ exports.doChangePassword = function(e, mainView) {
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) { 
 	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
-	     	common.hideLoading();
+	     	onfinish();
        		
 	     },
 	     timeout : 60000  // in milliseconds

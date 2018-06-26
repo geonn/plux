@@ -1,7 +1,9 @@
 var args = arguments[0] || {};
 var url = args.url || "";
-console.log(args);
+console.log(args.title);
 var content = (args.content != "")?args.content:args.subject;
+$.win.title = (args.title != "")?args.title:$.win.title;
+console.log($.win.title);
 var HTMLcontent = '<html><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0">'+ content+"</html>" || "";
 if(url != ""){ 
  	$.surveyView.url = url;  

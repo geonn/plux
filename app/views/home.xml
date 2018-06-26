@@ -21,12 +21,16 @@
 						<View class="wsize hsize rounded box bgred" borderColor="#ffffff" right="10" bottom='0'>
 							<Label class="wsize hsize h6 small_padding" color="#ffffff" id="label_notification">0</Label>
 						</View>
-						<View class="wfill hsize" onClick="logoutUser" width="60%" left="10" id="myInfo"></View>
+						<View class="wfill hsize" width="60%" left="10" id="myInfo"></View>
 					</View>
+					<ImageView onClick="navWindow" mod="more" image="/images/more-512.png" width="40" height="40" top="10" right="20"></ImageView>
 				</View>
-				<ScrollableView class='wfill padding' height="100" backgroundColor="#f0f1f5" bubbleParent="false">
-					<ImageView class='wfill hsize' image="http://plux.freejini.com.my/public/banners/pureTouch_001.JPG"></ImageView>
-				</ScrollableView>
+				<!--<ScrollableView class='wfill padding' height="100" backgroundColor="#f0f1f5" bubbleParent="false">
+					<View class="wfill hsize">
+					    <ImageView image=""></ImageView>
+					    <ImageView class='wfill hsize' image="http://plux.freejini.com.my/public/banners/pureTouch_001.JPG"></ImageView>
+				    </View>
+				</ScrollableView>-->
 				<View id="menu" class='wfill hsize horz'></View>
 			</ScrollView>
 		</View>

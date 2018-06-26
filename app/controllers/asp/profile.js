@@ -12,11 +12,15 @@ function loadPage(){
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
 var data = JSON.parse(Ti.App.Properties.getString('dependent'));
-for (var i=0; i < data.length; i++) {
+console.log(data.length);
+/*for (var i=0; i < data.length; i++) {
 	console.log(i);
   	var profile_view = Alloy.createController("_profile_view", {profile_data: data[i]}).getView(); 	
   	$.main.addView(profile_view);
 };
+*/
+var profile_view = Alloy.createController("_profile_view", {profile_data: data}).getView();  
+$.main.addView(profile_view);
 
 function changePassword(){
 	var nav = require('navigation');

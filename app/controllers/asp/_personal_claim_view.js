@@ -32,7 +32,7 @@ function setup_row(e){
 
 function render_balance_list(){
     for (var i=0; i < args.data.length; i++) {
-        var view_container = $.UI.create("View",{classes: ['padding', 'wfill', 'hsize', 'vert'], bottom:0});
+        var view_container = $.UI.create("View",{classes: ['padding', 'wfill', 'hsize', 'vert'], bottom:0, record: args.data[i]});
         if(args.data[i].entidvbal < 99999){
             view_container.add(setup_row({limit: args.data[i].entidv, balance: args.data[i].entidvbal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: "", subtitle: "LIMIT", ent_type: "RM ", maxperclaim: args.data[i].maxperclaim}));
         }
@@ -45,28 +45,29 @@ function render_balance_list(){
         if(args.data[i].vstidvbal < 99999){
             view_container.add(setup_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | VISIT | SHARED", subtitle: "SHARED LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
         }
+        view_container.addEventListener("click", navToHistory);
         $.main.add(view_container);   
     }
 }
 
 function render_row(e){
-    var row = $.UI.create("View",{classes: ['wfill', 'hsize', 'vert']});
-    var view_label_type = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], borderRadius: 8, bottom: -8, left: 20, backgroundColor: "#22262f",});
-    var label_type = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], bottom:10, color: "#ffffff", text: e.benefittype+e.category});
+    var row = $.UI.create("View",{classes: ['wfill', 'hsize', 'vert'], touchEnabled: false});
+    var view_label_type = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], touchEnabled: false, borderRadius: 8, bottom: -8, left: 20, backgroundColor: "#22262f",});
+    var label_type = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, bottom:10, color: "#ffffff", text: e.benefittype+e.category});
     view_label_type.add(label_type);
     row.add(view_label_type);
     row.add(generate_progressBar(e.balance+"%"));
-    var view1 = $.UI.create("View", {classes:['wfill','hsize']});
-    var view_progress_balance = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], borderRadius: 8, top: -8, right: 20, backgroundColor: "#22262f",});
-    var label_progress_balance = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], top:10, color: "#ffffff", text: e.balance+"% used"});
+    var view1 = $.UI.create("View", {classes:['wfill','hsize'], touchEnabled: false});
+    var view_progress_balance = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], touchEnabled: false, borderRadius: 8, top: -8, right: 20, backgroundColor: "#22262f",});
+    var label_progress_balance = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, top:10, color: "#ffffff", text: e.balance+"% used"});
     view_progress_balance.add(label_progress_balance);
     view1.add(view_progress_balance);
-    var view_sub_info = $.UI.create("View", {classes:['wfill','horz', 'hsize'], right: 40});
+    var view_sub_info = $.UI.create("View", {classes:['wfill','horz', 'hsize'], touchEnabled: false, right: 40});
     view1.add(view_sub_info);
     row.add(view1); 
      
     view_sub_info.add(generate_description(e.title, e.textTotBal));
-    view_sub_info.add($.UI.create("View", {width:1, height: 30, backgroundColor: "#eeeeee", left: 10, right: 10}));
+    view_sub_info.add($.UI.create("View", {width:1, height: 30, touchEnabled: false, backgroundColor: "#eeeeee", left: 10, right: 10}));
     view_sub_info.add(generate_description(e.subtitle, e.subvalue));
     if(e.maxperclaim < 99999){
         view_sub_info.add(generate_description("MAXIMUM AMOUNT PER CLAIM", (e.maxperclaim == "9999")?"UNLIMITED":e.maxperclaim, "100%"));
@@ -77,11 +78,11 @@ function render_row(e){
 
 function generate_progressBar(filled){
 	var view_progressBar = $.UI.create("View",{
-		classes: ['progressBar']
+		classes: ['progressBar'], touchEnabled: false
 	});
 	  
 	var view_progressBarFill = $.UI.create("View",{
-		classes: ['progressBarFill'],
+		classes: ['progressBarFill'], touchEnabled: false,
 		width: filled
 	});
 	
@@ -90,16 +91,16 @@ function generate_progressBar(filled){
 }
 
 function generate_description(title, value, width){
-    var view = $.UI.create("View",{classes:['vert','wsize'], width: width || "40%", bottom: 0, top:5, height: 40});
+    var view = $.UI.create("View",{classes:['vert','wsize'], touchEnabled: false, width: width || "40%", bottom: 0, top:5, height: 40});
     
-    var label_category_title = $.UI.create("Label", {classes:['wsize','hsize','h6'], left:0, text: title});
-    var label_category = $.UI.create("Label", {classes:['wsize','hsize','h6','bold'], left:0, minimumFontSize: 10, text: value});
+    var label_category_title = $.UI.create("Label", {classes:['wsize','hsize','h6'], touchEnabled: false, left:0, text: title});
+    var label_category = $.UI.create("Label", {classes:['wsize','hsize','h6','bold'], touchEnabled: false, left:0, minimumFontSize: 10, text: value});
     view.add(label_category_title);
     view.add(label_category);
   return view;
 }
 
-$.personalClaimVw.addEventListener("click", function(){
-	var nav = require('navigation');
-	nav.navigateWithArgs("asp/claimHistory", {name: args.name});
-});
+function navToHistory(e){
+    var nav = require('navigation');
+    nav.navigateWithArgs("asp/claimHistory", e.source.record);
+}

@@ -1,0 +1,20 @@
+<Alloy>
+	<Window navTintColor="#CE1D1C" title="Edit Profile" id="win" class="wfill hfill">
+	   <View class="wfill hfill vert">
+		   <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="60%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Edit Profile</Label>
+		     	</View>
+		    </View>
+			<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
+				<ImageView width="120" borderRadius="10" height="120" backgroundColor="#ff0000" bottom="30dp" top="30dp" image="/images/asp_logo.png"></ImageView>
+				<TextField id="email" hintText="Enter New Email"  value="" /><!--asplux123 -->
+				<TextField id="hp" hintText="Enter New Mobile Number" top="10" value="" /><!--asplux@corpdemo.com -->
+				<Button borderRadius="5" backgroundColor="#7B7B7B" onTouchend="submitPassword" title="Save"  width="70%" top="10" height="40" color="#ffffff" />
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

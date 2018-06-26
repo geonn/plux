@@ -10,6 +10,7 @@ exports.event_onoff = function(name, bool){
 };
 
 exports.addEventListener = function(name, callback){
+    console.log(name+" socket event added");
 	Ti.App.addEventListener(name, eventManager);
 	//Ti.App.fireEvent("socket:add_event", {name: name});
 	function_array[name] = callback;

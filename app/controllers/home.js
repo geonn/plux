@@ -487,11 +487,19 @@ $.scrollview.addEventListener("scroll", function(e){
 	}
 });
 
+function getUserInfo(){
+    console.log("socket:updateUserInfo");
+    var fullname = Ti.App.Properties.getString('fullname') || ""; 
+    Ti.App.fireEvent("socket:updateUserInfo", {fullname: fullname});
+}
+
 init();
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);
+	Ti.App.removeEventListener("getUserInfo", getUserInfo);
 	Ti.App.removeEventListener('syncFromServer', syncFromServer);
+	Ti.App.removeEventListener('logout', logoutUser); 
 	Ti.App.removeEventListener('updateNotification', updateNotification); 
 	//Ti.App.removeEventListener('render_menu', render_menu); 
 	Ti.App.removeEventListener('redirect', redirect); 
@@ -500,8 +508,10 @@ $.win.addEventListener("close", function(){
 	$.destroy();
 	 
 });
-console.log("last");
+
 //Ti.App.addEventListener('render_menu', render_menu);
+Ti.App.addEventListener("getUserInfo", getUserInfo);
+Ti.App.addEventListener('logout', logoutUser); 
 Ti.App.addEventListener("redirect", redirect);
 Ti.App.addEventListener('resumed', syncFromServer);
 Ti.App.addEventListener('syncFromServer', syncFromServer);

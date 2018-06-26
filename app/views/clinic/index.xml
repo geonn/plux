@@ -16,7 +16,7 @@
 		</View>
 		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="filter_button" borderWidth="1" left="20" top="70" onClick="openCategory">
 			<ImageView id="filter_icon" width="0" height="20"></ImageView>
-			<Label class='wsize hsize padding h6' id="filter_text">Looking For...</Label>
+			<Label class='wsize hsize padding h6' id="filter_text">Category</Label>
 		</View>
 		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="quening_button" borderWidth="1" right="20" top="70" onClick="openQueueList">
             <Label class='wsize hsize padding h6'>Clinic Queue</Label>

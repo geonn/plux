@@ -312,9 +312,7 @@ function popup(e){
 		title: e.title
 	});
 	dialog.addEventListener('click', function(ex){
-		if (ex.index === 0){
-			//Do nothing
-		}else{
+		if (ex.index === 1){
 			e.callback();
 		}
 		message_popup = false;
