@@ -9,7 +9,7 @@
                     <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
                 </View> 
             </View>
-            <SearchBar onReturn="doSearch" id="search" backgroundColor="#fff" height="40"></SearchBar>
+            <SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="search" showCancel="true" text="" height="50"  hintText="Search Clinic" />
 			<View id="parent" class="wfill hfill" backgroundColor="#ffffff">
 				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
 			</View>

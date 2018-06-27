@@ -103,10 +103,10 @@ function openAttachment(e){
     }else{
         var html = "<img width='100%' height='auto' src='"+e.source.record.attachment+"'/>";
         if(OS_IOS){
-            nav.navigationWindow("webview/","","", {url: e.source.record.attachment, title: e.source.record.category});
+            nav.navigationWindow("webview","","", {url: e.source.record.attachment, title: e.source.record.category});
             //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
         }else{
-            nav.navigationWindow("webview/","","", {content: html, title: e.source.record.category});
+            nav.navigationWindow("webview","","", {content: html, title: e.source.record.category});
             //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
         }
         //$.win.add(webview);   

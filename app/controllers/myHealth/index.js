@@ -2,18 +2,18 @@ var args = arguments[0] || {};
 var menus = [
 	{title: "BLOOD PRESSURE", type: "2", icon: "/images/icons/like.png", measurement: "mmHg", color: "#CE1D1C", fields:[
 		{name: "Systolic", type: "number", tool: "picker", max_range: 200, min_range: 10, default_value: 120, graph_display: true},
-		{name: "Diastolic", type: "number", tool: "picker", max_range: 200, min_range: 10,  default_value: 80, graph_display: true},
+		{name: "Diastolic", type: "number", tool: "picker", max_range: 200, min_range: 10,  default_value: 100, graph_display: true},
 		{name: "Pulse Rate", type: "number", tool: "textfield", graph_display: false},
 		{name: "Medication", type: "string", tool: "picker", options:["None", "Taken","Not Taken"], default_value: "None", graph_display: false},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
 	{title: "HEART RATE", type:"3", icon: "/images/icons/like.png", measurement: "Pulse", color: "#CE1D1C", fields:[
-		{name: "Pulse Rate", type: "number", tool: "picker", max_range: 200, min_range: 10, default_value: 70, graph_display: true},
+		{name: "Pulse Rate", type: "number", tool: "picker", max_range: 200, min_range: 10, default_value: 100, graph_display: true},
 		{name: "Medication", type: "string", tool: "picker", options:["None", "Taken","Not Taken"], default_value: "None", graph_display: false},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
 	{title: "BLOOD GLUCOSE", type: "8", icon: "/images/icons/blood-drop.png", measurement: "mg/dL", color: "#CE1D1C", fields:[
-		{name: "Blood Glucose", type: "number", tool: "picker", max_range: 400, min_range: 40, default_value: 80, graph_display: true},
+		{name: "Blood Glucose", type: "number", tool: "picker", max_range: 400, min_range: 40, default_value: 100, graph_display: true},
 		{name: "Current Status", type: "string", tool: "picker", options:["None", "Fasting", "After Meals", "Before Meals"], default_value: "None", graph_display: false},
 		{name: "Medication", type: "string", tool: "picker", options:["None", "Taken","Not Taken"], default_value: "None", graph_display: false},
 		{name: "Insulin", type: "number", tool: "textfield", graph_display: false},
