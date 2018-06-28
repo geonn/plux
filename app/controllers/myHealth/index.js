@@ -20,13 +20,13 @@ var menus = [
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
 	{title: "CHOLESTROL", type:"7", icon: "/images/icons/blood-drop.png", measurement: "mg/dL", color: "#CE1D1C", fields:[
-		{name: "HDL", type: "number", tool: "picker", max_range: 200, min_range: 0, default_value: 70, graph_display: true},
+		{name: "HDL", type: "number", tool: "picker", max_range: 200, min_range: 0, default_value: 100, graph_display: true},
 		{name: "LDL", type: "number", tool: "picker", max_range: 300, min_range: 0, default_value: 130, graph_display: true},
 		{name: "Medication", type: "string", tool: "picker", options:["None", "Taken","Not Taken"], default_value: "None", graph_display: false},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
 	{title: "WEIGHT", type:"6", icon: "/images/icons/weight.png", measurement: "KG", color: "#933ec5", fields:[
-		{name: "Weight", type: "number", tool: "picker", max_range: 300, min_range: 0, default_value: 70, graph_display: true},
+		{name: "Weight", type: "number", tool: "picker", max_range: 300, min_range: 0, default_value: 100, graph_display: true},
 		//{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},

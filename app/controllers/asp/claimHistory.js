@@ -45,7 +45,7 @@ function render(data){
        
         console.log(args.benefittype+" "+data[i].category);
         console.log(_.contains(args.benefittype.split("/"), data[i].category));
-        if(_.contains(args.benefittype.split("/"), data[i].category)){
+        if(_.contains(args.benefittype.split("/"), data[i].category) || true){
             var left_indicator_bg_color = (data[i].status == "Pending")?"#fba81c":(data[i].status == "Approved")?"#55a939":"#e8534c";
             var row = $.UI.create("View", {classes:['wfill','padding','rounded'], bottom: (data.length -1 == i)?10:0, height: 120, backgroundColor: left_indicator_bg_color, record: data[i]});
             var view_container = $.UI.create("View", {classes:['wfill','hfill'], touchEnabled: false, backgroundColor: "#fff", left: 5});
