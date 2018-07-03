@@ -89,6 +89,27 @@ function render_menu(){
 	};
 	loading.finish();
 } 
+var permissionsToRequest = [];
+if(OS_ANDROID){
+    var storePermission = "android.permission.WRITE_EXTERNAL_STORAGE"; 
+    var storagePermission = "android.permission.READ_EXTERNAL_STORAGE";
+    var hasStorePermission = Ti.Android.hasPermission(storePermission);
+    var hasStoragePermission = Ti.Android.hasPermission(storagePermission);
+    
+    if (!hasStorePermission) {
+        permissionsToRequest.push(storePermission);
+        Ti.API.info("PUSHED  1.WRITE_EXTERNAL_STORAGE");
+    }
+     
+    if (!hasStoragePermission) {
+     
+        permissionsToRequest.push(storagePermission);
+        Ti.API.info("PUSHED... 2.READ_EXTERNAL_STORAGE");
+     
+    }
+}
+
+ 
 
 
 /**********				init				*************/ 
@@ -494,6 +515,28 @@ function getUserInfo(){
 }
 
 init();
+
+$.win.addEventListener("open", function(){
+     if (permissionsToRequest.length > 0 && OS_ANDROID) {
+     
+        Ti.Android.requestPermissions(permissionsToRequest, function(e) {
+            
+            Ti.API.info('Requesting Permission', e);
+            
+            if (e.success) {
+     
+                console.log("SUCCESS");
+     
+            } else {
+     
+                console.log("ERROR: " + e.error);
+     
+            }
+     
+        });
+     
+    }
+ });
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', syncFromServer);
