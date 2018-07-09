@@ -1,7 +1,7 @@
 <Alloy>
-	<Window navTintColor="#CE1D1C" title="Term of Service" id="win" class="container" layout="vertical">
-		 
-		    <View layout="vertical">
+	<Window navTintColor="#CE1D1C" title="Term of Service" id="win" class="wfill hfill" backgroundColor="#fff">
+		    <Button class="button" onClick="navToSignup" left="10" right="10" bottom="10">Agree</Button>
+		    <View class="wfill hfill vert" bottom="50">
 			    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE"  > 
 					<View left="0" width="10%">
 			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
@@ -10,8 +10,8 @@
 			     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASP Healthcare Terms of Service</Label>
 			     	</View> 
 			 	</View> 
-				<ScrollView id="main" layout="vertical" height="100%" contentHeight="Ti.UI.SIZE">
-					<Label class="subtitle_header" bottom="5">1.    Welcome to ASP HEALTHCARE!</Label>
+				<ScrollView id="main" class="wfill hfill contwfill conthsize vert">
+					<Label class="subtitle_header" bottom="5">1. Welcome to ASP HEALTHCARE!</Label>
 					 
 					<Label class="description_content" bottom="3">Thanks for your interest in our ASP Healthcare (the “Services”)!  </Label>
 					<Label class="description_content" bottom="3">By using our Services, you agree to these terms (the “ Terms”). </Label>	
@@ -35,9 +35,8 @@
 					
 					
 					<View class="line" / >
-						
-				 
 				</ScrollView>
+				
 			</View>
 		 
 	</Window>

@@ -129,7 +129,7 @@ function doSignup(){
 }
 
 function doASPSignup(){
-	var win = Alloy.createController("asp/signup").getView();
+	var win = Alloy.createController("tnc").getView();
 	win.open(); 
 	//var nav = require('navigation');
 	//nav.navigationWindow("asp/signup", 0);

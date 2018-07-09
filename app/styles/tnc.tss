@@ -13,7 +13,7 @@
         fontSize: '16',
         fontWeight: "bold"
     },
-    
+    top: "10",
     color: '#404040',
     left: '10',
     right: '10'

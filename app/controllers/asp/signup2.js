@@ -5,14 +5,14 @@ $.win.add(loading.getView());
 
 var error_message = "";
 //var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
-var view_agreement_box = common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"privacy");
+//var view_agreement_box = common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"privacy");
 
 var memno = Ti.App.Properties.getString('memno');
 var empno = Ti.App.Properties.getString('empno');
 var name = Ti.App.Properties.getString('name');
 
 //$.view_agreement.add(view_sms_box);
-$.view_agreement.add(view_agreement_box);
+//$.view_agreement.add(view_agreement_box);
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
@@ -37,12 +37,12 @@ function doAspSignup(){
 	}
 	
 	//var view_sms = view_sms_box.children[0].children[0].checked;
-	var view_agreement = view_agreement_box.children[0].children[0].checked;
+	/*var view_agreement = view_agreement_box.children[0].children[0].checked;
 	if(view_agreement != "1"){
 		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
 		loading.finish();
 		return false;
-	}
+	}*/
 	var params = {
 		email: email,
 		password: password,
@@ -51,7 +51,7 @@ function doAspSignup(){
 		empno: empno,
 		mobileno: mobileno,
 		//smsme: view_sms,
-		agreets: view_agreement
+		agreets: "1"
 	};
 	
 	 
@@ -133,13 +133,14 @@ function doSubmit(){
         alert(error_message);
         return;
     }
+    /*
     var view_agreement = view_agreement_box.children[0].children[0].checked;
     if(view_agreement != "1"){
         common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
         loading.finish();
         return false;
-    }
-    params['agreets'] = view_agreement;
+    }*/
+    params['agreets'] = "1";
     params['name'] = name;
     params['memno'] = memno;
     params['empno'] = empno;
