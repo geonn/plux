@@ -3,6 +3,7 @@ var loading = Alloy.createController("loading");
 
 function init(){
 	$.win.add(loading.getView());
+	loading.start();
 	var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     console.log(args);
@@ -16,7 +17,7 @@ function init(){
 init();
 
 function loadClinic(data){
-	loading.start();
+	
 	var arr_filter = [];
 	for (var i=0; i < data.length; i++) {
 		var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], backgroundColor: "#fff", record: data[i]});
@@ -32,7 +33,7 @@ function loadClinic(data){
 
 function navTo(e){
     type = e.source.record;
-    Ti.App.fireEvent("clinic/index:navTo", e.source.record);
+    Ti.App.fireEvent("clinic/index:navTo", e.source);
     closeWindow();
 }
 

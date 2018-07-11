@@ -5,14 +5,17 @@ $.win.add(loading.getView());
 function submitPassword(){
 	loading.start();
 	var email = $.email.value;
-	var hp = $.hp.value; 
-	var param = "";
+	var hp = $.hp.value;
 	if(email.trim() != ""){
-		param+="&EMAIL="+email;
+		var param = "&value="+email;
+		var target = "EMAIL";
+		callAPI(param, target);
 	}
 	
 	if(hp.trim() != ""){
-		param+="&HP="+hp;
+		var param = "&value="+hp;
+		var target = "MOBILE";
+		callAPI(param, target);
 	}
 	
 	if(param == ""){
@@ -20,8 +23,11 @@ function submitPassword(){
 	    return;
 	}
 	
-	var LOGINID = Ti.App.Properties.getString('email');
-	API.callByGet({url: "updateemailhp.aspx", params: "LOGINID="+LOGINID+param}, {
+}
+
+function callAPI(param, target){
+    var LOGINID = Ti.App.Properties.getString('email');
+    API.callByGet({url: "updateemailhp.aspx", params: "LOGINID="+LOGINID+param+"&TARGET="+target}, {
         onload: function(responseText){
            var res = JSON.parse(responseText);
            if(res.length == null || res.length <= 0){
@@ -34,8 +40,9 @@ function submitPassword(){
            }
        }, onfinish: function(){
            loading.finish();
-       }, onerror: function(){
-            $.win.close();
+       }, onerror: function(e){
+           alert("Server busy, please try again later.");
+           //$.win.close();
        }
    });
 }

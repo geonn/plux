@@ -9,17 +9,17 @@
                     <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
                 </View> 
             </View>
-            <SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" id="search" showCancel="true" text="" height="50"  hintText="Search Clinic" />
+            <SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" onReturn="doSearch" id="search" text="" height="50"  hintText="Search Clinic" />
 			<View id="parent" class="wfill hfill" backgroundColor="#ffffff">
 				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
 			</View>
 		</View>
 		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="filter_button" borderWidth="1" left="20" top="70" onClick="openCategory">
-			<ImageView id="filter_icon" width="0" height="20"></ImageView>
-			<Label class='wsize hsize padding h6' id="filter_text">Category</Label>
+			<ImageView id="filter_icon" image="/images/icons/CLINIC.png" width="20" left="10" height="20"></ImageView>
+			<Label class='wsize hsize padding h6' id="filter_text">CLINIC</Label>
 		</View>
 		<View backgroundColor="#9cffffff" class="wsize hsize rounded horz" borderColor="#111" id="quening_button" borderWidth="1" right="20" top="70" onClick="openQueueList">
-            <Label class='wsize hsize padding h6'>Clinic Queue</Label>
+            <Label class='wsize hsize padding h6'>CLINIC LISTING</Label>
         </View>
 		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
 			<TableView onClick="setFilter" backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" left="0" bottom="10" id="filter_list">
@@ -27,7 +27,7 @@
 			<View class="wfill hfill" onClick="openCategory"></View>
 		</View>
 		<View class="wfill hfill" width="320" id="view_queue" backgroundColor="#00ffffff" >
-            <TableView backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" right="0" bottom="10" id="queue_list">
+            <TableView backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" right="0" bottom="10" id="clinic_list">
             </TableView>
             <View class="wfill hfill" onClick="openQueueList"></View>
         </View>

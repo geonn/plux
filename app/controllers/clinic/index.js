@@ -64,6 +64,7 @@ function setFilter(e){
 	openCategory();
 	type = e.source.record.type;
 	$.mapview.removeAllAnnotations();
+	loadClinicList();
 	throttle_centerMap({filter: true});
 }
 
@@ -188,12 +189,14 @@ function getDirection(){
 		}
 	} catch (ex) { 
 		console.log(ex);
+		console.log(marker);
 		if(OS_IOS){
 			Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&daddr='+marker.latitude+','+marker.longitude);
 		}else{
+		    console.log('geo:'+marker.latitude+','+marker.longitude+"?q="+marker.clinicName+" (" + marker.add1+marker.city+")");
 			var intent = Ti.Android.createIntent({
 				action: Ti.Android.ACTION_VIEW,
-				data: 'geo:'+marker.latitudee+','+marker.longitudee+"?q="+marker.title+" (" + marker.address+")"
+				data: 'geo:'+marker.latitude+','+marker.longitude+"?q="+marker.clinicName+" (" + marker.add1+marker.city+")"
 			});
 			Ti.Android.currentActivity.startActivity(intent);
 		}
@@ -230,7 +233,7 @@ function init(){
     $.view_queue.right = -platformWidth;
 	console.log("init 1");
 	loadPinCategory();
-	loadQueue();
+	loadClinicList();
 }
 
 init();
@@ -292,6 +295,32 @@ function loadQueue(){
     });
 }
 
+function loadClinicList(){
+    var u_id = Ti.App.Properties.getString('u_id') || "";
+    var corpcode = Ti.App.Properties.getString('corpcode') || "";
+    API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
+           
+        console.log(responseText);
+        var result = JSON.parse(responseText);
+        var data = result.data || [];
+            
+        var arr_filter = [];
+        for (var i=0; i < data.length; i++) {
+            
+            var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: data[i]});
+            var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
+            
+            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 10, text: data[i].clinicName, touchEnabled: false});
+            row.add(lab_category_name);
+            tvr.add(row);
+            arr_filter.push(tvr);
+            tvr.addEventListener("click", navToClinic);
+        };
+        $.clinic_list.setData(arr_filter);
+        loading.finish();
+    });
+}
+
 var show_category = false;
 var duration = 200;
 function openCategory(){
@@ -329,9 +358,13 @@ function openQueueList(){
 }
 
 function navToClinic(e){
-    pinClicked({record: e});
+    var source = (typeof e.source.record != "undefined")?e.source:e;
+    if(typeof e.source.record != "undefined"){
+        openQueueList();
+    }
+    pinClicked(source);
     $.mapview.removeAllAnnotations();
-    var pin = {id: e.id, latitude: e.latitude, longitude: e.longitude, title: e.clinicName, subtitle: e.add1+e.add2, record: e
+    var pin = {id: source.id, latitude: source.record.latitude, longitude: source.record.longitude, title: source.record.clinicName, subtitle: source.record.add1+source.record.add2, record: source.record
     , customView: Ti.UI.createView({
         width : 30,
         height : 30,
@@ -339,16 +372,16 @@ function navToClinic(e){
             top : 0,
             width : 30,
             height : 30,
-            backgroundImage : "images/icons/"+e.clinicType+".png"
+            backgroundImage : "images/icons/"+source.record.clinicType+".png"
         })]
     })
     };
     annotations.push(pin);
     render_annotation(pin);
     console.log("check here");
-    console.log(e.latitude);
-    console.log(parseFloat(e.latitude)-0.004);
-    $.mapview.region =  {latitude: parseFloat(e.latitude)-0.004, longitude:e.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
+    console.log(source.record.latitude);
+    console.log(parseFloat(source.record.latitude)-0.004);
+    $.mapview.region =  {latitude: parseFloat(source.record.latitude)-0.004, longitude:source.record.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
 }
 
 function closeWindow(){

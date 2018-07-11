@@ -1,4 +1,9 @@
 var args = arguments[0] || {};
+var corpcode = Ti.App.Properties.getString('corpcode');
+
+if(corpcode == "IFLP" || corpcode == "IFMY"){
+    $.section.insertItemsAt(2, [{properties: {title: "Exclusion List", mod: "asp/exlusionList"}}] );
+}
 
 function navTo(e){
 	var target = e.section.items[e.itemIndex].properties.mod; 

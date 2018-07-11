@@ -10,10 +10,9 @@
 		     	</View>
 		 	</View>
         	<ListView onItemclick="navTo" backgroundColor="#fff">
-        	    <ListSection>
+        	    <ListSection id="section">
             	    <ListItem title="Edit Profile" mod='profile'></ListItem>
             	    <ListItem title="Change Password" mod='asp/changePassword'></ListItem>
-            	    <ListItem title="Exclusion List" mod='asp/exlusionList'></ListItem>
             	    <ListItem title="Logout" mod="logout"></ListItem>
         	    </ListSection>
         	</ListView>

@@ -1,5 +1,5 @@
 <Alloy>
-    <Window title="Search" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+    <Window title="Search" id="win" backButtonTitle="" navTintColor="#CE1D1C" >
         <View class="wfill hfill vert">
 		    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
                 <View left="0" width="10%">
