@@ -13,7 +13,7 @@ var pin_data = [
 	{type: "OPTICAL", name: "OPTICAL", icon: "/images/icons/OPTICAL.png"},
 	{type: "PHYSIOTHERAPHY", name: "PHYSIOTHERAPHY", icon:"/images/icons/CLINIC.png"},
 	{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/SPECIALIST.png"},
-	{type: "24 HOURS", name: "24 HOURS", icon: "/images/icons/24HOURS.png"},
+	{type: "24HOURS", name: "24 HOURS", icon: "/images/icons/24HOURS.png"},
 ];
 
 if(OS_ANDROID){
@@ -60,6 +60,7 @@ function setFilter(e){
 	//$.filter_icon.image = "/images/icons/pin_"+e.source.record.pin_number+".png";
 	$.filter_icon.image = e.source.record.icon;
 	$.filter_text.text = e.source.record.name;
+	$.listing_text.text = e.source.record.name+" LISTING";
 	isRefresh = 1;
 	openCategory();
 	type = e.source.record.type;
@@ -250,7 +251,7 @@ function loadPinCategory(){
             
         for (var i=0; i < data.length; i++) {
             console.log(data[i]+' data[i]');
-            var pin = _.where(pin_data, {type: data[i]});
+            var pin = _.where(pin_data, {name: data[i]});
             console.log(pin);
             var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin[0]});
             var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
