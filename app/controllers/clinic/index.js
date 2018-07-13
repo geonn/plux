@@ -343,6 +343,7 @@ function openCategory(){
 }
 
 function openQueueList(){
+    $.detail.hide();
     $.search.blur();
     if (show_category){
         moveTo = -platformWidth;
@@ -359,8 +360,8 @@ function openQueueList(){
 }
 
 function navToClinic(e){
-    var source = (typeof e.source.record != "undefined")?e.source:e;
-    if(typeof e.source.record != "undefined"){
+    var source = (typeof e.source != "undefined")?e.source:e;
+    if(typeof e.source != "undefined"){
         openQueueList();
     }
     pinClicked(source);

@@ -33,7 +33,7 @@ function loadClinic(data){
 
 function navTo(e){
     type = e.source.record;
-    Ti.App.fireEvent("clinic/index:navTo", e.source);
+    Ti.App.fireEvent("clinic/index:navTo", {record: e.source.record});
     closeWindow();
 }
 

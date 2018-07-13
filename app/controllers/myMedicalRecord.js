@@ -83,7 +83,7 @@ function keyInPin(ic, ex){
         if(textfield.value == ic){
             openAttachment(ex);
         }else{
-            alert("NRIC / Passport is not match");
+            alert("NRIC/Passport No does not match");
         }
         $.win.remove(mask);
         $.win.remove(view);
