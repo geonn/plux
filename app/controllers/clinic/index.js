@@ -103,37 +103,42 @@ function centerMap(e){
 			console.log(responseText);
 			var result = JSON.parse(responseText);
 			var data = result.data;
+			console.log(typeof data+" typeof data");
 			for (var i=0; i < data.length; i++) {
-				var found = _.where(annotations, {id: data[i].id});
-				console.log(typeof found+" typeof found");
-				console.log(found.length);
-				if(found.length <= 0){
-				    if(OS_IOS){
-    					var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i]
-    					, customView: Ti.UI.createView({
-                            width : 30,
-                            height : 30,
-                            children : [Ti.UI.createView({
-                                top : 0,
-                                width : 30,
-                                height : 30,
-                                backgroundImage : "images/icons/"+data[i].clinicType+".png"
-                            })]
-                        })
-    					};
-					}else{
-					    
-					    var pin = {id: data[i].id, latitude: data[i].latitude, longitude: data[i].longitude, title: data[i].clinicName, subtitle: data[i].add1+data[i].add2, record: data[i], image: "images/icons/"+data[i].clinicType+".png"};
-					}
-					annotations.push(pin);
-					render_annotation(pin);
-				}
+				addMarketToArray(data[i]);
 			};
 			isRefresh = 0;
 		});
 		compare_lat = $.mapview.region.latitude;
 		compare_long = $.mapview.region.longitude;
 	}
+}
+
+function addMarketToArray(pin){
+    var found = _.where(annotations, {id: pin.id});
+    console.log(typeof found+" typeof found");
+    console.log(found.length);
+    if(found.length <= 0){
+        if(OS_IOS){
+            var pin = {id: pin.id, latitude: pin.latitude, longitude: pin.longitude, title: pin.clinicName, subtitle: pin.add1+pin.add2, record: pin
+            , customView: Ti.UI.createView({
+                width : 30,
+                height : 30,
+                children : [Ti.UI.createView({
+                    top : 0,
+                    width : 30,
+                    height : 30,
+                    backgroundImage : "images/icons/"+pin.clinicType+".png"
+                })]
+            })
+            };
+        }else{
+            
+            var pin = {id: pin.id, latitude: pin.latitude, longitude: pin.longitude, title: pin.clinicName, subtitle: pin.add1+pin.add2, record: pin, image: "images/icons/"+pin.clinicType+".png"};
+        }
+        annotations.push(pin);
+        render_annotation(pin);
+    }
 }
 
 function getMapBounds(region) {
@@ -168,7 +173,7 @@ var marker = false;
 function pinClicked(e){
     $.search.blur();
     var pin = (typeof e.annotation != "undefined")?e.annotation:e;
-	marker = pin.record;
+    marker = (typeof e.annotation != "undefined")?pin.record:pin;
 	$.name.text = pin.record.clinicName;
 	$.address.text = pin.record.add1+" "+pin.record.add2+" "+pin.record.city+" "+pin.record.postcode+" "+pin.record.state;
 	$.openHour.text = pin.record.openHour.replace(/\[nl\]/g, "\n");
@@ -360,13 +365,14 @@ function openQueueList(){
 }
 
 function navToClinic(e){
-    var source = (typeof e.source != "undefined")?e.source:e;
-    if(typeof e.source != "undefined"){
+    var source = (typeof e.record == "undefined")?e.source:e;
+    if(typeof e.record == "undefined"){
         openQueueList();
     }
     pinClicked(source);
-    $.mapview.removeAllAnnotations();
-    var pin = {id: source.id, latitude: source.record.latitude, longitude: source.record.longitude, title: source.record.clinicName, subtitle: source.record.add1+source.record.add2, record: source.record
+    //$.mapview.removeAllAnnotations();
+    addMarketToArray(source.record);
+    /*var pin = {id: source.record.id, latitude: source.record.latitude, longitude: source.record.longitude, title: source.record.clinicName, subtitle: source.record.add1+source.record.add2, record: source.record
     , customView: Ti.UI.createView({
         width : 30,
         height : 30,
@@ -378,11 +384,11 @@ function navToClinic(e){
         })]
     })
     };
-    annotations.push(pin);
-    render_annotation(pin);
     console.log("check here");
-    console.log(source.record.latitude);
-    console.log(parseFloat(source.record.latitude)-0.004);
+    console.log(pin);
+    annotations.push(pin);
+    render_annotation(pin);*/
+    
     $.mapview.region =  {latitude: parseFloat(source.record.latitude)-0.004, longitude:source.record.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
 }
 
