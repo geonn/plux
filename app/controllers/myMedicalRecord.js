@@ -66,7 +66,7 @@ function recordClicked(e){
 function keyInPin(ic, ex){
     console.log(ic);
     var view = $.UI.create("View", {classes:['wfill','hsize','vert'],left:10, right:10, zIndex: 9, backgroundColor: "#ccc"});
-    var text = $.UI.create("Label", {classes:['wfill','hsize','h6','padding'], text: "Please key in your IC / Passport to open this file."});
+    var text = $.UI.create("Label", {classes:['wfill','hsize','h6','padding'], text: "Please key in your NRIC/Passport No. to open this file."});
     var textfield = $.UI.create("TextField", {classes:['wfill','padding'],top:0, height: 42});
     var ok_button = $.UI.create("Button", {classes:['wfill',"padding"], borderRadius:0, top:0, bottom:10, height: 50, title: "Ok"}); 
     var mask = $.UI.create("View",{
@@ -83,7 +83,7 @@ function keyInPin(ic, ex){
         if(textfield.value == ic){
             openAttachment(ex);
         }else{
-            alert("NRIC/Passport No does not match");
+            alert("NRIC/Passport No. does not match");
         }
         $.win.remove(mask);
         $.win.remove(view);
