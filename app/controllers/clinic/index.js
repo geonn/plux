@@ -173,7 +173,7 @@ var marker = false;
 function pinClicked(e){
     $.search.blur();
     var pin = (typeof e.annotation != "undefined")?e.annotation:e;
-    marker = (typeof e.annotation != "undefined")?pin.record:pin;
+    marker = pin.record;
 	$.name.text = pin.record.clinicName;
 	$.address.text = pin.record.add1+" "+pin.record.add2+" "+pin.record.city+" "+pin.record.postcode+" "+pin.record.state;
 	$.openHour.text = pin.record.openHour.replace(/\[nl\]/g, "\n");
