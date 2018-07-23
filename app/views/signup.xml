@@ -9,7 +9,7 @@
     				<Label id="titleLbl"  class='hsize themeColor' textAlign="center">Signup</Label>
     		   </View>
     		</View>
-    		<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/logo_plux.png"></ImageView>
+    		<ImageView borderRadius="10" width="120" height="120" backgroundColor="#ff0000" bottom="10dp" top="10dp" image="/images/asp_logo.png"></ImageView>
     		<ScrollView class='vert hfill wfill conthsize contwfill' id="forms">
     			<View backgroundColor="#fba81c" id="fullname" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" hintText="Full Name *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>

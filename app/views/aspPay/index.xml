@@ -1,0 +1,32 @@
+<Alloy>
+	<Window navTintColor="#CE1D1C" title="ASPPAY" id="win">
+		<View class='vert wfill hfill'>
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="90%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">ASPPAY</Label>
+		     	</View>
+		 	</View>
+        	<View class="box rounded wfill hsize padding vert">
+        	    <View class='wfill hsize vert padding'>
+            	    <Label class="wfill hsize h5 bold">MERCHANT</Label>
+            	    <Label class="wfill hsize h5" id="merchant">ASP Healthcare SDN BHD</Label>
+        	    </View>
+        	    <View class="hr" left="5" backgroundColor="#ccc" right="5"></View>
+        	    <View class='wfill hsize vert padding'>
+                    <Label class="wfill hsize h5 bold">ITEM</Label>
+                    <Label class="wfill hsize h5" id="item">Co-working TYPE A</Label>
+                </View>
+                <View class="hr" left="5" backgroundColor="#ccc" right="5"></View>
+                <View class='wfill hsize vert padding'>
+                    <Label class="wfill hsize h5 bold">AMOUNT</Label>
+                    <Label class="wfill hsize h5" id="amount">RM 15.00</Label>
+                </View>
+                <View class="hr" backgroundColor="#ccc"></View>
+        	</View>
+        	<Button class="wfill padding" onClick="doPay" top="0">Pay Now</Button>
+		</View>
+	</Window>
+</Alloy>

@@ -1,5 +1,6 @@
 var args = arguments[0] || {};
 var expandmode = false;
+var SCANNER = require("scanner"); 
 var loading = Alloy.createController('loading');
 var new_menu = [
 	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation.jpg"},
@@ -13,6 +14,7 @@ var new_menu = [
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord.jpg"},
 	{mod:"clinicLocator", is_asp:0, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth.jpg"},
+	//{mod: "aspPay", is_asp:0, title: "ASP PAY", onClick: scanQR, target:"aspPay/index", subtitle: "Use your reward point to pay for the bill", image_path: "/images/menu_image/myHealth.jpg"},
 ];
 $.shadow_header.hide(); 
 
@@ -109,8 +111,31 @@ if(OS_ANDROID){
     }
 }
 
- 
+function scanQR(){
+    if (Ti.Media.hasCameraPermissions()) {          
+        SCANNER.openScanner("1");
+    }else{
+        Ti.Media.requestCameraPermissions(function(e) {
+            if(e.success){
+                SCANNER.openScanner("1");
+            }else{
+                alert('You denied permission');
+            }   
+        });             
+    }
+}
 
+function qr_callback(e){
+    nav.navigationWindow("aspPay/index","","", {merchant: e.merchant,item: e.item, amount: e.amount});
+}
+
+function payment_done_callback(){
+    console.log("payment_done_callback");
+    alert("Your payment has been successful process");
+}
+
+Ti.App.addEventListener("payment_done_callback", payment_done_callback);
+Ti.App.addEventListener("qr_callback", qr_callback);
 
 /**********				init				*************/ 
 function init(){
@@ -345,6 +370,8 @@ function navWindow(e){
 		}else{
 			nav.navigationWindow("plux_profile"); 
 		}
+	}else if(source.mod == "aspPay"){
+	   nav.navigationWindow(source.target); 
 	}else{
 		console.log(source.target+" target");
 		nav.navigationWindow(source.mod);

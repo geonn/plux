@@ -16,7 +16,7 @@
                         <TextField maxLength="20" hintText="Member Number or IC Number" onFocus="textFieldOnFocus" onBlur="textFieldOnBlur"  left="5" value=""></TextField>
                     </View>
                     <View required="1" backgroundColor="#fba81c" id="empno" value="" class="wfill hsize padding rounded" top="0">
-                        <TextField maxLength="10" hintText="Employee Number" onFocus="textFieldOnFocus" onBlur="textFieldOnBlur"  left="5" value=""></TextField>
+                        <TextField maxLength="15" hintText="Employee Number" onFocus="textFieldOnFocus" onBlur="textFieldOnBlur"  left="5" value=""></TextField>
                     </View>
     			</View>
     			<Button id="asp_sign_btn" onClick="doAspSignup" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />

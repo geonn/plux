@@ -77,6 +77,14 @@ Ti.App.addEventListener("socket:add_event", function(ex) {
 		Ti.App.fireEvent("leave "+ex.room_id+" id");
 		socket.emit('leave_room', ex.room_id);
 	});
+	
+	var socket2 = io("http://103.3.173.207:4000");
+	socket2.on("payment_done", function(param){
+	    Ti.App.fireEvent("payment_done_callback", param);
+    });
+    Ti.App.addEventListener("payment_done", function(e){
+        socket2.emit('payment_done', e);
+    });
 </script>
 </body>
 </html>
