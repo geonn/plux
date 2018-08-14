@@ -1,9 +1,11 @@
 /*********************
 *** SETTING / API ***
 **********************/
-var API_DOMAIN = "appsapi.aspmedic.com/aida/";
-var FREEJINI_DOMAIN =  "plux.freejini.com.my";
-var VCLINIC_DOMAIN = "vclinic.freejini.com.my";
+var API_DOMAIN = "https://appsapi.aspmedic.com/aida/";
+var FREEJINI_DOMAIN =  "https://plux.freejini.com.my";
+var VCLINIC_DOMAIN = "https://vclinic.freejini.com.my";
+var REZA_DOMAIN = "http://asp.swancount.com";
+
 var url_doLogin		= API_DOMAIN+"login.aspx";
 var url_panelList   = API_DOMAIN+"panellist.aspx";
 
@@ -11,81 +13,81 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
-var syncHealthData = "https://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
-var checkAppVersionUrl = "https://"+FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
-var updateUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
-var getUserServiceUrl = "https://"+FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
-var updateToken     = "https://"+FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
-var grab_newsfeed        = "https://"+FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
-var getCategoryList     = "https://"+FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
-var leafletUrl      = "https://"+FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
-var updateUserFromFB = "https://"+FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
-var pluxLoginUrl    = "https://"+FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
-var pluxSignUpUrl   = "https://"+FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
-var healthDataUrl   = "https://"+FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
-var removeHealthDataUrl = "https://"+FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
-var clinicListUrl 	= "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
-var nearbyClinicUrl = "https://"+FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
-var doctorListUrl 	= "https://"+FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
-var addAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
-var syncAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
-var deleteAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
-var syncMedicalUrl = "https://"+FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
-var checkMedicalDataUrl = "https://"+FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
-var syncAttachmentssUrl = "https://"+FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
-var getNotificationUrl = "https://"+FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
-var deleteNotification = "https://"+FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
-var suggestedAppointmentUrl = "https://"+FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
-var deleteAttachmentUrl = "https://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
-var changeMedicalRecord = "https://"+FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
-var addMedicalAttachment = "https://"+FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
-var getCorpPermission = "https://"+FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
-var getMessage = "https://"+FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
-var sendMessage = "https://"+FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
-var getClinicLocator3 = "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator3?user="+USER+"&key="+KEY;
+var syncHealthData = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
+var checkAppVersionUrl = FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
+var updateUserServiceUrl = FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
+var getUserServiceUrl = FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
+var updateToken     = FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
+var grab_newsfeed        = FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
+var getCategoryList     = FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
+var leafletUrl      = FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
+var updateUserFromFB = FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
+var pluxLoginUrl    = FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
+var pluxSignUpUrl   = FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
+var healthDataUrl   = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
+var removeHealthDataUrl = FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
+var clinicListUrl 	= FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
+var nearbyClinicUrl = FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
+var doctorListUrl 	= FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
+var addAppointmentUrl = FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
+var syncAppointmentUrl = FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
+var deleteAppointmentUrl = FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
+var syncMedicalUrl = FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
+var checkMedicalDataUrl = FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
+var syncAttachmentssUrl = FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
+var getNotificationUrl = FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
+var deleteNotification = FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&key="+KEY;
+var suggestedAppointmentUrl = FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
+var deleteAttachmentUrl = FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var changeMedicalRecord = FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
+var addMedicalAttachment = FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
+var getCorpPermission = FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
+var getMessage = FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
+var sendMessage = FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
+var getClinicLocator3 = FREEJINI_DOMAIN+"/api/getClinicLocator3?user="+USER+"&key="+KEY;
 
-var addMessageUrl = "https://"+FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
-var getDoctorByPanel = "https://"+FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
-var getSpecialtylist = "https://"+FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
-var getDoctorPanelBySpecialty = "https://"+FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
-var getDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+USER+"&key="+KEY;
-var getWorkingHoursByDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
-var getHelplineMessage = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
-var getHelplineMessageV2 = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
-var getHelplineMessageV3 = "https://"+FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
-var sendHelplineMessage = "https://"+FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
-var addFeedbackUrl = "https://"+FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
-var getAppointmentByDoctorPanel = "https://"+FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
-var getClinicLocator2 = "https://"+FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
-var getRoomId = "https://"+FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
+var addMessageUrl = FREEJINI_DOMAIN+"/api/addMessage?user="+USER+"&key="+KEY;
+var getDoctorByPanel = FREEJINI_DOMAIN+"/api/getDoctorByPanel?user="+USER+"&key="+KEY;
+var getSpecialtylist = FREEJINI_DOMAIN+"/api/getSpecialtylist?user="+USER+"&key="+KEY;
+var getDoctorPanelBySpecialty = FREEJINI_DOMAIN+"/api/getDoctorPanelBySpecialty?user="+USER+"&key="+KEY;
+var getDoctorPanel = FREEJINI_DOMAIN+"/api/getAllDoctorPanel?user="+USER+"&key="+KEY;
+var getWorkingHoursByDoctorPanel = FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctorPanel?user="+USER+"&key="+KEY;
+var getHelplineMessage = FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
+var getHelplineMessageV2 = FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
+var getHelplineMessageV3 = FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
+var sendHelplineMessage = FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
+var addFeedbackUrl = FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
+var getAppointmentByDoctorPanel = FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
+var getClinicLocator2 = FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
+var getRoomId = FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
 var dateNow = "https://plux.freejini.com.my/main/dateNow";
-var getMedicalRecords = "https://"+FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
-var addUpdateMedicalRecord = "https://"+FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
-var getMedicalAttachment = "https://"+FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
-var deleteAttachment = "https://"+FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
-var getHealthDataByUser = "https://"+FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
-var getPersonalInfoRecords = "https://"+FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
-var addUpdateRecords = "https://"+FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
-var changeRecordStatus = "https://"+FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
-var doforgotPassword = "https://"+FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
-var getRoomList = "https://"+FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
+var getMedicalRecords = FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
+var addUpdateMedicalRecord = FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
+var getMedicalAttachment = FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
+var deleteAttachment = FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
+var getHealthDataByUser = FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
+var getPersonalInfoRecords = FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
+var addUpdateRecords = FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
+var changeRecordStatus = FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
+var doforgotPassword = FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
+var getRoomList = FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
 
-var claimunder  = "https://"+API_DOMAIN+"/claimunder.aspx"; 
-var panelList       = "https://"+API_DOMAIN+"/panellist.aspx"; 
-var loginUrl        = "https://"+API_DOMAIN+"/login.aspx";
-var changePasswordUrl= "https://"+API_DOMAIN+"/chgpwd.aspx";
-var checkBalanceUrl = "https://"+API_DOMAIN+"/balchk.aspx";
-var getClaimDetailUrl = "https://"+API_DOMAIN+"/claim.aspx";
-var aspSignupUrl 	= "https://"+API_DOMAIN+"/signup.aspx";
-var resendVerifUrl  = "https://"+API_DOMAIN+"/sendveriemail.aspx";
-var getclaimDetailBySeriesUrl = "https://"+API_DOMAIN+"/claimdetails.aspx";
-var getclaimReimbUrl = "https://"+API_DOMAIN+"/ClaimReimb.aspx";
-var aspPreSignupUrl = "https://"+API_DOMAIN+"/presignup.aspx";
-var ifins = "https://"+API_DOMAIN+"/ifins.aspx";
-var ipinv = "https://"+API_DOMAIN+"/ipinv.aspx";
+var claimunder  = API_DOMAIN+"/claimunder.aspx"; 
+var panelList       = API_DOMAIN+"/panellist.aspx"; 
+var loginUrl        = API_DOMAIN+"/login.aspx";
+var changePasswordUrl= API_DOMAIN+"/chgpwd.aspx";
+var checkBalanceUrl = API_DOMAIN+"/balchk.aspx";
+var getClaimDetailUrl = API_DOMAIN+"/claim.aspx";
+var aspSignupUrl 	= API_DOMAIN+"/signup.aspx";
+var resendVerifUrl  = API_DOMAIN+"/sendveriemail.aspx";
+var getclaimDetailBySeriesUrl = API_DOMAIN+"/claimdetails.aspx";
+var getclaimReimbUrl = API_DOMAIN+"/ClaimReimb.aspx";
+var aspPreSignupUrl = API_DOMAIN+"/presignup.aspx";
+var ifins = API_DOMAIN+"/ifins.aspx";
+var ipinv = API_DOMAIN+"/ipinv.aspx";
 /**claim submmission***/
-var getclaimCategoryUrl = "https://"+API_DOMAIN+"/claimcategory.aspx"; 
-var getclaimSubmissionUrl = "https://"+API_DOMAIN+"/ClaimSubmission.aspx"; 
+var getclaimCategoryUrl = API_DOMAIN+"/claimcategory.aspx"; 
+var getclaimSubmissionUrl = API_DOMAIN+"/ClaimSubmission.aspx"; 
 
 //configuration 
 var defaultRetryTimes = 3;
@@ -217,30 +219,6 @@ exports.updateUserFromFB = function(e, mainView){
 	client.open("GET", url);
 	 // Send the request.
 	client.send();  
-};
-
-exports.getUserService = function(e){
-	 
-	var url = getUserServiceUrl + "&u_id="+e.u_id; 
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);
-	     	for (var i=0; i < res.data.length; i++) {
-				 
-				if(res.data[i].service_id == 1){
-				  	Ti.App.Properties.setString('asp_email', res.data[i].email);
-				 }
-			}
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {   
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send();
 };
 
 exports.addAppointment = function(e, callback){
@@ -539,39 +517,6 @@ exports.do_signup = function(data,mainView, callback){
 	client.send();  
 };
 
-exports.plux_signup = function(data){
-	 
-	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&ic_no="+data.ic_no+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
-  	var params = { 
-		email: data.email,
-		password: data.password 
-	};
-   
-	var client = Ti.Network.createHTTPClient({
-		// function called when the response data is available
-		onload : function(e) { 
-			var result = JSON.parse(this.responseText);
-			
-			if(result.status == "error"){
-				common.createAlert("Error", result.data);
-				return false;
-			}else{
-				Ti.App.Properties.setString('u_id', result.data.u_id); 
-				Ti.App.Properties.setString('plux_email',result.data.email);
-				Ti.App.Properties.setString('asp_email', result.data.email);
-				u_id = Ti.App.Properties.getString('u_id') || "";
-                updateUserService(u_id, 1, data.email, data.password);
-			}
-		},
-		// function called when an error occurs, including a timeout
-		onerror : function(e) {
-		},
-		timeout : 70000  // in milliseconds
-	}); 
-	client.open("GET", url); 
-	client.send();  
-};
-
 exports.do_asp_presignup = function(data, handle){
 	var url = aspPreSignupUrl+"?MEMNO="+data.memno+"&EMPNO="+data.empno;
 	var u_id = Ti.App.Properties.getString('u_id') || "";
@@ -630,8 +575,8 @@ exports.do_asp_signup = function(data, handler){
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
-	       		Ti.App.Properties.setString('asp_email', data.email);
-	       		
+	       		Ti.App.Properties.setString('email', data.email);
+	       		Ti.App.Properties.setString('name', res.name);
 	       		Ti.App.Properties.setString('signup2', "");
 	       		if(u_id != ""){
 	       			console.log(u_id+" "+data.email+" "+data.password);
@@ -664,11 +609,12 @@ exports.do_asp_signup = function(data, handler){
 };
 
 exports.resendVerificationEmail = function(){
-	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('asp_email'); 
-	// console.log(url);
+	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('email'); 
+    console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
+	       console.log(e);
 	       common.createAlert("Success", "Verification email sent!");
 	     },
 	     // function called when an error occurs, including a timeout
@@ -701,7 +647,7 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
-	       		Ti.App.Properties.setString('asp_email', username);
+	       		Ti.App.Properties.setString('email', username);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		Ti.App.Properties.setString("empno_1",res.empno);
 	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);
@@ -1152,11 +1098,13 @@ exports.loadPanelList = function (ex){
  
 exports.callByGet  = function(e, handler){
 	var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
-    var url = (e.fullurl)?e.url:"https://"+domain+e.url+"?user="+USER+"&key="+KEY;
+    var url = (e.fullurl)?e.url:domain+e.url+"?user="+USER+"&key="+KEY;
 	url =  url+"&"+e.params;
 	console.log("callbyget: "+url);
-	var _result = contactServerByGet(encodeURI(url));   
+	var _result = contactServerByGet(encodeURI(url));
 	_result.onload = function(e) {   
+	    console.log(handler.onload);
+	    console.log(typeof handler.onload);
 	    if(e.skipJSON){
             _.isFunction(handler.onload) && handler.onload(this.responseText); 
             _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
@@ -1218,18 +1166,20 @@ function updateUserService(u_id, service_id, email, password){
 	 // Prepare the connection.
 	 client.open("GET", url);
 	 // Send the request.
-	 client.send(); 
+	 client.send();
 }
 
 function contactServerByGet(url) {  
 	var client = Ti.Network.createHTTPClient({
 		timeout : 10000
 	});
-  	if(OS_ANDROID){
-	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
-	 } 
-	client.open("GET", url);  
+  	var reward_token = Ti.App.Properties.getString('reward_token') || ""; 
+    
+	client.open("GET", url);
+	client.setRequestHeader('Content-Type', "application/json");
+	client.setRequestHeader('Authorization', "Bearer "+reward_token);
 	client.send();
+	console.log(reward_token);
 	return client;
 };
 
@@ -1254,7 +1204,9 @@ function contactServerByPost(url,records) {
 	/*if(OS_ANDROID){
 	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
 	 }*/
+	var reward_token = Ti.App.Properties.getString('reward_token') || ""; 
 	client.open("POST", url);
+	client.setRequestHeader('Authorization', reward_token);
 	client.send(records);
 	return client;
 };
@@ -1293,7 +1245,7 @@ exports.callByPost = function(e, onload, onerror){
 		}else{
 			var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
 			console.log(typeof e.new+" typeof e.new");
-			url = (typeof e.new != "undefined")?"https://"+domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
+			url = (typeof e.new != "undefined")?domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
 		console.log(url); 
 		console.log(e.params || {});

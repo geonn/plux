@@ -59,7 +59,7 @@ var interval;
 var sending = false;
 function SendMessage(){
     console.log("SendMessage");
-	if($.message_bar.value == "" || sending)
+	if(sending)
 		return;
 	loading.start();
 	sending = true;
@@ -269,8 +269,8 @@ function render_conversation(latest, local){
 		data.reverse();
 	}
 	for (var i=0; i < data.length; i++) {
-	    
-		if(data[i].is_endUser && data[i].status > 1 ){
+	    console.log(data[i]);
+		if((data[i].is_endUser && data[i].status > 1) || data[i].status == 3){
 			updateRow(data[i], latest);
 		}else{
 			addRow(data[i], latest);
@@ -298,7 +298,7 @@ function scrollChecker(e){
 }
 
 function callHelpdesk(){
-    Titanium.Platform.openURL('tel: 6046091611');
+    Titanium.Platform.openURL('tel:6046091611');
 }
 
 function getConversationByRoomId(callback){
@@ -472,6 +472,7 @@ function second_init(){
 	var mic = voice_recorder.getView();
 	$.action_btn.add(mic);
 	$.win.add(loading.getView());
+	console.log(Titanium.Network.online);
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}

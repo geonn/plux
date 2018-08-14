@@ -1,6 +1,6 @@
 <Alloy>
 <Window title="Ask Me - Helpline" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
-	
+	<ScrollView class="wfill hfill contwfill conthsize">
     <View class="wfill hfill vert" top="0">
 		<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" > 
 			<View left="0" width="20%">
@@ -29,5 +29,6 @@
             <ImageView id="enter_icon" backgroundColor="#ffffff" image="/images/icons/icon_enter.png" top="10" bottom="10" zIndex="3" right="-50" height="30" width="30" onClick="SendMessage"></ImageView>
         </View>
     </View>
+    </ScrollView>
 </Window>
 </Alloy>

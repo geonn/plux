@@ -26,17 +26,19 @@ function setup_row(e){
     var balance = Math.ceil(((e.limit-e.balance)/e.limit)*100);
     var textTotBal = "";
     switch(e.balance){
-        case "9999":
+        case 9999:
             textTotBal = "UNLIMITED";
             break;
-        case "99999":
+        case 99999:
             textTotBal = "-";
             break;
         default: 
             textTotBal = e.ent_type+e.balance;
     }
+    console.log(textTotBal);
     //var textTotBal = (e.balance == "9999")?"UNLIMITED":e.ent_type+e.balance;
     textTotBal = changeTitleByCorpAndBenefit(textTotBal, e.benefittype);
+    console.log(typeof e.limit);
     var subvalue = (e.limit == "9999")?"UNLIMITED":e.ent_type+e.limit;
     subvalue = changeTitleByCorpAndBenefit(subvalue, e.benefittype);
     return render_row({balance: balance, textTotBal: textTotBal, title: e.entTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
@@ -82,8 +84,8 @@ function render_row(e){
     view_sub_info.add(generate_description(e.title, e.textTotBal));
     view_sub_info.add($.UI.create("View", {width:1, height: 30, touchEnabled: false, backgroundColor: "#eeeeee", left: 10, right: 10}));
     view_sub_info.add(generate_description(e.subtitle, e.subvalue));
-    if(e.maxperclaim < 99999){
-        view_sub_info.add(generate_description("MAXIMUM AMOUNT PER CLAIM", (e.maxperclaim == "9999")?"UNLIMITED":e.maxperclaim, "100%"));
+    if(e.maxperclaim != "99999"){
+        view_sub_info.add(generate_description("MAXIMUM AMOUNT PER CLAIM", e.maxperclaim, "100%"));
     }
     
     return row;

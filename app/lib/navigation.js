@@ -7,7 +7,11 @@ function navigationWindow (target, checkAuth, callback, param){
 		if(isver == "true" || isver > 0){
 			
 		}else{
-			var win = Alloy.createController("asp/_email_verify", {callback: function(e){navigationWindow (target, checkAuth, callback, param);} }).getView(); 
+			var win = Alloy.createController("asp/_email_verify", {callback: function(e){
+			     console.log("ready to nav to new win");
+			     navigationWindow (target, checkAuth, callback, param);
+			    } 
+			}).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
 			}else{
