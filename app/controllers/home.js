@@ -176,7 +176,7 @@ function syncFromServer(){
 		"u_id"	  : u_id,
 		"last_updated" : last_updated
 	};
-    
+    /*
     API.callByPost({url:"loginRewardSystem", domain: "FREEJINI_DOMAIN", new:true, params: {u_id: u_id}}, function(responseText){ 
         var res = JSON.parse(responseText);  
         if(res.status == "success"){
@@ -185,7 +185,7 @@ function syncFromServer(){
             Ti.App.Properties.setString('reward_uid', res.data.reward_uid);
             
         }
-    });
+    });*/
     
 	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
@@ -589,7 +589,7 @@ function checkReminderToRate() {
     }
 }
 
-checkReminderToRate();
+//checkReminderToRate();
 
 $.win.addEventListener("open", function(){
      if (permissionsToRequest.length > 0 && OS_ANDROID) {
