@@ -37,6 +37,7 @@ function syncData(e){
 				
         model.saveArray(arr);
         checker.updateModule(e.checkerId, e.model, res.last_updated, u_id);
+        $._doctor_list.update_doctor_list({specialty:""});
 	});
 	
 }

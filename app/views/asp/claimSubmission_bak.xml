@@ -162,7 +162,7 @@
 		</View>  
 		<Toolbar platform="ios" bottom="200" extendBackground="true" borderTop="true" borderBottom="false" id="dateToolbar" visible="false">
 				<Items>  
-					<Button onClick="hideDatePicker" title="DONE" style="Titanium.UI.iPhone.SystemButtonStyle.DONE"   />
+					<Button onClick="hideDatePicker" title="DONE" style="Titanium.UI.iOS.SystemButtonStyle.DONE"   />
 				</Items>
 			</Toolbar>
 			<View height="0" bottom="200" id="selectorView" bottom="0"  zIndex="99"> 

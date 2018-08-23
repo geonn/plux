@@ -142,7 +142,7 @@ function showDatePicker(e){
 function updateLabelDate(e){
 	var value = (OS_IOS)?e.source.value:e.value;
 	console.log(value+" value");
-	$.date_text.value = moment(value).format("YYYY-MM-DD");
+	$.date_text.value = moment(value).format("YYYY-MM-DD hh:mm");
 	$.date_text.text = moment(value).format("ddd, MMM DD, YYYY, hh:mm A");
 }
 

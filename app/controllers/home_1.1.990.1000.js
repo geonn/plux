@@ -298,7 +298,7 @@ function updateNotification(e){
 	}else{
 		label_notification.text = unread_no;
 		if(OS_IOS){ 
-			//Titanium.UI.iPhone.setAppBadge(unread_no); 
+			//Titanium.UI.iOS.setAppBadge(unread_no); 
 		}
 	}
 }

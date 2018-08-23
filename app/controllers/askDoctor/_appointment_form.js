@@ -107,7 +107,7 @@ function init(){
 	if(OS_IOS){
 		var done = Titanium.UI.createButton({
 		    title: 'Done',
-		    style: Titanium.UI.iPhone.SystemButtonStyle.DONE,
+		    style: Titanium.UI.iOS.SystemButtonStyle.DONE,
 		});
 		   
 		done.addEventListener('click', function(){ 

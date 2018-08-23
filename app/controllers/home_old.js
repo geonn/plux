@@ -3,19 +3,19 @@ var expandmode = false;
 var SCANNER = require("scanner"); 
 var loading = Alloy.createController('loading');
 var new_menu = [
-	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.png"},
-	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/myClaim_square.jpg"},
-	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/claimSubmission_square.jpg"},
-	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record_square.jpg"},
-	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL_square.jpg"},
-	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list_square.jpg"},
-	{mod:"askDoctor/find_doctor", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
-	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
-	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
-	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
-	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
-	//{mod: "aspPay", is_asp:0, title: "ASP PAY", onClick: scanQR, target:"aspPay/index", subtitle: "Use your reward point to pay for the bill", image_path: "/images/menu_image/myHealth_square.jpg"},
-	{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
+	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation.jpg"},
+	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/myClaim.jpg"},
+	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/claimSubmission.jpg"},
+	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record.jpg"},
+	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL.jpg"},
+	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list.jpg"},
+	{mod:"askDoctor/find_doctor", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor.jpg"},
+	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit.jpg"},
+	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord.jpg"},
+	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator.jpg"},
+	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth.jpg"},
+	//{mod: "aspPay", is_asp:0, title: "ASP PAY", onClick: scanQR, target:"aspPay/index", subtitle: "Use your reward point to pay for the bill", image_path: "/images/menu_image/myHealth.jpg"},
+	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide(); 
 
@@ -70,11 +70,11 @@ function render_menu(){
 	    var cell_width = Math.floor(pwidth/2);
 	    console.log(cell_width);
 	    console.log(Math.ceil(cell_width*0.333));
-		var view = $.UI.create("View", {classes:['small_padding'], borderWidth: 3, borderColor: "#ddd", width: cell_width - 10, borderRadius: (cell_width-10)/2, height: (cell_width-10), records: new_menu[i]});//Math.ceil(cell_width*0.666)
-		var img = $.UI.create("ImageView", {classes:['wsize'], height: cell_width, touchEnabled: false, image: new_menu[i].image_path});
-		var view_2 = $.UI.create("View", {zIndex: 10, touchEnabled: false, classes:['wsize','hsize','vert']});
-		var label_title = $.UI.create("Label", {classes:['wfill','hsize','h5','bold'], left: 10, right:10, touchEnabled: false, color: "#fff",  textAlign:"center", text: new_menu[i].title});
-		var label2_subtitle = $.UI.create("Label", {classes:['wfill','hsize','h7','bold'], left: 10, right:10, touchEnabled: false, color:"#ffffff", textAlign:"center", text: new_menu[i].subtitle});
+		var view = $.UI.create("View", {width: cell_width, height: Math.ceil(cell_width*0.666), records: new_menu[i]});
+        var img = $.UI.create("ImageView", {classes:['hsize','wfill'], touchEnabled: false, image: new_menu[i].image_path});
+        var view_2 = $.UI.create("View", {zIndex: 10, touchEnabled: false, classes:['wsize','hsize','vert']});
+        var label_title = $.UI.create("Label", {classes:['wsize','hsize','h5','bold'], touchEnabled: false, color: "#fff",  textAlign:"center", text: new_menu[i].title});
+        var label2_subtitle = $.UI.create("Label", {classes:['wsize','hsize','h7','bold'], touchEnabled: false, color:"#ffffff", textAlign:"center", text: new_menu[i].subtitle});
 		view.add(img);
 		view_2.add(label_title);
 		view_2.add(label2_subtitle);
@@ -84,7 +84,7 @@ function render_menu(){
 			img_height = e.source.parent.rect.height;
 			console.log(img_height+" img_height");
 			setTimeout(function(ex){
-				e.source.parent.add($.UI.create("View", {classes:['wfill','hfill'],touchEnabled: false , height: img_height, zIndex: 10, zIndex: 9,  backgroundColor: "#30000000"}));
+		      e.source.parent.add($.UI.create("View", {classes:['wfill','hfill'],touchEnabled: false , height: img_height, zIndex: 10, zIndex: 9,  backgroundColor: "#60000000"}));
 			}, 200);
 		});
 		view.addEventListener("click", new_menu[i].onClick);
@@ -141,7 +141,7 @@ function changeBackground(){
 
 /**********				init				*************/ 
 function init(){
-    changeBackground();
+    //changeBackground();
 	console.log("init start");
 	$.win.add(loading.getView());
 	loading.start();
@@ -176,7 +176,7 @@ function syncFromServer(){
 		"u_id"	  : u_id,
 		"last_updated" : last_updated
 	};
-    
+    /*
     API.callByPost({url:"loginRewardSystem", domain: "FREEJINI_DOMAIN", new:true, params: {u_id: u_id}}, function(responseText){ 
         var res = JSON.parse(responseText);  
         if(res.status == "success"){
@@ -185,7 +185,7 @@ function syncFromServer(){
             Ti.App.Properties.setString('reward_uid', res.data.reward_uid);
             
         }
-    });
+    });*/
     
 	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
@@ -268,11 +268,12 @@ function refreshHeaderInfo(){
 
 function redirect(e){
 	console.log(e.target);
-	nav.navigationWindow(e.target,"","", e.app_param);
+	nav.navigationWindow(e.target,"","", e);
 } 
  
 function navWindow(e){
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
+	console.log(source.mod);
 	if(source.mod == "eCard" || source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
 			nav.navigationWindow("asp/"+source.mod);  
@@ -418,7 +419,7 @@ if(Ti.Platform.osname == "android"){
 		dialog.show(); 
 	});*/
 	//
-    Ti.Android.currentActivity.onResume = syncFromServer;
+    //Ti.Android.currentActivity.onResume = syncFromServer;
 	//Ti.Android.Activity.onResume(syncFromServer);
 }
 
@@ -589,27 +590,38 @@ function checkReminderToRate() {
     }
 }
 
-checkReminderToRate();
+//checkReminderToRate();
 
 $.win.addEventListener("open", function(){
-     if (permissionsToRequest.length > 0 && OS_ANDROID) {
-     
-        Ti.Android.requestPermissions(permissionsToRequest, function(e) {
-            
-            Ti.API.info('Requesting Permission', e);
-            
-            if (e.success) {
-     
-                console.log("SUCCESS");
-     
-            } else {
-     
-                console.log("ERROR: " + e.error);
-     
-            }
-     
-        });
-     
+    if(OS_ANDROID){
+        Ti.Android.currentActivity.onResume = function(){
+            redirect = false;
+            console.log("redirect true");
+            syncFromServer();
+        };
+        Ti.Android.currentActivity.onPause = function(){
+            redirect = true;
+            console.log("redirect true");
+        };
+         if (permissionsToRequest.length > 0) {
+         
+            Ti.Android.requestPermissions(permissionsToRequest, function(e) {
+                
+                Ti.API.info('Requesting Permission', e);
+                
+                if (e.success) {
+         
+                    console.log("SUCCESS");
+         
+                } else {
+         
+                    console.log("ERROR: " + e.error);
+         
+                }
+         
+            });
+         
+        }
     }
  });
 

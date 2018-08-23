@@ -1,7 +1,7 @@
 // load the Scandit SDK module
 var scanditsdk = require("com.mirasense.scanditsdk"); 
 if(Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad'){
-	//Titanium.UI.iPhone.statusBarHidden = true;
+	//Titanium.UI.iOS.statusBarHidden = true;
 }
 scanditsdk.appKey = "qt/U+huGEeSG62SYxtngPa7xVDA0BLRMw7gQLH8qAB0"; 
 scanditsdk.cameraFacingPreference = 0; 

@@ -2,8 +2,8 @@
 	<Window id="win" title="" navBarHidden="true" class="container" exitOnClose="true">
 		<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
 		<View class='wfill hfill'>
-		    <View id="daily_background" class="wfill hfill"></View>
-		    <!--<View class="wfill hfill" backgroundColor="#90000000"></View>-->
+		    <ImageView id="daily_background" class="wfill hfill"></ImageView>
+		    <View class="wfill hfill" backgroundColor="#90000000"></View>
 			<View class="wfill hsize bgred" zIndex="100" top="0" id="shadow_header">
 				<ImageView id="shadow_logo" width="60" top="10" bottom="10" borderRadius="10" borderColor="#fff" height="60" right="20" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" />
 				<View class="hsize" width="60%" left="10" id="shadow_myInfo"></View>
@@ -14,8 +14,8 @@
 					<View class="wsize hsize horz" top="60">
 						<Label class="h1 wsize hsize whiteColor" id="day" right="10">12</Label>
 						<View class="wsize hsize vert">
-							<Label class="h4 wsize hsize whiteColor" id="days" left="0">Tuesday</Label>
-							<Label class="h7 wsize hsize whiteColor" id="month_year" left="0">December, 2018</Label>
+							<Label class="h4 wsize hsize whiteColor" id="days" left="0"></Label>
+							<Label class="h7 wsize hsize whiteColor" id="month_year" left="0"></Label>
 						</View>
 					</View>
 					<View class="wfill hsize" bottom="10">
@@ -25,7 +25,7 @@
 						</View>
 						<View class="wfill hsize" width="60%" left="10" id="myInfo"></View>
 					</View>
-					<ImageView onClick="navWindow" mod="more" image="/images/more-512.png" width="40" height="40" top="10" right="20"></ImageView>
+					<ImageView onClick="navWindow" mod="more" image="/images/more-512-white.png" width="40" height="40" top="10" right="20"></ImageView>
 				</View>
 				<!--<ScrollableView class='wfill padding' height="100" backgroundColor="#f0f1f5" bubbleParent="false">
 					<View class="wfill hsize">

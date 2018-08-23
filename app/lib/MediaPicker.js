@@ -189,7 +189,7 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 				h: 0,
 				y: 0,
 				top:message?15:0,
-				separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
+				separatorStyle: Ti.UI.iOS.TableViewSeparatorStyle.NONE,
 				allowsSelection: false,
 				data: data
 			});				

@@ -3,7 +3,7 @@
 		<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
 		<View class='wfill hfill'>
 		    <View id="daily_background" class="wfill hfill"></View>
-		    <View class="wfill hfill" backgroundColor="#90000000"></View>
+		    <!--<View class="wfill hfill" backgroundColor="#90000000"></View>-->
 			<View class="wfill hsize bgred" zIndex="100" top="0" id="shadow_header">
 				<ImageView id="shadow_logo" width="60" top="10" bottom="10" borderRadius="10" borderColor="#fff" height="60" right="20" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" />
 				<View class="hsize" width="60%" left="10" id="shadow_myInfo"></View>

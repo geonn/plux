@@ -1,6 +1,6 @@
 var Cloud = require('ti.cloud'); 
 var app_status;
-var redirect = true;
+
 if(OS_ANDROID){ 
 	var CloudPush = require('ti.cloudpush');
 	// notification callback function (important)
@@ -12,6 +12,22 @@ if(OS_ANDROID){
 		receivePush(payload);
  
 	});
+	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
+        redirect = true;
+        app_status = "not_running";
+        var payload = JSON.parse(evt.payload);   
+        Ti.App.Payload = payload;
+        console.log('Tray Click Launched App (app was not running)');  
+        receivePush(payload);
+        //getNotificationNumber(Ti.App.Payload);
+    });
+    CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
+        redirect = false;
+        app_status = "running";
+        var payload = JSON.parse(evt.payload);   
+        console.log('Tray Click Focused App (app was already running)'); 
+        //receivePush(payload);
+    });
 } 
 
 function receivePush(e){
@@ -19,6 +35,7 @@ function receivePush(e){
 	var extra; 
 	var data = (OS_IOS)?e.data:e;
 	if(OS_IOS){ 
+	    console.log(e.data);
 		target = e.data.target; 
 		extra = e.data.extra;
 	}else{ 
@@ -229,6 +246,7 @@ function deviceTokenSuccess(ev) {
 			            
 	    }
 	});
+	console.log("redirect false token signup");
 	redirect = false;
     
 }
@@ -288,7 +306,7 @@ function getNotificationNumber(payload){
 }
 
 exports.setInApp = function(){
-	console.log('In App');
+	console.log('In App redirect false');
 	redirect = false;
 };
 

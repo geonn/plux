@@ -34,5 +34,5 @@
 }
 
 "#scrubBar[platform=ios]":{
-	style: Titanium.UI.iPhone.ProgressBarStyle.PLAIN
+	style: Titanium.UI.iOS.ProgressBarStyle.PLAIN
 }

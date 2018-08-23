@@ -45,10 +45,10 @@ function saveLocal(param){
 		$.message_bar.blur();
 		loading.finish();
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
-		if(dr_id === 0){
-		    console.log(dr_id+" doctor:refresh_patient_list");
-			socket.fireEvent("doctor:refresh_patient_list");
-		}
+		
+	    console.log(dr_id+" doctor:refresh_patient_list");
+		socket.fireEvent("doctor:refresh_patient_list");
+		
 	});
 }
 
@@ -169,6 +169,7 @@ function addRow(row, latest){
 			//
 			if(typeof args.record != "undefined"){
 				var imageview_thumb_path = $.UI.create("ImageView", {
+				    transform: Ti.UI.create2DMatrix().rotate(180),
 					top: 10,
 					width: 50,
 					height: "auto",

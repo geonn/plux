@@ -344,8 +344,10 @@ function hinttextOnBlur(e){
 }
 
 var win;
-
+var redirect = true;
 Ti.App.addEventListener("pause", function(e){
+    redirect = true;
+    console.log("redirect true");
 	win = Ti.UI.createWindow({backgroundColor: "red"});
 	win.open();
 });
@@ -354,6 +356,8 @@ Ti.App.addEventListener("resumed", function(e){
 	if(typeof win != null && win != null){
 		win.close();
 	}
+	redirect = false;
+	console.log("redirect false");
 });
 
 function pixelToDp(px) {
