@@ -171,9 +171,10 @@ function loadComboBox(e){
  Upload file
  * */
 function camera_callback(event){
-    console.log((1024 / event.media.width)+" "+(1024 / event.media.height));
-    var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
-    var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
+    console.log((event.media.width / 1024)+" "+(event.media.height / 1024));
+    var new_height = (event.media.height <= event.media.width)?event.media.height*(event.media.width / 1024):1024;
+    var new_width = (event.media.height <= event.media.width)?1024:event.media.width*(event.media.height / 1024);
+    console.log(event.media.height <= event.media.width+" check event");
     var blob = event.media;
     console.log(" "+event.media.width+" "+event.media.height);
     console.log(new_width+" "+new_height);

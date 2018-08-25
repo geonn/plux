@@ -15,7 +15,7 @@ var new_menu = [
 	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "aspPay", is_asp:0, title: "ASP PAY", onClick: scanQR, target:"aspPay/index", subtitle: "Use your reward point to pay for the bill", image_path: "/images/menu_image/myHealth_square.jpg"},
-	{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
+	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide(); 
 

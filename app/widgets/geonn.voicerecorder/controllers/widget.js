@@ -40,7 +40,7 @@ function startRecording(){
 					var audioFile = Ti.Filesystem.getFile(audioDir.resolve(), e.fileName);
 					console.log("audioFile.nativePath = " + audioFile.nativePath);
 					if(!cancel_record){
-						args.record_callback({message: "", format:"voice", filedata: audioFile.read()});
+						args.record_callback({message: audioFile.nativePath, format:"voice", filedata: audioFile.read()});
 					}
 				},
 				error : function(d) {
@@ -67,8 +67,9 @@ function stopRecording(){
 		if(OS_IOS){
 			var audioFile = audioRecorder.stop();
 			console.log(audioFile);
+			console.log(audioFile.nativePath+" audioFile.nativePath here");
 			if(sec > 1)
-				args.record_callback({message: "", format:"voice", filedata: audioFile.read()});
+				args.record_callback({message: audioFile.nativePath, format:"voice", filedata: audioFile.read()});
 		}else{
 			audioRecorder.stopRecording();
 		}

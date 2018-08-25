@@ -88,22 +88,28 @@ function updateTimeLabel() {
 exports.setUrl = function(url) {
 
 	var filename = url.split('/').pop();
-	var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, filename);	
-	if(file.exists()){
-		set_url(file.nativePath);
+	
+	var file_temp = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, filename);    
+	if(file_temp.exists()){
+	    set_url(file_temp.nativePath);
 	}else{
-		var xhr = Titanium.Network.createHTTPClient({
-			onload: function() {
-				// first, grab a "handle" to the file where you'll store the downloaded data
-				var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
-				f.write(this.responseData); // write to the file
-				Ti.App.fireEvent('graphic_downloaded', {filepath: f.nativePath});
-				set_url(f.nativePath);
-			},
-			timeout: 10000
-		});
-		xhr.open('GET', url);
-		xhr.send();
+    	var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, filename);	
+    	if(file.exists()){
+    		set_url(file.nativePath);
+    	}else{
+    		var xhr = Titanium.Network.createHTTPClient({
+    			onload: function() {
+    				// first, grab a "handle" to the file where you'll store the downloaded data
+    				var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
+    				f.write(this.responseData); // write to the file
+    				Ti.App.fireEvent('graphic_downloaded', {filepath: f.nativePath});
+    				set_url(f.nativePath);
+    			},
+    			timeout: 10000
+    		});
+    		xhr.open('GET', url);
+    		xhr.send();
+    	}
 	}
 };
 

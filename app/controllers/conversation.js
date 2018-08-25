@@ -69,6 +69,9 @@ function SendMessage(){
 }
 
 function startTimer(){
+    if(dr_id){
+        return;
+    }
     interval = setTimeout(function(){
         $.call.show();
         if(OS_ANDROID){
@@ -142,6 +145,7 @@ function addRow(row, latest){
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
+			console.log(newText+" check local setURL");
 			player.setUrl(newText);
 			//download_video(player, newText);
 			var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
@@ -236,12 +240,12 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		console.log("inner_area[i].status "+inner_area[i].status+" row.status "+row.status);
 		if(inner_area[i].id == row.id && inner_area[i].status != row.status){
 			found = true;
 			//console.log(inner_area[i].children[0]);
 			//console.log(inner_area[i].children[0].children.length);
 			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
+			console.log(timeFormat(row.created)+" "+status_text[row.status]);
 			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
 		}
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
@@ -310,7 +314,7 @@ function getConversationByRoomId(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id);
 	var last_updated = isUpdate.updated || "";
-	last_update = last_updated;
+	last_update = last_updated || last_update;
 	console.log(last_update+" last update updated from checker");
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("chat");
