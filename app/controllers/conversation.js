@@ -144,8 +144,9 @@ function addRow(row, latest){
 			view_text_container.add(label_message2);
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
+		    console.log(newText+" check local setURL");
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
-			console.log(newText+" check local setURL");
+			
 			player.setUrl(newText);
 			//download_video(player, newText);
 			var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
@@ -274,7 +275,6 @@ function render_conversation(latest, local){
 		data.reverse();
 	}
 	for (var i=0; i < data.length; i++) {
-	    console.log(data[i]);
 		if((data[i].is_endUser && data[i].status > 1) || data[i].status == 3){
 			updateRow(data[i], latest);
 		}else{

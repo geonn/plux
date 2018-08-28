@@ -89,7 +89,12 @@ exports.setUrl = function(url) {
 
 	var filename = url.split('/').pop();
 	
-	var file_temp = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, filename);    
+	if(OS_IOS){
+        var file_temp = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, filename);
+    }else{
+        var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
+        var file_temp = Ti.Filesystem.getFile(audioDir.resolve(), filename);
+    }  
 	if(file_temp.exists()){
 	    set_url(file_temp.nativePath);
 	}else{
@@ -100,6 +105,7 @@ exports.setUrl = function(url) {
     		var xhr = Titanium.Network.createHTTPClient({
     			onload: function() {
     				// first, grab a "handle" to the file where you'll store the downloaded data
+    				console.log(url+" check what voice");
     				var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     				f.write(this.responseData); // write to the file
     				Ti.App.fireEvent('graphic_downloaded', {filepath: f.nativePath});

@@ -36,6 +36,7 @@ function startRecording(){
 					//alert("success => " + e.filePath);
 					console.log("response is => " + JSON.stringify(e));
 			
+					var audioDir = (OS_ANDROID)?Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux"):Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory);
 					var audioDir = Titanium.Filesystem.getFile(Titanium.Filesystem.externalStorageDirectory, "plux");
 					var audioFile = Ti.Filesystem.getFile(audioDir.resolve(), e.fileName);
 					console.log("audioFile.nativePath = " + audioFile.nativePath);
