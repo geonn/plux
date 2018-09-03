@@ -4,7 +4,7 @@ ID       type Name
 ------------------------------------
 2 		BLOOD PRESSURE		SYSTOLIC, DIASTOLIC, Pulse Rate, Medication, Notes/remark 	 
 3 		HEART RATE			Pulse Rate, Medication, Notes/Remark
-6		WEIGHT / BMI		Weight, Body Fat, Notes/Remark
+6		WEIGHT       		Weight, Body Fat, Notes/Remark
 7		CHOLESTROL			HDL, LDL, Medication, Notes/Remark
 8		BLOOD GLUCOSE		Blood Glucose, current status, Medication, Insulin, Notes/Remark
 10		STEPS				Step

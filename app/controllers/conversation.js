@@ -33,10 +33,23 @@ function saveLocal(param){
 	};
 	var id = model.saveArray([local_save]);
 	var api_param = {u_id: u_id, dr_id: dr_id, message: param.message, is_endUser:1, app_id: app_id };
-	if(param.format == "voice"){
+	if(param.format == "voice" || param.format == "photo"){
 		_.extend(api_param, {media: param.format, Filedata: param.filedata});
 	}
-	getLatestData(true);
+	data = [{
+        "u_id": u_id,
+        "id": app_id,
+        "sender_id": u_id,
+        "message": param.message || param.filedata,
+        "created": common.now(),
+        "is_endUser": 1,
+        "dr_id": dr_id,
+        "format": param.format,
+        "status": 1,
+        "app_id": app_id,
+        "sender_name": Ti.App.Properties.getString('fullname') || ""
+    }];
+    render_conversation(true, true);
 	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
 		
 		var res = JSON.parse(responseText);
@@ -112,7 +125,7 @@ function addRow(row, latest){
 		});
 		
 		var ss = row.message;
-		var newText = ss.replace("[br]", "\r\n");
+		var newText = (row.format != "photo")?ss.replace("[br]", "\r\n"):row.message;
 		var text_color = (row.format == "link")?"blue":"#606060";
 		newText = (row.format == "link")?newText:newText;
 		
@@ -153,7 +166,15 @@ function addRow(row, latest){
 			view.add(player.getView());
 			view_text_container.add(label_name);
 			view_text_container.add(view);
-		}else{
+		}else if(row.format == "photo" ){
+            console.log("photo here");
+            console.log(newText+" "+timeFormat(row.created));
+            var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
+            var image_photo = $.UI.create("ImageView", {image: newText, classes:['hsize','wfill']});
+            view.add(image_photo);
+            view_text_container.add(label_name);
+            view_text_container.add(view);
+        }else{
 			view_text_container.add(label_name);
 			view_text_container.add(label_message);
 		}
@@ -275,11 +296,12 @@ function render_conversation(latest, local){
 		data.reverse();
 	}
 	for (var i=0; i < data.length; i++) {
-		if((data[i].is_endUser && data[i].status > 1) || data[i].status == 3){
+	    updateRow(data[i], latest);
+		/*if((data[i].is_endUser && data[i].status > 1) || data[i].status == 3){
 			updateRow(data[i], latest);
 		}else{
 			addRow(data[i], latest);
-		}
+		}*/
 	}
 }
 
@@ -499,6 +521,242 @@ function setup_socket(){
 	console.log("setup_socket");
 	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
 	socket.event_onoff("socket:message_alert", false);
+}
+
+function filepermittion()
+{
+    if(OS_ANDROID)
+    {
+        if(Ti.Filesystem.hasStoragePermissions()) return true;
+        else{
+             Ti.Filesystem.requestStoragePermissions(function(e){
+                if(e.success){
+                    return true;
+                }
+                else{
+                    alert("You denied permission.");
+                    return false;
+                }
+             });
+        }
+    }else{
+        if(Ti.Media.hasPhotoGalleryPermissions()) return true;
+        else{
+             Ti.Media.requestPhotoGalleryPermissions(function(e){
+                if(e.success){
+                    return true;
+                }
+                else{
+                    alert("You denied permission.");
+                    return false;
+                }
+             });
+        }
+    }
+}
+
+function popCamera(e){
+    
+    if(!filepermittion()) return;
+
+    var dialog = Titanium.UI.createOptionDialog({ 
+        title: 'Choose an image source...', 
+        options: ['Camera','Photo Gallery', 'Cancel'], 
+        cancel:2 //index of cancel button
+    });
+    var pWidth = Ti.Platform.displayCaps.platformWidth;
+    var pHeight = Ti.Platform.displayCaps.platformHeight;
+     
+    dialog.addEventListener('click', function(e) { 
+        
+        if(e.index == 0) { //if first option was selected
+            //then we are getting image from camera]
+            if(Ti.Media.hasCameraPermissions()){
+                console.log("Success to open camera");
+                Titanium.Media.showCamera({ 
+                    success:photoSuccessCallback,
+                    cancel:function(){
+                        //do somehting if user cancels operation
+                    },
+                    error:function(error) {
+                        //error happend, create alert
+                        var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                        //set message
+                        if (error.code == Titanium.Media.NO_CAMERA){
+                            a.setMessage('Device does not have camera');
+                        }else{
+                            a.setMessage('Unexpected error: ' + error.code);
+                        }
+         
+                        // show alert
+                        a.show();
+                    },
+                    allowImageEditing:true,
+                    mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                    saveToPhotoGallery:true
+                });                                 
+            }else{
+                Ti.Media.requestCameraPermissions(function(e){
+                    
+                    if(e.success){
+                        console.log("Success to open camera");
+                        Titanium.Media.showCamera({ 
+                            success:photoSuccessCallback,
+                            cancel:function(){
+                                //do somehting if user cancels operation
+                            },
+                            error:function(error) {
+                                //error happend, create alert
+                                var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                                //set message
+                                if (error.code == Titanium.Media.NO_CAMERA){
+                                    a.setMessage('Device does not have camera');
+                                }else{
+                                    a.setMessage('Unexpected error: ' + error.code);
+                                }
+                 
+                                // show alert
+                                a.show();
+                            },
+                            allowImageEditing:true,
+                            mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                            saveToPhotoGallery:true
+                        });                 
+                    }
+                    else{
+                        alert("You denied permission.");
+                    }
+                });
+            }
+        } else if(e.index == 1){
+
+            if(OS_ANDROID)
+            {
+                if(Ti.Filesystem.hasStoragePermissions()){
+                    console.log("Success to open photo gallery");
+                    Titanium.Media.openPhotoGallery({
+                        
+                        success: photoSuccessCallback,
+                        cancel:function() {
+                            // called when user cancels taking a picture
+                        },
+                        error:function(error) {
+                            // called when there's an error
+                            var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                            if (error.code == Titanium.Media.NO_CAMERA) {
+                                a.setMessage('Please run this test on device');
+                            } else {
+                                a.setMessage('Unexpected error: ' + error.code);
+                            }
+                            a.show();
+                        },
+                        // allowEditing and mediaTypes are iOS-only settings
+                        allowEditing: true,
+                        mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                    });                             
+                }else{
+                    Ti.Filesystem.requestStoragePermissions(function(e){
+                        
+                        if(e.success){
+                            console.log("Success to open photo gallery");
+                            Titanium.Media.openPhotoGallery({
+                                
+                                success:photoSuccessCallback,
+                                cancel:function() {
+                                    // called when user cancels taking a picture
+                                },
+                                error:function(error) {
+                                    // called when there's an error
+                                    var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                                    if (error.code == Titanium.Media.NO_CAMERA) {
+                                        a.setMessage('Please run this test on device');
+                                    } else {
+                                        a.setMessage('Unexpected error: ' + error.code);
+                                    }
+                                    a.show();
+                                },
+                                // allowEditing and mediaTypes are iOS-only settings
+                                allowEditing: true,
+                                mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                            });             
+                        }
+                        else{
+                            alert("You denied permission.");
+                        }
+                    });
+                }
+            }else{
+                if(Ti.Media.hasPhotoGalleryPermissions()){
+                    console.log("Success to open photo gallery");
+                    Titanium.Media.openPhotoGallery({
+                        
+                        success:photoSuccessCallback,
+                        cancel:function() {
+                            // called when user cancels taking a picture
+                        },
+                        error:function(error) {
+                            // called when there's an error
+                            var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                            if (error.code == Titanium.Media.NO_CAMERA) {
+                                a.setMessage('Please run this test on device');
+                            } else {
+                                a.setMessage('Unexpected error: ' + error.code);
+                            }
+                            a.show();
+                        },
+                        // allowEditing and mediaTypes are iOS-only settings
+                        allowEditing: true,
+                        mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                    });                             
+                }else{
+                    Ti.Media.requestPhotoGalleryPermissions(function(e){
+                        
+                        if(e.success){
+                            console.log("Success to open photo gallery");
+                            Titanium.Media.openPhotoGallery({
+                                
+                                success:photoSuccessCallback,
+                                cancel:function() {
+                                    // called when user cancels taking a picture
+                                },
+                                error:function(error) {
+                                    // called when there's an error
+                                    var a = Titanium.UI.createAlertDialog({title:'Camera'});
+                                    if (error.code == Titanium.Media.NO_CAMERA) {
+                                        a.setMessage('Please run this test on device');
+                                    } else {
+                                        a.setMessage('Unexpected error: ' + error.code);
+                                    }
+                                    a.show();
+                                },
+                                // allowEditing and mediaTypes are iOS-only settings
+                                allowEditing: true,
+                                mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
+                            });             
+                        }
+                        else{
+                            alert("You denied permission.");
+                        }
+                    });
+                }
+            }
+        } else {
+        
+        }
+    });
+     
+    //show dialog
+    dialog.show();
+}
+
+function photoSuccessCallback(event) {
+    var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
+    var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
+    var blob = event.media;
+    console.log(" "+event.media.width+" "+event.media.height);
+    console.log(new_width+" "+new_height);
+    blob = blob.imageAsResized(new_width, new_height);
+    saveLocal({message: event.media.nativePath, format:"photo", filedata: blob});
 }
 
 init();

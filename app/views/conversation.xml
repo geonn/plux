@@ -24,7 +24,8 @@
         <Button class="small_button" width="100" bottom="10" onClick="callHelpdesk">Call</Button>
     </View>
     <View backgroundColor="white" class="wfill hsize" height="50" bottom="0" id='bottom_bar'>
-        <TextField id="message" id="message_bar" onChange="switchIcon" font="fontSize: 40" hintText="Type a message..." class="small_padding wfill" left="5" right="50" height="40" ></TextField>
+        <ImageView image="/images/icons/icon_photo_camera.png" bottom="10" zIndex="3" left="10" height="30" width="30" onClick="popCamera"></ImageView>
+        <TextField id="message" id="message_bar" onChange="switchIcon" font="fontSize: 40" hintText="Type a message..." class="small_padding wfill" left="50" right="50" height="40" ></TextField>
         <View id="action_btn" right="0" class="wsize hsize">
             <ImageView id="enter_icon" backgroundColor="#ffffff" image="/images/icons/icon_enter.png" top="10" bottom="10" zIndex="3" right="-50" height="30" width="30" onClick="SendMessage"></ImageView>
         </View>

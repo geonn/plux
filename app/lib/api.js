@@ -1171,7 +1171,7 @@ function updateUserService(u_id, service_id, email, password){
 
 function contactServerByGet(url) {  
 	var client = Ti.Network.createHTTPClient({
-		timeout : 10000
+		timeout : 30000
 	});
   	var reward_token = Ti.App.Properties.getString('reward_token') || ""; 
     

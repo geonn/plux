@@ -47,7 +47,7 @@ function checkserviceByCorpcode(){
 	}else{
 		render_menu();
 	}
-	
+	$.scrollview.add($.UI.create("Label", {classes: ['wfill','hsize','padding'], color:"#fff", textAlign: "right", text: "ver "+Titanium.App.version}));
 }
 
 function findIndexInData(data, property, value) {
