@@ -169,11 +169,12 @@ function addRow(row, latest){
 		}else if(row.format == "photo" ){
             console.log("photo here");
             console.log(newText+" "+timeFormat(row.created));
-            var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
+            var view = $.UI.create("View", {classes:['wfill','hsize','padding'], backgroundColor:"black", height: 200});
             var image_photo = $.UI.create("ImageView", {image: newText, classes:['hsize','wfill']});
             view.add(image_photo);
             view_text_container.add(label_name);
             view_text_container.add(view);
+            image_photo.addEventListener("click", imageZoom);
         }else{
 			view_text_container.add(label_name);
 			view_text_container.add(label_message);
@@ -258,6 +259,22 @@ function addRow(row, latest){
 	}
 }
 
+function imageZoom(e){
+    if(typeof e.source.image == "object"){
+        return;
+    }
+    var path = (typeof e.source.image == "object")?e.source.image.nativePath:e.source.image;
+    console.log("e.source.image"+typeof e.source.image);
+    var html = "<img width='100%' height='auto' src='"+path+"'/>";
+    if(OS_IOS){
+        nav.navigationWindow("webview","","", {url: path, title: ""});
+        //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
+    }else{
+        nav.navigationWindow("webview","","", {content: html, title: ""});
+        //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
+    }
+}
+
 function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
@@ -269,6 +286,10 @@ function updateRow(row, latest){
 			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
 			console.log(timeFormat(row.created)+" "+status_text[row.status]);
 			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+		    if(row.format == "photo"){
+                console.log(inner_area[i].children[0].children[1].children[0]);
+               inner_area[i].children[0].children[1].children[0].image = row.message;
+            }
 		}
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
