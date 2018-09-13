@@ -38,6 +38,7 @@ function sendMessage(){
 	var app_id = Math.random().toString(36).substr(2, 10);
 	var local_save = [{
 		"u_id": u_id,
+		"id": app_id,
 	    "sender_id": u_id,
 	    "message": gender_text+$.message.value,
 	    "created": common.now(),

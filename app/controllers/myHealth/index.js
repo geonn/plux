@@ -30,12 +30,40 @@ var menus = [
 		//{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
+	{title: "BMI", type:"9", icon: "/images/icons/weight.png", measurement: "BMI", color: "#933ec5", fields:[
+        {name: "BMI", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
+        //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
+        {name: "Remark", type: "string", tool: "remark", graph_display: false} 
+    ]},
+    {title: "BMR", type:"10", icon: "/images/icons/weight.png", measurement: "BMR", color: "#933ec5", fields:[
+        {name: "BMR", type: "number", tool: "textfield", graph_display: true},
+       // {name: "BMR", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
+        //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
+        {name: "Remark", type: "string", tool: "remark", graph_display: false} 
+    ]},
+    {title: "FAT %", type:"11", icon: "/images/icons/weight.png", measurement: "%", color: "#933ec5", fields:[
+        {name: "FAT %", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
+        //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
+        {name: "Remark", type: "string", tool: "remark", graph_display: false} 
+    ]},
+    {title: "VISCRERAL FAT", type:"12", icon: "/images/icons/weight.png", measurement: "VISCRERAL FAT", color: "#933ec5", fields:[
+        {name: "VISCRERAL FAT", type: "number", tool: "textfield", graph_display: true},
+        //{name: "FAT %", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
+        //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
+        {name: "Remark", type: "string", tool: "remark", graph_display: false} 
+    ]},
 ];
 init();
 
 function init(){
-	render_menu();
-	//refresh();
+	var health_data_firsttime = Ti.App.Properties.getString('health_data_firsttime') || false;
+	console.log(health_data_firsttime+" health_data_firsttime check");
+	if(health_data_firsttime){
+	    render_menu();
+	}else{
+	    refresh();
+	}
+	
 }
 
 function render_menu(){
@@ -94,13 +122,14 @@ function navToAdd(e){
 }
 
 function refresh(){
+    Ti.App.Properties.setString('health_data_firsttime', "1");
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var checker = Alloy.createCollection('updateChecker');
 	var isUpdate = checker.getCheckerById("14", u_id);
 	var last_updated ="";
 	
 	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
+		//last_updated = isUpdate.updated;
 	}
 
 	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText)	{
@@ -109,7 +138,7 @@ function refresh(){
 		var arr2 = res2.data || null;
 		model2.saveArray(arr2);
 		checker.updateModule(14,"getHealthDataByUser", res2.last_updated, u_id);
-		render_graph();
+		render_menu();
 	});
 }
   

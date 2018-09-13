@@ -23,7 +23,7 @@
     <script>
   	  Ti.App.addEventListener("web:setRoom", function(e){
   	  	 Ti.App.fireEvent("set room"+e.room_id+" room id");
-  	  	  var socket = io("http://103.3.173.207:3500", function(){
+  	  	  var socket = io("http://103.3.173.207:3501", function(){
   	  	  	socket.emit('set_room', e.room_id);
   	  	  });
 	      
