@@ -108,7 +108,10 @@ function addRow(row, latest){
 	var view_container = $.UI.create("View",{
 		classes: ['hsize','wfill'],
 		id: row.id,
-		status: row.status
+		message: row.message,
+		status: row.status,
+		is_endUser: row.is_endUser,
+        created: row.created
 	});
 	
 	if(row.sender_id){
@@ -139,11 +142,13 @@ function addRow(row, latest){
 			text: newText
 		});
 		var row_status = row.status;
-        if(row.is_endUser && user_read_status > row.created){
-            console.log("is user read"+user_read_status+" > "+ row.created);
+		console.log(row.is_endUser+" is user read"+doctor_read_status+" > "+ row.created+" "+newText);
+        if(row.is_endUser && doctor_read_status > row.created){
+            //console.log("is user read"+doctor_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
-        }else if(doctor_read_status > row.created ){
-            console.log("is user docor read"+doctor_read_status+" > "+ row.created);
+        }else if(!row.is_endUser && user_read_status > row.created ){
+            console.log();
+            console.log("is user docor read"+user_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
         }
 		var label_time = $.UI.create("Label", {
@@ -300,16 +305,23 @@ function updateRow(row, latest){
                 console.log(inner_area[i].children[0].children[1].children[0]);
                inner_area[i].children[0].children[1].children[0].image = row.message;
             }
-		}else if(row.is_endUser && user_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-		    console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
-		    console.log(inner_area[i].children[0].id);
-            console.log("is user read"+user_read_status+" > "+ row.created);
-            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
-        }else if(doctor_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-            console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
-            console.log(inner_area[i].children[0].id);
-            console.log("is user docor read"+doctor_read_status+" > "+ row.created);
-            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
+            /*if(row.is_endUser && doctor_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
+                console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
+                console.log(inner_area[i].children[0].id);
+                console.log("is user read"+doctor_read_status+" > "+ row.created+" "+row.message);
+                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
+            }else if(!row.is_endUser && user_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
+                console.log("is user docor read"+user_read_status+" > "+ row.created+" "+row.message);
+                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
+            }*/
+		}
+		
+		if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
+            console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
+            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+        }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
+            console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
+            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
@@ -406,6 +418,8 @@ function getConversationByRoomId(callback){
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
+		console.log("set doctor_read_status = "+res.doctor_read_status);
+		console.log("set user_read_status = "+res.user_read_status);
 		user_read_status = res.user_read_status;
         doctor_read_status = res.doctor_read_status;
 		callback && callback();

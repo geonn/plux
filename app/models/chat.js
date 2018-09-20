@@ -166,7 +166,7 @@ exports.definition = {
 	                		_.find(names, function(name){
 	                			if(name == k){
 	                				keys.push(k);
-	                				console.log(typeof entry[k]+" "+entry[k]);
+	                				//console.log(typeof entry[k]+" "+entry[k]);
 	                				
 	                				if(typeof entry[k] == "string"){
 	                					entry[k] = (entry[k] == null)?"":entry[k];
@@ -183,7 +183,7 @@ exports.definition = {
 	                	}
                 	}
 		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
-		            console.log(sql_query);
+		            //console.log(sql_query);
 		            db.execute(sql_query);
 				});
 				db.execute("COMMIT");

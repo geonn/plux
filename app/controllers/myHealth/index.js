@@ -30,12 +30,12 @@ var menus = [
 		//{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
 		{name: "Remark", type: "string", tool: "remark", graph_display: false} 
 	]},
-	{title: "BMI", type:"9", icon: "/images/icons/weight.png", measurement: "BMI", color: "#933ec5", fields:[
+	{title: "BMI", type:"9", icon: "/images/icons/weight.png", measurement: "kg/m2", color: "#933ec5", fields:[
         {name: "BMI", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
         //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},
         {name: "Remark", type: "string", tool: "remark", graph_display: false} 
     ]},
-    {title: "BMR", type:"10", icon: "/images/icons/weight.png", measurement: "BMR", color: "#933ec5", fields:[
+    {title: "BMR", type:"10", icon: "/images/icons/weight.png", measurement: "kcal", color: "#933ec5", fields:[
         {name: "BMR", type: "number", tool: "textfield", graph_display: true},
        // {name: "BMR", type: "number", tool: "picker", max_range: 50, min_range: 10, default_value: 23, graph_display: true},
         //{name: "Body Fat %", type: "number", tool: "picker", max_range: 100, min_range: 0, default_value: 15, graph_display: true},

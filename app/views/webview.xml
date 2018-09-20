@@ -1,6 +1,6 @@
 
 <Alloy>
-	<Window title="Notification Details" backButtonTitle="" class="container" navTintColor="#CE1D1C" id="win" >
+	<Window title="" backButtonTitle="" class="container" navTintColor="#CE1D1C" id="win" >
 		<RightNavButton platform="ios">
             <!--<Button title="List" onClick="listing" />-->
         </RightNavButton>

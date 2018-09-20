@@ -475,7 +475,7 @@ function requestLocationPermissions(authorizationType, callback) {
 	}
 
 	// Permissions already granted
-	if (Ti.Geolocation.hasLocationPermissions(authorizationType)) {
+	if (Ti.Geolocation.hasLocationPermissions(authorizationType) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
 		return callback({
 			success : true
 		});
