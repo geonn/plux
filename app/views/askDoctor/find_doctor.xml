@@ -9,15 +9,6 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Find Doctor</Label>
 		     	</View>
 		 	</View>
-		 	<!--
-		 	<View class="wfill hsize vert" backgroundColor="#f0f5f8">
-		 		<View class="gray-line" /> 
-		 		<View class="hsize wfill padding" >
-		 			<ImageView left='10' id="sub_back" width="25" height="25" image="/images/btn-back.png" />
-		 			<Label class="hsize wsize h5" id="sub_title" top="10" bottom="10" textAlign="center" color="#2a363a">DOCTOR LIST</Label>
-		 		</View>
-		 		<View class="gray-line" /> 
-		 	</View>-->
 		 	<ScrollableView id="inner_box" scrollingEnabled="false">
 		 		<!--<Require id="_specialty_list" src="askDoctor/_specialty_list"></Require>-->
 		 		<Require id="_doctor_list" src="askDoctor/_doctor_list"></Require>

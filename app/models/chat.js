@@ -5,6 +5,7 @@ exports.definition = {
 		    "u_id": "INTEGER",
 		    "sender_id": "INTEGER",
 		    "message": "TEXT",
+		    "room_id": "TEXT",
 		    "created": "DATE",
 		    "status":"INTEGER",		//1 - pending, 2 - sent, 3 - read
 		    "format":"TEXT",
@@ -48,6 +49,66 @@ exports.definition = {
             	}
             	return 0;
 			},
+			getDataByRoomId: function(latest, start, anchor, last_updated, room_id){
+                //var last_update = last_update || common.now();
+                
+                if(latest){
+                    var a = last_updated;
+                    last_updated = a.replace("  "," ");
+                    console.log(last_updated+" last_updated");
+                    var start_limit = "";
+                    //var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
+                    var sql_lastupdate = "";
+                    var sql_id = " AND created >= '"+last_updated+"'";
+                }else{
+                    var start_limit = " limit "+start+", 10";
+                    var sql_lastupdate = " AND created <= '"+anchor+"'";
+                    var sql_id = "";
+                }
+                
+                var collection = this;
+                var u_id = Ti.App.Properties.getString('u_id'); 
+                var sql = "SELECT * from chat where u_id = ? AND room_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
+                console.log(sql+" "+room_id+" "+u_id);
+                db = Ti.Database.open(collection.config.adapter.db_name);
+                if(Ti.Platform.osname != "android"){
+                    db.file.setRemoteBackup(false);
+                }
+                
+                var res = db.execute(sql, u_id, room_id);
+                var arr = [];
+                var count = 0;
+                 /**
+                 * debug use
+                 
+                var row_count = res.fieldCount;
+                for(var a = 0; a < row_count; a++){
+                     console.log(a+":"+res.fieldName(a)+":"+res.field(a));
+                 }
+                */
+                while (res.isValidRow()){
+                    arr[count] = {
+                        id: res.fieldByName('id'),
+                        u_id: res.fieldByName('u_id'),
+                        room_id: res.fieldByName('room_id'),
+                        sender_id: res.fieldByName('sender_id'),
+                        message: res.fieldByName('message'),
+                        status: res.fieldByName('status'),
+                        dr_id: res.fieldByName('dr_id'),
+                        created: res.fieldByName('created'),
+                        format: res.fieldByName("format"),
+                        is_endUser: res.fieldByName('is_endUser'),
+                        sender_name: res.fieldByName('sender_name')
+                    };
+                    res.next();
+                    count++;
+                } 
+             
+                res.close();
+                db.close();
+                collection.trigger('sync');
+                return arr;
+            },
 			getData: function(latest, start, anchor, last_updated, dr_id){
 				//var last_update = last_update || common.now();
 				
@@ -58,7 +119,7 @@ exports.definition = {
 					var start_limit = "";
 					//var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
 					var sql_lastupdate = "";
-					var sql_id = " AND created > '"+last_updated+"'";
+					var sql_id = " AND created >= '"+last_updated+"'";
 				}else{
 					var start_limit = " limit "+start+", 10";
 					var sql_lastupdate = " AND created <= '"+anchor+"'";

@@ -9,7 +9,7 @@ var new_menu = [
 	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record_square.jpg"},
 	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL_square.jpg"},
 	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list_square.jpg"},
-	{mod:"askDoctor/find_doctor", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
+	{mod:"askDoctor/conversation", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
 	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
 	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
@@ -328,39 +328,6 @@ function navWindow(e){
 				dialog.show();
 			}
 		});
-		/*if(hasLocationPermissions){
-			contacts({callback: function(){
-					console.log('why not calling');
-					if(memno == ""){
-						nav.navigationWindow("clinic/listing");
-					}else{
-						nav.navigationWindow("clinic/listing", 1);
-					}
-				}
-			});
-			//nav.navigationWindow("clinic/listing", 1);
-		}else{
-			console.log("permission request");
-			
-			Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
-				if (e.success) {
-					if(memno == ""){
-						nav.navigationWindow("clinic/listing");
-					}else{
-						nav.navigationWindow("clinic/listing", 1);
-					}
-				}else if (OS_ANDROID) {
-					alert('You denied permission for now, forever or the dialog did not show at all because it you denied forever before.');
-				}else{
-					Ti.UI.createAlertDialog({
-					title: 'You denied permission.',
-						// We also end up here if the NSLocationAlwaysUsageDescription is missing from tiapp.xml in which case e.error will say so
-						message: e.error
-					}).show();
-	
-				}
-			});
-		}*/
 		
 	}else if(source.mod == "conversation"){
 		 nav.navigationWindow(source.mod, 1);

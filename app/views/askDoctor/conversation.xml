@@ -1,0 +1,32 @@
+<Alloy>
+<Window title="Ask Doctor" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+	<ScrollView class="wfill hfill contwfill conthsize">
+    <View class="wfill hfill vert" top="0">
+		<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" > 
+			<View left="0" width="20%">
+	         	<ImageView left='10' id="btnBack" onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+	   		</View>
+	     	<View width="60%">
+	     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Ask Doctor</Label>
+	     	</View>
+	 	</View>
+	 	<View class="hfill wfill">
+	    	<ScrollView id="chatroom" onScroll="scrollChecker" backgroundColor="#f5f5f5" top='0' class="wfill hfill" bottom="90" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" transform="Ti.UI.create2DMatrix().rotate(180)">
+	    		<View id="inner_area" class="wfill hsize vert" bottom="20" >
+	    		    
+	    			<!--<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>-->
+	    		</View>
+			</ScrollView>
+        </View>
+    </View>
+    <Button  onClick="closeRoom" bottom="50" backgroundColor="#00c8a9">End Session</Button>
+    <View backgroundColor="white" class="wfill hsize" height="50" bottom="0" id='bottom_bar'>
+        <ImageView image="/images/icons/icon_photo_camera.png" bottom="10" zIndex="3" left="10" height="30" width="30" onClick="popCamera"></ImageView>
+        <TextField id="message" id="message_bar" onChange="switchIcon" font="fontSize: 40" hintText="Type a message..." class="small_padding wfill" left="50" right="50" height="40" ></TextField>
+        <View id="action_btn" right="0" class="wsize hsize">
+            <ImageView id="enter_icon" backgroundColor="#ffffff" image="/images/icons/icon_enter.png" top="10" bottom="10" zIndex="3" right="-50" height="30" width="30" onClick="SendMessage"></ImageView>
+        </View>
+    </View>
+    </ScrollView>
+</Window>
+</Alloy>

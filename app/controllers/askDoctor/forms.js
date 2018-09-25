@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var dr_id = args.dr_id || 0; 
+var dr_id = ""; 
 var u_id = parseInt(Ti.App.Properties.getString('u_id'));
 var gender = "";
 var loading = Alloy.createController("loading");
@@ -43,16 +43,16 @@ function sendMessage(){
 	    "message": gender_text+$.message.value,
 	    "created": common.now(),
 	    "is_endUser": 1,
-	    "dr_id": dr_id,
+	    "dr_id": "",
 	    "format": "text",
 	    "app_id": app_id,
-	    "status": 1,
+	    "status": 4,
 	    "sender_name": Ti.App.Properties.getString('fullname') || "",
 	}];
 	
 	var id = model.saveArray(local_save);
-	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: app_id });
-	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, app_id: app_id }}, function(responseText){
+	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id });
+	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
 		socket.fireEvent("doctor:refresh_patient_list");
 		var res = JSON.parse(responseText);
 		$.message.value = "";
@@ -61,7 +61,8 @@ function sendMessage(){
 		$.message.blur();
 		loading.finish();
 		closeWindow();
-		nav.navigateWithArgs("conversation", {dr_id : dr_id, record: args.record});
+		Ti.App.fireEvent("conversation:refresh", res.data);
+		//nav.navigateWithArgs("askDoctor/conversation", res.data);
 	});
 }
 
