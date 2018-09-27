@@ -8,6 +8,7 @@ var dr_id;
 var last_id = 0;
 var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
+var room_status;
 var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
 var panelListModel = Alloy.createCollection('doctors');  
@@ -80,20 +81,6 @@ function SendMessage(){
 	$.message_bar.editable = false;
 	//startTimer();
 	saveLocal({message: $.message_bar.value,format:"text"});
-}
-
-function startTimer(){
-    if(dr_id){
-        return;
-    }
-    interval = setTimeout(function(){
-        $.call.show();
-        if(OS_ANDROID){
-            $.call.top = 50;
-        }else{
-            $.call.top = 0;
-        }
-    }, 10000);
 }
 
 function navToWebview(e){
@@ -293,7 +280,7 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id && inner_area[i].status != row.status){
+		if(inner_area[i].id == row.id){
 			found = true;
 			//console.log(inner_area[i].children[0]);
 			//console.log(inner_area[i].children[0].children.length);
@@ -410,6 +397,7 @@ function getConversationByRoomId(callback){
 			var update_id = _.pluck(arr, "id");
 			//updateStatus(update_id);
 		}
+		room_status = res.room_status;
 		checker.updateModule(checker_id, url, res.last_updated, u_id, room_id);
 		console.log("check the room id here"+room_id);
 		console.log("set doctor_read_status = "+res.doctor_read_status);
@@ -458,9 +446,12 @@ var refreshing = false;
 var time_offset = common.now();
 function refresh_latest(param){
     if(room_id != param.room_id){
+        console.log("set room id "+param.room_id);
         Ti.App.fireEvent("web:setRoom", {room_id: param.room_id});
     }
+    console.log("old roomid"+room_id);
     room_id = param.room_id || room_id;
+    console.log("new roomid"+room_id);
 	var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
 	player.play();
 	
@@ -478,7 +469,6 @@ function getPreviousData(param){
 	start = (typeof start != "undefined")? start : 0;
 	var model = Alloy.createCollection("chat");
 	data = model.getDataByRoomId(false, start, anchor,"", room_id);
-	console.log(data);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	//last_update = (data.length > 0)?_.last(data)['created']:last_update;
 	console.log(last_update+" first time is use it own");
@@ -572,11 +562,12 @@ function second_init(){
     	console.log(res.data.room_id+" room id");
     	room_id = res.data.room_id;
     	
+    	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
+        socket.event_onoff("socket:message_alert", false);
+            
     	if(room_id != ""){
     	    Ti.App.fireEvent("web:setRoom", {room_id: room_id});
     	    refresh(getPreviousData, true);
-    		socket.addEventListener("socket:refresh_chatroom", refresh_latest);
-    		socket.event_onoff("socket:message_alert", false);
     	}else{
             nav.navigateWithArgs("askDoctor/forms", {});
     	}
@@ -586,7 +577,7 @@ function closeRoom(){
     var dr_id = Ti.App.Properties.getString('dr_id') || 0;
     console.log(dr_id+" dr and roomid"+room_id);
     API.callByPost({
-            url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {dr_id: dr_id, room_id: room_id}
+            url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}
         }, function(responseText){
             socket.fireEvent("socket:sendMessage", {room_id: room_id});
             closeWindow();
@@ -819,6 +810,10 @@ function popCamera(e){
     dialog.show();
 }
 
+function startTimer(){
+    console.log("timer start");
+}
+
 function photoSuccessCallback(event) {
     var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
     var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
@@ -832,6 +827,7 @@ function photoSuccessCallback(event) {
 init();
 
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
+Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
     
@@ -842,6 +838,7 @@ $.win.addEventListener("close", function(){
 	socket.removeEventListener("socket:refresh_chatroom");
 	socket.event_onoff("socket:message_alert", true);
 	Ti.App.fireEvent("render_menu");
+	Ti.App.removeEventListener('socket:startTimer', startTimer);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	$.destroy();
 	 

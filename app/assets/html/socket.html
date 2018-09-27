@@ -27,6 +27,13 @@
 		Ti.App.fireEvent("getUserInfo");
 	});
 	
+	socket.on("reconnect", function() {
+      // do not rejoin from here, since the socket.id token and/or rooms are still
+      // not available.
+      console.log("Reconnecting");
+      socket.emit('set_room', room_id);
+    });
+	
 	socket.on("socket:getDoctorList", function(param){
 		Ti.App.fireEvent("controller:getDoctorList", param);
 	});
@@ -34,6 +41,10 @@
 	socket.on('refresh_chatroom', function(param){
 		Ti.App.fireEvent("socket:refresh_chatroom", param);
 	});
+	socket.on('socket:startTimer', function(param){
+        Ti.App.fireEvent("socket:startTimer", param);
+    });
+	
 	
 	socket.on('message_alert', function(param){
 		Ti.App.fireEvent("socket:message_alert", param);
@@ -42,18 +53,12 @@
 	socket.on('socket:refresh_chatroom', function(param){
 		Ti.App.fireEvent("socket:refresh_chatroom", param);
 	});
-/*
-Ti.App.addEventListener("socket:add_event", function(ex) {
-	Ti.App.fireEvent(" name correct or not?");
-	Ti.App.fireEvent(ex.name+" name correct or not?");
-	socket.emit('addEventListener', ex);
-	socket.on(ex.name, function(param){
-		Ti.App.fireEvent("wow!"+ex.name+" called");
-		Ti.App.fireEvent(ex.name, param);
-	});
-});   */
+
     Ti.App.addEventListener("socket:updateUserInfo", function(e){
         socket.emit('socket:updateUserInfo', e);
+        if(room_id > 0){
+            socket.emit('set_room', room_id);
+        }
     });   
 	Ti.App.addEventListener("socket:getDoctorList", function(){
   	  	socket.emit('socket:getDoctorList', socket.id);
