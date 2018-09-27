@@ -302,7 +302,9 @@ function updateRow(row, latest){
             }*/
 		}
 		
-		if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
+		if(inner_area[i].children[0].children.length <= 1){
+            
+        }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
             console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
