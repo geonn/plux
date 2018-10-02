@@ -55,6 +55,7 @@ var getWorkingHoursByDoctorPanel = FREEJINI_DOMAIN+"/api/getWorkingHoursByDoctor
 var getHelplineMessage = FREEJINI_DOMAIN+"/api/getHelplineMessage?user="+USER+"&key="+KEY;
 var getHelplineMessageV2 = FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USER+"&key="+KEY;
 var getHelplineMessageV3 = FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
+var getHelplineMessageV4 = FREEJINI_DOMAIN+"/api/getHelplineMessageV4?user="+USER+"&key="+KEY;
 var sendHelplineMessage = FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
 var addFeedbackUrl = FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
 var getAppointmentByDoctorPanel = FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 

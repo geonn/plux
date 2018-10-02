@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var dr_id = args.dr_id || 0;
+var dr_id = args.dr_id || -1;
 var loading = Alloy.createController("loading");
 var anchor = common.now();
 var last_update = common.now();
@@ -294,7 +294,7 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id && inner_area[i].status != row.status){
+		if(inner_area[i].id == row.id){
 			found = true;
 			//console.log(inner_area[i].children[0]);
 			//console.log(inner_area[i].children[0].children.length);
@@ -392,8 +392,8 @@ function callHelpdesk(){
 
 function getConversationByRoomId(callback){
     console.log("getConversationByRoomId");
-	var url = (dr_id == 0)?"getHelplineMessageV3":"getMessage";
-	var checker_id = (dr_id == 0)?7:19;
+	var url = (dr_id == -1)?"getHelplineMessageV4":"getMessage";
+	var checker_id = (dr_id == -1)?7:19;
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, dr_id);
@@ -480,6 +480,8 @@ function getPreviousData(param){
 	start = (typeof start != "undefined")? start : 0;
 	var model = Alloy.createCollection("chat");
 	data = model.getData(false, start, anchor,"", dr_id);
+	console.log("check data here");
+	console.log(data);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	//last_update = (data.length > 0)?_.last(data)['created']:last_update;
 	console.log(last_update+" first time is use it own");
