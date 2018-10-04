@@ -229,6 +229,7 @@ function addRow(row, latest){
 			text: row.message
 		});
 		view_text_container.add(label_system_msg);
+		$.bottom_bar.hide();
 	}
 	view_container.add(view_text_container);
 	view_container.addEventListener("longpress", function(e){
@@ -303,7 +304,7 @@ function updateRow(row, latest){
 		}
 		
 		if(inner_area[i].children[0].children.length <= 1){
-            
+            $.bottom_bar.hide();
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
             console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
@@ -449,6 +450,7 @@ var time_offset = common.now();
 function refresh_latest(param){
     if(room_id != param.room_id){
         console.log("set room id "+param.room_id);
+        $.bottom_bar.show();
         Ti.App.fireEvent("web:setRoom", {room_id: param.room_id});
     }
     console.log("old roomid"+room_id);
@@ -571,6 +573,7 @@ function second_init(){
     	    Ti.App.fireEvent("web:setRoom", {room_id: room_id});
     	    refresh(getPreviousData, true);
     	}else{
+    	    $.bottom_bar.hide();
             nav.navigateWithArgs("askDoctor/forms", {});
     	}
 	});
