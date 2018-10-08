@@ -8,7 +8,7 @@ if(OS_ANDROID){
 }else{
 	console.log(Ti.Media.hasAudioPermissions()+" Ti.Media.hasAudioPermissions()");
 	Titanium.Media.setAudioSessionCategory(Ti.Media.AUDIO_SESSION_CATEGORY_PLAY_AND_RECORD);
-	audioRecorder = Titanium.Media.createAudioRecorder ({compression : Ti.Media.AUDIO_FORMAT_AAC, format: Titanium.Media.AUDIO_FILEFORMAT_MP4});
+	audioRecorder = Titanium.Media.createAudioRecorder ();
 }
 
 var recordChecking = true;

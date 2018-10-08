@@ -158,6 +158,7 @@ function addRow(row, latest){
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
 		    console.log(newText+" check local setURL");
+		    return;
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
 			
 			player.setUrl(newText);
