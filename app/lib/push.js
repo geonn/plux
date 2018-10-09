@@ -52,7 +52,7 @@ function receivePush(e){
 	if(target_page != target){
 		Ti.App.fireEvent("redirect", data);
 	}else{
-		//Ti.App.fireEvent("syncFromServer");
+		Ti.App.fireEvent("syncFromServer");
 		var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
 		player.play();
 	}

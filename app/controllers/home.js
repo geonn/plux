@@ -183,16 +183,6 @@ function syncFromServer(){
 		"last_updated" : last_updated
 	};
     
-    API.callByPost({url:"loginRewardSystem", domain: "FREEJINI_DOMAIN", new:true, params: {u_id: u_id}}, function(responseText){ 
-        var res = JSON.parse(responseText);  
-        if(res.status == "success"){
-            console.log(res.data);
-            Ti.App.Properties.setString('reward_token', res.data.token);
-            Ti.App.Properties.setString('reward_uid', res.data.reward_uid);
-            
-        }
-    });
-    
 	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){
