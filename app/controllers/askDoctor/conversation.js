@@ -832,7 +832,7 @@ function photoSuccessCallback(event) {
 
 init();
 
-Ti.App.addEventListener('conversation:refresh', refresh_latest);
+Ti.App.addEventListener('askDoctor/conversation:refresh', refresh_latest);
 Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
@@ -845,7 +845,7 @@ $.win.addEventListener("close", function(){
 	socket.event_onoff("socket:message_alert", true);
 	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener('socket:startTimer', startTimer);
-	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
+	Ti.App.removeEventListener('askDoctor/conversation:refresh', refresh_latest);
 	$.destroy();
 	 
 });

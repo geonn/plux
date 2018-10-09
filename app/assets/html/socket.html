@@ -49,10 +49,6 @@
 	socket.on('message_alert', function(param){
 		Ti.App.fireEvent("socket:message_alert", param);
 	});
-	
-	socket.on('socket:refresh_chatroom', function(param){
-		Ti.App.fireEvent("socket:refresh_chatroom", param);
-	});
 
     Ti.App.addEventListener("socket:updateUserInfo", function(e){
         socket.emit('socket:updateUserInfo', e);
