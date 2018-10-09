@@ -38,13 +38,12 @@
 		Ti.App.fireEvent("controller:getDoctorList", param);
 	});
 	
-	socket.on('refresh_chatroom', function(param){
+	socket.on('socket:refresh_chatroom', function(param){
 		Ti.App.fireEvent("socket:refresh_chatroom", param);
 	});
 	socket.on('socket:startTimer', function(param){
         Ti.App.fireEvent("socket:startTimer", param);
     });
-	
 	
 	socket.on('message_alert', function(param){
 		Ti.App.fireEvent("socket:message_alert", param);
@@ -71,7 +70,7 @@
 	});
 	
 	Ti.App.addEventListener("helpdesk:refresh_patient_list", function(ex) {
-        socket.emit('helpdesk:refresh_patient_list');
+        socket.emit('doctor:refresh_patient_list');
     });
 	
 	  
@@ -84,13 +83,6 @@
 		socket.emit('leave_room', ex.room_id);
 	});
 	
-	var socket2 = io("http://103.3.173.207:4000");
-	socket2.on("payment_done", function(param){
-	    Ti.App.fireEvent("payment_done_callback", param);
-    });
-    Ti.App.addEventListener("payment_done", function(e){
-        socket2.emit('payment_done', e);
-    });
 </script>
 </body>
 </html>
