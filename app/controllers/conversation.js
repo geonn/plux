@@ -61,9 +61,7 @@ function saveLocal(param){
 		console.log(room_id+" room_id check");
 		socket.fireEvent("socket:sendMessage", {room_id: room_id});
 		
-	    console.log(dr_id+" doctor:refresh_patient_list");
-		socket.fireEvent("doctor:refresh_patient_list");
-		
+		socket.fireEvent("helpdesk:refresh_patient_list");
 	});
 }
 

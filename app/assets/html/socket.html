@@ -69,6 +69,11 @@
 		Ti.App.fireEvent("doctor:refresh_patient_list wor");
 		socket.emit('doctor:refresh_patient_list');
 	});
+	
+	Ti.App.addEventListener("helpdesk:refresh_patient_list", function(ex) {
+        socket.emit('helpdesk:refresh_patient_list');
+    });
+	
 	  
 	Ti.App.addEventListener("socket:sendMessage", function(ex) {
 		socket.emit('socket:refresh_chatroom', ex.room_id, false);
