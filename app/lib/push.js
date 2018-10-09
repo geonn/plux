@@ -49,10 +49,10 @@ function receivePush(e){
 	}*/
 	eval("Ti.App.fireEvent('"+target+":refresh')");
 	console.log(redirect+" true or false"+target);
-	if(redirect){
+	if(target_page != target){
 		Ti.App.fireEvent("redirect", data);
 	}else{
-		Ti.App.fireEvent("syncFromServer");
+		//Ti.App.fireEvent("syncFromServer");
 		var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
 		player.play();
 	}

@@ -14,7 +14,7 @@ var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback:
 var panelListModel = Alloy.createCollection('doctors');  
 //var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
 var user_read_status, doctor_read_status;
-
+target_page = "askDoctor/conversation";
 console.log(args);
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");

@@ -17,7 +17,7 @@ var panelListModel = Alloy.createCollection('doctors');
 var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
 var user_read_status, doctor_read_status;
 $.call.hide();
-
+target_page = "conversation";
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");
 	var app_id = Math.random().toString(36).substr(2, 10);
