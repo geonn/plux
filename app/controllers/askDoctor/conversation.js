@@ -74,7 +74,7 @@ var interval;
 var sending = false;
 function SendMessage(){
     console.log("SendMessage");
-	if(sending)
+	if(sending || $.message_bar.value == "")
 		return;
 	loading.start();
 	sending = true;
@@ -115,7 +115,7 @@ function addRow(row, latest){
 			text: row.sender_name
 		});
 		
-		var ss = row.message;
+		var ss = row.message || "";
 		var newText = (row.format != "photo")?ss.replace("[br]", "\r\n"):row.message;
 		var text_color = (row.format == "link")?"blue":"#606060";
 		newText = (row.format == "link")?newText:newText;
