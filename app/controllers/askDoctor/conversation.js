@@ -74,8 +74,9 @@ var interval;
 var sending = false;
 function SendMessage(){
     console.log("SendMessage");
-	if(sending || $.message_bar.value == "")
+	if(sending || $.message_bar.value == ""){
 		return;
+	}
 	loading.start();
 	sending = true;
 	$.message_bar.editable = false;
@@ -109,8 +110,10 @@ function addRow(row, latest){
 			url: row.message
 		});
 		var label_name = $.UI.create("label",{
-			classes: ['h6','wfill', 'hsize', 'bold', 'small_padding'],
-			left:15,
+			classes: ['h6','wfill', 'hsize', 'bold'],
+			top: 5,
+			left: 60,
+			bottom: 15,
 			color: "#7F7F7F",
 			text: row.sender_name
 		});
@@ -121,9 +124,7 @@ function addRow(row, latest){
 		newText = (row.format == "link")?newText:newText;
 		
 		var label_message = $.UI.create("Label", {
-			classes:['h5', 'wfill', 'hsize','small_padding'],
-			top: 0,
-			left:15,
+			classes:['h5', 'wfill', 'hsize','padding'],
 			color: text_color,
 			text: newText
 		});
@@ -133,19 +134,27 @@ function addRow(row, latest){
             //console.log("is user read"+doctor_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
         }else if(!row.is_endUser && user_read_status > row.created ){
-            console.log();
             console.log("is user docor read"+user_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
         }
 		var label_time = $.UI.create("Label", {
-			classes:['h7', 'wfill', 'hsize','small_padding'],
-			top:0,
-			
-			right:15,
+			classes:['h7', 'wsize', 'hsize'],
+			bottom:0,
+			left: 60,
 			text: timeFormat(row.created)+" "+status_text[row_status],
 			textAlign: "right"
 		});
-		
+		var view_photo_name = $.UI.create("View", {classes:['wfill','hsize']});
+		if(row.dr_img_path != "" && row.dr_img_path != null){
+		    console.log(row.dr_img_path+" row.dr_img_path");
+		    var dr_img = $.UI.create("ImageView", {image: row.dr_img_path, width: 50, height: 50, left: 5, top: 5, params: {dr_specialty: row.dr_specialty, dr_qualification: row.dr_qualification, dr_introduction: row.dr_introduction, dr_img_path: row.dr_img_path}});
+		    view_photo_name.add(dr_img);
+		    view_photo_name.addEventListener("click", navToDoctorDetail);
+		}
+		var view_hr = $.UI.create("View", {classes: ['hr'], backgroundColor: "#ccc", top:10, left:15, right: 15});
+		view_photo_name.add(label_name);
+		view_text_container.add(view_photo_name);
+		view_text_container.add(view_hr);
 		if (row.format == "link"){
 			var label_message2 = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','small_padding'],
@@ -153,7 +162,7 @@ function addRow(row, latest){
 				left:15, 
 				text: "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:"
 			});
-			view_text_container.add(label_name);
+			
 			view_text_container.add(label_message2);
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
@@ -165,7 +174,7 @@ function addRow(row, latest){
 			//download_video(player, newText);
 			var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
 			view.add(player.getView());
-			view_text_container.add(label_name);
+			//view_text_container.add(label_name);
 			view_text_container.add(view);
 		}else if(row.format == "photo" ){
             console.log("photo here");
@@ -173,21 +182,23 @@ function addRow(row, latest){
             var view = $.UI.create("View", {classes:['wfill','hsize','padding'], backgroundColor:"black", height: 200});
             var image_photo = $.UI.create("ImageView", {image: newText, classes:['hsize','wfill']});
             view.add(image_photo);
-            view_text_container.add(label_name);
+           // view_text_container.add(label_name);
             view_text_container.add(view);
             image_photo.addEventListener("click", imageZoom);
         }else{
-			view_text_container.add(label_name);
+			//view_text_container.add(label_name);
 			view_text_container.add(label_message);
 		}
 		
-		view_text_container.add(label_time);
+		view_photo_name.add(label_time);
 		if(row.is_endUser){
 			view_text_container.setBackgroundColor("#22262f");
 			label_name.color = "#fff";
 			label_message.color = "#fff";
 			label_time.color = "#fff";
 			view_text_container.setLeft(10);
+			label_name.left = 10;
+			label_time.left = 10;
 			
 			//view_container.add(imageview_thumb_path);
 		}else{
@@ -262,6 +273,10 @@ function addRow(row, latest){
 	}
 }
 
+function navToDoctorDetail(e){
+    alert("Doctor Specialty: "+e.source.params.dr_specialty+"\nDoctor Qualification: "+e.source.params.dr_qualification+"\nIntroduction: "+e.source.params.dr_introduction);
+}
+
 function imageZoom(e){
     if(typeof e.source.image == "object"){
         return;
@@ -288,7 +303,7 @@ function updateRow(row, latest){
 			//console.log(inner_area[i].children[0].children.length);
 			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
 			console.log(timeFormat(row.created)+" "+status_text[row.status]);
-			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
 		    if(row.format == "photo"){
                 console.log(inner_area[i].children[0].children[1].children[0]);
                inner_area[i].children[0].children[1].children[0].image = row.message;
@@ -308,10 +323,10 @@ function updateRow(row, latest){
             $.bottom_bar.hide();
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
             console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
-            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
-            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
@@ -383,7 +398,7 @@ function callHelpdesk(){
 function getConversationByRoomId(callback){
     console.log("getConversationByRoomId");
 	var url = "getMessageListForPatient";
-	var checker_id = (dr_id == 0)?7:19;
+	var checker_id = 19;
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, room_id);

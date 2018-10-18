@@ -7,7 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || "3.0"; 
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || "3.1"; 
 	
 	if(dbVersion == "1.5"){
 		
@@ -119,6 +119,15 @@ exports.checkAndUpdate = function(e){
         var mrv2_model = Alloy.createCollection('chat');
         mrv2_model.addColumn("room_id", "TEXT");
         dbVersion = '3.0';
+    }
+    dbVersion = "3.0";
+    if(dbVersion == "3.0"){
+        var mrv2_model = Alloy.createCollection('chat');
+        mrv2_model.addColumn("dr_specialty", "TEXT");
+        mrv2_model.addColumn("dr_qualification", "TEXT");
+        mrv2_model.addColumn("dr_introduction", "TEXT");
+        mrv2_model.addColumn("dr_img_path", "TEXT");
+        dbVersion = '3.1';
     }
 	Ti.App.Properties.setString("dbVersion", dbVersion);
 };

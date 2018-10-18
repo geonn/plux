@@ -56,7 +56,7 @@ function render_balance_list(){
         if(args.data[i].vstidvbal < 99999){
             view_container.add(setup_row({limit: args.data[i].vstidv, balance: args.data[i].vstidvbal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | VISIT", subtitle: "LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
         }
-        if(args.data[i].vstidvbal < 99999){
+        if(args.data[i].vstsha < 99999){
             view_container.add(setup_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | VISIT | SHARED", subtitle: "SHARED LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
         }
         view_container.addEventListener("click", navToHistory);

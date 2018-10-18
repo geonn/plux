@@ -12,6 +12,12 @@ exports.definition = {
 		    "dr_id":"INTEGER",
 		    "is_endUser": "INTEGER",
 		    "sender_name": "TEXT",
+		    "dr_specialty": "TEXT",
+		    "dr_qualification": "TEXT",
+		    "dr_introduction": "TEXT",
+		    "dr_img_path": "TEXT",
+
+
 		},
 		adapter: {
 			type: "sql",
@@ -98,7 +104,11 @@ exports.definition = {
                         created: res.fieldByName('created'),
                         format: res.fieldByName("format"),
                         is_endUser: res.fieldByName('is_endUser'),
-                        sender_name: res.fieldByName('sender_name')
+                        sender_name: res.fieldByName('sender_name'),
+                        dr_specialty: res.fieldByName('dr_specialty'),
+                        dr_qualification: res.fieldByName('dr_qualification'),
+                        dr_introduction: res.fieldByName('dr_introduction'),
+                        dr_img_path: res.fieldByName('dr_img_path'),
                     };
                     res.next();
                     count++;
