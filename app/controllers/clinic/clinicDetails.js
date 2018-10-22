@@ -122,7 +122,7 @@ function populateMap(mapHeight){
 function clickToCall(){
 	var tel = details.tel;
 	tel = tel.replace(/[+]/g, "");
-	Ti.Platform.openURL('tel:+'+tel);
+	Ti.Platform.openURL('tel:'+tel);
 }
 
 var performAddressBookFunction = function(){

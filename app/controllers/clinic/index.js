@@ -212,7 +212,7 @@ function getDirection(){
 function call(e){
     var tel = marker.tel;
     tel = tel.replace(/[+]/g, "");
-    Ti.Platform.openURL('tel:+'+tel);
+    Ti.Platform.openURL('tel:'+tel);
 }
 
 function navTo(e){

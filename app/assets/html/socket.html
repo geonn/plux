@@ -25,11 +25,12 @@
 	var room_id = 0;
 	socket.on('socket:connect', function () {
 		Ti.App.fireEvent("getUserInfo");
+		if(room_id > 0){
+		  socket.emit('set_room', room_id);
+		}
 	});
 	
 	socket.on("reconnect", function() {
-      // do not rejoin from here, since the socket.id token and/or rooms are still
-      // not available.
       console.log("Reconnecting");
       socket.emit('set_room', room_id);
     });

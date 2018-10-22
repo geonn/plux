@@ -245,8 +245,8 @@ function addRow(row, latest){
 	}
 	view_container.add(view_text_container);
 	view_container.addEventListener("longpress", function(e){
-		var m_id = parent({name: "m_id"}, e.source);
-		var message_box = parent({name: "m_id", value: m_id}, e.source);
+		/*var id = this.id;
+		//var message_box = parent({name: "m_id", value: m_id}, e.source);
 		var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
 		    buttonNames: ['Confirm', 'Cancel'],
@@ -260,11 +260,12 @@ function addRow(row, latest){
 		 }else if(ex.index == 0){
 		 	
 		 	var model = Alloy.createCollection("chat");
-			model.removeById(m_id);
-		 	$.inner_area.remove(message_box);
+		 	console.log(id+" what m_id is");
+			//model.removeById(m_id);
+		 	//$.inner_area.remove(message_box);
 		 }
 		});
-		dialog.show();
+		dialog.show();*/
 	});
 	if(latest){
 		$.inner_area.insertAt({view: view_container, position: 0});
@@ -304,10 +305,6 @@ function updateRow(row, latest){
 			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
 			console.log(timeFormat(row.created)+" "+status_text[row.status]);
 			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
-		    if(row.format == "photo"){
-                console.log(inner_area[i].children[0].children[1].children[0]);
-               inner_area[i].children[0].children[1].children[0].image = row.message;
-            }
             /*if(row.is_endUser && doctor_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
                 console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
                 console.log(inner_area[i].children[0].id);
