@@ -195,6 +195,8 @@ function syncFromServer(){
 		 	loading.finish();
 		}
 	});
+	Ti.App.fireEvent("askDoctor/conversation:refresh");
+	Ti.App.fireEvent("conversation:refresh");
 }
 
 function updateNotification(e){
@@ -497,9 +499,8 @@ $.scrollview.addEventListener("scroll", function(e){
 });
 
 function getUserInfo(){
-    console.log("socket:updateUserInfo");
     var fullname = Ti.App.Properties.getString('fullname') || ""; 
-    Ti.App.fireEvent("socket:updateUserInfo", {fullname: fullname});
+    socket.updateUserInfo({fullname: fullname});
 }
 
 init();

@@ -53,7 +53,7 @@ function sendMessage(){
 	var id = model.saveArray(local_save);
 	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id });
 	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
-		socket.fireEvent("doctor:refresh_patient_list");
+		socket.refresh_patient_list();
 		var res = JSON.parse(responseText);
 		$.message.value = "";
 		$.message.editable = true;

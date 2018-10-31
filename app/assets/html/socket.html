@@ -30,6 +30,13 @@
 		}
 	});
 	
+	socket.on('disconnect', function () {
+	    console.log("disconnect");
+	    Ti.App.fireEvent("disconnect from socket and reconnect");
+        socket.open();
+    });
+
+	
 	socket.on("reconnect", function() {
       console.log("Reconnecting");
       socket.emit('set_room', room_id);
@@ -71,9 +78,13 @@
 	});
 	
 	Ti.App.addEventListener("helpdesk:refresh_patient_list", function(ex) {
-        socket.emit('doctor:refresh_patient_list');
+        socket.emit('helpdesk:refresh_patient_list');
     });
 	
+	Ti.App.addEventListener("socket:open", function(ex) {
+        console.log("socket:open");
+        socket.open();
+    });
 	  
 	Ti.App.addEventListener("socket:sendMessage", function(ex) {
 		socket.emit('socket:refresh_chatroom', ex.room_id, false);

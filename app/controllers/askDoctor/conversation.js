@@ -59,10 +59,8 @@ function saveLocal(param){
 		$.message_bar.blur();
 		loading.finish();
 		console.log(room_id+" room_id check");
-		socket.fireEvent("socket:sendMessage", {room_id: room_id});
-		
-	    console.log(dr_id+" doctor:refresh_patient_list");
-		socket.fireEvent("doctor:refresh_patient_list");
+		socket.sendMessage({room_id: room_id});
+		socket.refresh_patient_list();
 		
 	});
 }
@@ -300,20 +298,8 @@ function updateRow(row, latest){
 	for (var i=0; i < inner_area.length; i++) {
 		if(inner_area[i].id == row.id){
 			found = true;
-			//console.log(inner_area[i].children[0]);
-			//console.log(inner_area[i].children[0].children.length);
-			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
 			console.log(timeFormat(row.created)+" "+status_text[row.status]);
 			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
-            /*if(row.is_endUser && doctor_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-                console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
-                console.log(inner_area[i].children[0].id);
-                console.log("is user read"+doctor_read_status+" > "+ row.created+" "+row.message);
-                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
-            }else if(!row.is_endUser && user_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-                console.log("is user docor read"+user_read_status+" > "+ row.created+" "+row.message);
-                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
-            }*/
 		}
 		
 		if(inner_area[i].children[0].children.length <= 1){
@@ -325,7 +311,6 @@ function updateRow(row, latest){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }
-		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
 	if(!found){
 		addRow(row, latest);
@@ -357,7 +342,7 @@ function render_conversation(latest, local){
             API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
                 console.log(res);
-                socket.fireEvent("socket:sendMessage", {room_id: room_id});
+                socket.sendMessage({room_id: room_id});
             });
         }
 	    updateRow(data[i], latest);
@@ -464,7 +449,7 @@ function refresh_latest(param){
     if(room_id != param.room_id){
         console.log("set room id "+param.room_id);
         $.bottom_bar.show();
-        Ti.App.fireEvent("web:setRoom", {room_id: param.room_id});
+        socket.setRoom({room_id: param.room_id});
     }
     console.log("old roomid"+room_id);
     room_id = param.room_id || room_id;
@@ -578,13 +563,13 @@ function second_init(){
         var res = JSON.parse(responseText);
     	console.log(res.data.room_id+" room id");
     	room_id = res.data.room_id;
-    	
-    	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
-        socket.event_onoff("socket:message_alert", false);
             
     	if(room_id != ""){
-    	    Ti.App.fireEvent("web:setRoom", {room_id: room_id});
+    	    console.log('a');
+    	    socket.setRoom({room_id: room_id});
+    	    console.log('a');
     	    refresh(getPreviousData, true);
+    	    console.log('a');
     	}else{
     	    $.bottom_bar.hide();
             nav.navigateWithArgs("askDoctor/forms", {});
@@ -597,7 +582,7 @@ function closeRoom(){
     API.callByPost({
             url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}
         }, function(responseText){
-            socket.fireEvent("socket:sendMessage", {room_id: room_id});
+            socket.sendMessage({room_id: room_id});
             closeWindow();
         });
 }
@@ -843,20 +828,19 @@ function photoSuccessCallback(event) {
 }
 
 init();
-
+Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('askDoctor/conversation:refresh', refresh_latest);
-Ti.App.addEventListener('socket:startTimer', startTimer);
+//Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
     
 });
 $.win.addEventListener("close", function(){
 	
-	Ti.App.fireEvent("socket:leave_room", {room_id: room_id});
-	socket.removeEventListener("socket:refresh_chatroom");
-	socket.event_onoff("socket:message_alert", true);
+	socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
-	Ti.App.removeEventListener('socket:startTimer', startTimer);
+	//Ti.App.removeEventListener('socket:startTimer', startTimer);
+	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	Ti.App.removeEventListener('askDoctor/conversation:refresh', refresh_latest);
 	$.destroy();
 	 

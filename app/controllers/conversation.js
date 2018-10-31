@@ -59,9 +59,8 @@ function saveLocal(param){
 		$.message_bar.blur();
 		loading.finish();
 		console.log(room_id+" room_id check");
-		socket.fireEvent("socket:sendMessage", {room_id: room_id});
-		
-		socket.fireEvent("helpdesk:refresh_patient_list");
+		socket.sendMessage({room_id: room_id});
+		socket.helpdesk_refresh_patient_list();
 	});
 }
 
@@ -356,7 +355,7 @@ function render_conversation(latest, local){
             API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
                 console.log(res);
-                socket.fireEvent("socket:sendMessage", {room_id: room_id});
+                socket.sendMessage({room_id: room_id});
             });
         }
 	    updateRow(data[i], latest);
@@ -398,7 +397,7 @@ function getConversationByRoomId(callback){
 	var checker = Alloy.createCollection('updateChecker'); 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, dr_id);
-	var last_updated = isUpdate.updated || "";
+	var last_updated = isUpdate.updated || common.now();
 	last_update = last_updated || last_update;
 	console.log(last_update+" last update updated from checker");
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
@@ -414,8 +413,7 @@ function getConversationByRoomId(callback){
 		}
 		checker.updateModule(checker_id, url, res.last_updated, u_id, dr_id);
 		if(!room_id){	//if room_id = 0 
-			Ti.App.fireEvent("web:setRoom", {room_id: res.room_id});
-			setup_socket();
+			socket.setRoom({room_id: res.room_id});
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
@@ -579,16 +577,6 @@ function second_init(){
 	}
 	console.log(room_id+" room id");
 	refresh(getPreviousData, true);
-	if(room_id){
-		socket.addEventListener("socket:refresh_chatroom", refresh_latest);
-		socket.event_onoff("socket:message_alert", false);
-	}	
-}
-
-function setup_socket(){
-	console.log("setup_socket");
-	socket.addEventListener("socket:refresh_chatroom", refresh_latest);
-	socket.event_onoff("socket:message_alert", false);
 }
 
 function filepermittion()
@@ -828,14 +816,13 @@ function photoSuccessCallback(event) {
 }
 
 init();
-
+Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
+
 $.win.addEventListener("close", function(){
-	
-	Ti.App.fireEvent("socket:leave_room", {room_id: room_id});
-	socket.removeEventListener("socket:refresh_chatroom");
-	socket.event_onoff("socket:message_alert", true);
+	socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
+	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	$.destroy();
 	 
