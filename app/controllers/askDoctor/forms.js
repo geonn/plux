@@ -61,8 +61,8 @@ function sendMessage(){
 		$.message.blur();
 		loading.finish();
 		closeWindow();
-		Ti.App.fireEvent("askDoctor/conversation:refresh", res.data);
-		//nav.navigateWithArgs("askDoctor/conversation", res.data);
+		nav.navigateWithArgs("askDoctor/conversation", res.data);
+		
 	});
 }
 

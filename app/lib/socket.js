@@ -103,8 +103,6 @@ function helpdesk_refresh_patient_list(ex){
     }
 }
 
-exports.sendMessage = sendMessage;    
-
 exports.refresh_patient_list = refresh_patient_list;
 
 function refresh_patient_list(ex){

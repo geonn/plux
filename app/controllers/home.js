@@ -323,6 +323,8 @@ function navWindow(e){
 		
 	}else if(source.mod == "conversation"){
 		 nav.navigationWindow(source.mod, 1);
+	}else if(source.mod == "askDoctor/conversation"){
+	    checkNewRoom();
 	}else if(source.mod == "profile"){
 		var empno = Ti.App.Properties.getString('empno');
 		if(typeof empno != "undefined" && empno != ""){
@@ -336,6 +338,22 @@ function navWindow(e){
 		console.log(source.target+" target");
 		nav.navigationWindow(source.mod);
 	}	
+}
+
+function checkNewRoom(){
+    var u_id = Ti.App.Properties.getString('u_id') || "";
+    API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
+        var res = JSON.parse(responseText);
+        console.log(res.data.room_id+" room id");
+        var room_id = res.data.room_id || "";
+            
+        if(room_id != ""){
+            socket.setRoom({room_id: room_id});
+            nav.navigateWithArgs("askDoctor/conversation", {room_id:room_id});
+        }else{
+            nav.navigateWithArgs("askDoctor/forms", {});
+        }
+    });
 }
 
 function logoutUser(){

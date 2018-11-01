@@ -9,7 +9,7 @@ var last_id = 0;
 var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
 var room_status;
-var room_id = 0;
+var room_id = args.room_id || 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
 var panelListModel = Alloy.createCollection('doctors');  
 //var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
@@ -296,11 +296,6 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id){
-			found = true;
-			console.log(timeFormat(row.created)+" "+status_text[row.status]);
-			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
-		}
 		
 		if(inner_area[i].children[0].children.length <= 1){
             $.bottom_bar.hide();
@@ -310,6 +305,10 @@ function updateRow(row, latest){
         }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+        }else if(inner_area[i].id == row.id){
+            found = true;
+            console.log(timeFormat(row.created)+" "+status_text[row.status]);
+            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
         }
 	};
 	if(!found){
@@ -559,22 +558,22 @@ function second_init(){
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
+	socket.setRoom({room_id: room_id});
+	refresh(getPreviousData, true);
+	/*
 	API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
         var res = JSON.parse(responseText);
     	console.log(res.data.room_id+" room id");
     	room_id = res.data.room_id;
             
     	if(room_id != ""){
-    	    console.log('a');
     	    socket.setRoom({room_id: room_id});
-    	    console.log('a');
     	    refresh(getPreviousData, true);
-    	    console.log('a');
     	}else{
     	    $.bottom_bar.hide();
             nav.navigateWithArgs("askDoctor/forms", {});
     	}
-	});
+	});*/
 }
 function closeRoom(){
     var dr_id = Ti.App.Properties.getString('dr_id') || 0;
@@ -829,7 +828,6 @@ function photoSuccessCallback(event) {
 
 init();
 Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
-Ti.App.addEventListener('askDoctor/conversation:refresh', refresh_latest);
 //Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
@@ -841,7 +839,6 @@ $.win.addEventListener("close", function(){
 	Ti.App.fireEvent("render_menu");
 	//Ti.App.removeEventListener('socket:startTimer', startTimer);
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
-	Ti.App.removeEventListener('askDoctor/conversation:refresh', refresh_latest);
 	$.destroy();
 	 
 });
