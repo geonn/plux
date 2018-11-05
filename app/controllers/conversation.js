@@ -398,7 +398,7 @@ function getConversationByRoomId(callback){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, dr_id);
 	var last_updated = isUpdate.updated || common.now();
-	last_update = last_updated || last_update;
+	//last_update = last_updated || last_update;
 	console.log(last_update+" last update updated from checker");
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("chat");
@@ -482,7 +482,7 @@ function getPreviousData(param){
 	console.log("check data here");
 	console.log(data);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
-	//last_update = (data.length > 0)?_.last(data)['created']:last_update;
+	last_update = (data.length > 0)?_.last(data)['created']:last_update;
 	console.log(last_update+" first time is use it own");
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
 	render_conversation(false, false);

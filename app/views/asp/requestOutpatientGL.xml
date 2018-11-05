@@ -34,11 +34,16 @@
                 <View backgroundColor="#fba81c" id="hospital_name" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="50" hintText="Name of Hospital *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
-                
                 <View class="combo_box rounded" id="visit_date" backgroundColor="#fba81c" onClick="datePicker">
                     <View class="field" required="1" hintText="Date Visit" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
                         <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Date of Visit *</Label>
                     </View>
+                </View>
+                <View backgroundColor="#fba81c" id="diagnosis" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="50" hintText="Diagnosis" onChange="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="dr_name" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="50" hintText="Dr Name" onChange="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
                 <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
                 
