@@ -18,6 +18,7 @@ var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
 var user_read_status, doctor_read_status;
 $.call.hide();
 target_page = "conversation";
+Ti.App.Properties.setString('room_id', room_id);
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");
 	var app_id = Math.random().toString(36).substr(2, 10);
@@ -414,6 +415,7 @@ function getConversationByRoomId(callback){
 		checker.updateModule(checker_id, url, res.last_updated, u_id, dr_id);
 		if(!room_id){	//if room_id = 0 
 			socket.setRoom({room_id: res.room_id});
+			Ti.App.Properties.setString('room_id', res.room_id);
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
@@ -821,6 +823,8 @@ Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
 $.win.addEventListener("close", function(){
 	socket.leave_room({room_id: room_id});
+	Ti.App.Properties.setString('room_id', "");
+	target_page = "";
 	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);

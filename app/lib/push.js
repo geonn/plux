@@ -49,8 +49,11 @@ function receivePush(e){
 	}*/
 	eval("Ti.App.fireEvent('"+target+":refresh')");
 	console.log(redirect+" true or false"+target);
+	var room_id = Ti.App.Properties.getString('room_id');
 	if(target_page != target){
 		Ti.App.fireEvent("redirect", data);
+	}else if((target == "conversation" || target == "askDoctor/conversation") && data.room_id != room_id){
+	    Ti.App.fireEvent("redirect", data);
 	}else{
 		Ti.App.fireEvent("syncFromServer");
 		var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});

@@ -15,6 +15,7 @@ var panelListModel = Alloy.createCollection('doctors');
 //var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
 var user_read_status, doctor_read_status;
 target_page = "askDoctor/conversation";
+Ti.App.Properties.setString('room_id', room_id);
 console.log(args);
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");
@@ -127,7 +128,7 @@ function addRow(row, latest){
 			text: newText
 		});
 		var row_status = row.status;
-		console.log(row.is_endUser+" is user read"+doctor_read_status+" > "+ row.created+" "+newText);
+		console.log(row.is_endUser+" is user read"+doctor_read_status+" > "+ row.created+" "+row.dr_img_path);
         if(row.is_endUser && doctor_read_status > row.created){
             //console.log("is user read"+doctor_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
@@ -206,16 +207,7 @@ function addRow(row, latest){
 			view_text_container.setBackgroundColor("#ffffff");
 			//
 			if(typeof args.dr_id != "undefined"){
-				var imageview_thumb_path = $.UI.create("ImageView", {
-				    transform: Ti.UI.create2DMatrix().rotate(180),
-					top: 10,
-					width: 50,
-					height: "auto",
-					defaultImage: "/images/default/small_item.png",
-					right: 10,
-					image: doctor.img_path || "/images/default/small_item.png"
-				});
-				view_container.add(imageview_thumb_path);
+				
 				view_text_container.width = "60%";
 				view_text_container.setRight(60);
 			}else{
@@ -449,6 +441,7 @@ function refresh_latest(param){
         console.log("set room id "+param.room_id);
         $.bottom_bar.show();
         socket.setRoom({room_id: param.room_id});
+        Ti.App.Properties.setString('room_id', param.room_id);
     }
     console.log("old roomid"+room_id);
     room_id = param.room_id || room_id;
@@ -559,6 +552,7 @@ function second_init(){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
 	socket.setRoom({room_id: room_id});
+	Ti.App.Properties.setString('room_id', room_id);
 	refresh(getPreviousData, true);
 	/*
 	API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
@@ -834,7 +828,8 @@ $.win.addEventListener("postlayout", function(){
     
 });
 $.win.addEventListener("close", function(){
-	
+	Ti.App.Properties.setString('room_id', "");
+	target_page = "";
 	socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
 	//Ti.App.removeEventListener('socket:startTimer', startTimer);
