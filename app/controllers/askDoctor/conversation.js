@@ -569,6 +569,26 @@ function second_init(){
     	}
 	});*/
 }
+
+function endSession(){
+    var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: ['Confirm', 'Cancel'],
+            message: 'Would you like to end the conversation?',
+            title: 'Delete'
+          });
+          
+      dialog.addEventListener('click', function(ex){
+         if (ex.index === ex.source.cancel){
+
+         }else{
+             closeRoom();
+         }
+      });
+      
+      dialog.show();
+}
+
 function closeRoom(){
     var dr_id = Ti.App.Properties.getString('dr_id') || 0;
     console.log(dr_id+" dr and roomid"+room_id);
@@ -822,6 +842,7 @@ function photoSuccessCallback(event) {
 
 init();
 Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
+Ti.App.addEventListener("askDoctor/conversation:refresh", refresh_latest);
 //Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
@@ -832,6 +853,7 @@ $.win.addEventListener("close", function(){
 	target_page = "";
 	socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
+	Ti.App.removeEventListener("askDoctor/conversation:refresh", refresh_latest);
 	//Ti.App.removeEventListener('socket:startTimer', startTimer);
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	$.destroy();
