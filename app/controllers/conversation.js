@@ -821,6 +821,17 @@ init();
 Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
+$.win.addEventListener("postlayout", function(){
+    if (this.activity) {
+        this.activity.onResume = function() {
+          socket.connect();
+        };  
+        this.activity.onPause = function() {
+          socket.disconnect();
+        }; 
+    }
+});
+
 $.win.addEventListener("close", function(){
 	socket.leave_room({room_id: room_id});
 	Ti.App.Properties.setString('room_id', "");

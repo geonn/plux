@@ -577,11 +577,13 @@ $.win.addEventListener("open", function(){
      if(OS_ANDROID){
         Ti.Android.currentActivity.onResume = function(){
             redirect = false;
+            socket.connect();
             console.log("redirect true");
             syncFromServer();
         };
         Ti.Android.currentActivity.onPause = function(){
             redirect = true;
+            socket.disconnect();
             console.log("redirect true");
         };
          if (permissionsToRequest.length > 0) {
@@ -606,8 +608,19 @@ $.win.addEventListener("open", function(){
     }
  });
 
+function onResumed() {
+    syncFromServer();
+    socket.connect();
+}
+
+function onPause(){
+    console.log("onPause?");
+    socket.disconnect();
+}
+
 $.win.addEventListener("close", function(){
-	Ti.App.removeEventListener('resumed', syncFromServer);
+	Ti.App.removeEventListener('resumed', onResumed);
+	Ti.App.removeEventListener('pause', onPause);
 	Ti.App.removeEventListener("getUserInfo", getUserInfo);
 	Ti.App.removeEventListener('syncFromServer', syncFromServer);
 	Ti.App.removeEventListener('logout', logoutUser); 
@@ -624,7 +637,8 @@ $.win.addEventListener("close", function(){
 Ti.App.addEventListener("getUserInfo", getUserInfo);
 Ti.App.addEventListener('logout', logoutUser); 
 Ti.App.addEventListener("redirect", redirect);
-Ti.App.addEventListener('resumed', syncFromServer);
+Ti.App.addEventListener('resumed', onResumed);
+Ti.App.addEventListener('pause', onPause);
 Ti.App.addEventListener('syncFromServer', syncFromServer);
 Ti.App.addEventListener('updateNotification', updateNotification); 
 Ti.App.addEventListener('updateMenu', checkserviceByCorpcode); 

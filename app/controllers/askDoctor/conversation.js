@@ -846,7 +846,14 @@ Ti.App.addEventListener("askDoctor/conversation:refresh", refresh_latest);
 //Ti.App.addEventListener('socket:startTimer', startTimer);
 
 $.win.addEventListener("postlayout", function(){
-    
+    if (this.activity) {
+        this.activity.onResume = function() {
+          socket.connect();
+        };  
+        this.activity.onPause = function() {
+          socket.disconnect();
+        }; 
+    }
 });
 $.win.addEventListener("close", function(){
 	Ti.App.Properties.setString('room_id', "");
