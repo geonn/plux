@@ -27,7 +27,7 @@ function init_dropbox(){
 }
 
 function refresh(){
-	console.log(clinicType+" "+str+" "+corp);
+	//console.log(clinicType+" "+str+" "+corp);
 	data = library.getData(clinicType, str, corp, counter);
 	counter = counter + 20;
 	listing({clear:false});
@@ -162,7 +162,7 @@ function searchResult(){
 	str = $.searchItem.getValue(); 
 	counter = 0;
 	data = library.getData(clinicType, str, corp, counter);
-	console.log(data);
+	//console.log(data);
 	listing({clear: true});
 }
  

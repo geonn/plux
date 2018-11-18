@@ -308,11 +308,16 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id){
-			found = true;
-			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+		if(inner_area[i].children[0].children.length <= 1){
+            console.log("not possible here");
+            //$.bottom_bar.hide();
+        }else {
+			if(inner_area[i].id == row.id){
+				found = true;
+				inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+			}
+			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 		}
-		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
 	if(!found){
 		addRow(row, latest);

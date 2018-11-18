@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 var expandmode = false;
-var SCANNER = require("scanner"); 
+//var SCANNER = require("scanner"); 
 var loading = Alloy.createController('loading');
 var new_menu = [
 	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.png"},
@@ -111,7 +111,7 @@ if(OS_ANDROID){
      
     }
 }
-
+/**
 function scanQR(){
     if (Ti.Media.hasCameraPermissions()) {          
         SCANNER.openScanner("1");
@@ -124,8 +124,8 @@ function scanQR(){
             }   
         });             
     }
-}
-
+} 
+**/
 function changeBackground(){
     var pwidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10));
     var initBackground = [
@@ -137,12 +137,13 @@ function changeBackground(){
     var hours = today.getHours();
     var background_img = (hours > 9)?((hours > 17)?"/images/background3.jpg":"/images/background2.jpg"):"/images/background1.jpg";
     console.log(background_img+" "+hours);
+ 
     $.daily_background.setImage(background_img);
     if(OS_IOS){
         $.daily_background.width = pwidth+100;
         $.daily_background.verticalMotionEffect = {min: -50, max: 50};
         $.daily_background.horizontalMotionEffect = {min: -50, max: 50};
-    }
+    } 
 }
 
 /**********				init				*************/ 
@@ -265,7 +266,7 @@ function refreshHeaderInfo(){
 }	 
 
 function redirect(e){
-	console.log(e.target);
+	console.log("redirect to "+e.target);
 	   nav.navigationWindow(e.target,"","", e);
 } 
  
@@ -630,7 +631,7 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
 	$.destroy();
-	 
+	 console.log("all event closed");
 });
 
 //Ti.App.addEventListener('render_menu', render_menu);
