@@ -284,12 +284,12 @@ function imageZoom(e){
     }
 }
 
-function updateRow(row, latest){
-	var found = false;
-	var inner_area = $.inner_area.getChildren();
-	for (var i=0; i < inner_area.length; i++) {
-		
-		if(inner_area[i].children[0].children.length <= 1){
+function updateReadStatus(){
+    var inner_area = $.inner_area.getChildren();
+    for (var i=0; i < inner_area.length; i++) {
+        console.log(inner_area[i].children[0].children.length+" inner_area[i].children[0].children.length");
+        console.log(inner_area[i].children[0]);
+        if(inner_area[i].children[0].children.length <= 1){
             $.bottom_bar.hide();
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
             console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
@@ -297,6 +297,18 @@ function updateRow(row, latest){
         }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+        }
+   }
+}
+
+function updateRow(row, latest){
+	var found = false;
+	var inner_area = $.inner_area.getChildren();
+	for (var i=0; i < inner_area.length; i++) {
+		
+		if(inner_area[i].children[0].children.length <= 1){
+            console.log("not possible here");
+            //$.bottom_bar.hide();
         }else if(inner_area[i].id == row.id){
             found = true;
             console.log(timeFormat(row.created)+" "+status_text[row.status]);
@@ -343,6 +355,7 @@ function render_conversation(latest, local){
 			addRow(data[i], latest);
 		}*/
 	}
+	updateReadStatus();
 }
 
 
@@ -575,7 +588,7 @@ function endSession(){
             cancel: 1,
             buttonNames: ['Confirm', 'Cancel'],
             message: 'Would you like to end the conversation?',
-            title: 'Delete'
+            title: 'End Session'
           });
           
       dialog.addEventListener('click', function(ex){

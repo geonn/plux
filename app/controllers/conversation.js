@@ -289,34 +289,11 @@ function imageZoom(e){
     }
 }
 
-function updateRow(row, latest){
-	var found = false;
-	var inner_area = $.inner_area.getChildren();
-	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id){
-			found = true;
-			//console.log(inner_area[i].children[0]);
-			//console.log(inner_area[i].children[0].children.length);
-			//console.log(inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text);
-			console.log(timeFormat(row.created)+" "+status_text[row.status]);
-			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
-		    if(row.format == "photo"){
-                console.log(inner_area[i].children[0].children[1].children[0]);
-               inner_area[i].children[0].children[1].children[0].image = row.message;
-            }
-            /*if(row.is_endUser && doctor_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-                console.log(typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1]);
-                console.log(inner_area[i].children[0].id);
-                console.log("is user read"+doctor_read_status+" > "+ row.created+" "+row.message);
-                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
-            }else if(!row.is_endUser && user_read_status > row.created && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined"){
-                console.log("is user docor read"+user_read_status+" > "+ row.created+" "+row.message);
-                inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[3];
-            }*/
-		}
-		
-		if(inner_area[i].children[0].children.length <= 1){
-            
+function updateReadStatus(){
+    var inner_area = $.inner_area.getChildren();
+    for (var i=0; i < inner_area.length; i++) {
+        if(inner_area[i].children[0].children.length <= 1){
+                
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
             console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
@@ -324,6 +301,17 @@ function updateRow(row, latest){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }
+    }
+}
+
+function updateRow(row, latest){
+	var found = false;
+	var inner_area = $.inner_area.getChildren();
+	for (var i=0; i < inner_area.length; i++) {
+		if(inner_area[i].id == row.id){
+			found = true;
+			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+		}
 		//console.log(inner_area[i].children[0].children[inner_area[i].children[0].length - 1].text);
 	};
 	if(!found){
@@ -366,6 +354,7 @@ function render_conversation(latest, local){
 			addRow(data[i], latest);
 		}*/
 	}
+	updateReadStatus();
 }
 
 
