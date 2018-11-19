@@ -16,7 +16,7 @@
 Ti.App.Properties.removeProperty('asp_password');
 Ti.App.Properties.removeProperty('is_ver');
 var _ = require('underscore')._;
-
+var redirect = true;
 var common = require('common');
 var API = require('api');
 var nav = require('navigation');

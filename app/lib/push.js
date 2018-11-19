@@ -1,8 +1,8 @@
 var Cloud = require('ti.cloud'); 
 var app_status;
-
+var CloudPush;
 if(OS_ANDROID){ 
-	var CloudPush = require('ti.cloudpush');
+	CloudPush = require('ti.cloudpush');
 	// notification callback function (important)
 	CloudPush.addEventListener('callback', function (evt) { 
 		var payload = JSON.parse(evt.payload);  
