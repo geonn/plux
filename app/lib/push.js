@@ -51,6 +51,7 @@ function receivePush(e){
 	console.log(redirect+" true or false"+target);
 	var room_id = Ti.App.Properties.getString('room_id');
 	if(target_page != target){
+		console.log( data.room_id+" notification room_id and local room_id "+room_id);
 		Ti.App.fireEvent("redirect", data);
 	}else if((target == "conversation" || target == "askDoctor/conversation") && data.room_id != room_id){
 	    Ti.App.fireEvent("redirect", data);

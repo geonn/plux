@@ -92,20 +92,20 @@ function centerMap(e){
 		console.log(dist+" zoom dist");
 		annotations = [];
 	}
-	console.log(dist+" dist to refresh");
-	console.log(e.filter);
+	//console.log(dist+" dist to refresh");
+	///console.log(e.filter);
 	if(dist > 0.3 || e.filter){
 		API.callByPost({url: "getClinicLocator3", params: {nw_latitude: bounds.northWest.lat, nw_longitude: bounds.northWest.lng, se_latitude: bounds.southEast.lat, se_longitude: bounds.southEast.lng, u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
 			if(compare_zoom_distance > 0.1){
 				$.mapview.removeAllAnnotations();
 			}
 		
-			console.log(responseText);
+			//console.log(responseText);
 			var result = JSON.parse(responseText);
 			var data = result.data;
 			console.log(typeof data+" typeof data");
-			for (var i=0; i < data.length; i++) {
-				addMarketToArray(data[i]);
+			for (var i=0; i < data.length; i++) { 
+				addMarketToArray(data[i]); 
 			};
 			isRefresh = 0;
 		});

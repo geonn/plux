@@ -7,7 +7,7 @@ var details;
 common.construct($);
 
 function initialized(){ 
-	console.log("initialized");
+	//console.log("initialized");
 	$.mapview.removeEventListener("complete", initialized);
 	common.showLoading();
 	if(clinicType == "24 Hours"){  	
@@ -51,7 +51,7 @@ function init(e){
     var count = 0; 
     
     if(details != ""){ 
-    	console.log(details.length+" how many marker");
+    	//console.log(details.length+" how many marker");
     	
 		details.forEach(function(entry) {
 			$.number_clinic.text = count+" of "+details.length;
@@ -72,8 +72,8 @@ function init(e){
 				nav.navigateWithArgs("clinic/clinicDetails", {panel_id:ex.source.panel_id});
 			});      
 			viewRight.add(detBtn);
-			console.log('Ti.Platform.displayCaps.density: ' + Ti.Platform.displayCaps.density);
-			console.log('Ti.Platform.displayCaps.dpi: ' + Ti.Platform.displayCaps.dpi);
+			//console.log('Ti.Platform.displayCaps.density: ' + Ti.Platform.displayCaps.density);
+			//console.log('Ti.Platform.displayCaps.dpi: ' + Ti.Platform.displayCaps.dpi);
 			if(entry.latitude != "" && entry.longitude != ""){
 				var merchantLoc = Alloy.Globals.Map.createAnnotation({
 				    latitude: entry.latitude,
