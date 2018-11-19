@@ -1,6 +1,7 @@
 var Cloud = require('ti.cloud'); 
 var app_status;
 var CloudPush;
+Ti.App.Properties.setString('room_id', "");
 if(OS_ANDROID){ 
 	CloudPush = require('ti.cloudpush');
 	// notification callback function (important)
