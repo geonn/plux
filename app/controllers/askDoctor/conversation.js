@@ -103,7 +103,7 @@ function addRow(row, latest){
 	if(row.sender_id){
 		var view_text_container = $.UI.create("View", {
 			classes:  ['hsize', 'vert', 'rounded'],
-			top: 5,
+			top: 10,
 			width: "75%",
 			transform: Ti.UI.create2DMatrix().rotate(180),
 			url: row.message
@@ -205,14 +205,15 @@ function addRow(row, latest){
 		    view_text_container.borderWidth = 1;
 		    view_text_container.borderColor = "#e9e9e9";
 			view_text_container.setBackgroundColor("#ffffff");
-			//
+			view_text_container.right = 10;
+			/*
 			if(typeof args.dr_id != "undefined"){
 				
-				view_text_container.width = "60%";
+				
 				view_text_container.setRight(60);
 			}else{
 				view_text_container.setRight(10);
-			}
+			}*/
 		}
 		if(row.format == "link"){
 			label_message.addEventListener("click", navToWebview);
@@ -222,7 +223,7 @@ function addRow(row, latest){
 		var view_text_container = $.UI.create("View", {
 			transform: Ti.UI.create2DMatrix().rotate(180),
 			classes: ['wsize','hsize','box','rounded'],
-			top: 5,
+			top: 10,
 			backgroundColor: "#3ddaf6"
 		});
 		

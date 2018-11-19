@@ -3,7 +3,7 @@ var expandmode = false;
 var SCANNER = require("scanner"); 
 var loading = Alloy.createController('loading');
 var new_menu = [
-	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.png"},
+	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.jpg"},
 	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/myClaim_square.jpg"},
 	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/claimSubmission_square.jpg"},
 	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record_square.jpg"},
@@ -158,7 +158,6 @@ function init(){
 	refreshHeaderInfo(); 
 	
 	syncFromServer();
-	var PUSH = require('push');
 	PUSH.registerPush();
 }
 

@@ -13,8 +13,7 @@ var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
 var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
-var panelListModel = Alloy.createCollection('doctors');  
-var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
+var panelListModel = Alloy.createCollection('doctors');
 var user_read_status, doctor_read_status;
 $.call.hide();
 target_page = "conversation";
@@ -207,23 +206,8 @@ function addRow(row, latest){
 		    view_text_container.borderWidth = 1;
 		    view_text_container.borderColor = "#e9e9e9";
 			view_text_container.setBackgroundColor("#ffffff");
+			view_text_container.right = 10;
 			//
-			if(typeof args.dr_id != "undefined"){
-				var imageview_thumb_path = $.UI.create("ImageView", {
-				    transform: Ti.UI.create2DMatrix().rotate(180),
-					top: 10,
-					width: 50,
-					height: "auto",
-					defaultImage: "/images/default/small_item.png",
-					right: 10,
-					image: doctor.img_path || "/images/default/small_item.png"
-				});
-				view_container.add(imageview_thumb_path);
-				view_text_container.width = "60%";
-				view_text_container.setRight(60);
-			}else{
-				view_text_container.setRight(10);
-			}
 		}
 		if(row.format == "link"){
 			label_message.addEventListener("click", navToWebview);
@@ -308,7 +292,10 @@ function updateRow(row, latest){
 	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
-		if(inner_area[i].id == row.id){
+		if(inner_area[i].children[0].children.length <= 1){
+            console.log("not possible here");
+            //$.bottom_bar.hide();
+        }else if(inner_area[i].id == row.id){
 			found = true;
 			inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
 		}
