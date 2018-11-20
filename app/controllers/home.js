@@ -576,10 +576,14 @@ function checkReminderToRate() {
 $.win.addEventListener("open", function(){
      if(OS_ANDROID){
         Ti.Android.currentActivity.onResume = function(){
-            redirect = false;
+            setTimeout(function(){
+                  redirect = false;
+                  console.log("redirect as false");
+            }, 1000);
             socket.connect();
             console.log("redirect true");
             syncFromServer();
+            
         };
         Ti.Android.currentActivity.onPause = function(){
             redirect = true;

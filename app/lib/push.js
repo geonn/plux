@@ -14,20 +14,10 @@ if(OS_ANDROID){
  
 	});
 	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
-        redirect = true;
-        app_status = "not_running";
-        var payload = JSON.parse(evt.payload);   
-        Ti.App.Payload = payload;
-        console.log('Tray Click Launched App (app was not running)');  
-        receivePush(payload);
-        //getNotificationNumber(Ti.App.Payload);
+        console.log('Tray Click Launched App (app was not running)'); 
     });
     CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
-        redirect = false;
-        app_status = "running";
-        var payload = JSON.parse(evt.payload);   
         console.log('Tray Click Focused App (app was already running)'); 
-        //receivePush(payload);
     });
 } 
 
@@ -51,15 +41,15 @@ function receivePush(e){
 	eval("Ti.App.fireEvent('"+target+":refresh')");
 	console.log(redirect+" true or false"+target);
 	var room_id = Ti.App.Properties.getString('room_id');
-	if(target_page != target){
+	if(target_page != target && redirect){
 		console.log( data.room_id+" notification room_id and local room_id "+room_id);
 		Ti.App.fireEvent("redirect", data);
-	}else if((target == "conversation" || target == "askDoctor/conversation") && data.room_id != room_id){
+	}else if((target == "conversation" || target == "askDoctor/conversation") && data.room_id != room_id && redirect){
 	    Ti.App.fireEvent("redirect", data);
 	}else{
 		Ti.App.fireEvent("syncFromServer");
-		var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
-		player.play();
+		//var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
+		//player.play();
 	}
 }
 
@@ -252,14 +242,12 @@ function deviceTokenSuccess(ev) {
 	    }
 	});
 	console.log("redirect false token signup");
-	redirect = false;
     
 }
 
 
 function deviceTokenError(e) {
-    alert('Failed to register for push notifications! ' + e.error);
-    redirect = false;
+    console.log('Failed to register for push notifications! ' + e.error);
 }
 
 function registerPush(){
@@ -312,7 +300,10 @@ function getNotificationNumber(payload){
 
 exports.setInApp = function(){
 	console.log('In App redirect false');
-	redirect = false;
+	setTimeout(function(){
+          redirect = false;
+          console.log("redirect as false");
+    }, 1000);
 };
 
 exports.registerPush = function(){

@@ -796,12 +796,17 @@ init();
 Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
-$.win.addEventListener("postlayout", function(){
+$.win.addEventListener("open", function(){
     if (this.activity) {
         this.activity.onResume = function() {
+            setTimeout(function(){
+                  redirect = false;
+                  console.log("redirect as false");
+            }, 1000);
           socket.connect();
         };  
         this.activity.onPause = function() {
+            redirect = true;
           socket.disconnect();
         }; 
     }

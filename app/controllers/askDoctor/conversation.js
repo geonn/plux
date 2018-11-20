@@ -863,8 +863,13 @@ $.win.addEventListener("postlayout", function(){
     if (this.activity) {
         this.activity.onResume = function() {
           socket.connect();
+          setTimeout(function(){
+              redirect = false;
+              console.log("redirect as false");
+        }, 1000);
         };  
         this.activity.onPause = function() {
+            redirect = true;
           socket.disconnect();
         }; 
     }

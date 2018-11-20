@@ -358,7 +358,10 @@ Ti.App.addEventListener("resumed", function(e){
 	if(typeof win != null && win != null){
 		win.close();
 	}
-	redirect = false;
+	setTimeout(function(){
+          redirect = false;
+          console.log("redirect as false");
+    }, 1000);
 	console.log("redirect false");
 });
 
