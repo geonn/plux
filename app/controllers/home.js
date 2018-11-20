@@ -575,21 +575,22 @@ function checkReminderToRate() {
 
 $.win.addEventListener("open", function(){
      if(OS_ANDROID){
-        Ti.Android.currentActivity.onResume = function(){
-            setTimeout(function(){
-                  redirect = false;
-                  console.log("redirect as false");
-            }, 1000);
-            socket.connect();
-            console.log("redirect true");
-            syncFromServer();
-            
-        };
-        Ti.Android.currentActivity.onPause = function(){
-            redirect = true;
-            socket.disconnect();
-            console.log("redirect true");
-        };
+         if (this.activity) {
+            this.activity.onResume = function() {
+                setTimeout(function(){
+                      redirect = false;
+                      console.log("redirect as false");
+                }, 2000);
+              socket.connect();
+              syncFromServer();
+            };  
+            this.activity.onPause = function() {
+                redirect = true;
+                socket.disconnect();
+                console.log("redirect true");
+            }; 
+        }
+        
          if (permissionsToRequest.length > 0) {
          
             Ti.Android.requestPermissions(permissionsToRequest, function(e) {
