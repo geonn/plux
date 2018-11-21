@@ -17,6 +17,7 @@ Ti.App.Properties.removeProperty('asp_password');
 Ti.App.Properties.removeProperty('is_ver');
 var _ = require('underscore')._;
 var redirect = true;
+var push_redirect = true;
 var common = require('common');
 var API = require('api');
 var nav = require('navigation');
@@ -359,7 +360,7 @@ Ti.App.addEventListener("resumed", function(e){
 		win.close();
 	}
 	setTimeout(function(){
-          redirect = false;
+          push_redirect = false;
           console.log("redirect as false");
     }, 1000);
 	console.log("redirect false");

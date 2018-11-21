@@ -862,7 +862,7 @@ $.win.addEventListener("postlayout", function(){
         this.activity.onResume = function() {
           socket.connect();
           setTimeout(function(){
-              redirect = false;
+              push_redirect = false;
               console.log("redirect as false");
         }, 1000);
         };  

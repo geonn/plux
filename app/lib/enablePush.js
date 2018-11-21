@@ -13,25 +13,11 @@ exports.pushNotification = function(callback) {
         });
 
         // Process incoming push notifications
-        /*CloudPush.addEventListener('callback', function(e) {
-            
-            var payload = JSON.parse(e.payload);    
-            if (payload) {
-                
-                callback({
-                    error : false,
-                    data : payload
-                });
+        CloudPush.addEventListener('callback', function(e) {
 
-            }
-
-        });*/
-        
-        CloudPush.addEventListener('trayClickLaunchedApp', function(e) {
-            
-            var payload = JSON.parse(e.payload);    
+            var payload = JSON.parse(e.payload);
             if (payload) {
-                
+
                 callback({
                     error : false,
                     data : payload
@@ -40,12 +26,12 @@ exports.pushNotification = function(callback) {
             }
 
         });
-        
-        /*CloudPush.addEventListener('trayClickFocusedApp', function(e) {
-            
-            var payload = JSON.parse(e.payload);    
+
+        CloudPush.addEventListener('trayClickLaunchedApp', function(e) {
+
+            var payload = JSON.parse(e.payload);
             if (payload) {
-                
+
                 callback({
                     error : false,
                     data : payload
@@ -53,9 +39,23 @@ exports.pushNotification = function(callback) {
 
             }
 
-        });*/
-        
-        
+        });
+
+        CloudPush.addEventListener('trayClickFocusedApp', function(e) {
+
+            var payload = JSON.parse(e.payload);
+            if (payload) {
+
+                callback({
+                    error : false,
+                    data : payload
+                });
+
+            }
+
+        });
+
+
 
     }
 

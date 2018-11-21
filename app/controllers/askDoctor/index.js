@@ -1,15 +1,11 @@
 var args = arguments[0] || {};
 
-function navToSignup(){
-    var win = Alloy.createController("asp/signup").getView();
-    win.open(); 
-    $.win.close(); 
+function init(){
+	
 }
 
-$.btnBack.addEventListener('click', function(){ 
-	$.win.close(); 
-});  
- 
+init();
+
 if(Ti.Platform.osname == "android"){
     $.win.addEventListener("open", function(){
         if (this.activity) {

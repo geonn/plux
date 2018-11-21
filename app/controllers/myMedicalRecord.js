@@ -224,13 +224,13 @@ if(OS_ANDROID){
         if (this.activity) {
             this.activity.onResume = function() {
                 setTimeout(function(){
-                      redirect = false;
+                      push_redirect = false;
                       console.log("redirect as false");
                 }, 1000);
               socket.connect();
             };  
             this.activity.onPause = function() {
-                redirect = true;
+                push_redirect = true;
                 socket.disconnect();
             }; 
         }
