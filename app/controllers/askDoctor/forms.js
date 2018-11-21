@@ -75,7 +75,7 @@ if(Ti.Platform.osname == "android"){
         if (this.activity) {
             this.activity.onResume = function() {
                 setTimeout(function(){
-                      redirect = false;
+                      push_redirect = false;
                       console.log("redirect as false");
                 }, 1000);
               socket.connect();
