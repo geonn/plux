@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 var expandmode = false;
-//var SCANNER = require("scanner"); 
+//var SCANNER = require("scanner");
 var loading = Alloy.createController('loading');
 var new_menu = [
 	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.jpg"},
@@ -14,10 +14,9 @@ var new_menu = [
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
 	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
-	//{mod: "aspPay", is_asp:0, title: "ASP PAY", onClick: scanQR, target:"aspPay/index", subtitle: "Use your reward point to pay for the bill", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
-$.shadow_header.hide(); 
+$.shadow_header.hide();
 
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
@@ -25,21 +24,21 @@ function checkserviceByCorpcode(){
 	console.log(new_menu.length+" new_menu checkserviceByCorpcode");
 	if(corpcode != "null"){
 		console.log(corpcode+" corpcode");
-		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){ 
-			var res = JSON.parse(responseText); 
+		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){
+			var res = JSON.parse(responseText);
 			console.log('why no response?');
-			console.log(res); 
-			if(res.status == "success"){  
+			console.log(res);
+			if(res.status == "success"){
 				var takeout = res.data;
-				for (var i=0; i < takeout.length; i++) { 
+				for (var i=0; i < takeout.length; i++) {
 				  var index = findIndexInData(new_menu, "mod", takeout[i]);
-				  
+
 				  if(index >= 0){
 				  	new_menu.splice(index, 1);
 				  }
-				  
+
 				};
-				
+
 			}
 			console.log(new_menu.length+" new_menu after checkserviceByCorpcode");
 			render_menu();
@@ -91,29 +90,29 @@ function render_menu(){
 		$.menu.add(view);
 	};
 	loading.finish();
-} 
+}
 var permissionsToRequest = [];
 if(OS_ANDROID){
-    var storePermission = "android.permission.WRITE_EXTERNAL_STORAGE"; 
+    var storePermission = "android.permission.WRITE_EXTERNAL_STORAGE";
     var storagePermission = "android.permission.READ_EXTERNAL_STORAGE";
     var hasStorePermission = Ti.Android.hasPermission(storePermission);
     var hasStoragePermission = Ti.Android.hasPermission(storagePermission);
-    
+
     if (!hasStorePermission) {
         permissionsToRequest.push(storePermission);
         Ti.API.info("PUSHED  1.WRITE_EXTERNAL_STORAGE");
     }
-     
+
     if (!hasStoragePermission) {
-     
+
         permissionsToRequest.push(storagePermission);
         Ti.API.info("PUSHED... 2.READ_EXTERNAL_STORAGE");
-     
+
     }
 }
 /**
 function scanQR(){
-    if (Ti.Media.hasCameraPermissions()) {          
+    if (Ti.Media.hasCameraPermissions()) {
         SCANNER.openScanner("1");
     }else{
         Ti.Media.requestCameraPermissions(function(e) {
@@ -121,10 +120,10 @@ function scanQR(){
                 SCANNER.openScanner("1");
             }else{
                 alert('You denied permission');
-            }   
-        });             
+            }
+        });
     }
-} 
+}
 **/
 function changeBackground(){
     var pwidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10));
@@ -132,21 +131,21 @@ function changeBackground(){
         {img_path: "/images/background1.jpg", time: 0},
         {img_path: "/images/background2.jpg", time: 10},
         {img_path: "/images/background3.jpg", time: 18},
-    ]; 
+    ];
     var today = new Date();
     var hours = today.getHours();
     var background_img = (hours > 9)?((hours > 17)?"/images/background3.jpg":"/images/background2.jpg"):"/images/background1.jpg";
     console.log(background_img+" "+hours);
- 
+
     $.daily_background.setImage(background_img);
     if(OS_IOS){
         $.daily_background.width = pwidth+100;
         $.daily_background.verticalMotionEffect = {min: -50, max: 50};
         $.daily_background.horizontalMotionEffect = {min: -50, max: 50};
-    } 
+    }
 }
 
-/**********				init				*************/ 
+/**********				init				*************/
 function init(){
     changeBackground();
 	console.log("init start");
@@ -155,11 +154,11 @@ function init(){
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
 	AppVersionControl.checkAndUpdate();
-	
-	refreshHeaderInfo(); 
-	
+
+	refreshHeaderInfo();
+
 	syncFromServer();
-	PUSH.registerPush();
+	//PUSH.registerPush();
 }
 
 function syncFromServer(){
@@ -171,27 +170,27 @@ function syncFromServer(){
 	    loading.finish();
 		return;
 	}
-	var checker = Alloy.createCollection('updateChecker'); 
+	var checker = Alloy.createCollection('updateChecker');
 	var isUpdate = checker.getCheckerById(2, u_id);
 	var last_updated ="";
-	
+
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
-	}  
-	var param = { 
+	}
+	var param = {
 		"u_id"	  : u_id,
 		"last_updated" : last_updated
 	};
-    
-	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){ 
-		var res = JSON.parse(responseText);  
+
+	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){
+		var res = JSON.parse(responseText);
 		if(res.status == "success"){
 			var arr = res.data;
-			
-			var notificationModel = Alloy.createCollection('notificationV2'); 
+
+			var notificationModel = Alloy.createCollection('notificationV2');
 			notificationModel.saveArray(arr);
-		 	checker.updateModule(2, "notificationList",res.last_updated, u_id); 
-		 	updateNotification({target: "notification", model: "notificationV2"}); 
+		 	checker.updateModule(2, "notificationList",res.last_updated, u_id);
+		 	updateNotification({target: "notification", model: "notificationV2"});
 		 	loading.finish();
 		}
 	});
@@ -202,24 +201,24 @@ function syncFromServer(){
 function updateNotification(e){
 	console.log("updateNotification");
 	console.log(e);
-	var model = Alloy.createCollection(e.model); 
-	var unread_no = model.getCountUnread(); 
+	var model = Alloy.createCollection(e.model);
+	var unread_no = model.getCountUnread();
 	if(e.target == "helpline"){
 		label_helpline.text = unread_no;
 	}else{
 		$.label_notification.text = unread_no;
-		if(OS_IOS){ 
-			Ti.UI.setAppBadge(unread_no); 
+		if(OS_IOS){
+			Ti.UI.setAppBadge(unread_no);
 		}
 	}
 }
 
 function refreshHeaderInfo(){
-	var memno = Ti.App.Properties.getString('memno') || ""; 
+	var memno = Ti.App.Properties.getString('memno') || "";
 	$.shadow_myInfo.removeAllChildren();
 	$.myInfo.removeAllChildren();
 	var u_id = Ti.App.Properties.getString('u_id');
-	
+
 	$.logo.image = (memno == "")?"/images/logo_plux.png":"/images/asp_logo.png";
 	$.shadow_logo.image = (memno == "")?"/images/logo_plux.png":"/images/asp_logo.png";
 	var logoutBtn = Ti.UI.createButton({
@@ -242,9 +241,9 @@ function refreshHeaderInfo(){
 				logoutUser();
 			}
 		});
-		dialog.show(); 
+		dialog.show();
 	});
-	
+
 	var moment = require('alloy/moment');
     $.day.text = moment(new Date()).format("DD");
     $.days.text = moment(new Date()).format("dddd");
@@ -255,32 +254,32 @@ function refreshHeaderInfo(){
     if(hour_left > 6){
         $.win.backgroundColor = "#ffffff";
     }
-    
-	var fullname = Ti.App.Properties.getString('fullname') || Ti.App.Properties.getString('name'); 
+
+	var fullname = Ti.App.Properties.getString('fullname') || Ti.App.Properties.getString('name');
 	var welcomeText = "Welcome "+fullname || "";
-	
+
 	//$.shadow_myInfo.add(logoutBtn);
 	$.shadow_myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
 	$.myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
-}	 
+}
 
 function redirect(e){
 	console.log("redirect to "+e.target);
 	   nav.navigationWindow(e.target,"","", e);
-} 
- 
+}
+
 function navWindow(e){
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
-	if(source.mod == "eCard" || source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
+	if(source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
-			nav.navigationWindow("asp/"+source.mod);  
+			nav.navigationWindow("asp/"+source.mod);
 		}else{
-			nav.navigationWindow("asp/"+source.mod, 1);  
+			nav.navigationWindow("asp/"+source.mod, 1);
 		}
 	}else if(source.mod == "myHealth"){
-		nav.navigationWindow(source.mod+"/index"); 
+		nav.navigationWindow(source.mod+"/index");
 	}else if(source.mod == "clinicLocator"){
-		var memno = Ti.App.Properties.getString('memno') || ""; 
+		var memno = Ti.App.Properties.getString('memno') || "";
 		//var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
 		//console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
 		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
@@ -296,31 +295,31 @@ function navWindow(e){
 					ok : 'Got it',
 					title : 'Important'
 				});
-	
+
 				dialog.addEventListener('click', function(e) {
-	
+
 					if (OS_IOS) {
-	
+
 						Ti.Platform.openURL('app-settings:');
-	
+
 					}
-	
+
 					if (OS_ANDROID) {
-	
+
 						var intent = Ti.Android.createIntent({
 							action : 'android.settings.APPLICATION_SETTINGS',
 						});
 						intent.addFlags(Ti.Android.FLAG_ACTIVITY_NEW_TASK);
 						Ti.Android.currentActivity.startActivity(intent);
-	
+
 					}
-	
+
 				});
-	
+
 				dialog.show();
 			}
 		});
-		
+
 	}else if(source.mod == "conversation"){
 		 nav.navigationWindow(source.mod, 1);
 	}else if(source.mod == "askDoctor/conversation"){
@@ -328,16 +327,14 @@ function navWindow(e){
 	}else if(source.mod == "profile"){
 		var empno = Ti.App.Properties.getString('empno');
 		if(typeof empno != "undefined" && empno != ""){
-			nav.navigationWindow("asp/profile", 1);  
+			nav.navigationWindow("asp/profile", 1);
 		}else{
-			nav.navigationWindow("plux_profile"); 
+			nav.navigationWindow("plux_profile");
 		}
-	}else if(source.mod == "aspPay"){
-	   nav.navigationWindow(source.target); 
 	}else{
 		console.log(source.target+" target");
 		nav.navigationWindow(source.mod);
-	}	
+	}
 }
 
 function checkNewRoom(){
@@ -346,7 +343,7 @@ function checkNewRoom(){
         var res = JSON.parse(responseText);
         console.log(res.data.room_id+" room id");
         var room_id = res.data.room_id || "";
-            
+
         if(room_id != ""){
             socket.setRoom({room_id: room_id});
             nav.navigateWithArgs("askDoctor/conversation", {room_id:room_id});
@@ -360,7 +357,7 @@ function logoutUser(){
     Ti.App.Properties.removeProperty('reward_token');
 	Ti.App.Properties.removeProperty('fullname');
 	Ti.App.Properties.removeProperty('plux_user_status');
-	Ti.App.Properties.removeProperty('last_login'); 
+	Ti.App.Properties.removeProperty('last_login');
 	Ti.App.Properties.removeProperty('u_id');
 	Ti.App.Properties.removeProperty('ic_no');
 	Ti.App.Properties.removeProperty('plux_email');
@@ -373,8 +370,8 @@ function logoutUser(){
 	Ti.App.Properties.removeProperty("dependent");
 	Ti.App.Properties.removeAllProperties();
 	var win = Alloy.createController("login").getView();
-	win.open(); 
-	
+	win.open();
+
 	if(OS_IOS){
 		Alloy.Globals.navMenu.close();
 		Alloy.Globals.navMenu = null;
@@ -393,12 +390,12 @@ if(Ti.Platform.osname == "android"){
 			message: 'Would you like to logout?',
 			title: 'Logout ASP'
 		});
-		dialog.addEventListener('click', function(e){ 
-			if (e.index == 1){ 
+		dialog.addEventListener('click', function(e){
+			if (e.index == 1){
 				logoutUser();
-			} 
+			}
 		});
-		dialog.show(); 
+		dialog.show();
 	});*/
 	//
     //Ti.Android.currentActivity.onResume = syncFromServer;
@@ -415,7 +412,7 @@ function contacts(ex) {
 		// We have to actually use a Ti.Contacts method for the permissions to be generated
 		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19933
 		if (OS_IOS) {
-			
+
 		}
 
 		ex.callback();
@@ -517,7 +514,7 @@ $.scrollview.addEventListener("scroll", function(e){
 });
 
 function getUserInfo(){
-    var fullname = Ti.App.Properties.getString('fullname') || ""; 
+    var fullname = Ti.App.Properties.getString('fullname') || "";
     socket.updateUserInfo({fullname: fullname});
 }
 
@@ -547,9 +544,9 @@ function checkReminderToRate() {
                            var intent = Ti.Android.createIntent({
                                action: Ti.Android.ACTION_VIEW,
                                data: "market://details?id=com.plux.healthcare"
-                           });                           
-                           Ti.Android.currentActivity.startActivity(intent);                   
-                         }               
+                           });
+                           Ti.Android.currentActivity.startActivity(intent);
+                         }
                          catch(e){
                            Titanium.Platform.openURL("market://details?id=com.plux.healthcare");
                          }
@@ -607,32 +604,32 @@ $.win.addEventListener("open", function(){
                 }, 2000);
               socket.connect();
               syncFromServer();
-            };  
+            };
             this.activity.onPause = function() {
                 redirect = true;
                 socket.disconnect();
                 console.log("redirect true");
-            }; 
+            };
         }
-        
+
          if (permissionsToRequest.length > 0) {
-         
+
             Ti.Android.requestPermissions(permissionsToRequest, function(e) {
-                
+
                 Ti.API.info('Requesting Permission', e);
-                
+
                 if (e.success) {
-         
+
                     console.log("SUCCESS");
-         
+
                 } else {
-         
+
                     console.log("ERROR: " + e.error);
-         
+
                 }
-         
+
             });
-         
+
         }
     }
  });
@@ -652,23 +649,23 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('pause', onPause);
 	Ti.App.removeEventListener("getUserInfo", getUserInfo);
 	Ti.App.removeEventListener('syncFromServer', syncFromServer);
-	Ti.App.removeEventListener('logout', logoutUser); 
-	Ti.App.removeEventListener('updateNotification', updateNotification); 
-	//Ti.App.removeEventListener('render_menu', render_menu); 
-	Ti.App.removeEventListener('redirect', redirect); 
-	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo); 
-	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
+	Ti.App.removeEventListener('logout', logoutUser);
+	Ti.App.removeEventListener('updateNotification', updateNotification);
+	//Ti.App.removeEventListener('render_menu', render_menu);
+	Ti.App.removeEventListener('redirect', redirect);
+	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo);
+	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode);
 	$.destroy();
 	 console.log("all event closed");
 });
 
 //Ti.App.addEventListener('render_menu', render_menu);
 Ti.App.addEventListener("getUserInfo", getUserInfo);
-Ti.App.addEventListener('logout', logoutUser); 
+Ti.App.addEventListener('logout', logoutUser);
 Ti.App.addEventListener("redirect", redirect);
 Ti.App.addEventListener('resumed', onResumed);
 Ti.App.addEventListener('pause', onPause);
 Ti.App.addEventListener('syncFromServer', syncFromServer);
-Ti.App.addEventListener('updateNotification', updateNotification); 
-Ti.App.addEventListener('updateMenu', checkserviceByCorpcode); 
-Ti.App.addEventListener('updateHeader', refreshHeaderInfo); 
+Ti.App.addEventListener('updateNotification', updateNotification);
+Ti.App.addEventListener('updateMenu', checkserviceByCorpcode);
+Ti.App.addEventListener('updateHeader', refreshHeaderInfo);

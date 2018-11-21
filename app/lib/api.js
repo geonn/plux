@@ -18,7 +18,6 @@ var checkAppVersionUrl = FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&
 var updateUserServiceUrl = FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
 var getUserServiceUrl = FREEJINI_DOMAIN+"/api/getUserService?user="+USER+"&key="+KEY;
 var updateToken     = FREEJINI_DOMAIN+"/api/updateToken?user="+USER+"&key="+KEY;
-var grab_newsfeed        = FREEJINI_DOMAIN+"/api/grab_newsfeed?user="+USER+"&key="+KEY;
 var getCategoryList     = FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&key="+KEY;
 var leafletUrl      = FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
@@ -96,10 +95,10 @@ var defaultRetryTimes = 3;
 //API that call in sequence 
 var APILoadingList = [
 	
-	{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
-	{url: getClinicLocator2, model: "panelList", checkId: "13"},
-	{url: doctorListUrl, model: "doctors", checkId: "12"},
-	{url: getCategoryList, model: "categorys", checkId: "18"}
+	//{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
+	//{url: getClinicLocator2, model: "panelList", checkId: "13"},
+	//{url: doctorListUrl, model: "doctors", checkId: "12"},
+	//{url: getCategoryList, model: "categorys", checkId: "18"}
 ];
 
 
@@ -706,8 +705,6 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       			callback();
 	       		}
 				
-				//load Panel List
-				API.loadPanelList({clinicType:""});
 	       }
 	       
 	       
@@ -825,276 +822,6 @@ exports.updateNotificationToken = function(e){
 		 client.send(); 
 	}
 	
-};
-
-exports.loadLeaflet = function(ex){
-	var url = leafletUrl; 
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);
-		 	/**reset current category**/
-		 	var leafletModel = Alloy.createCollection('leaflet');  
-			leafletModel.resetBrouchure();  
-			var leaf = res.data; 
-			leaf.forEach(function(entry) {  
-				var lfModel = Alloy.createModel('leaflet', {
-					id      	: entry.b_id, 
-					title		: entry.b_title,
-					url			: entry.b_url,
-					status		: entry.b_status,
-					position	: entry.b_position,
-					attachment	: entry.attachment,
-				 	cover		: entry.cover,
-		   			created		: entry.b_created,
-		   			updated		: entry.b_updated 
-				});
-				lfModel.save();  
-			});
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.getDoctorList = function(ex){
-	var url = doctorListUrl; 
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);
-	     	 
-		 	/**reset current category**/
-		 	var doctorsModel = Alloy.createCollection('doctors');  
-			 
-			var info = res.data; 
-			doctorsModel.saveArray(info);
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.loadNewsFeed = function (ex){
-	var url = newsfeed; 
-	//console.log(url);
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(String(this.responseText));
-		 	/**reset current category**/
-		 	var library = Alloy.createCollection('health_news_feed'); 
-		 	var newElementModel = Alloy.createCollection('news_element'); 
-			library.resetNews();
-			newElementModel.resetNewsElement();		
-			/**load new set of category from API**/  
-			library.addNews(res.data); 
-			var newsFe = res.data;
-			newsFe.forEach(function(nf) { 
-				var elements = nf.element;
-				elements.forEach(function(entry) {  
-					
-					var content = entry.content;
-					if(content != "" &&  content != null){
-						content = content.replace(/["']/g, "&quot;"); 
-					}
-						
-					var eleModel = Alloy.createModel('news_element', {
-					        id         : entry.id, 
-							news_id		: nf.id,
-							content		: content ,
-							type		: entry.type ,
-							images		: entry.media ,
-							position	: entry.position ,
-							
-					});
-					eleModel.save(); 
-				});
-				
-			});
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.loadCategoryList = function (ex){
-	var url = categoryUrl; 
-
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) {
-	    
-	     	var res = JSON.parse(this.responseText);
-		 	/**reset current category**/
-		 	var library = Alloy.createCollection('category'); 
-			library.resetCategory();
-					
-			/**load new set of category from API**/ 
-			var arr = res.data;  
-	       	arr.forEach(function(entry) { 
-				var category = Alloy.createModel('category', {
-				        id         : entry.key,
-				        category   : entry.value
-				});
-				category.save(); 
-			});
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.loadDoctorPanel = function(ex){
-	var checker = Alloy.createCollection('updateChecker'); 
-	var isUpdate = checker.getCheckerById("8");
-	var last_updated ="";
-	 
-	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
-	} 
-	var url = getDoctorPanel+"&last_updated=";//+last_updated; 
-  	//console.log(url);
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	 
-	     	var res = JSON.parse(this.responseText);
-	     	
-	     	if(res.status == "success"){  
-			 	 if(isUpdate	 !== "" || (res.last_updated != isUpdate.updated)){ 
-			 		
-				 	var library = Alloy.createCollection('doctor_panel');
-					/**load new set of category from API**/ 
-					var arr = res.data;   
-					library.resetData();
-			        library.saveArray(arr);
-			        //checker.updateModule("8", "loadDoctorPanel",currentDateTime());  
-			 	 }else{
-			 		// alert("?");
-			 	 }
-	        }
-		 	
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.loadClinicList = function (ex){ 
-	var checker = Alloy.createCollection('updateChecker'); 
-	var isUpdate = checker.getCheckerById("1");
-	var last_updated ="";
-	 
-	if(isUpdate != "" ){
-		last_updated = isUpdate.updated;
-	} 
-	var url = clinicListUrl+"&last_updated="+last_updated; 
-  	console.log(url);
-	var client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
-	     onload : function(e) { 
-	     	 
-	     	var res = JSON.parse(this.responseText);
-	     	
-	     	if(res.status == "success"){  
-			 	 if(isUpdate	 !== "" || (res.last_updated != isUpdate.updated)){ 
-			 		
-				 	var library = Alloy.createCollection('panelList');
-					/**load new set of category from API**/ 
-					var arr = res.data;
-			        library.addPanel(arr);
-			        checker.updateModule("1","clinicList", res.last_updated);  
-			 	 }else{
-			 		// alert("?");
-			 	 }
-	        }
-		 	
-	     },
-	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {
-	     },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", url);
-	 // Send the request.
-	 client.send(); 
-};
-
-exports.loadPanelList = function (ex){
-	var corp = Ti.App.Properties.getString('corpcode');
-	var url =  panelList+"?CORPCODE="+corp;
-	console.log(url);
-	var client = Ti.Network.createHTTPClient({ 
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);
-	     	var library = Alloy.createCollection('panelList');
-			var codeStr = "";
-			console.log(this.responseText);
-				res.cliniccode.forEach(function(entry) {
-					codeStr += '"'+entry+'",'; 
-				});
-				codeStr = codeStr.substr(0, codeStr.length-1); 
-				//set panel = 1 
-				library.updatePanelList(codeStr);
-				
-				if(ex.clinicType == ""){
-					details = library.getPanelListCount(codeStr);
-					details24 = library.getPanelListBy24Hours(codeStr);
-					
-					var det24= { 
-						clinicType: "hours24",
-						total: details24.length 
-					};
-					details.push(det24); 
-				}else{
-					if(ex.clinicType == "hours24"){
-						details = library.getPanelListBy24Hours(codeStr); 
-					}else{
-						details = library.getPanelListByCode(codeStr,ex.clinicType);
-					}
-					
-				} 
-				Ti.App.fireEvent('aspClinic', {details:details});
-	     }, 
-	     onerror : function(e) { },
-	     timeout : 60000  // in milliseconds
-	 });
-	 // Prepare the connection.
-	 client.open("GET", encodeURI(url));
-	 // Send the request.
-	 client.send(); 
 };
  
 exports.callByGet  = function(e, handler){

@@ -1,5 +1,4 @@
 var args = arguments[0] || {};
-var medicalAttachmentModel = Alloy.createCollection('medicalAttachment');
 var loading = Alloy.createController("loading");
 var u_id = Ti.App.Properties.getString('u_id'); 
 

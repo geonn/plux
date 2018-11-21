@@ -13,7 +13,6 @@ var last_uid;
 var status_text = ["", "Sending", "Sent", "Read"];
 var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
-var panelListModel = Alloy.createCollection('doctors');
 var user_read_status, doctor_read_status;
 $.call.hide();
 target_page = "conversation";

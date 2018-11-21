@@ -1,9 +1,0 @@
-".noData" :{ 
-	width: Titanium.UI.SIZE,
-	height: Titanium.UI.SIZE,
-	color: "#959595",
-	textAlign: "center",
-	font:{
-		fontSize: "14dp",
-	}
-}

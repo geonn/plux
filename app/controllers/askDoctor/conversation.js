@@ -11,8 +11,6 @@ var status_text = ["", "Sending", "Sent", "Read"];
 var room_status;
 var room_id = args.room_id || 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
-var panelListModel = Alloy.createCollection('doctors');  
-//var doctor = (args.dr_id)?panelListModel.getDoctorById(args.dr_id):{};
 var user_read_status, doctor_read_status;
 target_page = "askDoctor/conversation";
 Ti.App.Properties.setString('room_id', room_id);

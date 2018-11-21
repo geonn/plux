@@ -112,7 +112,7 @@ exports.pushNotification = function(callback) {
 
         console.log("SOBYTES PUSH: Setting the device token: " + deviceToken);
         Titanium.App.Properties.setString('deviceToken', deviceToken);
-
+        API.updateNotificationToken();
         Cloud.PushNotifications.subscribeToken({
             device_token : Titanium.App.Properties.getString('deviceToken'),
             channel : 'general',

@@ -215,10 +215,6 @@ function call(e){
     Ti.Platform.openURL('tel:'+tel);
 }
 
-function navTo(e){
-    nav.navigateWithArgs("clinic/clinicList", {clinicType:e.source.id});
-	//Alloy.Globals.Navigator.open(e.source.target, {id: e.source.v_id});
-}
 
 function render_annotation(annotation){
 	var ann = Alloy.Globals.Map.createAnnotation(annotation);

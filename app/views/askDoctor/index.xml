@@ -1,7 +1,0 @@
-<Alloy>
- 	<TabGroup backgroundColor="white" >
-        <Tab id="tab1" title="Find Doctor">
-           <Require src="askDoctor/find_doctor"></Require>  
-        </Tab>
-    </TabGroup>
-</Alloy>

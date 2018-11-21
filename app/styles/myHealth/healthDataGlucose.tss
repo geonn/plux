@@ -1,9 +1,0 @@
-
-".container" : {
-  
-},
-".title_Label":{
-	left : 20,
-	color: "#A8A8A8",
-	font: {fontSize: '16dp'},
-},

@@ -1,2 +1,0 @@
-var common = require('common');
-

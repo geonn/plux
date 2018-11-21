@@ -120,7 +120,6 @@ exports.checkAndUpdate = function(e){
         mrv2_model.addColumn("room_id", "TEXT");
         dbVersion = '3.0';
     }
-    dbVersion = "3.0";
     if(dbVersion == "3.0"){
         var mrv2_model = Alloy.createCollection('chat');
         mrv2_model.addColumn("dr_specialty", "TEXT");

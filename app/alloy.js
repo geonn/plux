@@ -345,7 +345,7 @@ function hinttextOnBlur(e){
 }
 
 var win;
-var redirect = true;
+//var redirect = true;
 var target_page = "";
 Ti.App.addEventListener("pause", function(e){
     redirect = true;
