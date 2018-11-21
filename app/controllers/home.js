@@ -572,7 +572,31 @@ function checkReminderToRate() {
 }
 
 //checkReminderToRate();
+$.win.addEventListener("postlayout", function(){
+    var enablePush = require('enablePush');
+    enablePush.pushNotification(function(res) {
 
+        if (res.error) {
+
+            console.log('SOBYTES IOS PUSH ERROR: ', res.message);
+            return;
+
+        }else{
+            var data = (OS_IOS)?e.data:e;
+            eval("Ti.App.fireEvent('"+data.target+":refresh')");
+            console.log(redirect+" true or false"+data.target);
+            var room_id = Ti.App.Properties.getString('room_id');
+            if(target_page != data.target && redirect){
+                console.log( data.room_id+" notification room_id and local room_id "+room_id);
+                Ti.App.fireEvent("redirect", data);
+            }else if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && redirect){
+                Ti.App.fireEvent("redirect", data);
+            }else{
+                Ti.App.fireEvent("syncFromServer");
+            }
+        }
+    });
+});
 $.win.addEventListener("open", function(){
      if(OS_ANDROID){
          if (this.activity) {
