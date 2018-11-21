@@ -14,9 +14,19 @@ if(OS_ANDROID){
  
 	});
 	CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
+		push_redirect = true;
+        app_status = "not_running";
+        var payload = JSON.parse(evt.payload);   
+        Ti.App.Payload = payload;
+        console.log('Tray Click Launched App (app was not running)');  
+        receivePush(payload);
+
         console.log('Tray Click Launched App (app was not running)'); 
     });
     CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
+    	 push_redirect = false;
+        app_status = "running";
+        var payload = JSON.parse(evt.payload);  
         console.log('Tray Click Focused App (app was already running)'); 
     });
 } 
@@ -39,9 +49,11 @@ function receivePush(e){
 		eval("Ti.App.fireEvent('"+target+":refresh')");
 	}*/
 	eval("Ti.App.fireEvent('"+target+":refresh')");
-	console.log(redirect+" true or false"+target);
+	console.log(push_redirect+" true or false"+target);
+	
 	var room_id = Ti.App.Properties.getString('room_id');
-	if(target_page != target && redirect){
+	console.log(data.room_id+" < room >"+room_id);
+	if(target_page != target && push_redirect){
 		console.log( data.room_id+" notification room_id and local room_id "+room_id);
 		Ti.App.fireEvent("redirect", data);
 	}else if((target == "conversation" || target == "askDoctor/conversation") && data.room_id != room_id && redirect){
@@ -299,11 +311,11 @@ function getNotificationNumber(payload){
 }
 
 exports.setInApp = function(){
-	console.log('In App redirect false');
-	setTimeout(function(){
-          redirect = false;
-          console.log("redirect as false");
-    }, 1000);
+//	console.log('In App redirect false');
+//	setTimeout(function(){
+//          redirect = false;
+//          console.log("redirect as false");
+//    }, 1000);
 };
 
 exports.registerPush = function(){

@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 var expandmode = false;
 //var SCANNER = require("scanner"); 
+//var PUSH = require('push');
 var loading = Alloy.createController('loading');
 var new_menu = [
 	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.jpg"},
@@ -159,7 +160,8 @@ function init(){
 	refreshHeaderInfo(); 
 	
 	syncFromServer();
-	PUSH.registerPush();
+	
+	//PUSH.registerPush();
 }
 
 function syncFromServer(){
@@ -573,7 +575,10 @@ function checkReminderToRate() {
 
 //checkReminderToRate();
 $.win.addEventListener("postlayout", function(){
-    var enablePush = require('enablePush');
+    
+});
+
+var enablePush = require('enablePush');
     enablePush.pushNotification(function(res) {
 
         if (res.error) {
@@ -582,39 +587,39 @@ $.win.addEventListener("postlayout", function(){
             return;
 
         }else{
-            var data = (OS_IOS)?e.data:e;
+            var data = res.data;
             eval("Ti.App.fireEvent('"+data.target+":refresh')");
-            console.log(redirect+" true or false"+data.target);
+            console.log(push_redirect+" true or false"+data.target);
             var room_id = Ti.App.Properties.getString('room_id');
-            if(target_page != data.target && redirect){
+            if(target_page != data.target && push_redirect){
                 console.log( data.room_id+" notification room_id and local room_id "+room_id);
                 Ti.App.fireEvent("redirect", data);
-            }else if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && redirect){
+            }else if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
                 Ti.App.fireEvent("redirect", data);
             }else{
                 Ti.App.fireEvent("syncFromServer");
             }
         }
     });
-});
+    
 $.win.addEventListener("open", function(){
-     if(OS_ANDROID){
+     if(OS_ANDROID){ 
          if (this.activity) {
             this.activity.onResume = function() {
-                setTimeout(function(){
-                      redirect = false;
+                setTimeout(function(){ 
+                      push_redirect = false;
                       console.log("redirect as false");
                 }, 2000);
               socket.connect();
               syncFromServer();
             };  
-            this.activity.onPause = function() {
-                redirect = true;
+            this.activity.onPause = function() { 
+                push_redirect = true;
                 socket.disconnect();
                 console.log("redirect true");
             }; 
         }
-        
+         
          if (permissionsToRequest.length > 0) {
          
             Ti.Android.requestPermissions(permissionsToRequest, function(e) {
@@ -660,6 +665,10 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode); 
 	$.destroy();
 	 console.log("all event closed");
+});
+
+$.win.addEventListener("postlayout", function(){
+    //PUSH.registerPush();
 });
 
 //Ti.App.addEventListener('render_menu', render_menu);
