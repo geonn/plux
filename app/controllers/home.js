@@ -79,12 +79,12 @@ function render_menu(){
 		view_2.add(label2_subtitle);
 		view.add(view_2);
 		var img_height = 0;
-		img.addEventListener("postlayout", function(e){
+		/*img.addEventListener("postlayout", function(e){
 			img_height = e.source.parent.rect.height;
 			console.log(img_height+" img_height");
 			setTimeout(function(ex){
 				e.source.parent.add($.UI.create("View", {classes:['wfill','hfill'],touchEnabled: false , height: img_height, zIndex: 10, zIndex: 9,  backgroundColor: "#30000000"}));
-			}, 200);
+			}, 200);*/
 		});
 		view.addEventListener("click", new_menu[i].onClick);
 		$.menu.add(view);

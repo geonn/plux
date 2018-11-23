@@ -2,11 +2,11 @@ exports.pushNotification = function(callback) {
 
     // Require the module
     var Cloud = require("ti.cloud");
-    var CloudPush = require('ti.cloudpush');
+
     var deviceToken = null;
 
     if (OS_ANDROID) {
-
+        var CloudPush = require('ti.cloudpush');
         CloudPush.retrieveDeviceToken({
             success : deviceTokenSuccess,
             error : deviceTokenError
