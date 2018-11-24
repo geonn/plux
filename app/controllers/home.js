@@ -79,12 +79,12 @@ function render_menu(){
 		view_2.add(label2_subtitle);
 		view.add(view_2);
 		var img_height = 0;
-		/*img.addEventListener("postlayout", function(e){
+		img.addEventListener("postlayout", function(e){
 			img_height = e.source.parent.rect.height;
 			console.log(img_height+" img_height");
 			setTimeout(function(ex){
 				e.source.parent.add($.UI.create("View", {classes:['wfill','hfill'],touchEnabled: false , height: img_height, zIndex: 10, zIndex: 9,  backgroundColor: "#30000000"}));
-			}, 200);*/
+			}, 200);
 		});
 		view.addEventListener("click", new_menu[i].onClick);
 		$.menu.add(view);
@@ -588,11 +588,11 @@ var enablePush = require('enablePush');
             var room_id = Ti.App.Properties.getString('room_id');
             if(target_page != data.target && push_redirect){
                 console.log( data.room_id+" notification room_id and local room_id "+room_id);
-                Ti.App.fireEvent("redirect", data);
+								redirect(data);
             }else if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
-                Ti.App.fireEvent("redirect", data);
+								redirect(data);
             }else{
-                Ti.App.fireEvent("syncFromServer");
+                syncFromServer();
             }
         }
     });
@@ -651,11 +651,9 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', onResumed);
 	Ti.App.removeEventListener('pause', onPause);
 	Ti.App.removeEventListener("getUserInfo", getUserInfo);
-	Ti.App.removeEventListener('syncFromServer', syncFromServer);
 	Ti.App.removeEventListener('logout', logoutUser);
 	Ti.App.removeEventListener('updateNotification', updateNotification);
 	//Ti.App.removeEventListener('render_menu', render_menu);
-	Ti.App.removeEventListener('redirect', redirect);
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo);
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode);
 	$.destroy();
@@ -669,10 +667,8 @@ $.win.addEventListener("postlayout", function(){
 //Ti.App.addEventListener('render_menu', render_menu);
 Ti.App.addEventListener("getUserInfo", getUserInfo);
 Ti.App.addEventListener('logout', logoutUser);
-Ti.App.addEventListener("redirect", redirect);
 Ti.App.addEventListener('resumed', onResumed);
 Ti.App.addEventListener('pause', onPause);
-Ti.App.addEventListener('syncFromServer', syncFromServer);
 Ti.App.addEventListener('updateNotification', updateNotification);
 Ti.App.addEventListener('updateMenu', checkserviceByCorpcode);
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo);
