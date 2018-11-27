@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-var dr_id = ""; 
+var dr_id = "";
 var u_id = parseInt(Ti.App.Properties.getString('u_id'));
 var gender = "";
 var loading = Alloy.createController("loading");
@@ -17,10 +17,10 @@ function genderSelect(e){
 	  gender_child[i].backgroundColor = "#ffffff";
 	  gender_child[i].children[0].color = "#606060";
 	};
-	
+
 	console.log(gender);
 	gender = e.source.gender;
-	
+
 	e.source.children[0].color = "#ffffff";
 	e.source.backgroundColor = "red";
 }
@@ -49,12 +49,13 @@ function sendMessage(){
 	    "status": 4,
 	    "sender_name": Ti.App.Properties.getString('fullname') || "",
 	}];
-	
+
 	var id = model.saveArray(local_save);
 	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id });
 	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
 		socket.refresh_patient_list();
 		var res = JSON.parse(responseText);
+		socket.setRoom({room_id: res.data.room_id});
 		$.message.value = "";
 		$.message.editable = true;
 		sending = false;
@@ -62,7 +63,7 @@ function sendMessage(){
 		loading.finish();
 		closeWindow();
 		nav.navigateWithArgs("askDoctor/conversation", res.data);
-		
+
 	});
 }
 
@@ -79,11 +80,11 @@ if(Ti.Platform.osname == "android"){
                       console.log("redirect as false");
                 }, 1000);
               socket.connect();
-            };  
+            };
             this.activity.onPause = function() {
                 redirect = true;
                 socket.disconnect();
-            }; 
+            };
         }
     });
 }
