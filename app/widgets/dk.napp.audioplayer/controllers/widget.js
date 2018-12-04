@@ -36,7 +36,7 @@ if(args.pauseIcon){
 }
 
 function onPlayStopBtnClicked() {
-
+    Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_PLAYBACK;
 	// If both are false, playback is stopped.
 	console.log(audioPlayer.playing+" audioPlayer.playing");
 	if (audioPlayer.playing) {
@@ -128,6 +128,7 @@ function set_url(url){
 				allowBackground : true
 			});
 		}else{
+		    Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_PLAYBACK;
 			audioPlayer = Ti.Media.createAudioPlayer({
 				url : url,
 				allowBackground : true

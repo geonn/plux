@@ -7,12 +7,13 @@ if(OS_ANDROID){
 	audioRecorder = require("titutorial.audiorecorder");	
 }else{
 	console.log(Ti.Media.hasAudioPermissions()+" Ti.Media.hasAudioPermissions()");
-	Titanium.Media.setAudioSessionCategory(Ti.Media.AUDIO_SESSION_CATEGORY_PLAY_AND_RECORD);
+	Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_PLAY_AND_RECORD;
 	audioRecorder = Titanium.Media.createAudioRecorder ();
 }
 
 var recordChecking = true;
 function startRecording(){
+    Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_PLAY_AND_RECORD;
 	if(recordChecking){
 	recordChecking = false;
 	//$.message_bar.animate({right: 200, duration: 30});

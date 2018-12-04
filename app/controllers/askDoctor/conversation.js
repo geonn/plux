@@ -12,6 +12,9 @@ var room_status;
 var room_id = args.room_id || 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
 var user_read_status, doctor_read_status;
+var opposite_online = "false";
+var opposite_last_update;
+
 target_page = "askDoctor/conversation";
 Ti.App.Properties.setString('room_id', room_id);
 console.log(args);
@@ -126,19 +129,18 @@ function addRow(row, latest){
 			text: newText
 		});
 		var row_status = row.status;
-		console.log(row.is_endUser+" is user read"+doctor_read_status+" > "+ row.created+" "+row.dr_img_path);
-        if(row.is_endUser && doctor_read_status > row.created){
-            //console.log("is user read"+doctor_read_status+" > "+ row.created+" "+newText);
-            row_status = 3;
-        }else if(!row.is_endUser && user_read_status > row.created ){
-            console.log("is user docor read"+user_read_status+" > "+ row.created+" "+newText);
-            row_status = 3;
+		if(row.is_endUser){
+           var last_update_by_room = socket.getLastUpdateByRoom(room_id);
+           if(last_update_by_room && last_update_by_room.last_update > row.created){
+               row_status = 3;
+           }
         }
 		var label_time = $.UI.create("Label", {
 			classes:['h7', 'wsize', 'hsize'],
 			bottom:0,
 			left: 60,
-			text: timeFormat(row.created)+" "+status_text[row_status],
+			//text: timeFormat(row.created)+" "+status_text[row_status],
+			text: (!row.is_endUser)?timeFormat(row.created):timeFormat(row.created)+" "+status_text[row_status],
 			textAlign: "right"
 		});
 		var view_photo_name = $.UI.create("View", {classes:['wfill','hsize']});
@@ -163,8 +165,6 @@ function addRow(row, latest){
 			view_text_container.add(label_message2);
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
-		    console.log(newText+" check local setURL");
-		    return;
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
 
 			player.setUrl(newText);
@@ -283,20 +283,19 @@ function imageZoom(e){
     }
 }
 
-function updateReadStatus(){
+function updateReadStatus(e){
     var inner_area = $.inner_area.getChildren();
     for (var i=0; i < inner_area.length; i++) {
         console.log(inner_area[i].children[0].children.length+" inner_area[i].children[0].children.length");
-        console.log(inner_area[i].children[0]);
         if(inner_area[i].children[0].children.length <= 1){
             $.bottom_bar.hide();
-        }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
-            console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
-            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
-        }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
+        }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && (opposite_last_update > inner_area[i].created || opposite_online == "true") &&  inner_area[i].status == 2){
+			inner_area[i].status = 3;
+			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+        }/*else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
             console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
-        }
+        }*/
    }
 }
 
@@ -307,8 +306,9 @@ function updateRow(row, latest){
 		if(inner_area[i].id == row.id){
 			found = true;
 		}
-	if(inner_area[i].children[0].children.length > 1){
-        inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[row.status];
+	if(inner_area[i].children[0].children.length > 1 && inner_area[i].status == 1){
+		inner_area[i].status = (opposite_online == "true")?3:row.status;
+        inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[(opposite_online == "true")?3:row.status];
     }
 	};
 	if(!found){
@@ -351,7 +351,7 @@ function render_conversation(latest, local){
 			addRow(data[i], latest);
 		}*/
 	}
-	updateReadStatus();
+	//updateReadStatus();
 }
 
 
@@ -401,10 +401,6 @@ function getConversationByRoomId(callback){
 		room_status = res.room_status;
 		checker.updateModule(checker_id, url, res.last_updated, u_id, room_id);
 		console.log("check the room id here"+room_id);
-		console.log("set doctor_read_status = "+res.doctor_read_status);
-		console.log("set user_read_status = "+res.user_read_status);
-		user_read_status = res.user_read_status;
-        doctor_read_status = res.doctor_read_status;
 		callback && callback();
 	});
 }
@@ -446,17 +442,15 @@ function refresh(callback, firsttime){
 var refreshing = false;
 var time_offset = common.now();
 function refresh_latest(param){
-    if(room_id != param.room_id){
+    /*if(room_id != param.room_id){
         console.log("set room id "+param.room_id);
         $.bottom_bar.show();
         socket.setRoom({room_id: param.room_id});
         Ti.App.Properties.setString('room_id', param.room_id);
-    }
+    }*/
     console.log("old roomid"+room_id);
     room_id = param.room_id || room_id;
     console.log("new roomid"+room_id);
-	var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
-	player.play();
 
 	console.log(room_id+" refresh_latest "+refreshing);
 	if(!refreshing && time_offset < common.now()){
@@ -484,12 +478,14 @@ function getLatestData(local){
     console.log("getLatestData");
 	var model = Alloy.createCollection("chat");
 	data = model.getDataByRoomId(true,"","", last_update, room_id);
-	console.log(data);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	last_update = (data.length > 0)?_.first(data)['created']:last_update;
 	console.log(last_update+" from app");
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
-	console.log(local);
+	if(data.length > 0){
+	    var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
+        player.play();
+	}
 	render_conversation(true, local);
 	//setTimeout(function(e){scrollToBottom();}, 500);
 }
@@ -561,6 +557,7 @@ function second_init(){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
 	socket.setRoom({room_id: room_id});
+	updateTime({online:true});
 	Ti.App.Properties.setString('room_id', room_id);
 	refresh(getPreviousData, true);
 	/*
@@ -577,6 +574,13 @@ function second_init(){
             nav.navigateWithArgs("askDoctor/forms", {});
     	}
 	});*/
+}
+
+function updateTime(e){
+  var u_id = Ti.App.Properties.getString('u_id') || 0;
+  console.log("update time");
+  console.log({last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
+  socket.update_room_member_time({last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
 }
 
 function endSession(){
@@ -858,6 +862,7 @@ $.win.addEventListener("postlayout", function(){
     if (this.activity) {
         this.activity.onResume = function() {
           socket.connect();
+		  updateTime({online:true});
           setTimeout(function(){
               push_redirect = false;
               console.log("redirect as false");
@@ -865,15 +870,30 @@ $.win.addEventListener("postlayout", function(){
         };
         this.activity.onPause = function() {
             redirect = true;
-          socket.disconnect();
+			updateTime({online:false});
+            //socket.disconnect();
         };
     }
 });
+
+function doctor_last_update(e){
+		console.log(e);
+    opposite_online = e.online;
+    opposite_last_update = e.last_update;
+    updateReadStatus();
+}
+
+Ti.App.addEventListener("socket:user_last_update", updateReadStatus);
+Ti.App.addEventListener("socket:doctor_last_update", doctor_last_update);
+
 $.win.addEventListener("close", function(){
 	Ti.App.Properties.setString('room_id', "");
 	target_page = "";
+	updateTime({online:false});
 	socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
+	Ti.App.removeEventListener("socket:user_last_update", updateReadStatus);
+	Ti.App.removeEventListener("socket:doctor_last_update", doctor_last_update);
 	Ti.App.removeEventListener("askDoctor/conversation:refresh", refresh_latest);
 	//Ti.App.removeEventListener('socket:startTimer', startTimer);
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);

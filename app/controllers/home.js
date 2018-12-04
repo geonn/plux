@@ -586,12 +586,12 @@ var enablePush = require('enablePush');
             eval("Ti.App.fireEvent('"+data.target+":refresh')");
             console.log(push_redirect+" true or false"+data.target);
             var room_id = Ti.App.Properties.getString('room_id');
-            if(target_page != data.target && push_redirect){
+            if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
+				redirect(data);
+            }else if(target_page != data.target && push_redirect){
                 console.log( data.room_id+" notification room_id and local room_id "+room_id);
-								redirect(data);
-            }else if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
-								redirect(data);
-            }else{
+                redirect(data);
+            }else {
                 syncFromServer();
             }
         }

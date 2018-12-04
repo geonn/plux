@@ -3,21 +3,33 @@ const SERVER_IP = 'http://103.3.173.207:3501';
 var socket_io;
 var room_id = 0;
 var isConnected = true;
+var room_last_update = [];
 
 function doConnect(){
-    
+    isConnected = true;
     socket_io = io.connect(SERVER_IP);
-    
+
     socket_io.on('connect', function () {
         console.log(socket_io.id+" socket connected ");
-        isConnected = true;
+        var u_id = Ti.App.Properties.getString('u_id') || 0;
         if(room_id > 0){
-            socket_io.emit((OS_IOS)?'new_set_room':"set_room", room_id);
+            console.log('new_set_room2'+room_id);
+            //socket_io.emit((OS_IOS)?'new_set_room':"set_room", room_id);
+            socket_io.emit((OS_IOS)?'new_set_room2':"set_room2", {room_id: room_id, role: "patient", u_id: u_id, last_update: common.now(), online: true});
         }
     });
 
     socket_io.on('disconnect', function () {
         console.log("disconnect event");
+    });
+    socket_io.on("socket:doctor_last_update", function(params){
+        console.log("socket:doctor_last_update");
+        Ti.App.fireEvent("socket:doctor_last_update", params);
+    });
+    socket_io.on("socket:user_last_update", function(params){
+        console.log("socket_on:user_last_update");
+        console.log(params);
+        Ti.App.fireEvent("socket:user_last_update", params);
     });
 
     socket_io.on('doctor:refresh_patient_list', function(){
@@ -36,7 +48,17 @@ function doConnect(){
     });
 }
 
-exports.updateUserInfo = updateUserInfo; 
+exports.getLastUpdateByRoom = getLastUpdateByRoom;
+
+function getLastUpdateByRoom(room_id){
+    if(typeof room_last_update["t_"+room_id] != "undefined"){
+        return room_last_update["t_"+room_id];
+    }else{
+        return false;
+    }
+}
+
+exports.updateUserInfo = updateUserInfo;
 
 function updateUserInfo(ex){
     console.log(isConnected+" updateUserInfo");
@@ -51,7 +73,7 @@ function updateUserInfo(ex){
     }
 }
 
-exports.getDoctorList = getDoctorList; 
+exports.getDoctorList = getDoctorList;
 
 function getDoctorList(){
     console.log(isConnected+" getDoctorList");
@@ -63,7 +85,7 @@ function getDoctorList(){
     }
 }
 
-exports.startTimer = startTimer; 
+exports.startTimer = startTimer;
 
 function startTimer(ex){
     if(isConnected){
@@ -80,15 +102,19 @@ exports.setRoom = setRoom;
 function setRoom(ex){
     console.log(isConnected+" isConnected setRoom");
     room_id = ex.room_id;
+    var u_id = Ti.App.Properties.getString('u_id') || 0;
     if(isConnected){
-        socket_io.emit((OS_IOS)?'new_set_room':"set_room", ex.room_id);
+        //socket_io.emit((OS_IOS)?'new_set_room':"set_room", ex.room_id);
+        console.log("setRoom");
+        console.log({room_id: ex.room_id, online: true, role: "patient", u_id: u_id, last_update: common.now()});
+        socket_io.emit((OS_IOS)?'new_set_room2':"set_room2", {room_id: ex.room_id, online: true, role: "patient", u_id: u_id, last_update: common.now()});
         console.log("set_room "+ex.room_id);
     }else{
-        doConnect(); 
+        doConnect();
         setTimeout(function(){setRoom(ex);}, 1000);
     }
 }
-    
+
 exports.helpdesk_refresh_patient_list = helpdesk_refresh_patient_list;
 
 function helpdesk_refresh_patient_list(ex){
@@ -96,7 +122,7 @@ function helpdesk_refresh_patient_list(ex){
     if(isConnected){
         socket_io.emit('helpdesk:refresh_patient_list');
     }else{
-        doConnect(); 
+        doConnect();
         setTimeout(function(){helpdesk_refresh_patient_list(ex);}, 1000);
     }
 }
@@ -108,7 +134,7 @@ function refresh_patient_list(ex){
     if(isConnected){
         socket_io.emit('doctor:refresh_patient_list');
     }else{
-        doConnect(); 
+        doConnect();
         setTimeout(function(){refresh_patient_list(ex);}, 1000);
     }
 }
@@ -121,7 +147,7 @@ function sendMessage(ex){
         socket_io.emit((OS_IOS)?'new_socket:refresh_chatroom':"socket:refresh_chatroom", ex.room_id, false);
         console.log("sendMessage at room "+ex.room_id);
     }else{
-        doConnect(); 
+        doConnect();
         setTimeout(function(){sendMessage(ex);}, 1000);
     }
 }
@@ -139,6 +165,19 @@ function disconnect(){
     console.log(isConnected+" disconnect action");
 }
 
+exports.update_room_member_time = update_room_member_time;
+
+function update_room_member_time(ex){
+    console.log(isConnected+" update_room_member_time");
+    if(isConnected){
+        socket_io.emit((OS_IOS)?'new_update_room_member_time':"update_room_member_time",
+        {id: socket_io.id, last_update: ex.last_update, u_id: ex.u_id, room_id: ex.room_id, online: ex.online});
+    }else{
+        doConnect();
+        setTimeout(function(){update_room_member_time(ex);}, 1000);
+    }
+}
+
 exports.leave_room = leave_room;
 
 function leave_room(ex){
@@ -147,7 +186,7 @@ function leave_room(ex){
         socket_io.emit((OS_IOS)?'new_leave_room':"leave_room", ex.room_id);
         console.log("leave_room "+ex.room_id);
     }else{
-        doConnect(); 
+        doConnect();
         setTimeout(function(){leave_room(ex);}, 1000);
     }
 }
