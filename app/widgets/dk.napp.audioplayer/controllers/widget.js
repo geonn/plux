@@ -26,7 +26,7 @@ _.each(args.styles, function(value, property) {
 	}
 });
 delete args.styles;
-
+$.time.color = args.color;
 // parse icon arguments
 if(args.playIcon){
 	playIcon = WPATH("/images/play_button.png");

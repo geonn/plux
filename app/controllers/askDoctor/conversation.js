@@ -63,7 +63,7 @@ function saveLocal(param){
 		console.log(room_id+" room_id check");
 		socket.sendMessage({room_id: room_id});
 		socket.refresh_patient_list();
-
+        $.enter_icon.right = -50;
 	});
 }
 
@@ -165,7 +165,7 @@ function addRow(row, latest){
 			view_text_container.add(label_message2);
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
-			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
+			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c", color: (row.is_endUser)?"#fff":"#000"});
 
 			player.setUrl(newText);
 			//download_video(player, newText);

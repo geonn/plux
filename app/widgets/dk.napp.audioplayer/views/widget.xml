@@ -2,7 +2,7 @@
 	<View id="wrap" layout="vertical" >
 		<View width="Ti.UI.FILL" height="30">
 			<ImageView top="0" height="30" width="30" left="10" right="10" zIndex="10" id="playStopBtn" onClick="onPlayStopBtnClicked"></ImageView>
-			<Label left="50" id="time" color="#fff" />
+			<Label left="50" id="time" color="#000" />
 		</View>
 		
 	</View>
