@@ -869,12 +869,14 @@ $.win.addEventListener("postlayout", function(){
         }, 1000);
         };
         this.activity.onPause = function() {
-            redirect = true;
+            push_redirect = true;
 			updateTime({online:false});
             //socket.disconnect();
         };
     }
 });
+
+
 
 function doctor_last_update(e){
 		console.log(e);
@@ -883,6 +885,23 @@ function doctor_last_update(e){
     updateReadStatus();
 }
 
+function resume(){
+  socket.connect();
+  console.log("resumed here");
+  updateTime({online:true});
+  push_redirect = false;
+  refresh_latest();
+}
+
+function pause(){
+  socket.disconnect();
+  console.log("redirect set as true");
+  updateTime({online:false});
+  push_redirect = true;
+}
+
+Ti.App.addEventListener("resumed", resume);
+Ti.App.addEventListener("paused", pause);
 Ti.App.addEventListener("socket:user_last_update", updateReadStatus);
 Ti.App.addEventListener("socket:doctor_last_update", doctor_last_update);
 
@@ -895,6 +914,8 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener("socket:user_last_update", updateReadStatus);
 	Ti.App.removeEventListener("socket:doctor_last_update", doctor_last_update);
 	Ti.App.removeEventListener("askDoctor/conversation:refresh", refresh_latest);
+	Ti.App.removeEventListener("resumed", resume);
+    Ti.App.removeEventListener("paused", pause);
 	//Ti.App.removeEventListener('socket:startTimer', startTimer);
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	$.destroy();
