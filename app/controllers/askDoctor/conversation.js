@@ -890,7 +890,7 @@ function resume(){
   console.log("resumed here");
   updateTime({online:true});
   push_redirect = false;
-  refresh_latest();
+  refresh_latest({});
 }
 
 function pause(){
