@@ -143,8 +143,8 @@ function addRow(row, latest){
             //console.log("is user read"+doctor_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
         }else if(!row.is_endUser && user_read_status > row.created ){
-            console.log();
-            console.log("is user docor read"+user_read_status+" > "+ row.created+" "+newText);
+            //console.log();
+            //console.log("is user docor read"+user_read_status+" > "+ row.created+" "+newText);
             row_status = 3;
         }
 		var label_time = $.UI.create("Label", {
@@ -278,10 +278,10 @@ function updateReadStatus(){
         if(inner_area[i].children[0].children.length <= 1){
                 
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
-            console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
-            inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+           // console.log("is user read"+doctor_read_status+" > "+ inner_area[i].created);
+           // inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
-            console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
+           // console.log("is user docor read"+user_read_status+" > "+ inner_area[i].created);
             inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }
     }
