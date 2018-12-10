@@ -78,10 +78,11 @@ exports.definition = {
                 console.log(sql+" "+room_id+" "+u_id);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
-                    db.file.setRemoteBackup(false);
+                    db.file.remoteBackup = false;
                 }
                 
-                var res = db.execute(sql, u_id, room_id);
+                var res = db.execute(sql, u_id.toString(), room_id.toString());
+                console.log(res);
                 var arr = [];
                 var count = 0;
                  /**

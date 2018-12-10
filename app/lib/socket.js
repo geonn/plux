@@ -31,7 +31,7 @@ function doConnect(){
         console.log(params);
         Ti.App.fireEvent("socket:user_last_update", params);
     });
-
+    console.log("socket:refresh_chatroom created!");
     socket_io.on('doctor:refresh_patient_list', function(){
         console.log("event listener doctor:refresh_patient_list");
         Ti.App.fireEvent("doctor:refresh_patient_list");

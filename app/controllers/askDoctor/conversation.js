@@ -75,6 +75,7 @@ var sending = false;
 function SendMessage(){
     console.log("SendMessage");
 	if(sending || $.message_bar.value == ""){
+	    console.log("why return here?"+sending+" "+$.message_bar.value+"asd ");
 		return;
 	}
 	loading.start();
@@ -381,25 +382,26 @@ function getConversationByRoomId(callback){
     console.log("getConversationByRoomId");
 	var url = "getMessageListForPatient";
 	var checker_id = 19;
-	var checker = Alloy.createCollection('updateChecker');
+	//var checker = Alloy.createCollection('updateChecker');
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	var isUpdate = checker.getCheckerById(checker_id, u_id, room_id);
-	var last_updated = isUpdate.updated || "";
-	last_update = last_updated || last_update;
-	console.log(last_update+" last update updated from checker");
-	API.callByPost({url: url, new: true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id, last_updated: last_update}}, function(responseText){
+	//var isUpdate = checker.getCheckerById(checker_id, u_id, room_id);
+	//var last_updated = isUpdate.updated || "";
+	//last_update = last_updated || last_update;
+	//console.log(last_update+" last update updated from checker");
+	API.callByPost({url: url, new: true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}}, function(responseText){
 		var model = Alloy.createCollection("chat");
 
 		var res = JSON.parse(responseText);
 		console.log(res.last_updated+" from server");
+		//console.log(res.data);
 		var arr = res.data || [];
 		if(arr.length > 0){
-			model.saveArray(arr, callback);
+			model.saveArray(arr);
 			var update_id = _.pluck(arr, "id");
 			//updateStatus(update_id);
 		}
 		room_status = res.room_status;
-		checker.updateModule(checker_id, url, res.last_updated, u_id, room_id);
+		//checker.updateModule(checker_id, url, res.last_updated, u_id, room_id);
 		console.log("check the room id here"+room_id);
 		callback && callback();
 	});
@@ -430,8 +432,8 @@ $.chatroom.addEventListener("scroll", function (e){
 function refresh(callback, firsttime){
 	loading.start();
 	console.log("refresh");
-	getConversationByRoomId(function(){
-		callback({firsttime: firsttime});
+	getConversationByRoomId(function(){ //API + saveArray
+		callback({firsttime: firsttime}); //render UI
 		loading.finish();
 		refreshing = false;
 		//var model = Alloy.createCollection("chat");
@@ -449,6 +451,7 @@ function refresh_latest(param){
         Ti.App.Properties.setString('room_id', param.room_id);
     }*/
     console.log("old roomid"+room_id);
+    console.log(param);
     room_id = param.room_id || room_id;
     console.log("new roomid"+room_id);
 
@@ -482,6 +485,7 @@ function getLatestData(local){
 	last_update = (data.length > 0)?_.first(data)['created']:last_update;
 	console.log(last_update+" from app");
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
+	console.log(data);
 	if(data.length > 0){
 	    var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
         player.play();
@@ -890,7 +894,7 @@ function resume(){
   console.log("resumed here");
   updateTime({online:true});
   push_redirect = false;
-  refresh_latest();
+  refresh_latest({});
 }
 
 function pause(){
