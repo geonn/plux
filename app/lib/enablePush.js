@@ -28,7 +28,7 @@ exports.pushNotification = function(callback) {
         });
 
         CloudPush.addEventListener('trayClickLaunchedApp', function(e) {
-
+            push_redirect = true;
             var payload = JSON.parse(e.payload);
             if (payload) {
 
@@ -42,7 +42,8 @@ exports.pushNotification = function(callback) {
         });
 
         CloudPush.addEventListener('trayClickFocusedApp', function(e) {
-
+          push_redirect = true;
+            /*
             var payload = JSON.parse(e.payload);
             if (payload) {
 
@@ -51,7 +52,7 @@ exports.pushNotification = function(callback) {
                     data : payload
                 });
 
-            }
+            }*/
 
         });
 

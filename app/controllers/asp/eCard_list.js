@@ -13,7 +13,7 @@ function render_qr(first_view, inner_width){
         errorCorrectLevel: 'M'
     });
     var dateTimeNow = currentDateTime();
-    var param = first_view+"|"+dateTimeNow;
+    var param = first_view.cardno+"||"+dateTimeNow;
     
     var CryptoJS = require('sha256').CryptoJS;
     var AES = require('aes').CryptoJS;

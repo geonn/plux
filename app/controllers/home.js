@@ -574,28 +574,32 @@ $.win.addEventListener("postlayout", function(){
 });
 
 var enablePush = require('enablePush');
-    enablePush.pushNotification(function(res) {
+    enablePush.pushNotification(received_push);
+function received_push(res){
 
-        if (res.error) {
+		if (res.error) {
 
-            console.log('SOBYTES IOS PUSH ERROR: ', res.message);
-            return;
+				console.log('SOBYTES IOS PUSH ERROR: ', res.message);
+				return;
 
-        }else{
-            var data = res.data;
-            eval("Ti.App.fireEvent('"+data.target+":refresh')");
-            console.log(push_redirect+" true or false"+data.target);
-            var room_id = Ti.App.Properties.getString('room_id');
-            if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
-				redirect(data);
-            }else if(target_page != data.target && push_redirect){
-                console.log( data.room_id+" notification room_id and local room_id "+room_id);
-                redirect(data);
-            }else {
-                syncFromServer();
-            }
-        }
-    });
+		}else{
+				var data = res.data;
+				//data = {target: "chatroom", dr_id: 144, room_id: 10648, u_id: 8347, created: "2018-11-29 20:05:04", updated: "2018-11-29 20:05:04", status: 5};
+				//data = {target: "askDoctor/conversation", id: 10843, room_id: 10843, u_id: 8347, created: "2018-12-17 14:41:39", updated: "2018-12-17 14:41:39", dr_id: 144};
+				eval("Ti.App.fireEvent('"+data.target+":refresh')");
+				console.log(push_redirect+" true or false"+data.target);
+				var room_id = Ti.App.Properties.getString('room_id');
+
+				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && ≈){
+		redirect(data);
+				}else if(target_page != data.target && push_redirect){
+						console.log( data.room_id+" notification room_id and local room_id "+room_id);
+						redirect(data);
+				}else {
+						syncFromServer();
+				}
+		}
+}
 
 $.win.addEventListener("open", function(){
      if(OS_ANDROID){
@@ -639,10 +643,15 @@ $.win.addEventListener("open", function(){
 
 function onResumed() {
     syncFromServer();
+		setTimeout(function(){
+					push_redirect = false;
+					console.log("redirect as false");
+		}, 2000);
     socket.connect();
 }
 
 function onPause(){
+		push_redirect = true;
     console.log("onPause?");
     socket.disconnect();
 }

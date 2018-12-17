@@ -893,7 +893,10 @@ function resume(){
   socket.connect();
   console.log("resumed here");
   updateTime({online:true});
-  push_redirect = false;
+	setTimeout(function(){
+			push_redirect = false;
+			console.log("redirect as false");
+	}, 2000);
   refresh_latest({});
 }
 
