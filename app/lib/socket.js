@@ -2,16 +2,17 @@ var io = require('ti.socketio');
 const SERVER_IP = 'http://103.3.173.207:3501';
 var socket_io;
 var room_id = 0;
-var isConnected = true;
+var isConnected = false;
 var room_last_update = [];
 
 function doConnect(){
-    isConnected = true;
+    //isConnected = true;
     socket_io = io.connect(SERVER_IP);
 
     socket_io.on('connect', function () {
         console.log(socket_io.id+" socket connected ");
         var u_id = Ti.App.Properties.getString('u_id') || 0;
+        isConnected = true;
         if(room_id > 0){
             console.log('new_set_room2'+room_id);
             //socket_io.emit((OS_IOS)?'new_set_room':"set_room", room_id);
@@ -37,7 +38,7 @@ function doConnect(){
         Ti.App.fireEvent("doctor:refresh_patient_list");
     });
 
-    socket_io.on('socket:refresh_chatroom', function(param){
+    socket_io.on('socket:refresh_chatroom', function(param){ 
         console.log("event listener socket:refresh_chatroom");
         Ti.App.fireEvent("socket:refresh_chatroom", param);
     });

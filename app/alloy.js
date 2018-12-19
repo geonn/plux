@@ -361,9 +361,8 @@ Ti.App.addEventListener("resumed", function(e){
 	}
 	setTimeout(function(){
           push_redirect = false;
-          console.log("redirect as false");
-    }, 1000);
-	console.log("redirect false");
+          console.log("ALLOY redirect as false");
+    }, 2000); 
 });
 
 function pixelToDp(px) {

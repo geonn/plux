@@ -1,5 +1,5 @@
 var mainView = null;
-var time_offset = Ti.App.Properties.getString('time_offset') || 0;
+var time_offset = parseInt(Ti.App.Properties.getString('time_offset'))+0 || 0;
 
 exports.construct = function(mv){
 	mainView = mv;
@@ -399,8 +399,9 @@ exports.sync_time = function(time){
 exports.now = function(){
 	//var today = new Date();
 	console.log("now function");
-	console.log(Date.now()+" "+time_offset);
-	var today = new Date(Date.now()+time_offset);
+	console.log(Date.now()+parseInt(time_offset));
+	 
+	var today = new Date(Date.now()+parseInt(time_offset));
 	//today.setTime(today.getTime() + time_offset);
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; 

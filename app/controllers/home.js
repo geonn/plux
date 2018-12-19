@@ -570,8 +570,13 @@ function checkReminderToRate() {
 
 //checkReminderToRate();
 $.win.addEventListener("postlayout", function(){
-
+	
 });
+
+setTimeout(function(){
+      push_redirect = false;
+      console.log("redirect as false");
+}, 2000);
 
 var enablePush = require('enablePush');
     enablePush.pushNotification(received_push);
@@ -590,8 +595,8 @@ function received_push(res){
 				console.log(push_redirect+" true or false"+data.target);
 				var room_id = Ti.App.Properties.getString('room_id');
 
-				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && ≈){
-		redirect(data);
+				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
+					redirect(data);
 				}else if(target_page != data.target && push_redirect){
 						console.log( data.room_id+" notification room_id and local room_id "+room_id);
 						redirect(data);

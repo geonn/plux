@@ -443,6 +443,7 @@ function refresh(callback, firsttime){
 }
 var refreshing = false;
 var time_offset = common.now();
+//alert(time_offset+"NAN NAN check current time");
 function refresh_latest(param){
     /*if(room_id != param.room_id){
         console.log("set room id "+param.room_id);
@@ -456,7 +457,8 @@ function refresh_latest(param){
     console.log("new roomid"+room_id);
 
 	console.log(room_id+" refresh_latest "+refreshing);
-	if(!refreshing && time_offset < common.now()){
+	//alert(time_offset+" check time "+common.now()+" "+refreshing);
+	if(!refreshing && time_offset <= common.now()){
 		refreshing = true;
 		refresh(getLatestData);
 		time_offset = common.now();
