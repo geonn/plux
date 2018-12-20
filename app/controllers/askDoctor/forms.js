@@ -51,7 +51,7 @@ function sendMessage(){
 	}];
 
 	var id = model.saveArray(local_save);
-	console.log({u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id });
+	console.log(local_save);
 	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
 		socket.refresh_patient_list();
 		var res = JSON.parse(responseText);
@@ -60,10 +60,11 @@ function sendMessage(){
 		$.message.editable = true;
 		sending = false;
 		$.message.blur();
-		loading.finish();
-		closeWindow();
-		nav.navigateWithArgs("askDoctor/conversation", res.data);
-
+		setTimeout(function(){
+		    loading.finish();
+            closeWindow();
+            nav.navigateWithArgs("askDoctor/conversation", res.data);
+		}, 1000);
 	});
 }
 
