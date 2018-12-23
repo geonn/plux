@@ -341,7 +341,6 @@ function checkNewRoom(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
         var res = JSON.parse(responseText);
-        console.log(res.data.room_id+" room id");
         var room_id = res.data.room_id || "";
 
         if(room_id != ""){

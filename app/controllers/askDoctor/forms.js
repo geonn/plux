@@ -64,7 +64,7 @@ function sendMessage(){
 		    loading.finish();
             closeWindow();
             nav.navigateWithArgs("askDoctor/conversation", res.data);
-		}, 1000);
+		}, 2000);
 	});
 }
 
