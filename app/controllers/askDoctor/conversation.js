@@ -37,6 +37,7 @@ function saveLocal(param){
 	var id = model.saveArray([local_save]);
 	var api_param = {u_id: u_id, dr_id: dr_id, message: param.message, is_endUser:1, id: app_id, room_id: room_id };
 	if(param.format == "voice" || param.format == "photo"){
+		loading.start();
 		_.extend(api_param, {media: param.format, Filedata: param.filedata});
 	}
 	data = [{
