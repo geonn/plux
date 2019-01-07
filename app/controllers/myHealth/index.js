@@ -57,7 +57,6 @@ init();
 
 function init(){
 	var health_data_firsttime = Ti.App.Properties.getString('health_data_firsttime') || false;
-	console.log(health_data_firsttime+" health_data_firsttime check");
 	if(health_data_firsttime){
 	    render_menu();
 	}else{
@@ -69,8 +68,6 @@ function init(){
 function render_menu(){
 	var model = Alloy.createCollection("health");
 	var latest = model.getLatestByType();
-	console.log('latest data');
-	console.log(latest);
 	var pw = Ti.Platform.displayCaps.platformWidth;
 	var ldf = Ti.Platform.displayCaps.logicalDensityFactor;
 	var pwidth = (OS_IOS)?pw:parseInt(pw / (ldf || 1), 10);
@@ -87,14 +84,12 @@ function render_menu(){
 		var main_title = "";
 		if(found.length > 0){
 			for (var j=0; j < menus[i].fields.length; j++) {
-				console.log(found[0]);
 				if(menus[i].fields[j].graph_display){
 					main_title += (j == 0)?found[0]['field'+(j+1)]||0:"/"+found[0]['field'+(j+1)]||0;
 				}
 			};
 		}
 		main_title = (main_title == "")?0:main_title;
-		console.log(typeof $.menu.children[i]+" typoef $.menu.children[i]");
 		if(typeof $.menu.children[i] != "undefined"){
 			$.menu.children[i].children[2].text = main_title+" \n"+menus[i].measurement;
 		}else{
@@ -113,7 +108,6 @@ function render_menu(){
 }
 
 function navToGraph(e){
-	console.log(e.source.record);
 	nav.navigateWithArgs("myHealth/graph", e.source.record);
 }
 
@@ -152,19 +146,4 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	});
-	$.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }

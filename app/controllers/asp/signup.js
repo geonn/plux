@@ -22,7 +22,6 @@ function doAspSignup(){
 	        loading.finish();
 	    },
 	    callback: function(){
-	        console.log(nav);
 	        $.win.close();
 	        //nav.closeWindow($.win);
             var win = Alloy.createController("asp/signup2").getView();
@@ -40,7 +39,6 @@ function textFieldOnFocus(e){
 }
 
 function textFieldOnBlur(e){
-    console.log(e.source.value+" "+e.source.required);
     if(e.source.required && e.source.value == ""){
         //error_message += forms_arr[i].hintText+" cannot be empty\n";
         e.source.parent.backgroundColor = "#e8534c";
@@ -60,21 +58,3 @@ function textFieldOnBlur(e){
 $.btnBack.addEventListener('click', function(){ 
 	$.win.close(); 
 });  
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

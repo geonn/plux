@@ -6,9 +6,7 @@ function init(){
 	loading.start();
 	var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
-    //console.log(args);
 	API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, isRefresh: 0, corpcode: corpcode, keyword: args.keyword}}, function(responseText){
-	    //console.log(responseText);
 	    var result = JSON.parse(responseText);
 	    loadClinic(result.data || []);
 	});

@@ -19,11 +19,8 @@ function render_qr(first_view, inner_width){
     var AES = require('aes').CryptoJS;
     //generate private key
     var privateKey =  CryptoJS.SHA256("miku").toString();
-    console.log(privateKey);
     var text = JSON.stringify(param);
-    console.log(text);
     var encryptedData = AES.AES.encrypt(text, privateKey);
-    console.log(encryptedData.toString().length+" check here");
     var qrcodeView = userQR.createQRCodeView({
         width: inner_width/2,
         height: inner_width/2,
@@ -41,11 +38,9 @@ function render_ecard_list(data){
     var inner_top = -((inner_height - card_height) / 2) * 1.333;//inner_height * -0.5;
     var inner_left = -((inner_width - card_width) / 2) * 1.6;
     //$.tool_miku.top = (OS_IOS)?card_height+20:card_height+70;
-    console.log(card_width+" "+card_height+" card size"); //-200 -120
     var view_card = $.UI.create("View", {classes:['rounded', 'padding', 'bgblue'], width: card_width, height: card_height});
     
     $.main.add(view_card);
-    console.log(inner_width/2+" inner_width/2");
     var inner_view = $.UI.create("View", {classes:['bgblue'], width: inner_width, height: inner_height, top: inner_top, left: inner_left, transform: Ti.UI.create2DMatrix({rotate: 30})});
     view_card.add(inner_view);
     //var tooltip_mask = $.UI.create("View", {backgroundColor: "#8C000000", width: inner_width, height: inner_height, zIndex: 2});
@@ -146,18 +141,12 @@ function refresh(){
                     $.main.add(row);
                 }
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-            //console.log('got error message');
                 common.createAlert(res[0].message);
            }else{
                 for (var i=0; i < res.length; i++) {
                     render_ecard_list(res[i] || {});
                 };
-           }/*
-            var result = JSON.parse(responseText);
-            console.log(result);
-            for (var i=0; i < result.length; i++) {
-                render_ecard_list(result[i]);
-            };*/
+           }
         }, onfinish: function(){
             loading.finish();
         }
@@ -178,7 +167,6 @@ function zoomIn(e){
     var card_height = e.parent.parent.height;
     var inner_top = -e.parent.top;
     var inner_left = -e.parent.left;
-    console.log(inner_left+' inner_left '+card_height+" card_height"+card_width+" width");
     if(OS_IOS){
         e.parent.animate({transform: Ti.UI.create2DMatrix({rotate: 0}), duration: 1000});
         e.animate({transform: Ti.UI.create2DMatrix({rotate: 0}), width: card_width, height: card_height, top: inner_top, left:inner_left, duration: 1000});
@@ -206,7 +194,6 @@ function zoomOut(e){
         e.parent.animate({transform: Ti.UI.create2DMatrix({rotate: 30}), duration: 1000}, function(){
             e.zIndex = 1;
         });
-        console.log('a');
         e.animate({width: e.memory.width, height: e.memory.height, top: e.memory.top, left: e.memory.left, duration: 500}, function(){
             e.animate({transform: Ti.UI.create2DMatrix({rotate: e.memory.rotate})});
         });
@@ -238,10 +225,8 @@ function zoomInfo(e){
             guide_message_number++;
             updateToolTip();
         }
-    }else{  
-        console.log(this.children[0].children.length - 2+" this.children[0].length - 1");
+    }else{
         for (var j = this.children[0].children.length - 2; j >= 0; j = j - 2) {
-            console.log(this.children[0].children[j]);
             this.children[0].remove(this.children[0].children[j]);
         };
         this.zoom = false;
@@ -264,9 +249,7 @@ function zoomQr(e){
     }else{
         clearInterval(interval);
         e.source.removeAllChildren();
-        console.log('a1');
         var qr_image = $.UI.create("ImageView", {width: Math.floor(e.source.rect.width/2), touchEnabled: false, height: Math.floor(e.source.rect.width/2), image: "/images/qr_demo.png"});
-        console.log('a2');
         e.source.add(qr_image);
         interval = false;
     }
@@ -281,9 +264,7 @@ function zoomQr(e){
     }else{
         e.source.zoom = false;
         zoomOut(e.source);
-        console.log('c');
         e.source.children[0].animate({right: 10, bottom: 10, duration: 1000}, function(){
-            console.log('d');
             if(guide_numner <= 2){
                 guide_message_number++;
                 updateToolTip();
@@ -311,22 +292,4 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	}); 
-}
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }

@@ -32,25 +32,21 @@ var distance = function(lat1, lon1, lat2, lon2) {
 }
 
 var saveCurLoc = function(e) {
-	console.log("saveCurLoc");
     if (e.error) {
         alert('Location service is disabled. ');
         //COMMON.closeWindow($.location);
     } else {
-    	//console.log(e);
     	showCurLoc = true;
     	Ti.App.Properties.setString('latitude', e.coords.latitude);
     	Ti.App.Properties.setString('longitude', e.coords.longitude);
     	$.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
     	setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
-       //console.log(Ti.App.Properties.getString('latitude') + "=="+ Ti.App.Properties.getString('longitude'));
     }
     Ti.Geolocation.removeEventListener('location',saveCurLoc);
 }; 
 
 if (Ti.Geolocation.locationServicesEnabled) {
     Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-    console.log("1");
     Ti.Geolocation.addEventListener('location', saveCurLoc);
 } 
 
@@ -84,26 +80,19 @@ function centerMap(e){
 	var corpcode = Ti.App.Properties.getString('corpcode') || "";
 	var bounds = getMapBounds($.mapview.region);
 	var zoom_distance = distance(bounds.northWest.lat, bounds.northWest.lng, bounds.southEast.lat, bounds.southEast.lng);
-	console.log(last_zoom_distance+" "+zoom_distance);
 	var compare_zoom_distance = (last_zoom_distance.toFixed(1) !=  zoom_distance.toFixed(1))?true:false;
 	last_zoom_distance = zoom_distance;
 	var dist = distance($.mapview.region.latitude, $.mapview.region.longitude, compare_lat, compare_long);
 	if(compare_zoom_distance > 0.1 || e.filter){
-		console.log(dist+" zoom dist");
 		annotations = [];
 	}
-	//console.log(dist+" dist to refresh");
-	///console.log(e.filter);
 	if(dist > 0.3 || e.filter){
 		API.callByPost({url: "getClinicLocator3", params: {nw_latitude: bounds.northWest.lat, nw_longitude: bounds.northWest.lng, se_latitude: bounds.southEast.lat, se_longitude: bounds.southEast.lng, u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
 			if(compare_zoom_distance > 0.1){
 				$.mapview.removeAllAnnotations();
 			}
-		
-			//console.log(responseText);
 			var result = JSON.parse(responseText);
 			var data = result.data;
-			console.log(typeof data+" typeof data");
 			for (var i=0; i < data.length; i++) { 
 				addMarketToArray(data[i]); 
 			};
@@ -116,8 +105,6 @@ function centerMap(e){
 
 function addMarketToArray(pin){
     var found = _.where(annotations, {id: pin.id});
-    console.log(typeof found+" typeof found");
-    console.log(found.length);
     if(found.length <= 0){
         if(OS_IOS){
             var pin = {id: pin.id, latitude: pin.latitude, longitude: pin.longitude, title: pin.clinicName, subtitle: pin.add1+pin.add2, record: pin
@@ -191,16 +178,12 @@ function getDirection(){
 			Ti.Android.currentActivity.startActivity(intent); 
 		}else{
 			Ti.Platform.openURL(waze_url);
-			console.log(waze_url+" here");
 		}
 	} catch (ex) { 
-		console.log(ex);
-		console.log(marker);
 		if(OS_IOS){
 			Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&daddr='+marker.latitude+','+marker.longitude);
 		}else{
-		    console.log('geo:'+marker.latitude+','+marker.longitude+"?q="+marker.clinicName+" (" + marker.add1+marker.city+")");
-			var intent = Ti.Android.createIntent({
+		    var intent = Ti.Android.createIntent({
 				action: Ti.Android.ACTION_VIEW,
 				data: 'geo:'+marker.latitude+','+marker.longitude+"?q="+marker.clinicName+" (" + marker.add1+marker.city+")"
 			});
@@ -226,14 +209,12 @@ function closeView(){
 }
 
 function init(){
-    console.log("init");
 	$.detail.hide();
 	$.win.add(loading.getView());
 	$.view_category.width = platformWidth;
 	$.view_category.left = -platformWidth;
 	$.view_queue.width = platformWidth;
     $.view_queue.right = -platformWidth;
-	console.log("init 1");
 	loadPinCategory();
 	loadClinicList();
 }
@@ -251,9 +232,7 @@ function loadPinCategory(){
         var data = result.data || [];
             
         for (var i=0; i < data.length; i++) {
-            console.log(data[i]+' data[i]');
             var pin = _.where(pin_data, {name: data[i]});
-            console.log(pin);
             var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin[0]});
             var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
             var img_pin = $.UI.create("ImageView", {width: 30, height: 30, left:10, image: pin[0].icon, touchEnabled: false});
@@ -269,7 +248,6 @@ function loadPinCategory(){
 }
 
 function doSearch(e){
-    console.log(e.value);
     e.source.blur();
     nav.navigationWindow("clinic/search","","",{keyword: e.value});
 }
@@ -277,8 +255,7 @@ function doSearch(e){
 function loadQueue(){
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {corpcode: corpcode}}, function(responseText){
-           
-        console.log(responseText);
+        
         var result = JSON.parse(responseText);
         var data = result.data || [];
             
@@ -302,7 +279,6 @@ function loadClinicList(){
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
            
-        console.log(responseText);
         var result = JSON.parse(responseText);
         var data = result.data || [];
             
@@ -326,7 +302,6 @@ function loadClinicList(){
 var show_category = false;
 var duration = 200;
 function openCategory(){
-	console.log('openCategory');
 	$.search.blur();
 	if (show_category){
 		moveTo = -platformWidth;
@@ -380,8 +355,6 @@ function navToClinic(e){
         })]
     })
     };
-    console.log("check here");
-    console.log(pin);
     annotations.push(pin);
     render_annotation(pin);*/
     
@@ -401,21 +374,3 @@ $.mapview.addEventListener("regionchanged", throttle_centerMap);
 $.mapview.addEventListener("click", pinClicked);
 
 Ti.App.addEventListener("clinic/index:navTo", navToClinic);
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

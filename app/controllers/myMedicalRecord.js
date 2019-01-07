@@ -63,7 +63,6 @@ function recordClicked(e){
 }
 
 function keyInPin(ic, ex){
-    console.log(ic);
     var view = $.UI.create("View", {classes:['wfill','hsize','vert'],left:10, right:10, zIndex: 9, backgroundColor: "#ccc"});
     var text = $.UI.create("Label", {classes:['wfill','hsize','h6','padding'], text: "Please key in your NRIC/Passport No. to open this file."});
     var textfield = $.UI.create("TextField", {classes:['wfill','padding'],top:0, height: 42});
@@ -78,7 +77,6 @@ function keyInPin(ic, ex){
         $.win.remove(view);
     });
     ok_button.addEventListener("click", function(e){
-        console.log(textfield.value+" "+ic);
         if(textfield.value == ic){
             openAttachment(ex);
         }else{
@@ -95,7 +93,6 @@ function keyInPin(ic, ex){
 }
 
 function openAttachment(e){
-    console.log(e.source.record);  
     var file_format = e.source.record.attachment.substr(-3);
     if(file_format == "pdf"){
         openURLPDF(e.source.record);
@@ -116,7 +113,6 @@ function openURLPDF(e) {
     loading.start();
     var filename = e.attachment.split("/");
     filename = filename[filename.length - 1];
-    console.log(filename);
     var appFile;
     
     if(OS_ANDROID) {
@@ -166,11 +162,9 @@ function viewPDF(appfilepath) {
 
 function deleteRecord(e){
     
-    console.log(e.source.parent.record);
     popup({title: "Delete",message: "Are you sure to delete this record?",callback: function(){
         API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
             var res = JSON.parse(responseText);
-            console.log(res);
             refresh();
         });
     }});
@@ -187,7 +181,6 @@ function refresh(){
 	API.callByPost({url: "getMedicalAttachmentList", new: true, domain: "FREEJINI_DOMAIN", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
         var arr = res.data || [];
-        console.log(arr);
         render_listing(arr);
         loading.finish();
 		/*var model = Alloy.createCollection("medicalRecordsV2");
@@ -219,22 +212,6 @@ if(OS_ANDROID){
 	$.btnBack.addEventListener('click', function(){ 
 		$.win.close(); 
 	});
-	
-	$.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }
 
 Ti.App.addEventListener('myMedicalRecord:refresh', refresh);
@@ -242,5 +219,4 @@ Ti.App.addEventListener('myMedicalRecord:refresh', refresh);
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('myMedicalRecord:refresh', refresh);
 	$.destroy();
-	console.log("window close");
 });

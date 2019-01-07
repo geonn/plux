@@ -24,7 +24,6 @@ function refresh(){
                 view_container.add(label);
                 $.listing.add(row);
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-            //console.log('got error message');
                 common.createAlert(res[0].message);
            }else{
                 render(res || []);
@@ -94,7 +93,6 @@ function render(data){
 
 function viewDetails(e){
 	var nav = require('navigation');
-	console.log("e:"+JSON.stringify(e.source));
 	nav.navigateWithArgs("inpatient_detail", {
 		params: e.source
 	});
@@ -106,21 +104,3 @@ function closeWindow(){
 $.win.addEventListener('close',function(e){
 	closeWindow();
 });
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

@@ -1,14 +1,11 @@
 function navigationWindow (target, checkAuth, callback, param){
-	console.log(target+" nav to ");
 	if(checkAuth == 1){
 		var isver = Ti.App.Properties.getString('isver');
-		console.log(isver+" isver no");
 		
 		if(isver == "true" || isver > 0){
 			
 		}else{
 			var win = Alloy.createController("asp/_email_verify", {callback: function(e){
-			     console.log("ready to nav to new win");
 			     navigationWindow (target, checkAuth, callback, param);
 			    } 
 			}).getView(); 
@@ -42,7 +39,6 @@ function navigationWindow (target, checkAuth, callback, param){
 			}
 			
 		}else{
-			console.log("auth checked going to "+target);
 			var win = Alloy.createController(target).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
@@ -65,7 +61,6 @@ function navigationWindow (target, checkAuth, callback, param){
 				Alloy.Globals.navMenu.openWindow(win,{animated:true});
 			}
 		}else if(typeof param !== undefined && param !== null){
-			console.log("here pls"); 
 			var win = Alloy.createController(target, param).getView();
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 
@@ -73,7 +68,6 @@ function navigationWindow (target, checkAuth, callback, param){
 				Alloy.Globals.navMenu.openWindow(win,{animated:true});
 			}
 		}else{ 
-			console.log("no!!");
 			var win = Alloy.createController(target).getView(); 
 			if(Ti.Platform.osname == "android"){ 
 				win.open(); 

@@ -12,7 +12,6 @@ exports.checkAndUpdate = function(e){
 
 function callback_download(e){
 	var changelog = e.data.change_log.replace("[br]", "\n");
-	console.log(changelog);
 	var dialog = Ti.UI.createAlertDialog({
 	  cancel: 1,
 	  buttonNames: ['Download', 'Cancel'],
@@ -25,7 +24,6 @@ function callback_download(e){
 	dialog.addEventListener("click", function(ex){
 		if(ex.index == 0){
 			try {
-				console.log(e.data);
 				Ti.Platform.openURL(e.data.url);/*
 				var intent = Ti.Android.createIntent({
 				    action: Ti.Android.ACTION_VIEW,

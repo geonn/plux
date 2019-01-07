@@ -52,6 +52,5 @@ function update_loading_text(e){
 $.rocket.addEventListener("close", function(){
 	Ti.App.removeEventListener('app:update_loading_text', update_loading_text);
 	$.destroy();
-	console.log("window close");
 });
 

@@ -25,16 +25,12 @@ function init(){
 			}else{ 
 				
 				if(OS_IOS){
-				    console.log("index home chekcin");
 					var navMenu = Titanium.UI.iOS.createNavigationWindow();
 					var win = Alloy.createController("home").getView();
 					navMenu.window = win;
 					Alloy.Globals.navMenu = navMenu;
-					console.log("stoped?");
-					console.log(Alloy.Globals.navMenu);
 					Alloy.Globals.navMenu.open();
 				}else{
-					console.log('start home');
 					var win = Alloy.createController("home").getView();
 					win.open();
 				}

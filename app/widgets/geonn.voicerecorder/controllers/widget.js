@@ -38,8 +38,19 @@ function stopRecording(e){
 		if(OS_IOS){
 			Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_SOLO_AMBIENT;
 		}
-		if(sec > 1)
-			args.record_callback({message: audioFile.nativePath, format:"voice", filedata: audioFile.read()});
+		if(sec > 1){
+            console.log(audioFile.nativePath);
+            var filename = audioFile.nativePath.split('/').pop();
+            var folder = Titanium.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, args.room_id);
+            if(!folder.exists()){
+                folder.createDirectory();
+            }
+            var file_temp = Titanium.Filesystem.getFile(folder.resolve(), filename);
+            //var file_temp = Titanium.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
+            file_temp.write(audioFile.read());
+            console.log(file_temp.nativePath);
+            args.record_callback({message: file_temp.nativePath, format:"voice", filedata: file_temp.read()});
+        }
 		//$.message_bar.animate({right: 50, duration: 30});
 		$.text_area.width = 0;
 		$.timer_text.hide();

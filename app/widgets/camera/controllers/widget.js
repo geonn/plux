@@ -1,19 +1,14 @@
 var args = {};
 
 $.init = function (arg) {
-	console.log(args);
 	$.image_preview.image = WPATH('images/upload_arrow.png');
-	console.log(WPATH('images/upload_arrow.png')+" check image path");
 	args = arg;
 };
 
 function camera_callback(event){
-    console.log((1024 / event.media.width)+" "+(1024 / event.media.height));
     var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
     var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
     var blob = event.media;
-    console.log(" "+event.media.width+" "+event.media.height);
-    console.log(new_width+" "+new_height);
     blob = blob.imageAsResized(new_width, new_height);
     $.image_preview.height = 120;
     $.image_preview.width = Ti.UI.SIZE;
@@ -67,7 +62,6 @@ function popCamera(e){
 	    if(ex.index == 0) { //if first option was selected
 	        //then we are getting image from camera]
 	        if(Ti.Media.hasCameraPermissions()){
-        		console.log("Success to open camera");
 		        showCamera();       			        	
 	        }else{
 		        Ti.Media.requestCameraPermissions(function(request_e){

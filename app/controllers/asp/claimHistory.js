@@ -5,7 +5,6 @@ var nav = require('navigation');
 var loading = Alloy.createController("loading");
 var corpcode = Ti.App.Properties.getString('corpcode');
 var empno = Ti.App.Properties.getString('empno');
-console.log(args);
 if(Ti.Platform.osname == "android"){
 	$.pageTitle.text = title;
 }else{
@@ -21,7 +20,6 @@ function init(){
     	   var res = JSON.parse(responseText);
 		   if(res.length == null || res.length <= 0){
 		   }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-			//console.log('got error message');
 		   		common.createAlert(res[0].message);
 		   }else{
 				render(res || []);
@@ -43,8 +41,6 @@ function render(data){
     data.reverse();
     for (var i=0; i < data.length; i++) {
        
-        console.log(args.benefittype+" "+data[i].category);
-        console.log(_.contains(args.benefittype.split("/"), data[i].category));
         if(_.contains(args.benefittype.split("/"), data[i].category) || true){
             var left_indicator_bg_color = (data[i].status == "Pending")?"#fba81c":(data[i].status == "Approved")?"#55a939":"#e8534c";
             var row = $.UI.create("View", {classes:['wfill','padding','rounded'], bottom: (data.length -1 == i)?10:0, height: 120, backgroundColor: left_indicator_bg_color, record: data[i]});
@@ -135,22 +131,4 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	});
-}
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }

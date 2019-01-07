@@ -77,7 +77,6 @@ function textFieldOnBlur(e){
 }
 
 function checkRequired(obj){
-    console.log(obj.value+" check value"+obj.required);
     if(obj.required && obj.value == ""){
         error_message += obj.hintText+" cannot be empty\n";
         obj.parent.backgroundColor = "#e8534c";
@@ -92,15 +91,12 @@ function doSubmit(){
     var error_message = "";
     for (var i=0; i < forms_arr.length - 1; i++) {
         
-        console.log(forms_arr[i].id+" "+forms_arr[i].children[0].value);
         if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
             _.extend(params, {Filedata: forms_arr[i].children[2].filedata});
         }else if(forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached){
             error_message += "Please upload your referral letter\n";
         }else{
-            console.log(forms_arr[i].children[0].value+" "+forms_arr[i].children[0].required);
             if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
-                console.log(_.isUndefined(forms_arr[i].children[0].value)+" _.isEmpty(forms_arr[i].children[0].value)");
                 error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
             }else{
                 params[forms_arr[i].id] = forms_arr[i].children[0].value.trim();
@@ -117,10 +113,8 @@ function doSubmit(){
         return;
     }
     params["agreets"] = 1;
-    console.log(params);
     loading.start();
     API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
-            console.log(responseText);
             var result = JSON.parse(responseText);
             if(result.status == "error"){
                 common.createAlert("Error", result.data);

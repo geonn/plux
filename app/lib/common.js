@@ -9,7 +9,6 @@ exports.deconstruct = function(){
 };
 
 exports.createAlert = function(tt,msg, callback){
-    console.log(typeof callback);
 	var box = Titanium.UI.createAlertDialog({
 		title: tt,
 		ok: 'OK',
@@ -277,7 +276,6 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
         left:3 + checkboxspecs.width * 0.5,
         opacity:0
     }) ;
-    console.log(checkboxspecs);
     var viw = Ti.UI.createView(checkboxspecs);
     specs.width =  checkboxspecs.width * 1.5;
     specs.height = checkboxspecs.height * 1.5;
@@ -297,10 +295,8 @@ exports.createCheckbox = function(specs,checkboxspecs,image) {
     outerview.add(clickview);
 
     function togglecheck () {
-    	console.log(viw.checked+" ehre");
         if(!viw.checked) {
             viw.checked = true;
-            console.log(viw.parent.parent.id+" what id");
             viw.parent.parent.value = "1";
             imageView.opacity = 1; 
         }
@@ -392,14 +388,11 @@ exports.sync_time = function(time){
     	 
     	time_offset = s-l; 
     	Ti.App.Properties.setString('time_offset', time_offset);
-    	console.log(s_date+" "+time_offset);
 	}
 };
 
 exports.now = function(){
 	//var today = new Date();
-	console.log("now function");
-	console.log(Date.now()+parseInt(time_offset));
 	 
 	var today = new Date(Date.now()+parseInt(time_offset));
 	//today.setTime(today.getTime() + time_offset);

@@ -12,13 +12,6 @@ function loadPage(){
 	Ti.App.removeEventListener('loadPage',loadPage);
 }
 var data = JSON.parse(Ti.App.Properties.getString('dependent'));
-console.log(data.length);
-/*for (var i=0; i < data.length; i++) {
-	console.log(i);
-  	var profile_view = Alloy.createController("_profile_view", {profile_data: data[i]}).getView(); 	
-  	$.main.addView(profile_view);
-};
-*/
 var profile_view = Alloy.createController("_profile_view", {profile_data: data}).getView();  
 $.main.addView(profile_view);
 
@@ -29,7 +22,6 @@ function changePassword(){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		console.log('close!!');
 		nav.closeWindow($.asp_profile); 
 	}); 
 }
@@ -54,23 +46,4 @@ $.moreBtn.addEventListener('click', function(e){
 $.asp_profile.addEventListener("close", function(){
 	Ti.App.removeEventListener('loadPage', loadPage);
 	$.destroy();
-	console.log("window close");
 });
-
-if(Ti.Platform.osname == "android"){
-    $.asp_profile.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

@@ -38,12 +38,10 @@ function loadDetail(data){
         loading.finish();
         return;
     }
-    console.log(data['medication']);
     var key_to_load = ['medication_amt', 'injection_amt','labtest_amt','xray_amt', 'surgical_amt', 'extraction_amt', 'fillings_amt', 'scaling_amt', 'others_amt', 'bps', 'bpd', 'pulse','diagnosis', 'consultation_amt'];
     for (var i=0; i < key_to_load.length; i++) {
        // $[key_to_load[i]].text = args[key_to_load[i]] || $[key_to_load[i]].text;
         if(typeof data[key_to_load[i]] != "undefined"){
-            console.log(data[key_to_load[i].slice(0, -4)]+" "+key_to_load[i].slice(0, -4));
             $[key_to_load[i]].parent.data = data[key_to_load[i].slice(0, -4)];
             $[key_to_load[i]].text = (data[key_to_load[i]])?($[key_to_load[i]].text||"")+" "+data[key_to_load[i]]:"-";
         }
@@ -55,7 +53,6 @@ function loadDetail(data){
 function view_detail(e){
     e.source.backgroundColor = "#f58505";
     e.source.animate({backgroundColor: "#fff", duration: 500});
-    console.log(e.source.data);
     if(e.source.data != "" && typeof e.source.data != "undefined"){
         alert(e.source.data);
     }
@@ -74,21 +71,3 @@ if(Ti.Platform.osname == "android"){
 
 $.win.addEventListener("close", function(){
 });
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

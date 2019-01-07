@@ -349,10 +349,12 @@ var win;
 //var redirect = true;
 var target_page = "";
 Ti.App.addEventListener("pause", function(e){
-    redirect = true;
-    console.log("redirect true");
-	win = Ti.UI.createWindow({backgroundColor: "red"});
-	win.open();
+    push_redirect = true;
+    socket.disconnect();
+    if(OS_IOS){
+	   win = Ti.UI.createWindow({backgroundColor: "red"});
+	   win.open();
+	}
 });
 
 Ti.App.addEventListener("resumed", function(e){
@@ -360,9 +362,9 @@ Ti.App.addEventListener("resumed", function(e){
 		win.close();
 	}
 	setTimeout(function(){
-          push_redirect = false;
-          console.log("ALLOY redirect as false");
-    }, 2000); 
+        push_redirect = false;
+    }, 2000);
+    socket.connect();
 });
 
 function pixelToDp(px) {

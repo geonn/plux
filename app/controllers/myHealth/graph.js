@@ -15,13 +15,10 @@ function init(){
 			field_graph.push(args.fields[i]);
 		}
 	};
-	console.log("check here");
-	console.log(field_graph);
 	refresh({});
 }
 
 function adjust_date_indicator(e){
-	console.log(e.source.action);
 	if(perior_type == "day"){
 		select_month = (e.source.action == "minus")?moment(select_month).add(-1, 'M').format("YYYY-MM"):moment(select_month).add(1, 'M').format("YYYY-MM");
 	}else{
@@ -44,7 +41,6 @@ function changeDateSorting(e){
 
 function refresh(e){
 	if(typeof e.height != "undefined"){
-		console.log(e.height+" inner height");
 		$.webview.height = e.height;
 	}
 	if(perior_type == "day"){
@@ -57,21 +53,18 @@ function refresh(e){
 	temp_graph_arr.push({type: "string", name: perior_type});
 	for (var l=0; l < field_graph.length; l++) {
 		temp_graph_arr.push({type: field_graph[l].type, name: field_graph[l].name});
-	}	
+	}
 	for (var j=0; j < data.length; j++) {
 		var temp_arr = [];
-		
+
 		temp_arr.push(data[j].day);
-		
+
 		for (var k=0; k < field_graph.length; k++) {
 			temp_arr.push(parseInt(data[j]['field'+(k+1)]));
-			
+
 		};
 		data_arranged.push(temp_arr);
 	}
-	console.log('data for render graph');
-	console.log(data_arranged);
-	console.log(temp_graph_arr);
 	render_tableview(data);
 	Ti.App.fireEvent("graph:load_data", {data: data_arranged, fields: temp_graph_arr, hAxis: perior_type, vAxis: args.measurement});//data: data});
 }
@@ -89,20 +82,16 @@ function render_tableview(data){
 		row.add(view_container);
 		arr.push(row);
 	};
-	console.log("what data inside");
-	console.log(arr);
 	$.tbl.setData(arr);
 }
 
 function transformFunction(transform){
 
 	var main_title = "";
-	console.log(transform);
 	for (var k=0; k < field_graph.length; k++) {
 		main_title += (k == 0)?transform['field'+(k+1)]:"/"+transform['field'+(k+1)];
 	}
 	main_title += " "+args.measurement;
-	console.log(main_title);
     transform.main_title = main_title;
     transform.sub_title = moment(transform.date).format("DD-MM-YYYY hh:mm A");
     return transform;
@@ -115,7 +104,7 @@ $.win.addEventListener("close", function(e){
 });
 
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.win);
 	});
 }

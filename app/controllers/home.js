@@ -21,13 +21,9 @@ $.shadow_header.hide();
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
 
-	console.log(new_menu.length+" new_menu checkserviceByCorpcode");
 	if(corpcode != "null"){
-		console.log(corpcode+" corpcode");
 		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){
 			var res = JSON.parse(responseText);
-			console.log('why no response?');
-			console.log(res);
 			if(res.status == "success"){
 				var takeout = res.data;
 				for (var i=0; i < takeout.length; i++) {
@@ -40,7 +36,6 @@ function checkserviceByCorpcode(){
 				};
 
 			}
-			console.log(new_menu.length+" new_menu after checkserviceByCorpcode");
 			render_menu();
 		});
 	}else{
@@ -67,8 +62,6 @@ function render_menu(){
      var pwidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10));
 	for (var i=0; i < new_menu.length; i++) {
 	    var cell_width = Math.floor(pwidth/2);
-	    console.log(cell_width);
-	    console.log(Math.ceil(cell_width*0.333));
 		var view = $.UI.create("View", {classes:['small_padding'], borderWidth: 3, borderColor: "#ddd", width: cell_width - 10, borderRadius: (cell_width-10)/2, height: (cell_width-10), records: new_menu[i]});//Math.ceil(cell_width*0.666)
 		var img = $.UI.create("ImageView", {classes:['wsize'], height: cell_width, touchEnabled: false, image: new_menu[i].image_path});
 		var view_2 = $.UI.create("View", {zIndex: 10, touchEnabled: false, classes:['wsize','hsize','vert']});
@@ -81,7 +74,6 @@ function render_menu(){
 		var img_height = 0;
 		img.addEventListener("postlayout", function(e){
 			img_height = e.source.parent.rect.height;
-			console.log(img_height+" img_height");
 			setTimeout(function(ex){
 				e.source.parent.add($.UI.create("View", {classes:['wfill','hfill'],touchEnabled: false , height: img_height, zIndex: 10, zIndex: 9,  backgroundColor: "#30000000"}));
 			}, 200);
@@ -135,7 +127,7 @@ function changeBackground(){
     var today = new Date();
     var hours = today.getHours();
     var background_img = (hours > 9)?((hours > 17)?"/images/background3.jpg":"/images/background2.jpg"):"/images/background1.jpg";
-    console.log(background_img+" "+hours);
+
 
     $.daily_background.setImage(background_img);
     if(OS_IOS){
@@ -148,7 +140,6 @@ function changeBackground(){
 /**********				init				*************/
 function init(){
     changeBackground();
-	console.log("init start");
 	$.win.add(loading.getView());
 	loading.start();
 	checkserviceByCorpcode();
@@ -163,9 +154,7 @@ function init(){
 
 function syncFromServer(){
 	loading.start();
-	console.log("syncFromServer");
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	console.log(u_id+' uid');
 	if(u_id == 0){
 	    loading.finish();
 		return;
@@ -199,8 +188,6 @@ function syncFromServer(){
 }
 
 function updateNotification(e){
-	console.log("updateNotification");
-	console.log(e);
 	var model = Alloy.createCollection(e.model);
 	var unread_no = model.getCountUnread();
 	if(e.target == "helpline"){
@@ -208,7 +195,7 @@ function updateNotification(e){
 	}else{
 		$.label_notification.text = unread_no;
 		if(OS_IOS){
-			Ti.UI.setAppBadge(unread_no);
+			Ti.UI.iOS.setAppBadge(unread_no);
 		}
 	}
 }
@@ -264,7 +251,6 @@ function refreshHeaderInfo(){
 }
 
 function redirect(e){
-	console.log("redirect to "+e.target);
 	   nav.navigationWindow(e.target,"","", e);
 }
 
@@ -280,8 +266,6 @@ function navWindow(e){
 		nav.navigationWindow(source.mod+"/index");
 	}else if(source.mod == "clinicLocator"){
 		var memno = Ti.App.Properties.getString('memno') || "";
-		//var hasLocationPermissions = Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE);
-		//console.log('Ti.Geolocation.hasLocationPermissions', hasLocationPermissions);
 		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 			if (e.success) {
 				if(memno == ""){
@@ -332,7 +316,6 @@ function navWindow(e){
 			nav.navigationWindow("plux_profile");
 		}
 	}else{
-		console.log(source.target+" target");
 		nav.navigationWindow(source.mod);
 	}
 }
@@ -375,7 +358,6 @@ function logoutUser(){
 		Alloy.Globals.navMenu.close();
 		Alloy.Globals.navMenu = null;
 	}else{
-		console.log("window sudah close");
 		$.win.close();
 	}
 }
@@ -419,7 +401,6 @@ function contacts(ex) {
 
 	// The new cross-platform way to request permissions
 	Ti.Contacts.requestContactsPermissions(function(e) {
-		console.log('Ti.Contacts.requestContactsPermissions', e);
 
 		if (e.success) {
 
@@ -499,7 +480,6 @@ function requestLocationPermissions(authorizationType, callback) {
 var header_height = 0;
 
 $.scrollview.addEventListener("scroll", function(e){
-	//console.log(e.x+" "+Math.ceil(pixelToDp(e.y))+" "+menu_top);
 	if(e.x > 0){
 		return;
 	}
@@ -522,7 +502,6 @@ init();
 function checkReminderToRate() {
     var now = new Date().getTime();
     var remindToRate = Ti.App.Properties.getString('RemindToRate');
-    console.log(remindToRate);
     if (!remindToRate) {
         Ti.App.Properties.setString('RemindToRate', now);
     }
@@ -569,12 +548,11 @@ function checkReminderToRate() {
 
 //checkReminderToRate();
 $.win.addEventListener("postlayout", function(){
-	
+
 });
 
 setTimeout(function(){
       push_redirect = false;
-      console.log("redirect as false");
 }, 2000);
 
 var enablePush = require('enablePush');
@@ -582,8 +560,6 @@ var enablePush = require('enablePush');
 function received_push(res){
 
 		if (res.error) {
-
-				console.log('SOBYTES IOS PUSH ERROR: ', res.message);
 				return;
 
 		}else{
@@ -591,13 +567,11 @@ function received_push(res){
 				//data = {target: "chatroom", dr_id: 144, room_id: 10648, u_id: 8347, created: "2018-11-29 20:05:04", updated: "2018-11-29 20:05:04", status: 5};
 				//data = {target: "askDoctor/conversation", id: 10843, room_id: 10843, u_id: 8347, created: "2018-12-17 14:41:39", updated: "2018-12-17 14:41:39", dr_id: 144};
 				eval("Ti.App.fireEvent('"+data.target+":refresh')");
-				console.log(push_redirect+" true or false"+data.target);
 				var room_id = Ti.App.Properties.getString('room_id');
 
 				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
 					redirect(data);
 				}else if(target_page != data.target && push_redirect){
-						console.log( data.room_id+" notification room_id and local room_id "+room_id);
 						redirect(data);
 				}else {
 						syncFromServer();
@@ -606,23 +580,6 @@ function received_push(res){
 }
 
 $.win.addEventListener("open", function(){
-     if(OS_ANDROID){
-         if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 2000);
-              socket.connect();
-              syncFromServer();
-            };
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-                console.log("redirect true");
-            };
-        }
-
          if (permissionsToRequest.length > 0) {
 
             Ti.Android.requestPermissions(permissionsToRequest, function(e) {
@@ -631,38 +588,22 @@ $.win.addEventListener("open", function(){
 
                 if (e.success) {
 
-                    console.log("SUCCESS");
-
                 } else {
 
-                    console.log("ERROR: " + e.error);
 
                 }
 
             });
 
         }
-    }
  });
 
 function onResumed() {
     syncFromServer();
-		setTimeout(function(){
-					push_redirect = false;
-					console.log("redirect as false");
-		}, 2000);
-    socket.connect();
-}
-
-function onPause(){
-		push_redirect = true;
-    console.log("onPause?");
-    socket.disconnect();
 }
 
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('resumed', onResumed);
-	Ti.App.removeEventListener('pause', onPause);
 	Ti.App.removeEventListener("getUserInfo", getUserInfo);
 	Ti.App.removeEventListener('logout', logoutUser);
 	Ti.App.removeEventListener('updateNotification', updateNotification);
@@ -670,7 +611,6 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo);
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode);
 	$.destroy();
-	 console.log("all event closed");
 });
 
 $.win.addEventListener("postlayout", function(){
@@ -681,7 +621,6 @@ $.win.addEventListener("postlayout", function(){
 Ti.App.addEventListener("getUserInfo", getUserInfo);
 Ti.App.addEventListener('logout', logoutUser);
 Ti.App.addEventListener('resumed', onResumed);
-Ti.App.addEventListener('pause', onPause);
 Ti.App.addEventListener('updateNotification', updateNotification);
 Ti.App.addEventListener('updateMenu', checkserviceByCorpcode);
 Ti.App.addEventListener('updateHeader', refreshHeaderInfo);

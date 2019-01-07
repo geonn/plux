@@ -4,9 +4,6 @@ var empno = Ti.App.Properties.getString('empno');
 var memno = Ti.App.Properties.getString('memno');
 var name = Ti.App.Properties.getString('fullname');
 var dependent = JSON.parse(Ti.App.Properties.getString('dependent'));
-console.log("check here dependent");
-console.log(dependent);
-console.log(dependent.name);
 var loading = Alloy.createController('loading'); 
 var error_message = "";
 
@@ -22,7 +19,6 @@ function textFieldOnBlur(e){
 }
 
 function checkRequired(obj){
-    console.log(obj.value+" check value"+obj.required);
     if(obj.required && obj.value == ""){
         error_message += obj.hintText+" cannot be empty\n";
         obj.parent.backgroundColor = "#e8534c";
@@ -36,15 +32,12 @@ function doSubmit(){
     var params = {};
     var error_message = "";
     for (var i=0; i < forms_arr.length - 1; i++) {
-        console.log(forms_arr[i].id+" "+forms_arr[i].children[0].value);
         if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
             _.extend(params, {Filedata: forms_arr[i].children[2].filedata});
         }else if(forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached){
             error_message += "Please upload your referral letter\n";
         }else{
-            console.log(forms_arr[i].children[0].value+" "+forms_arr[i].children[0].required);
             if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
-                console.log(_.isUndefined(forms_arr[i].children[0].value)+" _.isEmpty(forms_arr[i].children[0].value)");
                 error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
             }else{
                 params[forms_arr[i].id] = forms_arr[i].children[0].value;
@@ -56,10 +49,9 @@ function doSubmit(){
         return;
     }
     params["u_id"] = Ti.App.Properties.getString('u_id');
-    console.log(params);
     loading.start();
     API.callByPost({url: "uploadMedicalRecords", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
-        console.log(responseText);
+    
         var result = JSON.parse(responseText);
         
         var dialog = Ti.UI.createAlertDialog({
@@ -81,9 +73,6 @@ function doSubmit(){
 }
 
 function popout(e){
-    console.log(e.source.data);
-    console.log(e.source.data.length);
-    console.log(e.source.option_name);
     if(e.source.data.length == null || e.source.data.length <= 0){
         alert("Sorry, the "+e.source.children[0].hintText+" listing is empty. Please contact our helpdesk for help.");
         return;
@@ -99,7 +88,6 @@ function popout(e){
         
     dialog.show(); 
     dialog.addEventListener("click", function(ex){
-        console.log(ex.index+" "+ex.cancel);
         if((OS_IOS)?ex.cancel != ex.index:!ex.cancel){
             e.source.children[0].children[0].text = options_arr[ex.index];
             e.source.children[0].value = e.source.data[ex.index][e.source.option_key];
@@ -120,7 +108,6 @@ function loadComboBox(e){
     API.callByGet({url: e.source.url, params: params }, {
         onload: function(responseText){
             var result = JSON.parse(responseText);
-            console.log(result);
             e.source.data = result;
         }, onfinish: function(){
             e.source.opacity = 1;
@@ -136,12 +123,9 @@ function loadComboBox(e){
  Upload file
  * */
 function camera_callback(event){
-    console.log((1024 / event.media.width)+" "+(1024 / event.media.height));
     var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
     var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
     var blob = event.media;
-    console.log(" "+event.media.width+" "+event.media.height);
-    console.log(new_width+" "+new_height);
     blob = blob.imageAsResized(new_width, new_height);
     $.image_preview.image = blob;
     $.image_preview.parent.filedata = blob;
@@ -151,22 +135,6 @@ function camera_callback(event){
 
 
 if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-              socket.disconnect();
-            }; 
-        }
-    });
-
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	});

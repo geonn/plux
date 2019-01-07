@@ -1,6 +1,5 @@
 var args = arguments[0] || {};  
 var loading = Alloy.createController("loading");
-console.log($.win);
 $.win.add(loading.getView());
 loading.start();
 	
@@ -12,7 +11,6 @@ function loadPage(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
 	var memno = Ti.App.Properties.getString('memno');//"AGIL00005";//
 	var empno = Ti.App.Properties.getString('empno');
-	console.log(isver+" "+corpcode+" "+memno+" "+empno);
 	if(isver == "true" || isver > 0){
 		$.claimContainer.show();
 		//API.claimInfo({memno : memno, corpcode : corpcode});
@@ -59,7 +57,6 @@ Ti.App.addEventListener("data_loaded", init);
 
 function loadIfins(ifins){
 	ifins = ifins[0];
-	console.log(ifins);
 	$.EmpIns.text = ifins.EmpIns;
 	$.SpouseIns.text = ifins.SpouseIns;
 	$.ChildIns.text = ifins.ChildIns;
@@ -119,20 +116,3 @@ if(Ti.Platform.osname == "android"){
 $.win.addEventListener("close", function(){
 	$.destroy();
 });
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

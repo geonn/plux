@@ -69,9 +69,7 @@ function displayList(){
 		loading.finish(); 
 	}else{
 		notificationList.forEach(function(entry) {
-			console.log(entry.is_read+" entry.is_read");
 			var unread_bg = (entry.is_read == 1)?"#ffffff":"#cccccc";
-			console.log(unread_bg);
 			var row = $.UI.create("TableViewRow", {classes:['hsize','wfill'], record: entry, backgroundSelectedColor: "#FFE1E1", backgroundColor: unread_bg});
 			var contentView = $.UI.create('View', {classes: ['vert','hsize','wfill', 'padding'], touchEnabled: false});
 			var label_subject = $.UI.create("Label", {classes:['themeColor', 'wfill', 'h5', 'bold', 'hsize'], maxLines:3, touchEnabled: false, text: entry.subject || ""});
@@ -88,7 +86,6 @@ function displayList(){
 			row.addEventListener("click", function(e){
 				var source = e.source.record;
 				e.source.backgroundColor = "#ffffff";
-				console.log(source);
 				notificationModel.setRead(e.source.record.id);
 				nav.navigationWindow(source.target,"","", source);
 			});
@@ -225,7 +222,6 @@ function downloadBrochure(content){
 			    $.bigView.remove(indView); 
 			    
 				if(Ti.Platform.osname == "android"){
-					console.log("file return : "+file.getNativePath());
 					PDF.android_launch(file);
 				}else{
 					
@@ -284,7 +280,6 @@ function downloadBrochure(content){
 									"status"	  : 2,
 									"id" : content.source
 								};
-								console.log(param);
 								API.callByPost({url:"deleteNotification", params: param}, function(responseText){
 									var res = JSON.parse(responseText);  
 									if(res.status == "success"){  
@@ -320,23 +315,4 @@ function downloadBrochure(content){
 $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener('displayRecords', displayList);
 	$.destroy();
-	console.log("window close");
 });
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
-}

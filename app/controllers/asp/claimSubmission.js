@@ -19,7 +19,6 @@ function textFieldOnBlur(e){
 }
 
 function checkRequired(obj){
-    console.log(obj.value+" check value"+obj.required);
     if(obj.required && obj.value == ""){
         error_message += obj.hintText+" cannot be empty\n";
         obj.parent.backgroundColor = "#e8534c";
@@ -35,18 +34,15 @@ function doSubmit(){
     
     for (var i=0; i < childs.length - 1; i++) {
         checkRequired(childs[i].children[0]);
-        console.log(childs[i].id+" "+childs[i].children[0].value);
         params += "&"+childs[i].id+"="+childs[i].children[0].value;
     };
     if(error_message.length > 0){
         alert(error_message);
         loading.finish();
     }else{
-        console.log(params);
         API.callByGet({url: "ClaimSubmission.aspx", params: params }, {
             onload: function(responseText){
                 var result = JSON.parse(responseText);
-                console.log(result);
                 if(result[0]['code'] == "02"){
                         common.createAlert("Success", result[0]['message'],function(){
                         $.win.close();
@@ -109,10 +105,6 @@ function datePicker(e){
 }
 
 function popout(e){
-    console.log(e.source.data);
-    console.log(e.source.data.length);
-    console.log(e.source.option_name);
-    console.log(typeof e.source.data);
     if(e.source.data.length == null || e.source.data.length <= 0){
         alert("Sorry, the "+e.source.children[0].hintText+" listing is empty. Please contact our helpdesk for help.");
         return;
@@ -128,7 +120,6 @@ function popout(e){
         
     dialog.show(); 
     dialog.addEventListener("click", function(ex){
-        console.log(ex.index+" "+ex.cancel);
         if((OS_IOS)?ex.cancel != ex.index:!ex.cancel){
             e.source.children[0].children[0].text = options_arr[ex.index];
             e.source.children[0].value = e.source.data[ex.index][e.source.option_key];
@@ -146,7 +137,6 @@ function loadComboBox(e){
     API.callByGet({url: e.source.url, params: params }, {
         onload: function(responseText){
             var result = JSON.parse(responseText);
-            console.log(result);
             e.source.data = result;
         }, onfinish: function(){
             e.source.opacity = 1;
@@ -162,22 +152,4 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	});
-}
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }

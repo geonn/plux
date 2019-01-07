@@ -10,21 +10,17 @@ init();
 function checkStatus(){
 	loading.start();
 	var email = Ti.App.Properties.getString('email') || "";
-	console.log(email+" email");
 	API.callByPost({url: "getASPUserDetails", domain: "FREEJINI_DOMAIN", new: true, params:{email: email}}, function(responseText){
 		var result = JSON.parse(responseText);
-		console.log(result);
 		if(result.status == "success"){
 			 _.each(result.data, function(value, key){
                 Ti.App.Properties.setString(key, value);
             });
             if(typeof result.data.user_service != "undefined"){
-                console.log('yes?');
                _.each(result.data.user_service[0], function(value, key){
                     Ti.App.Properties.setString(key, value);
                 }); 
             }
-            console.log(typeof result.dependent+' typeof result.dependent');
             if(typeof result.dependent != "undefined"){
                Ti.App.Properties.setString("dependent", JSON.stringify(result.dependent[0]));
             }

@@ -14,7 +14,6 @@ function init(){
 init();
 
 function render_personal_health(arr){
-	console.log(personal_health_type+" before call");
 	var listing = (typeof arr != "undefined")?arr:args.records; //model.getData(personal_health_type);
 	var arr = [];
 	if(listing.length <= 0){
@@ -102,10 +101,8 @@ $.tblview.addEventListener("longpress", function(e){
 	    message: 'Would you like to delete the record?',
 	    title: 'Delete'
 	 });
-	 console.log(id+"remove id");
 	 dialog.addEventListener('click', function(ex){
 		 if (ex.index === ex.source.cancel){
-		 	console.log("cancel");
 		 }else if(ex.index == 0){
 			var params = {
 				id: id,

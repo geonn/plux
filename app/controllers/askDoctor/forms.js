@@ -18,7 +18,6 @@ function genderSelect(e){
 	  gender_child[i].children[0].color = "#606060";
 	};
 
-	console.log(gender);
 	gender = e.source.gender;
 
 	e.source.children[0].color = "#ffffff";
@@ -51,7 +50,6 @@ function sendMessage(){
 	}];
 
 	var id = model.saveArray(local_save);
-	console.log(local_save);
 	API.callByPost({url: "sendMessage", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
 		socket.refresh_patient_list();
 		var res = JSON.parse(responseText);
@@ -70,22 +68,4 @@ function sendMessage(){
 
 function closeWindow(){
 	$.win.close();
-}
-
-if(Ti.Platform.osname == "android"){
-    $.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };
-            this.activity.onPause = function() {
-                redirect = true;
-                socket.disconnect();
-            };
-        }
-    });
 }

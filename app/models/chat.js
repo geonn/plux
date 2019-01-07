@@ -61,7 +61,6 @@ exports.definition = {
                 if(latest){
                     var a = last_updated;
                     last_updated = a.replace("  "," ");
-                    console.log(last_updated+" last_updated");
                     var start_limit = "";
                     //var sql_lastupdate = " AND created > '"+b[0]+" "+b[1]+"'";
                     var sql_lastupdate = "";
@@ -82,7 +81,6 @@ exports.definition = {
                 }
                 
                 var res = db.execute(sql, u_id.toString(), room_id.toString());
-                console.log(res);
                 var arr = [];
                 var count = 0;
                  /**
@@ -188,7 +186,6 @@ exports.definition = {
                 }
 				var sql_query =  "DELETE FROM "+collection.config.adapter.collection_name+" WHERE id=?";
 				db.execute(sql_query, m_id);
-				console.log(db.getRowsAffected()+" deleted");
 	            db.close();
 	            collection.trigger('sync');
 			},
@@ -201,7 +198,6 @@ exports.definition = {
                 }
 				var sql_query =  "UPDATE "+collection.config.adapter.collection_name+" set dr_id = 0";
 				db.execute(sql_query);
-				console.log(db.getRowsAffected()+" deleted");
 	            db.close();
 	            collection.trigger('sync');
 			},
@@ -228,7 +224,6 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                console.log(arr.length+" number of arr to save into "+ collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];

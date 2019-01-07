@@ -109,9 +109,7 @@ var APILoadingList = [
 exports.loadAPIBySequence = function (ex, counter){ 
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	counter = (typeof counter == "undefined")?0:counter;
-	console.log(counter +" >= "+ APILoadingList.length);
 	if(counter >= APILoadingList.length){
-		console.log("loadAPIBySequence");
 		Ti.App.fireEvent('app:loadingViewFinish');
 		return false;
 	}
@@ -121,23 +119,18 @@ exports.loadAPIBySequence = function (ex, counter){
 	var model = Alloy.createCollection(api['model']);
 	var url = api['url'];
 	var last_updated ="";
-	console.log('here');
 	if(api['model']=="helpline"){
 		url = url+"&u_id"+u_id;
 		var checker = Alloy.createCollection('updateChecker'); 
 		var isUpdate = checker.getCheckerById(api['checkId'], u_id);
-		console.log(isUpdate);
 		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}else{
 		var checker = Alloy.createCollection('updateChecker'); 
 		var isUpdate = checker.getCheckerById(api['checkId']);
-		console.log(api['checkId']+" api['checkId']");
-		console.log(isUpdate);
 		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}
 	url = url+"&last_updated="+last_updated;
 	 
-	 console.log(url);
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -159,7 +152,6 @@ exports.loadAPIBySequence = function (ex, counter){
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     	counter++;
-	     	console.log("API getCategoryList fail, skip sync with server");
 	     	API.loadAPIBySequence(ex, counter);
 	     },
 	     timeout : 70000  // in milliseconds
@@ -179,11 +171,9 @@ exports.updateUserFromFB = function(e, mainView){
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
-			 console.log(res);
 		    if(res.status == "success"){   
 				if(typeof res.data.user_service != "undefined"){
 					for (var i=0; i < res.data.user_service.length; i++) {
-					//console.log(res.data.user_service[i]);
 					  if(res.data.user_service[i].service_id == 1){
 					  	Ti.App.Properties.setString('asp_email', res.data.user_service[i].email);
 					  }
@@ -200,8 +190,6 @@ exports.updateUserFromFB = function(e, mainView){
 	         	mainView.win.close();
 	         	
 	         	if(typeof Alloy.Globals.navMenu != "undefined" && Alloy.Globals.navMenu != null){
-	         		console.log(Alloy.Globals.navMenu);
-	         		console.log(typeof Alloy.Globals.navMenu);
 					nav.closeWindow(mainView.win); 
 				}else{
 					var win = Alloy.createController("home").getView();
@@ -246,7 +234,6 @@ exports.syncAppointmentData = function(callback){
 		return false;
 	}
 	var url = syncAppointmentUrl + "&u_id="+u_id;
-	console.log(url+" appointment data");
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
@@ -269,7 +256,6 @@ exports.checkMedicalDataSync = function(e, callback){
 		return false;
 	}
 	var url = checkMedicalDataUrl + "&u_id="+u_id;   
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {  
@@ -361,7 +347,6 @@ exports.getNearbyClinic = function(e){
 	     	var res = JSON.parse(this.responseText); 
 	     	 
 	     	if(res.status == "success"){ 
-	     		console.log('data get!');
 	     		Ti.App.fireEvent("updateNearbyList", {data:res.data }); 
 	     	}
 	     },
@@ -378,7 +363,6 @@ exports.getNearbyClinic = function(e){
 exports.checkAppVersion = function(callback_download){
 	var appVersion = Ti.App.version;
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
@@ -390,7 +374,6 @@ exports.checkAppVersion = function(callback_download){
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
-			console.log("error check version");
 		},
 		timeout : 60000  // in milliseconds
 	}); 
@@ -441,8 +424,6 @@ exports.removeHealthDataById = function(id){
 exports.do_pluxLogin = function(data, callback){
 	var url = pluxLoginUrl +"&email="+data.email+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
 	
- 	console.log(url);
-	 
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) { 
@@ -452,8 +433,6 @@ exports.do_pluxLogin = function(data, callback){
 				callback(false);
 				return false;
 			}else{  
-				console.log('check result');
-				console.log(result.data);
 				Ti.App.Properties.setString('fullname', result.data.fullname); 
 				Ti.App.Properties.setString('plux_user_status', result.data.status); 
 				Ti.App.Properties.setString('last_login', currentDateTime()); 
@@ -462,7 +441,6 @@ exports.do_pluxLogin = function(data, callback){
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				Ti.App.Properties.setString('isver', result.data.isver);
 				if(typeof result.data.user_service != "undefined"){
-					console.log(result.data.user_service.memno+" result.data.user_service.memno");
 					Ti.App.Properties.setString('memno', result.data.user_service[0].memno);
 		       		Ti.App.Properties.setString('empno', result.data.user_service[0].empno);
 		       		Ti.App.Properties.setString('corpcode', result.data.user_service[0].corpcode);
@@ -502,7 +480,6 @@ exports.do_signup = function(data,mainView, callback){
 				common.createAlert("Error", result.data);
 				callback(false);
 			}else{
-				console.log('success');
 				callback(true);
 				mainView.win.close();
 			}
@@ -520,14 +497,12 @@ exports.do_signup = function(data,mainView, callback){
 exports.do_asp_presignup = function(data, handle){
 	var url = aspPreSignupUrl+"?MEMNO="+data.memno+"&EMPNO="+data.empno;
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
-	       //console.log(res);
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 handle.finish();
@@ -559,15 +534,12 @@ exports.do_asp_signup = function(data, handler){
 	
 	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
 	var u_id = Ti.App.Properties.getString('u_id') || "";
-	console.log('here');
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var ret = []; 
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
-	       console.log(res);
 	       if(typeof res.message !== "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 handler.finish();
@@ -579,7 +551,6 @@ exports.do_asp_signup = function(data, handler){
 	       		Ti.App.Properties.setString('name', res.name);
 	       		Ti.App.Properties.setString('signup2', "");
 	       		if(u_id != ""){
-	       			console.log(u_id+" "+data.email+" "+data.password);
 	       			updateUserService(u_id, 1, data.email, data.password);
 	       		}else{
 	       			/*var params = {
@@ -610,11 +581,9 @@ exports.do_asp_signup = function(data, handler){
 
 exports.resendVerificationEmail = function(){
 	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('email'); 
-    console.log(url);
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) { 
-	       console.log(e);
 	       common.createAlert("Success", "Verification email sent!");
 	     },
 	     // function called when an error occurs, including a timeout
@@ -650,11 +619,8 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString('email', username);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		Ti.App.Properties.setString("empno_1",res.empno);
-	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);
-	       		console.log("tipt:"+JSON.stringify(res));
-	       		console.log("empno:"+Ti.App.Properties.getString("empno")+" "+Ti.App.Properties.getString("corpcode"));	       		
+	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);	       		
 	       		updateUserService(u_id, 1,username, password);
-	       		console.log(result);
 	       		API.updateNotificationToken();  
 	       		Ti.App.fireEvent('updateMenu');
 	       		
@@ -694,7 +660,6 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 						}
 						 
 					});
-					console.log("toRedirect : "+toRedirect);
 						if(toRedirect ==true ){
 							nav.navigationWindow(target);
 						}
@@ -734,7 +699,6 @@ exports.doChangePassword = function(e, mainView, onfinish) {
 	       var result = JSON.parse(this.responseText); 
 	       res = result[0]; 
 	        //GEO TO EDIT
-	        //console.log(res);
 	        if(res.code == "99"){ //success
 	        	common.createAlert("Done", res.message);
 	        	nav.closeWindow(mainView.win); 
@@ -762,7 +726,6 @@ exports.doChangePassword = function(e, mainView, onfinish) {
 exports.claimDetailBySeries = function(e, callback){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
-	console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 	     onload : function(e) {
@@ -774,7 +737,6 @@ exports.claimDetailBySeries = function(e, callback){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
-	     	//console.log('error');
 	     	retryTimes --;
 	     	
 	     	if(retryTimes !== 0 && Titanium.Network.online){
@@ -828,11 +790,8 @@ exports.callByGet  = function(e, handler){
 	var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
     var url = (e.fullurl)?e.url:domain+e.url+"?user="+USER+"&key="+KEY;
 	url =  url+"&"+e.params;
-	console.log("callbyget: "+url);
 	var _result = contactServerByGet(encodeURI(url));
 	_result.onload = function(e) {   
-	    console.log(handler.onload);
-	    console.log(typeof handler.onload);
 	    if(e.skipJSON){
             _.isFunction(handler.onload) && handler.onload(this.responseText); 
             _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
@@ -842,9 +801,6 @@ exports.callByGet  = function(e, handler){
             JSON.parse(this.responseText);
         }
         catch(e){
-            console.log(this.responseText);
-            console.log('callbypost JSON exception');
-            console.log(e);
             common.createAlert("Whoops","There is a problem with the server, please try again later.", handler.onerror);
             //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
             //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
@@ -860,7 +816,6 @@ exports.callByGet  = function(e, handler){
             return;
         }
         if(_.isNumber(e.retry_times)){
-            console.log(e.retry_times);
             e.retry_times --;
             if(e.retry_times > 0){
                 API.callByGet(e, handler);
@@ -907,7 +862,6 @@ function contactServerByGet(url) {
 	client.setRequestHeader('Content-Type', "application/json");
 	client.setRequestHeader('Authorization', "Bearer "+reward_token);
 	client.send();
-	console.log(reward_token);
 	return client;
 };
 
@@ -972,11 +926,8 @@ exports.callByPost = function(e, onload, onerror){
 			url = e.url; 
 		}else{
 			var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
-			console.log(typeof e.new+" typeof e.new");
 			url = (typeof e.new != "undefined")?domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
-		console.log(url); 
-		console.log(e.params || {});
 		if(e.type == "voice"){
 			var _result = contactServerByPostVideo(url, e.params || {});  
 		}else{

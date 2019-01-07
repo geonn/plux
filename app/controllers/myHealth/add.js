@@ -70,8 +70,6 @@ function render_field_type(){
 
 function openPicker(e){
 	var field = e.source.record;
-	console.log(field.type);
-	console.log(e.source.children[0].text);
 	if(field.type == "number"){
 		var min = (typeof field.min_range != "undefined")?field.min_range:0;
 		var max = (typeof field.max_range != "undefined")?field.max_range:0;
@@ -104,7 +102,6 @@ function openPicker(e){
 		e.source.children[0].text = picker.getSelectedRow(0).value;
 		e.source.value = picker.getSelectedRow(0).value;
 		e.source.record.default_value = picker.getSelectedRow(0).value;
-		console.log(e.source.children[0].text);
 		$.win.remove(view_mask); 
 	});
 }
@@ -141,7 +138,6 @@ function showDatePicker(e){
 
 function updateLabelDate(e){
 	var value = (OS_IOS)?e.source.value:e.value;
-	console.log(value+" value");
 	$.date_text.value = moment(value).format("YYYY-MM-DD hh:mm");
 	$.date_text.text = moment(value).format("ddd, MMM DD, YYYY, hh:mm A");
 }
@@ -160,23 +156,17 @@ function SaveRecord(){
 	//all_field.pop();
 	for (var i=0; i < all_field.length; i++) {
 		if(all_field.length - 1 > i){
-			console.log(all_field[i].children[0].children[1]);
-			console.log(all_field[i].children[0].children[1].value);
 			var fieldname = "field"+(i+1);
 			params[fieldname] = all_field[i].children[0].children[1].value;
-			console.log(params[fieldname]);
 		}else{
 			params["remark"] = all_field[i].children[0].children[1].value;
-			console.log(params["remark"]);
 		}
 	};
-	console.log(params);
 	var model = Alloy.createCollection("health");
 	model.saveArray([params]);
 	$.win.close();
 	API.callByPost({url: "syncHealthData", params:params}, function(responseText)	{
 		var res = JSON.parse(responseText);
-		console.log(res.data);
 	});
 }
   
@@ -188,20 +178,4 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	});
-	
-	$.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }

@@ -69,7 +69,6 @@ function init(){
 init();
 
 function render_personal_health(){
-	console.log(personal_health_type+" before call");
 	var listing = model.getData(personal_health_type);
 	var arr = [];
 	if(listing.length <= 0){
@@ -103,7 +102,6 @@ function refresh(callback){
 		
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
-		console.log(res);
 		model.saveArray(arr);
 		checker.updateModule(15,"getPersonalInfoRecords", res.last_updated, u_id);
 		
@@ -161,35 +159,3 @@ function switchListing(e){
 	render_personal_health();
 	$.addbox_title.text = personal_health_type;
 }
-
-/*
-$.tblview.addEventListener("longpress", function(e){
-	var id = e.rowData.id;
-	var dialog = Ti.UI.createAlertDialog({
-	    cancel: 1,
-	    buttonNames: ['Confirm', 'Cancel'],
-	    message: 'Would you like to delete the record?',
-	    title: 'Delete'
-	 });
-	 console.log(id+"remove id");
-	 dialog.addEventListener('click', function(ex){
-		 if (ex.index === ex.source.cancel){
-		 	console.log("cancel");
-		 }else if(ex.index == 0){
-			var params = {
-				id: id,
-				status: 2
-			};
-			loading.start();
-			API.callByPost({url: "changeRecordStatus", params:params}, function(responseText){
-				var res = JSON.parse(responseText);
-				model.saveArray(res.data);
-				refresh(render_personal_health);
-				closeBox();
-				loading.finish();
-			});
-		 }
-	});
-	dialog.show();
-});
-*/

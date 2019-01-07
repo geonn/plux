@@ -7,7 +7,6 @@ if(corpcode == "IFLP" || corpcode == "IFMY"){
 
 function navTo(e){
 	var target = e.section.items[e.itemIndex].properties.mod; 
-	console.log(e.section.items[e.itemIndex].properties.mod);
 	var empno = Ti.App.Properties.getString('empno');
 	if(target == "asp/changePassword"){
         if(typeof empno != "undefined" && empno != ""){
@@ -44,28 +43,11 @@ if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
 		nav.closeWindow($.win); 
 	}); 
-	
-	$.win.addEventListener("open", function(){
-        if (this.activity) {
-            this.activity.onResume = function() {
-                setTimeout(function(){
-                      push_redirect = false;
-                      console.log("redirect as false");
-                }, 1000);
-              socket.connect();
-            };  
-            this.activity.onPause = function() {
-                push_redirect = true;
-                socket.disconnect();
-            }; 
-        }
-    });
 }
 
 function openURLPDF(e) {
     var filename = e.attachment.split("/");
     filename = filename[filename.length - 1];
-    console.log(filename);
     var appFile;
     
     if(OS_ANDROID) {

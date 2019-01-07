@@ -32,7 +32,6 @@ function loadMedicalInfo(){
 		treatment= "";
 	}
 	var treatment = treatment;
-	console.log(details.editable+" details.editable");
 	if(details.editable){
 		editable_textfield = $.UI.create("TextArea", {classes:['wfill', 'padding'], backgroundColor: "#f6f6f6", borderColor: "#f6f6f6", height: 150, value: details.message, hintText: "Remark"});
 		$.message.add(editable_textfield);	
@@ -56,9 +55,6 @@ function nl2br (str, is_xhtml) {
 
 function loadImage(){
 	var recAttachment = medicalAttachmentModel.getData(id);
-	console.log(details);
-	console.log("loadImage"+id);
-	console.log(recAttachment);
 	var counter = 0;
 	 
 	$.attachment.views = [];
@@ -105,7 +101,6 @@ function saveRecord(){
 	if(editable_textfield != null){
 		_.extend(param, {message: editable_textfield.value});
 	}
-	console.log(param);
 	API.callByPost({url: "addUpdateMedicalRecord", params: param}, function(){
 		medicalRecordsModel.saveArray([{ 
 			id : id,
@@ -135,7 +130,6 @@ function deleteRecord(){
 				'status': 2
 			};
 			API.callByPost({url: "changeMedicalRecord", params: param}, function(responseText){
-				console.log(responseText);
 				var res = JSON.parse(responseText);  
 				
 				if(res.status == "success"){  
@@ -197,7 +191,7 @@ function attachedPhoto(image,position,isLink, image_record){
 	
 	iView.addEventListener('click',function(e){
 		API.callByPost({url: "https://plux.freejini.com.my/main/tnc2", fullurl: true, params:{}}, function(responseText){
-		console.log(responseText);
+
 		 var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
 		    buttonNames: ['Agree', 'Cancel'],
@@ -206,7 +200,6 @@ function attachedPhoto(image,position,isLink, image_record){
 		  });
 		dialog.addEventListener('click', function(ex) {
 		    if (ex.index === ex.source.cancel) {
-		    	console.log('The cancel button was clicked');
 		    }else{
 		    	// double click prevention
 			    var currentTime = new Date();
@@ -214,7 +207,6 @@ function attachedPhoto(image,position,isLink, image_record){
 			        return;
 			    };
 			    clickTime = currentTime; 
-			    console.log(image);    
 			     
 			    if(getFormat[(getFormat.length)-1] == "pdf" || getFormat[(getFormat.length)-1] == "PDF"){
 			    	downloadPDF(image);
@@ -366,8 +358,6 @@ function takePhoto(){
 					 		caption : categoryType,
 					 		Filedata : image,
 						};	
-						console.log('check blob');
-console.log(image);
 						var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType;  
 						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
 
@@ -485,7 +475,6 @@ function downloadPDF(content){
 			    $.bigView.remove(indView); 
 			    
 				if(Ti.Platform.osname == "android"){
-					console.log("file return : "+file.getNativePath());
 					PDF.android_launch(file);
 				}else{
 					
@@ -575,14 +564,12 @@ function iterate(item){
 		 		caption : categoryType,
 		 		Filedata : image,
 			};	 
-			console.log(param);
 			API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
 				var res = JSON.parse(responseText);  
 				if(res.status == "success"){  
 					var model = Alloy.createCollection("medicalAttachmentV2");
 					var res = JSON.parse(responseText);
 					var arr = res.data || null;
-					console.log(responseText);
 					model.saveArray(arr);
 				}
 				
@@ -593,7 +580,6 @@ function iterate(item){
 }
 
 function saveImage(items){
-	console.log(items.length+"?total image picker");
 	for (var a = 0; items.length > a; a++){
 		iterate(items[a]);
 	}
@@ -606,7 +592,6 @@ $.editRecWin.addEventListener('close',function(){
 	Ti.App.removeEventListener('refreshAttachment',loadImage );
 	$.destroy();
 	Ti.App.fireEvent("myMedicalRecord:refresh");
-	console.log("window close");
 });
 Ti.App.addEventListener('refreshAttachment',loadImage );
 $.saveRecord.addEventListener('click', saveRecord);

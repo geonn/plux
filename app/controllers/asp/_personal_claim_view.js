@@ -22,7 +22,6 @@ function changeTitleByCorpAndBenefit(textTotBal, benefittype){
 } 
 
 function setup_row(e){
-    console.log(e.limit+" check here "+e.balance);
     var balance = Math.ceil(((e.limit-e.balance)/e.limit)*100);
     var textTotBal = "";
     switch(e.balance){
@@ -35,10 +34,8 @@ function setup_row(e){
         default: 
             textTotBal = e.ent_type+e.balance;
     }
-    console.log(textTotBal);
     //var textTotBal = (e.balance == "9999")?"UNLIMITED":e.ent_type+e.balance;
     textTotBal = changeTitleByCorpAndBenefit(textTotBal, e.benefittype);
-    console.log(typeof e.limit);
     var subvalue = (e.limit == "9999")?"UNLIMITED":e.ent_type+e.limit;
     subvalue = changeTitleByCorpAndBenefit(subvalue, e.benefittype);
     return render_row({balance: balance, textTotBal: textTotBal, title: e.entTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
@@ -65,7 +62,6 @@ function render_balance_list(){
 }
 
 function render_row(e){
-    console.log("render_row"+e.balance);
     var row = $.UI.create("View",{classes: ['wfill', 'hsize', 'vert'], touchEnabled: false});
     var view_label_type = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], touchEnabled: false, borderRadius: 8, bottom: -8, left: 20, backgroundColor: "#22262f",});
     var label_type = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, bottom:10, color: "#ffffff", text: e.benefittype+e.category});

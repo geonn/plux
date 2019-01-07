@@ -102,7 +102,11 @@ exports.setUrl = function(url) {
 		return;
 	}
 	var filename = url.split('/').pop();
-	var file_temp = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, filename);
+    var folder = Titanium.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, args.room_id);
+    if(!folder.exists()){
+        folder.createDirectory();
+    }
+    var file_temp = Titanium.Filesystem.getFile(folder.resolve(), filename);
 	if(file_temp.exists()){
 	    console.log('b');
 	    console.log(file_temp.nativePath+" exist");

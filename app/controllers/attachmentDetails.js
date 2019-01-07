@@ -162,10 +162,8 @@ var getAttImages = function(){
 					"img_id" : items[my_page].id,
 					'status': 2
 				};
-			   console.log(param);
 				API.callByPost({url:"deleteAttachment", params: param}, function(responseText){ 
 					var res = JSON.parse(responseText);  
-					console.log(res);
 					if(res.status == "success"){  
 						medicalAttachmentModel.saveArray(res.data);
 						getAttImages();
