@@ -161,7 +161,7 @@ function addRow(row, latest){
 			view_text_container.add(label_message2);
 			view_text_container.add(label_message);
 		}else if(row.format == "voice"){
-			var player = Alloy.createWidget('dk.napp.audioplayer', {room_id: room_id, playIcon: "\uf144", pauseIcon: "\uf28c", color: (row.is_endUser)?"#fff":"#000"});
+			var player = Alloy.createWidget('dk.napp.audioplayer', {win: $.win, room_id: room_id, playIcon: "\uf144", pauseIcon: "\uf28c", color: (row.is_endUser)?"#fff":"#000"});
 
 			player.setUrl(newText);
 			//download_video(player, newText);
