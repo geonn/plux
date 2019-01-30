@@ -23,15 +23,15 @@ var leafletUrl      = FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var pluxLoginUrl    = FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
 var pluxSignUpUrl   = FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
-var healthDataUrl   = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY; 
-var removeHealthDataUrl = FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY; 
-var clinicListUrl 	= FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY; 
-var nearbyClinicUrl = FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY; 
-var doctorListUrl 	= FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY; 
-var addAppointmentUrl = FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY; 
-var syncAppointmentUrl = FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY; 
-var deleteAppointmentUrl = FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY; 
-var syncMedicalUrl = FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY; 
+var healthDataUrl   = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
+var removeHealthDataUrl = FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY;
+var clinicListUrl 	= FREEJINI_DOMAIN+"/api/getClinicLocator?user="+USER+"&key="+KEY;
+var nearbyClinicUrl = FREEJINI_DOMAIN+"/api/searchNearbyClinic?user="+USER+"&key="+KEY;
+var doctorListUrl 	= FREEJINI_DOMAIN+"/api/getDoctorList?user="+USER+"&key="+KEY;
+var addAppointmentUrl = FREEJINI_DOMAIN+"/api/addAppointment?user="+USER+"&key="+KEY;
+var syncAppointmentUrl = FREEJINI_DOMAIN+"/api/syncAppointmentData?user="+USER+"&key="+KEY;
+var deleteAppointmentUrl = FREEJINI_DOMAIN+"/api/deleteAppointment?user="+USER+"&key="+KEY;
+var syncMedicalUrl = FREEJINI_DOMAIN+"/api/syncMedicalRecords?user="+USER+"&key="+KEY;
 var checkMedicalDataUrl = FREEJINI_DOMAIN+"/api/checkMedicalData?user="+USER+"&key="+KEY;
 var syncAttachmentssUrl = FREEJINI_DOMAIN+"/api/syncMedicalAttachments?user="+USER+"&key="+KEY;
 var getNotificationUrl = FREEJINI_DOMAIN+"/api/getNotification?user="+USER+"&key="+KEY;
@@ -39,7 +39,7 @@ var deleteNotification = FREEJINI_DOMAIN+"/api/deleteNotification?user="+USER+"&
 var suggestedAppointmentUrl = FREEJINI_DOMAIN+"/api/suggestedAppointment?user="+USER+"&key="+KEY;
 var deleteAttachmentUrl = FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
 var changeMedicalRecord = FREEJINI_DOMAIN+"/api/changeMedicalRecord?user="+USER+"&key="+KEY;
-var addMedicalAttachment = FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY; 
+var addMedicalAttachment = FREEJINI_DOMAIN+"/api/addMedicalAttachment?user="+USER+"&key="+KEY;
 var getCorpPermission = FREEJINI_DOMAIN+"/api/getCorpPermission?user="+USER+"&key="+KEY;
 var getMessage = FREEJINI_DOMAIN+"/api/getMessage?user="+USER+"&key="+KEY;
 var sendMessage = FREEJINI_DOMAIN+"/api/sendMessage?user="+USER+"&key="+KEY;
@@ -56,24 +56,24 @@ var getHelplineMessageV2 = FREEJINI_DOMAIN+"/api/getHelplineMessageV2?user="+USE
 var getHelplineMessageV3 = FREEJINI_DOMAIN+"/api/getHelplineMessageV3?user="+USER+"&key="+KEY;
 var getHelplineMessageV4 = FREEJINI_DOMAIN+"/api/getHelplineMessageV4?user="+USER+"&key="+KEY;
 var sendHelplineMessage = FREEJINI_DOMAIN+"/api/sendHelplineMessage?user="+USER+"&key="+KEY;
-var addFeedbackUrl = FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY; 
-var getAppointmentByDoctorPanel = FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY; 
-var getClinicLocator2 = FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY; 
-var getRoomId = FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY; 
+var addFeedbackUrl = FREEJINI_DOMAIN+"/api/addFeedback?user="+USER+"&key="+KEY;
+var getAppointmentByDoctorPanel = FREEJINI_DOMAIN+"/api/getAppointmentByDoctorPanel?user="+USER+"&key="+KEY;
+var getClinicLocator2 = FREEJINI_DOMAIN+"/api/getClinicLocator2?user="+USER+"&key="+KEY;
+var getRoomId = FREEJINI_DOMAIN+"/api/getRoomId?user="+USER+"&key="+KEY;
 var dateNow = "https://plux.freejini.com.my/main/dateNow";
-var getMedicalRecords = FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2"; 
-var addUpdateMedicalRecord = FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY; 
+var getMedicalRecords = FREEJINI_DOMAIN+"/api/getMedicalRecords?user="+USER+"&key="+KEY+"&version=2";
+var addUpdateMedicalRecord = FREEJINI_DOMAIN+"/api/addUpdateMedicalRecord?user="+USER+"&key="+KEY;
 var getMedicalAttachment = FREEJINI_DOMAIN+"/api/getMedicalAttachment?user="+USER+"&key="+KEY+"&version=2";
-var deleteAttachment = FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY; 
-var getHealthDataByUser = FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY; 
-var getPersonalInfoRecords = FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY; 
-var addUpdateRecords = FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY; 
-var changeRecordStatus = FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY; 
-var doforgotPassword = FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY; 
-var getRoomList = FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY; 
+var deleteAttachment = FREEJINI_DOMAIN+"/api/deleteAttachment?user="+USER+"&key="+KEY;
+var getHealthDataByUser = FREEJINI_DOMAIN+"/api/getHealthDataByUser?user="+USER+"&key="+KEY;
+var getPersonalInfoRecords = FREEJINI_DOMAIN+"/api/getPersonalInfoRecords?user="+USER+"&key="+KEY;
+var addUpdateRecords = FREEJINI_DOMAIN+"/api/addUpdateRecords?user="+USER+"&key="+KEY;
+var changeRecordStatus = FREEJINI_DOMAIN+"/api/changeRecordStatus?user="+USER+"&key="+KEY;
+var doforgotPassword = FREEJINI_DOMAIN+"/api/doforgotPassword?user="+USER+"&key="+KEY;
+var getRoomList = FREEJINI_DOMAIN+"/api/getRoomList?user="+USER+"&key="+KEY;
 
-var claimunder  = API_DOMAIN+"/claimunder.aspx"; 
-var panelList       = API_DOMAIN+"/panellist.aspx"; 
+var claimunder  = API_DOMAIN+"/claimunder.aspx";
+var panelList       = API_DOMAIN+"/panellist.aspx";
 var loginUrl        = API_DOMAIN+"/login.aspx";
 var changePasswordUrl= API_DOMAIN+"/chgpwd.aspx";
 var checkBalanceUrl = API_DOMAIN+"/balchk.aspx";
@@ -86,15 +86,15 @@ var aspPreSignupUrl = API_DOMAIN+"/presignup.aspx";
 var ifins = API_DOMAIN+"/ifins.aspx";
 var ipinv = API_DOMAIN+"/ipinv.aspx";
 /**claim submmission***/
-var getclaimCategoryUrl = API_DOMAIN+"/claimcategory.aspx"; 
-var getclaimSubmissionUrl = API_DOMAIN+"/ClaimSubmission.aspx"; 
+var getclaimCategoryUrl = API_DOMAIN+"/claimcategory.aspx";
+var getclaimSubmissionUrl = API_DOMAIN+"/ClaimSubmission.aspx";
 
-//configuration 
+//configuration
 var defaultRetryTimes = 3;
 
-//API that call in sequence 
+//API that call in sequence
 var APILoadingList = [
-	
+
 	//{url: getDoctorPanel, model: "doctor_panel", checkId: "8"},
 	//{url: getClinicLocator2, model: "panelList", checkId: "13"},
 	//{url: doctorListUrl, model: "doctors", checkId: "12"},
@@ -106,46 +106,46 @@ var APILoadingList = [
 **** API FUNCTION*****
 **********************/
 
-exports.loadAPIBySequence = function (ex, counter){ 
+exports.loadAPIBySequence = function (ex, counter){
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	counter = (typeof counter == "undefined")?0:counter;
 	if(counter >= APILoadingList.length){
 		Ti.App.fireEvent('app:loadingViewFinish');
 		return false;
 	}
-	
-	
+
+
 	var api = APILoadingList[counter];
 	var model = Alloy.createCollection(api['model']);
 	var url = api['url'];
 	var last_updated ="";
 	if(api['model']=="helpline"){
 		url = url+"&u_id"+u_id;
-		var checker = Alloy.createCollection('updateChecker'); 
+		var checker = Alloy.createCollection('updateChecker');
 		var isUpdate = checker.getCheckerById(api['checkId'], u_id);
 		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}else{
-		var checker = Alloy.createCollection('updateChecker'); 
+		var checker = Alloy.createCollection('updateChecker');
 		var isUpdate = checker.getCheckerById(api['checkId']);
 		last_updated = (typeof isUpdate.updated != "undefined")?isUpdate.updated:"";
 	}
 	url = url+"&last_updated="+last_updated;
-	 
+
 	 var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
 	       var res = JSON.parse(this.responseText);
-	        
+
 	       if(res.status == "Success" || res.status == "success"){
 	       	/**reset current category**/
 			//library.resetCategory();
 			/**load new set of category from API**/
-	       	var arr = res.data; 
+	       	var arr = res.data;
 	        model.saveArray(arr);
 	       }
 			Ti.App.fireEvent('app:update_loading_text', {text: APILoadingList[counter]['model']+" loading..."});
 			checker.updateModule(APILoadingList[counter]['checkId'],APILoadingList[counter]['model'], res.last_updated);
-			
+
 			counter++;
 			API.loadAPIBySequence(ex, counter);
 	     },
@@ -157,21 +157,21 @@ exports.loadAPIBySequence = function (ex, counter){
 	     timeout : 70000  // in milliseconds
 	 });
 	 if(Ti.Platform.osname == "android"){
-	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	 }
- 
+
 	 client.open("POST", url);
 	 // Send the request.
 	client.send();
 };
-exports.updateUserFromFB = function(e, mainView){ 
-	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender; 
-	 
+exports.updateUserFromFB = function(e, mainView){
+	var url = updateUserFromFB+"&email="+e.email+"&fbid="+e.fbid+"&link="+e.link+"&name="+e.name+"&gender="+e.gender;
+
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			var res = JSON.parse(this.responseText);
-		    if(res.status == "success"){   
+		    if(res.status == "success"){
 				if(typeof res.data.user_service != "undefined"){
 					for (var i=0; i < res.data.user_service.length; i++) {
 					  if(res.data.user_service[i].service_id == 1){
@@ -180,21 +180,21 @@ exports.updateUserFromFB = function(e, mainView){
 					};
 				}
 	         	/** User session**/
-	         	Ti.App.Properties.setString('u_id', res.data.u_id); 
-	         	Ti.App.Properties.setString('ic_no', res.data.ic_no); 
-				//Ti.App.Properties.setString('memno', res.data.ic_no); 
+	         	Ti.App.Properties.setString('u_id', res.data.u_id);
+	         	Ti.App.Properties.setString('ic_no', res.data.ic_no);
+				//Ti.App.Properties.setString('memno', res.data.ic_no);
 	         	Ti.App.Properties.setString('facebooklogin', 1);
-	         	API.updateNotificationToken();   
+	         	API.updateNotificationToken();
 	         	API.syncHealthData({u_id:res.data.u_id});
-	         	Ti.App.fireEvent('updateHeader'); 
+	         	Ti.App.fireEvent('updateHeader');
 	         	mainView.win.close();
-	         	
+
 	         	if(typeof Alloy.Globals.navMenu != "undefined" && Alloy.Globals.navMenu != null){
-					nav.closeWindow(mainView.win); 
+					nav.closeWindow(mainView.win);
 				}else{
 					var win = Alloy.createController("home").getView();
 				}
-				
+
 	         	//
 		    }
 		},
@@ -206,15 +206,15 @@ exports.updateUserFromFB = function(e, mainView){
 	// Prepare the connection.
 	client.open("GET", url);
 	 // Send the request.
-	client.send();  
+	client.send();
 };
 
 exports.addAppointment = function(e, callback){
-	var url = addAppointmentUrl;  
+	var url = addAppointmentUrl;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);  
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
 		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
@@ -226,18 +226,18 @@ exports.addAppointment = function(e, callback){
 	client.open("POST", url);
 	client.send(e.param);
 };
- 
+
 
 exports.syncAppointmentData = function(callback){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(u_id == ""){ 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
 		return false;
 	}
 	var url = syncAppointmentUrl + "&u_id="+u_id;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);  
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
 		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
@@ -251,15 +251,15 @@ exports.syncAppointmentData = function(callback){
 };
 
 exports.checkMedicalDataSync = function(e, callback){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(u_id == ""){ 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
 		return false;
 	}
-	var url = checkMedicalDataUrl + "&u_id="+u_id;   
+	var url = checkMedicalDataUrl + "&u_id="+u_id;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) {  
-	     	var res = JSON.parse(this.responseText);  
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
 		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
@@ -273,16 +273,16 @@ exports.checkMedicalDataSync = function(e, callback){
 };
 
 exports.syncAttachments = function(e,onload){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(u_id == ""){ 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
 		return false;
 	}
-	var url = syncAttachmentssUrl ;  
+	var url = syncAttachmentssUrl ;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) {  
-			onload && onload(this.responseText); 	      
-	     	 
+	     onload : function(e) {
+			onload && onload(this.responseText);
+
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
@@ -295,15 +295,15 @@ exports.syncAttachments = function(e,onload){
 };
 
 exports.syncMedicalRecords = function(e,callback){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(u_id == ""){ 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
 		return false;
 	}
-	var url = syncMedicalUrl ;  
+	var url = syncMedicalUrl ;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) {  
-	     	var res = JSON.parse(this.responseText);  
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
 		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
@@ -317,15 +317,15 @@ exports.syncMedicalRecords = function(e,callback){
 };
 
 exports.deleteAppointment = function(id, callback){
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(u_id == ""){ 
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(u_id == ""){
 		return false;
 	}
-	var url = deleteAppointmentUrl + "&id="+id+ "&status=5";  
+	var url = deleteAppointmentUrl + "&id="+id+ "&status=5";
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText);  
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
 		 	callback({param: res});
 	     },
 	     // function called when an error occurs, including a timeout
@@ -338,20 +338,20 @@ exports.deleteAppointment = function(id, callback){
 	client.send();
 };
 
-exports.getNearbyClinic = function(e){ 
-	var url = nearbyClinicUrl + "&longitude="+e.longitude + "&latitude="+e.latitude+"&clinicType="+e.clinicType; 
-	
+exports.getNearbyClinic = function(e){
+	var url = nearbyClinicUrl + "&longitude="+e.longitude + "&latitude="+e.latitude+"&clinicType="+e.clinicType;
+
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
-	     	var res = JSON.parse(this.responseText); 
-	     	 
-	     	if(res.status == "success"){ 
-	     		Ti.App.fireEvent("updateNearbyList", {data:res.data }); 
+	     onload : function(e) {
+	     	var res = JSON.parse(this.responseText);
+
+	     	if(res.status == "success"){
+	     		Ti.App.fireEvent("updateNearbyList", {data:res.data });
 	     	}
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {   
+	     onerror : function(e) {
 	     },
 	     timeout : 60000  // in milliseconds
 	 });
@@ -359,7 +359,7 @@ exports.getNearbyClinic = function(e){
 	 // Send the request.
 	 client.send();
 };
- 
+
 exports.checkAppVersion = function(callback_download){
 	var appVersion = Ti.App.version;
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
@@ -367,8 +367,8 @@ exports.checkAppVersion = function(callback_download){
 		// function called when the response data is available
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
-		 
-			if(result.status == "error"){ 
+
+			if(result.status == "error"){
 				callback_download && callback_download(result);
 			}
 		},
@@ -376,26 +376,26 @@ exports.checkAppVersion = function(callback_download){
 		onerror : function(e) {
 		},
 		timeout : 60000  // in milliseconds
-	}); 
-	client.open("GET", url); 
-	client.send(); 
+	});
+	client.open("GET", url);
+	client.send();
 };
 
 exports.syncHealthData = function(e){
-	var healthModel = Alloy.createCollection('health'); 
+	var healthModel = Alloy.createCollection('health');
 	var records = healthModel.getHealthList();
-	  
-	var url = healthDataUrl + "&u_id="+e.u_id; 
+
+	var url = healthDataUrl + "&u_id="+e.u_id;
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
+	     onload : function(e) {
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) {   
+	     onerror : function(e) {
 	     },
 	     timeout : 60000  // in milliseconds
 	 });
-	 client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	 client.open("POST", url);
 	 // Send the request.
 	 client.send({list: JSON.stringify(records)});
@@ -410,33 +410,33 @@ exports.removeHealthDataById = function(id){
 	//console.log(url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
-		onload : function(e) { 
+		onload : function(e) {
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
 		},
 		timeout : 70000  // in milliseconds
-	}); 
-	client.open("GET", url); 
-	client.send(); 
+	});
+	client.open("GET", url);
+	client.send();
 };
 
 exports.do_pluxLogin = function(data, callback){
 	var url = pluxLoginUrl +"&email="+data.email+"&password="+encodeURIComponent(data.password)+"&version="+Ti.Platform.version+"&os="+Ti.Platform.osname+"&model="+Ti.Platform.model+"&macaddress="+ Ti.Platform.macaddress ;
-	
+
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
-		onload : function(e) { 
+		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
 				callback(false);
 				return false;
-			}else{  
-				Ti.App.Properties.setString('fullname', result.data.fullname); 
-				Ti.App.Properties.setString('plux_user_status', result.data.status); 
-				Ti.App.Properties.setString('last_login', currentDateTime()); 
-				Ti.App.Properties.setString('u_id', result.data.u_id); 
+			}else{
+				Ti.App.Properties.setString('fullname', result.data.fullname);
+				Ti.App.Properties.setString('plux_user_status', result.data.status);
+				Ti.App.Properties.setString('last_login', currentDateTime());
+				Ti.App.Properties.setString('u_id', result.data.u_id);
 				Ti.App.Properties.setString('ic_no', result.data.ic_no);
 				Ti.App.Properties.setString('plux_email',result.data.email);
 				Ti.App.Properties.setString('isver', result.data.isver);
@@ -449,9 +449,9 @@ exports.do_pluxLogin = function(data, callback){
 				if(typeof result.dependent != "undefined"){
 					Ti.App.Properties.setString('dependent', JSON.stringify(result.dependent));
 				}
-	       		API.updateNotificationToken();    
+	       		API.updateNotificationToken();
 				/*Ti.App.fireEvent('updateHeader');
-				  */ 
+				  */
 				callback(true);
 			}
 		},
@@ -459,22 +459,22 @@ exports.do_pluxLogin = function(data, callback){
 		onerror : function(e) {
 		},
 		timeout : 70000  // in milliseconds
-	}); 
-	client.open("POST", url); 
-	client.send(); 
+	});
+	client.open("POST", url);
+	client.send();
 };
 
 exports.do_signup = function(data,mainView, callback){
-	 
+
 	var url = pluxSignUpUrl+"&fullname="+data.fullname+"&ic_no="+data.ic_no+"&email="+data.email+"&password="+data.password+"&password2="+data.password;
-  	var params = { 
+  	var params = {
 			email: data.email,
-			password: data.password 
+			password: data.password
 	};
-   
+
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
-		onload : function(e) { 
+		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			if(result.status == "error"){
 				common.createAlert("Error", result.data);
@@ -489,9 +489,9 @@ exports.do_signup = function(data,mainView, callback){
 			console.log(e);
 		},
 		timeout : 70000  // in milliseconds
-	}); 
-	client.open("GET", url); 
-	client.send();  
+	});
+	client.open("GET", url);
+	client.send();
 };
 
 exports.do_asp_presignup = function(data, handle){
@@ -500,13 +500,13 @@ exports.do_asp_presignup = function(data, handle){
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	       var ret = []; 
+	       var ret = [];
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 handle.finish();
-	       }else{  
+	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
@@ -518,7 +518,7 @@ exports.do_asp_presignup = function(data, handle){
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) { 
+	     onerror : function(e) {
 	     	common.createAlert("Sign Up Fail", e.error);
 	     	handle.finish();
 	     },
@@ -531,19 +531,19 @@ exports.do_asp_presignup = function(data, handle){
 };
 
 exports.do_asp_signup = function(data, handler){
-	
-	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets; 
+
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets;
 	var u_id = Ti.App.Properties.getString('u_id') || "";
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	       var ret = []; 
+	       var ret = [];
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       if(typeof res.message !== "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 handler.finish();
-	       }else{ 
+	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
 	       		Ti.App.Properties.setString('corpcode', res.corpcode);
@@ -560,14 +560,14 @@ exports.do_asp_signup = function(data, handler){
 						ic_no: res.memno,
 						agreets: 1
 					};
-					
+
 					API.plux_signup(params);*/
 	       		}
 	       		handler.onload();
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) { 
+	     onerror : function(e) {
 	     	common.createAlert("Sign Up Fail", e.error);
 	     	loading.finish();
 	     },
@@ -580,14 +580,14 @@ exports.do_asp_signup = function(data, handler){
 };
 
 exports.resendVerificationEmail = function(){
-	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('email'); 
+	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('email');
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
-	     onload : function(e) { 
+	     onload : function(e) {
 	       common.createAlert("Success", "Verification email sent!");
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) { 
+	     onerror : function(e) {
 	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	common.hideLoading();
 	     },
@@ -596,132 +596,132 @@ exports.resendVerificationEmail = function(){
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
 	 // Send the request.
-	 client.send(); 
+	 client.send();
 };
 
-exports.doLogin = function(username, password, mainView, target, callback) { 
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password); 
- 
+exports.doLogin = function(username, password, mainView, target, callback) {
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	var url = loginUrl+"?LOGINID="+encodeURIComponent(username)+"&PASSWORD="+encodeURIComponent(password);
+
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	       var ret = []; 
-	       var result = JSON.parse(this.responseText); 
-	       res = result[0];  
+	       var ret = [];
+	       var result = JSON.parse(this.responseText);
+	       res = result[0];
 	       if(typeof res.message != "undefined" && res.message != null){
 	       		 common.createAlert("Error",res.message);
 	       		 common.hideLoading();
-	       }else{ 
+	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
-	       		Ti.App.Properties.setString('corpcode', res.corpcode); 
+	       		Ti.App.Properties.setString('corpcode', res.corpcode);
 	       		Ti.App.Properties.setString('email', username);
 	       		Ti.App.Properties.setString('cardno', res.cardno);
 	       		Ti.App.Properties.setString("empno_1",res.empno);
-	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);	       		
+	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);
 	       		updateUserService(u_id, 1,username, password);
-	       		API.updateNotificationToken();  
+	       		API.updateNotificationToken();
 	       		Ti.App.fireEvent('updateMenu');
-	       		
-	       		
+
+
 	       		if(target != 'refresh'){
-	       			nav.closeWindow(mainView.aspLoginWin); 
-					Ti.App.fireEvent('updateHeader'); 
+	       			nav.closeWindow(mainView.aspLoginWin);
+					Ti.App.fireEvent('updateHeader');
 					var toRedirect = false;
 					if(target != "" && target != "home"){
-						API.callByPost({url:"getCorpPermission", params: {corpcode: res.corpcode}}, function(responseText){ 
-						var res = JSON.parse(responseText);  
-						 
+						API.callByPost({url:"getCorpPermission", params: {corpcode: res.corpcode}}, function(responseText){
+						var res = JSON.parse(responseText);
+
 						var splitRes = target.split("/");
-					 
+
 						var myTarget = splitRes[0];
 						if(splitRes.length > 1){
 							myTarget = splitRes[1];
 						}
-					 
-						if(res.status == "success"){  
+
+						if(res.status == "success"){
 							var takeout = res.data;
-							for (var i=0; i < takeout.length; i++) { 
-						 
+							for (var i=0; i < takeout.length; i++) {
+
 							  if(myTarget == takeout[i]){
 							  	common.createAlert("Error", "You are not allowed to view this section",function(){
-							  		
+
 							  	});
 							  	toRedirect = false;
 							  	return false;
 							  }
-							  
-							 
+
+
 							};
-							 
+
 							nav.navigationWindow(target);
-						 
+
 						}
-						 
+
 					});
 						if(toRedirect ==true ){
 							nav.navigationWindow(target);
 						}
-						
+
 					}
-					
+
 	       		}else{
 	       			callback();
 	       		}
-				
+
 	       }
-	       
-	       
+
+
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) { 
+	     onerror : function(e) {
 	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	common.hideLoading();
-       		
+
 	     },
 	     timeout : 70000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", url);
 	 // Send the request.
-	 client.send(); 
-}; 
+	 client.send();
+};
 
-exports.doChangePassword = function(e, mainView, onfinish) { 
+exports.doChangePassword = function(e, mainView, onfinish) {
     var LOGINID = Ti.App.Properties.getString('email');
-	var url = changePasswordUrl+"?LOGINID="+LOGINID+"&NEW_PASSWORD="+e.password; 
-	
+	var url = changePasswordUrl+"?LOGINID="+LOGINID+"&NEW_PASSWORD="+e.password;
+
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	       var ret = []; 
-	       var result = JSON.parse(this.responseText); 
-	       res = result[0]; 
+	       var ret = [];
+	       var result = JSON.parse(this.responseText);
+	       res = result[0];
 	        //GEO TO EDIT
 	        if(res.code == "99"){ //success
 	        	common.createAlert("Done", res.message);
-	        	nav.closeWindow(mainView.win); 
+	        	nav.closeWindow(mainView.win);
 	        }else{
 	        	common.createAlert("Error", res.message);
 	        	onfinish();
 	        	return false;
 	        }
-	       	
+
 	     },
 	     // function called when an error occurs, including a timeout
-	     onerror : function(e) { 
+	     onerror : function(e) {
 	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	onfinish();
-       		
+
 	     },
 	     timeout : 60000  // in milliseconds
 	 });
 	 // Prepare the connection.
 	 client.open("GET", encodeURI(url));
 	 // Send the request.
-	 client.send(); 
-}; 
+	 client.send();
+};
 
 exports.claimDetailBySeries = function(e, callback){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
@@ -731,14 +731,14 @@ exports.claimDetailBySeries = function(e, callback){
 	     onload : function(e) {
 	       var ret = [];
 	       var res = JSON.parse(this.responseText);
-	       
+
 	       callback(res[0]);
 	       //Ti.App.fireEvent("load_claim_detail");
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(ex) {
 	     	retryTimes --;
-	     	
+
 	     	if(retryTimes !== 0 && Titanium.Network.online){
 	     		_.extend(e, {retryTimes: retryTimes});
 	     		API.claimDetailBySeries(e);
@@ -748,29 +748,29 @@ exports.claimDetailBySeries = function(e, callback){
 	     },
 	     timeout : 70000  // in milliseconds
 	});
-	
+
 	// Prepare the connection.
 	 client.open("GET", encodeURI(url));
 	 // Send the request.
-	 client.send(); 
+	 client.send();
 };
 
 // update user device token
 exports.updateNotificationToken = function(e){
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
-	var memno = Ti.App.Properties.getString('memno'); 
-	var u_id = Ti.App.Properties.getString('u_id') || ""; 
-	if(deviceToken != ""){ 
+	var memno = Ti.App.Properties.getString('memno');
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+	if(deviceToken != ""){
 		var url = updateToken+"&token="+deviceToken+"&member_no="+memno+"&u_id="+u_id;
- 		
+
 		var client = Ti.Network.createHTTPClient({
 		     // function called when the response data is available
 		     onload : function(e) {
-		    
+
 		       var res = JSON.parse(this.responseText);
-	
+
 		       if(res.status == "success"){
-		       	
+
 		       }
 		     },
 		     // function called when an error occurs, including a timeout
@@ -781,20 +781,22 @@ exports.updateNotificationToken = function(e){
 		 // Prepare the connection.
 		 client.open("GET", url);
 		 // Send the request.
-		 client.send(); 
+		 client.send();
 	}
-	
+
 };
- 
+
 exports.callByGet  = function(e, handler){
 	var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
     var url = (e.fullurl)?e.url:domain+e.url+"?user="+USER+"&key="+KEY;
 	url =  url+"&"+e.params;
+	console.log("callByGet");
+	console.log(url);
 	var _result = contactServerByGet(encodeURI(url));
-	_result.onload = function(e) {   
+	_result.onload = function(e) {
 	    if(e.skipJSON){
-            _.isFunction(handler.onload) && handler.onload(this.responseText); 
-            _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
+            _.isFunction(handler.onload) && handler.onload(this.responseText);
+            _.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
             return ;
         }
         try{
@@ -806,11 +808,11 @@ exports.callByGet  = function(e, handler){
             //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
             return;
         }
-        _.isFunction(handler.onload) && handler.onload(this.responseText); 
-        _.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
+        _.isFunction(handler.onload) && handler.onload(this.responseText);
+        _.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
 	};
-		
-	_result.onerror = function(ex) { 
+
+	_result.onerror = function(ex) {
 		if(ex.code == "-1009"){       //The Internet connection appears to be offline.
             common.createAlert("Error", ex.error, handler.onerror);
             return;
@@ -824,25 +826,25 @@ exports.callByGet  = function(e, handler){
                 console.log(ex);
                 common.createAlert("Error", ex.error, handler.onerror);
                 //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
-                //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText); 
+                //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
             }
         }else{
             console.log('onerror msg without no');
             console.log(ex);
             e.retry_times = 2;
             API.callByGet(e, handler);
-        } 
-	};	
+        }
+	};
 };
 
 function updateUserService(u_id, service_id, email, password){
 	var url =  updateUserServiceUrl+"&u_id="+u_id+"&service_id="+service_id+"&email="+email+"&password="+password;
 
-	var client = Ti.Network.createHTTPClient({ 
-	     onload : function(e) { 
+	var client = Ti.Network.createHTTPClient({
+	     onload : function(e) {
 	     	var res = JSON.parse(this.responseText);
-	     	 
-	     }, 
+
+	     },
 	     onerror : function(e) { },
 	     timeout : 60000  // in milliseconds
 	 });
@@ -852,12 +854,12 @@ function updateUserService(u_id, service_id, email, password){
 	 client.send();
 }
 
-function contactServerByGet(url) {  
+function contactServerByGet(url) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 30000
 	});
-  	var reward_token = Ti.App.Properties.getString('reward_token') || ""; 
-    
+  	var reward_token = Ti.App.Properties.getString('reward_token') || "";
+
 	client.open("GET", url);
 	client.setRequestHeader('Content-Type', "application/json");
 	client.setRequestHeader('Authorization', "Bearer "+reward_token);
@@ -865,28 +867,28 @@ function contactServerByGet(url) {
 	return client;
 };
 
-function contactServerByPostVideo(url,params) { 
+function contactServerByPostVideo(url,params) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 50000
 	});
-	 
-	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+
+	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	client.open("POST", url);
 	client.onsendstream = function(e) {
 	    console.log( Math.floor(e.progress * 100) + "%");
 	};
-	client.send(params); 
+	client.send(params);
 	return client;
 };
 
-function contactServerByPost(url,records) { 
+function contactServerByPost(url,records) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 60000
 	});
 	/*if(OS_ANDROID){
-	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+	 	client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	 }*/
-	var reward_token = Ti.App.Properties.getString('reward_token') || ""; 
+	var reward_token = Ti.App.Properties.getString('reward_token') || "";
 	client.open("POST", url);
 	client.setRequestHeader('Authorization', reward_token);
 	client.send(records);
@@ -895,24 +897,24 @@ function contactServerByPost(url,records) {
 
 exports.callByPostImage = function(e, onload, getParam){
 	var url =  eval(e.url)+e.params;
-	var _result = contactServerByPostImage(url, e.image || {});   
-	_result.onload = function(e) {   
-		onload && onload(this.responseText); 
+	var _result = contactServerByPostImage(url, e.image || {});
+	_result.onload = function(e) {
+		onload && onload(this.responseText);
 	};
-		
-	_result.onerror = function(e) { 
-		onerror && onerror(); 
-	};	
+
+	_result.onerror = function(e) {
+		onerror && onerror();
+	};
 };
 
-function contactServerByPostImage(url,photo) { 
+function contactServerByPostImage(url,photo) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 50000
 	});
-	 
-	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  
+
+	//client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	client.open("POST", url);
-	client.send({Filedata: photo}); 
+	client.send({Filedata: photo});
 	return client;
 };
 
@@ -920,29 +922,31 @@ var callByPost_error_popup = false;
 exports.callByPost = function(e, onload, onerror){
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
-	if(deviceToken != ""){  
+	if(deviceToken != ""){
 		var url = "";
 		if(typeof e.fullurl != "undefined"){
-			url = e.url; 
+			url = e.url;
 		}else{
 			var domain = (typeof e.domain != "undefined")?eval(e.domain):API_DOMAIN;
 			url = (typeof e.new != "undefined")?domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
+		console.log(url);
+		console.log(e.params || "");
 		if(e.type == "voice"){
-			var _result = contactServerByPostVideo(url, e.params || {});  
+			var _result = contactServerByPostVideo(url, e.params || {});
 		}else{
-			var _result = contactServerByPost(url, e.params || {});  
+			var _result = contactServerByPost(url, e.params || {});
 		}
-		_result.onload = function(ex) {  
-			onload && onload(this.responseText); 
+		_result.onload = function(ex) {
+			onload && onload(this.responseText);
 		};
-		
-		_result.onerror = function(ex) {  
+
+		_result.onerror = function(ex) {
 			console.log(ex);
 			if(retryTimes !== 0 && Titanium.Network.online){
 				retryTimes --;
 				_.extend(e, {retryTimes: retryTimes});
-				API.callByPost(e, onload, onerror); 
+				API.callByPost(e, onload, onerror);
 			}else{
 				if(!callByPost_error_popup){
 					callByPost_error_popup = true;

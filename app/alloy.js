@@ -33,9 +33,9 @@ DBVersionControl.checkAndUpdate();
 Alloy.Globals.Map = require('ti.map');
 
 //constant variable
-var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/"; 
+var API_DOMAIN = "https://www.asp-medical-clinic.com.my/aida/";
 
-function ucwords(str) { 
+function ucwords(str) {
   	str = str.toLowerCase();
 	return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
         function($1){
@@ -48,8 +48,8 @@ Titanium.Network.addEventListener('change',function(e){
 		setTimeout(function(){
 			common.createAlert1("Warning","Now that your phone does not have a network,\n This issue will affect your experience.\n Would you like to leave plux?",function(){
 			     var activity = Titanium.Android.currentActivity;
-			     activity.finish();			
-			});			
+			     activity.finish();
+			});
 		},1000);
 	}
 });*/
@@ -80,22 +80,22 @@ function mysql_real_escape_string (str) {
 }
 
 function timeFormat(datetime){
-	var timeStamp = datetime.split(" ");  
+	var timeStamp = datetime.split(" ");
 	var newFormat;
 	var ampm = "am";
-	var date = timeStamp[0].split("-");  
+	var date = timeStamp[0].split("-");
 	if(timeStamp.length == 1){
 		newFormat = date[2]+"/"+date[1]+"/"+date[0] ;
 	}else{
-		var time = timeStamp[1].split(":");  
-		if(time[0] > 12){
+		var time = timeStamp[1].split(":");
+		if(time[0] >= 12){
 			ampm = "pm";
 			time[0] = time[0] - 12;
 		}
-		
+
 		newFormat = date[2]+"/"+date[1]+"/"+date[0] + " "+ time[0]+":"+time[1]+ " "+ ampm;
 	}
-	
+
 	return newFormat;
 }
 
@@ -104,10 +104,10 @@ function IsNumeric(input){
 }
 
 function convertToDBDateFormat(datetime){
-	var timeStamp = datetime.split(" ");  
+	var timeStamp = datetime.split(" ");
 	var newFormat;
-	 
-	var date = timeStamp[0].split("/");  
+
+	var date = timeStamp[0].split("/");
 	if(timeStamp.length == 1){
 		newFormat = date[2]+"-"+date[1]+"-"+date[0] ;
 	}else{
@@ -115,39 +115,39 @@ function convertToDBDateFormat(datetime){
 		var hour = (timeStamp[2] == "pm")?12 + parseInt(time[0]):time[0];
 		var min = time[1] || "00";
 		var sec = time[2] || "00";
-		
+
 		newFormat = date[2]+"-"+date[1]+"-"+date[0] + " "+hour+":"+min+":"+sec;
 	}
-	
+
 	return newFormat;
 }
 
 function currentDateTime(){
 	var today = new Date();
 	var dd = today.getDate();
-	var mm = today.getMonth()+1; 
+	var mm = today.getMonth()+1;
 	var yyyy = today.getFullYear();
-	
+
 	var hours = today.getHours();
 	var minutes = today.getMinutes();
 	var sec = today.getSeconds();
 	if (minutes < 10){
 		minutes = "0" + minutes;
-	} 
+	}
 	if (sec < 10){
 		sec = "0" + sec;
-	} 
+	}
 	if(dd<10) {
 	    dd='0'+dd;
-	} 
-	
+	}
+
 	if(mm<10) {
 	    mm='0'+mm;
-	} 
-	
+	}
+
 	datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
 	return datetime ;
-} 
+}
 
 function nl2br (str, is_xhtml) {
      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
@@ -161,8 +161,8 @@ function nl2br (str, is_xhtml) {
                .replace(/\\f/g, "\\f");
     return str;
     // return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-  } 
-  
+  }
+
 function validateEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
@@ -181,37 +181,37 @@ function DPUnitsToPixels(TheDPUnits){
 }
 
 function monthFormat(datetime){
-	
+
 	var monthNames = [
         "Jan", "Feb", "Mar",
         "April", "May", "June", "Jul",
         "Aug", "Sep", "Oct",
         "Nov", "Dec"
     ];
-    
-	var timeStamp = datetime.split(" ");  
+
+	var timeStamp = datetime.split(" ");
 	var newFormat;
 	var ampm = "am";
-	var date = timeStamp[0].split("-");   
+	var date = timeStamp[0].split("-");
     if(date[1] == "08"){
 		date[1] = "8";
 	}
 	if(date[1] == "09"){
 		date[1] = "9";
 	}
-    month = parseInt(date[1]) -1; 
+    month = parseInt(date[1]) -1;
 	if(timeStamp.length == 1){
 		newFormat =  date[2]+" "+ monthNames[month]+" "+ date[0];
 	}else{
-		var time = timeStamp[1].split(":");  
+		var time = timeStamp[1].split(":");
 		if(time[0] > 12){
 			ampm = "pm";
 			time[0] = time[0] - 12;
 		}
-		
+
 		newFormat = date[2]+" "+ monthNames[month]+" "+ date[0] + ", "+ time[0]+":"+time[1]+ " "+ ampm;
 	}
-	
+
 	return newFormat;
 }
 
@@ -219,7 +219,7 @@ function monthFormat(datetime){
 function removeAllChildren(viewObject){
     //copy array of child object references because view's "children" property is live collection of child object references
     var children = viewObject.children.slice(0);
- 
+
     for (var i = 0; i < children.length; ++i) {
         viewObject.remove(children[i]);
     }
@@ -245,7 +245,7 @@ function parent(keys, ex){
 	    }
 	}else{
 		if(eval("typeof e."+key.name+"") == "undefined"){
-			
+
 			if(eval("typeof e.parent."+key.name+"") == "undefined"){
 				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
 	    			console.log("key not found");
@@ -326,7 +326,7 @@ function popup(e){
 }
 
 function message_alert(e){
-	popup({message:'You got replied from helpdesk. Do you want to read now?', title:"Helpdesk replied", 
+	popup({message:'You got replied from helpdesk. Do you want to read now?', title:"Helpdesk replied",
 		callback: function(){
 			nav.navigateWithArgs("conversation");
 		}

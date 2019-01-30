@@ -426,10 +426,6 @@ function getLatestData(local){
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	last_update = (data.length > 0)?_.first(data)['created']:last_update;
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
-	if(data.length > 0){
-	    var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
-        player.play();
-	}
 	render_conversation(true, local);
 }
 

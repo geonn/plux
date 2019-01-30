@@ -15,6 +15,7 @@ var pin_data = [
 	{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/SPECIALIST.png"},
 	{type: "24HOURS", name: "24 HOURS", icon: "/images/icons/24HOURS.png"},
 ];
+var clinic_listing = [], specialist = [];
 
 if(OS_ANDROID){
     $.filter_button.top = 120;
@@ -62,6 +63,7 @@ function setFilter(e){
 	type = e.source.record.type;
 	$.mapview.removeAllAnnotations();
 	loadClinicList();
+	loadSpecialist();
 	throttle_centerMap({filter: true});
 }
 
@@ -210,13 +212,14 @@ function closeView(){
 
 function init(){
 	$.detail.hide();
+	$.right_panel.hide();
+	$.view_queue.hide();
 	$.win.add(loading.getView());
 	$.view_category.width = platformWidth;
 	$.view_category.left = -platformWidth;
-	$.view_queue.width = platformWidth;
-    $.view_queue.right = -platformWidth;
 	loadPinCategory();
 	loadClinicList();
+	loadSpecialist();
 }
 
 init();
@@ -284,17 +287,25 @@ function loadClinicList(){
             
         var arr_filter = [];
         for (var i=0; i < data.length; i++) {
-            
-            var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: data[i]});
-            var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
-            
-            var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 10, text: data[i].clinicName, touchEnabled: false});
-            row.add(lab_category_name);
-            tvr.add(row);
-            arr_filter.push(tvr);
-            tvr.addEventListener("click", navToClinic);
+            clinic_listing[i] = data[i];
+            clinic_listing[i].value = data[i].clinicName;
         };
-        $.clinic_list.setData(arr_filter);
+        loading.finish();
+    });
+}
+
+function loadSpecialist(){
+    var u_id = Ti.App.Properties.getString('u_id') || "";
+    var corpcode = Ti.App.Properties.getString('corpcode') || "";
+    API.callByPost({url: "getHospitalList", domain: "FREEJINI_DOMAIN", new: true, params: {}}, function(responseText){
+           
+        var result = JSON.parse(responseText);
+        var data = result.data || [];
+            
+        var arr_filter = [];
+        for (var i=0; i < data.length; i++) {
+            specialist[i] = {value: data[i]};
+        };
         loading.finish();
     });
 }
@@ -318,28 +329,113 @@ function openCategory(){
 	});
 }
 
+function openSpecialistList(){
+    openMoreList();
+    nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", listing: specialist, callback: function(ex){
+        API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
+        
+        var result = JSON.parse(responseText);
+        var doctorlist = [];
+        var data = result.data || [];
+        for(var i=0,j=data.length; i<j; i++){
+            doctorlist[i] = data[i];
+            doctorlist[i].value = "SPECIALTY: "+result.data[i].specialty+"\nDOCTOR: "+result.data[i].name;
+        };
+        nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Specialist Listing", listing: doctorlist, callback: function(ex2){
+                console.log("doctor list callback");
+                var label_name_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "DOCTOR"});
+                var label_name_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.title+" "+ex2.name});
+                var label_specialty_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "SPECIALIST"});
+                var label_specialty_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.specialty});
+                var label_hospital_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "PROVIDER"});
+                var label_hospital_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.provider});
+                var label_location_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "LOCATION"});
+                var label_location_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.location});
+                var button_call = $.UI.create("Button", {width: 100, height: 30, top: 10, bottom:10, left: 10, right: 10, title: "CALL", phone: ex2.phone});
+                var close_x = $.UI.create("Label", {classes:['wsize','hsize'], color: "red", right:10, top:10, text: "X"});
+                var view_container = $.UI.create("View", {classes:['wfill','hsize','vert'], backgroundColor: "#ffffff", left:10, right: 10 });
+                view_container.add(close_x);
+                view_container.add(label_name_title);
+                view_container.add(label_name_value);
+                view_container.add(label_specialty_title);
+                view_container.add(label_specialty_value);
+                view_container.add(label_hospital_title);
+                view_container.add(label_hospital_value);
+                view_container.add(label_location_title);
+                view_container.add(label_location_value);
+                view_container.add(button_call);
+                
+                close_x.addEventListener("click", function(){
+                    $.win.remove(view_container);
+                });
+                
+                button_call.addEventListener("click", function(b){
+                    console.log(b.source.phone);
+                    var b = b.source.phone.replace(/[+]/g, "");
+                    console.log('tel:'+b);
+                    Ti.Platform.openURL('tel:'+b);
+                });
+                
+                
+                $.win.add(view_container);
+            }});
+        });
+        console.log("hospital Listing callback");
+    }});
+}
+
+function openClinicList(){
+    nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Clinic Listing", listing: clinic_listing, callback: navToClinic});
+    return;
+}
+
+var queue_more = true;
 function openQueueList(){
+    if(!show_more){
+        openMoreList();
+    }
+    loadQueue();
+    $.view_queue.show();
     $.detail.hide();
     $.search.blur();
-    if (show_category){
-        moveTo = -platformWidth;
-        show_category=false;
-    }else{
+    if (queue_more){
         moveTo="0";
-        show_category=true;
+        queue_more = false;
+    }else{
+        moveTo = -platformWidth;
+        queue_more = true;
     }
     
     $.view_queue.animate({
         right:moveTo,
         duration: duration
     });
+
+}
+
+var show_more = true;
+function openMoreList(){
+    $.right_panel.show();
+    $.detail.hide();
+    $.search.blur();
+    if (show_more){
+        moveTo="0";
+        show_more = false;
+    }else{
+        moveTo = -platformWidth;
+        show_more = true;
+    }
+    
+    $.right_panel.animate({
+        right:moveTo,
+        duration: duration
+    });
+
 }
 
 function navToClinic(e){
-    var source = (typeof e.record == "undefined")?e.source:e;
-    if(typeof e.record == "undefined"){
-        openQueueList();
-    }
+    var source = (typeof e.record == "undefined")?{record: e}:e;
+    console.log(source);
     pinClicked(source);
     //$.mapview.removeAllAnnotations();
     addMarketToArray(source.record);

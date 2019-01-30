@@ -51,7 +51,7 @@ function saveLocal(param){
     }];
     render_conversation(true, true);
 	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
-		
+
 		var res = JSON.parse(responseText);
 		$.message_bar.value = "";
 		$.message_bar.editable = true;
@@ -106,7 +106,7 @@ function addRow(row, latest){
 		is_endUser: row.is_endUser,
         created: row.created
 	});
-	
+
 	if(row.sender_id){
 		var view_text_container = $.UI.create("View", {
 			classes:  ['hsize', 'vert', 'rounded'],
@@ -121,12 +121,12 @@ function addRow(row, latest){
 			color: "#7F7F7F",
 			text: row.sender_name
 		});
-		
+
 		var ss = row.message;
 		var newText = (row.format != "photo")?ss.replace("[br]", "\r\n"):row.message;
 		var text_color = (row.format == "link")?"blue":"#606060";
 		newText = (row.format == "link")?newText:newText;
-		
+
 		var label_message = $.UI.create("Label", {
 			classes:['h5', 'wfill', 'hsize','small_padding'],
 			top: 0,
@@ -143,17 +143,17 @@ function addRow(row, latest){
 		var label_time = $.UI.create("Label", {
 			classes:['h7', 'wfill', 'hsize','small_padding'],
 			top:0,
-			
+
 			right:15,
 			text: timeFormat(row.created)+" "+status_text[row_status],
 			textAlign: "right"
 		});
-		
+
 		if (row.format == "link"){
 			var label_message2 = $.UI.create("Label", {
 				classes:['h5', 'wfill', 'hsize','small_padding'],
 				top: 0,
-				left:15, 
+				left:15,
 				text: "Thanks you for contacting our call centre. \nWe would love to hear your thoughts or feedback on how we can improve your experience!\nClick below to start the survey:"
 			});
 			view_text_container.add(label_name);
@@ -162,7 +162,7 @@ function addRow(row, latest){
 		}else if(row.format == "voice"){
 			return;
 			var player = Alloy.createWidget('dk.napp.audioplayer', {playIcon: "\uf144", pauseIcon: "\uf28c"});
-			
+
 			player.setUrl(newText);
 			//download_video(player, newText);
 			var view = $.UI.create("View", {classes:['wfill','hsize','padding']});
@@ -180,7 +180,7 @@ function addRow(row, latest){
 			view_text_container.add(label_name);
 			view_text_container.add(label_message);
 		}
-		
+
 		view_text_container.add(label_time);
 		if(row.is_endUser){
 			view_text_container.setBackgroundColor("#22262f");
@@ -188,10 +188,10 @@ function addRow(row, latest){
 			label_message.color = "#fff";
 			label_time.color = "#fff";
 			view_text_container.setLeft(10);
-			
+
 			//view_container.add(imageview_thumb_path);
 		}else{
-		    
+
 		    view_text_container.borderWidth = 1;
 		    view_text_container.borderColor = "#e9e9e9";
 			view_text_container.setBackgroundColor("#ffffff");
@@ -201,7 +201,7 @@ function addRow(row, latest){
 		if(row.format == "link"){
 			label_message.addEventListener("click", navToWebview);
 		}
-		
+
 	}else{
 		var view_text_container = $.UI.create("View", {
 			transform: Ti.UI.create2DMatrix().rotate(180),
@@ -209,7 +209,7 @@ function addRow(row, latest){
 			top: 5,
 			backgroundColor: "#3ddaf6"
 		});
-		
+
 		var label_system_msg = $.UI.create("Label",{
 			classes: ['wsize', 'hsize','padding','h6'],
 			text: row.message
@@ -226,12 +226,12 @@ function addRow(row, latest){
 		    message: 'Would you like to delete the message?',
 		    title: 'Delete'
 		  });
-		  
+
 	  dialog.addEventListener('click', function(ex){
 		 if (ex.index === ex.source.cancel){
 
 		 }else if(ex.index == 0){
-		 	
+
 		 	var model = Alloy.createCollection("chat");
 			model.removeById(m_id);
 		 	$.inner_area.remove(message_box);
@@ -265,7 +265,7 @@ function updateReadStatus(){
     var inner_area = $.inner_area.getChildren();
     for (var i=0; i < inner_area.length; i++) {
         if(inner_area[i].children[0].children.length <= 1){
-                
+
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && doctor_read_status > inner_area[i].created ){
 
            // inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
@@ -339,7 +339,7 @@ function scrollChecker(e){
 			//$.chatroom.setContentOffset({y: top}, {animated: false});
 			data_loading = false;
 		}, 200);
-	}	
+	}
 }
 
 function callHelpdesk(){
@@ -349,13 +349,13 @@ function callHelpdesk(){
 function getConversationByRoomId(callback){
 	var url = (dr_id == -1)?"getHelplineMessageV4":"getMessage";
 	var checker_id = (dr_id == -1)?7:19;
-	var checker = Alloy.createCollection('updateChecker'); 
+	var checker = Alloy.createCollection('updateChecker');
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, dr_id);
 	var last_updated = isUpdate.updated || common.now();
 	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("chat");
-		
+
 		var res = JSON.parse(responseText);
 		var arr = res.data || [];
 		if(arr.length > 0){
@@ -364,7 +364,7 @@ function getConversationByRoomId(callback){
 			//updateStatus(update_id);
 		}
 		checker.updateModule(checker_id, url, res.last_updated, u_id, dr_id);
-		if(!room_id){	//if room_id = 0 
+		if(!room_id){	//if room_id = 0
 			socket.setRoom({room_id: res.room_id});
 			Ti.App.Properties.setString('room_id', res.room_id);
 			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
@@ -380,7 +380,7 @@ function updateStatus(arr){
 	for (var i=0; i < arr.length; i++) {
 		var c = $.inner_area.getChildren();
 		for (var b=0; b < $.inner_area.children.length; b++) {
-			
+
 			if($.inner_area.children[b].m_id == arr[i]){
 				var time = $.inner_area.children[b].children[0].children[2].text.split(" ");
 				$.inner_area.children[b].children[0].children[2].text = time[0]+time[1]+time[2]+" Sent";
@@ -405,17 +405,14 @@ function refresh(callback, firsttime){
 		callback({firsttime: firsttime});
 		loading.finish();
 		refreshing = false;
-		//var model = Alloy.createCollection("chat"); 
+		//var model = Alloy.createCollection("chat");
 		//model.messageRead({u_id: u_id});
 	});
-	
+
 }
 var refreshing = false;
 var time_offset = common.now();
 function refresh_latest(param){
-	var player = Ti.Media.createSound({url:"/sound/doorbell.wav"});
-	player.play();
-	
 	if(!refreshing && time_offset < common.now()){
 		refreshing = true;
 		refresh(getLatestData);
@@ -423,7 +420,7 @@ function refresh_latest(param){
 	}
 }
 
-function getPreviousData(param){ 
+function getPreviousData(param){
 	start = (typeof start != "undefined")? start : 0;
 	var model = Alloy.createCollection("chat");
 	data = model.getData(false, start, anchor,"", dr_id);
@@ -436,7 +433,7 @@ function getPreviousData(param){
 
 function getLatestData(local){
 	var model = Alloy.createCollection("chat");
-	data = model.getData(true,"","", last_update, dr_id); 
+	data = model.getData(true,"","", last_update, dr_id);
 	last_id = (data.length > 0)?_.first(data)['id']:last_id;
 	last_update = (data.length > 0)?_.first(data)['created']:last_update;
 	last_uid = (data.length > 0)?_.first(data)['sender_id']:last_uid;
@@ -466,37 +463,37 @@ function init(){
 	}else{
 	    $.win.setWindowSoftInputMode(Ti.UI.Android.SOFT_INPUT_ADJUST_PAN);
 		if(Ti.Android.hasPermission("android.permission.RECORD_AUDIO")){
-			checkingInternalPermission();		    	
+			checkingInternalPermission();
 		}else{
 			setTimeout(function(){
 				Ti.Android.requestPermissions("android.permission.RECORD_AUDIO", function(e) {
 				    if (e.success) {
-						checkingInternalPermission();		    	
+						checkingInternalPermission();
 				    } else {
 						common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
 							closeWindow();
 						});
 				    }
-				}); 			
-			},1000);		
+				});
+			},1000);
 		}
 	}
 }
 function checkingInternalPermission(){
 	if(Titanium.Filesystem.hasStoragePermissions()){
-		second_init();		    	
+		second_init();
 	}else{
 		setTimeout(function(){
 			Titanium.Filesystem.requestStoragePermissions(function(e) {
 			    if (e.success) {
-					second_init();		    	
+					second_init();
 			    } else {
 					common.createAlert("Warning","You don't have file storage permission!!!\nYou can go to setting enabled the permission.",function(e){
 						closeWindow();
 					});
 			    }
-			}); 				
-		},1000);			
+			});
+		},1000);
 	}
 }
 function second_init(){
@@ -548,23 +545,23 @@ function filepermittion()
 }
 
 function popCamera(e){
-    
+
     if(!filepermittion()) return;
 
-    var dialog = Titanium.UI.createOptionDialog({ 
-        title: 'Choose an image source...', 
-        options: ['Camera','Photo Gallery', 'Cancel'], 
+    var dialog = Titanium.UI.createOptionDialog({
+        title: 'Choose an image source...',
+        options: ['Camera','Photo Gallery', 'Cancel'],
         cancel:2 //index of cancel button
     });
     var pWidth = Ti.Platform.displayCaps.platformWidth;
     var pHeight = Ti.Platform.displayCaps.platformHeight;
-     
-    dialog.addEventListener('click', function(e) { 
-        
+
+    dialog.addEventListener('click', function(e) {
+
         if(e.index == 0) { //if first option was selected
             //then we are getting image from camera]
             if(Ti.Media.hasCameraPermissions()){
-                Titanium.Media.showCamera({ 
+                Titanium.Media.showCamera({
                     success:photoSuccessCallback,
                     cancel:function(){
                         //do somehting if user cancels operation
@@ -578,19 +575,19 @@ function popCamera(e){
                         }else{
                             a.setMessage('Unexpected error: ' + error.code);
                         }
-         
+
                         // show alert
                         a.show();
                     },
                     allowImageEditing:true,
                     mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
                     saveToPhotoGallery:true
-                });                                 
+                });
             }else{
                 Ti.Media.requestCameraPermissions(function(e){
-                    
+
                     if(e.success){
-                        Titanium.Media.showCamera({ 
+                        Titanium.Media.showCamera({
                             success:photoSuccessCallback,
                             cancel:function(){
                                 //do somehting if user cancels operation
@@ -604,14 +601,14 @@ function popCamera(e){
                                 }else{
                                     a.setMessage('Unexpected error: ' + error.code);
                                 }
-                 
+
                                 // show alert
                                 a.show();
                             },
                             allowImageEditing:true,
                             mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
                             saveToPhotoGallery:true
-                        });                 
+                        });
                     }
                     else{
                         alert("You denied permission.");
@@ -624,7 +621,7 @@ function popCamera(e){
             {
                 if(Ti.Filesystem.hasStoragePermissions()){
                     Titanium.Media.openPhotoGallery({
-                        
+
                         success: photoSuccessCallback,
                         cancel:function() {
                             // called when user cancels taking a picture
@@ -642,13 +639,13 @@ function popCamera(e){
                         // allowEditing and mediaTypes are iOS-only settings
                         allowEditing: true,
                         mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
-                    });                             
+                    });
                 }else{
                     Ti.Filesystem.requestStoragePermissions(function(e){
-                        
+
                         if(e.success){
                             Titanium.Media.openPhotoGallery({
-                                
+
                                 success:photoSuccessCallback,
                                 cancel:function() {
                                     // called when user cancels taking a picture
@@ -666,7 +663,7 @@ function popCamera(e){
                                 // allowEditing and mediaTypes are iOS-only settings
                                 allowEditing: true,
                                 mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
-                            });             
+                            });
                         }
                         else{
                             alert("You denied permission.");
@@ -676,7 +673,7 @@ function popCamera(e){
             }else{
                 if(Ti.Media.hasPhotoGalleryPermissions()){
                     Titanium.Media.openPhotoGallery({
-                        
+
                         success:photoSuccessCallback,
                         cancel:function() {
                             // called when user cancels taking a picture
@@ -694,13 +691,13 @@ function popCamera(e){
                         // allowEditing and mediaTypes are iOS-only settings
                         allowEditing: true,
                         mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
-                    });                             
+                    });
                 }else{
                     Ti.Media.requestPhotoGalleryPermissions(function(e){
-                        
+
                         if(e.success){
                             Titanium.Media.openPhotoGallery({
-                                
+
                                 success:photoSuccessCallback,
                                 cancel:function() {
                                     // called when user cancels taking a picture
@@ -718,7 +715,7 @@ function popCamera(e){
                                 // allowEditing and mediaTypes are iOS-only settings
                                 allowEditing: true,
                                 mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
-                            });             
+                            });
                         }
                         else{
                             alert("You denied permission.");
@@ -727,10 +724,10 @@ function popCamera(e){
                 }
             }
         } else {
-        
+
         }
     });
-     
+
     //show dialog
     dialog.show();
 }
@@ -755,5 +752,5 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener("socket:refresh_chatroom", refresh_latest);
 	Ti.App.removeEventListener('conversation:refresh', refresh_latest);
 	$.destroy();
-	 
+
 });

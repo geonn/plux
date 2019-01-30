@@ -14,7 +14,7 @@
 "Window[platform=ios]":{
 	fullscreen : true,
 },
-"#activityIndicator" : { 
+"#activityIndicator" : {
 	 top:30,
 	 left:30,
 	 width:60,
@@ -37,7 +37,10 @@
 "Label":{
 	width: Titanium.UI.SIZE,
 	height: Titanium.UI.SIZE,
-	color: "#111111"
+	color: "#111111",
+	font: {
+		fontFamily: 'Roboto-Regular, arial',
+	},
 },
 "View":{
 	borderWidth: 0
@@ -46,13 +49,13 @@
 	top: 10,
 	left: 10,
 	right: 10,
-	bottom: 10,	
+	bottom: 10,
 	height: Titanium.UI.SIZE,
 	width: Titanium.UI.SIZE,
 },
 "ListItem":{
 	color: "#000",
-} 
+}
 ".big_font":{
 	font: {fontSize: '20dp'},
 },
@@ -65,7 +68,7 @@
 ".small_font":{
 	font: {fontSize: '12dp'},
 },
-".navbtn[platform=android]": { 
+".navbtn[platform=android]": {
 	font: {fontSize: '10dp'},
 	color: "#000"
 },
@@ -165,7 +168,7 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	font:{
-		fontSize: 14, 
+		fontSize: 14,
 	}
 }
 
@@ -231,7 +234,7 @@
 
 ".h5":{
 	font:{
-		fontSize: 14
+		fontSize: 16
 	}
 },
 
@@ -240,10 +243,10 @@
 		fontSize: 12
 	}
 },
- 
+
 ".h7":{
 	font:{
-		fontSize: 10
+		fontSize: 11
 	}
 },
 '.font_light_grey':{
@@ -255,13 +258,13 @@
 ".black-line":{
 	backgroundColor: "#525252",
 	width: Ti.UI.FILL,
-	height: 1	
+	height: 1
 },
 
 ".gray-line":{
 	backgroundColor: "#ececec",
 	width: Ti.UI.FILL,
-	height: 1	
+	height: 1
 },
 ".grey-background" :{
 	backgroundColor: "#F4F4F4",
@@ -270,11 +273,13 @@
 ".white-line":{
 	backgroundColor: "#fff",
 	width: Ti.UI.FILL,
-	height: 1	
+	height: 1
 },
 
 ".bold":{
-	font: { fontWeight: 'bold'}
+	font: {
+		fontFamily: 'Roboto-Bold',
+	},
 },
 
 '.left-align' :{
@@ -305,23 +310,23 @@
 	backgroundColor: "#2056A6"
 }
 '.purple' : {
-	color: "#933ec5",	
+	color: "#933ec5",
 }
 '.purple_border' : {
-	borderColor: "#933ec5",	
+	borderColor: "#933ec5",
 }
 '.themeBg' : {
 	backgroundColor: "#A52430"
-}, 
+},
 ".padding-top":{
 	top: 10
-}, 
+},
 ".padding-left":{
 	left: 10
-}, 
+},
 ".padding-right":{
 	right: 10
-}, 
+},
 ".padding-bottom":{
 	bottom: 10
 },
@@ -339,7 +344,7 @@
 	height: 40,
     left: 10,
     right: 10,
-    bottom: 10, 
+    bottom: 10,
     borderWidth: 0,
     hintTextColor: "#E89114",
     backgroundColor: "#ffffff"
