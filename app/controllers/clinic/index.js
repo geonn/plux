@@ -25,8 +25,8 @@ $.mapview.height = platformHeight - 90;
 
 var distance = function(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295;    // Math.PI / 180
-  var a = 0.5 - Math.cos((lat2 - lat1) * p)/2 + 
-          Math.cos(lat1 * p) * Math.cos(lat2 * p) * 
+  var a = 0.5 - Math.cos((lat2 - lat1) * p)/2 +
+          Math.cos(lat1 * p) * Math.cos(lat2 * p) *
           (1 - Math.cos((lon2 - lon1) * p))/2;
 
   return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
@@ -40,16 +40,21 @@ var saveCurLoc = function(e) {
     	showCurLoc = true;
     	Ti.App.Properties.setString('latitude', e.coords.latitude);
     	Ti.App.Properties.setString('longitude', e.coords.longitude);
+			console.log('saveCurLoc');
+			console.log(e.coords);
     	$.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
     	setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
     }
     Ti.Geolocation.removeEventListener('location',saveCurLoc);
-}; 
-
+};
+console.log("Ti.Geolocation.locationServicesEnabled"+Ti.Geolocation.locationServicesEnabled);
 if (Ti.Geolocation.locationServicesEnabled) {
+	console.log("in");
     Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
     Ti.Geolocation.addEventListener('location', saveCurLoc);
-} 
+}else{
+		setTimeout(function(){alert('Please enable your location service.');}, 2000);
+}
 
 function setFilter(e){
 	$.filter_icon.width = 20;
@@ -95,8 +100,8 @@ function centerMap(e){
 			}
 			var result = JSON.parse(responseText);
 			var data = result.data;
-			for (var i=0; i < data.length; i++) { 
-				addMarketToArray(data[i]); 
+			for (var i=0; i < data.length; i++) {
+				addMarketToArray(data[i]);
 			};
 			isRefresh = 0;
 		});
@@ -122,7 +127,7 @@ function addMarketToArray(pin){
             })
             };
         }else{
-            
+
             var pin = {id: pin.id, latitude: pin.latitude, longitude: pin.longitude, title: pin.clinicName, subtitle: pin.add1+pin.add2, record: pin, image: "images/icons/"+pin.clinicType+".png"};
         }
         annotations.push(pin);
@@ -135,24 +140,24 @@ function getMapBounds(region) {
     b.northWest = {}; b.northEast = {};
     b.southWest = {}; b.southEast = {};
 
-    b.northWest.lat = parseFloat(region.latitude) + 
+    b.northWest.lat = parseFloat(region.latitude) +
         parseFloat(region.latitudeDelta) / 2.0;
-    b.northWest.lng = parseFloat(region.longitude) - 
+    b.northWest.lng = parseFloat(region.longitude) -
         parseFloat(region.longitudeDelta) / 2.0;
 
-    b.southWest.lat = parseFloat(region.latitude) - 
+    b.southWest.lat = parseFloat(region.latitude) -
         parseFloat(region.latitudeDelta) / 2.0;
-    b.southWest.lng = parseFloat(region.longitude) - 
+    b.southWest.lng = parseFloat(region.longitude) -
         parseFloat(region.longitudeDelta) / 2.0;
 
-    b.northEast.lat = parseFloat(region.latitude) + 
+    b.northEast.lat = parseFloat(region.latitude) +
         parseFloat(region.latitudeDelta) / 2.0;
-    b.northEast.lng = parseFloat(region.longitude) + 
+    b.northEast.lng = parseFloat(region.longitude) +
         parseFloat(region.longitudeDelta) / 2.0;
 
-    b.southEast.lat = parseFloat(region.latitude) - 
+    b.southEast.lat = parseFloat(region.latitude) -
         parseFloat(region.latitudeDelta) / 2.0;
-    b.southEast.lng = parseFloat(region.longitude) + 
+    b.southEast.lng = parseFloat(region.longitude) +
         parseFloat(region.longitudeDelta) / 2.0;
 
     return b;
@@ -177,11 +182,11 @@ function getDirection(){
 				action: Ti.Android.ACTION_VIEW,
 				data: waze_url
 			});
-			Ti.Android.currentActivity.startActivity(intent); 
+			Ti.Android.currentActivity.startActivity(intent);
 		}else{
 			Ti.Platform.openURL(waze_url);
 		}
-	} catch (ex) { 
+	} catch (ex) {
 		if(OS_IOS){
 			Titanium.Platform.openURL('Maps://http://maps.google.com/maps?ie=UTF8&t=h&z=16&daddr='+marker.latitude+','+marker.longitude);
 		}else{
@@ -230,10 +235,10 @@ function loadPinCategory(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var arr_filter = [];
     API.callByPost({url: "getClinicLocatorCategory", domain: "FREEJINI_DOMAIN", new: true, params: {corpcode: corpcode, u_id: u_id, isRefresh:1}}, function(responseText){
-        
+
         var result = JSON.parse(responseText);
         var data = result.data || [];
-            
+
         for (var i=0; i < data.length; i++) {
             var pin = _.where(pin_data, {name: data[i]});
             var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin[0]});
@@ -258,15 +263,15 @@ function doSearch(e){
 function loadQueue(){
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {corpcode: corpcode}}, function(responseText){
-        
+
         var result = JSON.parse(responseText);
         var data = result.data || [];
-            
+
         var arr_filter = [];
         for (var key in data){
             var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize']});
             var row = $.UI.create("View", {classes:['wsize','hsize','padding'], left: 0, touchEnabled: false});
-            
+
             var lab_category_name = $.UI.create("Label", {classes:['wsize','hsize','h6'], left: 10, text: key+" : "+data[key], touchEnabled: false});
             row.add(lab_category_name);
             tvr.add(row);
@@ -281,10 +286,10 @@ function loadClinicList(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
-           
+
         var result = JSON.parse(responseText);
         var data = result.data || [];
-            
+
         var arr_filter = [];
         for (var i=0; i < data.length; i++) {
             clinic_listing[i] = data[i];
@@ -298,10 +303,10 @@ function loadSpecialist(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     API.callByPost({url: "getHospitalList", domain: "FREEJINI_DOMAIN", new: true, params: {}}, function(responseText){
-           
+
         var result = JSON.parse(responseText);
         var data = result.data || [];
-            
+
         var arr_filter = [];
         for (var i=0; i < data.length; i++) {
             specialist[i] = {value: data[i]};
@@ -333,7 +338,7 @@ function openSpecialistList(){
     openMoreList();
     nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", listing: specialist, callback: function(ex){
         API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
-        
+
         var result = JSON.parse(responseText);
         var doctorlist = [];
         var data = result.data || [];
@@ -364,19 +369,19 @@ function openSpecialistList(){
                 view_container.add(label_location_title);
                 view_container.add(label_location_value);
                 view_container.add(button_call);
-                
+
                 close_x.addEventListener("click", function(){
                     $.win.remove(view_container);
                 });
-                
+
                 button_call.addEventListener("click", function(b){
                     console.log(b.source.phone);
                     var b = b.source.phone.replace(/[+]/g, "");
                     console.log('tel:'+b);
                     Ti.Platform.openURL('tel:'+b);
                 });
-                
-                
+
+
                 $.win.add(view_container);
             }});
         });
@@ -405,7 +410,7 @@ function openQueueList(){
         moveTo = -platformWidth;
         queue_more = true;
     }
-    
+
     $.view_queue.animate({
         right:moveTo,
         duration: duration
@@ -425,7 +430,7 @@ function openMoreList(){
         moveTo = -platformWidth;
         show_more = true;
     }
-    
+
     $.right_panel.animate({
         right:moveTo,
         duration: duration
@@ -453,7 +458,7 @@ function navToClinic(e){
     };
     annotations.push(pin);
     render_annotation(pin);*/
-    
+
     $.mapview.region =  {latitude: parseFloat(source.record.latitude)-0.004, longitude:source.record.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};// };
 }
 
