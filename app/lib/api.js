@@ -2,7 +2,7 @@
 *** SETTING / API ***
 **********************/
 var API_DOMAIN = "https://appsapi.aspmedic.com/aida/";
-var FREEJINI_DOMAIN =  "https://plux.freejini.com.my";
+var FREEJINI_DOMAIN =  "http://app.aspmedic.com";
 var VCLINIC_DOMAIN = "https://vclinic.freejini.com.my";
 var REZA_DOMAIN = "http://asp.swancount.com";
 

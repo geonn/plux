@@ -53,7 +53,7 @@ function saveLocal(param){
         "sender_name": Ti.App.Properties.getString('fullname') || ""
     }];
     render_conversation(true, true);
-	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
+	API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: param.format, params:api_param}, function(responseText){
 
 		var res = JSON.parse(responseText);
 		$.message_bar.value = "";
@@ -322,7 +322,7 @@ function render_conversation(latest, local){
 	}
 	for (var i=0; i < data.length; i++) {
 	     if(data[i].status == 1 && !local){
-            API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
+            API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
                 socket.sendMessage({room_id: room_id});
             });
