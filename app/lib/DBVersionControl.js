@@ -14,7 +14,7 @@ exports.checkAndUpdate = function(e){
 		var medicalAttachmentV2 = Alloy.createCollection('medicalAttachmentV2');
 		var chat = Alloy.createCollection('chat');
 		var updateChecker = Alloy.createCollection('updateChecker');
-		var notification = Alloy.createCollection('notification');
+		var notification = Alloy.createCollection('notificationV2');
 
 		notification.addColumn("detail", "TEXT");
 
