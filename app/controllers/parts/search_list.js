@@ -27,21 +27,14 @@ var tableview = Titanium.UI.createTableView({
 
 tableview.addEventListener("click", function(e){
     args.callback(args.listing[e.index]);
-    $.win.close();
-    return;
-    if(typeof tf.source == "undefined"){
-        tf.value = diagCategory[i].code+" - "+diagCategory[i].desc;
-        tf.text = diagCategory[i].code+" - "+diagCategory[i].desc;
-        tf.name = diagCategory[e.index].code;
-        tf.color = "#000000";
-        tf.position = e.index;
-    }else{
-        tf.source.value = diagCategory[e.index];
-        tf.source.text = diagCategory[e.index];
-        tf.source.name = diagCategory[e.index];
-        tf.source.color = "#000000";
-        selectedDiag1 = e.index;
+    console.log("please check here");
+    console.log(args.click_dun_exit);
+    if(!args.click_dun_exit){
+      $.win.close();
     }
-    $.win.remove(tableview);
+    if(typeof args.w != "undefined"){
+      args.w.close();
+    }
+    return;
 });
 $.win.add(tableview);

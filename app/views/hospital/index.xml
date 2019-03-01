@@ -1,5 +1,5 @@
 <Alloy>
-    <Window title="Clinic Locator" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+    <Window title="Hospital Locator" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
         <RightNavButton>
             <!--<Button title="MORE" onClick="openMoreList" />-->
         </RightNavButton>
@@ -9,7 +9,7 @@
                     <ImageView left='10' onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
                 </View>
                 <View id="pageTitle" width="79%">
-                    <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Clinic Locator</Label>
+                    <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Hospital Locator</Label>
                 </View>
                 <!--<View right="0" width="10%" onClick="openMoreList">
                     <Label class="wfill hsize h6">MORE</Label>
@@ -20,8 +20,8 @@
 				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
 			</View>
 		</View>
-		<ImageView id="filter_icon" image="/images/icons/dental_new.png" right="20" bottom="20" onClick="openCategory" width="60" height="60"></ImageView>
-    <Button bottom="30" width="100" onClick="openQueueList" class="hsize">QUEUE LIST</Button>
+		<ImageView id="filter_icon" image="/images/icons/hospital_new.png" right="20" bottom="20" onClick="openCategory" width="60" height="60"></ImageView>
+    <Button bottom="30" width="100" onClick="openSpecialistList" class="hsize">SPECIALIST</Button>
     <ImageView image="/images/icons/listing.png" left="20" bottom="20" onClick="openClinicList" width="60" height="60"></ImageView>
 		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
 			<TableView onClick="setFilter" backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" left="0" bottom="10" id="filter_list">

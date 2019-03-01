@@ -5,15 +5,15 @@ var isRefresh = 1;
 var platformHeight = ((OS_IOS)?Ti.Platform.displayCaps.platformHeight:parseInt(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10));
 
 var platformWidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10));
-var type = "CLINIC";
+var type = "HOSPITAL";
 var pin_data = [
-	{type: "CLINIC", name: "CLINIC", icon: "/images/icons/clinic_new.png"},
-	//{type: "HOSPITAL", name: "HOSPITAL", icon: "/images/icons/hospital_new.png"},
-	{type: "DENTAL", name: "DENTAL", icon: "/images/icons/dental_new.png"},
-	{type: "OPTICAL", name: "OPTICAL", icon: "/images/icons/optiacl_new.png"},
-	//{type: "PHYSIOTHERAPHY", name: "PHYSIOTHERAPHY", icon:"/images/icons/clinic_new.png"},
-	//{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/specialist_new.png"},
-	{type: "24HOURS", name: "24 HOURS", icon: "/images/icons/24hour_new.png"},
+	//{type: "CLINIC", name: "CLINIC", icon: "/images/icons/clinic_new.png"},
+	{type: "HOSPITAL", name: "HOSPITAL", icon: "/images/icons/hospital_new.png"},
+	//{type: "DENTAL", name: "DENTAL", icon: "/images/icons/dental_new.png"},
+	//{type: "OPTICAL", name: "OPTICAL", icon: "/images/icons/optiacl_new.png"},
+	{type: "PHYSIOTHERAPHY", name: "PHYSIOTHERAPHY", icon:"/images/icons/clinic_new.png"},
+	{type: "SPECIALIST", name: "SPECIALIST", icon:"/images/icons/specialist_new.png"},
+	//{type: "24HOURS", name: "24 HOURS", icon: "/images/icons/24hour_new.png"},
 ];
 var clinic_listing = [], specialist = [];
 
@@ -337,7 +337,7 @@ function openCategory(){
 
 function openSpecialistList(){
     //openMoreList();
-    nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", listing: specialist, callback: function(ex){
+    var w = nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", click_dun_exit: true, listing: specialist, callback: function(ex){
         API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
 
         var result = JSON.parse(responseText);
@@ -347,7 +347,7 @@ function openSpecialistList(){
             doctorlist[i] = data[i];
             doctorlist[i].value = "SPECIALTY: "+result.data[i].specialty+"\nDOCTOR: "+result.data[i].name;
         };
-        nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Specialist Listing", listing: doctorlist, callback: function(ex2){
+        nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, w:w, title: "Specialist Listing", listing: doctorlist, callback: function(ex2){
                 console.log("doctor list callback");
                 var label_name_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "DOCTOR"});
                 var label_name_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.title+" "+ex2.name});

@@ -13,7 +13,8 @@ var new_menu = [
 	{mod:"askDoctor/counsellor", is_asp:1, title: "ASK COUNSELLOR", onClick: navWindow, subtitle: "online counsellor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
 	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
-	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic or hospital location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
+	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic, dental & optical location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
+	{mod:"hospital/index", is_asp:1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
@@ -265,15 +266,16 @@ function navWindow(e){
 		}
 	}else if(source.mod == "myHealth"){
 		nav.navigationWindow(source.mod+"/index");
-	}else if(source.mod == "clinicLocator"){
+	}else if(source.mod == "clinicLocator" || source.mod == "hospital/index"){
+		var tar = (source.mod == "hospital/index")?source.mod:"clinic/index";
 		var memno = Ti.App.Properties.getString('memno') || "";
 		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 			if (e.success) {
 				if(memno == ""){
-                    nav.navigationWindow("clinic/index");
-                }else{
-                    nav.navigationWindow("clinic/index", 1);
-                }
+            nav.navigationWindow(tar);
+        }else{
+            nav.navigationWindow(tar, 1);
+        }
 			}else{
 				var dialog = Ti.UI.createAlertDialog({
 					message : 'You do not have location permissions enabled shake locate needs these to work.',
