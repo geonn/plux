@@ -59,6 +59,8 @@
 						<Label class="h5 wfill hsize" id="address"></Label>
 						<Label class="h5 bold wfill hsize" top="5">WORKING HOUR:</Label>
 						<Label class="h5 wfill hsize" id="openHour"></Label>
+            <Label class="h5 bold wfill hsize" top="5">RATING:</Label>
+            <Label class="h5 wfill hsize" id="rating"></Label>
 					</View>
 				</View>
 				<View class="wfill hsize">

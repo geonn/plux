@@ -165,10 +165,12 @@ var marker = false;
 function pinClicked(e){
     $.search.blur();
     var pin = (typeof e.annotation != "undefined")?e.annotation:e;
+		console.log(pin.record);
     marker = pin.record;
 	$.name.text = pin.record.clinicName;
 	$.address.text = pin.record.add1+" "+pin.record.add2+" "+pin.record.city+" "+pin.record.postcode+" "+pin.record.state;
-	$.openHour.text = pin.record.openHour.replace(/\[nl\]/g, "\n");
+	$.openHour.text = (pin.record.openHour)?pin.record.openHour.replace(/\[nl\]/g, "\n"):"-";
+	$.rating.text = (pin.record.rating)?pin.record.rating+" / 5":"No Rating";
 	$.detail.show();
 }
 
