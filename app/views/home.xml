@@ -1,6 +1,6 @@
 <Alloy>
 	<Window id="win" title="" navBarHidden="true" class="container" exitOnClose="true">
-		<!--<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>-->
+		<WebView zIndex="100" url="/html/socket.html" id="socket" class="wfill" height="0"></WebView>
 		<View class='wfill hfill'>
 		    <ImageView id="daily_background" class="wfill hfill"></ImageView>
 		    <View class="wfill hfill" backgroundColor="#90000000"></View>

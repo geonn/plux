@@ -1,14 +1,23 @@
 var args = arguments[0] || {}; 
 var arg_serial = (typeof args.serial != "undefined")?args.serial:0;
 var loading = Alloy.createController("loading");
-
-if(args.appcode.charAt(0) != "T"){
+var img_path = "";
+console.log(args);
+if(args.rcpfile != ""){
+    img_path = "http://ereceipt.aspmedic.com/ereceipt/"+args.rcpfile;
+    console.log('yes');
+}else if(args.appcode.charAt(0) != "T"){
 	if(OS_IOS){
 		$.win.setRightNavButton(null);
 	}else{
 		$.recepit.hide();
-	} 
+	}
+}else{
+    img_path = "https://tslip.aspmedic.com/"+args.appcode+".png";
 }
+console.log(img_path);
+
+
 
 function init(){
     $.win.add(loading.getView());
@@ -59,7 +68,7 @@ function view_detail(e){
 }
 
 function openReceipt(){
-	var img_path = "https://tslip.aspmedic.com/"+args.appcode+".png";
+    console.log(img_path);
 	common.lightbox({img_path: img_path}, $.win);
 }
 

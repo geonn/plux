@@ -14,6 +14,7 @@ var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback:
 var user_read_status, doctor_read_status;
 var opposite_online = "false";
 var opposite_last_update;
+var moment = require('alloy/moment');
 
 target_page = "askDoctor/conversation";
 Ti.App.Properties.setString('room_id', room_id);
@@ -60,8 +61,10 @@ function saveLocal(param){
 		$.message_bar.editable = true;
 		$.message_bar.blur();
 		loading.finish();
-		socket.sendMessage({room_id: room_id});
-		socket.refresh_patient_list();
+		//socket.sendMessage({room_id: room_id});
+		Ti.App.fireEvent("sendMessage", {room_id: room_id});
+		Ti.App.fireEvent("refresh_patient_list");
+		//socket.refresh_patient_list();
         $.enter_icon.right = -50;
 	});
 }
@@ -116,7 +119,7 @@ function addRow(row, latest){
 		});
 
 		var ss = row.message || "";
-		var newText = (row.format != "photo")?ss.replace("[br]", "\r\n"):row.message;
+		var newText = (row.format != "photo")?ss.replace(/[br]/gi, "\r\n"):row.message;
 		var text_color = (row.format == "link")?"blue":"#606060";
 		newText = (row.format == "link")?newText:newText;
 
@@ -127,7 +130,8 @@ function addRow(row, latest){
 		});
 		var row_status = row.status;
 		if(row.is_endUser){
-           var last_update_by_room = socket.getLastUpdateByRoom(room_id);
+           //var last_update_by_room = socket.getLastUpdateByRoom(room_id);
+           var last_update_by_room = Ti.App.fireEvent("getLastUpdateByRoom", room_id);
            if(last_update_by_room && last_update_by_room.last_update > row.created){
                row_status = 3;
            }
@@ -137,7 +141,7 @@ function addRow(row, latest){
 			bottom:0,
 			left: 60,
 			//text: timeFormat(row.created)+" "+status_text[row_status],
-			text: (!row.is_endUser)?timeFormat(row.created):timeFormat(row.created)+" "+status_text[row_status],
+			text: (!row.is_endUser)?moment(row.created).format("DD/MM/YYYY hh:mm A"):moment(row.created).format("DD/MM/YYYY hh:mm A")+" "+status_text[row_status],
 			textAlign: "right"
 		});
 		var view_photo_name = $.UI.create("View", {classes:['wfill','hsize']});
@@ -282,7 +286,7 @@ function updateReadStatus(e){
             $.bottom_bar.hide();
         }else if(inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && (opposite_last_update > inner_area[i].created || opposite_online == "true") &&  inner_area[i].status == 2){
 			inner_area[i].status = 3;
-			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
+			inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = moment(inner_area[i].created).format("DD/MM/YYYY hh:mm A")+" "+status_text[3];
         }/*else if(!inner_area[i].is_endUser && typeof inner_area[i].children[0].children[inner_area[i].children[0].children.length - 1] != "undefined" && user_read_status > inner_area[i].created){
             inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(inner_area[i].created)+" "+status_text[3];
         }*/
@@ -298,7 +302,7 @@ function updateRow(row, latest){
 		}
     	    if(inner_area[i].children[0].children.length > 1 && inner_area[i].status == 1){
     		inner_area[i].status = (opposite_online == "true")?3:row.status;
-            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = timeFormat(row.created)+" "+status_text[(opposite_online == "true")?3:row.status];
+            inner_area[i].children[0].children[0].children[inner_area[i].children[0].children[0].children.length - 1].text = moment(row.created).format("DD/MM/YYYY hh:mm A")+" "+status_text[(opposite_online == "true")?3:row.status];
         }
 	};
 	if(!found){
@@ -324,7 +328,8 @@ function render_conversation(latest, local){
 	     if(data[i].status == 1 && !local){
             API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
-                socket.sendMessage({room_id: room_id});
+                //socket.sendMessage({room_id: room_id});
+                Ti.App.fireEvent("sendMessage", {room_id: room_id});
             });
         }
 	    updateRow(data[i], latest);
@@ -491,7 +496,8 @@ function second_init(){
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	socket.setRoom({room_id: room_id});
+	//socket.setRoom({room_id: room_id});
+	Ti.App.fireEvent("setRoom", {room_id: room_id});
 	updateTime({online:true});
 	Ti.App.Properties.setString('room_id', room_id);
 	refresh(getPreviousData, true);
@@ -499,7 +505,8 @@ function second_init(){
 
 function updateTime(e){
   var u_id = Ti.App.Properties.getString('u_id') || 0;
-  socket.update_room_member_time({last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
+  Ti.App.fireEvent("update_room_member_time", {last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
+  //socket.update_room_member_time({last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
 }
 
 function endSession(){
@@ -526,7 +533,8 @@ function closeRoom(){
     API.callByPost({
             url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}
         }, function(responseText){
-            socket.sendMessage({room_id: room_id});
+            //socket.sendMessage({room_id: room_id});
+            Ti.App.fireEvent("sendMessage", {room_id: room_id});
             closeWindow();
         });
 }
@@ -792,7 +800,8 @@ $.win.addEventListener("close", function(){
 	Ti.App.Properties.setString('room_id', "");
 	target_page = "";
 	updateTime({online:false});
-	socket.leave_room({room_id: room_id});
+	//socket.leave_room({room_id: room_id});
+	Ti.App.fireEvent("leave_room", {room_id: room_id});
 	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener("socket:user_last_update", updateReadStatus);
 	Ti.App.removeEventListener("socket:doctor_last_update", doctor_last_update);

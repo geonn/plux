@@ -12,7 +12,12 @@
 	 	    <Label class="wfill hsize padding h5" color="#ffffff">Please fill in below info to claim from ASP</Label>
 		 	<Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
 			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
-               
+               <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" id="receipt" format="photo" hintText="Recepit" attached="0" >
+                    
+                    <Label class="wfill hsize h5" color='#000000' top="10" left="10" value="" touchEnabled="false" required="1" hintText="Recepit Attachment">Receipt Attachment *</Label>
+                    <View class="hr" backgroundColor="#ccc" top="10" left="10" right="10"></View>
+                    <Widget id="camera" src="com.geonn.camera" />
+                </View>
                 <View backgroundColor="#fba81c" id="RECNO" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" hintText="Receipt Number *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
@@ -46,11 +51,29 @@
                 <View backgroundColor="#fba81c" id="MCDAYS" value="" class="wfill hsize padding rounded" top="0">
                     <TextField  hintText="MC Issued (Days)" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
-                <View backgroundColor="#fba81c" id="DIAGNOSIS" value="" class="wfill hsize padding rounded" top="0">
-                    <TextField  hintText="Diagnosis" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                <View backgroundColor="#fba81c" id="DIAGNOSIS" value="" class="wfill hsize padding rounded" top="0"><!-- only for INFINEON -->
+                    <TextField  hintText="Diagnosis *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="MEDICATION" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Medication" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="TREATMENT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Treatment" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
                 <View backgroundColor="#fba81c" id="GLAMT" value="" class="wfill hsize padding rounded" top="0">
                     <TextField  hintText="GL Amount (If applicable)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View id="tnc" value="" class="wfill hsize vert padding" top="0">
+                    
+                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
+                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You shall retain the original receipt(s) for 7 years in case for audit and verification purposes by the company and/or the Inland Revenue Board of Malaysia. </Label>
+                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You are not allowed to submit the same claim more than one time. In the event that we discovered such instance or the claim is fictitious, the claim will be rejected and proceed with the necessary disciplinary action.</Label>
+                    <Label class='wfill hsize h6' color="#ffffff">You must ensure that all information provide is correct and true.</Label>
+                    <Label class='wfill hsize h6' color="#ffffff">You acknowledge and agree that by submitting this medical claim and in order for Infineon Technologies Malaysia Sdn Bhd to process your medical claim submission, Company may need to contact the medical practitioner (treating doctor) to obtain details related to your treatment. You hereby consent for medical information, relating to your medical claim submission to be released by the medical practitioner (treating doctor) to the Company.</Label>
+                    <View class="wfill hsize" hintText="tnc" required="1" value="">
+                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
+                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
+                    </View>
                 </View>
                 <!--
                 

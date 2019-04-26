@@ -10,12 +10,13 @@ var new_menu = [
 	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL_square.jpg"},
 	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list_square.jpg"},
 	{mod:"askDoctor/conversation", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
-	{mod:"askDoctor/counsellor", is_asp:1, title: "ASK COUNSELLOR", onClick: navWindow, subtitle: "online counsellor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
+	//{mod:"askDoctor/counsellor", is_asp:1, title: "ASK COUNSELLOR", onClick: navWindow, subtitle: "online counsellor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
 	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
 	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic, dental & optical location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod:"hospital/index", is_asp:1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
+	//{mod: "ePharmacy/index", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide();
@@ -146,7 +147,7 @@ function init(){
 	loading.start();
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
-	AppVersionControl.checkAndUpdate();
+	//AppVersionControl.checkAndUpdate();
 
 	refreshHeaderInfo();
 
@@ -332,7 +333,8 @@ function checkNewRoom(path){
         var room_id = res.data.room_id || "";
 
         if(room_id != ""){
-            socket.setRoom({room_id: room_id});
+            //socket.setRoom({room_id: room_id});
+            Ti.App.fireEvent("setRoom", {room_id: room_id});
             nav.navigateWithArgs(path, {room_id:room_id});
         }else{
             nav.navigateWithArgs("askDoctor/forms", {});
@@ -499,7 +501,7 @@ $.scrollview.addEventListener("scroll", function(e){
 
 function getUserInfo(){
     var fullname = Ti.App.Properties.getString('fullname') || "";
-    socket.updateUserInfo({fullname: fullname});
+    //socket.updateUserInfo({fullname: fullname});
 }
 
 init();
@@ -622,7 +624,13 @@ $.win.addEventListener("postlayout", function(){
     //PUSH.registerPush();
 });
 
+function webview_loaded(){
+    var time_offset = parseInt(Ti.App.Properties.getString('time_offset'))+0 || 0;
+    Ti.App.fireEvent("connect", {u_id: Ti.App.Properties.getString('u_id') || 0, time_offset: time_offset});
+}
+
 //Ti.App.addEventListener('render_menu', render_menu);
+Ti.App.addEventListener("webview_loaded", webview_loaded);
 Ti.App.addEventListener("getUserInfo", getUserInfo);
 Ti.App.addEventListener('logout', logoutUser);
 Ti.App.addEventListener('resumed', onResumed);

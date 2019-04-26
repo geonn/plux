@@ -491,7 +491,8 @@ function second_init(){
 	if(!Titanium.Network.online){
 		common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	socket.setRoom({room_id: room_id});
+	//socket.setRoom({room_id: room_id});
+	Ti.App.fireEvent("setRoom", {room_id: room_id});
 	updateTime({online:true});
 	Ti.App.Properties.setString('room_id', room_id);
 	refresh(getPreviousData, true);

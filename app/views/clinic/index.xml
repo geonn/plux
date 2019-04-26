@@ -20,7 +20,7 @@
 				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
 			</View>
 		</View>
-		<ImageView id="filter_icon" image="/images/icons/dental_new.png" right="20" bottom="20" onClick="openCategory" width="60" height="60"></ImageView>
+		<ImageView id="filter_icon" image="/images/icons/clinic_new.png" right="20" bottom="20" onClick="openCategory" width="60" height="60"></ImageView>
     <Button bottom="30" width="100" onClick="openQueueList" class="hsize">QUEUE LIST</Button>
     <ImageView image="/images/icons/listing.png" left="20" bottom="20" onClick="openClinicList" width="60" height="60"></ImageView>
 		<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >

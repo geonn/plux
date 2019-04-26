@@ -2,6 +2,8 @@
 *** SETTING / API ***
 **********************/
 var API_DOMAIN = "https://appsapi.aspmedic.com/aida/";
+var API_EPHARMACY = "https://epharmacy.freejini.com.my";
+var ERECEIPT_DOMAIN = "http://ereceipt.aspmedic.com/aida/";
 var FREEJINI_DOMAIN =  "http://app.aspmedic.com";
 var VCLINIC_DOMAIN = "https://vclinic.freejini.com.my";
 var REZA_DOMAIN = "http://asp.swancount.com";
@@ -22,6 +24,7 @@ var getCategoryList     = FREEJINI_DOMAIN+"/api/getCategoryList?user="+USER+"&ke
 var leafletUrl      = FREEJINI_DOMAIN+"/api/getBrochure?user="+USER+"&key="+KEY;
 var updateUserFromFB = FREEJINI_DOMAIN+"/api/updateUserFromFB?user="+USER+"&key="+KEY;
 var pluxLoginUrl    = FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
+var pluxDemoLoginUrl    = FREEJINI_DOMAIN+"/api/pluxLogin?user="+USER+"&key="+KEY;
 var pluxSignUpUrl   = FREEJINI_DOMAIN+"/api/pluxSignUp?user="+USER+"&key="+KEY;
 var healthDataUrl   = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
 var removeHealthDataUrl = FREEJINI_DOMAIN+"/api/removeHealthData?user="+USER+"&key="+KEY;
@@ -725,6 +728,7 @@ exports.doChangePassword = function(e, mainView, onfinish) {
 
 exports.claimDetailBySeries = function(e, callback){
 	var url = getclaimDetailBySeriesUrl+"?SERIAL="+e.serial;
+	console.log(url);
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available

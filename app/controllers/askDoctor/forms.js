@@ -51,9 +51,11 @@ function sendMessage(){
 
 	var id = model.saveArray(local_save);
 	API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", params:{u_id: u_id, dr_id: dr_id, message: gender_text+$.message.value, is_endUser:1, id: app_id, status: 4 }}, function(responseText){
-		socket.refresh_patient_list();
+		//socket.refresh_patient_list();
+		Ti.App.fireEvent("refresh_patient_list");
 		var res = JSON.parse(responseText);
-		socket.setRoom({room_id: res.data.room_id});
+		//socket.setRoom({room_id: res.data.room_id});
+		Ti.App.fireEvent("setRoom", {room_id: res.data.room_id});
 		$.message.value = "";
 		$.message.editable = true;
 		sending = false;
