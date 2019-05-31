@@ -57,10 +57,10 @@ function saveLocal(param){
 		$.message_bar.editable = true;
 		$.message_bar.blur();
 		loading.finish();
-		//socket.sendMessage({room_id: room_id});
-		Ti.App.fireEvent("sendMessage", {room_id: room_id});
-		Ti.App.fireEvent("helpdesk_refresh_patient_list");
-		//socket.helpdesk_refresh_patient_list();
+		socket.sendMessage({room_id: room_id});
+		//Ti.App.fireEvent("sendMessage", {room_id: room_id});
+	   	//Ti.App.fireEvent("helpdesk_refresh_patient_list");
+		socket.helpdesk_refresh_patient_list();
 	});
 }
 
@@ -312,8 +312,8 @@ function render_conversation(latest, local){
 	     if(data[i].status == 1 && !local){
             API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
-                //socket.sendMessage({room_id: room_id});
-                Ti.App.fireEvent("sendMessage", {room_id: room_id});
+                socket.sendMessage({room_id: room_id});
+                //Ti.App.fireEvent("sendMessage", {room_id: room_id});
             });
         }
 	    updateRow(data[i], latest);
@@ -368,10 +368,10 @@ function getConversationByRoomId(callback){
 		}
 		checker.updateModule(checker_id, url, res.last_updated, u_id, dr_id);
 		if(!room_id){	//if room_id = 0
-			//socket.setRoom({room_id: res.room_id});
-			Ti.App.fireEvent("setRoom", {room_id: res.room_id});
-			Ti.App.Properties.setString('room_id', res.room_id);
-			//Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
+			socket.setRoom({room_id: res.room_id});
+			//Ti.App.fireEvent("setRoom", {room_id: res.room_id});
+			//Ti.App.Properties.setString('room_id', res.room_id);
+			Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
 		}
 		room_id = res.room_id;
 		user_read_status = res.user_read_status;
@@ -749,8 +749,8 @@ Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
 $.win.addEventListener("close", function(){
-	//socket.leave_room({room_id: room_id});
-	Ti.App.fireEvent("leave_room", {room_id: room_id});
+	socket.leave_room({room_id: room_id});
+	//Ti.App.fireEvent("leave_room", {room_id: room_id});
 	Ti.App.Properties.setString('room_id', "");
 	target_page = "";
 	Ti.App.fireEvent("render_menu");

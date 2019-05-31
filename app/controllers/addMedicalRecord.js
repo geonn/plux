@@ -4,7 +4,7 @@ var empno = Ti.App.Properties.getString('empno');
 var memno = Ti.App.Properties.getString('memno');
 var name = Ti.App.Properties.getString('fullname');
 var dependent = JSON.parse(Ti.App.Properties.getString('dependent'));
-var loading = Alloy.createController('loading'); 
+var loading = Alloy.createController('loading');
 var error_message = "";
 
 function init(){
@@ -51,9 +51,9 @@ function doSubmit(){
     params["u_id"] = Ti.App.Properties.getString('u_id');
     loading.start();
     API.callByPost({url: "uploadMedicalRecords", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
-    
+
         var result = JSON.parse(responseText);
-        
+
         var dialog = Ti.UI.createAlertDialog({
             cancel: 1,
             buttonNames: ['Ok'],
@@ -85,8 +85,8 @@ function popout(e){
         selectedIndex: e.source.value || 0,
         title: e.source.children[0].text
     });
-        
-    dialog.show(); 
+
+    dialog.show();
     dialog.addEventListener("click", function(ex){
         if((OS_IOS)?ex.cancel != ex.index:!ex.cancel){
             e.source.children[0].children[0].text = options_arr[ex.index];
@@ -114,7 +114,7 @@ function loadComboBox(e){
             e.source.touchEnabled = true;
             indicator.hide();
         }, onerror: function(){
-            
+
         }
     });*/
 }
@@ -135,7 +135,7 @@ function camera_callback(event){
 
 
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+	$.btnBack.addEventListener('click', function(){
+		nav.closeWindow($.win);
 	});
 }
