@@ -1,8 +1,0 @@
-
-".container" : {
-  backgroundColor: "#ffffff"
-},
-"#recordsTextArea" :{ 
-    keyboardToolbarColor : '#999',
-    keyboardToolbarHeight : 40
-}

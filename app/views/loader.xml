@@ -1,7 +1,0 @@
-<Alloy>
-	<Window id="rocket" navBarHidden="true" class="container">
-		<View id="overlay" />
-		<ImageView  width="160" borderRadius="5" image="/images/asp_logo.png"/>
-		<Label id="loading_text" class="wsize hsize" bottom="50" color="#ffffff"></Label>
-	</Window>
-</Alloy>

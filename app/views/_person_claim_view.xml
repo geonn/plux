@@ -1,7 +1,0 @@
-<Alloy>
-	<ScrollView class="container" id="main" layout="vertical">
-		<View backgroundColor="#ddd" height="Ti.UI.SIZE">
-			<Label class="padding" id="name" wordWrap="false" ellipsize="true"></Label>
-		</View>
-	</ScrollView>
-</Alloy>

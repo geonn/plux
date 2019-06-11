@@ -1,8 +1,0 @@
-'.custom_button': {
-	height: 40,
-	borderColor: "#ffffff",
-	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-	backgroundColor: "#ffffff",
-	borderRadius: 6,
-	color: "#CE1D1C" 
-},
