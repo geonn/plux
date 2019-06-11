@@ -1,0 +1,31 @@
+<Alloy>
+	<Window navTintColor="#CE1D1C" title="Profile Setup" id="win">
+		<View class='wfill hfill vert'>
+    		<View top="0" height="50" backgroundColor="#DEDEDE"> 
+    				<View left="0" zIndex="9" id="btnBack" width="20%"  >
+    					<ImageView left='10'  width="25" height="25" image="/images/btn-back.png" />
+    				</View>
+    				<View >
+    					<Label id="titleLbl"  class='hsize themeColor' textAlign="center">Profile Setup</Label>
+    			   </View>
+    		</View>
+		    <ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
+            <ScrollView id="forms" class="wfill hfill vert conthsize contwfill">
+    			<View backgroundColor="#fba81c" id="email" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="80" hintText="Email *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="mobileno" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Mobile Number *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="password" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="20" passwordMask="true" hintText="Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" skip="1" id="password2" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" passwordMask="true" hintText="Confirm Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+    			<!--<View id="view_agreement" skip="1" value="0" class="wfill hsize"></View>-->
+    			<Button id="asp_sign_btn" onClick="doSubmit" borderRadius="5" backgroundColor="#CC2228" title="Sign Up"  width="70%" top="20" height="40" bottom="20" color="#ffffff" />
+    		</ScrollView>
+		</View>
+	</Window>
+</Alloy>

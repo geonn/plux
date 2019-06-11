@@ -1,0 +1,223 @@
+
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; color: #000000; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="js/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    var socket_io;
+    var room_id = 0;
+    var u_id = 0;
+    var isConnected = false;
+    var room_last_update = [];
+    var time_offset = 0;
+    const SERVER_IP = 'http://103.3.173.207:3501';
+    
+    function now(){
+        var today = new Date(Date.now()+parseInt(time_offset));
+        //today.setTime(today.getTime() + time_offset);
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+        
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        var sec = today.getSeconds();
+        if (minutes < 10){
+            minutes = "0" + minutes;
+        } 
+        if (sec < 10){
+            sec = "0" + sec;
+        } 
+        if (hours < 10){
+            hours = "0" + hours;
+        } 
+        
+        if(dd<10) {
+            dd='0'+dd;
+        } 
+        
+        if(mm<10) {
+            mm='0'+mm;
+        } 
+        
+        datetime = yyyy+'-'+mm+'-'+dd + " "+ hours+":"+minutes+":"+sec;
+     
+        return datetime ;
+    }
+    
+    function doConnect(){
+        //isConnected = true;
+        socket_io = io.connect(SERVER_IP);
+    
+        socket_io.on('connect', function () {
+            console.log(socket_io.id+" socket connected "+room_id);
+            isConnected = true;
+            if(room_id > 0){
+                console.log('new_set_room2'+room_id);
+                //socket_io.emit((OS_IOS)?'new_set_room':"set_room", room_id);
+                socket_io.emit("set_room2", {room_id: room_id, role: "patient", u_id: u_id, last_update: now(), online: true});
+            }
+        });
+    
+        socket_io.on('disconnect', function () {
+            console.log("disconnect event");
+        });
+        socket_io.on("socket:doctor_last_update", function(params){
+            console.log("socket:doctor_last_update");
+            Ti.App.fireEvent("socket:doctor_last_update", params);
+        });
+        socket_io.on("socket:user_last_update", function(params){
+            console.log("socket_on:user_last_update");
+            console.log(params);
+            Ti.App.fireEvent("socket:user_last_update", params);
+        });
+        console.log("socket:refresh_chatroom created!");
+        socket_io.on('doctor:refresh_patient_list', function(){
+            console.log("event listener doctor:refresh_patient_list");
+            Ti.App.fireEvent("doctor:refresh_patient_list");
+        });
+    
+        socket_io.on('socket:refresh_chatroom', function(param){ 
+            console.log("event listener socket:refresh_chatroom");
+            Ti.App.fireEvent("socket:refresh_chatroom", param);
+        });
+    
+        socket_io.on("socket:getDoctorList", function(param){
+            console.log("event listener socket:getDoctorList");
+            Ti.App.fireEvent("controller:getDoctorList", param);
+        });
+    }
+    
+    Ti.App.addEventListener("getLastUpdateByRoom", function(e){
+        if(typeof room_last_update["t_"+room_id] != "undefined"){
+            return room_last_update["t_"+room_id];
+        }else{
+            return false;
+        }
+    });
+    
+    Ti.App.addEventListener("updateUserInfo", function(e){
+        console.log(isConnected+" updateUserInfo");
+        if(isConnected){
+            socket_io.emit('socket:updateUserInfo', e);
+            if(room_id > 0){
+                socket_io.emit('set_room', room_id);
+            }
+        }else{
+            doConnect();
+            setTimeout(function(){updateUserInfo(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("getDoctorList", function(e){
+        console.log(isConnected+" getDoctorList");
+        if(isConnected){
+            socket_io.emit('socket:getDoctorList', socket_io.id);
+        }else{
+            doConnect();
+            setTimeout(getDoctorList, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("setRoom", function(ex){
+        console.log(isConnected+" isConnected setRoom");
+        room_id = ex.room_id;
+        if(isConnected){
+            //socket_io.emit((OS_IOS)?'new_set_room':"set_room", ex.room_id);
+            socket_io.emit("set_room2", {room_id: ex.room_id, online: true, role: "patient", last_update: now(), u_id: u_id});
+            console.log("set_room "+ex.room_id);
+        }else{
+            doConnect();
+            setTimeout(function(){setRoom(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("helpdesk_refresh_patient_list", function(ex){
+        console.log(isConnected+" helpdesk_refresh_patient_list");
+        if(isConnected){
+            socket_io.emit('helpdesk:refresh_patient_list');
+        }else{
+            doConnect();
+            setTimeout(function(){helpdesk_refresh_patient_list(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("refresh_patient_list", function(ex){
+        console.log(isConnected+" refresh_patient_list");
+        if(isConnected){
+            socket_io.emit('doctor:refresh_patient_list');
+        }else{
+            doConnect();
+            setTimeout(function(){refresh_patient_list(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("sendMessage", function(ex){
+        console.log(isConnected+" sendMessage");
+        if(isConnected){
+            socket_io.emit("socket:refresh_chatroom", ex.room_id, false);
+            console.log("sendMessage at room "+ex.room_id);
+        }else{
+            doConnect();
+            setTimeout(function(){sendMessage(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("connect", function(e){
+        time_offset =e.time_offset;
+        u_id = e.u_id;
+        doConnect();
+    });
+    
+    Ti.App.addEventListener("disconnect", function(e){
+        socket_io.close();
+        socket_io.disconnect();
+        isConnected = false;
+        console.log(isConnected+" disconnect action");
+    });
+    
+    Ti.App.addEventListener("update_room_member_time", function(e){
+        console.log(isConnected+" update_room_member_time");
+        if(isConnected){
+            socket_io.emit("update_room_member_time",
+            {id: socket_io.id, last_update: ex.last_update, u_id: ex.u_id, room_id: ex.room_id, online: ex.online});
+        }else{
+            doConnect();
+            setTimeout(function(){update_room_member_time(ex);}, 1000);
+        }
+    });
+    
+    Ti.App.addEventListener("leave_room", function(e){
+        console.log(isConnected+" leave_room");
+        if(isConnected){
+            socket_io.emit("leave_room", ex.room_id);
+            console.log("leave_room "+ex.room_id);
+        }else{
+            doConnect();
+            setTimeout(function(){leave_room(ex);}, 1000);
+        }
+    });
+    
+    //doConnect();
+    Ti.App.fireEvent("webview_loaded");
+    
+</script>
+</body>
+</html>

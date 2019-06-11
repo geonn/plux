@@ -1,0 +1,31 @@
+
+".title_header":{
+	font: {
+        fontSize: '18'
+    },
+    
+    color: '#CC2228',
+    left: '10',
+    right: '10'
+},
+".subtitle_header":{
+	font: {
+        fontSize: '16',
+        fontWeight: "bold"
+    },
+    
+    color: '#fff',
+    left: '10',
+    right: '10'
+},
+
+".description_content":{
+	font: {
+        fontSize: '14'
+    },
+    
+    color: '#fff',
+    left: '10',
+    textAlign: "left",
+    right: '10'
+}

@@ -22,8 +22,8 @@ var common = require('common');
 var API = require('api');
 var nav = require('navigation');
 //var PUSH = require('push');
-var socket = require('socket');
-socket.connect();
+//var socket = require('socket');
+//socket.connect();
 var room_id = 0;
 Alloy.Globals.Map =  (OS_IOS || OS_ANDROID) ? require('ti.map') : Ti.Map;
 
@@ -350,8 +350,8 @@ var win;
 var target_page = "";
 Ti.App.addEventListener("pause", function(e){
     push_redirect = true;
-    socket.disconnect();
-    //Ti.App.fireEvent("disconnect");
+    //socket.disconnect();
+    Ti.App.fireEvent("disconnect");
     if(OS_IOS){
 	   win = Ti.UI.createWindow({backgroundColor: "red"});
 	   win.open();
@@ -366,8 +366,8 @@ Ti.App.addEventListener("resumed", function(e){
         push_redirect = false;
     }, 2000);
     var time_offset = parseInt(Ti.App.Properties.getString('time_offset'))+0 || 0;
-    //Ti.App.fireEvent("connect", {u_id: Ti.App.Properties.getString('u_id') || 0, time_offset: time_offset});
-    socket.connect();
+    Ti.App.fireEvent("connect", {u_id: Ti.App.Properties.getString('u_id') || 0, time_offset: time_offset});
+    //socket.connect();
 });
 
 function pixelToDp(px) {

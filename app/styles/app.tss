@@ -1,0 +1,351 @@
+"Window":{
+	//backgroundColor: "#f0f1f5",
+	backgroundColor: "#535a74",
+	orientationModes :[
+        Ti.UI.PORTRAIT
+    ]
+},
+"Window[platform=android]":{
+	//backgroundColor: "#f0f1f5",
+	backgroundColor: "#535a74",
+	fullscreen : false,
+	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
+},
+"Window[platform=ios]":{
+	fullscreen : true,
+},
+"#activityIndicator" : {
+	 top:30,
+	 left:30,
+	 width:60,
+},
+"#activityIndicator[platform=android]":{
+	left:30,
+	width:60,
+	top: 10,
+},
+".line":{
+	width: Titanium.UI.FILL,
+	height: 1,
+	backgroundColor: "#F6F6F6",
+},
+".hr":{
+	width: Titanium.UI.FILL,
+	height: 1,
+	backgroundColor: "#F6F6F6",
+},
+"Label":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	color: "#111111",
+	font: {
+		fontFamily: 'Roboto-Regular, arial',
+	},
+},
+"View":{
+	borderWidth: 0
+},
+".padding":{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+},
+"ListItem":{
+	color: "#000",
+}
+".big_font":{
+	font: {fontSize: '20dp'},
+},
+".normal_font":{
+	font: {fontSize: '16dp'},
+},
+".medium_font":{
+	font: {fontSize: '14dp'},
+},
+".small_font":{
+	font: {fontSize: '12dp'},
+},
+".navbtn[platform=android]": {
+	font: {fontSize: '10dp'},
+	color: "#000"
+},
+"TableViewRow[platform=android]":{
+	color: "#606060",
+	top:10,
+	bottom:10,
+},
+'TextField': {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+    padding: { left: 10, right: 10, bottom:5, top:5 },
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    font:{
+    	fontSize: 14,
+    },
+    height: 40,
+    color: "#000000",
+    hintTextColor: "#000000",
+    backgroundColor: "#ffffff"
+}
+'.field': {
+    padding: { left: 10, right: 10, bottom:10, top:10 },
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    font:{
+    	fontSize: 14,
+    },
+    height: 40,
+    color: "#000000",
+    backgroundColor: "#ffffff"
+}
+
+'.vert':{
+	layout: "vertical"
+}
+
+'.horz':{
+	layout: "horizontal"
+}
+
+'.wfill':{
+	width: Ti.UI.FILL
+}
+
+'.wsize':{
+	width: Ti.UI.SIZE
+}
+
+'.hfill':{
+	height: Ti.UI.FILL
+}
+
+'.hsize':{
+	height: Ti.UI.SIZE
+}
+
+'.conthsize':{
+	contentHeight: Ti.UI.SIZE
+}
+
+'.contwsize':{
+	contentWidth: Ti.UI.SIZE
+}
+
+'.conthfill':{
+	contentHeight: Ti.UI.FILL
+}
+
+'.contwfill':{
+	contentWidth: Ti.UI.FILL
+}
+
+'.padding':{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+}
+'.small_padding':{
+	top: 4,
+	left: 4,
+	right: 4,
+	bottom: 4,
+}
+'.box':{
+	borderColor: "#dfe0e4",
+	backgroundColor: "#FFFFFF",
+}
+
+".small_button":{
+	borderColor: "#A52430",
+	borderWidth: 1,
+	backgroundColor: "#ffffff",
+	color: "#A52430",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	font:{
+		fontSize: 14,
+	}
+}
+
+".rounded":{
+	borderRadius: "5",
+}
+".bigRounded":{
+	borderRadius: "20",
+}
+
+".greyText" : {
+	color: "#9E9E9E",
+},
+
+".center" :{
+	textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
+},
+
+".darkgreyText" : {
+	color: "#626262",
+	font: {fontWeight: 'bold'},
+},
+
+".bottom":{
+	bottom: 0
+},
+
+".top":{
+	top: 0
+},
+
+".right":{
+	right: 0
+},
+
+".left":{
+	left: 0
+},
+
+".h1":{
+	font:{
+		fontSize: 36
+	}
+},
+
+".h2":{
+	font:{
+		fontSize: 30
+	}
+},
+
+".h3":{
+	font:{
+		fontSize: 24
+	}
+},
+
+".h4":{
+	font:{
+		fontSize: 18
+	}
+},
+
+".h5":{
+	font:{
+		fontSize: 16
+	}
+},
+
+".h6":{
+	font:{
+		fontSize: 12
+	}
+},
+
+".h7":{
+	font:{
+		fontSize: 11
+	}
+},
+'.font_light_grey':{
+	color: "#9197a3 "
+},
+'.font_dark_grey' :{
+	color: "#C8C8CD"
+},
+".black-line":{
+	backgroundColor: "#525252",
+	width: Ti.UI.FILL,
+	height: 1
+},
+
+".gray-line":{
+	backgroundColor: "#ececec",
+	width: Ti.UI.FILL,
+	height: 1
+},
+".grey-background" :{
+	backgroundColor: "#F4F4F4",
+},
+
+".white-line":{
+	backgroundColor: "#fff",
+	width: Ti.UI.FILL,
+	height: 1
+},
+
+".bold":{
+	font: {
+		fontFamily: 'Roboto-Bold',
+	},
+},
+
+'.left-align' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+}
+'.right-align' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
+}
+'.center' :{
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+},
+'.whiteColor' : {
+	color: "#ffffff"
+}
+'.themeColor' : {
+	color: "#A52430"
+}
+'.bgred' : {
+	backgroundColor: "#e8534c"
+}
+'.bgorange':{
+	backgroundColor: "#fba81c"
+}
+'.bggreen':{
+	backgroundColor: "#55a939"
+}
+'.bgblue':{
+	backgroundColor: "#2056A6"
+}
+'.purple' : {
+	color: "#933ec5",
+}
+'.purple_border' : {
+	borderColor: "#933ec5",
+}
+'.themeBg' : {
+	backgroundColor: "#A52430"
+},
+".padding-top":{
+	top: 10
+},
+".padding-left":{
+	left: 10
+},
+".padding-right":{
+	right: 10
+},
+".padding-bottom":{
+	bottom: 10
+},
+
+'Button': {
+	borderRadius: 5,
+	backgroundColor: "#CC2228",
+	height: 40,
+	color: "#ffffff",
+	width: Ti.UI.FILL,
+},
+'.combo_box':{
+	width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+	height: 40,
+    left: 10,
+    right: 10,
+    bottom: 10,
+    borderWidth: 0,
+    hintTextColor: "#E89114",
+    backgroundColor: "#ffffff"
+}

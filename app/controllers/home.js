@@ -147,7 +147,7 @@ function init(){
 	loading.start();
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
-	AppVersionControl.checkAndUpdate($.win);
+	//AppVersionControl.checkAndUpdate();
 
 	refreshHeaderInfo();
 
@@ -333,8 +333,8 @@ function checkNewRoom(path){
         var room_id = res.data.room_id || "";
 
         if(room_id != ""){
-            socket.setRoom({room_id: room_id});
-            //Ti.App.fireEvent("setRoom", {room_id: room_id});
+            //socket.setRoom({room_id: room_id});
+            Ti.App.fireEvent("setRoom", {room_id: room_id});
             nav.navigateWithArgs(path, {room_id:room_id});
         }else{
             nav.navigateWithArgs("askDoctor/forms", {});
@@ -501,7 +501,7 @@ $.scrollview.addEventListener("scroll", function(e){
 
 function getUserInfo(){
     var fullname = Ti.App.Properties.getString('fullname') || "";
-    socket.updateUserInfo({fullname: fullname});
+    //socket.updateUserInfo({fullname: fullname});
 }
 
 init();

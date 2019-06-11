@@ -1,0 +1,14 @@
+
+".container" : {
+  
+},
+".welcome_text" :{
+	font:{
+		fontSize: 14,
+		fontWeight: 'bold'
+	},
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+	color: "#ffffff"
+}

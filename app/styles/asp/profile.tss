@@ -1,0 +1,11 @@
+".label" :{ 
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
+	color: "#6E6E6E",  
+	height:"80dp",
+	bottom: "10dp",
+	textAlign: "center",
+	font:{
+		fontSize: "12dp",
+	}
+}

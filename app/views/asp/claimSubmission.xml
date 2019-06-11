@@ -1,0 +1,98 @@
+<Alloy>
+	<Window title="Claim Submission" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="90%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Submission</Label>
+		     	</View>
+		 	</View>
+	 	    <Label class="wfill hsize padding h5" color="#ffffff">Please fill in below info to claim from ASP</Label>
+		 	<Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
+               <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" id="receipt" format="photo" hintText="Recepit" attached="0" >
+                    
+                    <Label class="wfill hsize h5" color='#000000' top="10" left="10" value="" touchEnabled="false" required="1" hintText="Recepit Attachment">Receipt Attachment *</Label>
+                    <View class="hr" backgroundColor="#ccc" top="10" left="10" right="10"></View>
+                    <Widget id="camera" src="com.geonn.camera" />
+                </View>
+                <View backgroundColor="#fba81c" id="RECNO" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Receipt Number *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View class="combo_box rounded" id="CATEGORY" backgroundColor="#fba81c" onClick="popout" option_key="catID" option_name="catDesc" touchEnabled="false" opacity="0.5" onPostlayout="loadComboBox" url="claimcategory.aspx">
+                    <View class="field" required="1" hintText="Category" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Category *</Label>
+                    </View>
+                </View>
+                <View class="combo_box rounded" id="MEMNO" backgroundColor="#fba81c" onClick="popout" option_key="memno" option_name="name" touchEnabled="false" opacity="0.5" onPostlayout="loadComboBox" url="claimunder.aspx">
+                    <View class="field" required="1" hintText="Claim Under" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Claim Under *</Label>
+                    </View>
+                </View>
+                <View backgroundColor="#fba81c" id="AMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Receipt Amount (RM) *" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View class="combo_box rounded" id="VISITDT" backgroundColor="#fba81c" onClick="datePicker">
+                    <View class="field" required="1" hintText="Date Visit" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
+                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Date Visit *</Label>
+                    </View>
+                </View>
+                <View backgroundColor="#fba81c" id="NCLINIC" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="40" hintText="Clinic / Hospital Name *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="REMARKS" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Remarks / Illness" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="GSTAMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="GST Amount" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="MCDAYS" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="MC Issued (Days)" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="DIAGNOSIS" value="" class="wfill hsize padding rounded" top="0"><!-- only for INFINEON -->
+                    <TextField  hintText="Diagnosis *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="MEDICATION" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Medication" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="TREATMENT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="Treatment" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="GLAMT" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField  hintText="GL Amount (If applicable)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View id="tnc" value="" class="wfill hsize vert padding" top="0">
+                    
+                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
+                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You shall retain the original receipt(s) for 7 years in case for audit and verification purposes by the company and/or the Inland Revenue Board of Malaysia. </Label>
+                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You are not allowed to submit the same claim more than one time. In the event that we discovered such instance or the claim is fictitious, the claim will be rejected and proceed with the necessary disciplinary action.</Label>
+                    <Label class='wfill hsize h6' color="#ffffff">You must ensure that all information provide is correct and true.</Label>
+                    <Label class='wfill hsize h6' color="#ffffff">You acknowledge and agree that by submitting this medical claim and in order for Infineon Technologies Malaysia Sdn Bhd to process your medical claim submission, Company may need to contact the medical practitioner (treating doctor) to obtain details related to your treatment. You hereby consent for medical information, relating to your medical claim submission to be released by the medical practitioner (treating doctor) to the Company.</Label>
+                    <View class="wfill hsize" hintText="tnc" required="1" value="">
+                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
+                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
+                    </View>
+                </View>
+                <!--
+                
+                
+                <TextField id="clinic_name" hintText="Medical Provider" required="1" value=""></TextField>
+                <TextField id="amount" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" hintText="Amount" required="1" value=""></TextField>
+                
+                <View class="combo_box" required="1" onClick="popout" value="" option_name="name" hintText="Claim Under" option_key="id" touchEnabled="false" opacity="0.5" id="claim_under" onPostlayout="loadComboBox" url="api/getEmployeeFamilyList">
+                    <Label class="wfill hsize padding"  touchEnabled="false">Claim Under</Label>
+                </View>
+                <View class="combo_box" required="1" onClick="datePicker" value="" hintText="Date Visit" id="visit_date">
+                    <Label class="wfill hsize padding"  touchEnabled="false">Date Visit</Label>
+                </View>
+                <TextArea id="remark" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Remark / Non Panel Visit" required="0" value="Remark / Non Panel Visit"></TextArea>
+                <TextArea id="diagnosis" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Diagnosis" required="0" value="Diagnosis"></TextArea>
+                <TextArea id="itemised" required="0" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Itemised" required="0" value="Itemised"></TextArea>-->
+                <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
+                
+            </ScrollView>
+		</View>
+	</Window>
+</Alloy>

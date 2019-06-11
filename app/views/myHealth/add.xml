@@ -1,0 +1,21 @@
+<Alloy>
+	<Window title="MY HEALTH RECORD" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
+		<View class="hfill wfill vert" id="main" backgroundColor="#ffffff">
+			<View class='wfill horz' height="50" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="80%">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Info</Label>
+		     	</View>
+		 	</View>
+			<ScrollView id="" class="wfill hfill contwfill conthsize vert" backgroundColor="#" >
+				<View class="wsize hsize rounded box" top="10" onClick="showDatePicker">
+					<Label id="date_text" class='wsize hsize padding h5' left="20" right="20">SUN, JAN 28, 2018, 12:43 PM</Label>
+				</View>
+				<View class="wfill hsize vert" id="container"></View>
+				<Button class="small_button rounded padding" onClick="SaveRecord" width="Ti.UI.FILL">Record</Button>
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

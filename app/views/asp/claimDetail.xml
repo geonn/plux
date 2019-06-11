@@ -1,0 +1,165 @@
+<Alloy>
+	<Window title="Claim Detail" id="win" backButtonTitle="" navTintColor="#CE1D1C">
+		<RightNavButton platform="ios" title="Receipt" id="recepit" onClick="openReceipt"></RightNavButton>
+		
+		<View id="main" layout="vertical">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="70%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Claim Detail</Label>
+		     	</View>
+		     	<View left="0" onClick="openReceipt" width="auto">
+		         	<Label class="hsize" id="recepit" width="auto">Receipt</Label>
+		   		</View>
+		 	</View>
+			<ScrollView class="wfill hfill conthsize contwfill">
+                <View class="wfill padding hsize rounded" bottom="10" backgroundColor="#ba65ca">
+                    <View zIndex="10" top="10" width="120" borderWidth="2" height="120" borderRadius="30" right="10" class="box" borderColor="#55a939" id="status_view">
+                        <Label touchEnabled="false" class='wsize hsize h7 bold' transform="Ti.UI.create2DMatrix({rotate: -45})" color="#55a939" minimumFontSize="10" id="status"></Label>
+                    </View>
+                    <View class='wfill hsize vert' backgroundColor="#ffffff" top="5">
+                        <View class='wfill hsize vert padding'>
+                            <View class="wsize vert"height="40">
+                                <Label class='wfill hsize h6'>NAME</Label>
+                                <Label class='wfill hsize h6 bold' id="name" minimumFontSize="10"></Label>
+                            </View>
+                            <View class="hr" backgroundColor="#eee"></View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="30%" top="5">
+                                    <Label class='wsize hsize h6' left="0">CATEGORY</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="category" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="30%" top="5">
+                                    <Label class='wsize hsize h6' left="0">CLAIM TYPE</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="claimtype" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="20%" top="5">
+                                    <Label class='wsize hsize h6' left="0">MC</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="mcdays" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                            <View class="hr" backgroundColor="#eee"></View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">MEMBER NUMBER</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="memno" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">DATE</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="visitdate" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                            <View class="hr" backgroundColor="#eee"></View>
+                            <Label class="wfill hsize h3 bold padding" bottom="0" color="#f58505" id="clinicname" textAlign="center" minimumFontSize="10"></Label>
+                        </View>
+                        <View class='wfill hsize vert'>
+                            <View class='wfill hsize'>
+                                <View width="30" height="30" zIndex="2" left="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                                <View class="hr" backgroundColor="#eee"></View>
+                                <View width="30" height="30" zIndex="2" right="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                            </View>
+                        </View>
+                        <View class='wfill hsize vert padding'>
+                            <View class="wfill hsize" top="0" bottom="10">
+                                <Label class='hsize h5' width='50%' textAlign="center" left="0">TOTAL AMOUNT</Label>
+                                <Label class='hsize h5 bold' width='48%' textAlign="left" right="0" id="amount" minimumFontSize="10">RM </Label>
+                            </View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">CONSULTATION</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" touchEnabled="false" id="consultation_amt" minimumFontSize="10">RM </Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">MEDICATION</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="medication_amt" minimumFontSize="10">RM </Label>
+                                </View>
+                            </View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">INJECTION</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="injection_amt" minimumFontSize="10">RM </Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">LAB TEST</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id="labtest_amt" minimumFontSize="10">RM </Label>
+                                </View>
+                            </View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">X-RAY</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" id='xray_amt' left="0" minimumFontSize="10">RM </Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5" onClick="view_detail">
+                                    <Label class='wsize hsize h6' touchEnabled="false" left="0">SURGICAL</Label>
+                                    <Label class='wsize hsize h6 bold' touchEnabled="false" left="0" id='surgical_amt' minimumFontSize="10">RM </Label>
+                                </View>
+                            </View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5" >
+                                    <Label class='wsize hsize h6' left="0">EXTRACTION</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id='extraction_amt' minimumFontSize="10">RM </Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">FILLINGS</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id='fillings_amt' minimumFontSize="10">RM </Label>
+                                </View>
+                            </View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">SCALLING</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id='scaling_amt' minimumFontSize="10">RM </Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">OTHERS</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id='others_amt' minimumFontSize="10">RM </Label>
+                                </View>
+                            </View>
+                        </View>
+                        <View class='wfill hsize vert'>
+                            <View class='wfill hsize'>
+                                <View width="30" height="30" zIndex="2" left="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                                <View class="hr" backgroundColor="#eee"></View>
+                                <View width="30" height="30" zIndex="2" right="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                            </View>
+                        </View>
+                        <View class='wfill hsize vert padding'>
+                            
+                            <View class="wfill hsize vert" top="5">
+                                <Label class='wsize hsize h6' left="0">DIAGNOSIS</Label>
+                                <Label class='wsize hsize h6 bold' id="diagnosis" left="0" ></Label>
+                            </View>
+                            <View class="wfill hsize horz" height="50">
+                                <View class="wsize hsize vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">BLOOD PRESSURE SYSTOLIC</Label>
+                                    <Label class='wsize hsize h6 bold' id="bps" left="0" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hsize vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">BLOOD PRESSURE DIATOLIC</Label>
+                                    <Label class='wsize hsize h6 bold' id="bpd" left="0" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                            <View class="wfill hsize horz">
+                                <View class="hsize vert" left="0" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">PULSE RATE</Label>
+                                    <Label class='wsize hsize h6 bold' id='pulse' left="0" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                            
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
+		</View>
+	</Window>
+</Alloy>

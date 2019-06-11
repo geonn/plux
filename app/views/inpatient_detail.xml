@@ -1,0 +1,73 @@
+<Alloy>
+	<Window title="Inpatient Detail" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View height="Ti.UI.FILL" width="Ti.UI.FILL" layout="vertical">
+			<View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View id="pageTitle" width="Ti.UI.FILL">
+		     		<Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">Inpatient Detail</Label>
+		     	</View> 
+		 	</View>
+		 	<ScrollView class="wfill hfill conthsize contwfill">
+                <View class="wfill padding hsize rounded" bottom="0" backgroundColor="#ba65ca">
+                    <View zIndex="10" top="10" width="120" borderWidth="2" height="120" borderRadius="30" right="10" class="box" borderColor="#e8534c" id="pdf">
+                        <!--<Label class='wsize hsize h7 bold' transform="Ti.UI.create2DMatrix({rotate: -45})" color="#e8534c" minimumFontSize="10" id="status">PDF</Label>-->
+                        <ImageView width="60" height="60" image="/images/pdficon.png"></ImageView>
+                    </View>
+                    <View class='wfill hsize vert' backgroundColor="#ffffff" top="5">
+                        <View class='wfill hsize vert padding'>
+                            <View class="wsize vert"height="40">
+                                <Label class='wfill hsize h6'>NAME</Label>
+                                <Label class='wfill hsize h6 bold' id="name" minimumFontSize="10"></Label>
+                            </View>
+                            <View class="hr" backgroundColor="#eee"></View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">INVOICE</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="invno" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding" width="1" backgroundColor="#eeeeee" ></View>
+                                <View class="wsize hfill vert" width="45%" top="5">
+                                    <Label class='wsize hsize h6' left="0">NRIC/PASSPORT</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="nric" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                            <View class="hr" backgroundColor="#eee"></View>
+                            <View class="wfill hsize horz" height="40">
+                                <View class="wsize hfill vert" width="40%" top="5">
+                                    <Label class='wsize hsize h6' left="0">ADMISSION DATE</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="admdt" minimumFontSize="10"></Label>
+                                </View>
+                                <View class="hfill padding wsize" >
+                                    <Label class="wsize hsize h3">></Label>
+                                </View>
+                                <View class="wsize hfill vert" width="40%" top="5">
+                                    <Label class='wsize hsize h6' left="0">DISCHARGED DATE</Label>
+                                    <Label class='wsize hsize h6 bold' left="0" id="disdt" minimumFontSize="10"></Label>
+                                </View>
+                            </View>
+                        </View>
+                        <View class="hr" backgroundColor="#eee"></View>
+                        <Label class="wfill hsize h3 bold padding" bottom="0" color="#f58505" id="hospitalname" textAlign="center" minimumFontSize="10"></Label>
+                        <View class='wfill hsize vert'>
+                            <View class='wfill hsize'>
+                                <View width="30" height="30" zIndex="2" left="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                                <View class="hr" backgroundColor="#eee"></View>
+                                <View width="30" height="30" zIndex="2" right="-20" borderRadius="15" backgroundColor="#535a74"></View>
+                            </View>
+                        </View>
+                        <View class="wfill hsize" top="0" bottom="10">
+                            <Label class='hsize h5' width='50%' textAlign="center" left="0">TOTAL AMOUNT</Label>
+                            <Label class='hsize h5 bold' width='48%' textAlign="left" right="0" id="amount" minimumFontSize="10">RM </Label>
+                        </View>
+                        <View class="hr" backgroundColor="#eee"></View>
+                        <View class="wsize vert padding"height="40">
+                            <Label class='wfill hsize h6'>DIAGNOSIS</Label>
+                            <Label class='wfill hsize h6 bold' id="diagnosis" minimumFontSize="10"></Label>
+                        </View>
+                    </View>
+                </View>
+           </ScrollView>
+	</Window>
+</Alloy>

@@ -1,0 +1,41 @@
+"#name" :{
+	height: 30,
+	width: Titanium.UI.FILL,
+}
+"Label":{
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+	font:{
+		fontSize: 16
+	}
+}
+".padding":{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,	
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+}
+".small_padding":{
+	top: 5,
+	left: 10,
+	right: 10,
+	bottom: 5,	
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+}
+".benefit_label":{
+	height: Titanium.UI.SIZE,
+	width: Titanium.UI.SIZE,
+	font:{
+		fontSize: 16
+	}
+}
+".container" : {
+	borderColor: "#cccccc",
+	height: Titanium.UI.SIZE,
+	top: "10dp",
+	left: "10dp",
+	right: "10dp",
+}

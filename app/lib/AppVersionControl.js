@@ -4,10 +4,9 @@
 * Latest Version 1.1.4
 * 
 **********************/
-var win;
+
 // update user device token
 exports.checkAndUpdate = function(e){
-    win = e;
 	API.checkAppVersion(callback_download);
 };
 
@@ -23,7 +22,7 @@ function callback_download(e){
 	dialog.show();
 	
 	dialog.addEventListener("click", function(ex){
-		//if(ex.index == 0){
+		if(ex.index == 0){
 			try {
 				Ti.Platform.openURL(e.data.url);/*
 				var intent = Ti.Android.createIntent({
@@ -35,12 +34,6 @@ function callback_download(e){
 			} catch(e) {
 			    Ti.API.info("e ==> " + JSON.stringify(e));
 			}
-		//}
-		if(OS_ANDROID){
-		    var appActivity = Ti.Android.currentActivity;
-            appActivity.finish();
-		}else{
-		    Alloy.Globals.navMenu.close();
 		}
 	});
 	

@@ -1,0 +1,24 @@
+<Alloy>
+    <Window title="e-Pharmacy" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C" >
+        <RightNavButton>
+            <!--<Button title="MORE" onClick="openMoreList" />-->
+        </RightNavButton>
+        <View class="wfill hfill vert">
+		    <View layout="horizontal" height="50" width="100%" backgroundColor="#DEDEDE" platform="android" >
+                <View left="0" width="10%">
+                    <ImageView left='10' onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+                </View>
+                <View id="pageTitle" width="79%">
+                    <Label height="Ti.UI.SIZE" class='normal_font' textAlign="center">e-Pharmacy</Label>
+                </View>
+                <!--<View right="0" width="10%" onClick="openMoreList">
+                    <Label class="wfill hsize h6">MORE</Label>
+                </View>-->
+            </View>
+            <View id="container" class="wfill hfill vert" backgroundColor="#ffffff">
+                <ScrollView class="wfill contwsize horz hsize conthsize" id="category_bar"></ScrollView>
+	          </View>
+		</View>
+
+	</Window>
+</Alloy>

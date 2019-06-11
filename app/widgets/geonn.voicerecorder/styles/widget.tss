@@ -1,0 +1,100 @@
+"Label":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	color: "#606060"
+},
+
+'.vert':{
+	layout: "vertical"
+}
+
+'.horz':{
+	layout: "horizontal"
+}
+
+'.wfill':{
+	width: Ti.UI.FILL
+}
+
+'.wsize':{
+	width: Ti.UI.SIZE
+}
+
+'.hfill':{
+	height: Ti.UI.FILL
+}
+
+'.hsize':{
+	height: Ti.UI.SIZE
+}
+
+".h1":{
+	font:{
+		fontSize: 36
+	}
+},
+
+".h2":{
+	font:{
+		fontSize: 30
+	}
+},
+
+".h3":{
+	font:{
+		fontSize: 24
+	}
+},
+
+".h4":{
+	font:{
+		fontSize: 18
+	}
+},
+
+".h5":{
+	font:{
+		fontSize: 14
+	}
+},
+
+".h6":{
+	font:{
+		fontSize: 12
+	}
+},
+ 
+".h7":{
+	font:{
+		fontSize: 10
+	}
+},
+
+'.conthsize':{
+	contentHeight: Ti.UI.SIZE
+}
+
+'.contwsize':{
+	contentWidth: Ti.UI.SIZE
+}
+
+'.conthfill':{
+	contentHeight: Ti.UI.FILL
+}
+
+'.contwfill':{
+	contentWidth: Ti.UI.FILL
+}
+
+'.padding':{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+}
+'.small_padding':{
+	top: 4,
+	left: 4,
+	right: 4,
+	bottom: 4,
+}

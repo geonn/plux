@@ -1,0 +1,59 @@
+'Label': {
+	color: '#0c0e15',
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	font: {
+		fontSize: 12
+	}
+}
+
+'.font_big':{
+	font:{
+		fontSize: 18
+	}
+}
+
+'.font_medium':{
+	font:{
+		fontSize: 14
+	}
+}
+
+'.font_small':{
+	font:{
+		fontSize: 10
+	}
+}
+
+'.font_light_grey':{
+	color: "#9197a3 "
+}
+
+'.progressBar':{ 
+	backgroundGradient:{
+		type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        
+        colors: [ { color: '#bababa', offset: 0.0}, { color: '#bababa', offset: 0.25 },{ color: '#ffffff', offset: 0.75 }, { color: '#bababa', offset: 1.0 } ],
+	},
+	backgroundColor: "#22262f",
+	borderRadius: 9,
+	borderWidth: 1,
+	borderColor: "#131a22",
+	width: Ti.UI.FILL,
+	height: 18,
+	layout: "horizontal",
+}
+
+'.progressBarFill':{
+	height: 18,
+	borderRadius: 9,
+	backgroundGradient:{
+		type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: [ { color: '#c4302a', offset: 0.0}, { color: '#c4302a', offset: 0.25 },{ color: '#fe3e35', offset: 0.75 }, { color: '#c4302a', offset: 1.0 } ],
+	},
+	backgroundColor: "#CE1D1C",
+}

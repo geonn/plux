@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <style name="Theme.NoActionBar" parent="@style/Theme.AppCompat.Light">
+  <item name="android:editTextStyle">@style/editText</item>
+    </style>
+ 
+    <string name="facebook_app_id">684687638302896</string>
+    <style name="editText" parent="@android:style/Widget.EditText">
+     <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        
+     <item name="android:textColor">#656565</item> 
+     
+     <item name="android:paddingLeft">10dp</item>
+     <item name="android:paddingRight">10dp</item>
+     <item name="android:background">#FFFFFF</item>
+     <item name="android:gravity">center_vertical</item>
+     <item name="android:layout_width">wrap_content</item>
+ </style>
+</resources>

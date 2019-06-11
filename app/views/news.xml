@@ -1,0 +1,25 @@
+<Alloy>
+	<Window title="" backButtonTitle="" id="news" class="container" navTintColor="#CE1D1C" >
+		<View id="main" layout="vertical">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack"  height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Health Article</Label>
+		     	</View>
+		     	 
+		 	</View>
+			<ScrollableView showPagingControl="false">
+				<ScrollView class="news_item" id="myContentView" contentHeight="auto" contentWidth="Ti.UI.FILL">
+					<Label class="news_title" id="newsTitle"></Label>
+					<ImageView id="newsImage" class="news_image" image=""></ImageView>
+					<Label class="image_caption" id="newsDate"> </Label>
+					 
+				</ScrollView> 
+				
+			</ScrollableView>
+			
+		</View>
+	</Window>
+</Alloy>

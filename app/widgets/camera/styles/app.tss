@@ -1,0 +1,359 @@
+/*
+
+This is your global styles file. Selectors and rules you define
+here will be applied throughout your app. However, these rules
+have the lowest priority of any style settings.
+
+For more information, see the "Style Priorities" section of
+http://docs.appcelerator.com/platform/latest/#!/guide/Alloy_Styles_and_Themes
+
+For example, the following would apply to all labels, windows,
+and text fields (depending on platform) in your app unless you
+overrode the settings with other TSS, XML, or JS settings:
+
+'Label[platform=android,windows]': {
+	color: '#000' // all platforms except Android and Windows default to black
+}
+
+'TextField[platform=android]': {
+	height: Ti.UI.SIZE
+}
+
+*/
+/*
+ color code:
+ black: #06141c
+ green: b7e167
+ dark green: 427a7a
+ dark blue: #2998d2
+ main color orange / blue: E89114 / 67b6e1
+ light blue: daedf8
+ ultra light blue / white: eaf5fb
+ * */
+
+"#drawer": {
+	openDrawerGestureMode: "OPEN_MODE_ALL",
+	closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
+	leftDrawerWidth: 240,
+	rightDrawerWidth: 240,
+	
+	// use DrawerLayout for Android
+	drawerLayout: true
+}
+
+'Window': {
+	backgroundColor: '#eaf5fb', // white background instead of default transparent or black
+	fullscreen:"false"
+}
+
+'Window[platform=ios]': {
+    backgroundColor: '#eaf5fb', // white background instead of default transparent
+    /*backgroundGradient:{
+		type: 'linear',
+		colors: [ { color: '#eaf5fb', offset: 0.0}, { color: '#eaf5fb', offset: 0.9 }, { color: '#b6dcf0', offset: 1.0 } ],
+	},
+	*/
+    titleAttributes:  {
+        color: "#ffffff"
+   },
+   barColor: "#E89114",
+   navTintColor: "#fff",
+   navBarHidden: false,
+   width:Ti.UI.FILL,
+   height:Ti.UI.FILL,
+   font: {
+		fontFamily: 'Roboto-Light',
+	},
+},
+
+'Window[platform=android]': {
+	/*backgroundGradient:{
+		type: 'linear',
+		colors: [ { color: '#eaf5fb', offset: 0.0}, { color: '#eaf5fb', offset: 0.9 }, { color: '#b6dcf0', offset: 1.0 } ],
+	},*/
+	backgroundColor: "#eaf5fb",
+    titleAttributes:  {
+        color: "#ffffff"
+   },
+   width: Titanium.UI.FILL,
+   height: Titanium.UI.FILL,
+   font: {
+		fontFamily: 'Roboto-Light',
+	},
+	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_RESIZE,
+    modal: false, // make android windows all heavyweight
+    fullscreen: false,
+    orientationModes :[
+        Ti.UI.PORTRAIT
+    ]
+},
+"Label":{
+	color: "#000000",
+	font:{
+		fontSize: '14dp',
+		fontFamily: 'Roboto-Light',
+	}
+}
+
+"ImageView":{
+	preventDefaultImage: true
+},
+
+'TextField': {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+    padding: { left: 10, right: 10, bottom:10, top:10 },
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    font:{
+    	fontSize: 14,
+    	fontFamily: 'Roboto-Light',
+    },
+    height: 40,
+    color: "#E89114",
+    left: 10,
+    right: 10,
+    bottom: 10,
+    hintTextColor: "#E89114",
+    backgroundColor: "#ffffff"
+}
+
+'TextArea': {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+    padding: { left: 5, right: 10, bottom:10, top:10 },
+    width: Ti.UI.FILL,
+    font:{
+    	fontSize: 14,
+    	fontFamily: 'Roboto-Light',
+    },
+    height: 70,
+    color: "#E89114",
+    suppressReturn: false,
+    left: 10,
+    right: 10,
+    bottom: 10,
+    hintTextColor: "#E89114",
+    backgroundColor: "#ffffff"
+}
+
+'TextArea[platform=android]': {
+	softKeyboardOnFocus:Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	padding: { left: 30, right: 10, bottom:10, top:10 },
+}
+
+'TextField[platform=android]': {
+	softKeyboardOnFocus:Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	padding: { left: 30, right: 10, bottom:10, top:10 },
+}
+
+'.combo_box':{
+	width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+	height: 40,
+    left: 10,
+    right: 10,
+    bottom: 10, 
+    hintTextColor: "#E89114",
+    backgroundColor: "#ffffff"
+}
+
+"Button":{
+	borderColor: "#a2650e",
+	borderWidth: 1,
+	backgroundGradient:{
+		type: 'linear',
+		colors: [ { color: '#E89114', offset: 0.0}, { color: '#E89114', offset: 0.85 }, { color: '#a2650e', offset: 1.0 } ],
+	},
+	font:{
+		fontSize: 12
+	},
+	tintColor: "#211503",
+	borderRadius: 5,
+	color: "#211503"
+}
+
+'.hr':{
+	width: Ti.UI.FILL,
+	height: 1
+}
+
+
+'.vert':{
+	layout: "vertical"
+},
+
+'.horz':{
+	layout: "horizontal"
+},
+
+'.wfill':{
+	width: Ti.UI.FILL
+},
+
+'.wsize':{
+	width: Ti.UI.SIZE
+},
+
+'.hfill':{
+	height: Ti.UI.FILL
+},
+
+'.hsize':{
+	height: Ti.UI.SIZE
+},
+
+'.padding':{
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+},
+
+'.small-padding':{
+	top: 5,
+	left: 5,
+	right: 5,
+	bottom: 5,
+},
+
+'.box':{
+	borderColor: "#222222",
+	borderWidth: 1,
+	backgroundColor: "#ffffff",
+},
+
+".rounded":{
+	borderRadius: 4
+},
+
+".h1":{
+	font:{
+		fontSize: '36dp',
+		fontFamily: 'Roboto-Light',
+	}
+},
+
+".h2":{
+	font:{
+		fontSize: '30dp',
+		fontFamily: 'Roboto-Light',
+	}
+},
+
+".h3":{
+	font:{
+		fontSize: '24dp',
+		fontFamily: 'Roboto-Light',
+	}
+},
+
+".h4":{
+	font:{
+		fontSize: '18dp',
+		fontFamily: 'Roboto-Light',
+	},
+},
+
+".h5":{
+	font:{
+		fontSize: '14dp',
+		fontFamily: 'Roboto-Light',
+	}
+},
+
+".h6":{
+	font:{
+		fontSize: '12dp',
+		fontFamily: 'Roboto-Light',
+	}
+},
+
+".conthsize":{
+	contentHeight: Ti.UI.SIZE
+}
+
+".conthfill":{
+	contentHeight: Ti.UI.FILL
+}
+
+".contwsize":{
+	contentWidth: Ti.UI.SIZE
+}
+
+".contwfill":{
+	contentWidth: Ti.UI.FILL
+}
+
+".yellow":{
+	color: "#e1ce67"
+}
+
+".orange":{
+	color: "#e19167"
+}
+
+".red":{
+	color: "#e1677a"
+}
+
+".black":{
+	color: "#E89114"
+}
+
+".green":{
+	color: "#146be8"
+}
+
+".bg_green":{
+	backgroundColor:"#146be8"
+}
+
+".dark_green":{
+	color: "#146be8"
+}
+
+".dark_blue":{
+	color: "#E89114"
+}
+
+".blue":{
+	color: "#E89114"
+}
+
+".bg_yellow":{
+	backgroundColor: "#e1ce67"
+}
+
+".bg_orange":{
+	backgroundColor: "#e19167"
+}
+
+".bg_red":{
+	backgroundColor: "#e1677a"
+}
+
+
+".bg_blue":{
+	backgroundColor: "#E89114"
+}
+
+".light_blue":{
+	color: "#daedf8"
+}
+
+".bg_light_blue":{
+	backgroundColor: "#daedf8"
+}
+
+".white":{
+	color: "#eaf5fb"
+}
+
+".bg_white":{
+	backgroundColor: "#eaf5fb"
+}
+
+".bold":{
+	font: {
+		fontFamily: 'Roboto-Medium',
+	}
+}

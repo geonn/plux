@@ -1,0 +1,46 @@
+<Alloy>
+	<Window id="editRecWin" title="My Medical Record" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<RightNavButton platform="ios">
+	        <View class="wsize hsize">
+	         	<Button id="saveRecord" title="Done" width="20%" />
+	        </View>
+        </RightNavButton>
+	 	<View layout="vertical" bottom="90">
+	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">My Medical Record</Label>
+		     	</View>
+		     	<View left="0" width="20%">
+		         	<Button class="navbtn" width="Ti.UI.SIZE" id="saveRecord" title="Done" />
+		   		</View>
+		 	</View>
+	 		<TextField top="0"  id="titleRecord" height="40" borderColor="#ffffff" hintText="Medical Problem" width="95%"/> 
+			<View height="1" width="100%" backgroundColor="#CE1D1C" />
+			<View id="aView" class="wfill hfill vert" > 
+				<Label class="hsize wfill h5 bold themeColor" left="10" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT">Clinic/Hospital/Specialist</Label>
+				<TextField top="0" left="10" right="10" id="clinicRecord" backgroundColor="#f6f6f6" borderColor="#f6f6f6" height="40" hintText="Please fill in Clinic/Hospital/Specialist" width="Ti.UI.FILL"/>
+				 <View class="wfill hsize" id="message">
+				 	
+				 </View>
+				<ScrollableView backgroundColor="#cccccc" id="attachment" showPagingControl="true" class="horz wfill hfill contwfill conthsize" />
+			</View>
+		</View>
+		<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false">
+			</ScrollView>
+		<View bottom="40"   layout="horizontal" class="wfill" height="50" >
+				 
+				<View width="auto" height="Ti.UI.SIZE" onClick="showCategory" >
+					<View backgroundColor="#CE1D1C" height="50" width="Ti.UI.FILL" right="0" ><Label id="addLbl" color="#ffffff" text="+" /></View>
+				</View> 
+			</View>
+			<View height="40" layout="horizontal" bottom="0" width="100%" backgroundColor="#EEEEEE">
+				<Button onClick="deleteRecord" backgroundImage="/images/btn-remove.png" textAlign="left" left="15" width="30" height="30"  />
+				<View width="auto" height="Ti.UI.FILL">
+					<Label id="lastUpdated" textAlign="right" right="10"></Label>
+				</View> 
+			</View>
+	</Window>
+</Alloy>
