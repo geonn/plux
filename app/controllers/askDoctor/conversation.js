@@ -119,7 +119,7 @@ function addRow(row, latest){
 		});
 
 		var ss = row.message || "";
-		var newText = (row.format != "photo")?ss.replace(/[br]/gi, "\r\n"):row.message;
+		var newText = (row.format != "photo")?ss.replace(/\[br\]/gi, "\r\n"):row.message;
 		var text_color = (row.format == "link")?"blue":"#606060";
 		newText = (row.format == "link")?newText:newText;
 
