@@ -1,5 +1,5 @@
 var args = arguments[0] || {};  
-common.construct($);
+Alloy.Globals.common.construct($);
 loadPage();
 function loadPage(){
 	var isver = Ti.App.Properties.getString('isver');
@@ -17,12 +17,12 @@ $.main.addView(profile_view);
 
 function changePassword(){
 	var nav = require('navigation');
-	nav.navigationWindow("asp/changePassword", 0);
+	Alloy.Globals.nav.navigationWindow("asp/changePassword", 0);
 } 
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		nav.closeWindow($.asp_profile); 
+		Alloy.Globals.nav.closeWindow($.asp_profile); 
 	}); 
 }
 
@@ -38,7 +38,7 @@ $.moreBtn.addEventListener('click', function(e){
 	dialog.addEventListener("click", function(e){
 		if(e.index == 0){
 			changePassword();
-			//API.loadCategory({types: "popular"});
+			//Alloy.Globals.API.loadCategory({types: "popular"});
 		}
 	});
 });

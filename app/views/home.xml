@@ -11,19 +11,20 @@
 			<ScrollView class="wfill hfill contwfill conthsize vert" id="scrollview">
 				<View class="wfill hsize" id="header">
 					<ImageView id="bg" image="/images/slideshow/night_1.png" class="wfill hsize" ></ImageView>
-					<View class="wsize hsize horz" top="60">
-						<Label class="h1 wsize hsize whiteColor" id="day" right="10">12</Label>
+					<View class="wsize hsize horz" top="30">
+						<Label class="h1 wsize hsize whiteColor" id="day" right="10">-</Label>
 						<View class="wsize hsize vert">
 							<Label class="h4 wsize hsize whiteColor" id="days" left="0"></Label>
 							<Label class="h7 wsize hsize whiteColor" id="month_year" left="0"></Label>
 						</View>
 					</View>
+					<View class="wsize hsize vert" top="90" id="myPoints"></View>
 					<View class="wfill hsize" bottom="10">
 						<ImageView id="logo" onClick="navWindow" mod="notification" width="60" borderRadius="10" borderColor="#fff" height="60" right="20" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" />
 						<View class="wsize hsize rounded box bgred" borderColor="#ffffff" right="10" bottom='0'>
 							<Label class="wsize hsize h6 small_padding" color="#ffffff" id="label_notification">0</Label>
 						</View>
-						<View class="wfill hsize" width="60%" left="10" id="myInfo"></View>
+						<View class="wfill hsize vert" width="60%" left="10" id="myInfo"></View>
 					</View>
 					<ImageView onClick="navWindow" mod="more" image="/images/more-512-white.png" width="40" height="40" top="10" right="20"></ImageView>
 				</View>

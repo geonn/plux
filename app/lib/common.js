@@ -1,6 +1,5 @@
 var mainView = null;
 var time_offset = parseInt(Ti.App.Properties.getString('time_offset'))+0 || 0;
-
 exports.construct = function(mv){
 	mainView = mv;
 };
@@ -37,6 +36,67 @@ exports.createAlert1 = function(tt,msg, callback, yes){
 		}
 	});
 };
+
+exports.mysql_real_escape_string =function(str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char; // prepends a backslash to backslash, percent,
+                                  // and double/single quotes
+        }
+    });
+};
+
+exports.parent = function(keys, ex){
+	// if key.value undefined mean it look for key only
+	var key = keys;
+	var e = ex;
+	if(typeof key.value != "undefined"){
+		if(eval("e."+key.name+"") != key.value){
+			if(eval("e.parent."+key.name+"") != key.value){
+				if(eval("e.parent.parent."+key.name+"") != key.value){
+	    			console.log("key and value not match");
+	    		}else{
+	    			return e.parent.parent;
+	    		}
+	    	}else{
+	    		return e.parent;
+	    	}
+	    }else{
+	    		return e;
+	    }
+	}else{
+		if(eval("typeof e."+key.name+"") == "undefined"){
+
+			if(eval("typeof e.parent."+key.name+"") == "undefined"){
+				if(eval("typeof e.parent.parent."+key.name+"") == "undefined"){
+	    			console.log("key not found");
+	    		}else{
+	    			return eval("e.parent.parent."+key.name+"");
+	    		}
+	    	}else{
+	    		return eval("e.parent."+key.name+"");
+	    	}
+	    }else{
+	    		return eval("e."+key.name);
+	    }
+	}
+}
 
 exports.lightbox = function(data, win){
 	var mask = Ti.UI.createImageView({

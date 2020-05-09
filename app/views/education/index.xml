@@ -1,0 +1,23 @@
+<Alloy>
+	<Window title="Education" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		 
+	 	<View>
+			<View id="aView" height="Ti.UI.SIZE" top="0" layout="vertical"> 
+				<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+					<View left="0" width="20%">
+			         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+			   		</View>
+			     	<View width="60%">
+			     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Education</Label>
+			     	</View>
+			     
+			 	</View>
+				<!--<SearchBar tintColor="#CE1D1C"  id="searchItem" showCancel="true" text=""  top="0" height="50" hintText="Search appointment data..." /> -->
+
+		 		<TableView width="100%" id="recordTable"  top="0" class="wfill hfill"  separatorColor="#375540" />
+			</View> 
+			<ScrollView id="bigView" zIndex="99" height="Ti.UI.SIZE" layout="vertical" backgroundColor="#ffffff" opacity="0.8" bottom="0" width="80%" visible="false">
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

@@ -3,7 +3,7 @@ var u_id = args.u_id || 0;
 var noThumbColors   = ['#555555','#cccccc'];
 var noThumbColors2  = ['#ff0000','#000'];
 var frontbackcounter = 0;
-common.construct($);
+Alloy.Globals.common.construct($);
 var user = args.user;
 var qrcode = require('qrcode');
 var loading = Alloy.createController('loading');
@@ -21,7 +21,7 @@ function login_callback(responseText){
 	var res = JSON.parse(responseText); 
 	res = res[0];
 	if(typeof res.message != "undefined" && res.message != null){
-   		 common.createAlert("Error",res.message);
+   		 Alloy.Globals.common.createAlert("Error",res.message);
    		 loading.finish();
    }else{
    	
@@ -106,7 +106,7 @@ var userIc = user.icno || "";
 
 var genCode = setInterval(function(){
 	
-	var dateTimeNow = currentDateTime();
+	var dateTimeNow = Alloy.Globals.common.now();
 	var userQR = qrcode.QRCode({
 		typeNumber: 10,
 		errorCorrectLevel: 'L'
@@ -169,7 +169,7 @@ function rotate_box(view_selected, back2front){
     });
     view_selected.animate(a_front_to_back);
     a_front_to_back.addEventListener('complete', function() {
-        Ti.API.info('showFront: Animating the back to the front.');
+        
 		a_front_to_back.removeEventListener('complete',function(){});
 		
         if(Ti.Platform.osname == "android"){
@@ -203,8 +203,6 @@ function rotate_box(view_selected, back2front){
 }
 
 function orientationchange(e){
-	Ti.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);
-	Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
     if (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight){ 
         // do something 
         name_text.top  = "160dp";
@@ -227,7 +225,7 @@ Ti.App.addEventListener('loadPage', init);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }
  

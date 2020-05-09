@@ -2,7 +2,7 @@
 <Window title="Ask Me - Helpline" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
 	<ScrollView class="wfill hfill contwfill conthsize">
     <View class="wfill hfill vert" top="0">
-		<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" > 
+		<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" >
 			<View left="0" width="20%">
 	         	<ImageView left='10' id="btnBack" onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
 	   		</View>
@@ -11,12 +11,31 @@
 	     	</View>
 	 	</View>
 	 	<View class="hfill wfill">
-	    	<ScrollView id="chatroom" onScroll="scrollChecker" backgroundColor="#f5f5f5" top='0' class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" transform="Ti.UI.create2DMatrix().rotate(180)">
+			<TableView dataCollection="chats" onScroll="scrollChecker" bubbleParent="false" class='hfill wfill vert conthsize contwfill table_blank' bottom="50" top="0" id="chatroom">
+			<TableViewRow>
+				<View  format="{format}" class="hsize vert rounded" width= "75%" top="10" backgroundColor="{bgColor}" left="{setLeft}" right="{setRight}" >
+						<Label class="h6 wfill hsize bold" top="5" left="10" color="{sender_name_color}" text="{sender_name}"/>
+						<Label class="h7 wsize hsize"  left="10" bottom= "0" color="{sender_name_color}"  text="{created}"/>
+						<View height="1"  width="Ti.UI.FILL" backgroundColor="#ccc" top="5" left="10" right="10"></View>
+						<View class="wsize hsize">
+							<View class="wfill hsize vert">
+								<Label visible="{text_visible}" class="h5 wfill hsize padding" top="5" color="{text_color}" text="{newText}"></Label>
+								<Label visible="{link_visible}" onClick="navToWebview" url="{newText}" height="{link_height}" class="h5 wfill hsize padding" top="0" color="#1100bb" text="{link}"></Label>
+							</View>
+							<ImageView visible="{photo_visible}" class="wfill hsize padding" height="{image_height}" onClick="imageZoom" image="{image}"></ImageView>
+							<View visible="{voice_visible}" width="Ti.UI.FILL" height="30">
+								<ImageView new="true" image="/images/play_button.png" voice="{voice}" top="0" height="30" width="30" left="10" right="10" zIndex="10" id="playStopBtn" onClick="onPlayStopBtnClicked"></ImageView>
+								<Label left="50" id="time" color="#fff" />
+							</View>
+						</View>
+				</View>
+			</TableViewRow>
+			</TableView>
+	    	<!--<ScrollView id="chatroom" onScroll="scrollChecker" backgroundColor="#f5f5f5" top='0' class="wfill hfill" bottom="50" contentHeight="Ti.UI.SIZE" contentWidth="Ti.UI.FILL" transform="Ti.UI.create2DMatrix().rotate(180)">
 	    		<View id="inner_area" class="wfill hsize vert" bottom="20" >
-	    		    
-	    			<!--<Label onClick="getPreviousData" m_id="no" class="wfill hsize box padding h5" textAlign="center">More</Label>-->
-	    		</View>
-			</ScrollView>
+
+	    			</View>
+			</ScrollView>-->
         </View>
     </View>
     <View class='wfill hsize vert' backgroundColor="#faf399" top="0" id="call">

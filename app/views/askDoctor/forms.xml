@@ -9,21 +9,27 @@
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Patient Information</Label>
 		     	</View>
 		 	</View>
-	 		<Label class="wsize hsize h5" top="10" bottom="10" textAlign="center"> Please fill in your basic information \nso that our doctor can consult</Label>
-		 	<View class="wfill hsize vert" backgroundColor="#9E9E9E">
-			 	<TextArea onFocus="hinttextOnFocus" id="message" onBlur="hinttextOnBlur" class='wfill' height="100" bottom="1" top="1" backgroundColor="#ffffff" _hintText="Patient's condition" value="Patient's condition"></TextArea>
-			 	<View class='wfill horz' height="40" bottom="1"  id="gender_view">
-			 		<View width="50%" class="hsize" onClick="genderSelect" right="1" gender="male" backgroundColor="#ffffff">
-			 			<Label class="padding wfill hsize" touchEnabled="false" textAlign="center">Male</Label>
-			 		</View>
-			 		<View class="hsize wfill" onClick="genderSelect" backgroundColor="#ffffff" gender="female">
-			 			<Label class="padding wfill hsize" touchEnabled="false" textAlign="center">Female</Label>
+		 	<ScrollView class='wfill hfill vert contwfill conthsize'>
+		 		<Label class="wsize hsize h5" color="#fff" top="10" bottom="10" textAlign="center" text="L('pleasefillin')"></Label>
+			 	<View class="wfill hsize vert" backgroundColor="#9E9E9E">
+				 	<TextField hintText="L('name')" id="name" required="1" top="1" bottom="1" value=""></TextField>
+				 	<TextField hintText="IC" id="ic" required="1"  bottom="1" value=""></TextField>
+				 	<TextField hintText="L('age')" keyboardType="Titanium.UI.KEYBOARD_TYPE_PHONE_PAD" id="age" required="1"  bottom="1" value=""></TextField>
+				 	<View class='wfill horz' height="40" bottom="1" id="gender_view">
+				 		<View width="50%" class="hsize" onClick="genderSelect" right="1" gender="male" backgroundColor="#ffffff">
+				 			<Label class="padding wfill hsize h5" touchEnabled="false" textAlign="center" text="L('male')"></Label>
+				 		</View>
+				 		<View class="hsize wfill" onClick="genderSelect" backgroundColor="#ffffff" gender="female">
+				 			<Label class="padding wfill hsize h5" touchEnabled="false" textAlign="center" text="L('female')"></Label>
+				 		</View>
+				 	</View>
+				 	<TextArea onFocus="hinttextOnFocus"onBlur="hinttextOnBlur" id="message" class='wfill' height="100" bottom="1" backgroundColor="#ffffff" _hintText="L('concerns_symptoms')" value="L('concerns_symptoms')"></TextArea>
+					<TextArea onFocus="hinttextOnFocus"onBlur="hinttextOnBlur" id="message2" class='wfill' height="100" bottom="1" backgroundColor="#ffffff" _hintText="L('list_symptoms')" value="L('list_symptoms')"></TextArea>
+				 	<View class="wfill hsize" backgroundColor="#ffffff">
+				 		<Button top="10" bottom="10" onClick="sendMessage"  id="saveBtn" title="L('submit')" borderRadius="5" backgroundColor="#7B7B7B" width="70%"  height="40" color="#ffffff" ></Button> 
 			 		</View>
 			 	</View>
-			 	<View class="wfill hsize" backgroundColor="#ffffff">
-			 		<Button top="10" bottom="10" onClick="sendMessage"  id="saveBtn" title="Submit" borderRadius="5" backgroundColor="#7B7B7B" width="70%"  height="40" color="#ffffff" ></Button> 
-		 		</View>
-		 	</View>
+	 		</ScrollView>
 		</View>
 	</Window>
 </Alloy>

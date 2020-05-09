@@ -1,4 +1,5 @@
 var Cloud = require('ti.cloud');
+var channelId = 'sound';
 var app_status;
 var CloudPush;
 Ti.App.Properties.setString('room_id', "");
@@ -28,6 +29,11 @@ if(OS_ANDROID){
         app_status = "running";
         var payload = JSON.parse(evt.payload);
         console.log('Tray Click Focused App (app was already running)');
+    });
+    var channel = Ti.Android.NotificationManager.createNotificationChannel({
+        id: channelId,
+        name: 'Chat Notification',
+        importance: Ti.Android.IMPORTANCE_HIGH,
     });
 }
 
@@ -103,7 +109,7 @@ function receivePush_bak(e) {
 	console.log(target+" and redirect "+redirect);
 	if(target == "conversation"){
 		if(redirect){
-			nav.navigateWithArgs("conversation");
+			Alloy.Globals.nav.navigateWithArgs("conversation");
 		}else{
 			Ti.App.fireEvent('conversation:refresh');
 		}
@@ -122,7 +128,7 @@ function receivePush_bak(e) {
 					//Do nothing
 				}
 				if (ex.index === 1){
-					nav.navigateWithArgs("appointment");
+					Alloy.Globals.nav.navigateWithArgs("appointment");
 				}
 			});
 			dialog.show();
@@ -147,7 +153,7 @@ function receivePush_bak(e) {
 
 			if (ex.index === 1){
 				if(target == "claimDetail" || target == "survey"){
-					nav.navigateWithArgs("asp/notification");
+					Alloy.Globals.nav.navigateWithArgs("asp/notification");
 				}
 
 				if(target == "webview"){
@@ -155,11 +161,11 @@ function receivePush_bak(e) {
 
 						var htmlText ="<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style>"+decodeURIComponent(detail);
 						htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, '<br />');
-						nav.navigateWithArgs(target, {
+						Alloy.Globals.nav.navigateWithArgs(target, {
 							html: htmlText
 						});
 					}else{
-						nav.navigateWithArgs(target, {
+						Alloy.Globals.nav.navigateWithArgs(target, {
 							url: url
 						});
 					}
@@ -184,7 +190,7 @@ function deviceTokenSuccess(ev) {
 	}, function (e) {
 		if (e.success) {
 			Cloud.PushNotifications.unsubscribe({
-			    channel: 'survey',
+			    channel: channelId,
 			    device_token: deviceToken
 			}, function (ey) {
 
@@ -192,7 +198,7 @@ function deviceTokenSuccess(ev) {
 			    if (ey.success) {
 
 			        Cloud.PushNotifications.subscribe({
-					    channel: 'survey',
+					    channel: channelId,
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios',
 					    device_token: deviceToken
 					}, function (ex) {
@@ -200,8 +206,8 @@ function deviceTokenSuccess(ev) {
 
 					    	/** User device token**/
 			         		Ti.App.Properties.setString('deviceToken', deviceToken);
-							API.updateNotificationToken();
-
+							Alloy.Globals.API.updateNotificationToken();
+							console.log("subscribe to "+channelId);
 					    } else {
 
 					    	registerPush();
@@ -210,7 +216,7 @@ function deviceTokenSuccess(ev) {
 			    } else {
 
 			         Cloud.PushNotifications.subscribe({
-					    channel: 'survey',
+					    channel: channelId,
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios',
 					    device_token: deviceToken
 					}, function (ex) {
@@ -218,7 +224,7 @@ function deviceTokenSuccess(ev) {
 					     	console.log(deviceToken+" deviceToken second");
 					    	/** User device token**/
 			         		Ti.App.Properties.setString('deviceToken', deviceToken);
-							API.updateNotificationToken();
+							Alloy.Globals.API.updateNotificationToken();
 							 console.log("geo7");
 					    } else {
 					    	console.log("geo8");
@@ -233,7 +239,7 @@ function deviceTokenSuccess(ev) {
 	    	  console.log('GEO NOT Error:\n' +
 			            ((e.error && e.message) || JSON.stringify(e)));
 			Cloud.PushNotifications.subscribe({
-					    channel: 'survey',
+					    channel: channelId,
 					    type:Ti.Platform.name == 'android' ? 'android' : 'ios',
 					    device_token: deviceToken
 					}, function (ex) {
@@ -242,7 +248,7 @@ function deviceTokenSuccess(ev) {
 
 					    	/** User device token**/
 			         		Ti.App.Properties.setString('deviceToken', deviceToken);
-							API.updateNotificationToken();
+							Alloy.Globals.API.updateNotificationToken();
 
 					    } else {
 					    	registerPush();

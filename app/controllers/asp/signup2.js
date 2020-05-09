@@ -3,9 +3,10 @@ var nav = Alloy.Globals.navMenu;
 var loading = Alloy.createController("loading");
 $.win.add(loading.getView());
 
+
 var error_message = "";
-//var view_sms_box = common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
-//var view_agreement_box = common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"privacy");
+//var view_sms_box = Alloy.Globals.common.CheckboxwithText("Agree to receive SMS Service", {name: "smsme"});
+//var view_agreement_box = Alloy.Globals.common.CheckboxwithText("I have read and agree to the ","Privacy Policy", {name: "agreets"},"privacy");
 
 var memno = Ti.App.Properties.getString('memno');
 var empno = Ti.App.Properties.getString('empno');
@@ -31,7 +32,7 @@ function doAspSignup(){
 		return false;
 	}
 	if(password != repassword){
-		common.createAlert("Error", "Password does not match the confirm password.");
+		Alloy.Globals.common.createAlert("Error", "Password does not match the confirm password.");
 		loading.finish();
 		return false;
 	}
@@ -39,7 +40,7 @@ function doAspSignup(){
 	//var view_sms = view_sms_box.children[0].children[0].checked;
 	/*var view_agreement = view_agreement_box.children[0].children[0].checked;
 	if(view_agreement != "1"){
-		common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
+		Alloy.Globals.common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
 		loading.finish();
 		return false;
 	}*/
@@ -55,10 +56,10 @@ function doAspSignup(){
 	};
 	
 	 
-	API.do_asp_signup(params, {
+	Alloy.Globals.API.do_asp_signup(params, {
 	       onload: function(){
-	           nav.navigationWindow("home");
-               nav.closeWindow(mainView.aspSignUpWin); 
+	           Alloy.Globals.nav.navigationWindow("home");
+               Alloy.Globals.nav.closeWindow(mainView.aspSignUpWin); 
                Ti.App.fireEvent('updateHeader');
 	       },
            finish: function(){
@@ -105,7 +106,7 @@ function doSubmit(){
     for (var i=0; i < forms_arr.length - 1; i++) {
         
         if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
-            _.extend(params, {Filedata: forms_arr[i].children[2].filedata});
+            Alloy.Globals._.extend(params, {Filedata: forms_arr[i].children[2].filedata});
         }else if(forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached){
             error_message += "Please upload your referral letter\n";
         }else if(forms_arr[i].skip != "1"){
@@ -128,7 +129,7 @@ function doSubmit(){
     /*
     var view_agreement = view_agreement_box.children[0].children[0].checked;
     if(view_agreement != "1"){
-        common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
+        Alloy.Globals.common.createAlert("Error", "You must agree to the Privacy Policy to register as ASP member.");
         loading.finish();
         return false;
     }*/
@@ -139,7 +140,7 @@ function doSubmit(){
     
     loading.start();
     
-    API.do_asp_signup(params, {
+    Alloy.Globals.API.do_asp_signup(params, {
        onload: function(){
            if(OS_IOS){
                 var navMenu = Titanium.UI.iOS.createNavigationWindow();
@@ -159,10 +160,10 @@ function doSubmit(){
     });
     
     return;
-    API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
             var result = JSON.parse(responseText);
             if(result.status == "error"){
-                common.createAlert("Error", result.data);
+                Alloy.Globals.common.createAlert("Error", result.data);
             }else{
                 $.win.close();
                 Ti.App.fireEvent('loginAfterRegister',{params: params}); 

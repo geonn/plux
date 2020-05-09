@@ -3,6 +3,7 @@ var nav = Alloy.Globals.navMenu;
 var loading = Alloy.createController('loading'); 
 var error_message = "";
 
+
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 $.win.add(loading.getView());
@@ -11,44 +12,50 @@ function closeWin(){
 	$.win.close();
 }
 
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+
 function doSignup(){
 	var fullname = $.fullname.value;
 	var email = $.email.value;
 	var ic_no = $.ic_no.value;
+	var mobile = $.mobile.value;
 	var password = $.password.value;
 	var confirm =  $.confirm.value;
 	var view_agreement = view_agreement_box.children[0].children[0].checked;
 	
 	if(fullname.trim() == ""){
-		common.createAlert("Error", "Please fill in your full name");
+		Alloy.Globals.common.createAlert("Error", "Please fill in your full name");
 		return false;
 	}
 	
 	if(ic_no.trim() == ""){
-		common.createAlert("Error", "Please fill in your IC number");
+		Alloy.Globals.common.createAlert("Error", "Please fill in your IC number");
 		return false;
 	}
 	 
 	if(email.trim() == ""){
-		common.createAlert("Error", "Please fill in your email");
+		Alloy.Globals.common.createAlert("Error", "Please fill in your email");
 		return false;
 	}else if(validateEmail(email) != "1"){
-		common.createAlert("Error", "Please fill in an valid email");
+		Alloy.Globals.common.createAlert("Error", "Please fill in an valid email");
 		return false;	
 	}
 	
 	if(password.trim() == ""){
-		common.createAlert("Error", "Please fill in your password");
+		Alloy.Globals.common.createAlert("Error", "Please fill in your password");
 		return false;
 	}
 	
 	if(confirm.trim() != password.trim()){
-		common.createAlert("Error", "Your password are not match");
+		Alloy.Globals.common.createAlert("Error", "Your password are not match");
 		return false;
 	}
 	 
 	if(view_agreement != "1"){
-		common.createAlert("Error", "You must agree to all the terms and conditions to register as ASP member.");
+		Alloy.Globals.common.createAlert("Error", "You must agree to all the terms and conditions to register as ASP member.");
 		return false;
 	}
 	 
@@ -61,7 +68,7 @@ function doSignup(){
 		agreets: view_agreement
 	};
 	 
-	API.do_signup(params, $, function(success){
+	Alloy.Globals.API.do_signup(params, $, function(success){
 		if(success){
 			$.win.close();
 			Ti.App.fireEvent('loginAfterRegister',{params: params}); 
@@ -114,10 +121,10 @@ function doSubmit(){
     }
     params["agreets"] = 1;
     loading.start();
-    API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "pluxSignUp", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
             var result = JSON.parse(responseText);
             if(result.status == "error"){
-                common.createAlert("Error", result.data);
+                Alloy.Globals.common.createAlert("Error", result.data);
             }else{
                 $.win.close();
                 Ti.App.fireEvent('loginAfterRegister',{params: params}); 

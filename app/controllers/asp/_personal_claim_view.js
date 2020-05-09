@@ -38,7 +38,7 @@ function setup_visit_row(e){
     textTotBal = changeTitleByCorpAndBenefit(textTotBal, e.benefittype);
     var subvalue = (e.limit == "9999")?"UNLIMITED":e.limit;
     subvalue = changeTitleByCorpAndBenefit(subvalue, e.benefittype);
-    return render_visit_row({balance: balance, textTotBal: textTotBal, title: e.entTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
+    return render_visit_row({balance: balance, textTotBal: textTotBal, title: e.vstTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
 }
 
 function setup_row(e){
@@ -71,10 +71,10 @@ function render_balance_list(){
             view_container.add(setup_row({limit: args.data[i].entsha, balance: args.data[i].entshabal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | SHARED", subtitle: "SHARED LIMIT", ent_type: "RM ", maxperclaim: args.data[i].maxperclaim}));
         }
         if(args.data[i].vstidvbal < 99999){
-            view_container.add(setup_visit_row({limit: args.data[i].vstidv, balance: args.data[i].vstidvbal, benefittype: args.data[i].benefittype, entTitle: "VISIT BALANCE", category: " | VISIT", subtitle: "VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
+            view_container.add(setup_visit_row({limit: args.data[i].vstidv, balance: args.data[i].vstidvbal, benefittype: args.data[i].benefittype, vstTitle: "VISIT BALANCE", category: " | VISIT", subtitle: "VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
         }
         if(args.data[i].vstsha < 99999){
-            view_container.add(setup_visit_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, entTitle: "SHARED VISIT BALANCE", category: " | VISIT | SHARED", subtitle: "SHARED VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
+            view_container.add(setup_visit_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, vstTitle: "SHARED VISIT BALANCE", category: " | VISIT | SHARED", subtitle: "SHARED VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
         }
         
         if(args.data[i].maxperclaim != "99999"){
@@ -104,16 +104,18 @@ function render_row(e){
     var label_type = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, bottom:10, color: "#ffffff", text: e.benefittype});//+e.category});
     view_label_type.add(label_type);
     row.add(view_label_type);
-    row.add(generate_progressBar(e.balance+"%"));
+    var progress_bar = (e.subvalue == "UNLIMITED")?0:e.balance;
+    console.log(e);
+    row.add(generate_progressBar(progress_bar+"%"));
     var view1 = $.UI.create("View", {classes:['wfill','hsize'], touchEnabled: false});
     var view_progress_balance = $.UI.create("View", {classes:['wsize','hsize', 'rounded'], touchEnabled: false, borderRadius: 8, top: -8, right: 20, backgroundColor: "#22262f",});
-    var label_progress_balance = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, top:10, color: "#ffffff", text: e.balance+"% used"});
+    var label_progress_balance = $.UI.create("Label", {classes:['wsize','hsize', 'h7', 'small_padding'], touchEnabled: false, top:10, color: "#ffffff", text: progress_bar+"% used"});
     view_progress_balance.add(label_progress_balance);
     view1.add(view_progress_balance);
     var view_sub_info = $.UI.create("View", {classes:['wfill','horz', 'hsize'], touchEnabled: false, right: 40});
     view1.add(view_sub_info);
     row.add(view1); 
-     
+    e.textTotBal = (e.subvalue == "UNLIMITED")?"UNLIMITED":e.textTotBal;
     view_sub_info.add(generate_description(e.title, e.textTotBal));
     view_sub_info.add($.UI.create("View", {width:1, height: 30, touchEnabled: false, backgroundColor: "#eeeeee", left: 10, right: 10}));
     view_sub_info.add(generate_description(e.subtitle, e.subvalue));
@@ -147,5 +149,5 @@ function generate_description(title, value, width){
 
 function navToHistory(e){
     var nav = require('navigation');
-    nav.navigateWithArgs("asp/claimHistory", e.source.record);
+    Alloy.Globals.nav.navigateWithArgs("asp/claimHistory", e.source.record);
 }

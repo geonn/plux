@@ -3,16 +3,16 @@ var loading = Alloy.createController("loading");
 var u_id = Ti.App.Properties.getString('u_id'); 
 
 function newRecord(){
-    nav.navigateWithArgs("addMedicalRecord"); 
+    Alloy.Globals.nav.navigateWithArgs("addMedicalRecord"); 
     /*
 	loading.start();
-	API.callByPost({url: "addUpdateMedicalRecord", params:{title: "untitled - "+ common.now(), u_id: u_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "addUpdateMedicalRecord", params:{title: "untitled - "+ Alloy.Globals.common.now(), u_id: u_id}}, function(responseText){
 		var model = Alloy.createCollection("medicalRecordsV2");
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		model.saveArray(arr);
 		loading.finish();
-		nav.navigateWithArgs("editMedical", {id: arr[0].id}); 
+		Alloy.Globals.nav.navigateWithArgs("editMedical", {id: arr[0].id}); 
 	});*/
 }
 
@@ -99,10 +99,10 @@ function openAttachment(e){
     }else{
         var html = "<img width='100%' height='auto' src='"+e.source.record.attachment+"'/>";
         if(OS_IOS){
-            nav.navigationWindow("webview","","", {url: e.source.record.attachment, title: e.source.record.category});
+            Alloy.Globals.nav.navigationWindow("webview","","", {url: e.source.record.attachment, title: e.source.record.category});
             //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
         }else{
-            nav.navigationWindow("webview","","", {content: html, title: e.source.record.category});
+            Alloy.Globals.nav.navigationWindow("webview","","", {content: html, title: e.source.record.category});
             //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
         }
         //$.win.add(webview);   
@@ -150,7 +150,6 @@ function viewPDF(appfilepath) {
                 data: appfilepath
             }));
         } catch(e) {
-            Ti.API.info('error trying to launch activity, e = '+e);
             alert('No PDF apps installed!');
         }
     } else {
@@ -160,10 +159,30 @@ function viewPDF(appfilepath) {
     loading.finish();
 }
 
+var message_popup = false;
+function popup(e){
+	var dialog = Ti.UI.createAlertDialog({
+		cancel: 1,
+		buttonNames: ['Cancel','OK'],
+		message: e.message,
+		title: e.title
+	});
+	dialog.addEventListener('click', function(ex){
+		if (ex.index === 1){
+			e.callback();
+		}
+		message_popup = false;
+	});
+	if(!message_popup){
+		dialog.show();
+		message_popup = true;
+	}
+}
+
 function deleteRecord(e){
     
     popup({title: "Delete",message: "Are you sure to delete this record?",callback: function(){
-        API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
+        Alloy.Globals.API.callByPost({url: "changeMedicalRecord", new: true, domain: "FREEJINI_DOMAIN", params:{id: e.source.parent.record.id, status: 2}}, function(responseText){
             var res = JSON.parse(responseText);
             refresh();
         });
@@ -178,16 +197,17 @@ function closeBox(){
 function refresh(){
 	loading.start();
 	
-	API.callByPost({url: "getMedicalAttachmentList", new: true, domain: "FREEJINI_DOMAIN", params:{u_id: u_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "getMedicalAttachmentList", new: true, domain: "FREEJINI_DOMAIN", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
         var arr = res.data || [];
+        console.log(responseText);
         render_listing(arr);
         loading.finish();
 		/*var model = Alloy.createCollection("medicalRecordsV2");
 		
 		model.saveArray(arr);
 		
-		API.callByPost({url: "getMedicalAttachment", params:{u_id: u_id}}, function(responseText){
+		Alloy.Globals.API.callByPost({url: "getMedicalAttachment", params:{u_id: u_id}}, function(responseText){
 			var model2 = Alloy.createCollection("medicalAttachmentV2");
 			var res2 = JSON.parse(responseText);
 			var arr2 = res2.data || null;

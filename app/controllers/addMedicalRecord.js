@@ -7,6 +7,7 @@ var dependent = JSON.parse(Ti.App.Properties.getString('dependent'));
 var loading = Alloy.createController('loading');
 var error_message = "";
 
+
 function init(){
 	//loading.start();
 	$.win.add(loading.getView());
@@ -50,7 +51,7 @@ function doSubmit(){
     }
     params["u_id"] = Ti.App.Properties.getString('u_id');
     loading.start();
-    API.callByPost({url: "uploadMedicalRecords", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "uploadMedicalRecords", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
 
         var result = JSON.parse(responseText);
 
@@ -105,7 +106,7 @@ function loadComboBox(e){
     indicator.show();
     e.source.add(indicator);
     var params = "CORPCODE="+corpcode+"&memno="+memno+"&empno="+empno;
-    API.callByGet({url: e.source.url, params: params }, {
+    Alloy.Globals.API.callByGet({url: e.source.url, params: params }, {
         onload: function(responseText){
             var result = JSON.parse(responseText);
             e.source.data = result;
@@ -136,6 +137,6 @@ function camera_callback(event){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		nav.closeWindow($.win);
+		Alloy.Globals.nav.closeWindow($.win);
 	});
 }

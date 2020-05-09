@@ -361,7 +361,7 @@ exports.definition = {
 			addHealthData : function(entry, callback) {
 				var collection = this;
 				var u_id = Ti.App.Properties.getString('u_id');
-                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE date='" +mysql_real_escape_string(entry.date)+"' AND time='"+mysql_real_escape_string(entry.time)+"' AND u_id = ?";
+                var sql = "SELECT * FROM " + collection.config.adapter.collection_name + " WHERE date='" +Alloy.Globals.common.mysql_real_escape_string(entry.date)+"' AND time='"+mysql_real_escape_string(entry.time)+"' AND u_id = ?";
                 var sql_query =  "";
                 console.log("addHealthData");
                 db = Ti.Database.open(collection.config.adapter.db_name);
@@ -370,7 +370,7 @@ exports.definition = {
                 if (res.isValidRow()){
              		sql_query = "UPDATE " + collection.config.adapter.collection_name + " SET field1='"+entry.field1+"' , field2='"+entry.field2+"' , amount='"+entry.amount+"' WHERE date='" +entry.date+"' AND time='"+entry.time+"' ";
                 }else{
-                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created, u_id) VALUES ('"+entry.date+"', '"+entry.time +"','"+entry.type+"','"+entry.field1+"','"+entry.field2+"' ,'"+entry.amount+"', '"+ currentDateTime() +"', "+u_id+")";
+                	sql_query = "INSERT INTO "+ collection.config.adapter.collection_name + "( date, time, type,field1,field2, amount,created, u_id) VALUES ('"+entry.date+"', '"+entry.time +"','"+entry.type+"','"+entry.field1+"','"+entry.field2+"' ,'"+entry.amount+"', '"+ Alloy.Globals.common.now() +"', "+u_id+")";
                 	
 				}
 				

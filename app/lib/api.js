@@ -4,7 +4,7 @@
 var API_DOMAIN = "https://appsapi.aspmedic.com/aida/";
 var API_EPHARMACY = "https://epharmacy.freejini.com.my";
 var ERECEIPT_DOMAIN = "http://ereceipt.aspmedic.com/aida/";
-var FREEJINI_DOMAIN =  "http://app.aspmedic.com";
+var FREEJINI_DOMAIN =  "http://plux.freejini.com.my";
 var VCLINIC_DOMAIN = "https://vclinic.freejini.com.my";
 var REZA_DOMAIN = "http://asp.swancount.com";
 
@@ -150,12 +150,12 @@ exports.loadAPIBySequence = function (ex, counter){
 			checker.updateModule(APILoadingList[counter]['checkId'],APILoadingList[counter]['model'], res.last_updated);
 
 			counter++;
-			API.loadAPIBySequence(ex, counter);
+			Alloy.Globals.API.loadAPIBySequence(ex, counter);
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	     	counter++;
-	     	API.loadAPIBySequence(ex, counter);
+	     	Alloy.Globals.API.loadAPIBySequence(ex, counter);
 	     },
 	     timeout : 70000  // in milliseconds
 	 });
@@ -187,13 +187,13 @@ exports.updateUserFromFB = function(e, mainView){
 	         	Ti.App.Properties.setString('ic_no', res.data.ic_no);
 				//Ti.App.Properties.setString('memno', res.data.ic_no);
 	         	Ti.App.Properties.setString('facebooklogin', 1);
-	         	API.updateNotificationToken();
-	         	API.syncHealthData({u_id:res.data.u_id});
+	         	Alloy.Globals.API.updateNotificationToken();
+	         	Alloy.Globals.API.syncHealthData({u_id:res.data.u_id});
 	         	Ti.App.fireEvent('updateHeader');
 	         	mainView.win.close();
 
 	         	if(typeof Alloy.Globals.navMenu != "undefined" && Alloy.Globals.navMenu != null){
-					nav.closeWindow(mainView.win);
+					Alloy.Globals.nav.closeWindow(mainView.win);
 				}else{
 					var win = Alloy.createController("home").getView();
 				}
@@ -365,6 +365,7 @@ exports.getNearbyClinic = function(e){
 
 exports.checkAppVersion = function(callback_download){
 	var appVersion = Ti.App.version;
+	
 	console.log(appVersion);
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
 	var client = Ti.Network.createHTTPClient({
@@ -433,13 +434,13 @@ exports.do_pluxLogin = function(data, callback){
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			if(result.status == "error"){
-				common.createAlert("Error", result.data);
+				Alloy.Globals.common.createAlert("Error", result.data);
 				callback(false);
 				return false;
 			}else{
 				Ti.App.Properties.setString('fullname', result.data.fullname);
 				Ti.App.Properties.setString('plux_user_status', result.data.status);
-				Ti.App.Properties.setString('last_login', currentDateTime());
+				Ti.App.Properties.setString('last_login', Alloy.Globals.common.now());
 				Ti.App.Properties.setString('u_id', result.data.u_id);
 				Ti.App.Properties.setString('ic_no', result.data.ic_no);
 				Ti.App.Properties.setString('plux_email',result.data.email);
@@ -453,7 +454,7 @@ exports.do_pluxLogin = function(data, callback){
 				if(typeof result.dependent != "undefined"){
 					Ti.App.Properties.setString('dependent', JSON.stringify(result.dependent));
 				}
-	       		API.updateNotificationToken();
+	       		Alloy.Globals.API.updateNotificationToken();
 				/*Ti.App.fireEvent('updateHeader');
 				  */
 				callback(true);
@@ -481,7 +482,7 @@ exports.do_signup = function(data,mainView, callback){
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			if(result.status == "error"){
-				common.createAlert("Error", result.data);
+				Alloy.Globals.common.createAlert("Error", result.data);
 				callback(false);
 			}else{
 				callback(true);
@@ -508,7 +509,7 @@ exports.do_asp_presignup = function(data, handle){
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       if(typeof res.message != "undefined" && res.message != null){
-	       		 common.createAlert("Error",res.message);
+	       		 Alloy.Globals.common.createAlert("Error",res.message);
 	       		 handle.finish();
 	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
@@ -523,7 +524,7 @@ exports.do_asp_presignup = function(data, handle){
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
-	     	common.createAlert("Sign Up Fail", e.error);
+	     	Alloy.Globals.common.createAlert("Sign Up Fail", e.error);
 	     	handle.finish();
 	     },
 	     timeout : 60000  // in milliseconds
@@ -536,7 +537,7 @@ exports.do_asp_presignup = function(data, handle){
 
 exports.do_asp_signup = function(data, handler){
 
-	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.password+"&SMSME=1&AGREETS="+data.agreets;
+	var url = aspSignupUrl+"?EMAIL="+data.email+"&EMAIL2="+data.email2+"&PASSWORD="+data.password+"&NAME="+data.name+"&MEMNO="+data.memno+"&EMPNO="+data.empno+"&MOBILENO="+data.mobileno+"&SMSME=1&AGREETS="+data.agreets;
 	var u_id = Ti.App.Properties.getString('u_id') || "";
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
@@ -545,7 +546,7 @@ exports.do_asp_signup = function(data, handler){
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       if(typeof res.message !== "undefined" && res.message != null){
-	       		 common.createAlert("Error",res.message);
+	       		 Alloy.Globals.common.createAlert("Error",res.message);
 	       		 handler.finish();
 	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
@@ -565,14 +566,24 @@ exports.do_asp_signup = function(data, handler){
 						agreets: 1
 					};
 
-					API.plux_signup(params);*/
+					Alloy.Globals.API.plux_signup(params);*/
+					setTimeout(function(){
+						api_login({
+							email: data.email,
+							password: data.password,
+							version: Ti.Platform.version,
+					        os: Ti.Platform.osname,
+					        model: Ti.Platform.model,
+					        macaddress: Ti.Platform.macaddress
+						});
+					}, 1000);
 	       		}
 	       		handler.onload();
 	       }
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
-	     	common.createAlert("Sign Up Fail", e.error);
+	     	Alloy.Globals.common.createAlert("Sign Up Fail", e.error);
 	     	loading.finish();
 	     },
 	     timeout : 60000  // in milliseconds
@@ -583,17 +594,40 @@ exports.do_asp_signup = function(data, handler){
 	 client.send();
 };
 
+function api_login(params){
+    Alloy.Globals.API.callByPost({url: "pluxLoginUrl", params: params}, 
+        function(responseText){
+        var result = JSON.parse(responseText);
+        console.log(result);
+        if(result.status == "success"){
+            _.each(result.data, function(value, key){
+                Ti.App.Properties.setString(key, value);
+            });
+            if(typeof result.data.user_service != "undefined"){
+               _.each(result.data.user_service[0], function(value, key){
+                    Ti.App.Properties.setString(key, value);
+                }); 
+            }
+            if(typeof result.dependent != "undefined"){
+               Ti.App.Properties.setString("dependent", JSON.stringify(result.dependent[0]));
+            }
+        }else{
+            alert(result.data);
+        }
+    });
+}
+
 exports.resendVerificationEmail = function(){
 	var url = resendVerifUrl+"?LOGINID="+ Ti.App.Properties.getString('email');
 	var client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
-	       common.createAlert("Success", "Verification email sent!");
+	       Alloy.Globals.common.createAlert("Success", "Verification email sent!");
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
-	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
-	     	common.hideLoading();
+	     	Alloy.Globals.common.createAlert("Error", "Unable connect to the server. Please try again later.");
+	     	Alloy.Globals.common.hideLoading();
 	     },
 	     timeout : 130000  // in milliseconds
 	 });
@@ -614,8 +648,8 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       var result = JSON.parse(this.responseText);
 	       res = result[0];
 	       if(typeof res.message != "undefined" && res.message != null){
-	       		 common.createAlert("Error",res.message);
-	       		 common.hideLoading();
+	       		 Alloy.Globals.common.createAlert("Error",res.message);
+	       		 Alloy.Globals.common.hideLoading();
 	       }else{
 	       		Ti.App.Properties.setString('memno', res.memno);
 	       		Ti.App.Properties.setString('empno', res.empno);
@@ -625,16 +659,16 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	       		Ti.App.Properties.setString("empno_1",res.empno);
 	       		Ti.App.Properties.setString("corpcode_1",res.corpcode);
 	       		updateUserService(u_id, 1,username, password);
-	       		API.updateNotificationToken();
+	       		Alloy.Globals.API.updateNotificationToken();
 	       		Ti.App.fireEvent('updateMenu');
 
 
 	       		if(target != 'refresh'){
-	       			nav.closeWindow(mainView.aspLoginWin);
+	       			Alloy.Globals.nav.closeWindow(mainView.aspLoginWin);
 					Ti.App.fireEvent('updateHeader');
 					var toRedirect = false;
 					if(target != "" && target != "home"){
-						API.callByPost({url:"getCorpPermission", params: {corpcode: res.corpcode}}, function(responseText){
+						Alloy.Globals.API.callByPost({url:"getCorpPermission", params: {corpcode: res.corpcode}}, function(responseText){
 						var res = JSON.parse(responseText);
 
 						var splitRes = target.split("/");
@@ -649,7 +683,7 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 							for (var i=0; i < takeout.length; i++) {
 
 							  if(myTarget == takeout[i]){
-							  	common.createAlert("Error", "You are not allowed to view this section",function(){
+							  	Alloy.Globals.common.createAlert("Error", "You are not allowed to view this section",function(){
 
 							  	});
 							  	toRedirect = false;
@@ -659,13 +693,13 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 
 							};
 
-							nav.navigationWindow(target);
+							Alloy.Globals.nav.navigationWindow(target);
 
 						}
 
 					});
 						if(toRedirect ==true ){
-							nav.navigationWindow(target);
+							Alloy.Globals.nav.navigationWindow(target);
 						}
 
 					}
@@ -680,8 +714,8 @@ exports.doLogin = function(username, password, mainView, target, callback) {
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
-	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
-	     	common.hideLoading();
+	     	Alloy.Globals.common.createAlert("Error", "Unable connect to the server. Please try again later.");
+	     	Alloy.Globals.common.hideLoading();
 
 	     },
 	     timeout : 70000  // in milliseconds
@@ -704,10 +738,10 @@ exports.doChangePassword = function(e, mainView, onfinish) {
 	       res = result[0];
 	        //GEO TO EDIT
 	        if(res.code == "99"){ //success
-	        	common.createAlert("Done", res.message);
-	        	nav.closeWindow(mainView.win);
+	        	Alloy.Globals.common.createAlert("Done", res.message);
+	        	Alloy.Globals.nav.closeWindow(mainView.win);
 	        }else{
-	        	common.createAlert("Error", res.message);
+	        	Alloy.Globals.common.createAlert("Error", res.message);
 	        	onfinish();
 	        	return false;
 	        }
@@ -715,7 +749,7 @@ exports.doChangePassword = function(e, mainView, onfinish) {
 	     },
 	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
-	     	common.createAlert("Error", "Unable connect to the server. Please try again later.");
+	     	Alloy.Globals.common.createAlert("Error", "Unable connect to the server. Please try again later.");
 	     	onfinish();
 
 	     },
@@ -746,7 +780,7 @@ exports.claimDetailBySeries = function(e, callback){
 
 	     	if(retryTimes !== 0 && Titanium.Network.online){
 	     		_.extend(e, {retryTimes: retryTimes});
-	     		API.claimDetailBySeries(e);
+	     		//Alloy.Globals.API.claimDetailBySeries(e);
 	     	}else{
 	     		Ti.App.fireEvent("load_claim_detail");
 	     	}
@@ -797,8 +831,15 @@ exports.callByGet  = function(e, handler){
 	url =  url+"&"+e.params;
 	console.log("callByGet");
 	console.log(url);
+	var timestart = new Date();
 	var _result = contactServerByGet(encodeURI(url));
 	_result.onload = function(e) {
+		console.log(url);
+		var timeend = new Date();
+		var dif = timeend.getTime() - timestart.getTime();
+		console.log(timeend);
+		console.log(dif/1000);
+		
 	    if(e.skipJSON){
             _.isFunction(handler.onload) && handler.onload(this.responseText);
             _.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
@@ -808,7 +849,9 @@ exports.callByGet  = function(e, handler){
             JSON.parse(this.responseText);
         }
         catch(e){
-            common.createAlert("Whoops","There is a problem with the server, please try again later.", handler.onerror);
+        	console.log(url+" error");
+        	console.log(e);
+            Alloy.Globals.common.createAlert("Whoops","There is a problem with the server, please try again later.", handler.onerror);
             //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
             //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
             return;
@@ -818,18 +861,23 @@ exports.callByGet  = function(e, handler){
 	};
 
 	_result.onerror = function(ex) {
+		console.log(url);
 		if(ex.code == "-1009"){       //The Internet connection appears to be offline.
-            common.createAlert("Error", ex.error, handler.onerror);
+            Alloy.Globals.common.createAlert("Error", ex.error, handler.onerror);
             return;
+        }else{
+        	Alloy.Globals.common.createAlert("Error", ex.error, handler.onerror);
         }
+        
+        return;
         if(_.isNumber(e.retry_times)){
             e.retry_times --;
             if(e.retry_times > 0){
-                API.callByGet(e, handler);
+                Alloy.Globals.API.callByGet(e, handler);
             }else{
                 console.log('onerror msg');
                 console.log(ex);
-                common.createAlert("Error", ex.error, handler.onerror);
+                Alloy.Globals.common.createAlert("Error", ex.error, handler.onerror);
                 //_.isFunction(handler.onerror) && handler.onerror(this.responseText);
                 //_.isFunction(handler.onfinish) && handler.onfinish(this.responseText);
             }
@@ -837,7 +885,7 @@ exports.callByGet  = function(e, handler){
             console.log('onerror msg without no');
             console.log(ex);
             e.retry_times = 2;
-            API.callByGet(e, handler);
+            Alloy.Globals.API.callByGet(e, handler);
         }
 	};
 };
@@ -895,6 +943,7 @@ function contactServerByPost(url,records) {
 	 }*/
 	var reward_token = Ti.App.Properties.getString('reward_token') || "";
 	client.open("POST", url);
+	console.log("after contactServerByPost");
 	client.setRequestHeader('Authorization', reward_token);
 	client.send(records);
 	return client;
@@ -925,6 +974,7 @@ function contactServerByPostImage(url,photo) {
 
 var callByPost_error_popup = false;
 exports.callByPost = function(e, onload, onerror){
+	var timestart = new Date();
 	var retryTimes = (typeof e.retryTimes != "undefined")?e.retryTimes: defaultRetryTimes;
 	var deviceToken = Ti.App.Properties.getString('deviceToken');
 	if(deviceToken != ""){
@@ -936,26 +986,43 @@ exports.callByPost = function(e, onload, onerror){
 			url = (typeof e.new != "undefined")?domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
 		console.log(url);
-		console.log(e.params || "");
+		console.log(e.params);
 		if(e.type == "voice"){
 			var _result = contactServerByPostVideo(url, e.params || {});
 		}else{
 			var _result = contactServerByPost(url, e.params || {});
 		}
 		_result.onload = function(ex) {
+			console.log("onload");
+			var timeend = new Date();
+			var dif = timeend.getTime() - timestart.getTime();
+			console.log(url);
+			console.log(e.params);
+			console.log(timeend);
+			console.log(dif / 1000);
 			onload && onload(this.responseText);
 		};
 
 		_result.onerror = function(ex) {
+			console.log(url);
+			console.log(e.params);
 			console.log(ex);
+			if(ex.code == "-1009"){       //The Internet connection appears to be offline.
+	            Alloy.Globals.common.createAlert("Error", ex.error);
+	            return;
+	        }else{
+	        	Alloy.Globals.common.createAlert("Error", ex.error);
+	        }
+			return;
+			
 			if(retryTimes !== 0 && Titanium.Network.online){
 				retryTimes --;
 				_.extend(e, {retryTimes: retryTimes});
-				API.callByPost(e, onload, onerror);
+				//Alloy.Globals.API.callByPost(e, onload, onerror);
 			}else{
 				if(!callByPost_error_popup){
 					callByPost_error_popup = true;
-					common.createAlert("Error", "Unable connect to the server. Please try again later.", function(){
+					Alloy.Globals.common.createAlert("Error", "Unable connect to the server. Please try again later.", function(){
 						callByPost_error_popup = false;
 					});
 				}
@@ -970,5 +1037,5 @@ exports.callByPost = function(e, onload, onerror){
 function onerrorCallback(e) {
 	var common = require('common');
 	// Handle your errors in here
-	common.createAlert("Error", e);
+	Alloy.Globals.common.createAlert("Error", e);
 };

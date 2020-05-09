@@ -8,7 +8,7 @@ var win;
 // update user device token
 exports.checkAndUpdate = function(e){
     win = e;
-	API.checkAppVersion(callback_download);
+	Alloy.Globals.API.checkAppVersion(callback_download);
 };
 
 function callback_download(e){
@@ -33,14 +33,13 @@ function callback_download(e){
 				  });
 				  Ti.Android.currentActivity.startActivity(intent);*/
 			} catch(e) {
-			    Ti.API.info("e ==> " + JSON.stringify(e));
 			}
 		//}
 		if(OS_ANDROID){
 		    var appActivity = Ti.Android.currentActivity;
             appActivity.finish();
 		}else{
-		    Alloy.Globals.navMenu.close();
+		    //Alloy.Globals.navMenu.close();
 		}
 	});
 	

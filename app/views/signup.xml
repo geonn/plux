@@ -17,6 +17,9 @@
                 <View backgroundColor="#fba81c" id="email" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" hintText="Email *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
+                <View backgroundColor="#fba81c" id="mobile" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField maxLength="30" hintText="Mobile *" keyboardType="Titanium.UI.KEYBOARD_TYPE_PHONE_PAD" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
                 <View backgroundColor="#fba81c" id="ic_no" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" hintText="IC / Passport *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>

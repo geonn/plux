@@ -3,6 +3,7 @@ var id = args.id || "";
 var MRECORDS = require('medicalRecords');
 MRECORDS.construct($); 
 var clickTime = null;
+
 var skipUpdate = false;
 var medicalAttachmentModel = Alloy.createCollection('medicalAttachmentV2'); 
 var medicalRecordsModel = Alloy.createCollection('medicalRecordsV2');
@@ -15,6 +16,26 @@ if(OS_IOS){
 var editable_textfield;
 
 loadMedicalInfo();
+ 
+function timeFormat(datetime){
+	var timeStamp = datetime.split(" ");
+	var newFormat;
+	var ampm = "am";
+	var date = timeStamp[0].split("-");
+	if(timeStamp.length == 1){
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] ;
+	}else{
+		var time = timeStamp[1].split(":");
+		if(time[0] >= 12){
+			ampm = "pm";
+			time[0] = time[0] - 12;
+		}
+
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] + " "+ time[0]+":"+time[1]+ " "+ ampm;
+	}
+
+	return newFormat;
+} 
  
 function loadMedicalInfo(){ 
 	loadImage(); 
@@ -86,7 +107,7 @@ function saveRecord(){
 	var clinic      = $.clinicRecord.value; 
 
 	if(title.trim() == ""){
-		title = "Untitled - "+ common.now();
+		title = "Untitled - "+ Alloy.Globals.common.now();
 	}  
 	
 	/** save text information***/
@@ -96,20 +117,20 @@ function saveRecord(){
 		clinic : clinic,
 		title : title,
 		created : details.created,
-		updated : common.now(),
+		updated : Alloy.Globals.common.now(),
 	};    
 	if(editable_textfield != null){
 		_.extend(param, {message: editable_textfield.value});
 	}
-	API.callByPost({url: "addUpdateMedicalRecord", params: param}, function(){
+	Alloy.Globals.API.callByPost({url: "addUpdateMedicalRecord", params: param}, function(){
 		medicalRecordsModel.saveArray([{ 
 			id : id,
 			title : title.trim(),
 			clinic  : clinic.trim(), 
-			updated : common.now()
+			updated : Alloy.Globals.common.now()
 		}]);  
 		Ti.App.fireEvent('displayRecords');
-		nav.closeWindow($.editRecWin);
+		Alloy.Globals.nav.closeWindow($.editRecWin);
 	});
 } 
 function deleteRecord(){
@@ -129,13 +150,13 @@ function deleteRecord(){
 				"id" : id,
 				'status': 2
 			};
-			API.callByPost({url: "changeMedicalRecord", params: param}, function(responseText){
+			Alloy.Globals.API.callByPost({url: "changeMedicalRecord", params: param}, function(responseText){
 				var res = JSON.parse(responseText);  
 				
 				if(res.status == "success"){  
 					medicalRecordsModel.saveArray(res.data);
 					skipUpdate = true;
-					nav.closeWindow($.editRecWin);
+					Alloy.Globals.nav.closeWindow($.editRecWin);
 				}
 			});
 		}
@@ -162,7 +183,7 @@ function backAndSave(){
 	}   
 	
 	Ti.App.fireEvent('displayRecords');
-	//nav.closeWindow($.editRecWin);
+	//Alloy.Globals.nav.closeWindow($.editRecWin);
 }
 
 function attachedPhoto(image,position,isLink, image_record){
@@ -190,7 +211,7 @@ function attachedPhoto(image,position,isLink, image_record){
 	iView.add(iImage);
 	
 	iView.addEventListener('click',function(e){
-		API.callByPost({url: "https://plux.freejini.com.my/main/tnc2", fullurl: true, params:{}}, function(responseText){
+		Alloy.Globals.API.callByPost({url: "https://plux.freejini.com.my/main/tnc2", fullurl: true, params:{}}, function(responseText){
 
 		 var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
@@ -294,7 +315,7 @@ function takePhoto(){
 			            blobContainer = image;  
 					 	var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType; 
 					  
-						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
+						Alloy.Globals.API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
 
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
@@ -359,7 +380,7 @@ function takePhoto(){
 					 		Filedata : image,
 						};	
 						var getStr = "&medical_id="+id+"&u_id="+Ti.App.Properties.getString('u_id')+"&caption="+categoryType;  
-						API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
+						Alloy.Globals.API.callByPostImage({url: "addMedicalAttachment", params: getStr, image:image}, function(responseText){
 
 							var res = JSON.parse(responseText);  
 							if(res.status == "success"){  
@@ -564,7 +585,7 @@ function iterate(item){
 		 		caption : categoryType,
 		 		Filedata : image,
 			};	 
-			API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
+			Alloy.Globals.API.callByPost({url: "addMedicalAttachment", params: param}, function(responseText){
 				var res = JSON.parse(responseText);  
 				if(res.status == "success"){  
 					var model = Alloy.createCollection("medicalAttachmentV2");
@@ -598,7 +619,7 @@ $.saveRecord.addEventListener('click', saveRecord);
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		nav.closeWindow($.editRecWin); 
+		Alloy.Globals.nav.closeWindow($.editRecWin); 
 	}); 
 }
 

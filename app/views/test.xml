@@ -1,0 +1,23 @@
+
+<Alloy>
+	<Window title="" backButtonTitle="" class="container" navTintColor="#CE1D1C" id="win" >
+		<RightNavButton platform="ios">
+            <!--<Button title="List" onClick="listing" />-->
+        </RightNavButton>
+        <View class="wfill hfill vert">
+	        <SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" onReturn="doSearch" id="search" text="" height="50"  hintText="Search Clinic" />
+	        <View id="parent" class="wfill hfill" backgroundColor="#ffffff">
+	        	
+	        	<Module module="ti.map" id="mapview" userLocation="true"></Module>
+	        </View>
+        </View>
+        <View class="wsize hsize" onPostlayout="loadPinCategory" right="20" bottom="20" opacity="0.5">
+        	<ImageView id="filter_icon" image="/images/icons/clinic_new.png"  onClick="openCategory" width="60" height="60"></ImageView>
+    	</View>
+    	<View class="wfill hfill" width="320" id="view_category" backgroundColor="#00ffffff" >
+			<TableView onClick="setFilter" backgroundColor="#fff" class="hfill contwfill conthsize" width="80%"  zIndex="10" left="0" bottom="10" id="filter_list">
+			</TableView>
+			<View class="wfill hfill" onClick="openCategory"></View>
+		</View>
+	</Window>
+</Alloy>

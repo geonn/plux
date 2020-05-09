@@ -105,6 +105,6 @@ $.win.addEventListener("close", function(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		nav.closeWindow($.win);
+		Alloy.Globals.nav.closeWindow($.win);
 	});
 }

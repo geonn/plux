@@ -9,26 +9,26 @@ function submitPassword(){
 	
 	if(password.trim() == ""){
 		loading.finish();
-		common.createAlert("Error", "Please fill in your password");
+		Alloy.Globals.common.createAlert("Error", "Please fill in your password");
 		return false;
 	}
 	
 	if(confirm.trim() != password.trim()){
 		loading.finish();
-		common.createAlert("Error", "Your password are not match");
+		Alloy.Globals.common.createAlert("Error", "Your password are not match");
 		return false;
 	}
 	
 	var params = {
 		password: password 
 	};
-	API.doChangePassword(params, $, function(){
+	Alloy.Globals.API.doChangePassword(params, $, function(){
 	    loading.finish();
 	});
 }
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }

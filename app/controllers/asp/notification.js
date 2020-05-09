@@ -16,6 +16,42 @@ function init(){
 	//syncFromServer();
 } 
 
+
+function monthFormat(datetime){
+
+	var monthNames = [
+        "Jan", "Feb", "Mar",
+        "April", "May", "June", "Jul",
+        "Aug", "Sep", "Oct",
+        "Nov", "Dec"
+    ];
+
+	var timeStamp = datetime.split(" ");
+	var newFormat;
+	var ampm = "am";
+	var date = timeStamp[0].split("-");
+    if(date[1] == "08"){
+		date[1] = "8";
+	}
+	if(date[1] == "09"){
+		date[1] = "9";
+	}
+    month = parseInt(date[1]) -1;
+	if(timeStamp.length == 1){
+		newFormat =  date[2]+" "+ monthNames[month]+" "+ date[0];
+	}else{
+		var time = timeStamp[1].split(":");
+		if(time[0] > 12){
+			ampm = "pm";
+			time[0] = time[0] - 12;
+		}
+
+		newFormat = date[2]+" "+ monthNames[month]+" "+ date[0] + ", "+ time[0]+":"+time[1]+ " "+ ampm;
+	}
+
+	return newFormat;
+}
+
 function syncFromServer(){
 	var checker = Alloy.createCollection('updateChecker'); 
 	var isUpdate = checker.getCheckerById("2");
@@ -29,7 +65,7 @@ function syncFromServer(){
 		"last_updated" : last_updated
 	};
  
-	API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
+	Alloy.Globals.API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
 		var res = JSON.parse(responseText);  
 		if(res.status == "success"){  
 			var record = res.data;
@@ -87,7 +123,9 @@ function displayList(){
 				var source = e.source.record;
 				e.source.backgroundColor = "#ffffff";
 				notificationModel.setRead(e.source.record.id);
-				nav.navigationWindow(source.target,"","", source);
+				Alloy.Globals.API.callByPost({url:"updateAsRead",domain: "FREEJINI_DOMAIN", new: true, params: {id: e.source.record.id}}, function(responseText){ 
+				});
+				Alloy.Globals.nav.navigationWindow(source.target,"","", source);
 			});
 			//row.add(rightForwardBtn);
 			/*if(entry.url != ""){
@@ -114,7 +152,7 @@ function loadHTML(html){
 	var htmlText ="<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style><body>"+decodeURIComponent(html)+"</body>";
 	htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	
-	nav.navigateWithArgs("webview", {
+	Alloy.Globals.nav.navigateWithArgs("webview", {
 		html: htmlText
 	});
 }
@@ -122,12 +160,12 @@ function loadHTML(html){
 function viewDetails(msg){  
 	//msg.source;msg.url;
 	downloadBrochure(msg);
-	//nav.navigateWithArgs("appointmentForm",{id: rec_id}); 
+	//Alloy.Globals.nav.navigateWithArgs("appointmentForm",{id: rec_id}); 
 }
  
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }
 
@@ -280,7 +318,7 @@ function downloadBrochure(content){
 									"status"	  : 2,
 									"id" : content.source
 								};
-								API.callByPost({url:"deleteNotification", params: param}, function(responseText){
+								Alloy.Globals.API.callByPost({url:"deleteNotification", params: param}, function(responseText){
 									var res = JSON.parse(responseText);  
 									if(res.status == "success"){  
 										notificationModel.update_status(param);

@@ -5,19 +5,40 @@ loading.start();
 	
 loadPage();
 
+function timeFormat(datetime){
+	var timeStamp = datetime.split(" ");
+	var newFormat;
+	var ampm = "am";
+	var date = timeStamp[0].split("-");
+	if(timeStamp.length == 1){
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] ;
+	}else{
+		var time = timeStamp[1].split(":");
+		if(time[0] >= 12){
+			ampm = "pm";
+			time[0] = time[0] - 12;
+		}
+
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] + " "+ time[0]+":"+time[1]+ " "+ ampm;
+	}
+
+	return newFormat;
+}
+
 function loadPage(){
     $.insurance_info.hide();
+    console.log("loadPage "+isver );
 	var isver = Ti.App.Properties.getString('isver');
 	var corpcode = Ti.App.Properties.getString('corpcode');
 	var memno = Ti.App.Properties.getString('memno');//"AGIL00005";//
 	var empno = Ti.App.Properties.getString('empno');
 	if(isver == "true" || isver > 0){
 		$.claimContainer.show();
-		//API.claimInfo({memno : memno, corpcode : corpcode});
+		//Alloy.Globals.API.claimInfo({memno : memno, corpcode : corpcode});
 		callbyget({url: "balchk.aspx", params: "MEMNO="+memno+"&CORPCODE="+corpcode, callback: init});
 		var params = "EMPNO="+empno+"&CORPCODE="+corpcode;//"EMPNO=05152314&CORPCODE=IFMY";
 		callbyget({url: "ifins.aspx", params: params, callback: loadIfins});//"EMPNO="+empno+"&CORPCODE="+corpcode
-		//API.ifins({empno : empno, corpcode : corpcode});
+		//Alloy.Globals.API.ifins({empno : empno, corpcode : corpcode});
 		
 	}else{ 
 		loading.finish();
@@ -25,7 +46,7 @@ function loadPage(){
 }
 
 function callbyget(e){
-    API.callByGet({url: e.url, params: e.params}, {
+    Alloy.Globals.API.callByGet({url: e.url, params: e.params}, {
         onload: function(responseText){
            var res = JSON.parse(responseText);
            if(res.length == null || res.length <= 0){
@@ -39,7 +60,7 @@ function callbyget(e){
                 }
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
             //console.log('got error message');
-                common.createAlert(res[0].message);
+                Alloy.Globals.common.createAlert(res[0].message);
            }else{
                 e.callback(res || []);
            }
@@ -67,6 +88,7 @@ function loadIfins(ifins){
 }
 
 function openPdf(e){
+	console.log(encodeURI(e.source.InsPlanUrl)+" encodeURI(e.source.InsPlanUrl)");
 	if(OS_IOS){
 		var win = Alloy.createController("webview", {url: encodeURI(e.source.InsPlanUrl)}).getView();
 		 win.open();
@@ -88,7 +110,7 @@ function init(e){
 		alert("No records found");
 		return false;
 	}
-	$.date.text = timeFormat(currentDateTime());
+	$.date.text = timeFormat(Alloy.Globals.common.now());
  
 	var groups = {};
 	var balance_groups = {};
@@ -109,7 +131,7 @@ function init(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }
 

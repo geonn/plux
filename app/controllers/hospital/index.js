@@ -32,28 +32,20 @@ var distance = function(lat1, lon1, lat2, lon2) {
   return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 }
 
-var saveCurLoc = function(e) {
-    if (e.error) {
-        alert('Location service is disabled. ');
-        //COMMON.closeWindow($.location);
-    } else {
-    	showCurLoc = true;
-    	Ti.App.Properties.setString('latitude', e.coords.latitude);
-    	Ti.App.Properties.setString('longitude', e.coords.longitude);
-			console.log('saveCurLoc');
-			console.log(e.coords);
-    	$.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
-    	setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
-    }
-    Ti.Geolocation.removeEventListener('location',saveCurLoc);
-};
-console.log("Ti.Geolocation.locationServicesEnabled"+Ti.Geolocation.locationServicesEnabled);
 if (Ti.Geolocation.locationServicesEnabled) {
-	console.log("in");
-    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
-    Ti.Geolocation.addEventListener('location', saveCurLoc);
-}else{
-		setTimeout(function(){alert('Please enable your location service.');}, 2000);
+    Titanium.Geolocation.getCurrentPosition(function(e) {
+        if (e.error) {
+            Ti.Alloy.Globals.API.error('Error: ' + e.error);
+        } else {
+            showCurLoc = true;
+	    	Ti.App.Properties.setString('latitude', e.coords.latitude);
+	    	Ti.App.Properties.setString('longitude', e.coords.longitude);
+            $.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
+            setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
+        }
+    });
+} else {
+    alert('Please enable location services');
 }
 
 function setFilter(e){
@@ -75,7 +67,7 @@ var compare_lat = 0, compare_long = 0;
 var last_zoom_distance = 0;
 var annotations = [];
 
-var throttle_centerMap = _.throttle(centerMap, 2000);
+var throttle_centerMap = Alloy.Globals._.throttle(centerMap, 2000);
 function centerMap(e){
 	if(skip <= 0 || typeof ($.mapview.region.latitude) == "undefined"){
 		skip++;
@@ -92,7 +84,7 @@ function centerMap(e){
 		annotations = [];
 	}
 	if(dist > 0.3 || e.filter){
-		API.callByPost({url: "getClinicLocator3", params: {nw_latitude: bounds.northWest.lat, nw_longitude: bounds.northWest.lng, se_latitude: bounds.southEast.lat, se_longitude: bounds.southEast.lng, u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
+		Alloy.Globals.API.callByPost({url: "getClinicLocator3", params: {nw_latitude: bounds.northWest.lat, nw_longitude: bounds.northWest.lng, se_latitude: bounds.southEast.lat, se_longitude: bounds.southEast.lng, u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
 			if(compare_zoom_distance > 0.1){
 				$.mapview.removeAllAnnotations();
 			}
@@ -109,7 +101,7 @@ function centerMap(e){
 }
 
 function addMarketToArray(pin){
-    var found = _.where(annotations, {id: pin.id});
+    var found = Alloy.Globals._.where(annotations, {id: pin.id});
     if(found.length <= 0){
         if(OS_IOS){
             var pin = {id: pin.id, latitude: pin.latitude, longitude: pin.longitude, title: pin.clinicName, subtitle: pin.add1+pin.add2, record: pin
@@ -168,7 +160,7 @@ function pinClicked(e){
     marker = pin.record;
 	$.name.text = pin.record.clinicName;
 	$.address.text = pin.record.add1+" "+pin.record.add2+" "+pin.record.city+" "+pin.record.postcode+" "+pin.record.state;
-	$.openHour.text = (pin.record.openHour)?pin.record.openHour.replace(/\[nl\]/g, "\n"):"-";
+	$.openHour.text = (pin.record.openHour)?pin.record.openHour.replace(/\[nl\]/g, "\n")+" \n"+pin.record.openHour2.replace(/\[nl\]/g, "\n"):"-";
 	$.rating.text = (pin.record.rating)?pin.record.rating+" / 5":"Not Rated Yet";
 	$.detail.show();
 }
@@ -233,13 +225,13 @@ function loadPinCategory(){
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var arr_filter = [];
-    API.callByPost({url: "getClinicLocatorCategory", domain: "FREEJINI_DOMAIN", new: true, params: {corpcode: corpcode, u_id: u_id, isRefresh:1}}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "getClinicLocatorCategory", domain: "FREEJINI_DOMAIN", new: true, params: {corpcode: corpcode, u_id: u_id, isRefresh:1}}, function(responseText){
 
         var result = JSON.parse(responseText);
         var data = result.data || [];
 
         for (var i=0; i < data.length; i++) {
-            var pin = _.where(pin_data, {name: data[i]});
+            var pin = Alloy.Globals._.where(pin_data, {name: data[i]});
 						console.log(pin);
 						if(pin.length > 0){
 	            var tvr = $.UI.create("TableViewRow", {classes:['wfill','hsize'], record: pin[0]});
@@ -259,12 +251,12 @@ function loadPinCategory(){
 
 function doSearch(e){
     e.source.blur();
-    nav.navigationWindow("clinic/search","","",{keyword: e.value});
+    Alloy.Globals.nav.navigationWindow("clinic/search","","",{keyword: e.value});
 }
 
 function loadQueue(){
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
-    API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {corpcode: corpcode}}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "getQueueList", domain: "VCLINIC_DOMAIN", new: true, params: {corpcode: corpcode}}, function(responseText){
 
         var result = JSON.parse(responseText);
         var data = result.data || [];
@@ -287,7 +279,7 @@ function loadQueue(){
 function loadClinicList(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
-    API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "getClinicLocator3", params: {u_id:u_id, category: type, isRefresh: isRefresh, corpcode: corpcode}}, function(responseText){
 
         var result = JSON.parse(responseText);
         var data = result.data || [];
@@ -304,7 +296,7 @@ function loadClinicList(){
 function loadSpecialist(){
     var u_id = Ti.App.Properties.getString('u_id') || "";
     var corpcode = Ti.App.Properties.getString('corpcode') || "";
-    API.callByPost({url: "getHospitalList", domain: "FREEJINI_DOMAIN", new: true, params: {}}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "getHospitalList", domain: "FREEJINI_DOMAIN", new: true, params: {}}, function(responseText){
 
         var result = JSON.parse(responseText);
         var data = result.data || [];
@@ -338,8 +330,8 @@ function openCategory(){
 
 function openSpecialistList(){
     //openMoreList();
-    var w = nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", click_dun_exit: true, listing: specialist, callback: function(ex){
-        API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
+    var w = Alloy.Globals.nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", click_dun_exit: true, listing: specialist, callback: function(ex){
+        Alloy.Globals.API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
 
         var result = JSON.parse(responseText);
         var doctorlist = [];
@@ -348,7 +340,7 @@ function openSpecialistList(){
             doctorlist[i] = data[i];
             doctorlist[i].value = "SPECIALTY: "+result.data[i].specialty+"\nDOCTOR: "+result.data[i].name;
         };
-        nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, w:w, title: "Specialist Listing", listing: doctorlist, callback: function(ex2){
+        Alloy.Globals.nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, w:w, title: "Specialist Listing", listing: doctorlist, callback: function(ex2){
                 console.log("doctor list callback");
                 var label_name_title = $.UI.create("Label", {classes:['wfill','hsize','h7', 'bold'], top: 10, left: 10, right: 10, text: "DOCTOR"});
                 var label_name_value = $.UI.create("Label", {classes:['wfill','hsize','h7'], left: 10, right: 10, text: ex2.title+" "+ex2.name});
@@ -392,7 +384,7 @@ function openSpecialistList(){
 }
 
 function openClinicList(){
-    nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Clinic Listing", listing: clinic_listing, callback: navToClinic});
+    Alloy.Globals.nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Clinic Listing", listing: clinic_listing, callback: navToClinic});
     return;
 }
 

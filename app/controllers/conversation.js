@@ -1,8 +1,8 @@
 var args = arguments[0] || {};
 var dr_id = args.dr_id || -1;
 var loading = Alloy.createController("loading");
-var anchor = common.now();
-var last_update = common.now();
+var anchor = Alloy.Globals.common.now();
+var last_update = Alloy.Globals.common.now();
 var start = 0;
 var room_set = false;
 var refreshIntervalId;
@@ -14,7 +14,38 @@ var status_text = ["", "Sending", "Sent", "Read"];
 var room_id = 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal});
 var user_read_status, doctor_read_status;
+var data_source = [];
+console.log(_);
 $.call.hide();
+
+function timeFormat(datetime){
+	var timeStamp = datetime.split(" ");
+	var newFormat;
+	var ampm = "am";
+	var date = timeStamp[0].split("-");
+	if(timeStamp.length == 1){
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] ;
+	}else{
+		var time = timeStamp[1].split(":");
+		if(time[0] >= 12){
+			ampm = "pm";
+			if(time[0]<= 12){
+				time[0] = time[0];
+			}else{
+				time[0] = time[0] - 12;
+			}
+		}
+
+		newFormat = date[2]+"/"+date[1]+"/"+date[0] + " "+ time[0]+":"+time[1]+ " "+ ampm;
+	}
+
+	return newFormat;
+}
+
+function pixelToDp(px) {
+    return ( parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160));
+}
+
 target_page = "conversation";
 Ti.App.Properties.setString('room_id', room_id);
 function saveLocal(param){
@@ -25,7 +56,7 @@ function saveLocal(param){
 		"id": app_id,
 	    "sender_id": u_id,
 	    "message": param.message,
-	    "created": common.now(),
+	    "created": Alloy.Globals.common.now(),
 	    "is_endUser": 1,
 	    "dr_id": dr_id,
 	    "format": param.format,
@@ -42,7 +73,7 @@ function saveLocal(param){
         "id": app_id,
         "sender_id": u_id,
         "message": param.message || param.filedata,
-        "created": common.now(),
+        "created": Alloy.Globals.common.now(),
         "is_endUser": 1,
         "dr_id": dr_id,
         "format": param.format,
@@ -50,17 +81,17 @@ function saveLocal(param){
         "sender_name": Ti.App.Properties.getString('fullname') || ""
     }];
     render_conversation(true, true);
-	API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "sendMessage", type: param.format, params:api_param}, function(responseText){
 
 		var res = JSON.parse(responseText);
 		$.message_bar.value = "";
 		$.message_bar.editable = true;
 		$.message_bar.blur();
 		loading.finish();
-		socket.sendMessage({room_id: room_id});
+		Alloy.Globals.socket.sendMessage({room_id: room_id});
 		//Ti.App.fireEvent("sendMessage", {room_id: room_id});
 	   	//Ti.App.fireEvent("helpdesk_refresh_patient_list");
-		socket.helpdesk_refresh_patient_list();
+		Alloy.Globals.socket.helpdesk_refresh_patient_list({});
 	});
 }
 
@@ -70,7 +101,7 @@ function saveLocal(param){
 var interval;
 var sending = false;
 function SendMessage(){
-	if(sending)
+	if(sending || $.message_bar.value == "")
 		return;
 	loading.start();
 	sending = true;
@@ -94,12 +125,42 @@ function startTimer(){
 }
 
 function navToWebview(e){
-	var url = parent({name:"url"}, e.source);
+	var url = e.source.url;
 	var win = Alloy.createController("webview", {url: url}).getView();
 	win.open();
 }
 
 function addRow(row, latest){
+	var link_message = (row.format == "link")?row.preview_message:"";
+	var arr = {
+    id: row.id,
+		sender_name: row.sender_name,
+   	created: (row.is_endUser)?timeFormat(row.created):timeFormat(row.created)+" "+status_text[(doctor_read_status > row.created)?3:row.status],
+   	text_color: (!row.is_endUser)?"#606060":"#ffffff",
+		link: row.message,
+		sender_name_color: (!row.is_endUser)?"#000000":"#ffffff",
+   	newText: (row.format == "text")?row.message.replace("[br]", "\r\n"):(row.format == "link")?link_message:row.message,
+   	bgColor: (!row.is_endUser)?"#ffffff":"#22262f",
+   	setLeft: (!row.is_endUser)?10:null,
+   	setRight: (!row.is_endUser)?null:"10",
+    text_visible: (row.format == "text" || row.format == "link")?true:false,
+		link_visible: (row.format == "link")?true:false,
+		link_height: (row.format == "link")?Ti.UI.SIZE:0,
+    photo_visible: (row.format == "photo")?true:false,
+    voice_visible: (row.format == "voice")?true:false,
+    image_height: (row.format == "photo")?200:0,
+    image: (row.format == "photo")?row.message:"",
+    voice: (row.format == "voice")?row.message:"",
+	};
+	console.log(arr);
+  if(!latest){
+    data_source.unshift(arr);
+  }else{
+    data_source.push(arr);
+  }
+}
+
+function addRow_bak(row, latest){
 	var view_container = $.UI.create("View",{
 		classes: ['hsize','wfill'],
 		id: row.id,
@@ -220,8 +281,8 @@ function addRow(row, latest){
 	}
 	view_container.add(view_text_container);
 	view_container.addEventListener("longpress", function(e){
-		var m_id = parent({name: "m_id"}, e.source);
-		var message_box = parent({name: "m_id", value: m_id}, e.source);
+		var m_id = Alloy.Globals.common.parent({name: "m_id"}, e.source);
+		var message_box = Alloy.Globals.common.parent({name: "m_id", value: m_id}, e.source);
 		var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
 		    buttonNames: ['Confirm', 'Cancel'],
@@ -255,10 +316,10 @@ function imageZoom(e){
     var path = (typeof e.source.image == "object")?e.source.image.nativePath:e.source.image;
     var html = "<img width='100%' height='auto' src='"+path+"'/>";
     if(OS_IOS){
-        nav.navigationWindow("webview","","", {url: path, title: ""});
+        Alloy.Globals.nav.navigationWindow("webview","","", {url: path, title: ""});
         //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
     }else{
-        nav.navigationWindow("webview","","", {content: html, title: ""});
+        Alloy.Globals.nav.navigationWindow("webview","","", {content: html, title: ""});
         //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
     }
 }
@@ -280,6 +341,40 @@ function updateReadStatus(){
 
 function updateRow(row, latest){
 	var found = false;
+	for (var i=0; i < data_source.length; i++) {
+        if(data_source[i].id == row.id){
+            found = true;
+            var link_message = (row.format == "link")?row.preview_message:"";
+            data_source[i] = {
+							id: row.id,
+							sender_name: row.sender_name,
+					   	created: (row.is_endUser)?timeFormat(row.created):timeFormat(row.created)+" "+status_text[(doctor_read_status > row.created)?3:row.status],
+					   	text_color: (!row.is_endUser)?"#606060":"#ffffff",
+							link: row.message,
+							sender_name_color: (!row.is_endUser)?"#000000":"#ffffff",
+					   	newText: (row.format == "text")?row.message.replace("[br]", "\r\n"):(row.format == "link")?link_message:row.message,
+					   	bgColor: (!row.is_endUser)?"#ffffff":"#22262f",
+					   	setLeft: (!row.is_endUser)?10:null,
+					   	setRight: (!row.is_endUser)?null:"10",
+					    text_visible: (row.format == "text" || row.format == "link")?true:false,
+							link_visible: (row.format == "link")?true:false,
+							link_height: (row.format == "link")?Ti.UI.SIZE:0,
+					    photo_visible: (row.format == "photo")?true:false,
+					    voice_visible: (row.format == "voice")?true:false,
+					    image_height: (row.format == "photo")?200:0,
+					    image: (row.format == "photo")?row.message:"",
+					    voice: (row.format == "voice")?row.message:"",
+          	};
+            Alloy.Globals.mocx.createCollection("chats", data_source);
+        }
+  };
+	if(!found){
+		addRow(row, latest);
+	}
+}
+
+function updateRow_bak(row, latest){
+	var found = false;
 	var inner_area = $.inner_area.getChildren();
 	for (var i=0; i < inner_area.length; i++) {
 	    if(inner_area[i].id == row.id){
@@ -294,25 +389,22 @@ function updateRow(row, latest){
 	}
 }
 
+var first_time_load = true;
 function render_conversation(latest, local){
 	if(latest && local != true){
-	    if(sending){
-	        sending = false;
-	    }else{
-	        clearInterval(interval);
-	        $.call.hide();
-	    }
-		//$.chatroom.setContentOffset({y: 100});
+			if(sending){
+					sending = false;
+					console.log("sending set false");
+			}
 	}
-	var contain_height = 50;
 	if(latest){
-		data.reverse();
+			data.reverse();
 	}
 	for (var i=0; i < data.length; i++) {
-	     if(data[i].status == 1 && !local){
-            API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
+	     if(data[i].status == 1 && !local && data[i].message != ""){
+            Alloy.Globals.API.callByPost({url: "sendMessage", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
-                socket.sendMessage({room_id: room_id});
+                Alloy.Globals.socket.sendMessage({room_id: room_id});
                 //Ti.App.fireEvent("sendMessage", {room_id: room_id});
             });
         }
@@ -323,27 +415,86 @@ function render_conversation(latest, local){
 			addRow(data[i], latest);
 		}*/
 	}
-	updateReadStatus();
+	var screenHeight = Ti.Platform.displayCaps.platformHeight;
+	Alloy.Globals.mocx.createCollection("chats", data_source);
+	/*if(latest){
+		$.chatroom.scrollToIndex(0,  { animated: false});
+		first_time_load = false;
+	}*/
+	if(first_time_load){
+    	console.log(data.length+" first time load to bottom");
+    	$.chatroom.scrollToIndex(data.length - 1,  { animated: false});
+    	//setTimeout(function(){}, 1000);
+    	first_time_load = false;
+    }else if(latest){
+    	console.log($.chatroom.data);
+      $.chatroom.scrollToIndex(data_source.length -1,  { animated: false});
+      console.log("latest scroll to"+data_source.length - 1);
+    }else if(data.length > 0){
+    	console.log(data.length+" data.length+1");
+    	if(OS_IOS){
+    		$.chatroom.scrollToIndex(data.length,  { animated: false, position:Titanium.UI.iOS.TableViewScrollPosition.TOP});
+    	}else{
+    		$.chatroom.scrollToIndex(data.length,  { animated: false});
+    	}
+	}
 }
-
 
 var data_loading = false;
 function scrollChecker(e){
-	var total = (OS_ANDROID)?pixelToDp(e.y): e.y;
-	var nearEnd = ($.inner_area.rect.height-$.chatroom.rect.height) - 200;
-	if(total >= nearEnd && !data_loading){
-		data_loading = true;
-		getPreviousData({});
-		/*
-		var model = Alloy.createCollection("conversations");
-		limit = model.getData(false, limit, anchor,"", args.u_id);
-		*/
-		setTimeout(function(){
-			//$.chatroom.setContentOffset({y: top}, {animated: false});
-			data_loading = false;
-		}, 200);
-	}
+  if(OS_IOS){
+	   var total = (OS_ANDROID)?pixelToDp(e.y): e.contentOffset.y;
+	   var nearEnd = (e.contentSize.height-$.chatroom.rect.height) - 200;
+
+     if(total <= 0 && !data_loading && !first_time_load){
+   		data_loading = true;
+   		getPreviousData();
+   		setTimeout(function(){
+   			data_loading = false;
+   		}, 2000);
+   	}
+  }else{
+    var firstVisibleItemIndex = e.firstVisibleItem;
+    var totalItems = e.totalItemCount;
+    var visibleItemCount = e.visibleItemCount;
+    //if ((firstVisibleItemIndex + visibleItemCount) >= (totalItems*0.75) && !data_loading && !first_time_load){
+     if(firstVisibleItemIndex <= 0 && !data_loading && !first_time_load){
+      data_loading = true;
+      getPreviousData();
+      setTimeout(function(){
+        data_loading = false;
+      }, 2000);
+    }
+  }
+
 }
+/*
+var data_loading = false;
+function scrollChecker(e){
+	if(OS_IOS){
+	   var total = (OS_ANDROID)?pixelToDp(e.y): e.contentOffset.y;
+	   var nearEnd = (e.contentSize.height-$.chatroom.rect.height) - 200;
+
+     if(total >= nearEnd && !data_loading){
+   		data_loading = true;
+   		getPreviousData();
+   		setTimeout(function(){
+   			data_loading = false;
+   		}, 2000);
+   	}
+  }else{
+    var firstVisibleItemIndex = e.firstVisibleItem;
+    var totalItems = e.totalItemCount;
+    var visibleItemCount = e.visibleItemCount;
+    if ((firstVisibleItemIndex + visibleItemCount) >= (totalItems*0.75) && !data_loading){
+      data_loading = true;
+      getPreviousData();
+      setTimeout(function(){
+        data_loading = false;
+      }, 2000);
+    }
+  }
+}*/
 
 function callHelpdesk(){
     Titanium.Platform.openURL('tel:6046091611');
@@ -355,8 +506,8 @@ function getConversationByRoomId(callback){
 	var checker = Alloy.createCollection('updateChecker');
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	var isUpdate = checker.getCheckerById(checker_id, u_id, dr_id);
-	var last_updated = isUpdate.updated || common.now();
-	API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
+	var last_updated = isUpdate.updated || Alloy.Globals.common.now();
+	Alloy.Globals.API.callByPost({url: url, params: {u_id: u_id, dr_id: dr_id, last_updated: last_updated}}, function(responseText){
 		var model = Alloy.createCollection("chat");
 
 		var res = JSON.parse(responseText);
@@ -368,7 +519,7 @@ function getConversationByRoomId(callback){
 		}
 		checker.updateModule(checker_id, url, res.last_updated, u_id, dr_id);
 		if(!room_id){	//if room_id = 0
-			socket.setRoom({room_id: res.room_id});
+			Alloy.Globals.socket.setRoom({room_id: res.room_id});
 			//Ti.App.fireEvent("setRoom", {room_id: res.room_id});
 			//Ti.App.Properties.setString('room_id', res.room_id);
 			Ti.App.fireEvent("conversation:setRoom", {room_id: res.data});
@@ -393,11 +544,6 @@ function updateStatus(arr){
 	};
 }
 
-$.chatroom.addEventListener("scroll", function (e){
-	var theEnd = $.inner_area.rect.height;
-	var total = (OS_ANDROID)?pixelToDp(e.y)+e.source.rect.height: e.y+e.source.rect.height;
-	var nearEnd = theEnd * 0.1;
-});
 
 /*
  	Refresh
@@ -415,12 +561,12 @@ function refresh(callback, firsttime){
 
 }
 var refreshing = false;
-var time_offset = common.now();
+var time_offset = Alloy.Globals.common.now();
 function refresh_latest(param){
-	if(!refreshing && time_offset < common.now()){
+	if(!refreshing && time_offset < Alloy.Globals.common.now()){
 		refreshing = true;
 		refresh(getLatestData);
-		time_offset = common.now();
+		time_offset = Alloy.Globals.common.now();
 	}
 }
 
@@ -474,7 +620,7 @@ function init(){
 				    if (e.success) {
 						checkingInternalPermission();
 				    } else {
-						common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
+						Alloy.Globals.common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
 							closeWindow();
 						});
 				    }
@@ -492,7 +638,7 @@ function checkingInternalPermission(){
 			    if (e.success) {
 					second_init();
 			    } else {
-					common.createAlert("Warning","You don't have file storage permission!!!\nYou can go to setting enabled the permission.",function(e){
+					Alloy.Globals.common.createAlert("Warning","You don't have file storage permission!!!\nYou can go to setting enabled the permission.",function(e){
 						closeWindow();
 					});
 			    }
@@ -505,7 +651,7 @@ function second_init(){
 	$.action_btn.add(mic);
 	$.win.add(loading.getView());
 	if(!Titanium.Network.online){
-		common.createAlert("Alert", "There is no internet connection.", closeWindow);
+		Alloy.Globals.common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
 	if(dr_id > 0){
 		//$.win.title = "Ask Doctor - "+args.record.name;
@@ -546,6 +692,75 @@ function filepermittion()
              });
         }
     }
+}
+
+function onPlayStopBtnClicked(e) {
+  if(e.source.new){
+    try{
+  		if(OS_IOS){
+  		    Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_SOLO_AMBIENT;
+  		}
+  		audioPlayer = Ti.Media.createAudioPlayer({
+          url : e.source.voice,
+          allowBackground : true
+      });
+      console.log(audioPlayer.volume+"sound volume");
+      audioPlayer.volume = 1;
+      audioPlayer.release();
+      console.log(audioPlayer.volume+"sound volume new");
+  	}catch(e){
+  		console.log(e.message);
+  	}
+  	e.source.image = "images/play_button.png";
+
+  	audioPlayer.addEventListener('change', function(ex) {
+  		console.log('State: ' + ex.description + ' (' + ex.state + ')');
+  	    //updateTimeLabel();
+        var image;
+  	    if(ex.state == 7){	//7 = stopped
+  	    	  image = "/images/play_button.png";
+  	    }else if(ex.state == 5){    //7 = stopped
+              //$.time.text = "";
+            image = "/images/play_button.png";
+        }else if(ex.state == 2){
+  			//$.time.text = "Pause";
+        image = "/images/play_button.png";
+  		}else if(ex.state == 3){
+  			//$.time.text = "Playing...";
+        image = "/images/pause_button.png";
+  		}
+      e.source.image = image;
+  	});
+
+  	audioPlayer.addEventListener("complete", function(e){
+  		e.source.image = "/images/play_button.png";
+          audioPlayer.release();
+          console.log("audio release");
+  		//$.time.text = "";
+  		Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_SOLO_AMBIENT;
+  	});
+    e.source.new = false;
+  }
+	// If both are false, playback is stopped.
+	console.log(audioPlayer.playing+" audioPlayer.playing");
+	if (audioPlayer.playing) {
+		audioPlayer.pause();
+		//$.time.text = "Pause";
+		Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_SOLO_AMBIENT;
+		e.source.image = "/images/play_button.png";
+	} else {
+		try{
+			audioPlayer.start();
+		}catch(e){
+			console.log("see what error here");
+			console.log(e);
+		}
+		//.time.text = "Playing...";
+		Ti.Media.audioSessionCategory = Ti.Media.AUDIO_SESSION_CATEGORY_PLAYBACK;
+		e.source.image = "/images/pause_button.png";
+	}
+	//updateTimeLabel();
+
 }
 
 function popCamera(e){
@@ -749,7 +964,7 @@ Ti.App.addEventListener("socket:refresh_chatroom", refresh_latest);
 Ti.App.addEventListener('conversation:refresh', refresh_latest);
 
 $.win.addEventListener("close", function(){
-	socket.leave_room({room_id: room_id});
+	Alloy.Globals.socket.leave_room({room_id: room_id});
 	//Ti.App.fireEvent("leave_room", {room_id: room_id});
 	Ti.App.Properties.setString('room_id', "");
 	target_page = "";

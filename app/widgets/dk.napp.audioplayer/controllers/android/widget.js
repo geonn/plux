@@ -3,6 +3,7 @@
  * @author Mads Møller
  * (c) 2014 Napp ApS
  */
+var _ = require('underscore')._;
 var Activity = require('android.app.Activity');
 var AudioManager = require('android.media.AudioManager');
 var MediaPlayer = require('android.media.MediaPlayer');
@@ -155,7 +156,6 @@ function set_url(url){
     /*
 	audioPlayer.addEventListener('change', function(e) {
 		console.log('State: ' + e.description + ' (' + e.state + ')');
-	    Ti.API.info('State: ' + e.description + ' (' + e.state + ')');
 	    //updateTimeLabel();
 	    if(e.state == 7){	//7 = stopped
 	    	  image = playIcon;

@@ -1,0 +1,39 @@
+<Alloy>
+	<Window id="win" title="Patient Information" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="vert wfill hfill">
+	 		<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		         	<ImageView left='10' onClick="closeWindow" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Patient Information</Label>
+		     	</View>
+		 	</View>
+		 	<ScrollView class='wfill hfill vert contwfill conthsize'>
+		 		<Label class="wsize hsize h5" color="#fff" top="10" bottom="10" textAlign="center" text="L('pleasefillin_pharmacist')"></Label>
+			 	<View class="wfill hsize vert" id="forms">
+			 		<TextField class="combo_box rounded" hintTextColor="#000" newline="1" hintText="L('name')" id="name" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" newline="1" id="ic" hintText="L('IC')" keyboardType="Titanium.UI.KEYBOARD_TYPE_PHONE_PAD" required="1"  value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('age')" newline="1" keyboardType="Titanium.UI.KEYBOARD_TYPE_PHONE_PAD" id="age" required="1"   value=""></TextField>
+				 	
+				 	<View class='wfill rounded horz' required="1" bottom="10" newline="1" left="10" righ="10"  hintText="L('sex')" value="" height="40"  id="gender_view">
+				 		<View width="50%" class="hsize" onClick="genderSelect" right="1" gender="L('male')" backgroundColor="#ffffff">
+				 			<Label class="padding wfill hsize h5" touchEnabled="false" textAlign="center" text="L('male')"></Label>
+				 		</View>
+				 		<View class="wfill hsize" right="10" onClick="genderSelect" backgroundColor="#ffffff" gender="L('female')">
+				 			<Label class="padding wfill hsize h5" touchEnabled="false" textAlign="center" text="L('female')"></Label>
+				 		</View>
+				 	</View>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('please_list_the_medication')" newline="1" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('what_is_your_concern')" newline="1" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('any_medical_condition_2')" newline="1" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('any_other_medication')" newline="1" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('pregnant_or_breastfeeding')" newline="1" required="1"   value=""></TextField>
+				 	<TextField class="combo_box rounded" hintTextColor="#000" hintText="L('any_side_effect')" newline="1" required="1"   value=""></TextField>
+				 	<Button  bottom="10" onClick="sendMessage"  id="saveBtn" title="L('submit')" borderRadius="5" backgroundColor="#7B7B7B" width="70%"  height="40" color="#ffffff" ></Button> 
+			 		
+			 	</View>
+	 		</ScrollView>
+		</View>
+	</Window>
+</Alloy>

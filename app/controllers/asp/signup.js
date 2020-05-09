@@ -17,13 +17,13 @@ function doAspSignup(){
 		empno: empno
 	};
 	 
-	API.do_asp_presignup(params, {
+	Alloy.Globals.API.do_asp_presignup(params, {
 	    finish: function(){
 	        loading.finish();
 	    },
 	    callback: function(){
 	        $.win.close();
-	        //nav.closeWindow($.win);
+	        //Alloy.Globals.nav.closeWindow($.win);
             var win = Alloy.createController("asp/signup2").getView();
             win.open(); 
 	    }
@@ -52,7 +52,7 @@ function textFieldOnBlur(e){
 }
 
 /*$.doSignup.addEventListener("click", function(){
-	nav.navigationWindow("asp/signup", 0);
+	Alloy.Globals.nav.navigationWindow("asp/signup", 0);
 });*/
 
 $.btnBack.addEventListener('click', function(){ 

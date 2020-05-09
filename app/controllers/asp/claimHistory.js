@@ -5,6 +5,7 @@ var nav = require('navigation');
 var loading = Alloy.createController("loading");
 var corpcode = Ti.App.Properties.getString('corpcode');
 var empno = Ti.App.Properties.getString('empno');
+
 if(Ti.Platform.osname == "android"){
 	$.pageTitle.text = title;
 }else{
@@ -15,12 +16,12 @@ function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	
-	API.callByGet({url: "claim.aspx", params: "EMPNO="+empno+"&CORPCODE="+corpcode+"&PERIOD=ALL"}, {
+	Alloy.Globals.API.callByGet({url: "claim.aspx", params: "EMPNO="+empno+"&CORPCODE="+corpcode+"&PERIOD=ALL"}, {
         onload: function(responseText){
     	   var res = JSON.parse(responseText);
 		   if(res.length == null || res.length <= 0){
 		   }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-		   		common.createAlert(res[0].message);
+		   		Alloy.Globals.common.createAlert(res[0].message);
 		   }else{
 				render(res || []);
 		   }
@@ -37,11 +38,11 @@ init();
 function render(data){
     var pWidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10)) - 20;
 
-    data = _.sortBy(data, "visitdate");
+    data = Alloy.Globals._.sortBy(data, "visitdate");
     data.reverse();
     for (var i=0; i < data.length; i++) {
        
-        if(_.contains(args.benefittype.split("/"), data[i].category) || true){
+        if(Alloy.Globals._.contains(args.benefittype.split("/"), data[i].category) || true){
             var left_indicator_bg_color = (data[i].status == "Pending")?"#fba81c":(data[i].status == "Approved")?"#55a939":"#e8534c";
             var row = $.UI.create("View", {classes:['wfill','padding','rounded'], bottom: (data.length -1 == i)?10:0, height: 120, backgroundColor: left_indicator_bg_color, record: data[i]});
             var view_container = $.UI.create("View", {classes:['wfill','hfill'], touchEnabled: false, backgroundColor: "#fff", left: 5});
@@ -107,7 +108,7 @@ function render(data){
             view_right_bottom3.add(label_mc);
             
             row.addEventListener("click", function(e){
-               nav.navigateWithArgs("asp/claimDetail", e.source.record); 
+               Alloy.Globals.nav.navigateWithArgs("asp/claimDetail", e.source.record); 
             });
             
             $.listing.add(row);
@@ -129,6 +130,6 @@ $.win.addEventListener("close", function(){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }

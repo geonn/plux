@@ -11,6 +11,14 @@
 	fullscreen : false,
 	windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
 },
+".hide":{
+	visible: false
+}
+
+".table_blank":{
+	separatorStyle: "none",
+	selectionStyle: "none",
+}
 "Window[platform=ios]":{
 	fullscreen : true,
 },
@@ -55,6 +63,7 @@
 },
 "ListItem":{
 	color: "#000",
+	backgroundColor: "#fff"
 }
 ".big_font":{
 	font: {fontSize: '20dp'},
@@ -72,10 +81,10 @@
 	font: {fontSize: '10dp'},
 	color: "#000"
 },
-"TableViewRow[platform=android]":{
-	color: "#606060",
-	top:10,
-	bottom:10,
+'TableView':{
+	contentHeight: Ti.UI.SIZE,
+	contentWidth: Ti.UI.FILL,
+	backgroundColor: "transparent",
 },
 'TextField': {
     borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
@@ -89,6 +98,12 @@
     color: "#000000",
     hintTextColor: "#000000",
     backgroundColor: "#ffffff"
+}
+"TextArea":{
+	 color: "#000000",
+	 font:{
+    	fontSize: 14,
+    },
 }
 '.field': {
     padding: { left: 10, right: 10, bottom:10, top:10 },
@@ -162,13 +177,13 @@
 ".small_button":{
 	borderColor: "#A52430",
 	borderWidth: 1,
-	backgroundColor: "#ffffff",
-	color: "#A52430",
+	backgroundColor: "#A52430",
+	color: "#ffffff",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	font:{
-		fontSize: 14,
+		fontSize: 12,
 	}
 }
 
@@ -235,6 +250,11 @@
 ".h5":{
 	font:{
 		fontSize: 16
+	}
+},
+".h5_5":{
+	font:{
+		fontSize: 14
 	}
 },
 

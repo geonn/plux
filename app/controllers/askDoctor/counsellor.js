@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 var loading = Alloy.createController("loading");
-var anchor = common.now();
-var last_update = common.now();
+var anchor = Alloy.Globals.common.now();
+var last_update = Alloy.Globals.common.now();
 var start = 0;
 var u_id = Ti.App.Properties.getString('u_id') || 0;
 var dr_id;
@@ -17,6 +17,11 @@ var opposite_last_update;
 
 target_page = "askDoctor/conversation";
 Ti.App.Properties.setString('room_id', room_id);
+
+function pixelToDp(px) {
+    return ( parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160));
+}
+
 function saveLocal(param){
 	var model = Alloy.createCollection("chat");
 	var app_id = Math.random().toString(36).substr(2, 10);
@@ -26,7 +31,7 @@ function saveLocal(param){
 	    "sender_id": u_id,
 	    "message": param.message,
 	    "room_id": room_id,
-	    "created": common.now(),
+	    "created": Alloy.Globals.common.now(),
 	    "is_endUser": 1,
 	    "dr_id": dr_id,
 	    "format": param.format,
@@ -44,7 +49,7 @@ function saveLocal(param){
         "id": app_id,
         "sender_id": u_id,
         "message": param.message || param.filedata,
-        "created": common.now(),
+        "created": Alloy.Globals.common.now(),
         "is_endUser": 1,
         "dr_id": dr_id,
         "room_id": room_id,
@@ -53,15 +58,15 @@ function saveLocal(param){
         "sender_name": Ti.App.Properties.getString('fullname') || ""
     }];
     render_conversation(true, true);
-	API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: param.format, params:api_param}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: param.format, params:api_param}, function(responseText){
 
 		var res = JSON.parse(responseText);
 		$.message_bar.value = "";
 		$.message_bar.editable = true;
 		$.message_bar.blur();
 		loading.finish();
-		socket.sendMessage({room_id: room_id});
-		socket.refresh_patient_list();
+		Alloy.Globals.socket.sendMessage({room_id: room_id});
+		Alloy.Globals.socket.refresh_patient_list();
         $.enter_icon.right = -50;
 	});
 }
@@ -83,7 +88,7 @@ function SendMessage(){
 }
 
 function navToWebview(e){
-	var url = parent({name:"url"}, e.source);
+	var url = Alloy.Globals.common.parent({name:"url"}, e.source);
 	var win = Alloy.createController("webview", {url: url}).getView();
 	win.open();
 }
@@ -127,7 +132,7 @@ function addRow(row, latest){
 		});
 		var row_status = row.status;
 		if(row.is_endUser){
-           var last_update_by_room = socket.getLastUpdateByRoom(room_id);
+           var last_update_by_room = Alloy.Globals.socket.getLastUpdateByRoom(room_id);
            if(last_update_by_room && last_update_by_room.last_update > row.created){
                row_status = 3;
            }
@@ -229,7 +234,7 @@ function addRow(row, latest){
 	view_container.add(view_text_container);
 	view_container.addEventListener("longpress", function(e){
 		/*var id = this.id;
-		//var message_box = parent({name: "m_id", value: m_id}, e.source);
+		//var message_box = Alloy.Globals.common.parent({name: "m_id", value: m_id}, e.source);
 		var dialog = Ti.UI.createAlertDialog({
 		    cancel: 1,
 		    buttonNames: ['Confirm', 'Cancel'],
@@ -267,10 +272,10 @@ function imageZoom(e){
     var path = (typeof e.source.image == "object")?e.source.image.nativePath:e.source.image;
     var html = "<img width='100%' height='auto' src='"+path+"'/>";
     if(OS_IOS){
-        nav.navigationWindow("webview","","", {url: path, title: ""});
+        Alloy.Globals.nav.navigationWindow("webview","","", {url: path, title: ""});
         //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], url: e.source.record.attachment});
     }else{
-        nav.navigationWindow("webview","","", {content: html, title: ""});
+        Alloy.Globals.nav.navigationWindow("webview","","", {content: html, title: ""});
         //var webview = $.UI.create("WebView", {backgroundColor: "#000",  zIndex: 12, classes:['wfill','hsize'], html: html});
     }
 }
@@ -322,9 +327,9 @@ function render_conversation(latest, local){
 	}
 	for (var i=0; i < data.length; i++) {
 	     if(data[i].status == 1 && !local){
-            API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: data[i].format, params:data[i]},  function(responseText){
+            Alloy.Globals.API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: data[i].format, params:data[i]},  function(responseText){
                 var res = JSON.parse(responseText);
-                socket.sendMessage({room_id: room_id});
+                Alloy.Globals.socket.sendMessage({room_id: room_id});
             });
         }
 	    updateRow(data[i], latest);
@@ -353,7 +358,7 @@ function getConversationByRoomId(callback){
 	var url = "getMessageListForPatient";
 	var checker_id = 19;
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	API.callByPost({url: url, new: true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: url, new: true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}}, function(responseText){
 		var model = Alloy.createCollection("chat");
 
 		var res = JSON.parse(responseText);
@@ -399,14 +404,14 @@ function refresh(callback, firsttime){
 
 }
 var refreshing = false;
-var time_offset = common.now();
+var time_offset = Alloy.Globals.common.now();
 function refresh_latest(param){
     room_id = param.room_id || room_id;
 
-	if(!refreshing && time_offset <= common.now()){
+	if(!refreshing && time_offset <= Alloy.Globals.common.now()){
 		refreshing = true;
 		refresh(getLatestData);
-		time_offset = common.now();
+		time_offset = Alloy.Globals.common.now();
 	}
 }
 
@@ -458,7 +463,7 @@ function init(){
 				    if (e.success) {
 						checkingInternalPermission();
 				    } else {
-						common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
+						Alloy.Globals.common.createAlert("Warning","You don't have voice recorder permission!!!\nYou can go to setting enabled the permission.",function(e){
 							closeWindow();
 						});
 				    }
@@ -476,7 +481,7 @@ function checkingInternalPermission(){
 			    if (e.success) {
 					second_init();
 			    } else {
-					common.createAlert("Warning","You don't have file storage permission!!!\nYou can go to setting enabled the permission.",function(e){
+					Alloy.Globals.common.createAlert("Warning","You don't have file storage permission!!!\nYou can go to setting enabled the permission.",function(e){
 						closeWindow();
 					});
 			    }
@@ -489,9 +494,9 @@ function second_init(){
 	$.action_btn.add(mic);
 	$.win.add(loading.getView());
 	if(!Titanium.Network.online){
-		common.createAlert("Alert", "There is no internet connection.", closeWindow);
+		Alloy.Globals.common.createAlert("Alert", "There is no internet connection.", closeWindow);
 	}
-	socket.setRoom({room_id: room_id});
+	Alloy.Globals.socket.setRoom({room_id: room_id});
 	//Ti.App.fireEvent("setRoom", {room_id: room_id});
 	updateTime({online:true});
 	Ti.App.Properties.setString('room_id', room_id);
@@ -500,7 +505,7 @@ function second_init(){
 
 function updateTime(e){
   var u_id = Ti.App.Properties.getString('u_id') || 0;
-  socket.update_room_member_time({last_update: common.now(), u_id: u_id, room_id: room_id, online: e.online});
+  Alloy.Globals.socket.update_room_member_time({last_update: Alloy.Globals.common.now(), u_id: u_id, room_id: room_id, online: e.online});
 }
 
 function endSession(){
@@ -524,10 +529,10 @@ function endSession(){
 
 function closeRoom(){
     var dr_id = Ti.App.Properties.getString('dr_id') || 0;
-    API.callByPost({
+    Alloy.Globals.API.callByPost({
             url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}
         }, function(responseText){
-            socket.sendMessage({room_id: room_id});
+            Alloy.Globals.socket.sendMessage({room_id: room_id});
             closeWindow();
         });
 }
@@ -793,7 +798,7 @@ $.win.addEventListener("close", function(){
 	Ti.App.Properties.setString('room_id', "");
 	target_page = "";
 	updateTime({online:false});
-	socket.leave_room({room_id: room_id});
+	Alloy.Globals.socket.leave_room({room_id: room_id});
 	Ti.App.fireEvent("render_menu");
 	Ti.App.removeEventListener("socket:user_last_update", updateReadStatus);
 	Ti.App.removeEventListener("socket:doctor_last_update", doctor_last_update);

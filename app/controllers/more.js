@@ -10,18 +10,18 @@ function navTo(e){
 	var empno = Ti.App.Properties.getString('empno');
 	if(target == "asp/changePassword"){
         if(typeof empno != "undefined" && empno != ""){
-            nav.navigationWindow("asp/changePassword", 1);  
+            Alloy.Globals.nav.navigationWindow("asp/changePassword", 1);  
         }else{
-            nav.navigationWindow("plux_profile"); 
+            Alloy.Globals.nav.navigationWindow("plux_profile"); 
         }
     }else if(target == "asp/exlusionList"){
-        //nav.navigationWindow("asp/exlusionList", 1);
+        //Alloy.Globals.nav.navigationWindow("asp/exlusionList", 1);
         openURLPDF({attachment: "http://plux.freejini.com.my/public/document/Exclusion_List.pdf"});
     }else if(target == "profile"){
         if(typeof empno != "undefined" && empno != ""){
-            nav.navigationWindow("asp/editProfile", 1);  
+            Alloy.Globals.nav.navigationWindow("asp/editProfile", 1);  
         }else{
-            nav.navigationWindow("plux_profile"); 
+            Alloy.Globals.nav.navigationWindow("plux_profile"); 
         }
     }else if(target == "logout"){
         var dialog = Ti.UI.createAlertDialog({
@@ -41,7 +41,7 @@ function navTo(e){
 
 if(Ti.Platform.osname == "android"){		
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }
 
@@ -85,7 +85,6 @@ function viewPDF(appfilepath) {
                 data: appfilepath
             }));
         } catch(e) {
-            Ti.API.info('error trying to launch activity, e = '+e);
             alert('No PDF apps installed!');
         }
     } else {

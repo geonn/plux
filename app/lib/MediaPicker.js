@@ -94,7 +94,7 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 	
 	var message = typeof message === 'string' ? message : false;
 	var doneFn = function() {
-		_nav.closeAll();		
+		_Alloy.Globals.nav.closeAll();		
 		
 		if (that.callbackFN) that.callbackFN(selectedItems);	
 	}
@@ -102,7 +102,7 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 	if (_env.iOS) win_assetGroups.setRightNavButton(done);
 
 	var cancel = new Element('Button', {title: 'Cancel', bottom: 0,left: 0, zIndex: 99}).addClick(function() {
-		_nav.closeAll();
+		_Alloy.Globals.nav.closeAll();
 	}).element;
 	if (_env.iOS) win_assetGroups.setLeftNavButton(cancel);
 	else win_assetGroups.add(cancel);
@@ -214,7 +214,6 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 			}
 			var row = Math.floor(e.y / _env.ldf / (_size+4));
 			if (row != firstRow) {
-				//Ti.API.info('scrollpos ' + row);
 				for (var i = 0; i <= rowsPerScreen+2; i++) {
 					var check = row+i;
 					
@@ -268,7 +267,7 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 			grid = null;			
 		});
 
-		_nav.open(win_assets);	
+		_Alloy.Globals.nav.open(win_assets);	
 		if (_env.iOS) win_assets.setRightNavButton(done);
 		else win_assets.add(done);
 
@@ -330,7 +329,6 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 				// Ti.Filesystem.applicationDataDirectory ?
 				var file = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory, iv.id+'.png_');
 				if (file.exists()) {
-					//Ti.API.info('from cache ' + file.nativePath);
 					iv.path = file.nativePath;
 					iv.setImage(file.nativePath);
 					file = null;
@@ -593,7 +591,7 @@ exports.MediaPicker.prototype.show = function(cb, max, type, message) {
 		alert('Bitte erlauben Sie den Zugriff auf Fotos unter Einstellungen->Datenschutz');
 	}});
 	
-	_nav.open(win_assetGroups);	
+	_Alloy.Globals.nav.open(win_assetGroups);	
 };
 exports.MediaPicker.prototype.getImageByURL = function(opt) {
 	if (_env.iOS) MediaPickerModule.getImageByURL(opt);

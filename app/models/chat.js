@@ -16,7 +16,7 @@ exports.definition = {
 		    "dr_qualification": "TEXT",
 		    "dr_introduction": "TEXT",
 		    "dr_img_path": "TEXT",
-
+				"preview_message": "TEXT",
 
 		},
 		adapter: {
@@ -37,14 +37,14 @@ exports.definition = {
 			// extended functions and properties go here
 			getCountUnread: function(e){
 				var collection = this;
-				var u_id = Ti.App.Properties.getString('u_id') || 0; 
-                var sql = "SELECT count(*) as total from chat where u_id = ? AND status = 2 group by u_id"; 
-                
+				var u_id = Ti.App.Properties.getString('u_id') || 0;
+                var sql = "SELECT count(*) as total from chat where u_id = ? AND status = 2 group by u_id";
+
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-            	
+
             	var res = db.execute(sql, u_id);
             	if(res.isValidRow()){
             		var total = res.fieldByName('total');
@@ -57,7 +57,7 @@ exports.definition = {
 			},
 			getDataByRoomId: function(latest, start, anchor, last_updated, room_id){
                 //var last_update = last_update || common.now();
-                
+
                 if(latest){
                     var a = last_updated;
                     last_updated = a.replace("  "," ");
@@ -70,22 +70,22 @@ exports.definition = {
                     var sql_lastupdate = " AND created <= '"+anchor+"'";
                     var sql_id = "";
                 }
-                
+
                 var collection = this;
-                var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from chat where u_id = ? AND room_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
+                var u_id = Ti.App.Properties.getString('u_id');
+                var sql = "SELECT * from chat where u_id = ? AND room_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ;
                 console.log(sql+" "+room_id+" "+u_id);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                     db.file.remoteBackup = false;
                 }
-                
+
                 var res = db.execute(sql, u_id.toString(), room_id.toString());
                 var arr = [];
                 var count = 0;
                  /**
                  * debug use
-                 
+
                 var row_count = res.fieldCount;
                 for(var a = 0; a < row_count; a++){
                      console.log(a+":"+res.fieldName(a)+":"+res.field(a));
@@ -111,8 +111,8 @@ exports.definition = {
                     };
                     res.next();
                     count++;
-                } 
-             
+                }
+
                 res.close();
                 db.close();
                 collection.trigger('sync');
@@ -120,7 +120,7 @@ exports.definition = {
             },
 			getData: function(latest, start, anchor, last_updated, dr_id){
 				//var last_update = last_update || common.now();
-				
+
 				if(latest){
 					var a = last_updated;
 					last_updated = a.replace("  "," ");
@@ -134,22 +134,22 @@ exports.definition = {
 					var sql_lastupdate = " AND created <= '"+anchor+"'";
 					var sql_id = "";
 				}
-				
+
 				var collection = this;
-				var u_id = Ti.App.Properties.getString('u_id'); 
-                var sql = "SELECT * from chat where u_id = ? AND dr_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ; 
+				var u_id = Ti.App.Properties.getString('u_id');
+                var sql = "SELECT * from chat where u_id = ? AND dr_id = ? "+sql_lastupdate+sql_id+" order by created desc"+start_limit ;
                 console.log(sql+" uid"+u_id+" dr_id "+dr_id);
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-            	
+
             	var res = db.execute(sql, u_id, dr_id);
                	var arr = [];
                 var count = 0;
                  /**
                  * debug use
-                 
+
                 var row_count = res.fieldCount;
                /** for(var a = 0; a < row_count; a++){
             		 console.log(a+":"+res.fieldName(a)+":"+res.field(a));
@@ -166,12 +166,13 @@ exports.definition = {
 					    created: res.fieldByName('created'),
 					    format: res.fieldByName("format"),
 					    is_endUser: res.fieldByName('is_endUser'),
+							preview_message: res.fieldByName('preview_message'),
 					    sender_name: res.fieldByName('sender_name')
 					};
 					res.next();
 					count++;
-				} 
-			 
+				}
+
 				res.close();
                 db.close();
                 collection.trigger('sync');
@@ -179,7 +180,7 @@ exports.definition = {
 			},
 			removeById: function(m_id){
 				var collection = this;
-				
+
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -191,7 +192,7 @@ exports.definition = {
 			},
 			setColumnValue: function(){
 				var collection = this;
-				
+
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -203,7 +204,7 @@ exports.definition = {
 			},
 			messageRead : function(entry){
 				var collection = this;
-				
+
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
@@ -234,7 +235,7 @@ exports.definition = {
 	                			if(name == k){
 	                				keys.push(k);
 	                				//console.log(typeof entry[k]+" "+entry[k]);
-	                				
+
 	                				if(typeof entry[k] == "string"){
 	                					entry[k] = (entry[k] == null)?"":entry[k];
 	                					entry[k] = entry[k].replace(/"/g, "'");
@@ -244,7 +245,7 @@ exports.definition = {
 	                				}else{
 	                					eval_values.push("\""+entry[k]+"\"");
 	                				}
-			                		
+
 	                			}
 	                		});
 	                	}
@@ -259,12 +260,12 @@ exports.definition = {
 			},
 			saveRecord: function(entry){
 				var collection = this;
-				
+
                 db = Ti.Database.open(collection.config.adapter.db_name);
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                 
+
                 entry.message = entry.message.replace("[br]", "\n");
                 var sql_query =  "INSERT OR IGNORE INTO "+collection.config.adapter.collection_name+" (sender_id, message, created, is_endUser,sender_name, u_id) VALUES (?,?,?,?,?,?)";
 				db.execute(sql_query, entry.sender_id, entry.message, entry.created, entry.is_endUser, entry.sender_name, entry.u_id);
@@ -286,8 +287,8 @@ exports.definition = {
 						fieldExists = true;
 					}
 					resultSet.next();
-				}  
-			 	if(!fieldExists) { 
+				}
+			 	if(!fieldExists) {
 					db.execute('ALTER TABLE ' + collection.config.adapter.collection_name + ' ADD COLUMN '+newFieldName + ' ' + colSpec);
 				}
 				db.close();

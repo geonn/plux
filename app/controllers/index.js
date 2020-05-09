@@ -1,6 +1,6 @@
 var args = {};
 var u_id = Ti.App.Properties.getString('u_id') || "";
-
+console.log("index");
 function init(){
 	var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 	var isSignup2 = Ti.App.Properties.getString('signup2');
@@ -43,11 +43,11 @@ function init(){
 
 init();
 
-API.callByPost({url: "dateNow"}, function(responseText){
+Alloy.Globals.API.callByPost({url: "dateNow"}, function(responseText){
 	var res = JSON.parse(responseText);
 
 	if(res.status != "error"){
-		common.sync_time(res.data);
+		Alloy.Globals.common.sync_time(res.data);
 	}
 
 });

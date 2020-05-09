@@ -17,7 +17,8 @@
             </View>
             <SearchBar barColor="#FFFFFF" tintColor="#CE1D1C" onReturn="doSearch" id="search" text="" height="50"  hintText="Search Clinic" />
 			<View id="parent" class="wfill hfill" backgroundColor="#ffffff">
-				<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>
+				<Module module="ti.map" id="mapview" userLocation="true"></Module>
+				<!--<View id="mapview" module="ti.map" class="wfill" userLocation="true"></View>-->
 			</View>
 		</View>
 		<ImageView id="filter_icon" image="/images/icons/clinic_new.png" right="20" bottom="20" onClick="openCategory" width="60" height="60"></ImageView>

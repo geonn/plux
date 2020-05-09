@@ -1,10 +1,97 @@
-exports.pushNotification = function(callback) {
+// Require the module
+var Cloud = require("ti.cloud");
+var channelId = 'sound';
+var deviceToken = null;
 
-    // Require the module
-    var Cloud = require("ti.cloud");
+exports.subscribeToChannel = function(channelId){
+	console.log("subscribeToChannel "+channelId+" "+deviceToken);
+	//alert("subscribeToChannel "+channel+" "+deviceToken);
+	if(OS_ANDROID){
+		var cl = Ti.Android.NotificationManager.createNotificationChannel({
+	        id: channelId,
+	        name: channelId,
+	        importance: Ti.Android.IMPORTANCE_MAX ,
+	    });
+   }
+   console.log(Ti.Platform.name+" Ti.Platform.name");
+	Cloud.PushNotifications.subscribeToken({
+        device_token : deviceToken,
+        channel : channelId,
+        type : Ti.Platform.name == 'android' ? 'android' : 'ios',
+    }, function(e) {
+		if (e.success) {
+	        alert("subscribeTo "+channelId+" with deviceToken "+deviceToken);
+	    } else {
+	        alert('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+    });
+};
 
-    var deviceToken = null;
+exports.unsubscribeToAll = function(ex){
+	console.log("unsubscribeToChannel "+channelId+" "+deviceToken);
+	//alert("subscribeToChannel "+channel+" "+deviceToken);
 
+	Cloud.PushNotifications.unsubscribeToken({
+        device_token : deviceToken,
+    }, function(e) {
+		if (e.success) {
+	        console.log("unsubscribe with deviceToken "+deviceToken);
+	    } else {
+	        console.log('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+	    ex.callback();
+    });
+};
+
+
+var loginUser = function(ex){
+    // Log in to Arrow
+    var u_id = Ti.App.Properties.getString('u_id') || "";
+    Cloud.Users.login({
+        login: u_id,
+        password: '123456'
+
+    }, function (e) {
+        if (e.success) {
+           // alert('Login successful');
+            ex.callback();
+        } else {
+        	console.log(e.code+" error code ");
+        	if(true){
+        		Cloud.Users.create({
+				    first_name: u_id,
+				    username: u_id,
+				    password: '123456',
+				    password_confirmation: '123456'
+				}, function (e) {
+				    if (e.success) {
+				        loginUser();
+				    } else {
+				        console.log('Error:\n' +
+				            ((e.error && e.message) || JSON.stringify(e)));
+				    }
+	        	  });
+            console.log('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+        }
+        }
+    });
+};
+exports.loginUser = loginUser;
+
+exports.logoutUser = function(callback) {
+	Cloud.Users.logout(function (e) {
+	    if (e.success) {
+	        console.log('Success: Logged out');
+	    } else {
+	        console.log('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+	});
+};
+
+exports.pushNotification = function(ex) {
     if (OS_ANDROID) {
         var CloudPush = require('ti.cloudpush');
         CloudPush.retrieveDeviceToken({
@@ -18,7 +105,7 @@ exports.pushNotification = function(callback) {
             var payload = JSON.parse(e.payload);
             if (payload) {
 
-                callback({
+                ex.receivedPush({
                     error : false,
                     data : payload
                 });
@@ -29,35 +116,12 @@ exports.pushNotification = function(callback) {
 
         CloudPush.addEventListener('trayClickLaunchedApp', function(e) {
             push_redirect = true;
-            var payload = JSON.parse(e.payload);
-            if (payload) {
-
-                callback({
-                    error : false,
-                    data : payload
-                });
-
-            }
 
         });
 
         CloudPush.addEventListener('trayClickFocusedApp', function(e) {
           push_redirect = true;
-            /*
-            var payload = JSON.parse(e.payload);
-            if (payload) {
-
-                callback({
-                    error : false,
-                    data : payload
-                });
-
-            }*/
-
         });
-
-
-
     }
 
     if (OS_IOS) {
@@ -97,7 +161,7 @@ exports.pushNotification = function(callback) {
 
         function receiveIOSPush(e) {
 
-            callback({
+            ex.receivedPush({
                 error : false,
                 data : e.data
             });
@@ -110,35 +174,12 @@ exports.pushNotification = function(callback) {
     function deviceTokenSuccess(e) {
 
         deviceToken = e.deviceToken;
-
+		console.log(deviceToken+' deviceTokenSuccess');
         Titanium.App.Properties.setString('deviceToken', deviceToken);
-        API.updateNotificationToken();
-        Cloud.PushNotifications.subscribeToken({
-            device_token : Titanium.App.Properties.getString('deviceToken'),
-            channel : 'general',
-            type : (OS_IOS) ? 'ios' : 'android'
-        }, function(e) {
-
-
-        });
-
-        // Reset the badge if needed
-        Cloud.PushNotifications.resetBadge({
-            device_token : Titanium.App.Properties.getString('deviceToken')
-        }, function(e) {
-
-
-        });
-
+        Alloy.Globals.API.updateNotificationToken();
     }
 
     function deviceTokenError(e) {
-
-        callback({
-            error : true,
-            message : e.error
-        });
-
     }
 
 };

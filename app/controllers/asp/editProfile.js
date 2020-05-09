@@ -27,16 +27,16 @@ function submitPassword(){
 
 function callAPI(param, target){
     var LOGINID = Ti.App.Properties.getString('email');
-    API.callByGet({url: "updateemailhp.aspx", params: "LOGINID="+LOGINID+param+"&TARGET="+target}, {
+    Alloy.Globals.API.callByGet({url: "updateemailhp.aspx", params: "LOGINID="+LOGINID+param+"&TARGET="+target}, {
         onload: function(responseText){
            var res = JSON.parse(responseText);
            if(res.length == null || res.length <= 0){
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
             //console.log('got error message');
-               common.createAlert(res[0].message);
+               Alloy.Globals.common.createAlert(res[0].message);
            }else{
                Ti.App.Properties.setString('email', email);
-               common.createAlert("Done", res.message);
+               Alloy.Globals.common.createAlert("Done", res.message);
            }
        }, onfinish: function(){
            loading.finish();
@@ -49,6 +49,6 @@ function callAPI(param, target){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }

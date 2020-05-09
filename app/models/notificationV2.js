@@ -137,7 +137,6 @@ exports.definition = {
                 if(Ti.Platform.osname != "android"){
                 	db.file.setRemoteBackup(false);
                 }
-                console.log(arr.length+" number of arr to save into "+ collection.config.adapter.db_name);
                 db.execute("BEGIN");
                 arr.forEach(function(entry) {
                 	var keys = [];
@@ -155,7 +154,7 @@ exports.definition = {
 	                	}
                 	}
 		            var sql_query =  "INSERT OR REPLACE INTO "+collection.config.adapter.collection_name+" ("+keys.join()+") VALUES ("+eval_values.join()+")";
-		            console.log(sql_query);
+		            
 		            db.execute(sql_query);
 				});
 				db.execute("COMMIT");

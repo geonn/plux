@@ -7,7 +7,7 @@
 
 // update user device token
 exports.checkAndUpdate = function(e){
-	var dbVersion = Ti.App.Properties.getString("dbVersion") || 3.2;
+	var dbVersion = Ti.App.Properties.getString("dbVersion") || 3.3;
 	if(parseFloat(dbVersion) < 3.1){
 		var health = Alloy.createCollection('health');
 		var medicalRecordsV2 = Alloy.createCollection('medicalRecordsV2');
@@ -37,5 +37,11 @@ exports.checkAndUpdate = function(e){
     chat.addColumn("dr_img_path", "TEXT");
     dbVersion = 3.2;
     }
+		if(parseFloat(dbVersion) <= 3.2){
+			console.log("able to get in?");
+			var chat = Alloy.createCollection('chat');
+			chat.addColumn("preview_message", "TEXT");
+			dbVersion = 3.3;
+		}
 	  Ti.App.Properties.setString("dbVersion", dbVersion);
 };

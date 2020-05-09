@@ -1,3 +1,4 @@
+
 function navigationWindow (target, checkAuth, callback, param){
 	if(checkAuth == 1){
 		var isver = Ti.App.Properties.getString('isver');

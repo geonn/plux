@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 var loading = Alloy.createController("loading");
 
+
 function init(){
 	$.win.add(loading.getView());
 	refresh();
@@ -12,7 +13,7 @@ function refresh(){
 	loading.start();
 	var empno = Ti.App.Properties.getString("empno"); //"19701950"
 	var corpcode = Ti.App.Properties.getString("corpcode"); // "ONSEMI"
-	API.callByGet({url:"ipinv.aspx",params:"EMPNO="+empno+"&CORPCODE="+corpcode},
+	Alloy.Globals.API.callByGet({url:"ipinv.aspx",params:"EMPNO="+empno+"&CORPCODE="+corpcode},
 	{
 	    onload: function(responseText){
            var res = JSON.parse(responseText);
@@ -24,7 +25,7 @@ function refresh(){
                 view_container.add(label);
                 $.listing.add(row);
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-                common.createAlert(res[0].message);
+                Alloy.Globals.common.createAlert(res[0].message);
            }else{
                 render(res || []);
            }
@@ -89,7 +90,7 @@ function render(data){
         view_right_bottom.add(label_date);
 
         row.addEventListener("click", function(e){
-           nav.navigateWithArgs("inpatient_detail", e.source.record);
+           Alloy.Globals.nav.navigateWithArgs("inpatient_detail", e.source.record);
         });
 
         $.listing.add(row);
@@ -98,7 +99,7 @@ function render(data){
 
 function viewDetails(e){
 	var nav = require('navigation');
-	nav.navigateWithArgs("inpatient_detail", {
+	Alloy.Globals.nav.navigateWithArgs("inpatient_detail", {
 		params: e.source
 	});
 }

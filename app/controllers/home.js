@@ -1,38 +1,125 @@
 var args = arguments[0] || {};
 var expandmode = false;
+var home = true;
 //var SCANNER = require("scanner");
 var loading = Alloy.createController('loading');
 var new_menu = [
 	{mod:"conversation", is_asp:1, title: "ASK ME", onClick: navWindow, subtitle: "24 hour helpdesk support", image_path: "/images/menu_image/conversation_square.jpg"},
+	{mod:"education/index", is_asp:1, title: "EDUCATION", onClick: navWindow, subtitle: "Latest health info", image_path: "/images/menu_image/education_square.jpg"},
 	{mod: "myClaim", is_asp:1, title: "MY CLAIM RECORDS", onClick: navWindow, subtitle: "Entitlement balance and claim history", image_path: "/images/menu_image/myClaim_square.jpg"},
 	{mod: "claimSubmission", is_asp:1, title: "CLAIM SUBMISSION", onClick: navWindow, subtitle: "Submit your claim via APP", image_path: "/images/menu_image/claimSubmission_square.jpg"},
 	{mod: "inpatient_record", is_asp:1, title: "IN-PATIENT", onClick: navWindow, subtitle: "Admission records", image_path: "/images/menu_image/inpatient_record_square.jpg"},
 	{mod: "asp/requestOutpatientGL", is_asp:1, title: "REQUEST GL", onClick: navWindow, subtitle: "Request outpatient GL", image_path: "/images/menu_image/requestOutpatientGL_square.jpg"},
 	{mod:"eCard_list", is_asp:1, title: "E-CARD", onClick: navWindow, subtitle: "Principle and family electronic card", image_path: "/images/menu_image/eCard_list_square.jpg"},
-	{mod:"askDoctor/conversation", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
-	//{mod:"askDoctor/counsellor", is_asp:1, title: "ASK COUNSELLOR", onClick: navWindow, subtitle: "online counsellor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
-	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
-	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "To record all your blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
-	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "clinic, dental & optical location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
-	{mod:"hospital/index", is_asp:1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
+	{mod:"askDoctor/forms", is_asp:1, title: "ASK DOCTOR", onClick: navWindow, subtitle: "Online doctor consultation", image_path: "/images/menu_image/askDoctor_square.jpg"},
+	{mod:"askDoctor/nutitionist_forms", is_asp:1, title: "ASK NUTRITIONIST", onClick: navWindow, subtitle: "Online nutritionist consultation", image_path: "/images/menu_image/nutrition.jpeg"},
+	{mod:"askDoctor/counsellor_forms", is_asp:1, title: "ASK PSYCHOLOGIST", onClick: navWindow, subtitle: "Online Psychologist consultation", image_path: "/images/menu_image/psychology.jpeg"},
+	{mod:"askDoctor/pharmacist_forms", is_asp:1, title: "ASK PHARMACIST", onClick: navWindow, subtitle: "Online pharmacist consultation", image_path: "/images/menu_image/pharmacist.png"},
+	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "Make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
+	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "Blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
+	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "Clinic, dental & optical location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
+	{mod:"hospital/index", is_asp:1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "Hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
+	//{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "ePharmacy/index", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide();
 
+var PUSH = require('enablePush');
+PUSH.pushNotification({receivedPush: received_push});
+
+setTimeout(function(){
+	PUSH.unsubscribeToAll({callback: function(){
+		PUSH.subscribeToChannel("sound2");
+	}});
+}, 2000);
+/*
+var unsubscribed = Ti.App.Properties.getString('unsubscribed') || false;
+if(!unsubscribed){
+	PUSH.unsubscribe({callback: function(){
+		PUSH.loginUser({callback: function(){
+			PUSH.pushNotification(received_push);
+			PUSH.subscribeToChannel("sound2");
+		}});
+	}});
+}else{
+	PUSH.loginUser({callback: function(){
+		PUSH.pushNotification(received_push);
+	}});
+}*/
+
+
+//enablePush.subscribeToChannel("sound");
+
+function home_refresh(){
+	home = true;
+}
+
+function received_push(res){
+	console.log("push received abc "+home);
+	console.log(home+" home");
+	var sound = Titanium.Media.createSound({
+	    url: "/sound/ding.mp3",
+	    preload: true
+	});
+	if(home){
+		sound.play();
+	}
+		console.log(res);
+		if (res.error) {
+			
+				return;
+
+		}else{
+				var data = res.data;
+				//data = {target: "chatroom", dr_id: 144, room_id: 10648, u_id: 8347, created: "2018-11-29 20:05:04", updated: "2018-11-29 20:05:04", status: 5};
+				//data = {target: "askDoctor/conversation", id: 10843, room_id: 10843, u_id: 8347, created: "2018-12-17 14:41:39", updated: "2018-12-17 14:41:39", dr_id: 144};
+				eval("Ti.App.fireEvent('"+data.target+":refresh')");
+				var room_id = Ti.App.Properties.getString('room_id');
+
+				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && Alloy.Globals.push_redirect){
+					redirect(data);
+						}else if(target_page != data.target && Alloy.Globals.push_redirect){
+								redirect(data);
+						}else {
+							if(data.extra=="survey"){
+								var dialog = Titanium.UI.createOptionDialog({
+							        title: 'Incoming Notification',
+							        options: ['Open','Cancel'],
+							        cancel: 1
+							    });
+							    dialog.show();
+							    dialog.addEventListener('click', function(e) {
+							    	if((OS_IOS)?e.cancel != e.index:!e.cancel){
+								    	if(e.index == "0"){
+								    		redirect(data);
+								    	}
+					            	}
+					            });
+				            }
+				            console.log("incoming notification");
+							syncFromServer();
+				}
+		}
+}
+
+function pixelToDp(px) {
+    return ( parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160));
+}
+
 function checkserviceByCorpcode(){
 	var corpcode = Ti.App.Properties.getString('corpcode');
 
 	if(corpcode != "null"){
-		API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){
+		Alloy.Globals.API.callByPost({url:"getCorpPermission", params: {corpcode: corpcode}}, function(responseText){
 			var res = JSON.parse(responseText);
 			if(res.status == "success"){
 				var takeout = res.data;
 				for (var i=0; i < takeout.length; i++) {
 				  var index = findIndexInData(new_menu, "mod", takeout[i]);
 
-				  if(index >= 0){
+				  if(index >= 0 && new_menu[index].force != 1){
 				  	new_menu.splice(index, 1);
 				  }
 
@@ -95,13 +182,11 @@ if(OS_ANDROID){
 
     if (!hasStorePermission) {
         permissionsToRequest.push(storePermission);
-        Ti.API.info("PUSHED  1.WRITE_EXTERNAL_STORAGE");
     }
 
     if (!hasStoragePermission) {
 
         permissionsToRequest.push(storagePermission);
-        Ti.API.info("PUSHED... 2.READ_EXTERNAL_STORAGE");
 
     }
 }
@@ -129,7 +214,7 @@ function changeBackground(){
     ];
     var today = new Date();
     var hours = today.getHours();
-    var background_img = (hours > 9)?((hours > 17)?"/images/background3.jpg":"/images/background2.jpg"):"/images/background1.jpg";
+    var background_img = (hours > 9)?((hours > 19)?"/images/background3.jpg":"/images/background2.jpg"):"/images/background1.jpg";
 
 
     $.daily_background.setImage(background_img);
@@ -174,7 +259,7 @@ function syncFromServer(){
 		"last_updated" : last_updated
 	};
 
-	API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){
+	Alloy.Globals.API.callByPost({url:"getNotificationV2", domain: "FREEJINI_DOMAIN", new:true, params: param}, function(responseText){
 		var res = JSON.parse(responseText);
 		if(res.status == "success"){
 			var arr = res.data;
@@ -251,31 +336,63 @@ function refreshHeaderInfo(){
 	//$.shadow_myInfo.add(logoutBtn);
 	$.shadow_myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
 	$.myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
+	
+	render_point();
+	
+}
+
+function render_point(){
+	var u_id = Ti.App.Properties.getString('u_id') || "";
+		Alloy.Globals.API.callByPost({url: "getMemberPoints", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText)	{
+	        var res = JSON.parse(responseText);
+			var point_view = $.UI.create("View", {classes:['wsize','hsize','vert']});
+			var points = $.UI.create("Label", {classes:['wsize','hsize','h5'], color: "#fff", text: "Points: "+res.data.currentBalance});
+			//point_view.add(points);
+			Ti.App.Properties.setString('referral_link', res.data.referral_link);
+			var sharea_btn = $.UI.create("Label", {text: "POINTS", classes:['h6','wsize','hsize'], right:10, top:12, left:10, color: "#000"});
+			var view_share = $.UI.create("View", {backgroundColor: "#fff", classes:['wsize','horz'], height: 40, borderRadius: 20});
+			var image_share = $.UI.create("ImageView", {image:"/images/icons/share.png", left:10, top:10, width: 20, height: 20});
+			view_share.add(image_share);
+			view_share.add(sharea_btn);
+			view_share.addEventListener("click", function(){
+				Alloy.Globals.nav.navigationWindow("points/index");
+			});
+			
+			/*view_share.addEventListener("click", function(){
+				require('com.alcoapps.socialshare').share({
+					status 					: res.data.referral_link,
+					androidDialogTitle 		: 'Share this APP to get points!',
+				//image 					: fileToShare.nativePath,
+				});
+			});*/
+			$.myPoints.add(points);
+			$.myPoints.add(view_share);
+		});
 }
 
 function redirect(e){
-	   nav.navigationWindow(e.target,"","", e);
+	   Alloy.Globals.nav.navigationWindow(e.target,"","", e);
 }
 
 function navWindow(e){
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
 	if(source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
-			nav.navigationWindow("asp/"+source.mod);
+			Alloy.Globals.nav.navigationWindow("asp/"+source.mod);
 		}else{
-			nav.navigationWindow("asp/"+source.mod, 1);
+			Alloy.Globals.nav.navigationWindow("asp/"+source.mod, 1);
 		}
 	}else if(source.mod == "myHealth"){
-		nav.navigationWindow(source.mod+"/index");
+		Alloy.Globals.nav.navigationWindow(source.mod+"/index");
 	}else if(source.mod == "clinicLocator" || source.mod == "hospital/index"){
 		var tar = (source.mod == "hospital/index")?source.mod:"clinic/index";
 		var memno = Ti.App.Properties.getString('memno') || "";
 		requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS, function(e) {
 			if (e.success) {
 				if(memno == ""){
-            nav.navigationWindow(tar);
+            Alloy.Globals.nav.navigationWindow(tar);
         }else{
-            nav.navigationWindow(tar, 1);
+            Alloy.Globals.nav.navigationWindow(tar, 1);
         }
 			}else{
 				var dialog = Ti.UI.createAlertDialog({
@@ -309,35 +426,64 @@ function navWindow(e){
 		});
 
 	}else if(source.mod == "conversation"){
-		 nav.navigationWindow(source.mod, 1);
-	}else if(source.mod == "askDoctor/conversation"){
-	    checkNewRoom(source.mod);
-	}else if(source.mod == "askDoctor/counsellor"){
-	    checkNewRoom(source.mod);
+		 Alloy.Globals.nav.navigationWindow(source.mod, 1);
+	}else if(source.mod == "askDoctor/forms"){
+	    	checkNewRoom(source.mod, "doctor");
+	}else if(source.mod == "askDoctor/pharmacist_forms"){
+	    	checkNewRoom(source.mod, "pharmacist");
+	}else if(source.mod == "askDoctor/nutitionist_forms"){
+	    checkNewRoom(source.mod, "nutritionist");
+	}else if(source.mod == "askDoctor/counsellor_forms"){
+	    checkNewRoom(source.mod, "phycologist");
 	}else if(source.mod == "profile"){
 		var empno = Ti.App.Properties.getString('empno');
 		if(typeof empno != "undefined" && empno != ""){
-			nav.navigationWindow("asp/profile", 1);
+			Alloy.Globals.nav.navigationWindow("asp/profile", 1);
 		}else{
-			nav.navigationWindow("plux_profile");
+			Alloy.Globals.nav.navigationWindow("plux_profile");
 		}
 	}else{
-		nav.navigationWindow(source.mod);
+		Alloy.Globals.nav.navigationWindow(source.mod);
 	}
 }
 
-function checkNewRoom(path){
+function checkNewRoom(path, category){
     var u_id = Ti.App.Properties.getString('u_id') || "";
-    API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "getPatientRoomId", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id, category: category}}, function(responseText){
         var res = JSON.parse(responseText);
+        console.log("check here homepage");
+        console.log(res);
         var room_id = res.data.room_id || "";
-
+		if(res.status == "error"){
+			alert(res.data.error_message);
+			return;
+		}
         if(room_id != ""){
-            socket.setRoom({room_id: room_id});
+            Alloy.Globals.socket.setRoom({room_id: room_id});
             //Ti.App.fireEvent("setRoom", {room_id: room_id});
-            nav.navigateWithArgs(path, {room_id:room_id});
+            console.log(category+" Ask "+(category == "phycologist"?"Psychologist":category));
+            Alloy.Globals.nav.navigateWithArgs("askDoctor/conversation", {room_id:room_id, from: "Ask "+(category == "phycologist"?"Psychologist":category)});
+            home = false;
         }else{
-            nav.navigateWithArgs("askDoctor/forms", {});
+        	var dialog = Titanium.UI.createOptionDialog({
+		        title: 'Choose a Language',
+		        options: ['English','Melayu','Chinese','Cancel'],
+		        cancel: 3
+		    });
+		    dialog.show();
+		    dialog.addEventListener('click', function(e) {
+		    	if((OS_IOS)?e.cancel != e.index:!e.cancel){
+			    	if(e.index == "0"){
+			    		Titanium.Locale.setLanguage("en");
+			    	}else if(e.index == "1"){
+			    		Titanium.Locale.setLanguage("ms-MY");
+			    	}else if(e.index == "2"){
+			    		Titanium.Locale.setLanguage("zh");
+			    	}
+			    	Alloy.Globals.nav.navigateWithArgs(path);
+			    	home = false;
+            	}
+            });
         }
     });
 }
@@ -501,7 +647,7 @@ $.scrollview.addEventListener("scroll", function(e){
 
 function getUserInfo(){
     var fullname = Ti.App.Properties.getString('fullname') || "";
-    socket.updateUserInfo({fullname: fullname});
+    Alloy.Globals.socket.updateUserInfo({fullname: fullname});
 }
 
 init();
@@ -559,39 +705,16 @@ $.win.addEventListener("postlayout", function(){
 });
 
 setTimeout(function(){
-      push_redirect = false;
+      Alloy.Globals.push_redirect = false;
 }, 2000);
 
-var enablePush = require('enablePush');
-    enablePush.pushNotification(received_push);
-function received_push(res){
-
-		if (res.error) {
-				return;
-
-		}else{
-				var data = res.data;
-				//data = {target: "chatroom", dr_id: 144, room_id: 10648, u_id: 8347, created: "2018-11-29 20:05:04", updated: "2018-11-29 20:05:04", status: 5};
-				//data = {target: "askDoctor/conversation", id: 10843, room_id: 10843, u_id: 8347, created: "2018-12-17 14:41:39", updated: "2018-12-17 14:41:39", dr_id: 144};
-				eval("Ti.App.fireEvent('"+data.target+":refresh')");
-				var room_id = Ti.App.Properties.getString('room_id');
-
-				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && push_redirect){
-					redirect(data);
-				}else if(target_page != data.target && push_redirect){
-						redirect(data);
-				}else {
-						syncFromServer();
-				}
-		}
-}
 
 $.win.addEventListener("open", function(){
+	//alert("jenny 4");
          if (permissionsToRequest.length > 0) {
 
             Ti.Android.requestPermissions(permissionsToRequest, function(e) {
 
-                Ti.API.info('Requesting Permission', e);
 
                 if (e.success) {
 
@@ -614,7 +737,7 @@ $.win.addEventListener("close", function(){
 	Ti.App.removeEventListener("getUserInfo", getUserInfo);
 	Ti.App.removeEventListener('logout', logoutUser);
 	Ti.App.removeEventListener('updateNotification', updateNotification);
-	//Ti.App.removeEventListener('render_menu', render_menu);
+	Ti.App.removeEventListener('home:refresh', home_refresh);
 	Ti.App.removeEventListener('updateHeader', refreshHeaderInfo);
 	Ti.App.removeEventListener('updateMenu', checkserviceByCorpcode);
 	$.destroy();
@@ -629,7 +752,7 @@ function webview_loaded(){
     Ti.App.fireEvent("connect", {u_id: Ti.App.Properties.getString('u_id') || 0, time_offset: time_offset});
 }
 
-//Ti.App.addEventListener('render_menu', render_menu);
+Ti.App.addEventListener('home:refresh', home_refresh);
 Ti.App.addEventListener("webview_loaded", webview_loaded);
 Ti.App.addEventListener("getUserInfo", getUserInfo);
 Ti.App.addEventListener('logout', logoutUser);

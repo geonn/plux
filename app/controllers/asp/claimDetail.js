@@ -24,7 +24,22 @@ function init(){
     $.status_view.opacity = 0;
     loading.start();
     loadBasicInfo();
-    API.claimDetailBySeries({serial : arg_serial}, loadDetail);
+    Alloy.Globals.API.callByGet({url: "claimdetails.aspx", params: "SERIAL="+arg_serial}, {
+        onload: function(responseText){
+        	var res = JSON.parse(responseText);
+		   if(res.length == null || res.length <= 0){
+		   }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
+		   		Alloy.Globals.common.createAlert(res[0].message);
+		   }else{
+				loadDetail(res[0] || []);
+		   }
+	   }, onfinish: function(){
+	       loading.finish();
+	   }, onerror: function(){
+            $.win.close();
+       }
+   });
+   // Alloy.Globals.API.claimDetailBySeries({serial : arg_serial}, loadDetail);
 }
 
 init();
@@ -69,12 +84,12 @@ function view_detail(e){
 
 function openReceipt(){
     console.log(img_path);
-	common.lightbox({img_path: img_path}, $.win);
+	Alloy.Globals.common.lightbox({img_path: img_path}, $.win);
 }
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }
 

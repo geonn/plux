@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+
 var menus = [
 	{title: "BLOOD PRESSURE", type: "2", icon: "/images/icons/like.png", measurement: "mmHg", color: "#CE1D1C", fields:[
 		{name: "Systolic", type: "number", tool: "picker", max_range: 200, min_range: 10, default_value: 120, graph_display: true},
@@ -75,7 +76,7 @@ function render_menu(){
 	var cell_width =  Math.floor((pwidth - 15) / 2 );
 	var odd_counter = 0;
 	for (var i=0; i < menus.length; i++) {
-		var found = _.where(latest, {type: menus[i].type});
+		var found = Alloy.Globals._.where(latest, {type: menus[i].type});
 		var top = Math.floor(i/2)*180+5;
 		var left = (odd_counter % 2)?cell_width+10:5;
 		var view_container = $.UI.create("View", {classes:['vert', 'rounded'], width: cell_width, height: 175, top:top, left: left, backgroundColor: "#ffffff", record: menus[i]});
@@ -108,11 +109,11 @@ function render_menu(){
 }
 
 function navToGraph(e){
-	nav.navigateWithArgs("myHealth/graph", e.source.record);
+	Alloy.Globals.nav.navigateWithArgs("myHealth/graph", e.source.record);
 }
 
 function navToAdd(e){
-	nav.navigateWithArgs("myHealth/add", e.source.record);
+	Alloy.Globals.nav.navigateWithArgs("myHealth/add", e.source.record);
 }
 
 function refresh(){
@@ -126,7 +127,7 @@ function refresh(){
 		//last_updated = isUpdate.updated;
 	}
 
-	API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText)	{
+	Alloy.Globals.API.callByPost({url: "getHealthDataByUser", params:{u_id: u_id, last_updated: last_updated}}, function(responseText)	{
 		var model2 = Alloy.createCollection("health");
 		var res2 = JSON.parse(responseText);
 		var arr2 = res2.data || null;
@@ -144,6 +145,6 @@ $.win.addEventListener("close", function(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }

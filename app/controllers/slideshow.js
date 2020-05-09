@@ -6,7 +6,7 @@ var fade_view = $.UI.create("View", {
 	classes:['wfill', 'hfill'],
 	backgroundColor: "#ffffff"
 });
-var fade_images = ['/images/slideshow/bg0.png', '/images/slideshow/bg2.png', '/images/slideshow/bg3.png'];
+var fade_images = ['/images/slideshow/bg0.png', '/images/slideshow/askDoctor_slide.jpg'];
 
 function do_continue(){
 	Ti.App.Properties.setString('isShowIntro',1);
@@ -60,7 +60,6 @@ function render_slideshow(){
 		var img = $.UI.create("ImageView",{
 			classes:['wfill', 'hsize'],
 			image: fade_images[i],
-			top: 0
 		});
 		$.image_container.add(img);
 	};

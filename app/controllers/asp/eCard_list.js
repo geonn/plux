@@ -12,7 +12,7 @@ function render_qr(first_view, inner_width){
         typeNumber: 8,
         errorCorrectLevel: 'M'
     });
-    var dateTimeNow = currentDateTime();
+    var dateTimeNow = Alloy.Globals.common.now();
     var param = first_view.cardno+"||"+dateTimeNow;
     
     var CryptoJS = require('sha256').CryptoJS;
@@ -127,7 +127,7 @@ function refresh(){
     var empno = Ti.App.Properties.getString('empno');
     var params = "CORPCODE="+corpcode+"&memno="+memno+"&empno="+empno;
     loading.start();
-    API.callByGet({url: "claimunder.aspx", params: params }, {
+    Alloy.Globals.API.callByGet({url: "claimunder.aspx", params: params }, {
         onload: function(responseText){
            var res = JSON.parse(responseText);
            if(res.length == null || res.length <= 0){
@@ -141,7 +141,7 @@ function refresh(){
                     $.main.add(row);
                 }
            }else if( typeof res[0] !== "undefined" && typeof res[0].message !== "undefined"){
-                common.createAlert(res[0].message);
+                Alloy.Globals.common.createAlert(res[0].message);
            }else{
                 for (var i=0; i < res.length; i++) {
                     render_ecard_list(res[i] || {});
@@ -290,6 +290,6 @@ $.win.addEventListener("close", function(){
  
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }

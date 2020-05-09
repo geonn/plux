@@ -14,19 +14,19 @@ function doLogin(asp_email, asp_password) {
 	var password = $.password.value;
 	
 	if(username == "" || password == ""){
-		common.createAlert('Authentication warning','Please fill in username and password');
+		Alloy.Globals.common.createAlert('Authentication warning','Please fill in username and password');
 		loading.finish();
 		return;
 	}
 	if(singleton){
 		//singleton = false;
-		API.doLogin(username, password, $, args.target);
+		Alloy.Globals.API.doLogin(username, password, $, args.target);
 	}
 }
 
 function doASPSignup(){
 	var nav = require('navigation');
-	nav.navigationWindow("asp/signup", 0);
+	Alloy.Globals.nav.navigationWindow("asp/signup", 0);
 }
 
 function doRegister(){
@@ -50,11 +50,11 @@ function hideProductFormKeyboard(e){
 
 function doASPSignup(){
 	var nav = require('navigation');
-	nav.navigationWindow("asp/signup", 0);
+	Alloy.Globals.nav.navigationWindow("asp/signup", 0);
 }
 
 /** To fixed keyboard hide/show when textfield is activate**/
-$.aspLoginWin.addEventListener('click',hideProductFormKeyboard);
+$.win.addEventListener('click',hideProductFormKeyboard);
 
 $.username.addEventListener('touchend', function(e){
     $.username.focus();
@@ -77,6 +77,6 @@ $.password.addEventListener("return", function(){
 if(Ti.Platform.osname == "android"){
 	var nav = require('navigation');
 	$.btnBack.addEventListener('click', function(){ 
-		nav.closeWindow($.aspLoginWin); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	}); 
 }

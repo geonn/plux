@@ -99,5 +99,5 @@ function create_field(key, title){
 
 $.main.addEventListener("click", function(e){
 	var nav = require('navigation');
-	nav.navigateWithArgs("asp/claimHistory", {name: name});
+	Alloy.Globals.nav.navigateWithArgs("asp/claimHistory", {name: name});
 });

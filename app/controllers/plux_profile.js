@@ -9,7 +9,7 @@ function refresh(){
 	loading.start();
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	
-	API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		render_profile(arr);
@@ -26,6 +26,6 @@ init();
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.plux_profile); 
+		Alloy.Globals.nav.closeWindow($.plux_profile); 
 	}); 
 }

@@ -9,15 +9,28 @@ var loading = Alloy.createController('loading');
 var error_message = "";
 var filedata = "";
 
+
 function init(){
     console.log(corpcode+" check corpcode");
     var forms_arr = $.forms.getChildren();
-    if(corpcode == "IFMY" || corpcode == "IFLP"){
+    if(corpcode == "IFMY" || corpcode == "IFLP" ){
         for(var i=0; forms_arr.length > i; i++){
             console.log(forms_arr[i].id);
             if(forms_arr[i].id == "REMARKS" || forms_arr[i].id == "GSTAMT" || forms_arr[i].id == "MCDAYS" || forms_arr[i].id == "GLAMT" || forms_arr[i].id == "GLAMT"){
+              
               $.forms.remove(forms_arr[i]);
-          }
+          	}else if(forms_arr[i].id=="tnc"){
+          		forms_arr[i].remove(forms_arr[i].children[1]);
+          	}
+        }
+    }else if(corpcode == "SYNTHO"){
+    	for(var i=0; forms_arr.length > i; i++){
+            console.log(forms_arr[i].id);
+            if(forms_arr[i].id == "GSTAMT" || forms_arr[i].id == "MCDAYS" || forms_arr[i].id == "GLAMT" || forms_arr[i].id == "GLAMT"){
+              $.forms.remove(forms_arr[i]);
+          	}else if(forms_arr[i].id=="tnc"){
+      			forms_arr[i].remove(forms_arr[i].children[0]);
+      		}
         }
     }else{
         console.log($.forms.children.length);
@@ -61,12 +74,12 @@ function doSubmit(){
     for (var i=0; i < forms_arr.length - 1; i++) {
         if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
             console.log(forms_arr[i].children[2].filedata.nativePath+" see what is the file name");
-            _.extend(params, {B64FS: Ti.Utils.base64encode(forms_arr[i].children[2].filedata).toString()});
-            _.extend(params, {RCPFILE: Math.random().toString(36).slice(-10)+".jpg"});
+            Alloy.Globals._.extend(params, {B64FS: Ti.Utils.base64encode(forms_arr[i].children[2].filedata).toString()});
+            Alloy.Globals._.extend(params, {RCPFILE: Math.random().toString(36).slice(-10)+".jpg"});
         }else{
             
             if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
-                if(forms_arr[i].children[0].hintText == "tnc"){
+                if(forms_arr[i].id == "tnc"){
                     error_message += "You must agree with the Terms and Conditions\n";
                 }else{
                     error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
@@ -82,14 +95,15 @@ function doSubmit(){
     }
     params["u_id"] = Ti.App.Properties.getString('u_id');
     loading.start();
-    API.callByPost({url: "http://ereceipt.aspmedic.com/aida/ClaimSubmission_Post.aspx", fullurl: true, params: params}, function(responseText){
+    console.log(params);
+    Alloy.Globals.API.callByPost({url: "https://appsapi.aspmedic.com/aida/claimsubmission_post.aspx", fullurl: true, params: params}, function(responseText){
             var result = JSON.parse(responseText);
             if(result[0]['code'] == "02"){
-                common.createAlert("Success", result[0]['message'],function(){
+                Alloy.Globals.common.createAlert("Success", result[0]['message'],function(){
                     $.win.close();
                 });
             }else{
-                common.createAlert("Error", result[0]['message']);
+                Alloy.Globals.common.createAlert("Error", result[0]['message']);
             }
             console.log(result);/*
             var dialog = Ti.UI.createAlertDialog({
@@ -127,30 +141,30 @@ function doSubmitBack(){
         alert(error_message);
         loading.finish();
     }else{
-        API.callByGet({url: "ClaimSubmission.aspx", params: params }, {
+        Alloy.Globals.API.callByGet({url: "ClaimSubmission.aspx", params: params }, {
             onload: function(responseText){
                 var result = JSON.parse(responseText);
                 /*if(result[0]['code'] == "02"){
                     /*if(filedata != ""){
-                        API.callByPost({url: "eReceiptInsert.aspx", new: true, domain: "ERECEIPT_DOMAIN", params: {
+                        Alloy.Globals.API.callByPost({url: "eReceiptInsert.aspx", new: true, domain: "ERECEIPT_DOMAIN", params: {
                             B64Fs: filedata,
                             FileName: ,
                             Serial: ,
                             UserID: empno,
                         }}, function(responseText){
-                        common.createAlert("Success", result[0]['message'],function(){
+                        Alloy.Globals.common.createAlert("Success", result[0]['message'],function(){
                             $.win.close();
                         });
                       });
                     }else{
-                        common.createAlert("Success", result[0]['message'],function(){
+                        Alloy.Globals.common.createAlert("Success", result[0]['message'],function(){
                             $.win.close();
                         });
                     }
                 }
                     
                 }else{
-                    common.createAlert("Error", result[0]['message'] );
+                    Alloy.Globals.common.createAlert("Error", result[0]['message'] );
                 } */
                 
             }, onfinish: function(){
@@ -225,7 +239,7 @@ function popout(e){
         alert("Sorry, the "+e.source.children[0].hintText+" listing is empty. Please contact our helpdesk for help.");
         return;
     }
-    var options_arr = _.pluck(e.source.data, e.source.option_name);
+    var options_arr = Alloy.Globals._.pluck(e.source.data, e.source.option_name);
     options_arr.push("Cancel");
     var dialog = Ti.UI.createOptionDialog({
         cancel: (options_arr.length > 0)?options_arr.length - 1:0,
@@ -250,7 +264,7 @@ function loadComboBox(e){
     indicator.show();
     e.source.add(indicator);
     var params = "CORPCODE="+corpcode+"&memno="+memno+"&empno="+empno;
-    API.callByGet({url: e.source.url, params: params }, {
+    Alloy.Globals.API.callByGet({url: e.source.url, params: params }, {
         onload: function(responseText){
             var result = JSON.parse(responseText);
             e.source.data = result;
@@ -266,6 +280,6 @@ function loadComboBox(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }

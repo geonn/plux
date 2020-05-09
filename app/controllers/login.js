@@ -1,6 +1,6 @@
 var args = arguments[0] || {}; 
 var singleton = true; 
-common.construct($);
+Alloy.Globals.common.construct($);
 var preset_email = Ti.App.Properties.getString('plux_email') || "";
 var loading = Alloy.createController('loading');
 $.win.add(loading.getView());
@@ -8,7 +8,6 @@ closeBox();
 $.email.value = preset_email; 
 $.mask.hide();
 $.signup_pop.hide();
-
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
@@ -45,7 +44,7 @@ function openAndroidHome(){
 
 
 function api_login(params){
-    API.callByPost({url: "pluxLoginUrl", params: params}, 
+    Alloy.Globals.API.callByPost({url: "pluxLoginUrl", params: params}, 
         function(responseText){
         var result = JSON.parse(responseText);
         if(result.status == "success"){
@@ -85,7 +84,7 @@ function doLogin_old() {
 	var password = $.password.value;
 	
 	if(email == "" || password == ""){
-		common.createAlert('Authentication warning','Please fill in email and password');
+		Alloy.Globals.common.createAlert('Authentication warning','Please fill in email and password');
 		loading.finish();
 		return;
 	}
@@ -95,7 +94,7 @@ function doLogin_old() {
 			email: email,
 			password: password 
 		};
-		API.do_pluxLogin(params, function(success){
+		Alloy.Globals.API.do_pluxLogin(params, function(success){
 			if(success){
 				var win = Alloy.createController("home").getView();
 				//win.open();
@@ -121,7 +120,7 @@ function doASPSignup(){
 	var win = Alloy.createController("tnc").getView();
 	win.open(); 
 	//var nav = require('navigation');
-	//nav.navigationWindow("asp/signup", 0);
+	//Alloy.Globals.nav.navigationWindow("asp/signup", 0);
 }
 
 function showForgetPassword(){
@@ -138,7 +137,7 @@ function doForgotPassword(){
 	params = {
 		email:$.box_value.children[0].value 
 	};
-	API.callByPost({url: "doforgotPassword", params:params}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "doforgotPassword", params:params}, function(responseText){
 		var res = JSON.parse(responseText);
 		alert(res.data);
 		closeBox();

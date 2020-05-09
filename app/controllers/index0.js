@@ -43,11 +43,11 @@ function init(){
 
 init();
 
-API.callByPost({url: "dateNow"}, function(responseText){
+Alloy.Globals.API.callByPost({url: "dateNow"}, function(responseText){
 	var res = JSON.parse(responseText);
 	
 	if(res.status != "error"){
-		common.sync_time(res.data);
+		Alloy.Globals.common.sync_time(res.data);
 	}
 	
 });

@@ -1,0 +1,22 @@
+<Alloy>
+	<Window title="Points" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert">
+			<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" >
+				<View left="0" width="20%" onClick="closeWindow">
+		         	<ImageView left='10' width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Points</Label>
+		     	</View>
+		 	</View>
+			<TableView dataCollection="points" bubbleParent="false" class='hfill wfill vert conthsize contwfill table_blank' top="0">
+				<TableViewRow>
+					<View class="hsize vert rounded" width= "75%" top="10" backgroundColor="#fff">
+						<Label class="h4 wfill hsize bold" textAlign="center" top="10" color="#000" text="{points}"/>
+						<Label class="h5 wsize hsize" bottom= "10" color="#000"  text="{description}"/>
+					</View>
+				</TableViewRow>
+			</TableView>
+		</View>
+	</Window>
+</Alloy>

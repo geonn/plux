@@ -18,7 +18,7 @@
                     <TextField maxLength="30" hintText="Mobile Number *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
                 <View backgroundColor="#fba81c" id="password" value="" class="wfill hsize padding rounded" top="0">
-                    <TextField maxLength="20" passwordMask="true" hintText="Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                    <TextField maxLength="30" passwordMask="true" hintText="Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
                 <View backgroundColor="#fba81c" skip="1" id="password2" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" passwordMask="true" hintText="Confirm Password *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>

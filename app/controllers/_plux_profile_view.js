@@ -34,7 +34,7 @@ function render_personal_health(arr){
 function refresh(callback){
 	
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
-	API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		callback(arr);
@@ -56,7 +56,7 @@ function addRecord(){
 		type: personal_health_type,
 		val:$.box_value.value 
 	};
-	API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
 		var res = JSON.parse(responseText);
 		refresh(render_personal_health);
 		closeBox();
@@ -109,7 +109,7 @@ $.tblview.addEventListener("longpress", function(e){
 				status: 2
 			};
 			loading.start();
-			API.callByPost({url: "changeRecordStatus", params:params}, function(responseText){
+			Alloy.Globals.API.callByPost({url: "changeRecordStatus", params:params}, function(responseText){
 				var res = JSON.parse(responseText);
 				refresh(render_personal_health);
 				closeBox();

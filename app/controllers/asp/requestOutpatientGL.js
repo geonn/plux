@@ -6,6 +6,7 @@ var name = Ti.App.Properties.getString('fullname');
 var loading = Alloy.createController('loading'); 
 var error_message = "";
 
+
 function init(){
 	//loading.start();
 	$.win.add(loading.getView());
@@ -32,7 +33,7 @@ function doSubmit(){
     var error_message = "";
     for (var i=0; i < forms_arr.length - 1; i++) {
         if(forms_arr[i].format == "photo" && forms_arr[i].children[2].attached){
-            _.extend(params, {Filedata: forms_arr[i].children[2].filedata});
+            Alloy.Globals._.extend(params, {Filedata: forms_arr[i].children[2].filedata});
         }else if(forms_arr[i].format == "photo" && !forms_arr[i].children[2].attached){
             error_message += "Please upload your referral letter\n";
         }else{
@@ -49,7 +50,7 @@ function doSubmit(){
     }
     params["u_id"] = Ti.App.Properties.getString('u_id');
     loading.start();
-    API.callByPost({url: "submitOutpatientForm", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
+    Alloy.Globals.API.callByPost({url: "submitOutpatientForm", new: true, domain: "FREEJINI_DOMAIN", params: params}, function(responseText){
             var result = JSON.parse(responseText);
             
             var dialog = Ti.UI.createAlertDialog({
@@ -117,7 +118,7 @@ function popout(e){
         alert("Sorry, the "+e.source.children[0].hintText+" listing is empty. Please contact our helpdesk for help.");
         return;
     }
-    var options_arr = _.pluck(e.source.data, e.source.option_name);
+    var options_arr = Alloy.Globals._.pluck(e.source.data, e.source.option_name);
     options_arr.push("Cancel");;
     var dialog = Ti.UI.createOptionDialog({
         cancel: (options_arr.length > 0)?options_arr.length - 1:0,
@@ -142,7 +143,7 @@ function loadComboBox(e){
     indicator.show();
     e.source.add(indicator);
     var params = "CORPCODE="+corpcode+"&memno="+memno+"&empno="+empno;
-    API.callByGet({url: e.source.url, params: params }, {
+    Alloy.Globals.API.callByGet({url: e.source.url, params: params }, {
         onload: function(responseText){
             var result = JSON.parse(responseText);
             e.source.data = result;
@@ -172,6 +173,6 @@ function camera_callback(event){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }

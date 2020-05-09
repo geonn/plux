@@ -1,7 +1,7 @@
 // Arguments passed into this controller can be accessed off of the `$.args` object directly or:
 var args = $.args;
 var u_id;
-common.construct($);
+Alloy.Globals.common.construct($);
 
 init();
 
@@ -12,9 +12,17 @@ function init(){
 	if(u_id != ""){
 		$.name.value	= Ti.App.Properties.getString('fullname') || "";
 	}
-
-
 }
+
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+
+function IsNumeric(input){
+    return (input - 0) == input && (''+input).trim().length > 0;
+}
+
 function hideKeyboard(){
 	$.mobile.blur();
 	$.name.blur();
@@ -31,43 +39,43 @@ function submitFeedback(){
 	var comment     = $.comment.value;
 
 	if(name == ""){
-		common.createAlert("Error", "Please fill in your name" );
+		Alloy.Globals.common.createAlert("Error", "Please fill in your name" );
 		return false;
 	}
 
 	if(email  == ""){
-		common.createAlert("Error", "Please fill in your email" );
+		Alloy.Globals.common.createAlert("Error", "Please fill in your email" );
 		return false;
 	}else if(validateEmail(email) != "1"){
-		common.createAlert("Error", "Please fill in an valid email");
+		Alloy.Globals.common.createAlert("Error", "Please fill in an valid email");
 		return false;
 	}
 
 	if(mobile  == ""){
-		common.createAlert("Error", "Please fill in your mobile number" );
+		Alloy.Globals.common.createAlert("Error", "Please fill in your mobile number" );
 		return false;
 	}else if(IsNumeric(mobile) == 0){
-		common.createAlert("Error", "Please fill in valid mobile number" );
+		Alloy.Globals.common.createAlert("Error", "Please fill in valid mobile number" );
 		return false;
 	}
 
 	if(comment  == ""){
-		common.createAlert("Error", "Please fill in your feedback/comment" );
+		Alloy.Globals.common.createAlert("Error", "Please fill in your feedback/comment" );
 		return false;
 	}
 
 
 	var params = "name="+name+"&email="+email+"&mobile="+mobile+"&comment="+comment+"&u_id="+u_id;
 
-	common.showLoading();
-	API.callByPost({url:"addFeedbackUrl", params: params}, function(responseText){
+	Alloy.Globals.common.showLoading();
+	Alloy.Globals.API.callByPost({url:"addFeedbackUrl", params: params}, function(responseText){
 		var res = JSON.parse(responseText);
 		if(res.status == "success"){
-			common.hideLoading();
-			common.createAlert("Success","Thanks for your feedback! " );
+			Alloy.Globals.common.hideLoading();
+			Alloy.Globals.common.createAlert("Success","Thanks for your feedback! " );
 			$.win.close();
 		}else{
-			common.hideLoading();
+			Alloy.Globals.common.hideLoading();
 		}
 	});
 
@@ -75,6 +83,6 @@ function submitFeedback(){
 
  if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){
-		nav.closeWindow($.win);
+		Alloy.Globals.nav.closeWindow($.win);
 	});
 }

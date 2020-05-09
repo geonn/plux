@@ -16,11 +16,11 @@ function render_menu(data){
 }
 
 function navToAdd(e){
-	nav.navigateWithArgs("myHealth/add", e.source.record);
+	Alloy.Globals.nav.navigateWithArgs("myHealth/add", e.source.record);
 }
 
 function refresh(){
-	API.callByPost({url: "getCategory", new: true, domain: "API_EPHARMACY", params:{}}, function(responseText)	{
+	Alloy.Globals.API.callByPost({url: "getCategory", new: true, domain: "API_EPHARMACY", params:{}}, function(responseText)	{
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
 		render_menu(arr);

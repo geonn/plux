@@ -54,9 +54,9 @@ function addField(title_text, value_text, view){
 		height: Ti.UI.SIZE,
 		
 	});
-	parent.add(title);
-	parent.add(value);
-	view.add(parent);
+	Alloy.Globals.common.parent.add(title);
+	Alloy.Globals.common.parent.add(value);
+	view.add(Alloy.Globals.common.parent);
 }
 
 
@@ -98,7 +98,7 @@ function refresh(callback){
 	}
 	loading.start();
 	
-	API.callByPost({url:"getPersonalInfoRecords", params: {last_updated: last_updated, u_id: u_id}}, function(responseText){
+	Alloy.Globals.API.callByPost({url:"getPersonalInfoRecords", params: {last_updated: last_updated, u_id: u_id}}, function(responseText){
 		
 		var res = JSON.parse(responseText);
 		var arr = res.data || null;
@@ -123,7 +123,7 @@ function addRecord(){
 		type: personal_health_type,
 		val:$.box_value.value 
 	};
-	API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
 		var res = JSON.parse(responseText);
 		model.saveArray(res.data);
 		refresh(render_personal_health);
@@ -141,19 +141,19 @@ function openBox(){
 }
 
 function switchListing(e){
-	var tab = parent({name: "tab"}, e.source);
+	var tab = Alloy.Globals.common.parent({name: "tab"}, e.source);
 	var text = $.firstTab.children[0];
 	var secondtext = $.secondTab.children[0];
 	
 	if(tab == 1){
 		personal_health_type = "Medication Records";
 		text.color = "#CE1D1C";
-		$.secondTab.backgroundColor = "transparent";
+		$.secondTab.backgroundColor = "transAlloy.Globals.common.parent";
 		secondtext.color = "#606060";
 	}else if(tab == 2){
 		personal_health_type = "Allergic History";
 		secondtext.color = "#CE1D1C";
-		$.firstTab.backgroundColor = "transparent";
+		$.firstTab.backgroundColor = "transAlloy.Globals.common.parent";
 		text.color = "#606060";
 	}
 	render_personal_health();

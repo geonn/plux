@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+
 //var fields = args.fields;
 var moment = require('alloy/moment');
 init();
@@ -36,7 +37,7 @@ function render_field_type(){
 				if(fields[i].type == "number"){
 					var min = (typeof fields[i].min_range != "undefined")?fields[i].min_range:0;
 					var max = (typeof fields[i].max_range != "undefined")?fields[i].max_range:0;
-					var options = _.range(min, max);
+					var options = Alloy.Globals._.range(min, max);
 				}else if(fields[i].type == "string"){
 					var options = fields[i].options;
 				}
@@ -73,7 +74,7 @@ function openPicker(e){
 	if(field.type == "number"){
 		var min = (typeof field.min_range != "undefined")?field.min_range:0;
 		var max = (typeof field.max_range != "undefined")?field.max_range:0;
-		var options = _.range(min, max);
+		var options = Alloy.Globals._.range(min, max);
 	}else if(field.type == "string"){
 		var options = field.options;
 	}
@@ -165,7 +166,7 @@ function SaveRecord(){
 	var model = Alloy.createCollection("health");
 	model.saveArray([params]);
 	$.win.close();
-	API.callByPost({url: "syncHealthData", params:params}, function(responseText)	{
+	Alloy.Globals.API.callByPost({url: "syncHealthData", params:params}, function(responseText)	{
 		var res = JSON.parse(responseText);
 	});
 }
@@ -176,6 +177,6 @@ $.win.addEventListener("close", function(e){
 
 if(Ti.Platform.osname == "android"){
 	$.btnBack.addEventListener('click', function(){  
-		nav.closeWindow($.win); 
+		Alloy.Globals.nav.closeWindow($.win); 
 	});
 }

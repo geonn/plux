@@ -3,7 +3,6 @@
  * @author Mads Møller
  * (c) 2014 Napp ApS
  */
-
 var args = arguments[0] || {};
 var audioPlayer;// = Ti.Media.createAudioPlayer();
 var timer;
