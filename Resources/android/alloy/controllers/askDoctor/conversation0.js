@@ -249,11 +249,11 @@ function Controller() {
         view_text_container.right = 10;
         /*
                                                                         if(typeof args.dr_id != "undefined"){
-                                                                        			view_text_container.setRight(60);
+                                                                        
+                                                                        	view_text_container.setRight(60);
                                                                         }else{
                                                                         	view_text_container.setRight(10);
                                                                         }*/
-
 
       }
       if (row.format == "link") {
@@ -285,10 +285,10 @@ function Controller() {
                                                                                                                             message: 'Would you like to delete the message?',
                                                                                                                             title: 'Delete'
                                                                                                                           });
-                                                                                                                          dialog.addEventListener('click', function(ex){
+                                                                                                                        	  dialog.addEventListener('click', function(ex){
                                                                                                                          if (ex.index === ex.source.cancel){
-                                                                                                                        	 }else if(ex.index == 0){
-                                                                                                                        	 	var model = Alloy.createCollection("chat");
+                                                                                                                        		 }else if(ex.index == 0){
+                                                                                                                        		 	var model = Alloy.createCollection("chat");
                                                                                                                         	//model.removeById(m_id);
                                                                                                                          	//$.inner_area.remove(message_box);
                                                                                                                          }
@@ -871,4 +871,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file:///Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/map/Resources/android/alloy/controllers/askDoctor/conversation0.js.map
+//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\askDoctor\conversation0.js.map

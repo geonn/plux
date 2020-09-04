@@ -34,7 +34,7 @@ function Controller() {
 
 
   // Generated UI code
-  $.__views["index"] = Alloy.createController('slideshow', { id: "index", __parentSymbol: __parentSymbol });
+  $.__views["index"] = Alloy.createController('slideshow', { id: "index", __parentSymbol: __parentSymbol }).getViewEx({ recurse: true });
   $.__views["index"] && $.addTopLevelView($.__views["index"]);
   exports.destroy = function () {};
 
@@ -110,4 +110,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file:///Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/map/Resources/android/alloy/controllers/index0.js.map
+//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\index0.js.map

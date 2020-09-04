@@ -935,7 +935,7 @@ function contactServerByPostVideo(url, params) {
   return client;
 };
 
-function contactServerByPost(url, records) {
+function contactServerByPost(url, params) {
   var client = Ti.Network.createHTTPClient({
     timeout: 60000 });
 
@@ -947,7 +947,7 @@ function contactServerByPost(url, records) {
   console.log("after contactServerByPost");
   client.setRequestHeader('Connection', "close");
   client.setRequestHeader('Authorization', reward_token);
-  client.send(records);
+  client.send(params);
   return client;
 };
 

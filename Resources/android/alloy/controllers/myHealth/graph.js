@@ -243,4 +243,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file:///Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/map/Resources/android/alloy/controllers/myHealth/graph.js.map
+//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\myHealth\graph.js.map

@@ -27,14 +27,13 @@ var _ = require('/alloy/underscore')._,
 Backbone = require('/alloy/backbone'),
 CONST = require('/alloy/constants');
 
-exports.version = '1.14.6';
+exports.version = '1.15.1';
 exports._ = _;
 exports.Backbone = Backbone;
 
 var DEFAULT_WIDGET = 'widget';
-var TI_VERSION = Ti.version;
-var MW320_CHECK = false && TI_VERSION >= '3.2.0';
-var IDENTITY_TRANSFORM = true ? Ti.version >= '8.0.0' ? Ti.UI.createMatrix2D() : Ti.UI.create2DMatrix() : undefined;
+var MW320_CHECK = false;
+var IDENTITY_TRANSFORM = true ? Ti.UI.createMatrix2D ? Ti.UI.createMatrix2D() : Ti.UI.create2DMatrix() : undefined;
 var RESET = {
   bottom: null,
   left: null,

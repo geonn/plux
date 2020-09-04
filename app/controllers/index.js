@@ -38,7 +38,8 @@ function init(){
 			}
 		}
 	}else{
-		$.index.win.open();
+		var win = Alloy.createController("slideshow").getView();
+		win.open();
 	}
 }
 

@@ -111,11 +111,11 @@ exports.pushNotification = function (callback) {
       /*
                                           var payload = JSON.parse(e.payload);
                                           if (payload) {
-                                               callback({
+                                                callback({
                                                   error : false,
                                                   data : payload
                                               });
-                                           }*/
+                                            }*/
 
 
 

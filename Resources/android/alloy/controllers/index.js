@@ -34,7 +34,7 @@ function Controller() {
 
 
   // Generated UI code
-  $.__views["index"] = Alloy.createController('slideshow', { id: "index" });
+  $.__views["index"] = Alloy.createController('slideshow', { id: "index" }).getViewEx({ recurse: true });
   $.__views["index"] && $.addTopLevelView($.__views["index"]);
   exports.destroy = function () {};
 
@@ -84,7 +84,8 @@ function Controller() {
         }
       }
     } else {
-      $.index.win.open();
+      var win = Alloy.createController("slideshow").getView();
+      win.open();
     }
   }
 
@@ -111,4 +112,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file:///Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/map/Resources/android/alloy/controllers/index.js.map
+//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\index.js.map
