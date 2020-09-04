@@ -1,0 +1,45 @@
+<Alloy>
+	<Window title="Appointment" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert">
+			<View class="horz wfill" height="50" backgroundColor="#DEDEDE" platform="android" >
+				<View left="0" width="20%" onClick="closeWindow">
+		         	<ImageView left='10' width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">Appointment</Label>
+		     	</View>
+		 	</View>
+			<TableView dataCollection="appointment" onClick="popup" bubbleParent="false" class='hfill wfill vert conthsize contwfill table_blank' top="0">
+				<TableViewRow>
+					<View class="wfill padding vert rounded" date="{date}" clinic_tel="{clinic_tel}" height="120" backgroundColor="#55a939">
+						<View class="wfill hfill" left="5" touchEnabled="false" backgroundColor="#fff">
+							<View class="hfill" touchEnabled="false" width="30%" left="0" top="10" bottom="10">
+								<View class="wfill vert hsize" touchEnabled="false" left="10" top="0">
+									<Label class="wfill hsize h6" touchEnabled="false" text="REMAIN"/>
+									<Label class="h4 wfill hsize bold " touchEnabled="false" text="{fromNow}"/>
+								</View>
+								<View class="wfill vert" touchEnabled="false" height="40" left="10" bottom="0">
+									<Label class="wfill hsize h6" touchEnabled="false" text="DATE"/>
+									<Label class="h5 wfill hsize bold " touchEnabled="false" text="{date}"/>
+								</View>
+							</View>
+							<View zIndex="100" touchEnabled="false" width="30" height="30" borderRadius="15" backgroundColor="#535a74" top="-20" left="Alloy.Globals.layout.appointment.dotted_left"></View>
+							<View zIndex="100" touchEnabled="false" width="30" height="30" borderRadius="15" backgroundColor="#535a74" bottom="-20" left="Alloy.Globals.layout.appointment.dotted_left"></View>
+							<View class="hfill" touchEnabled="false" width="1" left="30%" top="10" bottom="10" backgroundColor="#eee"></View>
+							<View class="hfill" touchEnabled="false" width="70%" left="30%" top="10" bottom="10">
+								<View class="wfill vert hsize" touchEnabled="false" left="10" top="0">
+									<Label class="wfill hsize h6" touchEnabled="false" text="CLINIC NAME"></Label>
+									<Label class="h5 wfill hsize bold " maxLines="2" minimumFontSize="10" touchEnabled="false" text="{clinic_name}"></Label>
+								</View>
+								<View class="wfill vert" touchEnabled="false" height="40" left="10" bottom="0">
+									<Label class="wfill hsize h6" touchEnabled="false" text="DOCTOR NAME"/>
+									<Label class="h5 wfill hsize bold " minimumFontSize="10" touchEnabled="false" text="{dr_name}"/>
+								</View>
+							</View>
+						</View>
+					</View>
+				</TableViewRow>
+			</TableView>
+		</View>
+	</Window>
+</Alloy>
