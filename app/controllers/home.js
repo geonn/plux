@@ -1,6 +1,30 @@
 var args = arguments[0] || {};
 var expandmode = false;
 var home = true;
+
+var FirebaseCore = require('firebase.core');
+Alloy.Globals.FirebaseAnalytics = require('firebase.analytics');
+console.log(FirebaseCore.configure()+" check true or false");
+// Get the App Instance ID
+Ti.API.info('App Instance ID: ' + Alloy.Globals.FirebaseAnalytics.appInstanceID);
+
+// Log to the Firebase console
+Alloy.Globals.FirebaseAnalytics.log('My_Event', { name: "homepage"});
+
+// Set user-property string
+Alloy.Globals.FirebaseAnalytics.setUserPropertyString({
+  name: 'onn',
+  value: 'yes'
+});
+
+// Set User-ID
+Alloy.Globals.FirebaseAnalytics.userID = 'onn';
+
+Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
+  screenName: 'HomePage',
+  screenClass: "Homepage"
+});
+
 //var SCANNER = require("scanner");
 var loading = Alloy.createController('loading');
 var new_menu = [
@@ -17,21 +41,24 @@ var new_menu = [
 	{mod:"askDoctor/pharmacist_forms", is_asp:1, title: "ASK PHARMACIST", onClick: navWindow, subtitle: "Online pharmacist consultation", image_path: "/images/menu_image/pharmacist.png"},
 	{mod:"benefit", is_asp:1, title: "FLEXI BENEFIT", onClick: navWindow, subtitle: "Make your benefit more flexible", image_path: "/images/menu_image/benefit_square.jpg"},
 	{mod:"myMedicalRecord", is_asp:0, title: "MY MEDICAL RECORD", onClick: navWindow, subtitle: "Blood test or medical report", image_path: "/images/menu_image/myMedicalRecord_square.jpg"},
+	{mod:"payslip/index", is_asp:0, title: "PAYSLIP", onClick: navWindow, subtitle: "To check your payslip", image_path: "/images/menu_image/payslip_square.jpg"},
 	{mod:"clinicLocator", is_asp:1, title: "CLINIC LOCATOR", onClick: navWindow, subtitle: "Clinic, dental & optical location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod:"hospital/index", is_asp:1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "Hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg"},
 	{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
+	{mod: "appointment/index", is_asp:0, title: "APPOINTMENT", onClick: navWindow, subtitle: "Doctor appointment", image_path: "/images/menu_image/calendar_icon.jpg"},
+	{mod: "voucher", is_asp:0, title: "VOUCHER", onClick: navWindow, subtitle: "Health Screening Voucher", image_path: "/images/menu_image/voucher_square.jpeg"},
 	//{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "ePharmacy/index", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide();
-
+Alloy.Globals.socket.connect({});
 var PUSH = require('enablePush');
 PUSH.pushNotification({receivedPush: received_push});
 
 setTimeout(function(){
 	PUSH.unsubscribeToAll({callback: function(){
-		PUSH.subscribeToChannel("sound2");
+		PUSH.subscribeToChannel("sound");
 	}});
 }, 2000);
 /*
@@ -80,8 +107,6 @@ function received_push(res){
 
 				if((data.target == "conversation" || data.target == "askDoctor/conversation") && data.room_id != room_id && Alloy.Globals.push_redirect){
 					redirect(data);
-						}else if(target_page != data.target && Alloy.Globals.push_redirect){
-								redirect(data);
 						}else {
 							if(data.extra=="survey"){
 								var dialog = Titanium.UI.createOptionDialog({
@@ -232,7 +257,7 @@ function init(){
 	loading.start();
 	checkserviceByCorpcode();
 	var AppVersionControl = require('AppVersionControl');
-	AppVersionControl.checkAndUpdate($.win);
+	AppVersionControl.checkAndUpdate();
 
 	refreshHeaderInfo();
 
@@ -375,7 +400,13 @@ function redirect(e){
 }
 
 function navWindow(e){
+	
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
+	Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
+	  screenName: source.title,
+	  screenClass: source.title
+	});
+	Alloy.Globals.FirebaseAnalytics.log('My_Event', { name: source.title});
 	if(source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
 			Alloy.Globals.nav.navigationWindow("asp/"+source.mod);
@@ -442,7 +473,11 @@ function navWindow(e){
 		}else{
 			Alloy.Globals.nav.navigationWindow("plux_profile");
 		}
+	}else if(source.mod == "voucher"){
+		var url = "https://dellhs.aspmedic.com/apps/voucher?corpcode="+Ti.App.Properties.getString('corpcode')+"&memno="+Ti.App.Properties.getString('memno')+"&empno="+Ti.App.Properties.getString('empno');
+		Alloy.Globals.nav.navigationWindow("webview","","", {title: "Health Screening Voucher",url: url});
 	}else{
+		console.log(source.mod);
 		Alloy.Globals.nav.navigationWindow(source.mod);
 	}
 }
@@ -489,20 +524,6 @@ function checkNewRoom(path, category){
 }
 
 function logoutUser(){
-    Ti.App.Properties.removeProperty('reward_token');
-	Ti.App.Properties.removeProperty('fullname');
-	Ti.App.Properties.removeProperty('plux_user_status');
-	Ti.App.Properties.removeProperty('last_login');
-	Ti.App.Properties.removeProperty('u_id');
-	Ti.App.Properties.removeProperty('ic_no');
-	Ti.App.Properties.removeProperty('plux_email');
-	Ti.App.Properties.removeProperty('email');
-	Ti.App.Properties.removeProperty('memno');
-	Ti.App.Properties.removeProperty('empno');
-	Ti.App.Properties.removeProperty('corpcode');
-	Ti.App.Properties.removeProperty('cardno');
-	Ti.App.Properties.removeProperty('isver');
-	Ti.App.Properties.removeProperty("dependent");
 	Ti.App.Properties.removeAllProperties();
 	var win = Alloy.createController("login").getView();
 	win.open();

@@ -35,7 +35,7 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "ASP eCARD", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "ASP eCARD", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
   $.__views["main"] = Ti.UI.createScrollView(
@@ -43,26 +43,26 @@ function Controller() {
 
   $.__views["win"].add($.__views["main"]);
   if (true) {
-    $.__views["__alloyId303"] = Ti.UI.createView(
-    { borderWidth: 0, top: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId303" });
+    $.__views["__alloyId340"] = Ti.UI.createView(
+    { borderWidth: 0, top: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId340" });
 
-    $.__views["main"].add($.__views["__alloyId303"]);
-    $.__views["__alloyId304"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId304" });
+    $.__views["main"].add($.__views["__alloyId340"]);
+    $.__views["__alloyId341"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId341" });
 
-    $.__views["__alloyId303"].add($.__views["__alloyId304"]);
+    $.__views["__alloyId340"].add($.__views["__alloyId341"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId304"].add($.__views["btnBack"]);
-    $.__views["__alloyId305"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId305" });
+    $.__views["__alloyId341"].add($.__views["btnBack"]);
+    $.__views["__alloyId342"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId342" });
 
-    $.__views["__alloyId303"].add($.__views["__alloyId305"]);
+    $.__views["__alloyId340"].add($.__views["__alloyId342"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'eCard List', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId305"].add($.__views["pageTitle"]);
+    $.__views["__alloyId342"].add($.__views["pageTitle"]);
   }
   exports.destroy = function () {};
 

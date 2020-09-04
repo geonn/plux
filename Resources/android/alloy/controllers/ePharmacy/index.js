@@ -35,39 +35,39 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "e-Pharmacy", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "e-Pharmacy", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["win"].rightNavButton = undefined;$.__views["__alloyId488"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId488" });
+  $.__views["win"].rightNavButton = undefined;$.__views["__alloyId525"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId525" });
 
-  $.__views["win"].add($.__views["__alloyId488"]);
+  $.__views["win"].add($.__views["__alloyId525"]);
   if (true) {
-    $.__views["__alloyId489"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId489" });
+    $.__views["__alloyId526"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId526" });
 
-    $.__views["__alloyId488"].add($.__views["__alloyId489"]);
-    $.__views["__alloyId490"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId490" });
+    $.__views["__alloyId525"].add($.__views["__alloyId526"]);
+    $.__views["__alloyId527"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId527" });
 
-    $.__views["__alloyId489"].add($.__views["__alloyId490"]);
-    $.__views["__alloyId491"] = Ti.UI.createImageView(
-    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId491" });
+    $.__views["__alloyId526"].add($.__views["__alloyId527"]);
+    $.__views["__alloyId528"] = Ti.UI.createImageView(
+    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId528" });
 
-    $.__views["__alloyId490"].add($.__views["__alloyId491"]);
-    closeWindow ? $.addListener($.__views["__alloyId491"], 'click', closeWindow) : __defers['$.__views["__alloyId491"]!click!closeWindow'] = true;$.__views["pageTitle"] = Ti.UI.createView(
+    $.__views["__alloyId527"].add($.__views["__alloyId528"]);
+    closeWindow ? $.addListener($.__views["__alloyId528"], 'click', closeWindow) : __defers['$.__views["__alloyId528"]!click!closeWindow'] = true;$.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: "79%" });
 
-    $.__views["__alloyId489"].add($.__views["pageTitle"]);
-    $.__views["__alloyId492"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'e-Pharmacy', textAlign: "center", id: "__alloyId492" });
+    $.__views["__alloyId526"].add($.__views["pageTitle"]);
+    $.__views["__alloyId529"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'e-Pharmacy', textAlign: "center", id: "__alloyId529" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId492"]);
+    $.__views["pageTitle"].add($.__views["__alloyId529"]);
   }
   $.__views["container"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "container", backgroundColor: "#ffffff" });
 
-  $.__views["__alloyId488"].add($.__views["container"]);
+  $.__views["__alloyId525"].add($.__views["container"]);
   $.__views["category_bar"] = Ti.UI.createScrollView(
   { layout: "horizontal", width: Ti.UI.FILL, height: Ti.UI.SIZE, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.SIZE, id: "category_bar" });
 
@@ -123,7 +123,7 @@ function Controller() {
   // functions are not defined until after the controller code
   // is executed.
   if (true) {
-    __defers['$.__views["__alloyId491"]!click!closeWindow'] && $.addListener($.__views["__alloyId491"], 'click', closeWindow);}
+    __defers['$.__views["__alloyId528"]!click!closeWindow'] && $.addListener($.__views["__alloyId528"], 'click', closeWindow);}
 
 
   // Extend the $ instance with all functions and properties

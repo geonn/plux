@@ -35,38 +35,38 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Notification", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Notification", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId362"] = Ti.UI.createView(
-  { borderWidth: 0, id: "__alloyId362" });
+  $.__views["__alloyId399"] = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId399" });
 
-  $.__views["win"].add($.__views["__alloyId362"]);
+  $.__views["win"].add($.__views["__alloyId399"]);
   $.__views["aView"] = Ti.UI.createView(
   { borderWidth: 0, id: "aView", height: Ti.UI.SIZE, top: 0, layout: "vertical" });
 
-  $.__views["__alloyId362"].add($.__views["aView"]);
+  $.__views["__alloyId399"].add($.__views["aView"]);
   if (true) {
-    $.__views["__alloyId363"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId363" });
+    $.__views["__alloyId400"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId400" });
 
-    $.__views["aView"].add($.__views["__alloyId363"]);
-    $.__views["__alloyId364"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId364" });
+    $.__views["aView"].add($.__views["__alloyId400"]);
+    $.__views["__alloyId401"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId401" });
 
-    $.__views["__alloyId363"].add($.__views["__alloyId364"]);
+    $.__views["__alloyId400"].add($.__views["__alloyId401"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId364"].add($.__views["btnBack"]);
-    $.__views["__alloyId365"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId365" });
+    $.__views["__alloyId401"].add($.__views["btnBack"]);
+    $.__views["__alloyId402"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId402" });
 
-    $.__views["__alloyId363"].add($.__views["__alloyId365"]);
+    $.__views["__alloyId400"].add($.__views["__alloyId402"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'My Notification', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId365"].add($.__views["pageTitle"]);
+    $.__views["__alloyId402"].add($.__views["pageTitle"]);
   }
   $.__views["recordTable"] = Ti.UI.createTableView(
   { contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, backgroundColor: "transparent", width: "100%", height: Ti.UI.FILL, id: "recordTable", top: 0, separatorColor: "#375540" });
@@ -75,7 +75,7 @@ function Controller() {
   $.__views["bigView"] = Ti.UI.createScrollView(
   { id: "bigView", zIndex: 99, height: Ti.UI.SIZE, layout: "vertical", backgroundColor: "#ffffff", opacity: 0.8, bottom: 0, width: "80%", visible: false });
 
-  $.__views["__alloyId362"].add($.__views["bigView"]);
+  $.__views["__alloyId399"].add($.__views["bigView"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a

@@ -35,43 +35,43 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "More", id: "win" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "More", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId628"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId628" });
+  $.__views["__alloyId664"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId664" });
 
-  $.__views["win"].add($.__views["__alloyId628"]);
+  $.__views["win"].add($.__views["__alloyId664"]);
   if (true) {
-    $.__views["__alloyId629"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId629" });
+    $.__views["__alloyId665"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId665" });
 
-    $.__views["__alloyId628"].add($.__views["__alloyId629"]);
-    $.__views["__alloyId630"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId630" });
+    $.__views["__alloyId664"].add($.__views["__alloyId665"]);
+    $.__views["__alloyId666"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId666" });
 
-    $.__views["__alloyId629"].add($.__views["__alloyId630"]);
+    $.__views["__alloyId665"].add($.__views["__alloyId666"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId630"].add($.__views["btnBack"]);
+    $.__views["__alloyId666"].add($.__views["btnBack"]);
     $.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: "90%" });
 
-    $.__views["__alloyId629"].add($.__views["pageTitle"]);
-    $.__views["__alloyId631"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'More', textAlign: "center", id: "__alloyId631" });
+    $.__views["__alloyId665"].add($.__views["pageTitle"]);
+    $.__views["__alloyId667"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'More', textAlign: "center", id: "__alloyId667" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId631"]);
+    $.__views["pageTitle"].add($.__views["__alloyId667"]);
   }
-  var __alloyId634 = [];$.__views["__alloyId635"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Edit Profile", mod: "profile", id: "__alloyId635" } };__alloyId634.push($.__views["__alloyId635"]);$.__views["__alloyId636"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Change Password", mod: "asp/changePassword", id: "__alloyId636" } };__alloyId634.push($.__views["__alloyId636"]);$.__views["__alloyId637"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Logout", mod: "logout", id: "__alloyId637" } };__alloyId634.push($.__views["__alloyId637"]);$.__views["section"] = Ti.UI.createListSection(
+  var __alloyId670 = [];$.__views["__alloyId671"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Edit Profile", mod: "profile", id: "__alloyId671" } };__alloyId670.push($.__views["__alloyId671"]);$.__views["__alloyId672"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Change Password", mod: "asp/changePassword", id: "__alloyId672" } };__alloyId670.push($.__views["__alloyId672"]);$.__views["__alloyId673"] = { properties: { color: "#000", backgroundColor: "#fff", title: "Logout", mod: "logout", id: "__alloyId673" } };__alloyId670.push($.__views["__alloyId673"]);$.__views["section"] = Ti.UI.createListSection(
   { id: "section", backgroundColor: "#fff" });
 
-  $.__views["section"].items = __alloyId634;var __alloyId638 = [];__alloyId638.push($.__views["section"]);$.__views["__alloyId632"] = Ti.UI.createListView(
-  { sections: __alloyId638, backgroundColor: "#fff", id: "__alloyId632" });
+  $.__views["section"].items = __alloyId670;var __alloyId674 = [];__alloyId674.push($.__views["section"]);$.__views["__alloyId668"] = Ti.UI.createListView(
+  { sections: __alloyId674, backgroundColor: "#fff", id: "__alloyId668" });
 
-  $.__views["__alloyId628"].add($.__views["__alloyId632"]);
-  navTo ? $.addListener($.__views["__alloyId632"], 'itemclick', navTo) : __defers['$.__views["__alloyId632"]!itemclick!navTo'] = true;exports.destroy = function () {};
+  $.__views["__alloyId664"].add($.__views["__alloyId668"]);
+  navTo ? $.addListener($.__views["__alloyId668"], 'itemclick', navTo) : __defers['$.__views["__alloyId668"]!itemclick!navTo'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -132,7 +132,7 @@ function Controller() {
     var appFile;
 
     if (true) {
-      appFile = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, filename);
+      appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     } else {
       appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     }
@@ -178,7 +178,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId632"]!itemclick!navTo'] && $.addListener($.__views["__alloyId632"], 'itemclick', navTo);
+  __defers['$.__views["__alloyId668"]!itemclick!navTo'] && $.addListener($.__views["__alloyId668"], 'itemclick', navTo);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

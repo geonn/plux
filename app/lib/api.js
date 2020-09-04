@@ -4,7 +4,7 @@
 var API_DOMAIN = "https://appsapi.aspmedic.com/aida/";
 var API_EPHARMACY = "https://epharmacy.freejini.com.my";
 var ERECEIPT_DOMAIN = "http://ereceipt.aspmedic.com/aida/";
-var FREEJINI_DOMAIN =  "http://plux.freejini.com.my";
+var FREEJINI_DOMAIN =  "https://app.aspmedic.com";
 var VCLINIC_DOMAIN = "https://vclinic.freejini.com.my";
 var REZA_DOMAIN = "http://asp.swancount.com";
 
@@ -365,14 +365,13 @@ exports.getNearbyClinic = function(e){
 
 exports.checkAppVersion = function(callback_download){
 	var appVersion = Ti.App.version;
-	
 	console.log(appVersion);
 	var url = checkAppVersionUrl + "&appVersion="+appVersion+"&appPlatform="+Titanium.Platform.osname;
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
-console.log(result);
+
 			if(result.status == "error"){
 				callback_download && callback_download(result);
 			}
@@ -383,6 +382,7 @@ console.log(result);
 		timeout : 60000  // in milliseconds
 	});
 	client.open("GET", url);
+	client.setRequestHeader('Connection', "close");
 	client.send();
 };
 
@@ -915,6 +915,7 @@ function contactServerByGet(url) {
 
 	client.open("GET", url);
 	client.setRequestHeader('Content-Type', "application/json");
+	client.setRequestHeader('Connection', "close");
 	client.setRequestHeader('Authorization', "Bearer "+reward_token);
 	client.send();
 	return client;
@@ -934,7 +935,7 @@ function contactServerByPostVideo(url,params) {
 	return client;
 };
 
-function contactServerByPost(url,records) {
+function contactServerByPost(url,params) {
 	var client = Ti.Network.createHTTPClient({
 		timeout : 60000
 	});
@@ -944,8 +945,9 @@ function contactServerByPost(url,records) {
 	var reward_token = Ti.App.Properties.getString('reward_token') || "";
 	client.open("POST", url);
 	console.log("after contactServerByPost");
+	client.setRequestHeader('Connection', "close");
 	client.setRequestHeader('Authorization', reward_token);
-	client.send(records);
+	client.send(params);
 	return client;
 };
 
@@ -994,9 +996,19 @@ exports.callByPost = function(e, onload, onerror){
 		}
 		_result.onload = function(ex) {
 			console.log("onload");
+			console.log(url);
 			var timeend = new Date();
 			var dif = timeend.getTime() - timestart.getTime();
-			console.log(url);
+			try{
+				JSON.parse(this.responseText);
+			}
+			catch(e){
+				console.log(this.responseText);
+				console.log('callbypost JSON exception');
+				COMMON.createAlert("Error", e.message, handler.onexception);
+				return;
+			}
+			
 			console.log(e.params);
 			console.log(timeend);
 			console.log(dif / 1000);

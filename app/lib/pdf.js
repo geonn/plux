@@ -106,7 +106,7 @@ function copyToTemp (srcFile, base, myurl) {
 	 // Test if External Storage (Android only)
 	 var myFileDir = Ti.Filesystem.applicationDataDirectory;
 	 if(Ti.Filesystem.isExternalStoragePresent()){
-	   myFileDir = Ti.Filesystem.externalStorageDirectory;
+	   myFileDir = Ti.Filesystem.applicationDataDirectory;
 	 }
 	   
 	 //var tempdir = Ti.Filesystem.getFile(myFileDir, base);

@@ -11,9 +11,27 @@
 		 	</View>
 			<TableView dataCollection="points" bubbleParent="false" class='hfill wfill vert conthsize contwfill table_blank' top="0">
 				<TableViewRow>
-					<View class="hsize vert rounded" width= "75%" top="10" backgroundColor="#fff">
-						<Label class="h4 wfill hsize bold" textAlign="center" top="10" color="#000" text="{points}"/>
-						<Label class="h5 wsize hsize" bottom= "10" color="#000"  text="{description}"/>
+					<View class="wfill padding rounded" height= "120" bottom="10" backgroundColor="#55a939">
+						<View id="container" class="wfill hfill" touchEnabled="false" backgroundColor="#fff" left="5">
+							<View class="hfill vert" touchEnabled="false" width= "30%" left="0" top="10" bottom="10">
+								<Label class="wfill hsize h3" touchEnabled="false" bottom="5" left="10" right="10" minimumFontSize="10" text="{type}"/>
+								<View class="wfill vert" touchEnabled="false" height="60" top="0">
+									<Label class="wfill hsize h4 bold" touchEnabled="false" left="10" right="10" minimumFontSize="10" text="{points}"/>
+								</View>
+								
+							</View>	
+							<View zIndex="100" touchEnabled="false" width="30" height="30" borderRadius="15" backgroundColor="#535a74" top="-20" left="{left}"></View>
+							<View zIndex="100" touchEnabled="false" width="30" height="30" borderRadius="15" backgroundColor="#535a74" bottom="-20" left="{left}"></View>
+							<View class='hfill' touchEnabled="false" width="1" left="30%" top="10" bottom="10" backgroundColor="#eeeeee"></View>
+							<View class="hfill" touchEnabled="false" width= "70%" left="30%" right="10" top="10" bottom="10">
+								<View class="hfill vert padding" touchEnabled="false" top="0" bottom="0">
+									<Label class="wfill hsize h6" touchEnabled="false" top="5" text="DATE"/>
+									<Label class="wfill hsize h6 bold" touchEnabled="false" top="0" text="{date}" minimumFontSize="10"/>
+									<Label class="wfill hsize h6" touchEnabled="false" top="10" text="DESCRIPTION"/>
+									<Label class="wfill hsize h6 bold" touchEnabled="false" top="0" text="{description}" minimumFontSize="10"/>
+								</View>
+							</View>
+						</View>	
 					</View>
 				</TableViewRow>
 			</TableView>

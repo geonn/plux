@@ -69,8 +69,6 @@ function saveLocal(param){
 	Alloy.Globals.API.callByPost({url: "sendASPPatientMessage",new: true, domain: "FREEJINI_DOMAIN", type: param.format, params:api_param}, function(responseText){
 
 		var res = JSON.parse(responseText);
-		
-		
 		Alloy.Globals.mocx.createCollection("chats", data_source);
 		
 		var new_arr = _.omit(local_save, "u_id");
@@ -138,6 +136,7 @@ function navToWebview(e){
 function pixelToDp(px) {
     return ( parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160));
 }
+
 
 function blurKeyboard(){
 	$.message_bar.blur();
@@ -251,6 +250,7 @@ function render_conversation(latest, local){
                 var res = JSON.parse(responseText);
                 Alloy.Globals.socket.sendMessage({room_id: room_id, callback: function(){}});
                 //Ti.App.fireEvent("sendMessage", {room_id: room_id});
+
             });
         }
 	    updateRow(data[i], latest);
@@ -386,13 +386,19 @@ function refresh(callback, firsttime){
 }
 
 function conversation_refresh(param){
+	console.log("conversation_refresh");
+	
 	var row = JSON.parse(param.msg);
-	if(row.room_id != room_id){
+	console.log(param);
+	if(typeof (row.room_id) != "undefined" && row.room_id != room_id){
 		return;
 	}
 	sound.play();
-	console.log("conversation_refresh");
 	
+	if(typeof(row.room_status) != "undefined" && row.room_status == 3){
+		args.status = row.room_status;
+		$.bottom_bar.hide();
+	}
 	row.status = 3;
 	Alloy.Globals._.extend(row, {u_id: u_id});
 	data = [row];
@@ -503,6 +509,7 @@ function updateTime(e){
   var u_id = Ti.App.Properties.getString('u_id') || 0;
   //Ti.App.fireEvent("update_room_member_time", {last_update: Alloy.Globals.common.now(), u_id: u_id, room_id: room_id, online: e.online});
   Alloy.Globals.socket.update_room_member_time({last_update: Alloy.Globals.common.now(), u_id: u_id, room_id: room_id, online: e.online});
+
 }
 
 function endSession(){
@@ -528,8 +535,11 @@ function closeRoom(){
     Alloy.Globals.API.callByPost({
             url: "closeRoom", new:true, domain: "FREEJINI_DOMAIN", params: {u_id: u_id, room_id: room_id}
         }, function(responseText){
-            Alloy.Globals.socket.sendMessage({room_id: room_id});
-            //Ti.App.fireEvent("sendMessage", {room_id: room_id});
+            var res = JSON.parse(responseText);
+			var new_arr = _.omit(res.data, "u_id");
+			new_arr['room_status'] ="3";
+			Alloy.Globals.socket.sendMessage({room_id: room_id, msg: JSON.stringify(new_arr), callback: function(){
+			}});
             closeWindow();
         });
 }

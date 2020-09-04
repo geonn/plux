@@ -35,75 +35,75 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "", navBarHidden: true });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "", navBarHidden: true });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
   $.__views["image_container"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "image_container", backgroundColor: "#fff" });
 
   $.__views["win"].add($.__views["image_container"]);
-  $.__views["__alloyId761"] = Ti.UI.createImageView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, image: "/images/gradient-bg.png", id: "__alloyId761" });
+  $.__views["__alloyId828"] = Ti.UI.createImageView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, image: "/images/gradient-bg.png", id: "__alloyId828" });
 
-  $.__views["win"].add($.__views["__alloyId761"]);
-  $.__views["__alloyId762"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId762" });
+  $.__views["win"].add($.__views["__alloyId828"]);
+  $.__views["__alloyId829"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId829" });
 
-  $.__views["win"].add($.__views["__alloyId762"]);
-  var __alloyId763 = [];
-  $.__views["__alloyId764"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, layout: "composite", id: "__alloyId764" });
+  $.__views["win"].add($.__views["__alloyId829"]);
+  var __alloyId830 = [];
+  $.__views["__alloyId831"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, layout: "composite", id: "__alloyId831" });
 
-  __alloyId763.push($.__views["__alloyId764"]);
-  $.__views["__alloyId765"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, bottom: 0, id: "__alloyId765" });
+  __alloyId830.push($.__views["__alloyId831"]);
+  $.__views["__alloyId832"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, bottom: 0, id: "__alloyId832" });
 
-  $.__views["__alloyId764"].add($.__views["__alloyId765"]);
-  $.__views["__alloyId766"] = Ti.UI.createView(
-  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId766" });
+  $.__views["__alloyId831"].add($.__views["__alloyId832"]);
+  $.__views["__alloyId833"] = Ti.UI.createView(
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId833" });
 
-  $.__views["__alloyId765"].add($.__views["__alloyId766"]);
-  $.__views["__alloyId767"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 18 }, text: 'Welcome,', textAlign: "center", id: "__alloyId767" });
+  $.__views["__alloyId832"].add($.__views["__alloyId833"]);
+  $.__views["__alloyId834"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 18 }, text: 'Welcome,', textAlign: "center", id: "__alloyId834" });
 
-  $.__views["__alloyId766"].add($.__views["__alloyId767"]);
-  $.__views["__alloyId768"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, text: 'a FREE app that for you to track your health, manage medical records, Free consultation from doctor and many more !', textAlign: "center", id: "__alloyId768" });
+  $.__views["__alloyId833"].add($.__views["__alloyId834"]);
+  $.__views["__alloyId835"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, text: 'a FREE app that for you to track your health, manage medical records, Free consultation from doctor and many more !', textAlign: "center", id: "__alloyId835" });
 
-  $.__views["__alloyId766"].add($.__views["__alloyId768"]);
-  $.__views["__alloyId769"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, layout: "composite", id: "__alloyId769" });
+  $.__views["__alloyId833"].add($.__views["__alloyId835"]);
+  $.__views["__alloyId836"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, layout: "composite", id: "__alloyId836" });
 
-  __alloyId763.push($.__views["__alloyId769"]);
-  $.__views["__alloyId770"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, bottom: 0, id: "__alloyId770" });
+  __alloyId830.push($.__views["__alloyId836"]);
+  $.__views["__alloyId837"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, bottom: 0, id: "__alloyId837" });
 
-  $.__views["__alloyId769"].add($.__views["__alloyId770"]);
-  $.__views["__alloyId771"] = Ti.UI.createView(
-  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId771" });
+  $.__views["__alloyId836"].add($.__views["__alloyId837"]);
+  $.__views["__alloyId838"] = Ti.UI.createView(
+  { borderWidth: 0, top: 10, left: 10, right: 10, bottom: 10, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId838" });
 
-  $.__views["__alloyId770"].add($.__views["__alloyId771"]);
-  $.__views["__alloyId772"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 18 }, text: 'AskDoctor', textAlign: "center", id: "__alloyId772" });
+  $.__views["__alloyId837"].add($.__views["__alloyId838"]);
+  $.__views["__alloyId839"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 18 }, text: 'AskDoctor', textAlign: "center", id: "__alloyId839" });
 
-  $.__views["__alloyId771"].add($.__views["__alloyId772"]);
-  $.__views["__alloyId773"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, text: 'Free consultation for Covid 19. 1 click to ASKDoctor button to link with our doctors', textAlign: "center", id: "__alloyId773" });
+  $.__views["__alloyId838"].add($.__views["__alloyId839"]);
+  $.__views["__alloyId840"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, text: 'Free consultation for Covid 19. 1 click to ASKDoctor button to link with our doctors', textAlign: "center", id: "__alloyId840" });
 
-  $.__views["__alloyId771"].add($.__views["__alloyId773"]);
+  $.__views["__alloyId838"].add($.__views["__alloyId840"]);
   $.__views["slogan"] = Ti.UI.createScrollableView(
-  { width: Ti.UI.FILL, views: __alloyId763, id: "slogan", height: "85%", pagingControlColor: "transparent", showPagingControl: true, disableBounce: true });
+  { width: Ti.UI.FILL, views: __alloyId830, id: "slogan", height: "85%", pagingControlColor: "transparent", showPagingControl: true, disableBounce: true });
 
-  $.__views["__alloyId762"].add($.__views["slogan"]);
-  $.__views["__alloyId774"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId774" });
+  $.__views["__alloyId829"].add($.__views["slogan"]);
+  $.__views["__alloyId841"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId841" });
 
-  $.__views["__alloyId762"].add($.__views["__alloyId774"]);
-  $.__views["__alloyId775"] = Ti.UI.createButton(
-  { borderRadius: 6, backgroundColor: "#ffffff", height: 40, color: "#CE1D1C", width: "60%", font: { fontFamily: "Roboto-Bold" }, borderColor: "#ffffff", textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, title: "Continue", id: "__alloyId775" });
+  $.__views["__alloyId829"].add($.__views["__alloyId841"]);
+  $.__views["__alloyId842"] = Ti.UI.createButton(
+  { borderRadius: 6, backgroundColor: "#ffffff", height: 40, color: "#CE1D1C", width: "60%", font: { fontFamily: "Roboto-Bold" }, borderColor: "#ffffff", textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER, title: "Continue", id: "__alloyId842" });
 
-  $.__views["__alloyId774"].add($.__views["__alloyId775"]);
-  do_continue ? $.addListener($.__views["__alloyId775"], 'click', do_continue) : __defers['$.__views["__alloyId775"]!click!do_continue'] = true;exports.destroy = function () {};
+  $.__views["__alloyId841"].add($.__views["__alloyId842"]);
+  do_continue ? $.addListener($.__views["__alloyId842"], 'click', do_continue) : __defers['$.__views["__alloyId842"]!click!do_continue'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -212,7 +212,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId775"]!click!do_continue'] && $.addListener($.__views["__alloyId775"], 'click', do_continue);
+  __defers['$.__views["__alloyId842"]!click!do_continue'] && $.addListener($.__views["__alloyId842"], 'click', do_continue);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

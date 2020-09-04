@@ -80,5 +80,6 @@
     <string name="any_medical_condition_2">Do you have any medical condition(s) *</string>
     <string name="pregnant_or_breastfeeding">Are you pregnant or breastfeeding? *</string>
     <string name="any_side_effect">Are there any side effect(s)? *</string>
-    
+    <string name="Call">Call</String>
+    <string name="AddToCalender">Add to Calendar</String>
 </resources>

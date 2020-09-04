@@ -77,9 +77,9 @@ function render_menu(){
 	var odd_counter = 0;
 	for (var i=0; i < menus.length; i++) {
 		var found = Alloy.Globals._.where(latest, {type: menus[i].type});
-		var top = Math.floor(i/2)*180+5;
+		var top = Math.floor(i/2)*190+10;
 		var left = (odd_counter % 2)?cell_width+10:5;
-		var view_container = $.UI.create("View", {classes:['vert', 'rounded'], width: cell_width, height: 175, top:top, left: left, backgroundColor: "#ffffff", record: menus[i]});
+		var view_container = $.UI.create("View", {classes:['vert', 'rounded'], width: cell_width, height: 185, top:top, left: left, backgroundColor: "#ffffff", record: menus[i]});
 		var label_title = $.UI.create("Label", {classes:['wsize','hsize','h5'], textAlign: "center", top:10, text: menus[i].title, touchEnabled: false});
 		var image_icon = $.UI.create("ImageView", {width: 50, height:50, top:10, bottom:10, image: menus[i].icon, touchEnabled: false});
 		var main_title = "";
@@ -95,7 +95,7 @@ function render_menu(){
 			$.menu.children[i].children[2].text = main_title+" \n"+menus[i].measurement;
 		}else{
 			var label_latest = $.UI.create("Label", {classes:['wfill','hsize','h6'], textAlign: "center", color: menus[i].color,  text: main_title+" \n"+menus[i].measurement, touchEnabled: false});
-			var button_record = $.UI.create("Button", {classes:['small_button','rounded','padding'], borderColor: menus[i].color, color: menus[i].color, width: Ti.UI.FILL, title: "Record", record: menus[i]});
+			var button_record = $.UI.create("Button", {classes:['small_button','rounded','padding'], backgroundColor: "#fff", borderColor: menus[i].color, color: menus[i].color, width: Ti.UI.FILL, title: "Record", record: menus[i]});
 			view_container.add(label_title);
 			view_container.add(image_icon);
 			view_container.add(label_latest);

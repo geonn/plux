@@ -35,39 +35,39 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Search", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Search", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId563"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId563" });
+  $.__views["__alloyId599"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId599" });
 
-  $.__views["win"].add($.__views["__alloyId563"]);
+  $.__views["win"].add($.__views["__alloyId599"]);
   if (true) {
-    $.__views["__alloyId564"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId564" });
+    $.__views["__alloyId600"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId600" });
 
-    $.__views["__alloyId563"].add($.__views["__alloyId564"]);
-    $.__views["__alloyId565"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId565" });
+    $.__views["__alloyId599"].add($.__views["__alloyId600"]);
+    $.__views["__alloyId601"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId601" });
 
-    $.__views["__alloyId564"].add($.__views["__alloyId565"]);
-    $.__views["__alloyId566"] = Ti.UI.createImageView(
-    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId566" });
+    $.__views["__alloyId600"].add($.__views["__alloyId601"]);
+    $.__views["__alloyId602"] = Ti.UI.createImageView(
+    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId602" });
 
-    $.__views["__alloyId565"].add($.__views["__alloyId566"]);
-    closeWindow ? $.addListener($.__views["__alloyId566"], 'click', closeWindow) : __defers['$.__views["__alloyId566"]!click!closeWindow'] = true;$.__views["pageTitle"] = Ti.UI.createView(
+    $.__views["__alloyId601"].add($.__views["__alloyId602"]);
+    closeWindow ? $.addListener($.__views["__alloyId602"], 'click', closeWindow) : __defers['$.__views["__alloyId602"]!click!closeWindow'] = true;$.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: Ti.UI.FILL });
 
-    $.__views["__alloyId564"].add($.__views["pageTitle"]);
-    $.__views["__alloyId567"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Search', textAlign: "center", id: "__alloyId567" });
+    $.__views["__alloyId600"].add($.__views["pageTitle"]);
+    $.__views["__alloyId603"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Search', textAlign: "center", id: "__alloyId603" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId567"]);
+    $.__views["pageTitle"].add($.__views["__alloyId603"]);
   }
   $.__views["result"] = Ti.UI.createTableView(
   { contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, backgroundColor: "transparent", id: "result" });
 
-  $.__views["__alloyId563"].add($.__views["result"]);
+  $.__views["__alloyId599"].add($.__views["result"]);
   navTo ? $.addListener($.__views["result"], 'click', navTo) : __defers['$.__views["result"]!click!navTo'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
@@ -125,7 +125,7 @@ function Controller() {
   // functions are not defined until after the controller code
   // is executed.
   if (true) {
-    __defers['$.__views["__alloyId566"]!click!closeWindow'] && $.addListener($.__views["__alloyId566"], 'click', closeWindow);}
+    __defers['$.__views["__alloyId602"]!click!closeWindow'] && $.addListener($.__views["__alloyId602"], 'click', closeWindow);}
   __defers['$.__views["result"]!click!navTo'] && $.addListener($.__views["result"], 'click', navTo);
 
   // Extend the $ instance with all functions and properties

@@ -9,18 +9,26 @@ var loading = Alloy.createController('loading');
 var error_message = "";
 var filedata = "";
 
-
 function init(){
     console.log(corpcode+" check corpcode");
     var forms_arr = $.forms.getChildren();
+    Alloy.Globals.API.callByGet({url: "tnc.aspx", params: "corpcode="+corpcode},  {
+        onload: function(responseText){
+            var result = JSON.parse(responseText);
+            console.log(result);
+            for (var i=0; i < result.length; i++) {
+           		var tnc = $.UI.create("Label", {classes:['wfill','hsize','h6'], bottom:5, color:"#fff", text: result[i]});
+           		$.tnc_value.add(tnc);
+            };
+        }
+    });
+    
     if(corpcode == "IFMY" || corpcode == "IFLP" ){
         for(var i=0; forms_arr.length > i; i++){
             console.log(forms_arr[i].id);
             if(forms_arr[i].id == "REMARKS" || forms_arr[i].id == "GSTAMT" || forms_arr[i].id == "MCDAYS" || forms_arr[i].id == "GLAMT" || forms_arr[i].id == "GLAMT"){
               
               $.forms.remove(forms_arr[i]);
-          	}else if(forms_arr[i].id=="tnc"){
-          		forms_arr[i].remove(forms_arr[i].children[1]);
           	}
         }
     }else if(corpcode == "SYNTHO"){
@@ -28,10 +36,23 @@ function init(){
             console.log(forms_arr[i].id);
             if(forms_arr[i].id == "GSTAMT" || forms_arr[i].id == "MCDAYS" || forms_arr[i].id == "GLAMT" || forms_arr[i].id == "GLAMT"){
               $.forms.remove(forms_arr[i]);
-          	}else if(forms_arr[i].id=="tnc"){
-      			forms_arr[i].remove(forms_arr[i].children[0]);
-      		}
+          	}
         }
+    }else if(corpcode == "SEAPG" || corpcode == "SEAJB" || corpcode == "SEASYS"){
+    	for(var i=0; $.forms.children.length > i; i++){
+            console.log(forms_arr[i].id);
+            if($.forms.children[i].id == "MEDICATION" || $.forms.children[i].id == "TREATMENT"){
+              $.forms.remove($.forms.children[i]);
+            }else if($.forms.children[i].id == 'DIAGNOSIS'){
+                console.log($.forms.children[i].children[0].hintText);
+                console.log($.forms.children[i].children[0].required);
+                $.forms.children[i].children[0].hintText = "Diagnosis";
+                console.log($.forms.children[i].children[0].hintText);
+                $.forms.children[i].children[0].required = 0;
+                console.log($.forms.children[i].children[0].required);
+            }
+        }
+        
     }else{
         console.log($.forms.children.length);
         for(var i=0; $.forms.children.length > i; i++){

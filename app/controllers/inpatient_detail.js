@@ -26,7 +26,6 @@ $.pdf.addEventListener('touchend', function(e){
 	
 	loading.start();
 	if(OS_IOS){
-	    console.log(data.pdfurl);
 		var win = Alloy.createController("webview", {url: data.pdfurl}).getView();
 		win.open();
 		loading.finish();

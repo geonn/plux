@@ -35,7 +35,7 @@ function Controller() {
 
   // Generated UI code
   $.__views["asp_profile"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Profile", backButtonTitle: "", id: "asp_profile", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "ASP Profile", backButtonTitle: "", id: "asp_profile", navTintColor: "#CE1D1C" });
 
   $.__views["asp_profile"] && $.addTopLevelView($.__views["asp_profile"]);
   $.__views["loadingBar"] = Ti.UI.createView(
@@ -46,62 +46,62 @@ function Controller() {
   { top: 10, left: 30, width: 60, id: "activityIndicator" });
 
   $.__views["loadingBar"].add($.__views["activityIndicator"]);
-  $.__views["__alloyId366"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial" }, top: 5, bottom: 10, text: "Loading", id: "__alloyId366" });
+  $.__views["__alloyId403"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial" }, top: 5, bottom: 10, text: "Loading", id: "__alloyId403" });
 
-  $.__views["loadingBar"].add($.__views["__alloyId366"]);
-  $.__views["__alloyId368"] = Ti.UI.createView(
-  { borderWidth: 0, id: "__alloyId368" });
+  $.__views["loadingBar"].add($.__views["__alloyId403"]);
+  $.__views["__alloyId405"] = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId405" });
 
   $.__views["moreBtn"] = Ti.UI.createImageView(
   { right: 0, id: "moreBtn", width: 30, image: "/images/list.png" });
 
-  $.__views["__alloyId368"].add($.__views["moreBtn"]);
-  $.__views["asp_profile"].rightNavButton = $.__views["__alloyId368"];$.__views["__alloyId369"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId369" });
+  $.__views["__alloyId405"].add($.__views["moreBtn"]);
+  $.__views["asp_profile"].rightNavButton = $.__views["__alloyId405"];$.__views["__alloyId406"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId406" });
 
-  $.__views["asp_profile"].add($.__views["__alloyId369"]);
+  $.__views["asp_profile"].add($.__views["__alloyId406"]);
   if (true) {
-    $.__views["__alloyId370"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId370" });
+    $.__views["__alloyId407"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId407" });
 
-    $.__views["__alloyId369"].add($.__views["__alloyId370"]);
-    $.__views["__alloyId371"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId371" });
+    $.__views["__alloyId406"].add($.__views["__alloyId407"]);
+    $.__views["__alloyId408"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId408" });
 
-    $.__views["__alloyId370"].add($.__views["__alloyId371"]);
+    $.__views["__alloyId407"].add($.__views["__alloyId408"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId371"].add($.__views["btnBack"]);
+    $.__views["__alloyId408"].add($.__views["btnBack"]);
     $.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: "80%" });
 
-    $.__views["__alloyId370"].add($.__views["pageTitle"]);
-    $.__views["__alloyId372"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'ASP Profile', textAlign: "center", id: "__alloyId372" });
+    $.__views["__alloyId407"].add($.__views["pageTitle"]);
+    $.__views["__alloyId409"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'ASP Profile', textAlign: "center", id: "__alloyId409" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId372"]);
-    $.__views["__alloyId373"] = Ti.UI.createView(
-    { borderWidth: 0, width: "auto", id: "__alloyId373" });
+    $.__views["pageTitle"].add($.__views["__alloyId409"]);
+    $.__views["__alloyId410"] = Ti.UI.createView(
+    { borderWidth: 0, width: "auto", id: "__alloyId410" });
 
-    $.__views["__alloyId370"].add($.__views["__alloyId373"]);
+    $.__views["__alloyId407"].add($.__views["__alloyId410"]);
     $.__views["moreBtn"] = Ti.UI.createImageView(
     { id: "moreBtn", width: 30, image: "/images/list.png" });
 
-    $.__views["__alloyId373"].add($.__views["moreBtn"]);
+    $.__views["__alloyId410"].add($.__views["moreBtn"]);
   }
-  $.__views["__alloyId374"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId374" });
+  $.__views["__alloyId411"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId411" });
 
-  $.__views["__alloyId369"].add($.__views["__alloyId374"]);
+  $.__views["__alloyId406"].add($.__views["__alloyId411"]);
   $.__views["profileContainer"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", id: "profileContainer", visible: false });
 
-  $.__views["__alloyId374"].add($.__views["profileContainer"]);
-  var __alloyId375 = [];
+  $.__views["__alloyId411"].add($.__views["profileContainer"]);
+  var __alloyId412 = [];
   $.__views["main"] = Ti.UI.createScrollableView(
-  { views: __alloyId375, id: "main", height: "80%", backgroundColor: "#ffffff" });
+  { views: __alloyId412, id: "main", height: "80%", backgroundColor: "#ffffff" });
 
   $.__views["profileContainer"].add($.__views["main"]);
   exports.destroy = function () {};

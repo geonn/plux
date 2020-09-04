@@ -35,104 +35,104 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Doctor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Doctor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId48"] = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId48" });
+  $.__views["__alloyId97"] = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId97" });
 
-  $.__views["win"].add($.__views["__alloyId48"]);
-  $.__views["__alloyId49"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, id: "__alloyId49" });
+  $.__views["win"].add($.__views["__alloyId97"]);
+  $.__views["__alloyId98"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, id: "__alloyId98" });
 
-  $.__views["__alloyId48"].add($.__views["__alloyId49"]);
+  $.__views["__alloyId97"].add($.__views["__alloyId98"]);
   if (true) {
-    $.__views["__alloyId50"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId50" });
+    $.__views["__alloyId99"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId99" });
 
-    $.__views["__alloyId49"].add($.__views["__alloyId50"]);
-    $.__views["__alloyId51"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId51" });
+    $.__views["__alloyId98"].add($.__views["__alloyId99"]);
+    $.__views["__alloyId100"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId100" });
 
-    $.__views["__alloyId50"].add($.__views["__alloyId51"]);
+    $.__views["__alloyId99"].add($.__views["__alloyId100"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId51"].add($.__views["btnBack"]);
-    closeWindow ? $.addListener($.__views["btnBack"], 'click', closeWindow) : __defers['$.__views["btnBack"]!click!closeWindow'] = true;$.__views["__alloyId52"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId52" });
+    $.__views["__alloyId100"].add($.__views["btnBack"]);
+    closeWindow ? $.addListener($.__views["btnBack"], 'click', closeWindow) : __defers['$.__views["btnBack"]!click!closeWindow'] = true;$.__views["__alloyId101"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId101" });
 
-    $.__views["__alloyId50"].add($.__views["__alloyId52"]);
+    $.__views["__alloyId99"].add($.__views["__alloyId101"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Ask Doctor', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId52"].add($.__views["pageTitle"]);
+    $.__views["__alloyId101"].add($.__views["pageTitle"]);
   }
-  $.__views["__alloyId53"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId53" });
+  $.__views["__alloyId102"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId102" });
 
-  $.__views["__alloyId49"].add($.__views["__alloyId53"]);
+  $.__views["__alloyId98"].add($.__views["__alloyId102"]);
   $.__views["chatroom"] = Ti.UI.createTableView(
   { contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, backgroundColor: "transparent", separatorStyle: "none", selectionStyle: "none", layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, bubbleParent: false, bottom: 110, top: 0, id: "chatroom" });
 
-  $.__views["__alloyId53"].add($.__views["chatroom"]);
-  var __alloyId75 = Alloy.Collections['chats'] || chats;function __alloyId76(e) {if (e && e.fromAdapter) {return;}var opts = __alloyId76.opts || {};var models = __alloyId75.models;var len = models.length;var rows = [];for (var i = 0; i < len; i++) {var __alloyId54 = models[i];__alloyId54.__transform = _.isFunction(__alloyId54.transform) ? __alloyId54.transform() : __alloyId54.toJSON();var __alloyId56 = Ti.UI.createTableViewRow(
+  $.__views["__alloyId102"].add($.__views["chatroom"]);
+  var __alloyId124 = Alloy.Collections['chats'] || chats;function __alloyId125(e) {if (e && e.fromAdapter) {return;}var opts = __alloyId125.opts || {};var models = __alloyId124.models;var len = models.length;var rows = [];for (var i = 0; i < len; i++) {var __alloyId103 = models[i];__alloyId103.__transform = _.isFunction(__alloyId103.transform) ? __alloyId103.transform() : __alloyId103.toJSON();var __alloyId105 = Ti.UI.createTableViewRow(
       {});
 
-      rows.push(__alloyId56);
-      var __alloyId58 = Ti.UI.createView(
-      { borderWidth: 0, layout: "vertical", height: Ti.UI.SIZE, borderRadius: "5", format: __alloyId54.__transform.format, width: "75%", top: 10, backgroundColor: __alloyId54.__transform.bgColor, left: __alloyId54.__transform.setLeft, right: __alloyId54.__transform.setRight });
+      rows.push(__alloyId105);
+      var __alloyId107 = Ti.UI.createView(
+      { borderWidth: 0, layout: "vertical", height: Ti.UI.SIZE, borderRadius: "5", format: __alloyId103.__transform.format, width: "75%", top: 10, backgroundColor: __alloyId103.__transform.bgColor, left: __alloyId103.__transform.setLeft, right: __alloyId103.__transform.setRight });
 
-      __alloyId56.add(__alloyId58);
-      var __alloyId60 = Ti.UI.createLabel(
-      { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: __alloyId54.__transform.sender_name_color, font: { fontFamily: "Roboto-Bold", fontSize: 12 }, top: 5, left: 10, text: __alloyId54.__transform.sender_name });
+      __alloyId105.add(__alloyId107);
+      var __alloyId109 = Ti.UI.createLabel(
+      { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: __alloyId103.__transform.sender_name_color, font: { fontFamily: "Roboto-Bold", fontSize: 12 }, top: 5, left: 10, text: __alloyId103.__transform.sender_name });
 
-      __alloyId58.add(__alloyId60);
-      var __alloyId62 = Ti.UI.createLabel(
-      { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: __alloyId54.__transform.sender_name_color, font: { fontFamily: "Roboto-Regular, arial", fontSize: 11 }, left: 10, bottom: 0, text: __alloyId54.__transform.created });
+      __alloyId107.add(__alloyId109);
+      var __alloyId111 = Ti.UI.createLabel(
+      { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: __alloyId103.__transform.sender_name_color, font: { fontFamily: "Roboto-Regular, arial", fontSize: 11 }, left: 10, bottom: 0, text: __alloyId103.__transform.created });
 
-      __alloyId58.add(__alloyId62);
-      var __alloyId64 = Ti.UI.createView(
+      __alloyId107.add(__alloyId111);
+      var __alloyId113 = Ti.UI.createView(
       { borderWidth: 0, height: 1, width: Ti.UI.FILL, backgroundColor: "#ccc", top: 5, left: 10, right: 10 });
 
-      __alloyId58.add(__alloyId64);
-      var __alloyId66 = Ti.UI.createView(
+      __alloyId107.add(__alloyId113);
+      var __alloyId115 = Ti.UI.createView(
       { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE });
 
-      __alloyId58.add(__alloyId66);
-      var __alloyId68 = Ti.UI.createLabel(
-      { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: __alloyId54.__transform.text_color, font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 5, left: 10, right: 10, bottom: 10, visible: __alloyId54.__transform.text_visible, text: __alloyId54.__transform.newText });
+      __alloyId107.add(__alloyId115);
+      var __alloyId117 = Ti.UI.createLabel(
+      { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: __alloyId103.__transform.text_color, font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 5, left: 10, right: 10, bottom: 10, visible: __alloyId103.__transform.text_visible, text: __alloyId103.__transform.newText });
 
-      __alloyId66.add(__alloyId68);
-      var __alloyId70 = Ti.UI.createImageView(
-      { top: 10, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: __alloyId54.__transform.image_height, visible: __alloyId54.__transform.photo_visible, image: __alloyId54.__transform.image });
+      __alloyId115.add(__alloyId117);
+      var __alloyId119 = Ti.UI.createImageView(
+      { top: 10, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: __alloyId103.__transform.image_height, visible: __alloyId103.__transform.photo_visible, image: __alloyId103.__transform.image });
 
-      __alloyId66.add(__alloyId70);
-      imageZoom ? $.addListener(__alloyId70, 'click', imageZoom) : __defers['__alloyId70!click!imageZoom'] = true;var __alloyId72 = Ti.UI.createView(
-      { borderWidth: 0, visible: __alloyId54.__transform.voice_visible, width: Ti.UI.FILL, height: 30 });
+      __alloyId115.add(__alloyId119);
+      imageZoom ? $.addListener(__alloyId119, 'click', imageZoom) : __defers['__alloyId119!click!imageZoom'] = true;var __alloyId121 = Ti.UI.createView(
+      { borderWidth: 0, visible: __alloyId103.__transform.voice_visible, width: Ti.UI.FILL, height: 30 });
 
-      __alloyId66.add(__alloyId72);
-      var __alloyId73 = Ti.UI.createImageView(
-      { new: true, image: "/images/play_button.png", voice: __alloyId54.__transform.voice, top: 0, height: 30, width: 30, left: 10, right: 10, zIndex: 10 });
+      __alloyId115.add(__alloyId121);
+      var __alloyId122 = Ti.UI.createImageView(
+      { new: true, image: "/images/play_button.png", voice: __alloyId103.__transform.voice, top: 0, height: 30, width: 30, left: 10, right: 10, zIndex: 10 });
 
-      __alloyId72.add(__alloyId73);
-      onPlayStopBtnClicked ? $.addListener(__alloyId73, 'click', onPlayStopBtnClicked) : __defers['__alloyId73!click!onPlayStopBtnClicked'] = true;var __alloyId74 = Ti.UI.createLabel(
+      __alloyId121.add(__alloyId122);
+      onPlayStopBtnClicked ? $.addListener(__alloyId122, 'click', onPlayStopBtnClicked) : __defers['__alloyId122!click!onPlayStopBtnClicked'] = true;var __alloyId123 = Ti.UI.createLabel(
       { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#fff", font: { fontFamily: "Roboto-Regular, arial" }, left: 50 });
 
-      __alloyId72.add(__alloyId74);
-    }$.__views["chatroom"].setData(rows);};__alloyId75.on('fetch destroy change add remove reset', __alloyId76);blurKeyboard ? $.addListener($.__views["chatroom"], 'click', blurKeyboard) : __defers['$.__views["chatroom"]!click!blurKeyboard'] = true;scrollChecker ? $.addListener($.__views["chatroom"], 'scroll', scrollChecker) : __defers['$.__views["chatroom"]!scroll!scrollChecker'] = true;$.__views["__alloyId77"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#00c8a9", height: 40, color: "#ffffff", width: Ti.UI.FILL, title: 'End Session', bottom: 60, id: "__alloyId77" });
+      __alloyId121.add(__alloyId123);
+    }$.__views["chatroom"].setData(rows);};__alloyId124.on('fetch destroy change add remove reset', __alloyId125);blurKeyboard ? $.addListener($.__views["chatroom"], 'click', blurKeyboard) : __defers['$.__views["chatroom"]!click!blurKeyboard'] = true;scrollChecker ? $.addListener($.__views["chatroom"], 'scroll', scrollChecker) : __defers['$.__views["chatroom"]!scroll!scrollChecker'] = true;$.__views["__alloyId126"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#00c8a9", height: 40, color: "#ffffff", width: Ti.UI.FILL, title: 'End Session', bottom: 60, id: "__alloyId126" });
 
-  $.__views["__alloyId48"].add($.__views["__alloyId77"]);
-  endSession ? $.addListener($.__views["__alloyId77"], 'click', endSession) : __defers['$.__views["__alloyId77"]!click!endSession'] = true;$.__views["bottom_bar"] = Ti.UI.createView(
+  $.__views["__alloyId97"].add($.__views["__alloyId126"]);
+  endSession ? $.addListener($.__views["__alloyId126"], 'click', endSession) : __defers['$.__views["__alloyId126"]!click!endSession'] = true;$.__views["bottom_bar"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, backgroundColor: "white", bottom: 10, id: "bottom_bar" });
 
-  $.__views["__alloyId48"].add($.__views["bottom_bar"]);
-  $.__views["__alloyId78"] = Ti.UI.createImageView(
-  { image: "/images/icons/icon_photo_camera.png", top: 15, bottom: 15, zIndex: 3, left: 10, height: 30, width: 30, id: "__alloyId78" });
+  $.__views["__alloyId97"].add($.__views["bottom_bar"]);
+  $.__views["__alloyId127"] = Ti.UI.createImageView(
+  { image: "/images/icons/icon_photo_camera.png", top: 15, bottom: 15, zIndex: 3, left: 10, height: 30, width: 30, id: "__alloyId127" });
 
-  $.__views["bottom_bar"].add($.__views["__alloyId78"]);
-  popCamera ? $.addListener($.__views["__alloyId78"], 'click', popCamera) : __defers['$.__views["__alloyId78"]!click!popCamera'] = true;$.__views["message_bar"] = Ti.UI.createTextArea(
+  $.__views["bottom_bar"].add($.__views["__alloyId127"]);
+  popCamera ? $.addListener($.__views["__alloyId127"], 'click', popCamera) : __defers['$.__views["__alloyId127"]!click!popCamera'] = true;$.__views["message_bar"] = Ti.UI.createTextArea(
   { color: "#fff", font: "fontSize: 40", width: Ti.UI.FILL, backgroundColor: "#439FE6", borderRadius: 5, id: "message_bar", top: 10, left: 50, right: 50, suppressReturn: false, lines: 1 });
 
   $.__views["bottom_bar"].add($.__views["message_bar"]);
@@ -144,7 +144,7 @@ function Controller() {
   { id: "enter_icon", backgroundColor: "#ffffff", image: "/images/icons/icon_enter.png", top: 10, bottom: 10, zIndex: 3, right: -50, height: 30, width: 30 });
 
   $.__views["action_btn"].add($.__views["enter_icon"]);
-  SendMessage ? $.addListener($.__views["enter_icon"], 'click', SendMessage) : __defers['$.__views["enter_icon"]!click!SendMessage'] = true;exports.destroy = function () {__alloyId75 && __alloyId75.off('fetch destroy change add remove reset', __alloyId76);};
+  SendMessage ? $.addListener($.__views["enter_icon"], 'click', SendMessage) : __defers['$.__views["enter_icon"]!click!SendMessage'] = true;exports.destroy = function () {__alloyId124 && __alloyId124.off('fetch destroy change add remove reset', __alloyId125);};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -223,8 +223,6 @@ function Controller() {
     Alloy.Globals.API.callByPost({ url: "sendASPPatientMessage", new: true, domain: "FREEJINI_DOMAIN", type: param.format, params: api_param }, function (responseText) {
 
       var res = JSON.parse(responseText);
-
-
       Alloy.Globals.mocx.createCollection("chats", data_source);
 
       var new_arr = _.omit(local_save, "u_id");
@@ -292,6 +290,7 @@ function Controller() {
   function pixelToDp(px) {
     return parseInt(px) / (Titanium.Platform.displayCaps.dpi / 160);
   }
+
 
   function blurKeyboard() {
     $.message_bar.blur();
@@ -405,6 +404,7 @@ function Controller() {
           var res = JSON.parse(responseText);
           Alloy.Globals.socket.sendMessage({ room_id: room_id, callback: function () {} });
           //Ti.App.fireEvent("sendMessage", {room_id: room_id});
+
         });
       }
       updateRow(data[i], latest);
@@ -540,13 +540,19 @@ function Controller() {
   }
 
   function conversation_refresh(param) {
+    console.log("conversation_refresh");
+
     var row = JSON.parse(param.msg);
-    if (row.room_id != room_id) {
+    console.log(param);
+    if (typeof row.room_id != "undefined" && row.room_id != room_id) {
       return;
     }
     sound.play();
-    console.log("conversation_refresh");
 
+    if (typeof row.room_status != "undefined" && row.room_status == 3) {
+      args.status = row.room_status;
+      $.bottom_bar.hide();
+    }
     row.status = 3;
     Alloy.Globals._.extend(row, { u_id: u_id });
     data = [row];
@@ -657,6 +663,7 @@ function Controller() {
     var u_id = Ti.App.Properties.getString('u_id') || 0;
     //Ti.App.fireEvent("update_room_member_time", {last_update: Alloy.Globals.common.now(), u_id: u_id, room_id: room_id, online: e.online});
     Alloy.Globals.socket.update_room_member_time({ last_update: Alloy.Globals.common.now(), u_id: u_id, room_id: room_id, online: e.online });
+
   }
 
   function endSession() {
@@ -682,8 +689,11 @@ function Controller() {
     Alloy.Globals.API.callByPost({
       url: "closeRoom", new: true, domain: "FREEJINI_DOMAIN", params: { u_id: u_id, room_id: room_id } },
     function (responseText) {
-      Alloy.Globals.socket.sendMessage({ room_id: room_id });
-      //Ti.App.fireEvent("sendMessage", {room_id: room_id});
+      var res = JSON.parse(responseText);
+      var new_arr = _.omit(res.data, "u_id");
+      new_arr['room_status'] = "3";
+      Alloy.Globals.socket.sendMessage({ room_id: room_id, msg: JSON.stringify(new_arr), callback: function () {
+        } });
       closeWindow();
     });
   }
@@ -1053,7 +1063,7 @@ function Controller() {
   // is executed.
   if (true) {
     __defers['$.__views["btnBack"]!click!closeWindow'] && $.addListener($.__views["btnBack"], 'click', closeWindow);}
-  __defers['__alloyId70!click!imageZoom'] && $.addListener(__alloyId70, 'click', imageZoom);__defers['__alloyId73!click!onPlayStopBtnClicked'] && $.addListener(__alloyId73, 'click', onPlayStopBtnClicked);__defers['$.__views["chatroom"]!click!blurKeyboard'] && $.addListener($.__views["chatroom"], 'click', blurKeyboard);__defers['$.__views["chatroom"]!scroll!scrollChecker'] && $.addListener($.__views["chatroom"], 'scroll', scrollChecker);__defers['$.__views["__alloyId77"]!click!endSession'] && $.addListener($.__views["__alloyId77"], 'click', endSession);__defers['$.__views["__alloyId78"]!click!popCamera'] && $.addListener($.__views["__alloyId78"], 'click', popCamera);__defers['$.__views["message_bar"]!change!switchIcon'] && $.addListener($.__views["message_bar"], 'change', switchIcon);__defers['$.__views["enter_icon"]!click!SendMessage'] && $.addListener($.__views["enter_icon"], 'click', SendMessage);
+  __defers['__alloyId119!click!imageZoom'] && $.addListener(__alloyId119, 'click', imageZoom);__defers['__alloyId122!click!onPlayStopBtnClicked'] && $.addListener(__alloyId122, 'click', onPlayStopBtnClicked);__defers['$.__views["chatroom"]!click!blurKeyboard'] && $.addListener($.__views["chatroom"], 'click', blurKeyboard);__defers['$.__views["chatroom"]!scroll!scrollChecker'] && $.addListener($.__views["chatroom"], 'scroll', scrollChecker);__defers['$.__views["__alloyId126"]!click!endSession'] && $.addListener($.__views["__alloyId126"], 'click', endSession);__defers['$.__views["__alloyId127"]!click!popCamera'] && $.addListener($.__views["__alloyId127"], 'click', popCamera);__defers['$.__views["message_bar"]!change!switchIcon'] && $.addListener($.__views["message_bar"], 'change', switchIcon);__defers['$.__views["enter_icon"]!click!SendMessage'] && $.addListener($.__views["enter_icon"], 'click', SendMessage);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

@@ -35,43 +35,43 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, navTintColor: "#CE1D1C", title: "Edit Profile", id: "win" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, navTintColor: "#CE1D1C", title: "Edit Profile", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId306"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId306" });
+  $.__views["__alloyId343"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId343" });
 
-  $.__views["win"].add($.__views["__alloyId306"]);
+  $.__views["win"].add($.__views["__alloyId343"]);
   if (true) {
-    $.__views["__alloyId307"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId307" });
+    $.__views["__alloyId344"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: "100%", backgroundColor: "#DEDEDE", id: "__alloyId344" });
 
-    $.__views["__alloyId306"].add($.__views["__alloyId307"]);
-    $.__views["__alloyId308"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId308" });
+    $.__views["__alloyId343"].add($.__views["__alloyId344"]);
+    $.__views["__alloyId345"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId345" });
 
-    $.__views["__alloyId307"].add($.__views["__alloyId308"]);
+    $.__views["__alloyId344"].add($.__views["__alloyId345"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId308"].add($.__views["btnBack"]);
+    $.__views["__alloyId345"].add($.__views["btnBack"]);
     $.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: "60%" });
 
-    $.__views["__alloyId307"].add($.__views["pageTitle"]);
-    $.__views["__alloyId309"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Edit Profile', textAlign: "center", id: "__alloyId309" });
+    $.__views["__alloyId344"].add($.__views["pageTitle"]);
+    $.__views["__alloyId346"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Edit Profile', textAlign: "center", id: "__alloyId346" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId309"]);
+    $.__views["pageTitle"].add($.__views["__alloyId346"]);
   }
   $.__views["main"] = Ti.UI.createScrollView(
   { id: "main", layout: "vertical", height: "100%", contentHeight: Ti.UI.SIZE });
 
-  $.__views["__alloyId306"].add($.__views["main"]);
-  $.__views["__alloyId310"] = Ti.UI.createImageView(
-  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "30dp", top: "30dp", image: "/images/asp_logo.png", id: "__alloyId310" });
+  $.__views["__alloyId343"].add($.__views["main"]);
+  $.__views["__alloyId347"] = Ti.UI.createImageView(
+  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "30dp", top: "30dp", image: "/images/asp_logo.png", id: "__alloyId347" });
 
-  $.__views["main"].add($.__views["__alloyId310"]);
+  $.__views["main"].add($.__views["__alloyId347"]);
   $.__views["email"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", id: "email", hintText: "Enter New Email", value: "" });
 
@@ -80,11 +80,11 @@ function Controller() {
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", id: "hp", hintText: "Enter New Mobile Number", top: 10, value: "" });
 
   $.__views["main"].add($.__views["hp"]);
-  $.__views["__alloyId311"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Save", top: 10, id: "__alloyId311" });
+  $.__views["__alloyId348"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Save", top: 10, id: "__alloyId348" });
 
-  $.__views["main"].add($.__views["__alloyId311"]);
-  submitPassword ? $.addListener($.__views["__alloyId311"], 'touchend', submitPassword) : __defers['$.__views["__alloyId311"]!touchend!submitPassword'] = true;exports.destroy = function () {};
+  $.__views["main"].add($.__views["__alloyId348"]);
+  submitPassword ? $.addListener($.__views["__alloyId348"], 'touchend', submitPassword) : __defers['$.__views["__alloyId348"]!touchend!submitPassword'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -151,7 +151,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId311"]!touchend!submitPassword'] && $.addListener($.__views["__alloyId311"], 'touchend', submitPassword);
+  __defers['$.__views["__alloyId348"]!touchend!submitPassword'] && $.addListener($.__views["__alloyId348"], 'touchend', submitPassword);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

@@ -35,17 +35,17 @@ function Controller() {
 
   // Generated UI code
   $.__views["rocket"] = Ti.UI.createWindow(
-  { backgroundColor: "#C41230", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, layout: "composite", id: "rocket", navBarHidden: true });
+  { barColor: "transparent", backgroundColor: "#C41230", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, layout: "composite", id: "rocket", navBarHidden: true });
 
   $.__views["rocket"] && $.addTopLevelView($.__views["rocket"]);
   $.__views["overlay"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, left: 0, backgroundColor: "#CB2228", id: "overlay" });
 
   $.__views["rocket"].add($.__views["overlay"]);
-  $.__views["__alloyId609"] = Ti.UI.createImageView(
-  { width: 160, borderRadius: 5, image: "/images/asp_logo.png", id: "__alloyId609" });
+  $.__views["__alloyId645"] = Ti.UI.createImageView(
+  { width: 160, borderRadius: 5, image: "/images/asp_logo.png", id: "__alloyId645" });
 
-  $.__views["rocket"].add($.__views["__alloyId609"]);
+  $.__views["rocket"].add($.__views["__alloyId645"]);
   $.__views["loading_text"] = Ti.UI.createLabel(
   { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial" }, id: "loading_text", bottom: 50 });
 

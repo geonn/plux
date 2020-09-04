@@ -59,7 +59,7 @@ if (Ti.Geolocation.locationServicesEnabled) {
 if (Ti.Geolocation.locationServicesEnabled) {
     Titanium.Geolocation.getCurrentPosition(function(e) {
         if (e.error) {
-            Ti.Alloy.Globals.API.error('Error: ' + e.error);
+            alert('Error: ' + e.error);
         } else {
             showCurLoc = true;
 	    	Ti.App.Properties.setString('latitude', e.coords.latitude);
@@ -114,11 +114,7 @@ function centerMap(e){
 			}
 			var result = JSON.parse(responseText);
 			var data = result.data;
-			console.log(data);
-			console.log('check here');
-			console.log(data.length);
 			for (var i=0; i < data.length; i++) {
-				console.log("nono");
 				addMarketToArray(data[i]);
 			};
 			isRefresh = 0;

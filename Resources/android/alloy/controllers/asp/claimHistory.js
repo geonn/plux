@@ -35,7 +35,7 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "My Claim History", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
   $.__views["main"] = Ti.UI.createView(
@@ -43,26 +43,26 @@ function Controller() {
 
   $.__views["win"].add($.__views["main"]);
   if (true) {
-    $.__views["__alloyId259"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId259" });
+    $.__views["__alloyId308"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId308" });
 
-    $.__views["main"].add($.__views["__alloyId259"]);
-    $.__views["__alloyId260"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId260" });
+    $.__views["main"].add($.__views["__alloyId308"]);
+    $.__views["__alloyId309"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId309" });
 
-    $.__views["__alloyId259"].add($.__views["__alloyId260"]);
+    $.__views["__alloyId308"].add($.__views["__alloyId309"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId260"].add($.__views["btnBack"]);
-    $.__views["__alloyId261"] = Ti.UI.createView(
-    { borderWidth: 0, width: "90%", id: "__alloyId261" });
+    $.__views["__alloyId309"].add($.__views["btnBack"]);
+    $.__views["__alloyId310"] = Ti.UI.createView(
+    { borderWidth: 0, width: "90%", id: "__alloyId310" });
 
-    $.__views["__alloyId259"].add($.__views["__alloyId261"]);
+    $.__views["__alloyId308"].add($.__views["__alloyId310"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'My Claim History', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId261"].add($.__views["pageTitle"]);
+    $.__views["__alloyId310"].add($.__views["pageTitle"]);
   }
   $.__views["listing"] = Ti.UI.createScrollView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "listing" });

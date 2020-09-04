@@ -20,9 +20,9 @@ exports.subscribeToChannel = function (channelId) {
     type: "android" == 'android' ? 'android' : 'ios' },
   function (e) {
     if (e.success) {
-      alert("subscribeTo " + channelId + " with deviceToken " + deviceToken);
+      console.log("subscribeTo " + channelId + " with deviceToken " + deviceToken);
     } else {
-      alert('Error:\n' + (
+      console.log('Error:\n' + (
       e.error && e.message || JSON.stringify(e)));
     }
   });

@@ -35,7 +35,7 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "MY HEALTH RECORD", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
   $.__views["main"] = Ti.UI.createView(
@@ -43,26 +43,26 @@ function Controller() {
 
   $.__views["win"].add($.__views["main"]);
   if (true) {
-    $.__views["__alloyId645"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId645" });
+    $.__views["__alloyId681"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId681" });
 
-    $.__views["main"].add($.__views["__alloyId645"]);
-    $.__views["__alloyId646"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId646" });
+    $.__views["main"].add($.__views["__alloyId681"]);
+    $.__views["__alloyId682"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "10%", id: "__alloyId682" });
 
-    $.__views["__alloyId645"].add($.__views["__alloyId646"]);
+    $.__views["__alloyId681"].add($.__views["__alloyId682"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId646"].add($.__views["btnBack"]);
+    $.__views["__alloyId682"].add($.__views["btnBack"]);
     $.__views["pageTitle"] = Ti.UI.createView(
     { borderWidth: 0, id: "pageTitle", width: "80%" });
 
-    $.__views["__alloyId645"].add($.__views["pageTitle"]);
-    $.__views["__alloyId647"] = Ti.UI.createLabel(
-    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId647" });
+    $.__views["__alloyId681"].add($.__views["pageTitle"]);
+    $.__views["__alloyId683"] = Ti.UI.createLabel(
+    { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Health Info', textAlign: "center", id: "__alloyId683" });
 
-    $.__views["pageTitle"].add($.__views["__alloyId647"]);
+    $.__views["pageTitle"].add($.__views["__alloyId683"]);
   }
   $.__views["container"] = Ti.UI.createScrollView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "container", backgroundColor: "#" });
@@ -72,39 +72,39 @@ function Controller() {
   { borderWidth: 0, layout: "horizontal", width: Ti.UI.SIZE, height: Ti.UI.SIZE, borderColor: "#dfe0e4", backgroundColor: "#FFFFFF", borderRadius: "5", top: 10, id: "day_month" });
 
   $.__views["container"].add($.__views["day_month"]);
-  $.__views["__alloyId648"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, backgroundColor: "#ddd", perior_type: "day", id: "__alloyId648" });
+  $.__views["__alloyId684"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, backgroundColor: "#ddd", perior_type: "day", id: "__alloyId684" });
 
-  $.__views["day_month"].add($.__views["__alloyId648"]);
-  changeDateSorting ? $.addListener($.__views["__alloyId648"], 'click', changeDateSorting) : __defers['$.__views["__alloyId648"]!click!changeDateSorting'] = true;$.__views["__alloyId649"] = Ti.UI.createLabel(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 20, right: 20, bottom: 10, text: 'Day', touchEnabled: false, id: "__alloyId649" });
+  $.__views["day_month"].add($.__views["__alloyId684"]);
+  changeDateSorting ? $.addListener($.__views["__alloyId684"], 'click', changeDateSorting) : __defers['$.__views["__alloyId684"]!click!changeDateSorting'] = true;$.__views["__alloyId685"] = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 20, right: 20, bottom: 10, text: 'Day', touchEnabled: false, id: "__alloyId685" });
 
-  $.__views["__alloyId648"].add($.__views["__alloyId649"]);
-  $.__views["__alloyId650"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, perior_type: "month", id: "__alloyId650" });
+  $.__views["__alloyId684"].add($.__views["__alloyId685"]);
+  $.__views["__alloyId686"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, perior_type: "month", id: "__alloyId686" });
 
-  $.__views["day_month"].add($.__views["__alloyId650"]);
-  changeDateSorting ? $.addListener($.__views["__alloyId650"], 'click', changeDateSorting) : __defers['$.__views["__alloyId650"]!click!changeDateSorting'] = true;$.__views["__alloyId651"] = Ti.UI.createLabel(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 20, right: 20, bottom: 10, text: 'Month', touchEnabled: false, id: "__alloyId651" });
+  $.__views["day_month"].add($.__views["__alloyId686"]);
+  changeDateSorting ? $.addListener($.__views["__alloyId686"], 'click', changeDateSorting) : __defers['$.__views["__alloyId686"]!click!changeDateSorting'] = true;$.__views["__alloyId687"] = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 20, right: 20, bottom: 10, text: 'Month', touchEnabled: false, id: "__alloyId687" });
 
-  $.__views["__alloyId650"].add($.__views["__alloyId651"]);
-  $.__views["__alloyId652"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, top: 10, id: "__alloyId652" });
+  $.__views["__alloyId686"].add($.__views["__alloyId687"]);
+  $.__views["__alloyId688"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, top: 10, id: "__alloyId688" });
 
-  $.__views["container"].add($.__views["__alloyId652"]);
-  $.__views["__alloyId653"] = Ti.UI.createImageView(
-  { image: "/images/btn-back.png", left: 10, width: 20, action: "minus", id: "__alloyId653" });
+  $.__views["container"].add($.__views["__alloyId688"]);
+  $.__views["__alloyId689"] = Ti.UI.createImageView(
+  { image: "/images/btn-back.png", left: 10, width: 20, action: "minus", id: "__alloyId689" });
 
-  $.__views["__alloyId652"].add($.__views["__alloyId653"]);
-  adjust_date_indicator ? $.addListener($.__views["__alloyId653"], 'click', adjust_date_indicator) : __defers['$.__views["__alloyId653"]!click!adjust_date_indicator'] = true;$.__views["date_indicator"] = Ti.UI.createLabel(
+  $.__views["__alloyId688"].add($.__views["__alloyId689"]);
+  adjust_date_indicator ? $.addListener($.__views["__alloyId689"], 'click', adjust_date_indicator) : __defers['$.__views["__alloyId689"]!click!adjust_date_indicator'] = true;$.__views["date_indicator"] = Ti.UI.createLabel(
   { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 18 }, textAlign: "center", left: 40, right: 40, id: "date_indicator" });
 
-  $.__views["__alloyId652"].add($.__views["date_indicator"]);
-  $.__views["__alloyId654"] = Ti.UI.createImageView(
-  { image: "/images/btn-forward.png", right: 10, width: 20, action: "plus", id: "__alloyId654" });
+  $.__views["__alloyId688"].add($.__views["date_indicator"]);
+  $.__views["__alloyId690"] = Ti.UI.createImageView(
+  { image: "/images/btn-forward.png", right: 10, width: 20, action: "plus", id: "__alloyId690" });
 
-  $.__views["__alloyId652"].add($.__views["__alloyId654"]);
-  adjust_date_indicator ? $.addListener($.__views["__alloyId654"], 'click', adjust_date_indicator) : __defers['$.__views["__alloyId654"]!click!adjust_date_indicator'] = true;$.__views["webview"] = Ti.UI.createWebView(
+  $.__views["__alloyId688"].add($.__views["__alloyId690"]);
+  adjust_date_indicator ? $.addListener($.__views["__alloyId690"], 'click', adjust_date_indicator) : __defers['$.__views["__alloyId690"]!click!adjust_date_indicator'] = true;$.__views["webview"] = Ti.UI.createWebView(
   { width: Ti.UI.FILL, url: "/html/graph.html", id: "webview", height: 230 });
 
   $.__views["container"].add($.__views["webview"]);
@@ -235,7 +235,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId648"]!click!changeDateSorting'] && $.addListener($.__views["__alloyId648"], 'click', changeDateSorting);__defers['$.__views["__alloyId650"]!click!changeDateSorting'] && $.addListener($.__views["__alloyId650"], 'click', changeDateSorting);__defers['$.__views["__alloyId653"]!click!adjust_date_indicator'] && $.addListener($.__views["__alloyId653"], 'click', adjust_date_indicator);__defers['$.__views["__alloyId654"]!click!adjust_date_indicator'] && $.addListener($.__views["__alloyId654"], 'click', adjust_date_indicator);
+  __defers['$.__views["__alloyId684"]!click!changeDateSorting'] && $.addListener($.__views["__alloyId684"], 'click', changeDateSorting);__defers['$.__views["__alloyId686"]!click!changeDateSorting'] && $.addListener($.__views["__alloyId686"], 'click', changeDateSorting);__defers['$.__views["__alloyId689"]!click!adjust_date_indicator'] && $.addListener($.__views["__alloyId689"], 'click', adjust_date_indicator);__defers['$.__views["__alloyId690"]!click!adjust_date_indicator'] && $.addListener($.__views["__alloyId690"], 'click', adjust_date_indicator);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

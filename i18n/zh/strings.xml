@@ -79,4 +79,6 @@
     <string name="any_other_medication">请问您有服用其他药物吗？请详细列出? *</string>
     <string name="pregnant_or_breastfeeding">请问您是否怀孕或者哺乳？ *</string>
     <string name="any_side_effect">请问您遇上任何副作用吗？请详细列出。*</string>
+    <string name="Call">撥打</String>
+    <string name="AddToCalender">添加至日历</String>
 </resources>

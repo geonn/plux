@@ -35,15 +35,14 @@ var distance = function(lat1, lon1, lat2, lon2) {
 if (Ti.Geolocation.locationServicesEnabled) {
     Titanium.Geolocation.getCurrentPosition(function(e) {
         if (e.error) {
-            Ti.Alloy.Globals.API.error('Error: ' + e.error);
+            alert('Error: ' + e.error);
         } else {
             showCurLoc = true;
 	    	Ti.App.Properties.setString('latitude', e.coords.latitude);
 	    	Ti.App.Properties.setString('longitude', e.coords.longitude);
             $.mapview.region =  {latitude: e.coords.latitude, longitude:e.coords.longitude, zoom: 12, latitudeDelta: 0.01, longitudeDelta: 0.01};
             setTimeout(function(){throttle_centerMap({filter: true});}, 1000);
-        }
-    });
+        }    });
 } else {
     alert('Please enable location services');
 }
@@ -330,6 +329,7 @@ function openCategory(){
 
 function openSpecialistList(){
     //openMoreList();
+    console.log("openSpecialistList");
     var w = Alloy.Globals.nav.navigationWindow("parts/search_list", "","", {displayHomeAsUp: true, title: "Hospital Listing", click_dun_exit: true, listing: specialist, callback: function(ex){
         Alloy.Globals.API.callByPost({url: "getHospitalDoctorList", new: true, domain: "FREEJINI_DOMAIN", params: {hospital: ex.value}}, function(responseText){
 

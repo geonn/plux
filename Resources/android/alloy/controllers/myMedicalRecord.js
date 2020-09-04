@@ -35,54 +35,54 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "My Medical Record", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, width: Ti.UI.FILL, height: Ti.UI.FILL, title: "My Medical Record", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId659"] = Ti.UI.createView(
-  { borderWidth: 0, id: "__alloyId659" });
+  $.__views["__alloyId695"] = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId695" });
 
-  $.__views["__alloyId660"] = Ti.UI.createImageView(
-  { left: 10, width: 25, height: 20, image: "/images/add.png", id: "__alloyId660" });
+  $.__views["__alloyId696"] = Ti.UI.createImageView(
+  { left: 10, width: 25, height: 20, image: "/images/add.png", id: "__alloyId696" });
 
-  $.__views["__alloyId659"].add($.__views["__alloyId660"]);
-  newRecord ? $.addListener($.__views["__alloyId660"], 'click', newRecord) : __defers['$.__views["__alloyId660"]!click!newRecord'] = true;$.__views["win"].rightNavButton = $.__views["__alloyId659"];$.__views["__alloyId661"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId661" });
+  $.__views["__alloyId695"].add($.__views["__alloyId696"]);
+  newRecord ? $.addListener($.__views["__alloyId696"], 'click', newRecord) : __defers['$.__views["__alloyId696"]!click!newRecord'] = true;$.__views["win"].rightNavButton = $.__views["__alloyId695"];$.__views["__alloyId697"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId697" });
 
-  $.__views["win"].add($.__views["__alloyId661"]);
+  $.__views["win"].add($.__views["__alloyId697"]);
   if (true) {
-    $.__views["__alloyId662"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId662" });
+    $.__views["__alloyId698"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId698" });
 
-    $.__views["__alloyId661"].add($.__views["__alloyId662"]);
-    $.__views["__alloyId663"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId663" });
+    $.__views["__alloyId697"].add($.__views["__alloyId698"]);
+    $.__views["__alloyId699"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId699" });
 
-    $.__views["__alloyId662"].add($.__views["__alloyId663"]);
+    $.__views["__alloyId698"].add($.__views["__alloyId699"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId663"].add($.__views["btnBack"]);
-    $.__views["__alloyId664"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId664" });
+    $.__views["__alloyId699"].add($.__views["btnBack"]);
+    $.__views["__alloyId700"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId700" });
 
-    $.__views["__alloyId662"].add($.__views["__alloyId664"]);
+    $.__views["__alloyId698"].add($.__views["__alloyId700"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'My Medical Record', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId664"].add($.__views["pageTitle"]);
-    $.__views["__alloyId665"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId665" });
+    $.__views["__alloyId700"].add($.__views["pageTitle"]);
+    $.__views["__alloyId701"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId701" });
 
-    $.__views["__alloyId662"].add($.__views["__alloyId665"]);
+    $.__views["__alloyId698"].add($.__views["__alloyId701"]);
     $.__views["newRecord"] = Ti.UI.createImageView(
     { left: 10, id: "newRecord", width: 25, height: 20, image: "/images/add.png" });
 
-    $.__views["__alloyId665"].add($.__views["newRecord"]);
+    $.__views["__alloyId701"].add($.__views["newRecord"]);
     newRecord ? $.addListener($.__views["newRecord"], 'click', newRecord) : __defers['$.__views["newRecord"]!click!newRecord'] = true;}
   $.__views["listing"] = Ti.UI.createScrollView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "listing" });
 
-  $.__views["__alloyId661"].add($.__views["listing"]);
+  $.__views["__alloyId697"].add($.__views["listing"]);
   $.__views["mask"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "mask", backgroundColor: "#90000000", zIndex: 2 });
 
@@ -191,7 +191,7 @@ function Controller() {
 
   function openAttachment(e) {
     var file_format = e.source.record.attachment.substr(-3);
-    if (file_format == "pdf") {
+    if (file_format == "pdf" || file_format == "PDF") {
       openURLPDF(e.source.record);
     } else {
       var html = "<img width='100%' height='auto' src='" + e.source.record.attachment + "'/>";
@@ -213,7 +213,7 @@ function Controller() {
     var appFile;
 
     if (true) {
-      appFile = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, filename);
+      appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     } else {
       appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     }
@@ -342,7 +342,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId660"]!click!newRecord'] && $.addListener($.__views["__alloyId660"], 'click', newRecord);if (true) {
+  __defers['$.__views["__alloyId696"]!click!newRecord'] && $.addListener($.__views["__alloyId696"], 'click', newRecord);if (true) {
     __defers['$.__views["newRecord"]!click!newRecord'] && $.addListener($.__views["newRecord"], 'click', newRecord);}
   __defers['$.__views["mask"]!click!closeBox'] && $.addListener($.__views["mask"], 'click', closeBox);
 

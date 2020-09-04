@@ -35,11 +35,11 @@ function Controller() {
 
   // Generated UI code
   $.__views["attachment_Details"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "attachment_Details", title: "Attachment", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "attachment_Details", title: "Attachment", navTintColor: "#CE1D1C" });
 
   $.__views["attachment_Details"] && $.addTopLevelView($.__views["attachment_Details"]);
-  function __alloyId413() {
-    $.__views["attachment_Details"].removeEventListener('open', __alloyId413);
+  function __alloyId450() {
+    $.__views["attachment_Details"].removeEventListener('open', __alloyId450);
     if ($.__views["attachment_Details"].activity) {
       $.__views["attachment_Details"].activity.actionBar.onHomeIconItemSelected = closeWindow;
     } else {
@@ -48,11 +48,11 @@ function Controller() {
       Ti.API.warn('are valid with only windows in TabGroups or heavyweight Windows.');
     }
   }
-  $.__views["attachment_Details"].addEventListener('open', __alloyId413);
-  $.__views["__alloyId415"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Close', id: "__alloyId415" });
+  $.__views["attachment_Details"].addEventListener('open', __alloyId450);
+  $.__views["__alloyId452"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Close', id: "__alloyId452" });
 
-  closeWindow ? $.addListener($.__views["__alloyId415"], 'click', closeWindow) : __defers['$.__views["__alloyId415"]!click!closeWindow'] = true;$.__views["attachment_Details"].rightNavButton = $.__views["__alloyId415"];$.__views["albumView"] = Ti.UI.createView(
+  closeWindow ? $.addListener($.__views["__alloyId452"], 'click', closeWindow) : __defers['$.__views["__alloyId452"]!click!closeWindow'] = true;$.__views["attachment_Details"].rightNavButton = $.__views["__alloyId452"];$.__views["albumView"] = Ti.UI.createView(
   { borderWidth: 0, id: "albumView", height: Ti.UI.SIZE, bottom: 40 });
 
   $.__views["attachment_Details"].add($.__views["albumView"]);
@@ -277,7 +277,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId415"]!click!closeWindow'] && $.addListener($.__views["__alloyId415"], 'click', closeWindow);
+  __defers['$.__views["__alloyId452"]!click!closeWindow'] && $.addListener($.__views["__alloyId452"], 'click', closeWindow);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

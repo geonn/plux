@@ -35,74 +35,74 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Profile Setup", id: "win" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, navTintColor: "#CE1D1C", title: "Profile Setup", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId403"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId403" });
+  $.__views["__alloyId440"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId440" });
 
-  $.__views["win"].add($.__views["__alloyId403"]);
-  $.__views["__alloyId404"] = Ti.UI.createView(
-  { borderWidth: 0, top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId404" });
+  $.__views["win"].add($.__views["__alloyId440"]);
+  $.__views["__alloyId441"] = Ti.UI.createView(
+  { borderWidth: 0, top: 0, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId441" });
 
-  $.__views["__alloyId403"].add($.__views["__alloyId404"]);
+  $.__views["__alloyId440"].add($.__views["__alloyId441"]);
   $.__views["btnBack"] = Ti.UI.createView(
   { borderWidth: 0, left: 0, zIndex: 9, id: "btnBack", width: "20%" });
 
-  $.__views["__alloyId404"].add($.__views["btnBack"]);
-  $.__views["__alloyId405"] = Ti.UI.createImageView(
-  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId405" });
+  $.__views["__alloyId441"].add($.__views["btnBack"]);
+  $.__views["__alloyId442"] = Ti.UI.createImageView(
+  { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId442" });
 
-  $.__views["btnBack"].add($.__views["__alloyId405"]);
-  $.__views["__alloyId406"] = Ti.UI.createView(
-  { borderWidth: 0, id: "__alloyId406" });
+  $.__views["btnBack"].add($.__views["__alloyId442"]);
+  $.__views["__alloyId443"] = Ti.UI.createView(
+  { borderWidth: 0, id: "__alloyId443" });
 
-  $.__views["__alloyId404"].add($.__views["__alloyId406"]);
+  $.__views["__alloyId441"].add($.__views["__alloyId443"]);
   $.__views["titleLbl"] = Ti.UI.createLabel(
   { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#A52430", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Profile Setup', id: "titleLbl", textAlign: "center" });
 
-  $.__views["__alloyId406"].add($.__views["titleLbl"]);
-  $.__views["__alloyId407"] = Ti.UI.createImageView(
-  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId407" });
+  $.__views["__alloyId443"].add($.__views["titleLbl"]);
+  $.__views["__alloyId444"] = Ti.UI.createImageView(
+  { width: 120, borderRadius: 10, height: 120, backgroundColor: "#ff0000", bottom: "20dp", top: "20dp", image: "/images/asp_logo.png", id: "__alloyId444" });
 
-  $.__views["__alloyId403"].add($.__views["__alloyId407"]);
+  $.__views["__alloyId440"].add($.__views["__alloyId444"]);
   $.__views["forms"] = Ti.UI.createScrollView(
   { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "forms" });
 
-  $.__views["__alloyId403"].add($.__views["forms"]);
+  $.__views["__alloyId440"].add($.__views["forms"]);
   $.__views["email"] = Ti.UI.createView(
   { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "email", value: "" });
 
   $.__views["forms"].add($.__views["email"]);
-  $.__views["__alloyId408"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 80, hintText: "Email *", required: 1, left: 5, value: "", id: "__alloyId408" });
+  $.__views["__alloyId445"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 80, hintText: "Email *", required: 1, left: 5, value: "", id: "__alloyId445" });
 
-  $.__views["email"].add($.__views["__alloyId408"]);
-  textFieldOnBlur ? $.addListener($.__views["__alloyId408"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId408"]!change!textFieldOnBlur'] = true;$.__views["mobileno"] = Ti.UI.createView(
+  $.__views["email"].add($.__views["__alloyId445"]);
+  textFieldOnBlur ? $.addListener($.__views["__alloyId445"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId445"]!change!textFieldOnBlur'] = true;$.__views["mobileno"] = Ti.UI.createView(
   { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "mobileno", value: "" });
 
   $.__views["forms"].add($.__views["mobileno"]);
-  $.__views["__alloyId409"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, hintText: "Mobile Number *", required: 1, left: 5, value: "", id: "__alloyId409" });
+  $.__views["__alloyId446"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, hintText: "Mobile Number *", required: 1, left: 5, value: "", id: "__alloyId446" });
 
-  $.__views["mobileno"].add($.__views["__alloyId409"]);
-  textFieldOnBlur ? $.addListener($.__views["__alloyId409"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId409"]!change!textFieldOnBlur'] = true;$.__views["password"] = Ti.UI.createView(
+  $.__views["mobileno"].add($.__views["__alloyId446"]);
+  textFieldOnBlur ? $.addListener($.__views["__alloyId446"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId446"]!change!textFieldOnBlur'] = true;$.__views["password"] = Ti.UI.createView(
   { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", id: "password", value: "" });
 
   $.__views["forms"].add($.__views["password"]);
-  $.__views["__alloyId410"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Password *", required: 1, left: 5, value: "", id: "__alloyId410" });
+  $.__views["__alloyId447"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Password *", required: 1, left: 5, value: "", id: "__alloyId447" });
 
-  $.__views["password"].add($.__views["__alloyId410"]);
-  textFieldOnBlur ? $.addListener($.__views["__alloyId410"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId410"]!change!textFieldOnBlur'] = true;$.__views["password2"] = Ti.UI.createView(
+  $.__views["password"].add($.__views["__alloyId447"]);
+  textFieldOnBlur ? $.addListener($.__views["__alloyId447"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId447"]!change!textFieldOnBlur'] = true;$.__views["password2"] = Ti.UI.createView(
   { borderWidth: 0, top: 0, left: 10, right: 10, bottom: 10, width: Ti.UI.FILL, height: Ti.UI.SIZE, borderRadius: "5", backgroundColor: "#fba81c", skip: 1, id: "password2", value: "" });
 
   $.__views["forms"].add($.__views["password2"]);
-  $.__views["__alloyId411"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Confirm Password *", required: 1, left: 5, value: "", id: "__alloyId411" });
+  $.__views["__alloyId448"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", maxLength: 30, passwordMask: true, hintText: "Confirm Password *", required: 1, left: 5, value: "", id: "__alloyId448" });
 
-  $.__views["password2"].add($.__views["__alloyId411"]);
-  textFieldOnBlur ? $.addListener($.__views["__alloyId411"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId411"]!change!textFieldOnBlur'] = true;$.__views["asp_sign_btn"] = Ti.UI.createButton(
+  $.__views["password2"].add($.__views["__alloyId448"]);
+  textFieldOnBlur ? $.addListener($.__views["__alloyId448"], 'change', textFieldOnBlur) : __defers['$.__views["__alloyId448"]!change!textFieldOnBlur'] = true;$.__views["asp_sign_btn"] = Ti.UI.createButton(
   { borderRadius: 5, backgroundColor: "#CC2228", height: 40, color: "#ffffff", width: "70%", id: "asp_sign_btn", title: "Sign Up", top: 20, bottom: 20 });
 
   $.__views["forms"].add($.__views["asp_sign_btn"]);
@@ -296,7 +296,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId408"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId408"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId409"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId409"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId410"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId410"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId411"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId411"], 'change', textFieldOnBlur);__defers['$.__views["asp_sign_btn"]!click!doSubmit'] && $.addListener($.__views["asp_sign_btn"], 'click', doSubmit);
+  __defers['$.__views["__alloyId445"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId445"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId446"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId446"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId447"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId447"], 'change', textFieldOnBlur);__defers['$.__views["__alloyId448"]!change!textFieldOnBlur'] && $.addListener($.__views["__alloyId448"], 'change', textFieldOnBlur);__defers['$.__views["asp_sign_btn"]!click!doSubmit'] && $.addListener($.__views["asp_sign_btn"], 'click', doSubmit);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

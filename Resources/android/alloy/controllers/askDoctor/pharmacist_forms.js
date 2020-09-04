@@ -35,47 +35,47 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Patient Information", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Patient Information", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId139"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId139" });
+  $.__views["__alloyId188"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId188" });
 
-  $.__views["win"].add($.__views["__alloyId139"]);
+  $.__views["win"].add($.__views["__alloyId188"]);
   if (true) {
-    $.__views["__alloyId140"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId140" });
+    $.__views["__alloyId189"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId189" });
 
-    $.__views["__alloyId139"].add($.__views["__alloyId140"]);
-    $.__views["__alloyId141"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId141" });
+    $.__views["__alloyId188"].add($.__views["__alloyId189"]);
+    $.__views["__alloyId190"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId190" });
 
-    $.__views["__alloyId140"].add($.__views["__alloyId141"]);
-    $.__views["__alloyId142"] = Ti.UI.createImageView(
-    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId142" });
+    $.__views["__alloyId189"].add($.__views["__alloyId190"]);
+    $.__views["__alloyId191"] = Ti.UI.createImageView(
+    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId191" });
 
-    $.__views["__alloyId141"].add($.__views["__alloyId142"]);
-    closeWindow ? $.addListener($.__views["__alloyId142"], 'click', closeWindow) : __defers['$.__views["__alloyId142"]!click!closeWindow'] = true;$.__views["__alloyId143"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId143" });
+    $.__views["__alloyId190"].add($.__views["__alloyId191"]);
+    closeWindow ? $.addListener($.__views["__alloyId191"], 'click', closeWindow) : __defers['$.__views["__alloyId191"]!click!closeWindow'] = true;$.__views["__alloyId192"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId192" });
 
-    $.__views["__alloyId140"].add($.__views["__alloyId143"]);
+    $.__views["__alloyId189"].add($.__views["__alloyId192"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Patient Information', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId143"].add($.__views["pageTitle"]);
+    $.__views["__alloyId192"].add($.__views["pageTitle"]);
   }
-  $.__views["__alloyId144"] = Ti.UI.createScrollView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId144" });
+  $.__views["__alloyId193"] = Ti.UI.createScrollView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId193" });
 
-  $.__views["__alloyId139"].add($.__views["__alloyId144"]);
-  $.__views["__alloyId145"] = Ti.UI.createLabel(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#fff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, bottom: 10, textAlign: "center", text: L('pleasefillin_pharmacist'), id: "__alloyId145" });
+  $.__views["__alloyId188"].add($.__views["__alloyId193"]);
+  $.__views["__alloyId194"] = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#fff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, bottom: 10, textAlign: "center", text: L('pleasefillin_pharmacist'), id: "__alloyId194" });
 
-  $.__views["__alloyId144"].add($.__views["__alloyId145"]);
+  $.__views["__alloyId193"].add($.__views["__alloyId194"]);
   $.__views["forms"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "forms" });
 
-  $.__views["__alloyId144"].add($.__views["forms"]);
+  $.__views["__alloyId193"].add($.__views["forms"]);
   $.__views["name"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, newline: 1, hintText: L('name'), id: "name", required: 1, value: "" });
 
@@ -92,46 +92,46 @@ function Controller() {
   { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, borderRadius: "5", required: 1, bottom: 10, newline: 1, left: 10, righ: 10, hintText: L('sex'), value: "", height: 40, id: "gender_view" });
 
   $.__views["forms"].add($.__views["gender_view"]);
-  $.__views["__alloyId146"] = Ti.UI.createView(
-  { borderWidth: 0, height: Ti.UI.SIZE, width: "50%", right: 1, gender: L('male'), backgroundColor: "#ffffff", id: "__alloyId146" });
+  $.__views["__alloyId195"] = Ti.UI.createView(
+  { borderWidth: 0, height: Ti.UI.SIZE, width: "50%", right: 1, gender: L('male'), backgroundColor: "#ffffff", id: "__alloyId195" });
 
-  $.__views["gender_view"].add($.__views["__alloyId146"]);
-  genderSelect ? $.addListener($.__views["__alloyId146"], 'click', genderSelect) : __defers['$.__views["__alloyId146"]!click!genderSelect'] = true;$.__views["__alloyId147"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('male'), id: "__alloyId147" });
+  $.__views["gender_view"].add($.__views["__alloyId195"]);
+  genderSelect ? $.addListener($.__views["__alloyId195"], 'click', genderSelect) : __defers['$.__views["__alloyId195"]!click!genderSelect'] = true;$.__views["__alloyId196"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('male'), id: "__alloyId196" });
 
-  $.__views["__alloyId146"].add($.__views["__alloyId147"]);
-  $.__views["__alloyId148"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, right: 10, backgroundColor: "#ffffff", gender: L('female'), id: "__alloyId148" });
+  $.__views["__alloyId195"].add($.__views["__alloyId196"]);
+  $.__views["__alloyId197"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, right: 10, backgroundColor: "#ffffff", gender: L('female'), id: "__alloyId197" });
 
-  $.__views["gender_view"].add($.__views["__alloyId148"]);
-  genderSelect ? $.addListener($.__views["__alloyId148"], 'click', genderSelect) : __defers['$.__views["__alloyId148"]!click!genderSelect'] = true;$.__views["__alloyId149"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('female'), id: "__alloyId149" });
+  $.__views["gender_view"].add($.__views["__alloyId197"]);
+  genderSelect ? $.addListener($.__views["__alloyId197"], 'click', genderSelect) : __defers['$.__views["__alloyId197"]!click!genderSelect'] = true;$.__views["__alloyId198"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('female'), id: "__alloyId198" });
 
-  $.__views["__alloyId148"].add($.__views["__alloyId149"]);
-  $.__views["__alloyId150"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('please_list_the_medication'), newline: 1, required: 1, value: "", id: "__alloyId150" });
+  $.__views["__alloyId197"].add($.__views["__alloyId198"]);
+  $.__views["__alloyId199"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('please_list_the_medication'), newline: 1, required: 1, value: "", id: "__alloyId199" });
 
-  $.__views["forms"].add($.__views["__alloyId150"]);
-  $.__views["__alloyId151"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('what_is_your_concern'), newline: 1, required: 1, value: "", id: "__alloyId151" });
+  $.__views["forms"].add($.__views["__alloyId199"]);
+  $.__views["__alloyId200"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('what_is_your_concern'), newline: 1, required: 1, value: "", id: "__alloyId200" });
 
-  $.__views["forms"].add($.__views["__alloyId151"]);
-  $.__views["__alloyId152"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_medical_condition_2'), newline: 1, required: 1, value: "", id: "__alloyId152" });
+  $.__views["forms"].add($.__views["__alloyId200"]);
+  $.__views["__alloyId201"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_medical_condition_2'), newline: 1, required: 1, value: "", id: "__alloyId201" });
 
-  $.__views["forms"].add($.__views["__alloyId152"]);
-  $.__views["__alloyId153"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_other_medication'), newline: 1, required: 1, value: "", id: "__alloyId153" });
+  $.__views["forms"].add($.__views["__alloyId201"]);
+  $.__views["__alloyId202"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_other_medication'), newline: 1, required: 1, value: "", id: "__alloyId202" });
 
-  $.__views["forms"].add($.__views["__alloyId153"]);
-  $.__views["__alloyId154"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('pregnant_or_breastfeeding'), newline: 1, required: 1, value: "", id: "__alloyId154" });
+  $.__views["forms"].add($.__views["__alloyId202"]);
+  $.__views["__alloyId203"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('pregnant_or_breastfeeding'), newline: 1, required: 1, value: "", id: "__alloyId203" });
 
-  $.__views["forms"].add($.__views["__alloyId154"]);
-  $.__views["__alloyId155"] = Ti.UI.createTextField(
-  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_side_effect'), newline: 1, required: 1, value: "", id: "__alloyId155" });
+  $.__views["forms"].add($.__views["__alloyId203"]);
+  $.__views["__alloyId204"] = Ti.UI.createTextField(
+  { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('any_side_effect'), newline: 1, required: 1, value: "", id: "__alloyId204" });
 
-  $.__views["forms"].add($.__views["__alloyId155"]);
+  $.__views["forms"].add($.__views["__alloyId204"]);
   $.__views["saveBtn"] = Ti.UI.createButton(
   { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", bottom: 10, id: "saveBtn", title: L('submit') });
 
@@ -319,8 +319,8 @@ function Controller() {
   // functions are not defined until after the controller code
   // is executed.
   if (true) {
-    __defers['$.__views["__alloyId142"]!click!closeWindow'] && $.addListener($.__views["__alloyId142"], 'click', closeWindow);}
-  __defers['$.__views["__alloyId146"]!click!genderSelect'] && $.addListener($.__views["__alloyId146"], 'click', genderSelect);__defers['$.__views["__alloyId148"]!click!genderSelect'] && $.addListener($.__views["__alloyId148"], 'click', genderSelect);__defers['$.__views["saveBtn"]!click!sendMessage'] && $.addListener($.__views["saveBtn"], 'click', sendMessage);
+    __defers['$.__views["__alloyId191"]!click!closeWindow'] && $.addListener($.__views["__alloyId191"], 'click', closeWindow);}
+  __defers['$.__views["__alloyId195"]!click!genderSelect'] && $.addListener($.__views["__alloyId195"], 'click', genderSelect);__defers['$.__views["__alloyId197"]!click!genderSelect'] && $.addListener($.__views["__alloyId197"], 'click', genderSelect);__defers['$.__views["saveBtn"]!click!sendMessage'] && $.addListener($.__views["saveBtn"], 'click', sendMessage);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

@@ -4,7 +4,7 @@
 * Latest Version 1.1.4
 * 
 **********************/
-var win;
+
 // update user device token
 exports.checkAndUpdate = function(e){
     win = e;
@@ -23,7 +23,7 @@ function callback_download(e){
 	dialog.show();
 	
 	dialog.addEventListener("click", function(ex){
-		//if(ex.index == 0){
+		if(ex.index == 0){
 			try {
 				Ti.Platform.openURL(e.data.url);/*
 				var intent = Ti.Android.createIntent({
@@ -34,7 +34,7 @@ function callback_download(e){
 				  Ti.Android.currentActivity.startActivity(intent);*/
 			} catch(e) {
 			}
-		//}
+		}
 		if(OS_ANDROID){
 		    var appActivity = Ti.Android.currentActivity;
             appActivity.finish();

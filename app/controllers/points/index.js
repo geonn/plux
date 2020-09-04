@@ -15,11 +15,16 @@ function init(){
 } 
 
 function refresh(){
+	var pWidth = ((OS_IOS)?Ti.Platform.displayCaps.platformWidth:parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10)) - 20;
 	Alloy.Globals.API.callByPost({url: "getMemberPointsRecords", new:true, domain: "FREEJINI_DOMAIN",  params: {u_id: u_id}}, function(responseText){
        var res = JSON.parse(responseText);	
        for (var i=0; i < res.data.length; i++) {
-         res.data[i].points = "+"+res.data[i].points+" points";
+         res.data[i].points = res.data[i].points+" points";
+         res.data[i].left = Math.floor(pWidth*0.30) - 15;
+         res.data[i].type = (res.data[i].type == "add")?"+":"-";
+         res.data[i].left_bottom = Math.floor(pWidth*0.30) - 15;
        };
+       console.log(res.data);
 	   Alloy.Globals.mocx.createCollection("points", res.data);
 	   loading.finish();
    });

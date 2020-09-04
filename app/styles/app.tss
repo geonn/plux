@@ -1,5 +1,6 @@
 "Window":{
 	//backgroundColor: "#f0f1f5",
+	barColor: "transparent",
 	backgroundColor: "#535a74",
 	orientationModes :[
         Ti.UI.PORTRAIT
@@ -20,6 +21,7 @@
 	selectionStyle: "none",
 }
 "Window[platform=ios]":{
+	barColor: "#eeeeee",
 	fullscreen : true,
 },
 "#activityIndicator" : {
@@ -358,6 +360,16 @@
 	color: "#ffffff",
 	width: Ti.UI.FILL,
 },
+
+'gradient_bg':{
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '100%', y: '0%' },
+        endPoint: { x: '0%', y: '100%' },
+        colors: [ { color: '#1eaeb6', offset: 1.0}, { color: '#24c1be', offset: 1.0 }, { color: '#30e5cd', offset:1.0 } ],
+    }
+}
+
 '.combo_box':{
 	width: Ti.UI.FILL,
     height: Ti.UI.SIZE,

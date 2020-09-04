@@ -4,6 +4,7 @@ console.log("index");
 function init(){
 	var isShowIntro = Ti.App.Properties.getString('isShowIntro') || "";
 	var isSignup2 = Ti.App.Properties.getString('signup2');
+	console.log(isShowIntro+" "+isSignup2+" "+u_id);
 	if(isShowIntro	!= ""){
 		if(u_id == ""){
 			if(isSignup2 == "yes"){

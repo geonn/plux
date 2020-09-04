@@ -35,47 +35,47 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Patient Information", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Patient Information", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId87"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId87" });
+  $.__views["__alloyId136"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId136" });
 
-  $.__views["win"].add($.__views["__alloyId87"]);
+  $.__views["win"].add($.__views["__alloyId136"]);
   if (true) {
-    $.__views["__alloyId88"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId88" });
+    $.__views["__alloyId137"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", height: 50, width: Ti.UI.FILL, backgroundColor: "#DEDEDE", id: "__alloyId137" });
 
-    $.__views["__alloyId87"].add($.__views["__alloyId88"]);
-    $.__views["__alloyId89"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId89" });
+    $.__views["__alloyId136"].add($.__views["__alloyId137"]);
+    $.__views["__alloyId138"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId138" });
 
-    $.__views["__alloyId88"].add($.__views["__alloyId89"]);
-    $.__views["__alloyId90"] = Ti.UI.createImageView(
-    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId90" });
+    $.__views["__alloyId137"].add($.__views["__alloyId138"]);
+    $.__views["__alloyId139"] = Ti.UI.createImageView(
+    { left: 10, width: 25, height: 25, image: "/images/btn-back.png", id: "__alloyId139" });
 
-    $.__views["__alloyId89"].add($.__views["__alloyId90"]);
-    closeWindow ? $.addListener($.__views["__alloyId90"], 'click', closeWindow) : __defers['$.__views["__alloyId90"]!click!closeWindow'] = true;$.__views["__alloyId91"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId91" });
+    $.__views["__alloyId138"].add($.__views["__alloyId139"]);
+    closeWindow ? $.addListener($.__views["__alloyId139"], 'click', closeWindow) : __defers['$.__views["__alloyId139"]!click!closeWindow'] = true;$.__views["__alloyId140"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId140" });
 
-    $.__views["__alloyId88"].add($.__views["__alloyId91"]);
+    $.__views["__alloyId137"].add($.__views["__alloyId140"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Patient Information', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId91"].add($.__views["pageTitle"]);
+    $.__views["__alloyId140"].add($.__views["pageTitle"]);
   }
-  $.__views["__alloyId92"] = Ti.UI.createScrollView(
-  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId92" });
+  $.__views["__alloyId141"] = Ti.UI.createScrollView(
+  { layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId141" });
 
-  $.__views["__alloyId87"].add($.__views["__alloyId92"]);
-  $.__views["__alloyId93"] = Ti.UI.createLabel(
-  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#fff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, bottom: 10, textAlign: "center", text: L('pleasefillin_psychologist'), id: "__alloyId93" });
+  $.__views["__alloyId136"].add($.__views["__alloyId141"]);
+  $.__views["__alloyId142"] = Ti.UI.createLabel(
+  { width: Ti.UI.SIZE, height: Ti.UI.SIZE, color: "#fff", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, bottom: 10, textAlign: "center", text: L('pleasefillin_psychologist'), id: "__alloyId142" });
 
-  $.__views["__alloyId92"].add($.__views["__alloyId93"]);
+  $.__views["__alloyId141"].add($.__views["__alloyId142"]);
   $.__views["forms"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "forms" });
 
-  $.__views["__alloyId92"].add($.__views["forms"]);
+  $.__views["__alloyId141"].add($.__views["forms"]);
   $.__views["name"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, newline: 1, hintText: L('name'), id: "name", required: 1, value: "" });
 
@@ -88,30 +88,30 @@ function Controller() {
   { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, borderRadius: "5", required: 1, bottom: 10, newline: 1, left: 10, righ: 10, hintText: L('sex'), value: "", height: 40, id: "gender_view" });
 
   $.__views["forms"].add($.__views["gender_view"]);
-  $.__views["__alloyId94"] = Ti.UI.createView(
-  { borderWidth: 0, height: Ti.UI.SIZE, width: "50%", right: 1, gender: L('male'), backgroundColor: "#ffffff", id: "__alloyId94" });
+  $.__views["__alloyId143"] = Ti.UI.createView(
+  { borderWidth: 0, height: Ti.UI.SIZE, width: "50%", right: 1, gender: L('male'), backgroundColor: "#ffffff", id: "__alloyId143" });
 
-  $.__views["gender_view"].add($.__views["__alloyId94"]);
-  genderSelect ? $.addListener($.__views["__alloyId94"], 'click', genderSelect) : __defers['$.__views["__alloyId94"]!click!genderSelect'] = true;$.__views["__alloyId95"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('male'), id: "__alloyId95" });
+  $.__views["gender_view"].add($.__views["__alloyId143"]);
+  genderSelect ? $.addListener($.__views["__alloyId143"], 'click', genderSelect) : __defers['$.__views["__alloyId143"]!click!genderSelect'] = true;$.__views["__alloyId144"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('male'), id: "__alloyId144" });
 
-  $.__views["__alloyId94"].add($.__views["__alloyId95"]);
-  $.__views["__alloyId96"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, right: 10, backgroundColor: "#ffffff", gender: L('female'), id: "__alloyId96" });
+  $.__views["__alloyId143"].add($.__views["__alloyId144"]);
+  $.__views["__alloyId145"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, right: 10, backgroundColor: "#ffffff", gender: L('female'), id: "__alloyId145" });
 
-  $.__views["gender_view"].add($.__views["__alloyId96"]);
-  genderSelect ? $.addListener($.__views["__alloyId96"], 'click', genderSelect) : __defers['$.__views["__alloyId96"]!click!genderSelect'] = true;$.__views["__alloyId97"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('female'), id: "__alloyId97" });
+  $.__views["gender_view"].add($.__views["__alloyId145"]);
+  genderSelect ? $.addListener($.__views["__alloyId145"], 'click', genderSelect) : __defers['$.__views["__alloyId145"]!click!genderSelect'] = true;$.__views["__alloyId146"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: 16 }, top: 10, left: 10, right: 10, bottom: 10, touchEnabled: false, textAlign: "center", text: L('female'), id: "__alloyId146" });
 
-  $.__views["__alloyId96"].add($.__views["__alloyId97"]);
+  $.__views["__alloyId145"].add($.__views["__alloyId146"]);
   $.__views["Ethnic"] = Ti.UI.createView(
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 0, hintTextColor: "#E89114", backgroundColor: "#ffffff", touchEnabled: false, required: 1, id: "Ethnic", hintText: L('Ethnic'), value: "" });
 
   $.__views["forms"].add($.__views["Ethnic"]);
-  popout ? $.addListener($.__views["Ethnic"], 'click', popout) : __defers['$.__views["Ethnic"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["Ethnic"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["Ethnic"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId98"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('Ethnic'), id: "__alloyId98" });
+  popout ? $.addListener($.__views["Ethnic"], 'click', popout) : __defers['$.__views["Ethnic"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["Ethnic"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["Ethnic"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId147"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('Ethnic'), id: "__alloyId147" });
 
-  $.__views["Ethnic"].add($.__views["__alloyId98"]);
+  $.__views["Ethnic"].add($.__views["__alloyId147"]);
   $.__views["if_other"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('if_other'), newline: 1, id: "if_other", required: 0, value: "" });
 
@@ -124,10 +124,10 @@ function Controller() {
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 10, hintTextColor: "#E89114", backgroundColor: "#ffffff", touchEnabled: false, required: 1, id: "Status", hintText: L('Status'), value: "" });
 
   $.__views["forms"].add($.__views["Status"]);
-  popout ? $.addListener($.__views["Status"], 'click', popout) : __defers['$.__views["Status"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["Status"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["Status"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId99"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('Status'), id: "__alloyId99" });
+  popout ? $.addListener($.__views["Status"], 'click', popout) : __defers['$.__views["Status"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["Status"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["Status"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId148"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('Status'), id: "__alloyId148" });
 
-  $.__views["Status"].add($.__views["__alloyId99"]);
+  $.__views["Status"].add($.__views["__alloyId148"]);
   $.__views["email"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, required: 1, newline: 1, hintText: L('email'), id: "email", value: "" });
 
@@ -140,10 +140,10 @@ function Controller() {
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 0, hintTextColor: "#E89114", backgroundColor: "#ffffff", touchEnabled: false, required: 1, id: "any_medical_condition", hintText: L('any_medical_condition'), value: "" });
 
   $.__views["forms"].add($.__views["any_medical_condition"]);
-  popout ? $.addListener($.__views["any_medical_condition"], 'click', popout) : __defers['$.__views["any_medical_condition"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["any_medical_condition"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["any_medical_condition"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId100"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('any_medical_condition'), id: "__alloyId100" });
+  popout ? $.addListener($.__views["any_medical_condition"], 'click', popout) : __defers['$.__views["any_medical_condition"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["any_medical_condition"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["any_medical_condition"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId149"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('any_medical_condition'), id: "__alloyId149" });
 
-  $.__views["any_medical_condition"].add($.__views["__alloyId100"]);
+  $.__views["any_medical_condition"].add($.__views["__alloyId149"]);
   $.__views["yes_please_state"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('yes_please_state'), newline: 1, id: "yes_please_state", value: "" });
 
@@ -152,10 +152,10 @@ function Controller() {
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 0, hintTextColor: "#E89114", backgroundColor: "#ffffff", touchEnabled: false, required: 1, id: "wish_to_share", hintText: L('wish_to_share'), value: "" });
 
   $.__views["forms"].add($.__views["wish_to_share"]);
-  popout ? $.addListener($.__views["wish_to_share"], 'click', popout) : __defers['$.__views["wish_to_share"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["wish_to_share"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["wish_to_share"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId101"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('wish_to_share'), id: "__alloyId101" });
+  popout ? $.addListener($.__views["wish_to_share"], 'click', popout) : __defers['$.__views["wish_to_share"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["wish_to_share"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["wish_to_share"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId150"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('wish_to_share'), id: "__alloyId150" });
 
-  $.__views["wish_to_share"].add($.__views["__alloyId101"]);
+  $.__views["wish_to_share"].add($.__views["__alloyId150"]);
   $.__views["yes_please_state"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: { fontSize: 14 }, color: "#000000", hintTextColor: "#000", backgroundColor: "#ffffff", borderRadius: "5", left: 10, right: 10, bottom: 10, borderWidth: 0, hintText: L('if_other'), newline: 1, id: "yes_please_state", required: 0, value: "" });
 
@@ -164,18 +164,18 @@ function Controller() {
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 0, hintTextColor: "#E89114", backgroundColor: "#ffffff", touchEnabled: false, required: 1, id: "attended_any_counseling", hintText: L('attended_any_counseling'), value: "" });
 
   $.__views["forms"].add($.__views["attended_any_counseling"]);
-  popout ? $.addListener($.__views["attended_any_counseling"], 'click', popout) : __defers['$.__views["attended_any_counseling"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["attended_any_counseling"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["attended_any_counseling"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId102"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('attended_any_counseling'), id: "__alloyId102" });
+  popout ? $.addListener($.__views["attended_any_counseling"], 'click', popout) : __defers['$.__views["attended_any_counseling"]!click!popout'] = true;loadComboBoxLocal ? $.addListener($.__views["attended_any_counseling"], 'postlayout', loadComboBoxLocal) : __defers['$.__views["attended_any_counseling"]!postlayout!loadComboBoxLocal'] = true;$.__views["__alloyId151"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('attended_any_counseling'), id: "__alloyId151" });
 
-  $.__views["attended_any_counseling"].add($.__views["__alloyId102"]);
+  $.__views["attended_any_counseling"].add($.__views["__alloyId151"]);
   $.__views["if_yes_when_was_last"] = Ti.UI.createView(
   { borderWidth: 0, borderRadius: "5", width: Ti.UI.FILL, height: 40, left: 10, right: 10, bottom: 10, hintTextColor: "#E89114", backgroundColor: "#ffffff", newline: 1, id: "if_yes_when_was_last", hintText: L('if_yes_when_was_last'), value: "" });
 
   $.__views["forms"].add($.__views["if_yes_when_was_last"]);
-  datePicker ? $.addListener($.__views["if_yes_when_was_last"], 'click', datePicker) : __defers['$.__views["if_yes_when_was_last"]!click!datePicker'] = true;$.__views["__alloyId103"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('if_yes_when_was_last'), id: "__alloyId103" });
+  datePicker ? $.addListener($.__views["if_yes_when_was_last"], 'click', datePicker) : __defers['$.__views["if_yes_when_was_last"]!click!datePicker'] = true;$.__views["__alloyId152"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#000000", font: { fontFamily: "Roboto-Regular, arial", fontSize: 14 }, touchEnabled: false, left: 10, text: L('if_yes_when_was_last'), id: "__alloyId152" });
 
-  $.__views["if_yes_when_was_last"].add($.__views["__alloyId103"]);
+  $.__views["if_yes_when_was_last"].add($.__views["__alloyId152"]);
   $.__views["saveBtn"] = Ti.UI.createButton(
   { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", top: 10, bottom: 10, id: "saveBtn", title: L('submit') });
 
@@ -420,8 +420,8 @@ function Controller() {
   // functions are not defined until after the controller code
   // is executed.
   if (true) {
-    __defers['$.__views["__alloyId90"]!click!closeWindow'] && $.addListener($.__views["__alloyId90"], 'click', closeWindow);}
-  __defers['$.__views["__alloyId94"]!click!genderSelect'] && $.addListener($.__views["__alloyId94"], 'click', genderSelect);__defers['$.__views["__alloyId96"]!click!genderSelect'] && $.addListener($.__views["__alloyId96"], 'click', genderSelect);__defers['$.__views["Ethnic"]!click!popout'] && $.addListener($.__views["Ethnic"], 'click', popout);__defers['$.__views["Ethnic"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["Ethnic"], 'postlayout', loadComboBoxLocal);__defers['$.__views["Status"]!click!popout'] && $.addListener($.__views["Status"], 'click', popout);__defers['$.__views["Status"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["Status"], 'postlayout', loadComboBoxLocal);__defers['$.__views["any_medical_condition"]!click!popout'] && $.addListener($.__views["any_medical_condition"], 'click', popout);__defers['$.__views["any_medical_condition"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["any_medical_condition"], 'postlayout', loadComboBoxLocal);__defers['$.__views["wish_to_share"]!click!popout'] && $.addListener($.__views["wish_to_share"], 'click', popout);__defers['$.__views["wish_to_share"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["wish_to_share"], 'postlayout', loadComboBoxLocal);__defers['$.__views["attended_any_counseling"]!click!popout'] && $.addListener($.__views["attended_any_counseling"], 'click', popout);__defers['$.__views["attended_any_counseling"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["attended_any_counseling"], 'postlayout', loadComboBoxLocal);__defers['$.__views["if_yes_when_was_last"]!click!datePicker'] && $.addListener($.__views["if_yes_when_was_last"], 'click', datePicker);__defers['$.__views["saveBtn"]!click!sendMessage'] && $.addListener($.__views["saveBtn"], 'click', sendMessage);
+    __defers['$.__views["__alloyId139"]!click!closeWindow'] && $.addListener($.__views["__alloyId139"], 'click', closeWindow);}
+  __defers['$.__views["__alloyId143"]!click!genderSelect'] && $.addListener($.__views["__alloyId143"], 'click', genderSelect);__defers['$.__views["__alloyId145"]!click!genderSelect'] && $.addListener($.__views["__alloyId145"], 'click', genderSelect);__defers['$.__views["Ethnic"]!click!popout'] && $.addListener($.__views["Ethnic"], 'click', popout);__defers['$.__views["Ethnic"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["Ethnic"], 'postlayout', loadComboBoxLocal);__defers['$.__views["Status"]!click!popout'] && $.addListener($.__views["Status"], 'click', popout);__defers['$.__views["Status"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["Status"], 'postlayout', loadComboBoxLocal);__defers['$.__views["any_medical_condition"]!click!popout'] && $.addListener($.__views["any_medical_condition"], 'click', popout);__defers['$.__views["any_medical_condition"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["any_medical_condition"], 'postlayout', loadComboBoxLocal);__defers['$.__views["wish_to_share"]!click!popout'] && $.addListener($.__views["wish_to_share"], 'click', popout);__defers['$.__views["wish_to_share"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["wish_to_share"], 'postlayout', loadComboBoxLocal);__defers['$.__views["attended_any_counseling"]!click!popout'] && $.addListener($.__views["attended_any_counseling"], 'click', popout);__defers['$.__views["attended_any_counseling"]!postlayout!loadComboBoxLocal'] && $.addListener($.__views["attended_any_counseling"], 'postlayout', loadComboBoxLocal);__defers['$.__views["if_yes_when_was_last"]!click!datePicker'] && $.addListener($.__views["if_yes_when_was_last"], 'click', datePicker);__defers['$.__views["saveBtn"]!click!sendMessage'] && $.addListener($.__views["saveBtn"], 'click', sendMessage);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

@@ -64,7 +64,15 @@
                     <TextField  hintText="GL Amount (If applicable)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
                 <View id="tnc" value="" class="wfill hsize padding" top="0">
-                    <View class="wfill hsize vert" id="infineon_tnc">
+                	<View class="wfill hsize vert" id="infineon_tnc">
+                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
+	                    <View class="wfill hsize vert" id="tnc_value"></View>
+	                    <View class="wfill hsize" hintText="tnc" required="1" value="">
+	                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
+	                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
+	                    </View>
+                    </View>
+                    <!--<View class="wfill hsize vert" id="infineon_tnc">
 	                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
 	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You shall retain the original receipt(s) for 7 years in case for audit and verification purposes by the company and/or the Inland Revenue Board of Malaysia. </Label>
 	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You are not allowed to submit the same claim more than one time. In the event that we discovered such instance or the claim is fictitious, the claim will be rejected and proceed with the necessary disciplinary action.</Label>
@@ -85,7 +93,7 @@
 	                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
 	                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
 	                    </View>
-                    </View>
+                    </View>-->
                 </View>
                 
                 <!--

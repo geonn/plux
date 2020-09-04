@@ -74,8 +74,8 @@ if(OS_ANDROID){
 		if(e.url.startsWith("asp")){
 			webview.stopLoading();
 			setTimeout(function(){
-				var url = e.url;
-				var ods = url.substring(("asp://").length, url.length);	
+				var share_url = e.url;
+				var ods = share_url.substring(("asp://").length, share_url.length);	
 				//console.log(decodeURIComponent(ods.replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"'));
 				//var params = JSON.parse('{"'+'"}')；
 				var params = {}; 
@@ -83,6 +83,7 @@ if(OS_ANDROID){
 				    params[decodeURIComponent(key)] = decodeURIComponent(value);
 				}); 
 				share(params);
+				webview.url = url;
 			}, 1000);
 			/*
 			*/

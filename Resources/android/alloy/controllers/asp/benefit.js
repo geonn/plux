@@ -35,25 +35,25 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Flexi-Benefit", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Flexi-Benefit", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId168"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId168" });
+  $.__views["__alloyId217"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "__alloyId217" });
 
-  $.__views["win"].add($.__views["__alloyId168"]);
+  $.__views["win"].add($.__views["__alloyId217"]);
   $.__views["surveyView"] = Ti.UI.createWebView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, backgroundColor: "#f5f5f5", id: "surveyView", url: "http://flexi.freejini.com.my/" });
 
-  $.__views["__alloyId168"].add($.__views["surveyView"]);
+  $.__views["__alloyId217"].add($.__views["surveyView"]);
   $.__views["defaultMsgView"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
   $.__views["win"].add($.__views["defaultMsgView"]);
-  $.__views["__alloyId169"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId169" });
+  $.__views["__alloyId218"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId218" });
 
-  $.__views["defaultMsgView"].add($.__views["__alloyId169"]);
+  $.__views["defaultMsgView"].add($.__views["__alloyId218"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a

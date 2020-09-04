@@ -51,7 +51,7 @@ function openURLPDF(e) {
     var appFile;
     
     if(OS_ANDROID) {
-        appFile = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, filename); 
+        appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename); 
     } else {
         appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     }

@@ -6,6 +6,7 @@ var room_last_update = [];
 var connection = false;
 var pending_task = [];
 function doConnect(){
+	console.log(!socket_io.connected+" && "+!connection);
 	if(!socket_io.connected && !connection){
 		connection = true;
 		console.log("socket_io.connect");
@@ -80,6 +81,48 @@ function doConnect(){
 		console.log("socket is online");
 	}
 }
+
+socket_io.on('connect', function () {
+	console.log(socket_io.id+" first socket connected ");
+	connection = false;
+	if(room_id > 0){
+		setRoom({room_id: room_id});
+	}
+	Ti.App.fireEvent("socket_online");
+	if(pending_task.length > 0){
+		console.log(pending_task);
+		console.log(pending_task.length+" pending_task");
+			for(var i=0,j=pending_task.length; i<j; i++){
+				console.log(pending_task[i]);
+		  	pending_task[i].func(pending_task[i].params);
+		};
+	pending_task = [];	
+	}
+	
+	socket_io.on("socket:doctor_last_update", function(params){
+	    console.log("socket:doctor_last_update");
+	    Ti.App.fireEvent("socket:doctor_last_update", params);
+	});
+	socket_io.on("socket:user_last_update", function(params){
+	    console.log("socket_on:user_last_update");
+	    console.log(params);
+	    Ti.App.fireEvent("socket:user_last_update", params);
+	});
+	socket_io.on('doctor:refresh_patient_list', function(){
+	    console.log("event listener doctor:refresh_patient_list");
+	    Ti.App.fireEvent("doctor:refresh_patient_list");
+	});
+	
+	socket_io.on('socket:refresh_chatroom', function(param){ 
+	    console.log("event listener socket:refresh_chatroom");
+	    Ti.App.fireEvent("socket:refresh_chatroom", param);
+	});
+	
+	socket_io.on("socket:getDoctorList", function(param){
+	    console.log("event listener socket:getDoctorList");
+	    Ti.App.fireEvent("controller:getDoctorList", param);
+		});
+});
 /*
 socket_io.on('connect', function () {
     console.log(socket_io.id+" socket connected ");
@@ -235,17 +278,17 @@ function sendMessage(ex){
     }
 }
 
-exports.connect = connect;
+
 function connect(){ 
     doConnect();
 }
+exports.connect = connect;
 
-exports.disconnect = disconnect;
 function disconnect(){
     socket_io.close();
     socket_io.disconnect();
 }
-
+exports.disconnect = disconnect;
 exports.update_room_member_time = update_room_member_time;
 
 function update_room_member_time(ex){

@@ -94,7 +94,7 @@ function keyInPin(ic, ex){
 
 function openAttachment(e){
     var file_format = e.source.record.attachment.substr(-3);
-    if(file_format == "pdf"){
+    if(file_format == "pdf" || file_format == "PDF"){
         openURLPDF(e.source.record);
     }else{
         var html = "<img width='100%' height='auto' src='"+e.source.record.attachment+"'/>";
@@ -116,7 +116,7 @@ function openURLPDF(e) {
     var appFile;
     
     if(OS_ANDROID) {
-        appFile = Ti.Filesystem.getFile(Ti.Filesystem.externalStorageDirectory, filename); 
+        appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename); 
     } else {
         appFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
     }

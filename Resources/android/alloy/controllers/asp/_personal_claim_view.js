@@ -42,42 +42,42 @@ function Controller() {
   { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "main", backgroundColor: "#ffffff", top: 5 });
 
   $.__views["personalClaimVw"].add($.__views["main"]);
-  $.__views["__alloyId162"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId162" });
+  $.__views["__alloyId211"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId211" });
 
-  $.__views["main"].add($.__views["__alloyId162"]);
-  $.__views["__alloyId163"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.SIZE, left: 10, right: 30, height: 40, top: 5, id: "__alloyId163" });
+  $.__views["main"].add($.__views["__alloyId211"]);
+  $.__views["__alloyId212"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.SIZE, left: 10, right: 30, height: 40, top: 5, id: "__alloyId212" });
 
-  $.__views["__alloyId162"].add($.__views["__alloyId163"]);
+  $.__views["__alloyId211"].add($.__views["__alloyId212"]);
   $.__views["name"] = Ti.UI.createLabel(
   { width: Ti.UI.FILL, height: Ti.UI.SIZE, color: "#0c0e15", font: { fontFamily: "Roboto-Bold", fontSize: 16 }, id: "name" });
 
-  $.__views["__alloyId163"].add($.__views["name"]);
+  $.__views["__alloyId212"].add($.__views["name"]);
   $.__views["more"] = Ti.UI.createImageView(
   { id: "more", image: "/images/btn-forward.png", right: 8, top: 15, zIndex: 10, width: 20, height: 20 });
 
-  $.__views["__alloyId162"].add($.__views["more"]);
+  $.__views["__alloyId211"].add($.__views["more"]);
   $.__views["extra_info"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "extra_info" });
 
   $.__views["main"].add($.__views["extra_info"]);
-  $.__views["__alloyId164"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId164" });
+  $.__views["__alloyId213"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "__alloyId213" });
 
-  $.__views["main"].add($.__views["__alloyId164"]);
-  $.__views["__alloyId165"] = Ti.UI.createView(
-  { borderWidth: 0, width: 30, height: 30, zIndex: 2, left: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId165" });
+  $.__views["main"].add($.__views["__alloyId213"]);
+  $.__views["__alloyId214"] = Ti.UI.createView(
+  { borderWidth: 0, width: 30, height: 30, zIndex: 2, left: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId214" });
 
-  $.__views["__alloyId164"].add($.__views["__alloyId165"]);
-  $.__views["__alloyId166"] = Ti.UI.createView(
-  { borderWidth: 0, width: Titanium.UI.FILL, height: 1, backgroundColor: "#eee", id: "__alloyId166" });
+  $.__views["__alloyId213"].add($.__views["__alloyId214"]);
+  $.__views["__alloyId215"] = Ti.UI.createView(
+  { borderWidth: 0, width: Titanium.UI.FILL, height: 1, backgroundColor: "#eee", id: "__alloyId215" });
 
-  $.__views["__alloyId164"].add($.__views["__alloyId166"]);
-  $.__views["__alloyId167"] = Ti.UI.createView(
-  { borderWidth: 0, width: 30, height: 30, zIndex: 2, right: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId167" });
+  $.__views["__alloyId213"].add($.__views["__alloyId215"]);
+  $.__views["__alloyId216"] = Ti.UI.createView(
+  { borderWidth: 0, width: 30, height: 30, zIndex: 2, right: -20, borderRadius: 15, backgroundColor: "#535a74", id: "__alloyId216" });
 
-  $.__views["__alloyId164"].add($.__views["__alloyId167"]);
+  $.__views["__alloyId213"].add($.__views["__alloyId216"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a

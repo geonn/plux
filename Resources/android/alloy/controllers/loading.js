@@ -44,10 +44,10 @@ function Controller() {
 
     $.__views["loadingBar"].add($.__views["activityIndicator"]);
   }
-  $.__views["__alloyId610"] = Ti.UI.createLabel(
-  { width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial" }, textAlign: "center", top: 5, text: "Loading", id: "__alloyId610" });
+  $.__views["__alloyId646"] = Ti.UI.createLabel(
+  { width: Ti.UI.FILL, height: Titanium.UI.SIZE, color: "#ffffff", font: { fontFamily: "Roboto-Regular, arial" }, textAlign: "center", top: 5, text: "Loading", id: "__alloyId646" });
 
-  $.__views["loadingBar"].add($.__views["__alloyId610"]);
+  $.__views["loadingBar"].add($.__views["__alloyId646"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a

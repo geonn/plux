@@ -78,4 +78,6 @@
     <string name="any_medical_condition_2">Senaraikan ubat-ubat lain yang diambil. *</string>
     <string name="pregnant_or_breastfeeding">Mengandung atau menyusukan anak? *</string>
     <string name="any_side_effect">Senaraikan sebarang kesan sampingan yang dihadapi. *</string>
+    <string name="Call">Panggil</string>
+    <string name="AddToCalender">Tambah pada kalendar</String>
 </resources>

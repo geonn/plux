@@ -35,7 +35,7 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
   $.__views["main"] = Ti.UI.createView(
@@ -46,10 +46,10 @@ function Controller() {
   { borderWidth: 0, layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
   $.__views["main"].add($.__views["defaultMsgView"]);
-  $.__views["__alloyId802"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId802" });
+  $.__views["__alloyId889"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId889" });
 
-  $.__views["defaultMsgView"].add($.__views["__alloyId802"]);
+  $.__views["defaultMsgView"].add($.__views["__alloyId889"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
@@ -134,8 +134,8 @@ function Controller() {
       if (e.url.startsWith("asp")) {
         webview.stopLoading();
         setTimeout(function () {
-          var url = e.url;
-          var ods = url.substring("asp://".length, url.length);
+          var share_url = e.url;
+          var ods = share_url.substring("asp://".length, share_url.length);
           //console.log(decodeURIComponent(ods.replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"'));
           //var params = JSON.parse('{"'+'"}')；
           var params = {};
@@ -143,6 +143,7 @@ function Controller() {
             params[decodeURIComponent(key)] = decodeURIComponent(value);
           });
           share(params);
+          webview.url = url;
         }, 1000);
         /*
                             */

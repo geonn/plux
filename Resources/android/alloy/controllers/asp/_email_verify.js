@@ -35,34 +35,34 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#fff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Verify Your Email", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#fff", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, id: "win", title: "Verify Your Email", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId156"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", id: "__alloyId156" });
+  $.__views["__alloyId205"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", id: "__alloyId205" });
 
-  $.__views["win"].add($.__views["__alloyId156"]);
-  $.__views["__alloyId157"] = Ti.UI.createImageView(
-  { width: "40%", borderRadius: 10, backgroundColor: "#ff0000", top: "30dp", image: "/images/asp_logo.png", id: "__alloyId157" });
+  $.__views["win"].add($.__views["__alloyId205"]);
+  $.__views["__alloyId206"] = Ti.UI.createImageView(
+  { width: "40%", borderRadius: 10, backgroundColor: "#ff0000", top: "30dp", image: "/images/asp_logo.png", id: "__alloyId206" });
 
-  $.__views["__alloyId156"].add($.__views["__alloyId157"]);
-  $.__views["__alloyId158"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'You need to verify your account in order to view claim details. If you didn\'t received verification email, please click \'Resend Verification\' button below.', left: 20, right: 20, bottom: 20, top: 20, id: "__alloyId158" });
+  $.__views["__alloyId205"].add($.__views["__alloyId206"]);
+  $.__views["__alloyId207"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'You need to verify your account in order to view claim details. If you didn\'t received verification email, please click \'Resend Verification\' button below.', left: 20, right: 20, bottom: 20, top: 20, id: "__alloyId207" });
 
-  $.__views["__alloyId156"].add($.__views["__alloyId158"]);
-  $.__views["__alloyId159"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#CE1D1C", height: 40, color: "#ffffff", width: "70%", title: "Resend Verification", top: 10, id: "__alloyId159" });
+  $.__views["__alloyId205"].add($.__views["__alloyId207"]);
+  $.__views["__alloyId208"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#CE1D1C", height: 40, color: "#ffffff", width: "70%", title: "Resend Verification", top: 10, id: "__alloyId208" });
 
-  $.__views["__alloyId156"].add($.__views["__alloyId159"]);
-  resendVerificationEmail ? $.addListener($.__views["__alloyId159"], 'touchend', resendVerificationEmail) : __defers['$.__views["__alloyId159"]!touchend!resendVerificationEmail'] = true;$.__views["__alloyId160"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Refresh", top: 10, id: "__alloyId160" });
+  $.__views["__alloyId205"].add($.__views["__alloyId208"]);
+  resendVerificationEmail ? $.addListener($.__views["__alloyId208"], 'touchend', resendVerificationEmail) : __defers['$.__views["__alloyId208"]!touchend!resendVerificationEmail'] = true;$.__views["__alloyId209"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Refresh", top: 10, id: "__alloyId209" });
 
-  $.__views["__alloyId156"].add($.__views["__alloyId160"]);
-  checkStatus ? $.addListener($.__views["__alloyId160"], 'touchend', checkStatus) : __defers['$.__views["__alloyId160"]!touchend!checkStatus'] = true;$.__views["__alloyId161"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Back", top: 10, id: "__alloyId161" });
+  $.__views["__alloyId205"].add($.__views["__alloyId209"]);
+  checkStatus ? $.addListener($.__views["__alloyId209"], 'touchend', checkStatus) : __defers['$.__views["__alloyId209"]!touchend!checkStatus'] = true;$.__views["__alloyId210"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#7B7B7B", height: 40, color: "#ffffff", width: "70%", title: "Back", top: 10, id: "__alloyId210" });
 
-  $.__views["__alloyId156"].add($.__views["__alloyId161"]);
-  closeWindow ? $.addListener($.__views["__alloyId161"], 'touchend', closeWindow) : __defers['$.__views["__alloyId161"]!touchend!closeWindow'] = true;exports.destroy = function () {};
+  $.__views["__alloyId205"].add($.__views["__alloyId210"]);
+  closeWindow ? $.addListener($.__views["__alloyId210"], 'touchend', closeWindow) : __defers['$.__views["__alloyId210"]!touchend!closeWindow'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -119,7 +119,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["__alloyId159"]!touchend!resendVerificationEmail'] && $.addListener($.__views["__alloyId159"], 'touchend', resendVerificationEmail);__defers['$.__views["__alloyId160"]!touchend!checkStatus'] && $.addListener($.__views["__alloyId160"], 'touchend', checkStatus);__defers['$.__views["__alloyId161"]!touchend!closeWindow'] && $.addListener($.__views["__alloyId161"], 'touchend', closeWindow);
+  __defers['$.__views["__alloyId208"]!touchend!resendVerificationEmail'] && $.addListener($.__views["__alloyId208"], 'touchend', resendVerificationEmail);__defers['$.__views["__alloyId209"]!touchend!checkStatus'] && $.addListener($.__views["__alloyId209"], 'touchend', checkStatus);__defers['$.__views["__alloyId210"]!touchend!closeWindow'] && $.addListener($.__views["__alloyId210"], 'touchend', closeWindow);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

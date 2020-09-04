@@ -49,7 +49,29 @@ Ti.App.addEventListener("resumed", function(e){
     //Ti.App.fireEvent("connect", {u_id: Ti.App.Properties.getString('u_id') || 0, time_offset: time_offset});
 });
 
+Alloy.Globals.Device = {
+	version: Ti.Platform.version,
+	versionMajor: parseInt(Ti.Platform.version.split(".")[0], 10),
+	versionMinor: parseInt(Ti.Platform.version.split(".")[1], 10),
+	width: (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight) ? Ti.Platform.displayCaps.platformHeight : Ti.Platform.displayCaps.platformWidth,
+	height: (Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight) ? Ti.Platform.displayCaps.platformWidth : Ti.Platform.displayCaps.platformHeight,
+	dpi: Ti.Platform.displayCaps.dpi,
+	orientation: Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "landscape" : "portrait"
+};
+
+Alloy.Globals.calculateElementDimensions = function(size) {
+		
+	var layout = {};
+	
+	// intro
+	layout.appointment = {};
+	layout.appointment.dotted_left = Math.floor(size.width*0.30) - 15;
+	return layout;
+};
+
+Alloy.Globals.layout = Alloy.Globals.calculateElementDimensions(Alloy.Globals.Device);
 
 Alloy.Globals.mocx = require("mocx");
 Alloy.Globals.mocx.createCollection("chats", []);
 Alloy.Globals.mocx.createCollection("points", []);
+Alloy.Globals.mocx.createCollection("appointment", []);

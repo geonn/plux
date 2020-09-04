@@ -35,64 +35,64 @@ function Controller() {
 
   // Generated UI code
   $.__views["win"] = Ti.UI.createWindow(
-  { backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Counsellor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
+  { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "Ask Counsellor", id: "win", backButtonTitle: "", navTintColor: "#CE1D1C" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId79"] = Ti.UI.createScrollView(
-  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId79" });
+  $.__views["__alloyId128"] = Ti.UI.createScrollView(
+  { width: Ti.UI.FILL, height: Ti.UI.FILL, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, id: "__alloyId128" });
 
-  $.__views["win"].add($.__views["__alloyId79"]);
-  $.__views["__alloyId80"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, id: "__alloyId80" });
+  $.__views["win"].add($.__views["__alloyId128"]);
+  $.__views["__alloyId129"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, top: 0, id: "__alloyId129" });
 
-  $.__views["__alloyId79"].add($.__views["__alloyId80"]);
+  $.__views["__alloyId128"].add($.__views["__alloyId129"]);
   if (true) {
-    $.__views["__alloyId81"] = Ti.UI.createView(
-    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId81" });
+    $.__views["__alloyId130"] = Ti.UI.createView(
+    { borderWidth: 0, layout: "horizontal", width: Ti.UI.FILL, height: 50, backgroundColor: "#DEDEDE", id: "__alloyId130" });
 
-    $.__views["__alloyId80"].add($.__views["__alloyId81"]);
-    $.__views["__alloyId82"] = Ti.UI.createView(
-    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId82" });
+    $.__views["__alloyId129"].add($.__views["__alloyId130"]);
+    $.__views["__alloyId131"] = Ti.UI.createView(
+    { borderWidth: 0, left: 0, width: "20%", id: "__alloyId131" });
 
-    $.__views["__alloyId81"].add($.__views["__alloyId82"]);
+    $.__views["__alloyId130"].add($.__views["__alloyId131"]);
     $.__views["btnBack"] = Ti.UI.createImageView(
     { left: 10, id: "btnBack", width: 25, height: 25, image: "/images/btn-back.png" });
 
-    $.__views["__alloyId82"].add($.__views["btnBack"]);
-    closeWindow ? $.addListener($.__views["btnBack"], 'click', closeWindow) : __defers['$.__views["btnBack"]!click!closeWindow'] = true;$.__views["__alloyId83"] = Ti.UI.createView(
-    { borderWidth: 0, width: "60%", id: "__alloyId83" });
+    $.__views["__alloyId131"].add($.__views["btnBack"]);
+    closeWindow ? $.addListener($.__views["btnBack"], 'click', closeWindow) : __defers['$.__views["btnBack"]!click!closeWindow'] = true;$.__views["__alloyId132"] = Ti.UI.createView(
+    { borderWidth: 0, width: "60%", id: "__alloyId132" });
 
-    $.__views["__alloyId81"].add($.__views["__alloyId83"]);
+    $.__views["__alloyId130"].add($.__views["__alloyId132"]);
     $.__views["pageTitle"] = Ti.UI.createLabel(
     { width: Titanium.UI.SIZE, height: Ti.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial", fontSize: "16dp" }, text: 'Ask Counsellor', id: "pageTitle", textAlign: "center" });
 
-    $.__views["__alloyId83"].add($.__views["pageTitle"]);
+    $.__views["__alloyId132"].add($.__views["pageTitle"]);
   }
-  $.__views["__alloyId84"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId84" });
+  $.__views["__alloyId133"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId133" });
 
-  $.__views["__alloyId80"].add($.__views["__alloyId84"]);
+  $.__views["__alloyId129"].add($.__views["__alloyId133"]);
   $.__views["chatroom"] = Ti.UI.createScrollView(
   { width: Ti.UI.FILL, height: Ti.UI.FILL, id: "chatroom", backgroundColor: "#f5f5f5", top: 0, bottom: 90, contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, transform: Ti.UI.create2DMatrix().rotate(180) });
 
-  $.__views["__alloyId84"].add($.__views["chatroom"]);
+  $.__views["__alloyId133"].add($.__views["chatroom"]);
   scrollChecker ? $.addListener($.__views["chatroom"], 'scroll', scrollChecker) : __defers['$.__views["chatroom"]!scroll!scrollChecker'] = true;$.__views["inner_area"] = Ti.UI.createView(
   { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.SIZE, id: "inner_area", bottom: 20 });
 
   $.__views["chatroom"].add($.__views["inner_area"]);
-  $.__views["__alloyId85"] = Ti.UI.createButton(
-  { borderRadius: 5, backgroundColor: "#00c8a9", height: 40, color: "#ffffff", width: Ti.UI.FILL, title: 'End Session', bottom: 50, id: "__alloyId85" });
+  $.__views["__alloyId134"] = Ti.UI.createButton(
+  { borderRadius: 5, backgroundColor: "#00c8a9", height: 40, color: "#ffffff", width: Ti.UI.FILL, title: 'End Session', bottom: 50, id: "__alloyId134" });
 
-  $.__views["__alloyId79"].add($.__views["__alloyId85"]);
-  endSession ? $.addListener($.__views["__alloyId85"], 'click', endSession) : __defers['$.__views["__alloyId85"]!click!endSession'] = true;$.__views["bottom_bar"] = Ti.UI.createView(
+  $.__views["__alloyId128"].add($.__views["__alloyId134"]);
+  endSession ? $.addListener($.__views["__alloyId134"], 'click', endSession) : __defers['$.__views["__alloyId134"]!click!endSession'] = true;$.__views["bottom_bar"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: 50, backgroundColor: "white", bottom: 0, id: "bottom_bar" });
 
-  $.__views["__alloyId79"].add($.__views["bottom_bar"]);
-  $.__views["__alloyId86"] = Ti.UI.createImageView(
-  { image: "/images/icons/icon_photo_camera.png", bottom: 10, zIndex: 3, left: 10, height: 30, width: 30, id: "__alloyId86" });
+  $.__views["__alloyId128"].add($.__views["bottom_bar"]);
+  $.__views["__alloyId135"] = Ti.UI.createImageView(
+  { image: "/images/icons/icon_photo_camera.png", bottom: 10, zIndex: 3, left: 10, height: 30, width: 30, id: "__alloyId135" });
 
-  $.__views["bottom_bar"].add($.__views["__alloyId86"]);
-  popCamera ? $.addListener($.__views["__alloyId86"], 'click', popCamera) : __defers['$.__views["__alloyId86"]!click!popCamera'] = true;$.__views["message_bar"] = Ti.UI.createTextField(
+  $.__views["bottom_bar"].add($.__views["__alloyId135"]);
+  popCamera ? $.addListener($.__views["__alloyId135"], 'click', popCamera) : __defers['$.__views["__alloyId135"]!click!popCamera'] = true;$.__views["message_bar"] = Ti.UI.createTextField(
   { borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE, padding: { left: 10, right: 10, bottom: 5, top: 5 }, width: Ti.UI.FILL, height: 40, font: "fontSize: 40", color: "#000000", hintTextColor: "#000000", backgroundColor: "#ffffff", top: 4, left: 50, right: 50, bottom: 4, id: "message_bar", hintText: "Type a message..." });
 
   $.__views["bottom_bar"].add($.__views["message_bar"]);
@@ -931,7 +931,7 @@ function Controller() {
   // is executed.
   if (true) {
     __defers['$.__views["btnBack"]!click!closeWindow'] && $.addListener($.__views["btnBack"], 'click', closeWindow);}
-  __defers['$.__views["chatroom"]!scroll!scrollChecker'] && $.addListener($.__views["chatroom"], 'scroll', scrollChecker);__defers['$.__views["__alloyId85"]!click!endSession'] && $.addListener($.__views["__alloyId85"], 'click', endSession);__defers['$.__views["__alloyId86"]!click!popCamera'] && $.addListener($.__views["__alloyId86"], 'click', popCamera);__defers['$.__views["message_bar"]!change!switchIcon'] && $.addListener($.__views["message_bar"], 'change', switchIcon);__defers['$.__views["enter_icon"]!click!SendMessage'] && $.addListener($.__views["enter_icon"], 'click', SendMessage);
+  __defers['$.__views["chatroom"]!scroll!scrollChecker'] && $.addListener($.__views["chatroom"], 'scroll', scrollChecker);__defers['$.__views["__alloyId134"]!click!endSession'] && $.addListener($.__views["__alloyId134"], 'click', endSession);__defers['$.__views["__alloyId135"]!click!popCamera'] && $.addListener($.__views["__alloyId135"], 'click', popCamera);__defers['$.__views["message_bar"]!change!switchIcon'] && $.addListener($.__views["message_bar"], 'change', switchIcon);__defers['$.__views["enter_icon"]!click!SendMessage'] && $.addListener($.__views["enter_icon"], 'click', SendMessage);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.
