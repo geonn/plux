@@ -105,4 +105,4 @@ Ti.UI.addEventListener('sessionbegin', function () {
 if (typeof Ti.UI.hasSession === 'undefined' || Ti.UI.hasSession) {
   Alloy.createController('index');
 }
-//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\app.js.map
+//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\app.js.map

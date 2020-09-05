@@ -20,6 +20,6 @@ if(OS_ANDROID){
 	});
 }
 
-$.win.addEventListener("close", function(){
-	$.destroy();
-});
+// $.win.addEventListener("close", function(){
+// 	$.destroy();
+// });

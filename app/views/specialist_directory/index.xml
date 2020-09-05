@@ -3,15 +3,39 @@
 		<View class="wfill hfill vert"> 
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
-		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		        	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
-		     	<View width="60%">
+		    	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">SPECIALIST</Label>
-		     	</View>
-		 	</View>
-	 		<ScrollView class="wfill hfill vert contwfill conthsize">
-	 			<!-- start your code here -->
-            </ScrollView>
+		    	</View>
+			</View>
+
+			<!-- top bar -->
+			<View id="topBar"></View>
+			</View>
+
+	 		<!-- <ScrollView class="wfill hfill vert contwfill conthsize">
+				<View id="mainView">
+					<View height=125 width="Ti.UI.FILL">
+						<View width="30%" left="0%" height="Ti.UI.FILL">
+							<ImageView class="padding" height="Ti.UI.FILL" width="Ti.UI.FILL" image="/images/icons/magnifying_glass.png"></ImageView>
+						</View>
+						<View width="70%" left="30%" height="Ti.UI.FILL">
+							<View height="50%" top="0%" width="Ti.UI.FILL">
+								<Label id="name">Name:</Label>
+							</View>
+							<View height="50%" top="50%" width="Ti.UI.FILL">
+							</View>
+						</View>
+					</View>
+					<View backgroundColor="yellow" height=125 width="Ti.UI.FILL">
+					</View>
+					<View backgroundColor="black" height=125 width="Ti.UI.FILL">
+					</View>
+					<View backgroundColor="green" height=125 width="Ti.UI.FILL">
+					</View>
+				</View>
+            </ScrollView> -->
 		</View>
 	</Window>
 </Alloy>

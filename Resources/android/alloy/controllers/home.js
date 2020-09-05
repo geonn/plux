@@ -182,7 +182,8 @@ function Controller() {
   { mod: "hospital/index", is_asp: 1, title: "HOSPITAL LOCATOR", onClick: navWindow, subtitle: "Hospital & specialist location", image_path: "/images/menu_image/clinicLocator_square.jpg" },
   { mod: "myHealth", is_asp: 0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg" },
   { mod: "appointment/index", is_asp: 0, title: "APPOINTMENT", onClick: navWindow, subtitle: "Doctor appointment", image_path: "/images/menu_image/calendar_icon.jpg" },
-  { mod: "voucher", is_asp: 0, title: "VOUCHER", onClick: navWindow, subtitle: "Health Screening Voucher", image_path: "/images/menu_image/voucher_square.jpeg" }
+  { mod: "voucher", is_asp: 0, title: "VOUCHER", onClick: navWindow, subtitle: "Health Screening Voucher", image_path: "/images/menu_image/voucher_square.jpeg" },
+  { mod: "specialist_directory/index", is_asp: 0, title: "SPECIALIST DIRECTORY", onClick: navWindow, subtitle: "Search for your specialist", image_path: "/images/menu_image/voucher_square.jpeg" }
   //{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
   //{mod: "ePharmacy/index", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
   //{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
@@ -930,4 +931,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\home.js.map
+//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\home.js.map

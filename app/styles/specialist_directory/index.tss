@@ -1,4 +1,54 @@
-
 ".container" : {
   
+}
+
+//top bar
+"#topBar": {
+    backgroundColor: "yellow",
+    height: 100,
+    width: Ti.UI.FILL,
+    layout: "horizontal"
+}
+
+"#topBarLeft": {
+    left: "0%",
+    backgroundColor: 'black',
+    width: "60%",
+    height: Ti.UI.FILL
+}
+
+"#topBarRight": {
+    left: "60%",
+    backgroundColor: 'yellow',
+    width: "40%",
+    height: Ti.UI.FILL
+}
+
+"#imgLeft": {
+    width: "50%",
+    image: "/images/search_for_your_specialist.png",
+    height: Ti.UI.SIZE
+}
+
+"#imgRight": {
+    width: "50%",
+    image: "/images/search_for_your_specialist.png",
+    height: Ti.UI.SIZE
+}
+
+//main view
+"#mainView": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: "vertical"
+}
+
+"#name": {
+    font: {
+        fontColor: "white",
+        fontSize: 15
+    },
+
+    width: Ti.UI.SIZE,
+    height: Ti.UI.SIZE
 }

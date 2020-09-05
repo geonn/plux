@@ -252,4 +252,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\asp\_personal_claim_view.js.map
+//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\asp\_personal_claim_view.js.map

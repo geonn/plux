@@ -328,4 +328,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://C:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\askDoctor\pharmacist_forms.js.map
+//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\askDoctor\pharmacist_forms.js.map
