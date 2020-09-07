@@ -99,4 +99,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\parts\search_list.js.map
+//# sourceMappingURL=file://c:\Users\DanialHaikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\parts\search_list.js.map

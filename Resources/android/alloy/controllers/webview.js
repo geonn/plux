@@ -46,10 +46,10 @@ function Controller() {
   { borderWidth: 0, layout: "vertical", height: "auto", id: "defaultMsgView", top: 5 });
 
   $.__views["main"].add($.__views["defaultMsgView"]);
-  $.__views["__alloyId893"] = Ti.UI.createLabel(
-  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId893" });
+  $.__views["__alloyId898"] = Ti.UI.createLabel(
+  { width: Titanium.UI.SIZE, height: Titanium.UI.SIZE, color: "#111111", font: { fontFamily: "Roboto-Regular, arial" }, text: 'Page not found.', id: "__alloyId898" });
 
-  $.__views["defaultMsgView"].add($.__views["__alloyId893"]);
+  $.__views["defaultMsgView"].add($.__views["__alloyId898"]);
   exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
@@ -163,4 +163,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://c:\Users\Danial Haikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\webview.js.map
+//# sourceMappingURL=file://c:\Users\DanialHaikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\webview.js.map

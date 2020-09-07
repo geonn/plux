@@ -11,31 +11,120 @@
 			</View>
 
 			<!-- top bar -->
-			<View id="topBar"></View>
+			<View id="topBar">
+				<View id="topBarLeft">
+					<Label id="topBarText1">Search for your</Label>
+				</View>
+				<View id="topBarMiddle">
+					<Label id="topBarText2">Specialist</Label>
+				</View>
+				<View id="topBarRight">
+					<ImageView id="imgRight"></ImageView>
+				</View>
 			</View>
 
-	 		<!-- <ScrollView class="wfill hfill vert contwfill conthsize">
+			<!-- main content -->
+	 		<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
 				<View id="mainView">
-					<View height=125 width="Ti.UI.FILL">
-						<View width="30%" left="0%" height="Ti.UI.FILL">
-							<ImageView class="padding" height="Ti.UI.FILL" width="Ti.UI.FILL" image="/images/icons/magnifying_glass.png"></ImageView>
+					<View id="vName">
+						<View id="vNameLeft">
+							<ImageView id="imgNameLeft"></ImageView>
 						</View>
-						<View width="70%" left="30%" height="Ti.UI.FILL">
-							<View height="50%" top="0%" width="Ti.UI.FILL">
-								<Label id="name">Name:</Label>
+						<View id="vNameRight">
+							<View id="vNameRightTop">
+								<Label id="lname">Name:</Label>
 							</View>
-							<View height="50%" top="50%" width="Ti.UI.FILL">
+							<View id="vNameRightBottom">
+								<TextField id="tfName"></TextField>
+								<View id="vImgSearchBorder">
+									<View id="vImgSearch">
+										<ImageView id="imgSearch"></ImageView>
+									</View>
+								</View>
 							</View>
 						</View>
 					</View>
-					<View backgroundColor="yellow" height=125 width="Ti.UI.FILL">
+
+					<View id="vState">
+						<View id="vStateLeft">
+							<ImageView id="imgStateLeft"></ImageView>
+						</View>
+						<View id="vNameRight">
+							<View id="vNameRightTop">
+								<Label id="lname">Preferred state:</Label>
+							</View>
+							<View id="vNameRightBottom">
+								<Picker id="pState">
+									<PickerRow title="Johor"/>
+									<PickerRow title="Kedah"/>
+									<PickerRow title="Kelantan"/>
+									<PickerRow title="Negeri Sembilan"/>
+									<PickerRow title="Pahang"/>
+									<PickerRow title="Perak"/>
+									<PickerRow title="Perlis"/>
+									<PickerRow title="Selangor"/>
+									<PickerRow title="Terengganu"/>
+									<PickerRow title="Melaka"/>
+									<PickerRow title="Pulau Pinang"/>
+									<PickerRow title="Sabah"/>
+									<PickerRow title="Sarak"/>
+									<PickerRow title="WP Kuala Lumpur"/>
+									<PickerRow title="WP Labuan"/>
+									<PickerRow title="WP Putrajaya"/>
+								</Picker>
+								<View id="vImgSearchBorder">
+									<View id="vImgSearch">
+										<ImageView id="imgSearch"></ImageView>
+									</View>
+								</View>
+							</View>
+						</View>
 					</View>
-					<View backgroundColor="black" height=125 width="Ti.UI.FILL">
+
+					<View id="vSTC">
+						<View id="vSTCLeft">
+							<ImageView id="imgSTCLeft"></ImageView>
+						</View>
+						<View id="vNameRight">
+							<View id="vNameRightTop">
+								<Label id="lname">Specialitist:</Label>
+							</View>
+							<View id="vNameRightBottom">
+								<TextField id="tfName"></TextField>
+								<View id="vImgSearchBorder">
+									<View id="vImgSearch">
+										<ImageView id="imgSearch"></ImageView>
+									</View>
+								</View>
+							</View>
+						</View>
 					</View>
-					<View backgroundColor="green" height=125 width="Ti.UI.FILL">
+
+					<View id="vHeart">
+						<View id="vHeartLeft">
+							<ImageView id="imgHeartLeft"></ImageView>
+						</View>
+						<View id="vNameRight">
+							<View id="vNameRightTop">
+								<Label id="lname">Hospital/Medical center:</Label>
+							</View>
+							<View id="vNameRightBottom">
+								<TextField id="tfName"></TextField>
+								<View id="vImgSearchBorder">
+									<View id="vImgSearch">
+										<ImageView id="imgSearch"></ImageView>
+									</View>
+								</View>
+							</View>
+						</View>
 					</View>
+
+					<View id="vSearch">
+						<Button id="bSearch">Search</Button>
+					</View>
+
 				</View>
-            </ScrollView> -->
+            </ScrollView>
 		</View>
 	</Window>
 </Alloy>
