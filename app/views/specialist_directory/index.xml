@@ -54,27 +54,31 @@
 								<Label id="lname">Preferred state:</Label>
 							</View>
 							<View id="vNameRightBottom">
-								<Picker id="pState">
-									<PickerRow title="Johor"/>
-									<PickerRow title="Kedah"/>
-									<PickerRow title="Kelantan"/>
-									<PickerRow title="Negeri Sembilan"/>
-									<PickerRow title="Pahang"/>
-									<PickerRow title="Perak"/>
-									<PickerRow title="Perlis"/>
-									<PickerRow title="Selangor"/>
-									<PickerRow title="Terengganu"/>
-									<PickerRow title="Melaka"/>
-									<PickerRow title="Pulau Pinang"/>
-									<PickerRow title="Sabah"/>
-									<PickerRow title="Sarak"/>
-									<PickerRow title="WP Kuala Lumpur"/>
-									<PickerRow title="WP Labuan"/>
-									<PickerRow title="WP Putrajaya"/>
-								</Picker>
+								<View>
+									<Picker id="pState" selectionIndicator="true" selectionOpens="true">
+										<PickerColumn id="pColumn1">
+											<PickerRow title="Johor"/>
+											<PickerRow title="Kedah"/>
+											<PickerRow title="Kelantan"/>
+											<PickerRow title="Negeri Sembilan"/>
+											<PickerRow title="Pahang"/>
+											<PickerRow title="Perak"/>
+											<PickerRow title="Perlis"/>
+											<PickerRow title="Selangor"/>
+											<PickerRow title="Terengganu"/>
+											<PickerRow title="Melaka"/>
+											<PickerRow title="Pulau Pinang"/>
+											<PickerRow title="Sabah"/>
+											<PickerRow title="Sarak"/>
+											<PickerRow title="WP Kuala Lumpur"/>
+											<PickerRow title="WP Labuan"/>
+											<PickerRow title="WP Putrajaya"/>
+										</PickerColumn>
+									</Picker>
+								</View>
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
-										<ImageView id="imgSearch"></ImageView>
+										<ImageView id="imgFilter" onClick="clickState"></ImageView>
 									</View>
 								</View>
 							</View>
@@ -87,13 +91,13 @@
 						</View>
 						<View id="vNameRight">
 							<View id="vNameRightTop">
-								<Label id="lname">Specialitist:</Label>
+								<Label id="lname">Specialities:</Label>
 							</View>
 							<View id="vNameRightBottom">
 								<TextField id="tfName"></TextField>
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
-										<ImageView id="imgSearch"></ImageView>
+										<ImageView id="imgFilter"></ImageView>
 									</View>
 								</View>
 							</View>
@@ -112,7 +116,7 @@
 								<TextField id="tfName"></TextField>
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
-										<ImageView id="imgSearch"></ImageView>
+										<ImageView id="imgFilter"></ImageView>
 									</View>
 								</View>
 							</View>
@@ -120,7 +124,7 @@
 					</View>
 
 					<View id="vSearch">
-						<Button id="bSearch">Search</Button>
+						<Button id="bSearch" onClick="doClick">Search</Button>
 					</View>
 
 				</View>

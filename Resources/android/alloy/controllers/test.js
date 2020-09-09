@@ -38,31 +38,31 @@ function Controller() {
   { barColor: "transparent", backgroundColor: "#535a74", orientationModes: [Ti.UI.PORTRAIT], fullscreen: false, windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN, title: "", backButtonTitle: "", navTintColor: "#CE1D1C", id: "win" });
 
   $.__views["win"] && $.addTopLevelView($.__views["win"]);
-  $.__views["__alloyId852"] = Ti.UI.createView(
-  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId852" });
+  $.__views["__alloyId865"] = Ti.UI.createView(
+  { borderWidth: 0, layout: "vertical", width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId865" });
 
-  $.__views["win"].add($.__views["__alloyId852"]);
+  $.__views["win"].add($.__views["__alloyId865"]);
   $.__views["search"] = Ti.UI.createSearchBar(
   { barColor: "#FFFFFF", tintColor: "#CE1D1C", id: "search", text: "", height: 50, hintText: "Search Clinic" });
 
-  $.__views["__alloyId852"].add($.__views["search"]);
+  $.__views["__alloyId865"].add($.__views["search"]);
   doSearch ? $.addListener($.__views["search"], 'return', doSearch) : __defers['$.__views["search"]!return!doSearch'] = true;$.__views["parent"] = Ti.UI.createView(
   { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "parent", backgroundColor: "#ffffff" });
 
-  $.__views["__alloyId852"].add($.__views["parent"]);
-  var __alloyId853 = [];
+  $.__views["__alloyId865"].add($.__views["parent"]);
+  var __alloyId866 = [];
   $.__views["mapview"] = (require("ti.map").createView || Ti.UI.createView)(
-  { borderWidth: 0, annotations: __alloyId853, id: "mapview", userLocation: true });
+  { borderWidth: 0, annotations: __alloyId866, id: "mapview", userLocation: true });
 
   $.__views["parent"].add($.__views["mapview"]);
-  $.__views["__alloyId854"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, right: 20, bottom: 20, opacity: 0.5, id: "__alloyId854" });
+  $.__views["__alloyId867"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.SIZE, height: Ti.UI.SIZE, right: 20, bottom: 20, opacity: 0.5, id: "__alloyId867" });
 
-  $.__views["win"].add($.__views["__alloyId854"]);
-  loadPinCategory ? $.addListener($.__views["__alloyId854"], 'postlayout', loadPinCategory) : __defers['$.__views["__alloyId854"]!postlayout!loadPinCategory'] = true;$.__views["filter_icon"] = Ti.UI.createImageView(
+  $.__views["win"].add($.__views["__alloyId867"]);
+  loadPinCategory ? $.addListener($.__views["__alloyId867"], 'postlayout', loadPinCategory) : __defers['$.__views["__alloyId867"]!postlayout!loadPinCategory'] = true;$.__views["filter_icon"] = Ti.UI.createImageView(
   { id: "filter_icon", image: "/images/icons/clinic_new.png", width: 60, height: 60 });
 
-  $.__views["__alloyId854"].add($.__views["filter_icon"]);
+  $.__views["__alloyId867"].add($.__views["filter_icon"]);
   openCategory ? $.addListener($.__views["filter_icon"], 'click', openCategory) : __defers['$.__views["filter_icon"]!click!openCategory'] = true;$.__views["view_category"] = Ti.UI.createView(
   { borderWidth: 0, width: 320, height: Ti.UI.FILL, id: "view_category", backgroundColor: "#00ffffff" });
 
@@ -71,11 +71,11 @@ function Controller() {
   { contentHeight: Ti.UI.SIZE, contentWidth: Ti.UI.FILL, backgroundColor: "#fff", height: Ti.UI.FILL, width: "80%", zIndex: 10, left: 0, bottom: 10, id: "filter_list" });
 
   $.__views["view_category"].add($.__views["filter_list"]);
-  setFilter ? $.addListener($.__views["filter_list"], 'click', setFilter) : __defers['$.__views["filter_list"]!click!setFilter'] = true;$.__views["__alloyId855"] = Ti.UI.createView(
-  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId855" });
+  setFilter ? $.addListener($.__views["filter_list"], 'click', setFilter) : __defers['$.__views["filter_list"]!click!setFilter'] = true;$.__views["__alloyId868"] = Ti.UI.createView(
+  { borderWidth: 0, width: Ti.UI.FILL, height: Ti.UI.FILL, id: "__alloyId868" });
 
-  $.__views["view_category"].add($.__views["__alloyId855"]);
-  openCategory ? $.addListener($.__views["__alloyId855"], 'click', openCategory) : __defers['$.__views["__alloyId855"]!click!openCategory'] = true;exports.destroy = function () {};
+  $.__views["view_category"].add($.__views["__alloyId868"]);
+  openCategory ? $.addListener($.__views["__alloyId868"], 'click', openCategory) : __defers['$.__views["__alloyId868"]!click!openCategory'] = true;exports.destroy = function () {};
 
   // make all IDed elements in $.__views available right on the $ in a
   // controller's internal code. Externally the IDed elements will
@@ -319,7 +319,7 @@ function Controller() {
   // controller code. One example deferred event handlers whose
   // functions are not defined until after the controller code
   // is executed.
-  __defers['$.__views["search"]!return!doSearch'] && $.addListener($.__views["search"], 'return', doSearch);__defers['$.__views["__alloyId854"]!postlayout!loadPinCategory'] && $.addListener($.__views["__alloyId854"], 'postlayout', loadPinCategory);__defers['$.__views["filter_icon"]!click!openCategory'] && $.addListener($.__views["filter_icon"], 'click', openCategory);__defers['$.__views["filter_list"]!click!setFilter'] && $.addListener($.__views["filter_list"], 'click', setFilter);__defers['$.__views["__alloyId855"]!click!openCategory'] && $.addListener($.__views["__alloyId855"], 'click', openCategory);
+  __defers['$.__views["search"]!return!doSearch'] && $.addListener($.__views["search"], 'return', doSearch);__defers['$.__views["__alloyId867"]!postlayout!loadPinCategory'] && $.addListener($.__views["__alloyId867"], 'postlayout', loadPinCategory);__defers['$.__views["filter_icon"]!click!openCategory'] && $.addListener($.__views["filter_icon"], 'click', openCategory);__defers['$.__views["filter_list"]!click!setFilter'] && $.addListener($.__views["filter_list"], 'click', setFilter);__defers['$.__views["__alloyId868"]!click!openCategory'] && $.addListener($.__views["__alloyId868"], 'click', openCategory);
 
   // Extend the $ instance with all functions and properties
   // defined on the exports object.

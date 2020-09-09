@@ -23,3 +23,12 @@ if(OS_ANDROID){
 // $.win.addEventListener("close", function(){
 // 	$.destroy();
 // });
+
+function doClick(e) {
+	var win = Alloy.createController("specialist_directory/result").getView();
+	win.open();
+}
+
+function clickState(e){
+	$.pState.setSelectedRow(null, null);
+}
