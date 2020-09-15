@@ -34,8 +34,9 @@
 							<View id="vNameRightTop">
 								<Label id="lname">Name:</Label>
 							</View>
-							<View id="vNameRightBottom">
+							<View id="vNameRightBottom1">
 								<TextField id="tfName"></TextField>
+								<!-- <Picker id="tfName"></Picker> -->
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
 										<ImageView id="imgSearch"></ImageView>
@@ -57,22 +58,23 @@
 								<View>
 									<Picker id="pState" selectionIndicator="true" selectionOpens="true">
 										<PickerColumn id="pColumn1">
-											<PickerRow title="Johor"/>
-											<PickerRow title="Kedah"/>
-											<PickerRow title="Kelantan"/>
-											<PickerRow title="Negeri Sembilan"/>
-											<PickerRow title="Pahang"/>
-											<PickerRow title="Perak"/>
-											<PickerRow title="Perlis"/>
-											<PickerRow title="Selangor"/>
-											<PickerRow title="Terengganu"/>
-											<PickerRow title="Melaka"/>
-											<PickerRow title="Pulau Pinang"/>
-											<PickerRow title="Sabah"/>
-											<PickerRow title="Sarak"/>
-											<PickerRow title="WP Kuala Lumpur"/>
-											<PickerRow title="WP Labuan"/>
-											<PickerRow title="WP Putrajaya"/>
+											<PickerRow id="any" title="Any State"/>
+											<PickerRow id="JOHOR" title="JOHOR"/>
+											<PickerRow id="KEDAH" title="KEDAH"/>
+											<PickerRow id="KELANTAN" title="KELANTAN"/>
+											<PickerRow id="KUALA LUMPUR" title="KUALA LUMPUR"/>
+											<PickerRow id="LABUAN" title="LABUAN"/>
+											<PickerRow id="MELAKA" title="MELAKA"/>
+											<PickerRow id="NEGERI SEMBILAN" title="NEGERI SEMBILAN"/>
+											<PickerRow id="PAHANG" title="PAHANG"/>
+											<PickerRow id="PENANG" title="PENANG"/>
+											<PickerRow id="PERAK" title="PERAK"/>
+											<PickerRow id="PERLIS" title="PERLIS"/>
+											<PickerRow id="PUTRAJAYA" title="PUTRAJAYA"/>
+											<PickerRow id="SABAH" title="SABAH"/>
+											<PickerRow id="SARAWAK" title="SARAWAK"/>
+											<PickerRow id="SELANGOR" title="SELANGOR"/>
+											<PickerRow id="TERENGGANU" title="TERENGGANU"/>
 										</PickerColumn>
 									</Picker>
 								</View>
@@ -94,10 +96,45 @@
 								<Label id="lname">Specialities:</Label>
 							</View>
 							<View id="vNameRightBottom">
-								<TextField id="tfName"></TextField>
+								<!-- <TextField id="tfName1"></TextField> -->
+								<Picker id="pSpecial" selectionIndicator="true" selectionOpens="true">
+										<PickerColumn id="pColumn1">
+											<PickerRow id="any" title="ANY SPECIALITY"/>
+											<PickerRow id="ANAESTHESIOLOGY AND CRITICAL CARE" title="ANAESTHESIOLOGY AND CRITICAL CARE"/>
+											<PickerRow id="EMERGENCY MEDICINE" title="EMERGENCY MEDICINE"/>
+											<PickerRow id="FAMILY MEDICINE" title="FAMILY MEDICINE"/>
+											<PickerRow id="GENERAL MEDICINE" title="GENERAL MEDICINE"/>
+											<PickerRow id="NUCLEAR MEDICINE" title="NUCLEAR MEDICINE"/>
+											<PickerRow id="REHABILITATION MEDICINE" title="REHABILITATION MEDICINE"/>
+											<PickerRow id="SPORTS MEDICINE" title="SPORTS MEDICINE"/>
+											<PickerRow id="CLINICAL ONCOLOGY" title="CLINICAL ONCOLOGY"/>
+											<PickerRow id="RADIATION ONCOLOGY" title="RADIATION ONCOLOGY"/>
+											<PickerRow id="CLINCIAL RADIOLOGY" title="CLINCIAL RADIOLOGY"/>
+											<PickerRow id="PAEDIATRICS" title="PAEDIATRICS"/>
+											<PickerRow id="GENERAL PATHOLOGY" title="GENERAL PATHOLOGY"/>
+											<PickerRow id="ANATOMICAL PATHOLOGY" title="ANATOMICAL PATHOLOGY"/>
+											<PickerRow id="CHEMICAL PATHOLOGY" title="CHEMICAL PATHOLOGY"/>
+											<PickerRow id="HAEMATOLOGY" title="HAEMATOLOGY"/>
+											<PickerRow id="MEDICAL MICROBIOLOGY" title="MEDICAL MICROBIOLOGY"/>
+											<PickerRow id="FORENSIC PATHOLOGY" title="FORENSIC PATHOLOGY"/>
+											<PickerRow id="TRANSFUSION MEDICINE" title="TRANSFUSION MEDICINE"/>
+											<PickerRow id="PSYCHIATRY" title="PSYCHIATRY"/>
+											<PickerRow id="PUBLIC HEALTH MEDICINE" title="PUBLIC HEALTH MEDICINE"/>
+											<PickerRow id="OBSTETRICS AND GYNAECOLOGY (O & G)" title="OBSTETRICS AND GYNAECOLOGY (O & G)"/>
+											<PickerRow id="SURGERY" title="SURGERY"/>
+											<PickerRow id="CARDIOTHORACIC SURGERY" title="CARDIOTHORACIC SURGERY"/>
+											<PickerRow id="NEUROSURGERY" title="NEUROSURGERY"/>
+											<PickerRow id="PAEDIATRIC SURGERY" title="PAEDIATRIC SURGERY"/>
+											<PickerRow id="PLASTIC SURGERY" title="PLASTIC SURGERY"/>
+											<PickerRow id="OPHTHALMOLOGY" title="OPHTHALMOLOGY"/>
+											<PickerRow id="OTORHINOLARYNGOLOGY" title="OTORHINOLARYNGOLOGY"/>
+											<PickerRow id="ORTHOPAEDIC SURGERY" title="ORTHOPAEDIC SURGERY"/>
+											<PickerRow id="UROLOGY" title="UROLOGY"/>
+										</PickerColumn>
+									</Picker>
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
-										<ImageView id="imgFilter"></ImageView>
+										<ImageView id="imgFilter" onClick="clickSpecial"></ImageView>
 									</View>
 								</View>
 							</View>
@@ -113,7 +150,7 @@
 								<Label id="lname">Hospital/Medical center:</Label>
 							</View>
 							<View id="vNameRightBottom">
-								<TextField id="tfName"></TextField>
+								<TextField id="tfHospital"></TextField>
 								<View id="vImgSearchBorder">
 									<View id="vImgSearch">
 										<ImageView id="imgFilter"></ImageView>

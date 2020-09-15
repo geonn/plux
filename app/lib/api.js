@@ -1003,9 +1003,9 @@ exports.callByPost = function(e, onload, onerror){
 				JSON.parse(this.responseText);
 			}
 			catch(e){
-				console.log(this.responseText);
+				//console.log(this.responseText);
 				console.log('callbypost JSON exception');
-				COMMON.createAlert("Error", e.message, handler.onexception);
+				console.log("Error", e.message);
 				return;
 			}
 			

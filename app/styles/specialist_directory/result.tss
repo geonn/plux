@@ -1,3 +1,77 @@
 ".container" : {
 
 }
+
+//top bar
+"#topBar": {
+    backgroundColor: "#FF1616",
+    height: 100,
+    width: Ti.UI.FILL,
+    //layout: "horizontal"
+}
+
+"#topBarLeft": {
+    //backgroundColor: "black",
+    left: "0%",
+    width: "30%",
+    height: Ti.UI.FILL
+}
+
+"#topBarText1": {
+    top: 25,
+    left: 10,
+    color: '#43241D',
+    font: {
+        fontWeight: "bold",
+        fontSize: 14
+    }
+}
+
+"#topBarMiddle":{
+    //backgroundColor: "yellow",
+    left: "30%",
+    width: "30%",
+    height: Ti.UI.FILL
+}
+
+"#topBarText2": {
+    top: 40,
+    color: '#FFB9B9',
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"	
+    }
+    
+}
+
+"#topBarRight": {
+    //backgroundColor: "green",
+    left: "60%",
+    width: "40%",
+    height: Ti.UI.FILL
+}
+
+"#imgRight": {
+    width: "50%",
+    image: "/images/specialist_directory/stethoscope.png",
+    height: Ti.UI.SIZE
+}
+
+//title result
+"#vResultTitle": {
+    height: 60,
+    width: Ti.UI.FILL,
+    backgroundColor: '#DEDEDE'
+}
+
+"#lResultTitle":{
+    font: {
+        fontWeight: "bold",
+        fontSize: 30
+    }
+}
+
+//scroll
+"#svMain": {
+    backgroundColor: "#DEDEDE"
+}
