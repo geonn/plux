@@ -37,20 +37,56 @@ var vWhiteSpace = $.UI.create("View", {
     backgroundColor: "black"
 });
 
- for (let i = 0; i < obj.data.length; i++) {
+//id for img and noimg
+var imgID = [];
+var noImgID = [];
 
+ for (let i = 0; i < obj.data.length; i++) {
+     if(obj.data[i].attachment !== undefined) {
+        imgID.push(i);
+    }
+
+    else {
+        noImgID.push(i);
+    }   
+}
+
+//for user that have img (on top)
+for (let i = 0; i < imgID.length; i++) {
+    display(imgID[i]);
+}
+
+$.svMain.add(vResultMain);
+
+//for user that have no img
+for (let i = 0; i < noImgID.length; i++) {
+    display(noImgID[i]);
+}
+
+$.svMain.add(vResultMain);
+
+var vWhiteSpace2 = $.UI.create("View", {
+    height: 15,
+    width: Ti.UI.FILL,
+    backgroundColor: "black"
+});
+
+$.svMain.add(vWhiteSpace2);
+
+
+function display(i){
     var vResultBorder = $.UI.create("View", {
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
         backgroundColor: "black",
-        borderRadius: 10
+        //borderRadius: 10
     });
 
     var vResultRow = $.UI.create("View", {
         height: Ti.UI.SIZE,
         width: "95%",
         backgroundColor: "#DEDEDE",
-        borderRadius: 10,
+        //borderRadius: 10,
         borderColor: "black",
         onClick: "doClick"
     });
@@ -84,6 +120,7 @@ var vWhiteSpace = $.UI.create("View", {
     } else {
         imgResult = $.UI.create("ImageView", {
         left: 5,
+        defaultImage: "/images/specialist_directory/img_placeholder.png",
         image: obj.data[i].attachment,
         height: 150,
         width: Ti.UI.SIZE,
@@ -200,14 +237,4 @@ var vWhiteSpace = $.UI.create("View", {
     //add to main view
     vResultMain.add(vWhiteSpace);
     vResultMain.add(vResultBorder);
-
-    var vWhiteSpace2 = $.UI.create("View", {
-        height: 15,
-        width: Ti.UI.FILL,
-        backgroundColor: "black"
-    });
-
-    vResultMain.add(vWhiteSpace2);
 }
-
-$.svMain.add(vResultMain);

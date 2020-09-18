@@ -33,6 +33,7 @@ if(obj.attachment == undefined){
 	var img = $.UI.create("ImageView", {
 		height: Ti.UI.SIZE,
 		width: Ti.UI.SIZE,
+		defaultImage: "/images/specialist_directory/img_placeholder.png",
 		image: obj.attachment
 	});
 }

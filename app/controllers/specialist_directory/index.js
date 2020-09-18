@@ -18,7 +18,7 @@ function init2(){
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 6000);
+	}, 15000);
 	
 }
 
@@ -54,6 +54,7 @@ function doClick(e) {
 	Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital}}, function(responseText){
 		
 		var obj = JSON.parse(responseText);
+
 		var win = Alloy.createController("specialist_directory/result", {data: obj}).getView();
 		win.open();
 	});
@@ -67,17 +68,90 @@ function clickSpecial(e){
 	$.pSpecial.setSelectedRow(null, null);
 }
 
-//test picker
-var picker = Titanium.UI.createPicker({
-	left: "2%",
-     top:5,
-     bottom: 5,
+////////////////////////////////////////////////
 
-     borderRadius: 10,
-     height: 40,
-     width: "74%",
-	 maxLength: "30",
-	 //url: "getSpecialistV2"
-     //onChange: "textFieldOnBlur",
-     //value: ""
+//Table view showing your autocomplete values
+var tblvAutoComplete = Ti.UI.createTableView({
+    width           : '100%',
+    backgroundColor : '#EFEFEF',
+    height          : 0,
+    maxRowHeight    : 35,
+    minRowHeight    : 35,
+    allowSelection  : true
 });
+
+$.mainView.add(tblvAutoComplete);
+
+//Starts auto complete
+$.tfName.addEventListener('change', function(e){ 
+	var pattern = e.source.value;
+
+	if(pattern.length <= 15){
+		//add searchArray values
+		Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: pattern}}, function(responseText){
+		
+			var obj = JSON.parse(responseText);
+	
+			var searchArray = [];
+	
+			for (let index = 0; index < obj.data.length; index++) {
+				searchArray[index] = obj.data[index].name;
+			}
+	
+			var tempArray = PatternMatch(searchArray, pattern);
+			CreateAutoCompleteList(tempArray);
+		});
+	}
+
+	else{
+		tblvAutoComplete.visible = false;
+	}
+	
+});
+
+//You got the required value and you clicks the word
+tblvAutoComplete.addEventListener('click', function(e){
+    $.tfName.value = e.rowData.result; 
+});
+
+//Returns the array which contains a match with the pattern
+function PatternMatch(arrayToSearch, pattern){
+    var searchLen = pattern.length;
+    arrayToSearch.sort();
+    var tempArray = [];
+    for(var index = 0, len = arrayToSearch.length; index< len; index++){
+        if(arrayToSearch[index].substring(0,searchLen).toUpperCase() === pattern.toUpperCase()){
+            tempArray.push(arrayToSearch[index]);
+        }
+    }
+    return tempArray;
+}
+//setting the tableview values
+function CreateAutoCompleteList(searchResults){
+    var tableData = [];
+    for(var index=0, len = searchResults.length; index < len; index++){
+
+            var lblSearchResult = Ti.UI.createLabel({
+                top            : 2,
+                width          : '40%',
+                height         : 34,
+                left           : '5%',
+                font           : { fontSize : 10 },
+                color          : '#000000',
+                text           : searchResults[index]
+            });
+
+            //Creating the table view row
+            var row = Ti.UI.createTableViewRow({
+               backgroundColor : 'transparent',
+               focusable       : true,
+               height          : 50,
+               result          : searchResults[index]
+            });
+
+            row.add(lblSearchResult);
+            tableData.push(row);
+    }
+    tblvAutoComplete.data = tableData;
+	tblvAutoComplete.height = tableData.length * 35;
+}

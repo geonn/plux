@@ -58,7 +58,7 @@
 								<View>
 									<Picker id="pState" selectionIndicator="true" selectionOpens="true">
 										<PickerColumn id="pColumn1">
-											<PickerRow id="any" title="Any State"/>
+											<PickerRow id="any" title="ANY STATE"/>
 											<PickerRow id="JOHOR" title="JOHOR"/>
 											<PickerRow id="KEDAH" title="KEDAH"/>
 											<PickerRow id="KELANTAN" title="KELANTAN"/>
@@ -162,6 +162,10 @@
 
 					<View id="vSearch">
 						<Button id="bSearch" onClick="doClick">Search</Button>
+					</View>
+
+					<View id="test">
+
 					</View>
 
 				</View>
