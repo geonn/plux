@@ -9,7 +9,7 @@ function init(){
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 3000);
+	}, 1000);
 	
 }
 
@@ -18,7 +18,7 @@ function init2(){
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 15000);
+	}, 60000);
 	
 }
 
@@ -36,15 +36,18 @@ if(OS_ANDROID){
 
 function doClick(e) {
 
+    //abort autocomplete
+    //Titanium.Network.HTTPClientabort();
+
 	var name = $.tfName.value;
 
-	var state = $.pState.getSelectedRow(0).id;
-	if(state == "any"){
+	var state = $.lblStateDialog.text;
+	if(state == "ANY STATE" || state == "Choose State"){
 		state="";
 	}
 
-	var specialty = $.pSpecial.getSelectedRow(0).id;
-	if(specialty == "any"){
+	var specialty = $.lblSpecialDialog.text;
+	if(specialty == "ANY SPECIALITY" || specialty == "Choose Specialities"){
 		specialty="";
 	}
 	
@@ -55,8 +58,12 @@ function doClick(e) {
 		
 		var obj = JSON.parse(responseText);
 
-		var win = Alloy.createController("specialist_directory/result", {data: obj}).getView();
-		win.open();
+		if(OS_IOS){
+            Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj});
+        } else{
+            var win = Alloy.createController("specialist_directory/result", {data: obj}).getView();
+            win.open();
+        }
 	});
 }
 
@@ -68,11 +75,101 @@ function clickSpecial(e){
 	$.pSpecial.setSelectedRow(null, null);
 }
 
-////////////////////////////////////////////////
+/////state
+var stateList = [
+    "ANY STATE",
+    "JOHOR",
+    "KEDAH",
+    "KELANTAN",
+    "KUALA LUMPUR",
+    "LABUAN",
+    "MELAKA",
+    "NEGERI SEMBILAN",
+    "PAHANG",
+    "PENANG",
+    "PERAK",
+    "PERLIS",
+    "PUTRAJAYA",
+    "SABAH",
+    "SARAWAK",
+    "SELANGOR",
+    "TERENGGANU"
+]
+
+var dState = $.UI.create("OptionDialog", {
+    title: "State",
+    options: stateList,
+    buttonNames: ["Cancel"]
+});
+
+$.win.add(dState);
+
+function stateClick(e){
+    dState.show();
+}
+
+dState.addEventListener('click', function(e){
+    $.lblStateDialog.text = stateList[e.index];
+});
+//state done
+
+//speciality
+var specialList = [
+    "ANY SPECIALITY",
+    "ANAESTHESIOLOGY AND CRITICAL CARE",
+    "EMERGENCY MEDICINE",
+    "FAMILY MEDICINE",
+    "GENERAL MEDICINE",
+    "NUCLEAR MEDICINE",
+    "REHABILITATION MEDICINE",
+    "SPORTS MEDICINE",
+    "CLINICAL ONCOLOGY",
+    "RADIATION ONCOLOGY",
+    "CLINCIAL RADIOLOGY",
+    "PAEDIATRICS",
+    "GENERAL PATHOLOGY",
+    "ANATOMICAL PATHOLOGY",
+    "CHEMICAL PATHOLOGY",
+    "HAEMATOLOGY",
+    "MEDICAL MICROBIOLOGY",
+    "FORENSIC PATHOLOGY",
+    "TRANSFUSION MEDICINE",
+    "PSYCHIATRY",
+    "PUBLIC HEALTH MEDICINE",
+    "OBSTETRICS AND GYNAECOLOGY (O & G)",
+    "SURGERY",
+    "CARDIOTHORACIC SURGERY",
+    "NEUROSURGERY",
+    "PAEDIATRIC SURGERY",
+    "PLASTIC SURGERY",
+    "OPHTHALMOLOGY",
+    "OTORHINOLARYNGOLOGY",
+    "ORTHOPAEDIC SURGERY",
+    "UROLOGY"
+]
+
+var dSpecial = $.UI.create("OptionDialog", {
+    title: "Specialities",
+    options: specialList,
+    buttonNames: ["Cancel"]
+});
+
+$.win.add(dSpecial);
+
+function specialClick(e){
+    dSpecial.show();
+}
+
+dSpecial.addEventListener('click', function(e){
+    $.lblSpecialDialog.text = specialList[e.index];
+});
+//speciality done
+
+//////////////////////////autocomplete shit/////////////////
 
 //Table view showing your autocomplete values
 var tblvAutoComplete = Ti.UI.createTableView({
-    width           : '100%',
+    width           : '80%',
     backgroundColor : '#EFEFEF',
     height          : 0,
     maxRowHeight    : 35,
@@ -80,13 +177,13 @@ var tblvAutoComplete = Ti.UI.createTableView({
     allowSelection  : true
 });
 
-$.mainView.add(tblvAutoComplete);
+/* $.vAutocomplete.add(tblvAutoComplete);
 
-//Starts auto complete
+Starts auto complete
 $.tfName.addEventListener('change', function(e){ 
 	var pattern = e.source.value;
 
-	if(pattern.length <= 15){
+	if(pattern.length >= 2 && pattern.value != ''){
 		//add searchArray values
 		Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: pattern}}, function(responseText){
 		
@@ -104,14 +201,17 @@ $.tfName.addEventListener('change', function(e){
 	}
 
 	else{
-		tblvAutoComplete.visible = false;
+		//$.mainView.remove(tblvAutoComplete);
 	}
 	
-});
+}); */
 
 //You got the required value and you clicks the word
 tblvAutoComplete.addEventListener('click', function(e){
-    $.tfName.value = e.rowData.result; 
+    $.tfName.value = e.rowData.result;
+
+    $.mainView.remove($.vAutocomplete);
+    
 });
 
 //Returns the array which contains a match with the pattern

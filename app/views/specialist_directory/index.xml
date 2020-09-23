@@ -19,157 +19,112 @@
 					<Label id="topBarText2">Specialist</Label>
 				</View>
 				<View id="topBarRight">
-					<ImageView id="imgRight"></ImageView>
+					<View id="imgRightFill">
+						<ImageView id="imgRight"></ImageView>
+					</View>
 				</View>
 			</View>
 
 			<!-- main content -->
-	 		<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
-				<View id="mainView">
-					<View id="vName">
-						<View id="vNameLeft">
-							<ImageView id="imgNameLeft"></ImageView>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
+
+				<!-- name -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgNameFill">
+							<ImageView id="imgName"></ImageView>
 						</View>
-						<View id="vNameRight">
-							<View id="vNameRightTop">
-								<Label id="lname">Name:</Label>
-							</View>
-							<View id="vNameRightBottom1">
-								<TextField id="tfName"></TextField>
-								<!-- <Picker id="tfName"></Picker> -->
-								<View id="vImgSearchBorder">
-									<View id="vImgSearch">
-										<ImageView id="imgSearch"></ImageView>
-									</View>
+					</View>
+
+					
+					<View id="vRowText">
+						<Label id="lblName">Name:</Label>
+						<View id="vNameSearch">
+							<TextField id="tfName"></TextField>
+							<View id="vNameSearchFillBg">
+								<View id="vNameSearchFill">
+									<ImageView id="imgNameSearch"></ImageView>
 								</View>
 							</View>
 						</View>
 					</View>
-
-					<View id="vState">
-						<View id="vStateLeft">
-							<ImageView id="imgStateLeft"></ImageView>
-						</View>
-						<View id="vNameRight">
-							<View id="vNameRightTop">
-								<Label id="lname">Preferred state:</Label>
-							</View>
-							<View id="vNameRightBottom">
-								<View>
-									<Picker id="pState" selectionIndicator="true" selectionOpens="true">
-										<PickerColumn id="pColumn1">
-											<PickerRow id="any" title="ANY STATE"/>
-											<PickerRow id="JOHOR" title="JOHOR"/>
-											<PickerRow id="KEDAH" title="KEDAH"/>
-											<PickerRow id="KELANTAN" title="KELANTAN"/>
-											<PickerRow id="KUALA LUMPUR" title="KUALA LUMPUR"/>
-											<PickerRow id="LABUAN" title="LABUAN"/>
-											<PickerRow id="MELAKA" title="MELAKA"/>
-											<PickerRow id="NEGERI SEMBILAN" title="NEGERI SEMBILAN"/>
-											<PickerRow id="PAHANG" title="PAHANG"/>
-											<PickerRow id="PENANG" title="PENANG"/>
-											<PickerRow id="PERAK" title="PERAK"/>
-											<PickerRow id="PERLIS" title="PERLIS"/>
-											<PickerRow id="PUTRAJAYA" title="PUTRAJAYA"/>
-											<PickerRow id="SABAH" title="SABAH"/>
-											<PickerRow id="SARAWAK" title="SARAWAK"/>
-											<PickerRow id="SELANGOR" title="SELANGOR"/>
-											<PickerRow id="TERENGGANU" title="TERENGGANU"/>
-										</PickerColumn>
-									</Picker>
-								</View>
-								<View id="vImgSearchBorder">
-									<View id="vImgSearch">
-										<ImageView id="imgFilter" onClick="clickState"></ImageView>
-									</View>
-								</View>
-							</View>
-						</View>
-					</View>
-
-					<View id="vSTC">
-						<View id="vSTCLeft">
-							<ImageView id="imgSTCLeft"></ImageView>
-						</View>
-						<View id="vNameRight">
-							<View id="vNameRightTop">
-								<Label id="lname">Specialities:</Label>
-							</View>
-							<View id="vNameRightBottom">
-								<!-- <TextField id="tfName1"></TextField> -->
-								<Picker id="pSpecial" selectionIndicator="true" selectionOpens="true">
-										<PickerColumn id="pColumn1">
-											<PickerRow id="any" title="ANY SPECIALITY"/>
-											<PickerRow id="ANAESTHESIOLOGY AND CRITICAL CARE" title="ANAESTHESIOLOGY AND CRITICAL CARE"/>
-											<PickerRow id="EMERGENCY MEDICINE" title="EMERGENCY MEDICINE"/>
-											<PickerRow id="FAMILY MEDICINE" title="FAMILY MEDICINE"/>
-											<PickerRow id="GENERAL MEDICINE" title="GENERAL MEDICINE"/>
-											<PickerRow id="NUCLEAR MEDICINE" title="NUCLEAR MEDICINE"/>
-											<PickerRow id="REHABILITATION MEDICINE" title="REHABILITATION MEDICINE"/>
-											<PickerRow id="SPORTS MEDICINE" title="SPORTS MEDICINE"/>
-											<PickerRow id="CLINICAL ONCOLOGY" title="CLINICAL ONCOLOGY"/>
-											<PickerRow id="RADIATION ONCOLOGY" title="RADIATION ONCOLOGY"/>
-											<PickerRow id="CLINCIAL RADIOLOGY" title="CLINCIAL RADIOLOGY"/>
-											<PickerRow id="PAEDIATRICS" title="PAEDIATRICS"/>
-											<PickerRow id="GENERAL PATHOLOGY" title="GENERAL PATHOLOGY"/>
-											<PickerRow id="ANATOMICAL PATHOLOGY" title="ANATOMICAL PATHOLOGY"/>
-											<PickerRow id="CHEMICAL PATHOLOGY" title="CHEMICAL PATHOLOGY"/>
-											<PickerRow id="HAEMATOLOGY" title="HAEMATOLOGY"/>
-											<PickerRow id="MEDICAL MICROBIOLOGY" title="MEDICAL MICROBIOLOGY"/>
-											<PickerRow id="FORENSIC PATHOLOGY" title="FORENSIC PATHOLOGY"/>
-											<PickerRow id="TRANSFUSION MEDICINE" title="TRANSFUSION MEDICINE"/>
-											<PickerRow id="PSYCHIATRY" title="PSYCHIATRY"/>
-											<PickerRow id="PUBLIC HEALTH MEDICINE" title="PUBLIC HEALTH MEDICINE"/>
-											<PickerRow id="OBSTETRICS AND GYNAECOLOGY (O & G)" title="OBSTETRICS AND GYNAECOLOGY (O & G)"/>
-											<PickerRow id="SURGERY" title="SURGERY"/>
-											<PickerRow id="CARDIOTHORACIC SURGERY" title="CARDIOTHORACIC SURGERY"/>
-											<PickerRow id="NEUROSURGERY" title="NEUROSURGERY"/>
-											<PickerRow id="PAEDIATRIC SURGERY" title="PAEDIATRIC SURGERY"/>
-											<PickerRow id="PLASTIC SURGERY" title="PLASTIC SURGERY"/>
-											<PickerRow id="OPHTHALMOLOGY" title="OPHTHALMOLOGY"/>
-											<PickerRow id="OTORHINOLARYNGOLOGY" title="OTORHINOLARYNGOLOGY"/>
-											<PickerRow id="ORTHOPAEDIC SURGERY" title="ORTHOPAEDIC SURGERY"/>
-											<PickerRow id="UROLOGY" title="UROLOGY"/>
-										</PickerColumn>
-									</Picker>
-								<View id="vImgSearchBorder">
-									<View id="vImgSearch">
-										<ImageView id="imgFilter" onClick="clickSpecial"></ImageView>
-									</View>
-								</View>
-							</View>
-						</View>
-					</View>
-
-					<View id="vHeart">
-						<View id="vHeartLeft">
-							<ImageView id="imgHeartLeft"></ImageView>
-						</View>
-						<View id="vNameRight">
-							<View id="vNameRightTop">
-								<Label id="lname">Hospital/Medical center:</Label>
-							</View>
-							<View id="vNameRightBottom">
-								<TextField id="tfHospital"></TextField>
-								<View id="vImgSearchBorder">
-									<View id="vImgSearch">
-										<ImageView id="imgFilter"></ImageView>
-									</View>
-								</View>
-							</View>
-						</View>
-					</View>
-
-					<View id="vSearch">
-						<Button id="bSearch" onClick="doClick">Search</Button>
-					</View>
-
-					<View id="test">
-
-					</View>
-
 				</View>
-            </ScrollView>
+
+				<!-- state -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgStateFill">
+							<ImageView id="imgState"></ImageView>
+						</View>
+					</View>
+
+					<View id="vRowText" onClick="stateClick">
+						<Label id="lblState">State:</Label>
+						<View id="vStateSearch">
+							<View id="vStateDialog">
+								<Label id="lblStateDialog">Choose State</Label>
+							</View>
+
+							<View id="vStateSearchFillBg">
+								<View id="vStateSearchFill">
+									<ImageView id="imgStateSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<!-- speciality -->
+				<View id="vRow" onClick="specialClick">
+					<View id="vRowImg">
+						<View id="vImgSpecialFill">
+							<ImageView id="imgSpecial"></ImageView>
+						</View>
+					</View>
+
+					<View id="vRowText">
+						<Label id="lblSpecial">Specialities:</Label>
+						<View id="vSpecialSearch">
+							<View id="vSpecialDialog">
+								<Label id="lblSpecialDialog">Choose Specialities</Label>
+							</View>
+						
+							<View id="vSpecialSearchFillBg">
+								<View id="vSpecialSearchFill">
+									<ImageView id="imgSpecialSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<!-- hospital -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgHospitalFill">
+							<ImageView id="imgHospital"></ImageView>
+						</View>
+					</View>
+
+					
+					<View id="vRowText">
+						<Label id="lblHospital">Hospital/Medical Center:</Label>
+						<View id="vHospitalSearch">
+							<TextField id="tfHospital"></TextField>
+							<View id="vHospitalSearchFillBg">
+								<View id="vHospitalSearchFill">
+									<ImageView id="imgHospitalSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<View id="vSearch">
+					<Button id="bSearch" onClick="doClick">Search</Button>
+				</View>
+
+			</ScrollView>
 		</View>
 	</Window>
 </Alloy>

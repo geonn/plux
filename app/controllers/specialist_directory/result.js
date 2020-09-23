@@ -93,8 +93,12 @@ function display(i){
 
     vResultRow.addEventListener('click',function(e){
         var obj2 = obj.data[i];
-        var win = Alloy.createController("specialist_directory/resultDetails", {data: obj2}).getView();
-        win.open();
+        if(OS_IOS){
+            Alloy.Globals.nav.navigationWindow("specialist_directory/resultDetails", "", "", {data: obj2});
+        } else{
+            var win = Alloy.createController("specialist_directory/resultDetails", {data: obj2}).getView();
+            win.open();
+        }
     });
 
     var vResultRowImg = $.UI.create("View", {

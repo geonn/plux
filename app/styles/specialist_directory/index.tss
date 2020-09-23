@@ -5,21 +5,20 @@
 //top bar
 "#topBar": {
     backgroundColor: "#FF1616",
-    height: 100,
+    height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
     //layout: "horizontal"
 }
 
 "#topBarLeft": {
-    //backgroundColor: "black",
+    top: 20,
     left: "0%",
     width: "30%",
-    height: Ti.UI.FILL
+    height: Ti.UI.SIZE
 }
 
 "#topBarText1": {
-    top: 25,
-    left: 10,
+    left: 5,
     color: '#43241D',
     font: {
         fontWeight: "bold",
@@ -28,33 +27,35 @@
 }
 
 "#topBarMiddle":{
-    //backgroundColor: "yellow",
+    top: 40,
     left: "30%",
     width: "30%",
-    height: Ti.UI.FILL
+    height: Ti.UI.SIZE
 }
 
 "#topBarText2": {
-    top: 40,
     color: '#FFB9B9',
     font: {
         fontSize: 24,
         fontWeight: "bold"	
     }
-    
 }
 
 "#topBarRight": {
-    //backgroundColor: "green",
     left: "60%",
     width: "40%",
-    height: Ti.UI.FILL
+    height: Ti.UI.SIZE
+}
+
+"#imgRightFill": {
+    height: Ti.UI.SIZE,
+    width: "50%",
 }
 
 "#imgRight": {
-    width: "50%",
-    image: "/images/specialist_directory/stethoscope.png",
-    height: Ti.UI.SIZE
+    height: 100,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/stethoscope.png"
 }
 
 //scrollview
@@ -66,228 +67,315 @@
 "#mainView": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    layout: "vertical"
+    layout: "vertical",
+}
+
+//whitespace
+"#vWhiteSpace": {
+    height: 15,
+    width: Ti.UI.FILL
+}
+
+
+//row
+"#vRow": {
+    height: Titanium.UI.SIZE,
+	width: Ti.UI.FILL,
+    layout: "horizontal",
+    //padding
+    top: 5,
+    bottom: 5,
+	left: 10,
+	right: 10
+}
+
+"#vRowImg": {
+    height: Ti.UI.SIZE,	
+    width: "15%",
+    left: "0%",
+}
+
+"#vRowText": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: "vertical",
 }
 
 //name
-"#vName": {
+"#vImgNameFill": {
+    height: Ti.UI.SIZE,
+    width: "75%"
+}
+
+"#imgName": {
     height: 100,
-    width: Ti.UI.FILL	
-}
-
-"#vNameLeft": {
-    width: "25%",
-    left: "0%",
-    height: Ti.UI.FILL	
-}
-
-"#imgNameLeft": {
-    left: "25",
-    right: "10",
-    height: Ti.UI.SIZE,
     width: Ti.UI.SIZE,
-    image: "/images/specialist_directory/magnifying_glass.png"	
+    image: "/images/specialist_directory/icon/magnifying_glass_red.png"
 }
 
-"#vNameRight": {
-    left: "25%",
-    width: "75%",
-    height: Ti.UI.FILL	
-}
-
-"#vNameRightTop": {
-    height: 50,
-    top: 0,
-    width: Ti.UI.FILL	
-}
-
-"#lname": {
-
-    bottom: 10,
-    left: 5,
-    color: 'white',
-
-    font: {
-        fontSize: 15
-    },
-
-    width: Ti.UI.SIZE,
-    height: Ti.UI.SIZE
-}
-
-"#vNameRightBottom": {
-    right: "5%",
-    backgroundColor: "#00B8A9", //
-    borderRadius: 10,
-    height: 50,
-    top: 50,
-    width: Ti.UI.FILL,
-    //layout: 'horizontal'
-    
-}
-
-"#vNameRightBottom1": {
-    right: "5%",
-    backgroundColor: "#00B8A9", //
-    borderRadius: 10,
+"#lblName": {
     height: Ti.UI.SIZE,
-    top: 50,
     width: Ti.UI.FILL,
-    //layout: 'horizontal'
-    
+    color: "white"
+}
+
+"#vNameSearch": {
+    top: 5,
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'horizontal',
+    backgroundColor: "#00B8A9",
+    borderRadius: 10
 }
 
 "#tfName": {
-    left: "2%",
-    top:5,
-    bottom: 5,
-
-    borderRadius: 10,
-    height: 40,
-    width: "74%",
-    maxLength: "30",
-    onChange: "textFieldOnBlur",
-}
-
-"#tfHospital": {
-    left: "2%",
-    top:5,
-    bottom: 5,
-
-    borderRadius: 10,
-    height: 40,
-    width: "74%",
-    maxLength: "30",
-    onChange: "textFieldOnBlur",
-}
-
-"#vImgSearchBorder": { 
-    backgroundColor: "white",
-    left:"78%",
-    width: "20%",
-    height: 40,
-    borderRadius: 10,
-}
-
-"#vImgSearch": {
-    left: "0%",
-    width: "100%",
-    height: 30
-}
-
-"#imgSearch": {
-    borderRadius: 10,
-    backgroundColor: "white",
-    image: "/images/specialist_directory/search.png",
     height: Ti.UI.SIZE,
-    width: Ti.UI.SIZE,
+    width: "78%",
+    borderRadius: 10,
+    top: 5,
+    bottom: 5,
+    left: "2%",
+    right: "2%"
 }
 
-"#imgFilter": {
-    borderRadius: 10,
-    backgroundColor: "white",
-    image: "/images/specialist_directory/icon/filter.png",
+"#vNameSearchFillBg": {
     height: Ti.UI.SIZE,
+    width: "16%",
+    borderRadius: 10,
+    backgroundColor: 'white',
+    right: "2%"
+}
+
+"#vNameSearchFill": {
+    height: Ti.UI.SIZE,
+    width: "60%",
+}
+
+"#imgNameSearch": {
+    height: 45,
     width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/magnifying_glass_black.png"
 }
 
 //state
-"#vState": {
-    height: 100,
-    width: Ti.UI.FILL	
-}
-
-"#vStateLeft": {
-    width: "20%",
-    left: "0%",
-    height: Ti.UI.FILL	
-}
-
-"#imgStateLeft": {
-    left: "25",
-    right: "10",
+"#vImgStateFill": {
     height: Ti.UI.SIZE,
+    width: "70%"
+}
+
+"#imgState": {
+    height: 100,
     width: Ti.UI.SIZE,
-    image: "/images/specialist_directory/location.png",
+    image: "/images/specialist_directory/icon/location_red2.png"
+}
+
+"#lblState": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    color: "white"
+}
+
+"#vStateSearch": {
+    top: 5,
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'horizontal',
+    backgroundColor: "#00B8A9",
+    borderRadius: 10
 }
 
 "#pState": {
+    height: 45,
+    width: "78%",
+
     backgroundColor: "white",
+    borderRadius: 10,
 
     left: "2%",
+    right: "2%",
     top:5,
     bottom: 5,
+}
+
+"#vStateSearchFillBg": {
+    height: Ti.UI.SIZE,
+    width: "16%",
+    borderRadius: 10,
+    backgroundColor: 'white',
+    right: "2%"
+}
+
+"#vStateSearchFill": {
+    height: Ti.UI.SIZE,
+    width: "60%",
+}
+
+"#imgStateSearch": {
+    height: 45,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/filter.png"
+}
+
+/////still state
+
+"#vStateDialog": {
+    height: 45,
+    width: "78%",
+    backgroundColor: "white",
 
     borderRadius: 10,
-    height: 40,
-    width: "74%",
+    left: "2%",
+    right: "2%",
+    top:5,
+    bottom: 5,
 }
 
-//STC
-"#vSTC": {
-    height: 100,
-    width: Ti.UI.FILL		
+"#lblStateDialog": {
+    left: "5%"
 }
 
-"#vSTCLeft": {
-    width: "22.5%",
-    left: "0%",
-    height: Ti.UI.FILL	
-}
-
-"#imgSTCLeft": {
-    left: "25",
-    right: "10",
+//specialty
+"#vImgSpecialFill": {
     height: Ti.UI.SIZE,
+    width: "80%"
+}
+
+"#imgSpecial": {
+    height: 100,
     width: Ti.UI.SIZE,
-    image: "/images/specialist_directory/stethoscope2.png"
+    image: "/images/specialist_directory/icon/stethoscope.png"
+}
+
+"#lblSpecial": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    color: "white"
+}
+
+"#vSpecialSearch": {
+    top: 5,
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'horizontal',
+    backgroundColor: "#00B8A9",
+    borderRadius: 10
 }
 
 "#pSpecial": {
+    height: 45,
+    width: "78%",
+
     backgroundColor: "white",
+    borderRadius: 10,
 
     left: "2%",
+    right: "2%",
     top:5,
     bottom: 5,
+}
+
+"#vSpecialSearchFillBg": {
+    height: Ti.UI.SIZE,
+    width: "16%",
+    borderRadius: 10,
+    backgroundColor: 'white',
+    right: "2%"
+}
+
+"#vSpecialSearchFill": {
+    height: Ti.UI.SIZE,
+    width: "60%",
+}
+
+"#imgSpecialSearch": {
+    height: 45,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/filter.png"
+}
+
+"#vSpecialDialog": {
+    height: 45,
+    width: "78%",
+    backgroundColor: "white",
 
     borderRadius: 10,
-    height: 40,
-    width: "74%",
+    left: "2%",
+    right: "2%",
+    top:5,
+    bottom: 5,
 }
 
-//heart
-"#vHeart": {
-    height: 100,
-    width: Ti.UI.FILL		
+"#lblSpecialDialog": {
+    left: "5%"
 }
 
-"#vHeartLeft": {
-    width: "22.5%",
-    left: "0%",
-    height: Ti.UI.FILL	
-}
-
-"#imgHeartLeft": {
-    left: "25",
-    right: "10",
+//hospital
+"#vImgHospitalFill": {
     height: Ti.UI.SIZE,
+    width: "75%"
+}
+
+"#imgHospital": {
+    height: 100,
     width: Ti.UI.SIZE,
-    image: "/images/specialist_directory/heart.png"
+    image: "/images/specialist_directory/icon/first_aid_kit.png"
+}
+
+"#lblHospital": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    color: "white"
+}
+
+"#vHospitalSearch": {
+    top: 5,
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'horizontal',
+    backgroundColor: "#00B8A9",
+    borderRadius: 10
+}
+
+"#tfHospital": {
+    height: Ti.UI.SIZE,
+    width: "78%",
+    borderRadius: 10,
+    top: 5,
+    bottom: 5,
+    left: "2%",
+    right: "2%"
+}
+
+"#vHospitalSearchFillBg": {
+    height: Ti.UI.SIZE,
+    width: "16%",
+    borderRadius: 10,
+    backgroundColor: 'white',
+    right: "2%"
+}
+
+"#vHospitalSearchFill": {
+    height: Ti.UI.SIZE,
+    width: "60%",
+}
+
+"#imgHospitalSearch": {
+    height: 45,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/magnifying_glass_black.png"
 }
 
 //search
 "#vSearch":{
     width: Ti.UI.FILL,
-    //height: Ti.UI.SIZE
+    height: Ti.UI.SIZE,
+    top: 5,
+    bottom: 5,
+	left: 10,
+	right: 10
 }
 
 "#bSearch": {
-    title: "Search",
-    width: "30%"
-}
-
-"#test": {
     height: Ti.UI.SIZE,
-    width: Ti.UI.FILL,
-    backgroundColor: "blue"
+    width: "30%"    
 }
