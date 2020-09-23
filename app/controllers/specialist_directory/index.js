@@ -99,8 +99,16 @@ var stateList = [
 var dState = $.UI.create("OptionDialog", {
     title: "State",
     options: stateList,
-    buttonNames: ["Cancel"]
+    //buttonNames: ["Cancel"],
+    //cancel: 17
 });
+
+if(OS_ANDROID){
+    dState.buttonNames = ["Cancel"];
+} else{
+    stateList.push("Cancel");
+    dState.cancel = 17;
+}
 
 $.win.add(dState);
 
@@ -109,7 +117,11 @@ function stateClick(e){
 }
 
 dState.addEventListener('click', function(e){
-    $.lblStateDialog.text = stateList[e.index];
+    if(stateList[e.index] == "CANCEL"){
+        $.lblStateDialog.text = "Choose State";
+    } else {
+        $.lblStateDialog.text = stateList[e.index];
+    }
 });
 //state done
 

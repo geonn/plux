@@ -129,7 +129,7 @@
 }
 
 "#tfName": {
-    height: Ti.UI.SIZE,
+    height: 45,
     width: "78%",
     borderRadius: 10,
     top: 5,
@@ -337,7 +337,7 @@
 }
 
 "#tfHospital": {
-    height: Ti.UI.SIZE,
+    height: 45,
     width: "78%",
     borderRadius: 10,
     top: 5,
