@@ -1,0 +1,169 @@
+".container" : {
+  
+}
+
+//name
+"#vNameBoder": {
+    height: 70,
+    width: Ti.UI.FILL,
+    backgroundColor: 'black',
+}
+
+"#vName": {
+    height: 64,
+    width: Ti.UI.FILL,
+    top: 3,
+    bottom: 3,
+    layout: 'vertical',
+    backgroundColor: 'white',
+}
+
+"#lblName": {
+    font: {
+        fontSize: 24,
+        fontWeight: "bold",
+    },
+}
+
+"#lblBio": {
+
+}
+
+//info
+"#svMain": {
+    backgroundColor: "white"
+}
+
+"#vRow": {
+    height: 60,
+    width: Ti.UI.FILL,
+    //backgroundColor: "blue"
+}
+
+//special
+"#vImgRow": {
+    height: Ti.UI.FILL,
+    width: "30%",
+    left: "0%"
+}
+
+"#vImgSpecialFill": {
+    height: Ti.UI.FILL,
+    width: Ti.UI.FILL,
+    top: 5,
+    bottom: 5
+}
+
+"#imgSpecial": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/stethoscope.png"
+}
+
+"#vText": {
+    height: Ti.UI.FILL,
+    width: "70%",
+    left: "30%",
+    layout: 'vertical'
+}
+
+"#lblTitle": {
+    top: 10,
+    left: 10,
+    font: {
+        fontWeight: "bold",
+        fontSize: 14
+    },
+    color: "blue"
+}
+
+"#lblInfo": {
+    left: 10,
+    font: {
+        fontWeight: "bold",
+        fontSize: 11
+    },
+}
+
+"#vWhitespace": {
+    height: 5,
+    width: Ti.UI.FILL
+}
+
+//SC
+"#vImgStateFill": {
+    height: Ti.UI.FILL,
+    width: Ti.UI.FILL,
+    top: 5,
+    bottom: 5
+}
+
+"#imgState": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/location-red.png"
+}
+
+//contact
+"#vImgContactFill": {
+    height: Ti.UI.FILL,
+    width: "40%",
+    top: 5,
+    bottom: 5
+}
+
+"#imgContact": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/phone.png"
+}
+
+"#lblInfo2": {
+    left: 10,
+    font: {
+        fontWeight: "bold",
+        fontSize: 11
+    },
+}
+
+//languages
+"#vImgLanguagesFill": {
+    height: Ti.UI.FILL,
+    width: "50%",
+    top: 5,
+    bottom: 5
+}
+
+"#imgLanguages": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/message.png"
+}
+
+//hospital
+"#vImgHospitalFill": {
+    height: Ti.UI.FILL,
+    width: "50%",
+    top: 5,
+    bottom: 5
+}
+
+"#imgHospital": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/first_aid_kit.png"
+}
+
+//qualification
+"#vImgQualificationFill": {
+    height: Ti.UI.FILL,
+    width: "50%",
+    top: 5,
+    bottom: 5
+}
+
+"#imgQualification": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/icon/graduation_cap.png"
+}

@@ -3,15 +3,128 @@
 		<View class="wfill hfill vert"> 
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
-		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		        	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
-		     	<View width="60%">
+		    	<View width="60%">
 		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">SPECIALIST</Label>
-		     	</View>
-		 	</View>
-	 		<ScrollView class="wfill hfill vert contwfill conthsize">
-	 			<!-- start your code here -->
-            </ScrollView>
+		    	</View>
+			</View>
+
+			<!-- top bar -->
+			<View id="topBar">
+				<View id="topBarLeft">
+					<Label id="topBarText1">Search for your</Label>
+				</View>
+				<View id="topBarMiddle">
+					<Label id="topBarText2">Specialist</Label>
+				</View>
+				<View id="topBarRight">
+					<View id="imgRightFill">
+						<ImageView id="imgRight"></ImageView>
+					</View>
+				</View>
+			</View>
+
+			<!-- main content -->
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
+
+				<!-- name -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgNameFill">
+							<ImageView id="imgName"></ImageView>
+						</View>
+					</View>
+
+					
+					<View id="vRowText">
+						<Label id="lblName">Name:</Label>
+						<View id="vNameSearch">
+							<TextField id="tfName"></TextField>
+							<View id="vNameSearchFillBg">
+								<View id="vNameSearchFill">
+									<ImageView id="imgNameSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<!-- state -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgStateFill">
+							<ImageView id="imgState"></ImageView>
+						</View>
+					</View>
+
+					<View id="vRowText" onClick="stateClick">
+						<Label id="lblState">State:</Label>
+						<View id="vStateSearch">
+							<View id="vStateDialog">
+								<Label id="lblStateDialog">Choose State</Label>
+							</View>
+
+							<View id="vStateSearchFillBg">
+								<View id="vStateSearchFill">
+									<ImageView id="imgStateSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<!-- speciality -->
+				<View id="vRow" onClick="specialClick">
+					<View id="vRowImg">
+						<View id="vImgSpecialFill">
+							<ImageView id="imgSpecial"></ImageView>
+						</View>
+					</View>
+
+					<View id="vRowText">
+						<Label id="lblSpecial">Specialities:</Label>
+						<View id="vSpecialSearch">
+							<View id="vSpecialDialog">
+								<Label id="lblSpecialDialog">Choose Specialities</Label>
+							</View>
+						
+							<View id="vSpecialSearchFillBg">
+								<View id="vSpecialSearchFill">
+									<ImageView id="imgSpecialSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<!-- hospital -->
+				<View id="vRow">
+					<View id="vRowImg">
+						<View id="vImgHospitalFill">
+							<ImageView id="imgHospital"></ImageView>
+						</View>
+					</View>
+
+					
+					<View id="vRowText">
+						<Label id="lblHospital">Hospital/Medical Center:</Label>
+						<View id="vHospitalSearch">
+							<TextField id="tfHospital"></TextField>
+							<View id="vHospitalSearchFillBg">
+								<View id="vHospitalSearchFill">
+									<ImageView id="imgHospitalSearch"></ImageView>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+
+				<View id="vSearch">
+					<Button id="bSearch" onClick="doClick">Search</Button>
+				</View>
+
+			</ScrollView>
 		</View>
 	</Window>
 </Alloy>
