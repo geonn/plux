@@ -93,7 +93,7 @@ var annotations = [];
 
 var throttle_centerMap = Alloy.Globals._.throttle(centerMap, 2000);
 function centerMap(e){
-	if(skip <= 0 || typeof ($.mapview.region.latitude) == "undefined"){
+	if(typeof ($.mapview.region.latitude) == "undefined"){
 		skip++;
 		return;
 	}
@@ -239,7 +239,7 @@ function init(){
 	$.view_category.width = platformWidth;
 	$.view_category.left = -platformWidth;
 	loadPinCategory();
-	//loadClinicList();
+	loadClinicList();
 	//loadSpecialist();
 }
 

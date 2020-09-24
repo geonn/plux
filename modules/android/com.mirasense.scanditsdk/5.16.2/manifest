@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 5.16.2
+apiversion: 4
+architectures: arm64-v8a armeabi-v7a x86
+description: scanditsdk
+author: Scandit AG
+license: Custom
+copyright: Copyright (c) 2018 by Scandit AG
+
+# these should not be edited
+name: scanditsdk
+moduleid: com.mirasense.scanditsdk
+guid: e9349273-685c-47ca-968c-0819f58911d6
+platform: android
+minsdk: 7.0.2.GA
