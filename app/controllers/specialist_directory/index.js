@@ -18,7 +18,7 @@ function init2(){
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 60000);
+	}, 3000);
 	
 }
 
@@ -51,28 +51,22 @@ function doClick(e) {
 		specialty="";
 	}
 	
-	var hospital = $.tfHospital.value;
+    var hospital = $.tfHospital.value;
+    
+    var page = 1;
 
 	init2();
-	Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital}}, function(responseText){
+	Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
 		
 		var obj = JSON.parse(responseText);
 
 		if(OS_IOS){
-            Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj});
+            Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
         } else{
-            var win = Alloy.createController("specialist_directory/result", {data: obj}).getView();
+            var win = Alloy.createController("specialist_directory/result", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
             win.open();
         }
 	});
-}
-
-function clickState(e){
-	$.pState.setSelectedRow(null, null);
-}
-
-function clickSpecial(e){
-	$.pSpecial.setSelectedRow(null, null);
 }
 
 /////state
@@ -96,18 +90,20 @@ var stateList = [
     "TERENGGANU"
 ]
 
-var dState = $.UI.create("OptionDialog", {
-    title: "State",
-    options: stateList,
-    //buttonNames: ["Cancel"],
-    //cancel: 17
-});
-
 if(OS_ANDROID){
+    var dState = $.UI.create("OptionDialog", {
+        title: "State",
+        options: stateList,
+    });
     dState.buttonNames = ["Cancel"];
 } else{
     stateList.push("Cancel");
-    dState.cancel = 17;
+    var dState = $.UI.create("OptionDialog", {
+        title: "State",
+        options: stateList,
+        cancel: stateList.length - 1
+    });
+    
 }
 
 $.win.add(dState);
@@ -117,7 +113,7 @@ function stateClick(e){
 }
 
 dState.addEventListener('click', function(e){
-    if(stateList[e.index] == "CANCEL"){
+    if(stateList[e.index] == "Cancel"){
         $.lblStateDialog.text = "Choose State";
     } else {
         $.lblStateDialog.text = stateList[e.index];
@@ -158,13 +154,23 @@ var specialList = [
     "OTORHINOLARYNGOLOGY",
     "ORTHOPAEDIC SURGERY",
     "UROLOGY"
-]
+];
 
-var dSpecial = $.UI.create("OptionDialog", {
-    title: "Specialities",
-    options: specialList,
-    buttonNames: ["Cancel"]
-});
+if(OS_ANDROID){
+    var dSpecial = $.UI.create("OptionDialog", {
+        title: "Specialities",
+        options: specialList,
+    });
+    dSpecial.buttonNames = ["Cancel"];
+} else{
+    specialList.push("Cancel");
+    var dSpecial = $.UI.create("OptionDialog", {
+        title: "Specialities",
+        options: specialList,
+        cancel: specialList.length - 1
+    });
+    
+}
 
 $.win.add(dSpecial);
 
@@ -173,7 +179,11 @@ function specialClick(e){
 }
 
 dSpecial.addEventListener('click', function(e){
-    $.lblSpecialDialog.text = specialList[e.index];
+    if (specialList[e.index] == "Cancel"){
+        $.lblSpecialDialog.text = "Choose Specialitist";
+    } else{
+        $.lblSpecialDialog.text = specialList[e.index];
+    }
 });
 //speciality done
 

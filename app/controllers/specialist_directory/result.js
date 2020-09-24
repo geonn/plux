@@ -12,7 +12,7 @@ function init(){
 	
 }
 
-//init();
+init();
 
 if(OS_ANDROID){ 
 	$.btnBack.addEventListener('click', function(){ 
@@ -23,56 +23,104 @@ if(OS_ANDROID){
 var obj = args.data;
 console.log(obj.data);
 
+var page = args.page;
+
 ////////////////////////
-var vResultMain = $.UI.create("View", {
-    height: Ti.UI.SIZE,
-    width: Ti.UI.FILL,
-    layout: "vertical",
-    backgroundColor: "#DEDEDE",
-});
 
-var vWhiteSpace = $.UI.create("View", {
-    height: 15,
-    width: Ti.UI.FILL,
-    backgroundColor: "black"
-});
-
-//id for img and noimg
-var imgID = [];
-var noImgID = [];
-
- for (let i = 0; i < obj.data.length; i++) {
-     if(obj.data[i].attachment !== undefined) {
-        imgID.push(i);
+if(obj.data.length != 0){
+    var vResultMain = $.UI.create("View", {
+        height: Ti.UI.SIZE,
+        width: Ti.UI.FILL,
+        layout: "vertical",
+        backgroundColor: "#DEDEDE",
+    });
+    
+    var vWhiteSpace = $.UI.create("View", {
+        height: 15,
+        width: Ti.UI.FILL,
+        backgroundColor: "black"
+    });
+    
+    
+    function passItem(obj)
+    {
+        //id for img and noimg
+        var imgID = [];
+        var noImgID = [];
+    
+        for (i = 0; i < obj.data.length; i++) {
+            if(obj.data[i].attachment !== undefined) {
+                imgID.push(i);
+            }
+    
+            else {
+                noImgID.push(i);
+            }   
+        }
+    
+        //for user that have img (on top)
+        for (i = 0; i < imgID.length; i++) {
+            display(imgID[i]);
+        }
+    
+        $.svMain.add(vResultMain);
+    
+        //for user that have no img
+        for (i = 0; i < noImgID.length; i++) {
+            display(noImgID[i]);
+        }
+    
+        $.svMain.add(vResultMain);
     }
+    
+    var vWhiteSpace2 = $.UI.create("View", {
+        height: 15,
+        width: Ti.UI.FILL,
+        backgroundColor: "black"
+    });
+    
+    passItem(obj);
+    
+    $.svMain.add(vWhiteSpace2);
+    //end result
 
-    else {
-        noImgID.push(i);
-    }   
+    if(obj.data.length >= 10){
+        var bNext = $.UI.create("Button", {
+            height: Ti.UI.SIZE,
+            width: "50%",
+            title: "Next"
+        });
+        
+        var vWhiteSpace3 = $.UI.create("View", {
+            height: 10,
+            width: Ti.UI.FILL,
+        });
+        $.svMain.add(vWhiteSpace3);
+        $.svMain.add(bNext);
+    
+        bNext.addEventListener("click", function(e){
+    
+            var name = args.name;
+            var state = args.state;
+            var specialty = args.specialty;
+            var hospital = args.hospital;
+            page = page + 1;
+    
+            init();
+            Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+                
+                var obj = JSON.parse(responseText);
+        
+                if(OS_IOS){
+                    Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
+                } else{
+                    var win = Alloy.createController("specialist_directory/result", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
+                    win.open();
+                }
+            });
+        });
+    }
 }
-
-//for user that have img (on top)
-for (let i = 0; i < imgID.length; i++) {
-    display(imgID[i]);
-}
-
-$.svMain.add(vResultMain);
-
-//for user that have no img
-for (let i = 0; i < noImgID.length; i++) {
-    display(noImgID[i]);
-}
-
-$.svMain.add(vResultMain);
-
-var vWhiteSpace2 = $.UI.create("View", {
-    height: 15,
-    width: Ti.UI.FILL,
-    backgroundColor: "black"
-});
-
-$.svMain.add(vWhiteSpace2);
-
 
 function display(i){
     var vResultBorder = $.UI.create("View", {
