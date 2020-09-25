@@ -63,7 +63,7 @@ if(obj.data.length != 0){
             display(imgID[i]);
         }
     
-        //$.svMain.add(vResultMain); //ios problem
+        $.svMain.add(vResultMain);
     
         //for user that have no img
         for (i = 0; i < noImgID.length; i++) {
@@ -88,8 +88,7 @@ if(obj.data.length != 0){
         var bNext = $.UI.create("Button", {
             height: Ti.UI.SIZE,
             width: "50%",
-            title: "Next",
-            bottom: 30
+            title: "Next"
         });
         
         var vWhiteSpace3 = $.UI.create("View", {
