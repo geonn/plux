@@ -314,7 +314,7 @@ function Controller() {
 
   var throttle_centerMap = Alloy.Globals._.throttle(centerMap, 2000);
   function centerMap(e) {
-    if (skip <= 0 || typeof $.mapview.region.latitude == "undefined") {
+    if (typeof $.mapview.region.latitude == "undefined") {
       skip++;
       return;
     }
@@ -460,7 +460,7 @@ function Controller() {
     $.view_category.width = platformWidth;
     $.view_category.left = -platformWidth;
     loadPinCategory();
-    //loadClinicList();
+    loadClinicList();
     //loadSpecialist();
   }
 
@@ -730,4 +730,4 @@ function Controller() {
 }
 
 module.exports = Controller;
-//# sourceMappingURL=file://c:\Users\DanialHaikal\Documents\Appcelerator_Studio_Workspace\plux/build/map/Resources\android\alloy\controllers\clinic\index.js.map
+//# sourceMappingURL=file:///Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/map/Resources/android/alloy/controllers/clinic/index.js.map

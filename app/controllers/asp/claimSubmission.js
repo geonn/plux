@@ -228,7 +228,7 @@ function datePicker(e){
         type:Ti.UI.PICKER_TYPE_DATE,
         value: val_date,
         backgroundColor: "Transparent",
-        dateTimeColor: "#ffffff",
+        //dateTimeColor: "#ffffff",
         top: 10,
     });
     var ok_button = $.UI.create("Button", {classes:['wfill'], borderRadius:0, height: 50, title: "Select a Date"});
