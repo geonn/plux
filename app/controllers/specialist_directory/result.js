@@ -177,6 +177,7 @@ function display(i){
         image: obj.data[i].attachment,
         height: 150,
         width: Ti.UI.SIZE,
+        autorotate: true,
         });
     }
 
