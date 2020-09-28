@@ -41,11 +41,11 @@
 						<Label id="lblName">Name:</Label>
 						<View id="vNameSearch">
 							<TextField id="tfName"></TextField>
-							<View id="vNameSearchFillBg">
+							<!-- <View id="vNameSearchFillBg">
 								<View id="vNameSearchFill">
 									<ImageView id="imgNameSearch"></ImageView>
 								</View>
-							</View>
+							</View> -->
 						</View>
 					</View>
 				</View>
@@ -112,7 +112,7 @@
 						<View id="vHospitalSearch">
 							<TextField id="tfHospital"></TextField>
 							<View id="vHospitalSearchFillBg">
-								<View id="vHospitalSearchFill">
+								<View id="vHospitalSearchFill" onClick="doClick">
 									<ImageView id="imgHospitalSearch"></ImageView>
 								</View>
 							</View>

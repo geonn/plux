@@ -130,7 +130,7 @@
 
 "#tfName": {
     height: 45,
-    width: "78%",
+    width: "96%",
     borderRadius: 10,
     top: 5,
     bottom: 5,
