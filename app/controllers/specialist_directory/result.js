@@ -8,7 +8,7 @@ function init(){
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 3000);
+	}, 2000);
 	
 }
 
