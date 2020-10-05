@@ -116,7 +116,7 @@ vRowSpecial.add(vImgRowSpecial);
 
 var vImgSpecialFill = $.UI.create("View", {
 	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL,
+	width: "60%",
 	top: 5,
 	bottom: 5
 });
@@ -147,7 +147,7 @@ var lblTitleSpecial = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "P R A C T I C E  F I E L D"
+	text: "PRACTICE FIELD"
 });
 
 vTextSpecial.add(lblTitleSpecial);
@@ -181,7 +181,7 @@ vRowState.add(vImgRowState);
 
 var vImgStateFill = $.UI.create("View", {
 	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL,
+	width: "60%",
 	top: 5,
 	bottom: 5
 });
@@ -213,7 +213,7 @@ var lblTitleState = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "S T A T E"
+	text: "STATE"
 });
 
 vTextState.add(lblTitleState);
@@ -248,7 +248,7 @@ vRowContact.add(vImgRowContact);
 
 var vImgContactFill = $.UI.create("View", {
 	height: Ti.UI.SIZE,
-	width: "50%",
+	width: "40%",
 	top: 5,
 	bottom: 5
 });
@@ -280,7 +280,7 @@ var lblTitleContact = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "C O N T A C T"
+	text: "CONTACT"
 });
 
 vTextContact.add(lblTitleContact);
@@ -292,7 +292,11 @@ var lblInfoContact1 = $.UI.create("Label", {
         fontWeight: "bold",
         fontSize: 11
 	},
-	text: obj.mobile
+	text: obj.mobile + " (Click here to call)"
+});
+
+lblInfoContact1.addEventListener("click", function (e){
+	Titanium.Platform.openURL('tel:' + obj.mobile);
 });
 
 var lblInfoContact2 = $.UI.create("Label", {
@@ -326,7 +330,7 @@ vRowLanguages.add(vImgRowLanguages);
 
 var vImgLanguagesFill = $.UI.create("View", {
 	height: Ti.UI.SIZE,
-	width: "50%",
+	width: "45%",
 	top: 5,
 	bottom: 5
 });
@@ -358,7 +362,7 @@ var lblTitleLanguages = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "L A N G U A G E S"
+	text: "LANGUAGES"
 });
 
 vTextLanguages.add(lblTitleLanguages);
@@ -425,7 +429,7 @@ var lblTitleHospital = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "H O S P I T A L"
+	text: "HOSPITAL"
 });
 
 vTextHospital.add(lblTitleHospital);
@@ -492,7 +496,7 @@ var lblTitleQualification = $.UI.create("Label", {
         fontSize: 14
     },
 	color: "blue",
-	text: "Q U A L I F I C A T I O N"
+	text: "QUALIFICATION"
 });
 
 vTextQualification.add(lblTitleQualification);

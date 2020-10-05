@@ -379,3 +379,13 @@
     height: Ti.UI.SIZE,
     width: "30%"    
 }
+
+"#vAutocompletePlace": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL
+}
+
+"#vAutocomplete": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL
+}

@@ -1,5 +1,6 @@
 <Alloy>
 	<Window title="SPECIALIST" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
+		<!-- back button -->
 		<View class="wfill hfill vert"> 
 			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
@@ -50,6 +51,8 @@
 					</View>
 				</View>
 
+				<View id="vAutocompletePlace"></View>
+
 				<!-- state -->
 				<View id="vRow">
 					<View id="vRowImg">
@@ -62,7 +65,7 @@
 						<Label id="lblState">State:</Label>
 						<View id="vStateSearch">
 							<View id="vStateDialog">
-								<Label id="lblStateDialog">Choose State</Label>
+								<Label id="lblStateDialog">CHOOSE STATE</Label>
 							</View>
 
 							<View id="vStateSearchFillBg">
@@ -86,7 +89,7 @@
 						<Label id="lblSpecial">Specialities:</Label>
 						<View id="vSpecialSearch">
 							<View id="vSpecialDialog">
-								<Label id="lblSpecialDialog">Choose Specialities</Label>
+								<Label id="lblSpecialDialog">CHOOSE SPECIALITIES</Label>
 							</View>
 						
 							<View id="vSpecialSearchFillBg">

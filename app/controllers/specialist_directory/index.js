@@ -42,12 +42,12 @@ function doClick(e) {
 	var name = $.tfName.value;
 
 	var state = $.lblStateDialog.text;
-	if(state == "ANY STATE" || state == "Choose State"){
+	if(state == "ANY STATE" || state == "CHOOSE STATE"){
 		state="";
 	}
 
 	var specialty = $.lblSpecialDialog.text;
-	if(specialty == "ANY SPECIALITY" || specialty == "Choose Specialities"){
+	if(specialty == "ANY SPECIALITY" || specialty == "CHOOSE SPECIALITIES"){
 		specialty="";
 	}
 	
@@ -71,7 +71,7 @@ function doClick(e) {
 
 /////state
 var stateList = [
-    "ANY STATE",
+    "CHOOSE STATE",
     "JOHOR",
     "KEDAH",
     "KELANTAN",
@@ -87,17 +87,18 @@ var stateList = [
     "SABAH",
     "SARAWAK",
     "SELANGOR",
-    "TERENGGANU"
+    "TERENGGANU",
+    "ANY STATE"
 ]
 
 if(OS_ANDROID){
     var dState = $.UI.create("OptionDialog", {
         title: "State",
         options: stateList,
+        buttonNames: ["CANCEL"]
     });
-    dState.buttonNames = ["Cancel"];
 } else{
-    stateList.push("Cancel");
+    stateList.push("CANCEL");
     var dState = $.UI.create("OptionDialog", {
         title: "State",
         options: stateList,
@@ -113,8 +114,8 @@ function stateClick(e){
 }
 
 dState.addEventListener('click', function(e){
-    if(stateList[e.index] == "Cancel"){
-        $.lblStateDialog.text = "Choose State";
+    if(stateList[e.index] == "CANCEL"){
+        $.lblStateDialog.text = "CHOOSE STATE";
     } else {
         $.lblStateDialog.text = stateList[e.index];
     }
@@ -123,7 +124,7 @@ dState.addEventListener('click', function(e){
 
 //speciality
 var specialList = [
-    "ANY SPECIALITY",
+    "CHOOSE SPECIALITIES",
     "ANAESTHESIOLOGY AND CRITICAL CARE",
     "EMERGENCY MEDICINE",
     "FAMILY MEDICINE",
@@ -153,17 +154,18 @@ var specialList = [
     "OPHTHALMOLOGY",
     "OTORHINOLARYNGOLOGY",
     "ORTHOPAEDIC SURGERY",
-    "UROLOGY"
+    "UROLOGY",
+    "ANY SPECIALITY",
 ];
 
 if(OS_ANDROID){
     var dSpecial = $.UI.create("OptionDialog", {
         title: "Specialities",
         options: specialList,
+        buttonNames: ["CANCEL"]
     });
-    dSpecial.buttonNames = ["Cancel"];
 } else{
-    specialList.push("Cancel");
+    specialList.push("CANCEL");
     var dSpecial = $.UI.create("OptionDialog", {
         title: "Specialities",
         options: specialList,
@@ -179,8 +181,8 @@ function specialClick(e){
 }
 
 dSpecial.addEventListener('click', function(e){
-    if (specialList[e.index] == "Cancel"){
-        $.lblSpecialDialog.text = "Choose Specialitist";
+    if (specialList[e.index] == "CANCEL"){
+        $.lblSpecialDialog.text = "CHOOSE SPECIALITIES";
     } else{
         $.lblSpecialDialog.text = specialList[e.index];
     }
@@ -191,7 +193,7 @@ dSpecial.addEventListener('click', function(e){
 
 //Table view showing your autocomplete values
 var tblvAutoComplete = Ti.UI.createTableView({
-    width           : '80%',
+    width           : '90%',
     backgroundColor : '#EFEFEF',
     height          : 0,
     maxRowHeight    : 35,
@@ -199,41 +201,58 @@ var tblvAutoComplete = Ti.UI.createTableView({
     allowSelection  : true
 });
 
-/* $.vAutocomplete.add(tblvAutoComplete);
+var vAutocomplete = Ti.UI.createView({
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    left: "15%"
+});
 
-Starts auto complete
+
+
+// Starts auto complete
 $.tfName.addEventListener('change', function(e){ 
-	var pattern = e.source.value;
+    var pattern = e.source.value;
+
+    //create tableview
+    vAutocomplete.add(tblvAutoComplete);
+    $.vAutocompletePlace.add(vAutocomplete);
+    ///end create table
+
+    if(pattern.length <= 2){
+        $.vAutocompletePlace.remove(vAutocomplete);
+    }
 
 	if(pattern.length >= 2 && pattern.value != ''){
+
 		//add searchArray values
-		Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: pattern}}, function(responseText){
+		Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: pattern, page: 1, limit: 10}}, function(responseText){
 		
-			var obj = JSON.parse(responseText);
+            var obj = JSON.parse(responseText);
+            
+            console.log("total obj" + obj.data.length);
 	
 			var searchArray = [];
 	
-			for (let index = 0; index < obj.data.length; index++) {
+			for (index = 0; index < obj.data.length; index++) {
 				searchArray[index] = obj.data[index].name;
-			}
+            }
 	
-			var tempArray = PatternMatch(searchArray, pattern);
-			CreateAutoCompleteList(tempArray);
+            //var tempArray = PatternMatch(searchArray, pattern);
+
+			CreateAutoCompleteList(searchArray);
 		});
 	}
 
 	else{
-		//$.mainView.remove(tblvAutoComplete);
+		//$.vAutocompletePlace.remove(tblvAutoComplete);
 	}
-	
-}); */
+});
 
 //You got the required value and you clicks the word
 tblvAutoComplete.addEventListener('click', function(e){
     $.tfName.value = e.rowData.result;
 
-    $.mainView.remove($.vAutocomplete);
-    
+    $.vAutocompletePlace.remove(vAutocomplete);
 });
 
 //Returns the array which contains a match with the pattern
@@ -255,7 +274,7 @@ function CreateAutoCompleteList(searchResults){
 
             var lblSearchResult = Ti.UI.createLabel({
                 top            : 2,
-                width          : '40%',
+                width          : '80%',
                 height         : 34,
                 left           : '5%',
                 font           : { fontSize : 10 },
@@ -267,13 +286,14 @@ function CreateAutoCompleteList(searchResults){
             var row = Ti.UI.createTableViewRow({
                backgroundColor : 'transparent',
                focusable       : true,
-               height          : 50,
+               height          : Ti.UI.SIZE,
                result          : searchResults[index]
             });
 
             row.add(lblSearchResult);
             tableData.push(row);
     }
+
     tblvAutoComplete.data = tableData;
 	tblvAutoComplete.height = tableData.length * 35;
 }
