@@ -291,7 +291,7 @@ if(OS_ANDROID){
     var dHospital = $.UI.create("OptionDialog", {
         title: "Hospital/Medical Center",
         options: hospitalList,
-        buttonNames: ["CANCEL"]
+        buttonNames: ["CANCEL"],
     });
 } else{
     hospitalList.push("CANCEL");
