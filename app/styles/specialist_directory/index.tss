@@ -336,6 +336,22 @@
     borderRadius: 10
 }
 
+"#vHospitalDialog": {
+    height: 45,
+    width: "78%",
+    backgroundColor: "white",
+
+    borderRadius: 10,
+    left: "2%",
+    right: "2%",
+    top:5,
+    bottom: 5,
+}
+
+"#lblHospitalDialog": {
+    left: "5%"
+}
+
 "#tfHospital": {
     height: 45,
     width: "78%",
@@ -362,8 +378,9 @@
 "#imgHospitalSearch": {
     height: 45,
     width: Ti.UI.SIZE,
-    image: "/images/specialist_directory/icon/magnifying_glass_black.png"
+    image: "/images/specialist_directory/icon/filter.png"
 }
+
 
 //search
 "#vSearch":{

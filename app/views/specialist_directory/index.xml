@@ -102,7 +102,7 @@
 				</View>
 
 				<!-- hospital -->
-				<View id="vRow">
+				<View id="vRow" onClick="hospitalClick">
 					<View id="vRowImg">
 						<View id="vImgHospitalFill">
 							<ImageView id="imgHospital"></ImageView>
@@ -113,9 +113,12 @@
 					<View id="vRowText">
 						<Label id="lblHospital">Hospital/Medical Center:</Label>
 						<View id="vHospitalSearch">
-							<TextField id="tfHospital"></TextField>
+							<View id="vHospitalDialog">
+								<Label id="lblHospitalDialog">CHOOSE HOSPITAL/MEDICAL CENTER</Label>
+							</View>
+							<!-- <TextField id="tfHospital"></TextField> -->
 							<View id="vHospitalSearchFillBg">
-								<View id="vHospitalSearchFill" onClick="doClick">
+								<View id="vHospitalSearchFill">
 									<ImageView id="imgHospitalSearch"></ImageView>
 								</View>
 							</View>

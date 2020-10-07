@@ -27,12 +27,14 @@ if(obj.attachment == undefined){
 	var img = $.UI.create("ImageView", {
 		height: Ti.UI.SIZE,
 		width: Ti.UI.SIZE,
+		autorotate: true,
 		image: "/images/specialist_directory/img_placeholder.png"
 	});
 } else {
 	var img = $.UI.create("ImageView", {
 		height: Ti.UI.SIZE,
 		width: Ti.UI.SIZE,
+		autorotate: true,
 		defaultImage: "/images/specialist_directory/img_placeholder.png",
 		image: obj.attachment
 	});

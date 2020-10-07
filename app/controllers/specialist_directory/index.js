@@ -50,8 +50,11 @@ function doClick(e) {
 	if(specialty == "ANY SPECIALITY" || specialty == "CHOOSE SPECIALITIES"){
 		specialty="";
 	}
-	
-    var hospital = $.tfHospital.value;
+
+    var hospital = $.lblHospitalDialog.text;
+    if(hospital == "ANY HOSPITAL/MEDICAL CENTER" || hospital == "CHOOSE HOSPITAL/MEDICAL CENTER"){
+        hospital="";
+    }
     
     var page = 1;
 
@@ -188,6 +191,134 @@ dSpecial.addEventListener('click', function(e){
     }
 });
 //speciality done
+
+
+//medical center
+var hospitalList = [
+    "CHOOSE HOSPITAL/MEDICAL CENTER",
+    "AR-RIDZUAN",
+    "ARA DAMANSARA MEDICAL CENTRE",
+    "ASSUNTA HOSPITAL",
+    "AVISENA SPECIALIST HOSPITAL",
+    "AVISENA WOMEN & CHILDREN SPECIALIST HOSPITAL",
+    "BAGAN SPECIALIST CENTRE",
+    "BINTULU SPECIALIST HOSPITAL SDN BHD",
+    "COLUMBIA ASIA SEREMBAN",
+    "DAMAI SERVICE HOSPITAL",
+    "GLENEAGLES KOTA KINABALU",
+    "GLENEAGLES KUALA LUMPUR",
+    "GLENEAGLES MEDINI JOHOR",
+    "GLENEAGLES PENANG (GLENEAGLES MEDICAL CENTRE)",
+    "HOSPITAL ISLAM AZ ZAHRAH",
+    "HOSPITAL PAKAR AN-NUR HASANAH",
+    "HOSPITAL PANTAI PUTERI IPOH",
+    "HOSPITAL PUSRAWI",
+    "HSC MEDICAL CENTER",
+    "INSTITUT JANTUNG NEGARA",
+    "KAJANG PLAZA MEDICAL CENTRE",
+    "KEDAH MEDICAL CENTRE",
+    "KELANA JAYA MEDICAL CENTRE",
+    "KENSINGTON GREEN SPECIALIST CENTRE SDN BHD",
+    "KOTA BHARU MEDICAL CENTRE",
+    "KPJ AMPANG",
+    "KPJ BANDAR DATO ONN SPECIALIST",
+    "KPJ BANDAR MAHARANI",
+    "KPJ BATU PAHAT",
+    "KPJ CENTRE FOR SIGHT",
+    "KPJ DAMANSARA",
+    "KPJ IPOH",
+    "KPJ JOHOR",
+    "KPJ KAJANG SPECIALIST",
+    "KPJ KLANG",
+    "KPJ KLUANG UTAMA",
+    "KPJ KUCHING SPECIALIST",
+    "KPJ MIRI",
+    "KPJ PAHANG",
+    "KPJ PASIR GUDANG",
+    "KPJ PENANG",
+    "KPJ PERDANA",
+    "KPJ PERLIS",
+    "KPJ PUTERI",
+    "KPJ RAWANG",
+    "KPJ SABAH SPECIALIST",
+    "KPJ SELANGOR SPECIALIST",
+    "KPJ SENTOSA KL",
+    "KPJ SEREMBAN SPECIALIST",
+    "KPJ SIBU",
+    "KPJ SRI MANJUNG",
+    "KPJ TAIPING MEDICAL CENTRE",
+    "KPJ TAWAKKAL HEALTH CENTRE",
+    "KPJ TAWAKKAL KL",
+    "KUALA TERENGGANU SPECIALIST HOSPITAL",
+    "LAM WAH EE HOSPITAL",
+    "LOH GUAN LYE SPECIALIST CENTRE",
+    "MAHKOTA MEDICAL CENTRE",
+    "MAWAR MEDICAL CENTER",
+    "METRO SPECIALIST HOSPITAL",
+    "MSU",
+    "NILAI MEDICAL CENTRE",
+    "NSCMH MEDICAL CENTRE",
+    "ORIENTAL MELAKA STRAITS MEDICAL CENTRE",
+    "PAHANG MEDICAL CENTRE",
+    "PANTAI HOSPITAL AMPANG",
+    "PANTAI HOSPITAL AYER KEROH",
+    "PANTAI HOSPITAL BATU PAHAT",
+    "PANTAI HOSPITAL CHERAS",
+    "PANTAI HOSPITAL KLANG",
+    "PANTAI HOSPITAL KUALA LUMPUR",
+    "PANTAI HOSPITAL LAGUNA MERBOK",
+    "PANTAI HOSPITAL MANJUNG",
+    "PANTAI HOSPITAL PENANG",
+    "PANTAI HOSPITAL SUNGAI PETANI",
+    "PARKCITY MEDICAL CENTRE",
+    "PENANG ADVENTIST HOSPITAL",
+    "PRINCE COURT MEDICAL CENTRE PCMC, PETRONAS HOSPITAL",
+    "PUTRA MEDICAL CENTRE (ALOR SETAR)",
+    "PUTRA SPECIALIST HOSPITAL (MELAKA) SDN BHD",
+    "RAMSAY SIME DARBY HEALTH CARE (SJMC)",
+    "REGEN REHABILITATION INTERNATIONAL HOSPITAL",
+    "REJANG MEDICAL CENTRE",
+    "SALAM SENAWANG SPECIALIST HOSPITAL",
+    "SUNWAY MEDICAL CENTRE VELOCITY",
+    "TAIPING MEDICAL CENTRE",
+    "TUNG SHIN HOSPITAL",
+    "UITM PRIVATE SPECIALIST CENTRE",
+    "UM SPECIALIST CENTRE",
+    "ANY HOSPITAL/MEDICAL CENTER",
+];
+
+if(OS_ANDROID){
+    var dHospital = $.UI.create("OptionDialog", {
+        title: "Hospital/Medical Center",
+        options: hospitalList,
+        buttonNames: ["CANCEL"]
+    });
+} else{
+    hospitalList.push("CANCEL");
+    var dHospital = $.UI.create("OptionDialog", {
+        title: "Hospital/Medical Center",
+        options: hospitalList,
+        cancel: hospitalList.length - 1
+    });
+    
+}
+
+$.win.add(dHospital);
+
+function hospitalClick(e){
+    dHospital.show();
+}
+
+dHospital.addEventListener('click', function(e){
+    if (hospitalList[e.index] == "CANCEL"){
+        $.lblHospitalDialog.text = "CHOOSE HOSPITAL/MEDICAL CENTER";
+    } else{
+        $.lblHospitalDialog.text = hospitalList[e.index];
+    }
+});
+
+
+//medical center done
 
 //////////////////////////autocomplete shit/////////////////
 
