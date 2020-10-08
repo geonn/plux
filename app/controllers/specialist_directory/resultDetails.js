@@ -310,7 +310,7 @@ if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
 		lblInfoContact1.text = obj.mobile + " (Click here to copy)"
 		lblInfoContact1.addEventListener("click", function (e){
 			Ti.UI.Clipboard.Text = obj.mobile;
-			alert("Number successfully copied");
+			alert("Copied to clipboard");
 		});
 		
 	}
