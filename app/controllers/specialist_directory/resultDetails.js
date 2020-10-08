@@ -293,13 +293,28 @@ var lblInfoContact1 = $.UI.create("Label", {
     font: {
         fontWeight: "bold",
         fontSize: 11
-	},
-	text: obj.mobile + " (Click here to call)"
+	}
 });
 
-lblInfoContact1.addEventListener("click", function (e){
-	Titanium.Platform.openURL('tel:' + obj.mobile);
-});
+if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
+	lblInfoContact1.text = "No contact available"
+} else {
+
+	if(OS_ANDROID){
+		lblInfoContact1.text = obj.mobile + " (Click here to call)"
+		lblInfoContact1.addEventListener("click", function (e){
+		Titanium.Platform.openURL('tel:' + obj.mobile);
+		});
+
+		//Ti.UI.Clipboard.Text = obj.mobile;
+
+	} else{
+		var clipboard = Ti.UI.createClipboard({
+			text: obj.mobile
+		});
+	}
+	
+}
 
 var lblInfoContact2 = $.UI.create("Label", {
 	left: 10,
