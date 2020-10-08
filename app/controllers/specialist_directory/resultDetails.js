@@ -306,12 +306,13 @@ if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
 		Titanium.Platform.openURL('tel:' + obj.mobile);
 		});
 
-		//Ti.UI.Clipboard.Text = obj.mobile;
-
 	} else{
-		var clipboard = Ti.UI.createClipboard({
-			text: obj.mobile
+		lblInfoContact1.text = obj.mobile + " (Click here to copy)"
+		lblInfoContact1.addEventListener("click", function (e){
+			Ti.UI.Clipboard.Text = obj.mobile;
+			alert("Number successfully copied");
 		});
+		
 	}
 	
 }
