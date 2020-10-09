@@ -47,7 +47,7 @@ function doClick(e) {
 	}
 
 	var specialty = $.lblSpecialDialog.text;
-	if(specialty == "ANY SPECIALITY" || specialty == "CHOOSE SPECIALITIES"){
+	if(specialty == "ANY SPECIALTY" || specialty == "CHOOSE SPECIALTY"){
 		specialty="";
 	}
 
@@ -127,7 +127,7 @@ dState.addEventListener('click', function(e){
 
 //speciality
 var specialList = [
-    "CHOOSE SPECIALITIES",
+    "CHOOSE SPECIALTY",
     "ANAESTHESIOLOGY AND CRITICAL CARE",
     "EMERGENCY MEDICINE",
     "FAMILY MEDICINE",
@@ -158,7 +158,7 @@ var specialList = [
     "OTORHINOLARYNGOLOGY",
     "ORTHOPAEDIC SURGERY",
     "UROLOGY",
-    "ANY SPECIALITY",
+    "ANY SPECIALTY",
 ];
 
 if(OS_ANDROID){
@@ -185,7 +185,7 @@ function specialClick(e){
 
 dSpecial.addEventListener('click', function(e){
     if (specialList[e.index] == "CANCEL"){
-        $.lblSpecialDialog.text = "CHOOSE SPECIALITIES";
+        $.lblSpecialDialog.text = "CHOOSE SPECIALTY";
     } else{
         $.lblSpecialDialog.text = specialList[e.index];
     }

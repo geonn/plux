@@ -60,7 +60,7 @@
 
 //scrollview
 "#svMain": {
-    backgroundColor: "#032C64"
+    backgroundColor: "#535A74"
 }
 
 //main view

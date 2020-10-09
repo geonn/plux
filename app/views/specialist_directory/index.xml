@@ -89,7 +89,7 @@
 						<Label id="lblSpecial">Specialities:</Label>
 						<View id="vSpecialSearch">
 							<View id="vSpecialDialog">
-								<Label id="lblSpecialDialog">CHOOSE SPECIALITIES</Label>
+								<Label id="lblSpecialDialog">CHOOSE SPECIALTY</Label>
 							</View>
 						
 							<View id="vSpecialSearchFillBg">
