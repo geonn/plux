@@ -125,6 +125,7 @@ dState.addEventListener('click', function(e){
 });
 //state done
 
+
 //speciality
 var specialList = [
     "CHOOSE SPECIALTY",
