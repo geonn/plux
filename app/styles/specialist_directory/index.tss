@@ -1,6 +1,11 @@
 ".container" : {
   
 }
+"Label":{
+	font: {
+        fontSize: 14
+    }
+}
 
 //top bar
 "#topBar": {
@@ -108,15 +113,18 @@
 }
 
 "#imgName": {
-    height: 100,
+	top: 24,
+    height: 45,
     width: Ti.UI.SIZE,
+    tintColor: "#ffffff",
     image: "/images/specialist_directory/icon/magnifying_glass_red.png"
 }
 
 "#lblName": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    color: "white"
+    color: "white",
+    top: 10,
 }
 
 "#vNameSearch": {
@@ -130,12 +138,13 @@
 
 "#tfName": {
     height: 45,
-    width: "96%",
+    width: Ti.UI.FILL,
     borderRadius: 10,
-    top: 5,
-    bottom: 5,
+    font:{
+    	 fontSize: 14
+    },
     left: "2%",
-    right: "2%"
+    right: 0
 }
 
 "#vNameSearchFillBg": {
@@ -164,15 +173,18 @@
 }
 
 "#imgState": {
-    height: 100,
+	top: 24,
+    height: 45,
     width: Ti.UI.SIZE,
+    tintColor:"#fff",
     image: "/images/specialist_directory/icon/location_red2.png"
 }
 
 "#lblState": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    color: "white"
+    color: "white",
+    top: 5,
 }
 
 "#vStateSearch": {
@@ -202,7 +214,7 @@
     width: "16%",
     borderRadius: 10,
     backgroundColor: 'white',
-    right: "2%"
+    right: 0
 }
 
 "#vStateSearchFill": {
@@ -220,14 +232,12 @@
 
 "#vStateDialog": {
     height: 45,
-    width: "78%",
+    width: "80%",
     backgroundColor: "white",
 
     borderRadius: 10,
     left: "2%",
     right: "2%",
-    top:5,
-    bottom: 5,
 }
 
 "#lblStateDialog": {
@@ -241,15 +251,18 @@
 }
 
 "#imgSpecial": {
-    height: 100,
+	top: 24,
+    height: 45,
     width: Ti.UI.SIZE,
+    tintColor: "#fff",
     image: "/images/specialist_directory/icon/stethoscope.png"
 }
 
 "#lblSpecial": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    color: "white"
+    color: "white",
+    top: 5,
 }
 
 "#vSpecialSearch": {
@@ -279,7 +292,6 @@
     width: "16%",
     borderRadius: 10,
     backgroundColor: 'white',
-    right: "2%"
 }
 
 "#vSpecialSearchFill": {
@@ -295,14 +307,12 @@
 
 "#vSpecialDialog": {
     height: 45,
-    width: "78%",
+    width: "80%",
     backgroundColor: "white",
 
     borderRadius: 10,
     left: "2%",
     right: "2%",
-    top:5,
-    bottom: 5,
 }
 
 "#lblSpecialDialog": {
@@ -316,15 +326,18 @@
 }
 
 "#imgHospital": {
-    height: 100,
+	top: 20,
+    height: 45,
     width: Ti.UI.SIZE,
+    tintColor: "#fff",
     image: "/images/specialist_directory/icon/first_aid_kit.png"
 }
 
 "#lblHospital": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    color: "white"
+    color: "white",
+    top: 5,
 }
 
 "#vHospitalSearch": {
@@ -338,18 +351,17 @@
 
 "#vHospitalDialog": {
     height: 45,
-    width: "78%",
+    width: "80%",
     backgroundColor: "white",
 
     borderRadius: 10,
     left: "2%",
     right: "2%",
-    top:5,
-    bottom: 5,
 }
 
 "#lblHospitalDialog": {
-    left: "5%"
+    left: "5%",
+    right: "5%"
 }
 
 "#tfHospital": {
@@ -367,7 +379,6 @@
     width: "16%",
     borderRadius: 10,
     backgroundColor: 'white',
-    right: "2%"
 }
 
 "#vHospitalSearchFill": {
