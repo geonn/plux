@@ -94,3 +94,8 @@
     title: "Back to home",
     left: "33%"
 }
+
+"#vWhiteSpace": {
+    height: 15,
+    width: Ti.UI.FILL
+}

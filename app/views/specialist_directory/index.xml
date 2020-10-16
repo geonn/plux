@@ -2,7 +2,7 @@
 	<Window title="SPECIALIST" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
 		<!-- back button -->
 		<View class="wfill hfill vert"> 
-			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE"> 
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
 				<View left="0" width="20%">
 		        	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
 		   		</View>
@@ -29,105 +29,116 @@
 			<!-- main content -->
 			<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
 
-				<!-- name -->
-				<View id="vRow">
-					<View id="vRowImg">
-						<View id="vImgNameFill">
-							<ImageView id="imgName"></ImageView>
-						</View>
-					</View>
-
-					
-					<View id="vRowText">
-						<Label id="lblName">Name:</Label>
-						<View id="vNameSearch">
-							<TextField id="tfName"></TextField>
-							<!-- <View id="vNameSearchFillBg">
-								<View id="vNameSearchFill">
-									<ImageView id="imgNameSearch"></ImageView>
-								</View>
-							</View> -->
-						</View>
-					</View>
-				</View>
-
-				<View id="vAutocompletePlace"></View>
-
-				<!-- state -->
-				<View id="vRow">
-					<View id="vRowImg">
-						<View id="vImgStateFill">
-							<ImageView id="imgState"></ImageView>
-						</View>
-					</View>
-
-					<View id="vRowText" onClick="stateClick">
-						<Label id="lblState">State:</Label>
-						<View id="vStateSearch">
-							<View id="vStateDialog">
-								<Label id="lblStateDialog">CHOOSE STATE</Label>
-							</View>
-
-							<View id="vStateSearchFillBg">
-								<View id="vStateSearchFill">
-									<ImageView id="imgStateSearch"></ImageView>
-								</View>
+				<View id="vSvMain">
+					<!-- name -->
+					<View id="vRow">
+						<View id="vRowImg">
+							<View id="vImgNameFill">
+								<ImageView id="imgName"></ImageView>
 							</View>
 						</View>
-					</View>
-				</View>
 
-				<!-- speciality -->
-				<View id="vRow" onClick="specialClick">
-					<View id="vRowImg">
-						<View id="vImgSpecialFill">
-							<ImageView id="imgSpecial"></ImageView>
-						</View>
-					</View>
-
-					<View id="vRowText">
-						<Label id="lblSpecial">Specialities:</Label>
-						<View id="vSpecialSearch">
-							<View id="vSpecialDialog">
-								<Label id="lblSpecialDialog">CHOOSE SPECIALTY</Label>
-							</View>
 						
-							<View id="vSpecialSearchFillBg">
-								<View id="vSpecialSearchFill">
-									<ImageView id="imgSpecialSearch"></ImageView>
+						<View id="vRowText">
+							<Label id="lblName">Name:</Label>
+							<View id="vNameSearch">
+								<TextField id="tfName"></TextField>
+								<!-- <View id="vNameSearchFillBg">
+									<View id="vNameSearchFill">
+										<ImageView id="imgNameSearch"></ImageView>
+									</View>
+								</View> -->
+							</View>
+						</View>
+					</View>
+
+					<View id="vAutocompletePlace"></View>
+
+					<!-- state -->
+					<View id="vRow">
+						<View id="vRowImg">
+							<View id="vImgStateFill">
+								<ImageView id="imgState"></ImageView>
+							</View>
+						</View>
+
+						<View id="vRowText" onClick="stateClick">
+							<Label id="lblState">State:</Label>
+							<View id="vStateSearch">
+								<View id="vStateDialog">
+									<Label id="lblStateDialog">CHOOSE STATE</Label>
+								</View>
+
+								<View id="vStateSearchFillBg">
+									<View id="vStateSearchFill">
+										<ImageView id="imgStateSearch"></ImageView>
+									</View>
 								</View>
 							</View>
 						</View>
 					</View>
-				</View>
 
-				<!-- hospital -->
-				<View id="vRow" onClick="hospitalClick">
-					<View id="vRowImg">
-						<View id="vImgHospitalFill">
-							<ImageView id="imgHospital"></ImageView>
-						</View>
-					</View>
-
-					
-					<View id="vRowText">
-						<Label id="lblHospital">Hospital/Medical Center:</Label>
-						<View id="vHospitalSearch">
-							<View id="vHospitalDialog">
-								<Label id="lblHospitalDialog">CHOOSE HOSPITAL/MEDICAL CENTER</Label>
+					<!-- speciality -->
+					<View id="vRow" onClick="specialClick">
+						<View id="vRowImg">
+							<View id="vImgSpecialFill">
+								<ImageView id="imgSpecial"></ImageView>
 							</View>
-							<!-- <TextField id="tfHospital"></TextField> -->
-							<View id="vHospitalSearchFillBg">
-								<View id="vHospitalSearchFill">
-									<ImageView id="imgHospitalSearch"></ImageView>
+						</View>
+
+						<View id="vRowText">
+							<Label id="lblSpecial">Specialities:</Label>
+							<View id="vSpecialSearch">
+								<View id="vSpecialDialog">
+									<Label id="lblSpecialDialog">CHOOSE SPECIALTY</Label>
+								</View>
+							
+								<View id="vSpecialSearchFillBg">
+									<View id="vSpecialSearchFill">
+										<ImageView id="imgSpecialSearch"></ImageView>
+									</View>
 								</View>
 							</View>
 						</View>
 					</View>
-				</View>
 
-				<View id="vSearch">
-					<Button id="bSearch" onClick="doClick">Search</Button>
+					<!-- hospital -->
+					<View id="vRow" onClick="hospitalClick">
+						<View id="vRowImg">
+							<View id="vImgHospitalFill">
+								<ImageView id="imgHospital"></ImageView>
+							</View>
+						</View>
+
+						
+						<View id="vRowText">
+							<Label id="lblHospital">Hospital/Medical Center:</Label>
+							<View id="vHospitalSearch">
+								<View id="vHospitalDialog">
+									<Label id="lblHospitalDialog">CHOOSE HOSPITAL/MEDICAL CENTER</Label>
+								</View>
+								<!-- <TextField id="tfHospital"></TextField> -->
+								<View id="vHospitalSearchFillBg">
+									<View id="vHospitalSearchFill">
+										<ImageView id="imgHospitalSearch"></ImageView>
+									</View>
+								</View>
+							</View>
+						</View>
+					</View>
+
+					<View id="vWhiteSpace"></View>
+
+					<View id="vSearch">
+						<Button id="bSearch" onClick="doClick">Search</Button>
+					</View>
+
+					<!-- <View id="vWhiteSpace"></View>
+
+					<View id="vHome">
+						<Button id="bHome" onClick="doHome">Home</Button>
+					</View> -->
+
 				</View>
 
 			</ScrollView>

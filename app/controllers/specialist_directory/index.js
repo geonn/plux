@@ -30,12 +30,6 @@ if(OS_ANDROID){
 	});
 }
 
-else{
-    $.btnBack.addEventListener('click', function(){ 
-        Alloy.Globals.nav.navigationWindow("home", "", "", {});
-	});
-}
-
 // $.win.addEventListener("close", function(){
 // 	$.destroy();
 // });
@@ -434,4 +428,13 @@ function CreateAutoCompleteList(searchResults){
 
     tblvAutoComplete.data = tableData;
 	tblvAutoComplete.height = tableData.length * 35;
+}
+
+function doHome(){
+    if(OS_IOS){
+        Alloy.Globals.nav.navigationWindow("home", "", "", {});
+    } else{
+        var win = Alloy.createController("home").getView();
+        win.open();
+    }
 }

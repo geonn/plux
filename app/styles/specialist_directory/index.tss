@@ -69,10 +69,10 @@
 }
 
 //main view
-"#mainView": {
+"#vSvMain": {
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL,
-    layout: "vertical",
+    layout: 'vertical'
 }
 
 //whitespace
@@ -406,6 +406,22 @@
 "#bSearch": {
     height: Ti.UI.SIZE,
     width: "30%"    
+}
+
+//home
+"#vHome":{
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    top: 5,
+    bottom: 5,
+	left: 10,
+	right: 10
+}
+
+"#bHome": {
+    height: Ti.UI.SIZE,
+    width: "30%",
+    left: "0%"  
 }
 
 "#vAutocompletePlace": {
