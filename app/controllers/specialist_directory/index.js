@@ -30,6 +30,12 @@ if(OS_ANDROID){
 	});
 }
 
+else{
+    $.btnBack.addEventListener('click', function(){ 
+        Alloy.Globals.nav.navigationWindow("home", "", "", {});
+	});
+}
+
 // $.win.addEventListener("close", function(){
 // 	$.destroy();
 // });

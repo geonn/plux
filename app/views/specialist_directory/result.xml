@@ -31,8 +31,14 @@
 
 			<!-- scrollview -->
 			<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
+				<View id="vSvMain"></View>
+				<View id="vButton">
+					<Button id="btnHome" onClick="doHome"></Button>
+				</View>
 				
 			</ScrollView>
+
+			
 
 		</View>
 	</Window>

@@ -42,38 +42,6 @@ if(obj.data.length != 0){
         backgroundColor: "black"
     });
     
-    
-    function passItem(obj)
-    {
-        //id for img and noimg
-        var imgID = [];
-        var noImgID = [];
-    
-        for (i = 0; i < obj.data.length; i++) {
-            if(obj.data[i].attachment !== undefined) {
-                imgID.push(i);
-            }
-    
-            else {
-                noImgID.push(i);
-            }   
-        }
-    
-        //for user that have img (on top)
-        for (i = 0; i < imgID.length; i++) {
-            display(imgID[i]);
-        }
-
-        //$.svMain.add(vResultMain); //ios problem
-    
-        //for user that have no img
-        for (i = 0; i < noImgID.length; i++) {
-            display(noImgID[i]);
-        }
-    
-        $.svMain.add(vResultMain);
-    }
-    
     var vWhiteSpace2 = $.UI.create("View", {
         height: 15,
         width: Ti.UI.FILL,
@@ -82,37 +50,38 @@ if(obj.data.length != 0){
     
     passItem(obj);
     
-    $.svMain.add(vWhiteSpace2);
+    $.vSvMain.add(vWhiteSpace2);
     //end result
 
-    if(obj.data.length >= 10){
-        var bNext = $.UI.create("Button", {
-            height: Ti.UI.SIZE,
-            width: "50%",
-            title: "Next",
-            bottom: 30
-        });
-        
-        var vWhiteSpace3 = $.UI.create("View", {
-            height: 10,
-            width: Ti.UI.FILL,
-        });
-        $.svMain.add(vWhiteSpace3);
-        $.svMain.add(bNext);
-    
-        bNext.addEventListener("click", function(e){
-    
-            var name = args.name;
-            var state = args.state;
-            var specialty = args.specialty;
-            var hospital = args.hospital;
-            page = page + 1;
-    
-            init();
-            Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+    var name = args.name;
+    var state = args.state;
+    var specialty = args.specialty;
+    var hospital = args.hospital;
+    page = page + 1;
+
+    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
                 
-                var obj = JSON.parse(responseText);
+        var obj = JSON.parse(responseText);
+
+        if(obj.data.length != 0){
+
+            var bNext = $.UI.create("Button", {
+                height: Ti.UI.SIZE,
+                width: "20%",
+                right: "5%",
+                title: "Next"
+            });
+            
+            var vWhiteSpace3 = $.UI.create("View", {
+                height: 10,
+                width: Ti.UI.FILL,
+            });
+            $.vSvMain.add(vWhiteSpace3);
+            $.vButton.add(bNext);
         
+            bNext.addEventListener("click", function(){
+        
+                init();
                 if(OS_IOS){
                     Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
                 } else{
@@ -120,8 +89,8 @@ if(obj.data.length != 0){
                     win.open();
                 }
             });
-        });
-    }
+        }
+    });
 }
 
 function display(i){
@@ -292,4 +261,44 @@ function display(i){
     //add to main view
     vResultMain.add(vWhiteSpace);
     vResultMain.add(vResultBorder);
+}
+
+function passItem(obj)
+{
+    //id for img and noimg
+    var imgID = [];
+    var noImgID = [];
+
+    for (i = 0; i < obj.data.length; i++) {
+        if(obj.data[i].attachment !== undefined) {
+            imgID.push(i);
+        }
+    
+        else {
+            noImgID.push(i);
+        }   
+    }
+    
+    //for user that have img (on top)
+    for (i = 0; i < imgID.length; i++) {
+        display(imgID[i]);
+    }
+
+    //$.svMain.add(vResultMain); //ios problem
+    
+    //for user that have no img
+    for (i = 0; i < noImgID.length; i++) {
+        display(noImgID[i]);
+    }
+    
+    $.vSvMain.add(vResultMain);
+}
+
+function doHome(){
+    if(OS_IOS){
+        Alloy.Globals.nav.navigationWindow("specialist_directory/index", "", "", {});
+    } else{
+        var win = Alloy.createController("specialist_directory/index").getView();
+        win.open();
+    }
 }

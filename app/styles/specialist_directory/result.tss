@@ -76,3 +76,21 @@
 "#svMain": {
     backgroundColor: "#DEDEDE"
 }
+
+"#vSvMain": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'vertical'
+}
+
+"#vButton": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL
+}
+
+"#btnHome": {
+    height: Ti.UI.SIZE,
+    width: "33%",
+    title: "Back to home",
+    left: "33%"
+}
