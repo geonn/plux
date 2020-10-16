@@ -85,7 +85,8 @@
 
 "#vButton": {
     height: Ti.UI.SIZE,
-    width: Ti.UI.FILL
+    width: Ti.UI.FILL,
+    bottom: 30
 }
 
 "#btnHome": {
