@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "203401650780",
+    "firebase_url": "https://asp-medical-group-property-nam.firebaseio.com",
+    "project_id": "asp-medical-group-property-nam",
+    "storage_bucket": "asp-medical-group-property-nam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203401650780:android:9a7cfa076de271914f3c99",
+        "android_client_info": {
+          "package_name": "com.plux.healthcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203401650780-q38i7osn82u589vbhsc8r4ef6q5vlkd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfcgS86_KXwocK38NgCErZLgkHg25rAQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203401650780-q38i7osn82u589vbhsc8r4ef6q5vlkd6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "203401650780-318ukbk4hbhjeogj0cu8ugrkkna9kfkv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.plux.healthcare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

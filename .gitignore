@@ -7,11 +7,6 @@ tmp
 Resources/iphone
 Resources/
 
-tiapp.xml
-
-app/assets/images/icon_referesh.png
-
-tiapp.xml
 Resources/android/alloy/controllers/askDoctor/find_doctor.js
 Resources/android/alloy/controllers/askDoctor/forms.js
 Resources/android/alloy/controllers/inpatient_detail.js
@@ -24,6 +19,3 @@ Resources/android/alloy/styles/askDoctor/forms.js
 Resources/android/alloy/styles/inpatient_detail.js
 Resources/android/alloy/styles/inpatient_record.js
 Resources/android/images/test.png
-
-platform
-i18n
