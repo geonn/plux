@@ -1,6 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = arguments[0] || {};
 //var args = $.args;
+require('createRemoteImageView');
 
 if(OS_ANDROID){ 
 	$.btnBack.addEventListener('click', function(){ 
@@ -31,12 +32,12 @@ if(obj.attachment == undefined){
 		image: "/images/specialist_directory/img_placeholder.png"
 	});
 } else {
-	var img = $.UI.create("ImageView", {
-		height: Ti.UI.SIZE,
+	var img = Ti.UI.createRemoteImageView({
+		height: Ti.UI.FILL,
 		width: Ti.UI.SIZE,
 		autorotate: true,
 		defaultImage: "/images/specialist_directory/img_placeholder.png",
-		image: obj.attachment
+		image: obj.attachment_preview
 	});
 }
 
