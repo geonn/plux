@@ -6,6 +6,7 @@ tmp
 .map
 Resources/iphone
 Resources/
+/platform
 
 Resources/android/alloy/controllers/askDoctor/find_doctor.js
 Resources/android/alloy/controllers/askDoctor/forms.js

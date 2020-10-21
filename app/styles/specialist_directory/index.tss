@@ -84,7 +84,7 @@
 
 //row
 "#vRow": {
-    height: Titanium.UI.SIZE,
+    height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
     layout: "horizontal",
     //padding
@@ -144,7 +144,9 @@
     	 fontSize: 14
     },
     left: "2%",
-    right: 0
+    right: 0,
+    hintText: "Enter Name (if any)",
+    hintTextColor: 'gray'
 }
 
 "#vNameSearchFillBg": {
@@ -241,7 +243,8 @@
 }
 
 "#lblStateDialog": {
-    left: "5%"
+    left: "5%",
+    color: 'gray'
 }
 
 //specialty
@@ -316,7 +319,8 @@
 }
 
 "#lblSpecialDialog": {
-    left: "5%"
+    left: "5%",
+    color: 'gray'
 }
 
 //hospital
@@ -361,7 +365,8 @@
 
 "#lblHospitalDialog": {
     left: "5%",
-    right: "5%"
+    right: "5%",
+    color: 'gray'
 }
 
 "#tfHospital": {

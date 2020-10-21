@@ -4,25 +4,21 @@ var args = arguments[0] || {};
 var loading = Alloy.createController("loading");
 var u_id = Ti.App.Properties.getString('u_id'); 
 
-function init(){
+function init(time){
 	$.win.add(loading.getView());
 	loading.start();
 	setTimeout(function(){
 		loading.finish();
-	}, 1000);
+	}, time);
 	
 }
 
-function init2(){
-	$.win.add(loading.getView());
-	loading.start();
-	setTimeout(function(){
-		loading.finish();
-	}, 3000);
-	
+function finish(){
+    $.win.add(loading.getView());
+    loading.finish();
 }
 
-init();
+init(3000);
 
 if(OS_ANDROID){ 
 	$.btnBack.addEventListener('click', function(){ 
@@ -42,66 +38,283 @@ function doClick(e) {
 	var name = $.tfName.value;
 
 	var state = $.lblStateDialog.text;
-	if(state == "ANY STATE" || state == "CHOOSE STATE"){
+	if(state == "Any Location" || state == "Choose Location"){
 		state="";
 	}
 
 	var specialty = $.lblSpecialDialog.text;
-	if(specialty == "ANY SPECIALTY" || specialty == "CHOOSE SPECIALTY"){
+	if(specialty == "Any Specialty" || specialty == "Choose Specialty"){
 		specialty="";
 	}
 
     var hospital = $.lblHospitalDialog.text;
-    if(hospital == "ANY HOSPITAL/MEDICAL CENTER" || hospital == "CHOOSE HOSPITAL/MEDICAL CENTER"){
+    if(hospital == "Any Hospital/Medical Center" || hospital == "Choose Hospital/Medical Center"){
         hospital="";
     }
     
     var page = 1;
 
-	init2();
-	Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
-		
-		var obj = JSON.parse(responseText);
+    init(10000);
 
-		if(OS_IOS){
-            Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
+    //hospital
+    if(hospital == "Avisena Women & Children Specialist Hospital"){
+        hospital = "Avisena Women";
+    }
+
+    else if(hospital == "Bintulu Specialist Hospital"){
+        hospital = "Bintulu Medical Centre";
+    }
+
+    else if(hospital == "Gleneagles Medini Johor"){
+        hospital = "Gleneagles Medini";
+    }
+
+    else if(hospital == "Hospital Islam Az Zahrah"){
+        hospital = "Hospital Islam";
+    }
+
+    else if(hospital == "Hospital Pakar An-Nur Hasanah"){
+        hospital = "Hasanah";
+    }
+
+    else if(hospital == "Hospital Pantai Puteri Ipoh"){
+        hospital = "Pantai Puteri";
+    }
+
+    else if(hospital == "KPJ Sentosa KL"){
+        hospital = "KPJ Sentosa";
+    }
+
+    else if(hospital == "KPJ Taiping Medical Centre"){
+        hospital = "Taiping Medical Centre";
+    }
+
+    else if(hospital == "Mawar Medical Centre"){
+        hospital = "Mawar Medical";
+    }
+
+    else if(hospital == "Prince Court Medical Centre PCMC, Petronas Hospital"){
+        hospital = "Prince Court Medical Centre";
+    }
+
+    else if(hospital == "Putra Medical Centre (Alor Setar)"){
+        hospital = "Putra Medical Centre, Alor Setar";
+    }
+
+    else if(hospital == "Putra Specialist Hospital (Melaka)"){
+        hospital = "Putra Specialist Hospital";
+    }
+
+    else if(hospital == "Ramsay Sime Darby Health Care (SJMC)"){
+        hospital = "Subang Jaya Medical Centre";
+    }
+
+    else if(hospital == "ReGen Rehabilitation International Hospital"){
+        hospital = "ReGen Rehab Hospital";
+    }
+
+    else if(hospital == "UM Specialist Centre"){
+        hospital = "University Malaya";
+    }
+
+
+    //Ear, Nose & Throat (ENT) -> Otorhinolaryngology
+    if(specialty == "Ear, Nose & Throat (ENT)"){
+        specialty = "Otorhinolaryngology";
+        callNormal(name, state, specialty, hospital, page);
+    }
+
+    //"Haematology & Blood Disorder -> Haematology
+    else if(specialty == "Haematology & Blood Disorder"){
+        specialty = "Haematology";
+        callNormal(name, state, specialty, hospital, page);
+    }
+
+    //Ophthalmology (Eyes) -> Ophthalmology
+    else if(specialty == "Ophthalmology (Eyes)"){
+        specialty = "Ophthalmology";
+        callNormal(name, state, specialty, hospital, page);
+    }
+
+    //go to resultGM.js insted of result.js
+    else if(specialty == "General Medicine"){
+        callGM(name, state, specialty, hospital, page);
+    }
+
+    //go to result.js
+    else{
+        callNormal(name, state, specialty, hospital, page);
+    }
+
+    //hospital change
+    var hospitalList = [
+        "Choose Hospital/Medical Center",
+        "Ar-Ridzuan", //check
+        "Ara Damansara Medical Centre",
+        "Assunta Hospital",
+        "Avisena Specialist Hospital",
+        "Avisena Women & Children Specialist Hospital", //Avisena women
+        "Bagan Specialist Centre",
+        "Bintulu Specialist Hospital", //Bintulu Medical Centre
+        "Columbia Asia Seremban", //check
+        "Damai Service Hospital",
+        "Gleneagles Kota Kinabalu",
+        "Gleneagles Kuala Lumpur",
+        "Gleneagles Medini Johor", //Gleneagles Medini
+        "Gleneagles Penang",
+        "Hospital Islam Az Zahrah", //Hospital Islam
+        "Hospital Pakar An-Nur Hasanah", //Hasanah
+        "Hospital Pantai Puteri Ipoh", //pantai puteri
+        "Hospital Pusrawi",
+        "HSC Medical Center",
+        "Institut Jantung Negara",
+        "Kajang Plaza Medical Centre",
+        "Kedah Medical Centre",
+        "Kelana Jaya Medical Centre",
+        "Kensington Green Specialist Centre",
+        "Kota Bharu Medical Centre",
+        "KPJ Ampang",
+        "KPJ Bandar Dato Onn Specialist",
+        "KPJ Bandar Maharani",
+        "KPJ Batu Pahat",
+        "KPJ Centre For Sight",
+        "KPJ Damansara",
+        "KPJ Ipoh",
+        "KPJ Johor",
+        "KPJ Kajang Specialist",
+        "KPJ Klang",
+        "KPJ Kluang Utama",
+        "KPJ Kuching Specialist",
+        "KPJ Miri",
+        "KPJ Pahang",
+        "KPJ Pasir Gudang",
+        "KPJ Penang",
+        "KPJ Perdana",
+        "KPJ Perlis",
+        "KPJ Puteri",
+        "KPJ Rawang",
+        "KPJ Sabah Specialist",
+        "KPJ Selangor Specialist",
+        "KPJ Sentosa KL", //KPJ Sentosa
+        "KPJ Seremban Specialist",
+        "KPJ Sibu",
+        "KPJ Sri Manjung",
+        "KPJ Taiping Medical Centre", //Taiping Medical Centre
+        "KPJ Tawakkal Health Centre",
+        "KPJ Tawakkal KL",
+        "Kuala Terengganu Specialist Hospital",
+        "Lam Wah Ee Hospital",
+        "Loh Guan Lye Specialist Centre",
+        "Mahkota Medical Centre",
+        "Mawar Medical Centre", //Mawar Medical
+        "Metro Specialist Hospital",
+        "MSU",
+        "Nilai Medical Centre",
+        "NSCMH Medical Centre",
+        "Oriental Melaka Straits Medical Centre",
+        "Pahang Medical Centre",
+        "Pantai Hospital Ampang",
+        "Pantai Hospital Ayer Keroh",
+        "Pantai Hospital Batu Pahat",
+        "Pantai Hospital Cheras",
+        "Pantai Hospital Klang",
+        "Pantai Hospital Kuala Lumpur",
+        "Pantai Hospital Laguna Merbok",
+        "Pantai Hospital Manjung",
+        "Pantai Hospital Penang",
+        "Pantai Hospital Sungai Petani",
+        "Parkcity Medical Centre",
+        "Penang Adventist Hospital",
+        "Prince Court Medical Centre PCMC, Petronas Hospital", //Prince Court Medical Centre
+        "Putra Medical Centre (Alor Setar)", //Putra Medical Centre, Alor Setar
+        "Putra Specialist Hospital (Melaka)", //Putra Specialist Hospital
+        "Ramsay Sime Darby Health Care (SJMC)", //Subang Jaya Medical Centre
+        "ReGen Rehabilitation International Hospital", //ReGen Rehab Hospital
+        "Rejang Medical Centre",
+        "Salam Senawang Specialist Hospital",
+        "Sunway Medical Centre Velocity",
+        "Taiping Medical Centre",
+        "Tung Shin Hospital",
+        "UiTM Private Specialist Centre",
+        "UM Specialist Centre", //University Malaya
+        "Any Hospital/Medical Center",
+    ];
+}
+
+//normal result.js
+function callNormal(name, state, specialty, hospital, page){
+    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+		
+        var obj = JSON.parse(responseText);
+        
+        //if got data, redirect
+        if(obj.data.length != 0){
+            if(OS_IOS){
+                Alloy.Globals.nav.navigationWindow("specialist_directory/resultGM", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
+            } else{
+                var win = Alloy.createController("specialist_directory/resultGM", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
+                win.open();
+            }
+        }
+        //if return no data, alert no result
+        else{
+            alert("No record found.");
+            finish();
+        }
+        finish();
+	});
+}
+
+//general medicine to go resultGM.js
+function callGM(name, state, specialty, hospital, page){
+
+    specialty = "Gastroenterology";
+
+    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+            
+        var obj = JSON.parse(responseText);
+
+        if(OS_IOS){
+            Alloy.Globals.nav.navigationWindow("specialist_directory/resultGM", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0});
         } else{
-            var win = Alloy.createController("specialist_directory/result", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
+            var win = Alloy.createController("specialist_directory/resultGM", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0}).getView();
             win.open();
         }
-	});
+    });
 }
 
 /////state
 var stateList = [
-    "CHOOSE STATE",
-    "JOHOR",
-    "KEDAH",
-    "KELANTAN",
-    "KUALA LUMPUR",
-    "LABUAN",
-    "MELAKA",
-    "NEGERI SEMBILAN",
-    "PAHANG",
-    "PENANG",
-    "PERAK",
-    "PERLIS",
-    "PUTRAJAYA",
-    "SABAH",
-    "SARAWAK",
-    "SELANGOR",
-    "TERENGGANU",
-    "ANY STATE"
+    "Choose Location",
+    "Cyberjaya",
+    "Johor",
+    "Kedah",
+    "Kelantan",
+    "Kuala Lumpur",
+    "Labuan",
+    "Melaka",
+    "Negeri Sembilan",
+    "Pahang",
+    "Penang",
+    "Perak",
+    "Perlis",
+    "Putrajaya",
+    "Sabah",
+    "Sarawak",
+    "Selangor",
+    "Singapore",
+    "Terengganu",
+    "Any Location"
 ]
 
 if(OS_ANDROID){
     var dState = $.UI.create("OptionDialog", {
         title: "State",
         options: stateList,
-        buttonNames: ["CANCEL"]
+        buttonNames: ["Cancel"]
     });
 } else{
-    stateList.push("CANCEL");
+    stateList.push("Cancel");
     var dState = $.UI.create("OptionDialog", {
         title: "State",
         options: stateList,
@@ -117,59 +330,71 @@ function stateClick(e){
 }
 
 dState.addEventListener('click', function(e){
-    if(stateList[e.index] == "CANCEL"){
-        $.lblStateDialog.text = "CHOOSE STATE";
+    if(stateList[e.index] == "Cancel" || stateList[e.index] == "Choose Location"){
+        $.lblStateDialog.text = "Choose Location";
+        $.lblStateDialog.color = "gray";
+
     } else {
         $.lblStateDialog.text = stateList[e.index];
+        $.lblStateDialog.color = "black";
+    }
+
+    if ($.lblStateDialog.text == undefined || $.lblStateDialog.text == ""){
+        $.lblStateDialog.text = "Choose Location";
+        $.lblStateDialog.color = "gray";
     }
 });
 //state done
 
+//general medicine
+/* gastroenterology
+hepatobiliary
+geriatrics
+cardiology
+dermatology */
+
 
 //speciality
 var specialList = [
-    "CHOOSE SPECIALTY",
-    "ANAESTHESIOLOGY AND CRITICAL CARE",
-    "EMERGENCY MEDICINE",
-    "FAMILY MEDICINE",
-    "GENERAL MEDICINE",
-    "NUCLEAR MEDICINE",
-    "REHABILITATION MEDICINE",
-    "SPORTS MEDICINE",
-    "CLINICAL ONCOLOGY",
-    "RADIATION ONCOLOGY",
-    "CLINCIAL RADIOLOGY",
-    "PAEDIATRICS",
-    "GENERAL PATHOLOGY",
-    "ANATOMICAL PATHOLOGY",
-    "CHEMICAL PATHOLOGY",
-    "HAEMATOLOGY",
-    "MEDICAL MICROBIOLOGY",
-    "FORENSIC PATHOLOGY",
-    "TRANSFUSION MEDICINE",
-    "PSYCHIATRY",
-    "PUBLIC HEALTH MEDICINE",
-    "OBSTETRICS AND GYNAECOLOGY (O & G)",
-    "SURGERY",
-    "CARDIOTHORACIC SURGERY",
-    "NEUROSURGERY",
-    "PAEDIATRIC SURGERY",
-    "PLASTIC SURGERY",
-    "OPHTHALMOLOGY",
-    "OTORHINOLARYNGOLOGY",
-    "ORTHOPAEDIC SURGERY",
-    "UROLOGY",
-    "ANY SPECIALTY",
+    "Choose Specialty",
+
+    "Anaesthesiology And Critical Care",
+    "Cardiology",
+    "Dermatology",
+    "Dentistry",
+    "Ear, Nose & Throat (ENT)",
+    "Emergency Medicine",
+    "Family Medicine",
+    "Gastroenterology",
+    "General Medicine",
+    "Geriatric",
+    "Haematology & Blood Disorder",
+    "Hepatobiliary",
+    "Obstetrics And Gynaecology (O & G)",
+    "Oncology",
+    "Ophthalmology (Eyes)",
+    "Orthopaedic",
+    "Paediatric",
+    "Pathology",
+    "Psychiatry",
+    "Radiology",
+    "Rehabilitation Medicine",
+    "Sports Medicine",
+    "Surgery",
+    "Transfusion Medicine",
+    "Urology",
+
+    "Any Specialty",
 ];
 
 if(OS_ANDROID){
     var dSpecial = $.UI.create("OptionDialog", {
-        title: "Specialities",
+        title: "Specialty",
         options: specialList,
-        buttonNames: ["CANCEL"]
+        buttonNames: ["Cancel"]
     });
 } else{
-    specialList.push("CANCEL");
+    specialList.push("Cancel");
     var dSpecial = $.UI.create("OptionDialog", {
         title: "Specialities",
         options: specialList,
@@ -185,10 +410,17 @@ function specialClick(e){
 }
 
 dSpecial.addEventListener('click', function(e){
-    if (specialList[e.index] == "CANCEL"){
-        $.lblSpecialDialog.text = "CHOOSE SPECIALTY";
+    if (specialList[e.index] == "Cancel" || specialList[e.index] == "Choose Specialty"){
+        $.lblSpecialDialog.text = "Choose Specialty";
+        $.lblSpecialDialog.color = "gray";
     } else{
         $.lblSpecialDialog.text = specialList[e.index];
+        $.lblSpecialDialog.color = "black";
+    }
+
+    if ($.lblSpecialDialog.text == undefined || $.lblSpecialDialog.text == ""){
+        $.lblSpecialDialog.text = "Choose Specialty";
+        $.lblSpecialDialog.color = "gray";
     }
 });
 //speciality done
@@ -196,106 +428,106 @@ dSpecial.addEventListener('click', function(e){
 
 //medical center
 var hospitalList = [
-    "CHOOSE HOSPITAL/MEDICAL CENTER",
-    "AR-RIDZUAN",
-    "ARA DAMANSARA MEDICAL CENTRE",
-    "ASSUNTA HOSPITAL",
-    "AVISENA SPECIALIST HOSPITAL",
-    "AVISENA WOMEN & CHILDREN SPECIALIST HOSPITAL",
-    "BAGAN SPECIALIST CENTRE",
-    "BINTULU SPECIALIST HOSPITAL SDN BHD",
-    "COLUMBIA ASIA SEREMBAN",
-    "DAMAI SERVICE HOSPITAL",
-    "GLENEAGLES KOTA KINABALU",
-    "GLENEAGLES KUALA LUMPUR",
-    "GLENEAGLES MEDINI JOHOR",
-    "GLENEAGLES PENANG (GLENEAGLES MEDICAL CENTRE)",
-    "HOSPITAL ISLAM AZ ZAHRAH",
-    "HOSPITAL PAKAR AN-NUR HASANAH",
-    "HOSPITAL PANTAI PUTERI IPOH",
-    "HOSPITAL PUSRAWI",
-    "HSC MEDICAL CENTER",
-    "INSTITUT JANTUNG NEGARA",
-    "KAJANG PLAZA MEDICAL CENTRE",
-    "KEDAH MEDICAL CENTRE",
-    "KELANA JAYA MEDICAL CENTRE",
-    "KENSINGTON GREEN SPECIALIST CENTRE SDN BHD",
-    "KOTA BHARU MEDICAL CENTRE",
-    "KPJ AMPANG",
-    "KPJ BANDAR DATO ONN SPECIALIST",
-    "KPJ BANDAR MAHARANI",
-    "KPJ BATU PAHAT",
-    "KPJ CENTRE FOR SIGHT",
-    "KPJ DAMANSARA",
-    "KPJ IPOH",
-    "KPJ JOHOR",
-    "KPJ KAJANG SPECIALIST",
-    "KPJ KLANG",
-    "KPJ KLUANG UTAMA",
-    "KPJ KUCHING SPECIALIST",
-    "KPJ MIRI",
-    "KPJ PAHANG",
-    "KPJ PASIR GUDANG",
-    "KPJ PENANG",
-    "KPJ PERDANA",
-    "KPJ PERLIS",
-    "KPJ PUTERI",
-    "KPJ RAWANG",
-    "KPJ SABAH SPECIALIST",
-    "KPJ SELANGOR SPECIALIST",
-    "KPJ SENTOSA KL",
-    "KPJ SEREMBAN SPECIALIST",
-    "KPJ SIBU",
-    "KPJ SRI MANJUNG",
-    "KPJ TAIPING MEDICAL CENTRE",
-    "KPJ TAWAKKAL HEALTH CENTRE",
-    "KPJ TAWAKKAL KL",
-    "KUALA TERENGGANU SPECIALIST HOSPITAL",
-    "LAM WAH EE HOSPITAL",
-    "LOH GUAN LYE SPECIALIST CENTRE",
-    "MAHKOTA MEDICAL CENTRE",
-    "MAWAR MEDICAL CENTER",
-    "METRO SPECIALIST HOSPITAL",
+    "Choose Hospital/Medical Center",
+    "Ar-Ridzuan", //check
+    "Ara Damansara Medical Centre",
+    "Assunta Hospital",
+    "Avisena Specialist Hospital",
+    "Avisena Women & Children Specialist Hospital", //Avisena women
+    "Bagan Specialist Centre",
+    "Bintulu Specialist Hospital", //Bintulu Medical Centre
+    "Columbia Asia Seremban", //check
+    "Damai Service Hospital",
+    "Gleneagles Kota Kinabalu",
+    "Gleneagles Kuala Lumpur",
+    "Gleneagles Medini Johor", //Gleneagles Medini
+    "Gleneagles Penang",
+    "Hospital Islam Az Zahrah", //Hospital Islam
+    "Hospital Pakar An-Nur Hasanah", //Hasanah
+    "Hospital Pantai Puteri Ipoh", //pantai puteri
+    "Hospital Pusrawi",
+    "HSC Medical Center",
+    "Institut Jantung Negara",
+    "Kajang Plaza Medical Centre",
+    "Kedah Medical Centre",
+    "Kelana Jaya Medical Centre",
+    "Kensington Green Specialist Centre",
+    "Kota Bharu Medical Centre",
+    "KPJ Ampang",
+    "KPJ Bandar Dato Onn Specialist",
+    "KPJ Bandar Maharani",
+    "KPJ Batu Pahat",
+    "KPJ Centre For Sight",
+    "KPJ Damansara",
+    "KPJ Ipoh",
+    "KPJ Johor",
+    "KPJ Kajang Specialist",
+    "KPJ Klang",
+    "KPJ Kluang Utama",
+    "KPJ Kuching Specialist",
+    "KPJ Miri",
+    "KPJ Pahang",
+    "KPJ Pasir Gudang",
+    "KPJ Penang",
+    "KPJ Perdana",
+    "KPJ Perlis",
+    "KPJ Puteri",
+    "KPJ Rawang",
+    "KPJ Sabah Specialist",
+    "KPJ Selangor Specialist",
+    "KPJ Sentosa KL", //KPJ Sentosa
+    "KPJ Seremban Specialist",
+    "KPJ Sibu",
+    "KPJ Sri Manjung",
+    "KPJ Taiping Medical Centre", //Taiping Medical Centre
+    "KPJ Tawakkal Health Centre",
+    "KPJ Tawakkal KL",
+    "Kuala Terengganu Specialist Hospital",
+    "Lam Wah Ee Hospital",
+    "Loh Guan Lye Specialist Centre",
+    "Mahkota Medical Centre",
+    "Mawar Medical Centre", //Mawar Medical Centre
+    "Metro Specialist Hospital",
     "MSU",
-    "NILAI MEDICAL CENTRE",
-    "NSCMH MEDICAL CENTRE",
-    "ORIENTAL MELAKA STRAITS MEDICAL CENTRE",
-    "PAHANG MEDICAL CENTRE",
-    "PANTAI HOSPITAL AMPANG",
-    "PANTAI HOSPITAL AYER KEROH",
-    "PANTAI HOSPITAL BATU PAHAT",
-    "PANTAI HOSPITAL CHERAS",
-    "PANTAI HOSPITAL KLANG",
-    "PANTAI HOSPITAL KUALA LUMPUR",
-    "PANTAI HOSPITAL LAGUNA MERBOK",
-    "PANTAI HOSPITAL MANJUNG",
-    "PANTAI HOSPITAL PENANG",
-    "PANTAI HOSPITAL SUNGAI PETANI",
-    "PARKCITY MEDICAL CENTRE",
-    "PENANG ADVENTIST HOSPITAL",
-    "PRINCE COURT MEDICAL CENTRE PCMC, PETRONAS HOSPITAL",
-    "PUTRA MEDICAL CENTRE (ALOR SETAR)",
-    "PUTRA SPECIALIST HOSPITAL (MELAKA) SDN BHD",
-    "RAMSAY SIME DARBY HEALTH CARE (SJMC)",
-    "REGEN REHABILITATION INTERNATIONAL HOSPITAL",
-    "REJANG MEDICAL CENTRE",
-    "SALAM SENAWANG SPECIALIST HOSPITAL",
-    "SUNWAY MEDICAL CENTRE VELOCITY",
-    "TAIPING MEDICAL CENTRE",
-    "TUNG SHIN HOSPITAL",
-    "UITM PRIVATE SPECIALIST CENTRE",
-    "UM SPECIALIST CENTRE",
-    "ANY HOSPITAL/MEDICAL CENTER",
+    "Nilai Medical Centre",
+    "NSCMH Medical Centre",
+    "Oriental Melaka Straits Medical Centre",
+    "Pahang Medical Centre",
+    "Pantai Hospital Ampang",
+    "Pantai Hospital Ayer Keroh",
+    "Pantai Hospital Batu Pahat",
+    "Pantai Hospital Cheras",
+    "Pantai Hospital Klang",
+    "Pantai Hospital Kuala Lumpur",
+    "Pantai Hospital Laguna Merbok",
+    "Pantai Hospital Manjung",
+    "Pantai Hospital Penang",
+    "Pantai Hospital Sungai Petani",
+    "Parkcity Medical Centre",
+    "Penang Adventist Hospital",
+    "Prince Court Medical Centre PCMC, Petronas Hospital", //Prince Court Medical Centre
+    "Putra Medical Centre (Alor Setar)", //Putra Medical Centre, Alor Setar
+    "Putra Specialist Hospital (Melaka)", //Putra Specialist Hospital
+    "Ramsay Sime Darby Health Care (SJMC)", //Subang Jaya Medical Centre
+    "ReGen Rehabilitation International Hospital", //ReGen Rehab Hospital
+    "Rejang Medical Centre",
+    "Salam Senawang Specialist Hospital",
+    "Sunway Medical Centre Velocity",
+    "Taiping Medical Centre",
+    "Tung Shin Hospital",
+    "UiTM Private Specialist Centre",
+    "UM Specialist Centre", //University Malaya
+    "Any Hospital/Medical Center",
 ];
 
 if(OS_ANDROID){
     var dHospital = $.UI.create("OptionDialog", {
         title: "Hospital/Medical Center",
         options: hospitalList,
-        buttonNames: ["CANCEL"],
+        buttonNames: ["Cancel"],
     });
 } else{
-    hospitalList.push("CANCEL");
+    hospitalList.push("Cancel");
     var dHospital = $.UI.create("OptionDialog", {
         title: "Hospital/Medical Center",
         options: hospitalList,
@@ -311,13 +543,19 @@ function hospitalClick(e){
 }
 
 dHospital.addEventListener('click', function(e){
-    if (hospitalList[e.index] == "CANCEL"){
-        $.lblHospitalDialog.text = "CHOOSE HOSPITAL/MEDICAL CENTER";
+    if (hospitalList[e.index] == "Cancel" || hospitalList[e.index] == "Choose Hospital/Medical Center"){
+        $.lblHospitalDialog.text = "Choose Hospital/Medical Center";
+        $.lblHospitalDialog.color = "gray";
     } else{
         $.lblHospitalDialog.text = hospitalList[e.index];
+        $.lblHospitalDialog.color = "black";
+    }
+
+    if ($.lblHospitalDialog.text == undefined || $.lblHospitalDialog.text == ""){
+        $.lblHospitalDialog.text = "Choose Hospital/Medical Center";
+        $.lblHospitalDialog.color = "gray";
     }
 });
-
 
 //medical center done
 
@@ -429,6 +667,7 @@ function CreateAutoCompleteList(searchResults){
     tblvAutoComplete.data = tableData;
 	tblvAutoComplete.height = tableData.length * 35;
 }
+////auto complete done
 
 function doHome(){
     if(OS_IOS){
@@ -438,3 +677,4 @@ function doHome(){
         win.open();
     }
 }
+

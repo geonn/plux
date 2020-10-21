@@ -27,7 +27,7 @@
 			</View>
 
 			<!-- main content -->
-			<ScrollView class="wfill hfill vert contwfill conthsize" id="svMain">
+			<ScrollView class="wfill hsize vert contwfill conthsize" id="svMain">
 
 				<View id="vSvMain">
 					<!-- name -->
@@ -63,10 +63,10 @@
 						</View>
 
 						<View id="vRowText" onClick="stateClick">
-							<Label id="lblState">State:</Label>
+							<Label id="lblState">Location:</Label>
 							<View id="vStateSearch">
 								<View id="vStateDialog">
-									<Label id="lblStateDialog">CHOOSE STATE</Label>
+									<Label id="lblStateDialog">Choose Location</Label>
 								</View>
 
 								<View id="vStateSearchFillBg">
@@ -87,10 +87,10 @@
 						</View>
 
 						<View id="vRowText">
-							<Label id="lblSpecial">Specialities:</Label>
+							<Label id="lblSpecial">Specialty:</Label>
 							<View id="vSpecialSearch">
 								<View id="vSpecialDialog">
-									<Label id="lblSpecialDialog">CHOOSE SPECIALTY</Label>
+									<Label id="lblSpecialDialog">Choose Specialty</Label>
 								</View>
 							
 								<View id="vSpecialSearchFillBg">
@@ -115,7 +115,7 @@
 							<Label id="lblHospital">Hospital/Medical Center:</Label>
 							<View id="vHospitalSearch">
 								<View id="vHospitalDialog">
-									<Label id="lblHospitalDialog">CHOOSE HOSPITAL/MEDICAL CENTER</Label>
+									<Label id="lblHospitalDialog">Choose Hospital/Medical Center</Label>
 								</View>
 								<!-- <TextField id="tfHospital"></TextField> -->
 								<View id="vHospitalSearchFillBg">
