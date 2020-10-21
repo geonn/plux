@@ -409,7 +409,7 @@
 }
 
 "#bSearch": {
-    height: Ti.UI.SIZE,
+    height: 45,
     width: "30%"    
 }
 
