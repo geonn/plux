@@ -250,9 +250,9 @@ function callNormal(name, state, specialty, hospital, page){
         //if got data, redirect
         if(obj.data.length != 0){
             if(OS_IOS){
-                Alloy.Globals.nav.navigationWindow("specialist_directory/resultGM", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
+                Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
             } else{
-                var win = Alloy.createController("specialist_directory/resultGM", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
+                var win = Alloy.createController("specialist_directory/result", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
                 win.open();
             }
         }
