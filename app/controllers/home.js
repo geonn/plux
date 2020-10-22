@@ -9,21 +9,21 @@ console.log(FirebaseCore.configure()+" check true or false");
 Ti.API.info('App Instance ID: ' + Alloy.Globals.FirebaseAnalytics.appInstanceID);
 
 // Log to the Firebase console
-Alloy.Globals.FirebaseAnalytics.log('My_Event', { name: "homepage"});
+Alloy.Globals.FirebaseAnalytics.log('Home');
 
 // Set user-property string
 Alloy.Globals.FirebaseAnalytics.setUserPropertyString({
-  name: 'onn',
-  value: 'yes'
+  name: 'u_id',
+  value: Ti.App.Properties.getString('u_id')
 });
 
 // Set User-ID
-Alloy.Globals.FirebaseAnalytics.userID = 'onn';
-
+Alloy.Globals.FirebaseAnalytics.userID = Ti.App.Properties.getString('u_id');
+/*
 Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
   screenName: 'HomePage',
   screenClass: "Homepage"
-});
+});*/
 
 //var SCANNER = require("scanner");
 var loading = Alloy.createController('loading');
@@ -403,11 +403,11 @@ function redirect(e){
 function navWindow(e){
 	
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
-	Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
+	/*Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
 	  screenName: source.title,
 	  screenClass: source.title
-	});
-	Alloy.Globals.FirebaseAnalytics.log('My_Event', { name: source.title});
+	});*/
+	Alloy.Globals.FirebaseAnalytics.log(source.title);
 	if(source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
 			Alloy.Globals.nav.navigationWindow("asp/"+source.mod);
