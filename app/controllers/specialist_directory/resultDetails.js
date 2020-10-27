@@ -1,7 +1,6 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = arguments[0] || {};
 //var args = $.args;
-require('createRemoteImageView');
 
 if(OS_ANDROID){ 
 	$.btnBack.addEventListener('click', function(){ 
@@ -32,12 +31,12 @@ if(obj.attachment == undefined){
 		image: "/images/specialist_directory/img_placeholder.png"
 	});
 } else {
-	var img = Ti.UI.createRemoteImageView({
+	var img = Ti.UI.createImageView({
 		height: Ti.UI.FILL,
 		width: Ti.UI.SIZE,
 		autorotate: true,
 		defaultImage: "/images/specialist_directory/img_placeholder.png",
-		image: obj.attachment_preview
+		image: obj.attachment
 	});
 }
 
@@ -288,44 +287,44 @@ var lblTitleContact = $.UI.create("Label", {
 
 vTextContact.add(lblTitleContact);
 
-var lblInfoContact1 = $.UI.create("Label", {
-	left: 10,
-	right: 5,
-    font: {
-        fontWeight: "bold",
-        fontSize: 11
-	}
-});
-
-if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
-	lblInfoContact1.text = "No contact available"
-} else {
-
-	if(OS_ANDROID){
-		lblInfoContact1.text = obj.mobile + " (Click here to call)"
-		lblInfoContact1.addEventListener("click", function (e){
-		Titanium.Platform.openURL('tel:' + obj.mobile);
-		});
-
-	} else{
-		lblInfoContact1.text = obj.mobile + " (Click here to copy)"
-		lblInfoContact1.addEventListener("click", function (e){
-			Ti.UI.Clipboard.Text = obj.mobile;
-			alert("Copied to clipboard");
-		});
-		
-	}
-	
-}
-
-var lblInfoContact2 = $.UI.create("Label", {
-	left: 10,
+var lblInfoContact1 = $.UI.create("TextField", {
 	right: 5,
     font: {
         fontWeight: "bold",
         fontSize: 11
 	},
-	text: obj.email
+	editable: false
+});
+
+if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
+	lblInfoContact1.value = "No contact available"
+} else {
+
+	if(OS_ANDROID){
+		lblInfoContact1.value = obj.mobile + " (Click and hold to copy details)"
+		/* lblInfoContact1.addEventListener("click", function (e){
+		Titanium.Platform.openURL('tel:' + obj.mobile);
+		}); */
+
+	} else{
+		lblInfoContact1.value = obj.mobile + " (Click and hold to copy details)"
+		/* lblInfoContact1.addEventListener("click", function (e){
+			Ti.UI.Clipboard.Text = obj.mobile;
+			alert("Copied to clipboard");
+		}); */
+		
+	}
+	
+}
+
+var lblInfoContact2 = $.UI.create("TextField", {
+	right: 5,
+    font: {
+        fontWeight: "bold",
+        fontSize: 11
+	},
+	value: obj.email,
+	editable: false
 });
 
 vTextContact.add(lblInfoContact1);

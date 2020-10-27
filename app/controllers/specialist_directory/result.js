@@ -2,7 +2,6 @@
 var args = arguments[0] || {};
 //var args = $.args;
 var loading = Alloy.createController("loading");
-require('createRemoteImageView');
 
 function init(){
 	$.win.add(loading.getView());
@@ -141,7 +140,7 @@ function display(i){
             width: Ti.UI.SIZE,
         });
     } else {
-        imgResult = Ti.UI.createRemoteImageView({
+        imgResult = Ti.UI.createImageView({
         left: 5,
         defaultImage: "/images/specialist_directory/img_placeholder.png",
         image: obj.data[i].attachment_preview,

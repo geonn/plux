@@ -54,7 +54,7 @@ function doClick(e) {
     
     var page = 1;
 
-    init(10000);
+    init(30000);
 
     //hospital
     if(hospital == "Avisena Women & Children Specialist Hospital"){
@@ -83,10 +83,6 @@ function doClick(e) {
 
     else if(hospital == "KPJ Sentosa KL"){
         hospital = "KPJ Sentosa";
-    }
-
-    else if(hospital == "KPJ Taiping Medical Centre"){
-        hospital = "Taiping Medical Centre";
     }
 
     else if(hospital == "Mawar Medical Centre"){
@@ -145,101 +141,8 @@ function doClick(e) {
     else{
         callNormal(name, state, specialty, hospital, page);
     }
-
-    //hospital change
-    var hospitalList = [
-        "Choose Hospital/Medical Center",
-        "Ar-Ridzuan", //check
-        "Ara Damansara Medical Centre",
-        "Assunta Hospital",
-        "Avisena Specialist Hospital",
-        "Avisena Women & Children Specialist Hospital", //Avisena women
-        "Bagan Specialist Centre",
-        "Bintulu Specialist Hospital", //Bintulu Medical Centre
-        "Columbia Asia Seremban", //check
-        "Damai Service Hospital",
-        "Gleneagles Kota Kinabalu",
-        "Gleneagles Kuala Lumpur",
-        "Gleneagles Medini Johor", //Gleneagles Medini
-        "Gleneagles Penang",
-        "Hospital Islam Az Zahrah", //Hospital Islam
-        "Hospital Pakar An-Nur Hasanah", //Hasanah
-        "Hospital Pantai Puteri Ipoh", //pantai puteri
-        "Hospital Pusrawi",
-        "HSC Medical Center",
-        "Institut Jantung Negara",
-        "Kajang Plaza Medical Centre",
-        "Kedah Medical Centre",
-        "Kelana Jaya Medical Centre",
-        "Kensington Green Specialist Centre",
-        "Kota Bharu Medical Centre",
-        "KPJ Ampang",
-        "KPJ Bandar Dato Onn Specialist",
-        "KPJ Bandar Maharani",
-        "KPJ Batu Pahat",
-        "KPJ Centre For Sight",
-        "KPJ Damansara",
-        "KPJ Ipoh",
-        "KPJ Johor",
-        "KPJ Kajang Specialist",
-        "KPJ Klang",
-        "KPJ Kluang Utama",
-        "KPJ Kuching Specialist",
-        "KPJ Miri",
-        "KPJ Pahang",
-        "KPJ Pasir Gudang",
-        "KPJ Penang",
-        "KPJ Perdana",
-        "KPJ Perlis",
-        "KPJ Puteri",
-        "KPJ Rawang",
-        "KPJ Sabah Specialist",
-        "KPJ Selangor Specialist",
-        "KPJ Sentosa KL", //KPJ Sentosa
-        "KPJ Seremban Specialist",
-        "KPJ Sibu",
-        "KPJ Sri Manjung",
-        "KPJ Taiping Medical Centre", //Taiping Medical Centre
-        "KPJ Tawakkal Health Centre",
-        "KPJ Tawakkal KL",
-        "Kuala Terengganu Specialist Hospital",
-        "Lam Wah Ee Hospital",
-        "Loh Guan Lye Specialist Centre",
-        "Mahkota Medical Centre",
-        "Mawar Medical Centre", //Mawar Medical
-        "Metro Specialist Hospital",
-        "MSU",
-        "Nilai Medical Centre",
-        "NSCMH Medical Centre",
-        "Oriental Melaka Straits Medical Centre",
-        "Pahang Medical Centre",
-        "Pantai Hospital Ampang",
-        "Pantai Hospital Ayer Keroh",
-        "Pantai Hospital Batu Pahat",
-        "Pantai Hospital Cheras",
-        "Pantai Hospital Klang",
-        "Pantai Hospital Kuala Lumpur",
-        "Pantai Hospital Laguna Merbok",
-        "Pantai Hospital Manjung",
-        "Pantai Hospital Penang",
-        "Pantai Hospital Sungai Petani",
-        "Parkcity Medical Centre",
-        "Penang Adventist Hospital",
-        "Prince Court Medical Centre PCMC, Petronas Hospital", //Prince Court Medical Centre
-        "Putra Medical Centre (Alor Setar)", //Putra Medical Centre, Alor Setar
-        "Putra Specialist Hospital (Melaka)", //Putra Specialist Hospital
-        "Ramsay Sime Darby Health Care (SJMC)", //Subang Jaya Medical Centre
-        "ReGen Rehabilitation International Hospital", //ReGen Rehab Hospital
-        "Rejang Medical Centre",
-        "Salam Senawang Specialist Hospital",
-        "Sunway Medical Centre Velocity",
-        "Taiping Medical Centre",
-        "Tung Shin Hospital",
-        "UiTM Private Specialist Centre",
-        "UM Specialist Centre", //University Malaya
-        "Any Hospital/Medical Center",
-    ];
 }
+
 
 //normal result.js
 function callNormal(name, state, specialty, hospital, page){
@@ -250,9 +153,9 @@ function callNormal(name, state, specialty, hospital, page){
         //if got data, redirect
         if(obj.data.length != 0){
             if(OS_IOS){
-                Alloy.Globals.nav.navigationWindow("specialist_directory/result", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
+                Alloy.Globals.nav.navigationWindow("specialist_directory/resultScroll", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital});
             } else{
-                var win = Alloy.createController("specialist_directory/result", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
+                var win = Alloy.createController("specialist_directory/resultScroll", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital}).getView();
                 win.open();
             }
         }
@@ -275,9 +178,9 @@ function callGM(name, state, specialty, hospital, page){
         var obj = JSON.parse(responseText);
 
         if(OS_IOS){
-            Alloy.Globals.nav.navigationWindow("specialist_directory/resultGM", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0});
+            Alloy.Globals.nav.navigationWindow("specialist_directory/resultGMScroll", "", "", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0});
         } else{
-            var win = Alloy.createController("specialist_directory/resultGM", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0}).getView();
+            var win = Alloy.createController("specialist_directory/resultGMScroll", {data: obj, page: page, name: name, state: state, specialty: specialty, hospital: hospital, gm: 0}).getView();
             win.open();
         }
     });
@@ -286,7 +189,6 @@ function callGM(name, state, specialty, hospital, page){
 /////state
 var stateList = [
     "Choose Location",
-    "Cyberjaya",
     "Johor",
     "Kedah",
     "Kelantan",
@@ -479,7 +381,7 @@ var hospitalList = [
     "KPJ Seremban Specialist",
     "KPJ Sibu",
     "KPJ Sri Manjung",
-    "KPJ Taiping Medical Centre", //Taiping Medical Centre
+    //"KPJ Taiping Medical Centre", //Taiping Medical Centre
     "KPJ Tawakkal Health Centre",
     "KPJ Tawakkal KL",
     "Kuala Terengganu Specialist Hospital",
@@ -677,4 +579,3 @@ function doHome(){
         win.open();
     }
 }
-
