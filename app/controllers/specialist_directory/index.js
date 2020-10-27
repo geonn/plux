@@ -525,6 +525,24 @@ tblvAutoComplete.addEventListener('click', function(e){
     $.tfName.value = e.rowData.result;
 
     $.vAutocompletePlace.remove(vAutocomplete);
+
+    //redirect to result page
+    var name = $.tfName.value;
+
+    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name}}, function(responseText){
+        
+        init(3000);
+        obj = JSON.parse(responseText);
+
+        var obj2 = obj.data[0];
+
+        if(OS_IOS){
+            Alloy.Globals.nav.navigationWindow("specialist_directory/resultDetails", "", "", {data: obj2});
+        } else{
+            var win = Alloy.createController("specialist_directory/resultDetails", {data: obj2}).getView();
+            win.open();
+        }
+    });
 });
 
 //Returns the array which contains a match with the pattern

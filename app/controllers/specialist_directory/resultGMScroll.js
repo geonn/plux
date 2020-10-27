@@ -27,56 +27,7 @@ var rowData = [];
 
 ////////////////////////
 
-/* $.is.init($.tblView);
-
-function myLoader(e, collection) {
-    $.is.load();
-    addData2();
-    console.log("testafasf");
-
-    console.log(rowData.length);
-    
-} */
-
-mainDisplay(obj)
-
-//addData();
-
-function addData(){
-    for (i = 0; i < 10; i++) {
-        var tvRow = Ti.UI.createTableViewRow({
-            rowIndex: i
-        });
-    
-        var vTest = Ti.UI.createView({
-            height: 100,
-            width: Ti.UI.FILL,
-            backgroundColor: "green"
-        });
-    
-        tvRow.add(vTest);
-    
-        rowData.push(tvRow);
-    }
-
-    var tvRow = Ti.UI.createTableViewRow({
-        rowIndex: i
-    });
-
-    var vTest = Ti.UI.createView({
-        height: 100,
-        width: Ti.UI.FILL,
-        backgroundColor: "black"
-    });
-
-    tvRow.add(vTest);
-    
-    rowData.push(tvRow);
-    
-    $.tblView.data = rowData;
-    //console.log(rowData.length);
-    test = true;
-}
+mainDisplay(obj);
 
 /////////////
 var GMList = [
@@ -93,14 +44,14 @@ var index = 0;
 
 var gm=0;
 
-var fetch = true;
+var fetchData = true;
+var stopScroll = true;
 
 var page = 1;
 
 $.tblView.addEventListener('scroll', function(e) {
 
-    if (Ti.Platform.osname === 'iphone')
-    {
+    if (OS_IOS) {
         var offset = e.contentOffset.y;
         var height = e.size.height;
         var total = offset + height;
@@ -115,132 +66,82 @@ $.tblView.addEventListener('scroll', function(e) {
             var nearEnd = theEnd;
 
             if ((total >= nearEnd)) {
-                if(fetch){
+                if(stopScroll && fetchData){
 
                     init(3000);
-                    $.tblView.scrollable = false;
-                    /* mainDisplay(obj);
+                    stopScroll = false;
     
-                    index++;
-                    console.log(index); */
+                    display();
     
-                    var name = args.name;
-                    var state = args.state;
-                    var specialty = GMList[gm];
-                    var hospital = args.hospital;
-                    page = page + 1;
-    
-                    console.log("gm: " + gm);
-                    console.log("page: " + page);
-    
-                    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
-                        
-                        obj = JSON.parse(responseText);
-    
-                        if(obj.data.length != 0){
-                            mainDisplay(obj);
-                        }
-    
-                        else{
-                            //asign gm list
-                            gm = gm + 1;
-                            //resert page
-                            page = 1;
-    
-                            if(gm < 6){
-                                specialty = GMList[gm];
-    
-                                console.log("gm: " + gm);
-                                console.log("page: " + page);
-    
-                                Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
-                                
-                                    obj = JSON.parse(responseText);
-                            
-                                    if(obj.data.length != 0){
-                                        mainDisplay(obj);
-                                    }
-    
-                                    else{
-    
-                                        $.tblView.scrollable = true;
-                                        fetch = false;
-                                    }
-                                });
-                            }                        
-                        }
-                    });
+                    setTimeout(function(){
+                        stopScroll = true;
+                    }, 2000);
                 }
             }
         }
+
         lastDistance = distance;
     }
 
-    else if (Ti.Platform.osname === 'android'){
+    else{
 
         //if last row
         if ((e.firstVisibleItem + e.visibleItemCount) >= e.totalItemCount) {
 
-            if(fetch){
-
+            if(stopScroll && fetchData){
                 init(3000);
-                $.tblView.scrollable = false;
-                /* mainDisplay(obj);
-
-                index++;
-                console.log(index); */
-
-                var name = args.name;
-                var state = args.state;
-                var specialty = GMList[gm];
-                var hospital = args.hospital;
-                page = page + 1;
-
-                console.log("gm: " + gm);
-                console.log("page: " + page);
-
-                Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
-                    
-                    obj = JSON.parse(responseText);
-
-                    if(obj.data.length != 0){
-                        mainDisplay(obj);
-                    }
-
-                    else{
-                        //asign gm list
-                        gm = gm + 1;
-                        //resert page
-                        page = 1;
-
-                        if(gm < 6){
-                            specialty = GMList[gm];
-
-                            console.log("gm: " + gm);
-                            console.log("page: " + page);
-
-                            Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
-                            
-                                obj = JSON.parse(responseText);
-                        
-                                if(obj.data.length != 0){
-                                    mainDisplay(obj);
-                                }
-
-                                else{
-
-                                    $.tblView.scrollable = true;
-                                    fetch = false;
-                                }
-                            });
-                        }                        
-                    }
-                });
+                stopScroll = false;
+    
+                display();
+    
+                setTimeout(function(){
+                    stopScroll = true;
+                }, 2000);
             }
         }
     }
-    
 });
+
+function display(){
+    var name = args.name;
+    var state = args.state;
+    var specialty = GMList[gm];
+    var hospital = args.hospital;
+    page = page + 1;
+    
+    Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+                        
+        obj = JSON.parse(responseText);
+    
+        if(obj.data.length != 0){
+            mainDisplay(obj);
+        }
+    
+        else{
+            //asign gm list
+            gm = gm + 1;
+            //resert page
+            page = 1;
+    
+            if(gm < 6){
+                specialty = GMList[gm];
+    
+                Alloy.Globals.API.callByPost({url: "getSpecialistV2", new:true, domain: "FREEJINI_DOMAIN",  params: {name: name, state: state, specialty: specialty, hospital: hospital, page: page, limit: 10}}, function(responseText){
+                                
+                    obj = JSON.parse(responseText);
+                            
+                    if(obj.data.length != 0){
+                        mainDisplay(obj);
+                    }
+    
+                    else{
+                        fetchData = false;
+                    }
+                });
+            }                        
+        }
+    });
+}
 
 function mainDisplay(obj){
 
@@ -435,7 +336,7 @@ function mainDisplay(obj){
     var tvRow2 = Ti.UI.createTableViewRow({});
 
     var ws = $.UI.create("View", {
-        height: 0.1,
+        height: 1,
         width: Ti.UI.FILL,
         backgroundColor: "black"
     });
@@ -445,5 +346,4 @@ function mainDisplay(obj){
     rowData.push(tvRow2);
 
     $.tblView.data = rowData;
-    $.tblView.scrollable = true;
 }
