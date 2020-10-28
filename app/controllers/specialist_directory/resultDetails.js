@@ -287,8 +287,8 @@ var lblTitleContact = $.UI.create("Label", {
 
 vTextContact.add(lblTitleContact);
 
-var lblInfoContact1 = $.UI.create("TextField", {
-	right: 5,
+var lblInfoContact1 = $.UI.create("TextArea", {
+	left: 10,
     font: {
         fontWeight: "bold",
         fontSize: 11
@@ -317,8 +317,8 @@ if(obj.mobile == undefined || obj.mobile == "" || obj.mobile == " "){
 	
 }
 
-var lblInfoContact2 = $.UI.create("TextField", {
-	right: 5,
+var lblInfoContact2 = $.UI.create("TextArea", {
+	left: 10,
     font: {
         fontWeight: "bold",
         fontSize: 11
