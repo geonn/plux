@@ -1,0 +1,40 @@
+<Alloy>
+	<Window title="SPECIALIST" id="win" backButtonTitle="" class="wfill hfill" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert"> 
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="20%">
+		        	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		    	<View width="60%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">SPECIALIST</Label>
+		    	</View>
+			</View>
+
+			<!-- top bar -->
+			<View id="topBar">
+				<View id="topBarLeft">
+					<Label id="topBarText1">Search for your</Label>
+				</View>
+				<View id="topBarMiddle">
+					<Label id="topBarText2">Specialist</Label>
+				</View>
+				<View id="topBarRight">
+					<View id="imgRightFill">
+						<ImageView id="imgRight"></ImageView>
+					</View>
+				</View>
+			</View>
+
+			<View id="vResultTitle">
+				<Label id="lResultTitle">Your result(s):</Label>
+			</View>
+
+			<!-- scrollview -->
+			<TableView id="tblView">
+				<!-- <TableViewRow>
+					<View height="100" backgroundColor="green"></View>
+				</TableViewRow> -->
+			</TableView>
+		</View>
+	</Window>
+</Alloy>

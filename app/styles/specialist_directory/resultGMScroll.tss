@@ -1,0 +1,106 @@
+".container" : {
+
+}
+
+//top bar
+"#topBar": {
+    backgroundColor: "#FF1616",
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    //layout: "horizontal"
+}
+
+"#topBarLeft": {
+    top: 20,
+    left: "0%",
+    width: "30%",
+    height: Ti.UI.SIZE
+}
+
+"#topBarText1": {
+    left: 5,
+    color: '#43241D',
+    font: {
+        fontWeight: "bold",
+        fontSize: 14
+    }
+}
+
+"#topBarMiddle":{
+    top: 40,
+    left: "30%",
+    width: "30%",
+    height: Ti.UI.SIZE
+}
+
+"#topBarText2": {
+    color: '#FFB9B9',
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"	
+    }
+}
+
+"#topBarRight": {
+    left: "60%",
+    width: "40%",
+    height: Ti.UI.SIZE
+}
+
+"#imgRightFill": {
+    height: Ti.UI.SIZE,
+    width: "50%",
+}
+
+"#imgRight": {
+    height: 100,
+    width: Ti.UI.SIZE,
+    image: "/images/specialist_directory/stethoscope.png"
+}
+
+//title result
+"#vResultTitle": {
+    height: 60,
+    width: Ti.UI.FILL,
+    backgroundColor: '#DEDEDE'
+}
+
+"#lResultTitle":{
+    font: {
+        fontWeight: "bold",
+        fontSize: 30
+    }
+}
+
+//scroll
+"#svMain": {
+    backgroundColor: "#DEDEDE"
+}
+
+"#vSvMain": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    layout: 'vertical'
+}
+
+"#vButton": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    bottom: 30
+}
+
+"#btnHome": {
+    height: Ti.UI.SIZE,
+    width: "33%",
+    title: "Back to home",
+    left: "33%"
+}
+
+"#vWhiteSpace": {
+    height: 15,
+    width: Ti.UI.FILL
+}
+//
+
+"#tblView": {
+}
