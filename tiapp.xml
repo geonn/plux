@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.plux.healthcare</id>
     <name>ASP Healthcare</name>
-    <version>2.1.28.0001</version>
+    <version>2.1.28.0003</version>
     <publisher>ASP Healthcare Sdn Bhd</publisher>
     <url>https://www.aspmedic.com/</url>
     <description>ASP Healthcare</description>
@@ -88,7 +88,7 @@
         </plist>
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <manifest android:versionCode="124">
+        <manifest android:versionCode="126">
             <application android:debuggable="false"
                 android:hardwareAccelerated="true"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:usesCleartextTraffic="true">
