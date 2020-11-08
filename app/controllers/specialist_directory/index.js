@@ -30,6 +30,46 @@ if(OS_ANDROID){
 // 	$.destroy();
 // });
 
+//for search field specialist, each index mapped into array specialist
+var sIndex = 0;
+var specialListSearch = [
+
+    "",
+
+    "Anaesthesiology And Critical Care",
+    "Cardiology",
+    "Dentist",
+    "Dermatology",
+    "ENT",
+    "Gastroenterology",
+    "Geriatric",
+    "Hepatobiliary",
+    "Nephrology",
+    "Neurology",
+    "Obstetrics And Gynaecology (O & G)",
+    "Oncology",
+    "Ophthalmology",
+    "Orthopaedic",
+    "Paediatric",
+    "Pathology",
+    "Rehabilitation Medicine", //not found //change from Physiatrist to Rehabilitation Medicine
+    "Psychiatry",
+    "Radiology",
+    "Respiratory",
+    "Sports Medicine",
+    "Surgeon",
+    "Urology",
+
+    "",
+
+    //"Emergency Medicine",
+    //"General Medicine",
+    //"Haematology & Blood Disorder",
+    //"Transfusion Medicine",
+
+    
+];
+
 function doClick(e) {
 
     //abort autocomplete
@@ -113,8 +153,12 @@ function doClick(e) {
         hospital = "University Malaya";
     }
 
+    specialty = specialListSearch[sIndex];
 
-    //Ear, Nose & Throat (ENT) -> Otorhinolaryngology
+    //call function
+    callNormal(name, state, specialty, hospital, page);
+
+    /* //Ear, Nose & Throat (ENT) -> Otorhinolaryngology
     if(specialty == "Ear, Nose & Throat (ENT)"){
         specialty = "Otorhinolaryngology";
         callNormal(name, state, specialty, hospital, page);
@@ -140,7 +184,7 @@ function doClick(e) {
     //go to result.js
     else{
         callNormal(name, state, specialty, hospital, page);
-    }
+    } */
 }
 
 
@@ -257,42 +301,49 @@ dermatology */
 
 
 //speciality
-var specialList = [
-    "Choose Specialty",
+var specialListShow = [
 
-    "Anaesthesiology And Critical Care",
-    "Cardiology",
-    "Dermatology",
-    "Dentistry",
-    "Ear, Nose & Throat (ENT)",
-    "Emergency Medicine",
-    "Family Medicine",
-    "Gastroenterology",
-    "General Medicine",
-    "Geriatric",
-    "Haematology & Blood Disorder",
-    "Hepatobiliary",
-    "Obstetrics And Gynaecology (O & G)",
-    "Oncology",
-    "Ophthalmology (Eyes)",
+    "Choose Specialist",
+
+    "Anesthesiologist",
+    "Cardiologist",
+    "Dentist",
+    "Dermatologist",
+    "ENT Specialist", //Otorhinolaryngologist => ENT Specialist
+    "Gastroenterologist",
+    "Geriatrician",
+    "Hepatobiliary Specialist",
+    "Nephrologist",
+    "Neurologist",
+    "Obstetrics And Gynaecology (O & G) Specialist",
+    "Oncologist",
+    "Ophthalmologist",
     "Orthopaedic",
-    "Paediatric",
-    "Pathology",
-    "Psychiatry",
-    "Radiology",
-    "Rehabilitation Medicine",
-    "Sports Medicine",
-    "Surgery",
-    "Transfusion Medicine",
-    "Urology",
+    "Paediatrician",
+    "Pathologist",
+    "Physiatrist",
+    "Psychiatrist",
+    "Radiologist",
+    "Respiratory Specialist",
+    "Sports Medicine Physician",
+    "Surgeon",
+    "Urologist",
 
-    "Any Specialty",
+    "Any Specialist",
+
+    //"Emergency Medicine",
+    //"General Medicine",
+    //"Haematology & Blood Disorder",
+    //"Transfusion Medicine",
+
+    
 ];
+
 
 if(OS_ANDROID){
     var dSpecial = $.UI.create("OptionDialog", {
         title: "Specialty",
-        options: specialList,
+        options: specialListShow,
         buttonNames: ["Cancel"]
     });
 } else{
@@ -312,16 +363,22 @@ function specialClick(e){
 }
 
 dSpecial.addEventListener('click', function(e){
-    if (specialList[e.index] == "Cancel" || specialList[e.index] == "Choose Specialty"){
-        $.lblSpecialDialog.text = "Choose Specialty";
+    if (specialListShow[e.index] == "Cancel" || specialListShow[e.index] == "Choose Specialist"){
+        $.lblSpecialDialog.text = "Choose Specialist";
         $.lblSpecialDialog.color = "gray";
+
+        //search
+        sIndex = e.index;
     } else{
-        $.lblSpecialDialog.text = specialList[e.index];
+        $.lblSpecialDialog.text = specialListShow[e.index];
         $.lblSpecialDialog.color = "black";
+
+        //search
+        sIndex = e.index;
     }
 
     if ($.lblSpecialDialog.text == undefined || $.lblSpecialDialog.text == ""){
-        $.lblSpecialDialog.text = "Choose Specialty";
+        $.lblSpecialDialog.text = "Choose Specialist";
         $.lblSpecialDialog.color = "gray";
     }
 });

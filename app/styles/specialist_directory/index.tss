@@ -438,3 +438,9 @@
     height: Ti.UI.SIZE,
     width: Ti.UI.FILL
 }
+
+"#lblSpecialtySearch": {
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    visibility: false
+}
