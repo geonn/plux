@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.plux.healthcare</id>
     <name>ASP Healthcare</name>
-    <version>2.1.28.0003</version>
+    <version>2.1.28.0004</version>
     <publisher>ASP Healthcare Sdn Bhd</publisher>
     <url>https://www.aspmedic.com/</url>
     <description>ASP Healthcare</description>
@@ -88,7 +88,7 @@
         </plist>
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <manifest android:versionCode="126">
+        <manifest android:versionCode="127">
             <application android:debuggable="false"
                 android:hardwareAccelerated="true"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:usesCleartextTraffic="true">
@@ -159,7 +159,7 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>9.2.1.GA</sdk-version>
+    <sdk-version>9.2.2.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
@@ -182,4 +182,3 @@
     <property name="appc-creator-user-id" type="string">974ebc0c-0865-4ea6-b748-9098dc431587</property>
     <guid>2380b6bb-8a83-4423-9666-3d8cfbbb2154</guid>
 </ti:app>
-
