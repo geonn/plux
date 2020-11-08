@@ -87,10 +87,10 @@
 						</View>
 
 						<View id="vRowText">
-							<Label id="lblSpecial">Specialty:</Label>
+							<Label id="lblSpecial">Specialist:</Label>
 							<View id="vSpecialSearch">
 								<View id="vSpecialDialog">
-									<Label id="lblSpecialDialog">Choose Specialty</Label>
+									<Label id="lblSpecialDialog">Choose Specialist</Label>
 								</View>
 							
 								<View id="vSpecialSearchFillBg">
@@ -132,6 +132,9 @@
 					<View id="vSearch">
 						<Button id="bSearch" onClick="doClick">Search</Button>
 					</View>
+
+					<View id="vWhiteSpace"></View>
+
 
 					<!-- <View id="vWhiteSpace"></View>
 
