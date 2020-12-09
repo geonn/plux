@@ -36,13 +36,17 @@ var specialListSearch = [
 
     "",
 
-    "Anaesthesiology And Critical Care",
+    "Anaesthesiology",
     "Cardiology",
-    "Dentist",
+    
     "Dermatology",
+    "Endocrinology",
+
     "ENT",
+    "Family Physician",
     "Gastroenterology",
     "Geriatric",
+
     "Hepatobiliary",
     "Nephrology",
     "Neurology",
@@ -51,17 +55,21 @@ var specialListSearch = [
     "Ophthalmology",
     "Orthopaedic",
     "Paediatric",
-    "Pathology",
     "Rehabilitation Medicine", //not found //change from Physiatrist to Rehabilitation Medicine
+    "Plastic Surgery",
     "Psychiatry",
-    "Radiology",
+    
     "Respiratory",
+    "Rheumatology",
     "Sports Medicine",
-    "Surgeon",
+    "Surgery",
     "Urology",
 
     "",
-
+    //"Radiology",
+    //"Dentist",
+    //"Gastroenterology",
+    //"Pathology",
     //"Emergency Medicine",
     //"General Medicine",
     //"Haematology & Blood Disorder",
@@ -307,11 +315,15 @@ var specialListShow = [
 
     "Anesthesiologist",
     "Cardiologist",
-    "Dentist",
+    
     "Dermatologist",
+    "Endocrinologist",
+
     "ENT Specialist", //Otorhinolaryngologist => ENT Specialist
+    "Family Physician",
     "Gastroenterologist",
     "Geriatrician",
+
     "Hepatobiliary Specialist",
     "Nephrologist",
     "Neurologist",
@@ -320,17 +332,21 @@ var specialListShow = [
     "Ophthalmologist",
     "Orthopaedic",
     "Paediatrician",
-    "Pathologist",
     "Physiatrist",
+    "Plastic Surgeon",
     "Psychiatrist",
-    "Radiologist",
+    
     "Respiratory Specialist",
+    "Rheumatologist ",
     "Sports Medicine Physician",
     "Surgeon",
     "Urologist",
 
     "Any Specialist",
-
+    
+    //"Radiologist",
+    //"Dentist",
+    //"Pathologist",
     //"Emergency Medicine",
     //"General Medicine",
     //"Haematology & Blood Disorder",
