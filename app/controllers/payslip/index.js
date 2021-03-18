@@ -27,12 +27,20 @@ function render_listing(data){
         var view_container_bottom = $.UI.create("View", {classes:['wfill','hsize'], touchEnabled: false,});
         var view_left_content = $.UI.create("View", {classes:['hsize','vert'], touchEnabled: false, width: "60%", left: 10, bottom:10});
         var label_title = $.UI.create("Label", {classes:['wfill','hsize','h6'], left:10, top:10, touchEnabled: false, text: "TITLE"});
-        var label_title_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], left: 10, touchEnabled: false, minimumFontSize: 10, text: data[i].month+"/"+data[i].year});
+        var label_title_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], left: 10, touchEnabled: false, minimumFontSize: 10, text: data[i]['category'] == 'payslip' ? data[i].month+"/"+data[i].year : data[i].year});
         view_container.add(label_title);
         view_container.add(label_title_value);
         
+        //to different between wages and ea
+        var type = data[i]['category'];
+        if(type == 'ea form'){
+            type = "EA " + data[i]['year'];
+        } else {
+            type = "WAGES";
+        }
+
         var label_category = $.UI.create("Label", {classes:['wfill','hsize','h6'], touchEnabled: false, top:5, text: "TYPE"});
-        var label_category_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], touchEnabled: false, minimumFontSize: 10, text: "WAGES"});
+        var label_category_value = $.UI.create("Label", {classes:['wfill','hsize','h6','bold'], touchEnabled: false, minimumFontSize: 10, text: type});
         view_left_content.add(label_category);
         view_left_content.add(label_category_value);
         
