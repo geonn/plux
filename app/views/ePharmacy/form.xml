@@ -1,0 +1,37 @@
+<Alloy>
+	<Window title="E-Pharmacy" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" >
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="90%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">E-Pharmacy</Label>
+		     	</View>
+		 	</View>
+	 	  <!--<Label class="wfill hsize padding h5" color="#ffffff">Please fill in below info to claim from ASP</Label>-->
+		 	<Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms" onClick="blurAll">
+               <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" id="prescription" format="photo" hintText="Prescription" attached="0" >
+
+                    <Label class="wfill hsize h5" color='#000000' top="10" left="10" value="" touchEnabled="false" required="1" hintText="Recepit Attachment">Upload Prescription *</Label>
+                    <View class="hr" backgroundColor="#ccc" top="10" left="10" right="10"></View>
+                    <Widget id="camera" src="com.geonn.camera" />
+                </View>
+                <View backgroundColor="#fba81c" id="medicine_name" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField hintText="Medicine Name *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+								<View backgroundColor="#fba81c" id="quantity" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField hintText="Quantity of Medicine *" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
+                </View>
+								<View backgroundColor="#fba81c" id="contact_no" value="" class="wfill hsize padding rounded" top="0">
+                    <TextField hintText="Contact No" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+								<View backgroundColor="#fba81c" id="address" value="" class="wfill hsize padding rounded" top="0">
+                    <TextArea backgroundColor="#ffffff" width="Ti.UI.FILL" height="80"  hintText="Address *" maxLines="3" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextArea>
+                </View>
+                <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
+            </ScrollView>
+		</View>
+	</Window>
+</Alloy>

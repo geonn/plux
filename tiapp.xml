@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
+<ti:app
   xmlns:ti="http://ti.appcelerator.org">
   <id>com.plux.healthcare</id>
   <name>ASP Healthcare</name>
-  <version>2.1.28.0004</version>
+  <version>2.1.31.0001</version>
   <publisher>ASP Healthcare Sdn Bhd</publisher>
   <url>https://www.aspmedic.com/</url>
   <description>ASP Healthcare</description>
@@ -88,7 +88,7 @@
       </dict>
     </plist>
   </ios>
-  <android 
+  <android
     xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest android:versionCode="127">
       <application android:debuggable="false" android:hardwareAccelerated="true" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:usesCleartextTraffic="true">
@@ -137,10 +137,11 @@
     <module platform="android">hyperloop</module>
     <module platform="android">ti.map</module>
     <module platform="iphone">ti.socketio</module>
+    <module platform="android">ti.socketio</module>
     <module platform="iphone">firebase.core</module>
     <module platform="iphone">dk.napp.social</module>
     <module platform="android">ti.cloudpush</module>
-    <module platform="android">ti.socketio</module>
+
     <module platform="iphone">ti.map</module>
     <module platform="commonjs">ti.cloud</module>
     <module platform="iphone">hyperloop</module>
@@ -153,11 +154,11 @@
     <target device="iphone">true</target>
     <target device="mobileweb">false</target>
   </deployment-targets>
-  <sdk-version>9.2.1.GA</sdk-version>
+  <sdk-version>9.2.2.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
-  <property name="appc-app-id" type="string">5fb4d854923aa8195605aaf0</property>
+  <property name="appc-app-id" type="string">5fbdb7906887806fe4153b75</property>
   <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
   <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
   <property name="acs-oauth-secret-development" type="string">wKaVfmNhNF0WDh3UE1I5yJX2uleoy0rI</property>
@@ -174,5 +175,5 @@
   <property name="acs-password-production" type="string">6NThmElXyQzjtaozcI</property>
   <property name="appc-org-id" type="string">100016072</property>
   <property name="appc-creator-user-id" type="string">974ebc0c-0865-4ea6-b748-9098dc431587</property>
-  <guid>2d838748-e412-48c7-9000-badf8aefbfb4</guid>
+  <guid>19042b79-61c9-4d8f-9666-3d8cfbbb2154</guid>
 </ti:app>

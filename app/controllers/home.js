@@ -49,7 +49,7 @@ var new_menu = [
 	{mod: "voucher", is_asp:0, title: "VOUCHER", onClick: navWindow, subtitle: "Health Screening Voucher", image_path: "/images/menu_image/voucher_square.jpeg"},
 	{mod: "specialist_directory/index", is_asp:0, title: "SPECIALIST DIRECTORY", onClick: navWindow, subtitle: "Search for your specialist", image_path: "/images/menu_image/specialist-app.jpg"},
 	//{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
-	//{mod: "ePharmacy/index", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
+	{mod: "ePharmacy/form", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide();
@@ -96,7 +96,7 @@ function received_push(res){
 	}
 		console.log(res);
 		if (res.error) {
-			
+
 				return;
 
 		}else{
@@ -362,9 +362,9 @@ function refreshHeaderInfo(){
 	//$.shadow_myInfo.add(logoutBtn);
 	$.shadow_myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
 	$.myInfo.add($.UI.create("Label", {text: welcomeText, classes:['welcome_text']}));
-	
+
 	render_point();
-	
+
 }
 
 function render_point(){
@@ -383,7 +383,7 @@ function render_point(){
 			view_share.addEventListener("click", function(){
 				Alloy.Globals.nav.navigationWindow("points/index");
 			});
-			
+
 			/*view_share.addEventListener("click", function(){
 				require('com.alcoapps.socialshare').share({
 					status 					: res.data.referral_link,
@@ -401,7 +401,7 @@ function redirect(e){
 }
 
 function navWindow(e){
-	
+
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
 	/*Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
 	  screenName: source.title,
