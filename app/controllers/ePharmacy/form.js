@@ -31,6 +31,19 @@ function blurAll(source){
 	}
 }
 
+function hintTextFocusHack(e){
+	console.log(e.source.hintText);
+	if(e.source.value == e.source.hintText){
+        e.source.value = "";
+    }
+}
+
+function hintTextBlurHack(e){
+	if(e.source.value==""){
+        e.source.value = e.source.hintText;
+    }
+}
+
 function checkRequired(obj){
     if(obj.required && obj.value == ""){
         error_message += obj.hintText+" cannot be empty\n";
@@ -69,8 +82,9 @@ function doSubmit(){
     loading.start();
     console.log(params);
     Alloy.Globals.API.callByPost({url: "https://inventory.freejini.com.my/api/submitPrescription", fullurl: true, params: params}, function(responseText){
+    	console.log(responseText);
       var result = JSON.parse(responseText);
-console.log(result);
+
 
       var dialog = Ti.UI.createAlertDialog({
           cancel: 1,

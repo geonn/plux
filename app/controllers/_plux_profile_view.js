@@ -27,12 +27,12 @@ function render_personal_health(arr){
 		});
 	  	arr.push(row);
 	};
-	
+
 	$.tblview.setData(arr);
 }
 
 function refresh(callback){
-	
+
 	var u_id = Ti.App.Properties.getString('u_id') || 0;
 	Alloy.Globals.API.callByPost({url: "getPersonalInfoRecords", params:{u_id: u_id}}, function(responseText){
 		var res = JSON.parse(responseText);
@@ -43,7 +43,7 @@ function refresh(callback){
 }
 
 function addRecord(){
-	
+
 	var u_id = Ti.App.Properties.getString('u_id');
 	if($.box_value.value == ""){
 		closeBox();
@@ -54,7 +54,7 @@ function addRecord(){
 	params = {
 		u_id: u_id,
 		type: personal_health_type,
-		val:$.box_value.value 
+		val:$.box_value.value
 	};
 	Alloy.Globals.API.callByPost({url: "addUpdateRecords", params:params}, function(responseText){
 		var res = JSON.parse(responseText);
@@ -77,7 +77,7 @@ function switchListing(e){
 	var tab = e.source.tab;
 	var text = $.firstTab.children[0];
 	var secondtext = $.secondTab.children[0];
-	
+
 	if(tab == 1){
 		personal_health_type = "Medication Records";
 		text.color = "#CE1D1C";

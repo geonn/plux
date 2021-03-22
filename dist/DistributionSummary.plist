@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ASP Healthcare.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<false/>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>A251D389F236EE949F56C0B4F03DB9D6F8C96117</string>
+				<key>dateExpires</key>
+				<string>18/03/2022</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>bitcode</key>
+					<false/>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>A251D389F236EE949F56C0B4F03DB9D6F8C96117</string>
+						<key>dateExpires</key>
+						<string>18/03/2022</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>SocketIO.framework</string>
+					<key>symbols</key>
+					<true/>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>KFZ44PMRMC</string>
+						<key>name</key>
+						<string>PLUX Healthcare</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>bitcode</key>
+					<false/>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>A251D389F236EE949F56C0B4F03DB9D6F8C96117</string>
+						<key>dateExpires</key>
+						<string>18/03/2022</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>Starscream.framework</string>
+					<key>symbols</key>
+					<true/>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>KFZ44PMRMC</string>
+						<key>name</key>
+						<string>PLUX Healthcare</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>bitcode</key>
+					<false/>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>A251D389F236EE949F56C0B4F03DB9D6F8C96117</string>
+						<key>dateExpires</key>
+						<string>18/03/2022</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>TitaniumKit.framework</string>
+					<key>symbols</key>
+					<true/>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>KFZ44PMRMC</string>
+						<key>name</key>
+						<string>PLUX Healthcare</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>KFZ44PMRMC.com.plux.healthcare</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>KFZ44PMRMC</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>KFZ44PMRMC.com.plux.healthcare</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>ASP Healthcare.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>a473a09b-a326-4bb2-bb7f-325c6db9d070</string>
+				<key>name</key>
+				<string>Mac mini_plux_live_18/03/2021</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>KFZ44PMRMC</string>
+				<key>name</key>
+				<string>PLUX Healthcare</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

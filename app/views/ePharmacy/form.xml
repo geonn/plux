@@ -28,7 +28,7 @@
                     <TextField hintText="Contact No" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
 								<View backgroundColor="#fba81c" id="address" value="" class="wfill hsize padding rounded" top="0">
-                    <TextArea backgroundColor="#ffffff" width="Ti.UI.FILL" height="80"  hintText="Address *" maxLines="3" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextArea>
+                    <TextArea backgroundColor="#ffffff" color="#000000" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack"  width="Ti.UI.FILL" height="80"  hintText="Address *" maxLines="3" onBlur="textFieldOnBlur" required="1" left="5" value="Address *"></TextArea>
                 </View>
                 <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
             </ScrollView>

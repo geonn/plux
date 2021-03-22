@@ -49,7 +49,7 @@ var new_menu = [
 	{mod: "voucher", is_asp:0, title: "VOUCHER", onClick: navWindow, subtitle: "Health Screening Voucher", image_path: "/images/menu_image/voucher_square.jpeg"},
 	{mod: "specialist_directory/index", is_asp:0, title: "SPECIALIST DIRECTORY", onClick: navWindow, subtitle: "Search for your specialist", image_path: "/images/menu_image/specialist-app.jpg"},
 	//{mod: "myHealth", is_asp:0, title: "My HEALTH", onClick: navWindow, subtitle: "Personal health record", image_path: "/images/menu_image/myHealth_square.jpg"},
-	{mod: "ePharmacy/form", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/myHealth_square.jpg"},
+	{mod: "ePharmacy/form", is_asp:0, title: "E-PHARMACY", onClick: navWindow, subtitle: "Order your medication here", image_path: "/images/menu_image/pharmacist.png"},
 	//{mod: "reward", is_asp:0, title: "REWARD", onClick: navWindow, target:"reward/index", subtitle: "Gain your health and redeem your point here", image_path: "/images/menu_image/myHealth_square.jpg"},
 ];
 $.shadow_header.hide();

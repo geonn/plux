@@ -1,0 +1,1116 @@
+2021-03-18 07:09:59 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7fbd5fe38e00; archive(resolved)='<IDEArchive: 0x7fbd8eedbb10>', distributionTask(resolved)='2', distributionDestination(resolved)='1', distributionMethod(resolved)='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team(resolved)='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	Chain (11, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7fbd5fe38e00; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionProcessingPipelineContext: 0x7fbd5fe3ab70; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd8e906eb0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd9df32e10; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd988b5cd0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd6fb55df0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd6fb54960; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd6fb539c0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd9dc135e0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='<IDEProvisioningBasicTeam: 0x7fbd6fb44be0; teamID='KFZ44PMRMC', teamName='PLUX Healthcare'>'>
+	<IDEDistributionContext: 0x7fbd98841120; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fbd9884f180>', team='(null)'>
+	<IDEDistributionContext: 0x7fbd8ee871f0; archive = '<IDEArchive: 0x7fbd8eedbb10>', distributionMethod='(null)', team='(null)'>
+</IDEDistributionProcessingPipelineContext: 0x7fbd5fe38e00>
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2021-03-18 07:09:59 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app'
+2021-03-18 07:09:59 +0000  >>> Copying /Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app 
+2021-03-18 07:09:59 +0000  copying file ./_CodeSignature/CodeResources ... 
+2021-03-18 07:09:59 +0000  25554 bytes for ./_CodeSignature/CodeResources
+2021-03-18 07:09:59 +0000  copying file ./ms-MY.lproj/Localizable.strings ... 
+2021-03-18 07:09:59 +0000  3361 bytes for ./ms-MY.lproj/Localizable.strings
+2021-03-18 07:09:59 +0000  copying file ./en.lproj/Localizable.strings ... 
+2021-03-18 07:09:59 +0000  3060 bytes for ./en.lproj/Localizable.strings
+2021-03-18 07:09:59 +0000  copying file ./iTunesArtwork ... 
+2021-03-18 07:09:59 +0000  211013 bytes for ./iTunesArtwork
+2021-03-18 07:09:59 +0000  copying file ./ti.cloud/LICENSE ... 
+2021-03-18 07:09:59 +0000  122 bytes for ./ti.cloud/LICENSE
+2021-03-18 07:09:59 +0000  copying file ./ti.cloud/manifest ... 
+2021-03-18 07:09:59 +0000  492 bytes for ./ti.cloud/manifest
+copying file ./ti.cloud/package.json ... 
+2021-03-18 07:09:59 +0000  172 bytes for ./ti.cloud/package.json
+2021-03-18 07:09:59 +0000  copying file ./images/checkbox.gif ... 
+2021-03-18 07:09:59 +0000  3272 bytes for ./images/checkbox.gif
+2021-03-18 07:09:59 +0000  copying file ./images/menu_image/nutrition.jpeg ... 
+2021-03-18 07:09:59 +0000  41486 bytes for ./images/menu_image/nutrition.jpeg
+2021-03-18 07:09:59 +0000  copying file ./images/menu_image/psychology.jpeg ... 
+2021-03-18 07:09:59 +0000  68021 bytes for ./images/menu_image/psychology.jpeg
+copying file ./images/menu_image/voucher_square.jpeg ... 
+2021-03-18 07:09:59 +0000  92430 bytes for ./images/menu_image/voucher_square.jpeg
+2021-03-18 07:09:59 +0000  copying file ./images/iphone/iTunesArtwork ... 
+2021-03-18 07:09:59 +0000  211013 bytes for ./images/iphone/iTunesArtwork
+2021-03-18 07:09:59 +0000  copying file ./AppIcon60x60@2x.png ... 
+2021-03-18 07:09:59 +0000  7850 bytes for ./AppIcon60x60@2x.png
+copying file ./ASP Healthcare ... 
+2021-03-18 07:09:59 +0000  9011488 bytes for ./ASP Healthcare
+copying file ./AppIcon29x29@2x.png ... 
+2021-03-18 07:09:59 +0000  3499 bytes for ./AppIcon29x29@2x.png
+copying file ./AppIcon40x40@3x.png ... 
+2021-03-18 07:09:59 +0000  7850 bytes for ./AppIcon40x40@3x.png
+2021-03-18 07:09:59 +0000  copying file ./blackberry/Ti.Manifest ... 
+2021-03-18 07:09:59 +0000  9 bytes for ./blackberry/Ti.Manifest
+2021-03-18 07:09:59 +0000  copying file ./AppIcon29x29~ipad.png ... 
+2021-03-18 07:09:59 +0000  1727 bytes for ./AppIcon29x29~ipad.png
+copying file ./AppIcon40x40@2x.png ... 
+2021-03-18 07:09:59 +0000  4992 bytes for ./AppIcon40x40@2x.png
+2021-03-18 07:09:59 +0000  copying file ./html/socket_b.html ... 
+2021-03-18 07:09:59 +0000  3430 bytes for ./html/socket_b.html
+2021-03-18 07:09:59 +0000  copying file ./html/js/socket.io.js ... 
+2021-03-18 07:09:59 +0000  71529 bytes for ./html/js/socket.io.js
+2021-03-18 07:09:59 +0000  copying file ./html/graph.html ... 
+2021-03-18 07:09:59 +0000  2710 bytes for ./html/graph.html
+copying file ./html/socket.html ... 
+2021-03-18 07:09:59 +0000  7591 bytes for ./html/socket.html
+2021-03-18 07:09:59 +0000  copying file ./html/loader.js ... 
+2021-03-18 07:09:59 +0000  128870 bytes for ./html/loader.js
+2021-03-18 07:09:59 +0000  copying file ./AppIcon29x29@3x.png ... 
+2021-03-18 07:09:59 +0000  5720 bytes for ./AppIcon29x29@3x.png
+copying file ./GoogleService-Info.plist ... 
+2021-03-18 07:09:59 +0000  773 bytes for ./GoogleService-Info.plist
+copying file ./AppIcon60x60@3x.png ... 
+2021-03-18 07:09:59 +0000  11706 bytes for ./AppIcon60x60@3x.png
+copying file ./Assets.car ... 
+2021-03-18 07:09:59 +0000  11366056 bytes for ./Assets.car
+copying file ./AppIcon40x40@2x~ipad.png ... 
+2021-03-18 07:09:59 +0000  4992 bytes for ./AppIcon40x40@2x~ipad.png
+copying file ./AppIcon76x76@2x~ipad.png ... 
+2021-03-18 07:09:59 +0000  9588 bytes for ./AppIcon76x76@2x~ipad.png
+copying file ./AppIcon83.5x83.5@2x~ipad.png ... 
+2021-03-18 07:09:59 +0000  10205 bytes for ./AppIcon83.5x83.5@2x~ipad.png
+copying file ./LaunchImage-700-568h@2x.png ... 
+2021-03-18 07:09:59 +0000  15022 bytes for ./LaunchImage-700-568h@2x.png
+2021-03-18 07:09:59 +0000  copying file ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2021-03-18 07:09:59 +0000  2420 bytes for ./LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+copying file ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2021-03-18 07:09:59 +0000  896 bytes for ./LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+copying file ./LaunchScreen.storyboardc/Info.plist ... 
+2021-03-18 07:09:59 +0000  258 bytes for ./LaunchScreen.storyboardc/Info.plist
+2021-03-18 07:09:59 +0000  copying file ./AppIcon29x29@2x~ipad.png ... 
+2021-03-18 07:09:59 +0000  3499 bytes for ./AppIcon29x29@2x~ipad.png
+2021-03-18 07:09:59 +0000  copying file ./AppIcon40x40~ipad.png ... 
+2021-03-18 07:09:59 +0000  2405 bytes for ./AppIcon40x40~ipad.png
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/libswiftCoreImage.dylib ... 
+2021-03-18 07:09:59 +0000  335088 bytes for ./Frameworks/libswiftCoreImage.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/libswiftObjectiveC.dylib ... 
+2021-03-18 07:09:59 +0000  400128 bytes for ./Frameworks/libswiftObjectiveC.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/libswiftCore.dylib ... 
+2021-03-18 07:09:59 +0000  23297568 bytes for ./Frameworks/libswiftCore.dylib
+copying file ./Frameworks/libswiftCoreGraphics.dylib ... 
+2021-03-18 07:09:59 +0000  857648 bytes for ./Frameworks/libswiftCoreGraphics.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/libswiftUIKit.dylib ... 
+2021-03-18 07:09:59 +0000  655632 bytes for ./Frameworks/libswiftUIKit.dylib
+copying file ./Frameworks/libswiftMetal.dylib ... 
+2021-03-18 07:09:59 +0000  395712 bytes for ./Frameworks/libswiftMetal.dylib
+copying file ./Frameworks/libswiftDispatch.dylib ... 
+2021-03-18 07:09:59 +0000  1377376 bytes for ./Frameworks/libswiftDispatch.dylib
+copying file ./Frameworks/libswiftos.dylib ... 
+2021-03-18 07:09:59 +0000  396976 bytes for ./Frameworks/libswiftos.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/SocketIO.framework/_CodeSignature/CodeResources ... 
+2021-03-18 07:09:59 +0000  1798 bytes for ./Frameworks/SocketIO.framework/_CodeSignature/CodeResources
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/SocketIO.framework/SocketIO ... 
+2021-03-18 07:09:59 +0000  1799824 bytes for ./Frameworks/SocketIO.framework/SocketIO
+copying file ./Frameworks/SocketIO.framework/Info.plist ... 
+2021-03-18 07:09:59 +0000  734 bytes for ./Frameworks/SocketIO.framework/Info.plist
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/libswiftCoreFoundation.dylib ... 
+2021-03-18 07:09:59 +0000  335296 bytes for ./Frameworks/libswiftCoreFoundation.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/Starscream.framework/_CodeSignature/CodeResources ... 
+2021-03-18 07:09:59 +0000  1798 bytes for ./Frameworks/Starscream.framework/_CodeSignature/CodeResources
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/Starscream.framework/Starscream ... 
+2021-03-18 07:09:59 +0000  1063040 bytes for ./Frameworks/Starscream.framework/Starscream
+copying file ./Frameworks/Starscream.framework/Info.plist ... 
+2021-03-18 07:09:59 +0000  740 bytes for ./Frameworks/Starscream.framework/Info.plist
+copying file ./Frameworks/libswiftDarwin.dylib ... 
+2021-03-18 07:09:59 +0000  499744 bytes for ./Frameworks/libswiftDarwin.dylib
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/TitaniumKit.framework/_CodeSignature/CodeResources ... 
+2021-03-18 07:09:59 +0000  1798 bytes for ./Frameworks/TitaniumKit.framework/_CodeSignature/CodeResources
+2021-03-18 07:09:59 +0000  copying file ./Frameworks/TitaniumKit.framework/TitaniumKit ... 
+2021-03-18 07:09:59 +0000  2062896 bytes for ./Frameworks/TitaniumKit.framework/TitaniumKit
+copying file ./Frameworks/TitaniumKit.framework/Info.plist ... 
+2021-03-18 07:09:59 +0000  714 bytes for ./Frameworks/TitaniumKit.framework/Info.plist
+copying file ./Frameworks/libswiftQuartzCore.dylib ... 
+2021-03-18 07:09:59 +0000  338272 bytes for ./Frameworks/libswiftQuartzCore.dylib
+copying file ./Frameworks/libswiftFoundation.dylib ... 
+2021-03-18 07:09:59 +0000  11552336 bytes for ./Frameworks/libswiftFoundation.dylib
+copying file ./Frameworks/libswiftCoreLocation.dylib ... 
+2021-03-18 07:09:59 +0000  401504 bytes for ./Frameworks/libswiftCoreLocation.dylib
+2021-03-18 07:09:59 +0000  copying file ./modules/ui/images/photoDefault.png ... 
+2021-03-18 07:09:59 +0000  5355 bytes for ./modules/ui/images/photoDefault.png
+2021-03-18 07:09:59 +0000  copying file ./modules/ui/images/badge.png ... 
+2021-03-18 07:09:59 +0000  1167 bytes for ./modules/ui/images/badge.png
+2021-03-18 07:09:59 +0000  copying file ./modules/ui/images/closeButton.png ... 
+2021-03-18 07:09:59 +0000  428 bytes for ./modules/ui/images/closeButton.png
+2021-03-18 07:09:59 +0000  copying file ./modules/dk.napp.social/README ... 
+2021-03-18 07:09:59 +0000  278 bytes for ./modules/dk.napp.social/README
+2021-03-18 07:09:59 +0000  copying file ./fonts/Roboto-Regular.ttf ... 
+2021-03-18 07:09:59 +0000  171676 bytes for ./fonts/Roboto-Regular.ttf
+2021-03-18 07:09:59 +0000  copying file ./fonts/fontawesome-webfont.ttf ... 
+2021-03-18 07:09:59 +0000  142072 bytes for ./fonts/fontawesome-webfont.ttf
+copying file ./fonts/Roboto-BoldItalic.ttf ... 
+2021-03-18 07:09:59 +0000  174952 bytes for ./fonts/Roboto-BoldItalic.ttf
+2021-03-18 07:09:59 +0000  copying file ./fonts/dk.napp.audioplayer/fontawesome-webfont.ttf ... 
+2021-03-18 07:09:59 +0000  142072 bytes for ./fonts/dk.napp.audioplayer/fontawesome-webfont.ttf
+2021-03-18 07:09:59 +0000  copying file ./fonts/Roboto-Italic.ttf ... 
+2021-03-18 07:09:59 +0000  173932 bytes for ./fonts/Roboto-Italic.ttf
+2021-03-18 07:09:59 +0000  copying file ./fonts/Roboto-Bold.ttf ... 
+2021-03-18 07:09:59 +0000  170760 bytes for ./fonts/Roboto-Bold.ttf
+2021-03-18 07:09:59 +0000  copying file ./embedded.mobileprovision ... 
+2021-03-18 07:09:59 +0000  7579 bytes for ./embedded.mobileprovision
+2021-03-18 07:09:59 +0000  copying file ./sound/doorbell.wav ... 
+2021-03-18 07:09:59 +0000  1441156 bytes for ./sound/doorbell.wav
+copying file ./sound/ding.mp3 ... 
+2021-03-18 07:09:59 +0000  41795 bytes for ./sound/ding.mp3
+2021-03-18 07:09:59 +0000  copying file ./sound/ding.wav ... 
+2021-03-18 07:09:59 +0000  535904 bytes for ./sound/ding.wav
+2021-03-18 07:09:59 +0000  copying file ./Info.plist ... 
+2021-03-18 07:09:59 +0000  3281 bytes for ./Info.plist
+2021-03-18 07:09:59 +0000  copying file ./_index_.json ... 
+2021-03-18 07:09:59 +0000  9740 bytes for ./_index_.json
+2021-03-18 07:09:59 +0000  copying file ./PkgInfo ... 
+2021-03-18 07:09:59 +0000  8 bytes for ./PkgInfo
+2021-03-18 07:09:59 +0000  copying file ./zh.lproj/Localizable.strings ... 
+2021-03-18 07:09:59 +0000  2842 bytes for ./zh.lproj/Localizable.strings
+2021-03-18 07:09:59 +0000  copying file ./AppIcon76x76~ipad.png ... 
+2021-03-18 07:09:59 +0000  5217 bytes for ./AppIcon76x76~ipad.png
+2021-03-18 07:09:59 +0000 [MT] /usr/bin/ditto exited with 0
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd98889ef0; bundleID='io.socket.SocketIO', path='<DVTFilePath:0x7fbd6fb050c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98884f00; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb57440; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb574f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='io.socket.SocketIO', executablePath='<DVTFilePath:0x7fbd988476c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb19910; bundleID='com.vluxe.Starscream', path='<DVTFilePath:0x7fbd8ec06b40:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98868e60; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cd210; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.vluxe.Starscream', executablePath='<DVTFilePath:0x7fbd8ec07c20:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb1f3c0; bundleID='com.appcelerator.TitaniumKit', path='<DVTFilePath:0x7fbd988560e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1e730; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988d3600; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.appcelerator.TitaniumKit', executablePath='<DVTFilePath:0x7fbd98858760:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd9df427a0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98874330; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cdc20; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd988900a0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98892b90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cde30; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb1e430; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb227b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cfdc0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb2e280; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9887f390; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988d2e00; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd98897e50; bundleID='com.apple.dt.runtime.swiftCoreLocation', path='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98890190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988d2db0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreLocation', executablePath='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd98869740; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1a320; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988ce9c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd9887e2e0; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb278e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988ce3a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb1e930; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb23210; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cea40; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd9888e6b0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb348f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988ced20; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd98883aa0; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb2f0e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988d00a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd9889be30; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98898190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988ced70; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd6fb33930; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888a5d0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988cf330; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe124a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x7fbd988904b0; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888f250; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988d02c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe897c0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionCompileBitcodeStep
+2021-03-18 07:09:59 +0000 [MT] Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionCodeSlimmingStep
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionCopyBCSymbolMapsStep
+2021-03-18 07:09:59 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2021-03-18 07:09:59 +0000 [MT] Processing symbols for SocketIO.framework
+2021-03-18 07:09:59 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework' '--link-dest' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:09:59 +0000  building file list ... 
+2021-03-18 07:09:59 +0000   0 files...2021-03-18 07:09:59 +0000  5 files to consider
+2021-03-18 07:09:59 +0000  SocketIO.framework/
+2021-03-18 07:09:59 +0000  SocketIO.framework/_CodeSignature/
+2021-03-18 07:09:59 +0000  
+2021-03-18 07:09:59 +0000  sent 223 bytes  received 32 bytes  510.00 bytes/sec
+total size is 1.72M  speedup is 7068.06
+2021-03-18 07:09:59 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '--link-dest' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  7 files to consider
+2021-03-18 07:10:00 +0000  ./
+2021-03-18 07:10:00 +0000  ASP Healthcare.app.dSYM/
+ASP Healthcare.app.dSYM/Contents/
+ASP Healthcare.app.dSYM/Contents/Resources/
+ASP Healthcare.app.dSYM/Contents/Resources/DWARF/
+2021-03-18 07:10:00 +0000  
+2021-03-18 07:10:00 +0000  sent 248 bytes  received 50 bytes  596.00 bytes/sec
+total size is 6.98M  speedup is 24555.76
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/usr/bin/symbols '-noTextInSOD' '-noDaemon' '-arch' 'all' '-symbolsPackageDir' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Symbols' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/SocketIO.framework/SocketIO'
+2021-03-18 07:10:00 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/SocketIO.framework/SocketIO [armv7, 0.083206 seconds]:
+/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/SocketIO.framework/SocketIO [arm64, 0.083206 seconds]:
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/usr/bin/symbols exited with 0
+2021-03-18 07:10:00 +0000 [MT] Processing symbols for Starscream.framework
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework' '--link-dest' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  5 files to consider
+2021-03-18 07:10:00 +0000  Starscream.framework/
+2021-03-18 07:10:00 +0000  Starscream.framework/_CodeSignature/
+2021-03-18 07:10:00 +0000  
+sent 227 bytes  received 32 bytes  518.00 bytes/sec
+2021-03-18 07:10:00 +0000  total size is 1.02M  speedup is 4114.20
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '--link-dest' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  7 files to consider
+2021-03-18 07:10:00 +0000  ./
+ASP Healthcare.app.dSYM/
+ASP Healthcare.app.dSYM/Contents/
+ASP Healthcare.app.dSYM/Contents/Resources/
+ASP Healthcare.app.dSYM/Contents/Resources/DWARF/
+2021-03-18 07:10:00 +0000  
+2021-03-18 07:10:00 +0000  sent 260 bytes  received 62 bytes  644.00 bytes/sec
+total size is 6.98M  speedup is 22725.52
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/usr/bin/symbols '-noTextInSOD' '-noDaemon' '-arch' 'all' '-symbolsPackageDir' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Symbols' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Starscream.framework/Starscream'
+2021-03-18 07:10:00 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Starscream.framework/Starscream [armv7, 0.043846 seconds]:
+/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Starscream.framework/Starscream [arm64, 0.043846 seconds]:
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/usr/bin/symbols exited with 0
+2021-03-18 07:10:00 +0000 [MT] Processing symbols for TitaniumKit.framework
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework' '--link-dest' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  5 files to consider
+2021-03-18 07:10:00 +0000  TitaniumKit.framework/
+2021-03-18 07:10:00 +0000  TitaniumKit.framework/_CodeSignature/
+2021-03-18 07:10:00 +0000  
+sent 213 bytes  received 32 bytes  490.00 bytes/sec
+total size is 1.97M  speedup is 8430.24
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '--link-dest' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  7 files to consider
+2021-03-18 07:10:00 +0000  ./
+ASP Healthcare.app.dSYM/
+ASP Healthcare.app.dSYM/Contents/
+2021-03-18 07:10:00 +0000  ASP Healthcare.app.dSYM/Contents/Resources/
+ASP Healthcare.app.dSYM/Contents/Resources/DWARF/
+2021-03-18 07:10:00 +0000  
+sent 260 bytes  received 62 bytes  644.00 bytes/sec
+total size is 6.98M  speedup is 22725.52
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/usr/bin/symbols '-noTextInSOD' '-noDaemon' '-arch' 'all' '-symbolsPackageDir' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Symbols' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/TitaniumKit.framework/TitaniumKit'
+2021-03-18 07:10:00 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/TitaniumKit.framework/TitaniumKit [armv7, 0.043767 seconds]:
+/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/TitaniumKit.framework/TitaniumKit [arm64, 0.043767 seconds]:
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/usr/bin/symbols exited with 0
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftCore.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftCoreFoundation.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftCoreGraphics.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftCoreImage.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftCoreLocation.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftDarwin.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftDispatch.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftFoundation.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftMetal.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftObjectiveC.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftQuartzCore.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftUIKit.dylib
+2021-03-18 07:10:00 +0000 [MT] Excluding symbols for libswiftos.dylib
+2021-03-18 07:10:00 +0000 [MT] Processing symbols for ASP Healthcare.app
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app' '--link-dest' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000   100 files...2021-03-18 07:10:00 +0000  105 files to consider
+2021-03-18 07:10:00 +0000  ASP Healthcare.app/
+2021-03-18 07:10:00 +0000  ASP Healthcare.app/Frameworks/
+ASP Healthcare.app/Frameworks/SocketIO.framework/
+ASP Healthcare.app/Frameworks/SocketIO.framework/_CodeSignature/
+ASP Healthcare.app/Frameworks/Starscream.framework/
+ASP Healthcare.app/Frameworks/Starscream.framework/_CodeSignature/
+ASP Healthcare.app/Frameworks/TitaniumKit.framework/
+ASP Healthcare.app/Frameworks/TitaniumKit.framework/_CodeSignature/
+ASP Healthcare.app/LaunchScreen.storyboardc/
+ASP Healthcare.app/_CodeSignature/
+ASP Healthcare.app/blackberry/
+2021-03-18 07:10:00 +0000  ASP Healthcare.app/en.lproj/
+ASP Healthcare.app/fonts/
+ASP Healthcare.app/fonts/dk.napp.audioplayer/
+ASP Healthcare.app/html/
+ASP Healthcare.app/html/js/
+ASP Healthcare.app/images/
+ASP Healthcare.app/images/iphone/
+ASP Healthcare.app/images/menu_image/
+ASP Healthcare.app/modules/
+ASP Healthcare.app/modules/dk.napp.social/
+ASP Healthcare.app/modules/ui/
+ASP Healthcare.app/modules/ui/images/
+ASP Healthcare.app/ms-MY.lproj/
+ASP Healthcare.app/sound/
+ASP Healthcare.app/ti.cloud/
+ASP Healthcare.app/zh.lproj/
+2021-03-18 07:10:00 +0000  
+sent 3.10K bytes  received 182 bytes  6.56K bytes/sec
+total size is 66.90M  speedup is 20884.76
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '--link-dest' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/dSYMs/' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ'
+2021-03-18 07:10:00 +0000  building file list ... 
+2021-03-18 07:10:00 +0000   0 files...2021-03-18 07:10:00 +0000  7 files to consider
+2021-03-18 07:10:00 +0000  ./
+ASP Healthcare.app.dSYM/
+ASP Healthcare.app.dSYM/Contents/
+2021-03-18 07:10:00 +0000  ASP Healthcare.app.dSYM/Contents/Resources/
+ASP Healthcare.app.dSYM/Contents/Resources/DWARF/
+2021-03-18 07:10:00 +0000  
+sent 260 bytes  received 62 bytes  644.00 bytes/sec
+total size is 6.98M  speedup is 22725.52
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/usr/bin/symbols '-noTextInSOD' '-noDaemon' '-arch' 'all' '-symbolsPackageDir' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Symbols' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/ASP Healthcare.app.dSYM/Contents/Resources/Dwarf/ASP Healthcare'
+2021-03-18 07:10:00 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/ASP Healthcare.app.dSYM/Contents/Resources/Dwarf/ASP Healthcare [armv7, 0.057951 seconds]:
+/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/ASP Healthcare.app.dSYM/Contents/Resources/Dwarf/ASP Healthcare [arm64, 0.057951 seconds]:
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/usr/bin/symbols exited with 0
+2021-03-18 07:10:00 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2021-03-18 07:10:00 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/SwiftSupport' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/SwiftSupport'
+2021-03-18 07:10:00 +0000  >>> Copying /Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/SwiftSupport 
+2021-03-18 07:10:00 +0000  copying file ./iphoneos/libswiftCoreImage.dylib ... 
+2021-03-18 07:10:00 +0000  533860 bytes for ./iphoneos/libswiftCoreImage.dylib
+copying file ./iphoneos/libswiftObjectiveC.dylib ... 
+2021-03-18 07:10:00 +0000  853551 bytes for ./iphoneos/libswiftObjectiveC.dylib
+copying file ./iphoneos/libswiftCore.dylib ... 
+2021-03-18 07:10:00 +0000  140528485 bytes for ./iphoneos/libswiftCore.dylib
+copying file ./iphoneos/libswiftCoreGraphics.dylib ... 
+2021-03-18 07:10:00 +0000  2727342 bytes for ./iphoneos/libswiftCoreGraphics.dylib
+copying file ./iphoneos/libswiftUIKit.dylib ... 
+2021-03-18 07:10:00 +0000  2211578 bytes for ./iphoneos/libswiftUIKit.dylib
+copying file ./iphoneos/libswiftMetal.dylib ... 
+2021-03-18 07:10:00 +0000  897158 bytes for ./iphoneos/libswiftMetal.dylib
+copying file ./iphoneos/libswiftDispatch.dylib ... 
+2021-03-18 07:10:00 +0000  5501326 bytes for ./iphoneos/libswiftDispatch.dylib
+copying file ./iphoneos/libswiftos.dylib ... 
+2021-03-18 07:10:00 +0000  1136720 bytes for ./iphoneos/libswiftos.dylib
+copying file ./iphoneos/libswiftCoreFoundation.dylib ... 
+2021-03-18 07:10:00 +0000  503572 bytes for ./iphoneos/libswiftCoreFoundation.dylib
+copying file ./iphoneos/libswiftDarwin.dylib ... 
+2021-03-18 07:10:00 +0000  1412282 bytes for ./iphoneos/libswiftDarwin.dylib
+copying file ./iphoneos/libswiftQuartzCore.dylib ... 
+2021-03-18 07:10:00 +0000  580069 bytes for ./iphoneos/libswiftQuartzCore.dylib
+copying file ./iphoneos/libswiftFoundation.dylib ... 
+2021-03-18 07:10:00 +0000  62290314 bytes for ./iphoneos/libswiftFoundation.dylib
+copying file ./iphoneos/libswiftCoreLocation.dylib ... 
+2021-03-18 07:10:00 +0000  920470 bytes for ./iphoneos/libswiftCoreLocation.dylib
+2021-03-18 07:10:00 +0000 [MT] /usr/bin/ditto exited with 0
+2021-03-18 07:10:00 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2021-03-18 07:10:00 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2021-03-18 07:10:00 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO' '-verify_arch' 'arm64e'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-03-18 07:10:00 +0000 [MT] Skipping architecture thinning for item "SocketIO" because arch "arm64e" wasn't found
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream' '-verify_arch' 'arm64e'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-03-18 07:10:00 +0000 [MT] Skipping architecture thinning for item "Starscream" because arch "arm64e" wasn't found
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit' '-verify_arch' 'arm64e'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-03-18 07:10:00 +0000 [MT] Skipping architecture thinning for item "TitaniumKit" because arch "arm64e" wasn't found
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:00 +0000 [MT] Successfully thinned item "libswiftCore.dylib", arch "arm64e"
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:00 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:00 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftCoreFoundation.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftCoreGraphics.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftCoreImage.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftCoreLocation.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftDarwin.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftDispatch.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftFoundation.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftMetal.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftObjectiveC.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftQuartzCore.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftUIKit.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib' '-remove' 'arm64e' '-output' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 0
+2021-03-18 07:10:01 +0000 [MT] Successfully thinned item "libswiftos.dylib", arch "arm64e"
+2021-03-18 07:10:01 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/ASP Healthcare' '-verify_arch' 'arm64e'
+2021-03-18 07:10:01 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-03-18 07:10:01 +0000 [MT] Skipping architecture thinning for item "ASP Healthcare" because arch "arm64e" wasn't found
+2021-03-18 07:10:01 +0000 [MT] Processing step: IDEDistributionODRStep
+2021-03-18 07:10:01 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd98889ef0; bundleID='io.socket.SocketIO', path='<DVTFilePath:0x7fbd6fb050c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98884f00; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f2e70; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='io.socket.SocketIO', executablePath='<DVTFilePath:0x7fbd988476c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb19910; bundleID='com.vluxe.Starscream', path='<DVTFilePath:0x7fbd8ec06b40:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98868e60; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f4030; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f3f30>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.vluxe.Starscream', executablePath='<DVTFilePath:0x7fbd8ec07c20:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb1f3c0; bundleID='com.appcelerator.TitaniumKit', path='<DVTFilePath:0x7fbd988560e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1e730; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f4340; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.appcelerator.TitaniumKit', executablePath='<DVTFilePath:0x7fbd98858760:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd9df427a0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98874330; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f97a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f96a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd988900a0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98892b90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f4360; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb1e430; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb227b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f2de0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f2c00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb2e280; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9887f390; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f3200; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd98897e50; bundleID='com.apple.dt.runtime.swiftCoreLocation', path='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98890190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f97c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f95e0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreLocation', executablePath='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd98869740; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1a320; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f4960; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd9887e2e0; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb278e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f9dc0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f9cc0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb1e930; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb23210; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f9de0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd9888e6b0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb348f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f34c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f35f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd98883aa0; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb2f0e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f9d40; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd9889be30; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98898190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fcaf0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988fcdb0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd6fb33930; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888a5d0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f9ea0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd8eeea7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Skipping stripping extended attributes of item: <IDEDistributionItem: 0x7fbd988904b0; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888f250; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fa270; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988fa180>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>
+2021-03-18 07:10:01 +0000 [MT] Running /usr/bin/xattr '-crs' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app'
+2021-03-18 07:10:01 +0000 [MT] /usr/bin/xattr exited with 0
+2021-03-18 07:10:01 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98889ef0; bundleID='io.socket.SocketIO', path='<DVTFilePath:0x7fbd6fb050c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98884f00; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb3a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f6370>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='io.socket.SocketIO', executablePath='<DVTFilePath:0x7fbd988476c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98889ef0; bundleID='io.socket.SocketIO', path='<DVTFilePath:0x7fbd6fb050c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98884f00; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fec00; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988feb00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='io.socket.SocketIO', executablePath='<DVTFilePath:0x7fbd988476c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:01 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd98889ef0; bundleID='io.socket.SocketIO', path='<DVTFilePath:0x7fbd6fb050c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98884f00; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fef80; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe5d260>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='io.socket.SocketIO', executablePath='<DVTFilePath:0x7fbd988476c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~5UGjMi
+2021-03-18 07:10:01 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~5UGjMi' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework'
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework: replacing existing signature
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework: signed bundle with Mach-O universal (armv7 arm64) [io.socket.SocketIO]
+2021-03-18 07:10:01 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb19910; bundleID='com.vluxe.Starscream', path='<DVTFilePath:0x7fbd8ec06b40:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98868e60; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb717a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb7d310>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.vluxe.Starscream', executablePath='<DVTFilePath:0x7fbd8ec07c20:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb19910; bundleID='com.vluxe.Starscream', path='<DVTFilePath:0x7fbd8ec06b40:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98868e60; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb80140; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb80400>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.vluxe.Starscream', executablePath='<DVTFilePath:0x7fbd8ec07c20:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:01 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb19910; bundleID='com.vluxe.Starscream', path='<DVTFilePath:0x7fbd8ec06b40:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98868e60; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb7aae0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb68920>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.vluxe.Starscream', executablePath='<DVTFilePath:0x7fbd8ec07c20:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~LAhCBK
+2021-03-18 07:10:01 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~LAhCBK' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework'
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework: replacing existing signature
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework: signed bundle with Mach-O universal (armv7 arm64) [com.vluxe.Starscream]
+2021-03-18 07:10:01 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1f3c0; bundleID='com.appcelerator.TitaniumKit', path='<DVTFilePath:0x7fbd988560e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1e730; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df35a50; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df50590>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.appcelerator.TitaniumKit', executablePath='<DVTFilePath:0x7fbd98858760:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1f3c0; bundleID='com.appcelerator.TitaniumKit', path='<DVTFilePath:0x7fbd988560e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1e730; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe06b00; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe226a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.appcelerator.TitaniumKit', executablePath='<DVTFilePath:0x7fbd98858760:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:01 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb1f3c0; bundleID='com.appcelerator.TitaniumKit', path='<DVTFilePath:0x7fbd988560e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1e730; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb4c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988fbdc0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.appcelerator.TitaniumKit', executablePath='<DVTFilePath:0x7fbd98858760:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gBExvT
+2021-03-18 07:10:01 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gBExvT' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework'
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework: replacing existing signature
+2021-03-18 07:10:01 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework: signed bundle with Mach-O universal (armv7 arm64) [com.appcelerator.TitaniumKit]
+2021-03-18 07:10:01 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9df427a0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98874330; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb717a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb71850>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:01 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9df427a0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98874330; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f9d10; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe226a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:01 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd9df427a0; bundleID='com.apple.dt.runtime.swiftCore', path='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98874330; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fef50; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988ff080>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCore', executablePath='<DVTFilePath:0x7fbd9ddf78f0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~qm8x6r
+2021-03-18 07:10:01 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~qm8x6r' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCore]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd988900a0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98892b90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb7a000; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb5f180>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd988900a0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98892b90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb80a30; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb5f0d0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd988900a0; bundleID='com.apple.dt.runtime.swiftCoreFoundation', path='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98892b90; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb686d0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb69920>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreFoundation', executablePath='<DVTFilePath:0x7fbd9dc097c0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~bJW4PO
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~bJW4PO' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreFoundation]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1e430; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb227b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df2a840; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df28960>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1e430; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb227b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe22540; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f4c00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb1e430; bundleID='com.apple.dt.runtime.swiftCoreGraphics', path='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb227b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fefe0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f88a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreGraphics', executablePath='<DVTFilePath:0x7fbd9ddfb3e0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~KkXAzY
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~KkXAzY' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreGraphics]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb2e280; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9887f390; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df2a9f0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df2a980>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb2e280; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9887f390; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe225f0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe226a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb2e280; bundleID='com.apple.dt.runtime.swiftCoreImage', path='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9887f390; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb270; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe88a60>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreImage', executablePath='<DVTFilePath:0x7fbd9ddfa400:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~4ZF9k4
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~4ZF9k4' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreImage]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98897e50; bundleID='com.apple.dt.runtime.swiftCoreLocation', path='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98890190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df2a9f0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df2a970>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreLocation', executablePath='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98897e50; bundleID='com.apple.dt.runtime.swiftCoreLocation', path='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98890190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988e8520; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe89d80>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreLocation', executablePath='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd98897e50; bundleID='com.apple.dt.runtime.swiftCoreLocation', path='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98890190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb630; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988fb080>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftCoreLocation', executablePath='<DVTFilePath:0x7fbd9885db50:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~0VBJHp
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~0VBJHp' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftCoreLocation]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98869740; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1a320; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df35fb0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df2ab80>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98869740; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1a320; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988e8520; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe12e10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd98869740; bundleID='com.apple.dt.runtime.swiftDarwin', path='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb1a320; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb660; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe21d10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDarwin', executablePath='<DVTFilePath:0x7fbd988546d0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~771ys8
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~771ys8' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib: replacing existing signature
+2021-03-18 07:10:02 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftDarwin]
+2021-03-18 07:10:02 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9887e2e0; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb278e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9de7bb10; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9de7b3f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:02 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9887e2e0; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb278e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988e8520; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe87e10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:02 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd9887e2e0; bundleID='com.apple.dt.runtime.swiftDispatch', path='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb278e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb710; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe12e10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftDispatch', executablePath='<DVTFilePath:0x7fbd9ddfb300:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~OkzfpI
+2021-03-18 07:10:02 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~OkzfpI' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftDispatch]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1e930; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb23210; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe21cd0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe21e00>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb1e930; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb23210; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988f8f40; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe22570>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb1e930; bundleID='com.apple.dt.runtime.swiftFoundation', path='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb23210; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe875d0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe5db30>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftFoundation', executablePath='<DVTFilePath:0x7fbd9885c900:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~lnsaYI
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~lnsaYI' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftFoundation]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9888e6b0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb348f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb7cbb0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb7a130>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9888e6b0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb348f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb784a0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb785a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd9888e6b0; bundleID='com.apple.dt.runtime.swiftMetal', path='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb348f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fb4c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe12e10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftMetal', executablePath='<DVTFilePath:0x7fbd9ddfd880:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gxbjMv
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gxbjMv' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftMetal]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98883aa0; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb2f0e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb7a000; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb7a130>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd98883aa0; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb2f0e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe885e0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd988f9d60>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd98883aa0; bundleID='com.apple.dt.runtime.swiftObjectiveC', path='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd6fb2f0e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe5ce80; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe072b0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftObjectiveC', executablePath='<DVTFilePath:0x7fbd9ddf8530:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~5bkVRg
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~5bkVRg' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftObjectiveC]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9889be30; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98898190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd6fb7a030; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd6fb7a130>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd9889be30; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98898190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe885e0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe5cfa0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd9889be30; bundleID='com.apple.dt.runtime.swiftQuartzCore', path='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd98898190; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe677e0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe67890>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftQuartzCore', executablePath='<DVTFilePath:0x7fbd9885aec0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~cRwrk7
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~cRwrk7' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftQuartzCore]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb33930; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888a5d0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9df2a9f0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9df28160>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb33930; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888a5d0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe217c0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe21870>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb33930; bundleID='com.apple.dt.runtime.swiftUIKit', path='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888a5d0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe22540; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe225f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftUIKit', executablePath='<DVTFilePath:0x7fbd9ddfc610:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~n3FR2s
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~n3FR2s' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib: replacing existing signature
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftUIKit]
+2021-03-18 07:10:03 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd988904b0; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888f250; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd9de7b830; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd9de6e950>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'>: {
+}
+2021-03-18 07:10:03 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd988904b0; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888f250; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988e8520; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe88240>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'> are: {
+}
+2021-03-18 07:10:03 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd988904b0; bundleID='com.apple.dt.runtime.swiftos', path='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd9888f250; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988ff4b0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe12e10>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='(null)', teamID='KFZ44PMRMC', identifier='com.apple.dt.runtime.swiftos', executablePath='<DVTFilePath:0x7fbd9ddffd70:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/Frameworks/libswiftos.dylib'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gXBGmG
+2021-03-18 07:10:03 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~gXBGmG' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib'
+2021-03-18 07:10:03 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib: replacing existing signature
+2021-03-18 07:10:04 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib: signed Mach-O universal (armv7 armv7s arm64) [com.apple.dt.runtime.swiftos]
+2021-03-18 07:10:04 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:04 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb3f400; bundleID='com.plux.healthcare', path='<DVTFilePath:0x7fbd8eeecad0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd988a0500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe3f720; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe226a0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='{
+    "application-identifier" = "KFZ44PMRMC.com.plux.healthcare";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = KFZ44PMRMC;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "KFZ44PMRMC.com.plux.healthcare"
+    );
+}', teamID='KFZ44PMRMC', identifier='com.plux.healthcare', executablePath='<DVTFilePath:0x7fbd9ddc8540:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/ASP Healthcare'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "KFZ44PMRMC.com.plux.healthcare";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = KFZ44PMRMC;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "KFZ44PMRMC.com.plux.healthcare"
+    );
+}
+2021-03-18 07:10:04 +0000 [MT] Entitlements for <IDEDistributionItem: 0x7fbd6fb3f400; bundleID='com.plux.healthcare', path='<DVTFilePath:0x7fbd8eeecad0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd988a0500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd988fba80; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe5d7f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='{
+    "application-identifier" = "KFZ44PMRMC.com.plux.healthcare";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = KFZ44PMRMC;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "KFZ44PMRMC.com.plux.healthcare"
+    );
+}', teamID='KFZ44PMRMC', identifier='com.plux.healthcare', executablePath='<DVTFilePath:0x7fbd9ddc8540:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/ASP Healthcare'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "KFZ44PMRMC.com.plux.healthcare";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = KFZ44PMRMC;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "KFZ44PMRMC.com.plux.healthcare"
+    );
+}
+2021-03-18 07:10:04 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x7fbd6fb3f400; bundleID='com.plux.healthcare', path='<DVTFilePath:0x7fbd8eeecad0:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fbd988a0500; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fbd5fe4e0f0; name='iPhone Distribution: PLUX Healthcare (KFZ44PMRMC)', hash='A251D389F236EE949F56C0B4F03DB9D6F8C96117', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fbd5fe67130>', certificateKinds='(
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2021-03-18 03:16:27 +0000''>', entitlements='{
+    "application-identifier" = "KFZ44PMRMC.com.plux.healthcare";
+    "aps-environment" = production;
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = KFZ44PMRMC;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "KFZ44PMRMC.com.plux.healthcare"
+    );
+}', teamID='KFZ44PMRMC', identifier='com.plux.healthcare', executablePath='<DVTFilePath:0x7fbd9ddc8540:'/Users/yikonnlau/Documents/Appcelerator_Studio_Workspace/plux/build/iphone/ASP Healthcare.xcarchive/Products/Applications/ASP Healthcare.app/ASP Healthcare'>', hardenedRuntime='0'>'> to: /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~JOco7Z
+2021-03-18 07:10:04 +0000 [MT] Running /usr/bin/codesign '-vvv' '--force' '--sign' 'A251D389F236EE949F56C0B4F03DB9D6F8C96117' '--entitlements' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/entitlements~~~JOco7Z' '--preserve-metadata=identifier,flags,runtime' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app'
+2021-03-18 07:10:04 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app: replacing existing signature
+2021-03-18 07:10:04 +0000  /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app: signed app bundle with Mach-O universal (armv7 arm64) [com.plux.healthcare]
+2021-03-18 07:10:04 +0000 [MT] /usr/bin/codesign exited with 0
+2021-03-18 07:10:04 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-03-18 07:10:04 +0000 [MT] Processing step: IDEDistributionCreateIPAStep
+2021-03-18 07:10:04 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Symbols' '--link-dest' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root'
+2021-03-18 07:10:04 +0000  building file list ... 
+2021-03-18 07:10:04 +0000   0 files...2021-03-18 07:10:04 +0000  9 files to consider
+2021-03-18 07:10:04 +0000  Symbols/
+2021-03-18 07:10:04 +0000  
+2021-03-18 07:10:04 +0000  sent 510 bytes  received 26 bytes  1.05K bytes/sec
+total size is 3.87M  speedup is 7561.28
+2021-03-18 07:10:04 +0000 [MT] /usr/bin/rsync exited with 0
+2021-03-18 07:10:04 +0000 [MT] Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root' '/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Packages/ASP Healthcare.ipa'
+2021-03-18 07:10:04 +0000  >>> Copying /var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root 
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/_CodeSignature/CodeResources ... 
+2021-03-18 07:10:04 +0000  25554 bytes for ./Payload/ASP Healthcare.app/_CodeSignature/CodeResources
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/ms-MY.lproj/Localizable.strings ... 
+2021-03-18 07:10:04 +0000  3361 bytes for ./Payload/ASP Healthcare.app/ms-MY.lproj/Localizable.strings
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/en.lproj/Localizable.strings ... 
+2021-03-18 07:10:04 +0000  3060 bytes for ./Payload/ASP Healthcare.app/en.lproj/Localizable.strings
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/iTunesArtwork ... 
+2021-03-18 07:10:04 +0000  211013 bytes for ./Payload/ASP Healthcare.app/iTunesArtwork
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/ti.cloud/LICENSE ... 
+122 bytes for ./Payload/ASP Healthcare.app/ti.cloud/LICENSE
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/ti.cloud/manifest ... 
+2021-03-18 07:10:04 +0000  492 bytes for ./Payload/ASP Healthcare.app/ti.cloud/manifest
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/ti.cloud/package.json ... 
+2021-03-18 07:10:04 +0000  172 bytes for ./Payload/ASP Healthcare.app/ti.cloud/package.json
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/images/checkbox.gif ... 
+2021-03-18 07:10:04 +0000  3272 bytes for ./Payload/ASP Healthcare.app/images/checkbox.gif
+copying file ./Payload/ASP Healthcare.app/images/menu_image/nutrition.jpeg ... 
+2021-03-18 07:10:04 +0000  41486 bytes for ./Payload/ASP Healthcare.app/images/menu_image/nutrition.jpeg
+copying file ./Payload/ASP Healthcare.app/images/menu_image/psychology.jpeg ... 
+2021-03-18 07:10:04 +0000  68021 bytes for ./Payload/ASP Healthcare.app/images/menu_image/psychology.jpeg
+copying file ./Payload/ASP Healthcare.app/images/menu_image/voucher_square.jpeg ... 
+2021-03-18 07:10:04 +0000  92430 bytes for ./Payload/ASP Healthcare.app/images/menu_image/voucher_square.jpeg
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/images/iphone/iTunesArtwork ... 
+2021-03-18 07:10:04 +0000  211013 bytes for ./Payload/ASP Healthcare.app/images/iphone/iTunesArtwork
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/AppIcon60x60@2x.png ... 
+2021-03-18 07:10:04 +0000  7850 bytes for ./Payload/ASP Healthcare.app/AppIcon60x60@2x.png
+copying file ./Payload/ASP Healthcare.app/ASP Healthcare ... 
+2021-03-18 07:10:04 +0000  9011488 bytes for ./Payload/ASP Healthcare.app/ASP Healthcare
+copying file ./Payload/ASP Healthcare.app/AppIcon29x29@2x.png ... 
+2021-03-18 07:10:04 +0000  3499 bytes for ./Payload/ASP Healthcare.app/AppIcon29x29@2x.png
+copying file ./Payload/ASP Healthcare.app/AppIcon40x40@3x.png ... 
+2021-03-18 07:10:04 +0000  7850 bytes for ./Payload/ASP Healthcare.app/AppIcon40x40@3x.png
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/blackberry/Ti.Manifest ... 
+2021-03-18 07:10:04 +0000  9 bytes for ./Payload/ASP Healthcare.app/blackberry/Ti.Manifest
+copying file ./Payload/ASP Healthcare.app/AppIcon29x29~ipad.png ... 
+2021-03-18 07:10:04 +0000  1727 bytes for ./Payload/ASP Healthcare.app/AppIcon29x29~ipad.png
+copying file ./Payload/ASP Healthcare.app/AppIcon40x40@2x.png ... 
+2021-03-18 07:10:04 +0000  4992 bytes for ./Payload/ASP Healthcare.app/AppIcon40x40@2x.png
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/html/socket_b.html ... 
+2021-03-18 07:10:04 +0000  3430 bytes for ./Payload/ASP Healthcare.app/html/socket_b.html
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/html/js/socket.io.js ... 
+2021-03-18 07:10:04 +0000  71529 bytes for ./Payload/ASP Healthcare.app/html/js/socket.io.js
+copying file ./Payload/ASP Healthcare.app/html/graph.html ... 
+2021-03-18 07:10:04 +0000  2710 bytes for ./Payload/ASP Healthcare.app/html/graph.html
+copying file ./Payload/ASP Healthcare.app/html/socket.html ... 
+2021-03-18 07:10:04 +0000  7591 bytes for ./Payload/ASP Healthcare.app/html/socket.html
+copying file ./Payload/ASP Healthcare.app/html/loader.js ... 
+2021-03-18 07:10:04 +0000  128870 bytes for ./Payload/ASP Healthcare.app/html/loader.js
+copying file ./Payload/ASP Healthcare.app/AppIcon29x29@3x.png ... 
+2021-03-18 07:10:04 +0000  5720 bytes for ./Payload/ASP Healthcare.app/AppIcon29x29@3x.png
+copying file ./Payload/ASP Healthcare.app/GoogleService-Info.plist ... 
+2021-03-18 07:10:04 +0000  773 bytes for ./Payload/ASP Healthcare.app/GoogleService-Info.plist
+2021-03-18 07:10:04 +0000  copying file ./Payload/ASP Healthcare.app/AppIcon60x60@3x.png ... 
+2021-03-18 07:10:04 +0000  11706 bytes for ./Payload/ASP Healthcare.app/AppIcon60x60@3x.png
+copying file ./Payload/ASP Healthcare.app/Assets.car ... 
+2021-03-18 07:10:05 +0000  11366056 bytes for ./Payload/ASP Healthcare.app/Assets.car
+copying file ./Payload/ASP Healthcare.app/AppIcon40x40@2x~ipad.png ... 
+2021-03-18 07:10:05 +0000  4992 bytes for ./Payload/ASP Healthcare.app/AppIcon40x40@2x~ipad.png
+copying file ./Payload/ASP Healthcare.app/AppIcon76x76@2x~ipad.png ... 
+2021-03-18 07:10:05 +0000  9588 bytes for ./Payload/ASP Healthcare.app/AppIcon76x76@2x~ipad.png
+copying file ./Payload/ASP Healthcare.app/AppIcon83.5x83.5@2x~ipad.png ... 
+2021-03-18 07:10:05 +0000  10205 bytes for ./Payload/ASP Healthcare.app/AppIcon83.5x83.5@2x~ipad.png
+copying file ./Payload/ASP Healthcare.app/LaunchImage-700-568h@2x.png ... 
+2021-03-18 07:10:05 +0000  15022 bytes for ./Payload/ASP Healthcare.app/LaunchImage-700-568h@2x.png
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2021-03-18 07:10:05 +0000  2420 bytes for ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+copying file ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2021-03-18 07:10:05 +0000  896 bytes for ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/Info.plist ... 
+2021-03-18 07:10:05 +0000  258 bytes for ./Payload/ASP Healthcare.app/LaunchScreen.storyboardc/Info.plist
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/AppIcon29x29@2x~ipad.png ... 
+2021-03-18 07:10:05 +0000  3499 bytes for ./Payload/ASP Healthcare.app/AppIcon29x29@2x~ipad.png
+copying file ./Payload/ASP Healthcare.app/AppIcon40x40~ipad.png ... 
+2021-03-18 07:10:05 +0000  2405 bytes for ./Payload/ASP Healthcare.app/AppIcon40x40~ipad.png
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib ... 
+2021-03-18 07:10:05 +0000  253648 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib ... 
+2021-03-18 07:10:05 +0000  302640 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib ... 
+2021-03-18 07:10:05 +0000  16915040 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib ... 
+2021-03-18 07:10:05 +0000  646848 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib ... 
+2021-03-18 07:10:05 +0000  477168 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib ... 
+2021-03-18 07:10:05 +0000  298112 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib ... 
+2021-03-18 07:10:05 +0000  1018912 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib ... 
+2021-03-18 07:10:05 +0000  299424 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/_CodeSignature/CodeResources ... 
+2021-03-18 07:10:05 +0000  1798 bytes for ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/_CodeSignature/CodeResources
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO ... 
+2021-03-18 07:10:05 +0000  1800128 bytes for ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/SocketIO
+copying file ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/Info.plist ... 
+2021-03-18 07:10:05 +0000  734 bytes for ./Payload/ASP Healthcare.app/Frameworks/SocketIO.framework/Info.plist
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib ... 
+2021-03-18 07:10:05 +0000  253792 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/_CodeSignature/CodeResources ... 
+2021-03-18 07:10:05 +0000  1798 bytes for ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/_CodeSignature/CodeResources
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream ... 
+2021-03-18 07:10:05 +0000  1063344 bytes for ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/Starscream
+copying file ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/Info.plist ... 
+2021-03-18 07:10:05 +0000  740 bytes for ./Payload/ASP Healthcare.app/Frameworks/Starscream.framework/Info.plist
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib ... 
+2021-03-18 07:10:05 +0000  369728 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/_CodeSignature/CodeResources ... 
+1798 bytes for ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/_CodeSignature/CodeResources
+copying file ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit ... 
+2021-03-18 07:10:05 +0000  2063200 bytes for ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/TitaniumKit
+copying file ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/Info.plist ... 
+2021-03-18 07:10:05 +0000  714 bytes for ./Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework/Info.plist
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib ... 
+2021-03-18 07:10:05 +0000  256864 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib ... 
+2021-03-18 07:10:05 +0000  8479552 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib
+copying file ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib ... 
+2021-03-18 07:10:05 +0000  304128 bytes for ./Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/modules/ui/images/photoDefault.png ... 
+2021-03-18 07:10:05 +0000  5355 bytes for ./Payload/ASP Healthcare.app/modules/ui/images/photoDefault.png
+copying file ./Payload/ASP Healthcare.app/modules/ui/images/badge.png ... 
+2021-03-18 07:10:05 +0000  1167 bytes for ./Payload/ASP Healthcare.app/modules/ui/images/badge.png
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/modules/ui/images/closeButton.png ... 
+2021-03-18 07:10:05 +0000  428 bytes for ./Payload/ASP Healthcare.app/modules/ui/images/closeButton.png
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/modules/dk.napp.social/README ... 
+2021-03-18 07:10:05 +0000  278 bytes for ./Payload/ASP Healthcare.app/modules/dk.napp.social/README
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/fonts/Roboto-Regular.ttf ... 
+2021-03-18 07:10:05 +0000  171676 bytes for ./Payload/ASP Healthcare.app/fonts/Roboto-Regular.ttf
+copying file ./Payload/ASP Healthcare.app/fonts/fontawesome-webfont.ttf ... 
+2021-03-18 07:10:05 +0000  142072 bytes for ./Payload/ASP Healthcare.app/fonts/fontawesome-webfont.ttf
+copying file ./Payload/ASP Healthcare.app/fonts/Roboto-BoldItalic.ttf ... 
+2021-03-18 07:10:05 +0000  174952 bytes for ./Payload/ASP Healthcare.app/fonts/Roboto-BoldItalic.ttf
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/fonts/dk.napp.audioplayer/fontawesome-webfont.ttf ... 
+2021-03-18 07:10:05 +0000  142072 bytes for ./Payload/ASP Healthcare.app/fonts/dk.napp.audioplayer/fontawesome-webfont.ttf
+copying file ./Payload/ASP Healthcare.app/fonts/Roboto-Italic.ttf ... 
+2021-03-18 07:10:05 +0000  173932 bytes for ./Payload/ASP Healthcare.app/fonts/Roboto-Italic.ttf
+copying file ./Payload/ASP Healthcare.app/fonts/Roboto-Bold.ttf ... 
+2021-03-18 07:10:05 +0000  170760 bytes for ./Payload/ASP Healthcare.app/fonts/Roboto-Bold.ttf
+copying file ./Payload/ASP Healthcare.app/embedded.mobileprovision ... 
+2021-03-18 07:10:05 +0000  7579 bytes for ./Payload/ASP Healthcare.app/embedded.mobileprovision
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/sound/doorbell.wav ... 
+2021-03-18 07:10:05 +0000  1441156 bytes for ./Payload/ASP Healthcare.app/sound/doorbell.wav
+copying file ./Payload/ASP Healthcare.app/sound/ding.mp3 ... 
+2021-03-18 07:10:05 +0000  41795 bytes for ./Payload/ASP Healthcare.app/sound/ding.mp3
+copying file ./Payload/ASP Healthcare.app/sound/ding.wav ... 
+2021-03-18 07:10:05 +0000  535904 bytes for ./Payload/ASP Healthcare.app/sound/ding.wav
+copying file ./Payload/ASP Healthcare.app/Info.plist ... 
+2021-03-18 07:10:05 +0000  3281 bytes for ./Payload/ASP Healthcare.app/Info.plist
+copying file ./Payload/ASP Healthcare.app/_index_.json ... 
+2021-03-18 07:10:05 +0000  9740 bytes for ./Payload/ASP Healthcare.app/_index_.json
+copying file ./Payload/ASP Healthcare.app/PkgInfo ... 
+2021-03-18 07:10:05 +0000  8 bytes for ./Payload/ASP Healthcare.app/PkgInfo
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/zh.lproj/Localizable.strings ... 
+2021-03-18 07:10:05 +0000  2842 bytes for ./Payload/ASP Healthcare.app/zh.lproj/Localizable.strings
+2021-03-18 07:10:05 +0000  copying file ./Payload/ASP Healthcare.app/AppIcon76x76~ipad.png ... 
+2021-03-18 07:10:05 +0000  5217 bytes for ./Payload/ASP Healthcare.app/AppIcon76x76~ipad.png
+2021-03-18 07:10:05 +0000  copying file ./SwiftSupport/iphoneos/libswiftCoreImage.dylib ... 
+2021-03-18 07:10:05 +0000  466448 bytes for ./SwiftSupport/iphoneos/libswiftCoreImage.dylib
+copying file ./SwiftSupport/iphoneos/libswiftObjectiveC.dylib ... 
+2021-03-18 07:10:05 +0000  679568 bytes for ./SwiftSupport/iphoneos/libswiftObjectiveC.dylib
+copying file ./SwiftSupport/iphoneos/libswiftCore.dylib ... 
+2021-03-18 07:10:08 +0000  95497472 bytes for ./SwiftSupport/iphoneos/libswiftCore.dylib
+copying file ./SwiftSupport/iphoneos/libswiftCoreGraphics.dylib ... 
+2021-03-18 07:10:08 +0000  2040928 bytes for ./SwiftSupport/iphoneos/libswiftCoreGraphics.dylib
+copying file ./SwiftSupport/iphoneos/libswiftUIKit.dylib ... 
+2021-03-18 07:10:08 +0000  1608688 bytes for ./SwiftSupport/iphoneos/libswiftUIKit.dylib
+copying file ./SwiftSupport/iphoneos/libswiftMetal.dylib ... 
+2021-03-18 07:10:08 +0000  724304 bytes for ./SwiftSupport/iphoneos/libswiftMetal.dylib
+copying file ./SwiftSupport/iphoneos/libswiftDispatch.dylib ... 
+2021-03-18 07:10:08 +0000  4056784 bytes for ./SwiftSupport/iphoneos/libswiftDispatch.dylib
+copying file ./SwiftSupport/iphoneos/libswiftos.dylib ... 
+2021-03-18 07:10:08 +0000  857072 bytes for ./SwiftSupport/iphoneos/libswiftos.dylib
+copying file ./SwiftSupport/iphoneos/libswiftCoreFoundation.dylib ... 
+2021-03-18 07:10:08 +0000  450272 bytes for ./SwiftSupport/iphoneos/libswiftCoreFoundation.dylib
+copying file ./SwiftSupport/iphoneos/libswiftDarwin.dylib ... 
+2021-03-18 07:10:08 +0000  1091328 bytes for ./SwiftSupport/iphoneos/libswiftDarwin.dylib
+copying file ./SwiftSupport/iphoneos/libswiftQuartzCore.dylib ... 
+2021-03-18 07:10:08 +0000  486224 bytes for ./SwiftSupport/iphoneos/libswiftQuartzCore.dylib
+copying file ./SwiftSupport/iphoneos/libswiftFoundation.dylib ... 
+2021-03-18 07:10:10 +0000  43094208 bytes for ./SwiftSupport/iphoneos/libswiftFoundation.dylib
+copying file ./SwiftSupport/iphoneos/libswiftCoreLocation.dylib ... 
+2021-03-18 07:10:10 +0000  730112 bytes for ./SwiftSupport/iphoneos/libswiftCoreLocation.dylib
+2021-03-18 07:10:10 +0000  copying file ./Symbols/6406B320-8811-39F9-A733-08158CD8692C.symbols ... 
+2021-03-18 07:10:10 +0000  279472 bytes for ./Symbols/6406B320-8811-39F9-A733-08158CD8692C.symbols
+copying file ./Symbols/ED8740C3-F342-35ED-B0D1-A45E378F8EA0.symbols ... 
+2021-03-18 07:10:10 +0000  425632 bytes for ./Symbols/ED8740C3-F342-35ED-B0D1-A45E378F8EA0.symbols
+copying file ./Symbols/57835791-5197-3170-8551-A02B29105297.symbols ... 
+2021-03-18 07:10:10 +0000  235904 bytes for ./Symbols/57835791-5197-3170-8551-A02B29105297.symbols
+copying file ./Symbols/3715A7AD-0F20-3C1D-8CAD-18C244BD5C72.symbols ... 
+2021-03-18 07:10:10 +0000  383000 bytes for ./Symbols/3715A7AD-0F20-3C1D-8CAD-18C244BD5C72.symbols
+copying file ./Symbols/C9C563E6-4ECD-3075-BC42-47126A5D5C68.symbols ... 
+2021-03-18 07:10:10 +0000  298224 bytes for ./Symbols/C9C563E6-4ECD-3075-BC42-47126A5D5C68.symbols
+copying file ./Symbols/5D94D7C5-6430-38E8-B674-C64A51BF4258.symbols ... 
+2021-03-18 07:10:10 +0000  1097600 bytes for ./Symbols/5D94D7C5-6430-38E8-B674-C64A51BF4258.symbols
+copying file ./Symbols/C962FAFB-EB68-3F68-9293-B73A3782F65A.symbols ... 
+2021-03-18 07:10:10 +0000  295376 bytes for ./Symbols/C962FAFB-EB68-3F68-9293-B73A3782F65A.symbols
+copying file ./Symbols/F3A6B70F-F152-32BB-8FA6-EB09D4291543.symbols ... 
+2021-03-18 07:10:10 +0000  1037640 bytes for ./Symbols/F3A6B70F-F152-32BB-8FA6-EB09D4291543.symbols
+2021-03-18 07:10:10 +0000 [MT] /usr/bin/ditto exited with 0
+2021-03-18 07:10:10 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2021-03-18 07:10:10 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2021-03-18 07:10:10 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe23540:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/SocketIO.framework'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe31ce0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe31ce0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreFoundation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1c1d0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1c1d0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreGraphics.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe2c560:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe2c560:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftQuartzCore.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe32cb0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/Starscream.framework'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe26990:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe26990:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDarwin.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe27ff0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/TitaniumKit.framework'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1d580:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1d580:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftUIKit.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe2d660:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe2d660:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftFoundation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1e580:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1e580:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftMetal.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe187a0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe187a0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreImage.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1c0f0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1c0f0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftDispatch.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1a320:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1a320:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftObjectiveC.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe34df0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe34df0:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCoreLocation.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe1a590:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe1a590:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftCore.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd5fe20610:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib'>
+2021-03-18 07:10:10 +0000 [MT] [OPTIONAL] Can't have a profile, not a bundle at <DVTFilePath:0x7fbd5fe20610:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app/Frameworks/libswiftos.dylib'>
+2021-03-18 07:10:10 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x7fbd988cc600:'/var/folders/24/nqvxwknj6s3dr1wtfsjhjsnm0000gn/T/XcodeDistPipeline.~~~DlJmfQ/Root/Payload/ASP Healthcare.app'>
+2021-03-18 07:10:10 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2021-03-18 07:10:10 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so
