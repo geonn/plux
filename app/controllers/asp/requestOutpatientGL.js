@@ -10,9 +10,17 @@ var error_message = "";
 function init(){
 	//loading.start();
 	$.win.add(loading.getView());
-	$.camera.init({callback: camera_callback});
+	$.camera.init({});
 }
 init();
+
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
+}
 
 function textFieldOnBlur(e){
     checkRequired(e.source);

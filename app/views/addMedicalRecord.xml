@@ -10,7 +10,7 @@
 		     	</View>
 		 	</View>
 	 	    <Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
-			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms" onClick="blurAll">
                 <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" format="photo" hintText="Recepit" attached="0" required="1">
                     
                     <Label class="wfill hsize h5" color='#000000' top="10" left="10" touchEnabled="false">ATTACHMENT *</Label>

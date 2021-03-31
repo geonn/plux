@@ -10,6 +10,7 @@ var status_text = ["", "Sending", "Sent", "Read"];
 var room_status;
 var room_id = args.room_id || 0;
 var voice_recorder = Alloy.createWidget('geonn.voicerecorder', {record_callback: saveLocal, room_id: room_id});
+var user_read_status, doctor_read_status;
 var opposite_online = "false";
 var opposite_last_update;
 var moment = require('alloy/moment');
@@ -47,7 +48,7 @@ function saveLocal(param){
 	var id = model.saveArray([local_save]);
 	var api_param = {u_id: u_id, message: param.message, "created": Alloy.Globals.common.now(), is_endUser:1, id: app_id, room_id: room_id };
 	if(param.format == "voice" || param.format == "photo"){
-
+		
 		Alloy.Globals._.extend(api_param, {media: param.format, Filedata: param.filedata});
 	}
 	data = [{
@@ -69,13 +70,13 @@ function saveLocal(param){
 
 		var res = JSON.parse(responseText);
 		Alloy.Globals.mocx.createCollection("chats", data_source);
-
+		
 		var new_arr = _.omit(local_save, "u_id");
-
+		
 		if(param.format != "text"){
 			new_arr.message = res.data.media_url;
 		}
-
+		
 		Alloy.Globals.socket.sendMessage({room_id: room_id, msg: JSON.stringify(new_arr), callback: function(){
 			console.log("callback here");
 			data_source[last_arr].created = timeFormat(Alloy.Globals.common.now())+" "+status_text[2];
@@ -84,7 +85,7 @@ function saveLocal(param){
 		//Ti.App.fireEvent("sendMessage", {room_id: room_id});
 		//Ti.App.fireEvent("refresh_patient_list");
 		Alloy.Globals.socket.refresh_patient_list({});
-
+        
 	});
 }
 
@@ -121,7 +122,7 @@ function SendMessage(){
 	if($.message_bar.value == ""){
 		return;
 	}
-
+	
 	//startTimer();
 	saveLocal({message: $.message_bar.value,format:"text"});
 }
@@ -159,7 +160,7 @@ function addRow(row, latest){
     image: (row.format == "photo")?row.message:"",
     voice: (row.format == "voice")?row.message:"",
 	};
-
+	
   if(!latest){
     data_source.unshift(arr);
   }else{
@@ -226,7 +227,7 @@ function updateRow(row, latest){
         }
   };
 	if(!found){
-
+		
 		addRow(row, latest);
 	}
 }
@@ -266,7 +267,7 @@ function render_conversation(latest, local){
     	//setTimeout(function(){}, 1000);
     	first_time_load = false;
     }else if(latest){
-
+    	
       $.chatroom.scrollToIndex(data_source.length -1,  { animated: false});
       console.log("latest scroll to"+data_source.length - 1);
     }else if(data.length > 0){
@@ -386,14 +387,14 @@ function refresh(callback, firsttime){
 
 function conversation_refresh(param){
 	console.log("conversation_refresh");
-
+	
 	var row = JSON.parse(param.msg);
 	console.log(param);
 	if(typeof (row.room_id) != "undefined" && row.room_id != room_id){
 		return;
 	}
 	sound.play();
-
+	
 	if(typeof(row.room_status) != "undefined" && row.room_status == 3){
 		args.status = row.room_status;
 		$.bottom_bar.hide();
@@ -408,7 +409,7 @@ var refreshing = false;
 var time_offset = Alloy.Globals.common.now();
 function refresh_latest(param){
     room_id = param.room_id || room_id;
-
+	
 	if(!refreshing && time_offset <= Alloy.Globals.common.now() && socket_offline){
 		refreshing = true;
 		refresh(getLatestData);

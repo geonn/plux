@@ -14,6 +14,14 @@ var combo_list = {
 	glass_of_plain_water: [L('one_3_per_week'),L('four_6_per_week'),L('seven_9_per_week'),  L('None'), L('Other'), L('Cancel')]
 };
 
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
+}
+
 function loadComboBoxLocal(e){
 	var arr = combo_list[e.source.id];
     e.source.data  = arr;

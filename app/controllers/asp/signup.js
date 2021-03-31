@@ -30,6 +30,14 @@ function doAspSignup(){
 	});
 }
 
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
+}
+
 function textFieldOnFocus(e){
     e.source.parent.backgroundColor = "#ffffff";
     if(e.source.value == e.source.hintText){

@@ -1,0 +1,29 @@
+<Alloy>
+	<Window title="Upload Receipt" id="win" backButtonTitle="" class="container" navTintColor="#CE1D1C">
+		<View class="wfill hfill vert">
+			<View layout="horizontal" height="50" width="Ti.UI.FILL" backgroundColor="#DEDEDE" platform="android" > 
+				<View left="0" width="10%">
+		         	<ImageView left='10' id="btnBack" width="25" height="25" image="/images/btn-back.png" />
+		   		</View>
+		     	<View width="90%">
+		     		<Label id="pageTitle" height="Ti.UI.SIZE" class='normal_font' textAlign="center">UPLOAD RECEIPT</Label>
+		     	</View>
+		 	</View>
+	 	    <Label class="wfill hsize padding h7" top="0" color="#ffffff"></Label>
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
+                <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" format="photo" hintText="Recepit" attached="0" required="1">
+                    
+                    <Label class="wfill hsize h5" color='#000000' top="10" left="10" touchEnabled="false">RECEIPTS *</Label>
+                    <View class="hr" backgroundColor="#ccc" top="10" left="10" right="10"></View>
+                    <View id="image_list" class="wfill hsize vert">
+                    	
+                    </View>
+                    <Widget id="camera" src="com.geonn.camera" />
+                </View>
+                
+                <Button onClick="doSubmit" width="70%" bottom="10" title="DONE"></Button>
+                
+            </ScrollView>
+		</View>
+	</Window>
+</Alloy>

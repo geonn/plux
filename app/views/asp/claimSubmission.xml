@@ -11,12 +11,14 @@
 		 	</View>
 	 	    <Label class="wfill hsize padding h5" color="#ffffff">Please fill in below info to claim from ASP</Label>
 		 	<Label class="wfill hsize padding h7" top="0" color="#ffffff"> * COMPULSORY</Label>
-			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms">
-               <View class='wfill hsize vert padding rounded' backgroundColor="#ffffff" id="receipt" format="photo" hintText="Recepit" attached="0" >
-                    
-                    <Label class="wfill hsize h5" color='#000000' top="10" left="10" value="" touchEnabled="false" required="1" hintText="Recepit Attachment">Receipt Attachment *</Label>
-                    <View class="hr" backgroundColor="#ccc" top="10" left="10" right="10"></View>
-                    <Widget id="camera" src="com.geonn.camera" />
+		 	
+			<ScrollView class="wfill hfill vert contwfill conthsize" id="forms" onClick="blurAll">
+				<Label ignore="true" class="wfill hsize bold padding h5" bottom="5" color="#ffffff">DATE VISIT *</Label>
+                <View class="combo_box rounded" id="VISITDT" backgroundColor="#fba81c">
+                	<Picker platform="ios" type="Ti.UI.PICKER_TYPE_DATE" onChange="dateSelect" onPostlayout="dateSelect" dateTimeColor="#000000" class="wfill" color="#000000" left="5" backgroundColor="#ffffff"></Picker>
+                    <View platform="android" class="field" required="1" onClick="datePicker" hintText="Date Visit" value="" left="5" backgroundColor="#ffffff" >
+                        <Label touchEnabled="false" class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Date Visit *</Label>
+                    </View>
                 </View>
                 <View backgroundColor="#fba81c" id="RECNO" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="30" hintText="Receipt Number *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
@@ -34,11 +36,7 @@
                 <View backgroundColor="#fba81c" id="AMT" value="" class="wfill hsize padding rounded" top="0">
                     <TextField  hintText="Receipt Amount (RM) *" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
-                <View class="combo_box rounded" id="VISITDT" backgroundColor="#fba81c" onClick="datePicker">
-                    <View class="field" required="1" hintText="Date Visit" value="" left="5" backgroundColor="#ffffff" touchEnabled="false">
-                        <Label class="wfill hsize h5" color='#000000' left="10" touchEnabled="false">Date Visit *</Label>
-                    </View>
-                </View>
+                
                 <View backgroundColor="#fba81c" id="NCLINIC" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="40" hintText="Clinic / Hospital Name *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
@@ -52,6 +50,9 @@
                     <TextField  hintText="MC Issued (Days)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
                 <View backgroundColor="#fba81c" id="DIAGNOSIS" value="" class="wfill hsize padding rounded" top="0"><!-- only for INFINEON -->
+                    <TextField  hintText="Diagnosis" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
+                </View>
+                <View backgroundColor="#fba81c" id="DIAGNOSIS_REQ" value="" class="wfill hsize padding rounded" top="0"><!-- only for INFINEON -->
                     <TextField  hintText="Diagnosis *" onBlur="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>
                 <View backgroundColor="#fba81c" id="MEDICATION" value="" class="wfill hsize padding rounded" top="0">
@@ -63,37 +64,15 @@
                 <View backgroundColor="#fba81c" id="GLAMT" value="" class="wfill hsize padding rounded" top="0">
                     <TextField  hintText="GL Amount (If applicable)" keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD" onBlur="textFieldOnBlur" required="0" left="5" value=""></TextField>
                 </View>
-                <View id="tnc" value="" class="wfill hsize padding" top="0">
-                	<View class="wfill hsize vert" id="infineon_tnc">
-                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
+                <View id="TNC" value="" class="wfill hsize padding" top="0">
+                	<View class="wfill hsize vert" value="">
+	                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
 	                    <View class="wfill hsize vert" id="tnc_value"></View>
 	                    <View class="wfill hsize" hintText="tnc" required="1" value="">
 	                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
 	                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
 	                    </View>
                     </View>
-                    <!--<View class="wfill hsize vert" id="infineon_tnc">
-	                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
-	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You shall retain the original receipt(s) for 7 years in case for audit and verification purposes by the company and/or the Inland Revenue Board of Malaysia. </Label>
-	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You are not allowed to submit the same claim more than one time. In the event that we discovered such instance or the claim is fictitious, the claim will be rejected and proceed with the necessary disciplinary action.</Label>
-	                    <Label class='wfill hsize h6' color="#ffffff">You must ensure that all information provide is correct and true.</Label>
-	                    <Label class='wfill hsize h6' color="#ffffff">You acknowledge and agree that by submitting this medical claim and in order for Infineon Technologies Malaysia Sdn Bhd to process your medical claim submission, Company may need to contact the medical practitioner (treating doctor) to obtain details related to your treatment. You hereby consent for medical information, relating to your medical claim submission to be released by the medical practitioner (treating doctor) to the Company.</Label>
-	                    <View class="wfill hsize" hintText="tnc" required="1" value="">
-	                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
-	                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
-	                    </View>
-                    </View>
-                    <View class="wfill hsize vert" id="synthomer_tnc">
-	                    <Label class='wfill hsize h6 bold' color="#ffffff">Terms and Conditions:</Label>
-	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You shall retain the original receipt(s) for 7 years in case for audit and verification purposes by the company and/or the Inland Revenue Board of Malaysia. </Label>
-	                    <Label class='wfill hsize h6' bottom="5" color="#ffffff">You are not allowed to submit the same claim more than one time. In the event that we discovered such instance or the claim is fictitious, the claim will be rejected and proceed with the necessary disciplinary action.</Label>
-	                    <Label class='wfill hsize h6' color="#ffffff">You must ensure that all information provide is correct and true.</Label>
-	                    <Label class='wfill hsize h6' color="#ffffff">You acknowledge and agree that by submitting this medical claim and in order for Synthomer Sdn Bhd to process your medical claim submission, Company may need to contact the medical practitioner (treating doctor) to obtain details related to your treatment. You hereby consent for medical information, relating to your medical claim submission to be released by the medical practitioner (treating doctor) to the Company.</Label>
-	                    <View class="wfill hsize" hintText="tnc" required="1" value="">
-	                        <View borderWidth="1" width="20" height="20" left="10" top="10" bottom="10" borderColor="#ffffff" onClick="checkedTnc"></View>
-	                        <Label class="wfill hsize h6" color="#ffffff" left="35" top="10" bottom="10">I have read and agree to the Terms and Conditions above</Label>
-	                    </View>
-                    </View>-->
                 </View>
                 
                 <!--
@@ -111,7 +90,7 @@
                 <TextArea id="remark" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Remark / Non Panel Visit" required="0" value="Remark / Non Panel Visit"></TextArea>
                 <TextArea id="diagnosis" required="1" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Diagnosis" required="0" value="Diagnosis"></TextArea>
                 <TextArea id="itemised" required="0" onFocus="hintTextFocusHack"  onBlur="hintTextBlurHack" hintText="Itemised" required="0" value="Itemised"></TextArea>-->
-                <Button onClick="doSubmit" width="70%" bottom="10" title="SUBMIT"></Button>
+                <Button onClick="doSubmit" id="submit_btn" width="70%" bottom="10" title="SUBMIT"></Button>
                 
             </ScrollView>
 		</View>

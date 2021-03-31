@@ -1,20 +1,20 @@
 var args = arguments[0] || {};
 var id = args.id || "";
-var notificationModel = Alloy.createCollection('notificationV2');  
-var PDF = require('pdf'); 
+var notificationModel = Alloy.createCollection('notificationV2');
+var PDF = require('pdf');
 var notificationList;
 var u_id = Ti.App.Properties.getString('u_id');
 
 var loading = Alloy.createController('loading');
 init();
 
-function init(){ 
+function init(){
 	$.win.add(loading.getView());
 	loading.start();
 	//notificationModel.setAllAsRead({u_id: u_id });
 	displayList();
 	//syncFromServer();
-} 
+}
 
 
 function monthFormat(datetime){
@@ -53,23 +53,23 @@ function monthFormat(datetime){
 }
 
 function syncFromServer(){
-	var checker = Alloy.createCollection('updateChecker'); 
+	var checker = Alloy.createCollection('updateChecker');
 	var isUpdate = checker.getCheckerById("2");
 	var last_updated ="";
-	 
+
 	if(isUpdate != "" ){
 		last_updated = isUpdate.updated;
 	}
-	var param = { 
+	var param = {
 		"member_no"	  : memno,
 		"last_updated" : last_updated
 	};
- 
-	Alloy.Globals.API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){ 
-		var res = JSON.parse(responseText);  
-		if(res.status == "success"){  
+
+	Alloy.Globals.API.callByPost({url:"getNotificationUrl", params: param}, function(responseText){
+		var res = JSON.parse(responseText);
+		if(res.status == "success"){
 			var record = res.data;
-			if(record.length > 0){ 
+			if(record.length > 0){
 				record.forEach(function(entry) {
 					var param = {
 						"id": entry.id || "",
@@ -87,22 +87,22 @@ function syncFromServer(){
 					};
 					notificationModel.addData(param);
 				});
-				 checker.updateModule("2","notificationList",res.last_updated); 
-				 displayList(); 
+				 checker.updateModule("2","notificationList",res.last_updated);
+				 displayList();
 			}
 		}
-		
+
 	});
-	
+
 }
 
-function displayList(){  
+function displayList(){
 	notificationList = notificationModel.getList({u_id: u_id });  
-	var data=[]; 
+	var data=[];
 	$.recordTable.setData(data);
-	var counter = 0; 
+	var counter = 0;
 	if(notificationList.length < 1){
-		loading.finish(); 
+		loading.finish();
 	}else{
 		notificationList.forEach(function(entry) {
 			var unread_bg = (entry.is_read == 1)?"#ffffff":"#cccccc";
@@ -116,14 +116,14 @@ function displayList(){
 			contentView.add(label_subject);
 			contentView.add(label_message);
 			contentView.add(label_updated_time);
-			
+
 			//var rightForwardBtn =  $.UI.create("ImageView", {image:"/images/btn-forward.png", width:15, right:10 });
 			row.add(contentView);
 			row.addEventListener("click", function(e){
 				var source = e.source.record;
 				e.source.backgroundColor = "#ffffff";
 				notificationModel.setRead(e.source.record.id);
-				Alloy.Globals.API.callByPost({url:"updateAsRead",domain: "FREEJINI_DOMAIN", new: true, params: {id: e.source.record.id}}, function(responseText){ 
+				Alloy.Globals.API.callByPost({url:"updateAsRead",domain: "FREEJINI_DOMAIN", new: true, params: {id: e.source.record.id}}, function(responseText){
 				});
 				Alloy.Globals.nav.navigationWindow(source.target,"","", source);
 			});
@@ -137,36 +137,36 @@ function displayList(){
 					loadHTML(e.rowData.detail);
 				});
 			}*/
-		 	
+
 			data.push(row);
 		});
-	
-		
+
+
 		$.recordTable.setData(data);
 	}
 	loading.finish();
 }
 
 function loadHTML(html){
-	
+
 	var htmlText ="<style>body{font-family:arial;font-size:14px;color:#606060;} a {text-decoration:none;color:#CE1D1C}</style><body>"+decodeURIComponent(html)+"</body>";
 	htmlText = htmlText.replace(/(?:\r\n|\r|\n)/g, '<br />');
-	
+
 	Alloy.Globals.nav.navigateWithArgs("webview", {
 		html: htmlText
 	});
 }
 
-function viewDetails(msg){  
+function viewDetails(msg){
 	//msg.source;msg.url;
 	downloadBrochure(msg);
-	//Alloy.Globals.nav.navigateWithArgs("appointmentForm",{id: rec_id}); 
+	//Alloy.Globals.nav.navigateWithArgs("appointmentForm",{id: rec_id});
 }
- 
+
 if(Ti.Platform.osname == "android"){
-	$.btnBack.addEventListener('click', function(){ 
-		Alloy.Globals.nav.closeWindow($.win); 
-	}); 
+	$.btnBack.addEventListener('click', function(){
+		Alloy.Globals.nav.closeWindow($.win);
+	});
 }
 
 Ti.App.addEventListener('displayRecords', displayList);
@@ -181,7 +181,7 @@ var isDownloading = "0";
 var isDownloadLbl = "0";
 //ex.source.id,ex.source.leafLet,ex.source.url,ex.source.downloaded,ex.source.name
 //id,content,targetUrl,downloaded, title
-function downloadBrochure(content){ 
+function downloadBrochure(content){
 	//adImage.addEventListener( "click", function(){
 		var indView = Ti.UI.createView({
 			height : 100,
@@ -198,12 +198,12 @@ function downloadBrochure(content){
 				bottom: 10,
 				width:"100%",
 				height:10,
-				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER 
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 			});
-		 	
+
 		 	if(isDownloadLbl == "0"){
 		 		$.bigView.add(label);
-		 		
+
 		 		setTimeout(function(){
 		 			isDownloadLbl = "0";
 		 			$.bigView.remove(label);
@@ -224,7 +224,7 @@ function downloadBrochure(content){
 			font:{fontSize:12},
 			color:'#CE1D1C',
 		});
-		 
+
 		var label = Ti.UI.createLabel({
 			color: '#CE1D1C',
 			font: { fontSize:14, fontWeight:"bold" },
@@ -232,37 +232,37 @@ function downloadBrochure(content){
 			top: 0,
 			width:"100%",
 			height:30,
-			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER 
+			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 		});
-		
-		
-	  
-		if(content.isDownloaded == "1"){  
+
+
+
+		if(content.isDownloaded == "1"){
 			indView.remove(ind);
-			indView.remove(label); 
+			indView.remove(label);
 			$.bigView.setVisible(false);
-			
-		}else{  
-			ind.show(); 
+
+		}else{
+			ind.show();
 			indView.add(ind);
-			indView.add(label); 
+			indView.add(label);
 			$.bigView.add(indView);
 			$.bigView.setVisible(true);
 		}
-							
+
 		PDF.createPdf(content.url,true, ind,label,indView,  function (err, file, base, url) {
 			if (err){
 				alert(err);
-			}else{ 
+			}else{
 				isDownloading = "0";
-				 
-			    indView.hide();  
-			    $.bigView.remove(indView); 
-			    
+
+			    indView.hide();
+			    $.bigView.remove(indView);
+
 				if(Ti.Platform.osname == "android"){
 					PDF.android_launch(file);
 				}else{
-					
+
 				var myModal = Ti.UI.createWindow({
 					title           : 'Read PDF',
 					backgroundColor : 'transparent',
@@ -276,7 +276,7 @@ function downloadBrochure(content){
 				var wrapperView    = Ti.UI.createView({
 					layout:"vertical",
 					height: Ti.UI.SIZE
-				}); 
+				});
 				// Full screen
 				var topView = Ti.UI.createView({  // Also full screen
 				    backgroundColor : '#EEEEEE',
@@ -288,12 +288,12 @@ function downloadBrochure(content){
 				    width			: Ti.UI.FILL,
 				    backgroundColor : 'transparent'
 				});
-				var webview = Ti.UI.createWebView({ 
+				var webview = Ti.UI.createWebView({
 				   data: file.read(),
 				   height: Ti.UI.FILL,
 				   width: Ti.UI.FILL,
 				   backgroundColor:"#ffffff",
-				   bottom:10 
+				   bottom:10
 				});
 				if(content.url != ""){
 					var rightBtn = Ti.UI.createButton({
@@ -301,8 +301,8 @@ function downloadBrochure(content){
 						color: "#CE1D1C",
 						right: 15
 					});
-					
-					rightBtn.addEventListener('click',function(rx){ 
+
+					rightBtn.addEventListener('click',function(rx){
 						var dialog = Ti.UI.createAlertDialog({
 							cancel: 0,
 							buttonNames: ['Cancel','Confirm'],
@@ -314,13 +314,13 @@ function downloadBrochure(content){
 							      //Do nothing
 							}
 							if (e.index === 1){
-								var param = { 
+								var param = {
 									"status"	  : 2,
 									"id" : content.source
 								};
 								Alloy.Globals.API.callByPost({url:"deleteNotification", params: param}, function(responseText){
-									var res = JSON.parse(responseText);  
-									if(res.status == "success"){  
+									var res = JSON.parse(responseText);
+									if(res.status == "success"){
 										notificationModel.update_status(param);
 										displayList();
 										myModal.close({animated: true});
@@ -329,23 +329,23 @@ function downloadBrochure(content){
 							}
 						});
 						dialog.show();
-					});  
+					});
 					topView.add(rightBtn);
 				}
 				containerView.add(webview);
 				topView.add(leftBtn);
 				wrapperView.add(topView);
-				wrapperView.add(containerView); 
-				myModal.add(wrapperView); 
+				wrapperView.add(containerView);
+				myModal.add(wrapperView);
 				myModal.open({
 					modal : true
 				});
 				leftBtn.addEventListener('click',function(ex){
 					myModal.close({animated: true});
 				});
-					
+
 			    }
-			   } 
+			   }
 		});
 	//});
 }

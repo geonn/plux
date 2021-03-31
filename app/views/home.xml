@@ -19,7 +19,7 @@
 					</View>
 					<View class="wsize hsize vert" top="90" id="myPoints"></View>
 					<View class="wfill hsize" bottom="10">
-						<ImageView id="logo" onClick="navWindow" mod="notification" width="60" borderRadius="10" borderColor="#fff" height="60" right="20" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" />
+						<ImageView id="logo" onClick="navWindow" title="notifcation" mod="notification" width="60" borderRadius="10" borderColor="#fff" height="60" right="20" defaultImage="/images/logo_plux.png" image="/appicon-60@3x.png" />
 						<View class="wsize hsize rounded box bgred" borderColor="#ffffff" right="10" bottom='0'>
 							<Label class="wsize hsize h6 small_padding" color="#ffffff" id="label_notification">0</Label>
 						</View>

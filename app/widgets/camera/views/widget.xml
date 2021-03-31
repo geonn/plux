@@ -1,5 +1,5 @@
 <Alloy>
-	<View class="wfill padding rounded" height="120" onClick="popCamera" id="container">
+	<View class="wfill padding rounded vert hsize" onClick="popCamera" id="container">
 		<ImageView id="image_preview" class="hsize" width="30" height="30"></ImageView>
 	</View>
 </Alloy>

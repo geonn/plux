@@ -11,7 +11,7 @@
 		 	</View>
 		 	<ScrollView class='wfill hfill vert contwfill conthsize'>
 		 		<Label class="wsize hsize h5" color="#fff" top="10" bottom="10" textAlign="center" text="L('pleasefillin_nutritionist')"></Label>
-			 	<View class="wfill hsize vert" id="forms">
+			 	<View class="wfill hsize vert" id="forms" onClick="blurAll">
 			 		<TextField class="combo_box rounded" hintTextColor="#000" newline="1" hintText="L('email')" id="email" required="1"  value=""></TextField>
 				 	<TextField class="combo_box rounded" hintTextColor="#000" newline="1" hintText="L('name')" id="name" required="1"   value=""></TextField>
 				 	<TextField class="combo_box rounded" hintTextColor="#000" newline="1" hintText="L('contact_no')" keyboardType="Titanium.UI.KEYBOARD_TYPE_PHONE_PAD" id="contact_no" required="1"  value=""></TextField>

@@ -8,12 +8,13 @@ var name = Ti.App.Properties.getString('fullname');
 var loading = Alloy.createController('loading'); 
 var error_message = "";
 var filedata = "";
-
+var upload_rececipt = false;
 function init(){
     console.log(corpcode+" check corpcode");
     var forms_arr = $.forms.getChildren();
     Alloy.Globals.API.callByGet({url: "tnc.aspx", params: "corpcode="+corpcode},  {
-        onload: function(responseText){
+        onload: function(
+        	responseText){
             var result = JSON.parse(responseText);
             console.log(result);
             for (var i=0; i < result.length; i++) {
@@ -22,7 +23,29 @@ function init(){
             };
         }
     });
+    Alloy.Globals.API.callByPost({url: "getClaimFieldPermission", params: {corpcode: corpcode}},  function(responseText){
+        var result = JSON.parse(responseText);
+        console.log(result.UPLOAD_RECEIPT);
+        var data = result.data;
+        upload_rececipt = (result.UPLOAD_RECEIPT == "1")?true:upload_rececipt;
+        console.log("upload_rececipt "+upload_rececipt);
+        if(upload_rececipt){
+        		$.submit_btn.title = "NEXT";
+        }
+        for (var y=0; y < data.length; y++) {
+            	for(var i=0; forms_arr.length > i; i++){
+	            if(forms_arr[i].id == data[y]){
+	               $.forms.remove(forms_arr[i]);
+	          	}
+	        }
+        };
+    });
     
+    
+	//loading.start();
+	$.win.add(loading.getView());
+    
+    return;
     if(corpcode == "IFMY" || corpcode == "IFLP" ){
         for(var i=0; forms_arr.length > i; i++){
             console.log(forms_arr[i].id);
@@ -57,8 +80,15 @@ function init(){
         console.log($.forms.children.length);
         for(var i=0; $.forms.children.length > i; i++){
             console.log(forms_arr[i].id);
-            if($.forms.children[i].id == "receipt" || $.forms.children[i].id == "MEDICATION" || $.forms.children[i].id == "TREATMENT" || $.forms.children[i].id == "tnc" ){
+            
+            if( $.forms.children[i].id == "MEDICATION" || $.forms.children[i].id == "TREATMENT" || $.forms.children[i].id == "TNC" ){
               $.forms.remove($.forms.children[i]);
+              if(corpcode == "MTR"){
+              	no_receipt = false;
+	          }else{
+	            	no_receipt = true;
+	          }
+              
             }else if($.forms.children[i].id == 'DIAGNOSIS'){
                 console.log($.forms.children[i].children[0].hintText);
                 console.log($.forms.children[i].children[0].required);
@@ -69,14 +99,21 @@ function init(){
             }
         }
     }
-	//loading.start();
-	$.win.add(loading.getView());
-	$.camera.init({});
+   
+	//$.camera.init({});
 }
 init();
 
 function textFieldOnBlur(e){
     checkRequired(e.source);
+}
+
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
 }
 
 function checkRequired(obj){
@@ -99,14 +136,22 @@ function doSubmit(){
             Alloy.Globals._.extend(params, {RCPFILE: Math.random().toString(36).slice(-10)+".jpg"});
         }else{
             
-            if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
-                if(forms_arr[i].id == "tnc"){
+            if(typeof forms_arr[i].ignore != "undefined"){
+            	console.log(forms_arr[i].id);
+            }else if(forms_arr[i].children[0].required && forms_arr[i].children[0].value == ""){
+                if(forms_arr[i].id == "TNC"){
                     error_message += "You must agree with the Terms and Conditions\n";
                 }else{
                     error_message += forms_arr[i].children[0].hintText+" cannot be empty\n";
                 }
             }else{
-                params[forms_arr[i].id] = forms_arr[i].children[0].value;
+            	if(forms_arr[i].id == "VISITDT"){
+            		params[forms_arr[i].id] = forms_arr[i].value;
+            	}else{
+            		var param_title = (forms_arr[i].id == "DIAGNOSIS_REQ")?"DIAGNOSIS":forms_arr[i].id;
+            		params[param_title] = forms_arr[i].children[0].value;
+            	}
+        		
             }
         }
     };
@@ -119,10 +164,17 @@ function doSubmit(){
     console.log(params);
     Alloy.Globals.API.callByPost({url: "https://appsapi.aspmedic.com/aida/claimsubmission_post.aspx", fullurl: true, params: params}, function(responseText){
             var result = JSON.parse(responseText);
+            console.log(result[0]);
             if(result[0]['code'] == "02"){
-                Alloy.Globals.common.createAlert("Success", result[0]['message'],function(){
-                    $.win.close();
-                });
+            		if(upload_rececipt){
+                	    Alloy.Globals.nav.navigateWithArgs("asp/addReceipt", {serial: result[0].serial});
+                	    $.win.close();
+                	}else{
+                		Alloy.Globals.common.createAlert("Success", result[0]['message'],function(){
+	                		$.win.close();
+	                	});
+                	}
+                
             }else{
                 Alloy.Globals.common.createAlert("Error", result[0]['message']);
             }
@@ -201,19 +253,21 @@ var checked = $.UI.create("ImageView", {image: "images/checkbox.png", width:40, 
 function checkedTnc(e){
     console.log(e.source.parent.parent.value+' e.source.parent.parent.value');
     
-    if(e.source.parent.value == ""){
-        e.source.parent.value = 1;
+    if(e.source.parent.parent.value == ""){
+        e.source.parent.parent.value = 1;
         e.source.parent.add(checked);
         //e.source.backgroundColor = "#FFFFFF";
     }else{
-        e.source.parent.value = "";
+        e.source.parent.parent.value = "";
         e.source.parent.remove(checked);
         //e.source.backgroundColor = "transparent";
     }
 }
 
 function datePicker(e){
-    var val_date = (typeof e.source.children[0].date != "undefined")?e.source.children[0].date:new Date();
+	$.AMT.children[0].blur();
+	$.NCLINIC.children[0].blur();
+    var val_date = (typeof e.source.date != "undefined")?e.source.date:new Date();
     var view_container = $.UI.create("View", {classes:['wfill', 'hfill'], zIndex: 50,});
     var mask = $.UI.create("View",{
         classes:['wfill','hfill'],
@@ -246,13 +300,28 @@ function datePicker(e){
         var dd = picker.value.getDate();
         var mm = picker.value.getMonth()+1; 
         var yyyy = picker.value.getFullYear();
-        e.source.children[0].value = mm+'/'+dd+'/'+yyyy;
-        e.source.children[0].date = picker.value;
-        e.source.children[0].children[0].text = mm+'/'+dd+'/'+yyyy;
-        e.source.children[0].children[0].color = "#000000";
-        e.source.backgroundColor = "#55a939";
+        e.source.parent.value = mm+'/'+dd+'/'+yyyy;
+        e.source.value = mm+'/'+dd+'/'+yyyy;
+        e.source.date = picker.value;
+        e.source.children[0].text = mm+'/'+dd+'/'+yyyy;
+        e.source.children[0].color = "#000000";
+        e.source.parent.backgroundColor = "#55a939";
         $.win.remove(view_container);
     });
+}
+
+function dateSelect(){
+	var source = $.VISITDT.children[0];
+	var dd = source.value.getDate();
+    var mm = source.value.getMonth()+1; 
+    var yyyy = source.value.getFullYear();
+    /*e.source.children[0].value = mm+'/'+dd+'/'+yyyy;
+    e.source.children[0].date = picker.value;
+    e.source.children[0].children[0].text = mm+'/'+dd+'/'+yyyy;
+    e.source.children[0].children[0].color = "#000000";
+    e.source.backgroundColor = "#55a939";*/
+   console.log("dateSelect");
+    $.VISITDT.value =  mm+'/'+dd+'/'+yyyy;
 }
 
 function popout(e){

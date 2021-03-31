@@ -19,11 +19,11 @@ Alloy.Globals.FirebaseAnalytics.setUserPropertyString({
 
 // Set User-ID
 Alloy.Globals.FirebaseAnalytics.userID = Ti.App.Properties.getString('u_id');
-/*
+
 Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
   screenName: 'HomePage',
   screenClass: "Homepage"
-});*/
+});
 
 //var SCANNER = require("scanner");
 var loading = Alloy.createController('loading');
@@ -142,6 +142,7 @@ function checkserviceByCorpcode(){
 			var res = JSON.parse(responseText);
 			if(res.status == "success"){
 				var takeout = res.data;
+				console.log(takeout);
 				for (var i=0; i < takeout.length; i++) {
 				  var index = findIndexInData(new_menu, "mod", takeout[i]);
 
@@ -401,13 +402,15 @@ function redirect(e){
 }
 
 function navWindow(e){
-
+	
 	var source = (typeof e.source.records != "undefined")?e.source.records:e.source;
-	/*Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
-	  screenName: source.title,
-	  screenClass: source.title
-	});*/
-	Alloy.Globals.FirebaseAnalytics.log(source.title);
+	var eventName = source.title.replace(/\s+/g, '_').replace(/-/g, '_');
+	console.log(eventName);
+	Alloy.Globals.FirebaseAnalytics.setScreenNameAndScreenClass({
+	  screenName: eventName,
+	  screenClass: eventName
+	});
+	Alloy.Globals.FirebaseAnalytics.log(eventName);
 	if(source.mod == "benefit" || source.mod == "eCard_list" || source.mod == "myClaim" || source.mod == "claimSubmission" || source.mod == "notification" ){
 		if(source.mod =="notification"){
 			Alloy.Globals.nav.navigationWindow("asp/"+source.mod);

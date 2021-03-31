@@ -6,15 +6,36 @@ $.init = function (arg) {
 };
 
 function camera_callback(event){
+	var API = require('api');
     var new_height = (event.media.height <= event.media.width)?event.media.height*(1024 / event.media.width):1024;
     var new_width = (event.media.width <= event.media.height)?event.media.width*(1024 / event.media.height):1024;
+    
     var blob = event.media;
     blob = blob.imageAsResized(new_width, new_height);
-    $.image_preview.height = 120;
-    $.image_preview.width = Ti.UI.SIZE;
-    $.image_preview.image = blob;
-    $.image_preview.parent.filedata = blob;
-    $.image_preview.parent.attached = 1;
+    if(args.extra == "addReceipt"){
+    	$.container.add(Ti.UI.createImageView({image: blob, height: 120, width: Ti.UI.SIZE}));
+    	args.camera_callback();
+		var email = Ti.App.Properties.getString('email');    
+	    API.callByPost({url: "http://ereceipt.aspmedic.com/aida/eReceiptInsert.aspx", fullurl: true, params: {
+	    		
+	    		FileName: email+"_"+Math.random().toString(36).slice(-10)+".jpg",
+	    		Serial: args.serial,
+	    		UserID: email,
+	    		B64Fs: Ti.Utils.base64encode(blob).toString(),
+	    }}, function(responseText){
+	    	console.log("upload done");
+	            var result = JSON.parse(responseText);
+	            
+	    });
+    }else{
+    	
+	    $.image_preview.height = 120;
+	    $.image_preview.width = Ti.UI.SIZE;
+	    $.image_preview.image = blob;
+	    $.image_preview.parent.filedata = blob;
+	    $.image_preview.parent.attached = 1;
+    }
+    
 }
 
 function showCamera(){
@@ -39,7 +60,6 @@ function showCamera(){
                 // show alert
             a.show();
         },
-        allowImageEditing:false,
         mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
         saveToPhotoGallery:true
     });	 
@@ -96,7 +116,6 @@ function popCamera(e){
 					a.show();
 				},
 			    // allowEditing and mediaTypes are iOS-only settings
-				allowEditing: false,
 	            mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO],
 	        });
 	    }

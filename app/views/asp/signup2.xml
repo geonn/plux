@@ -10,7 +10,7 @@
     			   </View>
     		</View>
 		    <ImageView width="120"  borderRadius="10" height="120" backgroundColor="#ff0000" bottom="20dp" top="20dp" image="/images/asp_logo.png"></ImageView>
-            <ScrollView id="forms" class="wfill hfill vert conthsize contwfill">
+            <ScrollView id="forms" class="wfill hfill vert conthsize contwfill" onClick="blurAll">
     			<View backgroundColor="#fba81c" id="email" value="" class="wfill hsize padding rounded" top="0">
                     <TextField maxLength="80" hintText="Email *" onChange="textFieldOnBlur" required="1" left="5" value=""></TextField>
                 </View>

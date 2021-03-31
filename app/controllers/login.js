@@ -11,6 +11,14 @@ $.signup_pop.hide();
 /** To check if keyboard onfocus or onblur**/
 var isKeyboardFocus = 0;
 
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
+}
+
 function doLogin(){
     var forms_arr = $.forms.getChildren();
     var params = {};

@@ -15,6 +15,7 @@ var url_panelList   = API_DOMAIN+"panellist.aspx";
 var USER  = 'freejini';
 var KEY   = '06b53047cf294f7207789ff5293ad2dc';
 
+var getClaimFieldPermission = FREEJINI_DOMAIN+"/api/getClaimFieldPermission?user="+USER+"&key="+KEY;
 var syncHealthData = FREEJINI_DOMAIN+"/api/syncHealthData?user="+USER+"&key="+KEY;
 var checkAppVersionUrl = FREEJINI_DOMAIN+"/api/checkAppVersion_v2?user="+USER+"&key="+KEY;
 var updateUserServiceUrl = FREEJINI_DOMAIN+"/api/updateUserService?user="+USER+"&key="+KEY;
@@ -946,7 +947,6 @@ function contactServerByPost(url,params) {
 	client.open("POST", url);
 	console.log("after contactServerByPost");
 	client.setRequestHeader('Connection', "close");
-	client.setRequestHeader('Authorization', reward_token);
 	client.send(params);
 	return client;
 };
@@ -988,7 +988,6 @@ exports.callByPost = function(e, onload, onerror){
 			url = (typeof e.new != "undefined")?domain+"/api/"+e.url+"?user="+USER+"&key="+KEY:eval(e.url);
 		}
 		console.log(url);
-		console.log(e.params);
 		if(e.type == "voice"){
 			var _result = contactServerByPostVideo(url, e.params || {});
 		}else{
@@ -996,22 +995,18 @@ exports.callByPost = function(e, onload, onerror){
 		}
 		_result.onload = function(ex) {
 			console.log("onload");
-			console.log(url);
 			var timeend = new Date();
 			var dif = timeend.getTime() - timestart.getTime();
 			try{
 				JSON.parse(this.responseText);
 			}
 			catch(e){
-				//console.log(this.responseText);
+				console.log(this.responseText);
 				console.log('callbypost JSON exception');
 				console.log("Error", e.message);
 				return;
 			}
 			
-			console.log(e.params);
-			console.log(timeend);
-			console.log(dif / 1000);
 			onload && onload(this.responseText);
 		};
 

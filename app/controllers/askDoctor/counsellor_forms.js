@@ -13,6 +13,14 @@ var combo_list = {
 
 console.log(combo_list['Ethnic']);
 
+function blurAll(source){
+	for(var a=0; a<$.forms.children.length; a++){
+		if(typeof($.forms.children[a].blur) == "function" && source.id != $.forms.children[a].id){
+			$.forms.children[a].blur();
+		}
+	}
+}
+
 function init(){
 	$.win.add(loading.getView());
 	preset();
