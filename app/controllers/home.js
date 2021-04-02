@@ -55,13 +55,6 @@ var new_menu = [
 $.shadow_header.hide();
 Alloy.Globals.socket.connect({});
 var PUSH = require('enablePush');
-PUSH.pushNotification({receivedPush: received_push});
-
-setTimeout(function(){
-	PUSH.unsubscribeToAll({callback: function(){
-		PUSH.subscribeToChannel("sound");
-	}});
-}, 2000);
 /*
 var unsubscribed = Ti.App.Properties.getString('unsubscribed') || false;
 if(!unsubscribed){

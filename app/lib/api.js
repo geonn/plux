@@ -91,7 +91,7 @@ var ifins = API_DOMAIN+"/ifins.aspx";
 var ipinv = API_DOMAIN+"/ipinv.aspx";
 /**claim submmission***/
 var getclaimCategoryUrl = API_DOMAIN+"/claimcategory.aspx";
-var getclaimSubmissionUrl = API_DOMAIN+"/ClaimSubmission.aspx";
+var getclaimSubmissionUrl = API_DOMAIN+"/ClaimSubmission.aspx";  
 
 //configuration
 var defaultRetryTimes = 3;
@@ -103,7 +103,7 @@ var APILoadingList = [
 	//{url: getClinicLocator2, model: "panelList", checkId: "13"},
 	//{url: doctorListUrl, model: "doctors", checkId: "12"},
 	//{url: getCategoryList, model: "categorys", checkId: "18"}
-];
+]; 
 
 
 /*********************

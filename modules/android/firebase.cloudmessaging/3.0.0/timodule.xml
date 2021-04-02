@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:module xmlns:ti="http://ti.appcelerator.org" xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Configure the Android platform by added the required permissions, services and notification receiver -->
+	<android xmlns:android="http://schemas.android.com/apk/res/android">
+		<manifest package="firebase.cloudmessaging">
+			<uses-permission android:name="android.permission.WAKE_LOCK"/>
+			<uses-permission android:name="android.permission.VIBRATE"/>
+			<application>
+				<service android:name="firebase.cloudmessaging.TiFirebaseMessagingService">
+					<intent-filter>
+						<action android:name="com.google.firebase.MESSAGING_EVENT"/>
+					</intent-filter>
+				</service>
+				<activity android:name="firebase.cloudmessaging.PushHandlerActivity" android:exported="true"/>
+			</application>
+		</manifest>
+	</android>
+	<modules>
+		<!-- Require Firebase Core (https://github.com/hansemannn/titanium-firebase-core) -->
+		<module>firebase.core</module>
+
+		<!-- Require Ti.PlayServices (https://github.com/appcelerator-modules/ti.playservices) -->
+		<module platform="android">ti.playservices</module>
+	</modules>
+</ti:module>

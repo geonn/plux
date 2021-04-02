@@ -120,7 +120,8 @@ function init(e){
 		groups[val.name] = groups[val.name] || [];
    	    groups[val.name].push( val );
 	}
-	
+	console.log("after");
+	console.log(groups);
 	Object.keys(groups).map( function( group ){
 	    var personal_claim_view = Alloy.createController("asp/_personal_claim_view", {data: groups[group], name: group, category: groups[group]['category']}).getView();
 	    $.personal_claim.add(personal_claim_view);

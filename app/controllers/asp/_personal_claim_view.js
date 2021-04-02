@@ -37,8 +37,9 @@ function setup_visit_row(e){
     //var textTotBal = (e.balance == "9999")?"UNLIMITED":e.ent_type+e.balance;
     textTotBal = changeTitleByCorpAndBenefit(textTotBal, e.benefittype);
     var subvalue = (e.limit == "9999")?"UNLIMITED":e.limit;
+    subvalue = (e.limit == "99999")?"-":e.limit;
     subvalue = changeTitleByCorpAndBenefit(subvalue, e.benefittype);
-    return render_visit_row({balance: balance, textTotBal: textTotBal, title: e.vstTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
+    return render_visit_row({balance: balance, textTotBal: textTotBal, title: e.vstTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category});
 }
 
 function setup_row(e){
@@ -57,29 +58,30 @@ function setup_row(e){
     //var textTotBal = (e.balance == "9999")?"UNLIMITED":e.ent_type+e.balance;
     textTotBal = changeTitleByCorpAndBenefit(textTotBal, e.benefittype);
     var subvalue = (e.limit == "9999")?"UNLIMITED":e.ent_type+e.limit;
+    subvalue = (e.limit == "99999")?"-":subvalue;
     subvalue = changeTitleByCorpAndBenefit(subvalue, e.benefittype);
-    return render_row({balance: balance, textTotBal: textTotBal, title: e.entTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category, maxperclaim: e.maxperclaim});
+    return render_row({balance: balance, textTotBal: textTotBal, title: e.entTitle.toUpperCase(), subtitle: e.subtitle, subvalue: subvalue, benefittype: e.benefittype, category: e.category});
 }
 
 function render_balance_list(){
     for (var i=0; i < args.data.length; i++) {
         var view_container = $.UI.create("View",{classes: ['padding', 'wfill', 'hsize', 'vert'], record: args.data[i]});
-        if(args.data[i].entidvbal < 99999){
-            view_container.add(setup_row({limit: args.data[i].entidv, balance: args.data[i].entidvbal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: "", subtitle: "LIMIT", ent_type: "RM ", maxperclaim: args.data[i].maxperclaim}));
-        }
-        if(args.data[i].entshabal < 99999){
-            view_container.add(setup_row({limit: args.data[i].entsha, balance: args.data[i].entshabal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | SHARED", subtitle: "SHARED LIMIT", ent_type: "RM ", maxperclaim: args.data[i].maxperclaim}));
-        }
-        if(args.data[i].vstidvbal < 99999){
-            view_container.add(setup_visit_row({limit: args.data[i].vstidv, balance: args.data[i].vstidvbal, benefittype: args.data[i].benefittype, vstTitle: "VISIT BALANCE", category: " | VISIT", subtitle: "VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
-        }
-        if(args.data[i].vstsha < 99999){
-            view_container.add(setup_visit_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, vstTitle: "SHARED VISIT BALANCE", category: " | VISIT | SHARED", subtitle: "SHARED VISIT LIMIT", ent_type: "VISIT: ", maxperclaim: args.data[i].maxperclaim}));
+        if(args.data[i].entidvbal != "99999"){
+        		view_container.add(setup_row({limit: args.data[i].entidv, balance: args.data[i].entidvbal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: "", subtitle: "LIMIT", ent_type: "RM "}));
+    		}
+    		if(args.data[i].entshabal != "99999"){
+        		view_container.add(setup_row({limit: args.data[i].entsha, balance: args.data[i].entshabal, benefittype: args.data[i].benefittype, entTitle: args.data[i].entTitle, category: " | SHARED", subtitle: "SHARED LIMIT", ent_type: "RM "}));
+    		}
+    		if(args.data[i].vstidvbal != "99999"){
+        		view_container.add(setup_visit_row({limit: args.data[i].vstidv, balance: args.data[i].vstidvbal, benefittype: args.data[i].benefittype, vstTitle: "VISIT BALANCE", category: " | VISIT", subtitle: "VISIT LIMIT", ent_type: "VISIT: "}));
+    		}
+    		if(args.data[i].vstshabal != "99999"){
+        		view_container.add(setup_visit_row({limit: args.data[i].vstsha, balance: args.data[i].vstshabal, benefittype: args.data[i].benefittype, vstTitle: "SHARED VISIT BALANCE", category: " | VISIT | SHARED", subtitle: "SHARED VISIT LIMIT", ent_type: "VISIT: "}));
+    		}
+    		if(args.data[i].maxperclaim != "99999"){
+        		view_container.add(generate_description("MAXIMUM AMOUNT PER CLAIM", (args.data[i].maxperclaim == "9999")?"":args.data[i].maxperclaim, "100%"));
         }
         
-        if(args.data[i].maxperclaim != "99999"){
-            view_container.add(generate_description("MAXIMUM AMOUNT PER CLAIM", args.data[i].maxperclaim, "100%"));
-        }
         view_container.addEventListener("click", navToHistory);
         $.main.add(view_container);   
     }
